@@ -1,10 +1,14 @@
-var Base = function Base(adapter) {
-    this.adapter = adapter;
+var Base = function Base(scope) {
+    this.scope = scope;
 };
 
 jQuery.extend(true, Base.prototype, {
 
     defaultNumberType: 10,
+
+    extendHash: function extendHash(self, hash) {
+        jQuery.extend(true, self, hash);
+    },
 
     extendPrototype: function extendPrototype(self, hash) {
         jQuery.extend(true, self.prototype, hash);
@@ -70,6 +74,14 @@ jQuery.extend(true, Base.prototype, {
     // Define object if undefined
     // Return: self || default value
     define: function define(o, value, force) {
+        if (!this.isDefined(o)) {
+            o = value;
+        } else if (typeof(o) !== typeof(value) && force) {
+            o = value;
+        }
+        return o;
+    },
+    defineBoolean: function defineBoolean(o, value, force) {
         if (!this.isDefined(o)) {
             o = value;
         } else if (typeof(o) !== typeof(value) && force) {

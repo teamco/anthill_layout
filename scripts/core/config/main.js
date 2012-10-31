@@ -1,6 +1,7 @@
 requirejs.config({
     baseUrl: 'scripts/lib',
     paths: {
+        config: '../core/config',
         jquery: 'jquery/1.8.2/jquery.min',
         application: '../core/application',
         controller: '../core/controller',
@@ -12,7 +13,8 @@ requirejs.config({
 });
 
 requirejs([
-    'jquery', 
+    'config/routes',
+    'jquery',
     'application',
     'extends/bind', 
     'extends/inherits',
