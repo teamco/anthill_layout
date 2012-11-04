@@ -15,8 +15,19 @@ requirejs.config({
 requirejs([
     'config/routes',
     'jquery',
-    'application',
-    'extends/bind', 
+    'extends/bind',
     'extends/inherits',
-    'modules/base'
+
+    'modules/base',
+    'modules/base/function',
+    'modules/base/array',
+    'modules/base/hash',
+    'modules/base/number',
+    'modules/base/html',
+    'modules/base/generator',
+
+    'modules/mvc',
+
+    'application'
+
 ]);
