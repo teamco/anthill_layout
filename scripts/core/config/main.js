@@ -7,7 +7,7 @@ requirejs.config({
         controller: '../core/controller',
         model: '../core/model',
         view: '../core/view',
-        extends: '../core/extends',
+        extends: 'extends',
         modules: 'modules'
     }
 });
@@ -15,6 +15,7 @@ requirejs.config({
 requirejs([
     'config/routes',
     'jquery',
+
     'extends/bind',
     'extends/inherits',
 
@@ -27,7 +28,14 @@ requirejs([
     'modules/base/generator',
 
     'modules/mvc',
+    'modules/model',
 
-    'application'
+    'application',
+    'controller/application.controller',
+    'model/application.model',
+
+    'controller/workspace/workspace',
+    'controller/workspace/workspace.controller',
+    'model/workspace.model'
 
 ]);

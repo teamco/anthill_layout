@@ -6,47 +6,19 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var MVC = function MVC(scope) {
+var MVC = function MVC(scope, force) {
 
-//    this.parent = null;
     this.scope = scope;
+    this.base = this.scope.root.com.base;
 
-//
-//    if (App.base.isDefined(this.parent) && App.base.isObject(this.parent)) {
-//
-//        this.parent = App.base.constructorName(this.parent);
-//        if (App.base.isDefined(this.parent)) {
-//            this.scope[this.parent.toLowerCase()] = this.parent;
-//        } else {
-//            // Unknown constructor name
-//            return false;
-//        }
-//    }
-//
-//    // Init Elements
-//    this.scope = App.base.constructorName(this.scope);
-//    if (App.base.isDefined(this.scope)) {
-//        this.scope.elements = new App.Element.prototype[this.scope](this.scope);
-//    } else {
-//        // Unknown constructor name
-//        return false;
-//    }
-//
     // MVC setting
-    this.checkFn('Model');
-    this.checkFn('View');
-    this.checkFn('Controller');
+    this.defineMVC('Model', force);
+    this.defineMVC('View', force);
+    this.defineMVC('Controller', force);
 
     // Set MV Relation
-    // Model
-//    this.scope.model.view = this.scope.view;
-//    this.scope.model.controller = this.scope.controller;
-    // Controller
-//    this.scope.controller.view = this.scope.view;
-//    this.scope.controller.model = this.scope.model;
-    // View
-//    this.scope.view.model = this.scope.model;
-//    this.scope.view.controller = this.scope.controller;
+    this.setRelation('Controller', 'Model');
+    this.setRelation('View', 'Controller');
 //
 //    // Development mode
 //    this.scope.development = new App.Development(this.scope);
@@ -103,11 +75,54 @@ var MVC = function MVC(scope) {
 };
 
 jQuery.extend(true, MVC.prototype, {
-    checkFn: function checkFn(name) {
-        name += '';
-        if (this.scope.root.com.base.isFunction(this.scope[name])) {
-            this.scope[name.toLowerCase()] = new this.scope[name](this.scope);
-        }
+    defineMVC: function defineMVC(mvc, force) {
+        mvc += '';debugger
 
+        var name = mvc.toLowerCase();
+
+        if (this.base.isFunction(this.scope[mvc])) {
+
+            this.scope[name] = new this.scope[mvc](this.scope);
+
+        } else {
+
+            if (force) {
+
+                if (!this.base.isFunction(this.scope[mvc])) {
+                    var scopeName = this.constructorName(),
+                        fnName = scopeName + mvc;
+
+                    var fn = new Function(
+                        name,
+                        [
+                            'return function ', fnName,
+                            '(', name, ') { this.', scopeName.toLowerCase(),
+                            ' = ', name, ' };'
+                        ].join('')
+                    );
+
+                    this.scope.constructor.prototype[mvc] = fn();
+
+                    this.scope[name] = new this.scope[mvc](this.scope);
+
+                }
+
+            }
+        }
+    },
+    constructorName: function constructorName() {
+        var name = this.base.getConstructorName(this.scope);
+        if (this.base.isDefined(name)) {
+            return name;
+        } else {
+            // Unknown constructor name
+            return false;
+        }
+    },
+    setRelation: function setRelation(from, to) {
+        if (this.scope.hasOwnProperty(from.toLowerCase()) &&
+            this.scope.hasOwnProperty(to.toLowerCase())) {
+            this.scope.controller[to.toLowerCase()] = this.scope[to.toLowerCase()];
+        }
     }
 });

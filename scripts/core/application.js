@@ -1,42 +1,41 @@
-require([
-    'controller/workspace/workspace',
-    'controller/workspace/workspace.controller'
-], function loadApplication() {
-    var App = function App(opts) {
+var App = function App(opts) {
 
-        opts = opts || {};
+    opts = opts || {};
 
-        this.com = {
-            base: new Base(this),
-            mode: 'development',
-            config: {
-                workspace: {
-                    limit: 1,
-                    order: []
-                }
-            },
-            log: {
-                development: true,
-                debug: false,
-                show: false,
-                cover: false,
-                namespace: false,
-                type: {
-                    debug: false,
-                    log: false,
-                    info: false,
-                    error: true,
-                    warn: true
-                }
-            },
-            lib: {
+    this.com = {
+        base: new Base(this),
+        mode: 'development',
+        config: {
+            workspace: {
+                limit: 1,
+                order: []
             }
-        };
-        this.ui = {
-            workspaces: {},
-            workspace: new Workspace(this, opts.workspace)
-        };
+        },
+        log: {
+            development: true,
+            debug: false,
+            show: false,
+            cover: false,
+            namespace: false,
+            type: {
+                debug: false,
+                log: false,
+                info: false,
+                error: true,
+                warn: true
+            }
+        },
+        lib: {
+        }
     };
 
-    window.App = new App(Routes.storage);
-});
+    this.ui = {
+        workspaces: {}
+    };
+
+    this.root = this;
+
+    new MVC(this);
+};
+
+//App = new App(Routes.storage);

@@ -10,7 +10,7 @@ Base.prototype.Array = function Array(base) {
     this.base = base;
 };
 
-jQuery.extend(true, Base.prototype.Array.prototype, {
+Base.prototype.Array.extend({
     // Removes undefined/null items from an Array
     // Return: Compact Array
     compact: function compact(array) {

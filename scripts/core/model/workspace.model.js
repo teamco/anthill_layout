@@ -6,10 +6,10 @@
  * To change this template use File | Settings | File Templates.
  */
 
-Workspace.prototype.Controller = function WorkspaceController(workspace) {
+Workspace.prototype.Model = function WorkspaceModel(workspace) {
     this.workspace = workspace;
 };
 
-Workspace.prototype.Controller.extend({
+Workspace.prototype.Model.extend({
 
-});
+}, Model);

@@ -58,4 +58,13 @@
         return this;
     });
 
+    Function.method('extend', function extend(hash, node){
+        if (typeof node === 'function') {
+            jQuery.extend(true, this.inherits(node).prototype, hash);
+        } else {
+            jQuery.extend(true, this.prototype, hash);
+        }
+        return this;
+    });
+
 }());

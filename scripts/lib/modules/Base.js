@@ -1,10 +1,10 @@
 var Base = function Base() {
-    this.generator = new this.Generator(this);
     this.function = new this.Function(this);
     this.array = new this.Array(this);
     this.hash = new this.Hash(this);
     this.number = new this.Number(this);
     this.html = new this.HTML(this);
+    this.generator = new this.Generator(this);
 };
 
 jQuery.extend(true, Base.prototype, {

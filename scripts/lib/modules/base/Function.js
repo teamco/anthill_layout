@@ -10,7 +10,7 @@ Base.prototype.Function = function Function(base) {
     this.base = base;
 };
 
-jQuery.extend(true, Base.prototype.Function.prototype, {
+Base.prototype.Function.extend({
     getConstructorName: function getConstructorName(scope) {
         if (!this.base.isDefined(scope)) {
             return undefined;

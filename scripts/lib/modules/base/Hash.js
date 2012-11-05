@@ -10,7 +10,7 @@ Base.prototype.Hash = function Hash(base) {
     this.base = base;
 };
 
-jQuery.extend(true, Base.prototype.Hash.prototype, {
+Base.prototype.Hash.extend({
 
     extendHash: function extendHash(self, hash) {
         jQuery.extend(true, self, hash);

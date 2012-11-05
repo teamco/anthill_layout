@@ -10,7 +10,7 @@ Base.prototype.Generator = function Generator(base) {
     this.base = base;
 };
 
-jQuery.extend(true, Base.prototype.Generator.prototype, {
+Base.prototype.Generator.extend({
     // Generate UUID
     // http://www.ietf.org/rfc/rfc4122.txt
     UUID: function UUID() {

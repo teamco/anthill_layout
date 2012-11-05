@@ -10,7 +10,7 @@ Base.prototype.HTML = function HTML(base) {
     this.base = base;
 };
 
-jQuery.extend(true, Base.prototype.HTML.prototype, {
+Base.prototype.HTML.extend({
     escapeHTML: function escapeHTML(text, escape) {
         var div = jQuery('<div/>');
         if (this.base.isDefined(text)) {

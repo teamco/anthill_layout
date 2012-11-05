@@ -7,10 +7,12 @@
  */
 Base.prototype.Number = function Number(base) {
     this.base = base;
-    defaultNumberType =  10;
 };
 
-jQuery.extend(true, Base.prototype.Number.prototype, {
+Base.prototype.Number.extend({
+
+    defaultNumberType: 10,
+
     // Convert String to Integer
     // Return: integer || 0 if NaN
     str2int: function str2int(s, t) {
@@ -23,4 +25,4 @@ jQuery.extend(true, Base.prototype.Number.prototype, {
         var number = parseFloat(s, this.base.define(t, this.defaultNumberType));
         return this.base.isNumber(number) ? number : 0;
     }
-});
+}, Base);
