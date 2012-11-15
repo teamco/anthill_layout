@@ -1,41 +1,50 @@
-var App = function App(opts) {
+define([
+    'modules/mvc'
+], function defineApp(MVC) {
 
-    opts = opts || {};
+    var App = function App(opts) {
 
-    this.com = {
-        base: new Base(this),
-        mode: 'development',
-        config: {
-            workspace: {
-                limit: 1,
-                order: []
-            }
-        },
-        log: {
-            development: true,
-            debug: false,
-            show: false,
-            cover: false,
-            namespace: false,
-            type: {
+        opts = opts || {};
+
+        this.com = {
+            mode: 'development',
+            config: {
+                workspace: {
+                    limit: 1,
+                    order: []
+                }
+            },
+            log: {
+                development: true,
                 debug: false,
-                log: false,
-                info: false,
-                error: true,
-                warn: true
+                show: false,
+                cover: false,
+                namespace: false,
+                type: {
+                    debug: false,
+                    log: false,
+                    info: false,
+                    error: true,
+                    warn: true
+                }
+            },
+            lib: {
             }
-        },
-        lib: {
+        };
+
+        this.ui = {
+            workspaces: {}
+        };
+
+        this.defineDependencies();
+
+    };
+
+    App.extend({
+        defineDependencies: function defineDependencies() {
+            new MVC(this);
         }
-    };
+    });
 
-    this.ui = {
-        workspaces: {}
-    };
-
-    this.root = this;
-
-    new MVC(this);
-};
-
-//App = new App(Routes.storage);
+    return App;
+});

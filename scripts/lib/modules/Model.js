@@ -6,14 +6,20 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var Model = function Model() {
+define(['modules/base'], function initModel(Base) {
+    var Model = function Model() {
 
-};
+    };
 
-jQuery.extend(true, Model.prototype, {
+    Model.extend({
+        getUUID: function getUUID(module) {
+            module = this.define(module, {}, true);
+            if (module.hasOwnProperty('config')) {
+                return module.config.uuid;
+            }
+        }
+    }, Base);
 
-    getUUID: function getUUID(package) {
-        return package.config.uuid;
-    }
+    return Model;
 
 });

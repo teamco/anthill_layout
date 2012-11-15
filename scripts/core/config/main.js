@@ -13,29 +13,30 @@ requirejs.config({
 });
 
 requirejs([
-    'config/routes',
     'jquery',
-
     'extends/bind',
-    'extends/inherits',
+    'extends/inherits'
+]);
 
-    'modules/base',
-    'modules/base/function',
-    'modules/base/array',
-    'modules/base/hash',
-    'modules/base/number',
-    'modules/base/html',
-    'modules/base/generator',
-
-    'modules/mvc',
-    'modules/model',
-
+define([
+    'config/routes',
+//    'modules/base/function',
+//    'modules/base/array',
+//    'modules/base/hash',
+//    'modules/base/number',
+//    'modules/base/html',
+//    'modules/base/generator',
+//
+//    'modules/mvc',
+//
     'application',
     'controller/application.controller',
-    'model/application.model',
-
-    'controller/workspace/workspace',
-    'controller/workspace/workspace.controller',
-    'model/workspace.model'
-
-]);
+    'model/application.model'
+//
+//    'controller/workspace/workspace',
+//    'controller/workspace/workspace.controller',
+//    'model/workspace.model'
+//
+], function initApp(Routes, Application) {
+    window.app = new Application();
+});

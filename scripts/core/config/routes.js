@@ -1,4 +1,6 @@
 /** @namespace localStorage.app */
-var Routes = {
-    storage: localStorage.app
-};
+define(function initRoutes() {
+    return {
+        storage: localStorage.app
+    }
+});

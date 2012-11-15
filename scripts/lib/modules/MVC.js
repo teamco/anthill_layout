@@ -6,19 +6,22 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var MVC = function MVC(scope, force) {
+define([
+    'jquery',
+    'modules/base'
+], function ($, Base) {
+    var MVC = function MVC(scope, force) {
 
-    this.scope = scope;
-    this.base = this.scope.root.com.base;
+        this.scope = scope;
 
-    // MVC setting
-    this.defineMVC('Model', force);
-    this.defineMVC('View', force);
-    this.defineMVC('Controller', force);
+        // MVC setting
+        this.defineMVC('Model', force);
+        this.defineMVC('View', force);
+        this.defineMVC('Controller', force);
 
-    // Set MV Relation
-    this.setRelation('Controller', 'Model');
-    this.setRelation('View', 'Controller');
+        // Set MV Relation
+        this.setRelation('Controller', 'Model');
+        this.setRelation('View', 'Controller');
 //
 //    // Development mode
 //    this.scope.development = new App.Development(this.scope);
@@ -72,57 +75,60 @@ var MVC = function MVC(scope, force) {
 //
 //    this.scope.development.info(this.scope[1] + ' configured');
 
-};
+    };
 
-jQuery.extend(true, MVC.prototype, {
-    defineMVC: function defineMVC(mvc, force) {
-        mvc += '';debugger
+    MVC.extend({
+        defineMVC: function defineMVC(mvc, force) {
+            mvc += '';
 
-        var name = mvc.toLowerCase();
+            var name = mvc.toLowerCase();
 
-        if (this.base.isFunction(this.scope[mvc])) {
+            if (this.isFunction(this.scope[mvc])) {
 
-            this.scope[name] = new this.scope[mvc](this.scope);
+                this.scope.constructor.prototype[name] = new this.scope[mvc](this.scope);
 
-        } else {
+            } else {
 
-            if (force) {
+                if (force) {
 
-                if (!this.base.isFunction(this.scope[mvc])) {
-                    var scopeName = this.constructorName(),
-                        fnName = scopeName + mvc;
+                    if (!this.isFunction(this.scope[mvc])) {
+                        var scopeName = this.constructorName(),
+                            fnName = scopeName + mvc;
 
-                    var fn = new Function(
-                        name,
-                        [
-                            'return function ', fnName,
-                            '(', name, ') { this.', scopeName.toLowerCase(),
-                            ' = ', name, ' };'
-                        ].join('')
-                    );
+                        var fn = new Function(
+                            name,
+                            [
+                                'return function ', fnName,
+                                '(', name, ') { this.', scopeName.toLowerCase(),
+                                ' = ', name, ' };'
+                            ].join('')
+                        );
 
-                    this.scope.constructor.prototype[mvc] = fn();
+                        this.scope.constructor.prototype[mvc] = fn();
 
-                    this.scope[name] = new this.scope[mvc](this.scope);
+                        this.scope.constructor.prototype[name] = new this.scope[mvc](this.scope);
+
+                    }
 
                 }
-
+            }
+        },
+        constructorName: function constructorName() {
+            var name = this.getConstructorName(this.scope);
+            if (this.isDefined(name)) {
+                return name;
+            } else {
+                // Unknown constructor name
+                return false;
+            }
+        },
+        setRelation: function setRelation(from, to) {
+            if (this.scope.hasOwnProperty(from.toLowerCase()) &&
+                this.scope.hasOwnProperty(to.toLowerCase())) {
+                this.scope.controller[to.toLowerCase()] = this.scope[to.toLowerCase()];
             }
         }
-    },
-    constructorName: function constructorName() {
-        var name = this.base.getConstructorName(this.scope);
-        if (this.base.isDefined(name)) {
-            return name;
-        } else {
-            // Unknown constructor name
-            return false;
-        }
-    },
-    setRelation: function setRelation(from, to) {
-        if (this.scope.hasOwnProperty(from.toLowerCase()) &&
-            this.scope.hasOwnProperty(to.toLowerCase())) {
-            this.scope.controller[to.toLowerCase()] = this.scope[to.toLowerCase()];
-        }
-    }
+    }, Base);
+
+    return MVC;
 });
