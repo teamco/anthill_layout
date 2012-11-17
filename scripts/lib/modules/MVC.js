@@ -83,7 +83,7 @@ define([
 
             var name = mvc.toLowerCase();
 
-            if (this.isFunction(this.scope[mvc])) {
+            if (this.base.isFunction(this.scope[mvc])) {
 
                 this.scope.constructor.prototype[name] = new this.scope[mvc](this.scope);
 
@@ -114,7 +114,7 @@ define([
             }
         },
         constructorName: function constructorName() {
-            var name = this.getConstructorName(this.scope);
+            var name = this.scope.getConstructorName();
             if (this.isDefined(name)) {
                 return name;
             } else {

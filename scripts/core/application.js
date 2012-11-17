@@ -1,3 +1,8 @@
+requirejs([
+    'controller/application.controller',
+    'model/application.model'
+]);
+
 define([
     'modules/mvc'
 ], function defineApp(MVC) {

@@ -27,7 +27,8 @@ define(['jquery'], function initInherits($) {
         // are obtained from the arguments array. Unfortunately, the arguments array is not a
         // true array, so we have to use apply again to invoke the array slice method.
         Function.method('inherits', function inherits(Parent) {
-            var d = {}, p = (this.prototype = new Parent());
+            var d = {},
+                p = (this.prototype[Parent.getConstructorName().toLowerCase()] = new Parent());
             this.method('uber', function uber(name) {
                 if (!d.hasOwnProperty(name)) {
                     d[name] = 0;
@@ -64,11 +65,28 @@ define(['jquery'], function initInherits($) {
             return this;
         });
 
+        if (!Object.hasOwnProperty('getConstructorName')) {
+            Object.prototype.getConstructorName = function getConstructorName() {
+                return this.constructor.getConstructorName();
+            };
+        };
+
+        Function.method('getConstructorName', function getConstructorName() {
+            // IE issue RegEx instead of constructor name
+            var instance = this.toString().match(/function (\w*)/);
+            if (typeof instance !== 'undefined') {
+                return instance[1];
+            }
+        });
+
         Function.method('extend', function extend() {
-            var i = 1, l = arguments.length,
+            var i = 0, l = arguments.length,
                 hash = arguments[0] || {};
 
-            $.extend(true, this.prototype, hash);
+            if (l > 1) {
+                $.extend(true, this.prototype, hash);
+                i = 1;
+            }
 
             for (i; i < l; i += 1) {
                 var node = arguments[i];

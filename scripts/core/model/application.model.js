@@ -8,19 +8,19 @@
 
 define([
     'application',
-    'modules/model'
-], function(App, Model){
+    'modules/model',
+    'modules/base'
+], function(App, Model, Base){
     App.prototype.Model = function AppModel() {
     };
 
     App.prototype.Model.extend({
         create: function create(workspace) {
-            var ui = this.app.ui,
-                base = this.app.com.base;
+            var ui = this.app.ui;
 
-            workspace = base.define(workspace, {}, true);
+            workspace = this.define(workspace, {}, true);
 
-            ui.workspace = new Workspace(this.app, base.define(workspace, {}, true));
+            ui.workspace = new Workspace(this.app, this.define(workspace, {}, true));
             ui.workspaces[ui.workspace.config.uuid] = ui.workspace;
         },
         destroy: function destroy(workspace) {
@@ -39,5 +39,5 @@ define([
                 }
             }
         }
-    }, App, Model);
+    }, App, Model, Base);
 });

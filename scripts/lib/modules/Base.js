@@ -1,18 +1,19 @@
+requirejs([
+    'modules/base/array',
+    'modules/base/function',
+    'modules/base/generator',
+    'modules/base/hash',
+    'modules/base/html',
+    'modules/base/number'
+]);
+
 define(['jquery'], function defineBase($) {
     var Base = function Base() {
-//        this.init();
     };
 
     Base.extend({
 
-        init: function init() {
-//            this.function = new this.Function(this);
-//            this.array = new this.Array(this);
-//            this.hash = new this.Hash(this);
-//            this.number = new this.Number(this);
-//            this.html = new this.HTML(this);
-//            this.generator = new this.Generator(this);
-        },
+        lib: {},
 
         // Check if object defined
         // Return: boolean
@@ -24,7 +25,7 @@ define(['jquery'], function defineBase($) {
         },
         isEmpty: function isEmpty(o) {
             if (this.isString(o)) {
-                return jQuery.trim(o).length === 0;
+                return $.trim(o).length === 0;
             } else if (this.isArray(o) || this.is$Object(o)) {
                 return o.length === 0;
             }
@@ -36,11 +37,11 @@ define(['jquery'], function defineBase($) {
         // Check if array
         // Return: boolean
         isArray: function isArray(a) {
-            return jQuery.isArray(a);
+            return $.isArray(a);
         },
-        // Check if object is instance of jQuery
+        // Check if object is instance of $
         is$Object: function is$Object(o) {
-            return o instanceof jQuery;
+            return o instanceof $;
         },
         // Check if object
         // Return: boolean
@@ -81,4 +82,5 @@ define(['jquery'], function defineBase($) {
     });
 
     return Base;
+
 });

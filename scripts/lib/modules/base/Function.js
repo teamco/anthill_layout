@@ -5,21 +5,13 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
+define(['modules/base'], function defineBaseFunction(Base) {
+    var BaseFunction = function BaseFunction() {
+    };
 
-Base.prototype.Function = function Function(base) {
-    this.base = base;
-};
+    BaseFunction.extend({
+    });
 
-Base.prototype.Function.extend({
-    getConstructorName: function getConstructorName(scope) {
-        if (!this.base.isDefined(scope)) {
-            return undefined;
-        }
-        // IE issue RegEx instead of constructor name
-        var instance = scope.constructor.toString().match(/function (\w*)/);
-        if (this.base.isDefined(instance)) {
-            return instance[1];
-        }
-        return undefined;  // Undefined
-    }
+    Base.prototype.lib.function = new BaseFunction();
+
 });

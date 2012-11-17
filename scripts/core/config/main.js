@@ -29,9 +29,7 @@ define([
 //
 //    'modules/mvc',
 //
-    'application',
-    'controller/application.controller',
-    'model/application.model'
+    'application'
 //
 //    'controller/workspace/workspace',
 //    'controller/workspace/workspace.controller',

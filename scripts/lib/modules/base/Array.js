@@ -5,17 +5,17 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-define(['modules/base'], function defineBaseArray(Base){
-    Base.prototype.Array = function Array() {
+define(['modules/base'], function defineBaseArray(Base) {
+    var BaseArray = function BaseArray() {
     };
 
-    Base.prototype.Array.extend({
+    BaseArray.extend({
         // Removes undefined/null items from an Array
         // Return: Compact Array
         compact: function compact(array) {
             var res = [];
-            array = this.define(array, []);
-            jQuery.each(array, function (k, v) {
+            array = this.base.define(array, []);
+            $.each(array, function (k, v) {
                 if (this.base.isDefined(v)) {
                     res.push(v);
                 }
@@ -23,4 +23,6 @@ define(['modules/base'], function defineBaseArray(Base){
             return res;
         }
     }, Base);
+
+    Base.prototype.lib.array = new BaseArray();
 });
