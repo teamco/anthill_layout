@@ -20,16 +20,8 @@ requirejs([
 
 define([
     'config/routes',
-//    'modules/base/function',
-//    'modules/base/array',
-//    'modules/base/hash',
-//    'modules/base/number',
-//    'modules/base/html',
-//    'modules/base/generator',
-//
-//    'modules/mvc',
-//
-    'application'
+    'application',
+    'controller/workspace/workspace'
 //
 //    'controller/workspace/workspace',
 //    'controller/workspace/workspace.controller',

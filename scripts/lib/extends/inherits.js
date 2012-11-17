@@ -65,18 +65,22 @@ define(['jquery'], function initInherits($) {
             return this;
         });
 
-        if (!Object.hasOwnProperty('getConstructorName')) {
-            Object.prototype.getConstructorName = function getConstructorName() {
-                return this.constructor.getConstructorName();
-            };
-        };
-
         Function.method('getConstructorName', function getConstructorName() {
             // IE issue RegEx instead of constructor name
             var instance = this.toString().match(/function (\w*)/);
             if (typeof instance !== 'undefined') {
                 return instance[1];
             }
+        });
+
+        if (!Object.hasOwnProperty('getConstructorName')) {
+            Object.prototype.getConstructorName = function getConstructorName() {
+                return this.constructor.getConstructorName();
+            };
+        };
+
+        Function.method('getCallerName', function getCallerName() {
+            return this.caller.getConstructorName();
         });
 
         Function.method('extend', function extend() {
