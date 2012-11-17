@@ -1,19 +1,17 @@
 define([
-    'modules/base'
-], function defineWorkspace(Base) {
-    var Workspace = function Workspace(scope, opts) {
+    'modules/base',
+    'modules/mvc',
+    'controller/workspace/workspace.controller',
+    'model/workspace.model'
+], function defineWorkspace(Base, MVC, Controller, Model) {
+    var Workspace = function Workspace(opts) {
 
-        this.parent = scope;
-        this.root = scope;
-
-        var base = this.root.com.base;
-
-        opts = base.define(opts, {}, true);
+        opts = this.base.define(opts, {}, true);
 
         // Default constants
 
         var DEFAULTS = {
-            uuid: base.generator.UUID(),
+            uuid: this.base.lib.generator.UUID(),
             page: {
                 limit: 10,
                 order: []
@@ -56,11 +54,14 @@ define([
         };
 
         // Configure workspace
-        this.config = base.hash.extendHash(opts, DEFAULTS);
+        this.config = this.base.lib.hash.extendHash(opts, DEFAULTS);
 
 
         // Init MVC
-        new MVC(this);
+        new MVC({
+            scope: this,
+            components: [Controller, Model]
+        });
 
         // Init page
         this.page = undefined;

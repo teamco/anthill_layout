@@ -5,11 +5,12 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
+define([
+    'controller/workspace/workspace'
+], function defineWorkspaceController(Workspace) {
+    var Controller = function Controller() {
+    };
 
-Workspace.prototype.Controller = function WorkspaceController(workspace) {
-    this.workspace = workspace;
-};
-
-Workspace.prototype.Controller.extend({
-
+    return Controller.extend({
+    }, Workspace);
 });

@@ -9,8 +9,9 @@
 define([
     'application',
     'modules/model',
-    'modules/base'
-], function(App, BaseModel, Base){
+    'modules/base',
+    'controller/workspace/workspace'
+], function(App, BaseModel, Base, Workspace){
     var Model = function Model() {
     };
 
@@ -18,9 +19,7 @@ define([
         create: function create(workspace) {
             var ui = this.app.ui;
 
-            workspace = this.define(workspace, {}, true);
-
-            ui.workspace = new Workspace(this.app, this.define(workspace, {}, true));
+            ui.workspace = new Workspace(this.base.define(workspace, {}, true));
             ui.workspaces[ui.workspace.config.uuid] = ui.workspace;
         },
         destroy: function destroy(workspace) {

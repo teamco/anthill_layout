@@ -1,12 +1,13 @@
 define([
     'controller/application.controller',
     'model/application.model',
-    'modules/mvc'
-], function defineApp(Controller, Model, MVC) {
+    'modules/mvc',
+    'modules/base'
+], function defineApp(Controller, Model, MVC, Base) {
 
     var App = function App(opts) {
 
-        opts = opts || {};
+        opts = this.base.define(opts, {}, true);
 
         this.com = {
             mode: 'development',
@@ -29,27 +30,21 @@ define([
                     error: true,
                     warn: true
                 }
-            },
-            lib: {
             }
         };
 
         this.ui = {
-            workspaces: {}
+            workspaces: {},
+            workspace: undefined
         };
 
-        this.defineDependencies();
+        new MVC({
+            scope: this,
+            components: [Controller, Model]
+        });
 
     };
 
-    App.extend({
-        defineDependencies: function defineDependencies() {
-            new MVC({
-                scope: this,
-                components: [Controller, Model]
-            });
-        }
-    });
+    return App.extend(Base);
 
-    return App;
 });

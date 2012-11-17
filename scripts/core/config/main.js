@@ -29,4 +29,5 @@ define([
 //
 ], function initApp(Routes, Application) {
     window.app = new Application();
+    window.app.model.create();
 });

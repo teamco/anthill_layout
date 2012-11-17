@@ -5,11 +5,15 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
+define([
+    'modules/model',
+    'modules/base'
+], function defineWorkspaceModel(BaseModel, Base) {
+    var Model = function Model() {
 
-Workspace.prototype.Model = function WorkspaceModel(workspace) {
-    this.workspace = workspace;
-};
+    };
 
-Workspace.prototype.Model.extend({
+    return Model.extend({
 
-}, Model);
+    }, BaseModel.prototype, Base);
+});
