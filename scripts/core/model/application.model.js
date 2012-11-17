@@ -7,29 +7,28 @@
  */
 
 define([
-    'application',
     'modules/model',
     'modules/base',
     'controller/workspace/workspace'
-], function(App, BaseModel, Base, Workspace){
+], function(BaseModel, Base, Workspace){
     var Model = function Model() {
     };
 
-    Model.extend({
-        create: function create(workspace) {
+    return Model.extend({
+        createWorkspace: function createWorkspace(workspace) {
             var ui = this.app.ui;
 
             ui.workspace = new Workspace(this.base.define(workspace, {}, true));
             ui.workspaces[ui.workspace.config.uuid] = ui.workspace;
         },
-        destroy: function destroy(workspace) {
+        destroyWorkspace: function destroyWorkspace(workspace) {
     //        var workspaces = this.app.ui.workspaces;
     //        if (workspaces.hasOwnProperty(workspace.model.)) {
     //            delete workspaces[index];
     //        }
     //    }
         },
-        destroyAll: function destroyAll(force) {
+        destroyWorkspaces: function destroyWorkspace(force) {
             var index,
                 workspaces = this.app.ui.workspaces;
             for (index in workspaces) {
@@ -40,5 +39,4 @@ define([
         }
     }, BaseModel.prototype, Base);
 
-    return Model;
 });

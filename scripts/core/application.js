@@ -2,7 +2,9 @@ define([
     'controller/application.controller',
     'model/application.model',
     'modules/mvc',
-    'modules/base'
+    'modules/base',
+    'modules/observer',
+    'event/application.event.manager'
 ], function defineApp(Controller, Model, MVC, Base) {
 
     var App = function App(opts) {
@@ -35,7 +37,7 @@ define([
 
         this.ui = {
             workspaces: {},
-            workspace: undefined
+            workspace: {}
         };
 
         new MVC({

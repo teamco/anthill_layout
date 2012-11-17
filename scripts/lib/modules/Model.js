@@ -11,7 +11,7 @@ define(['modules/base'], function initModel(Base) {
 
     };
 
-    BaseModel.extend({
+    return BaseModel.extend({
         getUUID: function getUUID(module) {
             module = this.define(module, {}, true);
             if (module.hasOwnProperty('config')) {
@@ -19,7 +19,5 @@ define(['modules/base'], function initModel(Base) {
             }
         }
     }, Base);
-
-    return BaseModel;
 
 });

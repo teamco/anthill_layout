@@ -5,12 +5,14 @@
  * Time: 9:17 PM
  * To change this template use File | Settings | File Templates.
  */
-define(['application'], function defineApplicationController(App) {
+define(['application'], function defineApplicationController() {
     var Controller = function Controller() {
     };
 
-    Controller.extend({
+    return Controller.extend({
+        addWorkspace: function addWorkspace() {
+            this.model.createWorkspace();
+        }
     });
 
-    return Controller;
 });

@@ -6,6 +6,7 @@ requirejs.config({
         application: '../core/application',
         controller: '../core/controller',
         model: '../core/model',
+        event: '../core/event',
         view: '../core/view',
         extends: 'extends',
         modules: 'modules'
@@ -21,13 +22,8 @@ requirejs([
 define([
     'config/routes',
     'application',
-    'controller/workspace/workspace'
-//
-//    'controller/workspace/workspace',
-//    'controller/workspace/workspace.controller',
-//    'model/workspace.model'
-//
-], function initApp(Routes, Application) {
+    'controller/workspace/workspace',
+    'controller/page/page'
+], function defineApp(Routes, Application) {
     window.app = new Application();
-    window.app.model.create();
 });

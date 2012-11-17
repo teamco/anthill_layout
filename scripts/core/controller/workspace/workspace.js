@@ -8,14 +8,18 @@ define([
 
         opts = this.base.define(opts, {}, true);
 
-        // Default constants
+        var uuid = this.base.isDefined(opts.uuid) ?
+                opts.uuid :
+                this.base.lib.generator.UUID();
 
+        // Default constants
         var DEFAULTS = {
-            uuid: this.base.lib.generator.UUID(),
+            uuid: uuid,
             page: {
                 limit: 10,
                 order: []
-            }
+            },
+            namespace: this.constructor.getConstructorName()
 
             //        header: false,
             //        footer: false,
@@ -56,7 +60,6 @@ define([
         // Configure workspace
         this.config = this.base.lib.hash.extendHash(opts, DEFAULTS);
 
-
         // Init MVC
         new MVC({
             scope: this,
@@ -64,7 +67,7 @@ define([
         });
 
         // Init page
-        this.page = undefined;
+        this.page = {};
         this.pages = {};
 
         //    this.observer.fireEvent(

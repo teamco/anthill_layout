@@ -8,8 +8,9 @@
 
 define([
     'jquery',
-    'modules/base'
-], function ($, Base) {
+    'modules/base',
+    'modules/observer'
+], function ($, Base, Observer) {
     var MVC = function MVC(opts) {
 
         // MVC Relationship from -> to
@@ -45,15 +46,15 @@ define([
 //    App.mixin.extend(this, this, 'Model');
 //    App.mixin.extend(this, this, 'View');
 //
-//    // Attach observer
-//    /**
-//     * @type {App.Observable}
-//     */
-//    this.scope.observer = new App.Observable(this.scope);
-//
+        /**
+         * Attach observer
+         * @type {Observer}
+         */
+//        this.scope.constructor.prototype.observer = new Observer(this.scope);
+//        this.scope.constructor.prototype.eventManager = new EventManager(this.scope);
+
 //    // Add Listeners
 //    if (App.base.isFunction(this.scope.EventManager)) {
-//        this.scope.eventManager = new this.scope.EventManager(this.scope);
 //        if (this.scope.config.globalListeners) {
 //            this.scope.EventManager.prototype.defineListeners =
 //                App.callbacks.defineListeners.bind(this.scope.eventManager)(
@@ -138,9 +139,11 @@ define([
             for (i; i < l; i += 1) {
                 var mvc = this.components[i];
                 this.defineMVC(mvc, this.force);
+
                 this.scope[this.constructorName(mvc)].
                     constructor.prototype[this.constructorName(this.scope)] = this.scope;
             }
+
         }
     }, Base);
 

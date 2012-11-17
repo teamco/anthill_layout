@@ -7,13 +7,18 @@
  */
 define([
     'modules/model',
-    'modules/base'
-], function defineWorkspaceModel(BaseModel, Base) {
+    'modules/base',
+    'controller/page/page'
+], function defineWorkspaceModel(BaseModel, Base, Page) {
     var Model = function Model() {
 
     };
 
     return Model.extend({
-
+        createPage: function createPage(page) {
+            var workspace = this.workspace;
+            workspace.page = new Page(this.base.define(page, {}, true));
+            workspace.pages[workspace.page.config.uuid] = workspace.page;
+        }
     }, BaseModel.prototype, Base);
 });
