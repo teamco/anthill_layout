@@ -7,11 +7,11 @@
  */
 
 define(['modules/base'], function initModel(Base) {
-    var Model = function Model() {
+    var BaseModel = function BaseModel() {
 
     };
 
-    Model.extend({
+    BaseModel.extend({
         getUUID: function getUUID(module) {
             module = this.define(module, {}, true);
             if (module.hasOwnProperty('config')) {
@@ -20,6 +20,6 @@ define(['modules/base'], function initModel(Base) {
         }
     }, Base);
 
-    return Model;
+    return BaseModel;
 
 });

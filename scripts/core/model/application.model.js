@@ -10,11 +10,11 @@ define([
     'application',
     'modules/model',
     'modules/base'
-], function(App, Model, Base){
-    var AppModel = function AppModel() {
+], function(App, BaseModel, Base){
+    var Model = function Model() {
     };
 
-    AppModel.extend({
+    Model.extend({
         create: function create(workspace) {
             var ui = this.app.ui;
 
@@ -39,7 +39,7 @@ define([
                 }
             }
         }
-    }, App, Model.prototype, Base);
+    }, BaseModel.prototype, Base);
 
-    App.prototype.model = new AppModel();
+    return Model;
 });

@@ -6,11 +6,11 @@
  * To change this template use File | Settings | File Templates.
  */
 define(['application'], function defineApplicationController(App) {
-    var AppController = function AppController() {
+    var Controller = function Controller() {
     };
 
-    AppController.extend({
-    }, App);
+    Controller.extend({
+    });
 
-    App.prototype.controller = new AppController();
+    return Controller;
 });

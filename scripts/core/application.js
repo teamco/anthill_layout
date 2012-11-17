@@ -1,11 +1,8 @@
-requirejs([
-    'controller/application.controller',
-    'model/application.model'
-]);
-
 define([
+    'controller/application.controller',
+    'model/application.model',
     'modules/mvc'
-], function defineApp(MVC) {
+], function defineApp(Controller, Model, MVC) {
 
     var App = function App(opts) {
 
@@ -47,7 +44,10 @@ define([
 
     App.extend({
         defineDependencies: function defineDependencies() {
-            new MVC(this);
+            new MVC({
+                scope: this,
+                components: [Controller, Model]
+            });
         }
     });
 

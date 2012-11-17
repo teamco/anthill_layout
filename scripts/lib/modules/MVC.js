@@ -10,18 +10,25 @@ define([
     'jquery',
     'modules/base'
 ], function ($, Base) {
-    var MVC = function MVC(scope, force) {
+    var MVC = function MVC(opts) {
 
-        this.scope = scope;
+        // MVC Relationship from -> to
+        var RELATIONS = [
+            ['Controller', 'Model'],
+            ['View', 'Controller']
+        ];
+
+        opts = this.base.define(opts, {}, true);
+
+        this.scope = opts.scope;
+        this.components = this.base.define(opts.components, [opts.components], true);
+        this.force = this.base.defineBoolean(opts.force, false, true);
 
         // MVC setting
-        this.defineMVC('Model', force);
-        this.defineMVC('View', force);
-        this.defineMVC('Controller', force);
+        this.applyMVC();
 
         // Set MV Relation
-        this.setRelation('Controller', 'Model');
-        this.setRelation('View', 'Controller');
+        this.setRelation(RELATIONS);
 //
 //    // Development mode
 //    this.scope.development = new App.Development(this.scope);
@@ -79,53 +86,60 @@ define([
 
     MVC.extend({
         defineMVC: function defineMVC(mvc, force) {
-            mvc += '';
 
-            var name = mvc.toLowerCase();
+            var name = this.constructorName(mvc);
 
-            if (this.base.isFunction(this.scope[mvc])) {
+            if (this.base.isFunction(mvc)) {
 
-                this.scope.constructor.prototype[name] = new this.scope[mvc](this.scope);
+                this.scope.constructor.prototype[name] = new mvc();
 
             } else {
 
                 if (force) {
 
-                    if (!this.isFunction(this.scope[mvc])) {
-                        var scopeName = this.constructorName(),
-                            fnName = scopeName + mvc;
+                    var scopeName = this.constructorName(),
+                        fnName = scopeName + mvc.getConstructorName();
 
-                        var fn = new Function(
-                            name,
-                            [
-                                'return function ', fnName,
-                                '(', name, ') { this.', scopeName.toLowerCase(),
-                                ' = ', name, ' };'
-                            ].join('')
-                        );
+                    var fn = new Function(
+                        name,
+                        [
+                            'return function ', fnName,
+                            '(', name, ') { this.', scopeName,
+                            ' = ', name, ' };'
+                        ].join('')
+                    );
 
-                        this.scope.constructor.prototype[mvc] = fn();
-
-                        this.scope.constructor.prototype[name] = new this.scope[mvc](this.scope);
-
-                    }
+                    this.scope.constructor.prototype[name] = new fn();
 
                 }
             }
         },
-        constructorName: function constructorName() {
-            var name = this.scope.getConstructorName();
-            if (this.isDefined(name)) {
-                return name;
-            } else {
-                // Unknown constructor name
-                return false;
-            }
+        constructorName: function constructorName(scope) {
+            return scope.getConstructorName().toLowerCase();
         },
-        setRelation: function setRelation(from, to) {
-            if (this.scope.hasOwnProperty(from.toLowerCase()) &&
-                this.scope.hasOwnProperty(to.toLowerCase())) {
-                this.scope.controller[to.toLowerCase()] = this.scope[to.toLowerCase()];
+        setRelation: function setRelation(relations) {
+            var i = 0, l = relations.length,
+                from, to;
+
+            for (i; i < l; i += 1) {
+                var relation = relations[i];
+                from = relation[0].toLowerCase();
+                to = relation[1].toLowerCase();
+                if (this.base.isDefined(this.scope[from]) &&
+                    this.base.isDefined(this.scope[to])) {
+                    this.scope[from].constructor.prototype[to] = this.scope[to];
+                }
+            }
+
+        },
+        applyMVC: function applyMVC() {
+            var i = 0, l = this.components.length;
+
+            for (i; i < l; i += 1) {
+                var mvc = this.components[i];
+                this.defineMVC(mvc, this.force);
+                this.scope[this.constructorName(mvc)].
+                    constructor.prototype[this.constructorName(this.scope)] = this.scope;
             }
         }
     }, Base);
