@@ -17,8 +17,10 @@ define([
     return Model.extend({
         createWorkspace: function createWorkspace(workspace) {
             var app = this.app;
-            app.workspace = new Workspace(this.base.define(workspace, {}, true));
-            this.updateCollector(app.workspaces);
+            app.workspace = this.updateCollector(
+                new Workspace(this.base.define(workspace, {}, true)),
+                app.workspaces
+            );
             return app.workspace;
         },
         destroyWorkspace: function destroyWorkspace(workspace) {

@@ -32,9 +32,10 @@ define(['modules/base'], function initModel(Base) {
             }
             return length;
         },
-        updateCollector: function updateCollector(collector) {
-            collector[this.getUUID()] = this[this.scope];
+        updateCollector: function updateCollector(component, collector) {
+            collector[component.model.getUUID()] = component;
             this.updateCounter(collector);
+            return component;
         }
     }, Base);
 
