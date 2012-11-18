@@ -6,11 +6,11 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'controller/workspace/workspace'
-], function defineWorkspaceController(Workspace) {
+    'modules/controller'
+], function defineWorkspaceController(BaseController) {
     var Controller = function Controller() {
     };
 
     return Controller.extend({
-    });
+    }, BaseController.prototype);
 });

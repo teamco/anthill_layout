@@ -23,12 +23,11 @@ define([
 
         this.scope = opts.scope;
         this.components = this.base.define(opts.components, [opts.components], true);
+        this.config = this.base.define(opts.config, {}, true);
         this.force = this.base.defineBoolean(opts.force, false, true);
 
-        // MVC setting
+        this.applyConfig(this.config);
         this.applyMVC();
-
-        // Set MV Relation
         this.setRelation(RELATIONS);
 //
 //    // Development mode
@@ -137,13 +136,30 @@ define([
             var i = 0, l = this.components.length;
 
             for (i; i < l; i += 1) {
-                var mvc = this.components[i];
+                var mvc = this.components[i],
+                    scope = this.constructorName(this.scope);
                 this.defineMVC(mvc, this.force);
 
-                this.scope[this.constructorName(mvc)].
-                    constructor.prototype[this.constructorName(this.scope)] = this.scope;
+                var self = this.scope[this.constructorName(mvc)].constructor.prototype;
+
+                self[scope] = this.scope;
+                self.scope = scope;
+
             }
 
+        },
+        applyConfig: function applyConfig(config) {
+            var uuid = this.base.define(
+                    config.uuid,
+                    this.base.lib.generator.UUID()
+                ),
+                timestamp = this.base.define(
+                    config.timestamp,
+                    this.base.lib.timedate.timestamp()
+                );
+
+            this.scope.config.uuid = uuid;
+            this.scope.config.timestamp = timestamp;
         }
     }, Base);
 

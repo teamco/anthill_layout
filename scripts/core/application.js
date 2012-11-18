@@ -11,14 +11,11 @@ define([
 
         opts = this.base.define(opts, {}, true);
 
-        this.com = {
-            mode: 'development',
-            config: {
-                workspace: {
-                    limit: 1,
-                    order: []
-                }
+        this.config = {
+            workspace: {
+                limit: 1
             },
+            mode: 'development',
             log: {
                 development: true,
                 debug: false,
@@ -35,13 +32,12 @@ define([
             }
         };
 
-        this.ui = {
-            workspaces: {},
-            workspace: {}
-        };
+        this.workspaces = {};
+        this.workspace = {}
 
         new MVC({
             scope: this,
+            config: opts,
             components: [Controller, Model]
         });
 

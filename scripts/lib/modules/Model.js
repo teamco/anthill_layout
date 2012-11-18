@@ -12,11 +12,29 @@ define(['modules/base'], function initModel(Base) {
     };
 
     return BaseModel.extend({
-        getUUID: function getUUID(module) {
-            module = this.define(module, {}, true);
-            if (module.hasOwnProperty('config')) {
-                return module.config.uuid;
+        getConfig: function getConfig() {
+            return this[this.scope].config;
+        },
+        getUUID: function getUUID() {
+            return this.getConfig().uuid;
+        },
+        getOrder: function getOrder() {
+            return this.getConfig().order;
+        },
+        updateCounter: function updateCounter(collector) {
+            var index,
+                length = this.base.lib.hash.hashLength(collector);
+            for (index in collector) {
+                if(collector.hasOwnProperty(index)) {
+                    var component = collector[index];
+                    component.config.counter = length;
+                }
             }
+            return length;
+        },
+        updateCollector: function updateCollector(collector) {
+            collector[this.getUUID()] = this[this.scope];
+            this.updateCounter(collector);
         }
     }, Base);
 

@@ -4,7 +4,8 @@ requirejs([
     'modules/base/generator',
     'modules/base/hash',
     'modules/base/html',
-    'modules/base/number'
+    'modules/base/number',
+    'modules/base/timedate'
 ]);
 
 define(['jquery'], function defineBase($) {

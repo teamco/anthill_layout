@@ -5,7 +5,9 @@
  * Time: 9:17 PM
  * To change this template use File | Settings | File Templates.
  */
-define(['application'], function defineApplicationController() {
+define([
+    'modules/controller'
+], function defineApplicationController(BaseController) {
     var Controller = function Controller() {
     };
 
@@ -13,6 +15,6 @@ define(['application'], function defineApplicationController() {
         addWorkspace: function addWorkspace() {
             this.model.createWorkspace();
         }
-    });
+    }, BaseController.prototype);
 
 });

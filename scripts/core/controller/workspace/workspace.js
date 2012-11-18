@@ -8,13 +8,10 @@ define([
 
         opts = this.base.define(opts, {}, true);
 
-        var uuid = this.base.isDefined(opts.uuid) ?
-                opts.uuid :
-                this.base.lib.generator.UUID();
-
         // Default constants
         var DEFAULTS = {
-            uuid: uuid,
+            counter: 0,
+            order: 1,
             page: {
                 limit: 10,
                 order: []
@@ -63,6 +60,7 @@ define([
         // Init MVC
         new MVC({
             scope: this,
+            config: opts,
             components: [Controller, Model]
         });
 
