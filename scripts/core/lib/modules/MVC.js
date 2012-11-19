@@ -26,7 +26,7 @@ define([
         this.config = this.base.define(opts.config, {}, true);
         this.force = this.base.defineBoolean(opts.force, false, true);
 
-        this.applyConfig(this.config);
+        this.applyConfig();
         this.applyMVC();
         this.setRelation(RELATIONS);
 //
@@ -148,14 +148,14 @@ define([
             }
 
         },
-        applyConfig: function applyConfig(config) {
+        applyConfig: function applyConfig() {
             var uuid = this.base.define(
-                    config.uuid,
+                    this.config.uuid,
                     this.base.lib.generator.UUID()
                 ),
                 timestamp = this.base.define(
-                    config.timestamp,
-                    this.base.lib.timedate.timestamp()
+                    this.config.timestamp,
+                    this.base.lib.datetime.timestamp()
                 );
 
             this.scope.config.uuid = uuid;
