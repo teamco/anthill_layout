@@ -12,12 +12,6 @@ define([
     var EventManager = function EventManager() {
         this.events = {};
         this.listeners = [];
-
-//        this.event.addListener({
-//            eventName: this.eventList.createWorkspace,
-//            callback: this.app.controller.addWorkspace
-//        });
-
     };
 
     /**
@@ -26,10 +20,13 @@ define([
      */
     return EventManager.extend({
         eventList: {
-            /**
-             * @event
-             */
             createWorkspace: 'create.workspace'
+        },
+        defineEvents: function defineEvents() {
+            this.addListener({
+                eventName: this.eventList.createWorkspace,
+                callback: this.getScope().controller.addWorkspace
+            });
         }
     }, Event.prototype);
 });

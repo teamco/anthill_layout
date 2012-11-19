@@ -28,6 +28,8 @@ define([
 
         this.applyConfig();
         this.applyMVC();
+        this.applyObserver();
+        this.applyEventManager();
         this.setRelation(RELATIONS);
 //
 //    // Development mode
@@ -87,11 +89,12 @@ define([
     MVC.extend({
         defineMVC: function defineMVC(mvc, force) {
 
-            var name = this.constructorName(mvc);
+            var name = this.constructorName(mvc),
+                constructor = this.base.lib.function.getProperties(this.scope);
 
             if (this.base.isFunction(mvc)) {
 
-                this.scope.constructor.prototype[name] = new mvc();
+                constructor[name] = new mvc();
 
             } else {
 
@@ -109,7 +112,7 @@ define([
                         ].join('')
                     );
 
-                    this.scope.constructor.prototype[name] = new fn();
+                    constructor[name] = new fn();
 
                 }
             }
@@ -127,7 +130,9 @@ define([
                 to = relation[1].toLowerCase();
                 if (this.base.isDefined(this.scope[from]) &&
                     this.base.isDefined(this.scope[to])) {
-                    this.scope[from].constructor.prototype[to] = this.scope[to];
+                    this.base.lib.function.getProperties(
+                        this.scope[from]
+                    )[to] = this.scope[to];
                 }
             }
 
@@ -140,7 +145,9 @@ define([
                     scope = this.constructorName(this.scope);
                 this.defineMVC(mvc, this.force);
 
-                var self = this.scope[this.constructorName(mvc)].constructor.prototype;
+                var self = this.base.lib.function.getProperties(
+                    this.scope[this.constructorName(mvc)]
+                );
 
                 self[scope] = this.scope;
                 self.scope = scope;
@@ -156,10 +163,33 @@ define([
                 timestamp = this.base.define(
                     this.config.timestamp,
                     this.base.lib.datetime.timestamp()
-                );
+                ),
+                config = this.scope.config;
 
-            this.scope.config.uuid = uuid;
-            this.scope.config.timestamp = timestamp;
+            config.uuid = uuid;
+            config.timestamp = timestamp;
+        },
+        applyEventManager: function applyEventManager() {
+            var self = this.scope,
+                scope = this.constructorName(self),
+                eventManager = self.eventmanager,
+                eventManagerPrototype =
+                    this.base.lib.function.getProperties(eventManager);
+
+            eventManagerPrototype[scope] = self;
+            eventManagerPrototype.scope = scope;
+
+            eventManager.defineEvents();
+        },
+        applyObserver: function applyObserver() {
+            var self = this.scope,
+                scope = this.constructorName(self),
+                observer = self.observer,
+                observerPrototype =
+                    this.base.lib.function.getProperties(observer);
+
+            observerPrototype[scope] = self;
+            observerPrototype.scope = scope;
         }
     }, Base);
 

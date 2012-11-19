@@ -13,22 +13,17 @@ define([
     };
 
     return Event.extend({
-        addListener : function addListener(opts) {
-            opts = this.base.define(opts, {});
-            if (this.base.isObject(opts)) {
-                if (this.base.lib.hash.isHashEmpty(opts)) {
-                    return false;
-                }
-                var event = {};
-                event[opts.eventName] = opts;
-                this.listeners.push(event);
-                this[this.scope.observer.scopeName].observer.addEvent(opts.eventName);
-                this.events[this[this.scope.observer.scopeName].observer.onEvent(event[opts.eventName])] = opts.eventName;
-                return this.events[opts.eventName];
+        addListener: function addListener(opts) {
+            opts = this.base.define(opts, {}, true);
+            if (this.base.lib.hash.isHashEmpty(opts)) {
+                return false;
             }
-            return false;
+            this.listeners.push(opts);
+            this.getScope().observer.addEvent(opts.eventName);
+            this.events[this.getScope().observer.onEvent(opts)] = opts.eventName;
+            return this.events[opts.eventName];
         },
-        defineListeners : function defineListeners(scope, opts) {
+        defineListeners: function defineListeners(scope, opts) {
             if (this.base.isDefined(opts)) {
                 if (this.base.isArray(opts)) {
                     var i, length = opts.length;
@@ -38,6 +33,9 @@ define([
                 }
             }
             return opts;
+        },
+        getScope: function getScope() {
+            return this[this.scope];
         }
     }, Base);
 

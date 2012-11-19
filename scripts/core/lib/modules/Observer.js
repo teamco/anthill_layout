@@ -15,12 +15,9 @@ define([
     'modules/base'
 ], function defineObserver(Base) {
     var Observer = function Observer() {
-//        this.scopeName = scope.getConstructorName().toLowerCase();
-//        this[this.scopeName] = scope;
-//        this.listeners = {};
+        this.listeners = {};
     };
 
-    return Observer;
     return Observer.extend({
 
         getEventList: function getEventList() {
@@ -87,10 +84,7 @@ define([
          * @return {*}
          */
         addEvent: function addEvent(eventName) {
-            if (this.base.isHashKey(this.listeners, eventName)) {
-                return false;
-            }
-            this.listeners[eventName] = [];
+            this.listeners[eventName] = this.base.define(this.listeners[eventName], []);
             return this.listeners[eventName];
         },
 
@@ -109,7 +103,7 @@ define([
          */
         onEvent: function onEvent(opts) {
             opts = this.base.define(opts, {}, true);
-            opts.eventUUID = this.base.createUUID();
+            opts.eventUUID = this.base.lib.generator.UUID();
             opts.params = this.base.define(opts.params, {}, true);
             opts.state = {};
             // Default: normal,
