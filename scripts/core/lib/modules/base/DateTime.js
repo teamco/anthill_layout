@@ -6,11 +6,11 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(['modules/base'], function defineBaseTimeDate(Base) {
-    var BaseTimeDate = function BaseTimeDate() {
+define(['modules/base'], function defineBaseDateTime(Base) {
+    var BaseDateTime = function BaseDateTime() {
     };
 
-    BaseTimeDate.extend({
+    BaseDateTime.extend({
         getDate: function getDate() {
             return new Date();
         },
@@ -31,6 +31,6 @@ define(['modules/base'], function defineBaseTimeDate(Base) {
         }
     });
 
-    Base.prototype.lib.timedate = new BaseTimeDate();
+    Base.prototype.lib.datetime = new BaseDateTime();
 
 });
