@@ -1,15 +1,16 @@
 requirejs.config({
-    baseUrl: 'scripts/lib',
+    baseUrl: 'scripts/core',
     paths: {
-        config: '../core/config',
-        jquery: 'jquery/1.8.2/jquery.min',
-        application: '../core/application',
-        controller: '../core/controller',
-        model: '../core/model',
-        event: '../core/event',
-        view: '../core/view',
-        extends: 'extends',
-        modules: 'modules'
+        config: 'config',
+        jquery: 'lib/jquery/jquery-1.8.2.min',
+        jqueryui: 'lib/jquery/jquery-ui-1.9.1.custom.min',
+        application: 'application',
+        controller: 'controller',
+        model: 'model',
+        event: 'event',
+        view: 'view',
+        extends: 'lib/extends',
+        modules: 'lib/modules'
     }
 });
 

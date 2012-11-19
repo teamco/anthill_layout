@@ -54,11 +54,11 @@ define([
 
 //    // Add Listeners
 //    if (App.base.isFunction(this.scope.EventManager)) {
-//        if (this.scope.config.globalListeners) {
+//        if (this.scope.demo.globalListeners) {
 //            this.scope.EventManager.prototype.defineListeners =
 //                App.callbacks.defineListeners.bind(this.scope.eventManager)(
 //                    this.scope,
-//                    this.scope.config.globalListeners[this.scope]
+//                    this.scope.demo.globalListeners[this.scope]
 //                );
 //        }
 //    }
@@ -68,7 +68,7 @@ define([
 //     * @type {App.PermissionManager}
 //     */
 //    this.scope.permissionManager = new App.PermissionManager(
-//        this.scope.config.permission
+//        this.scope.demo.permission
 //    );
 //
 //    if (App.base.isFunction(this.scope.Context)) {
