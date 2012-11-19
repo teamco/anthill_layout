@@ -11,8 +11,23 @@ define(['modules/base'], function defineBaseTimeDate(Base) {
     };
 
     BaseTimeDate.extend({
+        getDate: function getDate() {
+            return new Date();
+        },
         timestamp: function timestamp() {
-            return new Date().getTime();
+            return this.getDate().getTime();
+        },
+        timestampUTC: function timestampUTC() {
+            var now = this.getDate();
+            return Date.UTC(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate(),
+                now.getHours(),
+                now.getMinutes(),
+                now.getSeconds(),
+                now.getMilliseconds()
+            );
         }
     });
 
