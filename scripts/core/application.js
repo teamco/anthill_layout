@@ -3,9 +3,8 @@ define([
     'model/application.model',
     'modules/mvc',
     'modules/base',
-    'modules/observer',
     'event/application.event.manager'
-], function defineApp(Controller, Model, MVC, Base, Observer, EventManager) {
+], function defineApp(Controller, Model, MVC, Base, EventManager) {
 
     var App = function App(opts) {
 
@@ -43,6 +42,6 @@ define([
 
     };
 
-    return App.extend(Base, Observer, EventManager);
+    return App.extend(Base, EventManager);
 
 });

@@ -25,7 +25,7 @@ define([
         defineEvents: function defineEvents() {
             this.addListener({
                 eventName: this.eventList.createWorkspace,
-                callback: this.getScope().controller.addWorkspace
+                callback: this.getScope().controller.createWorkspace
             });
         }
     }, Event.prototype);

@@ -9,12 +9,13 @@
 define([
     'jquery',
     'modules/base',
+    'modules/logger',
     'modules/observer'
-], function ($, Base, Observer) {
+], function ($, Base, Logger, Observer) {
     var MVC = function MVC(opts) {
 
         // MVC Relationship from -> to
-        var RELATIONS = [
+        this.RELATIONS = [
             ['Controller', 'Model'],
             ['View', 'Controller']
         ];
@@ -30,7 +31,9 @@ define([
         this.applyMVC();
         this.applyObserver();
         this.applyEventManager();
-        this.setRelation(RELATIONS);
+        this.setRelation();
+
+        this.base.lib.function.getProperties(this.scope).logger = this.logger;
 //
 //    // Development mode
 //    this.scope.development = new App.Development(this.scope);
@@ -120,8 +123,9 @@ define([
         constructorName: function constructorName(scope) {
             return scope.getConstructorName().toLowerCase();
         },
-        setRelation: function setRelation(relations) {
-            var i = 0, l = relations.length,
+        setRelation: function setRelation() {
+            var relations = this.RELATIONS,
+                i = 0, l = relations.length,
                 from, to;
 
             for (i; i < l; i += 1) {
@@ -172,9 +176,14 @@ define([
         applyEventManager: function applyEventManager() {
             var self = this.scope,
                 scope = this.constructorName(self),
-                eventManager = self.eventmanager,
-                eventManagerPrototype =
-                    this.base.lib.function.getProperties(eventManager);
+                eventManager = self.eventmanager;
+
+            if (!this.base.isDefined(eventManager)) {
+                return false;
+            }
+
+            var eventManagerPrototype =
+                this.base.lib.function.getProperties(eventManager);
 
             eventManagerPrototype[scope] = self;
             eventManagerPrototype.scope = scope;
@@ -183,15 +192,17 @@ define([
         },
         applyObserver: function applyObserver() {
             var self = this.scope,
-                scope = this.constructorName(self),
-                observer = self.observer,
-                observerPrototype =
-                    this.base.lib.function.getProperties(observer);
+                scope = this.constructorName(self);
+
+            var observerPrototype =
+                this.base.lib.function.getProperties(this.observer);
 
             observerPrototype[scope] = self;
             observerPrototype.scope = scope;
+
+            this.scope.constructor.prototype.observer = new this.observer.constructor;
         }
-    }, Base);
+    }, Base, Logger, Observer);
 
     return MVC;
 });

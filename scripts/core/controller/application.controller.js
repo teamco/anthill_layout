@@ -12,7 +12,7 @@ define([
     };
 
     return Controller.extend({
-        addWorkspace: function addWorkspace() {
+        createWorkspace: function createWorkspace() {
             this.model.createWorkspace();
         }
     }, BaseController.prototype);
