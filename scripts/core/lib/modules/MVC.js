@@ -206,14 +206,17 @@ define([
         },
         applyLogger: function applyLogger() {
             var scope = this.scope;
-
             this.getPrototype(scope).logger = new Logger();
+            var logger = scope.logger;
 
             if (this.base.isDefined(scope.config.logger)) {
-                Logger.prototype.config = scope.config.logger;
+                if (this.base.isObject(Logger.prototype.config)) {
+                    logger.config = scope.config.logger;
+                } else {
+                    Logger.prototype.config = scope.config.logger;
+                }
             }
 
-            var logger = scope.logger;
             logger.scope = scope;
             logger.defineLogs();
 
