@@ -9,9 +9,8 @@
 define([
     'jquery',
     'modules/base',
-    'modules/logger',
-    'modules/observer'
-], function ($, Base, Logger, Observer) {
+    'modules/logger'
+], function ($, Base, Logger) {
     var MVC = function MVC(opts) {
 
         // MVC Relationship from -> to
@@ -33,7 +32,7 @@ define([
         this.applyEventManager();
         this.setRelation();
 
-        this.base.lib.function.getProperties(this.scope).logger = this.logger;
+        this.getPrototype(this.scope).logger = this.logger;
 //
 //    // Development mode
 //    this.scope.development = new App.Development(this.scope);
@@ -93,7 +92,7 @@ define([
         defineMVC: function defineMVC(mvc, force) {
 
             var name = this.constructorName(mvc),
-                constructor = this.base.lib.function.getProperties(this.scope);
+                constructor = this.getPrototype(this.scope);
 
             if (this.base.isFunction(mvc)) {
 
@@ -123,6 +122,9 @@ define([
         constructorName: function constructorName(scope) {
             return scope.getConstructorName().toLowerCase();
         },
+        getPrototype: function getPrototype(scope) {
+            return this.base.lib.function.getPrototype(scope);
+        },
         setRelation: function setRelation() {
             var relations = this.RELATIONS,
                 i = 0, l = relations.length,
@@ -134,7 +136,7 @@ define([
                 to = relation[1].toLowerCase();
                 if (this.base.isDefined(this.scope[from]) &&
                     this.base.isDefined(this.scope[to])) {
-                    this.base.lib.function.getProperties(
+                    this.base.lib.function.getPrototype(
                         this.scope[from]
                     )[to] = this.scope[to];
                 }
@@ -149,7 +151,7 @@ define([
                     scope = this.constructorName(this.scope);
                 this.defineMVC(mvc, this.force);
 
-                var self = this.base.lib.function.getProperties(
+                var self = this.base.lib.function.getPrototype(
                     this.scope[this.constructorName(mvc)]
                 );
 
@@ -182,8 +184,7 @@ define([
                 return false;
             }
 
-            var eventManagerPrototype =
-                this.base.lib.function.getProperties(eventManager);
+            var eventManagerPrototype = this.getPrototype(eventManager);
 
             eventManagerPrototype[scope] = self;
             eventManagerPrototype.scope = scope;
@@ -191,18 +192,18 @@ define([
             eventManager.defineEvents();
         },
         applyObserver: function applyObserver() {
+            var observer = this.scope.observer;
+            if (!this.base.isDefined(observer)) {
+                return false;
+            }
             var self = this.scope,
                 scope = this.constructorName(self);
 
-            var observerPrototype =
-                this.base.lib.function.getProperties(this.observer);
+            observer[scope] = self;
+            this.getPrototype(observer).scope = scope;
 
-            observerPrototype[scope] = self;
-            observerPrototype.scope = scope;
-
-            this.scope.constructor.prototype.observer = new this.observer.constructor;
         }
-    }, Base, Logger, Observer);
+    }, Base, Logger);
 
     return MVC;
 });

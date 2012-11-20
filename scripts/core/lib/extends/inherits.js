@@ -84,8 +84,7 @@ define(['jquery'], function initInherits($) {
         });
 
         Function.method('extend', function extend() {
-            var i = 0, l = arguments.length,
-                firstNode = arguments[0] || {};
+            var i = 0, l = arguments.length;
 
             function extendMethod(node) {
                 if (typeof node === 'function') {
@@ -96,11 +95,6 @@ define(['jquery'], function initInherits($) {
                 } else {
                     $.extend(true, this.prototype, node);
                 }
-            }
-
-            if (l > 1) {
-                extendMethod.bind(this)(firstNode);
-                i = 1;
             }
 
             for (i; i < l; i += 1) {

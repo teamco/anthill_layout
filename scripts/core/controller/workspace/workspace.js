@@ -2,8 +2,9 @@ define([
     'modules/base',
     'modules/mvc',
     'controller/workspace/workspace.controller',
-    'model/workspace.model'
-], function defineWorkspace(Base, MVC, Controller, Model) {
+    'model/workspace.model',
+    'modules/observer'
+], function defineWorkspace(Base, MVC, Controller, Model, Observer) {
     var Workspace = function Workspace(opts) {
 
         opts = this.base.define(opts, {}, true);
@@ -89,6 +90,6 @@ define([
 
     };
 
-    return Workspace.extend(Base);
+    return Workspace.extend(Base, Observer);
 
 });
