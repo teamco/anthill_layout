@@ -15,17 +15,15 @@ define([
             workspace: {
                 limit: 1
             },
-            mode: 'development',
-            log: {
+            logger: {
                 development: true,
-                debug: false,
-                show: false,
-                cover: false,
-                namespace: false,
+                debug: true,
+                show: true,
+                namespaces: 'App',
                 type: {
-                    debug: false,
-                    log: false,
-                    info: false,
+                    debug: true,
+                    log: true,
+                    info: true,
                     error: true,
                     warn: true
                 }

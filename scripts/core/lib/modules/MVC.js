@@ -30,9 +30,8 @@ define([
         this.applyMVC();
         this.applyObserver();
         this.applyEventManager();
-        this.setRelation();
+        this.applyLogger();
 
-        this.getPrototype(this.scope).logger = this.logger;
 //
 //    // Development mode
 //    this.scope.development = new App.Development(this.scope);
@@ -160,6 +159,8 @@ define([
 
             }
 
+            this.setRelation();
+
         },
         applyConfig: function applyConfig() {
             var uuid = this.base.define(
@@ -202,8 +203,22 @@ define([
             observer[scope] = self;
             this.getPrototype(observer).scope = scope;
 
+        },
+        applyLogger: function applyLogger() {
+            var scope = this.scope;
+
+            this.getPrototype(scope).logger = new Logger();
+
+            if (this.base.isDefined(scope.config.logger)) {
+                Logger.prototype.config = scope.config.logger;
+            }
+
+            var logger = scope.logger;
+            logger.scope = scope;
+            logger.defineLogs();
+
         }
-    }, Base, Logger);
+    }, Base);
 
     return MVC;
 });

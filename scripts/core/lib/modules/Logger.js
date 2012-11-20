@@ -7,79 +7,92 @@
  */
 
 define([
+    'jquery',
     'modules/base'
-], function defineLog(Base) {
+], function defineLog($, Base) {
 
     var Logger = function Logger() {
-//        this.LOGGER = this.base.lib.hash.hashKeys(
-//            this.workspace.config.log.type
-//        );
     };
 
     return Logger.extend({
         showLog: function showLog() {
-            return this.base.isHashEmpty(this.self) ?
-                true :
-                this.workspace.config.log.show;
+            return this.config.show;
         },
-        productionMode: function productionMode() {
-            return this.base.isHashEmpty(this.self) ?
-                false :
-                this.workspace.config.log.mode === 'production';
+        developmentMode: function developmentMode() {
+            return this.config.development;
         },
         puts: function puts(type) {
-            var log = this.base.isDefined(window.console) &&
-                ((!this.productionMode() &&
-                    this.showLog()) ||
-                    this.workspace.config.log.development);
-            if (log && this.workspace.config.log.type[type]) {
-                if (this.workspace.config.log.cover) {
-                    window.console.info('>>> ' + type.toUpperCase() + ': Start');
-                }
+            var console = window.console,
+                content = [],
+                log = this.base.isDefined(console) &&
+                    (this.developmentMode() && this.showLog());
+            if (log && this.config.type[type]) {
                 try {
-                    if (!!this.workspace.config.log.namespace) {
-                        var instance = this.self.constructor.toString().match(/function (\w*)/);
+                    if (!!this.config.namespaces) {
+                        var instance = this.scope.getConstructorName();
                         if (this.base.isDefined(instance)) {
-                            if (instance[1] !== this.workspace.config.log.namespace) {
+                            this.config.namespaces = this.base.define(
+                                this.config.namespaces,
+                                [this.config.namespaces],
+                                true
+                            )
+                            if ($.inArray(instance, this.config.namespaces) === -1) {
                                 return false;
                             }
                         }
                     }
-                    var args = [this.self],
-                        i;
-                    for (i = 1; i < arguments.length; i++) {
+                    var args = [], i = 0;
+                    for (i; i < arguments.length; i += 1) {
                         args.push(arguments[i]);
                     }
+                    args.splice(0, 1);
 
-                    if (this.base.isDefined(window.console[type])) {
-                        window.console[type](args);
+                    if (this.base.isDefined(console[type])) {
+                        var hash = {};
+                        hash[type] = args;
+                        content.push(hash);
                     } else {
-                        window.console.log(args);
+                        content.push({log: args});
                     }
-                    if (type === 'error' && this.base.isDefined(window.console.trace)) {
-                        window.console.trace();
+                    if (type === 'error' && this.base.isDefined(console.trace)) {
+                        content.push({trace: args});
                     }
-                } catch(e) {
-                    if (this.base.isDefined(window.console.error)) {
-                        window.console.error(e, arguments);
+                } catch (e) {
+                    if (this.base.isDefined(console.error)) {
+                        content.push({
+                            error: [e, arguments]
+                        });
                     }
-                }
-                if (this.workspace.config.log.cover && this.base.isDefined(window.console.info)) {
-                    window.console.info('>>> /' + type.toUpperCase() + ': End');
                 }
             }
+
+            var i = 0, l = content.length;
+
+            console.group(this.scope);
+            for (i; i < l; i += 1) {
+                var hash = content[i],
+                    k = this.base.lib.hash.firstHashKey(hash);
+                console[k](hash[k]);
+            }
+            console.info('timestamp', this.base.lib.datetime.timestamp());
+            console.groupEnd();
+
             return true;
         },
-        initLog: (function initLog() {
-//            var logs = this.LOGGER,
-//                length = logs.length,
-//                i=0;
-//            for (i; i < length; i++) {
-//                if (this.base.isDefined(logs[i])) {
-//                    this[logs[i]] = this.puts.bind(this, logs[i]);
-//                }
-//            }
-        }.bind(this)())
+        defineLogs: function defineLogs() {
+            var availableLogs = this.base.lib.hash.hashKeys(
+                    this.config.type
+                ),
+                length = availableLogs.length,
+                i = 0;
+
+            for (i; i < length; i += 1) {
+                var log = availableLogs[i];
+                if (this.base.isDefined(log)) {
+                    this[log] = this.puts.bind(this, log);
+                }
+            }
+        }
 
     }, Base);
 });
