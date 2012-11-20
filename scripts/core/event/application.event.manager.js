@@ -11,7 +11,6 @@ define([
 ], function defineAppEventManager(Event) {
     var EventManager = function EventManager() {
         this.events = {};
-        this.listeners = [];
     };
 
     /**

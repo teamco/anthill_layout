@@ -167,7 +167,7 @@ define([
             var i = 0, l = events.length;
             for (i; i < l; i += 1) {
                 if (this.base.isDefined(events[i])) {
-                    if (false === this.executeEvent(this[this.scopeName], events[i], args)) {
+                    if (false === this.executeEvent(this[this.scope], events[i], args)) {
                         return false;
                     }
                 }
@@ -196,7 +196,7 @@ define([
          */
         executeEvent: function executeEvent(scope, opts, args) {
 
-            opts.state.lastCallAt = this.base.timestamp();
+            opts.state.lastCallAt = this.base.lib.datetime.timestamp();
 
             // Capture multiple event as single event within buffer time frame
             if (opts.params.buffer) {

@@ -19,7 +19,7 @@ define([
                 development: true,
                 debug: true,
                 show: true,
-                namespaces: 'App',
+                namespaces: false, //'App',
                 type: {
                     debug: true,
                     log: true,

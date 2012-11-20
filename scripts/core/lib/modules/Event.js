@@ -18,21 +18,12 @@ define([
             if (this.base.lib.hash.isHashEmpty(opts)) {
                 return false;
             }
-            this.listeners.push(opts);
-            this.getScope().observer.addEvent(opts.eventName);
-            this.events[this.getScope().observer.onEvent(opts)] = opts.eventName;
-            return this.events[opts.eventName];
-        },
-        defineListeners: function defineListeners(scope, opts) {
-            if (this.base.isDefined(opts)) {
-                if (this.base.isArray(opts)) {
-                    var i, length = opts.length;
-                    for (i = 0; i < length; i++) {
-                        this.addListener(opts[i]);
-                    }
-                }
-            }
-            return opts;
+            var scope = this.getScope(),
+                observer = scope.observer,
+                events = this.events;
+            observer.addEvent(opts.eventName);
+            events[observer.onEvent(opts)] = opts.eventName;
+            return events[opts.eventName];
         },
         getScope: function getScope() {
             return this[this.scope];

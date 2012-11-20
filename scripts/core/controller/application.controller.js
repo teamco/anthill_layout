@@ -13,7 +13,8 @@ define([
 
     return Controller.extend({
         createWorkspace: function createWorkspace() {
-            this.model.createWorkspace();
+            var workspace = this.model.createWorkspace();
+            this.logger.info(workspace);
         }
     }, BaseController.prototype);
 
