@@ -154,8 +154,7 @@ define([
                     this.scope[this.constructorName(mvc)]
                 );
 
-                self[scope] = this.scope;
-                self.scope = scope;
+                self.scope = this.scope;
 
             }
 
@@ -193,16 +192,11 @@ define([
             eventManager.defineEvents();
         },
         applyObserver: function applyObserver() {
-            var observer = this.scope.observer;
+            var observer = new this.scope.observer.constructor;
             if (!this.base.isDefined(observer)) {
                 return false;
             }
-            var self = this.scope,
-                scope = this.constructorName(self);
-
-            observer[scope] = self;
-            this.getPrototype(observer).scope = scope;
-
+            this.scope.observer.scope = this.scope;
         },
         applyLogger: function applyLogger() {
             var scope = this.scope;

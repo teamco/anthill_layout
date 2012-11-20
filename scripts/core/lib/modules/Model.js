@@ -13,7 +13,7 @@ define(['modules/base'], function initModel(Base) {
 
     return BaseModel.extend({
         getConfig: function getConfig() {
-            return this[this.scope].config;
+            return this.scope.config;
         },
         getUUID: function getUUID() {
             return this.getConfig().uuid;

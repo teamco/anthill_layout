@@ -19,12 +19,22 @@ define([
      */
     return EventManager.extend({
         eventList: {
-            createWorkspace: 'create.workspace'
+            createWorkspace: 'create.workspace',
+            destroyWorkspace: 'destroy.workspace',
+            destroyWorkspaces: 'destroy.workspaces'
         },
         defineEvents: function defineEvents() {
             this.addListener({
                 eventName: this.eventList.createWorkspace,
                 callback: this.getScope().controller.createWorkspace
+            });
+            this.addListener({
+                eventName: this.eventList.destroyWorkspace,
+                callback: this.getScope().controller.destroyWorkspace
+            });
+            this.addListener({
+                eventName: this.eventList.destroyWorkspaces,
+                callback: this.getScope().controller.destroyWorkspaces
             });
         }
     }, Event.prototype);

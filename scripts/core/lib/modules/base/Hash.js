@@ -22,7 +22,7 @@ define([
         // Check if hash empty
         // Return: boolean
         isHashEmpty: function isHashEmpty(o) {
-            return $.isEmptyObject(o);
+            return this.hashLength(o) === 0;
         },
         // Check if Hash(h) has Key(k)
         // Return: boolean

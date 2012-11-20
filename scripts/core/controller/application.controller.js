@@ -14,7 +14,26 @@ define([
     return Controller.extend({
         createWorkspace: function createWorkspace() {
             var workspace = this.model.createWorkspace();
-            this.logger.info(workspace);
+            this.logger.info(
+                'createWorkspace',
+                workspace.model.getUUID(),
+                workspace
+            );
+        },
+        destroyWorkspace: function destroyWorkspace(workspace) {
+            var workspaces = this.model.destroyWorkspace(workspace);
+            this.logger.info(
+                'destroyWorkspace',
+                workspace.model.getUUID(),
+                workspaces
+            );
+        },
+        destroyWorkspaces: function destroyWorkspaces() {
+            var workspaces = this.model.destroyWorkspaces();
+            this.logger.info(
+                'destroyWorkspaces',
+                workspaces
+            );
         }
     }, BaseController.prototype);
 

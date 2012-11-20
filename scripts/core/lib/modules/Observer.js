@@ -21,18 +21,20 @@ define([
     return Observer.extend({
 
         getEventList: function getEventList() {
-            return this[this.scopeName].eventManager.listeners;
+            return this.scope.eventmanager.events;
         },
 
         getEventUUID: function getEventUUID(eventName) {
-            var length = this[this.scopeName].eventManager.listeners.length,
-                i;
-            for (i = 0; i < length; i++) {
-                if (this.base.isHashKey(this[this.scopeName].eventManager.listeners[i], eventName)) {
-                    return this[this.scopeName].eventManager.listeners[i][eventName].eventUUID;
+            var index, uuid = [];
+            for (index in this.listeners) {
+                if (this.listeners.hasOwnProperty(index)) {
+                    var event = this.listeners[index];
+                    if (event.eventName === eventName) {
+                        uuid.push(index);
+                    }
                 }
             }
-            return false;
+            return uuid;
         },
 
         /**
@@ -41,18 +43,7 @@ define([
          * @return {*}
          */
         getEventName: function getEventName(eventUUID) {
-            var length = this[this.scopeName].eventManager.listeners.length,
-                i,
-                index;
-            for (i = 0; i < length; i++) {
-                for (index in this[this.scopeName].eventManager.listeners[i]) {
-                    if (this[this.scopeName].eventManager.listeners[i].hasOwnProperty(index)
-                        && eventUUID === this[this.scopeName].eventManager.listeners[i][index].eventUUID) {
-                        return index;
-                    }
-                }
-            }
-            return false;
+            return this.scope.eventmanager.events[eventUUID];
         },
 
         /**
@@ -167,7 +158,7 @@ define([
             var i = 0, l = events.length;
             for (i; i < l; i += 1) {
                 if (this.base.isDefined(events[i])) {
-                    if (false === this.executeEvent(this[this.scope], events[i], args)) {
+                    if (false === this.executeEvent(this.scope, events[i], args)) {
                         return false;
                     }
                 }

@@ -16,7 +16,7 @@ define([
 
     return Model.extend({
         createWorkspace: function createWorkspace(workspace) {
-            var app = this.app;
+            var app = this.scope;
             app.workspace = this.updateCollector(
                 new Workspace(this.base.define(workspace, {}, true)),
                 app.workspaces
@@ -24,20 +24,28 @@ define([
             return app.workspace;
         },
         destroyWorkspace: function destroyWorkspace(workspace) {
-            //        var workspaces = this.app.ui.workspaces;
-            //        if (workspaces.hasOwnProperty(workspace.model.)) {
-            //            delete workspaces[index];
-            //        }
-            //    }
+            var scope = this.scope,
+                workspaces = scope.workspaces,
+                index = workspace.model.getUUID();
+
+            if (workspaces.hasOwnProperty(index)) {
+                delete workspaces[index];
+            }
+
+            this.scope.workspace = this.base.lib.hash.firstHashElement(workspaces);
+
+            return workspaces;
+
         },
         destroyWorkspaces: function destroyWorkspace(force) {
             var index,
-                workspaces = this.app.workspaces;
+                workspaces = this.scope.workspaces;
             for (index in workspaces) {
                 if (workspaces.hasOwnProperty(index)) {
                     this.destroy(workspaces[index])
                 }
             }
+            return workspaces;
         }
     }, BaseModel.prototype, Base);
 
