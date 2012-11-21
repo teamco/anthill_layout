@@ -73,11 +73,11 @@ define(['jquery'], function initInherits($) {
             }
         });
 
-        if (!Object.hasOwnProperty('getConstructorName')) {
-            Object.prototype.getConstructorName = function getConstructorName() {
-                return this.constructor.getConstructorName();
-            };
-        };
+//        if (!Object.hasOwnProperty('getConstructorName')) {
+//            Object.prototype.getConstructorName = function getConstructorName() {
+//                return this.constructor.getConstructorName();
+//            };
+//        };
 
         Function.method('getCallerName', function getCallerName() {
             return this.caller.getConstructorName();

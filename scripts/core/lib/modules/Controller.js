@@ -14,10 +14,15 @@ define([
     };
 
     return BaseController.extend({
+        getConfig: function getConfig(log, hash) {
+            this.logger.debug(log, hash);
+        },
         setOrder: function setOrder(collector) {
-            this[this.scope].config.order = this.base.define(
-                this[this.scope].config.order,
-                this.base.lib.hash.hashLength(collector)
+            var scope = this.scope,
+                base = this.base;
+            scope.config.order = base.define(
+                scope.config.order,
+                base.lib.hash.hashLength(collector)
             );
         }
     }, Base);
