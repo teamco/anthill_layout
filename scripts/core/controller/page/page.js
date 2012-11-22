@@ -29,6 +29,7 @@ define([
             uuid: uuid,
             counter: 0,
             order: 1,
+            default: false,
             layout: {
                 overlapping: true,
                 emptySpaces: true
