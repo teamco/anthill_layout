@@ -2,28 +2,24 @@
  * Created with JetBrains RubyMine.
  * User: teamco
  * Date: 11/17/12
- * Time: 5:27 PM
+ * Time: 5:28 PM
  * To change this template use File | Settings | File Templates.
  */
 
 define([
     'modules/event'
-], function defineAppEventManager(Event) {
+], function defineWorkspaceEventManager(Event) {
     var EventManager = function EventManager() {
         this.events = {};
     };
 
-    /**
-     * @class EventManager
-     * @type {Object}
-     */
     return EventManager.extend({
         eventList: {
             beforeInitConfig: 'before.init.config',
             afterInitConfig: 'after.init.config',
-            createWorkspace: 'create.workspace',
-            destroyWorkspace: 'destroy.workspace',
-            destroyWorkspaces: 'destroy.workspaces'
+            createPage: 'create.page',
+            destroyPage: 'destroy.page',
+            destroyPages: 'destroy.pages'
         },
         getListeners: function getListeners() {
             return [
@@ -36,16 +32,16 @@ define([
                     callback: this.scope.controller.getConfig
                 },
                 {
-                    eventName: this.eventList.createWorkspace,
-                    callback: this.scope.controller.createWorkspace
+                    eventName: this.eventList.createPage,
+                    callback: this.scope.controller.createPage
                 },
                 {
-                    eventName: this.eventList.destroyWorkspace,
-                    callback: this.scope.controller.destroyWorkspace
+                    eventName: this.eventList.destroyPage,
+                    callback: this.scope.controller.destroyPage
                 },
                 {
-                    eventName: this.eventList.destroyWorkspaces,
-                    callback: this.scope.controller.destroyWorkspaces
+                    eventName: this.eventList.destroyPages,
+                    callback: this.scope.controller.destroyPages
                 }
             ];
         }

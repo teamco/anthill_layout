@@ -20,7 +20,7 @@ define([
                 show: true,
                 namespaces: false, //'App',
                 type: {
-                    debug: true,
+                    debug: false,
                     log: true,
                     info: true,
                     error: true,

@@ -12,5 +12,28 @@ define([
     };
 
     return Controller.extend({
+        createPage: function createPage() {
+            var page = this.model.createPage();
+            this.logger.info(
+                'createPage',
+                page.model.getUUID(),
+                page
+            );
+        },
+        destroyPage: function destroyPage(page) {
+            var pages = this.model.destroyPage(page);
+            this.logger.info(
+                'destroyPage',
+                page.model.getUUID(),
+                pages
+            );
+        },
+        destroyPages: function destroyPages() {
+            var pages = this.model.destroyPages();
+            this.logger.info(
+                'destroyPages',
+                pages
+            );
+        }
     }, BaseController.prototype);
 });

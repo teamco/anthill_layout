@@ -24,19 +24,22 @@ define([
         puts: function puts(type) {
             var console = window.console,
                 content = [],
-                log = this.base.isDefined(console) &&
+                base = this.base,
+                config = this.config,
+                scope = this.scope,
+                log = base.isDefined(console) &&
                     (this.developmentMode() && this.showLog());
-            if (log && this.config.type[type]) {
+            if (log && config.type[type]) {
                 try {
-                    if (!!this.config.namespaces) {
-                        var instance = this.scope.getConstructorName();
-                        if (this.base.isDefined(instance)) {
-                            this.config.namespaces = this.base.define(
-                                this.config.namespaces,
-                                [this.config.namespaces],
+                    if (!!config.namespaces) {
+                        var instance = scope.getConstructorName();
+                        if (base.isDefined(instance)) {
+                            config.namespaces = base.define(
+                                config.namespaces,
+                                [config.namespaces],
                                 true
                             )
-                            if ($.inArray(instance, this.config.namespaces) === -1) {
+                            if ($.inArray(instance, config.namespaces) === -1) {
                                 return false;
                             }
                         }
@@ -47,18 +50,18 @@ define([
                     }
                     args.splice(0, 1);
 
-                    if (this.base.isDefined(console[type])) {
+                    if (base.isDefined(console[type])) {
                         var hash = {};
                         hash[type] = args;
                         content.push(hash);
                     } else {
                         content.push({log: args});
                     }
-                    if (type === 'error' && this.base.isDefined(console.trace)) {
+                    if (type === 'error' && base.isDefined(console.trace)) {
                         content.push({trace: args});
                     }
                 } catch (e) {
-                    if (this.base.isDefined(console.error)) {
+                    if (base.isDefined(console.error)) {
                         content.push({
                             error: [e, arguments]
                         });
@@ -68,19 +71,24 @@ define([
 
             var i = 0, l = content.length;
 
-            console.group(this.scope);
+            if (l === 0) {
+                return false;
+            }
+
+            console.group(scope);
             for (i; i < l; i += 1) {
                 var hash = content[i],
-                    k = this.base.lib.hash.firstHashKey(hash);
+                    k = base.lib.hash.firstHashKey(hash);
                 console[k](hash[k]);
             }
-            console.info('timestamp', this.base.lib.datetime.timestamp());
+            console.info('timestamp', base.lib.datetime.timestamp());
             console.groupEnd();
 
             return true;
         },
         defineLogs: function defineLogs() {
-            var availableLogs = this.base.lib.hash.hashKeys(
+            var base = this.base,
+                availableLogs = base.lib.hash.hashKeys(
                     this.config.type
                 ),
                 length = availableLogs.length,
@@ -88,7 +96,7 @@ define([
 
             for (i; i < length; i += 1) {
                 var log = availableLogs[i];
-                if (this.base.isDefined(log)) {
+                if (base.isDefined(log)) {
                     this[log] = this.puts.bind(this, log);
                 }
             }

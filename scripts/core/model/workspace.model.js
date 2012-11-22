@@ -17,8 +17,36 @@ define([
     return Model.extend({
         createPage: function createPage(page) {
             var workspace = this.workspace;
-            workspace.page = new Page(this.base.define(page, {}, true));
-            workspace.pages[workspace.page.config.uuid] = workspace.page;
+            workspace.page = this.updateCollector(
+                new Page(this.base.define(page, {}, true)),
+                workspace.pages
+            );
+            return workspace.page;
+        },
+        destroyPage: function destroyPage(page) {
+            var scope = this.scope,
+                pages = scope.pages,
+                index = page.model.getUUID();
+
+            if (pages.hasOwnProperty(index)) {
+                delete pages[index];
+            }
+
+            this.scope.page = this.base.lib.hash.firstHashElement(pages);
+
+            return pages;
+
+        },
+        destroyPages: function destroyPage(force) {
+            var index,
+                pages = this.scope.pages;
+            for (index in pages) {
+                if (pages.hasOwnProperty(index)) {
+                    this.destroy(pages[index])
+                }
+            }
+            return pages;
         }
+
     }, BaseModel.prototype, Base);
 });

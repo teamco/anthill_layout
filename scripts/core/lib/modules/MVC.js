@@ -34,26 +34,28 @@ define([
 
         $.extend(config, scope.config);
 
+        this.applyLogger();
         this.applyConfig();
         this.applyMVC();
         this.applyObserver();
         this.applyEventManager();
-        this.applyLogger();
 
-        scope.observer.fireEvent(
-            scope.eventmanager.eventList.beforeInitConfig, [
-                'Config before init',
-                config
-            ]
-        );
+        if (scope.eventmanager) {
 
-        scope.observer.fireEvent(
-            scope.eventmanager.eventList.afterInitConfig, [
-                'Config after init',
-                scope.config
-            ]
-        );
+            scope.observer.fireEvent(
+                scope.eventmanager.eventList.beforeInitConfig, [
+                    'Config before create',
+                    config
+                ]
+            );
 
+            scope.observer.fireEvent(
+                scope.eventmanager.eventList.afterInitConfig, [
+                    'Config after create',
+                    scope.config
+                ]
+            );
+        }
 
 //    if (this.debug) {
 //        if (App.base.isFunction(this.scope.Debug)) {
@@ -165,11 +167,11 @@ define([
         },
         applyConfig: function applyConfig() {
             var base = this.base,
-                uuid = this.base.define(
+                uuid = base.define(
                     this.config.uuid,
                     base.lib.generator.UUID()
                 ),
-                timestamp = this.base.define(
+                timestamp = base.define(
                     this.config.timestamp,
                     base.lib.datetime.timestamp()
                 ),
@@ -187,7 +189,17 @@ define([
             }
 
             this.getPrototype(eventManager).scope = scope;
-            eventManager.defineEvents();
+
+            if (eventManager.getListeners instanceof Function) {
+                var listeners = eventManager.getListeners(),
+                    i = 0, l = listeners.length;
+
+                for (i; i < l; i += 1) {
+                    eventManager.addListener(listeners[i])
+                }
+            } else {
+                scope.logger.warn('Listeners', eventManager.getListeners);
+            }
         },
         applyObserver: function applyObserver() {
             var scope = this.scope;
@@ -195,12 +207,13 @@ define([
             scope.observer.scope = scope;
         },
         applyLogger: function applyLogger() {
-            var scope = this.scope;
+            var scope = this.scope,
+                base = this.base;
             scope.logger = new Logger();
             var logger = scope.logger;
 
-            if (this.base.isDefined(scope.config.logger)) {
-                if (this.base.isObject(Logger.prototype.config)) {
+            if (base.isDefined(scope.config.logger)) {
+                if (base.isObject(Logger.prototype.config)) {
                     logger.config = scope.config.logger;
                 } else {
                     Logger.prototype.config = scope.config.logger;

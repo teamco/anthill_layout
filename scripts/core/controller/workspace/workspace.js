@@ -3,8 +3,8 @@ define([
     'modules/mvc',
     'controller/workspace/workspace.controller',
     'model/workspace.model',
-    'modules/observer'
-], function defineWorkspace(Base, MVC, Controller, Model) {
+    'event/workspace.event.manager'
+], function defineWorkspace(Base, MVC, Controller, Model, EventManager) {
     var Workspace = function Workspace(opts) {
 
         opts = this.base.define(opts, {}, true);
@@ -14,13 +14,10 @@ define([
             counter: 0,
             order: 1,
             page: {
-                limit: 10,
-                order: []
+                limit: 10
             },
-            namespace: this.constructor.getConstructorName()
-
-            //        header: false,
-            //        footer: false,
+            header: false,
+            footer: false
             //        flexible: true,
             //        showMaximizePanel: true,
             //        animate: true,
@@ -90,6 +87,6 @@ define([
 
     };
 
-    return Workspace.extend(Base);
+    return Workspace.extend(Base, EventManager);
 
 });
