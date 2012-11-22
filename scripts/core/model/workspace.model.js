@@ -16,7 +16,7 @@ define([
 
     return Model.extend({
         createPage: function createPage(page) {
-            var workspace = this.workspace;
+            var workspace = this.scope;
             workspace.page = this.updateCollector(
                 new Page(this.base.define(page, {}, true)),
                 workspace.pages
