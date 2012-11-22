@@ -15,7 +15,7 @@ define([
         createPage: function createPage() {
             var page = this.model.createPage();
             this.logger.info(
-                'createPage',
+                'Create Page',
                 page.model.getUUID(),
                 page
             );
@@ -23,7 +23,7 @@ define([
         destroyPage: function destroyPage(page) {
             var pages = this.model.destroyPage(page);
             this.logger.info(
-                'destroyPage',
+                'Destroy Page',
                 page.model.getUUID(),
                 pages
             );
@@ -31,7 +31,7 @@ define([
         destroyPages: function destroyPages() {
             var pages = this.model.destroyPages();
             this.logger.info(
-                'destroyPages',
+                'Destroy Pages',
                 pages
             );
         }

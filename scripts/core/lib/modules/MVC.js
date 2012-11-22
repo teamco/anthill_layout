@@ -184,21 +184,22 @@ define([
             var scope = this.scope,
                 eventManager = scope.eventmanager;
 
-            if (!this.base.isDefined(eventManager)) {
-                return false;
-            }
+            if (this.base.isDefined(eventManager)) {
 
-            this.getPrototype(eventManager).scope = scope;
+                this.getPrototype(eventManager).scope = scope;
 
-            if (eventManager.getListeners instanceof Function) {
-                var listeners = eventManager.getListeners(),
-                    i = 0, l = listeners.length;
+                if (eventManager.getListeners instanceof Function) {
+                    var listeners = eventManager.getListeners(),
+                        i = 0, l = listeners.length;
 
-                for (i; i < l; i += 1) {
-                    eventManager.addListener(listeners[i])
+                    for (i; i < l; i += 1) {
+                        eventManager.addListener(listeners[i])
+                    }
+                } else {
+                    scope.logger.warn('Listeners', eventManager.getListeners);
                 }
             } else {
-                scope.logger.warn('Listeners', eventManager.getListeners);
+                scope.logger.warn('Event Manager', scope.eventmanager);
             }
         },
         applyObserver: function applyObserver() {

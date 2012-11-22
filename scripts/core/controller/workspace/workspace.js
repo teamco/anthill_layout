@@ -14,10 +14,14 @@ define([
             counter: 0,
             order: 1,
             page: {
-                limit: 10
+                limit: 10,
+                // Show previous page
+                onDestroyShowNext: false
             },
-            header: false,
-            footer: false
+            html: {
+                header: false,
+                footer: false
+            }
             //        flexible: true,
             //        showMaximizePanel: true,
             //        animate: true,

@@ -15,7 +15,7 @@ define([
         createWorkspace: function createWorkspace() {
             var workspace = this.model.createWorkspace();
             this.logger.info(
-                'createWorkspace',
+                'Create Workspace',
                 workspace.model.getUUID(),
                 workspace
             );
@@ -23,7 +23,7 @@ define([
         destroyWorkspace: function destroyWorkspace(workspace) {
             var workspaces = this.model.destroyWorkspace(workspace);
             this.logger.info(
-                'destroyWorkspace',
+                'Destroy Workspace',
                 workspace.model.getUUID(),
                 workspaces
             );
@@ -31,7 +31,7 @@ define([
         destroyWorkspaces: function destroyWorkspaces() {
             var workspaces = this.model.destroyWorkspaces();
             this.logger.info(
-                'destroyWorkspaces',
+                'Destroy Workspaces',
                 workspaces
             );
         }

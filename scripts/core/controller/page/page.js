@@ -25,23 +25,22 @@ define([
         this.collector = {};
         this.maximized = {};
 
-        this.widgetCounter = 0;
-
         var DEFAULTS = {
             uuid: uuid,
-            namespace: this.constructor.getConstructorName()
-//            layout: {}
-//            groupOut: false,
-//            dimensionChanged: false,
-//            delayOfDestroyDom: 100,
-//            allowToAddWidgets: true,
-//            allowMaximize: true,
-//            permission: opts.permission,
-//            Show previous page
-//            onDestroyShowNextPage: false,
-//            widget: {
-//                globalListeners: []
-//            },
+            counter: 0,
+            order: 1,
+            layout: {
+                overlapping: true,
+                emptySpaces: true
+            },
+            widget: {
+                counter: 0,
+                allowToAdd: true
+            },
+            html: {
+                header: false,
+                footer: false
+            }
 //            menu: {
 //                capability: App.permissionManager.capabilities.page.menu,
 //                items: {
@@ -64,7 +63,6 @@ define([
         // Configure page
         this.config = this.base.lib.hash.extendHash(opts, DEFAULTS);
 
-        // Init MVC
         // Init MVC
         new MVC({
             scope: this,
