@@ -15,22 +15,12 @@ define([
 
     return EventManager.extend({
         eventList: {
-            beforeInitConfig: 'before.init.config',
-            afterInitConfig: 'after.init.config',
             createPage: 'create.page',
             destroyPage: 'destroy.page',
             destroyPages: 'destroy.pages'
         },
         getListeners: function getListeners() {
             return [
-                {
-                    eventName: this.eventList.beforeInitConfig,
-                    callback: this.scope.controller.getConfig
-                },
-                {
-                    eventName: this.eventList.afterInitConfig,
-                    callback: this.scope.controller.getConfig
-                },
                 {
                     eventName: this.eventList.createPage,
                     callback: this.scope.controller.createPage

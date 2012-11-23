@@ -183,9 +183,24 @@ define([
                 this.getPrototype(eventManager).scope = scope;
 
                 if (eventManager.getListeners instanceof Function) {
-                    var listeners = eventManager.getListeners(),
-                        i = 0, l = listeners.length;
 
+                    var eventList = eventManager.eventList;
+                    eventList.beforeInitConfig = 'before.init.config';
+                    eventList.afterInitConfig = 'after.init.config';
+
+                    var listeners = eventManager.getListeners();
+                    listeners.push(
+                        {
+                            eventName: eventList.beforeInitConfig,
+                            callback: scope.controller.getConfig
+                        },
+                        {
+                            eventName: eventList.afterInitConfig,
+                            callback: scope.controller.getConfig
+                        }
+                    );
+
+                    var i = 0, l = listeners.length;
                     for (i; i < l; i += 1) {
                         eventManager.addListener(listeners[i])
                     }

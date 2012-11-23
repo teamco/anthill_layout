@@ -19,22 +19,12 @@ define([
      */
     return EventManager.extend({
         eventList: {
-            beforeInitConfig: 'before.init.config',
-            afterInitConfig: 'after.init.config',
             createWorkspace: 'create.workspace',
             destroyWorkspace: 'destroy.workspace',
             destroyWorkspaces: 'destroy.workspaces'
         },
         getListeners: function getListeners() {
             return [
-                {
-                    eventName: this.eventList.beforeInitConfig,
-                    callback: this.scope.controller.getConfig
-                },
-                {
-                    eventName: this.eventList.afterInitConfig,
-                    callback: this.scope.controller.getConfig
-                },
                 {
                     eventName: this.eventList.createWorkspace,
                     callback: this.scope.controller.createWorkspace
