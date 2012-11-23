@@ -15,12 +15,16 @@ define([
     };
 
     return Model.extend({
-        createWorkspace: function createWorkspace(workspace) {
-            var app = this.scope;
-            app.workspace = this.updateCollector(
-                new Workspace(this.base.define(workspace, {}, true)),
-                app.workspaces
-            );
+        createWorkspace: function createWorkspace(opts) {
+            var app = this.scope,
+                workspace = this.updateCollector(
+                    Workspace,
+                    opts,
+                    app.workspaces
+                );
+            if (workspace) {
+                app.workspace = workspace;
+            }
             return app.workspace;
         },
         destroyWorkspace: function destroyWorkspace(workspace) {

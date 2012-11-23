@@ -15,12 +15,16 @@ define([
     };
 
     return Model.extend({
-        createPage: function createPage(page) {
-            var workspace = this.scope;
-            workspace.page = this.updateCollector(
-                new Page(this.base.define(page, {}, true)),
-                workspace.pages
-            );
+        createPage: function createPage(opts) {
+            var workspace = this.scope,
+                page = this.updateCollector(
+                    Page,
+                    opts,
+                    workspace.pages
+                );
+            if (page) {
+                workspace.page = page;
+            }
             return workspace.page;
         },
         destroyPage: function destroyPage(page) {

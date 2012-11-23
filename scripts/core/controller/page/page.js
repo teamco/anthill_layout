@@ -10,8 +10,9 @@ define([
     'modules/base',
     'modules/mvc',
     'controller/page/page.controller',
-    'model/page.model'
-], function definePage(Base, MVC, Controller, Model) {
+    'model/page.model',
+    'event/page.event.manager'
+], function definePage(Base, MVC, Controller, Model, EventManager) {
     var Page = function Page(opts) {
 
         opts = this.base.define(opts, {}, true);
@@ -22,7 +23,6 @@ define([
         this.maximized = {};
 
         var DEFAULTS = {
-            counter: 0,
             order: 1,
             default: false,
             layout: {
@@ -62,6 +62,7 @@ define([
         // Init MVC
         new MVC({
             scope: this,
+            config: opts,
             components: [Controller, Model]
         });
 
@@ -77,5 +78,5 @@ define([
 
     };
 
-    return Page.extend(Base);
+    return Page.extend(Base, EventManager);
 });

@@ -11,9 +11,9 @@ define([
 
         // Default constants
         var DEFAULTS = {
-            counter: 0,
             order: 1,
             page: {
+                counter: 0,
                 limit: 10,
                 // Show previous page
                 onDestroyShowNext: false
@@ -70,20 +70,6 @@ define([
         this.page = {};
         this.pages = {};
 
-        //    this.observer.fireEvent(
-        //        this.eventManager.eventList.beforeInitialized, [
-        //            'Workspace loading configuration',
-        //            opts
-        //        ]
-        //    );
-        //
-        //    this.observer.fireEvent(
-        //        this.eventManager.eventList.afterInitialized, [
-        //            'Workspace initialized',
-        //            this.controller.getConfig()
-        //        ]
-        //    );
-        //
         //    this.observer.fireEvent(
         //        this.eventManager.eventList.onLoadData,
         //        this.controller.getConfig('data')

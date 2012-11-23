@@ -12,7 +12,8 @@ define([
 
         var DEFAULTS = {
             workspace: {
-                limit: 1
+                limit: 1,
+                counter: 0
             },
             logger: {
                 development: true,

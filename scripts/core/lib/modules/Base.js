@@ -52,8 +52,7 @@ define(['jquery'], function defineBase($) {
         // Check if function
         // Return: boolean
         isFunction: function isFunction(o) {
-            return typeof o === 'function' &&
-                o instanceof Function;
+            return typeof o === 'function';
         },
         // Check if value is numeric
         // Return: boolean
