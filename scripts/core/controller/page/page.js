@@ -16,17 +16,12 @@ define([
 
         opts = this.base.define(opts, {}, true);
 
-        var uuid = this.base.isDefined(opts.uuid) ?
-            opts.uuid :
-            this.base.lib.generator.UUID();
-
         this.widgets = {};
         this.widget = {};
         this.collector = {};
         this.maximized = {};
 
         var DEFAULTS = {
-            uuid: uuid,
             counter: 0,
             order: 1,
             default: false,

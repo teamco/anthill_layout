@@ -6,7 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(['modules/base'], function defineBaseDateTime(Base) {
+define([
+    'modules/base'
+], function defineBaseDateTime(Base) {
     var BaseDateTime = function BaseDateTime() {
     };
 
@@ -14,8 +16,10 @@ define(['modules/base'], function defineBaseDateTime(Base) {
         getDate: function getDate() {
             return new Date();
         },
-        timestamp: function timestamp() {
-            return this.getDate().getTime();
+        timestamp: function timestamp(time) {
+            return this.base.isDefined(time) ?
+                time :
+                this.getDate().getTime();
         },
         timestampUTC: function timestampUTC() {
             var now = this.getDate();
@@ -29,7 +33,7 @@ define(['modules/base'], function defineBaseDateTime(Base) {
                 now.getMilliseconds()
             );
         }
-    });
+    }, Base);
 
     Base.prototype.lib.datetime = new BaseDateTime();
 

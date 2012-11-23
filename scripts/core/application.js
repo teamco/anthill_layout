@@ -10,7 +10,7 @@ define([
 
         opts = this.base.define(opts, {}, true);
 
-        this.config = {
+        var DEFAULTS = {
             workspace: {
                 limit: 1
             },
@@ -28,6 +28,10 @@ define([
                 }
             }
         };
+
+        // Configure workspace
+        this.config = this.base.lib.hash.extendHash(opts, DEFAULTS);
+
 
         this.workspaces = {};
         this.workspace = {};

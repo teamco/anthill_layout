@@ -12,7 +12,10 @@ define(['modules/base'], function defineBaseGenerator(Base) {
     BaseGenerator.extend({
         // Generate UUID
         // http://www.ietf.org/rfc/rfc4122.txt
-        UUID: function UUID() {
+        UUID: function UUID(uuid) {
+            if (this.base.isDefined(uuid)) {
+                return uuid;
+            }
             var s = [];
             var hexDigits = '0123456789abcdef';
             var i;
@@ -29,7 +32,7 @@ define(['modules/base'], function defineBaseGenerator(Base) {
         timestamp: function timestamp() {
             return Number(new Date());
         }
-    });
+    }, Base);
 
     Base.prototype.lib.generator = new BaseGenerator();
 });
