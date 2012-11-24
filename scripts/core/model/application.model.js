@@ -28,15 +28,24 @@ define([
             return app.workspace;
         },
         destroyWorkspace: function destroyWorkspace(workspace) {
-            var scope = this.scope,
-                workspaces = scope.workspaces,
+
+            var scope = this.scope;
+
+            if (!this.base.isDefined(workspace)) {
+                scope.logger.warn('Undefined workspace', workspace);
+                return false;
+            }
+
+            var workspaces = scope.workspaces,
                 index = workspace.model.getUUID();
+
+            scope.observer.fireEvent(scope.eventmanager.eventList.destroyPages);
 
             if (workspaces.hasOwnProperty(index)) {
                 delete workspaces[index];
             }
 
-            this.scope.workspace = this.base.lib.hash.firstHashElement(workspaces);
+            this.scope.workspace = this.base.lib.hash.firstHashElement(workspaces) || {};
 
             return workspaces;
 
