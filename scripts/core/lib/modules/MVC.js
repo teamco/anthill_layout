@@ -182,12 +182,16 @@ define([
         },
         applyConfig: function applyConfig() {
             var base = this.base,
+                scope = this.scope,
                 uuid = base.lib.generator.UUID(this.config.uuid),
                 timestamp = base.lib.datetime.timestamp(this.config.timestamp),
-                config = this.scope.config;
+                config = scope.config;
 
             config.uuid = uuid;
             config.timestamp = timestamp;
+
+            config.html = base.define(config.html, {}, true);
+            config.html.selector = '.' + this.constructorName(scope.constructor);
         },
         applyEventManager: function applyEventManager() {
             var scope = this.scope,

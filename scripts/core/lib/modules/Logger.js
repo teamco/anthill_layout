@@ -75,7 +75,7 @@ define([
                 return false;
             }
 
-            console.group(scope);
+            console.groupCollapsed(scope);
             for (i; i < l; i += 1) {
                 var hash = content[i],
                     k = base.lib.hash.firstHashKey(hash);
