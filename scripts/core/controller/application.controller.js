@@ -12,14 +12,16 @@ define([
     };
 
     return Controller.extend({
-        createWorkspace: function createWorkspace() {
-            var workspace = this.model.createWorkspace();
+        createWorkspace: function createWorkspace(opts) {
+            var workspace = this.model.createWorkspace(
+                opts,
+                this.model.getConfig().workspace.dependencies
+            );
             this.logger.info(
                 'Create Workspace',
                 workspace.model.getUUID(),
                 workspace
             );
-            return workspace;
         },
         destroyWorkspace: function destroyWorkspace(workspace) {
             var workspaces = this.model.destroyWorkspace(workspace);
@@ -28,7 +30,6 @@ define([
                 workspace,
                 workspaces
             );
-            return workspaces;
         },
         destroyWorkspaces: function destroyWorkspaces() {
             var workspaces = this.model.destroyWorkspaces();
@@ -36,7 +37,6 @@ define([
                 'Destroy Workspaces',
                 workspaces
             );
-            return workspaces;
         }
     }, BaseController.prototype);
 

@@ -19,7 +19,7 @@ define([
         // MVC Relationship from -> to
         this.RELATIONS = [
             ['Controller', 'Model'],
-            ['View', 'Controller']
+            ['View', 'EventManager']
         ];
 
         opts = base.define(opts, {}, true);

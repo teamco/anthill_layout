@@ -13,7 +13,12 @@ define([
         var DEFAULTS = {
             workspace: {
                 limit: 1,
-                counter: 0
+                counter: 0,
+                dependencies: {
+                    html: {
+                        containerSelector: '.' + this.constructor.getConstructorName().toLowerCase()
+                    }
+                }
             },
             logger: {
                 development: true,

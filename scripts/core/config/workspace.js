@@ -3,8 +3,9 @@ define([
     'modules/mvc',
     'controller/workspace.controller',
     'model/workspace.model',
+    'view/workspace.view',
     'event/workspace.event.manager'
-], function defineWorkspace(Base, MVC, Controller, Model, EventManager) {
+], function defineWorkspace(Base, MVC, Controller, Model, View, EventManager) {
     var Workspace = function Workspace(opts) {
 
         opts = this.base.define(opts, {}, true);
@@ -69,6 +70,7 @@ define([
             components: [
                 Controller,
                 Model,
+                View,
                 EventManager
             ]
         });

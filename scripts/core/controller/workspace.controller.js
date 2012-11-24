@@ -12,8 +12,8 @@ define([
     };
 
     return Controller.extend({
-        createPage: function createPage() {
-            var page = this.model.createPage();
+        createPage: function createPage(opts) {
+            var page = this.model.createPage(opts);
             this.logger.info(
                 'Create Page',
                 page.model.getUUID(),

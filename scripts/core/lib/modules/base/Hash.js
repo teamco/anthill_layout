@@ -15,6 +15,7 @@ define([
     BaseHash.extend({
 
         extendHash: function extendHash(self, hash) {
+            self = this.base.define(self, {}, true);
             $.extend(true, self, hash);
             return self;
         },

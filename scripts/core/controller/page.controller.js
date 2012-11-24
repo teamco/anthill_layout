@@ -14,14 +14,13 @@ define([
     };
 
     return Controller.extend({
-        createWidget: function createWidget() {
-            var widget = this.model.createWidget();
+        createWidget: function createWidget(opts) {
+            var widget = this.model.createWidget(opts);
             this.logger.info(
                 'Create Widget',
                 widget.model.getUUID(),
                 widget
             );
-            return widget;
         },
         destroyWidget: function destroyWidget(widget) {
             var widgets = this.model.destroyWidget(widget);
@@ -30,7 +29,6 @@ define([
                 widget,
                 widgets
             );
-            return widgets;
         },
         destroyWidgets: function destroyWidgets() {
             var widgets = this.model.destroyWidgets();
@@ -38,7 +36,6 @@ define([
                 'Destroy Widgets',
                 widgets
             );
-            return widgets;
         },
         createLayout: function createLayout(Layout, opts) {
             this.layout = new Layout(opts);
