@@ -60,7 +60,7 @@ define([
                 pages = this.scope.pages;
             for (index in pages) {
                 if (pages.hasOwnProperty(index)) {
-                    this.destroy(pages[index])
+                    this.destroyPage(pages[index])
                 }
             }
             return pages;

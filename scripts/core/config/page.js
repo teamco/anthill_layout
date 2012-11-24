@@ -28,7 +28,9 @@ define([
             default: false,
             layout: {
                 overlapping: true,
-                emptySpaces: true
+                emptySpaces: true,
+                eventSpeed: 300,
+                animate: true
             },
             widget: {
                 counter: 0,
@@ -37,7 +39,13 @@ define([
             },
             html: {
                 header: false,
-                footer: false
+                footer: false,
+                padding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                }
             }
 //            menu: {
 //                capability: App.permissionManager.capabilities.page.menu,
@@ -66,7 +74,8 @@ define([
                 Controller,
                 Model,
                 EventManager
-            ]
+            ],
+            render: true
         });
 
         this.observer.fireEvent(

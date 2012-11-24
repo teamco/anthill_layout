@@ -30,7 +30,8 @@ define([
             html: {
                 header: false,
                 footer: false,
-                frameLess: false
+                frameLess: false,
+                opacity: 0.6 //page.layout.config.html.fading,
             },
             maximize: false,
             events: {
@@ -38,7 +39,6 @@ define([
                     animateOnDrag: false,
                     animateOnStop: true,
                     organizeOnStop: true, //page.layout.config.overlapping.autoOrganize,
-                    opacity: .6, //page.layout.config.html.fading,
                     snap: false,
                     iframeFix: false,
                     axis: false,
@@ -53,8 +53,7 @@ define([
                     animateOnResize: false,
                     animateOnStop: true,
                     organizeOnStop: true, //page.layout.config.overlapping.autoOrganize,
-                    iframeFix: true,
-                    opacity: .6//page.layout.config.html.fading
+                    iframeFix: true
                     //            handles: 'n, e, s, w'
                 },
                 droppable: {
@@ -73,7 +72,8 @@ define([
                 Controller,
                 Model,
                 EventManager
-            ]
+            ],
+            render: true
         });
 
     };

@@ -16,7 +16,14 @@ define([
 
         opts = this.base.define(opts, {}, true);
 
+        // Default constants
         var DEFAULTS = {
+            grid: {
+                columns: 18,
+                step: 1,
+                additionalRows: 1,
+                margin: 15
+            }
         };
 
         // Init MVC
@@ -26,7 +33,8 @@ define([
             components: [
                 Controller,
                 EventManager
-            ]
+            ],
+            render: false
         });
 
     };

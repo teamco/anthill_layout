@@ -40,7 +40,8 @@ define([
                 Controller,
                 Model,
                 EventManager
-            ]
+            ],
+            render: false
         });
 
     };

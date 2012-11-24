@@ -20,7 +20,13 @@ define([
             },
             html: {
                 header: false,
-                footer: false
+                footer: false,
+                padding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                }
             }
             //        flexible: true,
             //        showMaximizePanel: true,

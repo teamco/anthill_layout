@@ -19,14 +19,16 @@ define([
                 workspace.model.getUUID(),
                 workspace
             );
+            return workspace;
         },
         destroyWorkspace: function destroyWorkspace(workspace) {
             var workspaces = this.model.destroyWorkspace(workspace);
             this.logger.info(
                 'Destroy Workspace',
-                workspace.model.getUUID(),
+                workspace,
                 workspaces
             );
+            return workspaces;
         },
         destroyWorkspaces: function destroyWorkspaces() {
             var workspaces = this.model.destroyWorkspaces();
@@ -34,6 +36,7 @@ define([
                 'Destroy Workspaces',
                 workspaces
             );
+            return workspaces;
         }
     }, BaseController.prototype);
 

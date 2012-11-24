@@ -37,6 +37,7 @@ define([
         this.components = base.define(opts.components, [opts.components], true);
         this.config = base.define(selfConfig, {}, true);
         this.force = base.defineBoolean(opts.force, false, true);
+        this.render = base.defineBoolean(opts.render, true, true);
 
         var config = {},
             scope = this.scope;
@@ -190,8 +191,10 @@ define([
             config.uuid = uuid;
             config.timestamp = timestamp;
 
-            config.html = base.define(config.html, {}, true);
-            config.html.selector = '.' + this.constructorName(scope.constructor);
+            if (this.render) {
+                config.html = base.define(config.html, {}, true);
+                config.html.selector = '.' + this.constructorName(scope.constructor);
+            }
         },
         applyEventManager: function applyEventManager() {
             var scope = this.scope,

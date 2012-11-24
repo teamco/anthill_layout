@@ -21,14 +21,16 @@ define([
                 widget.model.getUUID(),
                 widget
             );
+            return widget;
         },
         destroyWidget: function destroyWidget(widget) {
             var widgets = this.model.destroyWidget(widget);
             this.logger.info(
                 'Destroy Widget',
-                widget.model.getUUID(),
+                widget,
                 widgets
             );
+            return widgets;
         },
         destroyWidgets: function destroyWidgets() {
             var widgets = this.model.destroyWidgets();
@@ -36,6 +38,7 @@ define([
                 'Destroy Widgets',
                 widgets
             );
+            return widgets;
         },
         createLayout: function createLayout(Layout, opts) {
             this.layout = new Layout(opts);

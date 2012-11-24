@@ -187,25 +187,29 @@ define([
          */
         executeEvent: function executeEvent(scope, opts, args) {
 
-            opts.state.lastCallAt = this.base.lib.datetime.timestamp();
+            var base = this.base;
+
+            opts.state.lastCallAt = base.lib.datetime.timestamp();
 
             // Capture multiple event as single event within buffer time frame
             if (opts.params.buffer) {
 
-                // If defined last call and time diff less than buffer -> break event execution
+                // If defined last call and time diff less than buffer ->
+                // break event execution
                 if (opts.state.lastExecutionAt
-                    && ((opts.state.lastCallAt - opts.state.lastExecutionAt) < opts.params.buffer)) {
+                    && ((opts.state.lastCallAt - opts.state.lastExecutionAt) <
+                    opts.params.buffer)) {
                     return;
                 }
 
             }
             // If args is not array -> force to array (else it will broke .apply())
-            if (!this.base.isArray(args)) {
+            if (!base.isArray(args)) {
                 args = [args];
             }
 
             // Override default scope
-            if (this.base.isDefined(opts.scope)) {
+            if (base.isDefined(opts.scope)) {
                 scope = opts.scope;
             }
 
@@ -220,11 +224,13 @@ define([
              * Note: fnWrapper can override executeCallback function
              * to maintain event options like: delay, buffer, etc...
              */
-            var executeCallback = function () {
+            var executeCallback = function executeCallback() {
 
                 opts.state.lastExecutionAt = opts.state.lastCallAt;
-                return opts.callback.apply(scope, args);
-
+                if (base.isFunction(opts.callback)) {
+                    return opts.callback.apply(scope, args);
+                }
+                return;
             };
 
             // Fire event only when timeout is over, each event fill reset timeout
@@ -235,8 +241,8 @@ define([
                 }
 
                 var executeCallbackB4Timeout = executeCallback;
-                executeCallback = function () {
 
+                executeCallback = function executeCallback() {
                     opts.state.inTimeout = true;
 
                     this.defer(opts.params.timeout, function () {
@@ -267,10 +273,9 @@ define([
             if (opts.params.delay) {
 
                 var executeCallbackB4Defer = executeCallback;
-                executeCallback = function () {
 
+                executeCallback = function executeCallback() {
                     this.defer(opts.params.delay, executeCallbackB4Defer, this);
-
                 };
 
             }

@@ -14,7 +14,7 @@ define([
         this.eventList = {
             createWidget: 'create.widget',
             destroyWidget: 'destroy.widget',
-            destroyWidgets: 'destroy.widget',
+            destroyWidgets: 'destroy.widgets',
             createLayout: 'create.layout',
             destroyLayout: 'destroy.layout'
         };

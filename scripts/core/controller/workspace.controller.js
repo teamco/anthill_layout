@@ -24,7 +24,7 @@ define([
             var pages = this.model.destroyPage(page);
             this.logger.info(
                 'Destroy Page',
-                page.model.getUUID(),
+                page,
                 pages
             );
         },
