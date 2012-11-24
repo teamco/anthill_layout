@@ -22,9 +22,7 @@ requirejs([
 
 define([
     'config/routes',
-    'application',
-    'controller/workspace/workspace',
-    'controller/page/page'
+    'config/application'
 ], function defineApp(Routes, Application) {
     window.app = new Application();
 });

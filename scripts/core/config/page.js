@@ -9,7 +9,7 @@
 define([
     'modules/base',
     'modules/mvc',
-    'controller/page/page.controller',
+    'controller/page.controller',
     'model/page.model',
     'event/page.event.manager'
 ], function definePage(Base, MVC, Controller, Model, EventManager) {
@@ -56,14 +56,15 @@ define([
 //            }
         };
 
-        // Configure page
-        this.config = this.base.lib.hash.extendHash(opts, DEFAULTS);
-
         // Init MVC
         new MVC({
             scope: this,
-            config: opts,
-            components: [Controller, Model]
+            config: [opts, DEFAULTS],
+            components: [
+                Controller,
+                Model,
+                EventManager
+            ]
         });
 
 //        this.layout = this.model.setLayout();
@@ -78,5 +79,5 @@ define([
 
     };
 
-    return Page.extend(Base, EventManager);
+    return Page.extend(Base);
 });

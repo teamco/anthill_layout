@@ -1,7 +1,7 @@
 define([
     'modules/base',
     'modules/mvc',
-    'controller/workspace/workspace.controller',
+    'controller/workspace.controller',
     'model/workspace.model',
     'event/workspace.event.manager'
 ], function defineWorkspace(Base, MVC, Controller, Model, EventManager) {
@@ -56,14 +56,15 @@ define([
             //        }
         };
 
-        // Configure workspace
-        this.config = this.base.lib.hash.extendHash(opts, DEFAULTS);
-
         // Init MVC
         new MVC({
             scope: this,
-            config: opts,
-            components: [Controller, Model]
+            config: [opts, DEFAULTS],
+            components: [
+                Controller,
+                Model,
+                EventManager
+            ]
         });
 
         // Init page
@@ -77,6 +78,6 @@ define([
 
     };
 
-    return Workspace.extend(Base, EventManager);
+    return Workspace.extend(Base);
 
 });

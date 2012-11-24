@@ -7,11 +7,13 @@
  */
 
 define([
-    'controller/page/page'
-], function definePageController() {
+    'modules/controller'
+], function defineWidgetController(BaseController) {
     var Controller = function Controller() {
 
     };
 
-    return Controller.extend();
+    return Controller.extend({
+
+    }, BaseController.prototype);
 });

@@ -25,8 +25,17 @@ define([
         opts = base.define(opts, {}, true);
 
         this.scope = opts.scope;
+
+        // Apply Configure
+        var selfConfig = base.define(opts.config[0], {}, true),
+            selfDefaults = base.define(opts.config[1], {}, true);
+        this.scope.config = base.lib.hash.extendHash(
+            selfConfig,
+            selfDefaults
+        );
+
         this.components = base.define(opts.components, [opts.components], true);
-        this.config = base.define(opts.config, {}, true);
+        this.config = base.define(selfConfig, {}, true);
         this.force = base.defineBoolean(opts.force, false, true);
 
         var config = {},
@@ -99,10 +108,11 @@ define([
     MVC.extend({
         defineMVC: function defineMVC(mvc, force) {
 
-            var name = this.constructorName(mvc),
+            var base = this.base,
+                name = this.constructorName(mvc),
                 scope = this.scope;
 
-            if (this.base.isFunction(mvc)) {
+            if (base.isFunction(mvc)) {
 
                 scope[name] = new mvc();
 
@@ -152,12 +162,17 @@ define([
 
         },
         applyMVC: function applyMVC() {
-            var i = 0, l = this.components.length;
+            var i = 0,
+                l = this.components.length;
 
             for (i; i < l; i += 1) {
                 var mvc = this.components[i];
-                this.defineMVC(mvc, this.force);
 
+                if (!this.base.isDefined(mvc)) {
+                    return false;
+                }
+
+                this.defineMVC(mvc, this.force);
                 this.scope[this.constructorName(mvc)].scope = this.scope;
 
             }
@@ -180,7 +195,7 @@ define([
 
             if (this.base.isDefined(eventManager)) {
 
-                this.getPrototype(eventManager).scope = scope;
+                eventManager.scope = scope;
 
                 if (eventManager.getListeners instanceof Function) {
 

@@ -8,7 +8,7 @@
 define([
     'modules/model',
     'modules/base',
-    'controller/page/page'
+    'config/page'
 ], function defineWorkspaceModel(BaseModel, Base, Page) {
     var Model = function Model() {
 

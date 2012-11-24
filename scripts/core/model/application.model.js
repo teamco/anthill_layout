@@ -9,7 +9,7 @@
 define([
     'modules/model',
     'modules/base',
-    'controller/workspace/workspace'
+    'config/workspace'
 ], function (BaseModel, Base, Workspace) {
     var Model = function Model() {
     };

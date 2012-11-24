@@ -1,10 +1,10 @@
 define([
+    'modules/base',
     'controller/application.controller',
     'model/application.model',
     'modules/mvc',
-    'modules/base',
     'event/application.event.manager'
-], function defineApp(Controller, Model, MVC, Base, EventManager) {
+], function defineApp(Base, Controller, Model, MVC, EventManager) {
 
     var App = function App(opts) {
 
@@ -30,21 +30,21 @@ define([
             }
         };
 
-        // Configure workspace
-        this.config = this.base.lib.hash.extendHash(opts, DEFAULTS);
-
-
         this.workspaces = {};
         this.workspace = {};
 
         new MVC({
             scope: this,
-            config: opts,
-            components: [Controller, Model]
+            config: [opts, DEFAULTS],
+            components: [
+                Controller,
+                Model,
+                EventManager
+            ]
         });
 
     };
 
-    return App.extend(Base, EventManager);
+    return App.extend(Base);
 
 });
