@@ -11,8 +11,9 @@ define([
     'modules/mvc',
     'controller/page.controller',
     'model/page.model',
-    'event/page.event.manager'
-], function definePage(Base, MVC, Controller, Model, EventManager) {
+    'event/page.event.manager',
+    'config/layout'
+], function definePage(Base, MVC, Controller, Model, EventManager, Layout) {
     var Page = function Page(opts) {
 
         opts = this.base.define(opts, {}, true);
@@ -31,6 +32,7 @@ define([
             },
             widget: {
                 counter: 0,
+                opacity: 0.6,
                 allowToAdd: true
             },
             html: {
@@ -67,16 +69,10 @@ define([
             ]
         });
 
-//        this.layout = this.model.setLayout();
-
-//        this.createWidget = this.model.createWidget;
-//        this.current = this.workspace.controller.getCurrentPage;
-//
-//        this.view.render();
-
-        // Hide all pages instead of this
-//        this.workspace.controller.showCurrentPage(this);
-
+        this.observer.fireEvent(
+            this.eventmanager.eventList.createLayout,
+            [Layout, this.config.layout]
+        );
     };
 
     return Page.extend(Base);

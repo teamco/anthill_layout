@@ -17,7 +17,8 @@ define([
         eventList: {
             createWidget: 'create.widget',
             destroyWidget: 'destroy.widget',
-            destroyWidgets: 'destroy.widget'
+            destroyWidgets: 'destroy.widget',
+            createLayout: 'create.layout'
         },
         getListeners: function getListeners() {
             return [
@@ -32,6 +33,10 @@ define([
                 {
                     eventName: this.eventList.destroyWidgets,
                     callback: this.scope.controller.destroyWidgets
+                },
+                {
+                    eventName: this.eventList.createLayout,
+                    callback: this.scope.controller.createLayout
                 }
             ];
         }

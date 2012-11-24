@@ -36,6 +36,9 @@ define([
                 'Destroy Widgets',
                 widgets
             );
+        },
+        createLayout: function createLayout(Layout, opts) {
+            this.layout = new Layout(opts);
         }
     }, BaseController.prototype);
 });
