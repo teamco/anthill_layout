@@ -39,7 +39,9 @@ define([
             var workspaces = scope.workspaces,
                 index = workspace.model.getUUID();
 
-            scope.observer.fireEvent(scope.eventmanager.eventList.destroyPages);
+            workspace.observer.fireEvent(
+                workspace.eventmanager.eventList.destroyPages
+            );
 
             if (workspaces.hasOwnProperty(index)) {
                 delete workspaces[index];

@@ -28,8 +28,14 @@ define([
             return page.widget;
         },
         destroyWidget: function destroyWidget(widget) {
-            var scope = this.scope,
-                widgets = scope.widgets,
+            var scope = this.scope;
+
+            if (!this.base.isDefined(widget)) {
+                scope.logger.warn('Undefined widget', widget);
+                return false;
+            }
+
+            var widgets = scope.widgets,
                 index = widget.model.getUUID();
 
             if (widgets.hasOwnProperty(index)) {

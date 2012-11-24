@@ -11,14 +11,9 @@ define([
 ], function defineWidgetEventManager(Event) {
     var EventManager = function EventManager() {
         this.events = {};
+        this.eventList = {};
     };
 
     return EventManager.extend({
-        eventList: {
-        },
-        getListeners: function getListeners() {
-            return [
-            ];
-        }
     }, Event.prototype);
 });

@@ -11,34 +11,15 @@ define([
 ], function definePageEventManager(Event) {
     var EventManager = function EventManager() {
         this.events = {};
-    };
-
-    return EventManager.extend({
-        eventList: {
+        this.eventList = {
             createWidget: 'create.widget',
             destroyWidget: 'destroy.widget',
             destroyWidgets: 'destroy.widget',
-            createLayout: 'create.layout'
-        },
-        getListeners: function getListeners() {
-            return [
-                {
-                    eventName: this.eventList.createWidget,
-                    callback: this.scope.controller.createWidget
-                },
-                {
-                    eventName: this.eventList.destroyWidget,
-                    callback: this.scope.controller.destroyWidget
-                },
-                {
-                    eventName: this.eventList.destroyWidgets,
-                    callback: this.scope.controller.destroyWidgets
-                },
-                {
-                    eventName: this.eventList.createLayout,
-                    callback: this.scope.controller.createLayout
-                }
-            ];
-        }
+            createLayout: 'create.layout',
+            destroyLayout: 'destroy.layout'
+        };
+    };
+
+    return EventManager.extend({
     }, Event.prototype);
 });

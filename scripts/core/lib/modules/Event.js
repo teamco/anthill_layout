@@ -26,6 +26,17 @@ define([
             observer.addEvent(opts.eventName);
             events[observer.onEvent(opts)] = opts.eventName;
             return events[opts.eventName];
+        },
+        createCustomEvent: function createCustomEvent(opts) {
+            opts = this.base.define(opts, {}, true);
+            if (!this.base.isDefined(opts.eventName)) {
+                return false;
+            }
+            this.eventList[opts.eventName.toCamel()] = opts.eventName;
+            this.addListener({
+                eventName: opts.eventName,
+                callback: opts.callback
+            });
         }
     }, Base);
 

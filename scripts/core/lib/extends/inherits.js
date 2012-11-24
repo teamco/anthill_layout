@@ -104,5 +104,23 @@ define(['jquery'], function initInherits($) {
             return this;
         });
 
+        String.prototype.toCamel = function toCamel() {
+            return this.replace(/(\.[a-z])/g, function ($1) {
+                return $1.toUpperCase().replace('.', '');
+            });
+        };
+
+        String.prototype.toPoint = function toPoint() {
+            return this.replace(/([A-Z])/g, function ($1) {
+                return "." + $1.toLowerCase();
+            });
+        };
+
+        String.prototype.toUnderscore = function toUnderscore() {
+            return this.replace(/([A-Z])/g, function ($1) {
+                return "_" + $1.toLowerCase();
+            });
+        };
+
     }());
 });

@@ -18,22 +18,6 @@ define([
             createPage: 'create.page',
             destroyPage: 'destroy.page',
             destroyPages: 'destroy.pages'
-        },
-        getListeners: function getListeners() {
-            return [
-                {
-                    eventName: this.eventList.createPage,
-                    callback: this.scope.controller.createPage
-                },
-                {
-                    eventName: this.eventList.destroyPage,
-                    callback: this.scope.controller.destroyPage
-                },
-                {
-                    eventName: this.eventList.destroyPages,
-                    callback: this.scope.controller.destroyPages
-                }
-            ];
         }
     }, Event.prototype);
 });

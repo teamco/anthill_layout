@@ -201,31 +201,28 @@ define([
 
                 eventManager.scope = scope;
 
-                if (eventManager.getListeners instanceof Function) {
+                var eventList = eventManager.eventList,
+                    index;
 
-                    var eventList = eventManager.eventList;
-                    eventList.beforeInitConfig = 'before.init.config';
-                    eventList.afterInitConfig = 'after.init.config';
+                for (index in eventList) {
+                    var event = eventList[index];
 
-                    var listeners = eventManager.getListeners();
-                    listeners.push(
-                        {
-                            eventName: eventList.beforeInitConfig,
-                            callback: scope.controller.getConfig
-                        },
-                        {
-                            eventName: eventList.afterInitConfig,
-                            callback: scope.controller.getConfig
-                        }
-                    );
-
-                    var i = 0, l = listeners.length;
-                    for (i; i < l; i += 1) {
-                        eventManager.addListener(listeners[i])
-                    }
-                } else {
-                    scope.logger.warn('Listeners', eventManager.getListeners);
+                    eventManager.addListener({
+                        eventName: event,
+                        callback: scope.controller[index]
+                    });
                 }
+
+                eventManager.createCustomEvent({
+                    eventName: 'before.init.config',
+                    callback: scope.controller.getConfig
+                });
+
+                eventManager.createCustomEvent({
+                    eventName: 'after.init.config',
+                    callback: scope.controller.getConfig
+                });
+
             } else {
                 scope.logger.warn('Event Manager', scope.eventmanager);
             }

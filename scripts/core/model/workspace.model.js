@@ -28,15 +28,29 @@ define([
             return workspace.page;
         },
         destroyPage: function destroyPage(page) {
-            var scope = this.scope,
-                pages = scope.pages,
+            var scope = this.scope;
+
+            if (!this.base.isDefined(page)) {
+                scope.logger.warn('Undefined page', page);
+                return false;
+            }
+
+            var pages = scope.pages,
                 index = page.model.getUUID();
+
+            page.observer.fireEvent(
+                page.eventmanager.eventList.destroyWidgets
+            );
+
+            page.observer.fireEvent(
+                page.eventmanager.eventList.destroyLayout
+            );
 
             if (pages.hasOwnProperty(index)) {
                 delete pages[index];
             }
 
-            this.scope.page = this.base.lib.hash.firstHashElement(pages);
+            this.scope.page = this.base.lib.hash.firstHashElement(pages) || {};
 
             return pages;
 

@@ -11,6 +11,11 @@ define([
 ], function defineAppEventManager(Event) {
     var EventManager = function EventManager() {
         this.events = {};
+        this.eventList = {
+            createWorkspace: 'create.workspace',
+            destroyWorkspace: 'destroy.workspace',
+            destroyWorkspaces: 'destroy.workspaces'
+        };
     };
 
     /**
@@ -18,26 +23,5 @@ define([
      * @type {Object}
      */
     return EventManager.extend({
-        eventList: {
-            createWorkspace: 'create.workspace',
-            destroyWorkspace: 'destroy.workspace',
-            destroyWorkspaces: 'destroy.workspaces'
-        },
-        getListeners: function getListeners() {
-            return [
-                {
-                    eventName: this.eventList.createWorkspace,
-                    callback: this.scope.controller.createWorkspace
-                },
-                {
-                    eventName: this.eventList.destroyWorkspace,
-                    callback: this.scope.controller.destroyWorkspace
-                },
-                {
-                    eventName: this.eventList.destroyWorkspaces,
-                    callback: this.scope.controller.destroyWorkspaces
-                }
-            ];
-        }
     }, Event.prototype);
 });
