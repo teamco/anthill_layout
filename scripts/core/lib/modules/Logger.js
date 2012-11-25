@@ -44,11 +44,10 @@ define([
                             }
                         }
                     }
-                    var args = [], i = 0;
+                    var args = [], i = 1;
                     for (i; i < arguments.length; i += 1) {
                         args.push(arguments[i]);
                     }
-                    args.splice(0, 1);
 
                     if (base.isDefined(console[type])) {
                         var hash = {};
@@ -85,6 +84,22 @@ define([
             console.groupEnd();
 
             return true;
+        },
+        timer: function timer(name, start) {
+
+            var console = window.console,
+                base = this.base,
+                config = this.config,
+                log = base.isDefined(console) &&
+                    (this.developmentMode() && this.showLog());
+
+            start = base.defineBoolean(start, false, true);
+
+            if (log && config.type.debug) {
+                start ?
+                    console.time(name) :
+                    console.timeEnd(name);
+            }
         },
         defineLogs: function defineLogs() {
             var base = this.base,

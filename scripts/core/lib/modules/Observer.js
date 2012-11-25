@@ -137,12 +137,14 @@ define([
          * @param args
          */
         fireEvent: function fireEvent(eventName, args) {
+            this.scope.logger.timer(eventName, true);
             args = this.base.define(args, []);
             if (!this.base.isArray(args)) {
                 args = [args];
             }
 
             this.fireEventRunner(this.listeners[eventName], args);
+            this.scope.logger.timer(eventName, false);
         },
 
         /**
@@ -228,6 +230,7 @@ define([
 
                 opts.state.lastExecutionAt = opts.state.lastCallAt;
                 if (base.isFunction(opts.callback)) {
+                    opts.callback.eventName = opts.eventName;
                     return opts.callback.apply(scope, args);
                 }
                 return;
@@ -251,9 +254,11 @@ define([
                         var triggerTime = opts.state.lastCallAt + opts.params.timeout;
 
                         /**
-                         * If we are reached trigger time (when no new event was occured within timeout)
-                         * then we can continue to executing callback function.
-                         * Else, rerunning this function with defer based on last call at time.
+                         * If we are reached trigger time (when no new event was occurred
+                         * within timeout) then we can continue to executing callback
+                         * function.
+                         * Else, rerunning this function with defer based on last call at
+                         * time.
                          */
                         if (triggerTime > currentTime) {
                             this.defer(triggerTime - currentTime, executeCallback, this);

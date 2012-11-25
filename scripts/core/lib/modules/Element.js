@@ -16,18 +16,36 @@ define([
     };
 
     return BaseElement.extend({
-        create: function create($, $container, append, callback) {
-            var base = this.base;
-            if ($ !== false) {
-                append = base.defineBoolean(append, true, true);
-                this.$container = jQuery($container);
-                if (append) {
-                    $.appendTo($container);
-                } else {
-                    $.prependTo($container);
+
+        destroyB4Create: function destroyB4Create(destroy) {
+            if (this.base.defineBoolean(destroy, false, true)) {
+                var $element = this.$container.find('.' + this.style);
+                if ($element.length > 0) {
+                    this.view.scope.logger.warn(
+                        this.constructor.getConstructorName(),
+                        'Element will overwritten'
+                    );
+                    $element.remove();
                 }
-                if (base.isFunction(callback)) {
-                    callback();
+            }
+        },
+
+        create: function create(opts) {
+            var base = this.base;
+            opts = base.define(opts, {}, true);
+
+            var $container = opts.$container,
+                append = base.defineBoolean(opts.append, true, true);
+            if (this.$ !== false) {
+                this.$container = jQuery($container);
+                this.destroyB4Create(opts.destroy);
+                if (append) {
+                    this.$.appendTo($container);
+                } else {
+                    this.$.prependTo($container);
+                }
+                if (base.isFunction(opts.callback)) {
+                    opts.callback();
                 }
             }
             return this;
@@ -38,7 +56,7 @@ define([
             if (jQuery.browser.mozilla) {
                 var iframes = this.$.find('iframe'),
                     l = iframes.length, i = 0;
-                for (i; i < l; i+=1) {
+                for (i; i < l; i += 1) {
                     try {
                         delete window.frames[jQuery(iframes[i]).attr('id')];
                     } catch (e) {

@@ -18,8 +18,8 @@ define([
     return View.extend({
         wrapper: function wrapper() {
             console.log(this)
-            this.elements.$wrapper = new Wrapper({
-                id: this.scope.base.lib.generator.UUID() + '-wrapper',
+            this.elements.$wrapper = new Wrapper(this, {
+                id: this.scope.config.uuid + '-wrapper',
                 style: 'wrapper',
                 $container: this.scope.config.html.containerSelector
             });

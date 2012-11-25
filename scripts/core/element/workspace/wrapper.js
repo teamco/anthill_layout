@@ -11,19 +11,20 @@ define([
     'modules/element'
 ], function defineWrapper(Base, BaseElement) {
 
-    var Wrapper = function Wrapper(opts) {
-        return this.initElement(opts);
+    var Wrapper = function Wrapper(view, opts) {
+        this.view = view;
+        this.style = opts.style;
+        this.id = opts.id;
+        this.$ = $('<div />').attr({
+            id: this.id
+        }).addClass(this.style);
+        return this.create({
+            $container: opts.$container,
+            destroy: true
+        });
     };
 
     return Wrapper.extend({
-        initElement: function initElement(opts) {
-            this.style = opts.style;
-            this.id = opts.id;
-            this.$ = $('<div />').attr({
-                id: this.id
-            }).addClass(this.style);
-            return this.create(this.$, opts.$container);
-        }
 
     }, Base, BaseElement.prototype);
 });
