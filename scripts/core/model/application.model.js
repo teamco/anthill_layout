@@ -16,19 +16,11 @@ define([
 
     return Model.extend({
         createWorkspace: function createWorkspace(opts, config) {
-
-            opts = this.base.lib.hash.extendHash(opts, config);
-
-            var scope = this.scope,
-                workspace = this.updateCollector(
-                    Workspace,
-                    opts,
-                    scope.workspaces
-                );
-            if (workspace) {
-                scope.workspace = workspace;
-            }
-            return scope.workspace;
+            return this.updateCollector(
+                Workspace,
+                this.base.lib.hash.extendHash(opts, config),
+                this.scope.workspaces
+            );
         },
         destroyWorkspace: function destroyWorkspace(workspace) {
 

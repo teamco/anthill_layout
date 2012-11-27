@@ -16,7 +16,7 @@ define([
             var page = this.model.createPage(opts);
             this.logger.info(
                 'Create Page',
-                page.model.getUUID(),
+                this.model.getUUID(page),
                 page
             );
         },

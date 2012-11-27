@@ -18,7 +18,7 @@ define([
             var widget = this.model.createWidget(opts);
             this.logger.info(
                 'Create Widget',
-                widget.model.getUUID(),
+                this.model.getUUID(widget),
                 widget
             );
         },

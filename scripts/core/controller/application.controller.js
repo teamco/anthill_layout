@@ -19,7 +19,7 @@ define([
             );
             this.logger.info(
                 'Create Workspace',
-                workspace.model.getUUID(),
+                this.model.getUUID(workspace),
                 workspace
             );
         },

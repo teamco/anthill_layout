@@ -11,9 +11,10 @@ define([
     'modules/mvc',
     'controller/page.controller',
     'model/page.model',
+    'view/page.view',
     'event/page.event.manager',
     'config/layout'
-], function definePage(Base, MVC, Controller, Model, EventManager, Layout) {
+], function definePage(Base, MVC, Controller, Model, View, EventManager, Layout) {
     var Page = function Page(opts) {
 
         opts = this.base.define(opts, {}, true);
@@ -73,6 +74,7 @@ define([
             components: [
                 Controller,
                 Model,
+                View,
                 EventManager
             ],
             render: true

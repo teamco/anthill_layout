@@ -6,7 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(['modules/base'], function initModel(Base) {
+define([
+    'modules/base'
+], function initModel(Base) {
     var BaseModel = function BaseModel() {
 
     };
@@ -15,16 +17,20 @@ define(['modules/base'], function initModel(Base) {
         getConfig: function getConfig() {
             return this.scope.config;
         },
-        getNameSpace: function getNameSpace(component) {
-            var scope = this.base.isDefined(component) ?
-                    component : this.scope,
+        getNameSpace: function getNameSpace(node) {
+            var scope = this.base.isDefined(node) ?
+                    node : this.scope,
                 constructor = this.base.isFunction(scope) ?
                     scope : scope.constructor;
 
             return constructor.getConstructorName().toLowerCase();
         },
-        getUUID: function getUUID() {
-            return this.getConfig().uuid;
+        getUUID: function getUUID(node) {
+            return this.base.isDefined(node) ?
+                node.model ?
+                    node.model.getUUID() :
+                    'Undefined ' + node.constructor.getConstructorName() :
+                this.getConfig().uuid;
         },
         getOrder: function getOrder() {
             return this.getConfig().order;
@@ -45,30 +51,35 @@ define(['modules/base'], function initModel(Base) {
             var namespace = this.getNameSpace(constructor),
                 limit = this.getConfig()[namespace].limit,
                 scope = this.scope,
-                cname = constructor.getConstructorName();
+                cname = constructor.getConstructorName(),
+                node = scope[cname.toLowerCase()];
             if (this.checkLimit(constructor, collector, limit)) {
                 scope.logger.warn(
-                     cname + ': Maximum limit reached',
+                    cname + ': Maximum limit reached',
                     limit
                 );
-                return false;
-            }
-
-            var base = this.base,
-                component = new constructor(base.define(opts, {}, true));
-
-            if (base.isDefined(component.model)) {
-                collector[component.model.getUUID()] = component;
             } else {
-                scope.logger.warn(
-                    cname + ' was created with some errors',
-                    component
-                );
+                var base = this.base,
+                    node = new constructor(base.define(opts, {}, true));
+
+                if (base.isDefined(node.model)) {
+                    collector[node.model.getUUID()] = node;
+                } else {
+                    scope.logger.warn(
+                        cname + ' was created with some errors',
+                        node
+                    );
+                }
+
+                scope.config[namespace].counter =
+                    base.lib.hash.hashLength(collector);
+
+                scope[cname.toLowerCase()] = node;
+                scope[cname.toLowerCase()].parent = scope;
+
             }
 
-            this.scope.config[namespace].counter =
-                base.lib.hash.hashLength(collector);
-            return component;
+            return node;
         }
     }, Base);
 

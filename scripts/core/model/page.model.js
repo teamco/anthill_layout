@@ -16,16 +16,11 @@ define([
 
     return Model.extend({
         createWidget: function createWidget(opts) {
-            var page = this.scope,
-                widget = this.updateCollector(
-                    Widget,
-                    opts,
-                    page.widgets
-                );
-            if (widget) {
-                page.widget = widget;
-            }
-            return page.widget;
+            return this.updateCollector(
+                Widget,
+                this.base.define(opts, {}, true),
+                this.scope.widgets
+            );
         },
         destroyWidget: function destroyWidget(widget) {
             var scope = this.scope;

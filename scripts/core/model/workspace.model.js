@@ -16,16 +16,11 @@ define([
 
     return Model.extend({
         createPage: function createPage(opts) {
-            var workspace = this.scope,
-                page = this.updateCollector(
-                    Page,
-                    opts,
-                    workspace.pages
-                );
-            if (page) {
-                workspace.page = page;
-            }
-            return workspace.page;
+            return this.updateCollector(
+                Page,
+                this.base.define(opts, {}, true),
+                this.scope.pages
+            );
         },
         destroyPage: function destroyPage(page) {
             var scope = this.scope;
