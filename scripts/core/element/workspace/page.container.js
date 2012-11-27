@@ -13,9 +13,7 @@ define([
 
     var PageContainer = function PageContainer(view, opts) {
 
-        this.config(view, opts);
-
-        return this.create({
+        return this.config(view, opts).create({
             $container: opts.$container,
             destroy: true
         });
@@ -29,6 +27,8 @@ define([
             this.$ = $('<ul />').attr({
                 id: opts.id
             }).addClass(this.style);
+
+            return this;
         }
 
     }, Base, BaseElement.prototype);

@@ -12,9 +12,7 @@ define([
 ], function defineWrapper(Base, BaseElement) {
 
     var Wrapper = function Wrapper(view, opts) {
-        this.config(view, opts);
-
-        return this.create({
+        return this.config(view, opts).create({
             $container: opts.$container,
             destroy: true
         });
@@ -28,6 +26,8 @@ define([
             this.$ = $('<div />').attr({
                 id: opts.id
             }).addClass(this.style);
+
+            return this;
         }
 
     }, Base, BaseElement.prototype);
