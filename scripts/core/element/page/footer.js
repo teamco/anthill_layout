@@ -9,11 +9,11 @@
 define([
     'modules/base',
     'modules/element'
-], function defineHeader(Base, BaseElement) {
+], function defineFooter(Base, BaseElement) {
 
-    var Header = function Header(view, opts) {
+    var Footer = function Footer(view, opts) {
 
-        if (!view.scope.config.html.header) {
+        if (!view.scope.config.html.footer) {
             return false;
         }
 
@@ -23,7 +23,7 @@ define([
         });
     };
 
-    return Header.extend({
+    return Footer.extend({
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;

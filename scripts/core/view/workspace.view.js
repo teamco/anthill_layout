@@ -25,21 +25,9 @@ define([
                 style: 'wrapper',
                 $container: this.scope.config.html.containerSelector
             });
-            this.header();
+            this.header(Header, this.elements.$wrapper);
             this.pageContainer();
-            this.footer();
-        },
-        header: function header() {
-            this.elements.$header = new Header(this, {
-                style: 'header',
-                $container: this.elements.$wrapper.$
-            });
-        },
-        footer: function footer() {
-            this.elements.$footer = new Footer(this, {
-                style: 'footer',
-                $container: this.elements.$wrapper.$
-            });
+            this.footer(Footer, this.elements.$wrapper);
         },
         pageContainer: function pageContainer() {
             this.elements.$pageContainer = new PageContainer(this, {

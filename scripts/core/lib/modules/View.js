@@ -13,5 +13,17 @@ define([
     };
 
     return BaseView.extend({
+        header: function header(Header, $container) {
+            this.elements.$header = new Header(this, {
+                style: 'header',
+                $container: $container.$
+            });
+        },
+        footer: function footer(Footer, $container) {
+            this.elements.$footer = new Footer(this, {
+                style: 'footer',
+                $container: $container.$
+            });
+        }
     });
 });
