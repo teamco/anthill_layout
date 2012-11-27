@@ -9,9 +9,10 @@
 define([
     'modules/base',
     'modules/element'
-], function defineWrapper(Base, BaseElement) {
+], function definePageContainer(Base, BaseElement) {
 
-    var Wrapper = function Wrapper(view, opts) {
+    var PageContainer = function PageContainer(view, opts) {
+
         this.config(view, opts);
 
         return this.create({
@@ -20,12 +21,12 @@ define([
         });
     };
 
-    return Wrapper.extend({
+    return PageContainer.extend({
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;
             this.id = this.renderUUID(opts.id);
-            this.$ = $('<div />').attr({
+            this.$ = $('<ul />').attr({
                 id: opts.id
             }).addClass(this.style);
         }

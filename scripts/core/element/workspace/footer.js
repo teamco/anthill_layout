@@ -9,9 +9,14 @@
 define([
     'modules/base',
     'modules/element'
-], function defineWrapper(Base, BaseElement) {
+], function defineFooter(Base, BaseElement) {
 
-    var Wrapper = function Wrapper(view, opts) {
+    var Footer = function Footer(view, opts) {
+
+        if (!view.scope.config.html.footer) {
+            return false;
+        }
+
         this.config(view, opts);
 
         return this.create({
@@ -20,7 +25,7 @@ define([
         });
     };
 
-    return Wrapper.extend({
+    return Footer.extend({
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;

@@ -9,9 +9,14 @@
 define([
     'modules/base',
     'modules/element'
-], function defineWrapper(Base, BaseElement) {
+], function defineHeader(Base, BaseElement) {
 
-    var Wrapper = function Wrapper(view, opts) {
+    var Header = function Header(view, opts) {
+
+        if (!view.scope.config.html.header) {
+            return false;
+        }
+
         this.config(view, opts);
 
         return this.create({
@@ -20,13 +25,13 @@ define([
         });
     };
 
-    return Wrapper.extend({
+    return Header.extend({
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;
-            this.id = this.renderUUID(opts.id);
+            this.id = opts.id;
             this.$ = $('<div />').attr({
-                id: opts.id
+                id: this.id
             }).addClass(this.style);
         }
 

@@ -17,6 +17,11 @@ define([
 
     return BaseElement.extend({
 
+        renderUUID: function renderUUID(id) {
+            return id || (this.base.lib.generator.UUID() +
+                this.constructor.getConstructorName().toDash());
+        },
+
         destroyB4Create: function destroyB4Create(destroy) {
             if (this.base.defineBoolean(destroy, false, true)) {
                 var $element = this.$container.find('.' + this.style);
