@@ -23,7 +23,7 @@ define([
             this.elements.$page = new Page(this, {
                 id: this.scope.config.uuid + '-page',
                 style: 'page',
-                $container: this.scope.workspace.view.elements.$pageContainer.$
+                $container: this.scope.parent.view.elements.$pageContainer.$
             });
             this.header(Header, this.elements.$page);
             this.content();
