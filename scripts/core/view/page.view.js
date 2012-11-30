@@ -22,8 +22,8 @@ define([
         page: function page() {
             this.elements.$page = new Page(this, {
                 id: this.scope.config.uuid + '-page',
-                style: 'page',
-                $container: this.scope.parent.view.elements.$pageContainer.$
+                style: 'page-container',
+                $container: this.getConfigHTML().container
             });
             this.header(Header, this.elements.$page);
             this.content();
@@ -31,7 +31,7 @@ define([
         },
         content: function content() {
             this.elements.$content = new Content(this, {
-                style: 'content',
+                style: 'page',
                 $container: this.elements.$page.$
             });
         },

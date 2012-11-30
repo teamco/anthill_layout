@@ -12,7 +12,6 @@ define([
 ], function definePageContainer(Base, BaseElement) {
 
     var PageContainer = function PageContainer(view, opts) {
-
         return this.config(view, opts).create({
             $container: opts.$container,
             destroy: true
@@ -26,7 +25,7 @@ define([
             this.id = this.renderUUID(opts.id);
             this.$ = $('<ul />').attr({
                 id: opts.id
-            }).addClass(this.style);
+            }).addClass(this.getStyle());
 
             return this;
         }

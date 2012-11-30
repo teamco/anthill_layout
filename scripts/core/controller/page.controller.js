@@ -15,7 +15,9 @@ define([
 
     return Controller.extend({
         createWidget: function createWidget(opts) {
-            var widget = this.model.createWidget(opts);
+            var widget = this.model.createWidget(
+                this.controller.extendConfig(opts)
+            );
             this.logger.info(
                 'Create Widget',
                 this.model.getUUID(widget),

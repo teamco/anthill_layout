@@ -18,7 +18,7 @@ define([
         createWidget: function createWidget(opts) {
             return this.updateCollector(
                 Widget,
-                this.base.define(opts, {}, true),
+                opts,
                 this.scope.widgets
             );
         },

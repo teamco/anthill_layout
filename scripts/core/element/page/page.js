@@ -15,7 +15,7 @@ define([
 
         return this.config(view, opts).create({
             $container: opts.$container,
-            destroy: true
+            destroy: false
         });
     };
 

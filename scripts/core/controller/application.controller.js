@@ -14,8 +14,7 @@ define([
     return Controller.extend({
         createWorkspace: function createWorkspace(opts) {
             var workspace = this.model.createWorkspace(
-                opts,
-                this.model.getConfig().workspace.dependencies
+                this.controller.extendConfig(opts)
             );
             this.logger.info(
                 'Create Workspace',

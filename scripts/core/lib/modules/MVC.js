@@ -218,12 +218,12 @@ define([
 
                 eventManager.createCustomEvent({
                     eventName: 'before.init.config',
-                    callback: scope.controller.getConfig
+                    callback: scope.controller.getConfigLog
                 });
 
                 eventManager.createCustomEvent({
                     eventName: 'after.init.config',
-                    callback: scope.controller.getConfig
+                    callback: scope.controller.getConfigLog
                 });
 
             } else {

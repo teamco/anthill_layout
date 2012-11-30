@@ -13,6 +13,12 @@ define([
     };
 
     return BaseView.extend({
+        getConfigHTML: function getConfigHTML() {
+            return this.scope.model.getConfig().html;
+        },
+        getContainerClassName: function getContainerClassName() {
+            return this.getConfigHTML().selector.replace(/\./,'');
+        },
         header: function header(Header, $container) {
             this.elements.$header = new Header(this, {
                 style: 'header',

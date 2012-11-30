@@ -15,10 +15,10 @@ define([
     };
 
     return Model.extend({
-        createWorkspace: function createWorkspace(opts, config) {
+        createWorkspace: function createWorkspace(opts) {
             return this.updateCollector(
                 Workspace,
-                this.base.lib.hash.extendHash(opts, config),
+                opts,
                 this.scope.workspaces
             );
         },

@@ -75,7 +75,6 @@ define([
                     base.lib.hash.hashLength(collector);
 
                 scope[cname.toLowerCase()] = node;
-                scope[cname.toLowerCase()].parent = scope;
 
             }
 

@@ -13,12 +13,7 @@ define([
         var DEFAULTS = {
             workspace: {
                 limit: 1,
-                counter: 0,
-                dependencies: {
-                    html: {
-                        containerSelector: '.' + this.constructor.getConstructorName().toLowerCase()
-                    }
-                }
+                counter: 0
             },
             logger: {
                 development: true,
@@ -46,7 +41,7 @@ define([
                 Model,
                 EventManager
             ],
-            render: false
+            render: true
         });
 
     };

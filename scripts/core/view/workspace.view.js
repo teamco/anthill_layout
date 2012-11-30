@@ -23,7 +23,7 @@ define([
             this.elements.$wrapper = new Wrapper(this, {
                 id: this.scope.config.uuid + '-wrapper',
                 style: 'wrapper',
-                $container: this.scope.config.html.containerSelector
+                $container: this.getConfigHTML().container
             });
             this.header(Header, this.elements.$wrapper);
             this.pageContainer();
@@ -31,7 +31,6 @@ define([
         },
         pageContainer: function pageContainer() {
             this.elements.$pageContainer = new PageContainer(this, {
-                style: 'page-container',
                 $container: this.elements.$wrapper.$
             });
         },

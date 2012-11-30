@@ -26,7 +26,7 @@ define([
             this.id = this.renderUUID(opts.id);
             this.$ = $('<div />').attr({
                 id: opts.id
-            }).addClass(this.style);
+            }).addClass(this.getStyle());
 
             return this;
         }

@@ -14,7 +14,7 @@ define([
     };
 
     return BaseController.extend({
-        getConfig: function getConfig(log, hash) {
+        getConfigLog: function getConfigLog(log, hash) {
             this.logger.debug(log, hash);
         },
         setOrder: function setOrder(collector) {
@@ -24,6 +24,13 @@ define([
                 scope.config.order,
                 base.lib.hash.hashLength(collector)
             );
+        },
+        extendConfig: function extendConfig(opts) {
+            return this.base.lib.hash.extendHash({
+                html: {
+                    container: '.' + this.scope.constructor.getConstructorName().toLowerCase()
+                }
+            }, opts);
         }
     }, Base);
 });

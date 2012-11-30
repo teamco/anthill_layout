@@ -18,7 +18,7 @@ define([
         createPage: function createPage(opts) {
             return this.updateCollector(
                 Page,
-                this.base.define(opts, {}, true),
+                opts,
                 this.scope.pages
             );
         },

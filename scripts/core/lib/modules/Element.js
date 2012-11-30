@@ -16,15 +16,19 @@ define([
     };
 
     return BaseElement.extend({
-
         renderUUID: function renderUUID(id) {
             return id || (this.base.lib.generator.UUID() +
                 this.constructor.getConstructorName().toDash());
         },
-
+        getStyle: function getStyle() {
+            return [
+                this.view.getContainerClassName(),
+                this.style
+            ].join(' ');
+        },
         destroyB4Create: function destroyB4Create(destroy) {
-            if (this.base.defineBoolean(destroy, false, true)) {
-                var $element = this.$container.find('.' + this.style);
+            var $container = this.$container;
+            function destroyElement($element) {
                 if ($element.length > 0) {
                     this.view.scope.logger.warn(
                         this.constructor.getConstructorName(),
@@ -33,8 +37,12 @@ define([
                     $element.remove();
                 }
             }
-        },
+            destroyElement.bind(this)($container.find('#' + this.id));
 
+            if (this.base.defineBoolean(destroy, false, true)) {
+                destroyElement.bind(this)($container.find('.' + this.style));
+            }
+        },
         create: function create(opts) {
             var base = this.base;
             opts = base.define(opts, {}, true);
@@ -120,4 +128,5 @@ define([
         }
 
     }, Base);
-});
+})
+;
