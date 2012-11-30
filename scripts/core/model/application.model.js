@@ -34,7 +34,7 @@ define([
             var workspaces = scope.workspaces,
                 index = workspace.model.getUUID();
 
-            workspace.observer.fireEvent(
+            workspace.observer.publish(
                 workspace.eventmanager.eventList.destroyPages
             );
 

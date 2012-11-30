@@ -80,7 +80,7 @@ define([
             render: true
         });
 
-        this.observer.fireEvent(
+        this.observer.publish(
             this.eventmanager.eventList.createLayout,
             [Layout, this.config.layout]
         );

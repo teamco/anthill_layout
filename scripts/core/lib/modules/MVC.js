@@ -52,14 +52,14 @@ define([
 
         if (scope.eventmanager) {
 
-            scope.observer.fireEvent(
+            scope.observer.publish(
                 scope.eventmanager.eventList.beforeInitConfig, [
                     'Config before create',
                     config
                 ]
             );
 
-            scope.observer.fireEvent(
+            scope.observer.publish(
                 scope.eventmanager.eventList.afterInitConfig, [
                     'Config after create',
                     scope.config
@@ -99,7 +99,7 @@ define([
 //        if (App.base.isFunction(this.scope.context.EventManager)) {
 //            this.scope.context.observer = new App.Observable(this.scope.context);
 //            this.scope.context.eventManager = new this.scope.context.EventManager(this.scope.context);
-//            this.scope.context.observer.fireEvent(this.scope.context.eventManager.eventList.afterContextCreated, this.scope.context);
+//            this.scope.context.observer.publish(this.scope.context.eventManager.eventList.afterContextCreated, this.scope.context);
 //        }
 //    }
 //

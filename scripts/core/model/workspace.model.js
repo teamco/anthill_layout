@@ -33,11 +33,11 @@ define([
             var pages = scope.pages,
                 index = page.model.getUUID();
 
-            page.observer.fireEvent(
+            page.observer.publish(
                 page.eventmanager.eventList.destroyWidgets
             );
 
-            page.observer.fireEvent(
+            page.observer.publish(
                 page.eventmanager.eventList.destroyLayout
             );
 
