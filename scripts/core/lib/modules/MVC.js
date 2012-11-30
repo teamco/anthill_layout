@@ -210,18 +210,18 @@ define([
                 for (index in eventList) {
                     var event = eventList[index];
 
-                    eventManager.addListener({
+                    eventManager.subscribe({
                         eventName: event,
                         callback: scope.controller[index]
                     });
                 }
 
-                eventManager.createCustomEvent({
+                eventManager.subscribe({
                     eventName: 'before.init.config',
                     callback: scope.controller.getConfigLog
                 });
 
-                eventManager.createCustomEvent({
+                eventManager.subscribe({
                     eventName: 'after.init.config',
                     callback: scope.controller.getConfigLog
                 });

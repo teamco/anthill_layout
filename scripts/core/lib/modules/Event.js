@@ -27,7 +27,7 @@ define([
             events[observer.onEvent(opts)] = opts.eventName;
             return events[opts.eventName];
         },
-        createCustomEvent: function createCustomEvent(opts) {
+        subscribe: function subscribe(opts) {
             opts = this.base.define(opts, {}, true);
             if (!this.base.isDefined(opts.eventName)) {
                 return false;

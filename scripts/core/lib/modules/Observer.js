@@ -136,14 +136,14 @@ define([
          * @param eventName
          * @param args
          */
-        fireEvent: function fireEvent(eventName, args) {
+        publish: function publish(eventName, args) {
             this.scope.logger.timer(eventName, true);
             args = this.base.define(args, []);
             if (!this.base.isArray(args)) {
                 args = [args];
             }
 
-            this.fireEventRunner(this.listeners[eventName], args);
+            this.fireEvent(this.listeners[eventName], args);
             this.scope.logger.timer(eventName, false);
         },
 
@@ -153,7 +153,7 @@ define([
          * @param args
          * @return {Boolean}
          */
-        fireEventRunner: function fireEventRunner(events, args) {
+        fireEvent: function fireEvent(events, args) {
 
             events = this.base.define(events, [], true);
 
