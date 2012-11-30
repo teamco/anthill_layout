@@ -38,7 +38,7 @@ define([
                                 config.namespaces,
                                 [config.namespaces],
                                 true
-                            )
+                            );
                             if ($.inArray(instance, config.namespaces) === -1) {
                                 return false;
                             }
