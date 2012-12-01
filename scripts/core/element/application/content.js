@@ -9,17 +9,16 @@
 define([
     'modules/base',
     'modules/element'
-], function defineContent(Base, BaseElement) {
+], function defineWorkspaceContainer(Base, BaseElement) {
 
-    var Content = function Content(view, opts) {
-
+    var WorkspaceContainer = function WorkspaceContainer(view, opts) {
         return this.config(view, opts).create({
             $container: opts.$container,
             destroy: true
         });
     };
 
-    return Content.extend({
+    return WorkspaceContainer.extend({
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;

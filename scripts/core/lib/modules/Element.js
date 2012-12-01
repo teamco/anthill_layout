@@ -20,12 +20,6 @@ define([
             return id || (this.base.lib.generator.UUID() +
                 this.constructor.getConstructorName().toDash());
         },
-        getStyle: function getStyle() {
-            return [
-                this.view.getContainerClassName(),
-                this.style
-            ].join(' ');
-        },
         destroyB4Create: function destroyB4Create(destroy) {
             var $container = this.$container;
             function destroyElement($element) {

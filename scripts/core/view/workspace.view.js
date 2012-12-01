@@ -11,7 +11,7 @@ define([
     'element/workspace/wrapper',
     'element/workspace/header',
     'element/workspace/footer',
-    'element/workspace/page.container'
+    'element/workspace/content'
 ], function defineWorkspaceView(BaseView, Wrapper, Header, Footer, PageContainer){
 
     var View = function View() {
@@ -19,23 +19,24 @@ define([
     };
 
     return View.extend({
-        wrapper: function wrapper() {
-            this.elements.$wrapper = new Wrapper(this, {
-                id: this.scope.config.uuid + '-wrapper',
-                style: 'wrapper',
-                $container: this.getConfigHTML().container
+        workspace: function workspace() {
+            this.elements.$workspace = new Wrapper(this, {
+                id: this.createId(),
+                style: this.getContainerClassName(),
+                $container: this.getContainerSelector()
             });
-            this.header(Header, this.elements.$wrapper);
-            this.pageContainer();
-            this.footer(Footer, this.elements.$wrapper);
+            this.header(Header, this.elements.$workspace);
+            this.pages();
+            this.footer(Footer, this.elements.$workspace);
         },
-        pageContainer: function pageContainer() {
-            this.elements.$pageContainer = new PageContainer(this, {
-                $container: this.elements.$wrapper.$
+        pages: function pages() {
+            this.elements.$pages = new PageContainer(this, {
+                $container: this.elements.$workspace.$,
+                style: 'pages'
             });
         },
         render: function render() {
-            this.wrapper();
+            this.workspace();
         }
     }, BaseView.prototype)
 

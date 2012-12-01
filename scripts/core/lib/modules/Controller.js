@@ -28,7 +28,10 @@ define([
         extendConfig: function extendConfig(opts) {
             return this.base.lib.hash.extendHash({
                 html: {
-                    container: '.' + this.scope.constructor.getConstructorName().toLowerCase()
+                    container: [
+                        '#', this.scope.model.getUUID(),
+                        '-', this.scope.constructor.getConstructorName().toLowerCase()
+                    ].join('')
                 }
             }, opts);
         }

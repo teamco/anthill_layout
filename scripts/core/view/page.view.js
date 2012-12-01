@@ -21,17 +21,17 @@ define([
     return View.extend({
         page: function page() {
             this.elements.$page = new Page(this, {
-                id: this.scope.config.uuid + '-page',
-                style: 'page-container',
-                $container: this.getConfigHTML().container
+                id: this.createId(),
+                style: this.getContainerClassName(),
+                $container: this.getContainerSelector()
             });
             this.header(Header, this.elements.$page);
-            this.content();
+            this.widgets();
             this.footer(Footer, this.elements.$page);
         },
-        content: function content() {
-            this.elements.$content = new Content(this, {
-                style: 'page',
+        widgets: function widgets() {
+            this.elements.$widgets = new Content(this, {
+                style: 'widgets',
                 $container: this.elements.$page.$
             });
         },

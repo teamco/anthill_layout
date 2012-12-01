@@ -23,7 +23,7 @@ define([
             this.view = view;
             this.style = opts.style;
             this.id = this.renderUUID(opts.id);
-            this.$ = $('<div />').attr({
+            this.$ = $('<li />').attr({
                 id: opts.id
             }).addClass(this.style);
 

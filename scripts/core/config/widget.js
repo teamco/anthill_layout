@@ -19,8 +19,9 @@ define([
     'modules/mvc',
     'controller/widget.controller',
     'model/widget.model',
+    'view/widget.view',
     'event/widget.event.manager'
-], function defineWidget(Base, MVC, Controller, Model, EventManager) {
+], function defineWidget(Base, MVC, Controller, Model, View, EventManager) {
     var Widget = function Widget(opts) {
 
         opts = this.base.define(opts, {}, true);
@@ -71,6 +72,7 @@ define([
             components: [
                 Controller,
                 Model,
+                View,
                 EventManager
             ],
             render: true

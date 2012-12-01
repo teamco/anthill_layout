@@ -9,9 +9,13 @@
 define([
     'modules/base',
     'modules/element'
-], function defineContent(Base, BaseElement) {
+], function defineFooter(Base, BaseElement) {
 
-    var Content = function Content(view, opts) {
+    var Footer = function Footer(view, opts) {
+
+        if (!view.getConfigHTML().footer) {
+            return false;
+        }
 
         return this.config(view, opts).create({
             $container: opts.$container,
@@ -19,12 +23,12 @@ define([
         });
     };
 
-    return Content.extend({
+    return Footer.extend({
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;
             this.id = this.renderUUID(opts.id);
-            this.$ = $('<ul />').attr({
+            this.$ = $('<div />').attr({
                 id: opts.id
             }).addClass(this.style);
 

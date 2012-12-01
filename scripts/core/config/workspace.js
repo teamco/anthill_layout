@@ -20,8 +20,8 @@ define([
                 onDestroyShowNext: false
             },
             html: {
-                header: true,
-                footer: true,
+                header: false,
+                footer: false,
                 padding: {
                     top: 0,
                     right: 0,

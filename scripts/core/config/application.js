@@ -2,9 +2,10 @@ define([
     'modules/base',
     'controller/application.controller',
     'model/application.model',
+    'view/application.view',
     'modules/mvc',
     'event/application.event.manager'
-], function defineApp(Base, Controller, Model, MVC, EventManager) {
+], function defineApp(Base, Controller, Model, View, MVC, EventManager) {
 
     var App = function App(opts) {
 
@@ -39,6 +40,7 @@ define([
             components: [
                 Controller,
                 Model,
+                View,
                 EventManager
             ],
             render: true

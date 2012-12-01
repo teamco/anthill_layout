@@ -9,9 +9,13 @@
 define([
     'modules/base',
     'modules/element'
-], function defineContent(Base, BaseElement) {
+], function defineHeader(Base, BaseElement) {
 
-    var Content = function Content(view, opts) {
+    var Header = function Header(view, opts) {
+
+        if (!view.getConfigHTML().header) {
+            return false;
+        }
 
         return this.config(view, opts).create({
             $container: opts.$container,
@@ -19,12 +23,12 @@ define([
         });
     };
 
-    return Content.extend({
+    return Header.extend({
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;
             this.id = this.renderUUID(opts.id);
-            this.$ = $('<ul />').attr({
+            this.$ = $('<div />').attr({
                 id: opts.id
             }).addClass(this.style);
 

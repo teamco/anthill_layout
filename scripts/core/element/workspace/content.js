@@ -9,17 +9,16 @@
 define([
     'modules/base',
     'modules/element'
-], function defineContent(Base, BaseElement) {
+], function definePageContainer(Base, BaseElement) {
 
-    var Content = function Content(view, opts) {
-
+    var PageContainer = function PageContainer(view, opts) {
         return this.config(view, opts).create({
             $container: opts.$container,
             destroy: true
         });
     };
 
-    return Content.extend({
+    return PageContainer.extend({
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;

@@ -9,22 +9,22 @@
 define([
     'modules/base',
     'modules/element'
-], function defineContent(Base, BaseElement) {
+], function defineWidget(Base, BaseElement) {
 
-    var Content = function Content(view, opts) {
+    var Widget = function Widget(view, opts) {
 
         return this.config(view, opts).create({
             $container: opts.$container,
-            destroy: true
+            destroy: false
         });
     };
 
-    return Content.extend({
+    return Widget.extend({
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;
             this.id = this.renderUUID(opts.id);
-            this.$ = $('<ul />').attr({
+            this.$ = $('<li />').attr({
                 id: opts.id
             }).addClass(this.style);
 

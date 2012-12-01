@@ -137,14 +137,19 @@ define([
          * @param args
          */
         publish: function publish(eventName, args) {
-            this.scope.logger.timer(eventName, true);
-            args = this.base.define(args, []);
-            if (!this.base.isArray(args)) {
+            var base = this.base,
+                scope = this.scope;
+            if (!base.isDefined(eventName)) {
+                scope.logger.warn('Event', eventName);
+            }
+            scope.logger.timer(eventName, true);
+            args = base.define(args, []);
+            if (!base.isArray(args)) {
                 args = [args];
             }
 
             this.fireEvent(this.listeners[eventName], args);
-            this.scope.logger.timer(eventName, false);
+            scope.logger.timer(eventName, false);
         },
 
         /**
