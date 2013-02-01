@@ -12,9 +12,9 @@ define([
     var EventManager = function EventManager() {
         this.events = {};
         this.eventList = {
-            createWidget: 'create.widget',
-            destroyWidget: 'destroy.widget',
-            destroyWidgets: 'destroy.widgets',
+            createItem: 'create.widget',
+            destroyItem: 'destroy.widget',
+            destroyItems: 'destroy.widgets',
             createLayout: 'create.layout',
             destroyLayout: 'destroy.layout'
         };

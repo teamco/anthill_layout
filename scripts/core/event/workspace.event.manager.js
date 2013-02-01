@@ -15,9 +15,9 @@ define([
 
     return EventManager.extend({
         eventList: {
-            createPage: 'create.page',
-            destroyPage: 'destroy.page',
-            destroyPages: 'destroy.pages'
+            createItem: 'create.page',
+            destroyItem: 'destroy.page',
+            destroyItems: 'destroy.pages'
         }
     }, Event.prototype);
 });

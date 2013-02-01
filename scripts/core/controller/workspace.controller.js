@@ -12,30 +12,6 @@ define([
     };
 
     return Controller.extend({
-        createPage: function createPage(opts) {
-            var page = this.model.createPage(
-                this.controller.extendConfig(opts)
-            );
-            this.logger.info(
-                'Create Page',
-                this.model.getUUID(page),
-                page
-            );
-        },
-        destroyPage: function destroyPage(page) {
-            var pages = this.model.destroyPage(page);
-            this.logger.info(
-                'Destroy Page',
-                page,
-                pages
-            );
-        },
-        destroyPages: function destroyPages() {
-            var pages = this.model.destroyPages();
-            this.logger.info(
-                'Destroy Pages',
-                pages
-            );
-        }
+
     }, BaseController.prototype);
 });

@@ -19,7 +19,7 @@ define([
 
         opts = this.base.define(opts, {}, true);
 
-        this.widgets = {};
+        this.items = {};
         this.widget = {};
         this.collector = {};
         this.maximized = {};

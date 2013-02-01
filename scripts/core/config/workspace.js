@@ -77,7 +77,7 @@ define([
 
         // Init page
         this.page = {};
-        this.pages = {};
+        this.items = {};
 
         //    this.observer.fireEvent(
         //        this.eventManager.eventList.onLoadData,

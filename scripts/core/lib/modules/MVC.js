@@ -184,11 +184,10 @@ define([
         applyConfig: function applyConfig() {
             var base = this.base,
                 scope = this.scope,
-                uuid = base.lib.generator.UUID(this.config.uuid),
                 timestamp = base.lib.datetime.timestamp(this.config.timestamp),
                 config = scope.config;
 
-            config.uuid = uuid;
+            config.uuid = base.lib.generator.UUID(this.config.uuid);
             config.timestamp = timestamp;
 
             if (this.render) {

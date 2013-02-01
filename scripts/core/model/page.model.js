@@ -11,17 +11,10 @@ define([
     'config/widget'
 ], function definePageModel(BaseModel, Base, Widget) {
     var Model = function Model() {
-
+        this.item = Widget;
     };
 
     return Model.extend({
-        createWidget: function createWidget(opts) {
-            return this.updateCollector(
-                Widget,
-                opts,
-                this.scope.widgets
-            );
-        },
         destroyWidget: function destroyWidget(widget) {
             var scope = this.scope;
 

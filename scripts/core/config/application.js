@@ -31,7 +31,7 @@ define([
             }
         };
 
-        this.workspaces = {};
+        this.items = {};
         this.workspace = {};
 
         new MVC({

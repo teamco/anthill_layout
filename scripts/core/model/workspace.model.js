@@ -11,17 +11,10 @@ define([
     'config/page'
 ], function defineWorkspaceModel(BaseModel, Base, Page) {
     var Model = function Model() {
-
+        this.item = Page;
     };
 
     return Model.extend({
-        createPage: function createPage(opts) {
-            return this.updateCollector(
-                Page,
-                opts,
-                this.scope.pages
-            );
-        },
         destroyPage: function destroyPage(page) {
             var scope = this.scope;
 

@@ -7,8 +7,9 @@
  */
 
 define([
-    'modules/base'
-], function initModel(Base) {
+    'modules/base',
+    'modules/crud'
+], function initModel(Base, CRUD) {
     var BaseModel = function BaseModel() {
 
     };
@@ -37,10 +38,12 @@ define([
         },
         checkLimit: function checkLimit(constructor, collector, limit) {
             var base = this.base,
-                namespace = this.getNameSpace(constructor),
-                limit = base.isDefined(limit) ?
-                    limit :
-                    this.getConfig()[namespace].limit;
+                namespace = this.getNameSpace(constructor);
+
+            limit = base.isDefined(limit) ?
+                limit :
+                this.getConfig()[namespace].limit;
+
             if (!base.isDefined(limit)) {
                 return false;
             }
@@ -59,8 +62,9 @@ define([
                     limit
                 );
             } else {
-                var base = this.base,
-                    node = new constructor(base.define(opts, {}, true));
+                var base = this.base;
+
+                node = new constructor(base.define(opts, {}, true));
 
                 if (base.isDefined(node.model)) {
                     collector[node.model.getUUID()] = node;
@@ -80,6 +84,7 @@ define([
 
             return node;
         }
-    }, Base);
+
+    }, Base, CRUD.prototype);
 
 });

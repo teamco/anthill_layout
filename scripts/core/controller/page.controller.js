@@ -14,31 +14,6 @@ define([
     };
 
     return Controller.extend({
-        createWidget: function createWidget(opts) {
-            var widget = this.model.createWidget(
-                this.controller.extendConfig(opts)
-            );
-            this.logger.info(
-                'Create Widget',
-                this.model.getUUID(widget),
-                widget
-            );
-        },
-        destroyWidget: function destroyWidget(widget) {
-            var widgets = this.model.destroyWidget(widget);
-            this.logger.info(
-                'Destroy Widget',
-                widget,
-                widgets
-            );
-        },
-        destroyWidgets: function destroyWidgets() {
-            var widgets = this.model.destroyWidgets();
-            this.logger.info(
-                'Destroy Widgets',
-                widgets
-            );
-        },
         createLayout: function createLayout(Layout, opts) {
             this.layout = new Layout(opts);
         }

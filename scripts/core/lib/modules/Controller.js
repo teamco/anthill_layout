@@ -34,6 +34,31 @@ define([
                     ].join('')
                 }
             }, opts);
+        },
+        createItem: function createItem(opts) {
+            var item = this.model.createItem(
+                this.controller.extendConfig(opts)
+            );
+            this.logger.info(
+                'Create Item',
+                this.model.getUUID(item),
+                item
+            );
+        },
+        destroyItem: function destroyItem(item) {
+            var items = this.model.destroyItem(item);
+            this.logger.info(
+                'Destroy Item',
+                item,
+                items
+            );
+        },
+        destroyItems: function destroyItems() {
+            var items = this.model.destroyItems();
+            this.logger.info(
+                'Destroy Items',
+                items
+            );
         }
     }, Base);
 });
