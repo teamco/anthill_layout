@@ -1,24 +1,19 @@
 /**
  * Created with JetBrains RubyMine.
  * User: teamco
- * Date: 11/4/12
- * Time: 11:06 PM
+ * Date: 11/5/12
+ * Time: 9:17 PM
  * To change this template use File | Settings | File Templates.
  */
+
 define([
     'modules/model',
-    'modules/base',
-    'config/widget'
-], function definePageModel(BaseModel, Base, Widget) {
+    'modules/base'
+], function (BaseModel, Base) {
     var Model = function Model() {
-        this.item = Widget;
-        this.onDestroy = [
-            'Layout',
-            'Template'
-        ];
     };
 
     return Model.extend({
-
     }, BaseModel.prototype, Base);
+
 });

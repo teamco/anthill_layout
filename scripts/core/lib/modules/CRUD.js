@@ -31,20 +31,22 @@ define([
                 return false;
             }
 
-            if (!base.isDefined(item.model)) {
+            var model = item.model;
+
+            if (!base.isDefined(model)) {
                 scope.logger.warn('Uninitialized ' + namespace, item);
                 return false;
             }
 
             var items = scope.items,
-                index = item.model.getUUID(),
-                onDestroy = this.base.define(this.onDestroy, [], true),
+                index = model.getUUID(),
+                onDestroy = this.base.define(model.onDestroy, [], true),
                 itemEventManager = item.eventmanager,
                 i = 0, l = onDestroy.length;
 
             for (i; i < l; i += 1) {
                 item.observer.publish(
-                    this.scope.eventmanager.eventList[onDestroy[i]]
+                    item.eventmanager.eventList['destroy' + onDestroy[i]]
                 );
             }
 

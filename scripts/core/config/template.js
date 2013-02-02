@@ -1,6 +1,13 @@
 /**
  * Created with JetBrains RubyMine.
  * User: teamco
+ * Date: 2/2/13
+ * Time: 11:29 PM
+ */
+
+/**
+ * Created with JetBrains RubyMine.
+ * User: teamco
  * Date: 11/17/12
  * Time: 4:10 PM
  * To change this template use File | Settings | File Templates.
@@ -9,21 +16,16 @@
 define([
     'modules/base',
     'modules/mvc',
-    'controller/layout.controller',
-    'event/layout.event.manager'
-], function defineLayout(Base, MVC, Controller, EventManager) {
-    var Layout = function Layout(opts) {
+    'controller/template.controller',
+    'model/template.model',
+    'view/template.view',
+    'event/template.event.manager'
+], function defineTemplate(Base, MVC, Controller, Model, View, EventManager) {
+    var Template = function Template(opts) {
 
         opts = this.base.define(opts, {}, true);
 
-        // Default constants
         var DEFAULTS = {
-            grid: {
-                columns: 18,
-                step: 1,
-                additionalRows: 1,
-                margin: 1
-            }
         };
 
         // Init MVC
@@ -32,12 +34,14 @@ define([
             config: [opts, DEFAULTS],
             components: [
                 Controller,
+                Model,
+                View,
                 EventManager
             ],
-            render: false
+            render: true
         });
 
     };
 
-    return Layout.extend(Base);
+    return Template.extend(Base);
 });

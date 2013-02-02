@@ -23,6 +23,16 @@ define([
                 this.layout
             );
             delete this.layout;
+        },
+        createTemplate: function createTemplate(Template, opts) {
+            this.template = new Template(opts);
+        },
+        destroyTemplate: function destroyTemplate() {
+            this.logger.info(
+                'Destroy Template',
+                this.template
+            );
+            delete this.template;
         }
     }, BaseController.prototype);
 });

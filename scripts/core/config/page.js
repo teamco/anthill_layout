@@ -13,8 +13,9 @@ define([
     'model/page.model',
     'view/page.view',
     'event/page.event.manager',
-    'config/layout'
-], function definePage(Base, MVC, Controller, Model, View, EventManager, Layout) {
+    'config/layout',
+    'config/template'
+], function definePage(Base, MVC, Controller, Model, View, EventManager, Layout, Template) {
     var Page = function Page(opts) {
 
         opts = this.base.define(opts, {}, true);
@@ -33,6 +34,9 @@ define([
                 eventSpeed: 300,
                 animate: true
             },
+            template: {
+                // TODO
+            },
             widget: {
                 counter: 0,
                 opacity: 0.6,
@@ -48,23 +52,6 @@ define([
                     left: 0
                 }
             }
-//            menu: {
-//                capability: App.permissionManager.capabilities.page.menu,
-//                items: {
-//                    rename: {
-//                        title: App.i18n("page.menu.rename"),
-//                        separator: false,
-//                        callback: 'rename',
-//                        capability: App.permissionManager.capabilities.page.rename
-//                    },
-//                    destroy: {
-//                        title: App.i18n("page.menu.destroy"),
-//                        separator: true,
-//                        callback: 'destroy',
-//                        capability: App.permissionManager.capabilities.page.destroy
-//                    }
-//                }
-//            }
         };
 
         // Init MVC
@@ -84,6 +71,12 @@ define([
             this.eventmanager.eventList.createLayout,
             [Layout, this.config.layout]
         );
+
+        this.observer.publish(
+            this.eventmanager.eventList.createTemplate,
+            [Template, this.config.template]
+        );
+
     };
 
     return Page.extend(Base);

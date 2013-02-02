@@ -16,7 +16,9 @@ define([
             destroyWidget: 'destroy.widget',
             destroyWidgets: 'destroy.widgets',
             createLayout: 'create.layout',
-            destroyLayout: 'destroy.layout'
+            destroyLayout: 'destroy.layout',
+            createTemplate: 'create.template',
+            destroyTemplate: 'destroy.template'
         };
     };
 
