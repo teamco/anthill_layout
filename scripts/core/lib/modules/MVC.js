@@ -242,13 +242,16 @@ define([
 
                         if (this.RESERVED.hasOwnProperty(key)) {
                             if ($.inArray(method, this.RESERVED[key].singular) > -1) {
-                                callback = key + 'Item';
+                                callback = scope.controller[key + 'Item'];
                             } else if ($.inArray(method, this.RESERVED[key].plural) > -1) {
-                                callback = key + 'Items';
+                                callback = scope.controller[key + 'Items'];
                             } else {
-                                this.logger.warning(
-                                    'Undefined Event',
-                                    key + method
+                                this.scope.logger.warn(
+                                    'Undefined Event Callback',
+                                    [
+                                        scope.controller,
+                                        key + method
+                                    ]
                                 );
                             }
                         }
