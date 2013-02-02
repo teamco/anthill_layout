@@ -60,6 +60,8 @@ define([
                 }
             }
 
+            this.destroyView(item);
+
             if (items.hasOwnProperty(index)) {
                 delete items[index];
             }
@@ -78,6 +80,29 @@ define([
                 }
             }
             return items;
+        },
+        destroyView: function destroyView(item) {
+            var scope = this.scope,
+                base = this.base,
+                namespace = item.constructor.getConstructorName().toLowerCase();
+
+            if (!base.isDefined(item)) {
+                scope.logger.warn('Undefined ' + namespace, item);
+                return false;
+            }
+
+            var elements = item.view.elements,
+                index, $element;
+
+            for (index in elements) {
+                if (elements.hasOwnProperty(index)) {
+                    $element = elements[index];
+                    if ($element.$) {
+                        $element.$.unbind();
+                    }
+                    $element.destroy();
+                }
+            }
         }
 
     }, Base);
