@@ -22,6 +22,28 @@ define([
             ['View', 'EventManager']
         ];
 
+        this.RESERVED = {
+            create: {
+                singular: [
+                    'Workspace',
+                    'Page',
+                    'Widget'
+                ]
+            },
+            destroy: {
+                singular: [
+                    'Workspace',
+                    'Page',
+                    'Widget'
+                ],
+                plural: [
+                    'Workspaces',
+                    'Pages',
+                    'Widgets'
+                ]
+            }
+        };
+
         opts = base.define(opts, {}, true);
 
         this.scope = opts.scope;
@@ -197,9 +219,10 @@ define([
         },
         applyEventManager: function applyEventManager() {
             var scope = this.scope,
+                base = this.base,
                 eventManager = scope.eventmanager;
 
-            if (this.base.isDefined(eventManager)) {
+            if (base.isDefined(eventManager)) {
 
                 eventManager.scope = scope;
 
@@ -207,11 +230,33 @@ define([
                     index;
 
                 for (index in eventList) {
-                    var event = eventList[index];
+                    var event = eventList[index],
+                        callback = scope.controller[index];
+
+                    if (!base.isDefined(callback)) {
+                        var method = index.toPoint().split('.'),
+                            key = method[0];
+
+                        method.shift();
+                        method = ('.' + method.join('.')).toCamel();
+
+                        if (this.RESERVED.hasOwnProperty(key)) {
+                            if ($.inArray(method, this.RESERVED[key].singular) > -1) {
+                                callback = key + 'Item';
+                            } else if ($.inArray(method, this.RESERVED[key].plural) > -1) {
+                                callback = key + 'Items';
+                            } else {
+                                this.logger.warning(
+                                    'Undefined Event',
+                                    key + method
+                                );
+                            }
+                        }
+                    }
 
                     eventManager.subscribe({
                         eventName: event,
-                        callback: scope.controller[index]
+                        callback: callback
                     });
                 }
 

@@ -21,18 +21,18 @@ define([
                 this.scope.items
             );
         },
-        destroyItem: function destroyWorkspace(item) {
+        destroyItem: function destroyItem(item) {
             var scope = this.scope,
                 base = this.base,
                 namespace = item.constructor.getConstructorName().toLowerCase();
 
             if (!base.isDefined(item)) {
-                scope.logger.warn('Undefined Item', item);
+                scope.logger.warn('Undefined ' + namespace, item);
                 return false;
             }
 
             if (!base.isDefined(item.model)) {
-                scope.logger.warn('Uninitialized Item', item);
+                scope.logger.warn('Uninitialized ' + namespace, item);
                 return false;
             }
 
@@ -47,9 +47,11 @@ define([
                 );
             }
 
-            item.observer.publish(
-                item.eventmanager.eventList.destroyItems
-            );
+            if (item.eventmanager.eventList.hasOwnProperty('destroyItems')) {
+                item.observer.publish(
+                    item.eventmanager.eventList.destroyItems
+                );
+            }
 
             if (items.hasOwnProperty(index)) {
                 delete items[index];

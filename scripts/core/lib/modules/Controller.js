@@ -40,7 +40,7 @@ define([
                 this.controller.extendConfig(opts)
             );
             this.logger.info(
-                'Create Item',
+                'Create ' + item.constructor.getConstructorName(),
                 this.model.getUUID(item),
                 item
             );
@@ -48,7 +48,7 @@ define([
         destroyItem: function destroyItem(item) {
             var items = this.model.destroyItem(item);
             this.logger.info(
-                'Destroy Item',
+                'Destroy ' + item.constructor.getConstructorName(),
                 item,
                 items
             );

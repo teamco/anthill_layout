@@ -12,9 +12,9 @@ define([
     var EventManager = function EventManager() {
         this.events = {};
         this.eventList = {
-            createItem: 'create.workspace',
-            destroyItem: 'destroy.workspace',
-            destroyItems: 'destroy.workspaces'
+            createWorkspace: 'create.workspace',
+            destroyWorkspace: 'destroy.workspace',
+            destroyWorkspaces: 'destroy.workspaces'
         };
     };
 

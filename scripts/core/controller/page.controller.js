@@ -16,6 +16,13 @@ define([
     return Controller.extend({
         createLayout: function createLayout(Layout, opts) {
             this.layout = new Layout(opts);
+        },
+        destroyLayout: function destroyLayout() {
+            this.logger.info(
+                'Destroy Layout',
+                this.layout
+            );
+            delete this.layout;
         }
     }, BaseController.prototype);
 });

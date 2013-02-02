@@ -15,44 +15,6 @@ define([
     };
 
     return Model.extend({
-        destroyPage: function destroyPage(page) {
-            var scope = this.scope;
-
-            if (!this.base.isDefined(page)) {
-                scope.logger.warn('Undefined page', page);
-                return false;
-            }
-
-            var pages = scope.pages,
-                index = page.model.getUUID();
-
-            page.observer.publish(
-                page.eventmanager.eventList.destroyWidgets
-            );
-
-            page.observer.publish(
-                page.eventmanager.eventList.destroyLayout
-            );
-
-            if (pages.hasOwnProperty(index)) {
-                delete pages[index];
-            }
-
-            this.scope.page = this.base.lib.hash.firstHashElement(pages) || {};
-
-            return pages;
-
-        },
-        destroyPages: function destroyPage(force) {
-            var index,
-                pages = this.scope.pages;
-            for (index in pages) {
-                if (pages.hasOwnProperty(index)) {
-                    this.destroyPage(pages[index])
-                }
-            }
-            return pages;
-        }
 
     }, BaseModel.prototype, Base);
 });
