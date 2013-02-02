@@ -17,7 +17,33 @@ define(['modules/base'], function defineBaseString(Base) {
     };
 
     BaseUserAgent.extend({
-
+        version: function version() {
+            return (navigator.userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [])[1];
+        },
+        msie: function msie() {
+            if (this.browser.msie) {
+                return this.version();
+            }
+        },
+        opera: function opera() {
+            if (this.browser.opera) {
+                return this.version();
+            }
+        },
+        chrome: function chrome() {
+            if (this.browser.webkit) {
+                if (navigator.vendor.match(/Google/)) {
+                    return this.version();
+                }
+            }
+        },
+        safari: function safari() {
+            if (this.browser.webkit) {
+                if (navigator.vendor.match(/Apple/)) {
+                    return this.version();
+                }
+            }
+        }
     }, Base);
 
     Base.prototype.lib.ua = new BaseUserAgent();
