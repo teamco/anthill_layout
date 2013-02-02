@@ -60,7 +60,7 @@ define([
                 }
             }
 
-            this.destroyView(item);
+            this.destroyItemView(item);
 
             if (items.hasOwnProperty(index)) {
                 delete items[index];
@@ -81,7 +81,7 @@ define([
             }
             return items;
         },
-        destroyView: function destroyView(item) {
+        destroyItemView: function destroyItemView(item) {
             var scope = this.scope,
                 base = this.base,
                 namespace = item.constructor.getConstructorName().toLowerCase();
