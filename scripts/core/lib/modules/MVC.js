@@ -225,6 +225,7 @@ define([
             if (base.isDefined(eventManager)) {
 
                 eventManager.scope = scope;
+                eventManager.abstract = base.define(eventManager.abstract, {}, true);
 
                 var eventList = eventManager.eventList,
                     index;
@@ -242,8 +243,10 @@ define([
 
                         if (this.RESERVED.hasOwnProperty(key)) {
                             if ($.inArray(method, this.RESERVED[key].singular) > -1) {
+                                eventManager.abstract[key + 'Item'] = index;
                                 callback = scope.controller[key + 'Item'];
                             } else if ($.inArray(method, this.RESERVED[key].plural) > -1) {
+                                eventManager.abstract[key + 'Items'] = index;
                                 callback = scope.controller[key + 'Items'];
                             } else {
                                 this.scope.logger.warn(

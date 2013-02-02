@@ -39,6 +39,7 @@ define([
             var items = scope.items,
                 index = item.model.getUUID(),
                 onDestroy = this.base.define(this.onDestroy, [], true),
+                itemEventManager = item.eventmanager,
                 i = 0, l = onDestroy.length;
 
             for (i; i < l; i += 1) {
@@ -47,10 +48,16 @@ define([
                 );
             }
 
-            if (item.eventmanager.eventList.hasOwnProperty('destroyItems')) {
-                item.observer.publish(
-                    item.eventmanager.eventList.destroyItems
-                );
+            if (itemEventManager.abstract.hasOwnProperty('destroyItems')) {
+                if (itemEventManager.eventList.hasOwnProperty(
+                    itemEventManager.abstract.destroyItems
+                )) {
+                    item.observer.publish(
+                        itemEventManager.eventList[
+                            itemEventManager.abstract.destroyItems
+                            ]
+                    );
+                }
             }
 
             if (items.hasOwnProperty(index)) {
