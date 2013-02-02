@@ -58,24 +58,8 @@ define([
             return this;
         },
 
-        iFrameFix: function iFrameFix() {
-            // Firefox destroy iframe workaround
-            if (jQuery.browser.mozilla) {
-                var iframes = this.$.find('iframe'),
-                    l = iframes.length, i = 0;
-                for (i; i < l; i += 1) {
-                    try {
-                        delete window.frames[jQuery(iframes[i]).attr('id')];
-                    } catch (e) {
-                        this.scope.logger.error(e);
-                    }
-                }
-            }
-        },
-
         destroy: function destroy() {
             if (this.$) {
-                this.iFrameFix();
                 this.$.unbind().remove();
             }
             return this;

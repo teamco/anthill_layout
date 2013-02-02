@@ -6,7 +6,8 @@ requirejs([
     'modules/base/html',
     'modules/base/number',
     'modules/base/datetime',
-    'modules/base/string'
+    'modules/base/string',
+    'modules/base/ua'
 ]);
 
 define(['jquery'], function defineBase($) {

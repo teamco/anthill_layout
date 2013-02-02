@@ -23,8 +23,8 @@ define([
                 namespaces: false, //'App',
                 type: {
                     debug: false,
-                    log: true,
-                    info: true,
+                    log: false,
+                    info: false,
                     error: true,
                     warn: true
                 }
