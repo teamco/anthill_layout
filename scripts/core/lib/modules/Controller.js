@@ -32,7 +32,8 @@ define([
                         '#', this.scope.model.getUUID(),
                         '-', this.scope.constructor.getConstructorName().toLowerCase()
                     ].join('')
-                }
+                },
+                parent: this.scope
             }, opts);
         },
         createItem: function createItem(opts) {

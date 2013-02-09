@@ -1,0 +1,12 @@
+@import url("reset.css");
+
+html, body, .app,
+.workspaces, .workspace,
+.pages, .page {
+    height: 100%;
+    width: 100%;
+}
+
+.workspace, .page {
+    float: left;
+}

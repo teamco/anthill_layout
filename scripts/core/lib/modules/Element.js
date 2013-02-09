@@ -103,6 +103,12 @@ define([
             this.$.attr({
                 style: ''
             });
+        },
+
+        stretch: function stretch() {
+            this.$.parent().css({
+                width: this.base.lib.hash.hashLength(this.view.scope.config.parent.items) * 100 + '%'
+            });
         }
 
     }, Base);
