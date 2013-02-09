@@ -9,21 +9,21 @@
 define([
     'modules/base',
     'modules/element'
-], function defineFooter(Base, BaseElement) {
+], function defineHeader(Base, BaseElement) {
 
-    var Footer = function Footer(view, opts) {
+    var Header = function Header(view, opts) {
 
-        if (!view.getConfigHTML().footer) {
+        if (!view.getConfigHTML().header) {
             return false;
         }
 
-        return this.config(view, opts).create({
+        return this.config(view, opts).build({
             $container: opts.$container,
             destroy: true
         });
     };
 
-    return Footer.extend({
+    return Header.extend({
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;

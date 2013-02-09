@@ -9,8 +9,8 @@
 define([
     'modules/view',
     'element/application/application',
-    'element/application/header',
-    'element/application/footer',
+    'element/header',
+    'element/footer',
     'element/application/content'
 ], function defineApplicationView(BaseView, AppHTML, Header, Footer, WorkspaceContainer){
 

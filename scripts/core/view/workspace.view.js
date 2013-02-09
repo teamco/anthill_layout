@@ -9,8 +9,8 @@
 define([
     'modules/view',
     'element/workspace/wrapper',
-    'element/workspace/header',
-    'element/workspace/footer',
+    'element/header',
+    'element/footer',
     'element/workspace/content'
 ], function defineWorkspaceView(BaseView, Wrapper, Header, Footer, PageContainer){
 

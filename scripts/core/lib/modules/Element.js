@@ -22,6 +22,7 @@ define([
         },
         destroyB4Create: function destroyB4Create(destroy) {
             var $container = this.$container;
+
             function destroyElement($element) {
                 if ($element.length > 0) {
                     this.view.scope.logger.warn(
@@ -31,13 +32,15 @@ define([
                     $element.remove();
                 }
             }
+
             destroyElement.bind(this)($container.find('#' + this.id));
 
             if (this.base.defineBoolean(destroy, false, true)) {
                 destroyElement.bind(this)($container.find('.' + this.style));
             }
         },
-        create: function create(opts) {
+
+        build: function build(opts) {
             var base = this.base;
             opts = base.define(opts, {}, true);
 
@@ -55,6 +58,9 @@ define([
                     opts.callback();
                 }
             }
+
+            this.stretch();
+
             return this;
         },
 
@@ -106,9 +112,14 @@ define([
         },
 
         stretch: function stretch() {
-            this.$.parent().css({
-                width: this.base.lib.hash.hashLength(this.view.scope.config.parent.items) * 100 + '%'
-            });
+            var config = this.view.scope.config;
+            if (config.parent) {
+                if (config.html.stretch) {
+                    this.$.parent().css({
+                        width: this.base.lib.hash.hashLength(config.parent.items) * 100 + '%'
+                    });
+                }
+            }
         }
 
     }, Base);

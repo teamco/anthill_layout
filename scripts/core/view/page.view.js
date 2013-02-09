@@ -8,8 +8,8 @@
 
 define([
     'modules/view',
-    'element/page/header',
-    'element/page/footer',
+    'element/header',
+    'element/footer',
     'element/page/content',
     'element/page/page'
 ], function definePageView(BaseView, Header, Footer, Content, Page){

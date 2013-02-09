@@ -12,7 +12,7 @@ define([
 ], function defineWrapper(Base, BaseElement) {
 
     var Wrapper = function Wrapper(view, opts) {
-        return this.config(view, opts).create({
+        return this.config(view, opts).build({
             $container: opts.$container,
             destroy: false
         });

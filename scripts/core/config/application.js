@@ -16,6 +16,9 @@ define([
                 limit: 1,
                 counter: 0
             },
+            html: {
+                stretch: true
+            },
             logger: {
                 development: true,
                 debug: true,

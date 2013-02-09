@@ -8,8 +8,8 @@
 
 define([
     'modules/view',
-    'element/widget/header',
-    'element/widget/footer',
+    'element/header',
+    'element/footer',
     'element/widget/content',
     'element/widget/widget'
 ], function defineWidgetView(BaseView, Header, Footer, Content, Widget){

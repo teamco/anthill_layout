@@ -12,7 +12,7 @@ define([
 ], function defineWorkspaceContainer(Base, BaseElement) {
 
     var WorkspaceContainer = function WorkspaceContainer(view, opts) {
-        return this.config(view, opts).create({
+        return this.config(view, opts).build({
             $container: opts.$container,
             destroy: true
         });

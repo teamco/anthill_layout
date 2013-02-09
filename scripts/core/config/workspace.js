@@ -17,11 +17,12 @@ define([
                 counter: 0,
                 limit: 10,
                 // Show previous page
-                onDestroyShowNext: false
+                onDestroyShowPrevious: true
             },
             html: {
                 header: false,
                 footer: false,
+                stretch: true,
                 padding: {
                     top: 0,
                     right: 0,
