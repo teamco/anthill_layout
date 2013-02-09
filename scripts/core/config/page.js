@@ -45,6 +45,7 @@ define([
             html: {
                 header: false,
                 footer: false,
+                stretch: true,
                 padding: {
                     top: 0,
                     right: 0,

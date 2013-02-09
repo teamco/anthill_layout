@@ -2,11 +2,13 @@
 
 html, body, .app,
 .workspaces, .workspace,
-.pages, .page {
+.pages, .page, .widgets {
     height: 100%;
     width: 100%;
 }
 
 .workspace, .page {
     float: left;
+    display: block;
 }
+
