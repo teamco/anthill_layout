@@ -13,14 +13,13 @@ define([
     var Permission = function Permission(scope) {
 
         this.scope = scope;
+        this.capability = {};
 
         var base = this.base,
             permission = base.define(this.scope.config.permission, {}, true);
 
-        this.capability = {
-            drag: base.defineBoolean(permission.drag, true, true),
-            resize: base.defineBoolean(permission.resize, true, true)
-        };
+        this.setCapability('draggable', base.defineBoolean(permission.draggable, true, true));
+        this.setCapability('resizable', base.defineBoolean(permission.resizable, true, true));
 
     };
 

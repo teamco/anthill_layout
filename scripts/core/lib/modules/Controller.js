@@ -60,6 +60,13 @@ define([
                 'Destroy Items',
                 items
             );
+        },
+        setEvent: function setEvent(event, callback) {
+            this.scope.events[event] = callback;
+            return this.getEvent(event);
+        },
+        getEvent: function getEvent(event) {
+            return this.scope.events[event];
         }
     }, Base);
 });

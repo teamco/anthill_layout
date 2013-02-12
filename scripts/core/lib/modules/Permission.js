@@ -9,7 +9,7 @@
 define([
     'modules/base'
 ], function definePermissionManager(Base) {
-    var Permission = function Permission(scope) {
+    var Permission = function Permission() {
 
     };
 
@@ -19,22 +19,28 @@ define([
 
             opts = base.define(opts, {}, true);
 
-            var might = base.defineBoolean(opts.might, false, true),
+            var might = this.scope.permission.getCapability(opts.might),
                 callback = opts.callback,
                 fallback = opts.fallback,
                 args = base.define(opts.args, [], true);
 
-            if (callback instanceof Function) {
-                if (!might) {
+            if (base.isFunction(callback)) {
+                if (might) {
                     callback(args);
-                }
-                else if (this.capability[might] === true) {
-                    callback(args);
-                }
-                else if (fallback instanceof Function) {
+                } else if (base.isFunction(fallback)) {
                     fallback(args);
                 }
             }
+        },
+
+        setCapability: function setCapability(key, value) {
+            this.capability[key] = value;
+            return this.getCapability(key);
+        },
+
+        getCapability: function getCapability(key) {
+            return this.base.defineBoolean(this.capability[key], false, true);
         }
+
     }, Base);
 });
