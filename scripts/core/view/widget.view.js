@@ -11,18 +11,14 @@ define([
     'element/header',
     'element/footer',
     'element/widget/content',
-    'element/widget/widget',
-    'controller/widget/widget.drag'
-], function defineWidgetView(BaseView, Header, Footer, Content, Widget, Drag) {
+    'element/widget/widget'
+], function defineWidgetView(BaseView, Header, Footer, Content, Widget) {
 
     var View = function View() {
         this.elements = {};
     };
 
     return View.extend({
-        setup: function setup() {
-            this.scope.controller.setEvent('draggable', new Drag(this.scope))
-        },
         widget: function widget() {
             this.elements.$widget = new Widget(this, {
                 id: this.createId(),
@@ -32,7 +28,6 @@ define([
             this.header(Header, this.elements.$widget);
             this.content();
             this.footer(Footer, this.elements.$widget);
-            this.setup();
         },
         content: function content() {
             this.elements.$content = new Content(this, {
@@ -42,6 +37,7 @@ define([
         },
         render: function render() {
             this.widget();
+            this.scope.controller.setup();
         }
     }, BaseView.prototype)
 

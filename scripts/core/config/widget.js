@@ -42,11 +42,15 @@ define([
             maximize: false,
             events: {
                 draggable: {
-                    animateOnDrag: false,
-                    animateOnStop: true,
-                    organizeOnStop: true, //page.layout.config.overlapping.autoOrganize,
+                    animate: {
+                        drag: false,
+                        stop: true
+                    },
+                    organize: {
+                        stop: true
+                    },
                     snap: false,
-                    iframeFix: false,
+                    iframeFix: true,
                     axis: false,
                     scroll: true,
                     connectToSortable: false,
@@ -56,9 +60,13 @@ define([
 //                    cancel: '.header .icons li, .header input, .icons li, .menu'
                 },
                 resizable: {
-                    animateOnResize: false,
-                    animateOnStop: true,
-                    organizeOnStop: true, //page.layout.config.overlapping.autoOrganize,
+                    animate: {
+                        resize: false,
+                        stop: true
+                    },
+                    organize: {
+                        stop: true
+                    },
                     iframeFix: true
                     //            handles: 'n, e, s, w'
                 },
