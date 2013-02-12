@@ -18,8 +18,6 @@ define([
 ], function definePage(Base, MVC, Controller, Model, View, EventManager, Layout, Template) {
     var Page = function Page(opts) {
 
-        opts = this.base.define(opts, {}, true);
-
         this.items = {};
         this.widget = {};
         this.collector = {};
@@ -31,6 +29,7 @@ define([
             layout: {
                 overlapping: true,
                 emptySpaces: true,
+                grid: true,
                 eventSpeed: 300,
                 animate: true
             },

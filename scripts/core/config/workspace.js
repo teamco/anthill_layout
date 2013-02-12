@@ -8,8 +8,6 @@ define([
 ], function defineWorkspace(Base, MVC, Controller, Model, View, EventManager) {
     var Workspace = function Workspace(opts) {
 
-        opts = this.base.define(opts, {}, true);
-
         // Default constants
         var DEFAULTS = {
             order: 1,

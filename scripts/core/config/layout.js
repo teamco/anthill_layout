@@ -14,15 +14,14 @@ define([
 ], function defineLayout(Base, MVC, Controller, EventManager) {
     var Layout = function Layout(opts) {
 
-        opts = this.base.define(opts, {}, true);
-
         // Default constants
         var DEFAULTS = {
             grid: {
-                columns: 18,
-                step: 1,
+                columns: 60,
+                widgetsPerRow: 3,
                 additionalRows: 1,
-                margin: 1
+                margin: 1,
+                padding: 14
             }
         };
 

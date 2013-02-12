@@ -11,6 +11,10 @@ html, body, .app,
     position: absolute;
 }
 
+.workspaces, .pages, .widgets {
+    list-style: none;
+}
+
 .workspace, .page {
     float: left;
     display: block;
