@@ -59,8 +59,6 @@ define([
                 }
             }
 
-            this.stretch();
-
             return this;
         },
 
@@ -72,37 +70,23 @@ define([
         },
 
         hide: function hide() {
-            this.$.hide();
-            return this;
+            return this.$.hide();
         },
 
         empty: function empty() {
-            this.$.empty();
-            return this;
+            return this.$.empty();
         },
 
         fadeIn: function fadeIn() {
-            this.$.stop(true, true).fadeIn();
+            return this.$.stop(true, true).fadeIn();
         },
 
         fadeOut: function fadeOut() {
-            this.$.stop(true, true).fadeOut();
+            return this.$.stop(true, true).fadeOut();
         },
 
-        show: function show(opts) {
-            var base = this.base;
-            opts = App.base.define(opts, {});
-            if (this.$[opts.effect] instanceof Function) {
-                this.$[opts.effect](
-                    base.define(opts.speed, 'slow'),
-                    function effectCallback() {
-                        // TODO Callback
-                    }
-                );
-            } else {
-                this.$.show();
-            }
-            return this;
+        show: function show() {
+            return this.$.show();
         },
 
         removeStyle: function removeStyle() {
@@ -112,14 +96,18 @@ define([
         },
 
         stretch: function stretch() {
-            var config = this.view.scope.config;
-            if (config.parent) {
-                if (config.html.stretch) {
+            var config = this.view.scope.config,
+                items = 1;
+            if (config.parent && config.html.stretch) {
+                items = this.base.lib.hash.hashLength(config.parent.items);
+                if (items > 1) {
                     this.$.parent().css({
-                        width: this.base.lib.hash.hashLength(config.parent.items) * 100 + '%'
+                        width: items * 100 + '%'
                     });
                 }
             }
+
+            return this;
         }
 
     }, Base);

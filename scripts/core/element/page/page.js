@@ -13,10 +13,12 @@ define([
 
     var Page = function Page(view, opts) {
 
-        return this.config(view, opts).build({
+        this.config(view, opts).build({
             $container: opts.$container,
             destroy: false
         });
+
+        return this.stretch();
     };
 
     return Page.extend({

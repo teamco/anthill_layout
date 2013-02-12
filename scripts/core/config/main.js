@@ -15,15 +15,10 @@ requirejs.config({
     }
 });
 
-requirejs([
-    'jquery',
-    'extends/bind',
-    'extends/inherits'
-]);
-
 define([
     'config/routes',
     'config/application'
 ], function defineApp(Routes, Application) {
+
     requirejs(['test/create'])
 });
