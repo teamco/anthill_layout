@@ -68,12 +68,12 @@ define([
                 delete items[index];
             }
 
-            this.scope[namespace] = this.base.lib.hash.firstHashElement(items) || {};
+            this.scope[namespace] = base.lib.hash.firstHashElement(items) || {};
 
             return items;
 
         },
-        destroyItems: function destroyItems(force) {
+        destroyItems: function destroyItems() {
             var index,
                 items = this.scope.items;
             for (index in items) {
@@ -100,11 +100,14 @@ define([
                 if (elements.hasOwnProperty(index)) {
                     $element = elements[index];
                     if ($element.$) {
+                        $element.$.find('*').unbind();
                         $element.$.unbind();
                     }
                     $element.destroy();
                 }
             }
+
+            return item;
         }
 
     }, Base);

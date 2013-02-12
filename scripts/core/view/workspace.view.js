@@ -8,11 +8,11 @@
 
 define([
     'modules/view',
-    'element/workspace/wrapper',
+    'element/workspace/workspace',
     'element/header',
     'element/footer',
     'element/workspace/content'
-], function defineWorkspaceView(BaseView, Wrapper, Header, Footer, PageContainer){
+], function defineWorkspaceView(BaseView, Workspace, Header, Footer, PageContainer){
 
     var View = function View() {
         this.elements = {};
@@ -20,7 +20,7 @@ define([
 
     return View.extend({
         workspace: function workspace() {
-            this.elements.$workspace = new Wrapper(this, {
+            this.elements.$workspace = new Workspace(this, {
                 id: this.createId(),
                 style: this.getContainerClassName(),
                 $container: this.getContainerSelector()
@@ -28,6 +28,8 @@ define([
             this.header(Header, this.elements.$workspace);
             this.pages();
             this.footer(Footer, this.elements.$workspace);
+
+            this.elements.$workspace.stretch();
         },
         pages: function pages() {
             this.elements.$pages = new PageContainer(this, {

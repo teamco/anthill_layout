@@ -9,19 +9,16 @@
 define([
     'modules/base',
     'modules/element'
-], function defineWrapper(Base, BaseElement) {
+], function defineWorkspace(Base, BaseElement) {
 
-    var Wrapper = function Wrapper(view, opts) {
-        this.config(view, opts).build({
+    var Workspace = function Workspace(view, opts) {
+        return this.config(view, opts).build({
             $container: opts.$container,
             destroy: false
         });
-
-        return this.stretch();
-
     };
 
-    return Wrapper.extend({
+    return Workspace.extend({
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;

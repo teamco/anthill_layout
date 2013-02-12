@@ -28,6 +28,8 @@ define([
             this.header(Header, this.elements.$page);
             this.widgets();
             this.footer(Footer, this.elements.$page);
+
+            this.elements.$page.stretch();
         },
         widgets: function widgets() {
             this.elements.$widgets = new Content(this, {

@@ -1,14 +1,18 @@
 @import url("reset.css");
+@import url("workspace.css");
+@import url("page.css");
+@import url("widget.css");
 
 html, body, .app,
 .workspaces, .workspace,
 .pages, .page, .widgets {
     height: 100%;
     width: 100%;
+    position: absolute;
 }
 
 .workspace, .page {
     float: left;
     display: block;
+    position: relative;
 }
-

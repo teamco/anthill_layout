@@ -97,13 +97,24 @@ define([
 
         stretch: function stretch() {
             var config = this.view.scope.config,
-                items = 1;
+                items = 1, index, item, $element;
             if (config.parent && config.html.stretch) {
                 items = this.base.lib.hash.hashLength(config.parent.items);
                 if (items > 1) {
                     this.$.parent().css({
                         width: items * 100 + '%'
                     });
+                    for (index in config.parent.items) {
+                        if (config.parent.items.hasOwnProperty(index)) {
+                            item = config.parent.items[index];
+                            $element = '$' + item.constructor.getConstructorName().toLowerCase();
+                            if (item.view.elements.hasOwnProperty($element)) {
+                                item.view.elements[$element].$.css({
+                                    width: 100 / items + '%'
+                                });
+                            }
+                        }
+                    }
                 }
             }
 
