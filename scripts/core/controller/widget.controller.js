@@ -8,8 +8,9 @@
 
 define([
     'modules/controller',
-    'controller/widget/widget.drag'
-], function defineWidgetController(BaseController, Drag) {
+    'controller/widget/widget.drag',
+    'controller/widget/widget.resize'
+], function defineWidgetController(BaseController, Drag, Resize) {
     var Controller = function Controller() {
 
     };
@@ -17,7 +18,7 @@ define([
     return Controller.extend({
         setup: function setup() {
             this.setEvent('draggable', new Drag(this.scope));
-            this.setEvent('resizable');
+            this.setEvent('resizable', new Resize(this.scope));
         }
     }, BaseController.prototype);
 });
