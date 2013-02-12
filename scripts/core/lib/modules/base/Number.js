@@ -25,7 +25,12 @@ define(['modules/base'], function defineBaseNumber(Base){
         str2float: function str2float(s, t) {
             var number = parseFloat(s, this.base.define(t, this.defaultNumberType));
             return this.base.isNumber(number) ? number : 0;
+        },
+
+        getRnd: function getRnd(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
         }
+
     }, Base);
 
     Base.prototype.lib.number = new BaseNumber();

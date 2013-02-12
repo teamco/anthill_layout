@@ -20,8 +20,10 @@ define([
     'controller/widget.controller',
     'model/widget.model',
     'view/widget.view',
-    'event/widget.event.manager'
-], function defineWidget(Base, MVC, Controller, Model, View, EventManager) {
+    'event/widget.event.manager',
+    'controller/widget/widget.permission',
+    'controller/widget/widget.drag'
+], function defineWidget(Base, MVC, Controller, Model, View, EventManager, Permission, Drag) {
     var Widget = function Widget(opts) {
 
         opts = this.base.define(opts, {}, true);
@@ -33,6 +35,10 @@ define([
                 footer: false,
                 frameLess: false,
                 opacity: 0.6 //page.layout.config.html.fading,
+            },
+            permission: {
+                drag: true,
+                resize: true
             },
             maximize: false,
             events: {
@@ -77,6 +83,12 @@ define([
             ],
             render: true
         });
+
+        this.permission = new Permission(this);
+
+        this.events = {
+            drag: new Drag(this)
+        };
 
     };
 
