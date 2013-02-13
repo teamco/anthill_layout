@@ -9,7 +9,7 @@
 define([
     'jquery',
     'modules/base'
-], function defineBaseElement(jQuery, Base) {
+], function defineBaseElement($, Base) {
 
     var BaseElement = function BaseElement() {
 
@@ -47,7 +47,7 @@ define([
             var $container = opts.$container,
                 append = base.defineBoolean(opts.append, true, true);
             if (this.$ !== false) {
-                this.$container = jQuery($container);
+                this.$container = $($container);
                 this.destroyB4Create(opts.destroy);
                 if (append) {
                     this.$.appendTo($container);

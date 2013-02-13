@@ -21,8 +21,9 @@ define([
     'model/widget.model',
     'view/widget.view',
     'event/widget.event.manager',
-    'controller/widget/widget.permission'
-], function defineWidget(Base, MVC, Controller, Model, View, EventManager, Permission) {
+    'controller/widget/widget.permission',
+    'controller/widget/widget.map'
+], function defineWidget(Base, MVC, Controller, Model, View, EventManager, Permission, Map) {
     var Widget = function Widget(opts) {
 
         opts = this.base.define(opts, {}, true);
@@ -92,6 +93,7 @@ define([
         });
 
         this.permission = new Permission(this);
+        this.map = new Map(this);
 
         this.interactions = {};
 
