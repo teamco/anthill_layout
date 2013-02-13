@@ -11,8 +11,9 @@ define([
     'element/header',
     'element/footer',
     'element/page/content',
-    'element/page/page'
-], function definePageView(BaseView, Header, Footer, Content, Page){
+    'element/page/page',
+    'element/page/delta.scroll'
+], function definePageView(BaseView, Header, Footer, Content, Page, DeltaScroll){
 
     var View = function View() {
         this.elements = {};
@@ -27,9 +28,16 @@ define([
             });
             this.header(Header, this.elements.$page);
             this.widgets();
+            this.deltaScroll();
             this.footer(Footer, this.elements.$page);
 
             this.elements.$page.stretch();
+        },
+        deltaScroll: function deltaScroll() {
+            this.elements.$deltaScroll = new DeltaScroll(this, {
+                $container: this.elements.$page.$,
+                style: 'delta-scroll'
+            });
         },
         widgets: function widgets() {
             this.elements.$widgets = new Content(this, {

@@ -1,2 +1,9 @@
 .page {
+    top: 0;
+}
+
+.page .delta-scroll {
+    height: 10000px;
+    width: 1px;
+    display: none;
 }

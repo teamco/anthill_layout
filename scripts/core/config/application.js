@@ -9,8 +9,6 @@ define([
 
     var App = function App(opts) {
 
-        opts = this.base.define(opts, {}, true);
-
         var DEFAULTS = {
             workspace: {
                 limit: 1,

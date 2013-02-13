@@ -14,6 +14,14 @@ define([
     };
 
     return CRUD.extend({
+        root: function root() {
+            var root = this.scope;
+            while (root.config.hasOwnProperty('parent')) {
+                root = root.config.parent;
+            }
+
+            return root;
+        },
         createItem: function createItem(opts) {
             return this.updateCollector(
                 this.item,

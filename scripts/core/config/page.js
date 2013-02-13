@@ -42,8 +42,8 @@ define([
                 allowToAdd: true
             },
             html: {
-                header: false,
-                footer: false,
+                header: true,
+                footer: true,
                 stretch: true,
                 padding: {
                     top: 0,

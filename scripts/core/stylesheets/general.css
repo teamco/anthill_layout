@@ -3,6 +3,10 @@
 @import url("page.css");
 @import url("widget.css");
 
+html, body {
+    overflow: hidden;
+}
+
 html, body, .app,
 .workspaces, .workspace,
 .pages, .page, .widgets {
@@ -15,8 +19,12 @@ html, body, .app,
     list-style: none;
 }
 
+.workspaces, .pages {
+    overflow: auto;
+}
+
 .workspace, .page {
     float: left;
     display: block;
-    position: relative;
+    position: absolute;
 }

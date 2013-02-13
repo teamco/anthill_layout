@@ -28,6 +28,20 @@ define([
             }).addClass(this.style);
 
             return this;
+        },
+        setHeight: function setHeight() {
+            var parent = this.view.scope.config.parent,
+                parentHeader = parent.view.elements.$header,
+                parentFooter = parent.view.elements.$footer,
+                $container = $(this.view.scope.model.root().config.html.container);
+
+            var parentHeaderHeight = parentHeader.$ ? parentHeader.$.height() : 0,
+                parentFooterHeight = parentFooter.$ ? parentFooter.$.height() : 0,
+                containerHeight = $container.height();
+
+            this.$.parent().css({
+                height: containerHeight - (parentFooterHeight + parentHeaderHeight)
+            });
         }
 
     }, Base, BaseElement.prototype);

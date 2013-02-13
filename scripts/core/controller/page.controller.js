@@ -33,6 +33,9 @@ define([
                 this.template
             );
             delete this.template;
+        },
+        setPageHeight: function setPageHeight() {
+            this.view.elements.$page.setHeight();
         }
     }, BaseController.prototype);
 });

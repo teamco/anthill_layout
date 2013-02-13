@@ -1,3 +1,20 @@
 .workspace {
 
 }
+
+.workspace-header,
+.workspace-footer {
+    width: 100%;
+}
+.workspace-header {
+    height: 40px;
+    background-color: #363636;
+    position: relative;
+}
+
+.workspace-footer {
+    height: 40px;
+    background-color: #555555;
+    position: fixed;
+    bottom: 0;
+}

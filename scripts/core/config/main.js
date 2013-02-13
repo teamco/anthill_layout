@@ -20,5 +20,5 @@ define([
     'config/application'
 ], function defineApp(Routes, Application) {
 
-    requirejs(['test/create'])
+    requirejs(['config/listeners','test/create'])
 });

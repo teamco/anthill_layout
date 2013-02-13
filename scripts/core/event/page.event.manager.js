@@ -18,7 +18,8 @@ define([
             createLayout: 'create.layout',
             destroyLayout: 'destroy.layout',
             createTemplate: 'create.template',
-            destroyTemplate: 'destroy.template'
+            destroyTemplate: 'destroy.template',
+            setPageHeight: 'set.page.height'
         };
     };
 

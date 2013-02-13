@@ -88,44 +88,6 @@ define([
                 ]
             );
         }
-
-//    if (this.debug) {
-//        if (App.base.isFunction(this.scope.Debug)) {
-//            // Add debugger panel
-//            this.scope.debug = new this.scope.Debug(this.scope);
-//        }
-//    }
-//
-
-//    // Add Listeners
-//    if (App.base.isFunction(this.scope.EventManager)) {
-//        if (this.scope.demo.globalListeners) {
-//            this.scope.EventManager.prototype.defineListeners =
-//                App.callbacks.defineListeners.bind(this.scope.eventManager)(
-//                    this.scope,
-//                    this.scope.demo.globalListeners[this.scope]
-//                );
-//        }
-//    }
-//
-//    /**
-//     *
-//     * @type {App.PermissionManager}
-//     */
-//    this.scope.permissionManager = new App.PermissionManager(
-//        this.scope.demo.permission
-//    );
-//
-//    if (App.base.isFunction(this.scope.Context)) {
-//        this.scope.context = new this.scope.Context(this.scope);
-//        if (App.base.isFunction(this.scope.context.EventManager)) {
-//            this.scope.context.observer = new App.Observable(this.scope.context);
-//            this.scope.context.eventManager = new this.scope.context.EventManager(this.scope.context);
-//            this.scope.context.observer.publish(this.scope.context.eventManager.eventList.afterContextCreated, this.scope.context);
-//        }
-//    }
-//
-
     };
 
     MVC.extend({
@@ -231,39 +193,41 @@ define([
                     index;
 
                 for (index in eventList) {
-                    var event = eventList[index],
-                        callback = scope.controller[index];
+                    if (eventList.hasOwnProperty(index)) {
+                        var event = eventList[index],
+                            callback = scope.controller[index];
 
-                    if (!base.isDefined(callback)) {
-                        var method = index.toPoint().split('.'),
-                            key = method[0];
+                        if (!base.isDefined(callback)) {
+                            var method = index.toPoint().split('.'),
+                                key = method[0];
 
-                        method.shift();
-                        method = ('.' + method.join('.')).toCamel();
+                            method.shift();
+                            method = ('.' + method.join('.')).toCamel();
 
-                        if (this.RESERVED.hasOwnProperty(key)) {
-                            if ($.inArray(method, this.RESERVED[key].singular) > -1) {
-                                eventManager.abstract[key + 'Item'] = index;
-                                callback = scope.controller[key + 'Item'];
-                            } else if ($.inArray(method, this.RESERVED[key].plural) > -1) {
-                                eventManager.abstract[key + 'Items'] = index;
-                                callback = scope.controller[key + 'Items'];
-                            } else {
-                                this.scope.logger.warn(
-                                    'Undefined Event Callback',
-                                    [
-                                        scope.controller,
-                                        key + method
-                                    ]
-                                );
+                            if (this.RESERVED.hasOwnProperty(key)) {
+                                if ($.inArray(method, this.RESERVED[key].singular) > -1) {
+                                    eventManager.abstract[key + 'Item'] = index;
+                                    callback = scope.controller[key + 'Item'];
+                                } else if ($.inArray(method, this.RESERVED[key].plural) > -1) {
+                                    eventManager.abstract[key + 'Items'] = index;
+                                    callback = scope.controller[key + 'Items'];
+                                } else {
+                                    this.scope.logger.warn(
+                                        'Undefined Event Callback',
+                                        [
+                                            scope.controller,
+                                            key + method
+                                        ]
+                                    );
+                                }
                             }
                         }
-                    }
 
-                    eventManager.subscribe({
-                        eventName: event,
-                        callback: callback
-                    });
+                        eventManager.subscribe({
+                            eventName: event,
+                            callback: callback
+                        });
+                    }
                 }
 
                 eventManager.subscribe({
@@ -275,6 +239,18 @@ define([
                     eventName: 'after.init.config',
                     callback: scope.controller.getConfigLog
                 });
+
+                if (typeof scope.globalListeners === 'object') {
+                    for (index in scope.globalListeners) {
+                        if (scope.globalListeners.hasOwnProperty(index)) {
+                            event = scope.globalListeners[index];
+                            eventManager.subscribe({
+                                eventName: event.name,
+                                callback: event.callback
+                            });
+                        }
+                    }
+                }
 
             } else {
                 scope.logger.warn('Event Manager', scope.eventmanager);
