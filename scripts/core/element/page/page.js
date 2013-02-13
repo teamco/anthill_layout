@@ -30,17 +30,16 @@ define([
             return this;
         },
         setHeight: function setHeight() {
-            var parent = this.view.scope.config.parent,
-                parentHeader = parent.view.elements.$header,
-                parentFooter = parent.view.elements.$footer,
-                $container = $(this.view.scope.model.root().config.html.container);
+            var header = this.view.elements.$header,
+                footer = this.view.elements.$footer,
+                $container = this.getRootContainer();
 
-            var parentHeaderHeight = parentHeader.$ ? parentHeader.$.height() : 0,
-                parentFooterHeight = parentFooter.$ ? parentFooter.$.height() : 0,
+            var headerHeight = header.$ ? header.$.height() : 0,
+                footerHeight = footer.$ ? footer.$.height() : 0,
                 containerHeight = $container.height();
 
             this.$.css({
-                height: containerHeight - (parentFooterHeight + parentHeaderHeight)
+                height: containerHeight - (headerHeight + footerHeight)
             });
         }
 

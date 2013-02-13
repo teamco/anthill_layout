@@ -32,7 +32,7 @@ define([
         setHeight: function setHeight() {
             var header = this.view.elements.$header,
                 footer = this.view.elements.$footer,
-                $container = $(this.view.scope.model.root().config.html.container);
+                $container = this.getRootContainer();
 
             var headerHeight = header.$ ? header.$.height() : 0,
                 footerHeight = footer.$ ? footer.$.height() : 0,

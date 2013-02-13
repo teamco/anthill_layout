@@ -108,6 +108,10 @@ define([
             }
 
             return this;
+        },
+
+        getRootContainer: function getRootContainer() {
+            return $(this.view.scope.model.root().config.html.container);
         }
 
     }, Base);
