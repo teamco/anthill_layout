@@ -12,6 +12,9 @@ define([
     };
 
     return Controller.extend({
+        setPageContainerHeight: function setPageContainerHeight() {
+            this.view.elements.$pages.setHeight();
+        }
 
     }, BaseController.prototype);
 });

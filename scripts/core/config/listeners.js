@@ -7,8 +7,18 @@
  */
 
 define([
+    'config/workspace',
     'config/page'
-], function defineListeners(Page) {
+], function defineListeners(Workspace, Page) {
+
+    Workspace.prototype.globalListeners = {
+        createPage: {
+            name: 'create.page',
+            callback: function createPageCallback() {
+                this.observer.publish(this.eventmanager.eventList.setPageContainerHeight);
+            }
+        }
+    };
 
     Page.prototype.globalListeners = {
         createWidget: {

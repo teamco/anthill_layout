@@ -17,7 +17,8 @@ define([
         eventList: {
             createPage: 'create.page',
             destroyPage: 'destroy.page',
-            destroyPages: 'destroy.pages'
+            destroyPages: 'destroy.pages',
+            setPageContainerHeight: 'set.page.container.height'
         }
     }, Event.prototype);
 });

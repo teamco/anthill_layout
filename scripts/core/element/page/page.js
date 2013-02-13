@@ -39,7 +39,7 @@ define([
                 parentFooterHeight = parentFooter.$ ? parentFooter.$.height() : 0,
                 containerHeight = $container.height();
 
-            this.$.parent().css({
+            this.$.css({
                 height: containerHeight - (parentFooterHeight + parentHeaderHeight)
             });
         }
