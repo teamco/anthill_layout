@@ -17,6 +17,13 @@ define([
         getConfigLog: function getConfigLog(log, hash) {
             this.logger.debug(log, hash);
         },
+        successCreated: function successCreated() {
+            this.logger.debug(
+                this.constructor.getConstructorName() +
+                    ' was successfully created',
+                this
+            );
+        },
         setOrder: function setOrder(collector) {
             var scope = this.scope,
                 base = this.base;

@@ -95,6 +95,8 @@ define([
 
         this.interactions = {};
 
+        this.observer.publish(this.eventmanager.eventList.successCreated);
+
     };
 
     return Widget.extend(Base);

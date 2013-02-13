@@ -12,7 +12,9 @@ define([
     'controller/layout.controller',
     'event/layout.event.manager'
 ], function defineLayout(Base, MVC, Controller, EventManager) {
-    var Layout = function Layout(opts) {
+    var Layout = function Layout(opts, page) {
+
+        this.page = page;
 
         // Default constants
         var DEFAULTS = {
@@ -36,6 +38,7 @@ define([
             render: false
         });
 
+        this.observer.publish(this.eventmanager.eventList.successCreated);
     };
 
     return Layout.extend(Base);

@@ -83,6 +83,8 @@ define([
         //        this.controller.getConfig('data')
         //    );
 
+        this.observer.publish(this.eventmanager.eventList.successCreated);
+
     };
 
     return Workspace.extend(Base);

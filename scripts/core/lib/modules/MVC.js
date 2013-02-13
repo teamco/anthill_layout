@@ -19,7 +19,7 @@ define([
         // MVC Relationship from -> to
         this.RELATIONS = [
             ['Controller', 'Model'],
-            ['View', 'EventManager']
+            ['View', 'Controller']
         ];
 
         this.RESERVED = {
@@ -64,6 +64,8 @@ define([
         var config = {},
             scope = this.scope;
 
+        scope.eventmanager = {};
+
         $.extend(config, scope.config);
 
         this.applyLogger();
@@ -72,7 +74,7 @@ define([
         this.applyObserver();
         this.applyEventManager();
 
-        if (scope.eventmanager) {
+        if (scope.eventmanager.eventList) {
 
             scope.observer.publish(
                 scope.eventmanager.eventList.beforeInitConfig, [
@@ -238,6 +240,11 @@ define([
                 eventManager.subscribe({
                     eventName: 'after.init.config',
                     callback: scope.controller.getConfigLog
+                });
+
+                eventManager.subscribe({
+                    eventName: 'success.created',
+                    callback: scope.controller.successCreated
                 });
 
                 if (typeof scope.globalListeners === 'object') {

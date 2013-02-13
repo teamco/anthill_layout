@@ -15,7 +15,7 @@ define([
 
     return Controller.extend({
         createLayout: function createLayout(Layout, opts) {
-            this.layout = new Layout(opts);
+            this.layout = new Layout(opts, this);
         },
         destroyLayout: function destroyLayout() {
             this.logger.info(
@@ -35,7 +35,13 @@ define([
             delete this.template;
         },
         setPageHeight: function setPageHeight() {
-//            this.view.elements.$page.setHeight();
+//            this.view.elements.$page.defineHeight();
+        },
+        updateLayout: function updateLayout() {
+            var layout = this.scope.layout;
+            layout.observer.publish(
+                layout.eventmanager.eventList.updateMinCellWidth
+            );
         }
     }, BaseController.prototype);
 });

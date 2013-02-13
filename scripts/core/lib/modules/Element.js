@@ -112,6 +112,30 @@ define([
 
         getRootContainer: function getRootContainer() {
             return $(this.view.scope.model.root().config.html.container);
+        },
+
+        getWidth: function getWidth() {
+            return this.$.width();
+        },
+
+        setWidth: function setWidth(width) {
+            this.$.css({
+                width: width
+            });
+
+            return this.getWidth();
+        },
+
+        getHeight: function getHeight() {
+            return this.$.height();
+        },
+
+        setHeight: function setHeight(height) {
+            this.$.css({
+                height: height
+            });
+
+            return this.getHeight();
         }
 
     }, Base);

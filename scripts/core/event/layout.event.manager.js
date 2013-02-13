@@ -12,6 +12,7 @@ define([
     var EventManager = function EventManager() {
         this.events = {};
         this.eventList = {
+            updateMinCellWidth: 'update.min.cell.width'
         };
     };
 

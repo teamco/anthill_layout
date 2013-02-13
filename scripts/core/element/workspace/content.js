@@ -29,7 +29,7 @@ define([
 
             return this;
         },
-        setHeight: function setHeight() {
+        defineHeight: function defineHeight() {
             var header = this.view.elements.$header,
                 footer = this.view.elements.$footer,
                 $container = this.getRootContainer();
@@ -38,9 +38,7 @@ define([
                 footerHeight = footer.$ ? footer.$.height() : 0,
                 containerHeight = $container.height();
 
-            this.$.css({
-                height: containerHeight - (headerHeight + footerHeight)
-            });
+            this.setHeight(containerHeight - (headerHeight + footerHeight));
         }
 
     }, Base, BaseElement.prototype);

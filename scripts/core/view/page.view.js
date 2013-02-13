@@ -47,6 +47,7 @@ define([
         },
         render: function render() {
             this.page();
+            this.controller.updateLayout();
         }
     }, BaseView.prototype)
 

@@ -7,13 +7,36 @@
  */
 
 define([
+    'modules/base',
     'modules/controller'
-], function defineLayoutController(BaseController) {
+], function defineLayoutController(Base, BaseController) {
     var Controller = function Controller() {
 
     };
 
     return Controller.extend({
+        updateMinCellWidth: function updateMinCellWidth() {
+            delete this.config.grid.minCellWidth;
+            this.controller.minCellWidth();
+        },
+        minCellWidth: function minCellWidth() {
+            var base = this.base,
+                scope = this.scope,
+                config = scope.config.grid;
+            if (base.isDefined(config.minCellWidth)) {
+                return config.minCellWidth;
+            }
+            var columns = config.columns,
+                margin = config.margin + config.padding;
 
-    }, BaseController.prototype);
+            config.minCellWidth = (
+                scope.page.view.elements.$page.getWidth() -
+                    margin - margin * columns
+                ) / (columns);
+
+            this.scope.page.logger.info('Calculated cell size (px)', config.minCellWidth);
+            return config.minCellWidth;
+        }
+
+    }, Base, BaseController.prototype);
 });

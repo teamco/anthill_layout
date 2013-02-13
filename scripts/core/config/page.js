@@ -77,6 +77,8 @@ define([
             [Template, this.config.template]
         );
 
+        this.observer.publish(this.eventmanager.eventList.successCreated);
+
     };
 
     return Page.extend(Base);

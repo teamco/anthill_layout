@@ -44,6 +44,8 @@ define([
             render: true
         });
 
+        this.observer.publish(this.eventmanager.eventList.successCreated);
+
     };
 
     return App.extend(Base);
