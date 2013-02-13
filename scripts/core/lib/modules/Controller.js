@@ -61,12 +61,12 @@ define([
                 items
             );
         },
-        setEvent: function setEvent(event, callback) {
-            this.scope.events[event] = callback;
-            return this.getEvent(event);
+        setInteraction: function setInteraction(event, callback) {
+            this.scope.interactions[event] = callback;
+            return this.getInteraction(event);
         },
-        getEvent: function getEvent(event) {
-            return this.scope.events[event];
+        getInteraction: function getInteraction(event) {
+            return this.scope.interactions[event];
         }
     }, Base);
 });

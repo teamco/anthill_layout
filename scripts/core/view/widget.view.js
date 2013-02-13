@@ -37,7 +37,7 @@ define([
         },
         render: function render() {
             this.widget();
-            this.scope.controller.setup();
+            this.scope.controller.setupInteractions();
         }
     }, BaseView.prototype)
 

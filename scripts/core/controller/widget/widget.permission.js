@@ -18,12 +18,17 @@ define([
         var base = this.base,
             permission = base.define(this.scope.config.permission, {}, true);
 
-        this.setCapability('draggable', base.defineBoolean(permission.draggable, true, true));
-        this.setCapability('resizable', base.defineBoolean(permission.resizable, true, true));
+        this.setCapability(this.rulesList.draggable, base.defineBoolean(permission.draggable, true, true));
+        this.setCapability(this.rulesList.resizable, base.defineBoolean(permission.resizable, true, true));
 
     };
 
     return Permission.extend({
+
+        rulesList: {
+            draggable: 'draggable',
+            resizable: 'resizable'
+        }
 
     }, Base, BasePermission.prototype);
 });

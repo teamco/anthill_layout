@@ -11,52 +11,53 @@ define([
 ], function defineWidgetResize() {
     var Resize = function Resize(scope) {
         this.scope = scope;
-
-        this.init();
+        this.$scope = scope.view.elements.$widget.$;
+        this.checkPermission();
     };
 
     return Resize.extend({
-        init: function init() {
+        checkPermission: function checkPermission() {
             var scope = this.scope;
             scope.permission.check({
-                might: 'resizable',
-                callback: function initResizable() {
-                    var config = scope.config.events.resizable;
-
-//                    var minDims = this.widget.page.layout.html.minWidgetDims(),
-//                        config = this.widget.page.layout.config.html,
-//                        resize = this.widget.callbacks.resize;
-//                    this.widget.view.$widget.$.resizable({
-//                        minHeight: minDims.y,
-//                        minWidth:  minDims.x,
-//                        containment: this.widget.page.view.$page.$,
-//                        scrollable: {
-//                            container: this.widget.page.view.$page.$,
-//                            step: config.scrollableStep,
-//                            delay: config.scrollableDelay,
-//                            belt: config.scrollableBelt
-//                        },
-//                        start: resize.start.bind(this),
-//                        stop: resize.stop.bind(this),
-//                        resize: resize.resize.bind(this)
-//                    });
-
-
-
-                    scope.view.elements.$widget.$.resizable({
-                        containment: scope.config.parent.view.elements.$page.$,
-                        start: this.start.bind(this),
-                        stop: this.stop.bind(this),
-                        resize: this.resize.bind(this)
-                    });
-                }.bind(this)
+                capability: scope.permission.rulesList.resizable,
+                callback: this.init.bind(this)
             });
         },
-        start : function start(event, ui) {
+        init: function init() {
+            var scope = this.scope;
+
+            if (scope.permission.authorizedFunctionCall(this.init)) {
+                this.$scope.resizable({
+                    containment: scope.config.parent.view.elements.$page.$,
+                    create: this.create.bind(this),
+                    start: this.start.bind(this),
+                    stop: this.stop.bind(this),
+                    resize: this.resize.bind(this)
+                });
+            }
         },
-        stop : function stop(event, ui) {
+        enable: function enable() {
+            if (this.scope.permission.eventTunnelFunctionCall(this.enable)) {
+                this.$scope.resizable('enable');
+            }
         },
-        resize : function resize(event, ui) {
+        disable: function disable() {
+            if (this.scope.permission.eventTunnelFunctionCall(this.disable)) {
+                this.$scope.resizable('disable');
+            }
+        },
+        destroy: function destroy() {
+            if (this.scope.permission.eventTunnelFunctionCall(this.destroy)) {
+                this.$scope.resizable('destroy');
+            }
+        },
+        create: function create(event, ui) {
+        },
+        start: function start(event, ui) {
+        },
+        stop: function stop(event, ui) {
+        },
+        resize: function resize(event, ui) {
         }
     });
 });

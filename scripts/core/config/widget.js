@@ -93,7 +93,7 @@ define([
 
         this.permission = new Permission(this);
 
-        this.events = {};
+        this.interactions = {};
 
     };
 

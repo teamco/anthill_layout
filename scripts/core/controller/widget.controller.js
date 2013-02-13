@@ -12,13 +12,43 @@ define([
     'controller/widget/widget.resize'
 ], function defineWidgetController(BaseController, Drag, Resize) {
     var Controller = function Controller() {
-
     };
 
     return Controller.extend({
-        setup: function setup() {
-            this.setEvent('draggable', new Drag(this.scope));
-            this.setEvent('resizable', new Resize(this.scope));
+        setupInteractions: function setupInteractions() {
+            this.scope.observer.publish(this.scope.eventmanager.eventList.initDrag);
+            this.scope.observer.publish(this.scope.eventmanager.eventList.initResize);
+        },
+        initDrag: function initDrag() {
+            this.controller.setInteraction(
+                this.permission.rulesList.draggable,
+                new Drag(this)
+            );
+        },
+        enableDrag: function enableDrag() {
+            this.interactions.draggable.enable();
+        },
+        disableDrag: function disableDrag() {
+            this.interactions.draggable.disable();
+        },
+        destroyDrag: function destroyDrag() {
+            this.interactions.draggable.destroy();
+        },
+        initResize: function initResize() {
+            this.controller.setInteraction(
+                this.permission.rulesList.resizable,
+                new Resize(this)
+            );
+        },
+        enableResize: function enableResize() {
+            this.interactions.draggable.enable();
+        },
+        disableResize: function disableResize() {
+            this.interactions.draggable.disable();
+        },
+        destroyResize: function destroyResize() {
+            this.interactions.draggable.destroy();
         }
+
     }, BaseController.prototype);
 });

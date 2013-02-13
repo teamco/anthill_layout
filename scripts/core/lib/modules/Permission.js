@@ -9,8 +9,8 @@
 define([
     'modules/base'
 ], function definePermissionManager(Base) {
-    var Permission = function Permission() {
-
+    var Permission = function Permission(scope) {
+        this.scope = scope;
     };
 
     return Permission.extend({
@@ -19,13 +19,13 @@ define([
 
             opts = base.define(opts, {}, true);
 
-            var might = this.scope.permission.getCapability(opts.might),
+            var capability = this.getCapability(opts.capability),
                 callback = opts.callback,
                 fallback = opts.fallback,
                 args = base.define(opts.args, [], true);
 
             if (base.isFunction(callback)) {
-                if (might) {
+                if (capability) {
                     callback(args);
                 } else if (base.isFunction(fallback)) {
                     fallback(args);
@@ -40,7 +40,24 @@ define([
 
         getCapability: function getCapability(key) {
             return this.base.defineBoolean(this.capability[key], false, true);
+        },
+
+        authorizedFunctionCall: function authorizedFunctionCall(fn) {
+            if (fn.getCallerName() !== this.check.getConstructorName()) {
+                this.scope.logger.warn('Unauthorized function call');
+                return false;
+            }
+            return true;
+        },
+
+        eventTunnelFunctionCall: function eventTunnelFunctionCall(fn) {
+            var callerName = fn.getCallerName();
+            if (callerName.toPoint() !== this.scope.eventmanager.eventList[callerName]) {
+                this.scope.logger.warn('Unauthorized function call');
+                return false;
+            }
+            return true;
         }
 
-    }, Base);
+}, Base);
 });
