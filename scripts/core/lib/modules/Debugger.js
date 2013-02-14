@@ -49,6 +49,33 @@ define([
             this.page.layout.debug = false;
             this.page.layout.development.log('Destroy grid');
         },
+        movePlaceHoldersToCurrentPage: function movePlaceHoldersToCurrentPage() {
+            var $page = this.layout.page.view.$page.$;
+            if (App.cache.getData('placeholders').length === 0) {
+                App.cache.updateData('placeholders', jQuery('#placeholders'));
+            }
+            if ($page.find('#placeholders').length === 0) {
+                $page.append(App.cache.getData('placeholders'));
+            }
+            return $page.find('#placeholders');
+        },
+        checkAndPlaceGrid: function checkAndPlaceGrid() {
+            if ($('#placeholders > *').length > 0) {
+                this.scope.logger.info('Grid already activated', this.scope);
+                return false;
+            }
+            this.page.layout.html.movePlaceHoldersToCurrentPage();
+            var column,
+                row,
+                rowsNumber = this.page.layout.html.rowsBasedOnWidgets() +
+                    this.page.layout.config.html.additionalRows + 1;
+            for (column = 0; column < this.page.layout.config.html.gridSize; column++) {
+                this.widget.debug.renderPlaceHolder(column, -1);
+            }
+            for (row = 0; row < rowsNumber; row++) {
+                this.widget.debug.renderPlaceHolder(-1, row);
+            }
+        },
         renderPlaceHolder: function renderPlaceHolder(column, row) {
             var cellWidth = this.page.layout.config.html.minCellWidth,
                 margin = this.page.layout.config.html.margin,

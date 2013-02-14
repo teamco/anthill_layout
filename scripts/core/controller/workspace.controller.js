@@ -12,6 +12,13 @@ define([
     };
 
     return Controller.extend({
+        getCurrentPage: function getCurrentPage() {
+            return this.scope.page;
+        },
+        setCurrentPage: function setCurrentPage(page) {
+            this.scope.page = page;
+            return this.getCurrentPage();
+        },
         setPageContainerHeight: function setPageContainerHeight() {
             this.view.elements.$pages.defineHeight();
         }
