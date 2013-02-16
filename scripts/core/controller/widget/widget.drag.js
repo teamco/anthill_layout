@@ -9,6 +9,11 @@
 define([
     'jqueryui'
 ], function defineWidgetDrag() {
+    /**
+     * Define Widget Drag
+     * @param scope
+     * @constructor
+     */
     var Drag = function Drag(scope) {
         this.scope = scope;
         this.$scope = scope.view.elements.$widget.$;
@@ -16,6 +21,9 @@ define([
     };
 
     return Drag.extend({
+        /**
+         * Check permissions
+         */
         checkPermission: function checkPermission() {
             var scope = this.scope;
             scope.permission.check({
@@ -23,6 +31,9 @@ define([
                 callback: this.init.bind(this)
             });
         },
+        /**
+         * Init interaction
+         */
         init: function init() {
 
             var scope = this.scope,
@@ -47,27 +58,56 @@ define([
                 });
             }
         },
+        /**
+         * Enable drag
+         */
         enable: function enable() {
             if (this.scope.permission.eventTunnelFunctionCall(this.enable)) {
                 this.$scope.draggable('enable');
             }
         },
+        /**
+         * Disable drag
+         */
         disable: function disable() {
             if (this.scope.permission.eventTunnelFunctionCall(this.disable)) {
                 this.$scope.draggable('disable');
             }
         },
+        /**
+         * Destroy drag
+         */
         destroy: function destroy() {
             if (this.scope.permission.eventTunnelFunctionCall(this.destroy)) {
                 this.$scope.draggable('destroy');
             }
         },
+        /**
+         * Create drag
+         * @param event
+         * @param ui
+         */
         create: function create(event, ui) {
         },
+        /**
+         * Start drag
+         * @param event
+         * @param ui
+         */
         start: function start(event, ui) {
         },
+        /**
+         * Stop drag
+         * @param event
+         * @param ui
+         */
         stop: function stop(event, ui) {
         },
+        /**
+         * onDrag
+         * @param event
+         * @param ui
+         */
         drag: function drag(event, ui) {
         }
     });

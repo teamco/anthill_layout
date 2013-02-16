@@ -9,25 +9,14 @@ define([
     'modules/base'
 ], function defineWidgetMap(Base) {
 
+    /**
+     * Define Widget Map
+     * @param widget
+     * @constructor
+     */
     var Map = function Map(widget) {
-        this.layout = widget.config.parent.layout;
     };
 
     return Map.extend({
-        marginFor: function marginFor(column, row) {
-            var config = this.layout.config.grid;
-            return {
-                top: (row + 1) * config.margin,
-                left: (column + 1) * config.margin
-            };
-        },
-        positionFor: function positionFor(column, row) {
-            var margins = this.marginFor(column, row),
-                config = this.layout.config.grid;
-            return {
-                top: row * config.minCellWidth + margins.top,
-                left: column * config.minCellWidth + margins.left
-            };
-        }
     }, Base);
 });

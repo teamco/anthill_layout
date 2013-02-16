@@ -11,96 +11,146 @@ define([
     'modules/base'
 ], function defineDebugger($, $UI, Base) {
 
-    var Debugger = function Debugger(opts) {
+    /**
+     * Define Debugger
+     * @param scope
+     * @constructor
+     */
+    var Debugger = function Debugger(scope) {
 
-        var base = this.base;
+        this.scope = scope;
+        this.selector = '#placeholders';
 
-        opts = base.define(opts, {}, true);
-
-        this.scope = opts.scope;
+//        this.workspace =
 
     };
 
     return Debugger.extend({
-        checkAndPlaceGrid: function checkAndPlaceGrid() {
-            if ($('#placeholders').children().length > 0) {
-                return;
+        /**
+         * Define scope
+         * @returns {*}
+         */
+        defineScope: function defineScope() {
+            var scope = this.scope.constructor.getConstructorName();
+
+            if (scope === 'Workspace') {
+                this.workspace = this.scope;
+                this.page = this.workspace.controller.getCurrentPage();
+                this.widget = this.page.widget;
+                return this;
             }
-            this.page.layout.html.movePlaceHoldersToCurrentPage();
-            var column,
-                row,
-                rowsNumber = this.page.layout.html.rowsBasedOnWidgets() +
-                    this.page.layout.config.html.additionalRows + 1;
-            for (column = 0; column < this.page.layout.config.html.gridSize; column++) {
-                this.widget.debug.renderPlaceHolder(column, -1);
+
+            if (scope === 'Page') {
+                this.page = this.scope;
+                this.workspace = this.page.config.parent;
+                this.widget = this.page.widget;
+                return this;
             }
-            for (row = 0; row < rowsNumber; row++) {
-                this.widget.debug.renderPlaceHolder(-1, row);
+
+            if (scope === 'Widget') {
+                this.widget = this.scope;
+                this.page = this.widget.config.parent;
+                this.workspace = this.page.config.parent;
+                return this;
             }
+
         },
+        /**
+         * Show grid
+         */
         showGrid: function showGrid() {
             this.destroyGrid();
             this.widget.debug.checkAndPlaceGrid();
             this.page.layout.debug = true;
             this.page.layout.development.log('Show grid');
         },
+        /**
+         * Destroy grid
+         */
         destroyGrid: function destroyGrid() {
-            $('#placeholders').html('');
+            $(this.selector).html('');
             this.page.layout.debug = false;
             this.page.layout.development.log('Destroy grid');
         },
-        movePlaceHoldersToCurrentPage: function movePlaceHoldersToCurrentPage() {
-            var $page = this.layout.page.view.$page.$;
-            if (App.cache.getData('placeholders').length === 0) {
-                App.cache.updateData('placeholders', jQuery('#placeholders'));
-            }
-            if ($page.find('#placeholders').length === 0) {
-                $page.append(App.cache.getData('placeholders'));
-            }
-            return $page.find('#placeholders');
+        /**
+         * Create placeholder
+         * @returns {*}
+         */
+        createPlaceHolder: function createPlaceHolder() {
+            return $('<div />').attr({
+                id: this.selector.replace(/#/, '')
+            });
         },
+        /**
+         * Move grid placeholder to current page
+         * @returns {*}
+         */
+        movePlaceHoldersToCurrentPage: function movePlaceHoldersToCurrentPage() {
+            var $page = this.page.view.elements.$page.$,
+                $placeholder = $(this.selector);
+            if ($page.find(this.selector).length === 0) {
+                if ($placeholder.length === 0) {
+                    $placeholder = this.createPlaceHolder();
+                }
+                $page.append($placeholder);
+            }
+            return $page.find(this.selector);
+        },
+        /**
+         * Render grid
+         */
         checkAndPlaceGrid: function checkAndPlaceGrid() {
-            if ($('#placeholders > *').length > 0) {
+            if ($(this.selector + ' > *').length > 0) {
                 this.scope.logger.info('Grid already activated', this.scope);
                 return false;
             }
-            this.page.layout.html.movePlaceHoldersToCurrentPage();
-            var column,
-                row,
-                rowsNumber = this.page.layout.html.rowsBasedOnWidgets() +
-                    this.page.layout.config.html.additionalRows + 1;
-            for (column = 0; column < this.page.layout.config.html.gridSize; column++) {
-                this.widget.debug.renderPlaceHolder(column, -1);
+            this.movePlaceHoldersToCurrentPage();
+            var column = 0,
+                row = 0,
+                rowsNumber = 20;
+            for (column; column < this.page.layout.config.grid.columns; column++) {
+                this.debug.renderPlaceHolder(column, -1);
             }
-            for (row = 0; row < rowsNumber; row++) {
+            for (row; row < rowsNumber; row++) {
                 this.widget.debug.renderPlaceHolder(-1, row);
             }
         },
-        renderPlaceHolder: function renderPlaceHolder(column, row) {
-            var cellWidth = this.page.layout.config.html.minCellWidth,
-                margin = this.page.layout.config.html.margin,
-                background = 'red',
-                height = '100%',
-                width = cellDims,
-                text = column;
-            if (column === -1) {
-                left = margin;
-                top = pos.top;
-                background = 'green';
-                height = cellDims;
-                width = '100%';
-                text = row;
-            }
+        renderColumn: function renderColumn(column) {
+            this.renderPlaceHolder({
+                background: 'red',
+                width: this.page.layout.config.grid.minCellWidth,
+                height: '100%',
+                top: 0,
+                left: 0,
+                text: column
+            });
+        },
+        renderRow: function renderRow(row) {
+            this.renderPlaceHolder({
+                background: 'green',
+                left: this.page.layout.config.html.margin,
+                top: pos.top,
+                width: '100%',
+                height: this.page.layout.config.grid.minCellWidth,
+                text: row
+            });
+        },
+        /**
+         * Append grid to placeholder
+         * @param opts
+         */
+        renderPlaceHolder: function renderPlaceHolder(opts) {
+            opts = this.base.define(opts, {}, true);
             this.page.layout.page.view.$page.$.prepend(
-                $('#placeholders').append(
+                $(this.selector).append(
                     $('<div />').css({
-                        left: left,
-                        top: top,
+                        left: opts.left,
+                        top: opts.top,
                         opacity: 0.2,
-                        width: width,
-                        height: height,
+                        width: opts.width,
+                        height: opts.height,
                         position: 'absolute',
-                        background: background
+                        background: opts.background
                     }).text(text)
                 ).show()
             );

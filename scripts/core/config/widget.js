@@ -16,6 +16,7 @@
 
 define([
     'modules/base',
+    'modules/debugger',
     'modules/mvc',
     'controller/widget.controller',
     'model/widget.model',
@@ -23,10 +24,13 @@ define([
     'event/widget.event.manager',
     'controller/widget/widget.permission',
     'controller/widget/widget.map'
-], function defineWidget(Base, MVC, Controller, Model, View, EventManager, Permission, Map) {
+], function defineWidget(Base, Debugger, MVC, Controller, Model, View, EventManager, Permission, Map) {
+    /**
+     * Define Widget
+     * @param opts {object}
+     * @constructor
+     */
     var Widget = function Widget(opts) {
-
-        opts = this.base.define(opts, {}, true);
 
         var DEFAULTS = {
             order: 1,
@@ -34,7 +38,7 @@ define([
                 header: false,
                 footer: false,
                 frameLess: false,
-                opacity: 0.6 //page.layout.config.html.fading,
+                opacity: 0.6
             },
             permission: {
                 draggable: true,
@@ -78,7 +82,8 @@ define([
                     tolerance: 'pointer'
                 }
             }
-        }
+        };
+
         // Init MVC
         new MVC({
             scope: this,
@@ -92,9 +97,28 @@ define([
             render: true
         });
 
+        /**
+         * Define permissions
+         * @type {widget.permission}
+         */
         this.permission = new Permission(this);
+
+        /**
+         * Define map
+         * @type {widget.map}
+         */
         this.map = new Map(this);
 
+        /**
+         * Define debugger
+         * @type {modules.debugger}
+         */
+        this.debugger = new Debugger(this);
+
+        /**
+         * Define interactions: Drag/Resize
+         * @type {{}}
+         */
         this.interactions = {};
 
         this.observer.publish(this.eventmanager.eventList.successCreated);

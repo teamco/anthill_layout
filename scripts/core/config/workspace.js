@@ -6,6 +6,12 @@ define([
     'view/workspace.view',
     'event/workspace.event.manager'
 ], function defineWorkspace(Base, MVC, Controller, Model, View, EventManager) {
+
+    /**
+     * Define Workspace
+     * @param opts
+     * @constructor
+     */
     var Workspace = function Workspace(opts) {
 
         // Default constants
@@ -74,14 +80,12 @@ define([
             ]
         });
 
-        // Init page
+        /**
+         * Define page
+         * @type {{}}
+         */
         this.page = {};
         this.items = {};
-
-        //    this.observer.fireEvent(
-        //        this.eventManager.eventList.onLoadData,
-        //        this.controller.getConfig('data')
-        //    );
 
         this.observer.publish(this.eventmanager.eventList.successCreated);
 

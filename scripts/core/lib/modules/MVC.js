@@ -12,7 +12,14 @@ define([
     'modules/observer',
     'modules/logger'
 ], function ($, Base, Observer, Logger) {
+    /**
+     *
+     * @param opts
+     * @constructor
+     */
     var MVC = function MVC(opts) {
+
+        this.base = this.base;
 
         var base = this.base;
 

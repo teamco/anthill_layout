@@ -1,6 +1,11 @@
 (function addFunctionMethods() {
     (function bindFunction() {
         if (!Function.prototype.bind) {
+            /**
+             * Function Bind method
+             * @param context
+             * @returns {*}
+             */
             Function.prototype.bind = function bound(context) {
                 if (typeof this !== 'function') {
                     // closest thing possible to the ECMAScript 5 internal IsCallable function
@@ -42,6 +47,13 @@
     // Class Augmentation.
     // It takes a name and a function, and adds them to a function's prototype object.
     // It returns this.
+
+    /**
+     * Function add Method
+     * @param {string} name
+     * @param {function} func
+     * @returns {Function}
+     */
     Function.prototype.method = function method(name, func) {
         this.prototype[name] = func;
         return this;
@@ -61,6 +73,7 @@
     // explicitly setting this and passing an array of parameters. The parameters (if any)
     // are obtained from the arguments array. Unfortunately, the arguments array is not a
     // true array, so we have to use apply again to invoke the array slice method.
+
     Function.method('inherits', function inherits(Parent) {
         var d = {},
             p = (this.prototype[Parent.getConstructorName().toLowerCase()] = new Parent());
@@ -100,6 +113,9 @@
         return this;
     });
 
+    /**
+     * Get Function Constructor name
+     */
     Function.method('getConstructorName', function getConstructorName() {
         // IE issue RegEx instead of constructor name
         var instance = this.toString().match(/function (\w*)/);
@@ -108,16 +124,22 @@
         }
     });
 
-//        if (!Object.hasOwnProperty('getConstructorName')) {
-//            Object.prototype.getConstructorName = function getConstructorName() {
-//                return this.constructor.getConstructorName();
-//            };
+//    if (!Object.hasOwnProperty('getConstructorName')) {
+//        Object.prototype.getConstructorName = function getConstructorName() {
+//            return this.constructor.getConstructorName();
 //        };
+//    }
 
+    /**
+     * Get Function Caller name
+     */
     Function.method('getCallerName', function getCallerName() {
         return this.caller.getConstructorName();
     });
 
+    /**
+     * Extend Function prototype
+     */
     Function.method('extend', function extend() {
         var i = 0, l = arguments.length;
 
@@ -139,24 +161,41 @@
         return this;
     });
 
-    String.prototype.toCamel = function toCamel() {
+    /**
+     * String to CamelCase by dot separator
+     * @param {string} separator
+     * @returns {string}
+     */
+    String.prototype.toCamel = function toCamel(separator) {
         return this.replace(/(\.[a-z])/g, function ($1) {
-            return $1.toUpperCase().replace('.', '');
+            return $1.toUpperCase().replace(separator || '.', '');
         });
     };
 
+    /**
+     * String from CamelCase to point separator
+     * @returns {string}
+     */
     String.prototype.toPoint = function toPoint() {
         return this.replace(/([A-Z])/g, function ($1) {
             return "." + $1.toLowerCase();
         });
     };
 
+    /**
+     * String from CamelCase to underscore separator
+     * @returns {string}
+     */
     String.prototype.toUnderscore = function toUnderscore() {
         return this.replace(/([A-Z])/g, function ($1) {
             return "_" + $1.toLowerCase();
         });
     };
 
+    /**
+     * String from CamelCase to dash separator
+     * @returns {string}
+     */
     String.prototype.toDash = function toDash() {
         return this.replace(/([A-Z])/g, function ($1) {
             return "-" + $1.toLowerCase();
