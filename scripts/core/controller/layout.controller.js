@@ -40,12 +40,20 @@ define([
                 return config.minCellWidth;
             }
             var columns = config.columns,
-                margin = config.margin + config.padding;
+                margin = config.margin;
 
-            config.minCellWidth = (
-                scope.page.view.elements.$page.getWidth() -
-                    margin - margin * columns
-                ) / (columns);
+            var elements = scope.page.view.elements,
+                $page = elements.$page,
+                $widgets = elements.$widgets;
+
+            var pl = $widgets.getPaddingLeft(),
+                pr = $widgets.getPaddingRight(),
+                ml = $widgets.getMarginLeft(),
+                mr = $widgets.getMarginRight();
+
+            var width = $page.getWidth() - pl - pr - ml - mr;
+
+            config.minCellWidth = (width - margin * columns) / columns;
 
             this.scope.page.logger.info('Calculated cell size (px)', config.minCellWidth);
             return config.minCellWidth;
