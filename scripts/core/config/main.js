@@ -3,7 +3,7 @@ requirejs.config({
     paths: {
         config: 'config',
         jquery: 'lib/jquery/jquery-1.9.1.min',
-        jqueryui: 'lib/jquery/jquery-ui-1.10.0.custom.min',
+        jqueryui: 'lib/jquery/jquery-ui-1.10.1.custom.min',
         application: 'application',
         controller: 'controller',
         model: 'model',
