@@ -118,6 +118,10 @@ define([
                     left: left
                 };
 
+            $(this.selector).
+                append($('<div />').addClass('column')).
+                append($('<div />').addClass('row'));
+
             for (column; column < grid.columns; column += 1) {
                 this.renderColumn(column, opts);
             }
@@ -131,14 +135,14 @@ define([
          * @param {{left, cell, margin, top}} opts
          */
         renderColumn: function renderColumn(column, opts) {
-            this.renderPlaceHolder({
-                background: 'red',
-                width: opts.cell,
-                height: '100%',
-                top: opts.top,
-                left: (opts.cell + opts.margin) * column + opts.left,
-                text: column
-            });
+            this.renderPlaceHolder(
+                this.selector + ' .column', {
+                    width: opts.cell,
+                    top: opts.top,
+                    left: (opts.cell + opts.margin) * column + opts.left,
+                    text: column
+                }
+            );
         },
         /**
          * Render row
@@ -146,28 +150,28 @@ define([
          * @param {{left, cell, margin, top}} opts
          */
         renderRow: function renderRow(row, opts) {
-            this.renderPlaceHolder({
-                background: 'green',
-                left: opts.left,
-                top: (opts.cell + opts.margin) * row + opts.top,
-                width: '100%',
-                height: opts.cell,
-                text: row
-            });
+            this.renderPlaceHolder(
+                this.selector + ' .row', {
+                    left: opts.left,
+                    top: (opts.cell + opts.margin) * row + opts.top,
+                    height: opts.cell,
+                    text: row
+                }
+            );
         },
         /**
          * Append grid to placeholder
-         * @param {{left, top, width, height, background, text}}opts
+         * @param {string} selector
+         * @param {{left, top, (width), (height), text}}opts
          */
-        renderPlaceHolder: function renderPlaceHolder(opts) {
+        renderPlaceHolder: function renderPlaceHolder(selector, opts) {
             opts = this.base.define(opts, {}, true);
-            $(this.selector).append(
+            $(selector).append(
                 $('<div />').css({
                     left: opts.left,
                     top: opts.top,
-                    width: opts.width,
-                    height: opts.height,
-                    background: opts.background
+                    width: opts.width || '100%',
+                    height: opts.height || '100%'
                 }).text(opts.text)
             ).show()
         }
