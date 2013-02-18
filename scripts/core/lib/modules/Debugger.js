@@ -20,9 +20,9 @@ define([
 
         this.scope = scope;
         this.selector = '#placeholders';
+        this.rows = 25;
 
-//        this.workspace =
-
+        this.defineScope();
     };
 
     return Debugger.extend({
@@ -60,17 +60,13 @@ define([
          */
         showGrid: function showGrid() {
             this.destroyGrid();
-            this.widget.debug.checkAndPlaceGrid();
-            this.page.layout.debug = true;
-            this.page.layout.development.log('Show grid');
+            this.checkAndPlaceGrid();
         },
         /**
          * Destroy grid
          */
         destroyGrid: function destroyGrid() {
             $(this.selector).html('');
-            this.page.layout.debug = false;
-            this.page.layout.development.log('Destroy grid');
         },
         /**
          * Create placeholder
@@ -100,60 +96,84 @@ define([
          * Render grid
          */
         checkAndPlaceGrid: function checkAndPlaceGrid() {
+            var scope = this.scope;
             if ($(this.selector + ' > *').length > 0) {
-                this.scope.logger.info('Grid already activated', this.scope);
+                scope.logger.info('Grid already activated', scope);
                 return false;
             }
             this.movePlaceHoldersToCurrentPage();
-            var column = 0,
-                row = 0,
-                rowsNumber = 20;
-            for (column; column < this.page.layout.config.grid.columns; column++) {
-                this.debug.renderPlaceHolder(column, -1);
+
+            var column = 0, row = 0,
+                grid = this.page.layout.config.grid,
+                cell = grid.minCellWidth,
+                margin = grid.margin;
+
+            var $widgets = this.page.view.elements.$widgets,
+                top = $widgets.getPaddingTop() + $widgets.getMarginTop(),
+                left = $widgets.getPaddingLeft() + $widgets.getMarginLeft(),
+                opts = {
+                    cell: cell,
+                    margin: margin,
+                    top: top,
+                    left: left
+                };
+
+            $(this.selector).
+                append($('<div />').addClass('column')).
+                append($('<div />').addClass('row'));
+
+            for (column; column < grid.columns; column += 1) {
+                this.renderColumn(column, opts);
             }
-            for (row; row < rowsNumber; row++) {
-                this.widget.debug.renderPlaceHolder(-1, row);
+            for (row; row < this.rows; row += 1) {
+                this.renderRow(row, opts);
             }
         },
-        renderColumn: function renderColumn(column) {
-            this.renderPlaceHolder({
-                background: 'red',
-                width: this.page.layout.config.grid.minCellWidth,
-                height: '100%',
-                top: 0,
-                left: 0,
-                text: column
-            });
+        /**
+         * Render column
+         * @param {number} column
+         * @param {{left, cell, margin, top}} opts
+         */
+        renderColumn: function renderColumn(column, opts) {
+            this.renderPlaceHolder(
+                this.selector + ' .column', {
+                    width: opts.cell,
+                    top: opts.top,
+                    left: (opts.cell + opts.margin) * column + opts.left,
+                    text: column
+                }
+            );
         },
-        renderRow: function renderRow(row) {
-            this.renderPlaceHolder({
-                background: 'green',
-                left: this.page.layout.config.html.margin,
-                top: pos.top,
-                width: '100%',
-                height: this.page.layout.config.grid.minCellWidth,
-                text: row
-            });
+        /**
+         * Render row
+         * @param {number} row
+         * @param {{left, cell, margin, top}} opts
+         */
+        renderRow: function renderRow(row, opts) {
+            this.renderPlaceHolder(
+                this.selector + ' .row', {
+                    left: opts.left,
+                    top: (opts.cell + opts.margin) * row + opts.top,
+                    height: opts.cell,
+                    text: row
+                }
+            );
         },
         /**
          * Append grid to placeholder
-         * @param opts
+         * @param {string} selector
+         * @param {{left, top, (width), (height), text}}opts
          */
-        renderPlaceHolder: function renderPlaceHolder(opts) {
+        renderPlaceHolder: function renderPlaceHolder(selector, opts) {
             opts = this.base.define(opts, {}, true);
-            this.page.layout.page.view.$page.$.prepend(
-                $(this.selector).append(
-                    $('<div />').css({
-                        left: opts.left,
-                        top: opts.top,
-                        opacity: 0.2,
-                        width: opts.width,
-                        height: opts.height,
-                        position: 'absolute',
-                        background: opts.background
-                    }).text(text)
-                ).show()
-            );
+            $(selector).append(
+                $('<div />').css({
+                    left: opts.left,
+                    top: opts.top,
+                    width: opts.width || '100%',
+                    height: opts.height || '100%'
+                }).text(opts.text)
+            ).show()
         }
     }, Base);
 });

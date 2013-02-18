@@ -136,6 +136,41 @@ define([
             });
 
             return this.getHeight();
+        },
+
+        getCSS: function getCSS(value) {
+            return this.base.lib.number.str2int(this.$.css(value));
+        },
+        getPaddingRight: function getPaddingRight() {
+            return this.getCSS('paddingRight');
+        },
+
+        getPaddingLeft: function getPaddingLeft() {
+            return this.getCSS('paddingLeft');
+        },
+
+        getPaddingTop: function getPaddingTop() {
+            return this.getCSS('paddingTop');
+        },
+
+        getPaddingBottom: function getPaddingBottom() {
+            return this.getCSS('paddingBottom');
+        },
+
+        getMarginRight: function getMarginRight() {
+            return this.getCSS('marginRight');
+        },
+
+        getMarginLeft: function getMarginLeft() {
+            return this.getCSS('marginLeft');
+        },
+
+        getMarginTop: function getMarginTop() {
+            return this.getCSS('marginTop');
+        },
+
+        getMarginBottom: function getMarginBottom() {
+            return this.getCSS('marginBottom');
         }
 
     }, Base);

@@ -2,6 +2,7 @@
 @import url("workspace.css");
 @import url("page.css");
 @import url("widget.css");
+@import url("debugger.css");
 
 html, body {
     overflow: hidden;
@@ -9,7 +10,7 @@ html, body {
 
 html, body, .app,
 .workspaces, .workspace,
-.pages, .page, .widgets {
+.pages, .page {
     height: 100%;
     width: 100%;
     position: absolute;
@@ -24,7 +25,5 @@ html, body, .app,
 }
 
 .workspace, .page {
-    float: left;
     display: block;
-    position: absolute;
 }
