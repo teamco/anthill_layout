@@ -163,8 +163,9 @@
 
     /**
      * String to CamelCase by dot separator
-     * @param {string} separator
-     * @returns {string}
+     * @member {Function} String
+     * @param {String} (separator)
+     * @returns {String}
      */
     String.prototype.toCamel = function toCamel(separator) {
         return this.replace(/(\.[a-z])/g, function ($1) {
@@ -174,7 +175,8 @@
 
     /**
      * String from CamelCase to point separator
-     * @returns {string}
+     * @member {Function} String
+     * @returns {String}
      */
     String.prototype.toPoint = function toPoint() {
         return this.replace(/([A-Z])/g, function ($1) {

@@ -19,7 +19,9 @@ define([
             initResize: 'init.resize',
             enableResize: 'enable.resize',
             disableResize: 'disable.resize',
-            destroyResize: 'destroy.resize'
+            destroyResize: 'destroy.resize',
+            debugStart: 'debug.start',
+            debugEnd: 'debug.end'
         };
     };
 

@@ -20,27 +20,42 @@ define([
 
     return Observer.extend({
 
+        /**
+         * Get events list
+         * @member {Function} Observer
+         * @returns {*}
+         */
         getEventList: function getEventList() {
             return this.scope.eventmanager.events;
         },
-
+        /**
+         * Get event UUID
+         * @member {Function} Observer
+         * @param {String} eventName
+         * @returns {Array}
+         */
         getEventUUID: function getEventUUID(eventName) {
             var index, uuid = [];
             for (index in this.listeners) {
                 if (this.listeners.hasOwnProperty(index)) {
-                    var event = this.listeners[index];
-                    if (event.eventName === eventName) {
-                        uuid.push(index);
+                    var events = this.listeners[index],
+                        event, i = 0, l = events.length;
+
+                    for (i; i < l; i += 1) {
+                        event = events[i];
+                        if (event.eventName === eventName) {
+                            uuid.push(event.eventUUID);
+                        }
                     }
                 }
             }
             return uuid;
         },
-
         /**
-         * @member Observable
-         * @param eventUUID
-         * @return {*}
+         * Get event name
+         * @member {Function} Observer
+         * @param {String} eventUUID
+         * @return {{}}
          */
         getEventName: function getEventName(eventUUID) {
             return this.scope.eventmanager.events[eventUUID];
@@ -48,12 +63,12 @@ define([
 
         /**
          * Execute function after specific timeout
-         * @member Observer
-         * @param msTimeout
-         * @param fnCallback
-         * @param thisScope
-         * @param args
-         * @return timeoutObject
+         * @member {Function} Observer
+         * @param {Function} fnCallback
+         * @param {Number} [msTimeout]
+         * @param {*} [thisScope]
+         * @param {Array} [args]
+         * @return {*}
          */
         defer: function defer(msTimeout, fnCallback, thisScope, args) {
             msTimeout = this.base.define(msTimeout, 0.01);
@@ -62,7 +77,7 @@ define([
                 fnCallback.apply(thisScope, args);
                 return 0;
             } else {
-                var bound = function () {
+                var bound = function bound() {
                     return fnCallback.apply(thisScope || window, args);
                 };
                 return window.setTimeout(bound, msTimeout);
@@ -70,9 +85,10 @@ define([
         },
 
         /**
-         * @member Observer
-         * @param eventName
-         * @return {*}
+         * Add event
+         * @member {Function} Observer
+         * @param {String} eventName
+         * @return {{}}
          */
         addEvent: function addEvent(eventName) {
             this.listeners[eventName] = this.base.define(this.listeners[eventName], []);
@@ -80,34 +96,38 @@ define([
         },
 
         /**
-         * @member Observer
-         * @param eventName
+         * Remove event
+         * @member {Function} Observer
+         * @param {String} eventName
          */
         removeEvent: function removeEvent(eventName) {
             delete this.listeners[eventName];
         },
 
         /**
-         * @member Observer
-         * @param opts
-         * @return {*}
+         * On event
+         * @member {String} Observer
+         * @param {{eventUUID, params, state, priority, eventName}} opts
+         * @return {String}
          */
         onEvent: function onEvent(opts) {
-            opts = this.base.define(opts, {}, true);
-            opts.eventUUID = this.base.lib.generator.UUID();
-            opts.params = this.base.define(opts.params, {}, true);
+            var base = this.base;
+            opts = base.define(opts, {}, true);
+            opts.eventUUID = base.lib.generator.UUID();
+            opts.params = base.define(opts.params, {}, true);
             opts.state = {};
             // Default: normal,
             // high, low
-            var priority = this.base.define(opts.priority, 'normal');
+            var priority = base.define(opts.priority, 'normal');
             this.listeners[opts.eventName].push(opts);
             return opts.eventUUID;
         },
 
         /**
-         * @member Observer
-         * @param eventName
-         * @param eventUUID
+         * Un event
+         * @member {Function} Observer
+         * @param {String} eventName
+         * @param {String} eventUUID
          * @return {Boolean}
          */
         unEvent: function unEvent(eventName, eventUUID) {
@@ -117,11 +137,17 @@ define([
                 if (this.listeners[eventName][i].eventUUID === eventUUID) {
                     delete this.listeners[eventName][i];
                     this.listeners[eventName].splice(i, 1);
-                    delete this[this.scopeName].eventManager.events[eventUUID];
-                    return true;
+                    delete this.scope.eventmanager.events[eventUUID];
+                    this.scope.logger.info(
+                        'Successfully deleted event',
+                        [eventName, eventUUID]
+                    );
                 }
             }
-            return false;
+            this.scope.logger.warn(
+                'Unable to delete undefined event',
+                [eventName, eventUUID]
+            );
         },
 
         /**
@@ -132,9 +158,10 @@ define([
         },
 
         /**
-         * @member Observer
-         * @param eventName
-         * @param args
+         * Publish event
+         * @member {Function} Observer
+         * @param {String} eventName
+         * @param {Array} [args]
          */
         publish: function publish(eventName, args) {
             var base = this.base,
@@ -153,9 +180,10 @@ define([
         },
 
         /**
-         * @member Observer
-         * @param events
-         * @param args
+         * Fire event
+         * @member {Function} Observer
+         * @param {Array} events
+         * @param {Array} [args]
          * @return {Boolean}
          */
         fireEvent: function fireEvent(events, args) {
@@ -174,9 +202,9 @@ define([
 
         /**
          * Execute event
-         * @member Observer
-         * @param scope // Run callback in default scope
-         * @param opts => {
+         * @member {Function} Observer
+         * @param {*} [scope] // Run callback in default scope
+         * @param {{state, callback, scope, params}} opts => {
          *      state: internal hash (private),
          *      callback: fn(),
          *      scope: Override default scope,
@@ -187,7 +215,7 @@ define([
          *          delay: timeout (ms)     // Run after timeout
          *      }
          * }
-         * @param args => [
+         * @param {Array} [args] => [
          *      callback params
          * ]
          * @return
@@ -253,7 +281,7 @@ define([
                 executeCallback = function executeCallback() {
                     opts.state.inTimeout = true;
 
-                    this.defer(opts.params.timeout, function () {
+                    this.defer(opts.params.timeout, function deferCallback() {
 
                         var currentTime = this.base.timestamp();
                         var triggerTime = opts.state.lastCallAt + opts.params.timeout;

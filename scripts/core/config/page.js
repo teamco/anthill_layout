@@ -8,7 +8,6 @@
 
 define([
     'modules/base',
-    'modules/debugger',
     'modules/mvc',
     'controller/page.controller',
     'model/page.model',
@@ -16,7 +15,7 @@ define([
     'event/page.event.manager',
     'config/layout',
     'config/template'
-], function definePage(Base, Debugger, MVC, Controller, Model, View, EventManager, Layout, Template) {
+], function definePage(Base, MVC, Controller, Model, View, EventManager, Layout, Template) {
     /**
      * Define Page
      * @param opts
@@ -71,12 +70,6 @@ define([
             ],
             render: true
         });
-
-        /**
-         * Define debugger
-         * @type {modules.debugger}
-         */
-        this.debugger = new Debugger(this);
 
         this.observer.publish(
             this.eventmanager.eventList.createLayout,

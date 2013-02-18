@@ -7,9 +7,11 @@
  */
 
 define([
+    'modules/debugger',
     'config/workspace',
-    'config/page'
-], function defineListeners(Workspace, Page) {
+    'config/page',
+    'config/widget'
+], function defineListeners(Debugger, Workspace, Page, Widget) {
 
     Workspace.prototype.globalListeners = {
         createPage: {
@@ -25,6 +27,29 @@ define([
             name: 'create.widget',
             callback: function createWidgetCallback() {
                 this.observer.publish(this.eventmanager.eventList.setPageHeight);
+            }
+        },
+        debugStart: {
+            name: 'debug.start',
+            callback: function debugStartCallback() {
+                /**
+                 * Define Debugger
+                 * @type {modules.debugger}
+                 */
+                this.debugger = new Debugger(this);
+            }
+        }
+    };
+
+    Widget.prototype.globalListeners = {
+        debugStart: {
+            name: 'debug.start',
+            callback: function debugStartCallback() {
+                /**
+                 * Define Debugger
+                 * @type {modules.debugger}
+                 */
+                this.debugger = new Debugger(this);
             }
         }
     };

@@ -222,46 +222,44 @@ define([
                                     callback = scope.controller[key + 'Items'];
                                 } else {
                                     this.scope.logger.warn(
-                                        'Undefined Event Callback',
-                                        [
+                                        'Undefined Event Callback', [
                                             scope.controller,
                                             key + method
-                                        ]
-                                    );
+                                        ]);
                                 }
                             }
                         }
 
                         eventManager.subscribe({
-                            eventName: event,
+                            event: event,
                             callback: callback
-                        });
+                        }, true);
                     }
                 }
 
                 eventManager.subscribe({
-                    eventName: 'before.init.config',
+                    event: 'before.init.config',
                     callback: scope.controller.getConfigLog
-                });
+                }, true);
 
                 eventManager.subscribe({
-                    eventName: 'after.init.config',
+                    event: 'after.init.config',
                     callback: scope.controller.getConfigLog
-                });
+                }, true);
 
                 eventManager.subscribe({
-                    eventName: 'success.created',
+                    event: 'success.created',
                     callback: scope.controller.successCreated
-                });
+                }, true);
 
                 if (typeof scope.globalListeners === 'object') {
                     for (index in scope.globalListeners) {
                         if (scope.globalListeners.hasOwnProperty(index)) {
                             event = scope.globalListeners[index];
                             eventManager.subscribe({
-                                eventName: event.name,
+                                event: event.name,
                                 callback: event.callback
-                            });
+                            }, false);
                         }
                     }
                 }
