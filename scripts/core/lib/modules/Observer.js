@@ -6,11 +6,6 @@
  * Project: JetBrains RubyMine
  **/
 
-/**
- * @member Observer
- * @param scope
- * @constructor
- */
 define([
     'modules/base'
 ], function defineObserver(Base) {
@@ -161,7 +156,7 @@ define([
          * Publish event
          * @member {Function} Observer
          * @param {String} eventName
-         * @param {Array} [args]
+         * @param {*} [args]
          */
         publish: function publish(eventName, args) {
             var base = this.base,

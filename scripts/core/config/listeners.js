@@ -8,12 +8,29 @@
 
 define([
     'modules/debugger',
+    'config/application',
     'config/workspace',
     'config/page',
     'config/widget'
-], function defineListeners(Debugger, Workspace, Page, Widget) {
+], function defineListeners(Debugger, Application, Workspace, Page, Widget) {
+
+    Application.prototype.globalListeners = {
+        successRendered: {
+            name: "success.rendered",
+            callback: function successRenderedCallback() {
+                this.view.renderApplication();
+                this.view.debug();
+            }
+        }
+    };
 
     Workspace.prototype.globalListeners = {
+        successRendered: {
+            name: "success.rendered",
+            callback: function successRenderedCallback() {
+                this.view.renderWorkspace();
+            }
+        },
         createPage: {
             name: 'create.page',
             callback: function createPageCallback() {
@@ -23,6 +40,13 @@ define([
     };
 
     Page.prototype.globalListeners = {
+        successRendered: {
+            name: "success.rendered",
+            callback: function successRenderedCallback() {
+                this.view.renderPage();
+                this.controller.updateLayout();
+            }
+        },
         createWidget: {
             name: 'create.widget',
             callback: function createWidgetCallback() {
@@ -42,16 +66,14 @@ define([
     };
 
     Widget.prototype.globalListeners = {
-        debugStart: {
-            name: 'debug.start',
-            callback: function debugStartCallback() {
-                /**
-                 * Define Debugger
-                 * @type {modules.debugger}
-                 */
-                this.debugger = new Debugger(this);
+        successRendered: {
+            name: "success.rendered",
+            callback: function successRenderedCallback() {
+                this.view.renderWidget();
+                this.controller.setupInteractions();
             }
         }
+
     };
 
 });

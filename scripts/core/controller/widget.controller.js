@@ -48,12 +48,6 @@ define([
         },
         destroyResize: function destroyResize() {
             this.interactions.draggable.destroy();
-        },
-        debugStart: function debugStart() {
-            this.logger.debug('Define debugger');
-        },
-        debugEnd: function debugEnd() {
-            this.logger.debug('Destroy debugger');
         }
 
     }, BaseController.prototype);

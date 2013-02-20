@@ -12,14 +12,14 @@ define([
     'element/header',
     'element/footer',
     'element/workspace/content'
-], function defineWorkspaceView(BaseView, Workspace, Header, Footer, PageContainer){
+], function defineWorkspaceView(BaseView, Workspace, Header, Footer, PageContainer) {
 
     var View = function View() {
         this.elements = {};
     };
 
     return View.extend({
-        workspace: function workspace() {
+        renderWorkspace: function renderWorkspace() {
             this.elements.$workspace = new Workspace(this, {
                 id: this.createId(),
                 style: this.getContainerClassName(),
@@ -38,7 +38,7 @@ define([
             });
         },
         render: function render() {
-            this.workspace();
+            this.scope.observer.publish(this.scope.eventmanager.eventList.successRendered);
         }
     }, BaseView.prototype)
 

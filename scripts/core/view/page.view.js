@@ -20,7 +20,10 @@ define([
     };
 
     return View.extend({
-        page: function page() {
+        /**
+         * Render Page
+         */
+        renderPage: function renderPage() {
             this.elements.$page = new Page(this, {
                 id: this.createId(),
                 style: this.getContainerClassName(),
@@ -46,8 +49,7 @@ define([
             });
         },
         render: function render() {
-            this.page();
-            this.controller.updateLayout();
+            this.scope.observer.publish(this.scope.eventmanager.eventList.successRendered);
         }
     }, BaseView.prototype)
 

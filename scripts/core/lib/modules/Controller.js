@@ -9,14 +9,27 @@
 define([
     'modules/base'
 ], function defineBaseController(Base) {
+
+    /**
+     * Base Controller
+     * @constructor BaseController
+     */
     var BaseController = function BaseController() {
 
     };
 
     return BaseController.extend({
+        /**
+         * Get Config Logger
+         * @param {String} log
+         * @param {Object} hash
+         */
         getConfigLog: function getConfigLog(log, hash) {
             this.logger.debug(log, hash);
         },
+        /**
+         * Success Created
+         */
         successCreated: function successCreated() {
             this.logger.debug(
                 this.constructor.getConstructorName() +
@@ -24,6 +37,20 @@ define([
                 this
             );
         },
+        /**
+         * Success Rendered
+         */
+        successRendered: function successRendered() {
+            this.logger.debug(
+                this.constructor.getConstructorName() +
+                    ' was successfully rendered',
+                this
+            );
+        },
+        /**
+         * Set Order
+         * @param collector
+         */
         setOrder: function setOrder(collector) {
             var scope = this.scope,
                 base = this.base;
@@ -32,17 +59,27 @@ define([
                 base.lib.hash.hashLength(collector)
             );
         },
+        /**
+         * Extend Config
+         * @param {{}} opts
+         * @returns {*}
+         */
         extendConfig: function extendConfig(opts) {
+            var scope = this.scope;
             return this.base.lib.hash.extendHash({
                 html: {
                     container: [
-                        '#', this.scope.model.getUUID(),
-                        '-', this.scope.constructor.getConstructorName().toLowerCase()
+                        '#', scope.model.getUUID(),
+                        '-', scope.constructor.getConstructorName().toLowerCase()
                     ].join('')
                 },
-                parent: this.scope
+                parent: scope
             }, opts);
         },
+        /**
+         * Create Item
+         * @param {{}} opts
+         */
         createItem: function createItem(opts) {
             var item = this.model.createItem(
                 this.controller.extendConfig(opts)
@@ -53,6 +90,10 @@ define([
                 item
             );
         },
+        /**
+         * Destroy Item
+         * @param {Object} item
+         */
         destroyItem: function destroyItem(item) {
             var items = this.model.destroyItem(item);
             this.logger.info(
@@ -61,6 +102,9 @@ define([
                 items
             );
         },
+        /**
+         * Destroy Items
+         */
         destroyItems: function destroyItems() {
             var items = this.model.destroyItems();
             this.logger.info(
@@ -68,10 +112,21 @@ define([
                 items
             );
         },
+        /**
+         * Set Interaction
+         * @param {String} event
+         * @param {Function} callback
+         * @returns {*}
+         */
         setInteraction: function setInteraction(event, callback) {
             this.scope.interactions[event] = callback;
             return this.getInteraction(event);
         },
+        /**
+         * Get Interaction
+         * @param {String} event
+         * @returns {*}
+         */
         getInteraction: function getInteraction(event) {
             return this.scope.interactions[event];
         }

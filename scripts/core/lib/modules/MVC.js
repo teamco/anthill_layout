@@ -19,6 +19,7 @@ define([
      */
     var MVC = function MVC(opts) {
 
+        // TODO
         this.base = this.base;
 
         var base = this.base;
@@ -250,6 +251,11 @@ define([
                 eventManager.subscribe({
                     event: 'success.created',
                     callback: scope.controller.successCreated
+                }, true);
+
+                eventManager.subscribe({
+                    event: 'success.rendered',
+                    callback: scope.controller.successRendered
                 }, true);
 
                 if (typeof scope.globalListeners === 'object') {

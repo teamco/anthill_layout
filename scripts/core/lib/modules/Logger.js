@@ -11,19 +11,37 @@ define([
     'modules/base'
 ], function defineLog($, Base) {
 
+    /**
+     * Logger
+     * @constructor Logger
+     */
     var Logger = function Logger() {
     };
 
     return Logger.extend({
+        /**
+         * Show Log
+         * @returns {boolean}
+         */
         showLog: function showLog() {
             return this.config.show;
         },
+        /**
+         * Get Development Mode {true/false}
+         * @returns {boolean}
+         */
         developmentMode: function developmentMode() {
             return this.config.development;
         },
+        /**
+         * Puts (internal function)
+         * @param {string} type
+         * @returns {boolean}
+         */
         puts: function puts(type) {
             var console = window.console,
                 content = [],
+                hash = {},
                 base = this.base,
                 config = this.config,
                 scope = this.scope,
@@ -50,7 +68,6 @@ define([
                     }
 
                     if (base.isDefined(console[type])) {
-                        var hash = {};
                         hash[type] = args;
                         content.push(hash);
                     } else {
@@ -68,7 +85,8 @@ define([
                 }
             }
 
-            var i = 0, l = content.length;
+            i = 0;
+            var l = content.length;
 
             if (l === 0) {
                 return false;
@@ -76,8 +94,8 @@ define([
 
             console.groupCollapsed(scope);
             for (i; i < l; i += 1) {
-                var hash = content[i],
-                    k = base.lib.hash.firstHashKey(hash);
+                hash = content[i];
+                var k = base.lib.hash.firstHashKey(hash);
                 console[k](hash[k]);
             }
             console.info('timestamp', base.lib.datetime.timestamp());
@@ -85,6 +103,11 @@ define([
 
             return true;
         },
+        /**
+         * Timer
+         * @param {string} name
+         * @param {boolean} start
+         */
         timer: function timer(name, start) {
 
             var console = window.console,
@@ -101,6 +124,9 @@ define([
                     console.timeEnd(name);
             }
         },
+        /**
+         * Define available logs
+         */
         defineLogs: function defineLogs() {
             var base = this.base,
                 availableLogs = base.lib.hash.hashKeys(

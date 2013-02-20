@@ -19,7 +19,6 @@ define([
 
     window.app.observer.publish(window.app.eventmanager.eventList.createWorkspace);
     window.app.workspace.view.render();
-
     window.app.workspace.observer.publish(window.app.workspace.eventmanager.eventList.createPage);
     window.app.workspace.page.view.render();
 

@@ -19,7 +19,7 @@ define([
     };
 
     return View.extend({
-        widget: function widget() {
+        renderWidget: function renderWidget() {
             this.elements.$widget = new Widget(this, {
                 id: this.createId(),
                 style: this.getContainerClassName(),
@@ -36,8 +36,7 @@ define([
             });
         },
         render: function render() {
-            this.widget();
-            this.scope.controller.setupInteractions();
+            this.scope.observer.publish(this.scope.eventmanager.eventList.successRendered);
         }
     }, BaseView.prototype)
 
