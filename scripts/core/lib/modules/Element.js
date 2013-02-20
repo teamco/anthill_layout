@@ -21,9 +21,13 @@ define([
                 this.constructor.getConstructorName().toDash());
         },
         bindEvents: function bindEvents() {
-            var scope = this.scope;
+            var scope = this.view.scope;
             this.events = this.base.define(this.events, [], true);
             $.each(this.events, function each(index, event) {
+                if (!scope.controller.hasOwnProperty(event.toCamel())) {
+                    scope.logger.warn('Undefined event', event.toCamel());
+                    return false;
+                }
                 this.$.on(event, scope.controller[event.toCamel()].bind(scope.controller));
             }.bind(this));
         },
