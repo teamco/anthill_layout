@@ -21,14 +21,17 @@ define([
                 this.constructor.getConstructorName().toDash());
         },
         bindEvents: function bindEvents() {
-            var scope = this.view.scope;
+            var scope = this.view.scope,
+                controller = scope.controller,
+                method;
             this.events = this.base.define(this.events, [], true);
             $.each(this.events, function each(index, event) {
-                if (!scope.controller.hasOwnProperty(event.toCamel())) {
-                    scope.logger.warn('Undefined event', event.toCamel());
+                method = event.toCamel();
+                if (!this.base.isDefined(controller[method])) {
+                    scope.logger.warn('Undefined method', method);
                     return false;
                 }
-                this.$.on(event, scope.controller[event.toCamel()].bind(scope.controller));
+                this.$.on(event, controller[method].bind(controller));
             }.bind(this));
         },
         destroyB4Create: function destroyB4Create(destroy) {

@@ -67,15 +67,25 @@ define([
         isDevelopmentMode: function isDevelopmentMode() {
             return this.scope.logger.config.development;
         },
-        defineAbstractDebugger: function defineAbstractDebugger() {
+        /**
+         * Define scope in app.debugger
+         * @param {boolean} isWidget
+         */
+        defineAbstractDebugger: function defineAbstractDebugger(isWidget) {
             var scope = this.scope,
+                base = this.base,
                 parent = scope.config.parent;
+
+            isWidget = base.defineBoolean(isWidget, false, true);
             scope.debugger = parent.debugger;
-            if (this.base.isDefined(scope.debugger)) {
+            if (base.isDefined(scope.debugger)) {
                 scope.debugger.defineScope(scope);
             }
             if (parent.config.hasOwnProperty('parent')) {
                 delete parent.debugger;
+            }
+            if (isWidget) {
+                delete scope.debugger;
             }
         },
         /**

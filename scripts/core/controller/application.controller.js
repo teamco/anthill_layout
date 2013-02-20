@@ -17,6 +17,9 @@ define([
         },
         debugEnd: function debugEnd() {
             this.logger.debug('Destroy debugger');
+        },
+        clickDefineDebugger: function clickDefineDebugger() {
+
         }
     }, BaseController.prototype);
 

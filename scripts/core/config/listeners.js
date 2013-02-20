@@ -85,7 +85,7 @@ define([
         successCreated: {
             name: "success.created",
             callback: function successCreatedCallback() {
-                this.controller.defineAbstractDebugger();
+                this.controller.defineAbstractDebugger(true);
             }
         },
         successRendered: {
