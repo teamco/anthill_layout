@@ -33,6 +33,21 @@ define([
                     'Undefined ' + node.constructor.getConstructorName() :
                 this.getConfig().uuid;
         },
+        /**
+         * Get Item constructor name
+         * @returns {string}
+         */
+        getItemNamespace: function getItemNamespace() {
+            var scope = this.scope,
+                hash = this.base.lib.hash,
+                item = {};
+            if (scope.hasOwnProperty('items')) {
+                if (hash.hashLength(scope.items) > 0) {
+                    item = hash.firstHashElement(scope.items);
+                }
+            }
+            return item.constructor.getConstructorName().toLowerCase();
+        },
         getOrder: function getOrder() {
             return this.getConfig().order;
         },

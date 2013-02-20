@@ -12,6 +12,12 @@ define([
     };
 
     return Controller.extend({
+        debugStart: function debugStart() {
+            this.logger.warn('Define debugger');
+        },
+        debugEnd: function debugEnd() {
+            this.logger.debug('Destroy debugger');
+        }
     }, BaseController.prototype);
 
 });

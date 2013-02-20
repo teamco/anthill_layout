@@ -14,7 +14,9 @@ define([
         this.eventList = {
             createWorkspace: 'create.workspace',
             destroyWorkspace: 'destroy.workspace',
-            destroyWorkspaces: 'destroy.workspaces'
+            destroyWorkspaces: 'destroy.workspaces',
+            debugStart: 'debug.start',
+            debugEnd: 'debug.end'
         };
     };
 

@@ -33,25 +33,13 @@ define([
         defineScope: function defineScope() {
             var scope = this.scope.constructor.getConstructorName();
 
-            if (scope === 'Workspace') {
-                this.workspace = this.scope;
-                this.page = this.workspace.controller.getCurrentPage();
-                this.widget = this.page.widget;
+            if (scope === 'App') {
+                this.workspace = this.scope.controller.getCurrentItem();
+                this.page = this.workspace.controller.getCurrentItem();
+                this.widget = this.page.controller.getCurrentItem();
                 return this;
-            }
-
-            if (scope === 'Page') {
-                this.page = this.scope;
-                this.workspace = this.page.config.parent;
-                this.widget = this.page.widget;
-                return this;
-            }
-
-            if (scope === 'Widget') {
-                this.widget = this.scope;
-                this.page = this.widget.config.parent;
-                this.workspace = this.page.config.parent;
-                return this;
+            } else {
+                this.scope.warn('Undefined scope', scope);
             }
 
         },

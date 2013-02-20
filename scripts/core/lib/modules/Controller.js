@@ -47,6 +47,19 @@ define([
                 this
             );
         },
+        getCurrentItem: function getCurrentItem() {
+            var scope = this.scope,
+                item = scope.model.getItemNamespace();
+            if (item === 'object') {
+                scope.logger.warn('Unable to locate current item');
+            }
+            return scope[scope.model.getItemNamespace()];
+        },
+        setCurrentItem: function setCurrentItem(item) {
+            var scope = this.scope;
+            scope[scope.model.getItemNamespace()] = item;
+            return this.getCurrentItem();
+        },
         /**
          * Set Order
          * @param collector

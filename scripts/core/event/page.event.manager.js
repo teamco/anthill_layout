@@ -19,9 +19,7 @@ define([
             destroyLayout: 'destroy.layout',
             createTemplate: 'create.template',
             destroyTemplate: 'destroy.template',
-            setPageHeight: 'set.page.height',
-            debugStart: 'debug.start',
-            debugEnd: 'debug.end'
+            setPageHeight: 'set.page.height'
         };
     };
 

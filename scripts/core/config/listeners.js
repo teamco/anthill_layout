@@ -21,6 +21,16 @@ define([
                 this.view.renderApplication();
                 this.view.debug();
             }
+        },
+        debugStart: {
+            name: 'debug.start',
+            callback: function debugStartCallback() {
+                /**
+                 * Define Debugger
+                 * @type {modules.debugger}
+                 */
+                this.debugger = new Debugger(this);
+            }
         }
     };
 
@@ -51,16 +61,6 @@ define([
             name: 'create.widget',
             callback: function createWidgetCallback() {
                 this.observer.publish(this.eventmanager.eventList.setPageHeight);
-            }
-        },
-        debugStart: {
-            name: 'debug.start',
-            callback: function debugStartCallback() {
-                /**
-                 * Define Debugger
-                 * @type {modules.debugger}
-                 */
-                this.debugger = new Debugger(this);
             }
         }
     };
