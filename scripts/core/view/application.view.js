@@ -52,7 +52,8 @@ define([
         debug: function debug() {
             this.elements.$debugger = new Debugger(this, {
                 $container: this.elements.$application.$,
-                style: 'debugger'
+                style: 'debugger',
+                events: ['click.defineDebugger']
             });
         },
         /**

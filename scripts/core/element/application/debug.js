@@ -30,10 +30,16 @@ define([
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;
+            this.events = opts.events;
             this.id = this.renderUUID(opts.id);
             this.$ = $('<div />').attr({
                 id: opts.id
-            }).addClass(this.style);
+            }).addClass(this.style).
+                append(
+                    $('<div />')
+                );
+
+            this.bindEvents();
 
             return this;
         }

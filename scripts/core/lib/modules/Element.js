@@ -20,6 +20,13 @@ define([
             return id || (this.base.lib.generator.UUID() +
                 this.constructor.getConstructorName().toDash());
         },
+        bindEvents: function bindEvents() {
+            var scope = this.scope;
+            this.events = this.base.define(this.events, [], true);
+            $.each(this.events, function each(index, event) {
+                this.$.on(event, scope.controller[event.toCamel()].bind(scope.controller));
+            }.bind(this));
+        },
         destroyB4Create: function destroyB4Create(destroy) {
             var $container = this.$container;
 
