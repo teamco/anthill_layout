@@ -53,7 +53,11 @@ define([
          * @return {{}}
          */
         getEventName: function getEventName(eventUUID) {
-            return this.scope.eventmanager.events[eventUUID];
+            var events = this.getEventList();
+            if (events.hasOwnProperty(eventUUID)) {
+                return events[eventUUID];
+            }
+            this.scope.logger.warn('Undefined event UUID', eventUUID);
         },
 
         /**
@@ -86,8 +90,9 @@ define([
          * @return {{}}
          */
         addEvent: function addEvent(eventName) {
-            this.listeners[eventName] = this.base.define(this.listeners[eventName], []);
-            return this.listeners[eventName];
+            var listeners = this.listeners;
+            listeners[eventName] = this.base.define(listeners[eventName], []);
+            return listeners[eventName];
         },
 
         /**

@@ -22,7 +22,6 @@ define([
         this.selector = '#placeholders';
         this.rows = 25;
 
-        this.defineScope();
     };
 
     return Debugger.extend({
@@ -30,18 +29,8 @@ define([
          * Define scope
          * @returns {*}
          */
-        defineScope: function defineScope() {
-            var scope = this.scope.constructor.getConstructorName();
-
-            if (scope === 'App') {
-                this.workspace = this.scope.controller.getCurrentItem();
-                this.page = this.workspace.controller.getCurrentItem();
-                this.widget = this.page.controller.getCurrentItem();
-                return this;
-            } else {
-                this.scope.warn('Undefined scope', scope);
-            }
-
+        defineScope: function defineScope(scope) {
+            this[scope.constructor.getConstructorName().toLowerCase()] = scope;
         },
         /**
          * Show grid

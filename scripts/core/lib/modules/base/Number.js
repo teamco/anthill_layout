@@ -22,8 +22,8 @@ define(['modules/base'], function defineBaseNumber(Base){
         },
         // Convert String to Integer
         // Return: float || 0 if NaN
-        str2float: function str2float(s, t) {
-            var number = parseFloat(s, this.base.define(t, this.defaultNumberType));
+        str2float: function str2float(s) {
+            var number = parseFloat(s);
             return this.base.isNumber(number) ? number : 0;
         },
 

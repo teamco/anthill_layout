@@ -26,12 +26,9 @@ define([
         showLog: function showLog() {
             return this.config.show;
         },
-        /**
-         * Get Development Mode {true/false}
-         * @returns {boolean}
-         */
-        developmentMode: function developmentMode() {
-            return this.config.development;
+        isLoggable: function isLoggable() {
+            return this.base.isDefined(console) &&
+                (this.scope.controller.isDevelopmentMode() && this.showLog());
         },
         /**
          * Puts (internal function)
@@ -45,8 +42,7 @@ define([
                 base = this.base,
                 config = this.config,
                 scope = this.scope,
-                log = base.isDefined(console) &&
-                    (this.developmentMode() && this.showLog());
+                log = this.isLoggable();
             if (log && config.type[type]) {
                 try {
                     if (!!config.namespaces) {
@@ -113,8 +109,7 @@ define([
             var console = window.console,
                 base = this.base,
                 config = this.config,
-                log = base.isDefined(console) &&
-                    (this.developmentMode() && this.showLog());
+                log = this.isLoggable();
 
             start = base.defineBoolean(start, false, true);
 

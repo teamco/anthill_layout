@@ -19,7 +19,11 @@ define([
             name: "success.rendered",
             callback: function successRenderedCallback() {
                 this.view.renderApplication();
-                this.view.debug();
+
+                if (this.controller.isDevelopmentMode()) {
+                    this.view.debug();
+                    this.observer.publish(this.eventmanager.eventList.debugStart);
+                }
             }
         },
         debugStart: {
@@ -35,6 +39,12 @@ define([
     };
 
     Workspace.prototype.globalListeners = {
+        successCreated: {
+            name: "success.created",
+            callback: function successCreatedCallback() {
+                this.controller.defineAbstractDebugger();
+            }
+        },
         successRendered: {
             name: "success.rendered",
             callback: function successRenderedCallback() {
@@ -50,6 +60,12 @@ define([
     };
 
     Page.prototype.globalListeners = {
+        successCreated: {
+            name: "success.created",
+            callback: function successCreatedCallback() {
+                this.controller.defineAbstractDebugger();
+            }
+        },
         successRendered: {
             name: "success.rendered",
             callback: function successRenderedCallback() {
@@ -66,6 +82,12 @@ define([
     };
 
     Widget.prototype.globalListeners = {
+        successCreated: {
+            name: "success.created",
+            callback: function successCreatedCallback() {
+                this.controller.defineAbstractDebugger();
+            }
+        },
         successRendered: {
             name: "success.rendered",
             callback: function successRenderedCallback() {

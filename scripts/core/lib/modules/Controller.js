@@ -61,6 +61,24 @@ define([
             return this.getCurrentItem();
         },
         /**
+         * Get Development Mode {true/false}
+         * @returns {boolean}
+         */
+        isDevelopmentMode: function isDevelopmentMode() {
+            return this.scope.logger.config.development;
+        },
+        defineAbstractDebugger: function defineAbstractDebugger() {
+            var scope = this.scope,
+                parent = scope.config.parent;
+            scope.debugger = parent.debugger;
+            if (this.base.isDefined(scope.debugger)) {
+                scope.debugger.defineScope(scope);
+            }
+            if (parent.config.hasOwnProperty('parent')) {
+                delete parent.debugger;
+            }
+        },
+        /**
          * Set Order
          * @param collector
          */
