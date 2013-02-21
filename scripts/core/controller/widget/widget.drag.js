@@ -7,21 +7,21 @@
  */
 
 define([
-    'jqueryui',
-    'modules/interactions'
+    'modules/interactions',
+    'jqueryui'
 ], function defineWidgetDrag(Interactions) {
     /**
      * Define Widget Drag
      * @param scope
      * @constructor
      */
-    var Drag = function Drag(scope) {
+    var Draggable = function Draggable(scope) {
         this.scope = scope;
         this.$scope = scope.view.elements.$widget.$;
         this.checkPermission();
     };
 
-    return Drag.extend({
+    return Draggable.extend({
         /**
          * Init interaction
          */
