@@ -34,6 +34,16 @@ define([
             this.bindEvents();
 
             return this;
+        },
+        activate: function activate() {
+            this.$.unbind('click.deactivateDebugger');
+            this.view.scope.eventmanager.onEvent(this.$, 'activateDebugger', 'click');
+            this.$.removeClass('activated');
+        },
+        deactivate: function deactivate() {
+            this.$.unbind('click.activateDebugger');
+            this.view.scope.eventmanager.onEvent(this.$, 'deactivateDebugger', 'click');
+            this.$.addClass('activated');
         }
 
     }, Base, BaseElement.prototype);

@@ -67,6 +67,16 @@ define([
                 scope: opts.scope,
                 params: opts.params
             });
+        },
+        onEvent: function onEvent($element, event, on) {
+            var scope = this.scope,
+                controller = scope.controller,
+                method = controller[event];
+            if (!this.base.isFunction(method)) {
+                scope.logger.warn('Undefined method', [controller, method]);
+                return false;
+            }
+            $element.on([on, event].join('.'), method.bind(controller));
         }
     }, Base);
 

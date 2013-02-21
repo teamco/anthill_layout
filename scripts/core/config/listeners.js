@@ -34,6 +34,12 @@ define([
                  */
                 this.debugger = new Debugger(this);
             }
+        },
+        debugEnd: {
+            name: 'debug.end',
+            callback: function debugEndCallback() {
+                this.debugger = new Debugger(this);
+            }
         }
     };
 

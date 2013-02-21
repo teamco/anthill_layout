@@ -33,7 +33,8 @@
     background: linear-gradient(to bottom, rgba(181, 189, 200, 1) 0%, rgba(130, 140, 149, 1) 36%, rgba(40, 52, 59, 1) 100%); /* W3C */
 }
 
-.debugger:active {
+.debugger:active,
+.debugger.activated {
     background: rgb(207, 231, 250); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(207, 231, 250, 1) 0%, rgba(99, 147, 193, 1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(207, 231, 250, 1)), color-stop(100%, rgba(99, 147, 193, 1))); /* Chrome,Safari4+ */
@@ -57,7 +58,8 @@
     cursor: pointer;
 }
 
-.debugger:hover {
+.debugger:hover,
+.debugger.activated {
     height: 50px;
 }
 

@@ -18,13 +18,14 @@ define([
         debugEnd: function debugEnd() {
             this.logger.debug('Destroy debugger');
         },
-        clickDefineDebugger: function clickDefineDebugger() {
-            var scope = this.scope;
-            if (scope.permission.eventTunnelFunctionCall(this.clickDefineDebugger)) {
-                scope.observer.publish(scope.eventmanager.eventList.debugStart);
-            }
+        activateDebugger: function activateDebugger() {
+            var scope = this.scope,
+                $debugger = scope.view.elements.$debugger;
+            scope.observer.publish(scope.eventmanager.eventList.debugStart);
+            $debugger.activate();
+            $debugger.deactivate();
         },
-        clickDestroyDebugger: function clickDestroyDebugger() {
+        deactivateDebugger: function deactivateDebugger() {
             var scope = this.scope;
             scope.observer.publish(scope.eventmanager.eventList.debugEnd);
         }

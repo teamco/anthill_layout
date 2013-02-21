@@ -30,17 +30,13 @@ define([
          */
         bindEvents: function bindEvents() {
             var scope = this.view.scope,
-                controller = scope.controller,
-                method;
-            this.events = this.base.define(this.events, [], true);
-            $.each(this.events, function each(index, event) {
-                method = event.toCamel();
-                if (!this.base.isDefined(controller[method])) {
-                    scope.logger.warn('Undefined method', [controller, method]);
-                    return false;
+                $element = this.$;
+            $.each(
+                this.base.define(this.events, [], true),
+                function each(index, event) {
+                    scope.eventmanager.onEvent($element, event, index);
                 }
-                this.$.on(event, controller[method].bind(controller));
-            }.bind(this));
+            );
         },
         /**
          * Destroy element before create
