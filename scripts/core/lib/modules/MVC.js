@@ -359,8 +359,7 @@ define([
             if (scope.controller.checkCondition({
                 condition: !base.isDefined(capabilities),
                 msg: 'Undefined capabilities',
-                args: mode,
-                type: 'warn'
+                args: mode
             })) {
                 return false;
             }
