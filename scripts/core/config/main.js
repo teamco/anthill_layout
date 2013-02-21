@@ -17,9 +17,8 @@ requirejs.config({
 });
 
 define([
-    'config/routes',
-    'config/application'
-], function defineApp(Routes, Application) {
+    'config/routes'
+], function defineApp(Routes) {
 
     requirejs([
         'config/listeners',

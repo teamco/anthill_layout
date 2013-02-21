@@ -20,10 +20,7 @@ define([
             this.scope.observer.publish(this.scope.eventmanager.eventList.initResize);
         },
         initDrag: function initDrag() {
-            this.controller.setInteraction(
-                this.permission.rulesList.draggable,
-                new Drag(this)
-            );
+            this.controller.setInteraction('draggable', new Drag(this));
         },
         enableDrag: function enableDrag() {
             this.interactions.draggable.enable();
@@ -35,10 +32,7 @@ define([
             this.interactions.draggable.destroy();
         },
         initResize: function initResize() {
-            this.controller.setInteraction(
-                this.permission.rulesList.resizable,
-                new Resize(this)
-            );
+            this.controller.setInteraction('resizable', new Resize(this));
         },
         enableResize: function enableResize() {
             this.interactions.draggable.enable();

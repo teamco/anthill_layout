@@ -46,12 +46,6 @@ define([
             render: true
         });
 
-//        /**
-//         * Define permissions
-//         * @type {widget.permission}
-//         */
-//        this.permission = new Permission(this);
-
         this.observer.publish(this.eventmanager.eventList.successCreated);
 
     };

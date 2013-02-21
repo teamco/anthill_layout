@@ -7,8 +7,9 @@
  */
 
 define([
-    'jqueryui'
-], function defineWidgetResize() {
+    'jqueryui',
+    'modules/interactions'
+], function defineWidgetResize(Interactions) {
     var Resize = function Resize(scope) {
         this.scope = scope;
         this.$scope = scope.view.elements.$widget.$;
@@ -16,13 +17,6 @@ define([
     };
 
     return Resize.extend({
-        checkPermission: function checkPermission() {
-            var scope = this.scope;
-            scope.permission.check({
-                capability: scope.permission.rulesList.resizable,
-                callback: this.init.bind(this)
-            });
-        },
         init: function init() {
             var scope = this.scope;
 
@@ -59,5 +53,5 @@ define([
         },
         resize: function resize(event, ui) {
         }
-    });
+    }, Interactions.prototype);
 });

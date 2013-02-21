@@ -9,6 +9,7 @@
 define([
     'modules/base'
 ], function defineBasePermission(Base) {
+
     var Permission = function Permission() {
     };
 
@@ -17,7 +18,7 @@ define([
             var base = this.base,
                 permissions = base.define(this.scope.config.permission, {}, true);
 
-            $.each(permissions, function each(index, permission){
+            $.each(permissions, function each(index, permission) {
                 this.setCapability(index, permission);
             }.bind(this));
 
@@ -40,7 +41,6 @@ define([
                 }
             }
         },
-
         setCapability: function setCapability(key, value) {
             this.capability[key] = this.base.defineBoolean(value, false, true);
             return this.getCapability(key);
@@ -67,5 +67,5 @@ define([
             return true;
         }
 
-}, Base);
+    }, Base);
 });
