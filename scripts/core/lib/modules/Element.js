@@ -67,7 +67,7 @@ define([
         },
         /**
          * Build element
-         * @param {{$container, append, destroy, callback}} opts
+         * @param {{$container, [append], destroy, [callback]}} opts
          * @returns {*}
          */
         build: function build(opts) {
