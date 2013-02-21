@@ -16,15 +16,14 @@
 
 define([
     'modules/base',
-    'modules/debugger',
     'modules/mvc',
     'controller/widget.controller',
     'model/widget.model',
     'view/widget.view',
     'event/widget.event.manager',
-    'controller/widget/widget.permission',
+    'permission/widget.permission',
     'controller/widget/widget.map'
-], function defineWidget(Base, Debugger, MVC, Controller, Model, View, EventManager, Permission, Map) {
+], function defineWidget(Base, MVC, Controller, Model, View, EventManager, Permission, Map) {
     /**
      * Define Widget
      * @param opts {object}
@@ -39,10 +38,6 @@ define([
                 footer: false,
                 frameLess: false,
                 opacity: 0.6
-            },
-            permission: {
-                draggable: true,
-                resizable: true
             },
             maximize: false,
             events: {
@@ -92,28 +87,17 @@ define([
                 Controller,
                 Model,
                 View,
-                EventManager
+                EventManager,
+                Permission
             ],
             render: true
         });
-
-        /**
-         * Define permissions
-         * @type {widget.permission}
-         */
-        this.permission = new Permission(this);
 
         /**
          * Define map
          * @type {widget.map}
          */
         this.map = new Map(this);
-
-        /**
-         * Define debugger
-         * @type {modules.debugger}
-         */
-        this.debugger = new Debugger(this);
 
         /**
          * Define interactions: Drag/Resize

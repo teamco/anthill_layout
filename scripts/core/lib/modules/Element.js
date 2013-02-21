@@ -166,7 +166,7 @@ define([
          * @returns {*|HTMLElement}
          */
         getRootContainer: function getRootContainer() {
-            return $(this.view.scope.model.root().config.html.container);
+            return $(this.view.scope.controller.root().config.html.container);
         },
         /**
          * Get element width

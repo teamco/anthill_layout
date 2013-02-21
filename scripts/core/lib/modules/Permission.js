@@ -8,12 +8,20 @@
 
 define([
     'modules/base'
-], function definePermissionManager(Base) {
-    var Permission = function Permission(scope) {
-        this.scope = scope;
+], function defineBasePermission(Base) {
+    var Permission = function Permission() {
     };
 
     return Permission.extend({
+        config: function config() {
+            var base = this.base,
+                permissions = base.define(this.scope.config.permission, {}, true);
+
+            $.each(permissions, function each(index, permission){
+                this.setCapability(index, permission);
+            }.bind(this));
+
+        },
         check: function check(opts) {
             var base = this.base;
 
@@ -34,7 +42,7 @@ define([
         },
 
         setCapability: function setCapability(key, value) {
-            this.capability[key] = value;
+            this.capability[key] = this.base.defineBoolean(value, false, true);
             return this.getCapability(key);
         },
 

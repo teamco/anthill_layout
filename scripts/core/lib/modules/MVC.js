@@ -81,6 +81,7 @@ define([
         this.applyMVC();
         this.applyObserver();
         this.applyEventManager();
+        this.applyPermissions();
 
         if (scope.eventmanager.eventList) {
 
@@ -101,6 +102,11 @@ define([
     };
 
     MVC.extend({
+        /**
+         * Define MVC
+         * @param {String} mvc
+         * @param {Boolean} force
+         */
         defineMVC: function defineMVC(mvc, force) {
 
             var base = this.base,
@@ -132,12 +138,25 @@ define([
                 }
             }
         },
+        /**
+         * Get constructor name
+         * @param {*} scope
+         * @returns {string}
+         */
         constructorName: function constructorName(scope) {
             return scope.getConstructorName().toLowerCase();
         },
+        /**
+         * Get scope prototype
+         * @param {*} scope
+         * @returns {*}
+         */
         getPrototype: function getPrototype(scope) {
             return this.base.lib.function.getPrototype(scope);
         },
+        /**
+         * Set relation between MVC components
+         */
         setRelation: function setRelation() {
             var relations = this.RELATIONS,
                 i = 0, l = relations.length,
@@ -156,6 +175,10 @@ define([
             }
 
         },
+        /**
+         * Apply MVC
+         * @returns {boolean}
+         */
         applyMVC: function applyMVC() {
             var i = 0,
                 l = this.components.length;
@@ -175,6 +198,9 @@ define([
             this.setRelation();
 
         },
+        /**
+         * Apply config
+         */
         applyConfig: function applyConfig() {
             var base = this.base,
                 scope = this.scope,
@@ -189,6 +215,9 @@ define([
                 config.html.selector = '.' + this.constructorName(scope.constructor);
             }
         },
+        /**
+         * Apply event manager
+         */
         applyEventManager: function applyEventManager() {
             var scope = this.scope,
                 base = this.base,
@@ -258,27 +287,97 @@ define([
                     callback: scope.controller.successRendered
                 }, true);
 
-                if (typeof scope.globalListeners === 'object') {
-                    for (index in scope.globalListeners) {
-                        if (scope.globalListeners.hasOwnProperty(index)) {
-                            event = scope.globalListeners[index];
-                            eventManager.subscribe({
-                                event: event.name,
-                                callback: event.callback
-                            }, false);
-                        }
-                    }
-                }
+                this.applyGlobalListeners();
 
             } else {
                 scope.logger.warn('Event Manager', scope.eventmanager);
             }
         },
+        /**
+         * Apply global listeners
+         */
+        applyGlobalListeners: function applyGlobalListeners() {
+            var index, event, scope = this.scope;
+            if (typeof scope.globalListeners === 'object') {
+                for (index in scope.globalListeners) {
+                    if (scope.globalListeners.hasOwnProperty(index)) {
+                        event = scope.globalListeners[index];
+                        scope.eventmanager.subscribe({
+                            event: event.name,
+                            callback: event.callback
+                        }, false);
+                    }
+                }
+            }
+        },
+        /**
+         * Define permissions
+         * @returns {boolean}
+         */
+        applyPermissions: function applyPermissions() {
+
+            this.applyGlobalPermissions();
+
+            var scope = this.scope,
+                permission = scope.permission;
+
+            if (scope.controller.checkCondition({
+                condition: !this.base.isDefined(permission),
+                msg: 'Undefined permission'
+            })) {
+                return false;
+            }
+
+            permission.capability = {};
+            permission.config();
+        },
+        /**
+         * Apply global permissions
+         * @returns {*|boolean}
+         */
+        applyGlobalPermissions: function applyGlobalPermissions() {
+            var base = this.base,
+                scope = this.scope,
+                mode = scope.controller.getMode();
+
+            if (scope.controller.checkCondition({
+                condition: !base.isDefined(mode),
+                msg: 'Undefined mode'
+            })) {
+                return false;
+            }
+
+            if (scope.controller.checkCondition({
+                condition: !base.isDefined(scope.globalPermissions),
+                msg: 'Undefined permission'
+            })) {
+                return false;
+            }
+
+            var capabilities = scope.globalPermissions[mode];
+
+            if (scope.controller.checkCondition({
+                condition: !base.isDefined(capabilities),
+                msg: 'Undefined capabilities',
+                args: mode,
+                type: 'warn'
+            })) {
+                return false;
+            }
+
+            scope.config.permission = capabilities;
+        },
+        /**
+         * Apply Observer
+         */
         applyObserver: function applyObserver() {
             var scope = this.scope;
             scope.observer = new Observer();
             scope.observer.scope = scope;
         },
+        /**
+         * Apply Logger
+         */
         applyLogger: function applyLogger() {
             var scope = this.scope,
                 base = this.base;

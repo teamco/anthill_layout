@@ -160,7 +160,7 @@ define([
         /**
          * Publish event
          * @member {Function} Observer
-         * @param {String} eventName
+         * @param {Function} eventName
          * @param {*} [args]
          */
         publish: function publish(eventName, args) {

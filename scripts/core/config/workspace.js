@@ -40,7 +40,7 @@ define([
             //        showDebuggerTab: false,
             //        saveDelay: 500,
             //        pagesDimensionChanged: false,
-            //render mathod
+            //render method
             //        defaultRender: true,
             // Show first page or last page after load.
             // if false then last page will be shown.

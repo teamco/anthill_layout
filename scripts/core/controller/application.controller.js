@@ -13,13 +13,20 @@ define([
 
     return Controller.extend({
         debugStart: function debugStart() {
-            this.logger.warn('Define debugger');
+            this.logger.warn('Activate debugger');
         },
         debugEnd: function debugEnd() {
             this.logger.debug('Destroy debugger');
         },
         clickDefineDebugger: function clickDefineDebugger() {
-
+            var scope = this.scope;
+            if (scope.permission.eventTunnelFunctionCall(this.clickDefineDebugger)) {
+                scope.observer.publish(scope.eventmanager.eventList.debugStart);
+            }
+        },
+        clickDestroyDebugger: function clickDestroyDebugger() {
+            var scope = this.scope;
+            scope.observer.publish(scope.eventmanager.eventList.debugEnd);
         }
     }, BaseController.prototype);
 

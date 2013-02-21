@@ -4,8 +4,9 @@ define([
     'model/application.model',
     'view/application.view',
     'modules/mvc',
-    'event/application.event.manager'
-], function defineApp(Base, Controller, Model, View, MVC, EventManager) {
+    'event/application.event.manager',
+    'permission/application.permission'
+], function defineApp(Base, Controller, Model, View, MVC, EventManager, Permission) {
 
     var App = function App(opts) {
 
@@ -14,8 +15,8 @@ define([
                 limit: 1,
                 counter: 0
             },
+            mode: 'development',
             logger: {
-                development: true,
                 debug: true,
                 show: true,
                 namespaces: false, //'App',
@@ -39,10 +40,17 @@ define([
                 Controller,
                 Model,
                 View,
-                EventManager
+                EventManager,
+                Permission
             ],
             render: true
         });
+
+//        /**
+//         * Define permissions
+//         * @type {widget.permission}
+//         */
+//        this.permission = new Permission(this);
 
         this.observer.publish(this.eventmanager.eventList.successCreated);
 

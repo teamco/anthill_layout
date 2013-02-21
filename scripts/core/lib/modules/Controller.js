@@ -20,6 +20,25 @@ define([
 
     return BaseController.extend({
         /**
+         * Get Application mode
+         * @returns {*|number}
+         */
+        getMode: function getMode() {
+            return this.root().config.mode;
+        },
+        /**
+         * Get Application Root
+         * @returns {*|string}
+         */
+        root: function root() {
+            var root = this.scope;
+            while (root.config.hasOwnProperty('parent')) {
+                root = root.config.parent;
+            }
+
+            return root;
+        },
+        /**
          * Get Config Logger
          * @param {String} log
          * @param {Object} hash
@@ -47,6 +66,10 @@ define([
                 this
             );
         },
+        /**
+         * Get current items
+         * @returns {*}
+         */
         getCurrentItem: function getCurrentItem() {
             var scope = this.scope,
                 item = scope.model.getItemNamespace();
@@ -55,17 +78,57 @@ define([
             }
             return scope[scope.model.getItemNamespace()];
         },
+        /**
+         * Set current item
+         * @param {{}} item
+         * @returns {*}
+         */
         setCurrentItem: function setCurrentItem(item) {
             var scope = this.scope;
             scope[scope.model.getItemNamespace()] = item;
             return this.getCurrentItem();
         },
         /**
-         * Get Development Mode {true/false}
+         * Check condition
+         * @param {{condition, msg, [type], [args]}} opts
          * @returns {boolean}
          */
+        checkCondition: function checkCondition(opts) {
+            if (opts.condition) {
+                opts.args ?
+                    this.scope.logger[opts.type || 'info'](opts.msg, opts.args) :
+                    this.scope.logger[opts.type || 'info'](opts.msg);
+                return true;
+            }
+            return false;
+        },
+        /**
+         * Get Development Mode
+         * @returns {Boolean}
+         */
         isDevelopmentMode: function isDevelopmentMode() {
-            return this.scope.logger.config.development;
+            return this.getMode() === 'development';
+        },
+        /**
+         * Get Authorize Mode
+         * @returns {Boolean}
+         */
+        isAuthorizeMode: function isAuthorizeMode() {
+            return this.getMode() === 'authorize';
+        },
+        /**
+         * Get Consumption Mode
+         * @returns {boolean}
+         */
+        isConsumptionMode: function isConsumptionMode() {
+            return this.getMode() === 'consumption';
+        },
+        /**
+         * Get Custom Mode
+         * @returns {boolean}
+         */
+        isCustomMode: function isCustomMode() {
+            return this.getMode() === 'custom';
         },
         /**
          * Define scope in app.debugger

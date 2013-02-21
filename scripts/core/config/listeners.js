@@ -22,7 +22,6 @@ define([
 
                 if (this.controller.isDevelopmentMode()) {
                     this.view.debug();
-                    this.observer.publish(this.eventmanager.eventList.debugStart);
                 }
             }
         },
@@ -42,7 +41,6 @@ define([
         successCreated: {
             name: "success.created",
             callback: function successCreatedCallback() {
-                this.controller.defineAbstractDebugger();
             }
         },
         successRendered: {
@@ -63,7 +61,6 @@ define([
         successCreated: {
             name: "success.created",
             callback: function successCreatedCallback() {
-                this.controller.defineAbstractDebugger();
             }
         },
         successRendered: {
@@ -85,7 +82,6 @@ define([
         successCreated: {
             name: "success.created",
             callback: function successCreatedCallback() {
-                this.controller.defineAbstractDebugger(true);
             }
         },
         successRendered: {

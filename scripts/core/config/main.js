@@ -9,6 +9,7 @@ requirejs.config({
         model: 'model',
         event: 'event',
         view: 'view',
+        permission: 'permission',
         test: 'test',
         extends: 'lib/extends',
         modules: 'lib/modules'
@@ -20,5 +21,9 @@ define([
     'config/application'
 ], function defineApp(Routes, Application) {
 
-    requirejs(['config/listeners','test/create'])
+    requirejs([
+        'config/listeners',
+        'config/permission',
+        'test/create'
+    ])
 });
