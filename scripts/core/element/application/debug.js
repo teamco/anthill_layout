@@ -1,13 +1,5 @@
 /**
  * Created with JetBrains RubyMine.
- * User: i061485
- * Date: 2/20/13
- * Time: 4:15 PM
- * To change this template use File | Settings | File Templates.
- */
-
-/**
- * Created with JetBrains RubyMine.
  * User: teamco
  * Date: 11/24/12
  * Time: 10:12 PM
