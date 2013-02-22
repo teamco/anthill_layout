@@ -16,18 +16,17 @@ define([
             this.logger.warn('Activate debugger');
         },
         debugEnd: function debugEnd() {
-            this.logger.debug('Destroy debugger');
+            this.logger.warn('Destroy debugger');
         },
         activateDebugger: function activateDebugger() {
-            var scope = this.scope,
-                $debugger = scope.view.elements.$debugger;
+            var scope = this.scope;
             scope.observer.publish(scope.eventmanager.eventList.debugStart);
-            $debugger.activate();
-            $debugger.deactivate();
+            scope.view.elements.$debugger.deactivate();
         },
         deactivateDebugger: function deactivateDebugger() {
             var scope = this.scope;
             scope.observer.publish(scope.eventmanager.eventList.debugEnd);
+            scope.view.elements.$debugger.activate();
         }
     }, BaseController.prototype);
 
