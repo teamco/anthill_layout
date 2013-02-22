@@ -100,7 +100,7 @@ define([
          * @returns {*}
          */
         movePlaceHoldersToCurrentPage: function movePlaceHoldersToCurrentPage() {
-            var $page = this.page.view.elements.$page.$,
+            var $page = this.scopes.page.view.elements.$page.$,
                 $placeholder = $(this.selector);
             if ($page.find(this.selector).length === 0) {
                 if ($placeholder.length === 0) {
@@ -122,11 +122,12 @@ define([
             this.movePlaceHoldersToCurrentPage();
 
             var column = 0, row = 0,
-                grid = this.page.layout.config.grid,
+                page = this.scopes.page,
+                grid = page.layout.config.grid,
                 cell = grid.minCellWidth,
                 margin = grid.margin;
 
-            var $widgets = this.page.view.elements.$widgets,
+            var $widgets = page.view.elements.$widgets,
                 top = $widgets.getPaddingTop() + $widgets.getMarginTop(),
                 left = $widgets.getPaddingLeft() + $widgets.getMarginLeft(),
                 opts = {
