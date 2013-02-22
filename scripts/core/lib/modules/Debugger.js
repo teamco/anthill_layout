@@ -33,8 +33,7 @@ define([
          * @returns {*}
          */
         defineScope: function defineScope() {
-            var scopes = ['Workspace', 'Page', 'Widget'],
-                scope = this.scope,
+            var scope = this.scope,
                 item = scope.model.getItemNamespace();
 
             while (item !== 'object') {
@@ -42,7 +41,15 @@ define([
                 item = scope.model.getItemNamespace();
             }
 
-            var hash = this.scopes;
+            this.validateScopes();
+
+        },
+        /**
+         * Validate required scopes
+         */
+        validateScopes: function validateScopes() {
+            var hash = this.scopes,
+                scopes = ['Workspace', 'Page', 'Widget'];
 
             if (this.base.lib.hash.hashLength(hash) < scopes.length) {
                 $.each(scopes, function each(index, value) {
