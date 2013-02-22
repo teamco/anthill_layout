@@ -41,6 +41,19 @@ define([
                 scope = this.setScope(scope, item);
                 item = scope.model.getItemNamespace();
             }
+
+            var hash = this.scopes;
+
+            if (this.base.lib.hash.hashLength(hash) < scopes.length) {
+                $.each(scopes, function each(index, value) {
+                    this.scope.controller.checkCondition({
+                        condition: !hash.hasOwnProperty(value.toLowerCase()),
+                        msg: 'Undefined scope',
+                        type: 'warn',
+                        args: value
+                    });
+                }.bind(this));
+            }
         },
         /**
          * Set scope
