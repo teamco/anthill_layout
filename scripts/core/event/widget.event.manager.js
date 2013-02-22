@@ -20,7 +20,12 @@ define([
             enableResize: 'enable.resize',
             disableResize: 'disable.resize',
             destroyResize: 'destroy.resize',
-            debugInteractions: 'debug.interactions'
+            debugInteractions: {
+                eventName: 'debug.interactions',
+                params: {
+                    delay: 500
+                }
+            }
         };
     };
 

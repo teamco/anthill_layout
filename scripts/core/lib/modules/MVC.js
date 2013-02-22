@@ -304,7 +304,9 @@ define([
                         event = scope.globalListeners[index];
                         scope.eventmanager.subscribe({
                             event: event.name,
-                            callback: event.callback
+                            callback: event.callback,
+                            params: event.params,
+                            scope: event.scope
                         }, false);
                     }
                 }

@@ -45,7 +45,7 @@ define([
          * @returns {Boolean}
          */
         subscribe: function subscribe(opts, internal) {
-            var base = this.base, event;
+            var base = this.base, event, params = {};
             opts = base.define(opts, {}, true);
             internal = base.defineBoolean(internal, false, true);
 
@@ -68,6 +68,12 @@ define([
             if (!internal && !this.eventList.hasOwnProperty(eventKey)) {
                 this.scope.logger.warn('Untrusted external event', opts);
                 return false;
+            }
+
+            if (!internal && base.isObject(opts.event) && !base.isDefined(opts.params)) {
+                if (base.isObject(this.eventList[eventKey])) {
+                    opts.params = this.eventList[eventKey].params
+                }
             }
 
             this.eventList[eventKey] = opts.eventName;
