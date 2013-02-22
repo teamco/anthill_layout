@@ -12,17 +12,29 @@ define([
     };
 
     return Controller.extend({
+        /**
+         * Start debugger
+         */
         debugStart: function debugStart() {
-            this.logger.warn('Activate debugger');
+            this.logger.debug('Activate debugger');
         },
+        /**
+         * End debugger
+         */
         debugEnd: function debugEnd() {
-            this.logger.warn('Destroy debugger');
+            this.logger.debug('Destroy debugger');
         },
+        /**
+         * Activate debugger
+         */
         activateDebugger: function activateDebugger() {
             var scope = this.scope;
             scope.observer.publish(scope.eventmanager.eventList.debugStart);
             scope.view.elements.$debugger.deactivate();
         },
+        /**
+         * Deactivate debugger
+         */
         deactivateDebugger: function deactivateDebugger() {
             var scope = this.scope;
             scope.observer.publish(scope.eventmanager.eventList.debugEnd);

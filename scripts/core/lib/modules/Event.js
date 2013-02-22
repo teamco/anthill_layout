@@ -9,10 +9,20 @@
 define([
     'modules/base'
 ], function defineEvent(Base) {
+
+    /**
+     * Event constructor
+     * @constructor
+     */
     var Event = function Event() {
     };
 
     return Event.extend({
+        /**
+         * Add event listener
+         * @param {{eventName}} opts
+         * @returns {*}
+         */
         addListener: function addListener(opts) {
             var scope = this.scope,
                 observer = scope.observer,
@@ -68,15 +78,26 @@ define([
                 params: opts.params
             });
         },
-        onEvent: function onEvent($element, event, on) {
+        /**
+         * Bind element events
+         * @param {String} event
+         * @param {String} on
+         * @returns {Boolean}
+         */
+        onEvent: function onEvent(event, on) {
             var scope = this.scope,
                 controller = scope.controller,
                 method = controller[event];
-            if (!this.base.isFunction(method)) {
-                scope.logger.warn('Undefined method', [controller, method]);
+
+            if (scope.controller.checkCondition({
+                condition: !scope.base.isFunction(method),
+                msg: 'Undefined method',
+                args: [controller, method]
+            })) {
                 return false;
             }
-            $element.on([on, event].join('.'), method.bind(controller));
+
+            this.$.on([on, event].join('.'), method.bind(controller));
         }
     }, Base);
 

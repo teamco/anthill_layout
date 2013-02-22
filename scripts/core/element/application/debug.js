@@ -11,6 +11,13 @@ define([
     'modules/element'
 ], function defineWorkspaceContainer(Base, BaseElement) {
 
+    /**
+     * Debugger element constructor
+     * @param {*} view
+     * @param {{style, [events], [id]}} opts
+     * @returns {*}
+     * @constructor Debugger
+     */
     var Debugger = function Debugger(view, opts) {
         return this.config(view, opts).build({
             $container: opts.$container,
@@ -19,6 +26,12 @@ define([
     };
 
     return Debugger.extend({
+        /**
+         * DOM config
+         * @param {*} view
+         * @param {{style, [events], [id]}} opts
+         * @returns {*}
+         */
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;
@@ -33,15 +46,31 @@ define([
 
             return this;
         },
+        /**
+         * Activate debugger
+         */
         activate: function activate() {
-            this.$.unbind('click.deactivateDebugger');
-            this.view.scope.eventmanager.onEvent(this.$, 'activateDebugger', 'click');
-            this.$.removeClass('activated');
+            var scope = this.view.scope,
+                $element = this.$;
+            $element.unbind('click.deactivateDebugger');
+            scope.eventmanager.onEvent.bind({
+                scope: scope,
+                $: $element
+            })('activateDebugger', 'click');
+            $element.removeClass('activated');
         },
+        /**
+         * Deactivate debugger
+         */
         deactivate: function deactivate() {
-            this.$.unbind('click.activateDebugger');
-            this.view.scope.eventmanager.onEvent(this.$, 'deactivateDebugger', 'click');
-            this.$.addClass('activated');
+            var scope = this.view.scope,
+                $element = this.$;
+            $element.unbind('click.activateDebugger');
+            scope.eventmanager.onEvent.bind({
+                scope: scope,
+                $: $element
+            })('deactivateDebugger', 'click');
+            $element.addClass('activated');
         }
 
     }, Base, BaseElement.prototype);

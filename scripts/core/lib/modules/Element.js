@@ -34,7 +34,10 @@ define([
             $.each(
                 this.base.define(this.events, [], true),
                 function each(index, event) {
-                    scope.eventmanager.onEvent($element, event, index);
+                    scope.eventmanager.onEvent.bind({
+                        scope: scope,
+                        $: $element
+                    })(event, index);
                 }
             );
         },
