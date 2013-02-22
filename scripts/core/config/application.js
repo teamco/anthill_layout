@@ -17,7 +17,6 @@ define([
             },
             mode: 'development',
             logger: {
-                debug: true,
                 show: true,
                 namespaces: false, //'App',
                 type: {

@@ -33,9 +33,7 @@ define([
             layout: {
                 overlapping: true,
                 emptySpaces: true,
-                grid: true,
-                eventSpeed: 300,
-                animate: true
+                snap2grid: true
             },
             template: {
                 // TODO
