@@ -100,6 +100,11 @@ define([
          * @param ui
          */
         drag: function drag(event, ui) {
+            var scope = this.scope;
+            scope.observer.publish(
+                scope.eventmanager.eventList.debugInteractions,
+                [this.scope, event, ui]
+            );
         }
     }, Interactions.prototype);
 });

@@ -245,13 +245,13 @@ define([
                     '</div>',
                     '<div class="debug-container">',
 
-                    this.renderHeader('Application'),
+                    this.renderHeader('Application', false),
                     this.renderInline('UUID', this.scope.config.uuid),
                     this.renderInlineOf('Workspaces', this.scope),
                     this.renderInline('Mode', this.scope.config.mode),
                     this.renderFooter(),
 
-                    this.renderHeader('Logger'),
+                    this.renderHeader('Logger', false),
                     this.renderInline('Namespaces', this.scope.config.logger.namespaces),
                     this.renderInput('Show', this.scope.config.logger.show),
                     this.renderInput('console.debug', this.scope.config.logger.type.debug),
@@ -261,17 +261,17 @@ define([
                     this.renderInput('console.warn', this.scope.config.logger.type.warn),
                     this.renderFooter(),
 
-                    this.renderHeader('Workspace'),
+                    this.renderHeader('Workspace', false),
                     this.renderInline('UUID', workspace.config.uuid),
                     this.renderInlineOf('Pages', workspace),
                     this.renderFooter(),
 
-                    this.renderHeader('Page'),
+                    this.renderHeader('Page', false),
                     this.renderInline('UUID', page.config.uuid),
                     this.renderInlineOf('Widgets', page),
                     this.renderFooter(),
 
-                    this.renderHeader('Layout'),
+                    this.renderHeader('Layout', false),
                     this.renderInput('Snap to Grid', layout.snap2grid),
                     this.renderInput('Overlapping', layout.overlapping),
                     this.renderInput('Empty spaces', layout.emptySpaces),
@@ -311,10 +311,11 @@ define([
             ).show();
 
             this.bindHover(opacityOff);
+            this.bindCollapse();
 
         },
-        renderHeader: function renderHeader(text) {
-            return ['<fieldset class="', (text.toLowerCase() + '-info'), '"><legend>', text, '</legend><ul>'].join('');
+        renderHeader: function renderHeader(text, show) {
+            return ['<fieldset class="', (text.toLowerCase() + '-info'), '"><legend>', text, '</legend><ul', (show ? '' : ' class="hide"'), '>'].join('');
         },
         renderInline: function renderInline(text, value) {
             return ['<li><span>', text, ':</span> ', value, '</li>'].join('');
@@ -330,6 +331,15 @@ define([
         },
         renderFooter: function renderFooter() {
             return '</ul></fieldset>';
+        },
+        updateWidgetInfo: function updateWidgetInfo(widget, event, ui) {
+            console.log(event, ui);
+        },
+        bindCollapse: function bindCollapse() {
+            $(this.info).find('legend').on('click.toggle', function clickToggle() {
+                var $ul = $(this).parent().find('ul');
+                $ul['slide' + ($ul.is(':visible') ? 'Up' : 'Down')]();
+            });
         },
         bindHover: function bindHover(opacityOff) {
             $(this.info).hover(

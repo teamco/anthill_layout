@@ -42,6 +42,9 @@ define([
         },
         destroyResize: function destroyResize() {
             this.interactions.draggable.destroy();
+        },
+        debugInteractions: function debugInteractions(interaction) {
+            this.logger.debug('Debug interactions', interaction);
         }
 
     }, BaseController.prototype);

@@ -101,6 +101,13 @@ define([
                 this.view.renderWidget();
                 this.controller.setupInteractions();
             }
+        },
+        debugInteractions: {
+            name: "debug.interactions",
+            callback: function debugInteractionsCallback() {
+                var debug = this.controller.root().debugger;
+                debug.updateWidgetInfo.apply(debug, arguments);
+            }
         }
 
     };
