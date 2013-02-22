@@ -22,6 +22,9 @@ define([
         this.selector = '#placeholders';
         this.rows = 25;
 
+        this.scopes = {};
+
+        this.defineScope();
     };
 
     return Debugger.extend({
@@ -29,8 +32,26 @@ define([
          * Define scope
          * @returns {*}
          */
-        defineScope: function defineScope(scope) {
-            this[scope.constructor.getConstructorName().toLowerCase()] = scope;
+        defineScope: function defineScope() {
+            var scopes = ['Workspace', 'Page', 'Widget'],
+                scope = this.scope,
+                item = scope.model.getItemNamespace();
+
+            while (item !== 'object') {
+                scope = this.setScope(scope, item);
+                item = scope.model.getItemNamespace();
+            }
+        },
+        /**
+         * Set scope
+         * @param {{}} scope
+         * @param {String} item
+         * @returns {*}
+         */
+        setScope: function setScope(scope, item) {
+            var node = scope[item];
+            this.scopes[node.constructor.getConstructorName().toLowerCase()] = node;
+            return node;
         },
         /**
          * Show grid

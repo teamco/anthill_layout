@@ -15,9 +15,18 @@ define([
     };
 
     return BaseModel.extend({
+        /**
+         * Get scope config
+         * @returns {scope.config}
+         */
         getConfig: function getConfig() {
             return this.scope.config;
         },
+        /**
+         * Get scope namespace
+         * @param {*} node
+         * @returns {string}
+         */
         getNameSpace: function getNameSpace(node) {
             var scope = this.base.isDefined(node) ?
                     node : this.scope,
@@ -26,6 +35,11 @@ define([
 
             return constructor.getConstructorName().toLowerCase();
         },
+        /**
+         * Get UUID
+         * @param {String} node
+         * @returns {String}
+         */
         getUUID: function getUUID(node) {
             return this.base.isDefined(node) ?
                 node.model ?
@@ -46,11 +60,22 @@ define([
                     item = hash.firstHashElement(scope.items);
                 }
             }
-            return item.constructor.getConstructorName().toLowerCase();
+            return this.getNameSpace(item);
         },
+        /**
+         * Get items order
+         * @returns {*}
+         */
         getOrder: function getOrder() {
             return this.getConfig().order;
         },
+        /**
+         * Check items limit
+         * @param {Function} constructor
+         * @param {{}} collector
+         * @param {Number} limit
+         * @returns {boolean}
+         */
         checkLimit: function checkLimit(constructor, collector, limit) {
             var base = this.base,
                 namespace = this.getNameSpace(constructor);
@@ -65,6 +90,13 @@ define([
             return base.lib.hash.hashLength(collector) >= limit;
 
         },
+        /**
+         * Update items collector
+         * @param {Function} constructor
+         * @param {{}} opts
+         * @param {{}} collector
+         * @returns {*}
+         */
         updateCollector: function updateCollector(constructor, opts, collector) {
             var namespace = this.getNameSpace(constructor),
                 limit = this.getConfig()[namespace].limit,
