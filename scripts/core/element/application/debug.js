@@ -31,8 +31,6 @@ define([
                     $('<div />')
                 );
 
-            this.bindEvents();
-
             return this;
         },
         activate: function activate() {

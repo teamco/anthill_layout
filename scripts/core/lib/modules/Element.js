@@ -84,6 +84,8 @@ define([
                 }
             }
 
+            this.bindEvents();
+
             return this;
         },
         /**
