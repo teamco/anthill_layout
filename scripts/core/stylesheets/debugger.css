@@ -226,8 +226,13 @@
     margin-right: 5px;
 }
 
+#debug-mode .handler input[type="checkbox"]:hover + * {
+    color: #fff;
+    text-shadow: 1px 1px #333;
+}
+
 #debug-mode input[type="checkbox"]:hover + * {
-    color: red;
+    text-shadow: 1px 1px #ccc;
 }
 
 #debug-mode .show-all {

@@ -38,13 +38,7 @@ define([
         debugEnd: {
             name: 'debug.end',
             callback: function debugEndCallback() {
-                /**
-                 * Destroy instance of Debugger
-                 * @type {undefined}
-                 */
-                this.debugger.destroyDebugger();
-                this.debugger = undefined;
-                delete this.debugger;
+                this.debugger.destroy();
             }
         }
     };

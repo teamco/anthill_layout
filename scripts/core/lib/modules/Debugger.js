@@ -200,9 +200,11 @@ define([
         /**
          * Destroy debugger
          */
-        destroyDebugger: function destroyDebugger() {
+        destroy: function destroy() {
             this.destroyGrid();
             this.destroyInfo();
+            this.scope.debugger = undefined;
+            delete this.scope.debugger;
         },
         /**
          * Destroy info window
@@ -235,8 +237,7 @@ define([
                 $(this.scope.config.html.container).append(div);
             }
 
-            var type = 'test',//event.type,
-                workspace = this.scopes.workspace,
+            var workspace = this.scopes.workspace,
                 page = this.scopes.page,
                 layout = page.layout.config,
                 logger = this.scope.config.logger;
@@ -246,7 +247,7 @@ define([
 
             div.html(
                 [
-                    '<ul class="handler" title="Drag">',
+                    '<ul class="handler">',
                     this.renderInput('Show Grid', false),
                     this.renderInput('Expand the Content', false),
                     '</ul>',
@@ -474,7 +475,8 @@ define([
          * Toggle info content
          */
         bindShowHideAll: function bindShowHideAll() {
-            var $label = $(this.info).find('.handler input:last+label');
+            var $label = $(this.info).find('.handler input:last+label'),
+                $close = $(this.info).find('.debug-close');
             $label.on(
                 'click.showAll',
                 function showAll() {
@@ -483,6 +485,10 @@ define([
                         $visible = $fieldset.find('ul:visible');
 
                     $fieldset.show();
+
+                    if ($close.text().match(/Show/)) {
+                        $close.text($close.text().replace(/Show/, 'Hide'));
+                    }
 
                     if ($hidden.length > 0) {
                         $hidden.slideDown();
