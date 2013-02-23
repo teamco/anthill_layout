@@ -87,7 +87,7 @@ define([
          * Destroy grid
          */
         destroyGrid: function destroyGrid() {
-            $(this.placeholders).html('');
+            $(this.placeholders).empty();
         },
         /**
          * Create placeholder
@@ -196,6 +196,13 @@ define([
                     height: opts.height || '100%'
                 }).text(opts.text)
             ).show()
+        },
+        /**
+         * Destroy debugger
+         */
+        destroyDebugger: function destroyDebugger() {
+            this.destroyGrid();
+            this.destroyInfo();
         },
         /**
          * Destroy info window

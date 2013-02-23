@@ -42,7 +42,7 @@ define([
                  * Destroy instance of Debugger
                  * @type {undefined}
                  */
-                this.debugger.destroyInfo();
+                this.debugger.destroyDebugger();
                 this.debugger = undefined;
                 delete this.debugger;
             }

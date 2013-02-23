@@ -29,22 +29,46 @@ define([
         /**
          * DOM config
          * @param {*} view
-         * @param {{style, [events], [id]}} opts
+         * @param {{style, [events], [id], [opacity]}} opts
          * @returns {*}
          */
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;
             this.events = opts.events;
+            this.opacity = opts.opacity || 0.6;
             this.id = this.renderUUID(opts.id);
             this.$ = $('<div />').attr({
                 id: opts.id
             }).addClass(this.style).
+                css({
+                    opacity: this.opacity
+                }).
                 append(
                     $('<div />')
                 );
 
+            this.bindHover();
+
             return this;
+        },
+        /**
+         * Hover debugger
+         */
+        bindHover: function bindHover() {
+            var opacity = this.opacity;
+            this.$.hover(
+                function on() {
+                    $(this).css({
+                        opacity: 0.9
+                    });
+                },
+                function off() {
+                    $(this).css({
+                        opacity: opacity
+                    });
+                }
+            );
         },
         /**
          * Activate debugger
