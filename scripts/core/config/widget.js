@@ -22,8 +22,9 @@ define([
     'view/widget.view',
     'event/widget.event.manager',
     'permission/widget.permission',
-    'controller/widget/widget.map'
-], function defineWidget(Base, MVC, Controller, Model, View, EventManager, Permission, Map) {
+    'controller/widget/widget.map',
+    'controller/widget/widget.wireframe'
+], function defineWidget(Base, MVC, Controller, Model, View, EventManager, Permission, Map, Wireframe) {
     /**
      * Define Widget
      * @param opts {object}
@@ -43,7 +44,6 @@ define([
             events: {
                 draggable: {
                     animate: {
-                        drag: false,
                         stop: true
                     },
                     organize: {
@@ -61,7 +61,6 @@ define([
                 },
                 resizable: {
                     animate: {
-                        resize: false,
                         stop: true
                     },
                     organize: {
@@ -98,6 +97,12 @@ define([
          * @type {widget.map}
          */
         this.map = new Map(this);
+
+        /**
+         * Define wireframe
+         * @type {widget.wireframe}
+         */
+        this.wireframe = new Wireframe(this);
 
         /**
          * Define interactions: Drag/Resize

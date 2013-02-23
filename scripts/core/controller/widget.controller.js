@@ -18,6 +18,9 @@ define([
         getPage: function getPage() {
             return this.scope.config.parent;
         },
+        get$page: function get$page() {
+            return this.getPage().view.elements.$page.$;
+        },
         setupInteractions: function setupInteractions() {
             this.scope.observer.publish(this.scope.eventmanager.eventList.initDrag);
             this.scope.observer.publish(this.scope.eventmanager.eventList.initResize);
@@ -48,6 +51,14 @@ define([
         },
         debugInteractions: function debugInteractions(interaction) {
             this.logger.debug('Debug interactions', interaction);
+        },
+        dragSticker: function dragSticker(type, animate) {
+            this.map.sticker({
+                organize: false,
+                animate: animate,
+                type: type,
+                $source: this.wireframe.$
+            });
         }
 
     }, BaseController.prototype);

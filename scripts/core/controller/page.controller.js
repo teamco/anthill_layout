@@ -14,6 +14,9 @@ define([
     };
 
     return Controller.extend({
+        getWorkspace: function getWorkspace() {
+            return this.scope.config.parent;
+        },
         createLayout: function createLayout(Layout, opts) {
             this.layout = new Layout(opts, this);
         },

@@ -7,3 +7,9 @@
     background-color: rgb(240, 128, 128);
     z-index: 50;
 }
+
+#next-widget-position {
+    position: absolute;
+    z-index: 49;
+    background: #000;
+}

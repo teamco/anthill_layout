@@ -88,6 +88,7 @@ define([
         start: function start(event, ui) {
             this.debugUI(event, ui);
             this.scope.controller.setAsCurrent();
+            this.scope.wireframe.move();
         },
         /**
          * Stop drag
@@ -103,7 +104,12 @@ define([
          * @param ui
          */
         drag: function drag(event, ui) {
+            var scope = this.scope;
             this.debugUI(event, ui);
+            scope.observer.publish(
+                scope.eventmanager.eventList.dragSticker,
+                [event.type, false]
+            );
         }
     }, Interactions.prototype);
 });

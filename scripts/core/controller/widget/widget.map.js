@@ -11,14 +11,20 @@ define([
 
     /**
      * Define Widget Map
-     * @param widget
+     * @param {*} widget
      * @constructor
      */
     var Map = function Map(widget) {
         this.widget = widget;
+        this.duration = 500;
     };
 
     return Map.extend({
+        /**
+         * Define 0 as 1 relative dims (width|height)
+         * @param {Number} dim
+         * @returns {Number}
+         */
         relDims: function relDims(dim) {
             return dim === 0 ? 1 : dim;
         },
@@ -138,6 +144,46 @@ define([
             var layout = this.widget.controller.getPage().controller.getLayout();
             return dim * layout.controller.minCellWidth() +
                 (dim - 1) * layout.config.grid.margin;
+        },
+        isResize: function isResize() {
+            return type.match(/resize/ig);
+        },
+        isDrag: function isDrag(type) {
+            return type.match(/drag/ig);
+        },
+        sticker: function sticker(opts) {
+            opts = this.base.define(opts, {}, true);
+            var hash = {},
+                css = this.isDrag(opts.type) ?
+                    this.dragTo() :
+                    this.resizeTo();
+            if (css.top >= 0 && css.left >= 0) {
+                opts.$source.stop().animate(
+                    css,
+                    !!opts.animate ? this.duration : 0,
+                    function mapSticker() {
+                        // TODO Visualization
+//                        if (!!opts.organize) {
+//                            this.widget.save();
+//                            hash[this.widget.config.uuid] = this.widget.dimensions();
+//                            this.layout.overlapping.nestedOrganizer({
+//                                targets: hash,
+//                                callback: opts.callback
+//                            });
+//                        }
+                    }.bind(this)
+                );
+            }
+        },
+        dragTo: function dragTo() {
+            var dom = this.getDOM(),
+                layout = this.widget.controller.getPage().controller.getLayout(),
+                cell = layout.controller.minCellWidth(),
+                margin = layout.config.grid.margin;
+            return {
+                left: dom.column * cell + (margin * (dom.column + 1)),
+                top: dom.row * cell + (margin * (dom.row + 1))
+            };
         }
     }, Base);
 });

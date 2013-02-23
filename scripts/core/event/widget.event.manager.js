@@ -23,7 +23,13 @@ define([
             debugInteractions: {
                 eventName: 'debug.interactions',
                 params: {
-                    buffer: 500
+                    buffer: 1000
+                }
+            },
+            dragSticker: {
+                eventName: 'drag.sticker',
+                params: {
+                    buffer: 50
                 }
             }
         };
