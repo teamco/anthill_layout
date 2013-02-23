@@ -250,3 +250,21 @@
     float: left;
     margin-right: 10px;
 }
+
+#debug-mode table {
+
+}
+
+#debug-mode th {
+    padding: 2px 10px;
+    background-color: #363636;
+    color: #fff;
+    font-weight: normal;
+    border: 1px solid #333;
+}
+
+#debug-mode td {
+    border: 1px solid #999;
+    padding: 2px 10px;
+    font-weight: normal;
+}
