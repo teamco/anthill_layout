@@ -87,6 +87,7 @@ define([
          */
         start: function start(event, ui) {
             this.debugUI(event, ui);
+            this.scope.controller.setAsCurrent();
         },
         /**
          * Stop drag

@@ -15,6 +15,9 @@ define([
     };
 
     return Controller.extend({
+        getPage: function getPage() {
+            return this.scope.config.parent;
+        },
         setupInteractions: function setupInteractions() {
             this.scope.observer.publish(this.scope.eventmanager.eventList.initDrag);
             this.scope.observer.publish(this.scope.eventmanager.eventList.initResize);

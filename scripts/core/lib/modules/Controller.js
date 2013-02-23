@@ -27,6 +27,13 @@ define([
             return this.root().config.mode;
         },
         /**
+         * Get parent node
+         * @returns {*}
+         */
+        getParent: function getParent() {
+            return this.scope.config.parent;
+        },
+        /**
          * Get Application Root
          * @returns {*|string}
          */
@@ -77,6 +84,12 @@ define([
                 scope.logger.warn('Unable to locate current item');
             }
             return scope[scope.model.getItemNamespace()];
+        },
+        /**
+         * Set item as current in parent node
+         */
+        setAsCurrent: function setAsCurrent() {
+            this.getParent().controller.setCurrentItem(this.scope);
         },
         /**
          * Set current item

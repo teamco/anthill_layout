@@ -24,6 +24,13 @@ define([
             );
             delete this.layout;
         },
+        /**
+         * Get Layout
+         * @returns {*}
+         */
+        getLayout: function getLayout() {
+            return this.scope.layout;
+        },
         createTemplate: function createTemplate(Template, opts) {
             this.template = new Template(opts);
         },

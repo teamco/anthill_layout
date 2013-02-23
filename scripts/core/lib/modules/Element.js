@@ -170,6 +170,20 @@ define([
             return $(this.view.scope.controller.root().config.html.container);
         },
         /**
+         * Get position
+         * @returns {{top, left}}
+         */
+        getPosition: function getPosition() {
+            return this.$.position();
+        },
+        /**
+         * Get offset
+         * @returns {{top, left}}
+         */
+        getOffset: function getOffset() {
+            return this.$.offset();
+        },
+        /**
          * Get element width
          * @returns {*}
          */
@@ -213,7 +227,7 @@ define([
          * @returns {Number}
          */
         getCSS: function getCSS(value) {
-            return this.base.lib.number.str2int(this.$.css(value));
+            return this.base.lib.number.str2float(this.$.css(value));
         },
         /**
          * Get padding right
