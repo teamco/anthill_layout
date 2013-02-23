@@ -258,6 +258,7 @@ define([
              * will be executed on fnWrapper return.
              * Note: fnWrapper can override executeCallback function
              * to maintain event options like: delay, buffer, etc...
+             * @returns {*}
              */
             var executeCallback = function executeCallback() {
 
@@ -283,7 +284,7 @@ define([
 
                     this.defer(opts.params.timeout, function deferCallback() {
 
-                        var currentTime = this.base.timestamp();
+                        var currentTime = this.base.lib.datetime.timestamp();
                         var triggerTime = opts.state.lastCallAt + opts.params.timeout;
 
                         /**

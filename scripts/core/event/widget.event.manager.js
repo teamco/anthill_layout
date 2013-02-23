@@ -23,7 +23,7 @@ define([
             debugInteractions: {
                 eventName: 'debug.interactions',
                 params: {
-                    delay: 500
+                    buffer: 500
                 }
             }
         };

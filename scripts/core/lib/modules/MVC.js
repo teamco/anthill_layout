@@ -303,10 +303,12 @@ define([
                     if (scope.globalListeners.hasOwnProperty(index)) {
                         event = scope.globalListeners[index];
                         scope.eventmanager.subscribe({
-                            event: event.name,
-                            callback: event.callback,
-                            params: event.params,
-                            scope: event.scope
+                            event: {
+                                eventName: event.name,
+                                params: event.params,
+                                scope: event.scope
+                            },
+                            callback: event.callback
                         }, false);
                     }
                 }
