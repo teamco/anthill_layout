@@ -286,25 +286,16 @@ define([
                         this.renderInput('console.warn', logger.type.warn)
                     ], false),
 
-//                    '</li></ul></fieldset>',
-//                        '</li><li><span>Row:</span> ', widgetDOM.row,
-//                        '</li><li><span>Column:</span> ', widgetDOM.column,
-//                        '</li><li><span>Relative Width:</span> ', widgetDOM.relWidth,
-//                        '</li><li><span>Relative Height:</span> ', widgetDOM.relHeight,
-//                        '</li></ul></fieldset>',
-//                        '<fieldset><legend>Allowed to: ', type/*.capitalize()*/, '</legend>',
-//                        '<ul><li class="allow"><span title="Column Left" style="color: ', columnColorLeft, '">&#8592;</span>',
-//                        '<span title="Row Top" style="color: ', rowColor, '">&#8593;</span>',
-//                        '<span title="Column Right" style="color: ', columnColorRight, '">&#8594;</span>',
-//                        '</li></ul></fieldset>',
-                    '</div><div class="debug-close">Close</div>'
+                    '</div><div class="debug-close">Hide</div>'
+
                 ].join('')
             ).show();
 
             this.bindHover(opacityOff);
             this.bindCollapse();
             this.bindToggleGrid();
-            this.showHideAll();
+            this.bindShowHideAll();
+            this.bindDebugClose();
 
         },
         /**
@@ -475,13 +466,16 @@ define([
         /**
          * Toggle info content
          */
-        showHideAll: function showHideAll() {
+        bindShowHideAll: function bindShowHideAll() {
             var $label = $(this.info).find('.handler input:last+label');
             $label.on(
                 'click.showAll',
                 function showAll() {
-                    var $hidden = $(this.info).find('fieldset ul:hidden'),
-                        $visible = $(this.info).find('fieldset ul:visible');
+                    var $fieldset = $(this.info).find('fieldset'),
+                        $hidden = $fieldset.find('ul:hidden'),
+                        $visible = $fieldset.find('ul:visible');
+
+                    $fieldset.show();
 
                     if ($hidden.length > 0) {
                         $hidden.slideDown();
@@ -489,6 +483,25 @@ define([
                     } else {
                         $visible.slideUp();
                         $label.text($label.text().replace(/Collapse/, 'Expand'));
+                    }
+                }.bind(this)
+            );
+        },
+        /**
+         * Hide/Show info window
+         */
+        bindDebugClose: function bindDebugClose() {
+            var $close = $(this.info).find('.debug-close'),
+                $content = $(this.info).find('.debug-container fieldset');
+            $close.on(
+                'click.hideDebug',
+                function hideDebug() {
+                    if ($(this.info).find('fieldset:visible').length > 0) {
+                        $content.slideUp();
+                        $close.text($close.text().replace(/Hide/, 'Show'));
+                    } else {
+                        $content.slideDown();
+                        $close.text($close.text().replace(/Show/, 'Hide'));
                     }
                 }.bind(this)
             );
