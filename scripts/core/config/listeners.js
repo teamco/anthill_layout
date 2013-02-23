@@ -42,6 +42,7 @@ define([
                  * Destroy instance of Debugger
                  * @type {undefined}
                  */
+                this.debugger.destroyInfo();
                 this.debugger = undefined;
                 delete this.debugger;
             }
@@ -104,6 +105,9 @@ define([
         },
         debugInteractions: {
             name: "debug.interactions",
+            params: {
+                buffer: 50
+            },
             callback: function debugInteractionsCallback() {
                 var debug = this.controller.root().debugger;
                 debug.updateWidgetInfo.apply(debug, arguments);

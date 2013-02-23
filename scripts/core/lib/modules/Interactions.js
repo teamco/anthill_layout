@@ -19,6 +19,13 @@ define([
                 capability: this.constructor.getConstructorName().toLowerCase(),
                 callback: this.init.bind(this)
             });
+        },
+        debugUI: function debugUI(event, ui) {
+            var scope = this.scope;
+            scope.observer.publish(
+                scope.eventmanager.eventList.debugInteractions,
+                [this.scope, event, ui]
+            );
         }
 
     }, Base);

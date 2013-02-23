@@ -48,10 +48,13 @@ define([
         create: function create(event, ui) {
         },
         start: function start(event, ui) {
+            this.debugUI(event, ui);
         },
         stop: function stop(event, ui) {
+            this.debugUI(event, ui);
         },
         resize: function resize(event, ui) {
+            this.debugUI(event, ui);
         }
     }, Interactions.prototype);
 });

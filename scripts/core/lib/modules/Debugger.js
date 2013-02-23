@@ -24,7 +24,6 @@ define([
         this.info = '#debug-mode';
 
         this.rows = 25;
-
         this.scopes = {};
 
         this.defineScope();
@@ -198,7 +197,20 @@ define([
                 }).text(opts.text)
             ).show()
         },
-        renderInfo: function renderInfo(event, ui, timestamp) {
+        /**
+         * Destroy info window
+         */
+        destroyInfo: function destroyInfo() {
+            $(this.info).stop().fadeOut('slow', function fadeOt() {
+                $(this).unbind().remove();
+            });
+        },
+        /**
+         * Render Info window
+         * @param {{type, timeStamp}} event
+         * @param {{originalPosition, offset, position, helper}} ui
+         */
+        renderInfo: function renderInfo(event, ui) {
 
             var div = $(this.info),
                 opacityOff = 0.8;
@@ -238,6 +250,31 @@ define([
                     '</div>',
                     '<div class="debug-container">',
 
+                    this.renderBlock('Widget', [
+                        this.renderWidgetInfo(event, ui)
+                    ], true),
+
+                    this.renderBlock('Layout', [
+                        this.renderInput('Snap to Grid', layout.snap2grid),
+                        this.renderInput('Overlapping', layout.overlapping),
+                        this.renderInput('Empty spaces', layout.emptySpaces),
+                        this.renderInline('Columns', layout.grid.columns),
+                        this.renderInline('Widgets per row', layout.grid.widgetsPerRow),
+                        this.renderInline('Cell size (px)', layout.grid.minCellWidth),
+                        this.renderInline('Margin (px)', layout.grid.margin),
+                        this.renderInline('Padding (px)', layout.grid.padding)
+                    ], false),
+
+                    this.renderBlock('Page', [
+                        this.renderInline('UUID', page.config.uuid),
+                        this.renderInlineOf('Widgets', page)
+                    ], false),
+
+                    this.renderBlock('Workspace', [
+                        this.renderInline('UUID', workspace.config.uuid),
+                        this.renderInlineOf('Pages', workspace)
+                    ], false),
+
                     this.renderBlock('Application', [
                         this.renderInline('UUID', this.scope.config.uuid),
                         this.renderInlineOf('Workspaces', this.scope),
@@ -254,45 +291,7 @@ define([
                         this.renderInput('console.warn', logger.type.warn)
                     ], false),
 
-                    this.renderBlock('Workspace', [
-                        this.renderInline('UUID', workspace.config.uuid),
-                        this.renderInlineOf('Pages', workspace)
-                    ], false),
-
-                    this.renderBlock('Page', [
-                        this.renderInline('UUID', page.config.uuid),
-                        this.renderInlineOf('Widgets', page)
-                    ], false),
-
-                    this.renderBlock('Layout', [
-                        this.renderInput('Snap to Grid', layout.snap2grid),
-                        this.renderInput('Overlapping', layout.overlapping),
-                        this.renderInput('Empty spaces', layout.emptySpaces),
-                        this.renderInline('Columns', layout.grid.columns),
-                        this.renderInline('Widgets per row', layout.grid.widgetsPerRow),
-                        this.renderInline('Cell size (px)', layout.grid.minCellWidth),
-                        this.renderInline('Margin (px)', layout.grid.margin),
-                        this.renderInline('Padding (px)', layout.grid.padding)
-                    ], false),
-
-                    this.renderBlock('Widget', [
-                        this.renderWidgetInfo(event, ui, timestamp)
-                    ], true),
-
-//                    '<fieldset><legend>Event (', type/*.capitalize()*/, ')</legend>',
-//                        '<ul><li><span>Left (px):</span> ', widgetDOM.left,
-//                        '</li><li><span>Top (px):</span> ', widgetDOM.top,
-//                        '</li><li><span>Width (px):</span> ', widgetDOM.width,
-//                        '</li><li><span>Height (px):</span> ', widgetDOM.height,
-//                        '</li><li><span>Timestamp (ms):</span> ', timestamp,
 //                    '</li></ul></fieldset>',
-//                        this.debug.getter(ui, 'offset'),
-//                        this.debug.getter(ui, 'originalSize'),
-//                        this.debug.getter(ui, 'size'),
-//                        this.debug.getter(ui, 'originalPosition'),
-//                        this.debug.getter(ui, 'position'),
-//                        '<fieldset><legend>Active widget</legend>',
-//                        '<ul><li title="', widgetDOM.uuid, '"><span>ID: </span> ', widgetDOM.uuid,
 //                        '</li><li><span>Row:</span> ', widgetDOM.row,
 //                        '</li><li><span>Column:</span> ', widgetDOM.column,
 //                        '</li><li><span>Relative Width:</span> ', widgetDOM.relWidth,
@@ -311,6 +310,13 @@ define([
             this.bindCollapse();
 
         },
+        /**
+         * Render block of elements
+         * @param {String} text
+         * @param {Array} content
+         * @param {Boolean} show
+         * @returns {string}
+         */
         renderBlock: function renderBlock(text, content, show) {
             return [
                 this.renderHeader(text, show),
@@ -318,24 +324,60 @@ define([
                 this.renderFooter()
             ].join('');
         },
+        /**
+         * Render Header
+         * @param {String} text
+         * @param {Boolean} show
+         * @returns {string}
+         */
         renderHeader: function renderHeader(text, show) {
             return ['<fieldset class="', (text.toLowerCase() + '-info'), '"><legend>', text, '</legend><ul', (show ? '' : ' class="hide"'), '>'].join('');
         },
+        /**
+         * Render inline element
+         * @param {String} text
+         * @param {String} value
+         * @returns {string}
+         */
         renderInline: function renderInline(text, value) {
             return ['<li><span>', text, ':</span> ', value, '</li>'].join('');
         },
+        /**
+         * Render inline element of element
+         * @param {String} text
+         * @param {{}} item
+         * @returns {string}
+         */
         renderInlineOf: function renderInlineOf(text, item) {
             return ['<li><span>', text, ':</span> ', this.base.lib.hash.hashLength(item.items), ' of ', item.config[item.model.getItemNamespace()].limit || 'Unlimited', '</li>'].join('');
         },
+        /**
+         * Render input element
+         * @param {String} text
+         * @param {Boolean} condition
+         * @returns {string}
+         */
         renderInput: function renderInput(text, condition) {
             return [
                 '<li><input type="checkbox"', condition ? ' checked="checked"' : '', '" />',
                 '<span>', text, ':</span> <span>', condition, '</span></li>'
             ].join('');
         },
+        /**
+         * Render footer
+         * @returns {string}
+         */
         renderFooter: function renderFooter() {
             return '</ul></fieldset>';
         },
+        /**
+         * Render table row
+         * @param {String} text
+         * @param {String|Number} top
+         * @param {String|Number} left
+         * @param {Boolean} head
+         * @returns {string}
+         */
         renderTableRow: function renderTableRow(text, top, left, head) {
             var h = head ? 'h' : 'd';
             return [
@@ -344,32 +386,57 @@ define([
                 '<t', h, '>', left, '</t', h, '></tr>'
             ].join('');
         },
-        renderWidgetInfo: function renderWidgetInfo(event, ui, timestamp) {
+        /**
+         * Render widget info
+         * @param {{type, timeStamp}} event
+         * @param {{originalPosition, originalSize, offset, position, helper}} ui
+         * @returns {string}
+         */
+        renderWidgetInfo: function renderWidgetInfo(event, ui) {
 
             var originalPosition = ui.originalPosition || {},
+                originalSize = ui.originalSize || {},
                 offset = ui.offset || {},
-                position = ui.position || {};
+                position = ui.position || {},
+                helper = ui.helper || $();
 
             return [
                 this.renderInline('On', (event.type + '').toUpperCase()),
+                this.renderInline('Timestamp', event.timeStamp),
                 '<li><table>',
-                this.renderTableRow('Location', 'Top', 'Left', true),
-                this.renderTableRow('Offset', offset.top, offset.left, false),
-                this.renderTableRow('Original position', originalPosition.top, originalPosition.left, false),
-                this.renderTableRow('Position', position.top, position.left, false),
+                this.renderTableRow('Location', 'Left', 'Top', true),
+                this.renderTableRow('Offset', offset.left, offset.top, false),
+                this.renderTableRow('Original position', originalPosition.left, originalPosition.top, false),
+                this.renderTableRow('Position', position.left, position.top, false),
+                this.renderTableRow('Dimensions', 'Width', 'Height', true),
+                this.renderTableRow('Original size', originalSize.width, originalSize.height, false),
+                this.renderTableRow('Size', helper.width(), helper.height(), false),
                 '</li></table>'
             ].join('')
         },
-        updateWidgetInfo: function updateWidgetInfo(widget, event, ui, timestamp) {
+        /**
+         * Update widget info
+         * @param {{Widget}} widget
+         * @param {{type, timeStamp}} event
+         * @param {{originalPosition, offset, position, helper}} ui
+         */
+        updateWidgetInfo: function updateWidgetInfo(widget, event, ui) {
             this.scopes.widget = widget;
-            $('.widget-info ul').empty().append(this.renderWidgetInfo(event, ui, timestamp));
+            $('.widget-info ul').empty().append(this.renderWidgetInfo(event, ui));
         },
+        /**
+         * Collapse/expand group
+         */
         bindCollapse: function bindCollapse() {
             $(this.info).find('legend').on('click.toggle', function clickToggle() {
                 var $ul = $(this).parent().find('ul');
                 $ul['slide' + ($ul.is(':visible') ? 'Up' : 'Down')]();
             });
         },
+        /**
+         * Hover info window
+         * @param {Number} opacityOff
+         */
         bindHover: function bindHover(opacityOff) {
             $(this.info).hover(
                 function on() {

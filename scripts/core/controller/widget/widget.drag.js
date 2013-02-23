@@ -86,6 +86,7 @@ define([
          * @param ui
          */
         start: function start(event, ui) {
+            this.debugUI(event, ui);
         },
         /**
          * Stop drag
@@ -93,6 +94,7 @@ define([
          * @param ui
          */
         stop: function stop(event, ui) {
+            this.debugUI(event, ui);
         },
         /**
          * onDrag
@@ -100,11 +102,7 @@ define([
          * @param ui
          */
         drag: function drag(event, ui) {
-            var scope = this.scope;
-            scope.observer.publish(
-                scope.eventmanager.eventList.debugInteractions,
-                [this.scope, event, ui]
-            );
+            this.debugUI(event, ui);
         }
     }, Interactions.prototype);
 });
