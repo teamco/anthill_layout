@@ -41,7 +41,7 @@ define([
                     scrollSpeed: 100,
                     opacity: 0.6,
                     zIndex: 100,
-                    containment: scope.config.parent.view.elements.$page.$,
+                    containment: scope.controller.get$page(),
                     create: this.create.bind(this),
                     start: this.start.bind(this),
                     stop: this.stop.bind(this),
