@@ -87,7 +87,7 @@
     overflow: hidden;
     background: #fff;
     cursor: default;
-    height: 300px;
+    max-height: 300px;
     -moz-box-shadow: 3px 3px 5px #777;
     -webkit-box-shadow: 3px 3px 5px #777;
     box-shadow: 3px 3px 5px #777;
@@ -171,6 +171,7 @@
 }
 
 #debug-mode input:first-child + span,
+#debug-mode input:first-child + label,
 #debug-mode span:first-child {
     font-weight: bold;
 }
@@ -220,24 +221,12 @@
     text-decoration: none;
 }
 
-#debug-mode input[type=checkbox] {
+#debug-mode input[type="checkbox"] {
     margin-right: 5px;
 }
 
-#debug-mode input[type=checkbox]:hover + * {
+#debug-mode input[type="checkbox"]:hover + * {
     color: red;
-}
-
-#debug-mode span.plus,
-#debug-mode span.minus {
-    padding-left: 20px;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-#debug-mode span.plus:hover,
-#debug-mode span.minus:hover {
-    color: #0000ff;
 }
 
 #debug-mode .show-all {
@@ -251,8 +240,18 @@
     margin-right: 10px;
 }
 
-#debug-mode table {
+#debug-mode label {
+    cursor: pointer;
+    margin-left: -20px;
+    padding-left: 20px;
+}
 
+#debug-mode .handler input {
+    margin-top: 0;
+}
+
+#debug-mode table {
+    width: 100%;
 }
 
 #debug-mode th {
@@ -261,10 +260,32 @@
     color: #fff;
     font-weight: normal;
     border: 1px solid #333;
+    text-align: center;
 }
 
 #debug-mode td {
     border: 1px solid #999;
     padding: 2px 10px;
+    text-align: center;
     font-weight: normal;
+}
+
+#debug-mode th:first-child,
+#debug-mode td:first-child {
+    text-align: left;
+}
+
+#debug-mode .handler ul {
+    list-style: none;
+}
+
+#debug-mode .handler li {
+    float: left;
+    clear: both;
+    border: none;
+    list-style: none;
+}
+
+#debug-mode .handler li:hover {
+    background: transparent;
 }

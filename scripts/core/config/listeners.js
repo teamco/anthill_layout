@@ -110,7 +110,9 @@ define([
             },
             callback: function debugInteractionsCallback() {
                 var debug = this.controller.root().debugger;
-                debug.updateWidgetInfo.apply(debug, arguments);
+                if (this.base.isDefined(debug)) {
+                    debug.updateWidgetInfo.apply(debug, arguments);
+                }
             }
         }
 

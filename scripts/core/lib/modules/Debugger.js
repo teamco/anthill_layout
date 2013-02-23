@@ -239,15 +239,10 @@ define([
 
             div.html(
                 [
-                    '<div class="handler" title="Drag">',
-                    '<input type="checkbox" name="toggle-map">',
-                    '<span id="toggle-map" title="Click to toggle grid">Toggle Grid</span>',
-                    '<span id="debug-grid-size"></span>',
-                    '<div class="show-all">',
-                    '<input type="checkbox" name="show-all">',
-                    '<span>Show All</span>',
-                    '</div>',
-                    '</div>',
+                    '<ul class="handler" title="Drag">',
+                    this.renderInput('Show Grid', false),
+                    this.renderInput('Expand the Content', false),
+                    '</ul>',
                     '<div class="debug-container">',
 
                     this.renderBlock('Widget', [
@@ -260,7 +255,7 @@ define([
                         this.renderInput('Empty spaces', layout.emptySpaces),
                         this.renderInline('Columns', layout.grid.columns),
                         this.renderInline('Widgets per row', layout.grid.widgetsPerRow),
-                        this.renderInline('Cell size (px)', layout.grid.minCellWidth),
+                        this.renderInline('Cell size (px)', layout.grid.minCellWidth.toFixed(3)),
                         this.renderInline('Margin (px)', layout.grid.margin),
                         this.renderInline('Padding (px)', layout.grid.padding)
                     ], false),
@@ -302,12 +297,14 @@ define([
 //                        '<span title="Row Top" style="color: ', rowColor, '">&#8593;</span>',
 //                        '<span title="Column Right" style="color: ', columnColorRight, '">&#8594;</span>',
 //                        '</li></ul></fieldset>',
-                    '</div></div><div class="debug-close">Close</div>'
+                    '</div><div class="debug-close">Close</div>'
                 ].join('')
             ).show();
 
             this.bindHover(opacityOff);
             this.bindCollapse();
+            this.bindToggleGrid();
+            this.showHideAll();
 
         },
         /**
@@ -358,9 +355,12 @@ define([
          * @returns {string}
          */
         renderInput: function renderInput(text, condition) {
+            var uuid = this.scope.base.lib.generator.UUID();
             return [
-                '<li><input type="checkbox"', condition ? ' checked="checked"' : '', '" />',
-                '<span>', text, ':</span> <span>', condition, '</span></li>'
+                '<li><input name="', (text.toLowerCase().replace(/ /g, '-')),
+                '" id="', uuid, '" type="checkbox"',
+                condition ? ' checked="checked"' : '', '" />',
+                '<label for="', uuid, '">', text, '</label></li>'
             ].join('');
         },
         /**
@@ -401,6 +401,7 @@ define([
                 helper = ui.helper || $();
 
             return [
+                this.renderInline('UUID', this.scopes.widget.config.uuid),
                 this.renderInline('On', (event.type + '').toUpperCase()),
                 this.renderInline('Timestamp', event.timeStamp),
                 '<li><table>',
@@ -449,6 +450,47 @@ define([
                         opacity: opacityOff
                     });
                 }
+            );
+        },
+        /**
+         * Toggle grid
+         */
+        bindToggleGrid: function bindToggleGrid() {
+            var $label = $(this.info).find('.handler input:first+label');
+            $label.on(
+                'click.toggleGrid',
+                function toggleGrid() {
+                    var $placeholders = $(this.placeholders);
+
+                    if ($placeholders.length > 0 &&
+                        $placeholders.find('*').length > 0) {
+                        $label.text($label.text().replace(/Hide/, 'Show'));
+                        return this.destroyGrid();
+                    }
+                    $label.text($label.text().replace(/Show/, 'Hide'));
+                    this.showGrid();
+                }.bind(this)
+            );
+        },
+        /**
+         * Toggle info content
+         */
+        showHideAll: function showHideAll() {
+            var $label = $(this.info).find('.handler input:last+label');
+            $label.on(
+                'click.showAll',
+                function showAll() {
+                    var $hidden = $(this.info).find('fieldset ul:hidden'),
+                        $visible = $(this.info).find('fieldset ul:visible');
+
+                    if ($hidden.length > 0) {
+                        $hidden.slideDown();
+                        $label.text($label.text().replace(/Expand/, 'Collapse'));
+                    } else {
+                        $visible.slideUp();
+                        $label.text($label.text().replace(/Collapse/, 'Expand'));
+                    }
+                }.bind(this)
             );
         }
     }, Base);
