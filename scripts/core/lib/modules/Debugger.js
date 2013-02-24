@@ -399,10 +399,33 @@ define([
                 position = ui.position || {},
                 helper = ui.helper || $();
 
+            var widget = this.scopes.widget,
+                widgetDOM = widget.map.getDOM(),
+                columnAllowLeft = widget.map.checkWidgetPositionColumnLeft(widgetDOM.column),
+                columnAllowRight = widget.map.checkWidgetPositionColumnRight(widgetDOM),
+                rowAllowTop = widget.map.checkWidgetPositionRowTop(widgetDOM.row);
+
+            /**
+             * Get allowed column
+             * @returns {string}
+             */
+            function getAllowedColumn() {
+                return [
+                    '<span class="left-', columnAllowLeft, '">Left</span>|',
+                    '<span class="right-', columnAllowRight, '">Right</span>'
+                ].join('');
+            }
+            /**
+             * Get allowed row
+             * @returns {string}
+             */
+            function getAllowedRow() {
+                return ['<span class="top-', rowAllowTop, '">Top</span>'].join('');
+            }
+
             return [
                 this.renderInline('UUID', this.scopes.widget.config.uuid),
                 this.renderInline('On', (event.type + '').toUpperCase()),
-                this.renderInline('Timestamp', event.timeStamp),
                 '<li><table>',
                 this.renderTableRow('Location', 'Left', 'Top', true),
                 this.renderTableRow('Offset', offset.left, offset.top, false),
@@ -411,12 +434,18 @@ define([
                 this.renderTableRow('Dimensions', 'Width', 'Height', true),
                 this.renderTableRow('Original size', originalSize.width, originalSize.height, false),
                 this.renderTableRow('Size', helper.width(), helper.height(), false),
-                '</li></table>'
+                this.renderTableRow('Grid', 'Column', 'Row', true),
+                this.renderTableRow('Position', widgetDOM.column, widgetDOM.row, false),
+                this.renderTableRow('Relative dimensions', widgetDOM.relWidth, widgetDOM.relHeight, false),
+                this.renderTableRow('Position', 'Column', 'Row', true),
+                this.renderTableRow('Allowed', getAllowedColumn(), getAllowedRow(), false),
+                '</li></table>',
+                this.renderInline('Timestamp', event.timeStamp)
             ].join('')
         },
         /**
          * Update widget info
-         * @param {{Widget}} widget
+         * @param {{map, config}} widget
          * @param {{type, timeStamp}} event
          * @param {{originalPosition, offset, position, helper}} ui
          */

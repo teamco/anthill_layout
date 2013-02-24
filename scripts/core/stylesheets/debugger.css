@@ -88,7 +88,7 @@
     overflow: hidden;
     background: #fff;
     cursor: default;
-    max-height: 300px;
+    max-height: 340px;
     -moz-box-shadow: 3px 3px 5px #777;
     -webkit-box-shadow: 3px 3px 5px #777;
     box-shadow: 3px 3px 5px #777;
@@ -258,6 +258,7 @@
 
 #debug-mode table {
     width: 100%;
+    margin-top: -13px;
 }
 
 #debug-mode th {
@@ -294,4 +295,38 @@
 
 #debug-mode .handler li:hover {
     background: transparent;
+}
+
+#debug-mode span.left-true,
+#debug-mode span.left-false,
+#debug-mode span.top-true,
+#debug-mode span.top-false,
+#debug-mode span.right-true,
+#debug-mode span.right-false {
+    padding-right: 5px;
+    color: #20b2aa;
+    font-weight: bold;
+}
+
+#debug-mode span.left-false,
+#debug-mode span.right-false,
+#debug-mode span.top-false {
+    color: #cd0a0a;
+}
+
+#debug-mode span.right-true,
+#debug-mode span.right-false {
+    padding-right: 0;
+    padding-left: 3px;
+}
+
+#debug-mode span.top-true,
+#debug-mode span.top-false {
+    padding: 0;
+}
+
+#debug-mode span[class^="left-"]:hover,
+#debug-mode span[class^="right-"]:hover,
+#debug-mode span[class^="top-"]:hover {
+    text-shadow: 1px 1px #ccc;
 }

@@ -82,7 +82,7 @@ define([
          * @returns {Number}
          */
         row: function row(top, cell) {
-            return Math.ceil(top / cell);
+            return Math.round(top / cell);
         },
         /**
          * Get column
@@ -91,7 +91,7 @@ define([
          * @returns {Number}
          */
         column: function column(left, cell) {
-            return Math.ceil(left / cell);
+            return Math.round(left / cell);
         },
         /**
          * Get widget top position via grid
@@ -145,12 +145,73 @@ define([
             return dim * layout.controller.minCellWidth() +
                 (dim - 1) * layout.config.grid.margin;
         },
-        isResize: function isResize() {
+        /**
+         * Check widget column position via grid: Left
+         * @param {Number} column
+         * @returns {Boolean}
+         */
+        checkWidgetPositionColumnLeft: function checkWidgetPositionColumnLeft(column) {
+            return column >= 0;
+        },
+        /**
+         * Check widget column position via grid: Right
+         * @param {{column, relWidth}} dom
+         * @returns {Boolean}
+         */
+        checkWidgetPositionColumnRight: function checkWidgetPositionColumnRight(dom) {
+            return (dom.column + dom.relWidth) <=
+                this.widget.controller.getPage().controller.getLayout().config.grid.columns;
+        },
+        /**
+         * Check widget column position via grid: Left|Right
+         * @param {{column, relWidth}} dom
+         * @returns {Boolean}
+         */
+        checkWidgetPositionColumn: function checkWidgetPositionColumn(dom) {
+            return (
+                this.checkWidgetPositionColumnLeft(dom.column) &&
+                    this.checkWidgetPositionColumnRight(dom)
+                );
+        },
+        /**
+         * Check widget row position via grid: Top
+         * @param {{Number}} row
+         * @returns {Boolean}
+         */
+        checkWidgetPositionRowTop: function checkWidgetPositionRowTop(row) {
+            return row >= 0;
+        },
+        /**
+         * Check widget position
+         * @returns {Boolean|*}
+         */
+        checkWidgetPosition: function checkWidgetPosition() {
+            var dom = this.getDOM();
+            return (
+                this.checkWidgetPositionColumn(dom) &&
+                    this.checkWidgetPositionRowTop(dom.row)
+                );
+        },
+        /**
+         * Check if interaction is: resize
+         * @param {String} type
+         * @returns {*|Array|{index: number, input: string}}
+         */
+        isResize: function isResize(type) {
             return type.match(/resize/ig);
         },
+        /**
+         * Check if interaction is: drag
+         * @param {String} type
+         * @returns {*|Array|{index: number, input: string}}
+         */
         isDrag: function isDrag(type) {
             return type.match(/drag/ig);
         },
+        /**
+         * Grid sticker on interaction (Drag/Resize)
+         * @param {{type, $source, animate}} opts
+         */
         sticker: function sticker(opts) {
             opts = this.base.define(opts, {}, true);
             var hash = {},
