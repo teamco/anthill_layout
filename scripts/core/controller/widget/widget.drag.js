@@ -79,6 +79,8 @@ define([
          * @param ui
          */
         create: function create(event, ui) {
+            var scope = this.scope;
+            scope.observer.publish(scope.eventmanager.eventList.dragCreate, arguments);
         },
         /**
          * Start drag
@@ -86,9 +88,11 @@ define([
          * @param ui
          */
         start: function start(event, ui) {
+            var scope = this.scope;
             this.debugUI(event, ui);
-            this.scope.controller.setAsCurrent();
-            this.scope.wireframe.move();
+            scope.controller.setAsCurrent();
+            scope.wireframe.dragSticker();
+            scope.observer.publish(scope.eventmanager.eventList.dragStart, arguments);
         },
         /**
          * Stop drag
@@ -96,7 +100,9 @@ define([
          * @param ui
          */
         stop: function stop(event, ui) {
+            var scope = this.scope;
             this.debugUI(event, ui);
+            scope.observer.publish(scope.eventmanager.eventList.dragStop, arguments);
         },
         /**
          * onDrag
@@ -108,7 +114,7 @@ define([
             this.debugUI(event, ui);
             scope.observer.publish(
                 scope.eventmanager.eventList.dragSticker,
-                [event.type, false]
+                [event.type, arguments]
             );
         }
     }, Interactions.prototype);

@@ -21,14 +21,10 @@ define([
     };
 
     return Wireframe.extend({
-        css: function css($target) {
-            return {
-                top: App.elements.dom.domDimensions(target, 'top'),
-                left: App.elements.dom.domDimensions(target, 'left')
-            };
-
-        },
-        move: function move() {
+        /**
+         * Move wireframe on widget drag
+         */
+        dragSticker: function dragSticker() {
             var dom = this.widget.map.getDOM();
             this.init({
                 style: {
@@ -41,27 +37,19 @@ define([
                 animate: false
             });
         },
-
-        /**
-         *
-         * @param style
-         * @param opts
-         */
-        resize: function resize(style, opts) {
-            var widget = this.widget.view.$widget.$,
-                css = jQuery.extend(
-                    this.css(widget, widget), {
-                        height: style.height,
-                        width: style.width
-                    }
-                );
+        resizeSticker: function resizeSticker() {
+            var css = this.widget.map.resizeTo();
             this.init({
-                style: css,
-                animate: opts.animate || false,
-                handle: false
+                style: {
+                    left: css.left,
+                    top: css.top,
+                    width: css.width,
+                    height: css.height,
+                    opacity: this.opacity
+                },
+                animate: false
             });
         },
-
         /**
          *
          */
@@ -135,17 +123,6 @@ define([
             }
             return this;
         },
-
-        /**
-         *
-         * @param opts
-         */
-        fixPlaceholder: function fixPlaceholder(opts) {
-            opts = App.base.define(opts, {});
-            this.resize(this.widget.map.resizeTo(), opts);
-            this.hideDots = false;
-        },
-
         init: function init(opts) {
             opts = this.base.define(opts, {}, true);
             this.defineHolder(opts).show();

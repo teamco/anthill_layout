@@ -245,6 +245,16 @@ define([
                 left: dom.column * cell + (margin * (dom.column + 1)),
                 top: dom.row * cell + (margin * (dom.row + 1))
             };
+        },
+        resizeTo: function resizeTo() {
+            var dom = this.getDOM(),
+                layout = this.widget.controller.getPage().controller.getLayout(),
+                cell = layout.controller.minCellWidth(),
+                margin = layout.config.grid.margin;
+            return $.extend({
+                width: cell * dom.relWidth + margin * (dom.relWidth - 1),
+                height: cell * dom.relHeight + margin * (dom.relHeight - 1)
+            }, this.dragTo());
         }
     }, Base);
 });

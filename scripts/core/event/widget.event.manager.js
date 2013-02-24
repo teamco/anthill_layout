@@ -22,16 +22,28 @@ define([
             destroyResize: 'destroy.resize',
             debugInteractions: {
                 eventName: 'debug.interactions',
-                params: {
-                    buffer: 1000
-                }
+                params: { buffer: 1000 }
             },
+            /**
+             * Drag events
+             */
+            dragCreate: 'drag.create',
+            dragStart: 'drag.start',
             dragSticker: {
                 eventName: 'drag.sticker',
-                params: {
-                    buffer: 50
-                }
-            }
+                params: { buffer: 50 }
+            },
+            dragStop: 'drag.stop',
+            /**
+             * Resize events
+             */
+            resizeCreate: 'resize.create',
+            resizeStart: 'resize.start',
+            resizeSticker: {
+                eventName: 'resize.sticker',
+                params: { buffer: 50 }
+            },
+            resizeStop: 'resize.stop'
         };
     };
 

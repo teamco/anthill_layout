@@ -46,16 +46,28 @@ define([
             }
         },
         create: function create(event, ui) {
+            var scope = this.scope;
+            scope.observer.publish(scope.eventmanager.eventList.resizeCreate, arguments);
         },
         start: function start(event, ui) {
+            var scope = this.scope;
             this.debugUI(event, ui);
-            this.scope.controller.setAsCurrent();
+            scope.controller.setAsCurrent();
+            scope.wireframe.resizeSticker();
+            scope.observer.publish(scope.eventmanager.eventList.resizeStart, arguments);
         },
         stop: function stop(event, ui) {
+            var scope = this.scope;
             this.debugUI(event, ui);
+            scope.observer.publish(scope.eventmanager.eventList.resizeStop, arguments);
         },
         resize: function resize(event, ui) {
+            var scope = this.scope;
             this.debugUI(event, ui);
+            scope.observer.publish(
+                scope.eventmanager.eventList.resizeSticker,
+                [event.type, arguments]
+            );
         }
     }, Interactions.prototype);
 });

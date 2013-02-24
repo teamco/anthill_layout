@@ -211,7 +211,7 @@ define([
         /**
          * Set Interaction
          * @param {String} event
-         * @param {Function} callback
+         * @param {*} callback
          * @returns {*}
          */
         setInteraction: function setInteraction(event, callback) {
