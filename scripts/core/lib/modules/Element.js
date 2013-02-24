@@ -284,6 +284,20 @@ define([
          */
         getMarginBottom: function getMarginBottom() {
             return this.getCSS('marginBottom');
+        },
+        /**
+         * Get left delta
+         * @returns {Number}
+         */
+        getLeftDelta: function getLeftDelta() {
+            return this.getPaddingLeft() + this.getMarginLeft();
+        },
+        /**
+         * Get top delta
+         * @returns {Number}
+         */
+        getTopDelta: function getTopDelta() {
+            return this.getPaddingTop() + this.getMarginTop();
         }
 
     }, Base);

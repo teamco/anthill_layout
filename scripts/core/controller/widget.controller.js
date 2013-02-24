@@ -30,6 +30,13 @@ define([
             return this.getPage().view.elements.$page.$;
         },
         /**
+         * Get widgets container
+         * @returns {*}
+         */
+        getContainer: function getContainer() {
+            return this.getPage().view.elements.$widgets;
+        },
+        /**
          * Setup interactions {Drag|Resize}
          */
         setupInteractions: function setupInteractions() {

@@ -128,16 +128,13 @@ define([
                 page = this.scopes.page,
                 grid = page.layout.config.grid,
                 cell = grid.minCellWidth,
-                margin = grid.margin;
+                margin = grid.margin,
 
-            var $widgets = page.view.elements.$widgets,
-                top = $widgets.getPaddingTop() + $widgets.getMarginTop(),
-                left = $widgets.getPaddingLeft() + $widgets.getMarginLeft(),
                 opts = {
                     cell: cell,
                     margin: margin,
-                    top: top,
-                    left: left
+                    top: 0,
+                    left: 0
                 };
 
             $(this.placeholders).
@@ -161,7 +158,10 @@ define([
                 this.placeholders + ' .column', {
                     width: opts.cell,
                     top: opts.top,
-                    left: (opts.cell + opts.margin) * column + opts.left,
+                    left: this.scopes.widget.map.getNextPosition({
+                        column: column,
+                        row: 0
+                    }).left,
                     text: column
                 }
             );
@@ -175,7 +175,10 @@ define([
             this.renderPlaceHolder(
                 this.placeholders + ' .row', {
                     left: opts.left,
-                    top: (opts.cell + opts.margin) * row + opts.top,
+                    top: this.scopes.widget.map.getNextPosition({
+                        column: 0,
+                        row: row
+                    }).top,
                     height: opts.cell,
                     text: row
                 }
@@ -184,7 +187,7 @@ define([
         /**
          * Append grid to placeholder
          * @param {string} selector
-         * @param {{left, top, (width), (height), text}}opts
+         * @param {{left, top, [width], [height], text}}opts
          */
         renderPlaceHolder: function renderPlaceHolder(selector, opts) {
             opts = this.base.define(opts, {}, true);
@@ -415,6 +418,7 @@ define([
                     '<span class="right-', columnAllowRight, '">Right</span>'
                 ].join('');
             }
+
             /**
              * Get allowed row
              * @returns {string}

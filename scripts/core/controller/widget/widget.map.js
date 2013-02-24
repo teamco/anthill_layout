@@ -236,24 +236,63 @@ define([
                 );
             }
         },
-        dragTo: function dragTo() {
-            var dom = this.getDOM(),
-                layout = this.widget.controller.getPage().controller.getLayout(),
+        /**
+         * Get next position
+         * @param {{column: Number, row: Number}} dom
+         * @returns {{left: Number, top: Number}}
+         */
+        getNextPosition: function getNextPosition(dom) {
+            var $widgets = this.widget.controller.getContainer(),
+                top = $widgets.getTopDelta(),
+                left = $widgets.getLeftDelta();
+
+            var layout = this.widget.controller.getPage().controller.getLayout(),
                 cell = layout.controller.minCellWidth(),
                 margin = layout.config.grid.margin;
+
+            /**
+             * Get next position
+             * @param {Number} pos
+             * @returns {Number}
+             * @private
+             */
+            function _getNextPosition(pos) {
+                return pos * cell + (margin * (pos + 1));
+            }
+
             return {
-                left: dom.column * cell + (margin * (dom.column + 1)),
-                top: dom.row * cell + (margin * (dom.row + 1))
+                left: _getNextPosition(dom.column) + left,
+                top: _getNextPosition(dom.row) + top
             };
+
         },
-        resizeTo: function resizeTo() {
-            var dom = this.getDOM(),
-                layout = this.widget.controller.getPage().controller.getLayout(),
+        /**
+         * Get next dimensions
+         * @param {Number} relDim
+         * @returns {Number}
+         */
+        getNextDims: function getNextDims(relDim) {
+            var layout = this.widget.controller.getPage().controller.getLayout(),
                 cell = layout.controller.minCellWidth(),
                 margin = layout.config.grid.margin;
+            return cell * relDim + margin * (relDim - 1);
+        },
+        /**
+         * Drag to
+         * @returns {{left: Number, top: Number}}
+         */
+        dragTo: function dragTo() {
+            return this.getNextPosition(this.getDOM());
+        },
+        /**
+         * Resize to
+         * @returns {{width: Number, height: Number}}
+         */
+        resizeTo: function resizeTo() {
+            var dom = this.getDOM();
             return $.extend({
-                width: cell * dom.relWidth + margin * (dom.relWidth - 1),
-                height: cell * dom.relHeight + margin * (dom.relHeight - 1)
+                width: this.getNextDims(dom.relWidth),
+                height: this.getNextDims(dom.relHeight)
             }, this.dragTo());
         }
     }, Base);
