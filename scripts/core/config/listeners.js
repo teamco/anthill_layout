@@ -93,8 +93,10 @@ define([
         successRendered: {
             name: "success.rendered",
             callback: function successRenderedCallback() {
+                var event = this.eventmanager.eventList.resizeStop;
                 this.view.renderWidget();
                 this.controller.setupInteractions();
+                this.observer.publish(event, [event, true, false, arguments]);
             }
         },
         debugInteractions: {

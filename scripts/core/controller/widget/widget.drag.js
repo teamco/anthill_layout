@@ -104,7 +104,7 @@ define([
             this.debugUI(event, ui);
             scope.observer.publish(
                 scope.eventmanager.eventList.dragStop,
-                [event.type, arguments]
+                [event.type, true, true, arguments]
             );
         },
         /**

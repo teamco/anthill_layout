@@ -166,12 +166,14 @@ define([
         /**
          * Resize stop
          * @param {String} type
+         * @param {Boolean} animate
+         * @param {Boolean} organize
          */
-        resizeStop: function resizeStop(type) {
+        resizeStop: function resizeStop(type, organize, animate) {
             this.logger.debug('Stop resize', arguments);
             this.map.sticker({
-                organize: false,
-                animate: true,
+                organize: organize,
+                animate: animate,
                 type: type,
                 $source: this.view.elements.$widget.$
             });

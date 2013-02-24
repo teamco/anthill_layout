@@ -19,7 +19,7 @@ define([
         // Default constants
         var DEFAULTS = {
             grid: {
-                columns: 60,
+                columns: 30,
                 widgetsPerRow: 3,
                 additionalRows: 1,
                 margin: 1,
