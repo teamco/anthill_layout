@@ -61,7 +61,7 @@ define([
             this.debugUI(event, ui);
             scope.observer.publish(
                 scope.eventmanager.eventList.resizeStop,
-                [event.type, arguments]
+                [event.type, true, true, arguments]
             );
         },
         resize: function resize(event, ui) {
