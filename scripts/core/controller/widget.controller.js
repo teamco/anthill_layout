@@ -114,9 +114,8 @@ define([
         /**
          * Grid sticker on drag
          * @param {String} type
-         * @param {Boolean} animate
          */
-        dragSticker: function dragSticker(type, animate) {
+        dragSticker: function dragSticker(type) {
             this.logger.debug('On drag', arguments);
             this.map.sticker({
                 organize: false,
@@ -127,9 +126,16 @@ define([
         },
         /**
          * Stop drag
+         * @param {String} type
          */
-        dragStop: function dragStop() {
+        dragStop: function dragStop(type) {
             this.logger.debug('Stop drag', arguments);
+            this.map.sticker({
+                organize: false,
+                animate: true,
+                type: type,
+                $source: this.view.elements.$widget.$
+            });
         },
         /**
          * Create resize
@@ -159,9 +165,16 @@ define([
         },
         /**
          * Resize stop
+         * @param {String} type
          */
-        resizeStop: function resizeStop() {
+        resizeStop: function resizeStop(type) {
             this.logger.debug('Stop resize', arguments);
+            this.map.sticker({
+                organize: false,
+                animate: true,
+                type: type,
+                $source: this.view.elements.$widget.$
+            });
         }
 
     }, BaseController.prototype);

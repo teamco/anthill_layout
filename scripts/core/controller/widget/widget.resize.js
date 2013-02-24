@@ -59,7 +59,10 @@ define([
         stop: function stop(event, ui) {
             var scope = this.scope;
             this.debugUI(event, ui);
-            scope.observer.publish(scope.eventmanager.eventList.resizeStop, arguments);
+            scope.observer.publish(
+                scope.eventmanager.eventList.resizeStop,
+                [event.type, arguments]
+            );
         },
         resize: function resize(event, ui) {
             var scope = this.scope;

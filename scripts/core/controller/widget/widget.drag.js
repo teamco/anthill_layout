@@ -102,7 +102,10 @@ define([
         stop: function stop(event, ui) {
             var scope = this.scope;
             this.debugUI(event, ui);
-            scope.observer.publish(scope.eventmanager.eventList.dragStop, arguments);
+            scope.observer.publish(
+                scope.eventmanager.eventList.dragStop,
+                [event.type, arguments]
+            );
         },
         /**
          * onDrag
