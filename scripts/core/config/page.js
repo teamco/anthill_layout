@@ -27,13 +27,28 @@ define([
         this.widget = {};
         this.maximized = {};
 
+        this.LAYOUT_MODES = {
+            snap2grid: 'snap2grid',
+            freeStyle: 'freeStyle'
+        };
+
         var DEFAULTS = {
             order: 1,
             default: false,
             layout: {
-                overlapping: true,
-                emptySpaces: true,
-                snap2grid: true
+                behavior: {
+                    snap2grid: {
+                        overlapping: true,
+                        animate: true,
+                        magnet: false,
+                        organize: 'row',        // {row|column}
+                        emptySpaces: 'row'      // {row|column}
+                    },
+                    freeStyle: {
+
+                    }
+                },
+                mode: this.LAYOUT_MODES.snap2grid
             },
             template: {
                 // TODO
@@ -41,7 +56,8 @@ define([
             widget: {
                 counter: 0,
                 opacity: 0.6,
-                allowToAdd: true
+                allowToAdd: true,
+                addNewTo: 'row'                 // {row|column}
             },
             html: {
                 header: true,

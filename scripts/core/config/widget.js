@@ -43,12 +43,6 @@ define([
             maximize: false,
             events: {
                 draggable: {
-                    animate: {
-                        stop: true
-                    },
-                    organize: {
-                        stop: true
-                    },
                     snap: false,
                     iframeFix: true,
                     axis: false,
@@ -60,12 +54,6 @@ define([
 //                    cancel: '.header .icons li, .header input, .icons li, .menu'
                 },
                 resizable: {
-                    animate: {
-                        stop: true
-                    },
-                    organize: {
-                        stop: true
-                    },
                     iframeFix: true
                     //            handles: 'n, e, s, w'
                 },

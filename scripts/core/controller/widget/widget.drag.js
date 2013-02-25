@@ -116,7 +116,7 @@ define([
             var scope = this.scope;
             this.debugUI(event, ui);
             scope.observer.publish(
-                scope.eventmanager.eventList.dragSticker,
+                scope.eventmanager.eventList.dragOn,
                 [event.type, arguments]
             );
         }

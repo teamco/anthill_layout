@@ -21,6 +21,14 @@ define([
 
     return Controller.extend({
         /**
+         * Get layout behavior mode
+         * @returns {*}
+         */
+        getBehavior: function getBehavior() {
+            var config = this.scope.config;
+            return config.behavior[config.mode];
+        },
+        /**
          * Update cell size on resize container
          * @returns {*}
          */
@@ -30,7 +38,7 @@ define([
         },
         /**
          * Calculate cell size
-         * @returns {*}
+         * @returns {Number}
          */
         minCellWidth: function minCellWidth() {
             var base = this.base,
@@ -56,6 +64,7 @@ define([
             config.minCellWidth = (width - margin * columns) / columns;
 
             this.scope.page.logger.info('Calculated cell size (px)', config.minCellWidth);
+
             return config.minCellWidth;
         },
         /**

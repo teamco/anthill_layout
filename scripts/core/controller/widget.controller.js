@@ -115,9 +115,9 @@ define([
          * Grid sticker on drag
          * @param {String} type
          */
-        dragSticker: function dragSticker(type) {
+        dragOn: function dragOn(type) {
             this.logger.debug('On drag', arguments);
-            this.map.sticker({
+            this.controller.behaviorMode({
                 organize: false,
                 animate: false,
                 type: type,
@@ -130,7 +130,7 @@ define([
          */
         dragStop: function dragStop(type) {
             this.logger.debug('Stop drag', arguments);
-            this.map.sticker({
+            this.controller.behaviorMode({
                 organize: false,
                 animate: true,
                 type: type,
@@ -156,7 +156,7 @@ define([
          */
         resizeSticker: function resizeSticker(type, animate) {
             this.logger.debug('On resize', arguments);
-            this.map.sticker({
+            this.controller.behaviorMode({
                 organize: false,
                 animate: false,
                 type: type,
@@ -171,12 +171,35 @@ define([
          */
         resizeStop: function resizeStop(type, organize, animate) {
             this.logger.debug('Stop resize', arguments);
-            this.map.sticker({
+            this.controller.behaviorMode({
                 organize: organize,
                 animate: animate,
                 type: type,
                 $source: this.view.elements.$widget.$
             });
+        },
+        /**
+         * Behavior mode
+         * @param {{
+         *      organize: Boolean,
+         *      animate: Boolean,
+         *      type: String,
+         *      $source
+         * }} opts
+         */
+        behaviorMode: function behaviorMode(opts) {
+            var page = this.getPage(),
+                layout = page.controller.getLayout(),
+                mode = layout.controller.getBehavior();
+
+            switch(layout.config.mode) {
+                case page.LAYOUT_MODES.freeStyle:
+                    break;
+                case page.LAYOUT_MODES.snap2grid:
+                default:
+                    this.scope.map.sticker(opts, mode);
+                    break;
+            }
         }
 
     }, BaseController.prototype);

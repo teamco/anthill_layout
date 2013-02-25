@@ -209,10 +209,37 @@ define([
             return type.match(/drag/ig);
         },
         /**
+         * Check if interaction is: stop {drag|resize}
+         * @param {String} type
+         * @returns {*|Array|{index: number, input: string}}
+         */
+        isStop: function isStop(type) {
+            return type.match(/stop/ig);
+        },
+        /**
+         * Get animation behavior on stop interaction
+         * @param {{animate: Boolean}} behavior
+         * @param {String} type
+         * @returns {Boolean}
+         */
+        animateOnStop: function animateOnStop(type, behavior) {
+            return this.isStop(type) ? !!behavior.animate : false;
+        },
+        /**
+         * Get overlapping behavior on stop interaction
+         * @param {{overlapping: Boolean}} behavior
+         * @param {String} type
+         * @returns {Boolean}
+         */
+        overlappingOnStop: function overlappingOnStop(type, behavior) {
+            return this.isStop(type) ? !!behavior.overlapping : false;
+        },
+        /**
          * Grid sticker on interaction (Drag/Resize)
          * @param {{type, $source, animate}} opts
+         * @param {{animate: Boolean, overlapping: Boolean}} behavior
          */
-        sticker: function sticker(opts) {
+        sticker: function sticker(opts, behavior) {
             opts = this.base.define(opts, {}, true);
             var hash = {},
                 css = this.isDrag(opts.type) ?
@@ -221,17 +248,16 @@ define([
             if (css.top >= 0 && css.left >= 0) {
                 opts.$source.stop().animate(
                     css,
-                    !!opts.animate ? this.duration : 0,
+                    this.animateOnStop(opts.type, behavior) ? this.duration : 0,
                     function mapSticker() {
-                        // TODO Visualization
-//                        if (!!opts.organize) {
+                        if (this.overlappingOnStop(opts.type, behavior)) {
 //                            this.widget.save();
 //                            hash[this.widget.config.uuid] = this.widget.dimensions();
 //                            this.layout.overlapping.nestedOrganizer({
 //                                targets: hash,
 //                                callback: opts.callback
 //                            });
-//                        }
+                        }
                     }.bind(this)
                 );
             }

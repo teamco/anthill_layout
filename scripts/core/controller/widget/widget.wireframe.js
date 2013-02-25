@@ -37,6 +37,9 @@ define([
                 animate: false
             });
         },
+        /**
+         * Resize wireframe on widget resize
+         */
         resizeSticker: function resizeSticker() {
             var css = this.widget.map.resizeTo();
             this.init({

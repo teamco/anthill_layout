@@ -29,8 +29,8 @@ define([
              */
             dragCreate: 'drag.create',
             dragStart: 'drag.start',
-            dragSticker: {
-                eventName: 'drag.sticker',
+            dragOn: {
+                eventName: 'drag.on',
                 params: { buffer: 50 }
             },
             dragStop: 'drag.stop',
