@@ -83,6 +83,8 @@ define([
         this.applyEventManager();
         this.applyPermissions();
 
+        this.defineSetting();
+
         if (scope.eventmanager.eventList) {
 
             scope.observer.publish(
@@ -398,6 +400,14 @@ define([
             logger.scope = scope;
             logger.defineLogs();
 
+        },
+        /**
+         * Define global setting
+         */
+        defineSetting: function defineSetting() {
+            if (this.base.isDefined(this.scope.model)) {
+                this.scope.model.defineSetting();
+            }
         }
     }, Base);
 

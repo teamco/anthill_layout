@@ -10,10 +10,12 @@ define([
     'modules/base'
 ], function defineWidgetModel(BaseModel, Base) {
     var Model = function Model() {
-
     };
 
     return Model.extend({
+        save: function save() {
+            setting.storagethis.scope.dom;
+        }
 
     }, BaseModel.prototype, Base);
 });

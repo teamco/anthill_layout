@@ -200,6 +200,10 @@ define([
                     this.scope.map.sticker(opts, mode);
                     break;
             }
+        },
+        save: function save() {
+            this.logger.debug('Save widget');
+            this.model.save();
         }
 
     }, BaseController.prototype);

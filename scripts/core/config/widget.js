@@ -32,6 +32,8 @@ define([
      */
     var Widget = function Widget(opts) {
 
+        this.dom = {};
+
         var DEFAULTS = {
             order: 1,
             html: {

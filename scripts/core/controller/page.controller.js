@@ -52,6 +52,9 @@ define([
             layout.observer.publish(
                 layout.eventmanager.eventList.updateMinCellWidth
             );
+        },
+        widgetLoad: function widgetLoad() {
+            this.logger.debug('Load widget');
         }
     }, BaseController.prototype);
 });

@@ -17,12 +17,8 @@ requirejs.config({
 });
 
 define([
-    'config/routes'
-], function defineApp(Routes) {
-
-    requirejs([
-        'config/listeners',
-        'config/permission',
-        'test/create'
-    ])
+    'config/listeners',
+    'config/permission',
+    'test/create'
+], function defineApp() {
 });

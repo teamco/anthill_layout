@@ -7,14 +7,21 @@
  */
 
 define([
+    'config/setting',
     'modules/base',
     'modules/crud'
-], function initModel(Base, CRUD) {
+], function initModel(Setting, Base, CRUD) {
     var BaseModel = function BaseModel() {
 
     };
 
     return BaseModel.extend({
+        /**
+         * Define global setting
+         */
+        defineSetting: function defineSetting() {
+            this.setting = new Setting(this.scope.controller.getMode());
+        },
         /**
          * Get scope config
          * @returns {scope.config}
@@ -34,6 +41,13 @@ define([
                     scope : scope.constructor;
 
             return constructor.getConstructorName().toLowerCase();
+        },
+        /**
+         * Get parent items
+         * @returns {*}
+         */
+        getItems: function getItems() {
+            return this.scope.config.parent.items;
         },
         /**
          * Get UUID

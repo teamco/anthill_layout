@@ -7,26 +7,33 @@
  */
 
 define([
-    'config/routes',
     'config/application'
-], function defineTest(Routes, Application) {
+], function defineTest(Application) {
     window.app = new Application({
         html: {
             container: 'body'
         }
     });
+
     window.app.view.render();
 
     window.app.observer.publish(window.app.eventmanager.eventList.createWorkspace);
-    window.app.workspace.view.render();
-    window.app.workspace.observer.publish(window.app.workspace.eventmanager.eventList.createPage);
-    window.app.workspace.page.view.render();
 
-    window.app.workspace.page.observer.publish(window.app.workspace.page.eventmanager.eventList.createWidget);
-    window.app.workspace.page.widget.view.render();
+    var workspace1 = window.app.workspace;
+    workspace1.view.render();
+    workspace1.observer.publish(workspace1.eventmanager.eventList.createPage);
 
-    window.app.workspace.page.observer.publish(window.app.workspace.page.eventmanager.eventList.createWidget);
-    window.app.workspace.page.widget.view.render();
+    var page1 = workspace1.page;
+    page1.view.render();
+    page1.observer.publish(page1.eventmanager.eventList.createWidget);
+
+    var widget1 = page1.widget;
+    widget1.view.render();
+
+    page1.observer.publish(page1.eventmanager.eventList.createWidget);
+
+    var widget2 = page1.widget;
+    widget2.view.render();
 
 //    window.app.workspace.observer.publish(window.app.workspace.eventmanager.eventList.createPage);
 //    window.app.workspace.page.view.render();

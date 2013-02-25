@@ -43,7 +43,8 @@ define([
                 eventName: 'resize.sticker',
                 params: { buffer: 50 }
             },
-            resizeStop: 'resize.stop'
+            resizeStop: 'resize.stop',
+            save: 'save'
         };
     };
 
