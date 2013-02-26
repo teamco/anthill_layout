@@ -82,7 +82,7 @@ define([
          * @returns {Number}
          */
         row: function row(top, cell) {
-            return Math.round(top / cell);
+            return this.base.lib.number.round(top / cell);
         },
         /**
          * Get column
@@ -91,7 +91,7 @@ define([
          * @returns {Number}
          */
         column: function column(left, cell) {
-            return Math.round(left / cell);
+            return this.base.lib.number.round(left / cell);
         },
         /**
          * Get widget top position via grid

@@ -14,7 +14,7 @@ define([
 
     return Model.extend({
         save: function save() {
-            setting.storagethis.scope.dom;
+            this.scope.dom = this.scope.map.getDom();
         }
 
     }, BaseModel.prototype, Base);
