@@ -36,7 +36,6 @@ define([
             var $widget = this.widget.view.elements.$widget,
                 position = $widget.getPosition(),
                 dom = {
-                    uuid: this.widget.config.uuid,
                     left: position.left,
                     top: position.top,
                     width: $widget.getWidth(),
@@ -251,7 +250,7 @@ define([
                     this.animateOnStop(opts.type, behavior) ? this.duration : 0,
                     function mapSticker() {
                         if (this.overlappingOnStop(opts.type, behavior)) {
-//                            this.widget.save();
+                            this.widget.model.save();
 //                            hash[this.widget.config.uuid] = this.widget.dimensions();
 //                            this.layout.overlapping.nestedOrganizer({
 //                                targets: hash,
