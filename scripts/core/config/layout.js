@@ -10,8 +10,9 @@ define([
     'modules/base',
     'modules/mvc',
     'controller/layout.controller',
-    'event/layout.event.manager'
-], function defineLayout(Base, MVC, Controller, EventManager) {
+    'event/layout.event.manager',
+    'controller/layout/layout.overlapping'
+], function defineLayout(Base, MVC, Controller, EventManager, Overlapping) {
     var Layout = function Layout(opts, page) {
 
         this.page = page;
@@ -37,6 +38,12 @@ define([
             ],
             render: false
         });
+
+        /**
+         * Define overlapping
+         * @type {layout.overlapping}
+         */
+        this.overlapping = new Overlapping(this);
 
         this.observer.publish(this.eventmanager.eventList.successCreated);
     };
