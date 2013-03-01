@@ -56,8 +56,8 @@ define([
 //                    cancel: '.header .icons li, .header input, .icons li, .menu'
                 },
                 resizable: {
-                    iframeFix: true
-                    //            handles: 'n, e, s, w'
+                    iframeFix: true,
+                    handles: 'n, e, s, w'
                 },
                 droppable: {
                     activeClass: 'widget-ui-hover',

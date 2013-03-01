@@ -21,13 +21,15 @@ define([
             var scope = this.scope;
 
             if (scope.permission.authorizedFunctionCall(this.init)) {
-                this.$scope.resizable({
-                    containment: scope.config.parent.view.elements.$page.$,
-                    create: this.create.bind(this),
-                    start: this.start.bind(this),
-                    stop: this.stop.bind(this),
-                    resize: this.resize.bind(this)
-                });
+                this.$scope.resizable(
+                    $.extend(this.scope.config.events.resizable, {
+                        containment: scope.config.parent.view.elements.$page.$,
+                        create: this.create.bind(this),
+                        start: this.start.bind(this),
+                        stop: this.stop.bind(this),
+                        resize: this.resize.bind(this)
+                    })
+                );
             }
         },
         enable: function enable() {
@@ -63,6 +65,7 @@ define([
                 scope.eventmanager.eventList.resizeStop,
                 [event.type, true, true, arguments]
             );
+            scope.wireframe.hide();
         },
         resize: function resize(event, ui) {
             var scope = this.scope;

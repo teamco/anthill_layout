@@ -16,7 +16,15 @@ define([
      * @constructor
      */
     var Wireframe = function Wireframe(widget) {
+        /**
+         * Define widget
+         * @type {*}
+         */
         this.widget = widget;
+        /**
+         * Define opacity
+         * @type {number}
+         */
         this.opacity = 0.2;
     };
 
@@ -54,68 +62,39 @@ define([
             });
         },
         /**
-         *
+         * Show wireframe
          */
         show: function show() {
-            if (this.$) {
-                this.$.fadeIn(
-                    0,
-                    function showCallback() {
-                        // Animation complete.
-                        this.$.show();
-                    }.bind(this)
-                );
-                this.$.addClass('visible');
-            }
+            this.setVisibility('fadeIn', 'fast');
         },
-
         /**
-         *
+         * Hide wireframe
          */
         hide: function hide() {
+            this.setVisibility('fadeOut', 'fast');
+        },
+        /**
+         * Set wireframe visibility
+         * @param {String} fade
+         * @param {String} type
+         */
+        setVisibility: function setVisibility(fade, type) {
             if (this.$) {
-                this.$.fadeOut(
-                    this.widget.page.layout.config.html.dragSpeed,
-                    function fadeOut() {
-                        // Animation complete.
-                    }.bind(this)
-                );
-                this.$.removeClass('visible');
+                this.$.stop()[fade](type);
             }
         },
-
         /**
-         *
-         * @return {*}
-         */
-        isVisible: function isVisible() {
-            return this.$.is(':visible');
-        },
-
-        /**
-         *
-         * @param opts
-         */
-        delayedJob: function delayedJob(opts) {
-            opts = App.base.define(opts, {});
-            this.hideDots = true;
-            var params = {
-                callback: opts.callback,
-                widget: this.widget,
-                funcName: opts.funcName,
-                cancel: opts.cancel || false
-            };
-            App.callbacks.run(params);
-            this.widget.html.checkWidgetsSizeOnBrowserResize();
-        },
-
-        /**
-         *
-         * @return {*}
+         * Get wireframe jQuery element
+         * @returns {*}
          */
         getWireFrame: function getWireFrame() {
             return this.widget.controller.get$page().find('#next-widget-position');
         },
+        /**
+         * Define wireframe jQuery element
+         * @param {{style}} opts
+         * @returns {*}
+         */
         defineHolder: function defineHolder(opts) {
             this.$ = this.getWireFrame();
             if (this.$.length === 0) {
@@ -126,23 +105,14 @@ define([
             }
             return this;
         },
+        /**
+         * Init wireframe
+         * @param opts
+         */
         init: function init(opts) {
             opts = this.base.define(opts, {}, true);
             this.defineHolder(opts).show();
-//            var speed = !!opts.animate ?
-//                this.widget.page.layout.config.eventSpeed :
-//                this.widget.page.layout.config.html.dragSpeed;
-//            if (!!opts.animate) {
-//                this.$.stop().animate(
-//                    opts.style,
-//                    speed,
-//                    function initAnimate() {
-//                        TODO animate callback
-//                    }
-//                );
-//            } else {
             this.$.css(opts.style);
-//            }
         }
     }, Base);
 });

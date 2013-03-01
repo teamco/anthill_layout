@@ -106,6 +106,7 @@ define([
                 scope.eventmanager.eventList.dragStop,
                 [event.type, arguments]
             );
+            scope.wireframe.hide();
         },
         /**
          * onDrag

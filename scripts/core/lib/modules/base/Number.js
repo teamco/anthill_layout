@@ -42,18 +42,6 @@ define(['modules/base'], function defineBaseNumber(Base) {
          */
         getRnd: function getRnd(min, max) {
             return Math.floor(Math.random() * (max - min + 1) + min);
-        },
-        /**
-         * Fix jQueryUI diff between onDrag and stopDrag position
-         * @param {number} num
-         * @returns {number}
-         */
-        round: function round(num) {
-            var round = Math.ceil(num) - num;
-            if (round >= 0.5 && round <= 0.6) {
-                num += 0.1;
-            }
-            return Math.round(num);
         }
 
     }, Base);
