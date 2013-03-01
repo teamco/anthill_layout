@@ -57,7 +57,7 @@ define([
                 },
                 resizable: {
                     iframeFix: true,
-                    handles: 'n, e, s, w'
+                    handles: 'all'
                 },
                 droppable: {
                     activeClass: 'widget-ui-hover',
