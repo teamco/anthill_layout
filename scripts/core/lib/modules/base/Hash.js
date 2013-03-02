@@ -67,16 +67,18 @@ define([
         // @map = [{},{},..]
         // @key = String (Hash key)
         equalityHA: function equalityHA(opts) {
-            opts = this.base.define(opts, {});
-            var src = this.base.define(opts.src, {}),
-                map = this.base.define(opts.map, {}),
-                key = this.base.define(opts.key, 'undefined');
-            if (!this.isArray(src)) {
+            var base = this.base;
+            opts = base.define(opts, {}, true);
+
+            var src = base.define(opts.src, {}),
+                map = base.define(opts.map, {}),
+                key = base.define(opts.key, 'undefined');
+            if (!base.isArray(src)) {
                 src = [src];
             }
             var obj = {};
             $.each(src, function equalityHALoop(i, o) {
-                if (this.base.isDefined(o)) {
+                if (base.isDefined(o)) {
                     obj[o[key]] = $.grep(map, function equalityHAGrep(k, v) {
                         return (o[key] !== v[key]);
                     });

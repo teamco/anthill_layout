@@ -26,13 +26,13 @@ define([
             opts.targets = base.define(opts.targets, {}, true);
 
             if (!this.layout.config.behavior.snap2grid.overlapping) {
-                this.layout.logger.info('Overlapping is available');
-                return this.nestedOrganizerCallback(opts.callback);
+                this.layout.logger.info('Overlapping is allowed');
+//                return this.nestedOrganizerCallback(opts.callback);
             }
 
             if (base.lib.hash.isHashEmpty(opts.targets)) {
                 this.layout.logger.info('Empty targets');
-                return this.nestedOrganizerCallback(opts.callback);
+//                return this.nestedOrganizerCallback(opts.callback);
             }
 
             this.layout.logger.info('Starting nested organizer');
@@ -49,7 +49,7 @@ define([
                 if (widgets.hasOwnProperty(index)) {
                     if (this.base.isDefined(widgets[index])) {
                         intersecting = this.intersectWidgets(widgets[index]);
-                        this.organizeCollector(widgets[index], intersecting);
+                        this.organizeCollector(widgets[index].dom, intersecting);
                         for (moved in intersecting) {
                             if (intersecting.hasOwnProperty(moved)) {
                                 nestedMove[intersecting[moved].uuid] = intersecting[moved];
@@ -67,7 +67,6 @@ define([
             for (index in targets) {
                 if (targets.hasOwnProperty(index)) {
                     targets[index].row = this.bottom(source) + 1;
-                    this.layout.page.model.addWidgetToCollector(targets[index]);
                 }
             }
         },
@@ -131,15 +130,18 @@ define([
          * End intersections logic
          */
         intersectWidgets: function intersectWidgets(source) {
-            var move = {},
-                widgets = App.base.partitionHA({
+            var move = {}, index, target,
+                base = this.base,
+                widgets = base.lib.hash.partitionHA({
                     src: source,
                     map: this.layout.page.collector,
                     key: 'uuid'
-                });
-            jQuery.each(
-                App.sort.arrayHashSortByKey(widgets[1], 'row', false, true),
-                function intersectWidgetsLoop(k, target) {
+                }),
+                intersected = base.lib.array.arrayHashSortByKey(widgets[1], 'row', false, true);
+
+            for(index in intersected) {
+                if (intersected.hasOwnProperty(index)) {
+                    target = intersected[index];
                     if (
                         (this.intersectHorizontal(source, target) &&
                             this.intersectVertical(source, target)) ||
@@ -148,10 +150,16 @@ define([
                         ) {
                         move[target.uuid] = target;
                     }
-                }.bind(this));
+                }
+            }
             return move;
+        },
+        right: function right(target) {
+            return (target.column + target.relWidth - 1);
+        },
+        bottom: function bottom(target) {
+            return (target.row + target.relHeight - 1);
         }
-
 
     }, Base);
 });

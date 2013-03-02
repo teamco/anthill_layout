@@ -235,12 +235,13 @@ define([
         },
         /**
          * Grid sticker on interaction (Drag/Resize)
-         * @param {{type, $source, animate}} opts
+         * @param {{type, $source, callback: Function}} opts
          * @param {{animate: Boolean, overlapping: Boolean}} behavior
          */
         sticker: function sticker(opts, behavior) {
             opts = this.base.define(opts, {}, true);
             var hash = {},
+                layout = this.widget.controller.getPage().controller.getLayout(),
                 css = this.isDrag(opts.type) ?
                     this.dragTo() :
                     this.resizeTo();
@@ -251,11 +252,11 @@ define([
                     function mapSticker() {
                         if (this.overlappingOnStop(opts.type, behavior)) {
                             this.widget.model.save();
-//                            hash[this.widget.config.uuid] = this.widget.dimensions();
-//                            this.layout.overlapping.nestedOrganizer({
-//                                targets: hash,
-//                                callback: opts.callback
-//                            });
+                            hash[this.widget.model.getUUID()] = this.widget;
+                            layout.overlapping.nestedOrganizer({
+                                targets: hash,
+                                callback: opts.callback
+                            });
                         }
                     }.bind(this)
                 );
