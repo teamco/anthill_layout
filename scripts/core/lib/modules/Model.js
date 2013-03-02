@@ -46,12 +46,19 @@ define([
          * Get parent items
          * @returns {*}
          */
+        getParentItems: function getParentItems() {
+            return this.scope.controller.getParent().items;
+        },
+        /**
+         * Get items
+         * @returns {*}
+         */
         getItems: function getItems() {
-            return this.scope.config.parent.items;
+            return this.scope.items;
         },
         /**
          * Get UUID
-         * @param {String} node
+         * @param {{model}} [node]
          * @returns {String}
          */
         getUUID: function getUUID(node) {
@@ -60,6 +67,71 @@ define([
                     node.model.getUUID() :
                     'Undefined ' + node.constructor.getConstructorName() :
                 this.getConfig().uuid;
+        },
+        /**
+         * Get item from collector by UUID
+         * @param {string} uuid
+         * @returns {*}
+         */
+        getItemByUUID: function getItemByUUID(uuid) {
+            var base = this.base,
+                items = this.getItems(),
+                item = base.lib.hash.isHashKey(items, uuid) ?
+                    items[uuid] : undefined;
+
+            if (!base.isDefined(item)) {
+                this.scope.logger.debug('Undefined item');
+            }
+            return item;
+        },
+        /**
+         * Reset collector
+         * @returns {*}
+         */
+        resetItems: function resetItems() {
+            this.scope.items = {};
+            return this.getItems();
+        },
+        /**
+         * Delete widget from collector
+         * @param uuid
+         * @returns {*}
+         */
+        deleteItem: function deleteItem(uuid) {
+            delete this.scope.controller.getParent().items[uuid];
+            return this.getParentItems();
+        },
+        /**
+         * Update collector
+         * @param {string} uuid
+         * @param hash
+         * returns {*}
+         */
+        updateItem: function updateItem(uuid, hash) {
+            var item = this.getItemByUUID(uuid);
+            $.extend(true, item, hash);
+            return item;
+        },
+        /**
+         * Add item to collector
+         * @param {{model}} node
+         * @param {boolean} force
+         * @returns {*}
+         */
+        setItem: function setItem(node, force) {
+            var base = this.base;
+
+            node = base.define(node, {}, true);
+            force = base.defineBoolean(force, false, true);
+
+            var uuid = node.model.getUUID(),
+                item = base.isDefined(this.getItemByUUID(uuid));
+            if (force || !item) {
+                this.getItems()[uuid] = node;
+            } else if (item) {
+                this.scope.logger.warn('Item already in collector');
+            }
+            return this.getItemByUUID(uuid);
         },
         /**
          * Get Item constructor name
@@ -86,11 +158,10 @@ define([
         /**
          * Check items limit
          * @param {Function} constructor
-         * @param {{}} collector
          * @param {Number} limit
          * @returns {boolean}
          */
-        checkLimit: function checkLimit(constructor, collector, limit) {
+        checkLimit: function checkLimit(constructor, limit) {
             var base = this.base,
                 namespace = this.getNameSpace(constructor);
 
@@ -101,23 +172,22 @@ define([
             if (!base.isDefined(limit)) {
                 return false;
             }
-            return base.lib.hash.hashLength(collector) >= limit;
+            return base.lib.hash.hashLength(this.getItems()) >= limit;
 
         },
         /**
          * Update items collector
          * @param {Function} constructor
          * @param {{}} opts
-         * @param {{}} collector
          * @returns {*}
          */
-        updateCollector: function updateCollector(constructor, opts, collector) {
+        updateCollector: function updateCollector(constructor, opts) {
             var namespace = this.getNameSpace(constructor),
                 limit = this.getConfig()[namespace].limit,
                 scope = this.scope,
                 cname = constructor.getConstructorName(),
                 node = scope[cname.toLowerCase()];
-            if (this.checkLimit(constructor, collector, limit)) {
+            if (this.checkLimit(constructor, limit)) {
                 scope.logger.warn(
                     cname + ': Maximum limit reached',
                     limit
@@ -128,7 +198,8 @@ define([
                 node = new constructor(base.define(opts, {}, true));
 
                 if (base.isDefined(node.model)) {
-                    collector[node.model.getUUID()] = node;
+                    this.setItem(node);
+//                    collector[node.model.getUUID()] = node;
                 } else {
                     scope.logger.warn(
                         cname + ' was created with some errors',
@@ -137,7 +208,7 @@ define([
                 }
 
                 scope.config[namespace].counter =
-                    base.lib.hash.hashLength(collector);
+                    base.lib.hash.hashLength(this.getItems());
 
                 scope[cname.toLowerCase()] = node;
 

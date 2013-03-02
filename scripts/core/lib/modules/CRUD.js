@@ -17,8 +17,7 @@ define([
         createItem: function createItem(opts) {
             return this.updateCollector(
                 this.item,
-                opts,
-                this.scope.items
+                opts
             );
         },
         destroyItem: function destroyItem(item) {
@@ -52,7 +51,7 @@ define([
 
             if (itemEventManager.abstract.hasOwnProperty('destroyItems')) {
                 if (itemEventManager.eventList.hasOwnProperty(
-                    itemEventManager.abstract.destroyItems
+                    itemEventManager.abstract['destroyItems']
                 )) {
                     item.observer.publish(
                         itemEventManager.eventList[
