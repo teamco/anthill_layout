@@ -134,8 +134,9 @@ define([
                 base = this.base,
                 widgets = base.lib.hash.partitionHA({
                     src: source,
-                    map: this.layout.page.collector,
-                    key: 'uuid'
+                    map: this.layout.page.model.getItems(),
+                    key: 'uuid',
+                    where: 'config'
                 }),
                 intersected = base.lib.array.arrayHashSortByKey(widgets[1], 'row', false, true);
 

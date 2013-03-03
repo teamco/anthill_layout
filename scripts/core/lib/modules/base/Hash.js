@@ -76,13 +76,21 @@ define([
             if (!base.isArray(src)) {
                 src = [src];
             }
-            var obj = {};
+            var obj = {}, index;
             $.each(src, function equalityHALoop(i, o) {
                 if (base.isDefined(o)) {
-                    obj[o[key]] = $.grep(map, function equalityHAGrep(k, v) {
-                        return (o[key] !== v[key]);
-                    });
-                    obj[o[key]] = map[o[key]];
+                    if (base.isDefined(opts.where)) {
+                        index = o[opts.where][key];
+                        obj[index] = $.grep(map, function equalityHAGrep(k, v) {
+                            return (index !== v[opts.where][key]);
+                        });
+                    } else {
+                        index = o[key];
+                        obj[index] = $.grep(map, function equalityHAGrep(k, v) {
+                            return (index !== v[key]);
+                        });
+                    }
+                    obj[index] = map[index];
                 }
             }.bind(this));
             return obj;
@@ -94,11 +102,13 @@ define([
         // @map = [{},{},..]
         // @key = String (Hash key)
         partitionHA: function partitionHA(opts) {
-            opts = this.base.define(opts, {});
-            var src = this.base.define(opts.src, {}),
-                map = this.base.define(opts.map, {}),
-                key = this.base.define(opts.key, 'undefined');
-            if (!this.base.isArray(src)) {
+            var base = this.base;
+            opts = base.define(opts, {});
+
+            var src = base.define(opts.src, {}),
+                map = base.define(opts.map, {}),
+                key = base.define(opts.key, 'undefined');
+            if (!base.isArray(src)) {
                 opts.src = [src];
             }
             var eq = this.equalityHA(opts),
@@ -113,8 +123,7 @@ define([
         // Find all Hash keys
         // Return: array
         hashKeys: function hashKeys(h) {
-            var keys = [],
-                k;
+            var keys = [], k;
             for (k in h) {
                 if (h.hasOwnProperty(k) && this.isHashKey(h, k)) {
                     keys.push(k);
