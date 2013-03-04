@@ -52,7 +52,7 @@ define([
                         this.organizeCollector(widgets[index].dom, intersecting);
                         for (moved in intersecting) {
                             if (intersecting.hasOwnProperty(moved)) {
-                                nestedMove[intersecting[moved].uuid] = intersecting[moved];
+                                nestedMove[intersecting[moved].model.getUUID()] = intersecting[moved];
                             }
                         }
                     }
@@ -138,40 +138,18 @@ define([
          */
         intersectWidgets: function intersectWidgets(source) {
             var move = {}, index, target,
-                intersected = this.sortWidgetsByRow({
-                    widgets: this.layout.controller.getPage().model.getItemsApartOf(source)
-                });
+                partition = this.layout.controller.getPage().model.getItemsApartOf(source);
 
-            for (index in intersected) {
-                if (intersected.hasOwnProperty(index)) {
-                    target = intersected[index];
+            for (index in partition) {
+                if (partition.hasOwnProperty(index)) {
+                    target = partition[index];
                     if (this._intersectUnique(source.dom, target.dom) ||
                         this._intersectCenter(source.dom, target.dom)) {
-                        move[target.uuid] = target;
+                        move[target.model.getUUID()] = target;
                     }
                 }
             }
             return move;
-        },
-        sortWidgetsByRow: function sortWidgetsByRow(widgets, desc) {
-            var base = this.base,
-                arr = [], hash = {}, i = 0, l;
-
-            desc = base.defineBoolean(desc, true, true);
-            arr = arr.sort(base.lib.number.sortNumeric);
-
-            if (!desc) {
-                arr = arr.reverse();
-            }
-
-            l = arr.length;
-
-            for (i; i < l; i += 1) {
-
-            }
-
-            return hash;
-
         },
         right: function right(target) {
             return (target.column + target.relWidth - 1);
