@@ -13,27 +13,42 @@ define([
     };
 
     BaseHash.extend({
-
+        /**
+         * Extend hash
+         * @param {{}} self
+         * @param {{}} hash
+         * @returns {{}}
+         */
         extendHash: function extendHash(self, hash) {
             self = this.base.define(self, {}, true);
             hash = this.base.define(hash, {}, true);
             $.extend(true, self, hash);
             return self;
         },
-
-        // Check if hash empty
-        // Return: boolean
+        /**
+         * Check if hash empty
+         * @param {{}} o
+         * @returns {boolean}
+         */
         isHashEmpty: function isHashEmpty(o) {
             return this.hashLength(o) === 0;
         },
-        // Check if Hash(h) has Key(k)
-        // Return: boolean
+        /**
+         * Check if Hash(h) has Key(k)
+         * @param {{}} h
+         * @param {String} k
+         * @returns {boolean}
+         */
         isHashKey: function isHashKey(h, k) {
             if (this.base.isObject(h)) {
                 return h.hasOwnProperty(k);
             }
         },
-        // Return: First hash element value
+        /**
+         * First hash element value
+         * @param {{}} h
+         * @returns {*}
+         */
         firstHashElement: function firstHashElement(h) {
             var k;
             if (this.isHashEmpty(h)) {
@@ -46,7 +61,11 @@ define([
             }
             return h[k];
         },
-        // Return: First hash element's key
+        /**
+         * First hash element's key
+         * @param {{}} h
+         * @returns {String}
+         */
         firstHashKey: function firstHashKey(h) {
             var k;
             if (this.isHashEmpty(h)) {
@@ -59,69 +78,11 @@ define([
             }
             return k;
         },
-        // Equality-Two arrays are equal if they contain the same id attribute
-        // and if each element is equal to (according to Object.==) the corresponding
-        // element in the other array.
-        // @opts = {}
-        // @src = [{},{},..] or {}
-        // @map = [{},{},..]
-        // @key = String (Hash key)
-        equalityHA: function equalityHA(opts) {
-            var base = this.base;
-            opts = base.define(opts, {}, true);
-
-            var src = base.define(opts.src, {}),
-                map = base.define(opts.map, {}),
-                key = base.define(opts.key, 'undefined');
-            if (!base.isArray(src)) {
-                src = [src];
-            }
-            var obj = {}, index;
-            $.each(src, function equalityHALoop(i, o) {
-                if (base.isDefined(o)) {
-                    if (base.isDefined(opts.where)) {
-                        index = o[opts.where][key];
-                        obj[index] = $.grep(map, function equalityHAGrep(k, v) {
-                            return (index !== v[opts.where][key]);
-                        });
-                    } else {
-                        index = o[key];
-                        obj[index] = $.grep(map, function equalityHAGrep(k, v) {
-                            return (index !== v[key]);
-                        });
-                    }
-                    obj[index] = map[index];
-                }
-            }.bind(this));
-            return obj;
-        },
-        // Returns two arrays, the first containing the elements of enum
-        // for which the block evaluates to true, the second containing the rest.
-        // @opts = {}
-        // @src = [{},{},..] or {}
-        // @map = [{},{},..]
-        // @key = String (Hash key)
-        partitionHA: function partitionHA(opts) {
-            var base = this.base;
-            opts = base.define(opts, {});
-
-            var src = base.define(opts.src, {}),
-                map = base.define(opts.map, {}),
-                key = base.define(opts.key, 'undefined');
-            if (!base.isArray(src)) {
-                opts.src = [src];
-            }
-            var eq = this.equalityHA(opts),
-                obj = [];
-            $.each(map, function partitionHALoop(k, v) {
-                if (!this.isHashKey(eq, v[key])) {
-                    obj.push(v);
-                }
-            }.bind(this));
-            return [eq, obj];
-        },
-        // Find all Hash keys
-        // Return: array
+        /**
+         * Find all Hash keys
+         * @param {{}} h
+         * @returns {Array}
+         */
         hashKeys: function hashKeys(h) {
             var keys = [], k;
             for (k in h) {
@@ -131,10 +92,13 @@ define([
             }
             return keys;
         },
-        // Check Hash length
-        // Return: integer
+        /**
+         * Get Hash length
+         * @param {{}} o
+         * @returns {Number}
+         */
         hashLength: function hashLength(o) {
-            return this.hashKeys(this.base.define(o, {})).length;
+            return this.hashKeys(this.base.define(o, {}, true)).length;
         }
     }, Base);
 

@@ -70,19 +70,25 @@ define([
                 }
             }
         },
-
-        intersectCenter: function intersectCenter(src, target) {
-            return this.intersectHorizontal(target, src) &&
-                this.intersectVertical(target, src);
-        },
-
         /**
-         *
-         * @param src
-         * @param target
-         * @return {Boolean}
+         * Widget intersect: center
+         * @param {{row, column}} src
+         * @param {{row, column}} target
+         * @returns {*}
+         * @private
          */
-        intersectUnique: function intersectUnique(src, target) {
+        _intersectCenter: function _intersectCenter(src, target) {
+            return this._intersectHorizontal(target, src) &&
+                this._intersectVertical(target, src);
+        },
+        /**
+         * Widget intersect: unique
+         * @param {{right, row, column}} src
+         * @param {{right, row, column}} target
+         * @returns {boolean}
+         * @private
+         */
+        _intersectUnique: function _intersectUnique(src, target) {
             return (
                 src.column <= target.column &&
                     target.right <= src.right &&
@@ -95,14 +101,14 @@ define([
                     this.bottom(src) >= this.bottom(target)
                 );
         },
-
         /**
-         *
-         * @param src
-         * @param target
-         * @return {Boolean}
+         * Widget intersect: horizontal
+         * @param {{column}} src
+         * @param {{column}} target
+         * @returns {boolean}
+         * @private
          */
-        intersectHorizontal: function intersectHorizontal(src, target) {
+        _intersectHorizontal: function _intersectHorizontal(src, target) {
             return (
                 (src.column <= this.right(target) &&
                     this.right(src) >= this.right(target)) ||
@@ -110,14 +116,14 @@ define([
                         this.right(src) >= target.column)
                 );
         },
-
         /**
-         *
-         * @param src
-         * @param target
-         * @return {Boolean}
+         * Widget intersect: vertical
+         * @param {{row}} src
+         * @param {{row}} target
+         * @returns {boolean}
+         * @private
          */
-        intersectVertical: function intersectVertical(src, target) {
+        _intersectVertical: function _intersectVertical(src, target) {
             return (
                 (src.row <= target.row &&
                     this.bottom(src) >= target.row) ||
@@ -125,9 +131,10 @@ define([
                         this.bottom(src) >= this.bottom(target))
                 );
         },
-
         /**
-         * End intersections logic
+         * Widget intersections
+         * @param {{right, row, column}} source
+         * @returns {{}}
          */
         intersectWidgets: function intersectWidgets(source) {
             var move = {}, index, target,
@@ -140,15 +147,11 @@ define([
                 }),
                 intersected = base.lib.array.arrayHashSortByKey(widgets[1], 'row', false, true);
 
-            for(index in intersected) {
+            for (index in intersected) {
                 if (intersected.hasOwnProperty(index)) {
                     target = intersected[index];
-                    if (
-                        (this.intersectHorizontal(source, target) &&
-                            this.intersectVertical(source, target)) ||
-                            this.intersectUnique(source, target) ||
-                            this.intersectCenter(source, target)
-                        ) {
+                    if (this._intersectUnique(source, target) ||
+                        this._intersectCenter(source, target)) {
                         move[target.uuid] = target;
                     }
                 }
