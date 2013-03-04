@@ -27,12 +27,12 @@ define([
 
             if (!this.layout.config.behavior.snap2grid.overlapping) {
                 this.layout.logger.info('Overlapping is allowed');
-//                return this.nestedOrganizerCallback(opts.callback);
+                return this._nestedOrganizerCallback(opts.callback);
             }
 
             if (base.lib.hash.isHashEmpty(opts.targets)) {
                 this.layout.logger.info('Empty targets');
-//                return this.nestedOrganizerCallback(opts.callback);
+                return this._nestedOrganizerCallback(opts.callback);
             }
 
             this.layout.logger.info('Starting nested organizer');
@@ -49,7 +49,7 @@ define([
                 if (widgets.hasOwnProperty(index)) {
                     if (this.base.isDefined(widgets[index])) {
                         intersecting = this.intersectWidgets(widgets[index]);
-                        this.organizeCollector(widgets[index].dom, intersecting);
+                        this.organizeCollector(widgets[index], intersecting);
                         for (moved in intersecting) {
                             if (intersecting.hasOwnProperty(moved)) {
                                 nestedMove[intersecting[moved].model.getUUID()] = intersecting[moved];
@@ -61,12 +61,81 @@ define([
 
             return nestedMove;
         },
+        /**
+         * Nested organizer callback
+         * @param {Function} [callback]
+         * @private
+         */
+        _nestedOrganizerCallback: function _nestedOrganizerCallback(callback) {
+            var emptySpaces = this.layout.config.behavior.snap2grid.emptySpaces;
+            if (emptySpaces) {
+                this.layout.logger.debug('Remove empty spaces');
+                switch (emptySpaces) {
+                    case 'row':
+                        this.layout.logger.debug('Remove empty rows');
+                        break;
 
+                }
+            }
+
+            this._cssOrganizer(callback);
+
+            return true;
+        },
+        /**
+         * Organize widget css
+         * @private
+         */
+        _cssOrganizer: function _cssOrganizer(callback) {
+            var page = this.layout.controller.getParent(),
+                widgets = page.items,
+                index, widget, counter = 1,
+                length = this.base.lib.hash.hashLength(widgets);
+            for (index in widgets) {
+                if (widgets.hasOwnProperty(index)) {
+                    widget = page.model.getItemByUUID(widgets[index].model.getUUID());
+                    widget.logger.debug('Start nested organizer animation');
+                    widget.view.elements.$widget._setPosition({
+                        animate: true,
+                        callback: this._cssOrganizeCallback.bind({
+                            scope: this,
+                            callback: callback,
+                            save: counter === length
+                        })
+                    });
+                    counter += 1;
+                }
+            }
+        },
+        /**
+         * Organize widget css callback
+         * @private
+         */
+        _cssOrganizeCallback: function _cssOrganizeCallback() {
+
+            var layout = this.scope.layout,
+                callback = this.callback;
+
+            if (layout.base.isFunction(callback)) {
+                layout.logger.debug('Execute callback', callback);
+                callback();
+            }
+
+            if (this.save) {
+                layout.logger.debug('Finish nested organizer');
+            }
+
+        },
+        /**
+         * Organize collector
+         * @param {{dom}} source
+         * @param {*} targets
+         */
         organizeCollector: function organizeCollector(source, targets) {
             var index;
             for (index in targets) {
                 if (targets.hasOwnProperty(index)) {
-                    targets[index].row = this.bottom(source) + 1;
+                    targets[index].dom.row = this.bottom(source.dom) + 1;
                 }
             }
         },
@@ -138,7 +207,7 @@ define([
          */
         intersectWidgets: function intersectWidgets(source) {
             var move = {}, index, target,
-                partition = this.layout.controller.getPage().model.getItemsApartOf(source);
+                partition = this.layout.controller.getParent().model.getItemsApartOf(source);
 
             for (index in partition) {
                 if (partition.hasOwnProperty(index)) {
@@ -151,11 +220,46 @@ define([
             }
             return move;
         },
+        /**
+         * Get right position
+         * @param {{column: Number, relWidth: Number}} target
+         * @returns {number}
+         */
         right: function right(target) {
             return (target.column + target.relWidth - 1);
         },
+        /**
+         * Get bottom position
+         * @param {{row: Number, relHeight: Number}} target
+         * @returns {number}
+         */
         bottom: function bottom(target) {
             return (target.row + target.relHeight - 1);
+        },
+        /**
+         * Retrieve the last row number we are occupying by now
+         * @param {boolean} lower
+         * returns {*}
+         */
+        rowsBasedOnWidgets: function rowsBasedOnWidgets(lower) {
+
+            lower = this.base.defineBoolean(lower, false, true);
+
+            var row = -1,
+                bottom = {},
+                widgets = this.layout.page.model.getAllWidgetsFromCollector(),
+                index;
+            for (index in widgets) {
+                if (widgets.hasOwnProperty(index)) {
+                    var widget = widgets[index];
+                    // row is current row + blocks it takes to the bottom
+                    if (widget.row + widget.relHeight > row) {
+                        row = widget.row + widget.relHeight;
+                        bottom = widget;
+                    }
+                }
+            }
+            return lower ? bottom : row;
         }
 
     }, Base);

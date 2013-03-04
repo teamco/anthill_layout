@@ -15,10 +15,9 @@ define([
 ], function defineLayout(Base, MVC, Controller, EventManager, Overlapping) {
     var Layout = function Layout(opts, page) {
 
-        this.page = page;
-
         // Default constants
         var DEFAULTS = {
+            parent: page,
             grid: {
                 columns: 30,
                 widgetsPerRow: 3,

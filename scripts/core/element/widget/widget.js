@@ -11,6 +11,13 @@ define([
     'modules/element'
 ], function defineWidget(Base, BaseElement) {
 
+    /**
+     * Define widget element
+     * @param {{}} view
+     * @param {{}} opts
+     * @returns {*}
+     * @constructor
+     */
     var Widget = function Widget(view, opts) {
 
         return this.config(view, opts).build({
@@ -20,6 +27,12 @@ define([
     };
 
     return Widget.extend({
+        /**
+         * Config widget element
+         * @param {{}} view
+         * @param {{style: String, id: String}} opts
+         * @returns {*}
+         */
         config: function config(view, opts) {
             this.view = view;
             this.style = opts.style;
@@ -29,6 +42,25 @@ define([
             }).addClass(this.style);
 
             return this;
+        },
+        /**
+         * Set widget position
+         * @param {{animate: Boolean, callback: Function}} opts
+         * @private
+         */
+        _setPosition: function _setPosition(opts) {
+            var widget = this.view.scope,
+                dom = widget.dom;
+            this.$.stop().animate({
+                    top: widget.map.positionFor(
+                        dom.column,
+                        dom.row
+                    ).top
+                },
+                !!opts.animate ? 500 : 0,
+                opts.callback
+            );
+
         }
 
     }, Base, BaseElement.prototype);
