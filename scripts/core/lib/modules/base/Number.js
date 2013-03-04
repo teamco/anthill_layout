@@ -42,6 +42,15 @@ define(['modules/base'], function defineBaseNumber(Base) {
          */
         getRnd: function getRnd(min, max) {
             return Math.floor(Math.random() * (max - min + 1) + min);
+        },
+        /**
+         * Numeric sort
+         * @param {Number} a
+         * @param {Number} b
+         * @returns {Number}
+         */
+        sortNumeric: function sortNumeric(a, b) {
+            return a - b;
         }
 
     }, Base);

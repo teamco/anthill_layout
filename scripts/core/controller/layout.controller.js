@@ -21,6 +21,13 @@ define([
 
     return Controller.extend({
         /**
+         * Get Page
+         * @returns {*|{}}
+         */
+        getPage: function getPage() {
+            return this.scope.page;
+        },
+        /**
          * Get layout behavior mode
          * @returns {*}
          */

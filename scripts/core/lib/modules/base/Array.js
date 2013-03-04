@@ -21,65 +21,8 @@ define(['modules/base'], function defineBaseArray(Base) {
                 }
             }.bind(this));
             return res;
-        },
-        /**
-         * Get equal values by keys
-         * @param {Array} source
-         * @param {Array} target
-         * @param {String} key
-         * @returns {Array}
-         */
-        findArrEq: function findArrEq(source, target, key) {
-            var result = [], k, ik,
-                sl = source.length,
-                tl = target.length;
-            for (k = 0; k < sl; k++) {
-                for (ik = 0; ik < tl; ik++) {
-                    if (source[k] === target[ik][key]) {
-                        result.push(target[ik]);
-                    }
-                }
-            }
-            return result;
-        },
-        /**
-         * Sort numeric
-         * @param {Number} a
-         * @param {Number} b
-         * @returns {Number}
-         */
-        sortNumeric: function sortNumeric(a, b) {
-            return a - b;
-        },
-        /**
-         * Sort array of hashes by key
-         * @param {Array} source
-         * @param {String} key
-         * @param {Boolean} reverse
-         * @param {Boolean} numeric
-         * @returns {Array}
-         */
-        arrayHashSortByKey: function arrayHashSortByKey(source, key, reverse, numeric) {
-            var arr = [], k, sl = source.length,
-                base = this.base;
-            reverse = !!(base.defineBoolean(reverse, false, true));
-            numeric = !!(base.defineBoolean(numeric, false, true));
-
-            for (k = 0; k < sl; k++) {
-                if (base.isDefined(source[k][key])) {
-                    arr.push(source[k][key]);
-                }
-            }
-            arr = numeric ?
-                arr.sort(this.sortNumeric) :
-                arr.sort();
-
-            if (reverse) {
-                arr = arr.reverse();
-            }
-
-            return this.findArrEq(arr, source, key);
         }
+
     }, Base);
 
     Base.prototype.lib.array = new BaseArray();

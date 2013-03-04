@@ -133,30 +133,45 @@ define([
         },
         /**
          * Widget intersections
-         * @param {{right, row, column}} source
+         * @param {{model, dom}} source
          * @returns {{}}
          */
         intersectWidgets: function intersectWidgets(source) {
             var move = {}, index, target,
-                base = this.base,
-                widgets = base.lib.hash.partitionHA({
-                    src: source,
-                    map: this.layout.page.model.getItems(),
-                    key: 'uuid',
-                    where: 'config'
-                }),
-                intersected = base.lib.array.arrayHashSortByKey(widgets[1], 'row', false, true);
+                intersected = this.sortWidgetsByRow({
+                    widgets: this.layout.controller.getPage().model.getItemsApartOf(source)
+                });
 
             for (index in intersected) {
                 if (intersected.hasOwnProperty(index)) {
                     target = intersected[index];
-                    if (this._intersectUnique(source, target) ||
-                        this._intersectCenter(source, target)) {
+                    if (this._intersectUnique(source.dom, target.dom) ||
+                        this._intersectCenter(source.dom, target.dom)) {
                         move[target.uuid] = target;
                     }
                 }
             }
             return move;
+        },
+        sortWidgetsByRow: function sortWidgetsByRow(widgets, desc) {
+            var base = this.base,
+                arr = [], hash = {}, i = 0, l;
+
+            desc = base.defineBoolean(desc, true, true);
+            arr = arr.sort(base.lib.number.sortNumeric);
+
+            if (!desc) {
+                arr = arr.reverse();
+            }
+
+            l = arr.length;
+
+            for (i; i < l; i += 1) {
+
+            }
+
+            return hash;
+
         },
         right: function right(target) {
             return (target.column + target.relWidth - 1);

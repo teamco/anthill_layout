@@ -184,11 +184,13 @@ define([
          *      organize: Boolean,
          *      animate: Boolean,
          *      type: String,
+         *      [callback]: Function,
          *      $source
          * }} opts
          */
         behaviorMode: function behaviorMode(opts) {
-            var page = this.getPage(),
+            var scope = this.scope,
+                page = this.getPage(),
                 layout = page.controller.getLayout(),
                 mode = layout.controller.getBehavior();
 
@@ -197,7 +199,8 @@ define([
                     break;
                 case page.LAYOUT_MODES.snap2grid:
                 default:
-                    this.scope.map.sticker(opts, mode);
+                    scope.model.save();
+                    scope.map.sticker(opts, mode);
                     break;
             }
         },

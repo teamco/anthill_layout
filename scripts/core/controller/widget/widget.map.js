@@ -249,7 +249,10 @@ define([
                 opts.$source.stop().animate(
                     css,
                     this.animateOnStop(opts.type, behavior) ? this.duration : 0,
-                    function mapSticker() {
+                    /**
+                     * Map sticker callback
+                     */
+                    function _mapSticker() {
                         if (this.overlappingOnStop(opts.type, behavior)) {
                             this.widget.model.save();
                             hash[this.widget.model.getUUID()] = this.widget;
