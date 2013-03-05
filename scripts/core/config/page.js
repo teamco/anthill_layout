@@ -41,7 +41,7 @@ define([
                         overlapping: true,
                         animate: true,
                         magnet: false,
-                        organize: 'row',        // {row|column}
+                        organize: 'column',     // {row|column}
                         emptySpaces: 'row'      // {row|column}
                     },
                     freeStyle: {

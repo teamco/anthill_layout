@@ -46,8 +46,8 @@ define([
                 cell = layout.controller.minCellWidth() +
                     layout.config.grid.margin;
 
-            dom.right = dom.left + dom.width;
-            dom.bottom = dom.top + dom.height;
+            dom.right = this.widgetRight(dom.left, dom.width);
+            dom.bottom = this.widgetBottom(dom.top, dom.height);
 
             dom.column = this.column(dom.left, cell);
             dom.row = this.row(dom.top, cell);
@@ -102,12 +102,30 @@ define([
             return this.getWidgetPosition(row);
         },
         /**
+         * Get widget bottom position via grid
+         * @param {Number} top
+         * @param {Number} height
+         * @returns {Number}
+         */
+        widgetBottom: function widgetBottom(top, height) {
+            return top + height;
+        },
+        /**
          * Get widget left position via grid
          * @param {Number} column
          * @returns {Number}
          */
         widgetLeft: function widgetLeft(column) {
             return this.getWidgetPosition(column);
+        },
+        /**
+         * Get widget right position via grid
+         * @param {Number} left
+         * @param {Number} width
+         * @returns {Number}
+         */
+        widgetRight: function widgetRight(left, width){
+            return left + width;
         },
         /**
          * Get widget height via grid

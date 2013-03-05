@@ -37,24 +37,25 @@ define([
 
             this.layout.logger.info('Starting nested organizer');
             this.nestedOrganizer({
-                targets: this.nestedOrganizerCore(opts.targets),
+                targets: this._nestedOrganizerCore(opts.targets),
                 callback: opts.callback
             });
         },
         /**
          * Nested organizer core
          * @param {{}} widgets
+         * @private
          * @returns {{}}
          */
-        nestedOrganizerCore: function nestedOrganizerCore(widgets) {
+        _nestedOrganizerCore: function _nestedOrganizerCore(widgets) {
             var intersecting = {}, nestedMove = {},
                 index, moved;
 
             for (index in widgets) {
                 if (widgets.hasOwnProperty(index)) {
                     if (this.base.isDefined(widgets[index])) {
-                        intersecting = this.intersectWidgets(widgets[index]);
-                        this.organizeCollector(widgets[index], intersecting);
+                        intersecting = this._intersectWidgets(widgets[index]);
+                        this._organizeCollector(widgets[index], intersecting);
                         for (moved in intersecting) {
                             if (intersecting.hasOwnProperty(moved)) {
                                 nestedMove[intersecting[moved].model.getUUID()] = intersecting[moved];
@@ -137,17 +138,58 @@ define([
         /**
          * Organize collector
          * @param {{dom}} source
+         * @private
          * @param {*} targets
          */
-        organizeCollector: function organizeCollector(source, targets) {
-            var index, dom, widget;
+        _organizeCollector: function _organizeCollector(source, targets) {
+            var index, dom, widget,
+                config = this.layout.config,
+                mode = config.mode,
+                behavior = config.behavior[mode];
+
+            /**
+             * Organize by row
+             * @param {{top: Number, bottom: Number, height: Number, row: Number}} dom
+             * @param {{dom}} source
+             * @param {{map}} widget
+             * @private
+             */
+            function _organizeByRow(dom, source, widget) {
+                dom.row = this.bottom(source.dom) + 1;
+                dom.top = widget.map.widgetTop(dom.row);
+                dom.bottom = dom.top + dom.height;
+            }
+
             for (index in targets) {
                 if (targets.hasOwnProperty(index)) {
                     widget = targets[index];
                     dom = widget.dom;
-                    dom.row = this.bottom(source.dom) + 1;
-                    dom.top = widget.map.widgetTop(dom.row);
-                    dom.bottom = dom.top + dom.height;
+
+                    if (behavior.organize === 'column') {
+                        var column = dom.column,
+                            left = dom.left,
+                            right = dom.right;
+
+                        dom.column = this.right(source.dom) + 1;
+                        dom.left = widget.map.widgetLeft(dom.column);
+                        dom.right = widget.map.widgetRight(dom.left, dom.width);
+
+                        if (dom.right > this.layout.controller.getGridWidth()) {
+                            dom.column = column;
+                            dom.left = left;
+                            dom.right = right;
+
+                            // Organize by row
+                            _organizeByRow.bind(this)(dom, source, widget);
+
+                        }
+                    } else if (behavior.organize === 'row') {
+                        // Organize by row
+                        _organizeByRow.bind(this)(dom, source, widget);
+                    } else {
+                        this.layout.logger.warn('Undefined behavior organize');
+                    }
+
                 }
             }
         },
@@ -177,9 +219,10 @@ define([
         /**
          * Widget intersections
          * @param {{model, dom}} source
+         * @private
          * @returns {{}}
          */
-        intersectWidgets: function intersectWidgets(source) {
+        _intersectWidgets: function _intersectWidgets(source) {
             var move = {}, index, target,
                 partition = this.layout.controller.getParent().model.getItemsApartOf(source);
 

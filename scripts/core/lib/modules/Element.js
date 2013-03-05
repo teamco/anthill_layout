@@ -19,7 +19,7 @@ define([
         /**
          * Element config before build
          * @param {{}} view
-         * @param {{style: String, id: String, [events], [opacity]}} opts
+         * @param {{style: String, id: String, [css], [events], [opacity]}} opts
          * @param $html
          * @returns {*}
          * @private
@@ -30,9 +30,10 @@ define([
             this.id = this.renderUUID(opts.id);
             this.events = opts.events;
             this.opacity = opts.opacity || 1.0;
+            this.css = this.base.define(opts.css, {}, true);
             this.$ = $html.attr({
                 id: opts.id
-            }).addClass(this.style);
+            }).addClass(this.style).css(this.css);
 
             return this;
         },

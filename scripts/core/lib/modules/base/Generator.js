@@ -10,8 +10,12 @@ define(['modules/base'], function defineBaseGenerator(Base) {
     };
 
     BaseGenerator.extend({
-        // Generate UUID
-        // http://www.ietf.org/rfc/rfc4122.txt
+        /**
+         * Generate UUID
+         * @description "http://www.ietf.org/rfc/rfc4122.txt"
+         * @param {String} uuid
+         * @returns {String}
+         */
         UUID: function UUID(uuid) {
             if (this.base.isDefined(uuid)) {
                 return uuid;
@@ -29,8 +33,19 @@ define(['modules/base'], function defineBaseGenerator(Base) {
             s[8] = s[13] = s[18] = s[23] = '-';
             return s.join('');
         },
+        /**
+         * Get timestamp
+         * @returns {*}
+         */
         timestamp: function timestamp() {
             return Number(new Date());
+        },
+        /**
+         * Generate random color HEX
+         * @returns {string}
+         */
+        randomColor: function randomColor() {
+            return '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
         }
     }, Base);
 

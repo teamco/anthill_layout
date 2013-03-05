@@ -66,6 +66,12 @@ define([
             scope.logger.info('Calculated cell size (px)', config.minCellWidth);
 
             return config.minCellWidth;
+        },
+        getGridWidth: function getGridWidth() {
+            var config = this.scope.config.grid,
+                cell = this.minCellWidth();
+
+            return (cell + config.margin) * config.columns;
         }
 
     }, Base, BaseController.prototype);

@@ -20,29 +20,13 @@ define([
      */
     var Widget = function Widget(view, opts) {
 
-        return this.config(view, opts).build({
+        return this._config(view, opts, $('<li />')).build({
             $container: opts.$container,
             destroy: false
         });
     };
 
     return Widget.extend({
-        /**
-         * Config widget element
-         * @param {{}} view
-         * @param {{style: String, id: String}} opts
-         * @returns {*}
-         */
-        config: function config(view, opts) {
-            this.view = view;
-            this.style = opts.style;
-            this.id = this.renderUUID(opts.id);
-            this.$ = $('<li />').attr({
-                id: opts.id
-            }).addClass(this.style);
-
-            return this;
-        },
         /**
          * Set widget position
          * @param {{animate: Boolean, callback: Function}} opts
