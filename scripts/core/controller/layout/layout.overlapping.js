@@ -142,11 +142,47 @@ define([
          * @param {*} targets
          */
         _organizeCollector: function _organizeCollector(source, targets) {
-            var index, dom, widget,
+            var index,
                 config = this.layout.config,
-                mode = config.mode,
-                behavior = config.behavior[mode];
+                mode = config.mode;
 
+            for (index in targets) {
+                if (targets.hasOwnProperty(index)) {
+
+                    switch (mode) {
+
+                        case 'snap2grid':
+
+                            this._snap2gridOrganizer(
+                                config.behavior[mode],
+                                source,
+                                targets[index],
+                                this.layout.controller.getGridWidth()
+                            );
+                            break;
+
+                        case 'freeStyle':
+                            // TODO
+                            break;
+
+                        default:
+
+                            this.layout.logger.warn('Undefined mode organize', mode);
+                            break;
+
+                    }
+                }
+            }
+        },
+        /**
+         * Snap to grid organizer
+         * @param {{organize}} behavior
+         * @param {{dom}} source
+         * @param {{map, dom}} widget
+         * @param {Number} max
+         * @private
+         */
+        _snap2gridOrganizer: function _snap2gridOrganizer(behavior, source, widget, max) {
             /**
              * Organize by row
              * @param {{top: Number, bottom: Number, height: Number, row: Number}} dom
@@ -160,38 +196,38 @@ define([
                 dom.bottom = dom.top + dom.height;
             }
 
-            for (index in targets) {
-                if (targets.hasOwnProperty(index)) {
-                    widget = targets[index];
-                    dom = widget.dom;
+            if (behavior.organize === 'column') {
+                var column = widget.dom.column,
+                    left = widget.dom.left,
+                    right = widget.dom.right;
 
-                    if (behavior.organize === 'column') {
-                        var column = dom.column,
-                            left = dom.left,
-                            right = dom.right;
+                widget.dom.column = this.right(source.dom) + 1;
+                widget.dom.left = widget.map.widgetLeft(widget.dom.column);
+                widget.dom.right = widget.map.widgetRight(
+                    widget.dom.left,
+                    widget.dom.width
+                );
 
-                        dom.column = this.right(source.dom) + 1;
-                        dom.left = widget.map.widgetLeft(dom.column);
-                        dom.right = widget.map.widgetRight(dom.left, dom.width);
+                if (widget.dom.right >= max) {
+                    widget.dom.column = column;
+                    widget.dom.left = left;
+                    widget.dom.right = right;
 
-                        if (dom.right > this.layout.controller.getGridWidth()) {
-                            dom.column = column;
-                            dom.left = left;
-                            dom.right = right;
-
-                            // Organize by row
-                            _organizeByRow.bind(this)(dom, source, widget);
-
-                        }
-                    } else if (behavior.organize === 'row') {
-                        // Organize by row
-                        _organizeByRow.bind(this)(dom, source, widget);
-                    } else {
-                        this.layout.logger.warn('Undefined behavior organize');
-                    }
+                    // Organize by row
+                    _organizeByRow.bind(this)(widget.dom, source, widget);
 
                 }
+            } else if (behavior.organize === 'row') {
+
+                // Organize by row
+                _organizeByRow.bind(this)(widget.dom, source, widget);
+
+            } else {
+
+                this.layout.logger.warn('Undefined behavior organize', behavior.organize);
+
             }
+
         },
         /**
          * Check overlapping
