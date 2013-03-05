@@ -8,6 +8,7 @@
 
 define([
     'modules/interactions',
+    'jquery',
     'jqueryui'
 ], function defineWidgetResize(Interactions) {
     var Resizable = function Resizable(scope) {

@@ -140,74 +140,40 @@ define([
          * @param {*} targets
          */
         organizeCollector: function organizeCollector(source, targets) {
-            var index;
+            var index, dom, widget;
             for (index in targets) {
                 if (targets.hasOwnProperty(index)) {
-                    targets[index].dom.row = this.bottom(source.dom) + 1;
+                    widget = targets[index];
+                    dom = widget.dom;
+                    dom.row = this.bottom(source.dom) + 1;
+                    dom.top = widget.map.widgetTop(dom.row);
+                    dom.bottom = dom.top + dom.height;
                 }
             }
         },
         /**
-         * Widget intersect: center
-         * @param {{row, column}} src
-         * @param {{row, column}} target
-         * @returns {*}
-         * @private
-         */
-        _intersectCenter: function _intersectCenter(src, target) {
-            return this._intersectHorizontal(target, src) &&
-                this._intersectVertical(target, src);
-        },
-        /**
-         * Widget intersect: unique
-         * @param {{right, row, column}} src
-         * @param {{right, row, column}} target
+         * Check overlapping
+         * @param {{left: Number, right: Number, bottom: Number, top: Number}} src
+         * @param {{left: Number, right: Number, bottom: Number, top: Number}} target
          * @returns {boolean}
          * @private
          */
-        _intersectUnique: function _intersectUnique(src, target) {
-            return (
-                src.column <= target.column &&
-                    target.right <= src.right &&
-                    src.row >= target.row &&
-                    this.bottom(src) <= this.bottom(target)
-                ) || (
-                src.column >= target.column &&
-                    src.right <= target.right &&
-                    src.row <= target.row &&
-                    this.bottom(src) >= this.bottom(target)
-                );
+        _overlapped: function _overlapped(src, target) {
+
+            if ((target.left > src.right || target.right < src.left) ||
+                (target.top > src.bottom || target.bottom < src.top)) {
+                this.layout.logger.debug('Overlap not possible', src, target);
+                return false;
+            }
+
+            return (target.left > src.left && target.left < src.right) ||
+                (target.right > src.left && target.right < src.right) ||
+                (target.top > src.top && target.top < src.bottom) ||
+                (target.bottom > src.top && target.bottom < src.bottom) ||
+                (src.left > target.left && src.right < target.right &&
+                    src.top > target.top && src.bottom < target.bottom);
         },
-        /**
-         * Widget intersect: horizontal
-         * @param {{column}} src
-         * @param {{column}} target
-         * @returns {boolean}
-         * @private
-         */
-        _intersectHorizontal: function _intersectHorizontal(src, target) {
-            return (
-                (src.column <= this.right(target) &&
-                    this.right(src) >= this.right(target)) ||
-                    (src.column <= target.column &&
-                        this.right(src) >= target.column)
-                );
-        },
-        /**
-         * Widget intersect: vertical
-         * @param {{row}} src
-         * @param {{row}} target
-         * @returns {boolean}
-         * @private
-         */
-        _intersectVertical: function _intersectVertical(src, target) {
-            return (
-                (src.row <= target.row &&
-                    this.bottom(src) >= target.row) ||
-                    (src.row <= this.bottom(target) &&
-                        this.bottom(src) >= this.bottom(target))
-                );
-        },
+
         /**
          * Widget intersections
          * @param {{model, dom}} source
@@ -220,8 +186,8 @@ define([
             for (index in partition) {
                 if (partition.hasOwnProperty(index)) {
                     target = partition[index];
-                    if (this._intersectUnique(source.dom, target.dom) ||
-                        this._intersectCenter(source.dom, target.dom)) {
+                    if (this._overlapped(source.dom, target.dom)) {
+                        this.layout.logger.debug('Overlapped', target);
                         move[target.model.getUUID()] = target;
                     }
                 }

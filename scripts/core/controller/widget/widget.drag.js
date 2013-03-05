@@ -8,6 +8,7 @@
 
 define([
     'modules/interactions',
+    'jquery',
     'jqueryui'
 ], function defineWidgetDrag(Interactions) {
     /**
