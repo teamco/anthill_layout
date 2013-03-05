@@ -268,8 +268,7 @@ define([
          */
         sticker: function sticker(opts, behavior) {
             opts = this.base.define(opts, {}, true);
-            var hash = {},
-                layout = this.layout,
+            var layout = this.layout,
                 css = this.isDrag(opts.type) ?
                     this.dragTo() :
                     this.resizeTo();
@@ -277,20 +276,32 @@ define([
                 opts.$source.stop().animate(
                     css,
                     this.animateOnStop(opts.type, behavior) ? this.duration : 0,
-                    /**
-                     * Map sticker callback
-                     */
-                    function _mapSticker() {
-                        if (this.overlappingOnStop(opts.type, behavior)) {
-                            this.widget.model.save();
-                            hash[this.widget.model.getUUID()] = this.widget;
-                            layout.overlapping.nestedOrganizer({
-                                targets: hash,
-                                callback: opts.callback
-                            });
-                        }
-                    }.bind(this)
+                    this._mapStickerCallback.bind({
+                        self: this,
+                        widget: this.widget,
+                        layout: layout,
+                        callback: opts.callback,
+                        behavior: behavior,
+                        type: opts.type
+                    })
                 );
+            }
+        },
+        /**
+         * Map sticker callback
+         * @private
+         */
+        _mapStickerCallback: function _mapStickerCallback() {
+            var hash = {},
+                widget = this.widget;
+
+            if (this.self.overlappingOnStop(this.type, this.behavior)) {
+                widget.model.save();
+                hash[widget.model.getUUID()] = widget;
+                this.layout.overlapping.nestedOrganizer({
+                    targets: hash,
+                    callback: this.callback
+                });
             }
         },
         /**

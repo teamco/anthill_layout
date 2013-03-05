@@ -53,6 +53,7 @@ define([
             this.elements.$debugger = new Debugger(this, {
                 $container: this.elements.$application.$,
                 style: 'debugger',
+                opacity: 0.6,
                 events: {
                     click: 'activateDebugger'
                 }

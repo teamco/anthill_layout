@@ -17,6 +17,26 @@ define([
 
     return BaseElement.extend({
         /**
+         * Element config before build
+         * @param {{}} view
+         * @param {{style: String, id: String, [events], [opacity]}} opts
+         * @param $html
+         * @returns {*}
+         * @private
+         */
+        _config: function _config(view, opts, $html) {
+            this.view = view;
+            this.style = opts.style;
+            this.id = this.renderUUID(opts.id);
+            this.events = opts.events;
+            this.opacity = opts.opacity || 1.0;
+            this.$ = $html.attr({
+                id: opts.id
+            }).addClass(this.style);
+
+            return this;
+        },
+        /**
          * Generate element UUID
          * @param {String} id
          * @returns {*|String}

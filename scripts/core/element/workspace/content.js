@@ -12,23 +12,13 @@ define([
 ], function definePageContainer(Base, BaseElement) {
 
     var PageContainer = function PageContainer(view, opts) {
-        return this.config(view, opts).build({
+        return this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
             destroy: true
         });
     };
 
     return PageContainer.extend({
-        config: function config(view, opts) {
-            this.view = view;
-            this.style = opts.style;
-            this.id = this.renderUUID(opts.id);
-            this.$ = $('<ul />').attr({
-                id: opts.id
-            }).addClass(this.style);
-
-            return this;
-        },
         defineHeight: function defineHeight() {
             var header = this.view.elements.$header,
                 footer = this.view.elements.$footer,

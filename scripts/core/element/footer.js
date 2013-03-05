@@ -14,26 +14,16 @@ define([
     var Footer = function Footer(view, opts) {
 
         if (!view.getConfigHTML().footer) {
-            return false;
+            return this;
         }
 
-        return this.config(view, opts).build({
+        return this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
     };
 
     return Footer.extend({
-        config: function config(view, opts) {
-            this.view = view;
-            this.style = opts.style;
-            this.id = this.renderUUID(opts.id);
-            this.$ = $('<div />').attr({
-                id: opts.id
-            }).addClass(this.style);
-
-            return this;
-        }
 
     }, Base, BaseElement.prototype);
 });

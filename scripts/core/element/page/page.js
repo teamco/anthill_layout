@@ -12,23 +12,13 @@ define([
 ], function definePage(Base, BaseElement) {
 
     var Page = function Page(view, opts) {
-        return this.config(view, opts).build({
+        return this._config(view, opts, $('<li />')).build({
             $container: opts.$container,
             destroy: false
         });
     };
 
     return Page.extend({
-        config: function config(view, opts) {
-            this.view = view;
-            this.style = opts.style;
-            this.id = this.renderUUID(opts.id);
-            this.$ = $('<li />').attr({
-                id: opts.id
-            }).addClass(this.style);
-
-            return this;
-        },
         defineHeight: function defineHeight() {
             var header = this.view.elements.$header,
                 footer = this.view.elements.$footer,

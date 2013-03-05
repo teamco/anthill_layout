@@ -19,32 +19,24 @@ define([
      * @constructor Debugger
      */
     var Debugger = function Debugger(view, opts) {
-        return this.config(view, opts).build({
+        this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
+
+        return this._extend$();
+
     };
 
     return Debugger.extend({
         /**
          * DOM config
-         * @param {*} view
-         * @param {{style, [events], [id], [opacity]}} opts
          * @returns {*}
          */
-        config: function config(view, opts) {
-            this.view = view;
-            this.style = opts.style;
-            this.events = opts.events;
-            this.opacity = opts.opacity || 0.6;
-            this.id = this.renderUUID(opts.id);
-            this.$ = $('<div />').attr({
-                id: opts.id
-            }).addClass(this.style).
-                css({
-                    opacity: this.opacity
-                }).
-                append(
+        _extend$: function _extend$() {
+            this.$.css({
+                opacity: this.opacity
+            }).append(
                     $('<div />')
                 );
 

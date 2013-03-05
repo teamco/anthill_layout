@@ -41,6 +41,11 @@ define([
                 callback: opts.callback
             });
         },
+        /**
+         * Nested organizer core
+         * @param {{}} widgets
+         * @returns {{}}
+         */
         nestedOrganizerCore: function nestedOrganizerCore(widgets) {
             var intersecting = {}, nestedMove = {},
                 index, moved;
@@ -73,6 +78,9 @@ define([
                 switch (emptySpaces) {
                     case 'row':
                         this.layout.logger.debug('Remove empty rows');
+                        break;
+                    case 'column':
+                        this.layout.logger.debug('Remove empty columns');
                         break;
 
                 }
@@ -235,31 +243,6 @@ define([
          */
         bottom: function bottom(target) {
             return (target.row + target.relHeight - 1);
-        },
-        /**
-         * Retrieve the last row number we are occupying by now
-         * @param {boolean} lower
-         * returns {*}
-         */
-        rowsBasedOnWidgets: function rowsBasedOnWidgets(lower) {
-
-            lower = this.base.defineBoolean(lower, false, true);
-
-            var row = -1,
-                bottom = {},
-                widgets = this.layout.page.model.getAllWidgetsFromCollector(),
-                index;
-            for (index in widgets) {
-                if (widgets.hasOwnProperty(index)) {
-                    var widget = widgets[index];
-                    // row is current row + blocks it takes to the bottom
-                    if (widget.row + widget.relHeight > row) {
-                        row = widget.row + widget.relHeight;
-                        bottom = widget;
-                    }
-                }
-            }
-            return lower ? bottom : row;
         }
 
     }, Base);

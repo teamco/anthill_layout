@@ -13,23 +13,13 @@ define([
 
     var AppHTML = function AppHTML(view, opts) {
 
-        return this.config(view, opts).build({
+        return this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
     };
 
     return AppHTML.extend({
-        config: function config(view, opts) {
-            this.view = view;
-            this.style = opts.style;
-            this.id = this.renderUUID(opts.id);
-            this.$ = $('<div />').attr({
-                id: opts.id
-            }).addClass(this.style);
-
-            return this;
-        }
 
     }, Base, BaseElement.prototype);
 });

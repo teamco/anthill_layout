@@ -12,20 +12,13 @@ define([
 ], function defineDeltaScroll(Base, BaseElement) {
 
     var DeltaScroll = function DeltaScroll(view, opts) {
-        return this.config(view, opts).build({
+        return this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
     };
 
     return DeltaScroll.extend({
-        config: function config(view, opts) {
-            this.view = view;
-            this.style = opts.style;
-            this.$ = $('<div />').addClass(this.style);
-
-            return this;
-        }
 
     }, Base, BaseElement.prototype);
 });

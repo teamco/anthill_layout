@@ -50,12 +50,14 @@ define([
          */
         _setPosition: function _setPosition(opts) {
             var widget = this.view.scope,
-                dom = widget.dom;
+                dom = widget.dom,
+                position = widget.map.positionFor(
+                    dom.column,
+                    dom.row
+                );
             this.$.stop().animate({
-                    top: widget.map.positionFor(
-                        dom.column,
-                        dom.row
-                    ).top
+                    top: position.top,
+                    left: position.left
                 },
                 !!opts.animate ? 500 : 0,
                 opts.callback
