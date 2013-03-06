@@ -1,3 +1,8 @@
+/* Resize fix */
+.ui-resizable-resizing {
+    z-index: 99999 !important;
+}
+
 .widget {
     width: 200px;
     height: 200px;
@@ -9,6 +14,6 @@
 
 #next-widget-position {
     position: absolute;
-    z-index: 49;
+    z-index: 51;
     background: #000;
 }

@@ -191,6 +191,15 @@ define([
             return $(this.view.scope.controller.root().config.html.container);
         },
         /**
+         * Set element opacity
+         * @param {Number} opacity
+         */
+        setOpacity: function setOpacity(opacity) {
+            this.$.css({
+                opacity: opacity
+            });
+        },
+        /**
          * Get position
          * @returns {{top, left}}
          */

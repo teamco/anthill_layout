@@ -139,14 +139,16 @@ define([
         },
         /**
          * Create resize
+         * @param {String} type
          */
-        resizeCreate: function resizeCreate() {
+        resizeCreate: function resizeCreate(type) {
             this.logger.debug('Create resize', arguments);
         },
         /**
          * Resize start
+         * @param {String} type
          */
-        resizeStart: function resizeStart() {
+        resizeStart: function resizeStart(type) {
             this.logger.debug('Start resize', arguments);
         },
         /**

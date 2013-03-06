@@ -50,14 +50,14 @@ define([
         },
         create: function create(event, ui) {
             var scope = this.scope;
-            scope.observer.publish(scope.eventmanager.eventList.resizeCreate, arguments);
+            scope.observer.publish(scope.eventmanager.eventList.resizeCreate, [event.type, arguments]);
         },
         start: function start(event, ui) {
             var scope = this.scope;
             this.debugUI(event, ui);
             scope.controller.setAsCurrent();
             scope.wireframe.resizeSticker();
-            scope.observer.publish(scope.eventmanager.eventList.resizeStart, arguments);
+            scope.observer.publish(scope.eventmanager.eventList.resizeStart, [event.type, arguments]);
         },
         stop: function stop(event, ui) {
             var scope = this.scope;

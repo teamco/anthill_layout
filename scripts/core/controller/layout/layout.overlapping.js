@@ -49,7 +49,7 @@ define([
          */
         _nestedOrganizerCore: function _nestedOrganizerCore(widgets) {
             var intersecting = {}, nestedMove = {},
-                index, moved;
+                index, moved, widget;
 
             for (index in widgets) {
                 if (widgets.hasOwnProperty(index)) {
@@ -58,7 +58,9 @@ define([
                         this._organizeCollector(widgets[index], intersecting);
                         for (moved in intersecting) {
                             if (intersecting.hasOwnProperty(moved)) {
-                                nestedMove[intersecting[moved].model.getUUID()] = intersecting[moved];
+                                widget = intersecting[moved];
+                                nestedMove[widget.model.getUUID()] = widget;
+                                widget.view.elements.$widget.setOpacity(widget.config.html.opacity);
                             }
                         }
                     }
@@ -104,10 +106,12 @@ define([
                 if (widgets.hasOwnProperty(index)) {
                     widget = page.model.getItemByUUID(widgets[index].model.getUUID());
                     widget.logger.debug('Start nested organizer animation');
+
                     widget.view.elements.$widget._setPosition({
                         animate: true,
                         callback: this._cssOrganizeCallback.bind({
                             scope: this,
+                            widget: widget,
                             callback: callback,
                             save: counter === length
                         })
@@ -129,6 +133,8 @@ define([
                 layout.logger.debug('Execute callback', callback);
                 callback();
             }
+
+            this.widget.view.elements.$widget.setOpacity(1.0);
 
             if (this.save) {
                 layout.logger.debug('Finish nested organizer');
