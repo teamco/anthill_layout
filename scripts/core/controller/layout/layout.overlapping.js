@@ -249,7 +249,9 @@ define([
                 (target.top > src.top && target.top < src.bottom) ||
                 (target.bottom > src.top && target.bottom < src.bottom) ||
                 (src.left > target.left && src.right < target.right &&
-                    src.top > target.top && src.bottom < target.bottom);
+                    src.top > target.top && src.bottom < target.bottom) ||
+                (src.left === target.left && src.right === target.right &&
+                    src.top === target.top && src.bottom === target.bottom);
         },
 
         /**
