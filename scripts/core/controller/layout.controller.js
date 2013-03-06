@@ -15,11 +15,11 @@ define([
      * Define layout controller
      * @constructor
      */
-    var LayoutController = function LayoutController() {
+    var Controller = function Controller() {
 
     };
 
-    return LayoutController.extend({
+    return Controller.extend({
         /**
          * Update cell size on resize container
          * @returns {*}
