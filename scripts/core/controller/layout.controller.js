@@ -96,6 +96,30 @@ define([
          */
         getBehavior: function getBehavior() {
             return this.scope.config.behavior[this.getBehaviorMode()];
+        },
+        /**
+         * Set behavior organize mode
+         * @param {String} mode
+         */
+        setOrganizeMode: function setOrganizeMode(mode) {
+            this.scope.logger.warn(
+                'Organize mode was changed',
+                this.getBehavior().organize,
+                mode
+            );
+            this.getBehavior().organize = mode;
+        },
+        /**
+         * Set behavior overlapping
+         * @param {boolean} overlapping
+         */
+        setOverlapping: function setOverlapping(overlapping) {
+            this.scope.logger.warn(
+                'Overlapping was changed',
+                this.getBehavior().overlapping,
+                overlapping
+            );
+            this.getBehavior().overlapping = overlapping;
         }
 
     }, Base, BaseController.prototype);

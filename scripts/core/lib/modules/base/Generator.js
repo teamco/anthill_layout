@@ -13,7 +13,7 @@ define(['modules/base'], function defineBaseGenerator(Base) {
         /**
          * Generate UUID
          * @description "http://www.ietf.org/rfc/rfc4122.txt"
-         * @param {String} uuid
+         * @param {String} [uuid]
          * @returns {String}
          */
         UUID: function UUID(uuid) {

@@ -242,7 +242,7 @@ define([
 
             var workspace = this.scopes.workspace,
                 page = this.scopes.page,
-                layout = page.layout.config,
+                layout = page.layout,
                 logger = this.scope.config.logger;
 
             event = this.base.define(event, {}, true);
@@ -261,14 +261,19 @@ define([
                     ], true),
 
                     this.renderBlock('Layout', [
-                        this.renderInput('Snap to Grid', layout.snap2grid),
-                        this.renderInput('Overlapping', layout.overlapping),
-                        this.renderInput('Empty spaces', layout.emptySpaces),
-                        this.renderInline('Columns', layout.grid.columns),
-                        this.renderInline('Widgets per row', layout.grid.widgetsPerRow),
-                        this.renderInline('Cell size (px)', layout.grid.minCellWidth.toFixed(3)),
-                        this.renderInline('Margin (px)', layout.grid.margin),
-                        this.renderInline('Padding (px)', layout.grid.padding)
+                        this.renderInput('Snap to Grid', layout.controller.isSnap2Grid()),
+                        this.renderInput('Overlapping', layout.controller.getBehavior().overlapping),
+                        this.renderCombo(
+                            'Overlapping mode',
+                            layout.controller.getBehavior().organize,
+                            ['row', 'column']
+                        ),
+                        this.renderInline('Empty spaces', layout.controller.getBehavior().emptySpaces),
+                        this.renderInline('Columns', layout.config.grid.columns),
+                        this.renderInline('Widgets per row', layout.config.grid.widgetsPerRow),
+                        this.renderInline('Cell size (px)', layout.config.grid.minCellWidth.toFixed(3)),
+                        this.renderInline('Margin (px)', layout.config.grid.margin),
+                        this.renderInline('Padding (px)', layout.config.grid.padding)
                     ], false),
 
                     this.renderBlock('Page', [
@@ -308,6 +313,9 @@ define([
             this.bindShowHideAll();
             this.bindDebugClose();
 
+            this.bindChangeOverlappingMode();
+            this.bindAllowOverlapping();
+
         },
         /**
          * Render block of elements
@@ -324,13 +332,40 @@ define([
             ].join('');
         },
         /**
+         * Render combo box
+         * @param {String} text
+         * @param {String} selected
+         * @param {Array} arr
+         * @returns {string}
+         */
+        renderCombo: function renderCombo(text, selected, arr) {
+
+            function _comboList() {
+                return $.map(arr, function map(n, i) {
+                    return [
+                        '<option', (n === selected ? ' selected' : ''),
+                        ' value="', n, '">', n, '</option>'
+                    ].join('');
+                });
+            }
+
+            return [
+                '<li><span>', text, ': </span><select id="',
+                text.replace(/ /, '-').toLowerCase(), '">',
+                _comboList(), '</select></li>'
+            ].join('');
+        },
+        /**
          * Render Header
          * @param {String} text
          * @param {Boolean} show
          * @returns {string}
          */
         renderHeader: function renderHeader(text, show) {
-            return ['<fieldset class="', (text.toLowerCase() + '-info'), '"><legend>', text, '</legend><ul', (show ? '' : ' class="hide"'), '>'].join('');
+            return [
+                '<fieldset class="', (text.toLowerCase() + '-info'), '"><legend>',
+                text, '</legend><ul', (show ? '' : ' class="hide"'), '>'
+            ].join('');
         },
         /**
          * Render inline element
@@ -348,7 +383,12 @@ define([
          * @returns {string}
          */
         renderInlineOf: function renderInlineOf(text, item) {
-            return ['<li><span>', text, ':</span> ', this.base.lib.hash.hashLength(item.items), ' of ', item.config[item.model.getItemNamespace()].limit || 'Unlimited', '</li>'].join('');
+            return [
+                '<li><span>', text, ':</span> ',
+                this.base.lib.hash.hashLength(item.items), ' of ',
+                item.config[item.model.getItemNamespace()].limit ||
+                    'Unlimited', '</li>'
+            ].join('');
         },
         /**
          * Render input element
@@ -551,6 +591,19 @@ define([
                     }
                 }.bind(this)
             );
+        },
+        /**
+         * Bind change overlapping mode
+         */
+        bindChangeOverlappingMode: function bindChangeOverlappingMode() {
+            $('#overlapping-mode').on('change.overlapping', function onChange(e) {
+                this.scopes.page.layout.controller.setOrganizeMode($(e.target).val());
+            }.bind(this));
+        },
+        bindAllowOverlapping: function bindAllowOverlapping() {
+            $('input[name="overlapping"]+label').on('click.overlapping', function click(e) {
+                this.scopes.page.layout.controller.setOverlapping($(e.target).prev().attr('checked') !== 'checked');
+            }.bind(this));
         }
     }, Base);
 });
