@@ -12,14 +12,14 @@ define([
 ], function defineLayoutController(Base, BaseController) {
 
     /**
-     *
+     * Define layout controller
      * @constructor
      */
-    var Controller = function Controller() {
+    var LayoutController = function LayoutController() {
 
     };
 
-    return Controller.extend({
+    return LayoutController.extend({
         /**
          * Update cell size on resize container
          * @returns {*}
@@ -55,7 +55,7 @@ define([
 
             config.minCellWidth = (width - margin * columns) / columns;
 
-            scope.logger.info('Calculated cell size (px)', config.minCellWidth);
+            scope.logger.debug('Calculated cell size (px)', config.minCellWidth);
 
             return config.minCellWidth;
         },
@@ -81,14 +81,14 @@ define([
          * @returns {boolean}
          */
         isSnap2Grid: function isSnap2Grid() {
-            return this.getBehaviorMode() === 'snap2grid';
+            return this.getBehaviorMode() === this.getParent().LAYOUT_MODES.snap2grid;
         },
         /**
          * Check if mode is Free Style
          * @returns {boolean}
          */
         isFreeStyle: function isFreeStyle() {
-            return this.getBehaviorMode() === 'freeStyle';
+            return this.getBehaviorMode() === this.getParent().LAYOUT_MODES.freeStyle;
         },
         /**
          * Get layout behavior mode
