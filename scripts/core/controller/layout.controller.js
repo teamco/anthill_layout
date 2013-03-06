@@ -21,14 +21,6 @@ define([
 
     return Controller.extend({
         /**
-         * Get layout behavior mode
-         * @returns {*}
-         */
-        getBehavior: function getBehavior() {
-            var config = this.scope.config;
-            return config.behavior[config.mode];
-        },
-        /**
          * Update cell size on resize container
          * @returns {*}
          */
@@ -67,11 +59,43 @@ define([
 
             return config.minCellWidth;
         },
+        /**
+         * Get grid width
+         * @returns {number}
+         */
         getGridWidth: function getGridWidth() {
             var config = this.scope.config.grid,
                 cell = this.minCellWidth();
 
             return (cell + config.margin) * config.columns;
+        },
+        /**
+         * Get layout organizer mode
+         * @returns {String}
+         */
+        getBehaviorMode: function getBehaviorMode() {
+            return this.scope.config.mode;
+        },
+        /**
+         * Check if mode is Snap to Grid
+         * @returns {boolean}
+         */
+        isSnap2Grid: function isSnap2Grid() {
+            return this.getBehaviorMode() === 'snap2grid';
+        },
+        /**
+         * Check if mode is Free Style
+         * @returns {boolean}
+         */
+        isFreeStyle: function isFreeStyle() {
+            return this.getBehaviorMode() === 'freeStyle';
+        },
+        /**
+         * Get layout behavior mode
+         * @returns {*}
+         */
+        getBehavior: function getBehavior() {
+            return this.scope.config.behavior[this.getBehaviorMode()];
         }
 
     }, Base, BaseController.prototype);

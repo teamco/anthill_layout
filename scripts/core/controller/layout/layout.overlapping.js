@@ -142,34 +142,24 @@ define([
          * @param {*} targets
          */
         _organizeCollector: function _organizeCollector(source, targets) {
-            var index,
-                config = this.layout.config,
-                mode = config.mode;
+            var index, layout = this.layout;
 
             for (index in targets) {
                 if (targets.hasOwnProperty(index)) {
-
-                    switch (mode) {
-
-                        case 'snap2grid':
-
-                            this._snap2gridOrganizer(
-                                config.behavior[mode],
-                                source,
-                                targets[index],
-                                this.layout.controller.getGridWidth()
-                            );
-                            break;
-
-                        case 'freeStyle':
-                            // TODO
-                            break;
-
-                        default:
-
-                            this.layout.logger.warn('Undefined mode organize', mode);
-                            break;
-
+                    if (layout.controller.isSnap2Grid()) {
+                        this._snap2gridOrganizer(
+                            this.layout.controller.getBehavior(),
+                            source,
+                            targets[index],
+                            this.layout.controller.getGridWidth()
+                        );
+                    } else if (layout.controller.isFreeStyle()) {
+                        // TODO
+                    } else {
+                        this.layout.logger.warn(
+                            'Undefined organize mode',
+                            layout.controller.getBehaviorMode()
+                        );
                     }
                 }
             }
