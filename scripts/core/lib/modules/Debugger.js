@@ -600,9 +600,20 @@ define([
                 this.scopes.page.layout.controller.setOrganizeMode($(e.target).val());
             }.bind(this));
         },
+        /**
+         * Bind click to allow / disable overlapping
+         */
         bindAllowOverlapping: function bindAllowOverlapping() {
             $('input[name="overlapping"]+label').on('click.overlapping', function click(e) {
-                this.scopes.page.layout.controller.setOverlapping($(e.target).prev().attr('checked') !== 'checked');
+                var $input = $(e.target).prev();
+
+                if ($input.attr('checked') === 'checked') {
+                    $input.attr('checked', false);
+                } else {
+                    $input.attr('checked', true);
+                }
+
+                this.scopes.page.layout.controller.setOverlapping($input.attr('checked') !== 'checked');
             }.bind(this));
         }
     }, Base);

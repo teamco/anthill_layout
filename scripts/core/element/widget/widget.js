@@ -47,6 +47,16 @@ define([
                 opts.callback
             );
 
+        },
+        /**
+         * Downgrade widget layer
+         * @param {Number} layer
+         * @private
+         */
+        _downgradeLayer: function _downgradeLayer(layer) {
+            this.$.css({
+                zIndex: layer
+            });
         }
 
     }, Base, BaseElement.prototype);

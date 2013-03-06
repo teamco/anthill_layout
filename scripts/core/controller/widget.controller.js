@@ -130,6 +130,7 @@ define([
          */
         dragStop: function dragStop(type) {
             this.logger.debug('Stop drag', arguments);
+            this.controller.getPage().controller.downgradeLayer(this);
             this.controller.behaviorMode({
                 organize: false,
                 animate: true,
@@ -173,6 +174,7 @@ define([
          */
         resizeStop: function resizeStop(type, organize, animate) {
             this.logger.debug('Stop resize', arguments);
+            this.controller.getPage().controller.downgradeLayer(this);
             this.controller.behaviorMode({
                 organize: organize,
                 animate: animate,
