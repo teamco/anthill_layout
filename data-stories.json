@@ -120,5 +120,44 @@
             "archive" : [ 2013, 2, 28, 11, 59],
             "remove" : [ 2013, 6, 30, 11, 59]
         }
+    },
+    
+    "item" : {
+        "id" : "ID0004",
+        "type" : "story",
+        "content" : {
+            "title" : "Man arrested for harassing baby manatee in Florida",
+            "lead"  : "A man has been arrested in Florida after posting pictures on Facebook that showed him picking up and harassing a baby manatee.",
+            "_comment" : "each 'body' line is a paragraph; they need to be joined.",
+            "body"  : [
+                "The incriminating images show Ryan William Waterman, 21, and his two children petting a manatee calf at Taylor Creek in Fort Pierce last month, according to the Florida Fish and Wildlife Conservation Commission (FWC). In one shot, Waterman is holding the calf partially out of the shallow water, and in another image, one of his young children is sitting on top of the animal as if riding it.",
+                "While the family's actions might look playful, biologists said such contact could be deadly for a manatee calf.",
+                "\"This was a young manatee, which was likely still dependent on its mother for food and protection. Separating the two could have severe consequences for the calf,\" FWC manatee biologist Thomas Reinert said in a statement.",
+                "Waterman faces charges under the Florida Manatee Sanctuary Act, which makes it illegal to molest, harass or disturb manatees, classified as an endangered species in the state. His offense also violates the Marine Mammal Protection Act of 1972, which makes it illegal to hunt or get up close to manatees as well as all other marine mammals, such as whales, seals and walruses.",
+                "These laws, however, have not prevented some recent close encounters in Florida, perhaps due to a lack of awareness. (Waterman, in fact, told local television station WPEC-TV that he meant no harm and didn't know it was illegal to touch a manatee.)",
+                "There are estimated to be just 3,800 manatees in Florida, and each year, about 87 are killed by humans, according to the U.S. Fish and Wildlife Service, most of them dying in boat collisions. Coastal development, which has altered and destroyed manatee habitat, also threatens the species."
+            ],
+            "byline" : "Live Science Staff",
+            "source" : {
+                "abbreviation" : "NBC",
+                "full" : "Science on NBC News"
+            },
+            "photos" : {
+                "thumbnail" : "./images/item-ID0004-story-thumbnail.jpg",
+                "image" : "./images/item-ID0004-story-image.jpg"
+            },
+            "location" : "Fort Pierce, Florida"
+        },
+        "lifecycle" : {
+            "_format" : [ "yyyy", "mm", "dd", "hour", "minutes"],
+            "created" : [ 2013, 1, 12, 12, 55],
+            "publish" : [ 2013, 1, 16, 2, 0],
+            "spotlight" : {
+                    "start" : [ 2013, 1, 16, 9, 0],
+                    "end" : [ 2013, 1, 16, 11, 59]
+            },
+            "archive" : [ 2013, 1, 28, 11, 59],
+            "remove" : [ 2013, 6, 30, 11, 59]
+        }
     }
 }
