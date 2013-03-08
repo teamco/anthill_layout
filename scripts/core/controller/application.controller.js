@@ -26,7 +26,7 @@ define([
             );
         },
         resizeWindow: function resizeWindow() {
-            this.logger.warn('Start resize window');
+            this.logger.debug('Start resize window');
         },
         /**
          * Start debugger
