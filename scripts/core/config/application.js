@@ -45,6 +45,8 @@ define([
             render: true
         });
 
+        this.controller.initResizeWindow();
+
         this.observer.publish(this.eventmanager.eventList.successCreated);
 
     };

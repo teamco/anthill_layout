@@ -12,6 +12,10 @@ define([
     var EventManager = function EventManager() {
         this.events = {};
         this.eventList = {
+            resizeWindow: {
+                eventName: 'resize.window',
+                params: { buffer: 500 }
+            },
             createWorkspace: 'create.workspace',
             destroyWorkspace: 'destroy.workspace',
             destroyWorkspaces: 'destroy.workspaces',

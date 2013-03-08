@@ -6,12 +6,28 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
+    'jquery',
     'modules/controller'
-], function defineApplicationController(BaseController) {
+], function defineApplicationController($, BaseController) {
     var Controller = function Controller() {
     };
 
     return Controller.extend({
+        initResizeWindow: function initResizeWindow() {
+            this.scope.logger.debug('Enable window resize');
+            $(window).on(
+                'resize.window',
+                this.resizeWindowPublisher.bind(this)
+            );
+        },
+        resizeWindowPublisher: function resizeWindowPublisher() {
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.resizeWindow
+            );
+        },
+        resizeWindow: function resizeWindow() {
+            this.logger.warn('Start resize window');
+        },
         /**
          * Start debugger
          */

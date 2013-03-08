@@ -14,12 +14,24 @@ define([
     };
 
     return Controller.extend({
+        /**
+         * Get workspace
+         * @returns {*}
+         */
         getWorkspace: function getWorkspace() {
             return this.scope.config.parent;
         },
+        /**
+         * Create page layout
+         * @param {Function} Layout
+         * @param {{}} opts
+         */
         createLayout: function createLayout(Layout, opts) {
             this.layout = new Layout(opts, this);
         },
+        /**
+         * Destroy layout
+         */
         destroyLayout: function destroyLayout() {
             this.logger.info(
                 'Destroy Layout',
@@ -34,9 +46,17 @@ define([
         getLayout: function getLayout() {
             return this.scope.layout;
         },
+        /**
+         * Create template
+         * @param {Function} Template
+         * @param {{}} opts
+         */
         createTemplate: function createTemplate(Template, opts) {
             this.template = new Template(opts);
         },
+        /**
+         * Destroy template
+         */
         destroyTemplate: function destroyTemplate() {
             this.logger.info(
                 'Destroy Template',
