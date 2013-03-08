@@ -13,18 +13,27 @@ define([
     };
 
     return Controller.extend({
+        /**
+         * Init window resize
+         */
         initResizeWindow: function initResizeWindow() {
-            this.scope.logger.debug('Enable window resize');
+            this.scope.logger.debug('Init window resize');
             $(window).on(
                 'resize.window',
                 this.resizeWindowPublisher.bind(this)
             );
         },
+        /**
+         * Resize window publisher
+         */
         resizeWindowPublisher: function resizeWindowPublisher() {
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.resizeWindow
             );
         },
+        /**
+         * Resize window callback
+         */
         resizeWindow: function resizeWindow() {
             this.logger.debug('Start resize window');
         },
