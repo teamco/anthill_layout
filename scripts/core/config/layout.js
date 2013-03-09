@@ -19,7 +19,7 @@ define([
         var DEFAULTS = {
             parent: page,
             grid: {
-                columns: 30,
+                columns: 60,
                 widgetsPerRow: 3,
                 additionalRows: 1,
                 margin: 1,
