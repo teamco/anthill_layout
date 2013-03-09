@@ -30,15 +30,15 @@ define([
     var widget1 = page1.widget;
     widget1.view.render();
 
-//    page1.observer.publish(page1.eventmanager.eventList.createWidget);
-//
-//    var widget2 = page1.widget;
-//    widget2.view.render();
-//
-//    page1.observer.publish(page1.eventmanager.eventList.createWidget);
+    page1.observer.publish(page1.eventmanager.eventList.createWidget);
 
-//    var widget3 = page1.widget;
-//    widget3.view.render();
+    var widget2 = page1.widget;
+    widget2.view.render();
+
+    page1.observer.publish(page1.eventmanager.eventList.createWidget);
+
+    var widget3 = page1.widget;
+    widget3.view.render();
 //    window.app.workspace.observer.publish(window.app.workspace.eventmanager.eventList.createPage);
 //    window.app.workspace.page.view.render();
 

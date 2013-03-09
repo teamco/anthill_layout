@@ -23,9 +23,6 @@ define([
             this.elements.$widget = new Widget(this, {
                 id: this.createId(),
                 style: this.getContainerClassName(),
-                css: {
-                    background: this.scope.base.lib.generator.randomColor()
-                },
                 $container: this.getContainerSelector()
             });
             this.header(Header, this.elements.$widget);
@@ -35,6 +32,9 @@ define([
         content: function content() {
             this.elements.$content = new Content(this, {
                 style: 'content',
+                css: {
+                    background: this.scope.base.lib.generator.randomColor()
+                },
                 $container: this.elements.$widget.$
             });
         },

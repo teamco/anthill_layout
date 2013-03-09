@@ -197,7 +197,7 @@ define([
                 $.each(data, function (index, v) {
                     if (i < count) {
                         i += 1;
-                        this.$.find('ul').append(
+                        this.$.css({color: color}).find('ul').append(
                             $([
                                 '<li><h2>', v.content.title, '</h2>',
                                 '<p>', v.content.body.join('<br /><br />'), '</p>',
