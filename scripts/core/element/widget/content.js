@@ -200,7 +200,7 @@ define([
                         this.$.find('ul').append(
                             $([
                                 '<li><h2>', v.content.title, '</h2>',
-                                '<p>', v.content.body.join(' '), '</p>',
+                                '<p>', v.content.body.join('<br /><br />'), '</p>',
                                 '</li>'
                             ].join(''))
                         );
