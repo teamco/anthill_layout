@@ -165,6 +165,8 @@ define([
                 type: type,
                 $source: this.wireframe.$
             });
+
+            this.view.elements.$content.demo();
         },
         /**
          * Resize stop

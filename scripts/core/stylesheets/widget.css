@@ -5,7 +5,7 @@
 
 .widget {
     width: 200px;
-    height: 200px;
+    height: 600px;
     position: absolute;
     top: 10px;
     left: 10px;
@@ -16,4 +16,28 @@
     position: absolute;
     z-index: 51;
     background: #000;
+}
+
+.widget .content {
+    height: 100%;
+}
+
+.widget .content ul {
+    height: 99%;
+    overflow: hidden;
+    margin-bottom: 1%;
+}
+
+.widget .content li {
+    max-width: 200px;
+    padding: 2%;
+    border-right: 1px solid #999;
+    float: left;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 98%;
+}
+
+.widget .content li h2 {
+    margin-bottom: 10px;
 }

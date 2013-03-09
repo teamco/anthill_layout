@@ -8,8 +8,9 @@
 
 define([
     'jquery',
+    'lib/jquery/rgbcolor',
     'modules/base'
-], function defineBaseElement($, Base) {
+], function defineBaseElement($, RGBColor, Base) {
 
     var BaseElement = function BaseElement() {
 
@@ -328,6 +329,22 @@ define([
          */
         getTopDelta: function getTopDelta() {
             return this.getPaddingTop() + this.getMarginTop();
+        },
+        /**
+         * Invert CSS color [color|background-color]
+         * @param {String} cssType
+         */
+        invertColor: function invertColor(cssType) {
+            // Create RGBColor object
+            var color = new RGBColor(this.$.css(cssType));
+            if (color.ok) {
+                // Subtract each color component from 255
+                return [
+                    'rgb(', (255 - color.r), ', ',
+                    (255 - color.g), ', ',
+                    (255 - color.b), ')'
+                ].join('');
+            }
         }
 
     }, Base);
