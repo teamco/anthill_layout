@@ -40,6 +40,12 @@ define([
             callback: function debugEndCallback() {
                 this.debugger.destroy();
             }
+        },
+        resizeWindow: {
+            name: 'resize.window',
+            callback: function resizeWindowCallback() {
+                // TODO
+            }
         }
     };
 
