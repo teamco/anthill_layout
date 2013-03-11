@@ -41,3 +41,8 @@
 .widget .content li h2 {
     margin-bottom: 10px;
 }
+
+.widget img {
+    border: 1px solid #333;
+    margin-bottom: 6px;
+}

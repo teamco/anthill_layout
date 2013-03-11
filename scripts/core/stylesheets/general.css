@@ -6,6 +6,7 @@
 
 html, body {
     overflow: hidden;
+    font: normal normal 12px/14px Tahoma, Arial, sans-serif;
 }
 
 html, body, .app,

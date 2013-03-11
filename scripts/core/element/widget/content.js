@@ -200,6 +200,7 @@ define([
                         this.$.css({color: color}).find('ul').append(
                             $([
                                 '<li><h2>', v.content.title, '</h2>',
+                                '<img src="', v.content.photos.thumbnail, '" />',
                                 '<p>', v.content.body.join('<br /><br />'), '</p>',
                                 '</li>'
                             ].join(''))
