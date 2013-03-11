@@ -41,6 +41,7 @@ define([
                         overlapping: true,
                         animate: true,
                         magnet: false,
+                        float: 'none',
                         organize: 'column',     // {row|column}
                         emptySpaces: 'row'      // {row|column}
                     },
