@@ -21,6 +21,8 @@ define([
     'view/template.view',
     'event/template.event.manager'
 ], function defineTemplate(Base, MVC, Controller, Model, View, EventManager) {
+
+    "use strict";
     var Template = function Template(opts) {
 
         opts = this.base.define(opts, {}, true);
@@ -29,7 +31,7 @@ define([
         };
 
         // Init MVC
-        new MVC({
+        this.mvc = new MVC({
             scope: this,
             config: [opts, DEFAULTS],
             components: [

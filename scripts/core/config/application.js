@@ -8,6 +8,7 @@ define([
     'permission/application.permission'
 ], function defineApp(Base, Controller, Model, View, MVC, EventManager, Permission) {
 
+    "use strict";
     var App = function App(opts) {
 
         var DEFAULTS = {
@@ -32,7 +33,7 @@ define([
         this.items = {};
         this.workspace = {};
 
-        new MVC({
+        this.mvc = new MVC({
             scope: this,
             config: [opts, DEFAULTS],
             components: [

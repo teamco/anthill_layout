@@ -21,6 +21,7 @@ define([
      * @param opts
      * @constructor
      */
+    "use strict";
     var Page = function Page(opts) {
 
         this.items = {};
@@ -34,7 +35,7 @@ define([
 
         var DEFAULTS = {
             order: 1,
-            default: false,
+            isDefault: false,
             layout: {
                 behavior: {
                     snap2grid: {
@@ -52,7 +53,6 @@ define([
                 mode: this.LAYOUT_MODES.snap2grid
             },
             template: {
-                // TODO
             },
             widget: {
                 counter: 0,
@@ -74,7 +74,7 @@ define([
         };
 
         // Init MVC
-        new MVC({
+        this.mvc = new MVC({
             scope: this,
             config: [opts, DEFAULTS],
             components: [

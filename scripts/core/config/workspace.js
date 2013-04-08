@@ -12,6 +12,7 @@ define([
      * @param opts
      * @constructor
      */
+    "use strict";
     var Workspace = function Workspace(opts) {
 
         // Default constants
@@ -69,7 +70,7 @@ define([
         };
 
         // Init MVC
-        new MVC({
+        this.mvc = new MVC({
             scope: this,
             config: [opts, DEFAULTS],
             components: [
