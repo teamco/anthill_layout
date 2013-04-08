@@ -73,7 +73,7 @@ define([
             if (!internal && base.isObject(opts.event) && !base.isDefined(opts.params)) {
                 opts.params = this.scope.observer.listeners[
                     this.eventList[eventKey]
-                    ][0].params
+                    ][0].params;
             }
 
             this.eventList[eventKey] = opts.eventName;
