@@ -20,3 +20,9 @@ nbproject/
 .idea/jsLibraryMappings.xml
 .idea/libraries/
 .setting/*
+.DS_Store
+scripts/.DS_Store
+scripts/core/.DS_Store
+scripts/core/lib/.DS_Store
+scripts/core/lib/jquery/.DS_Store
+scripts/core/stylesheets/.DS_Store
