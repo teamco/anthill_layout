@@ -2,8 +2,8 @@ requirejs.config({
     baseUrl: 'scripts/core',
     paths: {
         config: 'config',
-        jquery: 'lib/jquery/jquery-1.9.1.min',
-        jqueryui: 'lib/jquery/jquery-ui-1.10.1.custom.min',
+        jquery: 'lib/jquery/jquery-2.0.min',
+        jqueryui: 'lib/jquery/jquery-ui-1.10.2.custom.min',
         application: 'application',
         controller: 'controller',
         model: 'model',
@@ -21,4 +21,4 @@ define([
     'config/permission',
     'test/create'
 ], function defineApp() {
-});
+});       Å
