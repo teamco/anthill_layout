@@ -359,14 +359,13 @@ define([
          */
         openTab: function openTab(e) {
             var $div = $(this.info),
-                $tab = $(e.target),
-                style = $tab.text().toLowerCase(),
-                $tabs = $div.find('ul.info-tabs');
+                $tab = $(e.target);
 
             $div.find('div > fieldset').hide();
-            $div.find('fieldset[class^="' + style + '"]').show()
+            $div.find('fieldset[class^="' +
+                    $tab.text().toLowerCase() + '"]').show()
                 .find('ul').stop().slideDown(500);
-            $tabs.find('li').removeClass('this');
+            $div.find('ul.info-tabs li').removeClass('this');
             $tab.addClass('this');
         },
         /**
