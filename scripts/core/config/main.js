@@ -21,4 +21,4 @@ define([
     'config/permission',
     'test/create'
 ], function defineApp() {
-});       Å
+});
