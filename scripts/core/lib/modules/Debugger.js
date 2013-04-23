@@ -344,10 +344,7 @@ define([
                 $tabs.append(
                     $('<li />').attr({
                         title: v
-                    }).text(v).on(
-                            'click.tab',
-                            this.openTab.bind(this)
-                        )
+                    }).text(v).on('click.tab', this.openTab.bind(this))
                 )
             }.bind(this));
 
@@ -359,12 +356,13 @@ define([
          */
         openTab: function openTab(e) {
             var $div = $(this.info),
-                $tab = $(e.target);
+                $tab = $(e.target),
+                $info = $div.find('fieldset[class^="' +
+                    $tab.text().toLowerCase() + '"]');
 
             $div.find('div > fieldset').hide();
-            $div.find('fieldset[class^="' +
-                    $tab.text().toLowerCase() + '"]').show()
-                .find('ul').stop().slideDown(500);
+            $info.find('fieldset').show();
+            $info.show().find('ul').stop().slideDown(500);
             $div.find('ul.info-tabs li').removeClass('this');
             $tab.addClass('this');
         },
@@ -452,7 +450,7 @@ define([
             return [
                 '<li><input name="', (text.toLowerCase().replace(/ /g, '-')),
                 '" id="', uuid, '" type="checkbox"',
-                condition ? ' checked="checked"' : '', '" />',
+                condition ? ' checked="checked"' : '', ' />',
                 '<label for="', uuid, '">', text, '</label></li>'
             ].join('');
         },
@@ -573,7 +571,9 @@ define([
                 function off() {
                     $(this).css({
                         opacity: opacityOff
-                    });
+                    }).find('.info-tabs').stop().animate({
+                            right: 0
+                        });
                 }
             );
         },
@@ -657,16 +657,9 @@ define([
          * Bind click to allow / disable overlapping
          */
         bindAllowOverlapping: function bindAllowOverlapping() {
-            $('input[name="overlapping"]+label').on('click.overlapping', function click(e) {
-                var $input = $(e.target).prev();
-
-                if ($input.attr('checked') === 'checked') {
-                    $input.attr('checked', false);
-                } else {
-                    $input.attr('checked', true);
-                }
-
-                this.scopes.page.layout.controller.setOverlapping($input.attr('checked') !== 'checked');
+            var $input = $('input[name="overlapping"]');
+            $input.change(function change(e) {
+                this.scopes.page.layout.controller.setOverlapping($input.prop('checked'));
             }.bind(this));
         }
     }, Base);

@@ -114,7 +114,7 @@ define([
          * @param {boolean} overlapping
          */
         setOverlapping: function setOverlapping(overlapping) {
-            this.scope.logger.warn(
+            this.scope.logger.debug(
                 'Overlapping was changed',
                 this.getBehavior().overlapping,
                 overlapping
