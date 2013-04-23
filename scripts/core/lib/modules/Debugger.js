@@ -23,6 +23,15 @@ define([
         this.placeholders = '#placeholders';
         this.info = '#debug-mode';
 
+        this.tabs = [
+            'Widget',
+            'Layout',
+            'Page',
+            'Workspace',
+            'Application',
+            'Logger'
+        ];
+
         this.rows = 25;
         this.scopes = {};
 
@@ -219,17 +228,17 @@ define([
         },
         /**
          * Render Info window
-         * @param {{type, timeStamp}} event
-         * @param {{originalPosition, offset, position, helper}} ui
+         * @param {{type, timeStamp}} [event]
+         * @param {{originalPosition, offset, position, helper}} [ui]
          */
         renderInfo: function renderInfo(event, ui) {
 
-            var div = $(this.info),
+            var $div = $(this.info),
                 opacityOff = 0.8;
 
-            if (div.length === 0) {
-                div = $('<div />');
-                div.attr({
+            if ($div.length === 0) {
+                $div = $('<div />');
+                $div.attr({
                     id: this.info.replace(/#/, '')
                 }).css({
                         opacity: opacityOff
@@ -237,7 +246,7 @@ define([
                         handle: '.handler',
                         cancel: '.plus, .minus'
                     });
-                $(this.scope.config.html.container).append(div);
+                $(this.scope.config.html.container).append($div);
             }
 
             var workspace = this.scopes.workspace,
@@ -248,7 +257,7 @@ define([
             event = this.base.define(event, {}, true);
             ui = this.base.define(ui, {}, true);
 
-            div.html(
+            $div.html(
                 [
                     '<ul class="handler">',
                     this.renderInput('Show Grid', false),
@@ -307,6 +316,8 @@ define([
                 ].join('')
             ).show();
 
+            this.renderTabs($div);
+
             this.bindHover(opacityOff);
             this.bindCollapse();
             this.bindToggleGrid();
@@ -316,6 +327,26 @@ define([
             this.bindChangeOverlappingMode();
             this.bindAllowOverlapping();
 
+        },
+        /**
+         * Render Info tabs
+         * @param $div
+         */
+        renderTabs: function renderTabs($div) {
+            var $tabs = $('<ul />').addClass('info-tabs');
+            $.each(this.tabs, function eachTabs(i, v) {
+                $tabs.append(
+                    $('<li />').attr({
+                        title: v
+                    }).text(v).on('click.tab', function clickTab() {
+                            $div.find('fieldset').hide();
+                            var $tab = $div.find('fieldset[class^="' + v.toLowerCase() + '"]').show();
+                            $tab.find('ul').stop().slideDown();
+                        })
+                )
+            });
+
+            $tabs.appendTo($div);
         },
         /**
          * Render block of elements
@@ -379,7 +410,7 @@ define([
         /**
          * Render inline element of element
          * @param {String} text
-         * @param {{}} item
+         * @param {*} item
          * @returns {string}
          */
         renderInlineOf: function renderInlineOf(text, item) {
@@ -515,7 +546,9 @@ define([
                 function on() {
                     $(this).css({
                         opacity: 0.9
-                    });
+                    }).find('.info-tabs').stop().animate({
+                            right: -100
+                        });
                 },
                 function off() {
                     $(this).css({

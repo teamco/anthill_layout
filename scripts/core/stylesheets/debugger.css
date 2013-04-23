@@ -79,7 +79,7 @@
     font-size: 12px;
     font-family: Arial, Tahoma, sans-serif, monospace;
     line-height: 14px;
-    min-width: 250px;
+    min-width: 330px;
 }
 
 #debug-mode .debug-container {
@@ -88,7 +88,7 @@
     overflow: hidden;
     background: #fff;
     cursor: default;
-    max-height: 340px;
+    max-height: 400px;
     -moz-box-shadow: 3px 3px 5px #777;
     -webkit-box-shadow: 3px 3px 5px #777;
     box-shadow: 3px 3px 5px #777;
@@ -160,11 +160,20 @@
 
 #debug-mode fieldset {
     border: 1px solid #CCCCCC;
-    display: block;
     margin: 10px;
     overflow: hidden;
     padding: 5px 10px;
     cursor: pointer;
+    display: none;
+}
+
+#debug-mode fieldset ul {
+    display: none;
+}
+
+#debug-mode fieldset:first-child,
+#debug-mode fieldset:first-child ul {
+    display: block;
 }
 
 #debug-mode span {
@@ -329,4 +338,22 @@
 #debug-mode span[class^="right-"]:hover,
 #debug-mode span[class^="top-"]:hover {
     text-shadow: 1px 1px #ccc;
+}
+
+#debug-mode ul.info-tabs {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 2px solid #999;
+    border-left: 1px solid #999;
+    background: #fff;
+    padding: 5px 10px 5px 20px;
+    border-radius: 5px;
+    z-index: -1;
+    width: 80px;
+}
+
+#debug-mode ul.info-tabs li {
+    cursor: pointer;
+    list-style: none;
 }
