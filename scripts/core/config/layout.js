@@ -13,6 +13,11 @@ define([
     'event/layout.event.manager',
     'controller/layout/layout.overlapping'
 ], function defineLayout(Base, MVC, Controller, EventManager, Overlapping) {
+
+    /**
+     * Define Layout
+     */
+    "use strict";
     var Layout = function Layout(opts, page) {
 
         // Default constants
@@ -28,7 +33,7 @@ define([
         };
 
         // Init MVC
-        new MVC({
+        this.mvc = new MVC({
             scope: this,
             config: [opts, DEFAULTS],
             components: [

@@ -2,10 +2,11 @@ define([
     'modules/base'
 ], function defineSetting(Base) {
 
+    "use strict";
     var Setting = function Setting(mode) {
         this.mode = mode;
         this.storage = {
-            development: window.localStorage
+            development: localStorage
         };
     };
 
@@ -22,5 +23,5 @@ define([
         load: function load(namespace) {
             this.getStorage().getItem(namespace);
         }
-    }, Base)
+    }, Base);
 });

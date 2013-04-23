@@ -30,6 +30,7 @@ define([
      * @param opts {object}
      * @constructor
      */
+    "use strict";
     var Widget = function Widget(opts) {
 
         this.dom = {};
@@ -69,7 +70,7 @@ define([
         };
 
         // Init MVC
-        new MVC({
+        this.mvc = new MVC({
             scope: this,
             config: [opts, DEFAULTS],
             components: [
