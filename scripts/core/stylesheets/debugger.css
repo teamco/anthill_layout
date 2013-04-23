@@ -79,7 +79,7 @@
     font-size: 12px;
     font-family: Arial, Tahoma, sans-serif, monospace;
     line-height: 14px;
-    min-width: 330px;
+    min-width: 350px;
 }
 
 #debug-mode .debug-container {
@@ -167,6 +167,10 @@
     display: none;
 }
 
+#debug-mode fieldset fieldset {
+    margin: 0;
+}
+
 #debug-mode fieldset ul {
     display: none;
 }
@@ -211,12 +215,30 @@
     padding: 2px;
     border: 1px solid #fff;
     white-space: nowrap;
+    margin-bottom: 1px;
 }
 
 #debug-mode li:hover,
 #debug-mode li.allow span:hover {
     background-color: #ffff00;
     border: 1px solid #F0AB00;
+}
+
+#debug-mode li.extend:hover {
+    background-color: transparent;
+    border: none;
+}
+
+#debug-mode li.this {
+    background-color: #F0AB00;
+    border: 1px solid #cd0a0a;
+    color: #fff;
+}
+
+#debug-mode li:hover.this {
+    background-color: #FBD850;
+    border: 1px solid #c77405;
+    color: #333;
 }
 
 #debug-mode li.allow:hover {

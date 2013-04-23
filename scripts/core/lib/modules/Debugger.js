@@ -24,13 +24,15 @@ define([
         this.info = '#debug-mode';
 
         this.tabs = [
-            'Widget',
-            'Layout',
-            'Page',
-            'Workspace',
+            'Logger',
             'Application',
-            'Logger'
+            'Workspace',
+            'Page',
+            'Template',
+            'Widget'
         ];
+
+        this.showTab = 5;
 
         this.rows = 25;
         this.scopes = {};
@@ -153,6 +155,7 @@ define([
             for (column; column < grid.columns; column += 1) {
                 this.renderColumn(column, opts);
             }
+
             for (row; row < this.rows; row += 1) {
                 this.renderRow(row, opts);
             }
@@ -267,27 +270,26 @@ define([
 
                     this.renderBlock('Widget', [
                         this.renderWidgetInfo(event, ui)
-                    ], true),
-
-                    this.renderBlock('Layout', [
-                        this.renderInput('Snap to Grid', layout.controller.isSnap2Grid()),
-                        this.renderInput('Overlapping', layout.controller.getBehavior().overlapping),
-                        this.renderCombo(
-                            'Overlapping mode',
-                            layout.controller.getBehavior().organize,
-                            ['row', 'column']
-                        ),
-                        this.renderInline('Empty spaces', layout.controller.getBehavior().emptySpaces),
-                        this.renderInline('Columns', layout.config.grid.columns),
-                        this.renderInline('Widgets per row', layout.config.grid.widgetsPerRow),
-                        this.renderInline('Cell size (px)', layout.config.grid.minCellWidth.toFixed(3)),
-                        this.renderInline('Margin (px)', layout.config.grid.margin),
-                        this.renderInline('Padding (px)', layout.config.grid.padding)
                     ], false),
 
                     this.renderBlock('Page', [
                         this.renderInline('UUID', page.config.uuid),
-                        this.renderInlineOf('Widgets', page)
+                        this.renderInlineOf('Widgets', page),
+                        '<li class="extend">', this.renderBlock('Layout', [
+                            this.renderInput('Snap to Grid', layout.controller.isSnap2Grid()),
+                            this.renderInput('Overlapping', layout.controller.getBehavior().overlapping),
+                            this.renderCombo(
+                                'Overlapping mode',
+                                layout.controller.getBehavior().organize,
+                                ['row', 'column']
+                            ),
+                            this.renderInline('Empty spaces', layout.controller.getBehavior().emptySpaces),
+                            this.renderInline('Columns', layout.config.grid.columns),
+                            this.renderInline('Widgets per row', layout.config.grid.widgetsPerRow),
+                            this.renderInline('Cell size (px)', layout.config.grid.minCellWidth.toFixed(3)),
+                            this.renderInline('Margin (px)', layout.config.grid.margin),
+                            this.renderInline('Padding (px)', layout.config.grid.padding)
+                        ], true), '</li>'
                     ], false),
 
                     this.renderBlock('Workspace', [
@@ -327,6 +329,10 @@ define([
             this.bindChangeOverlappingMode();
             this.bindAllowOverlapping();
 
+            this.openTab({
+                target: $div.find('li[title="' + this.tabs[this.showTab] + '"]')
+            });
+
         },
         /**
          * Render Info tabs
@@ -338,15 +344,30 @@ define([
                 $tabs.append(
                     $('<li />').attr({
                         title: v
-                    }).text(v).on('click.tab', function clickTab() {
-                            $div.find('fieldset').hide();
-                            var $tab = $div.find('fieldset[class^="' + v.toLowerCase() + '"]').show();
-                            $tab.find('ul').stop().slideDown();
-                        })
+                    }).text(v).on(
+                            'click.tab',
+                            this.openTab.bind(this)
+                        )
                 )
-            });
+            }.bind(this));
 
             $tabs.appendTo($div);
+        },
+        /**
+         * Open selected tab
+         * @param {{target}} e
+         */
+        openTab: function openTab(e) {
+            var $div = $(this.info),
+                $tab = $(e.target),
+                style = $tab.text().toLowerCase(),
+                $tabs = $div.find('ul.info-tabs');
+
+            $div.find('div > fieldset').hide();
+            $div.find('fieldset[class^="' + style + '"]').show()
+                .find('ul').stop().slideDown(500);
+            $tabs.find('li').removeClass('this');
+            $tab.addClass('this');
         },
         /**
          * Render block of elements
