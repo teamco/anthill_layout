@@ -16,7 +16,7 @@ define([
     return Interactions.extend({
         checkPermission: function checkPermission() {
             this.scope.permission.check({
-                capability: this.constructor.getConstructorName().toLowerCase(),
+                capability: this.constructor.name.toLowerCase(),
                 callback: this.init.bind(this)
             });
         },

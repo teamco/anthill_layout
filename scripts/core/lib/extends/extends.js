@@ -76,7 +76,7 @@
 
     Function.method('inherits', function inherits(Parent) {
         var d = {},
-            p = (this.prototype[Parent.getConstructorName().toLowerCase()] = new Parent());
+            p = (this.prototype[Parent.name.toLowerCase()] = new Parent());
         this.method('uber', function uber(name) {
             if (!d.hasOwnProperty(name)) {
                 d[name] = 0;
@@ -114,27 +114,28 @@
     });
 
     /**
-     * Get Function Constructor name
+     * Get Function name
      */
-    Function.method('getConstructorName', function getConstructorName() {
-        // IE issue RegEx instead of constructor name
-        var instance = this.toString().match(/function (\w*)/);
-        if (typeof instance !== 'undefined') {
-            return instance[1];
-        }
-    });
-
-//    if (!Object.hasOwnProperty('getConstructorName')) {
-//        Object.prototype.getConstructorName = function getConstructorName() {
-//            return this.constructor.getConstructorName();
-//        };
-//    }
+    if (Function.prototype.name === undefined && Object.defineProperty !== undefined) {
+        Object.defineProperty(Function.prototype, 'name', {
+            /**
+             * Get function name
+             * @returns {String}
+             */
+            get: function get() {
+                var funcNameRegex = /function\s+(.{1,})\s*\(/;
+                var results = (funcNameRegex).exec((this).toString());
+                return (results && results.length > 1) ? results[1] : "";
+            },
+            set: function set(value) {}
+        });
+    }
 
     /**
      * Get Function Caller name
      */
     Function.method('getCallerName', function getCallerName() {
-        return this.caller.getConstructorName();
+        return this.caller.name;
     });
 
     /**

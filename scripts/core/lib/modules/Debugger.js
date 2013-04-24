@@ -84,7 +84,7 @@ define([
          */
         setScope: function setScope(scope, item) {
             var node = scope[item];
-            this.scopes[node.constructor.getConstructorName().toLowerCase()] = node;
+            this.scopes[node.constructor.name.toLowerCase()] = node;
             return node;
         },
         /**

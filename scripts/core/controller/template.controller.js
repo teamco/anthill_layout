@@ -12,6 +12,19 @@ define([
     };
 
     return Controller.extend({
+        createLayout: function createLayout(Layout, opts) {
+            this.layout = new Layout(opts, this);
+        },
+        /**
+         * Destroy layout
+         */
+        destroyLayout: function destroyLayout() {
+            this.logger.info(
+                'Destroy Layout',
+                this.layout
+            );
+            delete this.layout;
+        }
     }, BaseController.prototype);
 
 });

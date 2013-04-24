@@ -58,7 +58,7 @@ define([
          */
         successCreated: function successCreated() {
             this.logger.debug(
-                this.constructor.getConstructorName() +
+                this.constructor.name +
                     ' was successfully created',
                 this
             );
@@ -68,7 +68,7 @@ define([
          */
         successRendered: function successRendered() {
             this.logger.debug(
-                this.constructor.getConstructorName() +
+                this.constructor.name +
                     ' was successfully rendered',
                 this
             );
@@ -166,7 +166,7 @@ define([
                 html: {
                     container: [
                         '#', scope.model.getUUID(),
-                        '-', scope.constructor.getConstructorName().toLowerCase()
+                        '-', scope.constructor.name.toLowerCase()
                     ].join('')
                 },
                 parent: scope
@@ -181,7 +181,7 @@ define([
                 this.controller.extendConfig(opts)
             );
             this.logger.info(
-                'Create ' + item.constructor.getConstructorName(),
+                'Create ' + item.constructor.name,
                 this.model.getUUID(item),
                 item
             );
@@ -193,7 +193,7 @@ define([
         destroyItem: function destroyItem(item) {
             var items = this.model.destroyItem(item);
             this.logger.info(
-                'Destroy ' + item.constructor.getConstructorName(),
+                'Destroy ' + item.constructor.name,
                 item,
                 items
             );

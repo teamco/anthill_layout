@@ -14,7 +14,7 @@ define([
     /**
      * Define widget element
      * @param {{}} view
-     * @param {{}} opts
+     * @param {$container} opts
      * @returns {*}
      * @constructor
      */

@@ -51,7 +51,7 @@ define([
         },
 
         authorizedFunctionCall: function authorizedFunctionCall(fn) {
-            if (fn.getCallerName() !== this.check.getConstructorName()) {
+            if (fn.getCallerName() !== this.check.name) {
                 this.scope.logger.warn('Unauthorized function call');
                 return false;
             }

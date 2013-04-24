@@ -40,7 +40,7 @@ define([
                 constructor = this.base.isFunction(scope) ?
                     scope : scope.constructor;
 
-            return constructor.getConstructorName().toLowerCase();
+            return constructor.name.toLowerCase();
         },
         /**
          * Get parent items
@@ -86,7 +86,7 @@ define([
             return this.base.isDefined(node) ?
                 node.model ?
                     node.model.getUUID() :
-                    'Undefined ' + node.constructor.getConstructorName() :
+                    'Undefined ' + node.constructor.name :
                 this.getConfig().uuid;
         },
         /**
@@ -206,7 +206,7 @@ define([
             var namespace = this.getNameSpace(constructor),
                 limit = this.getConfig()[namespace].limit,
                 scope = this.scope,
-                cname = constructor.getConstructorName(),
+                cname = constructor.name,
                 node = scope[cname.toLowerCase()];
             if (this.checkLimit(constructor, limit)) {
                 scope.logger.warn(

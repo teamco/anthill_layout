@@ -124,7 +124,7 @@ define([
                 if (force) {
 
                     var scopeName = this.constructorName(),
-                        fnName = scopeName + mvc.getConstructorName();
+                        fnName = scopeName + mvc.name;
 
                     var fn = new Function(
                         name,
@@ -146,7 +146,7 @@ define([
          * @returns {string}
          */
         constructorName: function constructorName(scope) {
-            return scope.getConstructorName().toLowerCase();
+            return scope.name.toLowerCase();
         },
         /**
          * Get scope prototype

@@ -16,11 +16,12 @@
 define([
     'modules/base',
     'modules/mvc',
+    'config/layout',
     'controller/template.controller',
     'model/template.model',
     'view/template.view',
     'event/template.event.manager'
-], function defineTemplate(Base, MVC, Controller, Model, View, EventManager) {
+], function defineTemplate(Base, MVC, Layout, Controller, Model, View, EventManager) {
 
     "use strict";
     var Template = function Template(opts) {
@@ -49,6 +50,23 @@ define([
             ],
             render: true
         });
+
+        /**
+         * Define items
+         * @type {template.items}
+         */
+        this.items = {};
+
+        /**
+         * Define widget
+         * @type {template.widget}
+         */
+        this.widget = {};
+
+        this.observer.publish(
+            this.eventmanager.eventList.createLayout,
+            [Layout, this.config.layout]
+        );
 
         this.observer.publish(this.eventmanager.eventList.successCreated);
 

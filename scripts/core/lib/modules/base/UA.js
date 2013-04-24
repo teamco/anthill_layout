@@ -8,11 +8,12 @@
 
 define(['modules/base'], function defineBaseString(Base) {
     var BaseUserAgent = function BaseUserAgent() {
+        var ua = navigator.userAgent.toLowerCase();
         this.browser = {
-            mozilla: /mozilla/.test(navigator.userAgent.toLowerCase()) && !/webkit/.test(navigator.userAgent.toLowerCase()),
-            webkit: /webkit/.test(navigator.userAgent.toLowerCase()),
-            opera: /opera/.test(navigator.userAgent.toLowerCase()),
-            msie: /msie/.test(navigator.userAgent.toLowerCase())
+            mozilla: /mozilla/.test(ua) && !/webkit/.test(ua),
+            webkit: /webkit/.test(ua),
+            opera: /opera/.test(ua),
+            msie: /msie/.test(ua)
         };
     };
 

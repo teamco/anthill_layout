@@ -45,7 +45,7 @@ define([
          */
         renderUUID: function renderUUID(id) {
             return id || (this.base.lib.generator.UUID() +
-                this.constructor.getConstructorName().toDash());
+                this.constructor.name.toDash());
         },
         /**
          * Bind element events
@@ -73,7 +73,7 @@ define([
             function destroyElement($element) {
                 if ($element.length > 0) {
                     this.view.scope.logger.warn(
-                        this.constructor.getConstructorName(),
+                        this.constructor.name,
                         'Element will overwritten'
                     );
                     $element.remove();

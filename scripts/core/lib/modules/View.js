@@ -35,13 +35,13 @@ define([
         },
         header: function header(Header, $container) {
             this.elements.$header = new Header(this, {
-                style: this.scope.constructor.getConstructorName().toLowerCase() + '-header',
+                style: this.scope.constructor.name.toLowerCase() + '-header',
                 $container: $container.$
             });
         },
         footer: function footer(Footer, $container) {
             this.elements.$footer = new Footer(this, {
-                style: this.scope.constructor.getConstructorName().toLowerCase() + '-footer',
+                style: this.scope.constructor.name.toLowerCase() + '-footer',
                 $container: $container.$
             });
         }
