@@ -15,7 +15,14 @@ define([
     "use strict";
     var Workspace = function Workspace(opts) {
 
-        // Default constants
+        /**
+         * Define default config
+         * @type {{
+         *  order: number,
+         *  page: {counter: number, limit: number, onDestroyShowPrevious: boolean},
+         *  html: {header: boolean, footer: boolean, stretch: boolean, padding: {top: number, right: number, bottom: number, left: number}}
+         * }}
+         */
         var DEFAULTS = {
             order: 1,
             page: {
@@ -35,41 +42,12 @@ define([
                     left: 0
                 }
             }
-            //        flexible: true,
-            //        showMaximizePanel: true,
-            //        animate: true,
-            //        showDebuggerTab: false,
-            //        saveDelay: 500,
-            //        pagesDimensionChanged: false,
-            //render method
-            //        defaultRender: true,
-            // Show first page or last page after load.
-            // if false then last page will be shown.
-            //        showFirstPageOnLoad: true,
-            //        centralize: {
-            //            vertical: true,
-            //            horizontal: true,
-            //            animate: true,
-            //            onload: false
-            //        },
-            //        permission: {
-            //            show: true
-            //        },
-            //        ,
-            //        gallery: {
-            //            singleton: true,
-            //            style: 'top closed',
-            //            // This is the jQuery search string to find the container of the gallery
-            //            container: '#workspacePanel',
-            //            append: false,
-            //            fadeOnDrag: true,
-            //            fadeOnResize: true,
-            //            fadeOnStartGalleryDrag: true,
-            //            panelHeight: 220
-            //        }
         };
 
-        // Init MVC
+        /**
+         * Define MVC
+         * @type {modules.mvc}
+         */
         this.mvc = new MVC({
             scope: this,
             config: [opts, DEFAULTS],
@@ -83,9 +61,14 @@ define([
 
         /**
          * Define page
-         * @type {{}}
+         * @type {workspace.page}
          */
         this.page = {};
+
+        /**
+         * Define items
+         * @type {workspace.items}
+         */
         this.items = {};
 
         this.observer.publish(this.eventmanager.eventList.successCreated);

@@ -13,6 +13,10 @@ define([
     'config/widget'
 ], function definePermissions(Application, Workspace, Page, Widget) {
 
+    /**
+     * Define Application Global permission
+     * @type {{development: {activateDebugger: boolean, destroyDebugger: boolean}}}
+     */
     Application.prototype.globalPermissions = {
         development: {
             activateDebugger: true,
@@ -20,12 +24,28 @@ define([
         }
     };
 
+    /**
+     * Define Workspace Global permission
+     * @type {{}}
+     */
     Workspace.prototype.globalPermissions = {
     };
 
+    /**
+     * Define Page Global permission
+     * @type {{}}
+     */
     Page.prototype.globalPermissions = {
     };
 
+    /**
+     * Define Widget Global permission
+     * @type {{
+     *  development: {draggable: boolean, resizable: boolean},
+     *  authorize: {draggable: boolean, resizable: boolean},
+     *  consumption: {draggable: boolean, resizable: boolean}
+     * }}
+     */
     Widget.prototype.globalPermissions = {
         development: {
             draggable: true,

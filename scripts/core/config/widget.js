@@ -35,13 +35,49 @@ define([
 
         this.dom = {};
 
+        /**
+         * Default config
+         * @type {{
+         *  order: number,
+         *  html: {
+         *      header: boolean,
+         *      footer: boolean,
+         *      frameLess: boolean,
+         *      opacity: number,
+         *      overlapping: boolean
+         *  },
+         *  maximize: boolean,
+         *  events: {
+         *      draggable: {
+         *          snap: boolean,
+         *          iframeFix: boolean,
+         *          axis: boolean,
+         *          scroll: boolean,
+         *          connectToSortable: boolean,
+         *          cursor: string,
+         *          appendTo: string
+         *      },
+         *      resizable: {
+         *          iframeFix: boolean,
+         *          handles: string
+         *      },
+         *      droppable: {
+         *          activeClass: string,
+         *          hoverClass: string,
+         *          greedy: boolean,
+         *          tolerance: string
+         *      }
+         *  }
+         * }}
+         */
         var DEFAULTS = {
             order: 1,
             html: {
                 header: false,
                 footer: false,
                 frameLess: false,
-                opacity: 0.6
+                opacity: 0.6,
+                overlapping: false
             },
             maximize: false,
             events: {
@@ -53,8 +89,6 @@ define([
                     connectToSortable: false,
                     cursor: 'move',
                     appendTo: 'parent'
-//                    handle: '.header',
-//                    cancel: '.header .icons li, .header input, .icons li, .menu'
                 },
                 resizable: {
                     iframeFix: true,
@@ -69,7 +103,10 @@ define([
             }
         };
 
-        // Init MVC
+        /**
+         * Define MVC
+         * @type {modules.mvc}
+         */
         this.mvc = new MVC({
             scope: this,
             config: [opts, DEFAULTS],

@@ -14,6 +14,15 @@ define([
     'config/widget'
 ], function defineListeners(Debugger, Application, Workspace, Page, Widget) {
 
+    /**
+     * Define Application Global listeners
+     * @type {{
+     *  successRendered: {name: string, callback: Function},
+     *  debugStart: {name: string, callback: Function},
+     *  debugEnd: {name: string, callback: Function},
+     *  resizeWindow: {name: string, callback: Function}
+     * }}
+     */
     Application.prototype.globalListeners = {
         successRendered: {
             name: "success.rendered",
@@ -48,7 +57,14 @@ define([
             }
         }
     };
-
+    /**
+     * Define Workspace Global listeners
+     * @type {{
+     *  successCreated: {name: string, callback: Function},
+     *  successRendered: {name: string, callback: Function},
+     *  createPage: {name: string, callback: Function}
+     * }}
+     */
     Workspace.prototype.globalListeners = {
         successCreated: {
             name: "success.created",
@@ -68,7 +84,14 @@ define([
             }
         }
     };
-
+    /**
+     * Define Page Global listeners
+     * @type {{
+     *  successCreated: {name: string, callback: Function},
+     *  successRendered: {name: string, callback: Function},
+     *  createWidget: {name: string, callback: Function}
+     * }}
+     */
     Page.prototype.globalListeners = {
         successCreated: {
             name: "success.created",
@@ -89,7 +112,14 @@ define([
             }
         }
     };
-
+    /**
+     * Define Widget Global listeners
+     * @type {{
+     *  successCreated: {name: string, callback: Function},
+     *  successRendered: {name: string, callback: Function},
+     *  debugInteractions: {name: string, params: {buffer: number}, callback: Function}
+     * }}
+     */
     Widget.prototype.globalListeners = {
         successCreated: {
             name: "success.created",

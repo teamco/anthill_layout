@@ -24,15 +24,50 @@ define([
     "use strict";
     var Page = function Page(opts) {
 
+        /**
+         * Define items
+         * @type {page.items}
+         */
         this.items = {};
+
+        /**
+         * Define widget
+         * @type {page.widget}
+         */
         this.widget = {};
+
+        /**
+         * Define maximized widget
+         * @type {page.maximized}
+         */
         this.maximized = {};
 
+        /**
+         * Define layout modes
+         * @type {{snap2grid: string, freeStyle: string}}
+         */
         this.LAYOUT_MODES = {
             snap2grid: 'snap2grid',
             freeStyle: 'freeStyle'
         };
 
+        /**
+         * Define default config
+         * @type {{
+         *  order: number,
+         *  isDefault: boolean,
+         *  layout: {
+         *      behavior: {
+         *          snap2grid: {overlapping: boolean, animate: boolean, magnet: boolean, float: string, organize: string, emptySpaces: string},
+         *          freeStyle: {}
+         *      },
+         *      mode: String
+         *  },
+         *  template: {},
+         *  widget: {counter: number, opacity: number, allowToAdd: boolean, addNewTo: string},
+         *  html: {header: boolean, footer: boolean, stretch: boolean, padding: {top: number, right: number, bottom: number, left: number}}
+         * }}
+         */
         var DEFAULTS = {
             order: 1,
             isDefault: false,
@@ -73,7 +108,10 @@ define([
             }
         };
 
-        // Init MVC
+        /**
+         * Define MVC
+         * @type {modules.mvc}
+         */
         this.mvc = new MVC({
             scope: this,
             config: [opts, DEFAULTS],

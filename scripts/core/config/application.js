@@ -11,6 +11,27 @@ define([
     "use strict";
     var App = function App(opts) {
 
+        /**
+         * Default config
+         * @type {{
+         *  workspace: {
+         *      limit: number,
+         *      counter: number
+         *  },
+         *  mode: string,
+         *  logger: {
+         *      show: boolean,
+         *      namespaces: boolean,
+         *      type: {
+         *          debug: boolean,
+         *          log: boolean,
+         *          info: boolean,
+         *          error: boolean,
+         *          warn: boolean
+         *      }
+         *  }
+         * }}
+         */
         var DEFAULTS = {
             workspace: {
                 limit: 1,
@@ -30,9 +51,22 @@ define([
             }
         };
 
+        /**
+         * Define items
+         * @type {{}}
+         */
         this.items = {};
+
+        /**
+         * Define workspace
+         * @type {{}}
+         */
         this.workspace = {};
 
+        /**
+         * Define MVC
+         * @type {modules.mvc}
+         */
         this.mvc = new MVC({
             scope: this,
             config: [opts, DEFAULTS],
@@ -45,6 +79,7 @@ define([
             ],
             render: true
         });
+
 
         this.controller.initResizeWindow();
 

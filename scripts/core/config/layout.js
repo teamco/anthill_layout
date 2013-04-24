@@ -20,7 +20,19 @@ define([
     "use strict";
     var Layout = function Layout(opts, page) {
 
-        // Default constants
+        /**
+         * Default config
+         * @type {{
+         *  parent: *,
+         *  grid: {
+         *      columns: number,
+         *      widgetsPerRow: number,
+         *      additionalRows: number,
+         *      margin: number,
+         *      padding: number
+         *  }
+         * }}
+         */
         var DEFAULTS = {
             parent: page,
             grid: {
@@ -32,7 +44,10 @@ define([
             }
         };
 
-        // Init MVC
+        /**
+         * Define MVC
+         * @type {modules.mvc}
+         */
         this.mvc = new MVC({
             scope: this,
             config: [opts, DEFAULTS],

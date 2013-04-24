@@ -27,10 +27,17 @@ define([
 
         opts = this.base.define(opts, {}, true);
 
+        /**
+         * Define default config
+         * @type {{}}
+         */
         var DEFAULTS = {
         };
 
-        // Init MVC
+        /**
+         * Define MVC
+         * @type {modules.mvc}
+         */
         this.mvc = new MVC({
             scope: this,
             config: [opts, DEFAULTS],

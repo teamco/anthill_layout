@@ -19,6 +19,10 @@ define([
      * @constructor Debugger
      */
     var Debugger = function Debugger(view, opts) {
+        /**
+         * Define config
+         * @type {element._config}
+         */
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
