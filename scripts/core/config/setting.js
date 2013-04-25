@@ -2,7 +2,6 @@ define([
     'modules/base'
 ], function defineSetting(Base) {
 
-    "use strict";
     var Setting = function Setting(mode) {
         /**
          * Define setting mode

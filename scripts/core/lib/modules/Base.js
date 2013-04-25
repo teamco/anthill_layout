@@ -19,6 +19,14 @@ define([
 
         lib: {},
 
+        /**
+         * Get object type
+         * @param obj
+         * @returns {String}
+         */
+        getType: function getType(obj) {
+            return Object.prototype.toString.call(obj).match(/^\[object (.*)\]$/)[1];
+        },
         // Check if object defined
         // Return: boolean
         isDefined: function isDefined(o) {
@@ -36,12 +44,12 @@ define([
             return false;
         },
         isString: function isString(o) {
-            return this.isDefined(o) && typeof o === 'string';
+            return this.getType(o).toLowerCase() === 'string';
         },
         // Check if array
         // Return: boolean
         isArray: function isArray(a) {
-            return $.isArray(a);
+            return this.getType(a).toLowerCase() === 'array';
         },
         // Check if object is instance of $
         is$Object: function is$Object(o) {

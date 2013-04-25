@@ -10,9 +10,6 @@ define(['modules/base'], function defineBaseFunction(Base) {
     };
 
     BaseFunction.extend({
-        getPrototype: function getPrototype(self) {
-            return self.constructor.prototype;
-        }
     });
 
     Base.prototype.lib.function = new BaseFunction();

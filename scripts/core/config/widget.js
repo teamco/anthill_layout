@@ -1,14 +1,6 @@
 /**
  * Created with JetBrains RubyMine.
  * User: teamco
- * Date: 11/24/12
- * Time: 1:49 PM
- * To change this template use File | Settings | File Templates.
- */
-
-/**
- * Created with JetBrains RubyMine.
- * User: teamco
  * Date: 11/17/12
  * Time: 4:10 PM
  * To change this template use File | Settings | File Templates.
@@ -30,7 +22,7 @@ define([
      * @param opts {object}
      * @constructor
      */
-    "use strict";
+
     var Widget = function Widget(opts) {
 
         this.dom = {};

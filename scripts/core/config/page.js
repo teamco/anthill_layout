@@ -21,7 +21,7 @@ define([
      * @param opts
      * @constructor
      */
-    "use strict";
+
     var Page = function Page(opts) {
 
         /**

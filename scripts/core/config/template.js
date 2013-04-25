@@ -23,7 +23,6 @@ define([
     'event/template.event.manager'
 ], function defineTemplate(Base, MVC, Layout, Controller, Model, View, EventManager) {
 
-    "use strict";
     var Template = function Template(opts) {
 
         opts = this.base.define(opts, {}, true);

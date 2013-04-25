@@ -17,7 +17,7 @@ define([
     /**
      * Define Layout
      */
-    "use strict";
+
     var Layout = function Layout(opts, page) {
 
         /**

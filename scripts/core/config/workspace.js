@@ -12,7 +12,7 @@ define([
      * @param opts
      * @constructor
      */
-    "use strict";
+
     var Workspace = function Workspace(opts) {
 
         /**

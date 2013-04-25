@@ -123,11 +123,15 @@
              * @returns {String}
              */
             get: function get() {
-                var funcNameRegex = /function\s+(.{1,})\s*\(/;
-                var results = (funcNameRegex).exec((this).toString());
-                return (results && results.length > 1) ? results[1] : "";
+                var funcNameRegex = /function\s+(.{1,})\s*\(/,
+                    results = (funcNameRegex).exec((this).toString()),
+                    aliases = ["", "anonymous", "Anonymous"],
+                    cname = (results && results.length > 1) ? results[1] : "";
+
+                return aliases.indexOf(cname) > -1 ? "Function" : cname;
             },
-            set: function set(value) {}
+            set: function set(value) {
+            }
         });
     }
 
@@ -135,7 +139,8 @@
      * Get Function Caller name
      */
     Function.method('getCallerName', function getCallerName() {
-        return this.caller.name;
+        var cfn = this.caller;
+        return typeof cfn === 'function' ? cfn.name : null;
     });
 
     /**

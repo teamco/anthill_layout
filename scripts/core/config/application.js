@@ -8,7 +8,6 @@ define([
     'permission/application.permission'
 ], function defineApp(Base, Controller, Model, View, MVC, EventManager, Permission) {
 
-    "use strict";
     var App = function App(opts) {
 
         /**

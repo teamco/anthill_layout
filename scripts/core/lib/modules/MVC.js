@@ -148,14 +148,6 @@ define([
             return scope.name.toLowerCase();
         },
         /**
-         * Get scope prototype
-         * @param {*} scope
-         * @returns {*}
-         */
-        getPrototype: function getPrototype(scope) {
-            return this.base.lib.function.getPrototype(scope);
-        },
-        /**
          * Set relation between MVC components
          */
         setRelation: function setRelation() {
