@@ -6,25 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/controller'
-], function defineTemplateController(BaseController) {
+    'modules/controller',
+    'modules/page'
+], function defineTemplateController(BaseController, BasePage) {
     var Controller = function Controller() {
     };
 
     return Controller.extend({
-        createLayout: function createLayout(Layout, opts) {
-            this.layout = new Layout(opts, this);
-        },
-        /**
-         * Destroy layout
-         */
-        destroyLayout: function destroyLayout() {
-            this.logger.info(
-                'Destroy Layout',
-                this.layout
-            );
-            delete this.layout;
-        }
-    }, BaseController.prototype);
+    }, BaseController.prototype, BasePage.prototype);
 
 });

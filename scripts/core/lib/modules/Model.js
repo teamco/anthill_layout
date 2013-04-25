@@ -24,9 +24,13 @@ define([
         },
         /**
          * Get scope config
+         * @param {String} [key]
          * @returns {scope.config}
          */
-        getConfig: function getConfig() {
+        getConfig: function getConfig(key) {
+            if (this.scope.config.hasOwnProperty(key)) {
+                return this.scope.config[key];
+            }
             return this.scope.config;
         },
         /**
@@ -87,7 +91,7 @@ define([
                 node.model ?
                     node.model.getUUID() :
                     'Undefined ' + node.constructor.name :
-                this.getConfig().uuid;
+                this.getConfig('uuid');
         },
         /**
          * Get item from collector by UUID
@@ -136,7 +140,7 @@ define([
         /**
          * Add item to collector
          * @param {{model}} node
-         * @param {boolean} force
+         * @param {boolean} [force]
          * @returns {*}
          */
         setItem: function setItem(node, force) {
@@ -174,7 +178,7 @@ define([
          * @returns {*}
          */
         getOrder: function getOrder() {
-            return this.getConfig().order;
+            return this.getConfig('order');
         },
         /**
          * Check items limit
@@ -188,7 +192,7 @@ define([
 
             limit = base.isDefined(limit) ?
                 limit :
-                this.getConfig()[namespace].limit;
+                this.getConfig(namespace).limit;
 
             if (!base.isDefined(limit)) {
                 return false;
@@ -204,7 +208,7 @@ define([
          */
         updateCollector: function updateCollector(constructor, opts) {
             var namespace = this.getNameSpace(constructor),
-                limit = this.getConfig()[namespace].limit,
+                limit = this.getConfig(namespace).limit,
                 scope = this.scope,
                 cname = constructor.name,
                 node = scope[cname.toLowerCase()];
@@ -228,6 +232,7 @@ define([
                     );
                 }
 
+                scope.config[namespace] = base.define(scope.config[namespace], {}, true);
                 scope.config[namespace].counter =
                     base.lib.hash.hashLength(this.getItems());
 

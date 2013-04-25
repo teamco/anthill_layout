@@ -8,24 +8,36 @@
 
 define([
     'modules/view',
-    'element/template/template'
-], function defineTemplateView(BaseView, TemplateHTML) {
+    'element/header',
+    'element/footer',
+    'element/template/template',
+    'element/template/content'
+], function defineTemplateView(BaseView, Header, Footer, TemplateHTML, Content) {
 
     var View = function View() {
         this.elements = {};
     };
 
     return View.extend({
-        template: function template() {
+        renderTemplate: function renderTemplate() {
             var id = this.createId();
-            this.elements[id] = new TemplateHTML(this, {
+            this.elements.$template = new TemplateHTML(this, {
                 id: id,
                 style: this.getContainerClassName(),
                 $container: this.getConfigHTML().container
             });
+            this.header(Header, this.elements.$template);
+            this.widgets();
+            this.footer(Footer, this.elements.$template);
+        },
+        widgets: function widgets() {
+            this.elements.$widgets = new Content(this, {
+                style: 'widgets',
+                $container: this.elements.$template.$
+            });
         },
         render: function render() {
-            this.template();
+            this.scope.observer.publish(this.scope.eventmanager.eventList.successRendered);
         }
     }, BaseView.prototype)
 

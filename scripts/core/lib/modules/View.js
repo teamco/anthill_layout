@@ -14,7 +14,7 @@ define([
 
     return BaseView.extend({
         getConfigHTML: function getConfigHTML() {
-            return this.scope.model.getConfig().html;
+            return this.scope.model.getConfig('html');
         },
         createId: function createId() {
             return [

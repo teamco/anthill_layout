@@ -43,7 +43,7 @@ define([
                 margin = config.margin;
 
             var elements = scope.controller.getParent().view.elements,
-                $page = elements.$page,
+                $page = elements.$page || elements.$template,
                 $widgets = elements.$widgets;
 
             var pl = $widgets.getPaddingLeft(),

@@ -19,7 +19,7 @@ define([
          * Get page instance
          * @returns {*}
          */
-        getPage: function getPage() {
+        getParentContainer: function getParentContainer() {
             return this.scope.config.parent;
         },
         /**
@@ -27,14 +27,17 @@ define([
          * @returns {*}
          */
         get$page: function get$page() {
-            return this.getPage().view.elements.$page.$;
+            return this.getParentContainer().view.elements.$page.$;
+        },
+        get$template: function get$template() {
+            return this.getParentContainer().view.elements.$template.$;
         },
         /**
          * Get widgets container
          * @returns {*}
          */
         getContainer: function getContainer() {
-            return this.getPage().view.elements.$widgets;
+            return this.getParentContainer().view.elements.$widgets;
         },
         /**
          * Setup interactions {Drag|Resize}
@@ -130,7 +133,7 @@ define([
          */
         dragStop: function dragStop(type) {
             this.logger.debug('Stop drag', arguments);
-            this.controller.getPage().controller.downgradeLayer(this);
+            this.controller.getParentContainer().controller.downgradeLayer(this);
             this.controller.behaviorMode({
                 organize: false,
                 animate: true,
@@ -176,7 +179,7 @@ define([
          */
         resizeStop: function resizeStop(type, organize, animate) {
             this.logger.debug('Stop resize', arguments);
-            this.controller.getPage().controller.downgradeLayer(this);
+            this.controller.getParentContainer().controller.downgradeLayer(this);
             this.controller.behaviorMode({
                 organize: organize,
                 animate: animate,
@@ -196,7 +199,7 @@ define([
          */
         behaviorMode: function behaviorMode(opts) {
             var scope = this.scope,
-                page = this.getPage(),
+                page = this.getParentContainer(),
                 layout = page.controller.getLayout(),
                 mode = layout.controller.getBehavior();
 
@@ -204,9 +207,10 @@ define([
                 case page.LAYOUT_MODES.freeStyle:
                     break;
                 case page.LAYOUT_MODES.snap2grid:
-                default:
                     scope.model.save();
                     scope.map.sticker(opts, mode);
+                    break;
+                default:
                     break;
             }
         },

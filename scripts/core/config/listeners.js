@@ -11,8 +11,9 @@ define([
     'config/application',
     'config/workspace',
     'config/page',
+    'config/template',
     'config/widget'
-], function defineListeners(Debugger, Application, Workspace, Page, Widget) {
+], function defineListeners(Debugger, Application, Workspace, Page, Template, Widget) {
 
     /**
      * Define Application Global listeners
@@ -57,6 +58,7 @@ define([
             }
         }
     };
+
     /**
      * Define Workspace Global listeners
      * @type {{
@@ -84,6 +86,7 @@ define([
             }
         }
     };
+
     /**
      * Define Page Global listeners
      * @type {{
@@ -112,6 +115,34 @@ define([
             }
         }
     };
+
+    /**
+     * Define Template Global listeners
+     * @type {{
+     *  successCreated: {name: string, callback: Function},
+     *  successRendered: {name: string, callback: Function},
+     *  createWidget: {name: string, callback: Function}
+     * }}
+     */
+    Template.prototype.globalListeners = {
+        successCreated: {
+            name: "success.created",
+            callback: function successCreatedCallback() {
+            }
+        },
+        successRendered: {
+            name: "success.rendered",
+            callback: function successRenderedCallback() {
+                this.view.renderTemplate();
+            }
+        },
+        createWidget: {
+            name: 'create.widget',
+            callback: function createWidgetCallback() {
+            }
+        }
+    };
+
     /**
      * Define Widget Global listeners
      * @type {{

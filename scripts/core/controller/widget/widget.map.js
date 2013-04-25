@@ -16,7 +16,7 @@ define([
      */
     var Map = function Map(widget) {
         this.widget = widget;
-        this.layout = this.widget.controller.getPage().controller.getLayout();
+        this.layout = this.widget.controller.getParentContainer().controller.getLayout();
         this.duration = 500;
     };
 
