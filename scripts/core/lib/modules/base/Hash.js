@@ -6,9 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'jquery',
     'modules/base'
-], function defineBaseHash($, Base) {
+], function defineBaseHash(Base) {
     var BaseHash = function BaseHash() {
     };
 

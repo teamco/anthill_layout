@@ -7,9 +7,8 @@
  */
 
 define([
-    'jquery',
     'modules/base'
-], function defineLog($, Base) {
+], function defineLog(Base) {
 
     /**
      * Logger

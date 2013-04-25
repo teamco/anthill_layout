@@ -7,11 +7,10 @@
  */
 
 define([
-    'jquery',
     'modules/base',
     'modules/observer',
     'modules/logger'
-], function ($, Base, Observer, Logger) {
+], function (Base, Observer, Logger) {
     /**
      *
      * @param opts

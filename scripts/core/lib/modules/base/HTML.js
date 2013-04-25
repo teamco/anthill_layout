@@ -7,9 +7,8 @@
  */
 
 define([
-    'jquery',
     'modules/base'
-], function defineBaseHTML($, Base){
+], function defineBaseHTML(Base){
     var BaseHTML = function BaseHTML() {
     };
 

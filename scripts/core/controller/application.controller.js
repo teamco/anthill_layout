@@ -6,9 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'jquery',
     'modules/controller'
-], function defineApplicationController($, BaseController) {
+], function defineApplicationController(BaseController) {
     var Controller = function Controller() {
     };
 

@@ -10,7 +10,8 @@ requirejs([
     'modules/base/ua'
 ]);
 
-define(['jquery'], function defineBase($) {
+define([
+], function defineBase() {
     var Base = function Base() {
     };
 

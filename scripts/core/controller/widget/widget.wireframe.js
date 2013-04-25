@@ -6,9 +6,8 @@
  */
 
 define([
-    'jquery',
     'modules/base'
-], function defineWidgetWireframe($, Base) {
+], function defineWidgetWireframe(Base) {
 
     /**
      * Define Widget Wireframe

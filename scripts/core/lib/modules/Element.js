@@ -7,10 +7,9 @@
  */
 
 define([
-    'jquery',
     'lib/packages/rgbcolor',
     'modules/base'
-], function defineBaseElement($, RGBColor, Base) {
+], function defineBaseElement(RGBColor, Base) {
 
     var BaseElement = function BaseElement() {
 

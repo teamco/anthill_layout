@@ -6,10 +6,9 @@
  */
 
 define([
-    'jquery',
     'jqueryui',
     'modules/base'
-], function defineDebugger($, $UI, Base) {
+], function defineDebugger($UI, Base) {
 
     /**
      * Define Debugger

@@ -7,8 +7,7 @@
  */
 
 define([
-    'jquery'
-], function defineBaseView($) {
+], function defineBaseView() {
     var BaseView = function BaseView() {
 
     };
@@ -27,8 +26,7 @@ define([
             return this.getConfigHTML().selector.replace(/\./, '');
         },
         getContainerSelector: function getContainerSelector() {
-            var html = this.getConfigHTML(),
-                containerClassName = html.container.split(/-/).reverse().splice(0, 1);
+            var html = this.getConfigHTML();
             return $(html.container).find([
                 '.', this.getContainerClassName(), 's'
             ].join(''));
