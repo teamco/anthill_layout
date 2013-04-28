@@ -15,10 +15,10 @@ define([
             createWidget: 'create.widget',
             destroyWidget: 'destroy.widget',
             destroyWidgets: 'destroy.widgets',
-            createLayout: 'create.layout',
-            destroyLayout: 'destroy.layout',
             createTemplate: 'create.template',
             destroyTemplate: 'destroy.template',
+            createLayout: 'create.layout',
+            destroyLayout: 'destroy.layout',
             setPageHeight: 'set.page.height',
             widgetLoad: 'widget.load'
         };

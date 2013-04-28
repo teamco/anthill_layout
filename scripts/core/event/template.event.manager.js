@@ -12,11 +12,8 @@ define([
     var EventManager = function EventManager() {
         this.events = {};
         this.eventList = {
-            createWidget: 'create.widget',
-            destroyWidget: 'destroy.widget',
-            destroyWidgets: 'destroy.widgets',
-            createLayout: 'create.layout',
-            destroyLayout: 'destroy.layout'
+            createPage: 'create.page',
+            destroyPage: 'destroy.page'
         };
     };
 

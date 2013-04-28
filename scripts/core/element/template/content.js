@@ -11,15 +11,25 @@ define([
     'modules/element'
 ], function defineContent(Base, BaseElement) {
 
-    var Content = function Content(view, opts) {
-
+    var PageContainer = function PageContainer(view, opts) {
         return this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
             destroy: true
         });
     };
 
-    return Content.extend({
+    return PageContainer.extend({
+        defineHeight: function defineHeight() {
+            var header = this.view.elements.$header,
+                footer = this.view.elements.$footer,
+                $container = this.getRootContainer();
+
+            var headerHeight = header.$ ? header.$.height() : 0,
+                footerHeight = footer.$ ? footer.$.height() : 0,
+                containerHeight = $container.height();
+
+            this.setHeight(containerHeight - (headerHeight + footerHeight));
+        }
 
     }, Base, BaseElement.prototype);
 });

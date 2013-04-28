@@ -7,12 +7,12 @@
  */
 define([
     'modules/controller',
-    'modules/page'
-], function defineTemplateController(BaseController, BasePage) {
+    'controller/workspace.controller'
+], function defineTemplateController(BaseController, BaseWorkspace) {
     var Controller = function Controller() {
     };
 
     return Controller.extend({
-    }, BaseController.prototype, BasePage.prototype);
+    }, BaseController.prototype, BaseWorkspace.prototype);
 
 });

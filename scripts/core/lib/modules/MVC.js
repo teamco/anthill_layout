@@ -26,12 +26,22 @@ define([
 
         var base = this.base;
 
-        // MVC Relationship from -> to
+        /**
+         * Define MVC Relationship from -> to
+         * @type {Array}
+         */
         this.RELATIONS = [
             ['Controller', 'Model'],
             ['View', 'Controller']
         ];
 
+        /**
+         * Define reserved methods
+         * @type {{
+         *  create: {singular: Array},
+         *  destroy: {singular: Array, plural: Array}
+         * }}
+         */
         this.RESERVED = {
             create: {
                 singular: [
@@ -65,14 +75,38 @@ define([
         // Apply Configure
         var selfConfig = base.define(opts.config[0], {}, true),
             selfDefaults = base.define(opts.config[1], {}, true);
+
+        /**
+         * Define scope config
+         * @type {mvc.scope.config}
+         */
         this.scope.config = base.lib.hash.extendHash(
             selfConfig,
             selfDefaults
         );
 
+        /**
+         * Define mvc components
+         * @type {mvc.components}
+         */
         this.components = base.define(opts.components, [opts.components], true);
+
+        /**
+         * Define mvc config
+         * @type {mvc.config}
+         */
         this.config = base.define(selfConfig, {}, true);
+
+        /**
+         * Define mvc force creating components
+         * @type {mvc.force}
+         */
         this.force = base.defineBoolean(opts.force, false, true);
+
+        /**
+         * Define mvc render
+         * @type {mvc.render}
+         */
         this.render = base.defineBoolean(opts.render, true, true);
 
         var config = {},
@@ -82,26 +116,60 @@ define([
 
         $.extend(config, scope.config);
 
+        /**
+         * Define mvc applyLogger
+         * @type {mvc.applyLogger}
+         */
         this.applyLogger();
+
+        /**
+         * Define mvc applyConfig
+         * @type {mvc.applyConfig}
+         */
         this.applyConfig();
+
+        /**
+         * Define mvc applyMVC
+         * @type {mvc.applyMVC}
+         */
         this.applyMVC();
+
+        /**
+         * Define mvc applyObserver
+         * @type {mvc.applyObserver}
+         */
         this.applyObserver();
+
+        /**
+         * Define mvc applyEventManager
+         * @type {mvc.applyEventManager}
+         */
         this.applyEventManager();
+
+        /**
+         * Define mvc components
+         * @type {mvc.components}
+         */
         this.applyPermissions();
 
+        /**
+         * Define mvc defineSetting
+         * @type {mvc.defineSetting}
+         */
         this.defineSetting();
 
-        if (scope.eventmanager.eventList) {
+        var eventList = scope.eventmanager.eventList;
+        if (eventList) {
 
             scope.observer.publish(
-                scope.eventmanager.eventList.beforeInitConfig, [
+                eventList.beforeInitConfig, [
                     'Config before create',
                     config
                 ]
             );
 
             scope.observer.publish(
-                scope.eventmanager.eventList.afterInitConfig, [
+                eventList.afterInitConfig, [
                     'Config after create',
                     scope.config
                 ]

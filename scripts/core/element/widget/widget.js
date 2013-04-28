@@ -57,7 +57,15 @@ define([
             this.$.css({
                 zIndex: layer
             });
+        },
+        /**
+         * Get item content
+         * @returns {*}
+         */
+        getContent: function getContent() {
+            return this.$.find('.content');
         }
+
 
     }, Base, BaseElement.prototype);
 });

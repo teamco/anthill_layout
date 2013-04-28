@@ -36,6 +36,10 @@ define([
     var widget1 = page1.widget;
     widget1.view.render();
 
+    var template1 = page1.template;
+    template1.view.render(widget1);
+
+
 
 //    page1.observer.publish(page1.eventmanager.eventList.createWidget);
 //    var widget1 = page1.widget;

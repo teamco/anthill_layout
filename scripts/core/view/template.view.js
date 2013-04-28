@@ -12,29 +12,35 @@ define([
     'element/footer',
     'element/template/template',
     'element/template/content'
-], function defineTemplateView(BaseView, Header, Footer, TemplateHTML, Content) {
+], function defineTemplateView(BaseView, Header, Footer, TemplateHTML, PageContainer) {
 
     var View = function View() {
         this.elements = {};
     };
 
     return View.extend({
-        renderTemplate: function renderTemplate() {
+        renderTemplate: function renderTemplate($container) {
             this.elements.$template = new TemplateHTML(this, {
-                $container: this.getConfigHTML().container
+                id: this.createUUID(),
+                $container: $container,
+                style: 'pages'
             });
+
             this.header(Header, this.elements.$template);
-            this.widgets();
+            this.pages();
             this.footer(Footer, this.elements.$template);
         },
-        widgets: function widgets() {
-            this.elements.$widgets = new Content(this, {
-                style: 'widgets',
-                $container: this.elements.$template.$
+        pages: function pages() {
+            this.elements.$pages = new PageContainer(this, {
+                $container: this.elements.$template.$,
+                style: 'pages'
             });
         },
-        render: function render() {
-            this.scope.observer.publish(this.scope.eventmanager.eventList.successRendered);
+        render: function render(widget) {
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                widget.view.elements.$widget.getContent()
+            );
         }
     }, BaseView.prototype)
 

@@ -132,8 +132,8 @@ define([
         },
         successRendered: {
             name: "success.rendered",
-            callback: function successRenderedCallback() {
-                this.view.renderTemplate();
+            callback: function successRenderedCallback(widget) {
+                this.view.renderTemplate(widget);
             }
         },
         createWidget: {
