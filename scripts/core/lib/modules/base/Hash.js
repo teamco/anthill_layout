@@ -14,15 +14,15 @@ define([
     BaseHash.extend({
         /**
          * Extend hash
-         * @param {{}} self
          * @param {{}} hash
+         * @param {{}} defaults
          * @returns {{}}
          */
-        extendHash: function extendHash(self, hash) {
-            self = this.base.define(self, {}, true);
+        extendHash: function extendHash(hash, defaults) {
+            defaults = this.base.define(defaults, {}, true);
             hash = this.base.define(hash, {}, true);
-            $.extend(true, self, hash);
-            return self;
+            $.extend(true, defaults, hash);
+            return defaults;
         },
         /**
          * Check if hash empty

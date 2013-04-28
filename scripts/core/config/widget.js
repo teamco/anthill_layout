@@ -25,6 +25,10 @@ define([
 
     var Widget = function Widget(opts) {
 
+        /**
+         * Define dom
+         * @type {widget.dom}
+         */
         this.dom = {};
 
         /**

@@ -18,7 +18,10 @@ define([
      */
     var MVC = function MVC(opts) {
 
-        // TODO
+        /**
+         * Define local base
+         * @type {mvc.base}
+         */
         this.base = this.base;
 
         var base = this.base;
@@ -53,6 +56,10 @@ define([
 
         opts = base.define(opts, {}, true);
 
+        /**
+         * Define scope
+         * @type {mvc.scope}
+         */
         this.scope = opts.scope;
 
         // Apply Configure
