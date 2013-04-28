@@ -180,7 +180,7 @@ define([
             var item = this.model.createItem(
                 this.controller.extendConfig(opts)
             );
-            this.logger.info(
+            this.logger.debug(
                 'Create ' + item.constructor.name,
                 this.model.getUUID(item),
                 item
@@ -192,7 +192,7 @@ define([
          */
         destroyItem: function destroyItem(item) {
             var items = this.model.destroyItem(item);
-            this.logger.info(
+            this.logger.debug(
                 'Destroy ' + item.constructor.name,
                 item,
                 items
@@ -203,7 +203,7 @@ define([
          */
         destroyItems: function destroyItems() {
             var items = this.model.destroyItems();
-            this.logger.info(
+            this.logger.debug(
                 'Destroy Items',
                 items
             );

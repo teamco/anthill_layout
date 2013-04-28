@@ -18,7 +18,7 @@ define([
     return BaseElement.extend({
         /**
          * Element config before build
-         * @param {{}} view
+         * @param {{createStyle: Function, renderUUID: Function}} view
          * @param {{style: String, id: String, [css], [events], [opacity]}} opts
          * @param $html
          * @returns {*}
@@ -26,26 +26,19 @@ define([
          */
         _config: function _config(view, opts, $html) {
             this.view = view;
-            this.style = opts.style;
-            this.id = this.renderUUID(opts.id);
+            this.style = opts.style || view.createStyle();
+            this.id = view.renderUUID(opts.id);
             this.events = opts.events;
             this.opacity = opts.opacity || 1.0;
             this.css = this.base.define(opts.css, {}, true);
+
             this.$ = $html.attr({
-                id: opts.id
+                id: this.id
             }).addClass(this.style).css(this.css);
 
             return this;
         },
-        /**
-         * Generate element UUID
-         * @param {String} id
-         * @returns {*|String}
-         */
-        renderUUID: function renderUUID(id) {
-            return id || (this.base.lib.generator.UUID() +
-                this.constructor.name.toDash());
-        },
+
         /**
          * Bind element events
          */
@@ -95,7 +88,8 @@ define([
             opts = base.define(opts, {}, true);
 
             var append = base.defineBoolean(opts.append, true, true);
-            if (this.$ !== false) {
+
+            if (this.$) {
                 this.$container = $(opts.$container);
                 this.destroyB4Create(opts.destroy);
                 if (append) {

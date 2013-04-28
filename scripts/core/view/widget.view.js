@@ -21,8 +21,11 @@ define([
     return View.extend({
         renderWidget: function renderWidget() {
             this.elements.$widget = new Widget(this, {
-                id: this.createId(),
-                style: this.getContainerClassName(),
+                id: this.createUUID(),
+                style: [
+                    this.getContainerClassName(),
+                    this.scope.model.getConfig('html').style
+                ].join(' '),
                 $container: this.getContainerSelector()
             });
             this.header(Header, this.elements.$widget);

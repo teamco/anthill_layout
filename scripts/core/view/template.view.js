@@ -20,10 +20,7 @@ define([
 
     return View.extend({
         renderTemplate: function renderTemplate() {
-            var id = this.createId();
             this.elements.$template = new TemplateHTML(this, {
-                id: id,
-                style: this.getContainerClassName(),
                 $container: this.getConfigHTML().container
             });
             this.header(Header, this.elements.$template);

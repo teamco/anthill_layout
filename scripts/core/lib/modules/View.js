@@ -7,20 +7,35 @@
  */
 
 define([
-], function defineBaseView() {
+    'modules/base'
+], function defineBaseView(Base) {
     var BaseView = function BaseView() {
 
     };
 
     return BaseView.extend({
-        getConfigHTML: function getConfigHTML() {
-            return this.scope.model.getConfig('html');
+        getConfigHTML: function getConfigHTML(key) {
+            var html = this.scope.model.getConfig('html');
+            if (this.base.isDefined(key)) {
+                return html[key];
+            }
+            return html;
         },
-        createId: function createId() {
+        createStyle: function createStyle() {
+            return [
+                this.getContainerClassName(),
+                this.getConfigHTML('style')
+            ].join(' ');
+        },
+        createUUID: function createUUID() {
             return [
                 this.scope.model.getUUID(),
                 this.getContainerClassName()
             ].join('-');
+        },
+        renderUUID: function renderUUID(id) {
+            return id || (this.base.lib.generator.UUID() +
+                this.constructor.name.toDash());
         },
         getContainerClassName: function getContainerClassName() {
             return this.getConfigHTML().selector.replace(/\./, '');
@@ -43,5 +58,5 @@ define([
                 $container: $container.$
             });
         }
-    });
+    }, Base);
 });

@@ -25,8 +25,7 @@ define([
          */
         renderPage: function renderPage() {
             this.elements.$page = new Page(this, {
-                id: this.createId(),
-                style: this.getContainerClassName(),
+                id: this.createUUID(),
                 $container: this.getContainerSelector()
             });
             this.header(Header, this.elements.$page);

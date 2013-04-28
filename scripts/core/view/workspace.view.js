@@ -21,8 +21,7 @@ define([
     return View.extend({
         renderWorkspace: function renderWorkspace() {
             this.elements.$workspace = new Workspace(this, {
-                id: this.createId(),
-                style: this.getContainerClassName(),
+                id: this.createUUID(),
                 $container: this.getContainerSelector()
             });
             this.header(Header, this.elements.$workspace);

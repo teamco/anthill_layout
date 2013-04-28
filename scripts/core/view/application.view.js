@@ -29,9 +29,8 @@ define([
          */
         renderApplication: function renderApplication() {
             this.elements.$application = new AppHTML(this, {
-                id: this.createId(),
-                style: this.getContainerClassName(),
-                $container: this.getConfigHTML().container
+                $container: this.getConfigHTML().container,
+                id: this.createUUID()
             });
             this.header(Header, this.elements.$application);
             this.workspaces();

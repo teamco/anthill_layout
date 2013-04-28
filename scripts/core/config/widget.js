@@ -69,7 +69,8 @@ define([
                 footer: false,
                 frameLess: false,
                 opacity: 0.6,
-                overlapping: false
+                overlapping: false,
+                style: ''
             },
             maximize: false,
             events: {
