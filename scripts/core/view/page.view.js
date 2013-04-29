@@ -8,12 +8,12 @@
 
 define([
     'modules/view',
-    'element/header',
-    'element/footer',
-    'element/page/content',
-    'element/page/page',
-    'element/page/delta.scroll'
-], function definePageView(BaseView, Header, Footer, Content, Page, DeltaScroll){
+    'element/header.element',
+    'element/footer.element',
+    'element/page/page.element',
+    'element/page/page.element.content',
+    'element/page/page.element.delta.scroll'
+], function definePageView(BaseView, Header, Footer, Page, Content, DeltaScroll){
 
     var View = function View() {
         this.elements = {};

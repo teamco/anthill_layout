@@ -39,6 +39,10 @@ define([
     var template1 = page1.template;
     template1.view.render(widget1);
 
+    template1.observer.publish(template1.eventmanager.eventList.createPage);
+
+    var page2 = template1.page;
+    page2.view.render();
 
 
 //    page1.observer.publish(page1.eventmanager.eventList.createWidget);

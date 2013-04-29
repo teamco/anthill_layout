@@ -47,10 +47,10 @@ define([
         });
 
         /**
-         * Define items
-         * @type {template.items}
+         * Define page
+         * @type {template.page}
          */
-        this.items = {};
+        this.page = {};
 
         this.observer.publish(this.eventmanager.eventList.successCreated);
 

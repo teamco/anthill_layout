@@ -8,10 +8,10 @@
 
 define([
     'modules/view',
-    'element/header',
-    'element/footer',
-    'element/template/template',
-    'element/template/content'
+    'element/header.element',
+    'element/footer.element',
+    'element/template/template.element',
+    'element/template/template.element.content'
 ], function defineTemplateView(BaseView, Header, Footer, TemplateHTML, PageContainer) {
 
     var View = function View() {
@@ -23,7 +23,7 @@ define([
             this.elements.$template = new TemplateHTML(this, {
                 id: this.createUUID(),
                 $container: $container,
-                style: 'pages'
+                style: 'template-content'
             });
 
             this.header(Header, this.elements.$template);

@@ -8,11 +8,11 @@
 
 define([
     'modules/view',
-    'element/application/application',
-    'element/header',
-    'element/footer',
-    'element/application/content',
-    'element/application/debug'
+    'element/application/application.element',
+    'element/header.element',
+    'element/footer.element',
+    'element/application/application.element.content',
+    'element/application/application.element.debug'
 ], function defineApplicationView(BaseView, AppHTML, Header, Footer, WorkspaceContainer, Debugger) {
 
     /**

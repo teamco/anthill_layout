@@ -8,10 +8,10 @@
 
 define([
     'modules/view',
-    'element/workspace/workspace',
-    'element/header',
-    'element/footer',
-    'element/workspace/content'
+    'element/workspace/workspace.element',
+    'element/header.element',
+    'element/footer.element',
+    'element/workspace/workspace.element.content'
 ], function defineWorkspaceView(BaseView, Workspace, Header, Footer, PageContainer) {
 
     var View = function View() {

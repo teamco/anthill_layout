@@ -8,10 +8,10 @@
 
 define([
     'modules/view',
-    'element/header',
-    'element/footer',
-    'element/widget/content',
-    'element/widget/widget'
+    'element/header.element',
+    'element/footer.element',
+    'element/widget/widget.element.content',
+    'element/widget/widget.element'
 ], function defineWidgetView(BaseView, Header, Footer, Content, Widget) {
 
     var View = function View() {
