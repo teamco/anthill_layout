@@ -414,6 +414,7 @@ define([
 
             if (scope.controller.checkCondition({
                 condition: !base.isDefined(mode),
+                type: 'warn',
                 msg: 'Undefined mode'
             })) {
                 return false;

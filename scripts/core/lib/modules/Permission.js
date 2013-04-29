@@ -23,6 +23,10 @@ define([
             }.bind(this));
 
         },
+        /**
+         * Check permission rules
+         * @param {{callback: Function, fallback: Function, args: *|Array, capability: String}} opts
+         */
         check: function check(opts) {
             var base = this.base;
 
@@ -34,7 +38,7 @@ define([
                 args = base.define(opts.args, [], true);
 
             if (base.isFunction(callback)) {
-                if (capability) {
+                if (capability && base.isFunction(callback)) {
                     callback(args);
                 } else if (base.isFunction(fallback)) {
                     fallback(args);

@@ -15,36 +15,32 @@ define([
     };
 
     return Controller.extend({
-        /**
-         * Get workspace
-         * @returns {*}
-         */
-        getWorkspace: function getWorkspace() {
-            return this.scope.config.parent;
-        },
-        /**
-         * Create template
-         * @param {Function} Template
-         * @param {{}} opts
-         */
-        createTemplate: function createTemplate(Template, opts) {
-            this.template = new Template(opts);
-        },
-        /**
-         * Destroy template
-         */
-        destroyTemplate: function destroyTemplate() {
-            this.logger.info(
-                'Destroy Template',
-                this.template
-            );
-            delete this.template;
-        },
         setPageHeight: function setPageHeight() {
 //            this.view.elements.$page.defineHeight();
         },
         widgetLoad: function widgetLoad() {
             this.logger.debug('Load widget');
+        },
+        /**
+         * Downgrade widgets layer except widget
+         * @param {{model, view}} widget
+         */
+        downgradeLayer: function downgradeLayer(widget) {
+            var items = this.model.getItems(),
+                item, index;
+
+            for (index in items) {
+                if (items.hasOwnProperty(index)) {
+                    item = items[index];
+
+                    if (widget.model.getUUID() !== item.model.getUUID()) {
+                        item.view.elements.$widget._downgradeLayer(50);
+                    }
+                }
+            }
+
+            widget.view.elements.$widget._downgradeLayer(51);
+
         }
     }, BaseController.prototype, BasePage.prototype);
 });
