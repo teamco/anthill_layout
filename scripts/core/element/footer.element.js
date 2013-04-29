@@ -13,7 +13,7 @@ define([
 
     var Footer = function Footer(view, opts) {
 
-        if (!view.getConfigHTML().footer) {
+        if (!view.getConfigHTML('footer')) {
             return this;
         }
 

@@ -13,7 +13,7 @@ define([
 
     var Header = function Header(view, opts) {
 
-        if (!view.getConfigHTML().header) {
+        if (!view.getConfigHTML('header')) {
             return this;
         }
 

@@ -42,7 +42,7 @@ define([
         },
         getContainerSelector: function getContainerSelector() {
             var html = this.getConfigHTML();
-            return $(html.container).find([
+            return $(html.container).children([
                 '.', this.getContainerClassName(), 's'
             ].join(''));
         },

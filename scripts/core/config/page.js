@@ -96,8 +96,8 @@ define([
                 addNewTo: 'row'                 // {row|column}
             },
             html: {
-                header: true,
-                footer: true,
+                header: false,
+                footer: false,
                 stretch: true,
                 padding: {
                     top: 0,
