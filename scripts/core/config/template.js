@@ -52,6 +52,8 @@ define([
          */
         this.page = {};
 
+        this.items = {};
+
         this.observer.publish(this.eventmanager.eventList.successCreated);
 
     };

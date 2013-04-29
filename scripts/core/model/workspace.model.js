@@ -10,6 +10,7 @@ define([
     'modules/base',
     'config/page'
 ], function defineWorkspaceModel(BaseModel, Base, Page) {
+
     var Model = function Model() {
         this.item = Page;
     };
@@ -17,4 +18,5 @@ define([
     return Model.extend({
 
     }, BaseModel.prototype, Base);
+
 });

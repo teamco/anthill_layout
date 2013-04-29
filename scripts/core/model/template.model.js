@@ -7,19 +7,19 @@
  */
 
 define([
+    "require",
     'modules/model',
     'modules/base',
-    'config/widget'
-], function (BaseModel, Base, Widget) {
-    var Model = function Model() {
-        this.item = Widget;
-        this.onDestroy = [
-            'Layout',
-            'Template'
-        ];
-    };
+    'config/page'
+], function(require, BaseModel, Base, Page) {
+        return function Model() {
+            var Model = function Model() {
+                this.item = require('config/page');
+            };
 
-    return Model.extend({
-    }, BaseModel.prototype, Base);
+            return Model.extend({
+            }, BaseModel.prototype, Base);
 
-});
+        }();
+    }
+);

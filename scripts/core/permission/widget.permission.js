@@ -12,7 +12,6 @@ define([
 ], function defineWidgetPermission(Base, BasePermission) {
     /**
      * Define Permissions
-     * @param scope
      * @constructor
      */
     var Permission = function Permission() {

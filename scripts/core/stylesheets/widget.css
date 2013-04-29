@@ -23,19 +23,13 @@
 }
 
 .widget .content ul {
-    height: 99%;
     overflow: hidden;
-    margin-bottom: 1%;
 }
 
 .widget .content li {
-    max-width: 200px;
-    padding: 2%;
-    border-right: 1px solid #999;
     float: left;
     overflow-x: hidden;
     overflow-y: auto;
-    height: 98%;
 }
 
 .widget .content li h2 {
