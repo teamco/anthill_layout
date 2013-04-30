@@ -52,19 +52,19 @@ define([
 
         /**
          * Define items
-         * @type {{}}
+         * @type {app.items}
          */
         this.items = {};
 
         /**
          * Define workspace
-         * @type {{}}
+         * @type {app.workspace}
          */
         this.workspace = {};
 
         /**
          * Define MVC
-         * @type {modules.mvc}
+         * @type {app.mvc}
          */
         this.mvc = new MVC({
             scope: this,
@@ -78,7 +78,6 @@ define([
             ],
             render: true
         });
-
 
         this.controller.initResizeWindow();
 

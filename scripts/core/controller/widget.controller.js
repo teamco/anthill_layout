@@ -196,8 +196,12 @@ define([
         },
 
         _destroyInteractions: function _destroyInteractions() {
-            this.destroyResize();
-            this.destroyDrag();
+            if (this.scope.config.type === this.getParent().model.getConfig('widget').types.template) {
+                console.log(1)
+            }
+
+//            this.destroyResize();
+//            this.destroyDrag();
         },
 
         /**

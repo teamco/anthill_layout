@@ -46,7 +46,7 @@ define([
 
         /**
          * Define MVC
-         * @type {modules.mvc}
+         * @type {layout.mvc}
          */
         this.mvc = new MVC({
             scope: this,

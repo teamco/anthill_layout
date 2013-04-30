@@ -161,16 +161,21 @@ define([
          * @returns {*}
          */
         extendConfig: function extendConfig(opts) {
-            var scope = this.scope;
-            return this.base.lib.hash.extendHash({
-                html: {
-                    container: [
-                        '#', scope.model.getUUID(),
-                        '-', scope.constructor.name.toLowerCase()
-                    ].join('')
-                },
-                parent: scope
-            }, opts);
+            var base = this.base,
+                scope = this.scope,
+                config = base.lib.hash.extendHash({
+                    html: {
+                        container: [
+                            '#', scope.model.getUUID(),
+                            '-', scope.constructor.name.toLowerCase()
+                        ].join('')
+                    },
+                    parent: scope
+                }, opts);
+
+            scope.logger.debug('Configuration', config);
+
+            return config;
         },
         /**
          * Create Item

@@ -90,6 +90,10 @@ define([
             template: {
             },
             widget: {
+                types: {
+                    widget: 'widget',
+                    template: 'template'
+                },
                 counter: 0,
                 opacity: 0.6,
                 allowToAdd: true,
@@ -110,7 +114,7 @@ define([
 
         /**
          * Define MVC
-         * @type {modules.mvc}
+         * @type {page.mvc}
          */
         this.mvc = new MVC({
             scope: this,

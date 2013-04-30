@@ -76,6 +76,7 @@ define([
                 overlapping: false,
                 style: ''
             },
+            type: 'default',
             maximize: false,
             events: {
                 draggable: {
@@ -102,7 +103,7 @@ define([
 
         /**
          * Define MVC
-         * @type {modules.mvc}
+         * @type {widget.mvc}
          */
         this.mvc = new MVC({
             scope: this,
@@ -131,7 +132,7 @@ define([
 
         /**
          * Define interactions: Drag/Resize
-         * @type {{}}
+         * @type {widget.interactions}
          */
         this.interactions = {};
 

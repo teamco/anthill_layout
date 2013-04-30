@@ -32,7 +32,7 @@ define([
 //    var widget0 = template1.widget;
 //    widget0.view.render();
 
-    page1.observer.publish(page1.eventmanager.eventList.createWidget, {html: {style: 'template'}});
+    page1.observer.publish(page1.eventmanager.eventList.createWidget, {type: page1.config.widget.types.template});
     var widget1 = page1.widget;
     widget1.view.render();
 

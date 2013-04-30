@@ -23,8 +23,8 @@ define([
             this.elements.$widget = new Widget(this, {
                 id: this.createUUID(),
                 style: [
-                    this.getContainerClassName(),
-                    this.scope.model.getConfig('html').style
+                    this.createStyle(),
+                    this.scope.config.type
                 ].join(' '),
                 $container: this.getContainerSelector()
             });
