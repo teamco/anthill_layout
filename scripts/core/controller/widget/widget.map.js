@@ -352,6 +352,7 @@ define([
             };
 
         },
+
         /**
          * Get next dimensions
          * @param {Number} relDim

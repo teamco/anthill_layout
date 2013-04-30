@@ -180,7 +180,7 @@ define([
     MVC.extend({
         /**
          * Define MVC
-         * @param {String} mvc
+         * @param {Function} mvc
          * @param {Boolean} force
          */
         defineMVC: function defineMVC(mvc, force) {
@@ -197,7 +197,7 @@ define([
 
                 if (force) {
 
-                    var scopeName = this.constructorName(),
+                    var scopeName = this.constructorName(scope),
                         fnName = scopeName + mvc.name;
 
                     var fn = new Function(

@@ -25,8 +25,10 @@ define([
          * @returns {*}
          */
         updateMinCellWidth: function updateMinCellWidth() {
-            delete this.config.grid.minCellWidth;
-            return this.controller.minCellWidth();
+//            if (this.permission.eventTunnelFunctionCall(this.controller.updateMinCellWidth)) {
+                delete this.config.grid.minCellWidth;
+                return this.controller.minCellWidth();
+//            }
         },
         /**
          * Calculate cell size

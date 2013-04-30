@@ -14,7 +14,10 @@ define([
         this.eventList = {
             createPage: 'create.page',
             destroyPage: 'destroy.page',
-            destroyPages: 'destroy.pages'
+            destroyPages: 'destroy.pages',
+            createWidget: 'create.widget',
+            destroyWidget: 'destroy.widget',
+            destroyWidgets: 'destroy.widgets'
         };
     };
 

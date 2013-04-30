@@ -13,6 +13,7 @@ define([
     };
 
     return BasePage.extend({
+
         /**
          * Create page layout
          * @param {Function} Layout
@@ -21,6 +22,7 @@ define([
         createLayout: function createLayout(Layout, opts) {
             this.layout = new Layout(opts, this);
         },
+
         /**
          * Destroy layout
          */
@@ -31,6 +33,7 @@ define([
             );
             delete this.layout;
         },
+
         /**
          * Get Layout
          * @returns {*}
@@ -38,12 +41,17 @@ define([
         getLayout: function getLayout() {
             return this.scope.layout;
         },
+
+        /**
+         * Update layout config
+         */
         updateLayout: function updateLayout() {
             var layout = this.scope.layout;
             layout.observer.publish(
                 layout.eventmanager.eventList.updateMinCellWidth
             );
         },
+
         /**
          * Create template
          * @param {Function} Template

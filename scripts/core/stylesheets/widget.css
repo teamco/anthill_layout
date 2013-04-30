@@ -27,9 +27,8 @@
 }
 
 .widget .content li {
-    float: left;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 
 .widget .content li h2 {

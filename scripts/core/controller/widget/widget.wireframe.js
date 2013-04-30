@@ -72,6 +72,7 @@ define([
         hide: function hide() {
             this.setVisibility('fadeOut', 'fast');
         },
+
         /**
          * Set wireframe visibility
          * @param {String} fade
@@ -82,6 +83,7 @@ define([
                 this.$.stop()[fade](type);
             }
         },
+
         /**
          * Get wireframe jQuery element
          * @returns {*}
@@ -89,6 +91,16 @@ define([
         getWireFrame: function getWireFrame() {
             return this.widget.controller.get$page().find('#next-widget-position');
         },
+
+        /**
+         * Move wireframe to current page
+         */
+        moveToCurrentPage: function moveToCurrentPage() {
+            if (this.widget.controller.get$page().children('#next-widget-position').length === 0) {
+                this.$.appendTo(this.widget.controller.get$page());
+            }
+        },
+
         /**
          * Define wireframe jQuery element
          * @param {{style}} opts
@@ -100,10 +112,14 @@ define([
                 $('#next-widget-position').remove();
                 this.$ = $('<div />').css(opts.style).attr({
                     id: 'next-widget-position'
-                }).appendTo(this.widget.controller.get$page());
+                });
             }
+
+            this.moveToCurrentPage();
+
             return this;
         },
+
         /**
          * Init wireframe
          * @param opts
@@ -113,5 +129,6 @@ define([
             this.defineHolder(opts).show();
             this.$.css(opts.style);
         }
+
     }, Base);
 });

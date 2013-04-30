@@ -28,6 +28,7 @@ define([
         opts = this.base.define(opts, {}, true);
 
         var DEFAULTS = {
+            parent: page
         };
 
         /**
@@ -52,8 +53,10 @@ define([
          */
         this.page = {};
 
-        this.parent = page;
-
+        /**
+         * Define items
+         * @type {template.items}
+         */
         this.items = {};
 
         this.observer.publish(this.eventmanager.eventList.successCreated);

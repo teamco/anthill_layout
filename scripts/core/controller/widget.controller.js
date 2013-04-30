@@ -16,13 +16,6 @@ define([
 
     return Controller.extend({
         /**
-         * Get page instance
-         * @returns {*}
-         */
-        getParentContainer: function getParentContainer() {
-            return this.scope.config.parent;
-        },
-        /**
          * Get page jquery object
          * @returns {*}
          */
@@ -135,9 +128,14 @@ define([
                 organize: false,
                 animate: true,
                 type: type,
-                $source: this.view.elements.$widget.$
+                $source: this.view.elements.$widget.$,
+                callback: {
+                    before: this.controller._destroyInteractions.bind(this.controller),
+                    after:  this.controller._initInteractions.bind(this.controller)
+                }
             });
         },
+
         /**
          * Create resize
          * @param {String} type
@@ -145,6 +143,7 @@ define([
         resizeCreate: function resizeCreate(type) {
             this.logger.debug('Create resize', arguments);
         },
+
         /**
          * Resize start
          * @param {String} type
@@ -152,6 +151,7 @@ define([
         resizeStart: function resizeStart(type) {
             this.logger.debug('Start resize', arguments);
         },
+
         /**
          * Grid sticker on resize
          * @param {String} type
@@ -168,6 +168,7 @@ define([
 
 //            this.view.elements.$content.demo();
         },
+
         /**
          * Resize stop
          * @param {String} type
@@ -181,16 +182,31 @@ define([
                 organize: organize,
                 animate: animate,
                 type: type,
-                $source: this.view.elements.$widget.$
+                $source: this.view.elements.$widget.$,
+                callback: {
+                    before: this.controller._destroyInteractions.bind(this.controller),
+                    after:  this.controller._initInteractions.bind(this.controller)
+                }
             });
         },
+
+        _initInteractions: function _initInteractions() {
+            this.initDrag();
+            this.initResize();
+        },
+
+        _destroyInteractions: function _destroyInteractions() {
+            this.destroyResize();
+            this.destroyDrag();
+        },
+
         /**
          * Behavior mode
          * @param {{
          *      organize: Boolean,
          *      animate: Boolean,
          *      type: String,
-         *      [callback]: Function,
+         *      [callback]: {[before]: Function, [after]: Function}|Function,
          *      $source
          * }} opts
          */
