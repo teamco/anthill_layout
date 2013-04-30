@@ -23,7 +23,7 @@ define([
     'event/template.event.manager'
 ], function defineTemplate(Base, MVC, Layout, Controller, Model, View, EventManager) {
 
-    var Template = function Template(opts) {
+    var Template = function Template(opts, page) {
 
         opts = this.base.define(opts, {}, true);
 
@@ -51,6 +51,8 @@ define([
          * @type {template.page}
          */
         this.page = {};
+
+        this.parent = page;
 
         this.items = {};
 
