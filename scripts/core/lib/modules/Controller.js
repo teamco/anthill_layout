@@ -109,8 +109,8 @@ define([
         checkCondition: function checkCondition(opts) {
             if (opts.condition) {
                 opts.args ?
-                    this.scope.logger[opts.type || 'info'](opts.msg, opts.args) :
-                    this.scope.logger[opts.type || 'info'](opts.msg);
+                    this.scope.logger[opts.type || 'debug'](opts.msg, opts.args) :
+                    this.scope.logger[opts.type || 'debug'](opts.msg);
                 return true;
             }
             return false;

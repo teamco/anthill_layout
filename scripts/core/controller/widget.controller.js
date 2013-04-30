@@ -27,17 +27,14 @@ define([
          * @returns {*}
          */
         get$page: function get$page() {
-            return this.getParentContainer().view.elements.$page.$;
-        },
-        get$template: function get$template() {
-            return this.getParentContainer().view.elements.$template.$;
+            return this.getParent().view.elements.$page.$;
         },
         /**
          * Get widgets container
          * @returns {*}
          */
         getContainer: function getContainer() {
-            return this.getParentContainer().view.elements.$widgets;
+            return this.getParent().view.elements.$widgets;
         },
         /**
          * Setup interactions {Drag|Resize}
@@ -133,7 +130,7 @@ define([
          */
         dragStop: function dragStop(type) {
             this.logger.debug('Stop drag', arguments);
-            this.controller.getParentContainer().controller.downgradeLayer(this);
+            this.controller.getParent().controller.downgradeLayer(this);
             this.controller.behaviorMode({
                 organize: false,
                 animate: true,
@@ -179,7 +176,7 @@ define([
          */
         resizeStop: function resizeStop(type, organize, animate) {
             this.logger.debug('Stop resize', arguments);
-            this.controller.getParentContainer().controller.downgradeLayer(this);
+            this.controller.getParent().controller.downgradeLayer(this);
             this.controller.behaviorMode({
                 organize: organize,
                 animate: animate,
@@ -199,7 +196,7 @@ define([
          */
         behaviorMode: function behaviorMode(opts) {
             var scope = this.scope,
-                page = this.getParentContainer(),
+                page = this.getParent(),
                 layout = page.controller.getLayout(),
                 mode = layout.controller.getBehavior();
 
