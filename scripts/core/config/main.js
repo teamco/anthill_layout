@@ -4,6 +4,7 @@ requirejs.config({
         config: 'config',
         jqueryui: 'lib/jquery/jquery-ui-1.10.2.custom.min',
         application: 'application',
+        api: 'api',
         controller: 'controller',
         model: 'model',
         event: 'event',

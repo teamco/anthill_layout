@@ -9,13 +9,14 @@
 define([
     'modules/base',
     'modules/mvc',
+    'api/page.api',
     'controller/page.controller',
     'model/page.model',
     'view/page.view',
     'event/page.event.manager',
     'config/layout',
     'config/template'
-], function definePage(Base, MVC, Controller, Model, View, EventManager, Layout, Template) {
+], function definePage(Base, MVC, API, Controller, Model, View, EventManager, Layout, Template) {
     /**
      * Define Page
      * @param opts
@@ -120,6 +121,7 @@ define([
             scope: this,
             config: [opts, DEFAULTS],
             components: [
+                API,
                 Controller,
                 Model,
                 View,

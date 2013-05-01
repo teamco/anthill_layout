@@ -10,9 +10,9 @@ define([
     'modules/base',
     'modules/observer',
     'modules/logger'
-], function (Base, Observer, Logger) {
+], function defineMVC(Base, Observer, Logger) {
     /**
-     *
+     * Define MVC
      * @param opts
      * @constructor
      */
@@ -147,8 +147,8 @@ define([
         this.applyEventManager();
 
         /**
-         * Define mvc components
-         * @type {mvc.components}
+         * Define mvc applyPermissions
+         * @type {mvc.applyPermissions}
          */
         this.applyPermissions();
 

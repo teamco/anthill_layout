@@ -1,11 +1,12 @@
 define([
     'modules/base',
     'modules/mvc',
+    'api/workspace.api',
     'controller/workspace.controller',
     'model/workspace.model',
     'view/workspace.view',
     'event/workspace.event.manager'
-], function defineWorkspace(Base, MVC, Controller, Model, View, EventManager) {
+], function defineWorkspace(Base, MVC, API, Controller, Model, View, EventManager) {
 
     /**
      * Define Workspace
@@ -52,6 +53,7 @@ define([
             scope: this,
             config: [opts, DEFAULTS],
             components: [
+                API,
                 Controller,
                 Model,
                 View,

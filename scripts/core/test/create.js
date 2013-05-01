@@ -17,50 +17,10 @@ define([
 
     window.app.view.render();
 
-    window.app.observer.publish(window.app.eventmanager.eventList.createWorkspace);
-
-    var workspace1 = window.app.workspace;
-    workspace1.view.render();
-    workspace1.observer.publish(workspace1.eventmanager.eventList.createPage);
-
-    var page1 = workspace1.page;
-    page1.view.render();
-
-//    var template1 = page1.template;
-//    template1.view.render();
-//    template1.observer.publish(template1.eventmanager.eventList.createWidget);
-//    var widget0 = template1.widget;
-//    widget0.view.render();
-
-    page1.observer.publish(page1.eventmanager.eventList.createWidget, {type: page1.config.widget.types.template});
-    var widget1 = page1.widget;
-    widget1.view.render();
-
-    var template1 = page1.template;
-    template1.view.render(widget1);
-
-    template1.observer.publish(template1.eventmanager.eventList.createPage);
-
-    var page2 = template1.page;
-    page2.view.render();
-
-    page2.observer.publish(page1.eventmanager.eventList.createWidget);
-    var widget2 = page2.widget;
-    widget2.view.render();
-
-
-
-
-
-//    page1.observer.publish(page1.eventmanager.eventList.createWidget);
-//
-//    var widget3 = page1.widget;
-//    widget3.view.render();
-
-//    window.app.workspace.observer.publish(window.app.workspace.eventmanager.eventList.createPage);
-//    window.app.workspace.page.view.render();
-//
-//    window.app.workspace.page.observer.publish(window.app.workspace.page.eventmanager.eventList.createWidget);
-//    window.app.workspace.page.widget.view.render();
+    var workspace1 = window.app.api.createWorkspace([], true),
+        page1 = workspace1.api.createPage([], true),
+        widget1 = page1.api.createWidget({type: page1.config.widget.types.template}, true),
+        page2 = page1.api.createTemplate(widget1),
+        widget2 = page2.api.createWidget([], true);
 
 });

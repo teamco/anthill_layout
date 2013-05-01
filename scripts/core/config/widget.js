@@ -9,6 +9,7 @@
 define([
     'modules/base',
     'modules/mvc',
+    'api/widget.api',
     'controller/widget.controller',
     'model/widget.model',
     'view/widget.view',
@@ -16,7 +17,7 @@ define([
     'permission/widget.permission',
     'controller/widget/widget.map',
     'controller/widget/widget.wireframe'
-], function defineWidget(Base, MVC, Controller, Model, View, EventManager, Permission, Map, Wireframe) {
+], function defineWidget(Base, MVC, API, Controller, Model, View, EventManager, Permission, Map, Wireframe) {
     /**
      * Define Widget
      * @param opts {object}
@@ -109,6 +110,7 @@ define([
             scope: this,
             config: [opts, DEFAULTS],
             components: [
+                API,
                 Controller,
                 Model,
                 View,

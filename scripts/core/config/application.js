@@ -1,12 +1,13 @@
 define([
     'modules/base',
+    'api/application.api',
+    'modules/mvc',
     'controller/application.controller',
     'model/application.model',
     'view/application.view',
-    'modules/mvc',
     'event/application.event.manager',
     'permission/application.permission'
-], function defineApp(Base, Controller, Model, View, MVC, EventManager, Permission) {
+], function defineApp(Base, API, MVC, Controller, Model, View, EventManager, Permission) {
 
     var App = function App(opts) {
 
@@ -70,6 +71,7 @@ define([
             scope: this,
             config: [opts, DEFAULTS],
             components: [
+                API,
                 Controller,
                 Model,
                 View,

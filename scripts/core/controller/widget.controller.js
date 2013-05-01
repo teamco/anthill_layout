@@ -131,7 +131,7 @@ define([
                 $source: this.view.elements.$widget.$,
                 callback: {
                     before: this.controller._destroyInteractions.bind(this.controller),
-                    after:  this.controller._initInteractions.bind(this.controller)
+                    after: this.controller._initInteractions.bind(this.controller)
                 }
             });
         },
@@ -150,6 +150,7 @@ define([
          */
         resizeStart: function resizeStart(type) {
             this.logger.debug('Start resize', arguments);
+            this.controller._destroyInteractions()
         },
 
         /**
@@ -183,25 +184,47 @@ define([
                 animate: animate,
                 type: type,
                 $source: this.view.elements.$widget.$,
-                callback: {
-                    before: this.controller._destroyInteractions.bind(this.controller),
-                    after:  this.controller._initInteractions.bind(this.controller)
-                }
+                callback: this.controller._initInteractions.bind(this)
             });
         },
 
         _initInteractions: function _initInteractions() {
-            this.initDrag();
-            this.initResize();
+            this.controller.initDrag.bind(this)();
+            this.controller.initResize.bind(this)();
         },
 
         _destroyInteractions: function _destroyInteractions() {
-            if (this.scope.config.type === this.getParent().model.getConfig('widget').types.template) {
-                console.log(1)
-            }
+            this._getTemplateItems({
+                callback: function destroyInteractionsCallback(widget) {
+                    widget.observer.publish(widget)
+                    widget.controller.destroyDrag();
+                }
+            })
+        },
 
-//            this.destroyResize();
-//            this.destroyDrag();
+        /**
+         * Get items from template widget and run callback
+         * @param {{callback}} opts
+         * @private
+         */
+        _getTemplateItems: function _getTemplateItems(opts) {
+            if (!this.isTemplate()) {
+                return false;
+            }
+            var items = this.getParent().template.page.items;
+
+            $.each(items, function each(uuid, widget) {
+                widget.controller
+            });
+
+        },
+
+        isTemplate: function isTemplate() {
+            var scope = this.scope;
+            return scope.config.type ===
+                this.getParent().model.getConfig(
+                    scope.constructor.name.toLowerCase()
+                ).types.template;
         },
 
         /**
@@ -220,7 +243,7 @@ define([
                 layout = page.controller.getLayout(),
                 mode = layout.controller.getBehavior();
 
-            switch(layout.config.mode) {
+            switch (layout.config.mode) {
                 case page.LAYOUT_MODES.freeStyle:
                     break;
                 case page.LAYOUT_MODES.snap2grid:

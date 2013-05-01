@@ -9,9 +9,8 @@
 define([
     "require",
     'modules/model',
-    'modules/base',
-    'config/page'
-], function(require, BaseModel, Base, Page) {
+    'modules/base'
+], function(require, BaseModel, Base) {
         return function Model() {
             var Model = function Model() {
                 this.item = require('config/page');

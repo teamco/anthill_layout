@@ -16,12 +16,13 @@
 define([
     'modules/base',
     'modules/mvc',
+    'api/template.api',
     'config/layout',
     'controller/template.controller',
     'model/template.model',
     'view/template.view',
     'event/template.event.manager'
-], function defineTemplate(Base, MVC, Layout, Controller, Model, View, EventManager) {
+], function defineTemplate(Base, MVC, API, Layout, Controller, Model, View, EventManager) {
 
     var Template = function Template(opts, page) {
 
@@ -43,6 +44,7 @@ define([
             scope: this,
             config: [opts, DEFAULTS],
             components: [
+                API,
                 Controller,
                 Model,
                 View,
