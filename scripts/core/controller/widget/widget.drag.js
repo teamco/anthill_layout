@@ -53,7 +53,7 @@ define([
          * Enable drag
          */
         enable: function enable() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.enable)) {
+            if (this.scope.permission.eventTunnelFunctionCall(this.enable) && this.scope.controller.isDraggable()) {
                 this.$scope.draggable('enable');
             }
         },
@@ -61,7 +61,7 @@ define([
          * Disable drag
          */
         disable: function disable() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.disable)) {
+            if (this.scope.permission.eventTunnelFunctionCall(this.disable) && this.scope.controller.isDraggable()) {
                 this.$scope.draggable('disable');
             }
         },
@@ -69,7 +69,7 @@ define([
          * Destroy drag
          */
         destroy: function destroy() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.destroy)) {
+            if (this.scope.permission.eventTunnelFunctionCall(this.destroy) && this.scope.controller.isDraggable()) {
                 this.$scope.draggable('destroy');
             }
         },

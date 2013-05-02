@@ -192,8 +192,8 @@ define([
             $.each(this._getTemplateItems(), function each(uuid, widget) {
                 widget.api.destroyResize();
                 widget.api.destroyDrag();
-//                widget.api.initResize();
-//                widget.api.initDrag();
+                widget.api.initResize();
+                widget.api.initDrag();
             });
         },
 
@@ -206,6 +206,26 @@ define([
                 this.getParent().template.page.items || {} : {};
         },
 
+        /**
+         * Check if widget is draggable
+         * @returns {Boolean}
+         */
+        isDraggable: function isDraggable() {
+            return this.scope.view.elements.$widget.$.is('.ui-draggable');
+        },
+
+        /**
+         * Check if widget is resizable
+         * @returns {Boolean}
+         */
+        isResizable: function isResizable() {
+            return this.scope.view.elements.$widget.$.is('.ui-resizable');
+        },
+
+        /**
+         * Check if widget is template
+         * @returns {Boolean}
+         */
         isTemplate: function isTemplate() {
             var scope = this.scope;
             return scope.config.type ===

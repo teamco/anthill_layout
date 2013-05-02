@@ -19,31 +19,41 @@ define([
     };
 
     return API.extend({
-        destroyDrag: function destroyDrag() {
-            var scope = this.scope;
-            scope.observer.publish(
-                scope.eventmanager.eventList.destroyDrag
-            );
-        },
         initDrag: function initDrag() {
-            var scope = this.scope;
-            scope.observer.publish(
-                scope.eventmanager.eventList.initDrag
-            );
+            this._setInteraction('initDrag');
         },
-        destroyResize: function destroyResize() {
-            var scope = this.scope;
-            scope.observer.publish(
-                scope.eventmanager.eventList.destroyResize
-            );
+        enableDrag: function initDrag() {
+            this._setInteraction('enableDrag');
+        },
+        disableDrag: function initDrag() {
+            this._setInteraction('disableDrag');
+        },
+        destroyDrag: function destroyDrag() {
+            this._setInteraction('destroyDrag');
         },
         initResize: function initResize() {
+            this._setInteraction('initResize');
+        },
+        enableResize: function enableResize() {
+            this._setInteraction('enableResize');
+        },
+        disableResize: function disableResize() {
+            this._setInteraction('disableResize');
+        },
+        destroyResize: function destroyResize() {
+            this._setInteraction('destroyResize');
+        },
+        /**
+         * Set interaction
+         * @param {String} interaction
+         * @private
+         */
+        _setInteraction: function _setInteraction(interaction) {
             var scope = this.scope;
             scope.observer.publish(
-                scope.eventmanager.eventList.initResize
+                scope.eventmanager.eventList[interaction]
             );
         }
-
 
     }, Base, BaseAPI.prototype);
 });

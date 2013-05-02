@@ -33,17 +33,17 @@ define([
             }
         },
         enable: function enable() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.enable)) {
+            if (this.scope.permission.eventTunnelFunctionCall(this.enable) && this.scope.controller.isResizable()) {
                 this.$scope.resizable('enable');
             }
         },
         disable: function disable() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.disable)) {
+            if (this.scope.permission.eventTunnelFunctionCall(this.disable) && this.scope.controller.isResizable()) {
                 this.$scope.resizable('disable');
             }
         },
         destroy: function destroy() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.destroy)) {
+            if (this.scope.permission.eventTunnelFunctionCall(this.destroy) && this.scope.controller.isResizable()) {
                 this.$scope.resizable('destroy');
             }
         },
