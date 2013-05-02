@@ -71,19 +71,19 @@ define([
          * Enable resize
          */
         enableResize: function enableResize() {
-            this.interactions.draggable.enable();
+            this.interactions.resizable.enable();
         },
         /**
          * Disable resize
          */
         disableResize: function disableResize() {
-            this.interactions.draggable.disable();
+            this.interactions.resizable.disable();
         },
         /**
          * Destroy resize
          */
         destroyResize: function destroyResize() {
-            this.interactions.draggable.destroy();
+            this.interactions.resizable.destroy();
         },
         /**
          * Debug interactions
@@ -129,10 +129,7 @@ define([
                 animate: true,
                 type: type,
                 $source: this.view.elements.$widget.$,
-                callback: {
-                    before: this.controller._destroyInteractions.bind(this.controller),
-                    after: this.controller._initInteractions.bind(this.controller)
-                }
+                callback: this.controller._resetInteractions.bind(this.controller)
             });
         },
 
@@ -150,7 +147,6 @@ define([
          */
         resizeStart: function resizeStart(type) {
             this.logger.debug('Start resize', arguments);
-            this.controller._destroyInteractions()
         },
 
         /**
@@ -184,39 +180,30 @@ define([
                 animate: animate,
                 type: type,
                 $source: this.view.elements.$widget.$,
-                callback: this.controller._initInteractions.bind(this)
+                callback: this.controller._resetInteractions.bind(this.controller)
             });
         },
 
-        _initInteractions: function _initInteractions() {
-            this.controller.initDrag.bind(this)();
-            this.controller.initResize.bind(this)();
-        },
-
-        _destroyInteractions: function _destroyInteractions() {
-            this._getTemplateItems({
-                callback: function destroyInteractionsCallback(widget) {
-                    widget.observer.publish(widget)
-                    widget.controller.destroyDrag();
-                }
-            })
+        /**
+         * Reset interactions on resize template
+         * @private
+         */
+        _resetInteractions: function _resetInteractions() {
+            $.each(this._getTemplateItems(), function each(uuid, widget) {
+                widget.api.destroyResize();
+                widget.api.destroyDrag();
+//                widget.api.initResize();
+//                widget.api.initDrag();
+            });
         },
 
         /**
          * Get items from template widget and run callback
-         * @param {{callback}} opts
          * @private
          */
-        _getTemplateItems: function _getTemplateItems(opts) {
-            if (!this.isTemplate()) {
-                return false;
-            }
-            var items = this.getParent().template.page.items;
-
-            $.each(items, function each(uuid, widget) {
-                widget.controller
-            });
-
+        _getTemplateItems: function _getTemplateItems() {
+            return this.isTemplate() ?
+                this.getParent().template.page.items || {} : {};
         },
 
         isTemplate: function isTemplate() {
@@ -233,7 +220,7 @@ define([
          *      organize: Boolean,
          *      animate: Boolean,
          *      type: String,
-         *      [callback]: {[before]: Function, [after]: Function}|Function,
+         *      [callback]: Function,
          *      $source
          * }} opts
          */

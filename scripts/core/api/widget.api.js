@@ -19,6 +19,31 @@ define([
     };
 
     return API.extend({
+        destroyDrag: function destroyDrag() {
+            var scope = this.scope;
+            scope.observer.publish(
+                scope.eventmanager.eventList.destroyDrag
+            );
+        },
+        initDrag: function initDrag() {
+            var scope = this.scope;
+            scope.observer.publish(
+                scope.eventmanager.eventList.initDrag
+            );
+        },
+        destroyResize: function destroyResize() {
+            var scope = this.scope;
+            scope.observer.publish(
+                scope.eventmanager.eventList.destroyResize
+            );
+        },
+        initResize: function initResize() {
+            var scope = this.scope;
+            scope.observer.publish(
+                scope.eventmanager.eventList.initResize
+            );
+        }
+
 
     }, Base, BaseAPI.prototype);
 });
