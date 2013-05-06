@@ -84,11 +84,13 @@ define([], function defineDebuggerPage() {
          * @returns {string}
          */
         renderPageWidgets: function renderPageWidgets(page) {
-            return ['<li class="extend">', this.renderBlock('Widgets', [
+            var html = ['<li class="extend">', this.renderBlock('Widgets', [
                 this.renderPageWidgetsActions(),
                 this.renderInlineOf('Count', page),
                 this.renderPageWidgetsList(page)
-            ], true), '</li>'].join(' ')
+            ], true), '</li>'].join(' ');
+
+            return html;
         },
 
         /**
@@ -106,22 +108,45 @@ define([], function defineDebuggerPage() {
         },
 
         /**
-         * Bind enable page widget edit mode
+         * Bind enable page widget edit mode,
+         * @param {*} page
          */
-        bindEnablePageWidgetsEditMode: function bindEnablePageWidgetsEditMode() {
+        bindEnablePageWidgetsEditMode: function bindEnablePageWidgetsEditMode(page) {
             $('.edit-mode').on('click.edit', function edit(e) {
                 var $this = $(e.target),
                     $disabled = $this.parent('ul').find('li[rel="disabled"]');
                 if ($disabled.hasClass('disabled')) {
                     $disabled.removeClass('disabled');
                     $this.addClass('active');
-                    this.scope.logger.debug('Activate edit mode');
+                    this.scope.logger.debug('Activate edit mode', page);
+                    this._bindAddNewWidget(true, page);
                 } else {
                     $disabled.addClass('disabled');
                     $this.removeClass('active');
-                    this.scope.logger.debug('Deactivate edit mode');
+                    this.scope.logger.debug('Deactivate edit mode', page);
+                    this._bindAddNewWidget(false, page);
                 }
             }.bind(this));
+        },
+
+        /**
+         * Bind/Unbind add new widget
+         * @param {Boolean} bind
+         * @param {*} page
+         * @private
+         */
+        _bindAddNewWidget: function _bindAddNewWidget(bind, page) {
+            var $li = $('ul.page-widget-actions li.add-widget');
+            if (!!bind) {
+                this.scope.logger.debug('Bind Add widget');
+                $li.on('click.add', function (e) {
+                    page.api.createWidget([], true)
+                }.bind(this));
+            } else {
+                this.scope.logger.debug('Unbind Add widget');
+                $li.unbind('click.add')
+            }
+
         }
 
     });

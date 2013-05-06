@@ -155,7 +155,7 @@ define([
                 this.bindChangeOverlappingMode();
                 this.bindAllowOverlapping();
 
-                this.bindEnablePageWidgetsEditMode();
+                this.bindEnablePageWidgetsEditMode(page);
 
                 this.openTab({
                     target: $div.find('li[title="' + this.tabs[this.showTab - 2] + '"]')
