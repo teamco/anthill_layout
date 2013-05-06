@@ -381,3 +381,80 @@
     cursor: pointer;
     list-style: none;
 }
+
+#debug-mode ul.page-widget-actions {
+    height: 20px;
+    clear: both;
+}
+
+#debug-mode ul.page-widget-actions li {
+    padding: 0;
+    width: 14px;
+    height: 14px;
+    float: left;
+    text-indent: -9000px;
+    border: none;
+    background: transparent no-repeat top left;
+    margin: 0 5px 0 0;
+}
+
+#debug-mode ul.page-widget-actions li:hover {
+    border: none;
+    background-color: transparent;
+}
+
+#debug-mode ul.page-widget-actions li.add-widget {
+    background-position-y: -193px;
+    background-position-x: -1px;
+    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+}
+
+#debug-mode ul.page-widget-actions li.add-widget:hover {
+    background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
+}
+
+#debug-mode ul.page-widget-actions li.add-widget.disabled {
+    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+}
+
+#debug-mode ul.page-widget-actions li.remove-widget {
+    background-position-y: -193px;
+    background-position-x: -17px;
+    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+}
+
+#debug-mode ul.page-widget-actions li.remove-widget:hover {
+    background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
+}
+
+#debug-mode ul.page-widget-actions li.remove-widget.disabled {
+    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+}
+
+#debug-mode ul.page-widget-actions li.remove-widgets {
+    background-position-y: -193px;
+    background-position-x: -33px;
+    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+}
+
+#debug-mode ul.page-widget-actions li.remove-widgets:hover {
+    background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
+}
+
+#debug-mode ul.page-widget-actions li.remove-widgets.disabled {
+    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+}
+
+#debug-mode ul.page-widget-actions li.locate-widget {
+    background-position-y: -193px;
+    background-position-x: -193px;
+    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+}
+
+#debug-mode ul.page-widget-actions li.locate-widget:hover {
+    background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
+}
+
+#debug-mode ul.page-widget-actions li.locate-widget.disabled {
+    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+}

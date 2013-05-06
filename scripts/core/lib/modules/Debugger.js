@@ -267,50 +267,36 @@ define([
                     '</ul>',
                     '<div class="debug-container">',
 
-                    this.renderBlock('Widget', [
-                        this.renderWidgetInfo(event, ui)
-                    ], false),
+//                    this.renderBlock('Widget', [
+//                        this.renderWidgetInfo(event, ui)
+//                    ], false),
 
                     this.renderBlock('Page', [
                         this.renderInline('UUID', page.config.uuid),
-                        this.renderInlineOf('Widgets', page),
-                        '<li class="extend">', this.renderBlock('Layout', [
-                            this.renderInput('Snap to Grid', layout.controller.isSnap2Grid()),
-                            this.renderInput('Overlapping', layout.controller.getBehavior().overlapping),
-                            this.renderCombo(
-                                'Overlapping mode',
-                                layout.controller.getBehavior().organize,
-                                ['row', 'column']
-                            ),
-                            this.renderInline('Empty spaces', layout.controller.getBehavior().emptySpaces),
-                            this.renderInline('Columns', layout.config.grid.columns),
-                            this.renderInline('Widgets per row', layout.config.grid.widgetsPerRow),
-                            this.renderInline('Cell size (px)', layout.config.grid.minCellWidth.toFixed(3)),
-                            this.renderInline('Margin (px)', layout.config.grid.margin),
-                            this.renderInline('Padding (px)', layout.config.grid.padding)
-                        ], true), '</li>'
+//                        this.renderPageLayout(layout),
+                        this.renderPageWidgets(page)
                     ], false),
 
-                    this.renderBlock('Workspace', [
-                        this.renderInline('UUID', workspace.config.uuid),
-                        this.renderInlineOf('Pages', workspace)
-                    ], false),
+//                    this.renderBlock('Workspace', [
+//                        this.renderInline('UUID', workspace.config.uuid),
+//                        this.renderInlineOf('Pages', workspace)
+//                    ], false),
 
-                    this.renderBlock('Application', [
-                        this.renderInline('UUID', this.scope.config.uuid),
-                        this.renderInlineOf('Workspaces', this.scope),
-                        this.renderInline('Mode', this.scope.config.mode)
-                    ], false),
+//                    this.renderBlock('Application', [
+//                        this.renderInline('UUID', this.scope.config.uuid),
+//                        this.renderInlineOf('Workspaces', this.scope),
+//                        this.renderInline('Mode', this.scope.config.mode)
+//                    ], false),
 
-                    this.renderBlock('Logger', [
-                        this.renderInline('Namespaces', logger.namespaces),
-                        this.renderInput('Show', logger.show),
-                        this.renderInput('console.debug', logger.type.debug),
-                        this.renderInput('console.log', logger.type.log),
-                        this.renderInput('console.info', logger.type.info),
-                        this.renderInput('console.error', logger.type.error),
-                        this.renderInput('console.warn', logger.type.warn)
-                    ], false),
+//                    this.renderBlock('Logger', [
+//                        this.renderInline('Namespaces', logger.namespaces),
+//                        this.renderInput('Show', logger.show),
+//                        this.renderInput('console.debug', logger.type.debug),
+//                        this.renderInput('console.log', logger.type.log),
+//                        this.renderInput('console.info', logger.type.info),
+//                        this.renderInput('console.error', logger.type.error),
+//                        this.renderInput('console.warn', logger.type.warn)
+//                    ], false),
 
                     '</div><div class="debug-close">Hide</div>'
 
@@ -328,11 +314,116 @@ define([
             this.bindChangeOverlappingMode();
             this.bindAllowOverlapping();
 
+            //this.bindPageAddWidget();
+
             this.openTab({
-                target: $div.find('li[title="' + this.tabs[this.showTab] + '"]')
+                target: $div.find('li[title="' + this.tabs[this.showTab-2] + '"]')
             });
 
         },
+
+        /**
+         * Render page widgets actions
+         * @returns {string}
+         */
+        renderPageWidgetsActions: function renderPageWidgetsActions() {
+            return [
+                '<ul class="page-widget-actions">',
+                this._renderAddWidget(),
+                this._renderRemoveWidget(),
+                this._renderRemoveWidgets(),
+                this._locateWidget(),
+                '</ul>'
+            ].join('');
+
+        },
+
+        /**
+         * Render add new widget button
+         * @private
+         */
+        _renderAddWidget: function _renderAddWidget() {
+            return '<li class="add-widget disabled" title="Add widget">Add widget</li>';
+        },
+
+        /**
+         * Render remove widget button
+         * @private
+         */
+        _renderRemoveWidget: function _renderRemoveWidget() {
+            return '<li class="remove-widget disabled" title="Remove widget">Remove widget</li>';
+        },
+
+        /**
+         * Render remove widgets button
+         * @private
+         */
+        _renderRemoveWidgets: function _renderRemoveWidgets() {
+            return '<li class="remove-widgets disabled" title="Remove widgets">Remove widgets</li>';
+        },
+
+        /**
+         * Render locate widget button
+         * @private
+         */
+        _locateWidget: function _locateWidget() {
+            return '<li class="locate-widget disabled" title="Locate widget">Locate widget</li>';
+        },
+
+        _enableEditMode: function _enableEditMode() {
+            return '<li class="edit-mode disabled" title="Edit mode">Edit mode</li>';
+        },
+
+        /**
+         * Render page widgets info
+         * @param {*} page
+         * @returns {string}
+         */
+        renderPageWidgets: function renderPageWidgets(page) {
+            return ['<li class="extend">', this.renderBlock('Widgets', [
+                this.renderPageWidgetsActions(),
+                this.renderInlineOf('Count', page),
+                this.renderPageWidgetsList(page)
+            ], true), '</li>'].join(' ')
+        },
+
+        /**
+         * Render page widgets list
+         * @param page
+         * @returns {string}
+         */
+        renderPageWidgetsList: function renderPageWidgetsList(page) {
+            var html = ['<ul class="widgets-info">'];
+            $.each(page.items, function each(uuid, widget) {
+                html.push('<li class="' + widget.model.getConfig('type') + '">' + uuid + '</li>');
+            });
+            html.push('</ul>');
+            return html.join('');
+        },
+
+        /**
+         * Render page layout info
+         * @param {*} layout
+         * @returns {string}
+         */
+        renderPageLayout: function renderPageLayout(layout) {
+            return ['<li class="extend">', this.renderBlock('Layout', [
+                this.renderInput('Snap to Grid', layout.controller.isSnap2Grid()),
+                this.renderInput('Overlapping', layout.controller.getBehavior().overlapping),
+                this.renderCombo(
+                    'Overlapping mode',
+                    layout.controller.getBehavior().organize,
+                    ['row', 'column']
+                ),
+                this.renderInline('Empty spaces', layout.controller.getBehavior().emptySpaces),
+                this.renderInline('Columns', layout.config.grid.columns),
+                this.renderInline('Widgets per row', layout.config.grid.widgetsPerRow),
+                this.renderInline('Cell size (px)', layout.config.grid.minCellWidth.toFixed(3)),
+                this.renderInline('Margin (px)', layout.config.grid.margin),
+                this.renderInline('Padding (px)', layout.config.grid.padding)
+            ], false), '</li>'].join('');
+        },
+
         /**
          * Render Info tabs
          * @param $div
