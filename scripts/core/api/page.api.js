@@ -33,6 +33,27 @@ define([
         },
 
         /**
+         * Destroy widget
+         * @param widget
+         */
+        destroyWidget: function destroyWidget(widget) {
+            var scope = this.scope;
+            scope.observer.publish(
+                scope.eventmanager.eventList.destroyWidget,
+                widget
+            );
+        },
+
+        /**
+         * Destroy widgets
+         */
+        destroyWidgets: function destroyWidgets() {
+            $.each(this.scope.items, function each(uuid, widget) {
+                this.destroyWidgets(widget);
+            }.bind(this));
+        },
+
+        /**
          * Create Template API
          * @param {*} widget
          * @returns {*}

@@ -48,7 +48,7 @@ define([], function defineDebuggerPage() {
          * @private
          */
         _renderRemoveWidget: function _renderRemoveWidget() {
-            return '<li rel="disabled" class="remove-widget disabled" title="Remove widget">Remove widget</li>';
+            return '<li rel="disabled" class="remove-widget disabled select" title="Remove widget">Remove widget</li>';
         },
 
         /**
@@ -57,7 +57,7 @@ define([], function defineDebuggerPage() {
          * @private
          */
         _renderRemoveWidgets: function _renderRemoveWidgets() {
-            return '<li rel="disabled" class="remove-widgets disabled" title="Remove widgets">Remove widgets</li>';
+            return '<li rel="disabled" class="remove-widgets disabled  select" title="Remove widgets">Remove widgets</li>';
         },
 
         /**
@@ -66,7 +66,7 @@ define([], function defineDebuggerPage() {
          * @private
          */
         _locateWidget: function _locateWidget() {
-            return '<li rel="disabled" class="locate-widget disabled" title="Locate widget">Locate widget</li>';
+            return '<li rel="disabled" class="locate-widget disabled select" title="Locate widget">Locate widget</li>';
         },
 
         /**
@@ -108,44 +108,147 @@ define([], function defineDebuggerPage() {
         },
 
         /**
+         * Get page widget action button
+         * @param {String} action
+         * @returns {*|jQuery|HTMLElement}
+         * @private
+         */
+        _getWidgetAction: function _getWidgetAction(action) {
+            return $('ul.page-widget-actions li.' + action);
+        },
+
+        /**
          * Bind enable page widget edit mode,
          * @param {*} page
          */
         bindEnablePageWidgetsEditMode: function bindEnablePageWidgetsEditMode(page) {
             $('.edit-mode').on('click.edit', function edit(e) {
-                var $this = $(e.target),
-                    $disabled = $this.parent('ul').find('li[rel="disabled"]');
-                if ($disabled.hasClass('disabled')) {
-                    $disabled.removeClass('disabled');
-                    $this.addClass('active');
-                    this.scope.logger.debug('Activate edit mode', page);
-                    this._bindAddNewWidget(true, page);
+                this._enablePageWidgetsEditMode(e, page);
+            }.bind(this));
+        },
+
+        _bindWidgetsList: function _bindWidgetsList() {
+            $('ul.widgets-info li').on('click.select', function select(e) {
+                var $li = $(e.target);
+                if ($li.hasClass('select')) {
+                    $li.removeClass('select');
                 } else {
-                    $disabled.addClass('disabled');
-                    $this.removeClass('active');
-                    this.scope.logger.debug('Deactivate edit mode', page);
-                    this._bindAddNewWidget(false, page);
+                    $li.addClass('select');
                 }
+            });
+        },
+
+        _unbindWidgetsList: function _unbindWidgetsList() {
+            $('ul.widgets-info li').unbind('click.select');
+        },
+
+        /**
+         * Enable page widget edit mode
+         * @param {*} e
+         * @param {*} page
+         * @private
+         */
+        _enablePageWidgetsEditMode: function _enablePageWidgetsEditMode(e, page) {
+            var $this = $(e.target),
+                $disabled = $this.parent('ul').find('li[rel="disabled"]');
+            if ($disabled.hasClass('disabled')) {
+                $disabled.removeClass('disabled');
+                $this.addClass('active');
+                this._bindWidgetsList();
+                this._bindAddNewWidget(page);
+                this._bindRemoveWidget(page);
+            } else {
+                this._disablePageWidgetsEditMode($this, page);
+            }
+        },
+
+        /**
+         * Disable page widget edit mode
+         * @param {*} $this
+         * @param {*} page
+         * @private
+         */
+        _disablePageWidgetsEditMode: function _disablePageWidgetsEditMode($this, page) {
+            var $disabled = $this.parent('ul').find('li[rel="disabled"]');
+
+            this.scope.logger.debug('Deactivate edit mode', page);
+            $disabled.addClass('disabled');
+            $this.removeClass('active');
+            this._unbindAddNewWidget(page);
+            this._unbindRemoveWidget(page);
+            this._unbindWidgetsList();
+        },
+
+        /**
+         * Bind add new widget
+         * @param {*} page
+         * @private
+         */
+        _bindAddNewWidget: function _bindAddNewWidget(page) {
+            page.logger.debug('Bind edit mode');
+            this._getWidgetAction('add-widget').on('click.add', function (e) {
+                page.api.createWidget([], true)
             }.bind(this));
         },
 
         /**
-         * Bind/Unbind add new widget
-         * @param {Boolean} bind
+         * Unbind add new widget
          * @param {*} page
          * @private
          */
-        _bindAddNewWidget: function _bindAddNewWidget(bind, page) {
-            var $li = $('ul.page-widget-actions li.add-widget');
-            if (!!bind) {
-                this.scope.logger.debug('Bind Add widget');
-                $li.on('click.add', function (e) {
-                    page.api.createWidget([], true)
-                }.bind(this));
-            } else {
-                this.scope.logger.debug('Unbind Add widget');
-                $li.unbind('click.add')
-            }
+        _unbindAddNewWidget: function _unbindAddNewWidget(page) {
+            page.logger.debug('Unbind Add widget');
+            this._getWidgetAction('add-widget').unbind('click.add');
+        },
+
+        /**
+         * Bind remove widgets
+         * @param page
+         * @private
+         */
+        _bindRemoveWidget: function _bindRemoveWidget(page) {
+            page.logger.debug('Bind remove widget');
+            this._getWidgetAction('remove-widget').on('click.remove', function remove(e) {
+                if (!$('ul.widgets-info li').hasClass('select')) {
+                    page.logger.warn('Select widget before remove');
+                    return false;
+                }
+
+                this._removeWidgets(page);
+            }.bind(this));
+
+        },
+
+        /**
+         * Unbind remove widgets
+         * @param {*} page
+         * @private
+         */
+        _unbindRemoveWidget: function _unbindRemoveWidget(page) {
+            page.logger.debug('Unbind remove widget');
+            this._getWidgetAction('remove-widget').unbind('click.remove');
+            $('.widgets-info li').removeClass('select');
+        },
+
+        /**
+         * Remove widgets
+         * @param {*} page
+         * @private
+         */
+        _removeWidgets: function _removeWidgets(page) {
+            $.each($('ul.widgets-info li.select'), function each(i, v) {
+                var uuid = $(v).text();
+
+                if (page.items.hasOwnProperty(uuid)) {
+                    var widget = page.items[uuid];
+                    page.logger.debug('Start remove widget', widget);
+                    page.api.destroyWidget(widget);
+                } else {
+                    console.log(1)
+                    page.logger.warn('Undefined widget', uuid);
+                }
+
+            });
 
         }
 

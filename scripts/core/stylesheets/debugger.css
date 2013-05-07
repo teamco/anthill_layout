@@ -364,6 +364,19 @@
     text-shadow: 1px 1px #ccc;
 }
 
+#debug-mode ul.widgets-info li {
+
+}
+
+#debug-mode ul.widgets-info li.template {
+}
+
+#debug-mode ul.widgets-info li.select {
+    background-color: #1c94c4;
+    border: 1px solid darkolivegreen;
+    color: #fff;
+}
+
 #debug-mode ul.info-tabs {
     position: absolute;
     top: 0;
@@ -427,7 +440,8 @@
     background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.remove-widget.disabled {
+#debug-mode ul.page-widget-actions li.remove-widget.disabled,
+#debug-mode ul.page-widget-actions li.remove-widget.select {
     background-image: url('smoothness/images/ui-icons_888888_256x240.png');
 }
 
@@ -441,7 +455,8 @@
     background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.remove-widgets.disabled {
+#debug-mode ul.page-widget-actions li.remove-widgets.disabled,
+#debug-mode ul.page-widget-actions li.remove-widgets.select {
     background-image: url('smoothness/images/ui-icons_888888_256x240.png');
 }
 
@@ -455,7 +470,8 @@
     background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.locate-widget.disabled {
+#debug-mode ul.page-widget-actions li.locate-widget.disabled,
+#debug-mode ul.page-widget-actions li.locate-widget.select {
     background-image: url('smoothness/images/ui-icons_888888_256x240.png');
 }
 
