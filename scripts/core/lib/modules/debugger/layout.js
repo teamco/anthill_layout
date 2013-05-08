@@ -10,28 +10,28 @@ define([], function defineDebuggerLayout() {
      * Define Debugger Layout
      * @constructor
      */
-    var DebuggerLayout = function DebuggerLayout() {
+    var Layout = function Layout() {
     };
 
-    return DebuggerLayout.extend({
+    return Layout.extend({
 
         /**
          * Toggle grid
          */
         bindToggleGrid: function bindToggleGrid() {
-            var $label = $(this.info).find('.handler input:first+label');
+            var $label = $(this.debugger.info).find('.handler input:first+label');
             $label.on(
                 'click.toggleGrid',
                 function toggleGrid() {
-                    var $placeholders = $(this.placeholders);
+                    var $placeholders = $(this.debugger.placeholders);
 
                     if ($placeholders.length > 0 &&
                         $placeholders.find('*').length > 0) {
                         $label.text($label.text().replace(/Hide/, 'Show'));
-                        return this.destroyGrid();
+                        return this.debugger.grid.destroyGrid();
                     }
                     $label.text($label.text().replace(/Show/, 'Hide'));
-                    this.showGrid();
+                    this.debugger.grid.showGrid();
                 }.bind(this)
             );
         },
@@ -41,7 +41,7 @@ define([], function defineDebuggerLayout() {
          */
         bindChangeOverlappingMode: function bindChangeOverlappingMode() {
             $('#overlapping-mode').on('change.overlapping', function onChange(e) {
-                this.scopes.page.layout.controller.setOrganizeMode($(e.target).val());
+                this.debugger.scopes.page.layout.controller.setOrganizeMode($(e.target).val());
             }.bind(this));
         },
 
@@ -51,7 +51,7 @@ define([], function defineDebuggerLayout() {
         bindAllowOverlapping: function bindAllowOverlapping() {
             var $input = $('input[name="overlapping"]');
             $input.change(function change(e) {
-                this.scopes.page.layout.controller.setOverlapping($input.prop('checked'));
+                this.debugger.scopes.page.layout.controller.setOverlapping($input.prop('checked'));
             }.bind(this));
         },
 

@@ -10,10 +10,10 @@ define([], function defineDebuggerTabs() {
      * Define Debugger Tabs
      * @constructor
      */
-    var DebuggerTabs = function DebuggerTabs() {
+    var Tabs = function Tabs() {
     };
 
-    return DebuggerTabs.extend({
+    return Tabs.extend({
 
         /**
          * Render Info tabs
@@ -21,7 +21,7 @@ define([], function defineDebuggerTabs() {
          */
         renderTabs: function renderTabs($div) {
             var $tabs = $('<ul />').addClass('info-tabs');
-            $.each(this.tabs, function eachTabs(i, v) {
+            $.each(this.debugger.links, function eachTabs(i, v) {
                 $tabs.append(
                     $('<li />').attr({
                         title: v
@@ -37,7 +37,7 @@ define([], function defineDebuggerTabs() {
          * @param {{target}} e
          */
         openTab: function openTab(e) {
-            var $div = $(this.info),
+            var $div = $(this.debugger.info),
                 $tab = $(e.target),
                 $info = $div.find('fieldset[class^="' +
                     $tab.text().toLowerCase() + '"]');
@@ -54,7 +54,7 @@ define([], function defineDebuggerTabs() {
          * @param {Number} opacityOff
          */
         bindHover: function bindHover(opacityOff) {
-            $(this.info).hover(
+            $(this.debugger.info).hover(
                 function on() {
                     $(this).css({
                         opacity: 0.9

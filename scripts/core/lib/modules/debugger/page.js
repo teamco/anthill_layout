@@ -11,10 +11,10 @@ define([], function defineDebuggerPage() {
      * Define Debugger Page
      * @constructor
      */
-    var DebuggerPage = function DebuggerPage() {
+    var Page = function Page() {
     };
 
-    return DebuggerPage.extend({
+    return Page.extend({
 
         /**
          * Render page widgets actions
@@ -84,11 +84,15 @@ define([], function defineDebuggerPage() {
          * @returns {string}
          */
         renderPageWidgets: function renderPageWidgets(page) {
-            var html = ['<li class="extend">', this.renderBlock('Widgets', [
-                this.renderPageWidgetsActions(),
-                this.renderInlineOf('Count', page),
-                this.renderPageWidgetsList(page)
-            ], true), '</li>'].join(' ');
+            var html = [
+                '<li class="extend">',
+                this.debugger.component.renderBlock('Widgets', [
+                    this.renderPageWidgetsActions(),
+                    this.debugger.component.renderInlineOf('Count', page),
+                    this.renderPageWidgetsList(page)
+                ], true),
+                '</li>'
+            ].join(' ');
 
             return html;
         },
@@ -152,6 +156,7 @@ define([], function defineDebuggerPage() {
             var $this = $(e.target),
                 $disabled = $this.parent('ul').find('li[rel="disabled"]');
             if ($disabled.hasClass('disabled')) {
+                page.logger.debug('Activate edit mode');
                 $disabled.removeClass('disabled');
                 $this.addClass('active');
                 this._bindWidgetsList();
@@ -171,7 +176,7 @@ define([], function defineDebuggerPage() {
         _disablePageWidgetsEditMode: function _disablePageWidgetsEditMode($this, page) {
             var $disabled = $this.parent('ul').find('li[rel="disabled"]');
 
-            this.scope.logger.debug('Deactivate edit mode', page);
+            page.logger.debug('Deactivate edit mode');
             $disabled.addClass('disabled');
             $this.removeClass('active');
             this._unbindAddNewWidget(page);

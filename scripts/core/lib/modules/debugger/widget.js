@@ -10,10 +10,10 @@ define([], function defineDebuggerWidget() {
      * Define Debugger Widget
      * @constructor
      */
-    var DebuggerWidget = function DebuggerWidget() {
+    var Widget = function Widget() {
     };
 
-    return DebuggerWidget.extend({
+    return Widget.extend({
 
         /**
          * Render widget info

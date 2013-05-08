@@ -10,10 +10,10 @@ define([], function defineDebuggerComponent() {
      * Define Debugger Component
      * @constructor
      */
-    var DebuggerComponent = function DebuggerComponent() {
+    var Component = function Component() {
     };
 
-    return DebuggerComponent.extend({
+    return Component.extend({
 
         /**
          * Render block of elements
@@ -87,7 +87,7 @@ define([], function defineDebuggerComponent() {
         renderInlineOf: function renderInlineOf(text, item) {
             return [
                 '<li><span>', text, ':</span> ',
-                this.base.lib.hash.hashLength(item.items), ' of ',
+                this.debugger.base.lib.hash.hashLength(item.items), ' of ',
                 item.config[item.model.getItemNamespace()].limit ||
                     'Unlimited', '</li>'
             ].join('');
@@ -100,7 +100,7 @@ define([], function defineDebuggerComponent() {
          * @returns {string}
          */
         renderInput: function renderInput(text, condition) {
-            var uuid = this.scope.base.lib.generator.UUID();
+            var uuid = this.debugger.base.lib.generator.UUID();
             return [
                 '<li><input name="', (text.toLowerCase().replace(/ /g, '-')),
                 '" id="', uuid, '" type="checkbox"',
@@ -138,7 +138,7 @@ define([], function defineDebuggerComponent() {
          * Collapse/expand group
          */
         bindCollapse: function bindCollapse() {
-            $(this.info).find('legend').on('click.toggle', function clickToggle() {
+            $(this.debugger.info).find('legend').on('click.toggle', function clickToggle() {
                 var $ul = $(this).parent().find('ul');
                 $ul['slide' + ($ul.is(':visible') ? 'Up' : 'Down')]();
             });
@@ -148,12 +148,12 @@ define([], function defineDebuggerComponent() {
          * Toggle info content
          */
         bindShowHideAll: function bindShowHideAll() {
-            var $label = $(this.info).find('.handler input:last+label'),
-                $close = $(this.info).find('.debug-close');
+            var $label = $(this.debugger.info).find('.handler input:last+label'),
+                $close = $(this.debugger.info).find('.debug-close');
             $label.on(
                 'click.showAll',
                 function showAll() {
-                    var $fieldset = $(this.info).find('fieldset'),
+                    var $fieldset = $(this.debugger.info).find('fieldset'),
                         $hidden = $fieldset.find('ul:hidden'),
                         $visible = $fieldset.find('ul:visible');
 
@@ -178,12 +178,12 @@ define([], function defineDebuggerComponent() {
          * Hide/Show info window
          */
         bindDebugClose: function bindDebugClose() {
-            var $close = $(this.info).find('.debug-close'),
-                $content = $(this.info).find('.debug-container fieldset');
+            var $close = $(this.debugger.info).find('.debug-close'),
+                $content = $(this.debugger.info).find('.debug-container fieldset');
             $close.on(
                 'click.hideDebug',
                 function hideDebug() {
-                    if ($(this.info).find('fieldset:visible').length > 0) {
+                    if ($(this.debugger.info).find('fieldset:visible').length > 0) {
                         $content.slideUp();
                         $close.text($close.text().replace(/Hide/, 'Show'));
                     } else {

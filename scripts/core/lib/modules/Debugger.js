@@ -30,7 +30,7 @@ define([
         this.placeholders = '#placeholders';
         this.info = '#debug-mode';
 
-        this.tabs = [
+        this.links = [
             'Logger',
             'Application',
             'Workspace',
@@ -44,7 +44,7 @@ define([
         this.rows = 25;
         this.scopes = {};
 
-        this.defineScope();
+        this.config.defineScope(this);
         this.renderInfo();
     };
 
@@ -54,7 +54,7 @@ define([
              * Destroy debugger
              */
             destroy: function destroy() {
-                this.destroyGrid();
+                this.grid.destroyGrid();
                 this.destroyInfo();
                 this.scope.debugger = undefined;
                 delete this.scope.debugger;
@@ -103,8 +103,8 @@ define([
                 $div.html(
                     [
                         '<ul class="handler">',
-                        this.renderInput('Show Grid', false),
-                        this.renderInput('Expand the Content', false),
+                        this.component.renderInput('Show Grid', false),
+                        this.component.renderInput('Expand the Content', false),
                         '</ul>',
                         '<div class="debug-container">',
 
@@ -112,10 +112,10 @@ define([
 //                        this.renderWidgetInfo(event, ui)
 //                    ], false),
 
-                        this.renderBlock('Page', [
-                            this.renderInline('UUID', page.config.uuid),
+                        this.component.renderBlock('Page', [
+                            this.component.renderInline('UUID', page.config.uuid),
 //                        this.renderPageLayout(layout),
-                            this.renderPageWidgets(page)
+                            this.page.renderPageWidgets(page)
                         ], false),
 
 //                    this.renderBlock('Workspace', [
@@ -144,33 +144,33 @@ define([
                     ].join('')
                 ).show();
 
-                this.renderTabs($div);
+                this.tabs.renderTabs($div);
+                this.tabs.bindHover(opacityOff);
 
-                this.bindHover(opacityOff);
-                this.bindCollapse();
-                this.bindToggleGrid();
-                this.bindShowHideAll();
-                this.bindDebugClose();
+                this.component.bindCollapse();
+                this.component.bindShowHideAll();
+                this.component.bindDebugClose();
 
-                this.bindChangeOverlappingMode();
-                this.bindAllowOverlapping();
+                this.layout.bindToggleGrid();
+                this.layout.bindChangeOverlappingMode();
+                this.layout.bindAllowOverlapping();
 
-                this.bindEnablePageWidgetsEditMode(page);
+                this.page.bindEnablePageWidgetsEditMode(page);
 
-                this.openTab({
-                    target: $div.find('li[title="' + this.tabs[this.showTab - 2] + '"]')
+                this.tabs.openTab({
+                    target: $div.find('li[title="' + this.links[this.showTab - 2] + '"]')
                 });
 
             }
 
         },
         Base,
-        Config.prototype,
-        Component.prototype,
-        Tabs.prototype,
-        Grid.prototype,
-        Page.prototype,
-        Layout.prototype,
-        Widget.prototype
+        Config,
+        Component,
+        Tabs,
+        Grid,
+        Page,
+        Layout,
+        Widget
     );
 });

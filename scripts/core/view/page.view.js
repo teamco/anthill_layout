@@ -10,10 +10,11 @@ define([
     'modules/view',
     'element/header.element',
     'element/footer.element',
+    'element/modal.element',
     'element/page/page.element',
     'element/page/page.element.content',
     'element/page/page.element.delta.scroll'
-], function definePageView(BaseView, Header, Footer, Page, Content, DeltaScroll){
+], function definePageView(BaseView, Header, Footer, Modal, Page, Content, DeltaScroll){
 
     var View = function View() {
         this.elements = {};
@@ -45,6 +46,13 @@ define([
             this.elements.$widgets = new Content(this, {
                 style: 'widgets',
                 $container: this.elements.$page.$
+            });
+        },
+        modalDialog: function modalDialog(position) {
+            this.elements.$modal = new Modal(this, {
+                style: this.scope.constructor.name.toLowerCase() + '-modal',
+                $container: this.elements.$page.$,
+                position: position
             });
         },
         render: function render() {

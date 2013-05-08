@@ -10,10 +10,10 @@ define([], function defineDebuggerGrid() {
      * Define Debugger Grid
      * @constructor
      */
-    var DebuggerGrid = function DebuggerGrid() {
+    var Grid = function Grid() {
     };
 
-    return DebuggerGrid.extend({
+    return Grid.extend({
 
         /**
          * Show grid
@@ -27,7 +27,7 @@ define([], function defineDebuggerGrid() {
          * Destroy grid
          */
         destroyGrid: function destroyGrid() {
-            $(this.placeholders).empty();
+            $(this.debugger.placeholders).empty();
         },
 
         /**
@@ -36,7 +36,7 @@ define([], function defineDebuggerGrid() {
          */
         createPlaceHolder: function createPlaceHolder() {
             return $('<div />').attr({
-                id: this.placeholders.replace(/#/, '')
+                id: this.debugger.placeholders.replace(/#/, '')
             });
         },
 
@@ -45,30 +45,30 @@ define([], function defineDebuggerGrid() {
          * @returns {*}
          */
         movePlaceHoldersToCurrentPage: function movePlaceHoldersToCurrentPage() {
-            var $page = this.scopes.page.view.elements.$page.$,
-                $placeholder = $(this.placeholders);
-            if ($page.find(this.placeholders).length === 0) {
+            var $page = this.debugger.scopes.page.view.elements.$page.$,
+                $placeholder = $(this.debugger.placeholders);
+            if ($page.find(this.debugger.placeholders).length === 0) {
                 if ($placeholder.length === 0) {
                     $placeholder = this.createPlaceHolder();
                 }
                 $page.append($placeholder);
             }
-            return $page.find(this.placeholders);
+            return $page.find(this.debugger.placeholders);
         },
 
         /**
          * Render grid
          */
         checkAndPlaceGrid: function checkAndPlaceGrid() {
-            var scope = this.scope;
-            if ($(this.placeholders + ' > *').length > 0) {
+            var scope = this.debugger.scope;
+            if ($(this.debugger.placeholders + ' > *').length > 0) {
                 scope.logger.info('Grid already activated', scope);
                 return false;
             }
             this.movePlaceHoldersToCurrentPage();
 
             var column = 0, row = 0,
-                page = this.scopes.page,
+                page = this.debugger.scopes.page,
                 grid = page.layout.config.grid,
                 cell = grid.minCellWidth,
                 margin = grid.margin,
@@ -80,7 +80,7 @@ define([], function defineDebuggerGrid() {
                     left: 0
                 };
 
-            $(this.placeholders).
+            $(this.debugger.placeholders).
                 append($('<div />').addClass('column')).
                 append($('<div />').addClass('row'));
 
@@ -88,7 +88,7 @@ define([], function defineDebuggerGrid() {
                 this.renderColumn(column, opts);
             }
 
-            for (row; row < this.rows; row += 1) {
+            for (row; row < this.debugger.rows; row += 1) {
                 this.renderRow(row, opts);
             }
         },
@@ -100,10 +100,10 @@ define([], function defineDebuggerGrid() {
          */
         renderColumn: function renderColumn(column, opts) {
             this.renderPlaceHolder(
-                this.placeholders + ' .column', {
+                this.debugger.placeholders + ' .column', {
                     width: opts.cell,
                     top: opts.top,
-                    left: this.scopes.widget.map.getNextPosition({
+                    left: this.debugger.scopes.widget.map.getNextPosition({
                         column: column,
                         row: 0
                     }).left,
@@ -119,9 +119,9 @@ define([], function defineDebuggerGrid() {
          */
         renderRow: function renderRow(row, opts) {
             this.renderPlaceHolder(
-                this.placeholders + ' .row', {
+                this.debugger.placeholders + ' .row', {
                     left: opts.left,
-                    top: this.scopes.widget.map.getNextPosition({
+                    top: this.debugger.scopes.widget.map.getNextPosition({
                         column: 0,
                         row: row
                     }).top,
@@ -137,7 +137,7 @@ define([], function defineDebuggerGrid() {
          * @param {{left, top, [width], [height], text}}opts
          */
         renderPlaceHolder: function renderPlaceHolder(selector, opts) {
-            opts = this.base.define(opts, {}, true);
+            opts = this.debugger.base.define(opts, {}, true);
             $(selector).append(
                 $('<div />').css({
                     left: opts.left,

@@ -55,6 +55,69 @@ define([
                 }
             );
         },
+
+        /**
+         * 000
+         * 111
+         * 222
+         * @param opts
+         * @returns {*}
+         */
+        setPosition: function setPosition(opts) {
+            var cWidth = opts.$container.outerWidth(),
+                cHeight = opts.$container.outerHeight(),
+                $item = opts.$item,
+                eWidth = $item.outerWidth(),
+                eHeight = $item.outerHeight();
+
+            var top = 'auto',
+                left = 'auto',
+                mw = cWidth - eWidth,
+                cw = mw / 2,
+                mh = cHeight - eHeight,
+                ch = mh / 2;
+
+            switch (opts.position) {
+                case '0':
+                    break;
+                case '00':
+                    left = cw;
+                    break;
+                case '000':
+                    left = mw;
+                    break;
+                case '1':
+                    top = ch;
+                    break;
+                case '11':
+                    top = ch;
+                    left = cw;
+                    break;
+                case '111':
+                    top = ch;
+                    left = mw;
+                    break;
+                case '2':
+                    top = mh;
+                    break;
+                case '22':
+                    top = mh;
+                    left = cw;
+                    break;
+                case '222':
+                    top = mh;
+                    left = mw;
+                    break;
+            }
+
+            var css = $.extend({
+                left: left,
+                top: top
+            }, opts.css || {});
+
+            return $item.css(css);
+        },
+
         /**
          * Destroy element before create
          * @param {Boolean} destroy

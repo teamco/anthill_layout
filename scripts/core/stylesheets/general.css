@@ -3,6 +3,7 @@
 @import url("page.css");
 @import url("template.css");
 @import url("widget.css");
+@import url("modal.css");
 @import url("debugger.css");
 
 html, body {
