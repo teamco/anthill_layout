@@ -30,31 +30,37 @@ define([
 
         setup: function setup(opts) {
             this.style = opts.style || '';
-            this.css = this.base.define(opts.css, {}, true);
+            this.css = opts.css || {};
             this.opacityOff = opts.opacityOff || 0.8;
             this.opacityOn = opts.opacityOn || 0.9;
-            this.title = opts.title || '';
+            this.title = opts.title;
             this.type = opts.type || '';
             this.html = opts.html || '';
-            this.draggable = this.base.defineBoolean(opts.draggable, false, true);
+            this.draggable = this.base.defineBoolean(opts.draggable, true, true);
             this.item = opts.item;
             this.$container = opts.$container || $('body');
             this.position = opts.position || '11';
 
-            this.$buttons = {};
+            this.$buttons = opts.buttons || {};
         },
 
         renderInnerContent: function renderInnerContent() {
             this.$.append(
                     [
-                        '<h2 class="', this.type, '">', this.title, '</h2>',
+                        '<h2 class="header"></h2>',
                         '<div class="html"></div>',
                         '<p class="text"></p>',
                         '<ul class="buttons"></ul>'
                     ].join('')
                 ).
-                addClass(this.style).
+                addClass([this.style, this.type].join(' ')).
                 css(this.css);
+
+            this._getHeader().text(this.title);
+
+            if (!this.base.isDefined(this.title)) {
+                this._getHeader().hide();
+            }
 
             this.renderHTML();
 

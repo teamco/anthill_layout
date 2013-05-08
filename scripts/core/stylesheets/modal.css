@@ -1,7 +1,37 @@
 .modal-dialog {
     width: 400px;
     height: 200px;
-    background-color: red;
+    background-color: #dedede;
     position: absolute;
     z-index: 1000;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #333;
+    overflow: hidden;
+}
+
+.modal-dialog h2.header {
+    height: 20px;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 4px 8px 0;
+    color: #333;
+    text-shadow: 1px 1px 1px #fff;
+    border-bottom: 1px solid #999;
+    cursor: move;
+}
+
+.modal-dialog.warning h2.header {
+    background-color: #fed22f;
+}
+
+.modal-dialog.info h2.header {
+    background-color: #00bfff;
+}
+
+.modal-dialog.error h2.header {
+    background-color: #ff6347;
+}
+
+.modal-dialog.success h2.header {
+    background-color: #32cd32;
 }

@@ -57,6 +57,21 @@ define([
                 style: this.scope.constructor.name.toLowerCase() + '-footer',
                 $container: $container.$
             });
+        },
+        modalDialog: function modalDialog(Modal, opts) {
+            this.elements.$modal = new Modal(this, {
+                style: opts.style,
+                $container: opts.$container,
+                css: opts.css,
+                opacityOff: opts.opacityOff,
+                opacityOn: opts.opacityOn,
+                title: opts.title,
+                type: opts.type,
+                html: opts.html,
+                draggable: opts.draggable,
+                item: opts.item,
+                position: opts.position
+            });
         }
     }, Base);
 });

@@ -48,11 +48,12 @@ define([
                 $container: this.elements.$page.$
             });
         },
-        modalDialog: function modalDialog(position) {
-            this.elements.$modal = new Modal(this, {
+        destroyWidgetModalDialog: function destroyWidgetModalDialog() {
+            this.modalDialog(Modal, {
                 style: this.scope.constructor.name.toLowerCase() + '-modal',
                 $container: this.elements.$page.$,
-                position: position
+                type: 'warning',
+                title: 'Remove widget'
             });
         },
         render: function render() {
