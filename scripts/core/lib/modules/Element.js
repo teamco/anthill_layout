@@ -170,15 +170,18 @@ define([
          */
         destroy: function destroy() {
             if (this.$) {
+                this.view.scope.logger.debug('Destroy element', this);
                 this.$.unbind().remove();
             }
             return this;
         },
+
         /**
          * Hide element
          * @returns {*}
          */
         hide: function hide() {
+            this.view.scope.logger.debug('Hide element');
             return this.$.hide();
         },
 
@@ -187,6 +190,7 @@ define([
          * @returns {*|Boolean}
          */
         empty: function empty() {
+            this.view.scope.logger.debug('Clear inner html of the element');
             return this.$.empty();
         },
 

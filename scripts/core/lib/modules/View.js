@@ -102,7 +102,7 @@ define([
             $.each(this.base.define(opts, {}, true), function each(i, button){
                 store[i] = new Button(this, {
                     $container: button.$container,
-                    style: button.style,
+                    style: i.toDash(),
                     text: button.text,
                     events: button.events
                 });

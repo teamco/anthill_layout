@@ -105,7 +105,9 @@ define([], function defineDebuggerPage() {
         renderPageWidgetsList: function renderPageWidgetsList(page) {
             var html = ['<ul class="widgets-info">'];
             $.each(page.items, function each(uuid, widget) {
-                html.push('<li class="' + widget.model.getConfig('type') + '">' + uuid + '</li>');
+                html.push([
+                    '<li class="', widget.model.getConfig('type'), '">', uuid , '</li>'
+                ].join(''));
             });
             html.push('</ul>');
             return html.join('');
@@ -131,12 +133,15 @@ define([], function defineDebuggerPage() {
             }.bind(this));
         },
 
-        _bindWidgetsList: function _bindWidgetsList() {
+        _bindWidgetsList: function _bindWidgetsList(page) {
             $('ul.widgets-info li').on('click.select', function select(e) {
-                var $li = $(e.target);
+                var $li = $(e.target),
+                    widget = page.items[$li.text()];
                 if ($li.hasClass('select')) {
+                    page.logger.debug('Unselect', widget);
                     $li.removeClass('select');
                 } else {
+                    page.logger.debug('Select', widget);
                     $li.addClass('select');
                 }
             });
@@ -159,7 +164,7 @@ define([], function defineDebuggerPage() {
                 page.logger.debug('Activate edit mode');
                 $disabled.removeClass('disabled');
                 $this.addClass('active');
-                this._bindWidgetsList();
+                this._bindWidgetsList(page);
                 this._bindAddNewWidget(page);
                 this._bindRemoveWidget(page);
             } else {
@@ -249,7 +254,6 @@ define([], function defineDebuggerPage() {
                     page.logger.debug('Start remove widget', widget);
                     page.api.destroyWidget(widget);
                 } else {
-                    console.log(1)
                     page.logger.warn('Undefined widget', uuid);
                 }
 

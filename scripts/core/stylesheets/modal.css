@@ -3,7 +3,7 @@
     max-width: 70%;
     max-height: 70%;
     min-height: 100px;
-    background-color: #dedede;
+    background-color: #dfdfdf;
     position: absolute;
     z-index: 1000;
     border-radius: 5px;
@@ -70,4 +70,36 @@
 .modal-dialog ul.actions li.close-x {
     background-position-x: -99px;
     background-position-y: -131px;
+}
+
+.modal-dialog ul.buttons {
+    list-style: none;
+    float: right;
+}
+
+.modal-dialog ul.buttons li {
+    float: left;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px #333;
+    padding: 2px 5px;
+    margin-right: 5px;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.modal-dialog ul.buttons li:last-child {
+    margin-right: 10px;
+}
+
+.modal-dialog ul.buttons li:hover {
+    background-color: #bbb;
+}
+
+.modal-dialog ul.buttons li:active {
+    background-color: #aaa;
+    box-shadow: -1px -1px 1px #333;
+    margin-top: 2px;
+    margin-left: 1px;
+    padding-top: 1px;
+    padding-left: 4px;
 }

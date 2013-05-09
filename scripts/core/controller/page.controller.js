@@ -26,11 +26,15 @@ define([
          * Reject to destroy widget
          */
         rejectWidgetDestroy: function rejectWidgetDestroy() {
-            var scope = this.scope;
+            var scope = this.scope,
+                $modal = scope.view.elements.$modal;
             scope.logger.debug(
                 'Reject widget destroy',
-                scope.view.elements.$modal.item
+                $modal.item
             );
+
+            $modal.selfDestroy();
+
         },
 
         /**

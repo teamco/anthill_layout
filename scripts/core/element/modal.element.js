@@ -16,7 +16,7 @@ define([
 
     var Modal = function Modal(view, opts) {
 
-        this.buttons = {};
+        this.$buttons = {};
         this.setup(opts);
 
         this._config(view, opts, $('<div />')).build({
@@ -81,29 +81,34 @@ define([
                 });
             }
 
-            this.setCloseX();
+            this.setButtons();
         },
 
-        setCloseX: function setCloseX() {
+        _setCloseX: function _setCloseX() {
             var $actions = this._getActions();
             if (!this.closeX) {
                 $actions.hide();
                 return false;
             }
 
-            this.view.button(Button, {
-                closeX: {
-                    $container: this._getActions(),
-                    text: 'Close',
-                    style: 'close-x',
-                    events: {
-                        click: 'rejectWidgetDestroy'
-                    }
+            this.buttons['closeX'] = {
+                $container: this._getActions(),
+                text: 'Close',
+                events: {
+                    click: 'rejectWidgetDestroy'
                 }
-            }, this.buttons);
+            };
         },
 
         setButtons: function setButtons() {
+            var $container = this._getButtons();
+            $.each(this.buttons, function each(i, button) {
+                button.$container = $container;
+            });
+
+            this._setCloseX();
+
+            this.view.button(Button, this.buttons, this.$buttons);
 
         },
 
@@ -146,6 +151,17 @@ define([
 
         _getHeader: function _getHeader() {
             return this.$.find('h2');
+        },
+
+        selfDestroy: function selfDestroy() {
+            /**
+             * Destroy buttons
+             */
+            $.each(this.$buttons, function each(i, $button) {
+                $button.destroy();
+            });
+
+            this.destroy();
         }
 
     }, Base, BaseElement.prototype);

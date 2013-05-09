@@ -61,7 +61,21 @@ define([
                 title: 'Remove widget',
                 text: 'Are you sure want to destroy widget:\n' +
                     widget.model.getConfig('uuid'),
-                cover: true
+                cover: true,
+                buttons: {
+                    approve: {
+                        text: 'OK',
+                        events: {
+                            click: 'approveWidgetDestroy'
+                        }
+                    },
+                    reject: {
+                        text: 'Cancel',
+                        events: {
+                            click: 'rejectWidgetDestroy'
+                        }
+                    }
+                }
             });
         },
         render: function render() {
