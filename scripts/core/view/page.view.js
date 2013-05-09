@@ -59,8 +59,10 @@ define([
                 item: widget,
                 type: 'warning',
                 title: 'Remove widget',
-                text: 'Are you sure want to destroy widget:\n' +
-                    widget.model.getConfig('uuid'),
+                html: [
+                    'Are you sure want to destroy widget:',
+                    widget.model.getConfig('uuid')
+                ].join('<br />'),
                 cover: true,
                 autoclose: true,
                 buttons: {

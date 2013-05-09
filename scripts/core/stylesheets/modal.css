@@ -38,7 +38,8 @@
     background-color: #32cd32;
 }
 
-.modal-dialog p.text {
+.modal-dialog p.text,
+.modal-dialog div.html {
     margin: 10px;
 }
 

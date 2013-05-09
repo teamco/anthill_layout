@@ -123,7 +123,7 @@ define([
                 $container: this._getActions(),
                 text: 'Close',
                 events: {
-                    click: 'rejectWidgetDestroy'
+                    click: 'rejectItemDestroy'
                 }
             };
         },
