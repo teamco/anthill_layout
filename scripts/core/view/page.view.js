@@ -62,6 +62,7 @@ define([
                 text: 'Are you sure want to destroy widget:\n' +
                     widget.model.getConfig('uuid'),
                 cover: true,
+                autoclose: true,
                 buttons: {
                     approve: {
                         text: 'OK',

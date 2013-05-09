@@ -72,9 +72,11 @@ define([
          *      [position]: String ('0/00/000', '1/11/111'. '2/22/222'),
          *      [html]: String,
          *      [text]: String,
+         *      [draggable]: Boolean,
+         *      [autoclose]: Boolean,
+         *      [coverOpacity]: Number
          *      $container,
          *      [css],
-         *      [draggable]: Boolean,
          *      [item],
          *      [buttons]
          * }} opts
@@ -84,6 +86,8 @@ define([
                 style: opts.style,
                 $container: opts.$container,
                 cover: opts.cover,
+                coverOpacity: opts.coverOpacity,
+                autoclose: opts.autoclose,
                 css: opts.css,
                 opacityOff: opts.opacityOff,
                 opacityOn: opts.opacityOn,
@@ -98,6 +102,12 @@ define([
             });
         },
 
+        /**
+         * Generic button
+         * @param {*} Button
+         * @param {*} opts
+         * @param {*} store
+         */
         button: function button(Button, opts, store) {
             $.each(this.base.define(opts, {}, true), function each(i, button){
                 store[i] = new Button(this, {
@@ -107,6 +117,15 @@ define([
                     events: button.events
                 });
             }.bind(this));
+        },
+
+        cover: function cover(Cover, opts) {
+            return new Cover(this, {
+                $container: opts.$container,
+                style: opts.style,
+                opacity: opts.opacity,
+                events: opts.events
+            });
         }
     }, Base);
 });

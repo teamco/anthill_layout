@@ -4,6 +4,7 @@
 @import url("template.css");
 @import url("widget.css");
 @import url("modal.css");
+@import url("cover.css");
 @import url("debugger.css");
 
 html, body {

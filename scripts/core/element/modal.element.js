@@ -9,8 +9,9 @@
 define([
     'modules/base',
     'modules/element',
-    'element/button.element'
-], function defineModal(Base, BaseElement, Button) {
+    'element/button.element',
+    'element/cover.element'
+], function defineModal(Base, BaseElement, Button, Cover) {
 
     require(['jqueryui']);
 
@@ -25,12 +26,34 @@ define([
         }).$.addClass('modal-dialog');
 
         this.renderInnerContent();
+        this.setCover();
 
         return this;
     };
 
     return Modal.extend({
 
+        /**
+         * Setup modal dialog
+         * @param {{
+         *      [style]: String,
+         *      [cover]: Boolean,
+         *      [opacityOff]: Number,
+         *      [opacityOn]: Number,
+         *      [title]: String,
+         *      [type]: String ('info', 'success', 'warning', 'error'),
+         *      [position]: String ('0/00/000', '1/11/111'. '2/22/222'),
+         *      [html]: String,
+         *      [text]: String,
+         *      [draggable]: Boolean,
+         *      [autoclose]: Boolean,
+         *      [coverOpacity]: Number
+         *      $container,
+         *      [css],
+         *      [item],
+         *      [buttons]
+         * }} opts
+         */
         setup: function setup(opts) {
             this.title = opts.title;
             this.type = opts.type;
@@ -43,8 +66,13 @@ define([
             this.opacityOn = opts.opacityOn || 0.9;
             this.$container = opts.$container || $('body');
             this.position = opts.position || 'cc';
+
             this.draggable = this.base.defineBoolean(opts.draggable, true, true);
             this.closeX = this.base.defineBoolean(opts.draggable, true, true);
+
+            this.cover = this.base.defineBoolean(opts.cover, true, true);
+            this.autoclose = this.base.defineBoolean(opts.autoclose, false, true);
+            this.coverOpacity = opts.coverOpacity;
 
             this.buttons = opts.buttons || {};
         },
@@ -109,7 +137,12 @@ define([
             this._setCloseX();
 
             this.view.button(Button, this.buttons, this.$buttons);
+        },
 
+        unsetButtons: function unsetButtons() {
+            $.each(this.$buttons, function each(i, $button) {
+                $button.destroy();
+            });
         },
 
         setHeader: function setHeader() {
@@ -153,14 +186,26 @@ define([
             return this.$.find('h2');
         },
 
-        selfDestroy: function selfDestroy() {
-            /**
-             * Destroy buttons
-             */
-            $.each(this.$buttons, function each(i, $button) {
-                $button.destroy();
-            });
+        setCover: function setCover() {
+            if (this.cover) {
+                this.$cover = this.view.cover(Cover, {
+                    $container: this.$container,
+                    opacity: this.coverOpacity,
+                    style: 'cover-' + this.style,
+                    events: this.autoclose ? { click: 'rejectItemDestroy' } : {}
+                });
+            }
+        },
 
+        unsetCover: function unsetCover() {
+            if (this.$cover) {
+                this.$cover.destroy();
+            }
+        },
+
+        selfDestroy: function selfDestroy() {
+            this.unsetButtons();
+            this.unsetCover();
             this.destroy();
         }
 
