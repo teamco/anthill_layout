@@ -58,20 +58,55 @@ define([
                 $container: $container.$
             });
         },
+
+        /**
+         * Generic modal dialog window
+         * @param {*} Modal
+         * @param {{
+         *      [style]: String,
+         *      [cover]: Boolean,
+         *      [opacityOff]: Number,
+         *      [opacityOn]: Number,
+         *      [title]: String,
+         *      [type]: String ('info', 'success', 'warning', 'error'),
+         *      [position]: String ('0/00/000', '1/11/111'. '2/22/222'),
+         *      [html]: String,
+         *      [text]: String,
+         *      $container,
+         *      [css],
+         *      [draggable]: Boolean,
+         *      [item],
+         *      [buttons]
+         * }} opts
+         */
         modalDialog: function modalDialog(Modal, opts) {
             this.elements.$modal = new Modal(this, {
                 style: opts.style,
                 $container: opts.$container,
+                cover: opts.cover,
                 css: opts.css,
                 opacityOff: opts.opacityOff,
                 opacityOn: opts.opacityOn,
                 title: opts.title,
                 type: opts.type,
                 html: opts.html,
+                text: opts.text,
                 draggable: opts.draggable,
                 item: opts.item,
-                position: opts.position
+                position: opts.position,
+                buttons: opts.buttons
             });
+        },
+
+        button: function button(Button, opts, store) {
+            $.each(this.base.define(opts, {}, true), function each(i, button){
+                store[i] = new Button(this, {
+                    $container: button.$container,
+                    style: button.style,
+                    text: button.text,
+                    events: button.events
+                });
+            }.bind(this));
         }
     }, Base);
 });

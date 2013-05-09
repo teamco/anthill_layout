@@ -16,6 +16,7 @@ define([
     };
 
     return BaseElement.extend({
+
         /**
          * Element config before build
          * @param {{createStyle: Function, renderUUID: Function}} view
@@ -57,11 +58,13 @@ define([
         },
 
         /**
-         * 000
-         * 111
-         * 222
-         * @param opts
-         * @returns {*}
+         * Centralize element into container
+         * @param {{$container, $item, css, position}} opts
+         * Position options:
+         *      [tl tc tr]
+         *      [cl cc cr]
+         *      [bl bc br]
+         * @returns {opts.$item}
          */
         setPosition: function setPosition(opts) {
             var cWidth = opts.$container.outerWidth(),
@@ -77,37 +80,27 @@ define([
                 mh = cHeight - eHeight,
                 ch = mh / 2;
 
-            switch (opts.position) {
-                case '0':
-                    break;
-                case '00':
-                    left = cw;
-                    break;
-                case '000':
-                    left = mw;
-                    break;
-                case '1':
-                    top = ch;
-                    break;
-                case '11':
-                    top = ch;
-                    left = cw;
-                    break;
-                case '111':
-                    top = ch;
-                    left = mw;
-                    break;
-                case '2':
-                    top = mh;
-                    break;
-                case '22':
-                    top = mh;
-                    left = cw;
-                    break;
-                case '222':
-                    top = mh;
-                    left = mw;
-                    break;
+            if (opts.position == 'tl') {
+            } else if (opts.position == 'tc') {
+                left = cw;
+            } else if (opts.position == 'tr') {
+                left = mw;
+            } else if (opts.position == 'cl') {
+                top = ch;
+            } else if (opts.position == 'cc') {
+                top = ch;
+                left = cw;
+            } else if (opts.position == 'cr') {
+                top = ch;
+                left = mw;
+            } else if (opts.position == 'bl') {
+                top = mh;
+            } else if (opts.position == 'bc') {
+                top = mh;
+                left = cw;
+            } else if (opts.position == 'br') {
+                top = mh;
+                left = mw;
             }
 
             var css = $.extend({
@@ -141,6 +134,7 @@ define([
                 destroyElement.bind(this)($container.find('.' + this.style));
             }
         },
+
         /**
          * Build element
          * @param {{$container, [append], destroy, [callback]}} opts
@@ -169,6 +163,7 @@ define([
 
             return this;
         },
+
         /**
          * Destroy element
          * @returns {*}
@@ -186,6 +181,7 @@ define([
         hide: function hide() {
             return this.$.hide();
         },
+
         /**
          * Clear element internal HTML
          * @returns {*|Boolean}
@@ -193,6 +189,7 @@ define([
         empty: function empty() {
             return this.$.empty();
         },
+
         /**
          * Fade in effect
          * @returns {*}
@@ -200,6 +197,7 @@ define([
         fadeIn: function fadeIn() {
             return this.$.stop(true, true).fadeIn();
         },
+
         /**
          * Fade out effect
          * @returns {*}
@@ -207,6 +205,7 @@ define([
         fadeOut: function fadeOut() {
             return this.$.stop(true, true).fadeOut();
         },
+
         /**
          * Show element
          * @returns {*}
@@ -214,6 +213,7 @@ define([
         show: function show() {
             return this.$.show();
         },
+
         /**
          * Remove element inline style
          */
@@ -222,6 +222,7 @@ define([
                 style: ''
             });
         },
+
         /**
          * Stretch element in parent container
          * @returns {*}
@@ -240,6 +241,7 @@ define([
 
             return this;
         },
+
         /**
          * Get root container
          * @returns {*|HTMLElement}
@@ -247,6 +249,7 @@ define([
         getRootContainer: function getRootContainer() {
             return $(this.view.scope.controller.root().config.html.container);
         },
+
         /**
          * Set element opacity
          * @param {Number} opacity
@@ -256,6 +259,7 @@ define([
                 opacity: opacity
             });
         },
+
         /**
          * Get position
          * @returns {{top, left}}
@@ -270,6 +274,7 @@ define([
         getOffset: function getOffset() {
             return this.$.offset();
         },
+
         /**
          * Get element width
          * @returns {*}
@@ -277,6 +282,7 @@ define([
         getWidth: function getWidth() {
             return this.$.width();
         },
+
         /**
          * Set element width
          * @param {String|Number} width
@@ -289,6 +295,7 @@ define([
 
             return this.getWidth();
         },
+
         /**
          * Get element height
          * @returns {*}
@@ -296,6 +303,7 @@ define([
         getHeight: function getHeight() {
             return this.$.height();
         },
+
         /**
          * Set element height
          * @param {String|Number} height
@@ -308,6 +316,7 @@ define([
 
             return this.getHeight();
         },
+
         /**
          * Get CSS attribute
          * @param {String} value
@@ -316,6 +325,7 @@ define([
         getCSS: function getCSS(value) {
             return this.base.lib.number.str2float(this.$.css(value));
         },
+
         /**
          * Get padding right
          * @returns {Number}
@@ -323,6 +333,7 @@ define([
         getPaddingRight: function getPaddingRight() {
             return this.getCSS('paddingRight');
         },
+
         /**
          * Get padding left
          * @returns {Number}
@@ -330,6 +341,7 @@ define([
         getPaddingLeft: function getPaddingLeft() {
             return this.getCSS('paddingLeft');
         },
+
         /**
          * Get pudding top
          * @returns {Number}
@@ -337,6 +349,7 @@ define([
         getPaddingTop: function getPaddingTop() {
             return this.getCSS('paddingTop');
         },
+
         /**
          * Get padding bottom
          * @returns {Number}
@@ -344,6 +357,7 @@ define([
         getPaddingBottom: function getPaddingBottom() {
             return this.getCSS('paddingBottom');
         },
+
         /**
          * Get margin right
          * @returns {Number}
@@ -351,6 +365,7 @@ define([
         getMarginRight: function getMarginRight() {
             return this.getCSS('marginRight');
         },
+
         /**
          * Get margin left
          * @returns {Number}
@@ -358,6 +373,7 @@ define([
         getMarginLeft: function getMarginLeft() {
             return this.getCSS('marginLeft');
         },
+
         /**
          * Get margin top
          * @returns {Number}
@@ -365,6 +381,7 @@ define([
         getMarginTop: function getMarginTop() {
             return this.getCSS('marginTop');
         },
+
         /**
          * Get margin bottom
          * @returns {Number}
@@ -372,6 +389,7 @@ define([
         getMarginBottom: function getMarginBottom() {
             return this.getCSS('marginBottom');
         },
+
         /**
          * Get left delta
          * @returns {Number}
@@ -379,6 +397,7 @@ define([
         getLeftDelta: function getLeftDelta() {
             return this.getPaddingLeft() + this.getMarginLeft();
         },
+
         /**
          * Get top delta
          * @returns {Number}
@@ -386,6 +405,7 @@ define([
         getTopDelta: function getTopDelta() {
             return this.getPaddingTop() + this.getMarginTop();
         },
+
         /**
          * Invert CSS color [color|background-color]
          * @param {String} cssType

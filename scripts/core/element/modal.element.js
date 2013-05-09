@@ -8,19 +8,22 @@
 
 define([
     'modules/base',
-    'modules/element'
-], function defineModal(Base, BaseElement) {
+    'modules/element',
+    'element/button.element'
+], function defineModal(Base, BaseElement, Button) {
 
     require(['jqueryui']);
 
     var Modal = function Modal(view, opts) {
+
+        this.buttons = {};
+        this.setup(opts);
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         }).$.addClass('modal-dialog');
 
-        this.setup(opts);
         this.renderInnerContent();
 
         return this;
@@ -29,25 +32,31 @@ define([
     return Modal.extend({
 
         setup: function setup(opts) {
+            this.title = opts.title;
+            this.type = opts.type;
+            this.html = opts.html;
+            this.text = opts.text;
+            this.item = opts.item;
             this.style = opts.style || '';
             this.css = opts.css || {};
             this.opacityOff = opts.opacityOff || 0.8;
             this.opacityOn = opts.opacityOn || 0.9;
-            this.title = opts.title;
-            this.type = opts.type || '';
-            this.html = opts.html || '';
-            this.draggable = this.base.defineBoolean(opts.draggable, true, true);
-            this.item = opts.item;
             this.$container = opts.$container || $('body');
-            this.position = opts.position || '11';
+            this.position = opts.position || 'cc';
+            this.draggable = this.base.defineBoolean(opts.draggable, true, true);
+            this.closeX = this.base.defineBoolean(opts.draggable, true, true);
 
-            this.$buttons = opts.buttons || {};
+            this.buttons = opts.buttons || {};
         },
 
+        /**
+         * Render inner content
+         */
         renderInnerContent: function renderInnerContent() {
             this.$.append(
                     [
                         '<h2 class="header"></h2>',
+                        '<ul class="actions"></ul>',
                         '<div class="html"></div>',
                         '<p class="text"></p>',
                         '<ul class="buttons"></ul>'
@@ -56,13 +65,9 @@ define([
                 addClass([this.style, this.type].join(' ')).
                 css(this.css);
 
-            this._getHeader().text(this.title);
-
-            if (!this.base.isDefined(this.title)) {
-                this._getHeader().hide();
-            }
-
-            this.renderHTML();
+            this.setHeader();
+            this.setHTML();
+            this.setText();
 
             this.setPosition({
                 $container: this.$container,
@@ -75,10 +80,56 @@ define([
                     handle: this._getHeader()
                 });
             }
+
+            this.setCloseX();
         },
 
-        renderHTML: function renderHTML() {
-            this._getHTML().html(this.html);
+        setCloseX: function setCloseX() {
+            var $actions = this._getActions();
+            if (!this.closeX) {
+                $actions.hide();
+                return false;
+            }
+
+            this.view.button(Button, {
+                closeX: {
+                    $container: this._getActions(),
+                    text: 'Close',
+                    style: 'close-x',
+                    events: {
+                        click: 'rejectWidgetDestroy'
+                    }
+                }
+            }, this.buttons);
+        },
+
+        setButtons: function setButtons() {
+
+        },
+
+        setHeader: function setHeader() {
+            var $header = this._getHeader();
+            this.base.isDefined(this.title) ?
+                $header.text(this.title) :
+                $header.hide();
+        },
+
+        setHTML: function setHTML() {
+            var $html = this._getHTML();
+            this.base.isDefined(this.html) ?
+                $html.html(this.html) :
+                $html.hide();
+        },
+
+        setText: function setText() {
+            var $text = this._getText();
+            this.base.isDefined(this.text) ?
+                $text.text(this.text) :
+                $text.hide();
+        },
+
+        _getActions: function _getActions() {
+            return this.$.find('ul.actions');
         },
 
         _getHTML: function _getHTML() {

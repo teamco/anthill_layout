@@ -19,6 +19,7 @@ define([
     };
 
     return BaseController.extend({
+
         /**
          * Get Application mode
          * @returns {*|number}
@@ -26,6 +27,7 @@ define([
         getMode: function getMode() {
             return this.root().config.mode;
         },
+
         /**
          * Get parent node
          * @returns {*}
@@ -33,6 +35,7 @@ define([
         getParent: function getParent() {
             return this.scope.config.parent;
         },
+
         /**
          * Get Application Root
          * @returns {*|string}
@@ -45,6 +48,7 @@ define([
 
             return root;
         },
+
         /**
          * Get Config Logger
          * @param {String} log
@@ -53,6 +57,7 @@ define([
         getConfigLog: function getConfigLog(log, hash) {
             this.logger.debug(log, hash);
         },
+
         /**
          * Success Created
          */
@@ -63,6 +68,7 @@ define([
                 this
             );
         },
+
         /**
          * Success Rendered
          */
@@ -73,6 +79,7 @@ define([
                 this
             );
         },
+
         /**
          * Get current items
          * @returns {*}
@@ -85,12 +92,14 @@ define([
             }
             return scope[scope.model.getItemNamespace()];
         },
+
         /**
          * Set item as current in parent node
          */
         setAsCurrent: function setAsCurrent() {
             this.getParent().controller.setCurrentItem(this.scope);
         },
+
         /**
          * Set current item
          * @param {{}} item
@@ -101,6 +110,7 @@ define([
             scope[scope.model.getItemNamespace()] = item;
             return this.getCurrentItem();
         },
+
         /**
          * Check condition
          * @param {{condition, msg, [type], [args]}} opts
@@ -115,6 +125,7 @@ define([
             }
             return false;
         },
+
         /**
          * Get Development Mode
          * @returns {Boolean}
@@ -122,6 +133,7 @@ define([
         isDevelopmentMode: function isDevelopmentMode() {
             return this.getMode() === 'development';
         },
+
         /**
          * Get Authorize Mode
          * @returns {Boolean}
@@ -129,6 +141,7 @@ define([
         isAuthorizeMode: function isAuthorizeMode() {
             return this.getMode() === 'authorize';
         },
+
         /**
          * Get Consumption Mode
          * @returns {boolean}
@@ -136,6 +149,7 @@ define([
         isConsumptionMode: function isConsumptionMode() {
             return this.getMode() === 'consumption';
         },
+
         /**
          * Get Custom Mode
          * @returns {boolean}
@@ -143,6 +157,7 @@ define([
         isCustomMode: function isCustomMode() {
             return this.getMode() === 'custom';
         },
+
         /**
          * Set Order
          * @param collector
@@ -155,6 +170,7 @@ define([
                 base.lib.hash.hashLength(collector)
             );
         },
+
         /**
          * Extend Config
          * @param {{}} opts
@@ -177,6 +193,7 @@ define([
 
             return config;
         },
+
         /**
          * Create Item
          * @param {{}} opts
@@ -196,6 +213,9 @@ define([
          * @param {Object} item
          */
         destroyItem: function destroyItem(item) {
+
+            this.view.destroyWidgetModalDialog(item);
+
             var items = this.model.destroyItem(item);
             this.logger.debug(
                 'Destroy ' + item.constructor.name,

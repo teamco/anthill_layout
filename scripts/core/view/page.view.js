@@ -48,12 +48,20 @@ define([
                 $container: this.elements.$page.$
             });
         },
-        destroyWidgetModalDialog: function destroyWidgetModalDialog() {
+
+        /**
+         * Show destroy widget confirmation modal dialog
+         */
+        destroyWidgetModalDialog: function destroyWidgetModalDialog(widget) {
             this.modalDialog(Modal, {
                 style: this.scope.constructor.name.toLowerCase() + '-modal',
                 $container: this.elements.$page.$,
+                item: widget,
                 type: 'warning',
-                title: 'Remove widget'
+                title: 'Remove widget',
+                text: 'Are you sure want to destroy widget:\n' +
+                    widget.model.getConfig('uuid'),
+                cover: true
             });
         },
         render: function render() {

@@ -84,6 +84,7 @@ define([
                 params: opts.params
             });
         },
+
         /**
          * Bind element events
          * @param {String} event

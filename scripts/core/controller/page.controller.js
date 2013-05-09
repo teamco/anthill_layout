@@ -21,6 +21,18 @@ define([
         widgetLoad: function widgetLoad() {
             this.logger.debug('Load widget');
         },
+
+        /**
+         * Reject to destroy widget
+         */
+        rejectWidgetDestroy: function rejectWidgetDestroy() {
+            var scope = this.scope;
+            scope.logger.debug(
+                'Reject widget destroy',
+                scope.view.elements.$modal.item
+            );
+        },
+
         /**
          * Downgrade widgets layer except widget
          * @param {{model, view}} widget

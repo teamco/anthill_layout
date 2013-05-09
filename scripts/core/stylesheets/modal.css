@@ -1,6 +1,8 @@
 .modal-dialog {
     width: 400px;
-    height: 200px;
+    max-width: 70%;
+    max-height: 70%;
+    min-height: 100px;
     background-color: #dedede;
     position: absolute;
     z-index: 1000;
@@ -34,4 +36,38 @@
 
 .modal-dialog.success h2.header {
     background-color: #32cd32;
+}
+
+.modal-dialog p.text {
+    margin: 10px;
+}
+
+.modal-dialog ul.actions {
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    list-style: none;
+    height: 10px;
+}
+
+.modal-dialog ul.actions li {
+    text-indent: -9000px;
+    width: 10px;
+    height: 100%;
+    float: left;
+    cursor: pointer;
+    background: transparent url('smoothness/images/ui-icons_888888_256x240.png') no-repeat;
+}
+
+.modal-dialog ul.actions li:hover {
+    background: transparent url('smoothness/images/ui-icons_454545_256x240.png') no-repeat;
+}
+
+.modal-dialog ul.actions li:active {
+    background: transparent url('smoothness/images/ui-icons_222222_256x240.png') no-repeat;
+}
+
+.modal-dialog ul.actions li.close-x {
+    background-position-x: -99px;
+    background-position-y: -131px;
 }
