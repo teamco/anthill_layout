@@ -208,21 +208,67 @@ define([
                 item
             );
         },
+
+        /**
+         * Reject to destroy widget
+         */
+        rejectItemDestroy: function rejectItemDestroy() {
+            var scope = this.scope,
+                $modal = scope.view.elements.$modal;
+
+            scope.logger.debug(
+                'Reject destroy',
+                $modal.item
+            );
+
+            $modal.selfDestroy();
+        },
+
+        /**
+         * Approve to destroy item
+         * @param {*} item
+         * @returns {boolean}
+         */
+        approveItemDestroy: function approveItemDestroy(item) {
+            var base = this.base,
+                scope = this.scope,
+                $modal = scope.view.elements.$modal;
+
+            if (!(base.isDefined(item) &&
+                item.constructor.name === this.model.item.name)) {
+
+                if (base.isDefined($modal)) {
+                    item = $modal.item;
+                    $modal.selfDestroy();
+                }
+            }
+
+            if (this.checkCondition({
+                condition: !base.isDefined(item),
+                type: 'warn',
+                msg: 'Undefined item'
+            })) {
+                return false;
+            }
+
+            scope.logger.debug(
+                'Destroy ' + item.constructor.name,
+                item,
+                this.model.destroyItem(item)
+            );
+        },
+
         /**
          * Destroy Item
          * @param {Object} item
+         * @param {Boolean} silent
          */
-        destroyItem: function destroyItem(item) {
-
-            this.view.destroyWidgetModalDialog(item);
-
-            var items = this.model.destroyItem(item);
-            this.logger.debug(
-                'Destroy ' + item.constructor.name,
-                item,
-                items
-            );
+        destroyItem: function destroyItem(item, silent) {
+            this.base.defineBoolean(silent, false, true) ?
+                this.controller.approveItemDestroy(item) :
+                this.view.destroyWidgetModalDialog(item);
         },
+
         /**
          * Destroy Items
          */

@@ -66,13 +66,13 @@ define([
                     approve: {
                         text: 'OK',
                         events: {
-                            click: 'approveWidgetDestroy'
+                            click: 'approveItemDestroy'
                         }
                     },
                     reject: {
                         text: 'Cancel',
                         events: {
-                            click: 'rejectWidgetDestroy'
+                            click: 'rejectItemDestroy'
                         }
                     }
                 }

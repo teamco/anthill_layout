@@ -23,21 +23,6 @@ define([
         },
 
         /**
-         * Reject to destroy widget
-         */
-        rejectWidgetDestroy: function rejectWidgetDestroy() {
-            var scope = this.scope,
-                $modal = scope.view.elements.$modal;
-            scope.logger.debug(
-                'Reject widget destroy',
-                $modal.item
-            );
-
-            $modal.selfDestroy();
-
-        },
-
-        /**
          * Downgrade widgets layer except widget
          * @param {{model, view}} widget
          */

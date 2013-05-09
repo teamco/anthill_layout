@@ -35,12 +35,13 @@ define([
         /**
          * Destroy widget
          * @param widget
+         * @param {Boolean} silent
          */
-        destroyWidget: function destroyWidget(widget) {
+        destroyWidget: function destroyWidget(widget, silent) {
             var scope = this.scope;
             scope.observer.publish(
                 scope.eventmanager.eventList.destroyWidget,
-                widget
+                [widget, silent]
             );
         },
 
