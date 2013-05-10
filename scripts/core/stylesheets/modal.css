@@ -76,6 +76,7 @@
 .modal-dialog ul.buttons {
     list-style: none;
     float: right;
+    margin-bottom: 10px;
 }
 
 .modal-dialog ul.buttons li {

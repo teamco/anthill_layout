@@ -14,7 +14,7 @@ define([
     'element/page/page.element',
     'element/page/page.element.content',
     'element/page/page.element.delta.scroll'
-], function definePageView(BaseView, Header, Footer, Modal, Page, Content, DeltaScroll){
+], function definePageView(BaseView, Header, Footer, Modal, Page, Content, DeltaScroll) {
 
     var View = function View() {
         this.elements = {};
@@ -50,18 +50,20 @@ define([
         },
 
         /**
-         * Show destroy widget confirmation modal dialog
+         * Show destroy widgets confirmation modal dialog
          */
-        destroyWidgetModalDialog: function destroyWidgetModalDialog(widget) {
+        destroyWidgetsModalDialog: function destroyWidgetsModalDialog(widgets) {
             this.modalDialog(Modal, {
                 style: this.scope.constructor.name.toLowerCase() + '-modal',
                 $container: this.elements.$page.$,
-                item: widget,
+                item: widgets,
                 type: 'warning',
-                title: 'Remove widget',
+                title: 'Remove widgets',
                 html: [
-                    'Are you sure want to destroy widget:',
-                    widget.model.getConfig('uuid')
+                    'Are you sure want to destroy widgets:',
+                    $.map(widgets, function map(i, uuid) {
+                        return uuid;
+                    }).join('<br />')
                 ].join('<br />'),
                 cover: true,
                 autoclose: true,
@@ -69,7 +71,7 @@ define([
                     approve: {
                         text: 'OK',
                         events: {
-                            click: 'approveItemDestroy'
+                            click: 'approveItemsDestroy'
                         }
                     },
                     reject: {
@@ -81,9 +83,14 @@ define([
                 }
             });
         },
+
+        /**
+         * Render page
+         */
         render: function render() {
             this.scope.observer.publish(this.scope.eventmanager.eventList.successRendered);
         }
+
     }, BaseView.prototype)
 
 });

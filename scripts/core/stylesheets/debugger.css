@@ -423,7 +423,7 @@
 #debug-mode ul.page-widget-actions li.add-widget {
     background-position-y: -193px;
     background-position-x: -1px;
-    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+    background-image: url('smoothness/images/ui-icons_222222_256x240.png');
 }
 
 #debug-mode ul.page-widget-actions li.add-widget:hover {
@@ -437,7 +437,7 @@
 #debug-mode ul.page-widget-actions li.remove-widget {
     background-position-y: -193px;
     background-position-x: -17px;
-    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+    background-image: url('smoothness/images/ui-icons_222222_256x240.png');
 }
 
 #debug-mode ul.page-widget-actions li.remove-widget:hover {

@@ -47,11 +47,15 @@ define([
 
         /**
          * Destroy widgets
+         * @param {*} [items]
+         * @param {Boolean} [silent]
          */
-        destroyWidgets: function destroyWidgets() {
-            $.each(this.scope.items, function each(uuid, widget) {
-                this.destroyWidget(widget);
-            }.bind(this));
+        destroyWidgets: function destroyWidgets(items, silent) {
+            var scope = this.scope;
+            scope.observer.publish(
+                scope.eventmanager.eventList.destroyWidgets,
+                [items, silent]
+            );
         },
 
         /**

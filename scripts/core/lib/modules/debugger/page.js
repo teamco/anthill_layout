@@ -74,7 +74,7 @@ define([], function defineDebuggerPage() {
          * @private
          */
         _renderRemoveWidgets: function _renderRemoveWidgets() {
-            return '<li rel="disabled" class="remove-widgets disabled  select" title="Remove widgets">Remove widgets</li>';
+            return '<li rel="disabled" class="remove-widgets disabled select" title="Remove widgets">Remove widgets</li>';
         },
 
         /**
@@ -101,7 +101,7 @@ define([], function defineDebuggerPage() {
          * @returns {string}
          */
         renderPageWidgets: function renderPageWidgets(page) {
-            var html = [
+            return [
                 '<li class="extend">',
                 this.debugger.component.renderBlock('Widgets', [
                     this.renderPageWidgetsActions(),
@@ -110,8 +110,6 @@ define([], function defineDebuggerPage() {
                 ], true),
                 '</li>'
             ].join(' ');
-
-            return html;
         },
 
         /**
@@ -158,6 +156,7 @@ define([], function defineDebuggerPage() {
             ).remove();
 
             this._bindWidgetsList(page);
+            this.$select.addClass('select');
         },
 
         /**
@@ -196,6 +195,11 @@ define([], function defineDebuggerPage() {
          * @private
          */
         _bindWidgetsList: function _bindWidgetsList(page) {
+            this.$select = this.debugger.base.define(
+                this.$select,
+                $('.select', this.selectors.actions)
+            );
+
             if (this.editMode) {
                 $('li', this.selectors.widgets).on('click.select', function select(e) {
                     var $li = $(e.target),
@@ -203,11 +207,13 @@ define([], function defineDebuggerPage() {
                     if ($li.hasClass('select')) {
                         page.logger.debug('Unselect', widget);
                         $li.removeClass('select');
+                        this.$select.addClass('select');
                     } else {
                         page.logger.debug('Select', widget);
                         $li.addClass('select');
+                        this.$select.removeClass('select');
                     }
-                });
+                }.bind(this));
             }
         },
 
@@ -314,18 +320,14 @@ define([], function defineDebuggerPage() {
          * @private
          */
         _removeWidgets: function _removeWidgets(page) {
+            var items = {};
             $.each($('li.select', this.selectors.widgets), function each(i, v) {
                 var uuid = $(v).text();
-
-                if (page.items.hasOwnProperty(uuid)) {
-                    var widget = page.items[uuid];
-                    page.logger.debug('Start remove widget', widget);
-                    page.api.destroyWidget(widget);
-                } else {
-                    page.logger.warn('Undefined widget', uuid);
-                }
-
+                items[uuid] = page.model.getItemByUUID(uuid);
             });
+
+            page.logger.debug('Start remove widgets', items);
+            page.api.destroyWidgets(items);
 
         }
 

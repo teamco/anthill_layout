@@ -228,6 +228,16 @@ define([
         },
 
         /**
+         * Approve to destroy items
+         * @param items
+         */
+        approveItemsDestroy: function approveItemsDestroy(items) {
+            $.each(items || {}, function each(uuid, item){
+                this.approveItemDestroy(item);
+            }.bind(this));
+        },
+
+        /**
          * Approve to destroy item
          * @param {*} item
          * @returns {boolean}
@@ -268,7 +278,7 @@ define([
         /**
          * Destroy Item
          * @param {Object} item
-         * @param {Boolean} silent
+         * @param {Boolean} [silent]
          */
         destroyItem: function destroyItem(item, silent) {
             this.base.defineBoolean(silent, false, true) ?
@@ -278,14 +288,19 @@ define([
 
         /**
          * Destroy Items
+         * @param {Object} [items]
+         * @param {Boolean} [silent]
          */
-        destroyItems: function destroyItems() {
-            var items = this.model.destroyItems();
-            this.logger.debug(
-                'Destroy Items',
-                items
-            );
+        destroyItems: function destroyItems(items, silent) {
+            var base = this.base;
+
+            items = base.define(items, this.items);
+
+            base.defineBoolean(silent, false, true) ?
+                this.controller.approveItemsDestroy(items) :
+                this.view.destroyWidgetsModalDialog(items);
         },
+
         /**
          * Set Interaction
          * @param {String} event
@@ -305,16 +320,26 @@ define([
             return this.scope.interactions[event];
         },
 
+        /**
+         * After create item event
+         */
         afterCreateItem: function afterCreateItem() {
             this.logger.debug('After create item');
             this.controller.updateDebugger();
         },
 
+        /**
+         * After destroy item event
+         */
         afterDestroyItem: function afterDestroyItem() {
             this.logger.debug('After destroy item');
             this.controller.updateDebugger();
         },
 
+        /**
+         * Update debugger info
+         * @returns {boolean}
+         */
         updateDebugger: function updateDebugger() {
             var scope = this.scope,
                 cname = scope.constructor.name.toLowerCase(),
