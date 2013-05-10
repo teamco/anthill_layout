@@ -103,7 +103,7 @@ define([], function defineDebuggerGrid() {
                 this.debugger.placeholders + ' .column', {
                     width: opts.cell,
                     top: opts.top,
-                    left: this.debugger.scopes.widget.map.getNextPosition({
+                    left: this.debugger.scopes.page.layout.controller.getNextPosition({
                         column: column,
                         row: 0
                     }).left,
@@ -121,7 +121,7 @@ define([], function defineDebuggerGrid() {
             this.renderPlaceHolder(
                 this.debugger.placeholders + ' .row', {
                     left: opts.left,
-                    top: this.debugger.scopes.widget.map.getNextPosition({
+                    top: this.debugger.scopes.page.layout.controller.getNextPosition({
                         column: 0,
                         row: row
                     }).top,

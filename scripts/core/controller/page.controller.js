@@ -23,6 +23,14 @@ define([
         },
 
         /**
+         * Get widgets container
+         * @returns {*}
+         */
+        getWidgetsContainer: function getWidgetsContainer() {
+            return this.scope.view.elements.$widgets;
+        },
+
+        /**
          * Downgrade widgets layer except widget
          * @param {{model, view}} widget
          */

@@ -17,7 +17,12 @@ define([
 
     var Modal = function Modal(view, opts) {
 
+        /**
+         * Set button elements
+         * @type {$modal.$buttons}
+         */
         this.$buttons = {};
+
         this.setup(opts);
 
         this._config(view, opts, $('<div />')).build({
@@ -55,25 +60,110 @@ define([
          * }} opts
          */
         setup: function setup(opts) {
+
+            /**
+             * Set modal title
+             * @type {$modal.title: String}
+             */
             this.title = opts.title;
+
+            /**
+             * Set modal type ['error', 'warning', 'success', 'info']
+             * @type {$modal.type: String}
+             */
             this.type = opts.type;
+
+            /**
+             * Set modal html
+             * @type {$modal.html: String}
+             */
             this.html = opts.html;
+
+            /**
+             * Set modal text
+             * @type {$modal.text: String}
+             */
             this.text = opts.text;
+
+            /**
+             * Set modal item dependency (called from)
+             * @type {$modal.item}
+             */
             this.item = opts.item;
+
+            /**
+             * Set modal style
+             * @type {$modal.style: String}
+             */
             this.style = opts.style || '';
+
+            /**
+             * Set modal css
+             * @type {$modal.css}
+             */
             this.css = opts.css || {};
+
+            /**
+             * Set modal opacity hover out
+             * @type {$modal.opacityOff: Number}
+             */
             this.opacityOff = opts.opacityOff || 0.8;
+
+            /**
+             * Set modal opacity hover in
+             * @type {$modal.opacityOn: Number}
+             */
             this.opacityOn = opts.opacityOn || 0.9;
+
+            /**
+             * Set modal parent container
+             * @type {$modal.$container}
+             */
             this.$container = opts.$container || $('body');
+
+            /**
+             * Set modal position:
+             *      ['tl' 'tc' 'tr']
+             *      ['cl' 'cc' 'cr']
+             *      ['bl' 'bc' 'br']
+             * @type {$modal}
+             */
             this.position = opts.position || 'cc';
 
+            /**
+             * Set modal is draggable condition
+             * @type {$modal.draggable: Boolean}
+             */
             this.draggable = this.base.defineBoolean(opts.draggable, true, true);
+
+            /**
+             * Set close X button
+             * @type {$modal.closeX: Boolean}
+             */
             this.closeX = this.base.defineBoolean(opts.draggable, true, true);
 
+            /**
+             * Set cover config
+             * @type {$modal.cover: Boolean}
+             */
             this.cover = this.base.defineBoolean(opts.cover, true, true);
+
+            /**
+             * Set close modal on click cover
+             * @type {$modal.autoclose: Boolean}
+             */
             this.autoclose = this.base.defineBoolean(opts.autoclose, false, true);
+
+            /**
+             * Set cover opacity
+             * @type {$modal.coverOpacity: Number}
+             */
             this.coverOpacity = opts.coverOpacity;
 
+            /**
+             * Set buttons config
+             * @type {$modal.buttons|{}}
+             */
             this.buttons = opts.buttons || {};
         },
 
@@ -112,6 +202,11 @@ define([
             this.setButtons();
         },
 
+        /**
+         * Set close X button
+         * @returns {boolean|undefined}
+         * @private
+         */
         _setCloseX: function _setCloseX() {
             var $actions = this._getActions();
             if (!this.closeX) {
@@ -128,6 +223,9 @@ define([
             };
         },
 
+        /**
+         * Set buttons
+         */
         setButtons: function setButtons() {
             var $container = this._getButtons();
             $.each(this.buttons, function each(i, button) {
@@ -139,12 +237,18 @@ define([
             this.view.button(Button, this.buttons, this.$buttons);
         },
 
+        /**
+         * Unset buttons
+         */
         unsetButtons: function unsetButtons() {
             $.each(this.$buttons, function each(i, $button) {
                 $button.destroy();
             });
         },
 
+        /**
+         * Set header
+         */
         setHeader: function setHeader() {
             var $header = this._getHeader();
             this.base.isDefined(this.title) ?
@@ -152,6 +256,9 @@ define([
                 $header.hide();
         },
 
+        /**
+         * Set HTML
+         */
         setHTML: function setHTML() {
             var $html = this._getHTML();
             this.base.isDefined(this.html) ?
@@ -159,6 +266,9 @@ define([
                 $html.hide();
         },
 
+        /**
+         * Set text
+         */
         setText: function setText() {
             var $text = this._getText();
             this.base.isDefined(this.text) ?
@@ -166,26 +276,54 @@ define([
                 $text.hide();
         },
 
+        /**
+         * Get action buttons container
+         * @returns {*}
+         * @private
+         */
         _getActions: function _getActions() {
             return this.$.find('ul.actions');
         },
 
+        /**
+         * Get HTML container
+         * @returns {*}
+         * @private
+         */
         _getHTML: function _getHTML() {
             return this.$.find('div.html');
         },
 
+        /**
+         * Get text container
+         * @returns {*}
+         * @private
+         */
         _getText: function _getText() {
             return this.$.find('p.text');
         },
 
+        /**
+         * Get buttons container
+         * @returns {*}
+         * @private
+         */
         _getButtons: function _getButtons() {
             return this.$.find('ul.buttons');
         },
 
+        /**
+         * Get header container
+         * @returns {*}
+         * @private
+         */
         _getHeader: function _getHeader() {
             return this.$.find('h2');
         },
 
+        /**
+         * Set cover
+         */
         setCover: function setCover() {
             if (this.cover) {
                 this.$cover = this.view.cover(Cover, {
@@ -197,12 +335,18 @@ define([
             }
         },
 
+        /**
+         * Unset cover
+         */
         unsetCover: function unsetCover() {
             if (this.$cover) {
                 this.$cover.destroy();
             }
         },
 
+        /**
+         * Self destroy functionality
+         */
         selfDestroy: function selfDestroy() {
             this.unsetButtons();
             this.unsetCover();

@@ -322,36 +322,6 @@ define([
                 });
             }
         },
-        /**
-         * Get next position
-         * @param {{column: Number, row: Number}} dom
-         * @returns {{left: Number, top: Number}}
-         */
-        getNextPosition: function getNextPosition(dom) {
-            var $widgets = this.widget.controller.getContainer(),
-                top = $widgets.getTopDelta(),
-                left = $widgets.getLeftDelta();
-
-            var layout = this.layout,
-                cell = layout.controller.minCellWidth(),
-                margin = layout.config.grid.margin;
-
-            /**
-             * Get next position
-             * @param {Number} pos
-             * @returns {Number}
-             * @private
-             */
-            function _getNextPosition(pos) {
-                return pos * cell + (margin * (pos + 1));
-            }
-
-            return {
-                left: _getNextPosition(dom.column) + left,
-                top: _getNextPosition(dom.row) + top
-            };
-
-        },
 
         /**
          * Get next dimensions
@@ -369,7 +339,7 @@ define([
          * @returns {{left: Number, top: Number}}
          */
         dragTo: function dragTo() {
-            return this.getNextPosition(this.getDOM());
+            return this.widget.controller.getParent().layout.controller.getNextPosition(this.getDOM());
         },
         /**
          * Resize to

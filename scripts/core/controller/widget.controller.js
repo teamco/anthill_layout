@@ -22,13 +22,7 @@ define([
         get$page: function get$page() {
             return this.getParent().view.elements.$page.$;
         },
-        /**
-         * Get widgets container
-         * @returns {*}
-         */
-        getContainer: function getContainer() {
-            return this.getParent().view.elements.$widgets;
-        },
+
         /**
          * Setup interactions {Drag|Resize}
          */

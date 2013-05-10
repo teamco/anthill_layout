@@ -71,6 +71,38 @@ define([
 
             return (cell + config.margin) * config.columns;
         },
+
+        /**
+         * Get next position
+         * @param {{column: Number, row: Number}} dom
+         * @returns {{left: Number, top: Number}}
+         */
+        getNextPosition: function getNextPosition(dom) {
+            var $widgets = this.scope.controller.getParent().controller.getWidgetsContainer(),
+                top = $widgets.getTopDelta(),
+                left = $widgets.getLeftDelta();
+
+            var layout = this.scope,
+                cell = layout.controller.minCellWidth(),
+                margin = layout.config.grid.margin;
+
+            /**
+             * Get next position
+             * @param {Number} pos
+             * @returns {Number}
+             * @private
+             */
+            function _getNextPosition(pos) {
+                return pos * cell + (margin * (pos + 1));
+            }
+
+            return {
+                left: _getNextPosition(dom.column) + left,
+                top: _getNextPosition(dom.row) + top
+            };
+
+        },
+
         /**
          * Get layout organizer mode
          * @returns {String}

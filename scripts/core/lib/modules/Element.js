@@ -59,11 +59,11 @@ define([
 
         /**
          * Centralize element into container
-         * @param {{$container, $item, css, position}} opts
+         * @param {{$container, $item, css, position: String}} opts
          * Position options:
-         *      [tl tc tr]
-         *      [cl cc cr]
-         *      [bl bc br]
+         *      ['tl' 'tc' 'tr']
+         *      ['cl' 'cc' 'cr']
+         *      ['bl' 'bc' 'br']
          * @returns {opts.$item}
          */
         setPosition: function setPosition(opts) {
