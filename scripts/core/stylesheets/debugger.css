@@ -218,12 +218,17 @@
     white-space: nowrap;
     margin-bottom: 1px;
     border-radius: 3px;
+    list-style: none;
 }
 
 #debug-mode li:hover,
 #debug-mode li.allow span:hover {
     background-color: #ffff00;
     border: 1px solid #F0AB00;
+}
+
+#debug-mode li.extend {
+    padding: 0;
 }
 
 #debug-mode li.extend:hover {
@@ -365,7 +370,6 @@
 }
 
 #debug-mode ul.widgets-info li {
-
 }
 
 #debug-mode ul.widgets-info li.template {

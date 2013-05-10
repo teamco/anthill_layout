@@ -64,6 +64,7 @@ define([
             scope.observer.publish(scope.eventmanager.eventList.debugEnd);
             scope.view.elements.$debugger.activate();
         }
+
     }, BaseController.prototype);
 
 });

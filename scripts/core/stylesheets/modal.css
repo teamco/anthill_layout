@@ -3,7 +3,7 @@
     max-width: 70%;
     max-height: 70%;
     min-height: 100px;
-    background-color: #dfdfdf;
+    background-color: #fff;
     position: absolute;
     z-index: 1000;
     border-radius: 5px;
@@ -84,7 +84,7 @@
     box-shadow: 1px 1px 1px #333;
     padding: 2px 5px;
     margin-right: 5px;
-    background-color: #ccc;
+    background-color: #dedede;
     cursor: pointer;
 }
 
@@ -92,12 +92,12 @@
     margin-right: 10px;
 }
 
-.modal-dialog ul.buttons li:hover {
-    background-color: #bbb;
+.modal-dialog ul.buttons li:hover,
+.modal-dialog ul.buttons li:active {
+    background-color: #ccc;
 }
 
 .modal-dialog ul.buttons li:active {
-    background-color: #aaa;
     box-shadow: -1px -1px 1px #333;
     margin-top: 2px;
     margin-left: 1px;

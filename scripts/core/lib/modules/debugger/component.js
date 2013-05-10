@@ -87,9 +87,9 @@ define([], function defineDebuggerComponent() {
         renderInlineOf: function renderInlineOf(text, item) {
             var config = item.config[item.model.getItemNamespace()];
             return [
-                '<li><span>', text, ':</span> ',
+                '<li class="items-count"><span>', text, ':</span> ',
                 this.debugger.base.lib.hash.hashLength(item.items), ' of ',
-                config ? config.limit : 'Undefined' ||
+                (config ? config.limit : 'Undefined') ||
                     'Unlimited', '</li>'
             ].join('');
         },

@@ -12,9 +12,27 @@ define([], function defineDebuggerPage() {
      * @constructor
      */
     var Page = function Page() {
+
+        /**
+         * Define edit mode
+         * @type {page.editMode: Boolean}
+         */
+        this.editMode = false;
     };
 
     return Page.extend({
+
+        /**
+         * Define selectors
+         */
+        defineSelectors: function defineSelectors() {
+            this.selectors = {
+                edit: this.debugger.info + ' li.edit-mode',
+                actions: this.debugger.info + ' ul.page-widget-actions',
+                widgets: this.debugger.info + ' ul.widgets-info',
+                count: this.debugger.info + ' li.items-count'
+            };
+        },
 
         /**
          * Render page widgets actions
@@ -22,15 +40,14 @@ define([], function defineDebuggerPage() {
          */
         renderPageWidgetsActions: function renderPageWidgetsActions() {
             return [
-                '<ul class="page-widget-actions">',
+                '<li class="extend"><ul class="page-widget-actions">',
                 this._renderAddWidget(),
                 this._renderRemoveWidget(),
                 this._renderRemoveWidgets(),
                 this._locateWidget(),
                 this._enableEditMode(),
-                '</ul>'
+                '</ul></li>'
             ].join('');
-
         },
 
         /**
@@ -88,7 +105,7 @@ define([], function defineDebuggerPage() {
                 '<li class="extend">',
                 this.debugger.component.renderBlock('Widgets', [
                     this.renderPageWidgetsActions(),
-                    this.debugger.component.renderInlineOf('Count', page),
+                    this._getItemsCount(page),
                     this.renderPageWidgetsList(page)
                 ], true),
                 '</li>'
@@ -103,14 +120,54 @@ define([], function defineDebuggerPage() {
          * @returns {string}
          */
         renderPageWidgetsList: function renderPageWidgetsList(page) {
-            var html = ['<ul class="widgets-info">'];
+            var html = ['<li class="extend"><ul class="widgets-info">'];
+            html.push(this.getPageWidgetsList(page));
+            html.push('</ul></li>');
+            return html.join('');
+        },
+
+        /**
+         * Get page widget list
+         * @param page
+         * @returns {string}
+         */
+        getPageWidgetsList: function getPageWidgetsList(page) {
+            var html = [];
             $.each(page.items, function each(uuid, widget) {
                 html.push([
                     '<li class="', widget.model.getConfig('type'), '">', uuid , '</li>'
                 ].join(''));
             });
-            html.push('</ul>');
+
             return html.join('');
+        },
+
+        /**
+         * Update page widget list
+         * @param page
+         */
+        updateItems: function updateItems(page) {
+            $(this.selectors.widgets).html(
+                this.getPageWidgetsList(page)
+            );
+
+            var $count = $(this.selectors.count);
+
+            $count.before(
+                this._getItemsCount(page)
+            ).remove();
+
+            this._bindWidgetsList(page);
+        },
+
+        /**
+         * Get items count
+         * @param {*} page
+         * @returns {string}
+         * @private
+         */
+        _getItemsCount: function _getItemsCount(page) {
+            return this.debugger.component.renderInlineOf('Count', page);
         },
 
         /**
@@ -120,7 +177,7 @@ define([], function defineDebuggerPage() {
          * @private
          */
         _getWidgetAction: function _getWidgetAction(action) {
-            return $('ul.page-widget-actions li.' + action);
+            return $('li.' + action, this.selectors.actions);
         },
 
         /**
@@ -128,27 +185,38 @@ define([], function defineDebuggerPage() {
          * @param {*} page
          */
         bindEnablePageWidgetsEditMode: function bindEnablePageWidgetsEditMode(page) {
-            $('.edit-mode').on('click.edit', function edit(e) {
+            $(this.selectors.edit).on('click.edit', function edit(e) {
                 this._enablePageWidgetsEditMode(e, page);
             }.bind(this));
         },
 
+        /**
+         * Bind widget list
+         * @param page
+         * @private
+         */
         _bindWidgetsList: function _bindWidgetsList(page) {
-            $('ul.widgets-info li').on('click.select', function select(e) {
-                var $li = $(e.target),
-                    widget = page.items[$li.text()];
-                if ($li.hasClass('select')) {
-                    page.logger.debug('Unselect', widget);
-                    $li.removeClass('select');
-                } else {
-                    page.logger.debug('Select', widget);
-                    $li.addClass('select');
-                }
-            });
+            if (this.editMode) {
+                $('li', this.selectors.widgets).on('click.select', function select(e) {
+                    var $li = $(e.target),
+                        widget = page.items[$li.text()];
+                    if ($li.hasClass('select')) {
+                        page.logger.debug('Unselect', widget);
+                        $li.removeClass('select');
+                    } else {
+                        page.logger.debug('Select', widget);
+                        $li.addClass('select');
+                    }
+                });
+            }
         },
 
+        /**
+         * Unbind widget list
+         * @private
+         */
         _unbindWidgetsList: function _unbindWidgetsList() {
-            $('ul.widgets-info li').unbind('click.select');
+            $('li', this.selectors.widgets).unbind('click.select');
         },
 
         /**
@@ -159,11 +227,12 @@ define([], function defineDebuggerPage() {
          */
         _enablePageWidgetsEditMode: function _enablePageWidgetsEditMode(e, page) {
             var $this = $(e.target),
-                $disabled = $this.parent('ul').find('li[rel="disabled"]');
+                $disabled = $('li[rel="disabled"]', $this.parent('ul'));
             if ($disabled.hasClass('disabled')) {
                 page.logger.debug('Activate edit mode');
                 $disabled.removeClass('disabled');
                 $this.addClass('active');
+                this.editMode = true;
                 this._bindWidgetsList(page);
                 this._bindAddNewWidget(page);
                 this._bindRemoveWidget(page);
@@ -179,7 +248,7 @@ define([], function defineDebuggerPage() {
          * @private
          */
         _disablePageWidgetsEditMode: function _disablePageWidgetsEditMode($this, page) {
-            var $disabled = $this.parent('ul').find('li[rel="disabled"]');
+            var $disabled = $('li[rel="disabled"]', $this.parent('ul'));
 
             page.logger.debug('Deactivate edit mode');
             $disabled.addClass('disabled');
@@ -187,6 +256,7 @@ define([], function defineDebuggerPage() {
             this._unbindAddNewWidget(page);
             this._unbindRemoveWidget(page);
             this._unbindWidgetsList();
+            this.editMode = false;
         },
 
         /**
@@ -219,14 +289,12 @@ define([], function defineDebuggerPage() {
         _bindRemoveWidget: function _bindRemoveWidget(page) {
             page.logger.debug('Bind remove widget');
             this._getWidgetAction('remove-widget').on('click.remove', function remove(e) {
-                if (!$('ul.widgets-info li').hasClass('select')) {
+                if ($('li.select', this.selectors.widgets).length === 0) {
                     page.logger.warn('Select widget before remove');
                     return false;
                 }
-
                 this._removeWidgets(page);
             }.bind(this));
-
         },
 
         /**
@@ -237,7 +305,7 @@ define([], function defineDebuggerPage() {
         _unbindRemoveWidget: function _unbindRemoveWidget(page) {
             page.logger.debug('Unbind remove widget');
             this._getWidgetAction('remove-widget').unbind('click.remove');
-            $('.widgets-info li').removeClass('select');
+            $('li', this.selectors.widgets).removeClass('select');
         },
 
         /**
@@ -246,7 +314,7 @@ define([], function defineDebuggerPage() {
          * @private
          */
         _removeWidgets: function _removeWidgets(page) {
-            $.each($('ul.widgets-info li.select'), function each(i, v) {
+            $.each($('li.select', this.selectors.widgets), function each(i, v) {
                 var uuid = $(v).text();
 
                 if (page.items.hasOwnProperty(uuid)) {

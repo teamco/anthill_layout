@@ -29,6 +29,8 @@ define([
             this.debugger.page.debugger = this.debugger;
             this.debugger.tabs.debugger = this.debugger;
             this.debugger.widget.debugger = this.debugger;
+
+            this.debugger.page.defineSelectors();
         },
 
         /**

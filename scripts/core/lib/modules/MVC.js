@@ -355,6 +355,16 @@ define([
                     callback: scope.controller.successRendered
                 }, true);
 
+                eventManager.subscribe({
+                    event: 'after.create.item',
+                    callback: scope.controller.afterCreateItem
+                }, true);
+
+                eventManager.subscribe({
+                    event: 'after.destroy.item',
+                    callback: scope.controller.afterDestroyItem
+                }, true);
+
                 this.applyGlobalListeners();
 
             } else {

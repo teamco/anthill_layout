@@ -35,7 +35,7 @@ define([
         /**
          * Destroy widget
          * @param widget
-         * @param {Boolean} silent
+         * @param {Boolean} [silent]
          */
         destroyWidget: function destroyWidget(widget, silent) {
             var scope = this.scope;
@@ -50,7 +50,7 @@ define([
          */
         destroyWidgets: function destroyWidgets() {
             $.each(this.scope.items, function each(uuid, widget) {
-                this.destroyWidgets(widget);
+                this.destroyWidget(widget);
             }.bind(this));
         },
 

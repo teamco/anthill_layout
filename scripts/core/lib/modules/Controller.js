@@ -207,6 +207,9 @@ define([
                 this.model.getUUID(item),
                 item
             );
+            this.observer.publish(
+                this.eventmanager.eventList.afterCreateItem
+            );
         },
 
         /**
@@ -256,6 +259,10 @@ define([
                 item,
                 this.model.destroyItem(item)
             );
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.afterDestroyItem
+            );
         },
 
         /**
@@ -296,6 +303,29 @@ define([
          */
         getInteraction: function getInteraction(event) {
             return this.scope.interactions[event];
+        },
+
+        afterCreateItem: function afterCreateItem() {
+            this.logger.debug('After create item');
+            this.controller.updateDebugger();
+        },
+
+        afterDestroyItem: function afterDestroyItem() {
+            this.logger.debug('After destroy item');
+            this.controller.updateDebugger();
+        },
+
+        updateDebugger: function updateDebugger() {
+            var scope = this.scope,
+                cname = scope.constructor.name.toLowerCase(),
+                debug = scope.controller.root().debugger;
+
+            if (!this.base.isDefined(debug)) {
+                return false;
+            }
+
+            debug[cname].updateItems(scope);
         }
+
     }, Base);
 });

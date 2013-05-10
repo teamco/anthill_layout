@@ -15,11 +15,9 @@ define([
     };
 
     return Controller.extend({
+
         setPageHeight: function setPageHeight() {
 //            this.view.elements.$page.defineHeight();
-        },
-        widgetLoad: function widgetLoad() {
-            this.logger.debug('Load widget');
         },
 
         /**
@@ -49,7 +47,7 @@ define([
             }
 
             widget.view.elements.$widget._downgradeLayer(51);
-
         }
+
     }, BaseController.prototype, BasePage.prototype);
 });
