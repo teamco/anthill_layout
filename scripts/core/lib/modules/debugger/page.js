@@ -44,8 +44,8 @@ define([], function defineDebuggerPage() {
                 this._renderAddWidget(),
                 this._renderRemoveWidget(),
                 this._renderRemoveWidgets(),
-                this._locateWidget(),
-                this._enableEditMode(),
+                this._renderLocateWidget(),
+                this._renderEnableEditMode(),
                 '</ul></li>'
             ].join('');
         },
@@ -82,7 +82,7 @@ define([], function defineDebuggerPage() {
          * @returns {string}
          * @private
          */
-        _locateWidget: function _locateWidget() {
+        _renderLocateWidget: function _renderLocateWidget() {
             return '<li rel="disabled" class="locate-widget disabled select" title="Locate widget">Locate widget</li>';
         },
 
@@ -91,7 +91,7 @@ define([], function defineDebuggerPage() {
          * @returns {string}
          * @private
          */
-        _enableEditMode: function _enableEditMode() {
+        _renderEnableEditMode: function _renderEnableEditMode() {
             return '<li class="edit-mode" title="Edit mode">Edit mode</li>';
         },
 
@@ -204,6 +204,7 @@ define([], function defineDebuggerPage() {
                 $('li', this.selectors.widgets).on('click.select', function select(e) {
                     var $li = $(e.target),
                         widget = page.items[$li.text()];
+
                     if ($li.hasClass('select')) {
                         page.logger.debug('Unselect', widget);
                         $li.removeClass('select');
@@ -213,6 +214,14 @@ define([], function defineDebuggerPage() {
                         $li.addClass('select');
                         this.$select.removeClass('select');
                     }
+
+                    var $select = $('li.select', this.selectors.widgets),
+                        $locate = this._getWidgetAction('locate-widget');
+
+                    $select.length === 1 ?
+                        $locate.removeClass('disabled select') :
+                        $locate.addClass('disabled select');
+
                 }.bind(this));
             }
         },
@@ -242,7 +251,8 @@ define([], function defineDebuggerPage() {
                 this._bindWidgetsList(page);
                 this._bindAddNewWidget(page);
                 this._bindRemoveWidget(page);
-                this._bindRemoveAllWidget(page);
+                this._bindRemoveAllWidgets(page);
+                this._bindLocateWidget(page);
             } else {
                 this._disablePageWidgetsEditMode($this, page);
             }
@@ -262,7 +272,8 @@ define([], function defineDebuggerPage() {
             $this.removeClass('active');
             this._unbindAddNewWidget(page);
             this._unbindRemoveWidget(page);
-            this._unbindRemoveAllWidget(page);
+            this._unbindRemoveAllWidgets(page);
+            this._unbindLocateWidget(page);
             this._unbindWidgetsList();
             this.editMode = false;
         },
@@ -296,10 +307,10 @@ define([], function defineDebuggerPage() {
          * @private
          */
         _bindRemoveWidget: function _bindRemoveWidget(page) {
-            page.logger.debug('Bind remove widget');
+            page.logger.debug('Bind remove widgets');
             this._getWidgetAction('remove-widget').on('click.remove', function remove(e) {
                 if ($('li.select', this.selectors.widgets).length === 0) {
-                    page.logger.warn('Select widget before remove');
+                    page.logger.warn('Select widgets before remove');
                     return false;
                 }
                 this._removeWidgets(page);
@@ -312,7 +323,7 @@ define([], function defineDebuggerPage() {
          * @private
          */
         _unbindRemoveWidget: function _unbindRemoveWidget(page) {
-            page.logger.debug('Unbind remove widget');
+            page.logger.debug('Unbind remove widgets');
             this._getWidgetAction('remove-widget').unbind('click.remove');
             $('li', this.selectors.widgets).removeClass('select');
         },
@@ -322,7 +333,7 @@ define([], function defineDebuggerPage() {
          * @param page
          * @private
          */
-        _bindRemoveAllWidget: function _bindRemoveAllWidget(page) {
+        _bindRemoveAllWidgets: function _bindRemoveAllWidgets(page) {
             var $lis = $('li', this.selectors.widgets),
                 $action = this._getWidgetAction('remove-widgets');
             page.logger.debug('Bind remove all widgets');
@@ -345,10 +356,54 @@ define([], function defineDebuggerPage() {
          * @param {*} page
          * @private
          */
-        _unbindRemoveAllWidget: function _unbindRemoveAllWidget(page) {
-            page.logger.debug('Unbind remove widget');
+        _unbindRemoveAllWidgets: function _unbindRemoveAllWidgets(page) {
+            page.logger.debug('Unbind remove all widgets');
             this._getWidgetAction('remove-widgets').unbind('click.remove');
             $('li', this.selectors.widgets).removeClass('select');
+        },
+
+        /**
+         * Bind locate widget
+         * @param page
+         * @private
+         */
+        _bindLocateWidget: function _bindLocateWidget(page) {
+            page.logger.debug('Bind locate widget');
+
+            this._getWidgetAction('locate-widget').on('click.locate', function locate(e) {
+                this._locateWidget(page);
+            }.bind(this));
+        },
+
+        /**
+         * Unbind remove all widgets
+         * @param {*} page
+         * @private
+         */
+        _unbindLocateWidget: function _unbindLocateWidget(page) {
+            page.logger.debug('Unbind locate widget');
+            this._getWidgetAction('locate-widget').unbind('click.locate');
+            $('li', this.selectors.widgets).removeClass('select');
+        },
+
+        _locateWidget: function _locateWidget(page) {
+            var $li = $('li.select', this.selectors.widgets);
+
+            if ($li.length !== 1) {
+                page.logger.warn('Select one widget before locate');
+                return false;
+            }
+
+            var uuid = $li.text(),
+                widget = page.model.getItemByUUID(uuid);
+
+            if (!this.debugger.base.isDefined(widget)) {
+                page.logger.warn('Undefined widget', uuid);
+                return false;
+            }
+
+            page.logger.warn('Locate', widget);
+
         },
 
         /**
