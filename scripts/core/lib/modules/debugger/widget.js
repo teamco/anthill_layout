@@ -23,13 +23,14 @@ define([], function defineDebuggerWidget() {
          */
         renderWidgetInfo: function renderWidgetInfo(event, ui) {
 
-            var originalPosition = ui.originalPosition || {},
+            var c = this.debugger.component,
+                originalPosition = ui.originalPosition || {},
                 originalSize = ui.originalSize || {},
                 offset = ui.offset || {},
                 position = ui.position || {},
                 helper = ui.helper || $();
 
-            var widget = this.scopes.widget,
+            var widget = this.debugger.scopes.widget,
                 widgetDOM = widget.map.getDOM(),
                 columnAllowLeft = widget.map.checkWidgetPositionColumnLeft(widgetDOM.column),
                 columnAllowRight = widget.map.checkWidgetPositionColumnRight(widgetDOM),
@@ -55,23 +56,23 @@ define([], function defineDebuggerWidget() {
             }
 
             return [
-                this.renderInline('UUID', this.scopes.widget.config.uuid),
-                this.renderInline('On', (event.type + '').toUpperCase()),
+                c.renderInline('UUID', this.debugger.scopes.widget.config.uuid),
+                c.renderInline('On', (event.type + '').toUpperCase()),
                 '<li><table>',
-                this.renderTableRow('Location', 'Left', 'Top', true),
-                this.renderTableRow('Offset', Number(offset.left).toFixed(3), Number(offset.top).toFixed(3), false),
-                this.renderTableRow('Original position', Number(originalPosition.left).toFixed(3), Number(originalPosition.top).toFixed(3), false),
-                this.renderTableRow('Position', Number(position.left).toFixed(3), Number(position.top).toFixed(3), false),
-                this.renderTableRow('Dimensions', 'Width', 'Height', true),
-                this.renderTableRow('Original size', originalSize.width, originalSize.height, false),
-                this.renderTableRow('Size', helper.width(), helper.height(), false),
-                this.renderTableRow('Grid', 'Column', 'Row', true),
-                this.renderTableRow('Position', widgetDOM.column, widgetDOM.row, false),
-                this.renderTableRow('Relative dimensions', widgetDOM.relWidth, widgetDOM.relHeight, false),
-                this.renderTableRow('Position', 'Column', 'Row', true),
-                this.renderTableRow('Allowed', getAllowedColumn(), getAllowedRow(), false),
+                c.renderTableRow('Location', 'Left', 'Top', true),
+                c.renderTableRow('Offset', Number(offset.left).toFixed(3), Number(offset.top).toFixed(3), false),
+                c.renderTableRow('Original position', Number(originalPosition.left).toFixed(3), Number(originalPosition.top).toFixed(3), false),
+                c.renderTableRow('Position', Number(position.left).toFixed(3), Number(position.top).toFixed(3), false),
+                c.renderTableRow('Dimensions', 'Width', 'Height', true),
+                c.renderTableRow('Original size', originalSize.width, originalSize.height, false),
+                c.renderTableRow('Size', helper.width(), helper.height(), false),
+                c.renderTableRow('Grid', 'Column', 'Row', true),
+                c.renderTableRow('Position', widgetDOM.column, widgetDOM.row, false),
+                c.renderTableRow('Relative dimensions', widgetDOM.relWidth, widgetDOM.relHeight, false),
+                c.renderTableRow('Position', 'Column', 'Row', true),
+                c.renderTableRow('Allowed', getAllowedColumn(), getAllowedRow(), false),
                 '</li></table>',
-                this.renderInline('Timestamp', event.timeStamp)
+                c.renderInline('Timestamp', event.timeStamp)
             ].join('')
         },
 
@@ -82,7 +83,7 @@ define([], function defineDebuggerWidget() {
          * @param {{originalPosition, offset, position, helper}} ui
          */
         updateWidgetInfo: function updateWidgetInfo(widget, event, ui) {
-            this.scopes.widget = widget;
+            this.debugger.scopes.widget = widget;
             $('.widget-info ul').empty().append(this.renderWidgetInfo(event, ui));
         }
 

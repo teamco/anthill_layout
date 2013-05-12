@@ -174,7 +174,7 @@ define([
             callback: function debugInteractionsCallback() {
                 var debug = this.controller.root().debugger;
                 if (this.base.isDefined(debug)) {
-                    debug.updateWidgetInfo.apply(debug, arguments);
+                    debug.widget.updateWidgetInfo.apply(debug.widget, arguments);
                 }
             }
         }

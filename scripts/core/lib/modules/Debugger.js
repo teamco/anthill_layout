@@ -108,36 +108,36 @@ define([
                         '</ul>',
                         '<div class="debug-container">',
 
-//                    this.renderBlock('Widget', [
-//                        this.renderWidgetInfo(event, ui)
-//                    ], false),
+                        this.component.renderBlock('Widget', [
+                            this.widget.renderWidgetInfo(event, ui)
+                        ], false),
 
                         this.component.renderBlock('Page', [
                             this.component.renderInline('UUID', page.config.uuid),
-//                        this.renderPageLayout(layout),
+                            this.layout.renderPageLayout(layout),
                             this.page.renderPageWidgets(page)
                         ], false),
 
-//                    this.renderBlock('Workspace', [
-//                        this.renderInline('UUID', workspace.config.uuid),
-//                        this.renderInlineOf('Pages', workspace)
-//                    ], false),
+                        this.component.renderBlock('Workspace', [
+                            this.component.renderInline('UUID', workspace.config.uuid),
+                            this.component.renderInlineOf('Pages', workspace)
+                        ], false),
 
-//                    this.renderBlock('Application', [
-//                        this.renderInline('UUID', this.scope.config.uuid),
-//                        this.renderInlineOf('Workspaces', this.scope),
-//                        this.renderInline('Mode', this.scope.config.mode)
-//                    ], false),
+                        this.component.renderBlock('Application', [
+                            this.component.renderInline('UUID', this.scope.config.uuid),
+                            this.component.renderInlineOf('Workspaces', this.scope),
+                            this.component.renderInline('Mode', this.scope.config.mode)
+                        ], false),
 
-//                    this.renderBlock('Logger', [
-//                        this.renderInline('Namespaces', logger.namespaces),
-//                        this.renderInput('Show', logger.show),
-//                        this.renderInput('console.debug', logger.type.debug),
-//                        this.renderInput('console.log', logger.type.log),
-//                        this.renderInput('console.info', logger.type.info),
-//                        this.renderInput('console.error', logger.type.error),
-//                        this.renderInput('console.warn', logger.type.warn)
-//                    ], false),
+                        this.component.renderBlock('Logger', [
+                            this.component.renderInline('Namespaces', logger.namespaces),
+                            this.component.renderInput('Show', logger.show),
+                            this.component.renderInput('console.debug', logger.type.debug),
+                            this.component.renderInput('console.log', logger.type.log),
+                            this.component.renderInput('console.info', logger.type.info),
+                            this.component.renderInput('console.error', logger.type.error),
+                            this.component.renderInput('console.warn', logger.type.warn)
+                        ], false),
 
                         '</div><div class="debug-close">Hide</div>'
 

@@ -61,20 +61,21 @@ define([], function defineDebuggerLayout() {
          * @returns {string}
          */
         renderPageLayout: function renderPageLayout(layout) {
-            return ['<li class="extend">', this.renderBlock('Layout', [
-                this.renderInput('Snap to Grid', layout.controller.isSnap2Grid()),
-                this.renderInput('Overlapping', layout.controller.getBehavior().overlapping),
-                this.renderCombo(
+            var c = this.debugger.component;
+            return ['<li class="extend">', c.renderBlock('Layout', [
+                c.renderInput('Snap to Grid', layout.controller.isSnap2Grid()),
+                c.renderInput('Overlapping', layout.controller.getBehavior().overlapping),
+                c.renderCombo(
                     'Overlapping mode',
                     layout.controller.getBehavior().organize,
                     ['row', 'column']
                 ),
-                this.renderInline('Empty spaces', layout.controller.getBehavior().emptySpaces),
-                this.renderInline('Columns', layout.config.grid.columns),
-                this.renderInline('Widgets per row', layout.config.grid.widgetsPerRow),
-                this.renderInline('Cell size (px)', layout.config.grid.minCellWidth.toFixed(3)),
-                this.renderInline('Margin (px)', layout.config.grid.margin),
-                this.renderInline('Padding (px)', layout.config.grid.padding)
+                c.renderInline('Empty spaces', layout.controller.getBehavior().emptySpaces),
+                c.renderInline('Columns', layout.config.grid.columns),
+                c.renderInline('Widgets per row', layout.config.grid.widgetsPerRow),
+                c.renderInline('Cell size (px)', layout.config.grid.minCellWidth.toFixed(3)),
+                c.renderInline('Margin (px)', layout.config.grid.margin),
+                c.renderInline('Padding (px)', layout.config.grid.padding)
             ], false), '</li>'].join('');
         }
 

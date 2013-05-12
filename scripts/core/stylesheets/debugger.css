@@ -296,7 +296,6 @@
 
 #debug-mode table {
     width: 100%;
-    margin-top: -13px;
 }
 
 #debug-mode th {
@@ -452,15 +451,14 @@
 #debug-mode ul.page-widget-actions li.remove-widgets {
     background-position-y: -193px;
     background-position-x: -33px;
-    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+    background-image: url('smoothness/images/ui-icons_222222_256x240.png');
 }
 
 #debug-mode ul.page-widget-actions li.remove-widgets:hover {
     background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.remove-widgets.disabled,
-#debug-mode ul.page-widget-actions li.remove-widgets.select {
+#debug-mode ul.page-widget-actions li.remove-widgets.disabled {
     background-image: url('smoothness/images/ui-icons_888888_256x240.png');
 }
 

@@ -65,7 +65,7 @@ define([], function defineDebuggerPage() {
          * @private
          */
         _renderRemoveWidget: function _renderRemoveWidget() {
-            return '<li rel="disabled" class="remove-widget disabled select" title="Remove widget">Remove widget</li>';
+            return '<li rel="disabled" class="remove-widget disabled select" title="Remove widgets">Remove widgets</li>';
         },
 
         /**
@@ -74,7 +74,7 @@ define([], function defineDebuggerPage() {
          * @private
          */
         _renderRemoveWidgets: function _renderRemoveWidgets() {
-            return '<li rel="disabled" class="remove-widgets disabled select" title="Remove widgets">Remove widgets</li>';
+            return '<li rel="disabled" class="remove-widgets disabled" title="Remove all widgets">Remove all widgets</li>';
         },
 
         /**
@@ -242,6 +242,7 @@ define([], function defineDebuggerPage() {
                 this._bindWidgetsList(page);
                 this._bindAddNewWidget(page);
                 this._bindRemoveWidget(page);
+                this._bindRemoveAllWidget(page);
             } else {
                 this._disablePageWidgetsEditMode($this, page);
             }
@@ -261,6 +262,7 @@ define([], function defineDebuggerPage() {
             $this.removeClass('active');
             this._unbindAddNewWidget(page);
             this._unbindRemoveWidget(page);
+            this._unbindRemoveAllWidget(page);
             this._unbindWidgetsList();
             this.editMode = false;
         },
@@ -273,7 +275,8 @@ define([], function defineDebuggerPage() {
         _bindAddNewWidget: function _bindAddNewWidget(page) {
             page.logger.debug('Bind edit mode');
             this._getWidgetAction('add-widget').on('click.add', function (e) {
-                page.api.createWidget([], true)
+                page.api.createWidget([], true);
+                this._getWidgetAction('remove-widgets').removeClass('disabled');
             }.bind(this));
         },
 
@@ -315,6 +318,40 @@ define([], function defineDebuggerPage() {
         },
 
         /**
+         * Bind remove all widgets
+         * @param page
+         * @private
+         */
+        _bindRemoveAllWidget: function _bindRemoveAllWidget(page) {
+            var $lis = $('li', this.selectors.widgets),
+                $action = this._getWidgetAction('remove-widgets');
+            page.logger.debug('Bind remove all widgets');
+
+            if ($lis.length === 0) {
+                $action.addClass('disabled');
+            }
+
+            $action.on('click.remove', function remove(e) {
+                if ($lis.length === 0) {
+                    page.logger.warn('Add widgets before remove');
+                    return false;
+                }
+                this._removeAllWidgets(page);
+            }.bind(this));
+        },
+
+        /**
+         * Unbind remove all widgets
+         * @param {*} page
+         * @private
+         */
+        _unbindRemoveAllWidget: function _unbindRemoveAllWidget(page) {
+            page.logger.debug('Unbind remove widget');
+            this._getWidgetAction('remove-widgets').unbind('click.remove');
+            $('li', this.selectors.widgets).removeClass('select');
+        },
+
+        /**
          * Remove widgets
          * @param {*} page
          * @private
@@ -329,7 +366,18 @@ define([], function defineDebuggerPage() {
             page.logger.debug('Start remove widgets', items);
             page.api.destroyWidgets(items);
 
-        }
+        },
 
+        /**
+         * Remove widgets
+         * @param {*} page
+         * @private
+         */
+        _removeAllWidgets: function _removeAllWidgets(page) {
+            $('li', this.selectors.widgets).addClass('select');
+            this._getWidgetAction('remove-widgets').addClass('disabled');
+            page.logger.debug('Start remove all widgets');
+            this._removeWidgets(page);
+        }
     });
 });
