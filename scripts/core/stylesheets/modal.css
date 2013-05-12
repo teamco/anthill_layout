@@ -105,3 +105,9 @@
     padding-top: 1px;
     padding-left: 4px;
 }
+
+.modal-dialog div.html ul {
+    list-style: circle inside;
+    margin-top: 10px;
+}
+

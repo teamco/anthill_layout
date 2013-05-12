@@ -232,34 +232,59 @@ define([
          * @param items
          */
         approveItemsDestroy: function approveItemsDestroy(items) {
-            $.each(items || {}, function each(uuid, item){
-                this.approveItemDestroy(item);
+            var scope = this.scope,
+                $modal = scope.view.elements.$modal;
+
+            if (this.base.isDefined($modal)) {
+                items = $modal.items;
+                $modal.selfDestroy();
+            }
+
+            var count = this.base.lib.hash.hashLength(items || {});
+
+            if (this.checkCondition({
+                condition: count === 0,
+                type: 'warn',
+                msg: 'Undefined items'
+            })) {
+                return false;
+            }
+
+            $.each(items, function each(uuid, item) {
+                this.approveItemDestroy(item, count);
             }.bind(this));
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.afterDestroyItems
+            );
+
         },
 
         /**
          * Approve to destroy item
          * @param {*} item
+         * @param {Number} [count]
          * @returns {boolean}
          */
-        approveItemDestroy: function approveItemDestroy(item) {
+        approveItemDestroy: function approveItemDestroy(item, count) {
             var base = this.base,
-                scope = this.scope,
-                $modal = scope.view.elements.$modal;
+                scope = this.scope;
 
-            if (!(base.isDefined(item) &&
-                item.constructor.name === this.model.item.name)) {
-
-                if (base.isDefined($modal)) {
-                    item = $modal.item;
-                    $modal.selfDestroy();
-                }
-            }
+            count = base.define(count, 1, true);
 
             if (this.checkCondition({
                 condition: !base.isDefined(item),
                 type: 'warn',
                 msg: 'Undefined item'
+            })) {
+                return false;
+            }
+
+            if (this.checkCondition({
+                condition: item.constructor.name !== this.model.item.name,
+                type: 'warn',
+                msg: 'Untrusted item',
+                args: [item, item.constructor.name, this.model.item.name]
             })) {
                 return false;
             }
@@ -270,20 +295,11 @@ define([
                 this.model.destroyItem(item)
             );
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.afterDestroyItem
-            );
-        },
-
-        /**
-         * Destroy Item
-         * @param {Object} item
-         * @param {Boolean} [silent]
-         */
-        destroyItem: function destroyItem(item, silent) {
-            this.base.defineBoolean(silent, false, true) ?
-                this.controller.approveItemDestroy(item) :
-                this.view.destroyWidgetModalDialog(item);
+            if (count === 1) {
+                scope.observer.publish(
+                    scope.eventmanager.eventList.afterDestroyItem
+                );
+            }
         },
 
         /**
@@ -333,6 +349,14 @@ define([
          */
         afterDestroyItem: function afterDestroyItem() {
             this.logger.debug('After destroy item');
+            this.controller.updateDebugger();
+        },
+
+        /**
+         * After destroy item event
+         */
+        afterDestroyItems: function afterDestroyItems() {
+            this.logger.debug('After destroy items');
             this.controller.updateDebugger();
         },
 

@@ -56,15 +56,17 @@ define([
             this.modalDialog(Modal, {
                 style: this.scope.constructor.name.toLowerCase() + '-modal',
                 $container: this.elements.$page.$,
-                item: widgets,
+                items: widgets,
                 type: 'warning',
                 title: 'Remove widgets',
                 html: [
                     'Are you sure want to destroy widgets:',
+                    '<ul>',
                     $.map(widgets, function map(i, uuid) {
-                        return uuid;
-                    }).join('<br />')
-                ].join('<br />'),
+                        return '<li>' + uuid + '</li>';
+                    }).join(''),
+                    '</ul>'
+                ].join(''),
                 cover: true,
                 autoclose: true,
                 buttons: {
@@ -82,6 +84,7 @@ define([
                     }
                 }
             });
+
         },
 
         /**

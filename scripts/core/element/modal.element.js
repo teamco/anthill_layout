@@ -55,7 +55,7 @@ define([
          *      [coverOpacity]: Number
          *      $container,
          *      [css],
-         *      [item],
+         *      [items],
          *      [buttons]
          * }} opts
          */
@@ -87,9 +87,9 @@ define([
 
             /**
              * Set modal item dependency (called from)
-             * @type {$modal.item}
+             * @type {$modal.items}
              */
-            this.item = opts.item;
+            this.items = opts.items;
 
             /**
              * Set modal style
@@ -102,6 +102,12 @@ define([
              * @type {$modal.css}
              */
             this.css = opts.css || {};
+
+            /**
+             * Set hover opacity
+             * @type {$modal.hover: Boolean}
+             */
+            this.hover = this.base.defineBoolean(opts.hover, true, true);
 
             /**
              * Set modal opacity hover out
@@ -186,6 +192,7 @@ define([
             this.setHeader();
             this.setHTML();
             this.setText();
+            this.setHover();
 
             this.setPosition({
                 $container: this.$container,
@@ -262,7 +269,7 @@ define([
         setHTML: function setHTML() {
             var $html = this._getHTML();
             this.base.isDefined(this.html) ?
-                $html.html(this.html) :
+                $html.append(this.html) :
                 $html.hide();
         },
 
@@ -319,6 +326,32 @@ define([
          */
         _getHeader: function _getHeader() {
             return this.$.find('h2');
+        },
+
+        /**
+         * Set opacity on hover
+         */
+        setHover: function setHover() {
+            if (this.hover) {
+                this.$.hover(
+                    function on() {
+                        this.$.css('opacity', this.opacityOn);
+                    }.bind(this),
+                    function Off() {
+                        this.$.css('opacity', this.opacityOff);
+                    }.bind(this)
+                );
+
+                this.$.css('opacity', this.opacityOn);
+            }
+        },
+
+        /**
+         * Unset hover
+         */
+        unsetHover: function unsetHover() {
+            this.$.unbind('mouseenter mouseleave').
+                css('opacity', 1);
         },
 
         /**

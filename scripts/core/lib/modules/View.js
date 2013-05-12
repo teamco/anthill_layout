@@ -69,7 +69,7 @@ define([
          *      [opacityOn]: Number,
          *      [title]: String,
          *      [type]: String ('info', 'success', 'warning', 'error'),
-         *      [position]: String ('0/00/000', '1/11/111'. '2/22/222'),
+         *      [position]: String ('tl/tc/tr', 'cl/cc/cr'. 'bl/bc/br'),
          *      [html]: String,
          *      [text]: String,
          *      [draggable]: Boolean,
@@ -77,7 +77,7 @@ define([
          *      [coverOpacity]: Number
          *      $container,
          *      [css],
-         *      [item],
+         *      [items],
          *      [buttons]
          * }} opts
          */
@@ -96,7 +96,7 @@ define([
                 html: opts.html,
                 text: opts.text,
                 draggable: opts.draggable,
-                item: opts.item,
+                items: opts.items,
                 position: opts.position,
                 buttons: opts.buttons
             });

@@ -365,6 +365,11 @@ define([
                     callback: scope.controller.afterDestroyItem
                 }, true);
 
+                eventManager.subscribe({
+                    event: 'after.destroy.items',
+                    callback: scope.controller.afterDestroyItems
+                }, true);
+
                 this.applyGlobalListeners();
 
             } else {
