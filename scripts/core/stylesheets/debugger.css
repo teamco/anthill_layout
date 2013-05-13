@@ -172,12 +172,8 @@
     margin: 0;
 }
 
-#debug-mode fieldset ul {
-    display: none;
-}
-
-#debug-mode fieldset:first-child,
-#debug-mode fieldset:first-child ul {
+#debug-mode > fieldset:first-child,
+#debug-mode > fieldset:first-child ul {
     display: block;
 }
 

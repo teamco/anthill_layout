@@ -109,9 +109,9 @@ define([
                         '</ul>',
                         '<div class="debug-container">',
 
-//                        c.renderBlock('Widget', [
-//                            this.widget.renderWidgetInfo(event, ui)
-//                        ], false),
+                        c.renderBlock('Widget', [
+                            this.widget.renderWidgetInfo(event, ui)
+                        ], false),
 
                         c.renderBlock('Page', [
                             c.renderInline('UUID', page.config.uuid),
@@ -119,26 +119,26 @@ define([
                             this.page.renderPageWidgets(page)
                         ], false),
 
-//                        c.renderBlock('Workspace', [
-//                            c.renderInline('UUID', workspace.config.uuid),
-//                            c.renderInlineOf('Pages', workspace)
-//                        ], false),
-//
-//                        c.renderBlock('Application', [
-//                            c.renderInline('UUID', this.scope.config.uuid),
-//                            c.renderInlineOf('Workspaces', this.scope),
-//                            c.renderInline('Mode', this.scope.config.mode)
-//                        ], false),
-//
-//                        c.renderBlock('Logger', [
-//                            c.renderInline('Namespaces', logger.namespaces),
-//                            c.renderInput('Show', logger.show),
-//                            c.renderInput('console.debug', logger.type.debug),
-//                            c.renderInput('console.log', logger.type.log),
-//                            c.renderInput('console.info', logger.type.info),
-//                            c.renderInput('console.error', logger.type.error),
-//                            c.renderInput('console.warn', logger.type.warn)
-//                        ], false),
+                        c.renderBlock('Workspace', [
+                            c.renderInline('UUID', workspace.config.uuid),
+                            c.renderInlineOf('Pages', workspace)
+                        ], false),
+
+                        c.renderBlock('Application', [
+                            c.renderInline('UUID', this.scope.config.uuid),
+                            c.renderInlineOf('Workspaces', this.scope),
+                            c.renderInline('Mode', this.scope.config.mode)
+                        ], false),
+
+                        c.renderBlock('Logger', [
+                            c.renderInline('Namespaces', logger.namespaces),
+                            c.renderInput('Show', logger.show),
+                            c.renderInput('console.debug', logger.type.debug),
+                            c.renderInput('console.log', logger.type.log),
+                            c.renderInput('console.info', logger.type.info),
+                            c.renderInput('console.error', logger.type.error),
+                            c.renderInput('console.warn', logger.type.warn)
+                        ], false),
 
                         '</div><div class="debug-close">Hide</div>'
 

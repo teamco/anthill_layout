@@ -44,7 +44,7 @@ define([], function defineDebuggerTabs() {
 
             $div.find('div > fieldset').hide();
             $info.find('fieldset').show();
-            $info.show().find('ul').stop().slideDown(500);
+            $info.show().children('ul').stop().slideDown(500);
             $div.find('ul.info-tabs li').removeClass('this');
             $tab.addClass('this');
         },
