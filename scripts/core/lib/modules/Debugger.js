@@ -95,7 +95,8 @@ define([
                 var workspace = this.scopes.workspace,
                     page = this.scopes.page,
                     layout = page.layout,
-                    logger = this.scope.config.logger;
+                    logger = this.scope.config.logger,
+                    c = this.component;
 
                 event = this.base.define(event, {}, true);
                 ui = this.base.define(ui, {}, true);
@@ -103,41 +104,41 @@ define([
                 $div.html(
                     [
                         '<ul class="handler">',
-                        this.component.renderInput('Show Grid', false),
-                        this.component.renderInput('Expand the Content', false),
+                        c.renderInput('Show Grid', false),
+                        c.renderInput('Expand the Content', false),
                         '</ul>',
                         '<div class="debug-container">',
 
-                        this.component.renderBlock('Widget', [
-                            this.widget.renderWidgetInfo(event, ui)
-                        ], false),
+//                        c.renderBlock('Widget', [
+//                            this.widget.renderWidgetInfo(event, ui)
+//                        ], false),
 
-                        this.component.renderBlock('Page', [
-                            this.component.renderInline('UUID', page.config.uuid),
+                        c.renderBlock('Page', [
+                            c.renderInline('UUID', page.config.uuid),
                             this.layout.renderPageLayout(layout),
                             this.page.renderPageWidgets(page)
                         ], false),
 
-                        this.component.renderBlock('Workspace', [
-                            this.component.renderInline('UUID', workspace.config.uuid),
-                            this.component.renderInlineOf('Pages', workspace)
-                        ], false),
-
-                        this.component.renderBlock('Application', [
-                            this.component.renderInline('UUID', this.scope.config.uuid),
-                            this.component.renderInlineOf('Workspaces', this.scope),
-                            this.component.renderInline('Mode', this.scope.config.mode)
-                        ], false),
-
-                        this.component.renderBlock('Logger', [
-                            this.component.renderInline('Namespaces', logger.namespaces),
-                            this.component.renderInput('Show', logger.show),
-                            this.component.renderInput('console.debug', logger.type.debug),
-                            this.component.renderInput('console.log', logger.type.log),
-                            this.component.renderInput('console.info', logger.type.info),
-                            this.component.renderInput('console.error', logger.type.error),
-                            this.component.renderInput('console.warn', logger.type.warn)
-                        ], false),
+//                        c.renderBlock('Workspace', [
+//                            c.renderInline('UUID', workspace.config.uuid),
+//                            c.renderInlineOf('Pages', workspace)
+//                        ], false),
+//
+//                        c.renderBlock('Application', [
+//                            c.renderInline('UUID', this.scope.config.uuid),
+//                            c.renderInlineOf('Workspaces', this.scope),
+//                            c.renderInline('Mode', this.scope.config.mode)
+//                        ], false),
+//
+//                        c.renderBlock('Logger', [
+//                            c.renderInline('Namespaces', logger.namespaces),
+//                            c.renderInput('Show', logger.show),
+//                            c.renderInput('console.debug', logger.type.debug),
+//                            c.renderInput('console.log', logger.type.log),
+//                            c.renderInput('console.info', logger.type.info),
+//                            c.renderInput('console.error', logger.type.error),
+//                            c.renderInput('console.warn', logger.type.warn)
+//                        ], false),
 
                         '</div><div class="debug-close">Hide</div>'
 
@@ -147,9 +148,9 @@ define([
                 this.tabs.renderTabs($div);
                 this.tabs.bindHover(opacityOff);
 
-                this.component.bindCollapse();
-                this.component.bindShowHideAll();
-                this.component.bindDebugClose();
+                c.bindCollapse();
+                c.bindShowHideAll();
+                c.bindDebugClose();
 
                 this.layout.bindToggleGrid();
                 this.layout.bindChangeOverlappingMode();

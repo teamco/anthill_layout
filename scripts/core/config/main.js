@@ -2,7 +2,7 @@ requirejs.config({
     baseUrl: 'scripts/core',
     paths: {
         config: 'config',
-        jqueryui: 'lib/jquery/jquery-ui-1.10.2.custom.min',
+        jqueryui: 'lib/jquery/jquery-ui-1.10.3.custom.min',
         application: 'application',
         api: 'api',
         controller: 'controller',
