@@ -20,6 +20,23 @@ define([
     };
 
     return Controller.extend({
+
+        /**
+         * Before nested organizer
+         */
+        beforeNestedOrganizer: function beforeNestedOrganizer() {
+            this.controller.getParent().controller.banAddWidget();
+            this.logger.debug('Before nested organizer');
+        },
+
+        /**
+         * After nested organizer
+         */
+        afterNestedOrganizer: function afterNestedOrganizer() {
+            this.controller.getParent().controller.allowAddWidget();
+            this.logger.debug('After nested organizer');
+        },
+
         /**
          * Update cell size on resize container
          * @returns {*}
@@ -30,6 +47,7 @@ define([
                 return this.controller.minCellWidth();
 //            }
         },
+
         /**
          * Calculate cell size
          * @returns {Number}
@@ -61,6 +79,7 @@ define([
 
             return config.minCellWidth;
         },
+
         /**
          * Get grid width
          * @returns {number}
@@ -110,6 +129,7 @@ define([
         getBehaviorMode: function getBehaviorMode() {
             return this.scope.config.mode;
         },
+
         /**
          * Check if mode is Snap to Grid
          * @returns {boolean}
@@ -117,6 +137,7 @@ define([
         isSnap2Grid: function isSnap2Grid() {
             return this.getBehaviorMode() === this.getParent().LAYOUT_MODES.snap2grid;
         },
+
         /**
          * Check if mode is Free Style
          * @returns {boolean}
@@ -124,6 +145,7 @@ define([
         isFreeStyle: function isFreeStyle() {
             return this.getBehaviorMode() === this.getParent().LAYOUT_MODES.freeStyle;
         },
+
         /**
          * Get layout behavior mode
          * @returns {*}
@@ -131,6 +153,7 @@ define([
         getBehavior: function getBehavior() {
             return this.scope.config.behavior[this.getBehaviorMode()];
         },
+
         /**
          * Set behavior organize mode
          * @param {String} mode
@@ -143,6 +166,7 @@ define([
             );
             this.getBehavior().organize = mode;
         },
+
         /**
          * Set behavior overlapping
          * @param {boolean} overlapping

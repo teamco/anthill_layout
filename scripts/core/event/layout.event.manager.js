@@ -12,7 +12,9 @@ define([
     var EventManager = function EventManager() {
         this.events = {};
         this.eventList = {
-            updateMinCellWidth: 'update.min.cell.width'
+            updateMinCellWidth: 'update.min.cell.width',
+            beforeNestedOrganizer: 'before.nested.organizer',
+            afterNestedOrganizer: 'after.nested.organizer'
         };
     };
 

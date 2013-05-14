@@ -16,6 +16,31 @@ define([
 
     return Controller.extend({
 
+        /**
+         * Check if allowed to add widget to page
+         */
+        isAllowAddWidget: function isAllowAddWidget() {
+            var allow = this.model.getConfig('widget').allowToAdd;
+            this.scope.logger.debug('Is allowed to add widget?', allow);
+            return allow;
+        },
+
+        /**
+         * Allow to add widget to page
+         */
+        allowAddWidget: function allowAddWidget() {
+            this.scope.logger.debug('Allow to add widget');
+            this.model.getConfig('widget').allowToAdd = true;
+        },
+
+        /**
+         * Do not allow to add widget to page
+         */
+        banAddWidget: function banAddWidget() {
+            this.scope.logger.debug('Do not allow to add widget');
+            this.model.getConfig('widget').allowToAdd = false;
+        },
+
         setPageHeight: function setPageHeight() {
 //            this.view.elements.$page.defineHeight();
         },

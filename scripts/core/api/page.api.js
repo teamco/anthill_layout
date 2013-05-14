@@ -29,6 +29,14 @@ define([
          * @returns {*}
          */
         createWidget: function createWidget(args, render) {
+            var scope = this.scope;
+            if (!scope.controller.isAllowAddWidget()) {
+                scope.logger.warn('Do not allowed to add widget', arguments);
+                return false;
+            }
+
+            scope.layout.observer.publish(scope.layout.eventmanager.eventList.beforeNestedOrganizer);
+
             return this._createItem(Widget, args, render);
         },
 

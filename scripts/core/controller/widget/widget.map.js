@@ -316,6 +316,9 @@ define([
             if (this.self.overlappingOnStop(this.type, this.behavior)) {
                 widget.model.save();
                 hash[widget.model.getUUID()] = widget;
+
+                this.layout.observer.publish(this.layout.eventmanager.eventList.beforeNestedOrganizer);
+
                 this.layout.overlapping.nestedOrganizer({
                     targets: hash,
                     callback: this.callback

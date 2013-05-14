@@ -26,16 +26,16 @@ define([
             opts.targets = base.define(opts.targets, {}, true);
 
             if (!this.layout.config.behavior.snap2grid.overlapping) {
-                this.layout.logger.info('Overlapping is allowed');
+                this.layout.logger.debug('Overlapping is allowed');
                 return this._nestedOrganizerCallback(opts.callback);
             }
 
             if (base.lib.hash.isHashEmpty(opts.targets)) {
-                this.layout.logger.info('Empty targets');
+                this.layout.logger.debug('Empty targets');
                 return this._nestedOrganizerCallback(opts.callback);
             }
 
-            this.layout.logger.info('Starting nested organizer');
+            this.layout.logger.debug('Starting nested organizer');
             this.nestedOrganizer({
                 targets: this._nestedOrganizerCore(opts.targets),
                 callback: opts.callback
@@ -138,6 +138,7 @@ define([
 
             if (this.save) {
                 layout.logger.debug('Finish nested organizer');
+                layout.observer.publish(layout.eventmanager.eventList.afterNestedOrganizer);
             }
 
         },
