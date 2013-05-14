@@ -4,7 +4,7 @@
     max-height: 70%;
     min-height: 100px;
     background-color: #fff;
-    position: absolute;
+    position: fixed;
     z-index: 1000;
     border-radius: 5px;
     box-shadow: 1px 1px 1px #333;
@@ -36,6 +36,12 @@
 
 .modal-dialog.success h2.header {
     background-color: #32cd32;
+}
+
+.modal-dialog .content {
+    max-height: 400px;
+    overflow: auto;
+    margin-bottom: 5px;
 }
 
 .modal-dialog p.text,
