@@ -394,12 +394,12 @@
     list-style: none;
 }
 
-#debug-mode ul.page-widget-actions {
+#debug-mode ul.actions {
     height: 20px;
     clear: both;
 }
 
-#debug-mode ul.page-widget-actions li {
+#debug-mode ul.actions li {
     padding: 0;
     width: 14px;
     height: 14px;
@@ -410,70 +410,70 @@
     margin: 0 5px 0 0;
 }
 
-#debug-mode ul.page-widget-actions li:hover {
+#debug-mode ul.actions li:hover {
     border: none;
     background-color: transparent;
 }
 
-#debug-mode ul.page-widget-actions li.add-widget {
+#debug-mode ul.actions li.add-item {
     background-position-y: -193px;
     background-position-x: -1px;
     background-image: url('smoothness/images/ui-icons_222222_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.add-widget:hover {
+#debug-mode ul.actions li.add-item:hover {
     background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.add-widget.disabled {
+#debug-mode ul.actions li.add-item.disabled {
     background-image: url('smoothness/images/ui-icons_888888_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.remove-widget {
+#debug-mode ul.actions li.remove-item {
     background-position-y: -193px;
     background-position-x: -17px;
     background-image: url('smoothness/images/ui-icons_222222_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.remove-widget:hover {
+#debug-mode ul.actions li.remove-item:hover {
     background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.remove-widget.disabled,
-#debug-mode ul.page-widget-actions li.remove-widget.select {
+#debug-mode ul.actions li.remove-item.disabled,
+#debug-mode ul.actions li.remove-item.select {
     background-image: url('smoothness/images/ui-icons_888888_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.remove-widgets {
+#debug-mode ul.actions li.remove-items {
     background-position-y: -193px;
     background-position-x: -33px;
     background-image: url('smoothness/images/ui-icons_222222_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.remove-widgets:hover {
+#debug-mode ul.actions li.remove-items:hover {
     background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.remove-widgets.disabled {
+#debug-mode ul.actions li.remove-items.disabled {
     background-image: url('smoothness/images/ui-icons_888888_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.locate-widget {
+#debug-mode ul.actions li.locate-item {
     background-position-y: -193px;
     background-position-x: -193px;
     background-image: url('smoothness/images/ui-icons_222222_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.locate-widget:hover {
+#debug-mode ul.actions li.locate-item:hover {
     background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.locate-widget.disabled,
-#debug-mode ul.page-widget-actions li.locate-widget.select {
+#debug-mode ul.actions li.locate-item.disabled,
+#debug-mode ul.actions li.locate-item.select {
     background-image: url('smoothness/images/ui-icons_888888_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.edit-mode {
+#debug-mode ul.actions li.edit-mode {
     background-position-y: -193px;
     background-position-x: -209px;
     float: right;
@@ -481,15 +481,15 @@
     background-image: url('smoothness/images/ui-icons_888888_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.edit-mode:hover {
+#debug-mode ul.actions li.edit-mode:hover {
     background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.edit-mode.active,
-#debug-mode ul.page-widget-actions li.edit-mode.active:hover {
+#debug-mode ul.actions li.edit-mode.active,
+#debug-mode ul.actions li.edit-mode.active:hover {
     background-image: url('smoothness/images/ui-icons_cd0a0a_256x240.png');
 }
 
-#debug-mode ul.page-widget-actions li.edit-mode.disabled {
+#debug-mode ul.actions li.edit-mode.disabled {
     background-image: url('smoothness/images/ui-icons_888888_256x240.png');
 }

@@ -9,38 +9,30 @@ define([
 
     /**
      * Define Debugger Config
+     * @param {*} debug
      * @constructor
      */
-    var Config = function Config() {
+    var Config = function Config(debug) {
+
+        /**
+         * Define debugger
+         * @type {*}
+         */
+        this.debugger = debug;
+
+        this.defineScope();
+
     };
 
     return Config.extend({
 
         /**
-         * Define debugger relations
-         * @param debug
-         */
-        defineDebugger: function defineDebugger(debug) {
-            this.debugger = debug;
-
-            this.debugger.component.debugger = this.debugger;
-            this.debugger.grid.debugger = this.debugger;
-            this.debugger.layout.debugger = this.debugger;
-            this.debugger.page.debugger = this.debugger;
-            this.debugger.tabs.debugger = this.debugger;
-            this.debugger.widget.debugger = this.debugger;
-        },
-
-        /**
          * Define scope
-         * @param {*} debug
          * @returns {*}
          */
-        defineScope: function defineScope(debug) {
-            var scope = debug.scope,
+        defineScope: function defineScope() {
+            var scope = this.debugger.scope,
                 item = scope.model.getItemNamespace();
-
-            this.defineDebugger(debug);
 
             while (item !== 'object') {
                 scope = this.setScope(scope, item);

@@ -8,9 +8,16 @@ define([], function defineDebuggerComponent() {
 
     /**
      * Define Debugger Component
+     * @param {*} debug
      * @constructor
      */
-    var Component = function Component() {
+    var Component = function Component(debug) {
+
+        /**
+         * Define debugger
+         * @type {*}
+         */
+        this.debugger = debug;
     };
 
     return Component.extend({
@@ -80,13 +87,13 @@ define([], function defineDebuggerComponent() {
 
         /**
          * Render inline action element
-         * @param {{rel: String, style: String, title: String}} opts
+         * @param {{rel: String, [style]: String, title: String}} opts
          * @returns {string}
          */
         renderInlineAction: function renderInlineAction(opts) {
             return [
                 '<li rel="', opts.rel,
-                '" class="', opts.style,
+                '" class="', [opts.title.toClassName(), opts.style || ''].join(' '),
                 '" title="', opts.title, '">', opts.title, '</li>'
             ].join('');
         },

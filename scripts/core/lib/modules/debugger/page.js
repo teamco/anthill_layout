@@ -11,21 +11,36 @@ define([
 
     /**
      * Define Debugger Page
+     * @param {*} debug
      * @constructor
      */
-    var Page = function Page() {
+    var Page = function Page(debug) {
 
+        /**
+         * Define debugger
+         * @type {*}
+         */
+        this.debugger = debug;
         /**
          * Define edit mode
          * @type {page.editMode: Boolean}
          */
         this.editMode = false;
+
         this.actions = [
             'add-item',
             'remove-items',
             'remove-all-items',
             'locate-item'
         ];
+
+        this.extendSelectors({
+            edit: 'li.edit-mode',
+            actions: 'ul.page-widget-actions',
+            widgets: 'ul.widgets-info',
+            count: 'li.items-count'
+        });
+
     };
 
     return Page.extend({
@@ -442,5 +457,6 @@ define([
             page.logger.debug('Start remove all widgets');
             this._removeWidgets(page);
         }
+
     }, Actions.prototype);
 });

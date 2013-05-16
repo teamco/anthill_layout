@@ -8,9 +8,16 @@ define([], function defineDebuggerTabs() {
 
     /**
      * Define Debugger Tabs
+     * @param {*} debug
      * @constructor
      */
-    var Tabs = function Tabs() {
+    var Tabs = function Tabs(debug) {
+
+        /**
+         * Define debugger
+         * @type {*}
+         */
+        this.debugger = debug;
     };
 
     return Tabs.extend({

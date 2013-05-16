@@ -8,9 +8,17 @@ define([], function defineDebuggerLayout() {
 
     /**
      * Define Debugger Layout
+     * @param {*} debug
      * @constructor
      */
-    var Layout = function Layout() {
+    var Layout = function Layout(debug) {
+
+        /**
+         * Define debugger
+         * @type {*}
+         */
+        this.debugger = debug;
+
     };
 
     return Layout.extend({

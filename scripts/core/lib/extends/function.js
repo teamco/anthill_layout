@@ -1,4 +1,13 @@
+/**
+ * Created with JetBrains RubyMine.
+ * User: i061485
+ * Date: 5/16/13
+ * Time: 2:54 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
 (function addFunctionMethods() {
+
     (function bindFunction() {
         if (!Function.prototype.bind) {
             /**
@@ -40,13 +49,13 @@
         }
         return false;
     }());
-    // http://www.crockford.com/javascript/inheritance.html
+// http://www.crockford.com/javascript/inheritance.html
 
-    // First, the method method, which adds an instance method to a class.
-    // This adds a public method to the Function.prototype, so all functions get it by
-    // Class Augmentation.
-    // It takes a name and a function, and adds them to a function's prototype object.
-    // It returns this.
+// First, the method method, which adds an instance method to a class.
+// This adds a public method to the Function.prototype, so all functions get it by
+// Class Augmentation.
+// It takes a name and a function, and adds them to a function's prototype object.
+// It returns this.
 
     /**
      * Function add Method
@@ -59,20 +68,20 @@
         return this;
     };
 
-    // Next comes the inherits method, which indicates that one class inherits from another.
-    // It should be called after both classes are defined, but before the inheriting class's
-    // methods are added.
-    // Again, we augment Function. We make an instance of the parent class and use it as the
-    // new prototype. We also correct the constructor field, and we add the uber method to
-    // the prototype as well.
-    // The uber method looks for the named method in its own prototype. This is the function
-    // to invoke in the case of Parasitic Inheritance or Object Augmentation.
-    // If we are doing Classical Inheritance, then we need to find the function in the
-    // parent's prototype.
-    // The return statement uses the function's apply method to invoke the function,
-    // explicitly setting this and passing an array of parameters. The parameters (if any)
-    // are obtained from the arguments array. Unfortunately, the arguments array is not a
-    // true array, so we have to use apply again to invoke the array slice method.
+// Next comes the inherits method, which indicates that one class inherits from another.
+// It should be called after both classes are defined, but before the inheriting class's
+// methods are added.
+// Again, we augment Function. We make an instance of the parent class and use it as the
+// new prototype. We also correct the constructor field, and we add the uber method to
+// the prototype as well.
+// The uber method looks for the named method in its own prototype. This is the function
+// to invoke in the case of Parasitic Inheritance or Object Augmentation.
+// If we are doing Classical Inheritance, then we need to find the function in the
+// parent's prototype.
+// The return statement uses the function's apply method to invoke the function,
+// explicitly setting this and passing an array of parameters. The parameters (if any)
+// are obtained from the arguments array. Unfortunately, the arguments array is not a
+// true array, so we have to use apply again to invoke the array slice method.
 
     Function.method('inherits', function inherits(Parent) {
         var d = {},
@@ -102,8 +111,8 @@
         return this;
     });
 
-    // The swiss method loops through the arguments. For each name, it copies a
-    // member from the parent's prototype to the new class's prototype.
+// The swiss method loops through the arguments. For each name, it copies a
+// member from the parent's prototype to the new class's prototype.
     Function.method('swiss', function swiss(Parent) {
         var i, l = arguments.length;
         for (i = 1; i < l; i += 1) {
@@ -166,49 +175,5 @@
 
         return this;
     });
-
-    /**
-     * String to CamelCase by dot separator
-     * @member {Function} String
-     * @returns {String}
-     */
-    String.prototype.toCamel = function toCamel() {
-        return this.replace(/(\.[a-z])/g,function ($1) {
-            return $1.toUpperCase().replace(/\./, '');
-        }).replace(/(-[a-z])/g, function ($1) {
-                return $1.toUpperCase().replace(/-/, '');
-            });
-    };
-
-    /**
-     * String from CamelCase to point separator
-     * @member {Function} String
-     * @returns {String}
-     */
-    String.prototype.toPoint = function toPoint() {
-        return this.replace(/([A-Z])/g, function ($1) {
-            return "." + $1.toLowerCase();
-        });
-    };
-
-    /**
-     * String from CamelCase to underscore separator
-     * @returns {string}
-     */
-    String.prototype.toUnderscore = function toUnderscore() {
-        return this.replace(/([A-Z])/g, function ($1) {
-            return "_" + $1.toLowerCase();
-        });
-    };
-
-    /**
-     * String from CamelCase to dash separator
-     * @returns {string}
-     */
-    String.prototype.toDash = function toDash() {
-        return this.replace(/([A-Z])/g, function ($1) {
-            return "-" + $1.toLowerCase();
-        });
-    };
 
 }());

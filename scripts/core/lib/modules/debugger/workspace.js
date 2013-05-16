@@ -9,9 +9,16 @@ define([], function defineDebuggerWorkspace() {
 
     /**
      * Define Debugger Workspace
+     * @param {*} debug
      * @constructor
      */
-    var Workspace = function Workspace() {
+    var Workspace = function Workspace(debug) {
+
+        /**
+         * Define debugger
+         * @type {*}
+         */
+        this.debugger = debug;
 
         /**
          * Define edit mode

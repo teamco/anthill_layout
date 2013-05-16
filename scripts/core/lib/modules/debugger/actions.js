@@ -18,26 +18,38 @@ define([], function defineDebuggerActions() {
     return Actions.extend({
 
         /**
+         * Extend debugger selectors
+         * @param {*} opts
+         */
+        extendSelectors: function extendSelectors(opts) {
+            this.selectors = {};
+            $.each(opts || {}, function each(i, selector) {
+                this.selectors[i] = [this.debugger.info, selector].join(' ');
+            }.bind(this));
+
+        },
+
+        /**
          * Render page items actions
          * @returns {string}
          */
         renderItemsActions: function renderItemsActions() {
             return [
                 '<li class="extend"><ul class="actions">',
-                this._getItemsAction(),
-//                this._renderAddItem(),
-//                this._renderRemoveItem(),
-//                this._renderRemoveItems(),
-//                this._renderLocateItem(),
+                this._renderActions(),
                 this._renderEnableEditMode(),
                 '</ul></li>'
             ].join('');
         },
 
-        _getItemsAction: function _getItemsAction() {
+        _renderActions: function _renderActions() {
             var html = [];
             $.each(this.actions, function each(i, action) {
-                html.push(this['_' + action.toCamel()]());
+                var fn = this['_' + action.toCamel()];
+                console.log(fn)
+                if (this.debugger.base.isFunction(fn)) {
+                    html.push(fn.bind(this)());
+                }
             }.bind(this));
             return html.join('');
         },
@@ -50,7 +62,7 @@ define([], function defineDebuggerActions() {
         _addItem: function _addItem() {
             return this.debugger.component.renderInlineAction({
                 rel: 'disabled',
-                style: 'add-item disabled',
+                style: 'disabled',
                 title: 'Add item'
             });
         },
@@ -61,7 +73,11 @@ define([], function defineDebuggerActions() {
          * @private
          */
         _removeItem: function _renderRemoveItem() {
-            return '<li rel="disabled" class="remove-item disabled select" title="Remove items">Remove items</li>';
+            return this.debugger.component.renderInlineAction({
+                rel: 'disabled',
+                style: 'disabled select',
+                title: 'Remove items'
+            });
         },
 
         /**
@@ -70,7 +86,11 @@ define([], function defineDebuggerActions() {
          * @private
          */
         _renderRemoveItems: function _renderRemoveItems() {
-            return '<li rel="disabled" class="remove-items disabled" title="Remove all items">Remove all items</li>';
+            return this.debugger.component.renderInlineAction({
+                rel: 'disabled',
+                style: 'disabled select',
+                title: 'Remove all items'
+            });
         },
 
         /**
@@ -79,7 +99,11 @@ define([], function defineDebuggerActions() {
          * @private
          */
         _renderLocateItem: function _renderLocateItem() {
-            return '<li rel="disabled" class="locate-item disabled select" title="Locate item">Locate item</li>';
+            return this.debugger.component.renderInlineAction({
+                rel: 'disabled',
+                style: 'disabled select',
+                title: 'Locate item'
+            });
         },
 
         /**
@@ -88,7 +112,10 @@ define([], function defineDebuggerActions() {
          * @private
          */
         _renderEnableEditMode: function _renderEnableEditMode() {
-            return '<li class="edit-mode" title="Edit mode">Edit mode</li>';
+            return this.debugger.component.renderInlineAction({
+                rel: 'disabled',
+                title: 'Edit mode'
+            });
         },
 
         /**
@@ -379,26 +406,26 @@ define([], function defineDebuggerActions() {
         _unbindLocateItem: function _unbindLocateItem(page) {
             page.logger.debug('Unbind locate item');
             this._getItemAction('locate-item').unbind('click.locate');
-            $('li', this.selectors.items).removeClass('select');
+//            $('li', this.selectors.items).removeClass('select');
         },
 
         _locateItem: function _locateItem(page) {
-            var $li = $('li.select', this.selectors.items);
-
-            if ($li.length !== 1) {
-                page.logger.warn('Select one item before locate');
-                return false;
-            }
-
-            var uuid = $li.text(),
-                item = page.model.getItemByUUID(uuid);
-
-            if (!this.debugger.base.isDefined(item)) {
-                page.logger.warn('Undefined item', uuid);
-                return false;
-            }
-
-            page.logger.warn('Locate', item);
+//            var $li = $('li.select', this.selectors.items);
+//
+//            if ($li.length !== 1) {
+//                page.logger.warn('Select one item before locate');
+//                return false;
+//            }
+//
+//            var uuid = $li.text(),
+//                item = page.model.getItemByUUID(uuid);
+//
+//            if (!this.debugger.base.isDefined(item)) {
+//                page.logger.warn('Undefined item', uuid);
+//                return false;
+//            }
+//
+//            page.logger.warn('Locate', item);
 
         },
 
@@ -409,13 +436,13 @@ define([], function defineDebuggerActions() {
          */
         _removeItems: function _removeItems(page) {
             var items = {};
-            $.each($('li.select', this.selectors.items), function each(i, v) {
-                var uuid = $(v).text();
-                items[uuid] = page.model.getItemByUUID(uuid);
-            });
-
-            page.logger.debug('Start remove items', items);
-            page.api.destroyItems(items);
+//            $.each($('li.select', this.selectors.items), function each(i, v) {
+//                var uuid = $(v).text();
+//                items[uuid] = page.model.getItemByUUID(uuid);
+//            });
+//
+//            page.logger.debug('Start remove items', items);
+//            page.api.destroyItems(items);
 
         },
 
@@ -425,10 +452,10 @@ define([], function defineDebuggerActions() {
          * @private
          */
         _removeAllItems: function _removeAllItems(page) {
-            $('li', this.selectors.items).addClass('select');
-            this._getItemAction('remove-items').addClass('disabled');
-            page.logger.debug('Start remove all items');
-            this._removeItems(page);
+//            $('li', this.selectors.items).addClass('select');
+//            this._getItemAction('remove-items').addClass('disabled');
+//            page.logger.debug('Start remove all items');
+//            this._removeItems(page);
         }
     });
 });
