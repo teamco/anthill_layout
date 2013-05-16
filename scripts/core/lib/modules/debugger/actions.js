@@ -18,31 +18,28 @@ define([], function defineDebuggerActions() {
     return Actions.extend({
 
         /**
-         * Define selectors
-         */
-        defineSelectors: function defineSelectors(item) {
-            this.selectors = {
-                edit: this.debugger.info + ' li.edit-mode',
-                actions: this.debugger.info + ' ul.' + item + '-actions',
-                items: this.debugger.info + ' ul.' + item + '-info',
-                count: this.debugger.info + ' li.items-count'
-            };
-        },
-
-        /**
          * Render page items actions
          * @returns {string}
          */
-        renderPageItemsActions: function renderPageItemsActions(item) {
+        renderItemsActions: function renderItemsActions() {
             return [
-                '<li class="extend"><ul class="'+item+'-actions">',
-                this._renderAddItem(),
-                this._renderRemoveItem(),
-                this._renderRemoveItems(),
-                this._renderLocateItem(),
+                '<li class="extend"><ul class="actions">',
+                this._getItemsAction(),
+//                this._renderAddItem(),
+//                this._renderRemoveItem(),
+//                this._renderRemoveItems(),
+//                this._renderLocateItem(),
                 this._renderEnableEditMode(),
                 '</ul></li>'
             ].join('');
+        },
+
+        _getItemsAction: function _getItemsAction() {
+            var html = [];
+            $.each(this.actions, function each(i, action) {
+                html.push(this['_' + action.toCamel()]());
+            }.bind(this));
+            return html.join('');
         },
 
         /**
@@ -50,8 +47,12 @@ define([], function defineDebuggerActions() {
          * @returns {string}
          * @private
          */
-        _renderAddItem: function _renderAddItem() {
-            return '<li rel="disabled" class="add-item disabled" title="Add item">Add item</li>';
+        _addItem: function _addItem() {
+            return this.debugger.component.renderInlineAction({
+                rel: 'disabled',
+                style: 'add-item disabled',
+                title: 'Add item'
+            });
         },
 
         /**
@@ -59,7 +60,7 @@ define([], function defineDebuggerActions() {
          * @returns {string}
          * @private
          */
-        _renderRemoveItem: function _renderRemoveItem() {
+        _removeItem: function _renderRemoveItem() {
             return '<li rel="disabled" class="remove-item disabled select" title="Remove items">Remove items</li>';
         },
 

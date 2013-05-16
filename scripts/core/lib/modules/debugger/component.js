@@ -79,7 +79,19 @@ define([], function defineDebuggerComponent() {
         },
 
         /**
-         * Render inline element of element
+         * Render inline action element
+         * @param {{rel: String, style: String, title: String}} opts
+         * @returns {string}
+         */
+        renderInlineAction: function renderInlineAction(opts) {
+            return [
+                '<li rel="', opts.rel,
+                '" class="', opts.style,
+                '" title="', opts.title, '">', opts.title, '</li>'
+            ].join('');
+        },
+        /**
+         * Render inline element: count of elements
          * @param {String} text
          * @param {*} item
          * @returns {string}

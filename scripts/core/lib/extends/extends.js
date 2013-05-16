@@ -170,13 +170,14 @@
     /**
      * String to CamelCase by dot separator
      * @member {Function} String
-     * @param {String} (separator)
      * @returns {String}
      */
-    String.prototype.toCamel = function toCamel(separator) {
-        return this.replace(/(\.[a-z])/g, function ($1) {
-            return $1.toUpperCase().replace(separator || '.', '');
-        });
+    String.prototype.toCamel = function toCamel() {
+        return this.replace(/(\.[a-z])/g,function ($1) {
+            return $1.toUpperCase().replace(/\./, '');
+        }).replace(/(-[a-z])/g, function ($1) {
+                return $1.toUpperCase().replace(/-/, '');
+            });
     };
 
     /**

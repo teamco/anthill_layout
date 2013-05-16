@@ -5,7 +5,9 @@
  * Time: 9:03 PM
  */
 
-define([], function defineDebuggerPage() {
+define([
+    'modules/debugger/actions'
+], function defineDebuggerPage(Actions) {
 
     /**
      * Define Debugger Page
@@ -18,82 +20,88 @@ define([], function defineDebuggerPage() {
          * @type {page.editMode: Boolean}
          */
         this.editMode = false;
+        this.actions = [
+            'add-item',
+            'remove-items',
+            'remove-all-items',
+            'locate-item'
+        ];
     };
 
     return Page.extend({
 
-        /**
-         * Define selectors
-         */
-        defineSelectors: function defineSelectors() {
-            this.selectors = {
-                edit: this.debugger.info + ' li.edit-mode',
-                actions: this.debugger.info + ' ul.page-widget-actions',
-                widgets: this.debugger.info + ' ul.widgets-info',
-                count: this.debugger.info + ' li.items-count'
-            };
-        },
+//        /**
+//         * Define selectors
+//         */
+//        defineSelectors: function defineSelectors() {
+//            this.selectors = {
+//                edit: this.debugger.info + ' li.edit-mode',
+//                actions: this.debugger.info + ' ul.page-widget-actions',
+//                widgets: this.debugger.info + ' ul.widgets-info',
+//                count: this.debugger.info + ' li.items-count'
+//            };
+//        },
+//
+//        /**
+//         * Render page widgets actions
+//         * @returns {string}
+//         */
+//        renderPageWidgetsActions: function renderPageWidgetsActions() {
+//            return [
+//                '<li class="extend"><ul class="page-widget-actions">',
+//                this._renderAddWidget(),
+//                this._renderRemoveWidget(),
+//                this._renderRemoveWidgets(),
+//                this._renderLocateWidget(),
+//                this._renderEnableEditMode(),
+//                '</ul></li>'
+//            ].join('');
+//        },
 
-        /**
-         * Render page widgets actions
-         * @returns {string}
-         */
-        renderPageWidgetsActions: function renderPageWidgetsActions() {
-            return [
-                '<li class="extend"><ul class="page-widget-actions">',
-                this._renderAddWidget(),
-                this._renderRemoveWidget(),
-                this._renderRemoveWidgets(),
-                this._renderLocateWidget(),
-                this._renderEnableEditMode(),
-                '</ul></li>'
-            ].join('');
-        },
-
-        /**
-         * Render add new widget button
-         * @returns {string}
-         * @private
-         */
-        _renderAddWidget: function _renderAddWidget() {
-            return '<li rel="disabled" class="add-widget disabled" title="Add widget">Add widget</li>';
-        },
-
-        /**
-         * Render remove widget button
-         * @returns {string}
-         * @private
-         */
-        _renderRemoveWidget: function _renderRemoveWidget() {
-            return '<li rel="disabled" class="remove-widget disabled select" title="Remove widgets">Remove widgets</li>';
-        },
-
-        /**
-         * Render remove widgets button
-         * @returns {string}
-         * @private
-         */
-        _renderRemoveWidgets: function _renderRemoveWidgets() {
-            return '<li rel="disabled" class="remove-widgets disabled" title="Remove all widgets">Remove all widgets</li>';
-        },
-
-        /**
-         * Render locate widget button
-         * @returns {string}
-         * @private
-         */
-        _renderLocateWidget: function _renderLocateWidget() {
-            return '<li rel="disabled" class="locate-widget disabled select" title="Locate widget">Locate widget</li>';
-        },
-
-        /**
-         * Render enable edit mode
-         * @returns {string}
-         * @private
-         */
-        _renderEnableEditMode: function _renderEnableEditMode() {
-            return '<li class="edit-mode" title="Edit mode">Edit mode</li>';
-        },
+//        /**
+//         * Render add new widget button
+//         * @returns {string}
+//         * @private
+//         */
+//        _renderAddWidget: function _renderAddWidget() {
+//            return '<li rel="disabled" class="add-widget disabled" title="Add widget">Add widget</li>';
+//        },
+//
+//        /**
+//         * Render remove widget button
+//         * @returns {string}
+//         * @private
+//         */
+//        _renderRemoveWidget: function _renderRemoveWidget() {
+//            return '<li rel="disabled" class="remove-widget disabled select" title="Remove widgets">Remove widgets</li>';
+//        },
+//
+//        /**
+//         * Render remove widgets button
+//         * @returns {string}
+//         * @private
+//         */
+//        _renderRemoveWidgets: function _renderRemoveWidgets() {
+//            return '<li rel="disabled" class="remove-widgets disabled" title="Remove all widgets">Remove all widgets</li>';
+//        },
+//
+//        /**
+//         * Render locate widget button
+//         * @returns {string}
+//         * @private
+//         */
+//        _renderLocateWidget: function _renderLocateWidget() {
+//            return '<li rel="disabled" class="locate-widget disabled select" title="Locate widget">Locate widget</li>';
+//        },
+//
+//        /**
+//         * Render enable edit mode
+//         * @returns {string}
+//         * @private
+//         */
+//        _renderEnableEditMode: function _renderEnableEditMode() {
+//            return '<li class="edit-mode" title="Edit mode">Edit mode</li>';
+//        },
 
         /**
          * Render page widgets info
@@ -104,7 +112,7 @@ define([], function defineDebuggerPage() {
             return [
                 '<li class="extend">',
                 this.debugger.component.renderBlock('Widgets', [
-                    this.renderPageWidgetsActions(),
+                    this.renderItemsActions(),
                     this._getItemsCount(page),
                     this.renderPageWidgetsList(page)
                 ], true),
@@ -434,5 +442,5 @@ define([], function defineDebuggerPage() {
             page.logger.debug('Start remove all widgets');
             this._removeWidgets(page);
         }
-    });
+    }, Actions.prototype);
 });
