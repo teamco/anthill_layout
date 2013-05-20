@@ -1,8 +1,8 @@
 /**
  * A class to parse color values
  * @author Stoyan Stefanov <sstoo@gmail.com>
- * @link   http://www.phpied.com/rgb-color-parser-in-javascript/
- * @license Use it if you like it
+ * link:   http://www.phpied.com/rgb-color-parser-in-javascript/
+ * license: Use it if you like it
  */
 define([], function defineRGB() {
     var RGBColor = function RGBColor(color_string) {

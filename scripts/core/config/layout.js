@@ -17,6 +17,7 @@ define([
     /**
      * Define Layout
      * @class Layout
+     * @extends {Base}
      * @mixin MVC
      */
 
@@ -48,7 +49,7 @@ define([
 
         /**
          * Define MVC
-         * @type {layout.mvc}
+         * @type {MVC}
          */
         this.mvc = new MVC({
             scope: this,
@@ -62,7 +63,7 @@ define([
 
         /**
          * Define overlapping
-         * @type {layout.overlapping}
+         * @type {Overlapping}
          */
         this.overlapping = new Overlapping(this);
 

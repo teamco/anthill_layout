@@ -12,6 +12,8 @@ define([
 ], function defineWidgetDrag(Interactions) {
     /**
      * Define Widget Drag
+     * @class Draggable
+     * @mixin {Interactions}
      * @param scope
      * @constructor
      */

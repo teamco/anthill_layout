@@ -14,6 +14,9 @@ define([
 
         /**
          * Define Template API
+         * @class API
+         * @extends {Base}
+         * @mixin {BaseAPI}
          * @constructor
          */
         var API = function API() {

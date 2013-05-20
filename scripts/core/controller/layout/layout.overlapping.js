@@ -9,6 +9,13 @@ define([
     'modules/base'
 ], function defineLayoutOverlapping(Base) {
 
+    /**
+     * Define Overlapping
+     * @class Overlapping
+     * @extends {Base}
+     * @param layout
+     * @constructor
+     */
     var Overlapping = function Overlapping(layout) {
         this.layout = layout;
     };

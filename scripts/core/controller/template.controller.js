@@ -9,6 +9,13 @@ define([
     'modules/controller',
     'controller/workspace.controller'
 ], function defineTemplateController(BaseController, BaseWorkspace) {
+
+    /**
+     * Define template controller
+     * @class Controller
+     * @mixin {BaseController, BaseWorkspace}
+     * @constructor
+     */
     var Controller = function Controller() {
     };
 

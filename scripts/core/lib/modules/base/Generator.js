@@ -6,13 +6,20 @@
  * To change this template use File | Settings | File Templates.
  */
 define(['modules/base'], function defineBaseGenerator(Base) {
+
+    /**
+     * Define generators
+     * @class BaseGenerator
+     * @extends {Base}
+     * @constructor
+     */
     var BaseGenerator = function BaseGenerator() {
     };
 
     BaseGenerator.extend({
         /**
          * Generate UUID
-         * @description "http://www.ietf.org/rfc/rfc4122.txt"
+         * RFC4122 Description "http://www.ietf.org/rfc/rfc4122.txt"
          * @param {String} [uuid]
          * @returns {String}
          */

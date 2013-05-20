@@ -9,6 +9,13 @@ define([
     'permission/application.permission'
 ], function defineApp(Base, API, MVC, Controller, Model, View, EventManager, Permission) {
 
+    /**
+     * Define App
+     * @class App
+     * @extends {Base}
+     * @param {{}} opts
+     * @constructor
+     */
     var App = function App(opts) {
 
         /**
@@ -53,19 +60,19 @@ define([
 
         /**
          * Define items
-         * @type {app.items}
+         * @type {*}
          */
         this.items = {};
 
         /**
          * Define workspace
-         * @type {app.workspace}
+         * @type {Workspace}
          */
         this.workspace = {};
 
         /**
          * Define MVC
-         * @type {app.mvc}
+         * @type {MVC}
          */
         this.mvc = new MVC({
             scope: this,

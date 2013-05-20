@@ -2,10 +2,17 @@ define([
     'modules/base'
 ], function defineSetting(Base) {
 
+    /**
+     * Define Setting
+     * @class Setting
+     * @extends {Base}
+     * @param mode
+     * @constructor
+     */
     var Setting = function Setting(mode) {
         /**
          * Define setting mode
-         * @type {setting.mode}
+         * @type {String}
          */
         this.mode = mode;
 

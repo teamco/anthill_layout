@@ -18,17 +18,19 @@ define([
     'controller/widget/widget.map',
     'controller/widget/widget.wireframe'
 ], function defineWidget(Base, MVC, API, Controller, Model, View, EventManager, Permission, Map, Wireframe) {
+
     /**
      * Define Widget
+     * @class Widget
+     * @extends {Base}
      * @param opts {object}
      * @constructor
      */
-
     var Widget = function Widget(opts) {
 
         /**
          * Define dom
-         * @type {widget.dom}
+         * @type {*}
          */
         this.dom = {};
 
@@ -104,7 +106,7 @@ define([
 
         /**
          * Define MVC
-         * @type {widget.mvc}
+         * @type {MVC}
          */
         this.mvc = new MVC({
             scope: this,
@@ -122,19 +124,19 @@ define([
 
         /**
          * Define map
-         * @type {widget.map}
+         * @type {Map}
          */
         this.map = new Map(this);
 
         /**
          * Define wireframe
-         * @type {widget.wireframe}
+         * @type {Wireframe}
          */
         this.wireframe = new Wireframe(this);
 
         /**
          * Define interactions: Drag/Resize
-         * @type {widget.interactions}
+         * @type {{Draggable, Resizable}}
          */
         this.interactions = {};
 

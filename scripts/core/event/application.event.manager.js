@@ -9,8 +9,30 @@
 define([
     'modules/event'
 ], function defineAppEventManager(Event) {
+
+    /**
+     * @class EventManager
+     * @type {Object}
+     */
     var EventManager = function EventManager() {
+
+        /**
+         * Define events
+         * @type {{}}
+         */
         this.events = {};
+
+        /**
+         * Define event list
+         * @type {{
+         *      resizeWindow: {eventName: string, params: {buffer: number}},
+         *      createWorkspace: string,
+         *      destroyWorkspace: string,
+         *      destroyWorkspaces: string,
+         *      debugStart: string,
+         *      debugEnd: string
+         * }}
+         */
         this.eventList = {
             resizeWindow: {
                 eventName: 'resize.window',
@@ -24,10 +46,6 @@ define([
         };
     };
 
-    /**
-     * @class EventManager
-     * @type {Object}
-     */
     return EventManager.extend({
     }, Event.prototype);
 });

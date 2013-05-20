@@ -19,27 +19,28 @@ define([
 ], function definePage(Base, MVC, API, Controller, Model, View, EventManager, Layout, Template) {
     /**
      * Define Page
+     * @class Page
+     * @extends Base
      * @param opts
      * @constructor
      */
-
     var Page = function Page(opts) {
 
         /**
          * Define items
-         * @type {page.items}
+         * @type {*}
          */
         this.items = {};
 
         /**
          * Define widget
-         * @type {page.widget}
+         * @type {*|Widget}
          */
         this.widget = {};
 
         /**
          * Define maximized widget
-         * @type {page.maximized}
+         * @type {*|Widget}
          */
         this.maximized = {};
 
@@ -115,7 +116,7 @@ define([
 
         /**
          * Define MVC
-         * @type {page.mvc}
+         * @type {MVC}
          */
         this.mvc = new MVC({
             scope: this,

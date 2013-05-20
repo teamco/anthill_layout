@@ -8,6 +8,13 @@
 define([
     'modules/controller'
 ], function defineApplicationController(BaseController) {
+
+    /**
+     * Define application controller
+     * @class Controller
+     * @mixin {BaseController}
+     * @constructor
+     */
     var Controller = function Controller() {
     };
 

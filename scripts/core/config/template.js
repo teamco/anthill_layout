@@ -24,6 +24,14 @@ define([
     'event/template.event.manager'
 ], function defineTemplate(Base, MVC, API, Layout, Controller, Model, View, EventManager) {
 
+    /**
+     * Define template
+     * @class Template
+     * @extends {Base}
+     * @param opts
+     * @param page
+     * @constructor
+     */
     var Template = function Template(opts, page) {
 
         opts = this.base.define(opts, {}, true);
@@ -38,7 +46,7 @@ define([
 
         /**
          * Define MVC
-         * @type {template.mvc}
+         * @type {MVC}
          */
         this.mvc = new MVC({
             scope: this,
@@ -55,13 +63,13 @@ define([
 
         /**
          * Define page
-         * @type {template.page}
+         * @type {*|Page}
          */
         this.page = {};
 
         /**
          * Define items
-         * @type {template.items}
+         * @type {*}
          */
         this.items = {};
 

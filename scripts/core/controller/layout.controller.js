@@ -13,6 +13,8 @@ define([
 
     /**
      * Define layout controller
+     * @class Controller
+     * @mixin {BaseController}
      * @constructor
      */
     var Controller = function Controller() {

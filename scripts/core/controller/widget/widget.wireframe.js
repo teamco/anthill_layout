@@ -11,6 +11,8 @@ define([
 
     /**
      * Define Widget Wireframe
+     * @class Wireframe
+     * @extends {Base}
      * @param {*} widget
      * @constructor
      */

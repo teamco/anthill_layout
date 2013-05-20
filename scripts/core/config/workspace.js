@@ -10,10 +10,11 @@ define([
 
     /**
      * Define Workspace
+     * @class Workspace
+     * @extends {Base}
      * @param opts
      * @constructor
      */
-
     var Workspace = function Workspace(opts) {
 
         /**
@@ -47,7 +48,7 @@ define([
 
         /**
          * Define MVC
-         * @type {workspace.mvc}
+         * @type {MVC}
          */
         this.mvc = new MVC({
             scope: this,
@@ -63,13 +64,13 @@ define([
 
         /**
          * Define page
-         * @type {workspace.page}
+         * @type {*|Page}
          */
         this.page = {};
 
         /**
          * Define items
-         * @type {workspace.items}
+         * @type {*}
          */
         this.items = {};
 

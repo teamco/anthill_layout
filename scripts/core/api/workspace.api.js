@@ -13,6 +13,9 @@ define([
 
     /**
      * Define Workspace API
+     * @class API
+     * @extends {Base}
+     * @mixin {BaseAPI}
      * @constructor
      */
     var API = function API() {

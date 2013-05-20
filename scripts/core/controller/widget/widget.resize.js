@@ -10,6 +10,14 @@ define([
     'modules/interactions',
     'jqueryui'
 ], function defineWidgetResize(Interactions) {
+
+    /**
+     * Define Resize
+     * @class Resizable
+     * @mixin {Interactions}
+     * @param scope
+     * @constructor
+     */
     var Resizable = function Resizable(scope) {
         this.scope = scope;
         this.$scope = scope.view.elements.$widget.$;

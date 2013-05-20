@@ -10,6 +10,13 @@ define([
     'modules/controller',
     'modules/page'
 ], function definePageController(BaseController, BasePage) {
+
+    /**
+     * Define page controller
+     * @class Controller
+     * @mixin {BaseController, BasePage}
+     * @constructor
+     */
     var Controller = function Controller() {
 
     };

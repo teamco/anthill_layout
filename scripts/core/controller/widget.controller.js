@@ -11,6 +11,13 @@ define([
     'controller/widget/widget.drag',
     'controller/widget/widget.resize'
 ], function defineWidgetController(BaseController, Drag, Resize) {
+
+    /**
+     * Define widget controller
+     * @class Controller
+     * @mixin {BaseController}
+     * @constructor
+     */
     var Controller = function Controller() {
     };
 

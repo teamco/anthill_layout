@@ -12,6 +12,9 @@ define([
 
     /**
      * Define Widget API
+     * @class API
+     * @extends {Base}
+     * @mixin {BaseAPI}
      * @constructor
      */
     var API = function API() {

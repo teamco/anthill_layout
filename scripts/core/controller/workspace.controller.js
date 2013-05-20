@@ -8,10 +8,21 @@
 define([
     'modules/controller'
 ], function defineWorkspaceController(BaseController) {
+
+    /**
+     * Define workspace controller
+     * @class Controller
+     * @mixin {BaseController}
+     * @constructor
+     */
     var Controller = function Controller() {
     };
 
     return Controller.extend({
+
+        /**
+         * Set page height
+         */
         setPageContainerHeight: function setPageContainerHeight() {
             this.view.elements.$pages.defineHeight();
         }

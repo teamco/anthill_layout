@@ -13,14 +13,9 @@ define([
 ], function defineMVC(Base, Observer, Logger) {
 
     /**
-     * @property
-     * @name base
-     * @member MVC
-     */
-
-    /**
      * Define MVC
      * @class MVC
+     * @extends {Base}
      * @param opts
      * @constructor
      */
@@ -28,7 +23,9 @@ define([
 
         /**
          * Define local base
-         * @type {*}
+         * @type {Base}
+         * @property
+         * @member MVC
          */
 
         var base = this.base;
@@ -71,6 +68,10 @@ define([
             }
         };
 
+        /**
+         * Define opts
+         * @type {*}
+         */
         opts = base.define(opts, {}, true);
 
         /**
@@ -79,9 +80,17 @@ define([
          */
         this.scope = opts.scope;
 
-        // Apply Configure
+        /**
+         * Apply Configure
+         * Define selfConfig
+         * @type {*}
+         */
         var selfConfig = base.define(opts.config[0], {}, true),
-            selfDefaults = base.define(opts.config[1], {}, true);
+            /**
+             * Define selfDefaults
+             * @type {*}
+             */
+                selfDefaults = base.define(opts.config[1], {}, true);
 
         /**
          * Define scope config
@@ -184,7 +193,7 @@ define([
         }
     };
 
-    MVC.extend({
+    return MVC.extend({
         /**
          * Define MVC
          * @param {Function} mvc
@@ -500,5 +509,4 @@ define([
         }
     }, Base);
 
-    return MVC;
 });

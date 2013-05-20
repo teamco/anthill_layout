@@ -11,6 +11,8 @@ define([
 
     /**
      * Define Widget Map
+     * @class Map
+     * extends {Base}
      * @param {*} widget
      * @constructor
      */
