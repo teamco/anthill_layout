@@ -11,6 +11,13 @@ define([
     'modules/observer',
     'modules/logger'
 ], function defineMVC(Base, Observer, Logger) {
+
+    /**
+     * @property
+     * @name base
+     * @member MVC
+     */
+
     /**
      * Define MVC
      * @param opts
@@ -20,9 +27,8 @@ define([
 
         /**
          * Define local base
-         * @type {mvc.base}
+         * @type {*}
          */
-        this.base = this.base;
 
         var base = this.base;
 
