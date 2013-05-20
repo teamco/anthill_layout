@@ -16,6 +16,8 @@ define([
 
     /**
      * Define Layout
+     * @class Layout
+     * @mixin MVC
      */
 
     var Layout = function Layout(opts, page) {

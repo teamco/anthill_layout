@@ -20,6 +20,7 @@ define([
 
     /**
      * Define MVC
+     * @class MVC
      * @param opts
      * @constructor
      */
