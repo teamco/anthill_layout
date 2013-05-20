@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 10:14 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/base&#39;,
+    &#39;modules/observer&#39;,
+    &#39;modules/logger&#39;
+], function defineMVC(Base, Observer, Logger) {
+
+<span id='MVC-method-constructor'><span id='MVC'>    /**
+</span></span>     * Define MVC
+     * @class MVC
+     * @extends {Base}
+     * @param opts
+     * @constructor
+     */
+    var MVC = function MVC(opts) {
+
+<span id='MVC-property-base'>        /**
+</span>         * Define local base
+         * @type {Base}
+         * @property
+         * @member MVC
+         */
+
+        var base = this.base;
+
+<span id='MVC-property-RELATIONS'>        /**
+</span>         * Define MVC Relationship from -&gt; to
+         * @type {Array}
+         */
+        this.RELATIONS = [
+            [&#39;Controller&#39;, &#39;Model&#39;],
+            [&#39;View&#39;, &#39;Controller&#39;]
+        ];
+
+<span id='MVC-property-RESERVED'>        /**
+</span>         * Define reserved methods
+         * @type {{
+         *  create: {singular: Array},
+         *  destroy: {singular: Array, plural: Array}
+         * }}
+         */
+        this.RESERVED = {
+            create: {
+                singular: [
+                    &#39;Workspace&#39;,
+                    &#39;Page&#39;,
+                    &#39;Widget&#39;
+                ]
+            },
+            destroy: {
+                singular: [
+                    &#39;Workspace&#39;,
+                    &#39;Page&#39;,
+                    &#39;Widget&#39;
+                ],
+                plural: [
+                    &#39;Workspaces&#39;,
+                    &#39;Pages&#39;,
+                    &#39;Widgets&#39;
+                ]
+            }
+        };
+
+<span id='MVC-property-opts'>        /**
+</span>         * Define opts
+         * @type {*}
+         */
+        opts = base.define(opts, {}, true);
+
+<span id='MVC-property-scope'>        /**
+</span>         * Define scope
+         * @type {mvc.scope}
+         */
+        this.scope = opts.scope;
+
+<span id='MVC-property-selfConfig'>        /**
+</span>         * Apply Configure
+         * Define selfConfig
+         * @type {*}
+         */
+        var selfConfig = base.define(opts.config[0], {}, true),
+<span id='MVC-property-'>            /**
+</span>             * Define selfDefaults
+             * @type {*}
+             */
+                selfDefaults = base.define(opts.config[1], {}, true);
+
+<span id='MVC-property-config'>        /**
+</span>         * Define scope config
+         * @type {mvc.scope.config}
+         */
+        this.scope.config = base.lib.hash.extendHash(
+            selfConfig,
+            selfDefaults
+        );
+
+<span id='MVC-property-components'>        /**
+</span>         * Define mvc components
+         * @type {mvc.components}
+         */
+        this.components = base.define(opts.components, [opts.components], true);
+
+<span id='MVC-property-config'>        /**
+</span>         * Define mvc config
+         * @type {mvc.config}
+         */
+        this.config = base.define(selfConfig, {}, true);
+
+<span id='MVC-property-force'>        /**
+</span>         * Define mvc force creating components
+         * @type {mvc.force}
+         */
+        this.force = base.defineBoolean(opts.force, false, true);
+
+<span id='MVC-property-render'>        /**
+</span>         * Define mvc render
+         * @type {mvc.render}
+         */
+        this.render = base.defineBoolean(opts.render, true, true);
+
+        var config = {},
+            scope = this.scope;
+
+        scope.eventmanager = {};
+
+        $.extend(config, scope.config);
+
+<span id='MVC-property-'>        /**
+</span>         * Define mvc applyLogger
+         * @type {mvc.applyLogger}
+         */
+        this.applyLogger();
+
+<span id='MVC-property-'>        /**
+</span>         * Define mvc applyConfig
+         * @type {mvc.applyConfig}
+         */
+        this.applyConfig();
+
+<span id='MVC-property-'>        /**
+</span>         * Define mvc applyMVC
+         * @type {mvc.applyMVC}
+         */
+        this.applyMVC();
+
+<span id='MVC-property-'>        /**
+</span>         * Define mvc applyObserver
+         * @type {mvc.applyObserver}
+         */
+        this.applyObserver();
+
+<span id='MVC-property-'>        /**
+</span>         * Define mvc applyEventManager
+         * @type {mvc.applyEventManager}
+         */
+        this.applyEventManager();
+
+<span id='MVC-property-'>        /**
+</span>         * Define mvc applyPermissions
+         * @type {mvc.applyPermissions}
+         */
+        this.applyPermissions();
+
+<span id='MVC-property-'>        /**
+</span>         * Define mvc defineSetting
+         * @type {mvc.defineSetting}
+         */
+        this.defineSetting();
+
+        var eventList = scope.eventmanager.eventList;
+        if (eventList) {
+
+            scope.observer.publish(
+                eventList.beforeInitConfig, [
+                    &#39;Config before create&#39;,
+                    config
+                ]
+            );
+
+            scope.observer.publish(
+                eventList.afterInitConfig, [
+                    &#39;Config after create&#39;,
+                    scope.config
+                ]
+            );
+        }
+    };
+
+    return MVC.extend({
+<span id='MVC-method-defineMVC'>        /**
+</span>         * Define MVC
+         * @param {Function} mvc
+         * @param {Boolean} force
+         */
+        defineMVC: function defineMVC(mvc, force) {
+
+            var base = this.base,
+                name = this.constructorName(mvc),
+                scope = this.scope;
+
+            if (base.isFunction(mvc)) {
+
+                scope[name] = new mvc();
+
+            } else {
+
+                if (force) {
+
+                    var scopeName = this.constructorName(scope),
+                        fnName = scopeName + mvc.name;
+
+                    var fn = new Function(
+                        name,
+                        [
+                            &#39;return function &#39;, fnName,
+                            &#39;(&#39;, name, &#39;) { this.&#39;, scopeName,
+                            &#39; = &#39;, name, &#39; };&#39;
+                        ].join(&#39;&#39;)
+                    );
+
+                    scope[name] = new fn();
+
+                }
+            }
+        },
+<span id='MVC-method-constructorName'>        /**
+</span>         * Get constructor name
+         * @param {*} scope
+         * @returns {string}
+         */
+        constructorName: function constructorName(scope) {
+            return scope.name.toLowerCase();
+        },
+<span id='MVC-method-setRelation'>        /**
+</span>         * Set relation between MVC components
+         */
+        setRelation: function setRelation() {
+            var relations = this.RELATIONS,
+                i = 0, l = relations.length,
+                from, to,
+                scope = this.scope,
+                base = this.base;
+
+            for (i; i &lt; l; i += 1) {
+                var relation = relations[i];
+                from = relation[0].toLowerCase();
+                to = relation[1].toLowerCase();
+                if (base.isDefined(scope[from]) &amp;&amp;
+                    base.isDefined(scope[to])) {
+                    scope[from][to] = scope[to];
+                }
+            }
+
+        },
+<span id='MVC-method-applyMVC'>        /**
+</span>         * Apply MVC
+         * @returns {boolean}
+         */
+        applyMVC: function applyMVC() {
+            var i = 0,
+                l = this.components.length;
+
+            for (i; i &lt; l; i += 1) {
+                var mvc = this.components[i];
+
+                if (!this.base.isDefined(mvc)) {
+                    return false;
+                }
+
+                this.defineMVC(mvc, this.force);
+                this.scope[this.constructorName(mvc)].scope = this.scope;
+
+            }
+
+            this.setRelation();
+
+        },
+<span id='MVC-method-applyConfig'>        /**
+</span>         * Apply config
+         */
+        applyConfig: function applyConfig() {
+            var base = this.base,
+                scope = this.scope,
+                timestamp = base.lib.datetime.timestamp(this.config.timestamp),
+                config = scope.config;
+
+            config.uuid = base.lib.generator.UUID(this.config.uuid);
+            config.timestamp = timestamp;
+
+            if (this.render) {
+                config.html = base.define(config.html, {}, true);
+                config.html.selector = &#39;.&#39; + this.constructorName(scope.constructor);
+            }
+        },
+<span id='MVC-method-applyEventManager'>        /**
+</span>         * Apply event manager
+         */
+        applyEventManager: function applyEventManager() {
+            var scope = this.scope,
+                base = this.base,
+                eventManager = scope.eventmanager;
+
+            if (base.isDefined(eventManager)) {
+
+                eventManager.scope = scope;
+                eventManager.abstract = base.define(eventManager.abstract, {}, true);
+
+                var eventList = eventManager.eventList,
+                    index;
+
+                for (index in eventList) {
+                    if (eventList.hasOwnProperty(index)) {
+                        var event = eventList[index],
+                            callback = scope.controller[index];
+
+                        if (!base.isDefined(callback)) {
+                            var method = index.toPoint().split(&#39;.&#39;),
+                                key = method[0];
+
+                            method.shift();
+                            method = (&#39;.&#39; + method.join(&#39;.&#39;)).toCamel();
+
+                            if (this.RESERVED.hasOwnProperty(key)) {
+                                if ($.inArray(method, this.RESERVED[key].singular) &gt; -1) {
+                                    eventManager.abstract[key + &#39;Item&#39;] = index;
+                                    callback = scope.controller[key + &#39;Item&#39;];
+                                } else if ($.inArray(method, this.RESERVED[key].plural) &gt; -1) {
+                                    eventManager.abstract[key + &#39;Items&#39;] = index;
+                                    callback = scope.controller[key + &#39;Items&#39;];
+                                } else {
+                                    this.scope.logger.warn(
+                                        &#39;Undefined Event Callback&#39;, [
+                                            scope.controller,
+                                            key + method
+                                        ]);
+                                }
+                            }
+                        }
+
+                        eventManager.subscribe({
+                            event: event,
+                            callback: callback
+                        }, true);
+                    }
+                }
+
+                eventManager.subscribe({
+                    event: &#39;before.init.config&#39;,
+                    callback: scope.controller.getConfigLog
+                }, true);
+
+                eventManager.subscribe({
+                    event: &#39;after.init.config&#39;,
+                    callback: scope.controller.getConfigLog
+                }, true);
+
+                eventManager.subscribe({
+                    event: &#39;success.created&#39;,
+                    callback: scope.controller.successCreated
+                }, true);
+
+                eventManager.subscribe({
+                    event: &#39;success.rendered&#39;,
+                    callback: scope.controller.successRendered
+                }, true);
+
+                eventManager.subscribe({
+                    event: &#39;after.create.item&#39;,
+                    callback: scope.controller.afterCreateItem
+                }, true);
+
+                eventManager.subscribe({
+                    event: &#39;after.destroy.item&#39;,
+                    callback: scope.controller.afterDestroyItem
+                }, true);
+
+                eventManager.subscribe({
+                    event: &#39;after.destroy.items&#39;,
+                    callback: scope.controller.afterDestroyItems
+                }, true);
+
+                this.applyGlobalListeners();
+
+            } else {
+                scope.logger.warn(&#39;Event Manager&#39;, scope.eventmanager);
+            }
+        },
+<span id='MVC-method-applyGlobalListeners'>        /**
+</span>         * Apply global listeners
+         */
+        applyGlobalListeners: function applyGlobalListeners() {
+            var index, event, scope = this.scope;
+            if (typeof scope.globalListeners === &#39;object&#39;) {
+                for (index in scope.globalListeners) {
+                    if (scope.globalListeners.hasOwnProperty(index)) {
+                        event = scope.globalListeners[index];
+                        scope.eventmanager.subscribe({
+                            event: {
+                                eventName: event.name,
+                                params: event.params,
+                                scope: event.scope
+                            },
+                            callback: event.callback
+                        }, false);
+                    }
+                }
+            }
+        },
+<span id='MVC-method-applyPermissions'>        /**
+</span>         * Define permissions
+         * @returns {boolean}
+         */
+        applyPermissions: function applyPermissions() {
+
+            this.applyGlobalPermissions();
+
+            var scope = this.scope,
+                permission = scope.permission;
+
+            if (scope.controller.checkCondition({
+                condition: !this.base.isDefined(permission),
+                msg: &#39;Undefined permission&#39;
+            })) {
+                return false;
+            }
+
+            permission.capability = {};
+            permission.config();
+        },
+<span id='MVC-method-applyGlobalPermissions'>        /**
+</span>         * Apply global permissions
+         * @returns {*|boolean}
+         */
+        applyGlobalPermissions: function applyGlobalPermissions() {
+            var base = this.base,
+                scope = this.scope,
+                mode = scope.controller.getMode();
+
+            if (scope.controller.checkCondition({
+                condition: !base.isDefined(mode),
+                type: &#39;warn&#39;,
+                msg: &#39;Undefined mode&#39;
+            })) {
+                return false;
+            }
+
+            if (scope.controller.checkCondition({
+                condition: !base.isDefined(scope.globalPermissions),
+                msg: &#39;Undefined permission&#39;
+            })) {
+                return false;
+            }
+
+            var capabilities = scope.globalPermissions[mode];
+
+            if (scope.controller.checkCondition({
+                condition: !base.isDefined(capabilities),
+                msg: &#39;Undefined capabilities&#39;,
+                args: mode
+            })) {
+                return false;
+            }
+
+            scope.config.permission = capabilities;
+        },
+<span id='MVC-method-applyObserver'>        /**
+</span>         * Apply Observer
+         */
+        applyObserver: function applyObserver() {
+            var scope = this.scope;
+            scope.observer = new Observer();
+            scope.observer.scope = scope;
+        },
+<span id='MVC-method-applyLogger'>        /**
+</span>         * Apply Logger
+         */
+        applyLogger: function applyLogger() {
+            var scope = this.scope,
+                base = this.base;
+            scope.logger = new Logger();
+            var logger = scope.logger;
+
+            if (base.isDefined(scope.config.logger)) {
+                if (base.isObject(Logger.prototype.config)) {
+                    logger.config = scope.config.logger;
+                } else {
+                    Logger.prototype.config = scope.config.logger;
+                }
+            }
+
+            logger.scope = scope;
+            logger.defineLogs();
+
+        },
+<span id='MVC-method-defineSetting'>        /**
+</span>         * Define global setting
+         */
+        defineSetting: function defineSetting() {
+            if (this.base.isDefined(this.scope.model)) {
+                this.scope.model.defineSetting();
+            }
+        }
+    }, Base);
+
+});</pre>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/1/13
+ * Time: 7:22 PM
+ */
+
+define([
+    &#39;modules/base&#39;,
+    &#39;modules/api&#39;
+], function defineWidgetAPI(Base, BaseAPI) {
+
+<span id='API-method-constructor'><span id='API'>    /**
+</span></span>     * Define Widget API
+     * @class API
+     * @extends {Base}
+     * @mixin {BaseAPI}
+     * @constructor
+     */
+    var API = function API() {
+
+    };
+
+    return API.extend({
+
+<span id='API-method-initDrag'>        /**
+</span>         * Init drag api
+         */
+        initDrag: function initDrag() {
+            this._setInteraction(&#39;initDrag&#39;);
+        },
+
+<span id='API-method-enableDrag'>        /**
+</span>         * Enable drag api
+         */
+        enableDrag: function initDrag() {
+            this._setInteraction(&#39;enableDrag&#39;);
+        },
+
+<span id='API-method-disableDrag'>        /**
+</span>         * Disable drag api
+         */
+        disableDrag: function initDrag() {
+            this._setInteraction(&#39;disableDrag&#39;);
+        },
+
+<span id='API-method-destroyDrag'>        /**
+</span>         * Destroy drag api
+         */
+        destroyDrag: function destroyDrag() {
+            this._setInteraction(&#39;destroyDrag&#39;);
+        },
+
+<span id='API-method-initResize'>        /**
+</span>         * Init resize api
+         */
+        initResize: function initResize() {
+            this._setInteraction(&#39;initResize&#39;);
+        },
+
+<span id='API-method-enableResize'>        /**
+</span>         * Enable resize api
+         */
+        enableResize: function enableResize() {
+            this._setInteraction(&#39;enableResize&#39;);
+        },
+
+<span id='API-method-disableResize'>        /**
+</span>         * Disable resize api
+         */
+        disableResize: function disableResize() {
+            this._setInteraction(&#39;disableResize&#39;);
+        },
+
+<span id='API-method-destroyResize'>        /**
+</span>         * Destroy resize api
+         */
+        destroyResize: function destroyResize() {
+            this._setInteraction(&#39;destroyResize&#39;);
+        },
+
+<span id='API-method-_setInteraction'>        /**
+</span>         * Set interaction
+         * @param {String} interaction
+         * @private
+         */
+        _setInteraction: function _setInteraction(interaction) {
+            var scope = this.scope;
+            scope.observer.publish(
+                scope.eventmanager.eventList[interaction]
+            );
+        }
+
+    }, Base, BaseAPI.prototype);
+});</pre>
+</body>
+</html>

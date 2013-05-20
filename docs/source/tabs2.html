@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/6/13
+ * Time: 9:43 PM
+ */
+define([], function defineDebuggerTabs() {
+
+<span id='Tabs-method-constructor'><span id='Tabs'>    /**
+</span></span>     * Define Debugger Tabs
+     * @param {*} debug
+     * @constructor
+     */
+    var Tabs = function Tabs(debug) {
+
+<span id='Tabs-property-debugger'>        /**
+</span>         * Define debugger
+         * @type {*}
+         */
+        this.debugger = debug;
+    };
+
+    return Tabs.extend({
+
+<span id='Tabs-method-renderTabs'>        /**
+</span>         * Render Info tabs
+         * @param $div
+         */
+        renderTabs: function renderTabs($div) {
+            var $tabs = $(&#39;&lt;ul /&gt;&#39;).addClass(&#39;info-tabs&#39;);
+            $.each(this.debugger.links, function eachTabs(i, v) {
+                $tabs.append(
+                    $(&#39;&lt;li /&gt;&#39;).attr({
+                        title: v
+                    }).text(v).on(&#39;click.tab&#39;, this.openTab.bind(this))
+                )
+            }.bind(this));
+
+            $tabs.appendTo($div);
+        },
+
+<span id='Tabs-method-openTab'>        /**
+</span>         * Open selected tab
+         * @param {{target}} e
+         */
+        openTab: function openTab(e) {
+            var $div = $(this.debugger.info),
+                $tab = $(e.target),
+                $info = $div.find(&#39;fieldset[class^=&quot;&#39; +
+                    $tab.text().toLowerCase() + &#39;&quot;]&#39;);
+
+            $div.find(&#39;div &gt; fieldset&#39;).hide();
+            $info.find(&#39;fieldset&#39;).show();
+            $info.show().children(&#39;ul&#39;).stop().slideDown(500);
+            $div.find(&#39;ul.info-tabs li&#39;).removeClass(&#39;this&#39;);
+            $tab.addClass(&#39;this&#39;);
+        },
+
+<span id='Tabs-method-bindHover'>        /**
+</span>         * Hover info window
+         * @param {Number} opacityOff
+         */
+        bindHover: function bindHover(opacityOff) {
+            $(this.debugger.info).hover(
+                function on() {
+                    $(this).css({
+                        opacity: 0.9
+                    }).find(&#39;.info-tabs&#39;).stop().animate({
+                            right: -100
+                        });
+                },
+                function off() {
+                    $(this).css({
+                        opacity: opacityOff
+                    }).find(&#39;.info-tabs&#39;).stop().animate({
+                            right: 0
+                        });
+                }
+            );
+        }
+
+    });
+
+});</pre>
+</body>
+</html>

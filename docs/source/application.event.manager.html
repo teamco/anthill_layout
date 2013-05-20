@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/17/12
+ * Time: 5:27 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/event&#39;
+], function defineAppEventManager(Event) {
+
+<span id='EventManager'>    /**
+</span>     * @class EventManager
+     * @type {Object}
+     */
+    var EventManager = function EventManager() {
+
+<span id='EventManager-property-events'>        /**
+</span>         * Define events
+         * @type {{}}
+         */
+        this.events = {};
+
+<span id='EventManager-property-eventList'>        /**
+</span>         * Define event list
+         * @type {{
+         *      resizeWindow: {eventName: string, params: {buffer: number}},
+         *      createWorkspace: string,
+         *      destroyWorkspace: string,
+         *      destroyWorkspaces: string,
+         *      debugStart: string,
+         *      debugEnd: string
+         * }}
+         */
+        this.eventList = {
+            resizeWindow: {
+                eventName: &#39;resize.window&#39;,
+                params: { buffer: 500 }
+            },
+            createWorkspace: &#39;create.workspace&#39;,
+            destroyWorkspace: &#39;destroy.workspace&#39;,
+            destroyWorkspaces: &#39;destroy.workspaces&#39;,
+            debugStart: &#39;debug.start&#39;,
+            debugEnd: &#39;debug.end&#39;
+        };
+    };
+
+    return EventManager.extend({
+    }, Event.prototype);
+});</pre>
+</body>
+</html>

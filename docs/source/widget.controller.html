@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/17/12
+ * Time: 4:10 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/controller&#39;,
+    &#39;controller/widget/widget.drag&#39;,
+    &#39;controller/widget/widget.resize&#39;
+], function defineWidgetController(BaseController, Drag, Resize) {
+
+<span id='Controller-method-constructor'><span id='Controller'>    /**
+</span></span>     * Define widget controller
+     * @class Controller
+     * @mixin {BaseController}
+     * @constructor
+     */
+    var Controller = function Controller() {
+    };
+
+    return Controller.extend({
+<span id='Controller-method-getS-page'>        /**
+</span>         * Get page jquery object
+         * @returns {*}
+         */
+        get$page: function get$page() {
+            return this.getParent().view.elements.$page.$;
+        },
+
+<span id='Controller-method-setupInteractions'>        /**
+</span>         * Setup interactions {Drag|Resize}
+         */
+        setupInteractions: function setupInteractions() {
+            var scope = this.scope;
+            scope.observer.publish(scope.eventmanager.eventList.initDrag);
+            scope.observer.publish(scope.eventmanager.eventList.initResize);
+        },
+<span id='Controller-method-initDrag'>        /**
+</span>         * Init drag
+         */
+        initDrag: function initDrag() {
+            this.controller.setInteraction(&#39;draggable&#39;, new Drag(this));
+        },
+<span id='Controller-method-enableDrag'>        /**
+</span>         * Enable drag
+         */
+        enableDrag: function enableDrag() {
+            this.interactions.draggable.enable();
+        },
+<span id='Controller-method-disableDrag'>        /**
+</span>         * Disable drag
+         */
+        disableDrag: function disableDrag() {
+            this.interactions.draggable.disable();
+        },
+<span id='Controller-method-destroyDrag'>        /**
+</span>         * Destroy drag
+         */
+        destroyDrag: function destroyDrag() {
+            this.interactions.draggable.destroy();
+        },
+<span id='Controller-method-initResize'>        /**
+</span>         * Init resize
+         */
+        initResize: function initResize() {
+            this.controller.setInteraction(&#39;resizable&#39;, new Resize(this));
+        },
+<span id='Controller-method-enableResize'>        /**
+</span>         * Enable resize
+         */
+        enableResize: function enableResize() {
+            this.interactions.resizable.enable();
+        },
+<span id='Controller-method-disableResize'>        /**
+</span>         * Disable resize
+         */
+        disableResize: function disableResize() {
+            this.interactions.resizable.disable();
+        },
+<span id='Controller-method-destroyResize'>        /**
+</span>         * Destroy resize
+         */
+        destroyResize: function destroyResize() {
+            this.interactions.resizable.destroy();
+        },
+<span id='Controller-method-debugInteractions'>        /**
+</span>         * Debug interactions
+         * @param {String} interaction
+         */
+        debugInteractions: function debugInteractions(interaction) {
+            this.logger.debug(&#39;Debug interactions&#39;, interaction);
+        },
+<span id='Controller-method-dragCreate'>        /**
+</span>         * Create drag
+         */
+        dragCreate: function dragCreate() {
+            this.logger.debug(&#39;Create drag&#39;, arguments);
+        },
+<span id='Controller-method-dragStart'>        /**
+</span>         * Start drag
+         */
+        dragStart: function dragStart() {
+            this.logger.debug(&#39;Start drag&#39;, arguments);
+        },
+<span id='Controller-method-dragOn'>        /**
+</span>         * Grid sticker on drag
+         * @param {String} type
+         */
+        dragOn: function dragOn(type) {
+            this.logger.debug(&#39;On drag&#39;, arguments);
+            this.controller.behaviorMode({
+                organize: false,
+                animate: false,
+                type: type,
+                $source: this.wireframe.$
+            });
+        },
+<span id='Controller-method-dragStop'>        /**
+</span>         * Stop drag
+         * @param {String} type
+         */
+        dragStop: function dragStop(type) {
+            this.logger.debug(&#39;Stop drag&#39;, arguments);
+            this.controller.getParent().controller.downgradeLayer(this);
+            this.controller.behaviorMode({
+                organize: false,
+                animate: true,
+                type: type,
+                $source: this.view.elements.$widget.$,
+                callback: this.controller._resetInteractions.bind(this.controller)
+            });
+        },
+
+<span id='Controller-method-resizeCreate'>        /**
+</span>         * Create resize
+         * @param {String} type
+         */
+        resizeCreate: function resizeCreate(type) {
+            this.logger.debug(&#39;Create resize&#39;, arguments);
+        },
+
+<span id='Controller-method-resizeStart'>        /**
+</span>         * Resize start
+         * @param {String} type
+         */
+        resizeStart: function resizeStart(type) {
+            this.logger.debug(&#39;Start resize&#39;, arguments);
+        },
+
+<span id='Controller-method-resizeSticker'>        /**
+</span>         * Grid sticker on resize
+         * @param {String} type
+         * @param {Boolean} animate
+         */
+        resizeSticker: function resizeSticker(type, animate) {
+            this.logger.debug(&#39;On resize&#39;, arguments);
+            this.controller.behaviorMode({
+                organize: false,
+                animate: false,
+                type: type,
+                $source: this.wireframe.$
+            });
+
+//            this.view.elements.$content.demo();
+        },
+
+<span id='Controller-method-resizeStop'>        /**
+</span>         * Resize stop
+         * @param {String} type
+         * @param {Boolean} animate
+         * @param {Boolean} organize
+         */
+        resizeStop: function resizeStop(type, organize, animate) {
+            this.logger.debug(&#39;Stop resize&#39;, arguments);
+            this.controller.getParent().controller.downgradeLayer(this);
+            this.controller.behaviorMode({
+                organize: organize,
+                animate: animate,
+                type: type,
+                $source: this.view.elements.$widget.$,
+                callback: this.controller._resetInteractions.bind(this.controller)
+            });
+        },
+
+<span id='Controller-method-_resetInteractions'>        /**
+</span>         * Reset interactions on resize template
+         * @private
+         */
+        _resetInteractions: function _resetInteractions() {
+            $.each(this._getTemplateItems(), function each(uuid, widget) {
+                widget.api.destroyResize();
+                widget.api.destroyDrag();
+                widget.api.initResize();
+                widget.api.initDrag();
+            });
+        },
+
+<span id='Controller-method-_getTemplateItems'>        /**
+</span>         * Get items from template widget and run callback
+         * @private
+         */
+        _getTemplateItems: function _getTemplateItems() {
+            return this.isTemplate() ?
+                this.getParent().template.page.items || {} : {};
+        },
+
+<span id='Controller-method-isDraggable'>        /**
+</span>         * Check if widget is draggable
+         * @returns {Boolean}
+         */
+        isDraggable: function isDraggable() {
+            return this.scope.view.elements.$widget.$.is(&#39;.ui-draggable&#39;);
+        },
+
+<span id='Controller-method-isResizable'>        /**
+</span>         * Check if widget is resizable
+         * @returns {Boolean}
+         */
+        isResizable: function isResizable() {
+            return this.scope.view.elements.$widget.$.is(&#39;.ui-resizable&#39;);
+        },
+
+<span id='Controller-method-isTemplate'>        /**
+</span>         * Check if widget is template
+         * @returns {Boolean}
+         */
+        isTemplate: function isTemplate() {
+            var scope = this.scope;
+            return scope.config.type ===
+                this.getParent().model.getConfig(
+                    scope.constructor.name.toLowerCase()
+                ).types.template;
+        },
+
+<span id='Controller-method-behaviorMode'>        /**
+</span>         * Behavior mode
+         * @param {{
+         *      organize: Boolean,
+         *      animate: Boolean,
+         *      type: String,
+         *      [callback]: Function,
+         *      $source
+         * }} opts
+         */
+        behaviorMode: function behaviorMode(opts) {
+            var scope = this.scope,
+                page = this.getParent(),
+                layout = page.controller.getLayout(),
+                mode = layout.controller.getBehavior();
+
+            switch (layout.config.mode) {
+                case page.LAYOUT_MODES.freeStyle:
+                    break;
+                case page.LAYOUT_MODES.snap2grid:
+                    scope.model.save();
+                    scope.map.sticker(opts, mode);
+                    break;
+                default:
+                    break;
+            }
+        },
+        save: function save() {
+            this.logger.debug(&#39;Save widget&#39;);
+            this.model.save();
+        }
+
+    }, BaseController.prototype);
+});</pre>
+</body>
+</html>

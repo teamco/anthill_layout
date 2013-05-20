@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/5/12
+ * Time: 9:51 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;config/setting&#39;,
+    &#39;modules/base&#39;,
+    &#39;modules/crud&#39;
+], function initModel(Setting, Base, CRUD) {
+    var BaseModel = function BaseModel() {
+
+    };
+
+    return BaseModel.extend({
+<span id='global-method-defineSetting'>        /**
+</span>         * Define global setting
+         */
+        defineSetting: function defineSetting() {
+            this.setting = new Setting(this.scope.controller.getMode());
+        },
+<span id='global-method-getConfig'>        /**
+</span>         * Get scope config
+         * @param {String} [key]
+         * @returns {scope.config}
+         */
+        getConfig: function getConfig(key) {
+            if (this.scope.config.hasOwnProperty(key)) {
+                return this.scope.config[key];
+            }
+            return this.scope.config;
+        },
+<span id='global-method-getNameSpace'>        /**
+</span>         * Get scope namespace
+         * @param {*} node
+         * @returns {string}
+         */
+        getNameSpace: function getNameSpace(node) {
+            var scope = this.base.isDefined(node) ?
+                    node : this.scope,
+                constructor = this.base.isFunction(scope) ?
+                    scope : scope.constructor;
+
+            return constructor.name.toLowerCase();
+        },
+<span id='global-method-getParentItems'>        /**
+</span>         * Get parent items
+         * @returns {*}
+         */
+        getParentItems: function getParentItems() {
+            return this.scope.controller.getParent().items;
+        },
+<span id='global-method-getItems'>        /**
+</span>         * Get items
+         * @returns {*}
+         */
+        getItems: function getItems() {
+            return this.scope.items;
+        },
+<span id='global-method-getItemsApartOf'>        /**
+</span>         * Get all items apart of item
+         * @param {{model}} item
+         * @returns {Array}
+         */
+        getItemsApartOf: function getItemsApartOf(item) {
+            var items = this.getItems(),
+                nodes = [], index, node, nodeUUID,
+                uuid = item.model.getUUID();
+
+            for (index in items) {
+                if (items.hasOwnProperty(index)) {
+                    node = items[index];
+                    nodeUUID = node.model.getUUID();
+                    if (uuid !== nodeUUID) {
+                        nodes.push(node);
+                    }
+                }
+            }
+            return nodes;
+        },
+<span id='global-method-getUUID'>        /**
+</span>         * Get UUID
+         * @param {{model}} [node]
+         * @returns {String}
+         */
+        getUUID: function getUUID(node) {
+            return this.base.isDefined(node) ?
+                node.model ?
+                    node.model.getUUID() :
+                    &#39;Undefined &#39; + node.constructor.name :
+                this.getConfig(&#39;uuid&#39;);
+        },
+<span id='global-method-getItemByUUID'>        /**
+</span>         * Get item from collector by UUID
+         * @param {string} uuid
+         * @returns {*}
+         */
+        getItemByUUID: function getItemByUUID(uuid) {
+            var base = this.base,
+                items = this.getItems(),
+                item = base.lib.hash.isHashKey(items, uuid) ?
+                    items[uuid] : undefined;
+
+            if (!base.isDefined(item)) {
+                this.scope.logger.debug(&#39;Undefined item&#39;);
+            }
+            return item;
+        },
+<span id='global-method-resetItems'>        /**
+</span>         * Reset collector
+         * @returns {*}
+         */
+        resetItems: function resetItems() {
+            this.scope.items = {};
+            return this.getItems();
+        },
+<span id='global-method-deleteItem'>        /**
+</span>         * Delete widget from collector
+         * @param uuid
+         * @returns {*}
+         */
+        deleteItem: function deleteItem(uuid) {
+            delete this.scope.controller.getParent().items[uuid];
+            return this.getParentItems();
+        },
+<span id='global-method-updateItem'>        /**
+</span>         * Update collector
+         * @param {string} uuid
+         * @param hash
+         * returns {*}
+         */
+        updateItem: function updateItem(uuid, hash) {
+            var item = this.getItemByUUID(uuid);
+            $.extend(true, item, hash);
+            return item;
+        },
+<span id='global-method-setItem'>        /**
+</span>         * Add item to collector
+         * @param {{model}} node
+         * @param {boolean} [force]
+         * @returns {*}
+         */
+        setItem: function setItem(node, force) {
+            var base = this.base;
+
+            node = base.define(node, {}, true);
+            force = base.defineBoolean(force, false, true);
+
+            var uuid = node.model.getUUID(),
+                item = base.isDefined(this.getItemByUUID(uuid));
+            if (force || !item) {
+                this.getItems()[uuid] = node;
+            } else if (item) {
+                this.scope.logger.warn(&#39;Item already in collector&#39;);
+            }
+            return this.getItemByUUID(uuid);
+        },
+<span id='global-method-getItemNamespace'>        /**
+</span>         * Get Item constructor name
+         * @returns {string}
+         */
+        getItemNamespace: function getItemNamespace() {
+            var scope = this.scope,
+                hash = this.base.lib.hash,
+                item = {};
+            if (scope.hasOwnProperty(&#39;items&#39;)) {
+                if (hash.hashLength(scope.items) &gt; 0) {
+                    item = hash.firstHashElement(scope.items);
+                }
+            }
+            return this.getNameSpace(item);
+        },
+<span id='global-method-getOrder'>        /**
+</span>         * Get items order
+         * @returns {*}
+         */
+        getOrder: function getOrder() {
+            return this.getConfig(&#39;order&#39;);
+        },
+<span id='global-method-checkLimit'>        /**
+</span>         * Check items limit
+         * @param {Function} constructor
+         * @param {Number} limit
+         * @returns {boolean}
+         */
+        checkLimit: function checkLimit(constructor, limit) {
+            var base = this.base,
+                namespace = this.getNameSpace(constructor);
+
+            limit = base.isDefined(limit) ?
+                limit :
+                this.getConfig(namespace).limit;
+
+            if (!base.isDefined(limit)) {
+                return false;
+            }
+            return base.lib.hash.hashLength(this.getItems()) &gt;= limit;
+
+        },
+<span id='global-method-updateCollector'>        /**
+</span>         * Update items collector
+         * @param {Function} constructor
+         * @param {{}} opts
+         * @returns {*}
+         */
+        updateCollector: function updateCollector(constructor, opts) {
+            var namespace = this.getNameSpace(constructor),
+                limit = this.getConfig(namespace).limit,
+                scope = this.scope,
+                cname = constructor.name,
+                node = scope[cname.toLowerCase()];
+            if (this.checkLimit(constructor, limit)) {
+                scope.logger.warn(
+                    cname + &#39;: Maximum limit reached&#39;,
+                    limit
+                );
+            } else {
+                var base = this.base;
+
+                node = new constructor(base.define(opts, {}, true));
+
+                if (base.isDefined(node.model)) {
+                    this.setItem(node);
+//                    collector[node.model.getUUID()] = node;
+                } else {
+                    scope.logger.warn(
+                        cname + &#39; was created with some errors&#39;,
+                        node
+                    );
+                }
+
+                scope.config[namespace] = base.define(scope.config[namespace], {}, true);
+                scope.config[namespace].counter =
+                    base.lib.hash.hashLength(this.getItems());
+
+                scope[cname.toLowerCase()] = node;
+
+            }
+
+            return node;
+        }
+
+    }, Base, CRUD.prototype);
+
+});</pre>
+</body>
+</html>

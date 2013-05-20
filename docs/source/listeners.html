@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: i061485
+ * Date: 2/13/13
+ * Time: 4:50 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/debugger&#39;,
+    &#39;config/application&#39;,
+    &#39;config/workspace&#39;,
+    &#39;config/page&#39;,
+    &#39;config/template&#39;,
+    &#39;config/widget&#39;
+], function defineListeners(Debugger, Application, Workspace, Page, Template, Widget) {
+
+<span id='global-property-globalListeners'>    /**
+</span>     * Define Application Global listeners
+     * @type {{
+     *  successRendered: {name: string, callback: Function},
+     *  debugStart: {name: string, callback: Function},
+     *  debugEnd: {name: string, callback: Function},
+     *  resizeWindow: {name: string, callback: Function}
+     * }}
+     */
+    Application.prototype.globalListeners = {
+        successRendered: {
+            name: &quot;success.rendered&quot;,
+            callback: function successRenderedCallback() {
+                this.view.renderApplication();
+
+                if (this.controller.isDevelopmentMode()) {
+                    this.view.debug();
+                }
+            }
+        },
+        debugStart: {
+            name: &#39;debug.start&#39;,
+            callback: function debugStartCallback() {
+<span id='global-property-debugger'>                /**
+</span>                 * Define Debugger
+                 * @type {modules.debugger}
+                 */
+                this.debugger = new Debugger(this);
+            }
+        },
+        debugEnd: {
+            name: &#39;debug.end&#39;,
+            callback: function debugEndCallback() {
+                this.debugger.destroy();
+            }
+        },
+        resizeWindow: {
+            name: &#39;resize.window&#39;,
+            callback: function resizeWindowCallback() {
+                // TODO
+            }
+        }
+    };
+
+<span id='global-property-globalListeners'>    /**
+</span>     * Define Workspace Global listeners
+     * @type {{
+     *  successCreated: {name: string, callback: Function},
+     *  successRendered: {name: string, callback: Function},
+     *  createPage: {name: string, callback: Function}
+     * }}
+     */
+    Workspace.prototype.globalListeners = {
+        successCreated: {
+            name: &quot;success.created&quot;,
+            callback: function successCreatedCallback() {
+            }
+        },
+        successRendered: {
+            name: &quot;success.rendered&quot;,
+            callback: function successRenderedCallback() {
+                this.view.renderWorkspace();
+            }
+        },
+        createPage: {
+            name: &#39;create.page&#39;,
+            callback: function createPageCallback() {
+                this.observer.publish(this.eventmanager.eventList.setPageContainerHeight);
+            }
+        }
+    };
+
+<span id='global-property-globalListeners'>    /**
+</span>     * Define Page Global listeners
+     * @type {{
+     *  successCreated: {name: string, callback: Function},
+     *  successRendered: {name: string, callback: Function},
+     *  createWidget: {name: string, callback: Function}
+     * }}
+     */
+    Page.prototype.globalListeners = {
+        successCreated: {
+            name: &quot;success.created&quot;,
+            callback: function successCreatedCallback() {
+            }
+        },
+        successRendered: {
+            name: &quot;success.rendered&quot;,
+            callback: function successRenderedCallback() {
+                this.view.renderPage();
+                this.controller.updateLayout();
+            }
+        },
+        createWidget: {
+            name: &#39;create.widget&#39;,
+            callback: function createWidgetCallback() {
+                this.observer.publish(this.eventmanager.eventList.setPageHeight);
+            }
+        }
+    };
+
+<span id='global-property-globalListeners'>    /**
+</span>     * Define Template Global listeners
+     * @type {{
+     *  successCreated: {name: string, callback: Function},
+     *  successRendered: {name: string, callback: Function},
+     *  createWidget: {name: string, callback: Function}
+     * }}
+     */
+    Template.prototype.globalListeners = {
+        successCreated: {
+            name: &quot;success.created&quot;,
+            callback: function successCreatedCallback() {
+            }
+        },
+        successRendered: {
+            name: &quot;success.rendered&quot;,
+            callback: function successRenderedCallback(widget) {
+                this.view.renderTemplate(widget);
+            }
+        },
+        createWidget: {
+            name: &#39;create.widget&#39;,
+            callback: function createWidgetCallback() {
+            }
+        }
+    };
+
+<span id='global-property-globalListeners'>    /**
+</span>     * Define Widget Global listeners
+     * @type {{
+     *  successCreated: {name: string, callback: Function},
+     *  successRendered: {name: string, callback: Function},
+     *  debugInteractions: {name: string, params: {buffer: number}, callback: Function}
+     * }}
+     */
+    Widget.prototype.globalListeners = {
+        successCreated: {
+            name: &quot;success.created&quot;,
+            callback: function successCreatedCallback() {
+            }
+        },
+        successRendered: {
+            name: &quot;success.rendered&quot;,
+            callback: function successRenderedCallback() {
+                var event = this.eventmanager.eventList.resizeStop;
+                this.view.renderWidget();
+                this.controller.setupInteractions();
+                this.observer.publish(event, [event, true, false, arguments]);
+            }
+        },
+        debugInteractions: {
+            name: &quot;debug.interactions&quot;,
+            params: {
+                buffer: 50
+            },
+            callback: function debugInteractionsCallback() {
+                var debug = this.controller.root().debugger;
+                if (this.base.isDefined(debug)) {
+                    debug.widget.updateWidgetInfo.apply(debug.widget, arguments);
+                }
+            }
+        }
+
+    };
+
+});</pre>
+</body>
+</html>

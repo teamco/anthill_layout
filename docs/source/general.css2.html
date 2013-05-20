@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">@import url(&quot;reset.css&quot;);
+@import url(&quot;workspace.css&quot;);
+@import url(&quot;page.css&quot;);
+@import url(&quot;template.css&quot;);
+@import url(&quot;widget.css&quot;);
+@import url(&quot;modal.css&quot;);
+@import url(&quot;cover.css&quot;);
+@import url(&quot;debugger.css&quot;);
+
+html, body {
+    overflow: hidden;
+    font: normal normal 12px/14px Tahoma, Arial, sans-serif;
+}
+
+html, body, .app,
+.workspaces, .workspace,
+.pages, .page {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.workspaces, .pages, .widgets {
+    list-style: none;
+}
+
+.workspaces, .pages {
+    overflow: auto;
+}
+
+.workspace, .page {
+    display: block;
+}
+</pre>
+</body>
+</html>

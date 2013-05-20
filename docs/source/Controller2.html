@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/18/12
+ * Time: 8:22 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/base&#39;
+], function defineBaseController(Base) {
+
+<span id='BaseController-method-constructor'><span id='BaseController'>    /**
+</span></span>     * Base Controller
+     * @constructor BaseController
+     */
+    var BaseController = function BaseController() {
+
+    };
+
+    return BaseController.extend({
+
+<span id='BaseController-method-getMode'>        /**
+</span>         * Get Application mode
+         * @returns {*|number}
+         */
+        getMode: function getMode() {
+            return this.root().config.mode;
+        },
+
+<span id='BaseController-method-getParent'>        /**
+</span>         * Get parent node
+         * @returns {*}
+         */
+        getParent: function getParent() {
+            return this.scope.config.parent;
+        },
+
+<span id='BaseController-method-root'>        /**
+</span>         * Get Application Root
+         * @returns {*|string}
+         */
+        root: function root() {
+            var root = this.scope;
+            while (root.config.hasOwnProperty(&#39;parent&#39;)) {
+                root = root.config.parent;
+            }
+
+            return root;
+        },
+
+<span id='BaseController-method-getConfigLog'>        /**
+</span>         * Get Config Logger
+         * @param {String} log
+         * @param {Object} hash
+         */
+        getConfigLog: function getConfigLog(log, hash) {
+            this.logger.debug(log, hash);
+        },
+
+<span id='BaseController-method-successCreated'>        /**
+</span>         * Success Created
+         */
+        successCreated: function successCreated() {
+            this.logger.debug(
+                this.constructor.name +
+                    &#39; was successfully created&#39;,
+                this
+            );
+        },
+
+<span id='BaseController-method-successRendered'>        /**
+</span>         * Success Rendered
+         */
+        successRendered: function successRendered() {
+            this.logger.debug(
+                this.constructor.name +
+                    &#39; was successfully rendered&#39;,
+                this
+            );
+        },
+
+<span id='BaseController-method-getCurrentItem'>        /**
+</span>         * Get current items
+         * @returns {*}
+         */
+        getCurrentItem: function getCurrentItem() {
+            var scope = this.scope,
+                item = scope.model.getItemNamespace();
+            if (item === &#39;object&#39;) {
+                scope.logger.warn(&#39;Unable to locate current item&#39;);
+            }
+            return scope[scope.model.getItemNamespace()];
+        },
+
+<span id='BaseController-method-setAsCurrent'>        /**
+</span>         * Set item as current in parent node
+         */
+        setAsCurrent: function setAsCurrent() {
+            this.getParent().controller.setCurrentItem(this.scope);
+        },
+
+<span id='BaseController-method-setCurrentItem'>        /**
+</span>         * Set current item
+         * @param {{}} item
+         * @returns {*}
+         */
+        setCurrentItem: function setCurrentItem(item) {
+            var scope = this.scope;
+            scope[scope.model.getItemNamespace()] = item;
+            return this.getCurrentItem();
+        },
+
+<span id='BaseController-method-checkCondition'>        /**
+</span>         * Check condition
+         * @param {{condition, msg, [type], [args]}} opts
+         * @returns {boolean}
+         */
+        checkCondition: function checkCondition(opts) {
+            if (opts.condition) {
+                opts.args ?
+                    this.scope.logger[opts.type || &#39;debug&#39;](opts.msg, opts.args) :
+                    this.scope.logger[opts.type || &#39;debug&#39;](opts.msg);
+                return true;
+            }
+            return false;
+        },
+
+<span id='BaseController-method-isDevelopmentMode'>        /**
+</span>         * Get Development Mode
+         * @returns {Boolean}
+         */
+        isDevelopmentMode: function isDevelopmentMode() {
+            return this.getMode() === &#39;development&#39;;
+        },
+
+<span id='BaseController-method-isAuthorizeMode'>        /**
+</span>         * Get Authorize Mode
+         * @returns {Boolean}
+         */
+        isAuthorizeMode: function isAuthorizeMode() {
+            return this.getMode() === &#39;authorize&#39;;
+        },
+
+<span id='BaseController-method-isConsumptionMode'>        /**
+</span>         * Get Consumption Mode
+         * @returns {boolean}
+         */
+        isConsumptionMode: function isConsumptionMode() {
+            return this.getMode() === &#39;consumption&#39;;
+        },
+
+<span id='BaseController-method-isCustomMode'>        /**
+</span>         * Get Custom Mode
+         * @returns {boolean}
+         */
+        isCustomMode: function isCustomMode() {
+            return this.getMode() === &#39;custom&#39;;
+        },
+
+<span id='BaseController-method-setOrder'>        /**
+</span>         * Set Order
+         * @param collector
+         */
+        setOrder: function setOrder(collector) {
+            var scope = this.scope,
+                base = this.base;
+            scope.config.order = base.define(
+                scope.config.order,
+                base.lib.hash.hashLength(collector)
+            );
+        },
+
+<span id='BaseController-method-extendConfig'>        /**
+</span>         * Extend Config
+         * @param {{}} opts
+         * @returns {*}
+         */
+        extendConfig: function extendConfig(opts) {
+            var base = this.base,
+                scope = this.scope,
+                config = base.lib.hash.extendHash({
+                    html: {
+                        container: [
+                            &#39;#&#39;, scope.model.getUUID(),
+                            &#39;-&#39;, scope.constructor.name.toLowerCase()
+                        ].join(&#39;&#39;)
+                    },
+                    parent: scope
+                }, opts);
+
+            scope.logger.debug(&#39;Configuration&#39;, config);
+
+            return config;
+        },
+
+<span id='BaseController-method-createItem'>        /**
+</span>         * Create Item
+         * @param {{}} opts
+         */
+        createItem: function createItem(opts) {
+            var item = this.model.createItem(
+                this.controller.extendConfig(opts)
+            );
+            this.logger.debug(
+                &#39;Create &#39; + item.constructor.name,
+                this.model.getUUID(item),
+                item
+            );
+            this.observer.publish(
+                this.eventmanager.eventList.afterCreateItem
+            );
+        },
+
+<span id='BaseController-method-rejectItemDestroy'>        /**
+</span>         * Reject to destroy widget
+         */
+        rejectItemDestroy: function rejectItemDestroy() {
+            var scope = this.scope,
+                $modal = scope.view.elements.$modal;
+
+            scope.logger.debug(
+                &#39;Reject destroy&#39;,
+                $modal.item
+            );
+
+            $modal.selfDestroy();
+        },
+
+<span id='BaseController-method-approveItemsDestroy'>        /**
+</span>         * Approve to destroy items
+         * @param items
+         */
+        approveItemsDestroy: function approveItemsDestroy(items) {
+            var scope = this.scope,
+                $modal = scope.view.elements.$modal;
+
+            if (this.base.isDefined($modal)) {
+                items = $modal.items;
+                $modal.selfDestroy();
+            }
+
+            var count = this.base.lib.hash.hashLength(items || {});
+
+            if (this.checkCondition({
+                condition: count === 0,
+                type: &#39;warn&#39;,
+                msg: &#39;Undefined items&#39;
+            })) {
+                return false;
+            }
+
+            $.each(items, function each(uuid, item) {
+                this.approveItemDestroy(item, count);
+            }.bind(this));
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.afterDestroyItems
+            );
+
+        },
+
+<span id='BaseController-method-approveItemDestroy'>        /**
+</span>         * Approve to destroy item
+         * @param {*} item
+         * @param {Number} [count]
+         * @returns {boolean}
+         */
+        approveItemDestroy: function approveItemDestroy(item, count) {
+            var base = this.base,
+                scope = this.scope;
+
+            count = base.define(count, 1, true);
+
+            if (this.checkCondition({
+                condition: !base.isDefined(item),
+                type: &#39;warn&#39;,
+                msg: &#39;Undefined item&#39;
+            })) {
+                return false;
+            }
+
+            if (this.checkCondition({
+                condition: item.constructor.name !== this.model.item.name,
+                type: &#39;warn&#39;,
+                msg: &#39;Untrusted item&#39;,
+                args: [item, item.constructor.name, this.model.item.name]
+            })) {
+                return false;
+            }
+
+            scope.logger.debug(
+                &#39;Destroy &#39; + item.constructor.name,
+                item,
+                this.model.destroyItem(item)
+            );
+
+            if (count === 1) {
+                scope.observer.publish(
+                    scope.eventmanager.eventList.afterDestroyItem
+                );
+            }
+        },
+
+<span id='BaseController-method-destroyItems'>        /**
+</span>         * Destroy Items
+         * @param {Object} [items]
+         * @param {Boolean} [silent]
+         */
+        destroyItems: function destroyItems(items, silent) {
+            var base = this.base;
+
+            items = base.define(items, this.items);
+
+            base.defineBoolean(silent, false, true) ?
+                this.controller.approveItemsDestroy(items) :
+                this.view.destroyWidgetsModalDialog(items);
+        },
+
+<span id='BaseController-method-setInteraction'>        /**
+</span>         * Set Interaction
+         * @param {String} event
+         * @param {*} callback
+         * @returns {*}
+         */
+        setInteraction: function setInteraction(event, callback) {
+            this.scope.interactions[event] = callback;
+            return this.getInteraction(event);
+        },
+<span id='BaseController-method-getInteraction'>        /**
+</span>         * Get Interaction
+         * @param {String} event
+         * @returns {*}
+         */
+        getInteraction: function getInteraction(event) {
+            return this.scope.interactions[event];
+        },
+
+<span id='BaseController-method-afterCreateItem'>        /**
+</span>         * After create item event
+         */
+        afterCreateItem: function afterCreateItem() {
+            this.logger.debug(&#39;After create item&#39;);
+            this.controller.updateDebugger();
+        },
+
+<span id='BaseController-method-afterDestroyItem'>        /**
+</span>         * After destroy item event
+         */
+        afterDestroyItem: function afterDestroyItem() {
+            this.logger.debug(&#39;After destroy item&#39;);
+            this.controller.updateDebugger();
+        },
+
+<span id='BaseController-method-afterDestroyItems'>        /**
+</span>         * After destroy item event
+         */
+        afterDestroyItems: function afterDestroyItems() {
+            this.logger.debug(&#39;After destroy items&#39;);
+            this.controller.updateDebugger();
+        },
+
+<span id='BaseController-method-updateDebugger'>        /**
+</span>         * Update debugger info
+         * @returns {boolean}
+         */
+        updateDebugger: function updateDebugger() {
+            var scope = this.scope,
+                cname = scope.constructor.name.toLowerCase(),
+                debug = scope.controller.root().debugger;
+
+            if (!this.base.isDefined(debug)) {
+                return false;
+            }
+
+            debug[cname].updateItems(scope);
+        }
+
+    }, Base);
+});</pre>
+</body>
+</html>

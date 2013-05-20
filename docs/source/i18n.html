@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: i061485
+ * Date: 2/21/13
+ * Time: 2:41 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([], function definei18n() {
+
+    var i18n = function i18n() {
+
+    };
+
+    return i18n.extend({
+        i18n: function i18n(object){
+            if (typeof(object) === &#39;object&#39;){
+                var result = App.translations[object[0]],
+                    i;
+                for (i = 1; i &lt; object.length; i++){
+                    result = result.replace(&#39;{&#39; + (i-1) + &#39;}&#39;, object[i]);
+                }
+                return result;
+            }
+            return App.translations[object];
+        }
+    });
+
+});</pre>
+</body>
+</html>

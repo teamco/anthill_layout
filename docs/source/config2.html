@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/6/13
+ * Time: 9:32 PM
+ */
+define([
+], function defineDebuggerConfig() {
+
+<span id='Config-method-constructor'><span id='Config'>    /**
+</span></span>     * Define Debugger Config
+     * @param {*} debug
+     * @constructor
+     */
+    var Config = function Config(debug) {
+
+<span id='Config-property-debugger'>        /**
+</span>         * Define debugger
+         * @type {*}
+         */
+        this.debugger = debug;
+
+        this.defineScope();
+
+    };
+
+    return Config.extend({
+
+<span id='Config-method-defineScope'>        /**
+</span>         * Define scope
+         * @returns {*}
+         */
+        defineScope: function defineScope() {
+            var scope = this.debugger.scope,
+                item = scope.model.getItemNamespace();
+
+            while (item !== &#39;object&#39;) {
+                scope = this.setScope(scope, item);
+                item = scope.model.getItemNamespace();
+            }
+
+            this.validateScopes();
+        },
+
+<span id='Config-method-validateScopes'>        /**
+</span>         * Validate required scopes
+         */
+        validateScopes: function validateScopes() {
+            var hash = this.debugger.scopes,
+                scopes = [&#39;Workspace&#39;, &#39;Page&#39;, &#39;Widget&#39;];
+
+            if (this.debugger.base.lib.hash.hashLength(hash) &lt; scopes.length) {
+                $.each(scopes, function each(index, value) {
+                    this.debugger.scope.controller.checkCondition({
+                        condition: !hash.hasOwnProperty(value.toLowerCase()),
+                        msg: &#39;Undefined scope&#39;,
+                        type: &#39;warn&#39;,
+                        args: value
+                    });
+                }.bind(this));
+            }
+        },
+
+<span id='Config-method-setScope'>        /**
+</span>         * Set scope
+         * @param {{}} scope
+         * @param {String} item
+         * @returns {*}
+         */
+        setScope: function setScope(scope, item) {
+            var node = scope[item];
+            this.debugger.scopes[node.constructor.name.toLowerCase()] = node;
+            return node;
+        }
+
+    });
+
+});</pre>
+</body>
+</html>

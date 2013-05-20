@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/17/12
+ * Time: 4:10 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/base&#39;,
+    &#39;modules/controller&#39;
+], function defineLayoutController(Base, BaseController) {
+
+<span id='Controller-method-constructor'><span id='Controller'>    /**
+</span></span>     * Define layout controller
+     * @class Controller
+     * @mixin {BaseController}
+     * @constructor
+     */
+    var Controller = function Controller() {
+
+    };
+
+    return Controller.extend({
+
+<span id='Controller-method-beforeNestedOrganizer'>        /**
+</span>         * Before nested organizer
+         */
+        beforeNestedOrganizer: function beforeNestedOrganizer() {
+            this.controller.getParent().controller.banAddWidget();
+            this.logger.debug(&#39;Before nested organizer&#39;);
+        },
+
+<span id='Controller-method-afterNestedOrganizer'>        /**
+</span>         * After nested organizer
+         */
+        afterNestedOrganizer: function afterNestedOrganizer() {
+            this.controller.getParent().controller.allowAddWidget();
+            this.logger.debug(&#39;After nested organizer&#39;);
+        },
+
+<span id='Controller-method-updateMinCellWidth'>        /**
+</span>         * Update cell size on resize container
+         * @returns {*}
+         */
+        updateMinCellWidth: function updateMinCellWidth() {
+//            if (this.permission.eventTunnelFunctionCall(this.controller.updateMinCellWidth)) {
+                delete this.config.grid.minCellWidth;
+                return this.controller.minCellWidth();
+//            }
+        },
+
+<span id='Controller-method-minCellWidth'>        /**
+</span>         * Calculate cell size
+         * @returns {Number}
+         */
+        minCellWidth: function minCellWidth() {
+            var base = this.base,
+                scope = this.scope,
+                config = scope.config.grid;
+            if (base.isDefined(config.minCellWidth)) {
+                return config.minCellWidth;
+            }
+            var columns = config.columns,
+                margin = config.margin;
+
+            var elements = scope.controller.getParent().view.elements,
+                $page = elements.$page || elements.$template,
+                $widgets = elements.$widgets;
+
+            var pl = $widgets.getPaddingLeft(),
+                pr = $widgets.getPaddingRight(),
+                ml = $widgets.getMarginLeft(),
+                mr = $widgets.getMarginRight();
+
+            var width = $page.getWidth() - pl - pr - ml - mr;
+
+            config.minCellWidth = (width - margin * columns) / columns;
+
+            scope.logger.debug(&#39;Calculated cell size (px)&#39;, config.minCellWidth);
+
+            return config.minCellWidth;
+        },
+
+<span id='Controller-method-getGridWidth'>        /**
+</span>         * Get grid width
+         * @returns {number}
+         */
+        getGridWidth: function getGridWidth() {
+            var config = this.scope.config.grid,
+                cell = this.minCellWidth();
+
+            return (cell + config.margin) * config.columns;
+        },
+
+<span id='Controller-method-getNextPosition'>        /**
+</span>         * Get next position
+         * @param {{column: Number, row: Number}} dom
+         * @returns {{left: Number, top: Number}}
+         */
+        getNextPosition: function getNextPosition(dom) {
+            var $widgets = this.scope.controller.getParent().controller.getWidgetsContainer(),
+                top = $widgets.getTopDelta(),
+                left = $widgets.getLeftDelta();
+
+            var layout = this.scope,
+                cell = layout.controller.minCellWidth(),
+                margin = layout.config.grid.margin;
+
+<span id='Controller-method-_getNextPosition'>            /**
+</span>             * Get next position
+             * @param {Number} pos
+             * @returns {Number}
+             * @private
+             */
+            function _getNextPosition(pos) {
+                return pos * cell + (margin * (pos + 1));
+            }
+
+            return {
+                left: _getNextPosition(dom.column) + left,
+                top: _getNextPosition(dom.row) + top
+            };
+
+        },
+
+<span id='Controller-method-getBehaviorMode'>        /**
+</span>         * Get layout organizer mode
+         * @returns {String}
+         */
+        getBehaviorMode: function getBehaviorMode() {
+            return this.scope.config.mode;
+        },
+
+<span id='Controller-method-isSnap2Grid'>        /**
+</span>         * Check if mode is Snap to Grid
+         * @returns {boolean}
+         */
+        isSnap2Grid: function isSnap2Grid() {
+            return this.getBehaviorMode() === this.getParent().LAYOUT_MODES.snap2grid;
+        },
+
+<span id='Controller-method-isFreeStyle'>        /**
+</span>         * Check if mode is Free Style
+         * @returns {boolean}
+         */
+        isFreeStyle: function isFreeStyle() {
+            return this.getBehaviorMode() === this.getParent().LAYOUT_MODES.freeStyle;
+        },
+
+<span id='Controller-method-getBehavior'>        /**
+</span>         * Get layout behavior mode
+         * @returns {*}
+         */
+        getBehavior: function getBehavior() {
+            return this.scope.config.behavior[this.getBehaviorMode()];
+        },
+
+<span id='Controller-method-setOrganizeMode'>        /**
+</span>         * Set behavior organize mode
+         * @param {String} mode
+         */
+        setOrganizeMode: function setOrganizeMode(mode) {
+            this.scope.logger.warn(
+                &#39;Organize mode was changed&#39;,
+                this.getBehavior().organize,
+                mode
+            );
+            this.getBehavior().organize = mode;
+        },
+
+<span id='Controller-method-setOverlapping'>        /**
+</span>         * Set behavior overlapping
+         * @param {boolean} overlapping
+         */
+        setOverlapping: function setOverlapping(overlapping) {
+            this.scope.logger.debug(
+                &#39;Overlapping was changed&#39;,
+                this.getBehavior().overlapping,
+                overlapping
+            );
+            this.getBehavior().overlapping = overlapping;
+        }
+
+    }, Base, BaseController.prototype);
+});</pre>
+</body>
+</html>

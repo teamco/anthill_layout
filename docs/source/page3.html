@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/6/13
+ * Time: 9:03 PM
+ */
+
+define([
+    &#39;modules/debugger/actions&#39;
+], function defineDebuggerPage(Actions) {
+
+<span id='Page-method-constructor'><span id='Page'>    /**
+</span></span>     * Define Debugger Page
+     * @param {*} debug
+     * @constructor
+     */
+    var Page = function Page(debug) {
+
+<span id='Page-property-debugger'>        /**
+</span>         * Define debugger
+         * @type {*}
+         */
+        this.debugger = debug;
+<span id='Page-property-editMode'>        /**
+</span>         * Define edit mode
+         * @type {page.editMode: Boolean}
+         */
+        this.editMode = false;
+
+        this.actions = [
+            &#39;add-item&#39;,
+            &#39;remove-items&#39;,
+            &#39;remove-all-items&#39;,
+            &#39;locate-item&#39;
+        ];
+
+        this.extendSelectors({
+            edit: &#39;li.edit-mode&#39;,
+            actions: &#39;ul.page-widget-actions&#39;,
+            widgets: &#39;ul.widgets-info&#39;,
+            count: &#39;li.items-count&#39;
+        });
+
+    };
+
+    return Page.extend({
+
+//        /**
+//         * Define selectors
+//         */
+//        defineSelectors: function defineSelectors() {
+//            this.selectors = {
+//                edit: this.debugger.info + &#39; li.edit-mode&#39;,
+//                actions: this.debugger.info + &#39; ul.page-widget-actions&#39;,
+//                widgets: this.debugger.info + &#39; ul.widgets-info&#39;,
+//                count: this.debugger.info + &#39; li.items-count&#39;
+//            };
+//        },
+//
+//        /**
+//         * Render page widgets actions
+//         * @returns {string}
+//         */
+//        renderPageWidgetsActions: function renderPageWidgetsActions() {
+//            return [
+//                &#39;&lt;li class=&quot;extend&quot;&gt;&lt;ul class=&quot;page-widget-actions&quot;&gt;&#39;,
+//                this._renderAddWidget(),
+//                this._renderRemoveWidget(),
+//                this._renderRemoveWidgets(),
+//                this._renderLocateWidget(),
+//                this._renderEnableEditMode(),
+//                &#39;&lt;/ul&gt;&lt;/li&gt;&#39;
+//            ].join(&#39;&#39;);
+//        },
+
+//        /**
+//         * Render add new widget button
+//         * @returns {string}
+//         * @private
+//         */
+//        _renderAddWidget: function _renderAddWidget() {
+//            return &#39;&lt;li rel=&quot;disabled&quot; class=&quot;add-widget disabled&quot; title=&quot;Add widget&quot;&gt;Add widget&lt;/li&gt;&#39;;
+//        },
+//
+//        /**
+//         * Render remove widget button
+//         * @returns {string}
+//         * @private
+//         */
+//        _renderRemoveWidget: function _renderRemoveWidget() {
+//            return &#39;&lt;li rel=&quot;disabled&quot; class=&quot;remove-widget disabled select&quot; title=&quot;Remove widgets&quot;&gt;Remove widgets&lt;/li&gt;&#39;;
+//        },
+//
+//        /**
+//         * Render remove widgets button
+//         * @returns {string}
+//         * @private
+//         */
+//        _renderRemoveWidgets: function _renderRemoveWidgets() {
+//            return &#39;&lt;li rel=&quot;disabled&quot; class=&quot;remove-widgets disabled&quot; title=&quot;Remove all widgets&quot;&gt;Remove all widgets&lt;/li&gt;&#39;;
+//        },
+//
+//        /**
+//         * Render locate widget button
+//         * @returns {string}
+//         * @private
+//         */
+//        _renderLocateWidget: function _renderLocateWidget() {
+//            return &#39;&lt;li rel=&quot;disabled&quot; class=&quot;locate-widget disabled select&quot; title=&quot;Locate widget&quot;&gt;Locate widget&lt;/li&gt;&#39;;
+//        },
+//
+//        /**
+//         * Render enable edit mode
+//         * @returns {string}
+//         * @private
+//         */
+//        _renderEnableEditMode: function _renderEnableEditMode() {
+//            return &#39;&lt;li class=&quot;edit-mode&quot; title=&quot;Edit mode&quot;&gt;Edit mode&lt;/li&gt;&#39;;
+//        },
+
+<span id='Page-method-renderPageWidgets'>        /**
+</span>         * Render page widgets info
+         * @param {*} page
+         * @returns {string}
+         */
+        renderPageWidgets: function renderPageWidgets(page) {
+            return [
+                &#39;&lt;li class=&quot;extend&quot;&gt;&#39;,
+                this.debugger.component.renderBlock(&#39;Widgets&#39;, [
+                    this.renderItemsActions(),
+                    this._getItemsCount(page),
+                    this.renderPageWidgetsList(page)
+                ], true),
+                &#39;&lt;/li&gt;&#39;
+            ].join(&#39; &#39;);
+        },
+
+<span id='Page-method-renderPageWidgetsList'>        /**
+</span>         * Render page widgets list
+         * @param page
+         * @returns {string}
+         */
+        renderPageWidgetsList: function renderPageWidgetsList(page) {
+            var html = [&#39;&lt;li class=&quot;extend&quot;&gt;&lt;ul class=&quot;widgets-info&quot;&gt;&#39;];
+            html.push(this.getPageWidgetsList(page));
+            html.push(&#39;&lt;/ul&gt;&lt;/li&gt;&#39;);
+            return html.join(&#39;&#39;);
+        },
+
+<span id='Page-method-getPageWidgetsList'>        /**
+</span>         * Get page widget list
+         * @param page
+         * @returns {string}
+         */
+        getPageWidgetsList: function getPageWidgetsList(page) {
+            var html = [];
+            $.each(page.items, function each(uuid, widget) {
+                html.push([
+                    &#39;&lt;li class=&quot;&#39;, widget.model.getConfig(&#39;type&#39;), &#39;&quot;&gt;&#39;, uuid , &#39;&lt;/li&gt;&#39;
+                ].join(&#39;&#39;));
+            });
+
+            return html.join(&#39;&#39;);
+        },
+
+<span id='Page-method-updateItems'>        /**
+</span>         * Update page widget list
+         * @param page
+         */
+        updateItems: function updateItems(page) {
+            $(this.selectors.widgets).html(
+                this.getPageWidgetsList(page)
+            );
+
+            var $count = $(this.selectors.count);
+
+            $count.before(
+                this._getItemsCount(page)
+            ).remove();
+
+            this._bindWidgetsList(page);
+            this.$select.addClass(&#39;select&#39;);
+        },
+
+<span id='Page-method-_getItemsCount'>        /**
+</span>         * Get items count
+         * @param {*} page
+         * @returns {string}
+         * @private
+         */
+        _getItemsCount: function _getItemsCount(page) {
+            return this.debugger.component.renderInlineOf(&#39;Count&#39;, page);
+        },
+
+<span id='Page-method-_getWidgetAction'>        /**
+</span>         * Get page widget action button
+         * @param {String} action
+         * @returns {*|jQuery|HTMLElement}
+         * @private
+         */
+        _getWidgetAction: function _getWidgetAction(action) {
+            return $(&#39;li.&#39; + action, this.selectors.actions);
+        },
+
+<span id='Page-method-bindEnablePageWidgetsEditMode'>        /**
+</span>         * Bind enable page widget edit mode,
+         * @param {*} page
+         */
+        bindEnablePageWidgetsEditMode: function bindEnablePageWidgetsEditMode(page) {
+            $(this.selectors.edit).on(&#39;click.edit&#39;, function edit(e) {
+                this._enablePageWidgetsEditMode(e, page);
+            }.bind(this));
+        },
+
+<span id='Page-method-_bindWidgetsList'>        /**
+</span>         * Bind widget list
+         * @param page
+         * @private
+         */
+        _bindWidgetsList: function _bindWidgetsList(page) {
+            this.$select = this.debugger.base.define(
+                this.$select,
+                $(&#39;.select&#39;, this.selectors.actions)
+            );
+
+            if (this.editMode) {
+                $(&#39;li&#39;, this.selectors.widgets).on(&#39;click.select&#39;, function select(e) {
+                    var $li = $(e.target),
+                        widget = page.items[$li.text()];
+
+                    if ($li.hasClass(&#39;select&#39;)) {
+                        page.logger.debug(&#39;Unselect&#39;, widget);
+                        $li.removeClass(&#39;select&#39;);
+                        this.$select.addClass(&#39;select&#39;);
+                    } else {
+                        page.logger.debug(&#39;Select&#39;, widget);
+                        $li.addClass(&#39;select&#39;);
+                        this.$select.removeClass(&#39;select&#39;);
+                    }
+
+                    var $select = $(&#39;li.select&#39;, this.selectors.widgets),
+                        $locate = this._getWidgetAction(&#39;locate-widget&#39;);
+
+                    $select.length === 1 ?
+                        $locate.removeClass(&#39;disabled select&#39;) :
+                        $locate.addClass(&#39;disabled select&#39;);
+
+                }.bind(this));
+            }
+        },
+
+<span id='Page-method-_unbindWidgetsList'>        /**
+</span>         * Unbind widget list
+         * @private
+         */
+        _unbindWidgetsList: function _unbindWidgetsList() {
+            $(&#39;li&#39;, this.selectors.widgets).unbind(&#39;click.select&#39;);
+        },
+
+<span id='Page-method-_enablePageWidgetsEditMode'>        /**
+</span>         * Enable page widget edit mode
+         * @param {*} e
+         * @param {*} page
+         * @private
+         */
+        _enablePageWidgetsEditMode: function _enablePageWidgetsEditMode(e, page) {
+            var $this = $(e.target),
+                $disabled = $(&#39;li[rel=&quot;disabled&quot;]&#39;, $this.parent(&#39;ul&#39;));
+            if ($disabled.hasClass(&#39;disabled&#39;)) {
+                page.logger.debug(&#39;Activate edit mode&#39;);
+                $disabled.removeClass(&#39;disabled&#39;);
+                $this.addClass(&#39;active&#39;);
+                this.editMode = true;
+                this._bindWidgetsList(page);
+                this._bindAddNewWidget(page);
+                this._bindRemoveWidget(page);
+                this._bindRemoveAllWidgets(page);
+                this._bindLocateWidget(page);
+            } else {
+                this._disablePageWidgetsEditMode($this, page);
+            }
+        },
+
+<span id='Page-method-_disablePageWidgetsEditMode'>        /**
+</span>         * Disable page widget edit mode
+         * @param {*} $this
+         * @param {*} page
+         * @private
+         */
+        _disablePageWidgetsEditMode: function _disablePageWidgetsEditMode($this, page) {
+            var $disabled = $(&#39;li[rel=&quot;disabled&quot;]&#39;, $this.parent(&#39;ul&#39;));
+
+            page.logger.debug(&#39;Deactivate edit mode&#39;);
+            $disabled.addClass(&#39;disabled&#39;);
+            $this.removeClass(&#39;active&#39;);
+            this._unbindAddNewWidget(page);
+            this._unbindRemoveWidget(page);
+            this._unbindRemoveAllWidgets(page);
+            this._unbindLocateWidget(page);
+            this._unbindWidgetsList();
+            this.editMode = false;
+        },
+
+<span id='Page-method-_bindAddNewWidget'>        /**
+</span>         * Bind add new widget
+         * @param {*} page
+         * @private
+         */
+        _bindAddNewWidget: function _bindAddNewWidget(page) {
+            page.logger.debug(&#39;Bind edit mode&#39;);
+            this._getWidgetAction(&#39;add-widget&#39;).on(&#39;click.add&#39;, function (e) {
+                page.api.createWidget([], true);
+                this._getWidgetAction(&#39;remove-widgets&#39;).removeClass(&#39;disabled&#39;);
+            }.bind(this));
+        },
+
+<span id='Page-method-_unbindAddNewWidget'>        /**
+</span>         * Unbind add new widget
+         * @param {*} page
+         * @private
+         */
+        _unbindAddNewWidget: function _unbindAddNewWidget(page) {
+            page.logger.debug(&#39;Unbind Add widget&#39;);
+            this._getWidgetAction(&#39;add-widget&#39;).unbind(&#39;click.add&#39;);
+        },
+
+<span id='Page-method-_bindRemoveWidget'>        /**
+</span>         * Bind remove widgets
+         * @param page
+         * @private
+         */
+        _bindRemoveWidget: function _bindRemoveWidget(page) {
+            page.logger.debug(&#39;Bind remove widgets&#39;);
+            this._getWidgetAction(&#39;remove-widget&#39;).on(&#39;click.remove&#39;, function remove(e) {
+                if ($(&#39;li.select&#39;, this.selectors.widgets).length === 0) {
+                    page.logger.warn(&#39;Select widgets before remove&#39;);
+                    return false;
+                }
+                this._removeWidgets(page);
+            }.bind(this));
+        },
+
+<span id='Page-method-_unbindRemoveWidget'>        /**
+</span>         * Unbind remove widgets
+         * @param {*} page
+         * @private
+         */
+        _unbindRemoveWidget: function _unbindRemoveWidget(page) {
+            page.logger.debug(&#39;Unbind remove widgets&#39;);
+            this._getWidgetAction(&#39;remove-widget&#39;).unbind(&#39;click.remove&#39;);
+            $(&#39;li&#39;, this.selectors.widgets).removeClass(&#39;select&#39;);
+        },
+
+<span id='Page-method-_bindRemoveAllWidgets'>        /**
+</span>         * Bind remove all widgets
+         * @param page
+         * @private
+         */
+        _bindRemoveAllWidgets: function _bindRemoveAllWidgets(page) {
+            var $lis = $(&#39;li&#39;, this.selectors.widgets),
+                $action = this._getWidgetAction(&#39;remove-widgets&#39;);
+            page.logger.debug(&#39;Bind remove all widgets&#39;);
+
+            if ($lis.length === 0) {
+                $action.addClass(&#39;disabled&#39;);
+            }
+
+            $action.on(&#39;click.remove&#39;, function remove(e) {
+                if ($lis.length === 0) {
+                    page.logger.warn(&#39;Add widgets before remove&#39;);
+                    return false;
+                }
+                this._removeAllWidgets(page);
+            }.bind(this));
+        },
+
+<span id='Page-method-_unbindRemoveAllWidgets'>        /**
+</span>         * Unbind remove all widgets
+         * @param {*} page
+         * @private
+         */
+        _unbindRemoveAllWidgets: function _unbindRemoveAllWidgets(page) {
+            page.logger.debug(&#39;Unbind remove all widgets&#39;);
+            this._getWidgetAction(&#39;remove-widgets&#39;).unbind(&#39;click.remove&#39;);
+            $(&#39;li&#39;, this.selectors.widgets).removeClass(&#39;select&#39;);
+        },
+
+<span id='Page-method-_bindLocateWidget'>        /**
+</span>         * Bind locate widget
+         * @param page
+         * @private
+         */
+        _bindLocateWidget: function _bindLocateWidget(page) {
+            page.logger.debug(&#39;Bind locate widget&#39;);
+
+            this._getWidgetAction(&#39;locate-widget&#39;).on(&#39;click.locate&#39;, function locate(e) {
+                this._locateWidget(page);
+            }.bind(this));
+        },
+
+<span id='Page-method-_unbindLocateWidget'>        /**
+</span>         * Unbind remove all widgets
+         * @param {*} page
+         * @private
+         */
+        _unbindLocateWidget: function _unbindLocateWidget(page) {
+            page.logger.debug(&#39;Unbind locate widget&#39;);
+            this._getWidgetAction(&#39;locate-widget&#39;).unbind(&#39;click.locate&#39;);
+            $(&#39;li&#39;, this.selectors.widgets).removeClass(&#39;select&#39;);
+        },
+
+        _locateWidget: function _locateWidget(page) {
+            var $li = $(&#39;li.select&#39;, this.selectors.widgets);
+
+            if ($li.length !== 1) {
+                page.logger.warn(&#39;Select one widget before locate&#39;);
+                return false;
+            }
+
+            var uuid = $li.text(),
+                widget = page.model.getItemByUUID(uuid);
+
+            if (!this.debugger.base.isDefined(widget)) {
+                page.logger.warn(&#39;Undefined widget&#39;, uuid);
+                return false;
+            }
+
+            page.logger.warn(&#39;Locate&#39;, widget);
+
+        },
+
+<span id='Page-method-_removeWidgets'>        /**
+</span>         * Remove widgets
+         * @param {*} page
+         * @private
+         */
+        _removeWidgets: function _removeWidgets(page) {
+            var items = {};
+            $.each($(&#39;li.select&#39;, this.selectors.widgets), function each(i, v) {
+                var uuid = $(v).text();
+                items[uuid] = page.model.getItemByUUID(uuid);
+            });
+
+            page.logger.debug(&#39;Start remove widgets&#39;, items);
+            page.api.destroyWidgets(items);
+
+        },
+
+<span id='Page-method-_removeAllWidgets'>        /**
+</span>         * Remove widgets
+         * @param {*} page
+         * @private
+         */
+        _removeAllWidgets: function _removeAllWidgets(page) {
+            $(&#39;li&#39;, this.selectors.widgets).addClass(&#39;select&#39;);
+            this._getWidgetAction(&#39;remove-widgets&#39;).addClass(&#39;disabled&#39;);
+            page.logger.debug(&#39;Start remove all widgets&#39;);
+            this._removeWidgets(page);
+        }
+
+    }, Actions.prototype);
+});
+</pre>
+</body>
+</html>

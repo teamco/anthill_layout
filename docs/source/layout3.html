@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/6/13
+ * Time: 9:26 PM
+ */
+define([], function defineDebuggerLayout() {
+
+<span id='Layout-method-constructor'><span id='Layout'>    /**
+</span></span>     * Define Debugger Layout
+     * @param {*} debug
+     * @constructor
+     */
+    var Layout = function Layout(debug) {
+
+<span id='Layout-property-debugger'>        /**
+</span>         * Define debugger
+         * @type {*}
+         */
+        this.debugger = debug;
+
+    };
+
+    return Layout.extend({
+
+<span id='Layout-method-bindToggleGrid'>        /**
+</span>         * Toggle grid
+         */
+        bindToggleGrid: function bindToggleGrid() {
+            var $label = $(this.debugger.info).find(&#39;.handler input:first+label&#39;);
+            $label.on(
+                &#39;click.toggleGrid&#39;,
+                function toggleGrid() {
+                    var $placeholders = $(this.debugger.placeholders);
+
+                    if ($placeholders.length &gt; 0 &amp;&amp;
+                        $placeholders.find(&#39;*&#39;).length &gt; 0) {
+                        $label.text($label.text().replace(/Hide/, &#39;Show&#39;));
+                        return this.debugger.grid.destroyGrid();
+                    }
+                    $label.text($label.text().replace(/Show/, &#39;Hide&#39;));
+                    this.debugger.grid.showGrid();
+                }.bind(this)
+            );
+        },
+
+<span id='Layout-method-bindChangeOverlappingMode'>        /**
+</span>         * Bind change overlapping mode
+         */
+        bindChangeOverlappingMode: function bindChangeOverlappingMode() {
+            $(&#39;#overlapping-mode&#39;).on(&#39;change.overlapping&#39;, function onChange(e) {
+                this.debugger.scopes.page.layout.controller.setOrganizeMode($(e.target).val());
+            }.bind(this));
+        },
+
+<span id='Layout-method-bindAllowOverlapping'>        /**
+</span>         * Bind click to allow / disable overlapping
+         */
+        bindAllowOverlapping: function bindAllowOverlapping() {
+            var $input = $(&#39;input[name=&quot;overlapping&quot;]&#39;);
+            $input.change(function change(e) {
+                this.debugger.scopes.page.layout.controller.setOverlapping($input.prop(&#39;checked&#39;));
+            }.bind(this));
+        },
+
+<span id='Layout-method-renderPageLayout'>        /**
+</span>         * Render page layout info
+         * @param {*} layout
+         * @returns {string}
+         */
+        renderPageLayout: function renderPageLayout(layout) {
+            var c = this.debugger.component;
+            return [&#39;&lt;li class=&quot;extend&quot;&gt;&#39;, c.renderBlock(&#39;Layout&#39;, [
+                c.renderInput(&#39;Snap to Grid&#39;, layout.controller.isSnap2Grid()),
+                c.renderInput(&#39;Overlapping&#39;, layout.controller.getBehavior().overlapping),
+                c.renderCombo(
+                    &#39;Overlapping mode&#39;,
+                    layout.controller.getBehavior().organize,
+                    [&#39;row&#39;, &#39;column&#39;]
+                ),
+                c.renderInline(&#39;Empty spaces&#39;, layout.controller.getBehavior().emptySpaces),
+                c.renderInline(&#39;Columns&#39;, layout.config.grid.columns),
+                c.renderInline(&#39;Widgets per row&#39;, layout.config.grid.widgetsPerRow),
+                c.renderInline(&#39;Cell size (px)&#39;, layout.config.grid.minCellWidth.toFixed(3)),
+                c.renderInline(&#39;Margin (px)&#39;, layout.config.grid.margin),
+                c.renderInline(&#39;Padding (px)&#39;, layout.config.grid.padding)
+            ], false), &#39;&lt;/li&gt;&#39;].join(&#39;&#39;);
+        }
+
+    });
+
+});</pre>
+</body>
+</html>

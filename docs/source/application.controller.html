@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/5/12
+ * Time: 9:17 PM
+ * To change this template use File | Settings | File Templates.
+ */
+define([
+    &#39;modules/controller&#39;
+], function defineApplicationController(BaseController) {
+
+<span id='Controller-method-constructor'><span id='Controller'>    /**
+</span></span>     * Define application controller
+     * @class Controller
+     * @mixin {BaseController}
+     * @constructor
+     */
+    var Controller = function Controller() {
+    };
+
+    return Controller.extend({
+<span id='Controller-method-initResizeWindow'>        /**
+</span>         * Init window resize
+         */
+        initResizeWindow: function initResizeWindow() {
+            this.scope.logger.debug(&#39;Init window resize&#39;);
+            $(window).on(
+                &#39;resize.window&#39;,
+                this.resizeWindowPublisher.bind(this)
+            );
+        },
+<span id='Controller-method-resizeWindowPublisher'>        /**
+</span>         * Resize window publisher
+         */
+        resizeWindowPublisher: function resizeWindowPublisher() {
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.resizeWindow
+            );
+        },
+<span id='Controller-method-resizeWindow'>        /**
+</span>         * Resize window callback
+         */
+        resizeWindow: function resizeWindow() {
+            this.logger.debug(&#39;Start resize window&#39;);
+        },
+<span id='Controller-method-debugStart'>        /**
+</span>         * Start debugger
+         */
+        debugStart: function debugStart() {
+            this.logger.debug(&#39;Activate debugger&#39;);
+        },
+<span id='Controller-method-debugEnd'>        /**
+</span>         * End debugger
+         */
+        debugEnd: function debugEnd() {
+            this.logger.debug(&#39;Destroy debugger&#39;);
+        },
+<span id='Controller-method-activateDebugger'>        /**
+</span>         * Activate debugger
+         */
+        activateDebugger: function activateDebugger() {
+            var scope = this.scope;
+            scope.observer.publish(scope.eventmanager.eventList.debugStart);
+            scope.view.elements.$debugger.deactivate();
+        },
+<span id='Controller-method-deactivateDebugger'>        /**
+</span>         * Deactivate debugger
+         */
+        deactivateDebugger: function deactivateDebugger() {
+            var scope = this.scope;
+            scope.observer.publish(scope.eventmanager.eventList.debugEnd);
+            scope.view.elements.$debugger.activate();
+        }
+
+    }, BaseController.prototype);
+
+});</pre>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">requirejs([
+    &#39;modules/base/array&#39;,
+    &#39;modules/base/function&#39;,
+    &#39;modules/base/generator&#39;,
+    &#39;modules/base/hash&#39;,
+    &#39;modules/base/html&#39;,
+    &#39;modules/base/number&#39;,
+    &#39;modules/base/datetime&#39;,
+    &#39;modules/base/string&#39;,
+    &#39;modules/base/ua&#39;
+]);
+
+define([
+], function defineBase() {
+
+<span id='Base-method-constructor'><span id='Base'>    /**
+</span></span>     * Define base utils
+     * @class Base
+     * @constructor
+     */
+    var Base = function Base() {
+    };
+
+    Base.extend({
+
+        lib: {},
+
+<span id='Base-method-getType'>        /**
+</span>         * Get object type
+         * @param obj
+         * @returns {String}
+         */
+        getType: function getType(obj) {
+            return Object.prototype.toString.call(obj).match(/^\[object (.*)\]$/)[1];
+        },
+<span id='Base-method-isDefined'>        /**
+</span>         * Check if object defined
+         * @param {*} o
+         * @return {boolean}
+         */
+        isDefined: function isDefined(o) {
+            return typeof o !== &#39;undefined&#39; &amp;&amp; o !== null;
+        },
+
+<span id='Base-method-isBlank'>        /**
+</span>         * Check if object is blank
+         * @param {String} o
+         * @return {boolean}
+         */
+        isBlank: function isBlank(o) {
+            return !(this.isDefined(o)) || this.isEmpty(o);
+        },
+
+<span id='Base-method-isEmpty'>        /**
+</span>         * Check if object is empty
+         * @param {String|Array|jQuery} o
+         * @returns {boolean}
+         */
+        isEmpty: function isEmpty(o) {
+            if (this.isString(o)) {
+                return $.trim(o).length === 0;
+            } else if (this.isArray(o) || this.is$Object(o)) {
+                return o.length === 0;
+            }
+            return false;
+        },
+
+<span id='Base-method-isString'>        /**
+</span>         * Check if object string type
+         * @param {String} o
+         * @returns {boolean}
+         */
+        isString: function isString(o) {
+            return this.getType(o).toLowerCase() === &#39;string&#39;;
+        },
+
+        // Check if array
+        // Return: boolean
+        isArray: function isArray(a) {
+            return this.getType(a).toLowerCase() === &#39;array&#39;;
+        },
+        // Check if object is instance of $
+        is$Object: function is$Object(o) {
+            return o instanceof $;
+        },
+        // Check if object
+        // Return: boolean
+        isObject: function isObject(o) {
+            return !this.isArray(o) &amp;&amp; typeof o === &#39;object&#39; &amp;&amp; this.isDefined(o);
+        },
+        // Check if function
+        // Return: boolean
+        isFunction: function isFunction(o) {
+            return typeof o === &#39;function&#39;;
+        },
+        // Check if value is numeric
+        // Return: boolean
+        isNumber: function isNumber(n) {
+            n = this.define(n, 0);
+            return !!(isNaN(n) ? 0 : n);
+        },
+
+<span id='Base-method-define'>        /**
+</span>         * Define object if undefined
+         * @param o
+         * @param value
+         * @param {Boolean} [force]
+         * @returns {*}
+         */
+        define: function define(o, value, force) {
+            if (!this.isDefined(o)) {
+                o = value;
+            } else if (typeof(o) !== typeof(value) &amp;&amp; !!force) {
+                o = value;
+            }
+            return o;
+        },
+        defineBoolean: function defineBoolean(o, value, force) {
+            if (!this.isDefined(o)) {
+                o = value;
+            } else if (typeof(o) !== typeof(value) &amp;&amp; force) {
+                o = value;
+            }
+            return o;
+        }
+
+    });
+
+    return Base;
+
+});</pre>
+</body>
+</html>

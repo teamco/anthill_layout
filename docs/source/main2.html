@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">requirejs.config({
+    baseUrl: &#39;scripts/core&#39;,
+    paths: {
+        config: &#39;config&#39;,
+        jqueryui: &#39;lib/jquery/jquery-ui-1.10.3.custom.min&#39;,
+        application: &#39;application&#39;,
+        api: &#39;api&#39;,
+        controller: &#39;controller&#39;,
+        model: &#39;model&#39;,
+        event: &#39;event&#39;,
+        view: &#39;view&#39;,
+        permission: &#39;permission&#39;,
+        test: &#39;test&#39;,
+        extends: &#39;lib/extends&#39;,
+        modules: &#39;lib/modules&#39;
+    }
+});
+
+define([
+    &#39;config/listeners&#39;,
+    &#39;config/permission&#39;,
+    &#39;test/create&#39;
+], function defineApp() {
+});</pre>
+</body>
+</html>

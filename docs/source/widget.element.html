@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:12 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/base&#39;,
+    &#39;modules/element&#39;
+], function defineWidget(Base, BaseElement) {
+
+<span id='Widget-method-constructor'><span id='Widget'>    /**
+</span></span>     * Define widget element
+     * @param {{}} view
+     * @param {$container} opts
+     * @returns {*}
+     * @constructor
+     */
+    var Widget = function Widget(view, opts) {
+
+        return this._config(view, opts, $(&#39;&lt;li /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: false
+        });
+    };
+
+    return Widget.extend({
+<span id='Widget-method-_setPosition'>        /**
+</span>         * Set widget position
+         * @param {{animate: Boolean, callback: Function}} opts
+         * @private
+         */
+        _setPosition: function _setPosition(opts) {
+            var widget = this.view.scope,
+                dom = widget.dom,
+                position = widget.map.positionFor(
+                    dom.column,
+                    dom.row
+                );
+            this.$.stop().animate({
+                    top: position.top,
+                    left: position.left
+                },
+                !!opts.animate ? 500 : 0,
+                opts.callback
+            );
+
+        },
+<span id='Widget-method-_downgradeLayer'>        /**
+</span>         * Downgrade widget layer
+         * @param {Number} layer
+         * @private
+         */
+        _downgradeLayer: function _downgradeLayer(layer) {
+            this.$.css({
+                zIndex: layer
+            });
+        },
+<span id='Widget-method-getContent'>        /**
+</span>         * Get item content
+         * @returns {*}
+         */
+        getContent: function getContent() {
+            return this.$.find(&#39;.content&#39;);
+        }
+
+
+    }, Base, BaseElement.prototype);
+});</pre>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">define([
+    &#39;modules/base&#39;,
+    &#39;api/application.api&#39;,
+    &#39;modules/mvc&#39;,
+    &#39;controller/application.controller&#39;,
+    &#39;model/application.model&#39;,
+    &#39;view/application.view&#39;,
+    &#39;event/application.event.manager&#39;,
+    &#39;permission/application.permission&#39;
+], function defineApp(Base, API, MVC, Controller, Model, View, EventManager, Permission) {
+
+<span id='App-method-constructor'><span id='App'>    /**
+</span></span>     * Define App
+     * @class App
+     * @extends {Base}
+     * @param {{}} opts
+     * @constructor
+     */
+    var App = function App(opts) {
+
+<span id='App-property-DEFAULTS'>        /**
+</span>         * Default config
+         * @type {{
+         *  workspace: {
+         *      limit: number,
+         *      counter: number
+         *  },
+         *  mode: string,
+         *  logger: {
+         *      show: boolean,
+         *      namespaces: boolean,
+         *      type: {
+         *          debug: boolean,
+         *          log: boolean,
+         *          info: boolean,
+         *          error: boolean,
+         *          warn: boolean
+         *      }
+         *  }
+         * }}
+         */
+        var DEFAULTS = {
+            workspace: {
+                limit: 1,
+                counter: 0
+            },
+            mode: &#39;development&#39;,
+            logger: {
+                show: true,
+                namespaces: false, //&#39;App&#39;,
+                type: {
+                    debug: false,
+                    log: false,
+                    info: false,
+                    error: true,
+                    warn: true
+                }
+            }
+        };
+
+<span id='App-property-items'>        /**
+</span>         * Define items
+         * @type {*}
+         */
+        this.items = {};
+
+<span id='App-property-workspace'>        /**
+</span>         * Define workspace
+         * @type {Workspace}
+         */
+        this.workspace = {};
+
+<span id='App-property-mvc'>        /**
+</span>         * Define MVC
+         * @type {MVC}
+         */
+        this.mvc = new MVC({
+            scope: this,
+            config: [opts, DEFAULTS],
+            components: [
+                API,
+                Controller,
+                Model,
+                View,
+                EventManager,
+                Permission
+            ],
+            render: true
+        });
+
+        this.controller.initResizeWindow();
+
+        this.observer.publish(this.eventmanager.eventList.successCreated);
+
+    };
+
+    return App.extend(Base);
+
+});
+</pre>
+</body>
+</html>

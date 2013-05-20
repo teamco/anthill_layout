@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 2/13/13
+ * Time: 11:47 PM
+ */
+
+define([
+    &#39;modules/base&#39;
+], function defineWidgetMap(Base) {
+
+<span id='Map-method-constructor'><span id='Map'>    /**
+</span></span>     * Define Widget Map
+     * @class Map
+     * extends {Base}
+     * @param {*} widget
+     * @constructor
+     */
+    var Map = function Map(widget) {
+        this.widget = widget;
+        this.layout = this.widget.controller.getParent().controller.getLayout();
+        this.duration = 500;
+    };
+
+    return Map.extend({
+<span id='Map-method-relDims'>        /**
+</span>         * Define 0 as 1 relative dims (width|height)
+         * @param {Number} dim
+         * @returns {Number}
+         */
+        relDims: function relDims(dim) {
+            return dim === 0 ? 1 : dim;
+        },
+<span id='Map-method-getDOM'>        /**
+</span>         * Get widget DOM info
+         * @returns {*}
+         */
+        getDOM: function getDOM() {
+            var $widget = this.widget.view.elements.$widget,
+                position = $widget.getPosition(),
+                dom = {
+                    left: position.left,
+                    top: position.top,
+                    width: $widget.getWidth(),
+                    height: $widget.getHeight()
+                },
+                layout = this.layout,
+                cell = layout.controller.minCellWidth() +
+                    layout.config.grid.margin;
+
+            dom.right = this.widgetRight(dom.left, dom.width);
+            dom.bottom = this.widgetBottom(dom.top, dom.height);
+
+            dom.column = this.column(dom.left, cell);
+            dom.row = this.row(dom.top, cell);
+
+            dom.relWidth = this.relWidth(dom.width, cell);
+            dom.relHeight = this.relHeight(dom.height, cell);
+
+            return dom;
+        },
+<span id='Map-method-relWidth'>        /**
+</span>         * Get relative width
+         * @param {Number} width
+         * @param {Number} cell
+         * @returns {Number}
+         */
+        relWidth: function relWidth(width, cell) {
+            return this.relDims(Math.ceil(width / cell));
+        },
+<span id='Map-method-relHeight'>        /**
+</span>         * Get relative height
+         * @param {Number} height
+         * @param {Number} cell
+         * @returns {Number}
+         */
+        relHeight: function relHeight(height, cell) {
+            return this.relDims(Math.ceil(height / cell));
+        },
+<span id='Map-method-row'>        /**
+</span>         * Get row
+         * @param {Number} top
+         * @param {Number} cell
+         * @returns {Number}
+         */
+        row: function row(top, cell) {
+            return Math.floor(top / cell);
+        },
+<span id='Map-method-column'>        /**
+</span>         * Get column
+         * @param {Number} left
+         * @param {Number} cell
+         * @returns {Number}
+         */
+        column: function column(left, cell) {
+            return Math.floor(left / cell);
+        },
+<span id='Map-method-widgetTop'>        /**
+</span>         * Get widget top position via grid
+         * @param {Number} row
+         * @returns {Number}
+         */
+        widgetTop: function widgetTop(row) {
+            return this.getWidgetPosition(row);
+        },
+<span id='Map-method-widgetBottom'>        /**
+</span>         * Get widget bottom position via grid
+         * @param {Number} top
+         * @param {Number} height
+         * @returns {Number}
+         */
+        widgetBottom: function widgetBottom(top, height) {
+            return top + height;
+        },
+<span id='Map-method-widgetLeft'>        /**
+</span>         * Get widget left position via grid
+         * @param {Number} column
+         * @returns {Number}
+         */
+        widgetLeft: function widgetLeft(column) {
+            return this.getWidgetPosition(column);
+        },
+<span id='Map-method-widgetRight'>        /**
+</span>         * Get widget right position via grid
+         * @param {Number} left
+         * @param {Number} width
+         * @returns {Number}
+         */
+        widgetRight: function widgetRight(left, width){
+            return left + width;
+        },
+<span id='Map-method-widgetHeight'>        /**
+</span>         * Get widget height via grid
+         * @param {Number} relHeight
+         * @returns {Number}
+         */
+        widgetHeight: function widgetHeight(relHeight) {
+            return this.getWidgetDims(relHeight);
+        },
+<span id='Map-method-widgetWidth'>        /**
+</span>         * Get widget width via grid
+         * @param {Number} relWidth
+         * @returns {Number}
+         */
+        widgetWidth: function widgetWidth(relWidth) {
+            return this.getWidgetDims(relWidth);
+        },
+<span id='Map-method-marginFor'>        /**
+</span>         * Get map margins delta in row/column
+         * @param column
+         * @param row
+         * @returns {{top: number, left: number}}
+         */
+        marginFor: function marginFor(column, row) {
+            var margin = this.layout.config.grid.margin;
+            return {
+                top: (row + 1) * margin,
+                left: (column + 1) * margin
+            };
+        },
+<span id='Map-method-positionFor'>        /**
+</span>         * Get map widget top/left
+         * @param column
+         * @param row
+         * @returns {{top: number, left: number}}
+         */
+        positionFor: function positionFor(column, row) {
+            var margins = this.marginFor(column, row),
+                cell = this.layout.controller.minCellWidth();
+            return {
+                top: row * cell + margins.top,
+                left: column * cell + margins.left
+            };
+        },
+<span id='Map-method-getWidgetPosition'>        /**
+</span>         * Get widget position (top|left) via grid
+         * @param {Number} pos
+         * @returns {Number}
+         */
+        getWidgetPosition: function getWidgetPosition(pos) {
+            var layout = this.layout;
+            return pos * layout.controller.minCellWidth() +
+                (pos + 1) * layout.config.grid.margin;
+        },
+<span id='Map-method-getWidgetDims'>        /**
+</span>         * Get widget position (width|height) via grid
+         * @param {Number} dim
+         * @returns {Number}
+         */
+        getWidgetDims: function getWidgetDims(dim) {
+            var layout = this.layout;
+            return dim * layout.controller.minCellWidth() +
+                (dim - 1) * layout.config.grid.margin;
+        },
+<span id='Map-method-checkWidgetPositionColumnLeft'>        /**
+</span>         * Check widget column position via grid: Left
+         * @param {Number} column
+         * @returns {Boolean}
+         */
+        checkWidgetPositionColumnLeft: function checkWidgetPositionColumnLeft(column) {
+            return column &gt;= 0;
+        },
+<span id='Map-method-checkWidgetPositionColumnRight'>        /**
+</span>         * Check widget column position via grid: Right
+         * @param {{column, relWidth}} dom
+         * @returns {Boolean}
+         */
+        checkWidgetPositionColumnRight: function checkWidgetPositionColumnRight(dom) {
+            return (dom.column + dom.relWidth) &lt;=
+                this.layout.config.grid.columns;
+        },
+<span id='Map-method-checkWidgetPositionColumn'>        /**
+</span>         * Check widget column position via grid: Left|Right
+         * @param {{column, relWidth}} dom
+         * @returns {Boolean}
+         */
+        checkWidgetPositionColumn: function checkWidgetPositionColumn(dom) {
+            return (
+                this.checkWidgetPositionColumnLeft(dom.column) &amp;&amp;
+                    this.checkWidgetPositionColumnRight(dom)
+                );
+        },
+<span id='Map-method-checkWidgetPositionRowTop'>        /**
+</span>         * Check widget row position via grid: Top
+         * @param {{Number}} row
+         * @returns {Boolean}
+         */
+        checkWidgetPositionRowTop: function checkWidgetPositionRowTop(row) {
+            return row &gt;= 0;
+        },
+<span id='Map-method-checkWidgetPosition'>        /**
+</span>         * Check widget position
+         * @returns {Boolean|*}
+         */
+        checkWidgetPosition: function checkWidgetPosition() {
+            var dom = this.getDOM();
+            return (
+                this.checkWidgetPositionColumn(dom) &amp;&amp;
+                    this.checkWidgetPositionRowTop(dom.row)
+                );
+        },
+<span id='Map-method-isResize'>        /**
+</span>         * Check if interaction is: resize
+         * @param {String} type
+         * @returns {*|Array|{index: number, input: string}}
+         */
+        isResize: function isResize(type) {
+            return type.match(/resize/ig);
+        },
+<span id='Map-method-isDrag'>        /**
+</span>         * Check if interaction is: drag
+         * @param {String} type
+         * @returns {*|Array|{index: number, input: string}}
+         */
+        isDrag: function isDrag(type) {
+            return type.match(/drag/ig);
+        },
+<span id='Map-method-isStop'>        /**
+</span>         * Check if interaction is: stop {drag|resize}
+         * @param {String} type
+         * @returns {*|Array|{index: number, input: string}}
+         */
+        isStop: function isStop(type) {
+            return type.match(/stop/ig);
+        },
+<span id='Map-method-animateOnStop'>        /**
+</span>         * Get animation behavior on stop interaction
+         * @param {{animate: Boolean}} behavior
+         * @param {String} type
+         * @returns {Boolean}
+         */
+        animateOnStop: function animateOnStop(type, behavior) {
+            return this.isStop(type) ? !!behavior.animate : false;
+        },
+<span id='Map-method-overlappingOnStop'>        /**
+</span>         * Get overlapping behavior on stop interaction
+         * @param {{overlapping: Boolean}} behavior
+         * @param {String} type
+         * @returns {Boolean}
+         */
+        overlappingOnStop: function overlappingOnStop(type, behavior) {
+            return this.isStop(type) ? !!behavior.overlapping : false;
+        },
+<span id='Map-method-sticker'>        /**
+</span>         * Grid sticker on interaction (Drag/Resize)
+         * @param {{type, $source, callback: Function}} opts
+         * @param {{animate: Boolean, overlapping: Boolean}} behavior
+         */
+        sticker: function sticker(opts, behavior) {
+            opts = this.base.define(opts, {}, true);
+            var layout = this.layout,
+                css = this.isDrag(opts.type) ?
+                    this.dragTo() :
+                    this.resizeTo();
+            if (css.top &gt;= 0 &amp;&amp; css.left &gt;= 0) {
+                opts.$source.stop().animate(
+                    css,
+                    this.animateOnStop(opts.type, behavior) ? this.duration : 0,
+                    this._mapStickerCallback.bind({
+                        self: this,
+                        widget: this.widget,
+                        layout: layout,
+                        callback: opts.callback,
+                        behavior: behavior,
+                        type: opts.type
+                    })
+                );
+            }
+        },
+<span id='Map-method-_mapStickerCallback'>        /**
+</span>         * Map sticker callback
+         * @private
+         */
+        _mapStickerCallback: function _mapStickerCallback() {
+            var hash = {},
+                widget = this.widget;
+
+            if (this.self.overlappingOnStop(this.type, this.behavior)) {
+                widget.model.save();
+                hash[widget.model.getUUID()] = widget;
+
+                this.layout.observer.publish(this.layout.eventmanager.eventList.beforeNestedOrganizer);
+
+                this.layout.overlapping.nestedOrganizer({
+                    targets: hash,
+                    callback: this.callback
+                });
+            }
+        },
+
+<span id='Map-method-getNextDims'>        /**
+</span>         * Get next dimensions
+         * @param {Number} relDim
+         * @returns {Number}
+         */
+        getNextDims: function getNextDims(relDim) {
+            var layout = this.layout,
+                cell = layout.controller.minCellWidth(),
+                margin = layout.config.grid.margin;
+            return cell * relDim + margin * (relDim - 1);
+        },
+<span id='Map-method-dragTo'>        /**
+</span>         * Drag to
+         * @returns {{left: Number, top: Number}}
+         */
+        dragTo: function dragTo() {
+            return this.widget.controller.getParent().layout.controller.getNextPosition(this.getDOM());
+        },
+<span id='Map-method-resizeTo'>        /**
+</span>         * Resize to
+         * @returns {{width: Number, height: Number}}
+         */
+        resizeTo: function resizeTo() {
+            var dom = this.getDOM();
+            return $.extend({
+                width: this.getNextDims(dom.relWidth),
+                height: this.getNextDims(dom.relHeight)
+            }, this.dragTo());
+        }
+    }, Base);
+});</pre>
+</body>
+</html>

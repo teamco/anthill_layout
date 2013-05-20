@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 2/13/13
+ * Time: 11:34 PM
+ */
+
+define([
+    &#39;modules/base&#39;,
+    &#39;modules/debugger/config&#39;,
+    &#39;modules/debugger/component&#39;,
+    &#39;modules/debugger/tabs&#39;,
+    &#39;modules/debugger/grid&#39;,
+    &#39;modules/debugger/page&#39;,
+    &#39;modules/debugger/layout&#39;,
+    &#39;modules/debugger/widget&#39;
+], function defineDebugger(Base, Config, Component, Tabs, Grid, Page, Layout, Widget) {
+
+    require([&#39;jqueryui&#39;]);
+
+<span id='Debugger-method-constructor'><span id='Debugger'>    /**
+</span></span>     * Define Debugger
+     * @param scope
+     * @constructor
+     */
+    var Debugger = function Debugger(scope) {
+
+        this.scope = scope;
+
+        this.placeholders = &#39;#placeholders&#39;;
+        this.info = &#39;#debug-mode&#39;;
+
+        this.links = [
+            &#39;Logger&#39;,
+            &#39;Application&#39;,
+            &#39;Workspace&#39;,
+            &#39;Page&#39;,
+            &#39;Template&#39;,
+            &#39;Widget&#39;
+        ];
+
+        this.showTab = 5;
+
+        this.rows = 25;
+        this.scopes = {};
+
+        this.init();
+
+    };
+
+    return Debugger.extend({
+
+<span id='Debugger-method-init'>        /**
+</span>         * Init debugger components
+         */
+        init: function init() {
+
+            this.config = new Config(this);
+            this.component = new Component(this);
+            this.tabs = new Tabs(this);
+            this.page = new Page(this);
+            this.layout = new Layout(this);
+            this.widget = new Widget(this);
+
+            this.renderDebugger();
+        },
+
+
+<span id='Debugger-method-destroy'>        /**
+</span>         * Destroy debugger
+         */
+        destroy: function destroy() {
+            this.grid.destroyGrid();
+            this.destroyDebuggerDOM();
+            this.scope.debugger = undefined;
+            delete this.scope.debugger;
+        },
+
+<span id='Debugger-method-destroyDebuggerDOM'>        /**
+</span>         * Destroy info window
+         */
+        destroyDebuggerDOM: function destroyDebuggerDOM() {
+            $(this.info).stop().fadeOut(&#39;slow&#39;, function fadeOt() {
+                $(this).unbind().remove();
+            });
+        },
+
+<span id='Debugger-method-renderDebugger'>        /**
+</span>         * Render Info window
+         * @param {{type, timeStamp}} [event]
+         * @param {{originalPosition, offset, position, helper}} [ui]
+         */
+        renderDebugger: function renderDebugger(event, ui) {
+
+            var $div = $(this.info),
+                opacityOff = 0.8;
+
+            if ($div.length === 0) {
+                $div = $(&#39;&lt;div /&gt;&#39;);
+                $div.attr({
+                    id: this.info.replace(/#/, &#39;&#39;)
+                }).css({
+                        opacity: opacityOff
+                    }).draggable({
+                        handle: &#39;.handler&#39;,
+                        cancel: &#39;.plus, .minus&#39;
+                    });
+                $(this.scope.config.html.container).append($div);
+            }
+
+            var workspace = this.scopes.workspace,
+                page = this.scopes.page,
+                layout = page.layout,
+                logger = this.scope.config.logger,
+                c = this.component;
+
+            event = this.base.define(event, {}, true);
+            ui = this.base.define(ui, {}, true);
+
+            $div.html(
+                [
+                    &#39;&lt;ul class=&quot;handler&quot;&gt;&#39;,
+                    c.renderInput(&#39;Show Grid&#39;, false),
+                    c.renderInput(&#39;Expand the Content&#39;, false),
+                    &#39;&lt;/ul&gt;&#39;,
+                    &#39;&lt;div class=&quot;debug-container&quot;&gt;&#39;,
+
+                    c.renderBlock(&#39;Widget&#39;, [
+                        this.widget.renderWidgetInfo(event, ui)
+                    ], false),
+
+                    c.renderBlock(&#39;Page&#39;, [
+                        c.renderInline(&#39;UUID&#39;, page.config.uuid),
+                        this.layout.renderPageLayout(layout),
+                        this.page.renderPageWidgets(page)
+                    ], false),
+
+                    c.renderBlock(&#39;Workspace&#39;, [
+                        c.renderInline(&#39;UUID&#39;, workspace.config.uuid),
+                        c.renderInlineOf(&#39;Pages&#39;, workspace)
+                    ], false),
+
+                    c.renderBlock(&#39;Application&#39;, [
+                        c.renderInline(&#39;UUID&#39;, this.scope.config.uuid),
+                        c.renderInlineOf(&#39;Workspaces&#39;, this.scope),
+                        c.renderInline(&#39;Mode&#39;, this.scope.config.mode)
+                    ], false),
+
+                    c.renderBlock(&#39;Logger&#39;, [
+                        c.renderInline(&#39;Namespaces&#39;, logger.namespaces),
+                        c.renderInput(&#39;Show&#39;, logger.show),
+                        c.renderInput(&#39;console.debug&#39;, logger.type.debug),
+                        c.renderInput(&#39;console.log&#39;, logger.type.log),
+                        c.renderInput(&#39;console.info&#39;, logger.type.info),
+                        c.renderInput(&#39;console.error&#39;, logger.type.error),
+                        c.renderInput(&#39;console.warn&#39;, logger.type.warn)
+                    ], false),
+
+                    &#39;&lt;/div&gt;&lt;div class=&quot;debug-close&quot;&gt;Hide&lt;/div&gt;&#39;
+
+                ].join(&#39;&#39;)
+            ).show();
+
+            this.tabs.renderTabs($div);
+            this.tabs.bindHover(opacityOff);
+
+            c.bindCollapse();
+            c.bindShowHideAll();
+            c.bindDebugClose();
+
+            this.layout.bindToggleGrid();
+            this.layout.bindChangeOverlappingMode();
+            this.layout.bindAllowOverlapping();
+
+            this.page.bindEnablePageWidgetsEditMode(page);
+
+            this.tabs.openTab({
+                target: $div.find(&#39;li[title=&quot;&#39; + this.links[this.showTab - 2] + &#39;&quot;]&#39;)
+            });
+
+        }
+
+    }, Base);
+});</pre>
+</body>
+</html>

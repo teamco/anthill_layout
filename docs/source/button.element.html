@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/base&#39;,
+    &#39;modules/element&#39;
+], function defineButton(Base, BaseElement) {
+
+    var Button = function Button(view, opts) {
+
+        this.setup(opts);
+
+        this._config(view, opts, $(&#39;&lt;li /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.setContent();
+
+        return this;
+
+    };
+
+    return Button.extend({
+
+        setup: function setup(opts) {
+            this.text = opts.text;
+        },
+
+        setContent: function setContent() {
+            this.setText();
+        },
+
+        setText: function setText() {
+            this.$.text(this.text);
+        }
+
+    }, Base, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>
