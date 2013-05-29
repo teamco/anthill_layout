@@ -304,7 +304,7 @@ define([], function defineDebuggerActions() {
                 this.editMode = true;
                 this._bindItemsList(scope);
                 this._bindAddNewItem(scope);
-                this._bindRemoveItem(scope);
+                this._bindRemoveItems(scope);
                 this._bindRemoveAllItems(scope);
                 this._bindLocateItem(scope);
             } else {
@@ -325,7 +325,7 @@ define([], function defineDebuggerActions() {
             $disabled.addClass('disabled');
             $this.removeClass('active');
             this._unbindAddNewItem(scope);
-            this._unbindRemoveItem(scope);
+            this._unbindRemoveItems(scope);
             this._unbindRemoveAllItems(scope);
             this._unbindLocateItem(scope);
             this._unbindItemsList();
@@ -360,9 +360,9 @@ define([], function defineDebuggerActions() {
          * @param scope
          * @private
          */
-        _bindRemoveItem: function _bindRemoveItem(scope) {
+        _bindRemoveItems: function _bindRemoveItems(scope) {
             scope.logger.debug('Bind remove items');
-            this._getItemAction('remove-item').on('click.remove', function remove(e) {
+            this._getItemAction('remove-items').on('click.remove', function remove(e) {
                 if ($('li.select', this.selectors.items).length === 0) {
                     scope.logger.warn('Select items before remove');
                     return false;
@@ -376,9 +376,9 @@ define([], function defineDebuggerActions() {
          * @param {*} scope
          * @private
          */
-        _unbindRemoveItem: function _unbindRemoveItem(scope) {
+        _unbindRemoveItems: function _unbindRemoveItems(scope) {
             scope.logger.debug('Unbind remove items');
-            this._getItemAction('remove-item').unbind('click.remove');
+            this._getItemAction('remove-items').unbind('click.remove');
             $('li', this.selectors.items).removeClass('select');
         },
 
@@ -389,7 +389,7 @@ define([], function defineDebuggerActions() {
          */
         _bindRemoveAllItems: function _bindRemoveAllItems(scope) {
             var $lis = $('li', this.selectors.items),
-                $action = this._getItemAction('remove-items');
+                $action = this._getItemAction('remove-all-items');
             scope.logger.debug('Bind remove all items');
 
             if ($lis.length === 0) {
