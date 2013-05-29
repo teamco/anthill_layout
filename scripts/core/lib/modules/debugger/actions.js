@@ -484,7 +484,7 @@ define([], function defineDebuggerActions() {
          */
         _removeAllItems: function _removeAllItems(scope) {
             $('li', this.selectors.items).addClass('select');
-            this._getItemAction('remove-items').addClass('disabled');
+            this._getItemAction('remove-all-items').addClass('disabled');
             scope.logger.debug('Start remove all items');
             this._removeItems(scope);
         }
