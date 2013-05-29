@@ -20,15 +20,50 @@ define([
     return API.extend({
 
         /**
-         * Create reference to function create ...
+         * Create reference to function create [item] ...
          * @param args
          * @param {Boolean} render
          * @returns {*}
          */
         createItem: function createItem(args, render) {
-            var cname = this.scope.model.item.name;
-            this.scope.logger.debug('Create Item', cname, arguments);
-            return this['create'+cname](args, render);
+            this._executeReference(args, render, 'create');
+        },
+
+        /**
+         * Create reference to function destroy [items] ...
+         * @param {*} [items]
+         * @param {Boolean} [silent]
+         * @returns {*}
+         */
+        destroyItems: function destroyItems(items, silent) {
+            this._executeReference(items, silent, 'destroy', 's');
+        },
+
+        /**
+         * Execute reference function
+         * @param arg1
+         * @param arg2
+         * @param {String} prefix
+         * @param {String} [suffix]
+         * @private
+         */
+        _executeReference: function _executeReference(arg1, arg2, prefix, suffix) {
+
+            var base = this.base,
+                scope = this.scope,
+                cname = scope.model.item.name;
+
+            suffix = base.define(suffix, '', true);
+
+            var fn = prefix + cname + suffix;
+
+            scope.logger.debug(cname, fn, arguments);
+
+            if (base.isFunction(this[fn])) {
+                return this[fn](arg1, arg2);
+            }
+
+            scope.logger.warn('Undefined method', fn);
         },
 
         /**
