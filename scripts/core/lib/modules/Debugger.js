@@ -60,6 +60,7 @@ define([
             this.tabs = new Tabs(this);
             this.page = new Page(this);
             this.layout = new Layout(this);
+            this.grid = new Grid(this);
             this.widget = new Widget(this);
 
             this.renderDebugger();
@@ -92,7 +93,11 @@ define([
          */
         renderDebugger: function renderDebugger(event, ui) {
 
-            var $div = $(this.info),
+            var scope = this.scope,
+                scopes = this.scopes,
+                base = this.base,
+
+                $div = $(this.info),
                 opacityOff = 0.8;
 
             if ($div.length === 0) {
@@ -105,17 +110,17 @@ define([
                         handle: '.handler',
                         cancel: '.plus, .minus'
                     });
-                $(this.scope.config.html.container).append($div);
+                $(scope.config.html.container).append($div);
             }
 
-            var workspace = this.scopes.workspace,
-                page = this.scopes.page,
+            var workspace = scopes.workspace,
+                page = scopes.page,
                 layout = page.layout,
-                logger = this.scope.config.logger,
+                logger = scope.config.logger,
                 c = this.component;
 
-            event = this.base.define(event, {}, true);
-            ui = this.base.define(ui, {}, true);
+            event = base.define(event, {}, true);
+            ui = base.define(ui, {}, true);
 
             $div.html(
                 [
@@ -141,9 +146,9 @@ define([
                     ], false),
 
                     c.renderBlock('Application', [
-                        c.renderInline('UUID', this.scope.config.uuid),
-                        c.renderInlineOf('Workspaces', this.scope),
-                        c.renderInline('Mode', this.scope.config.mode)
+                        c.renderInline('UUID', scope.config.uuid),
+                        c.renderInlineOf('Workspaces', scope),
+                        c.renderInline('Mode', scope.config.mode)
                     ], false),
 
                     c.renderBlock('Logger', [
