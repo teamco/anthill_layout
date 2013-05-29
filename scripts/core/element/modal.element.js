@@ -13,8 +13,6 @@ define([
     'element/cover.element'
 ], function defineModal(Base, BaseElement, Button, Cover) {
 
-    require(['jqueryui']);
-
     var Modal = function Modal(view, opts) {
 
         /**

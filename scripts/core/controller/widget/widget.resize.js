@@ -7,8 +7,7 @@
  */
 
 define([
-    'modules/interactions',
-    'jqueryui'
+    'modules/interactions'
 ], function defineWidgetResize(Interactions) {
 
     /**

@@ -16,8 +16,6 @@ define([
     'modules/debugger/widget'
 ], function defineDebugger(Base, Config, Component, Tabs, Grid, Page, Layout, Widget) {
 
-    require(['jqueryui']);
-
     /**
      * Define Debugger
      * @param scope
