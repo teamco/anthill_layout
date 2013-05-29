@@ -104,7 +104,7 @@ define([], function defineDebuggerComponent() {
          * @returns {string}
          */
         renderInlineOf: function renderInlineOf(text, item) {
-            var config = item.config[item.model.getItemNamespace()];
+            var config = item.config[item.model.getItemNameSpace()];
             return [
                 '<li class="items-count"><span>', text, ':</span> ',
                 this.debugger.base.lib.hash.hashLength(item.items), ' of ',

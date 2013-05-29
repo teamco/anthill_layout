@@ -27,7 +27,6 @@ define([
          * @property
          * @member MVC
          */
-
         var base = this.base;
 
         /**

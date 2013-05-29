@@ -86,11 +86,11 @@ define([
          */
         getCurrentItem: function getCurrentItem() {
             var scope = this.scope,
-                item = scope.model.getItemNamespace();
+                item = scope.model.getItemNameSpace();
             if (item === 'object') {
                 scope.logger.warn('Unable to locate current item');
             }
-            return scope[scope.model.getItemNamespace()];
+            return scope[scope.model.getItemNameSpace()];
         },
 
         /**
@@ -107,7 +107,7 @@ define([
          */
         setCurrentItem: function setCurrentItem(item) {
             var scope = this.scope;
-            scope[scope.model.getItemNamespace()] = item;
+            scope[scope.model.getItemNameSpace()] = item;
             return this.getCurrentItem();
         },
 

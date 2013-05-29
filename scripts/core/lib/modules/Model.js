@@ -162,16 +162,13 @@ define([
          * Get Item constructor name
          * @returns {string}
          */
-        getItemNamespace: function getItemNamespace() {
-            var scope = this.scope,
-                hash = this.base.lib.hash,
-                item = {};
-            if (scope.hasOwnProperty('items')) {
-                if (hash.hashLength(scope.items) > 0) {
-                    item = hash.firstHashElement(scope.items);
-                }
+        getItemNameSpace: function getItemNameSpace() {
+            this.scope.logger.debug('Get item namespace');
+            if (this.hasOwnProperty('item')) {
+                return this.item.name.toLowerCase();
             }
-            return this.getNameSpace(item);
+            this.scope.logger.info('Undefined item');
+            return this.getNameSpace({});
         },
         /**
          * Get items order

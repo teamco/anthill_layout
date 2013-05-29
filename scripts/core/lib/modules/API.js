@@ -20,6 +20,18 @@ define([
     return API.extend({
 
         /**
+         * Create reference to function create ...
+         * @param args
+         * @param {Boolean} render
+         * @returns {*}
+         */
+        createItem: function createItem(args, render) {
+            var cname = this.scope.model.item.name;
+            this.scope.logger.debug('Create Item', cname, arguments);
+            return this['create'+cname](args, render);
+        },
+
+        /**
          * Create item API
          * @param {Function} item
          * @param {*} args

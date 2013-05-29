@@ -18,6 +18,33 @@ define([], function defineDebuggerActions() {
     return Actions.extend({
 
         /**
+         * Config predefined scope
+         */
+        configScope: function configScope() {
+
+            /**
+             * Define edit mode
+             * @type {Boolean}
+             */
+            this.editMode = false;
+
+            this.actions = [
+                'add-item',
+                'remove-items',
+                'remove-all-items',
+                'locate-item'
+            ];
+
+            this.extendSelectors({
+                edit: 'li.edit-mode',
+                actions: 'ul.actions',
+                items: 'ul.items-info',
+                count: 'li.items-count'
+            });
+
+        },
+
+        /**
          * Extend debugger selectors
          * @param {*} opts
          */
@@ -42,11 +69,15 @@ define([], function defineDebuggerActions() {
             ].join('');
         },
 
+        /**
+         * Render generic action
+         * @returns {string}
+         * @private
+         */
         _renderActions: function _renderActions() {
             var html = [];
             $.each(this.actions, function each(i, action) {
-                var fn = this['_' + action.toCamel()];
-                console.log(fn)
+                var fn = this['_' + action.toCamel() + 'Button'];
                 if (this.debugger.base.isFunction(fn)) {
                     html.push(fn.bind(this)());
                 }
@@ -59,7 +90,7 @@ define([], function defineDebuggerActions() {
          * @returns {string}
          * @private
          */
-        _addItem: function _addItem() {
+        _addItemButton: function _addItemButton() {
             return this.debugger.component.renderInlineAction({
                 rel: 'disabled',
                 style: 'disabled',
@@ -72,7 +103,7 @@ define([], function defineDebuggerActions() {
          * @returns {string}
          * @private
          */
-        _removeItem: function _renderRemoveItem() {
+        _removeItemsButton: function _removeItemsButton() {
             return this.debugger.component.renderInlineAction({
                 rel: 'disabled',
                 style: 'disabled select',
@@ -85,7 +116,7 @@ define([], function defineDebuggerActions() {
          * @returns {string}
          * @private
          */
-        _renderRemoveItems: function _renderRemoveItems() {
+        _removeAllItemsButton: function _removeAllItemsButton() {
             return this.debugger.component.renderInlineAction({
                 rel: 'disabled',
                 style: 'disabled select',
@@ -98,7 +129,7 @@ define([], function defineDebuggerActions() {
          * @returns {string}
          * @private
          */
-        _renderLocateItem: function _renderLocateItem() {
+        _locateItemButton: function _locateItemButton() {
             return this.debugger.component.renderInlineAction({
                 rel: 'disabled',
                 style: 'disabled select',
@@ -119,17 +150,17 @@ define([], function defineDebuggerActions() {
         },
 
         /**
-         * Render page items info
-         * @param {*} page
+         * Render items info
+         * @param {*} scope
          * @returns {string}
          */
-        renderPageItems: function renderPageItems(page) {
+        renderItemsInfo: function renderItemsInfo(scope) {
             return [
                 '<li class="extend">',
                 this.debugger.component.renderBlock('Items', [
-                    this.renderPageItemsActions(),
-                    this._getItemsCount(page),
-                    this.renderPageItemsList(page)
+                    this.renderItemsActions(),
+                    this._getItemsCount(scope),
+                    this.renderItemsList(scope)
                 ], true),
                 '</li>'
             ].join(' ');
@@ -137,24 +168,24 @@ define([], function defineDebuggerActions() {
 
         /**
          * Render page items list
-         * @param page
+         * @param scope
          * @returns {string}
          */
-        renderPageItemsList: function renderPageItemsList(page) {
+        renderItemsList: function renderItemsList(scope) {
             var html = ['<li class="extend"><ul class="items-info">'];
-            html.push(this.getPageItemsList(page));
+            html.push(this.getItemsList(scope));
             html.push('</ul></li>');
             return html.join('');
         },
 
         /**
          * Get page item list
-         * @param page
+         * @param scope
          * @returns {string}
          */
-        getPageItemsList: function getPageItemsList(page) {
+        getItemsList: function getItemsList(scope) {
             var html = [];
-            $.each(page.items, function each(uuid, item) {
+            $.each(scope.items, function each(uuid, item) {
                 html.push([
                     '<li class="', item.model.getConfig('type'), '">', uuid , '</li>'
                 ].join(''));
@@ -169,7 +200,7 @@ define([], function defineDebuggerActions() {
          */
         updateItems: function updateItems(page) {
             $(this.selectors.items).html(
-                this.getPageItemsList(page)
+                this.getItemsList(page)
             );
 
             var $count = $(this.selectors.count);
@@ -204,20 +235,20 @@ define([], function defineDebuggerActions() {
 
         /**
          * Bind enable page item edit mode,
-         * @param {*} page
+         * @param {*} scope
          */
-        bindEnablePageItemsEditMode: function bindEnablePageItemsEditMode(page) {
+        bindEnableItemsEditMode: function bindEnableItemsEditMode(scope) {
             $(this.selectors.edit).on('click.edit', function edit(e) {
-                this._enablePageItemsEditMode(e, page);
+                this._enableItemsEditMode(e, scope);
             }.bind(this));
         },
 
         /**
          * Bind item list
-         * @param page
+         * @param scope
          * @private
          */
-        _bindItemsList: function _bindItemsList(page) {
+        _bindItemsList: function _bindItemsList(scope) {
             this.$select = this.debugger.base.define(
                 this.$select,
                 $('.select', this.selectors.actions)
@@ -226,14 +257,14 @@ define([], function defineDebuggerActions() {
             if (this.editMode) {
                 $('li', this.selectors.items).on('click.select', function select(e) {
                     var $li = $(e.target),
-                        item = page.items[$li.text()];
+                        item = scope.items[$li.text()];
 
                     if ($li.hasClass('select')) {
-                        page.logger.debug('Unselect', item);
+                        scope.logger.debug('Unselect', item);
                         $li.removeClass('select');
                         this.$select.addClass('select');
                     } else {
-                        page.logger.debug('Select', item);
+                        scope.logger.debug('Select', item);
                         $li.addClass('select');
                         this.$select.removeClass('select');
                     }
@@ -258,108 +289,108 @@ define([], function defineDebuggerActions() {
         },
 
         /**
-         * Enable page item edit mode
+         * Enable item edit mode
          * @param {*} e
-         * @param {*} page
+         * @param {*} scope
          * @private
          */
-        _enablePageItemsEditMode: function _enablePageItemsEditMode(e, page) {
+        _enableItemsEditMode: function _enableItemsEditMode(e, scope) {
             var $this = $(e.target),
                 $disabled = $('li[rel="disabled"]', $this.parent('ul'));
             if ($disabled.hasClass('disabled')) {
-                page.logger.debug('Activate edit mode');
+                scope.logger.debug('Activate edit mode');
                 $disabled.removeClass('disabled');
                 $this.addClass('active');
                 this.editMode = true;
-                this._bindItemsList(page);
-                this._bindAddNewItem(page);
-                this._bindRemoveItem(page);
-                this._bindRemoveAllItems(page);
-                this._bindLocateItem(page);
+                this._bindItemsList(scope);
+                this._bindAddNewItem(scope);
+                this._bindRemoveItem(scope);
+                this._bindRemoveAllItems(scope);
+                this._bindLocateItem(scope);
             } else {
-                this._disablePageItemsEditMode($this, page);
+                this._disableItemsEditMode($this, scope);
             }
         },
 
         /**
          * Disable page item edit mode
          * @param {*} $this
-         * @param {*} page
+         * @param {*} scope
          * @private
          */
-        _disablePageItemsEditMode: function _disablePageItemsEditMode($this, page) {
+        _disableItemsEditMode: function _disableItemsEditMode($this, scope) {
             var $disabled = $('li[rel="disabled"]', $this.parent('ul'));
 
-            page.logger.debug('Deactivate edit mode');
+            scope.logger.debug('Deactivate edit mode');
             $disabled.addClass('disabled');
             $this.removeClass('active');
-            this._unbindAddNewItem(page);
-            this._unbindRemoveItem(page);
-            this._unbindRemoveAllItems(page);
-            this._unbindLocateItem(page);
+            this._unbindAddNewItem(scope);
+            this._unbindRemoveItem(scope);
+            this._unbindRemoveAllItems(scope);
+            this._unbindLocateItem(scope);
             this._unbindItemsList();
             this.editMode = false;
         },
 
         /**
          * Bind add new item
-         * @param {*} page
+         * @param {*} scope
          * @private
          */
-        _bindAddNewItem: function _bindAddNewItem(page) {
-            page.logger.debug('Bind edit mode');
+        _bindAddNewItem: function _bindAddNewItem(scope) {
+            scope.logger.debug('Bind edit mode');
             this._getItemAction('add-item').on('click.add', function (e) {
-                page.api.createItem([], true);
+                scope.api.createItem([], true);
                 this._getItemAction('remove-items').removeClass('disabled');
             }.bind(this));
         },
 
         /**
          * Unbind add new item
-         * @param {*} page
+         * @param {*} scope
          * @private
          */
-        _unbindAddNewItem: function _unbindAddNewItem(page) {
-            page.logger.debug('Unbind Add item');
+        _unbindAddNewItem: function _unbindAddNewItem(scope) {
+            scope.logger.debug('Unbind Add item');
             this._getItemAction('add-item').unbind('click.add');
         },
 
         /**
          * Bind remove items
-         * @param page
+         * @param scope
          * @private
          */
-        _bindRemoveItem: function _bindRemoveItem(page) {
-            page.logger.debug('Bind remove items');
+        _bindRemoveItem: function _bindRemoveItem(scope) {
+            scope.logger.debug('Bind remove items');
             this._getItemAction('remove-item').on('click.remove', function remove(e) {
                 if ($('li.select', this.selectors.items).length === 0) {
-                    page.logger.warn('Select items before remove');
+                    scope.logger.warn('Select items before remove');
                     return false;
                 }
-                this._removeItems(page);
+                this._removeItems(scope);
             }.bind(this));
         },
 
         /**
          * Unbind remove items
-         * @param {*} page
+         * @param {*} scope
          * @private
          */
-        _unbindRemoveItem: function _unbindRemoveItem(page) {
-            page.logger.debug('Unbind remove items');
+        _unbindRemoveItem: function _unbindRemoveItem(scope) {
+            scope.logger.debug('Unbind remove items');
             this._getItemAction('remove-item').unbind('click.remove');
             $('li', this.selectors.items).removeClass('select');
         },
 
         /**
          * Bind remove all items
-         * @param page
+         * @param scope
          * @private
          */
-        _bindRemoveAllItems: function _bindRemoveAllItems(page) {
+        _bindRemoveAllItems: function _bindRemoveAllItems(scope) {
             var $lis = $('li', this.selectors.items),
                 $action = this._getItemAction('remove-items');
-            page.logger.debug('Bind remove all items');
+            scope.logger.debug('Bind remove all items');
 
             if ($lis.length === 0) {
                 $action.addClass('disabled');
@@ -367,49 +398,49 @@ define([], function defineDebuggerActions() {
 
             $action.on('click.remove', function remove(e) {
                 if ($lis.length === 0) {
-                    page.logger.warn('Add items before remove');
+                    scope.logger.warn('Add items before remove');
                     return false;
                 }
-                this._removeAllItems(page);
+                this._removeAllItems(scope);
             }.bind(this));
         },
 
         /**
          * Unbind remove all items
-         * @param {*} page
+         * @param {*} scope
          * @private
          */
-        _unbindRemoveAllItems: function _unbindRemoveAllItems(page) {
-            page.logger.debug('Unbind remove all items');
+        _unbindRemoveAllItems: function _unbindRemoveAllItems(scope) {
+            scope.logger.debug('Unbind remove all items');
             this._getItemAction('remove-items').unbind('click.remove');
             $('li', this.selectors.items).removeClass('select');
         },
 
         /**
          * Bind locate item
-         * @param page
+         * @param scope
          * @private
          */
-        _bindLocateItem: function _bindLocateItem(page) {
-            page.logger.debug('Bind locate item');
+        _bindLocateItem: function _bindLocateItem(scope) {
+            scope.logger.debug('Bind locate item');
 
             this._getItemAction('locate-item').on('click.locate', function locate(e) {
-                this._locateItem(page);
+                this._locateItem(scope);
             }.bind(this));
         },
 
         /**
          * Unbind remove all items
-         * @param {*} page
+         * @param {*} scope
          * @private
          */
-        _unbindLocateItem: function _unbindLocateItem(page) {
-            page.logger.debug('Unbind locate item');
+        _unbindLocateItem: function _unbindLocateItem(scope) {
+            scope.logger.debug('Unbind locate item');
             this._getItemAction('locate-item').unbind('click.locate');
 //            $('li', this.selectors.items).removeClass('select');
         },
 
-        _locateItem: function _locateItem(page) {
+        _locateItem: function _locateItem(scope) {
 //            var $li = $('li.select', this.selectors.items);
 //
 //            if ($li.length !== 1) {
@@ -431,31 +462,31 @@ define([], function defineDebuggerActions() {
 
         /**
          * Remove items
-         * @param {*} page
+         * @param {*} scope
          * @private
          */
-        _removeItems: function _removeItems(page) {
+        _removeItems: function _removeItems(scope) {
             var items = {};
-//            $.each($('li.select', this.selectors.items), function each(i, v) {
-//                var uuid = $(v).text();
-//                items[uuid] = page.model.getItemByUUID(uuid);
-//            });
-//
-//            page.logger.debug('Start remove items', items);
-//            page.api.destroyItems(items);
+            $.each($('li.select', this.selectors.items), function each(i, v) {
+                var uuid = $(v).text();
+                items[uuid] = scope.model.getItemByUUID(uuid);
+            });
+
+            scope.logger.debug('Start remove items', items);
+            scope.api.destroyItems(items);
 
         },
 
         /**
          * Remove items
-         * @param {*} page
+         * @param {*} scope
          * @private
          */
-        _removeAllItems: function _removeAllItems(page) {
-//            $('li', this.selectors.items).addClass('select');
-//            this._getItemAction('remove-items').addClass('disabled');
-//            page.logger.debug('Start remove all items');
-//            this._removeItems(page);
+        _removeAllItems: function _removeAllItems(scope) {
+            $('li', this.selectors.items).addClass('select');
+            this._getItemAction('remove-items').addClass('disabled');
+            scope.logger.debug('Start remove all items');
+            this._removeItems(scope);
         }
     });
 });

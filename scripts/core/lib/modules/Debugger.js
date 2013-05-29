@@ -132,7 +132,7 @@ define([
                     c.renderBlock('Page', [
                         c.renderInline('UUID', page.config.uuid),
                         this.layout.renderPageLayout(layout),
-                        this.page.renderPageWidgets(page)
+                        this.page.renderItemsInfo(page)
                     ], false),
 
                     c.renderBlock('Workspace', [
@@ -172,7 +172,7 @@ define([
             this.layout.bindChangeOverlappingMode();
             this.layout.bindAllowOverlapping();
 
-            this.page.bindEnablePageWidgetsEditMode(page);
+            this.page.bindEnableItemsEditMode(page);
 
             this.tabs.openTab({
                 target: $div.find('li[title="' + this.links[this.showTab - 2] + '"]')

@@ -32,11 +32,11 @@ define([
          */
         defineScope: function defineScope() {
             var scope = this.debugger.scope,
-                item = scope.model.getItemNamespace();
+                item = scope.model.getItemNameSpace();
 
             while (item !== 'object') {
                 scope = this.setScope(scope, item);
-                item = scope.model.getItemNamespace();
+                item = scope.model.getItemNameSpace();
             }
 
             this.validateScopes();
