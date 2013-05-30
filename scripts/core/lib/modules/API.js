@@ -84,7 +84,7 @@ define([
             );
 
             if (scope[cname.toLowerCase()].model.getConfig('limit')) {
-                scope.logger.warn(
+                scope.logger.debug(
                     'Reached maximum capacity of ',
                     cname,
                     scope.model.getConfig(cname.toLowerCase())
