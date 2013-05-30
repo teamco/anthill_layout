@@ -9,16 +9,23 @@ define([], function defineDebuggerTabs() {
     /**
      * Define Debugger Tabs
      * @param {*} debug
+     * @param {Boolean} pin
      * @class DebuggerTabs
      * @constructor
      */
-    var DebuggerTabs = function DebuggerTabs(debug) {
+    var DebuggerTabs = function DebuggerTabs(debug, pin) {
 
         /**
          * Define debugger
          * @type {*}
          */
         this.debugger = debug;
+
+        /**
+         * Define pin state
+         * @type {Boolean}
+         */
+        this.pin = pin;
     };
 
     return DebuggerTabs.extend({
@@ -26,8 +33,9 @@ define([], function defineDebuggerTabs() {
         /**
          * Render Info tabs
          * @param $div
+         * @param {Number} opacity
          */
-        renderTabs: function renderTabs($div) {
+        renderTabs: function renderTabs($div, opacity) {
             var $tabs = $('<ul />').addClass('info-tabs');
             $.each(this.debugger.links, function eachTabs(i, v) {
                 $tabs.append(
@@ -38,6 +46,26 @@ define([], function defineDebuggerTabs() {
             }.bind(this));
 
             $tabs.appendTo($div);
+
+            this.bindHover(opacity);
+
+            this.renderPin();
+        },
+
+        renderPin: function renderPin() {
+            var $pin = $('<div />').
+                addClass('pin').
+                addClass(this.pin ? 'on' : 'off');
+
+            $pin.appendTo($('.handler', this.info));
+        },
+
+        _bindPin: function _bindPin() {
+
+        },
+
+        _unbindPin: function _unbindPin() {
+
         },
 
         /**

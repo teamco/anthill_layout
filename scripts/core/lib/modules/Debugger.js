@@ -41,6 +41,7 @@ define([
         ];
 
         this.showTab = 5;
+        this.pinTabs = true;
 
         this.rows = 25;
         this.scopes = {};
@@ -72,7 +73,7 @@ define([
              * Define tabs
              * @type {DebuggerTabs}
              */
-            this.tabs = new Tabs(this);
+            this.tabs = new Tabs(this, this.pinTabs);
 
             /**
              * Define app
@@ -213,8 +214,7 @@ define([
                 ].join('')
             ).show();
 
-            this.tabs.renderTabs($div);
-            this.tabs.bindHover(opacityOff);
+            this.tabs.renderTabs($div, opacityOff);
 
             c.bindCollapse();
             c.bindShowHideAll();
