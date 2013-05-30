@@ -11,8 +11,25 @@ define([
     'modules/model',
     'modules/base'
 ], function(require, BaseModel, Base) {
+
+        /**
+         * Circular solution require js
+         */
         return function Model() {
+
+            /**
+             * Define Template model
+             * @mixin BaseModel
+             * @extends Base
+             * @class Model
+             * @constructor
+             */
             var Model = function Model() {
+
+                /**
+                 * Define Page item
+                 * @type {Page}
+                 */
                 this.item = require('config/page');
             };
 

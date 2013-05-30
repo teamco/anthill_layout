@@ -11,7 +11,20 @@ define([
     'modules/base',
     'config/workspace'
 ], function (BaseModel, Base, Workspace) {
+
+    /**
+     * Define Application model
+     * @mixin BaseModel
+     * @extends Base
+     * @class Model
+     * @constructor
+     */
     var Model = function Model() {
+
+        /**
+         * Define item
+         * @type {Workspace}
+         */
         this.item = Workspace;
     };
 

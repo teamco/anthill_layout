@@ -11,7 +11,19 @@ define([
     'config/page'
 ], function defineWorkspaceModel(BaseModel, Base, Page) {
 
+    /**
+     * Define Workspace model
+     * @mixin BaseModel
+     * @extends Base
+     * @class Model
+     * @constructor
+     */
     var Model = function Model() {
+
+        /**
+         * Define Page item
+         * @type {Page}
+         */
         this.item = Page;
     };
 

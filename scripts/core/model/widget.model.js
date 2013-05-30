@@ -9,11 +9,28 @@ define([
     'modules/model',
     'modules/base'
 ], function defineWidgetModel(BaseModel, Base) {
+
+    /**
+     * Define Widget model
+     * @mixin BaseModel
+     * @extends Base
+     * @class Model
+     * @constructor
+     */
     var Model = function Model() {
     };
 
     return Model.extend({
+
+        /**
+         * Save
+         */
         save: function save() {
+
+            /**
+             * Update DOM
+             * @type {*}
+             */
             this.scope.dom = this.scope.map.getDOM();
         }
 

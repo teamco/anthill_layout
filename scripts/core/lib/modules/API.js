@@ -78,17 +78,18 @@ define([
         _createItem: function _createItem(item, args, render, where) {
             var scope = this.scope,
                 cname = item.name;
+
             scope.observer.publish(
                 scope.eventmanager.eventList['create' + cname],
                 args
             );
 
-            if (scope[cname.toLowerCase()].model.getConfig('limit')) {
-                scope.logger.debug(
-                    'Reached maximum capacity of ',
-                    cname,
-                    scope.model.getConfig(cname.toLowerCase())
-                );
+            if (scope.controller.checkCondition({
+                condition: scope[cname.toLowerCase()].model.getConfig('limit'),
+                type: 'warn',
+                msg: 'Reached maximum limit',
+                args: [cname, scope.model.getConfig(cname.toLowerCase())]
+            })) {
                 return false;
             }
 

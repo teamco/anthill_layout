@@ -10,8 +10,26 @@ define([
     'modules/base',
     'config/widget'
 ], function definePageModel(BaseModel, Base, Widget) {
+
+    /**
+     * Define Page model
+     * @mixin BaseModel
+     * @extends Base
+     * @class Model
+     * @constructor
+     */
     var Model = function Model() {
+
+        /**
+         * Define item
+         * @type {Widget}
+         */
         this.item = Widget;
+
+        /**
+         * Define on destroy dependencies
+         * @type {Array}
+         */
         this.onDestroy = [
             'Layout',
             'Template'
