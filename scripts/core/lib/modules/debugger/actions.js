@@ -202,8 +202,9 @@ define([], function defineDebuggerActions() {
         getItemsList: function getItemsList(scope) {
             var html = [];
             $.each(scope.items, function each(uuid, item) {
+                var type = item.model.getConfig('type');
                 html.push([
-                    '<li class="', item.model.getConfig('type'), '">', uuid , '</li>'
+                    '<li', type ? (' class="' + type + '"') : '', '>', uuid , '</li>'
                 ].join(''));
             });
 

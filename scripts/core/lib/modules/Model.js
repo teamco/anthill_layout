@@ -11,28 +11,67 @@ define([
     'modules/base',
     'modules/crud'
 ], function initModel(Setting, Base, CRUD) {
+
+    /**
+     * Define Base model
+     * @class BaseModel
+     * @constructor
+     */
     var BaseModel = function BaseModel() {
 
     };
 
     return BaseModel.extend({
+
         /**
          * Define global setting
          */
         defineSetting: function defineSetting() {
             this.setting = new Setting(this.scope.controller.getMode());
         },
+
         /**
          * Get scope config
          * @param {String} [key]
-         * @returns {scope.config}
+         * @returns {*}
          */
         getConfig: function getConfig(key) {
-            if (this.scope.config.hasOwnProperty(key)) {
-                return this.scope.config[key];
+            var scope = this.scope,
+                config = scope.config;
+            if (config.hasOwnProperty(key)) {
+                scope.logger.debug('Get config by key', key);
+                return config[key];
             }
-            return this.scope.config;
+
+            if (this.scope.controller.checkCondition({
+                condition: this.base.isDefined(key),
+                type: 'warn',
+                msg: 'Undefined config key',
+                args: [key]
+            })) {
+                return false;
+            }
+
+            return config;
         },
+
+        /**
+         * Set scope config
+         * @param {String} [key]
+         * @returns {scope.config}
+         */
+        setConfig: function setConfig(key, value) {
+            var scope = this.scope,
+                config = scope.config;
+            if (config.hasOwnProperty(key)) {
+                scope.logger.debug('Update config', key, value);
+                config[key] = value;
+            }
+            scope.logger.debug('Set config new data', key, value);
+            config[key] = value;
+            return this.getConfig(key);
+        },
+
         /**
          * Get scope namespace
          * @param {*} node
@@ -46,6 +85,7 @@ define([
 
             return constructor.name.toLowerCase();
         },
+
         /**
          * Get parent items
          * @returns {*}
@@ -53,6 +93,7 @@ define([
         getParentItems: function getParentItems() {
             return this.scope.controller.getParent().items;
         },
+
         /**
          * Get items
          * @returns {*}
@@ -60,6 +101,7 @@ define([
         getItems: function getItems() {
             return this.scope.items;
         },
+
         /**
          * Get all items apart of item
          * @param {{model}} item
@@ -81,6 +123,7 @@ define([
             }
             return nodes;
         },
+
         /**
          * Get UUID
          * @param {{model}} [node]
@@ -93,6 +136,7 @@ define([
                     'Undefined ' + node.constructor.name :
                 this.getConfig('uuid');
         },
+
         /**
          * Get item from collector by UUID
          * @param {string} uuid
@@ -109,6 +153,7 @@ define([
             }
             return item;
         },
+
         /**
          * Reset collector
          * @returns {*}
@@ -117,6 +162,7 @@ define([
             this.scope.items = {};
             return this.getItems();
         },
+
         /**
          * Delete widget from collector
          * @param uuid
@@ -126,6 +172,7 @@ define([
             delete this.scope.controller.getParent().items[uuid];
             return this.getParentItems();
         },
+
         /**
          * Update collector
          * @param {string} uuid
@@ -137,6 +184,7 @@ define([
             $.extend(true, item, hash);
             return item;
         },
+
         /**
          * Add item to collector
          * @param {{model}} node
@@ -158,6 +206,7 @@ define([
             }
             return this.getItemByUUID(uuid);
         },
+
         /**
          * Get Item constructor name
          * @returns {string}
@@ -170,6 +219,7 @@ define([
             this.scope.logger.info('Undefined item');
             return this.getNameSpace({});
         },
+
         /**
          * Get items order
          * @returns {*}
@@ -177,6 +227,7 @@ define([
         getOrder: function getOrder() {
             return this.getConfig('order');
         },
+
         /**
          * Check items limit
          * @param {Function} constructor
@@ -197,6 +248,7 @@ define([
             return base.lib.hash.hashLength(this.getItems()) >= limit;
 
         },
+
         /**
          * Update items collector
          * @param {Function} constructor
@@ -214,6 +266,7 @@ define([
                     cname + ': Maximum limit reached',
                     limit
                 );
+                node.model.setConfig('limit', true);
             } else {
                 var base = this.base;
 
@@ -221,7 +274,6 @@ define([
 
                 if (base.isDefined(node.model)) {
                     this.setItem(node);
-//                    collector[node.model.getUUID()] = node;
                 } else {
                     scope.logger.warn(
                         cname + ' was created with some errors',
@@ -229,11 +281,14 @@ define([
                     );
                 }
 
-                scope.config[namespace] = base.define(scope.config[namespace], {}, true);
+                this.setConfig(namespace, base.define(scope.config[namespace], {}, true));
+
                 scope.config[namespace].counter =
                     base.lib.hash.hashLength(this.getItems());
 
                 scope[cname.toLowerCase()] = node;
+
+                node.model.setConfig('limit', false);
 
             }
 

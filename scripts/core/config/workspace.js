@@ -26,6 +26,8 @@ define([
          * }}
          */
         var DEFAULTS = {
+            limit: false,
+            type: 'default',
             order: 1,
             page: {
                 counter: 0,

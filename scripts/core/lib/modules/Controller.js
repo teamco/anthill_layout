@@ -11,7 +11,8 @@ define([
 ], function defineBaseController(Base) {
 
     /**
-     * Base Controller
+     * Define Base Controller
+     * @class BaseController
      * @constructor BaseController
      */
     var BaseController = function BaseController() {

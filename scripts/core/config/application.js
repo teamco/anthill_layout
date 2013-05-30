@@ -45,6 +45,8 @@ define([
                 counter: 0
             },
             mode: 'development',
+            type: 'default',
+            limit: true,
             logger: {
                 show: true,
                 namespaces: false, //'App',

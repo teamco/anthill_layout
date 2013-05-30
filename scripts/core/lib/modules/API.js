@@ -83,8 +83,16 @@ define([
                 args
             );
 
-            this._renderItem(item, render, where);
+            if (scope[cname.toLowerCase()].model.getConfig('limit')) {
+                scope.logger.warn(
+                    'Reached maximum capacity of ',
+                    cname,
+                    scope.model.getConfig(cname.toLowerCase())
+                );
+                return false;
+            }
 
+            this._renderItem(item, render, where);
             return scope[cname.toLowerCase()];
         },
 

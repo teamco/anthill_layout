@@ -70,6 +70,7 @@ define([
          * }}
          */
         var DEFAULTS = {
+            limit: false,
             order: 1,
             html: {
                 header: false,

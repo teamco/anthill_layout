@@ -11,6 +11,11 @@ define([
     'modules/base'
 ], function defineBaseElement(RGBColor, Base) {
 
+    /**
+     * Define Base element
+     * @class BaseElement
+     * @constructor
+     */
     var BaseElement = function BaseElement() {
 
     };

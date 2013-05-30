@@ -37,6 +37,8 @@ define([
          * }}
          */
         var DEFAULTS = {
+            type: 'default',
+            limit: true,
             parent: page,
             grid: {
                 columns: 60,

@@ -72,6 +72,8 @@ define([
          */
         var DEFAULTS = {
             order: 1,
+            type: 'default',
+            limit: false,
             isDefault: false,
             layout: {
                 behavior: {

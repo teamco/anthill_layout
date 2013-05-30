@@ -41,7 +41,9 @@ define([
          * @type {{parent: *}}
          */
         var DEFAULTS = {
-            parent: page
+            type: 'default',
+            parent: page,
+            limit: true
         };
 
         /**
