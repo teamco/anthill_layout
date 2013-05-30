@@ -13,10 +13,10 @@ define([
      * Define Debugger Workspace
      * @param {*} debug
      * @param {Workspace} scope
-     * @class Workspace
+     * @class DebuggerWorkspace
      * @constructor
      */
-    var Workspace = function Workspace(debug, scope) {
+    var DebuggerWorkspace = function DebuggerWorkspace(debug, scope) {
 
         /**
          * Define debugger
@@ -34,7 +34,7 @@ define([
 
     };
 
-    return Workspace.extend({
+    return DebuggerWorkspace.extend({
 
     }, Actions.prototype);
 });

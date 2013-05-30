@@ -9,10 +9,10 @@ define([], function defineDebuggerComponent() {
     /**
      * Define Debugger Component
      * @param {*} debug
-     * @class Component
+     * @class DebuggerComponent
      * @constructor
      */
-    var Component = function Component(debug) {
+    var DebuggerComponent = function DebuggerComponent(debug) {
 
         /**
          * Define debugger
@@ -21,7 +21,7 @@ define([], function defineDebuggerComponent() {
         this.debugger = debug;
     };
 
-    return Component.extend({
+    return DebuggerComponent.extend({
 
         /**
          * Render block of elements

@@ -13,10 +13,10 @@ define([
      * Define Debugger Page
      * @param {*} debug
      * @param {Page} scope
-     * @class Page
+     * @class DebuggerPage
      * @constructor
      */
-    var Page = function Page(debug, scope) {
+    var DebuggerPage = function DebuggerPage(debug, scope) {
 
         /**
          * Define debugger
@@ -34,7 +34,7 @@ define([
 
     };
 
-    return Page.extend({
+    return DebuggerPage.extend({
 
     }, Actions.prototype);
 });

@@ -9,11 +9,11 @@ define([
 
     /**
      * Define Debugger Config
-     * @class Config
+     * @class DebuggerConfig
      * @param {*} debug
      * @constructor
      */
-    var Config = function Config(debug) {
+    var DebuggerConfig = function DebuggerConfig(debug) {
 
         /**
          * Define debugger
@@ -25,7 +25,7 @@ define([
 
     };
 
-    return Config.extend({
+    return DebuggerConfig.extend({
 
         /**
          * Define scope

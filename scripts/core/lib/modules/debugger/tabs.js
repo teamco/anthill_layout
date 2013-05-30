@@ -9,10 +9,10 @@ define([], function defineDebuggerTabs() {
     /**
      * Define Debugger Tabs
      * @param {*} debug
-     * @class Tabs
+     * @class DebuggerTabs
      * @constructor
      */
-    var Tabs = function Tabs(debug) {
+    var DebuggerTabs = function DebuggerTabs(debug) {
 
         /**
          * Define debugger
@@ -21,7 +21,7 @@ define([], function defineDebuggerTabs() {
         this.debugger = debug;
     };
 
-    return Tabs.extend({
+    return DebuggerTabs.extend({
 
         /**
          * Render Info tabs

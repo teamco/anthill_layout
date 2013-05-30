@@ -9,10 +9,10 @@ define([], function defineDebuggerLayout() {
     /**
      * Define Debugger Layout
      * @param {*} debug
-     * @class Layout
+     * @class DebuggerLayout
      * @constructor
      */
-    var Layout = function Layout(debug) {
+    var DebuggerLayout = function DebuggerLayout(debug) {
 
         /**
          * Define debugger
@@ -22,7 +22,7 @@ define([], function defineDebuggerLayout() {
 
     };
 
-    return Layout.extend({
+    return DebuggerLayout.extend({
 
         /**
          * Toggle grid

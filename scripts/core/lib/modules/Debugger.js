@@ -58,55 +58,55 @@ define([
 
             /**
              * Define config
-             * @type {Config}
+             * @type {DebuggerConfig}
              */
             this.config = new Config(this);
 
             /**
              * Define component
-             * @type {Component}
+             * @type {DebuggerComponent}
              */
             this.component = new Component(this);
 
             /**
              * Define tabs
-             * @type {Tabs}
+             * @type {DebuggerTabs}
              */
             this.tabs = new Tabs(this);
 
             /**
              * Define app
-             * @type {Application}
+             * @type {DebuggerApp}
              */
             this.app = new App(this, this.scope);
 
             /**
              * Define workspace
-             * @type {Workspace}
+             * @type {DebuggerWorkspace}
              */
             this.workspace = new Workspace(this, this.scopes.workspace);
 
             /**
              * Define page
-             * @type {Page}
+             * @type {DebuggerPage}
              */
             this.page = new Page(this, this.scopes.page);
 
             /**
              * Define layout
-             * @type {Layout}
+             * @type {DebuggerLayout}
              */
             this.layout = new Layout(this);
 
             /**
              * Define grid
-             * @type {Grid}
+             * @type {DebuggerGrid}
              */
             this.grid = new Grid(this);
 
             /**
              * Define widget
-             * @type {Widget}
+             * @type {DebuggerWidget}
              */
             this.widget = new Widget(this);
 

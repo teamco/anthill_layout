@@ -9,10 +9,10 @@ define([], function defineDebuggerGrid() {
     /**
      * Define Debugger Grid
      * @param {*} debug
-     * @class Grid
+     * @class DebuggerGrid
      * @constructor
      */
-    var Grid = function Grid(debug) {
+    var DebuggerGrid = function DebuggerGrid(debug) {
 
         /**
          * Define debugger
@@ -22,7 +22,7 @@ define([], function defineDebuggerGrid() {
 
     };
 
-    return Grid.extend({
+    return DebuggerGrid.extend({
 
         /**
          * Show grid

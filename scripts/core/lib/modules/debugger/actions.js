@@ -9,14 +9,14 @@ define([], function defineDebuggerActions() {
 
     /**
      * Define generic Actions
-     * @class Actions
+     * @class DebuggerActions
      * @constructor
      */
-    var Actions = function Actions() {
+    var DebuggerActions = function DebuggerActions() {
 
     };
 
-    return Actions.extend({
+    return DebuggerActions.extend({
 
         /**
          * Init Actions

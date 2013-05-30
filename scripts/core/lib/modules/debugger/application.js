@@ -13,10 +13,10 @@ define([
      * Define Debugger Application
      * @param {*} debug
      * @param {App} scope
-     * @class Application
+     * @class DebuggerApp
      * @constructor
      */
-    var App = function App(debug, scope) {
+    var DebuggerApp = function DebuggerApp(debug, scope) {
 
         /**
          * Define debugger
@@ -34,7 +34,7 @@ define([
 
     };
 
-    return App.extend({
+    return DebuggerApp.extend({
 
     }, Actions.prototype);
 });
