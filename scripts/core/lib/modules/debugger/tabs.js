@@ -10,10 +10,11 @@ define([], function defineDebuggerTabs() {
      * Define Debugger Tabs
      * @param {*} debug
      * @param {Boolean} pin
+     * @param {Number} opacityOff
      * @class DebuggerTabs
      * @constructor
      */
-    var DebuggerTabs = function DebuggerTabs(debug, pin) {
+    var DebuggerTabs = function DebuggerTabs(debug, pin, opacityOff) {
 
         /**
          * Define debugger
@@ -25,7 +26,13 @@ define([], function defineDebuggerTabs() {
          * Define pin state
          * @type {Boolean}
          */
-        this.pin = pin;
+        this.pinTabs = pin;
+
+        /**
+         * Hover opacity off
+         * @type {Number}
+         */
+        this.opacityOff = opacityOff;
     };
 
     return DebuggerTabs.extend({
@@ -33,9 +40,8 @@ define([], function defineDebuggerTabs() {
         /**
          * Render Info tabs
          * @param $div
-         * @param {Number} opacity
          */
-        renderTabs: function renderTabs($div, opacity) {
+        renderTabs: function renderTabs($div) {
             var $tabs = $('<ul />').addClass('info-tabs');
             $.each(this.debugger.links, function eachTabs(i, v) {
                 $tabs.append(
@@ -47,25 +53,77 @@ define([], function defineDebuggerTabs() {
 
             $tabs.appendTo($div);
 
-            this.bindHover(opacity);
-
+            this.bindHover();
             this.renderPin();
+
+            if (this.pinTabs) {
+                this.open();
+            }
         },
 
+        /**
+         * Render pin
+         */
         renderPin: function renderPin() {
             var $pin = $('<div />').
                 addClass('pin').
-                addClass(this.pin ? 'on' : 'off');
+                addClass(this.pinTabs ? 'active' : '').
+                attr({
+                    title: this.pinTabs ? 'Pin tabs' : 'Unpin tabs'
+                });
 
             $pin.appendTo($('.handler', this.info));
+
+            this._bindPin($pin);
         },
 
-        _bindPin: function _bindPin() {
-
+        /**
+         * Bind open/close
+         * @param $pin
+         * @private
+         */
+        _bindPin: function _bindPin($pin) {
+            $pin.on(
+                'click.pin',
+                /**
+                 * Bind click
+                 */
+                function clickPin(e) {
+                    this.pinTabs ?
+                        this.unpin($pin) :
+                        this.pin($pin);
+                }.bind(this)
+            );
         },
 
-        _unbindPin: function _unbindPin() {
+        /**
+         * Unbind open/close
+         * @param $pin
+         * @private
+         */
+        _unbindPin: function _unbindPin($pin) {
+            $pin.unbind('click.pin').
+                removeClass('active').
+                addClass('disabled');
+        },
 
+        /**
+         * Pin tabs
+         * @param $pin
+         */
+        pin: function pin($pin) {
+            this.pinTabs = true;
+            $pin.removeClass('disabled').
+                addClass('active');
+        },
+
+        /**
+         * Unpin tabs
+         * @param $pin
+         */
+        unpin: function unpin($pin) {
+            this.pinTabs = false;
+            $pin.removeClass('active disabled');
         },
 
         /**
@@ -91,25 +149,44 @@ define([], function defineDebuggerTabs() {
 
         /**
          * Hover info window
-         * @param {Number} opacityOff
          */
-        bindHover: function bindHover(opacityOff) {
+        bindHover: function bindHover() {
             $(this.debugger.info).hover(
-                function on() {
-                    $(this).css({
-                        opacity: 0.9
-                    }).find('.info-tabs').stop().animate({
-                            right: -100
-                        });
-                },
-                function off() {
-                    $(this).css({
-                        opacity: opacityOff
-                    }).find('.info-tabs').stop().animate({
-                            right: 0
-                        });
-                }
+                this.open.bind(this),
+                this.close.bind(this)
             );
+        },
+
+        /**
+         * Open tabs
+         */
+        open: function open() {
+            this._animateOpenTabs(0.9, -100);
+        },
+
+        /**
+         * Close tabs
+         * @returns {boolean}
+         */
+        close: function close() {
+            if (this.pinTabs) {
+                return false;
+            }
+            this._animateOpenTabs(this.opacityOff, 0);
+        },
+
+        /**
+         * Animate tabs
+         * @param {Number} opacity
+         * @param {Number} right
+         * @private
+         */
+        _animateOpenTabs: function _animateOpenTabs(opacity, right) {
+            $('.info-tabs', this.debugger.info).css({
+                opacity: opacity
+            }).stop().animate({
+                    right: right
+                });
         }
 
     });

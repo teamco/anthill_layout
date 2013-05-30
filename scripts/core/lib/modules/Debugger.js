@@ -43,6 +43,8 @@ define([
         this.showTab = 5;
         this.pinTabs = true;
 
+        this.opacityOff = 0.8;
+
         this.rows = 25;
         this.scopes = {};
 
@@ -73,7 +75,7 @@ define([
              * Define tabs
              * @type {DebuggerTabs}
              */
-            this.tabs = new Tabs(this, this.pinTabs);
+            this.tabs = new Tabs(this, this.pinTabs, this.opacityOff);
 
             /**
              * Define app
@@ -146,7 +148,7 @@ define([
                 base = this.base,
 
                 $div = $(this.info),
-                opacityOff = 0.8;
+                opacityOff = this.opacityOff;
 
             if ($div.length === 0) {
                 $div = $('<div />');
@@ -156,7 +158,7 @@ define([
                         opacity: opacityOff
                     }).draggable({
                         handle: '.handler',
-                        cancel: '.plus, .minus'
+                        cancel: '.plus, .minus, .pin'
                     });
                 $(scope.config.html.container).append($div);
             }
