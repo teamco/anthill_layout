@@ -9,6 +9,7 @@ define([
 
     /**
      * Define Debugger Config
+     * @class Config
      * @param {*} debug
      * @constructor
      */

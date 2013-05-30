@@ -12,6 +12,7 @@ define([
     /**
      * Define Debugger Page
      * @param {*} debug
+     * @class Page
      * @constructor
      */
     var Page = function Page(debug) {

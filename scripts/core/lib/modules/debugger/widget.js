@@ -9,6 +9,7 @@ define([], function defineDebuggerWidget() {
     /**
      * Define Debugger Widget
      * @param {*} debug
+     * @class Widget
      * @constructor
      */
     var Widget = function Widget(debug) {

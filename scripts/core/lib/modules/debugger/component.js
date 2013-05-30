@@ -9,6 +9,7 @@ define([], function defineDebuggerComponent() {
     /**
      * Define Debugger Component
      * @param {*} debug
+     * @class Component
      * @constructor
      */
     var Component = function Component(debug) {

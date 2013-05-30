@@ -9,6 +9,7 @@ define([], function defineDebuggerGrid() {
     /**
      * Define Debugger Grid
      * @param {*} debug
+     * @class Grid
      * @constructor
      */
     var Grid = function Grid(debug) {

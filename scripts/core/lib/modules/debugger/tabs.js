@@ -9,6 +9,7 @@ define([], function defineDebuggerTabs() {
     /**
      * Define Debugger Tabs
      * @param {*} debug
+     * @class Tabs
      * @constructor
      */
     var Tabs = function Tabs(debug) {
@@ -48,6 +49,10 @@ define([], function defineDebuggerTabs() {
                 $tab = $(e.target),
                 $info = $div.find('fieldset[class^="' +
                     $tab.text().toLowerCase() + '"]');
+
+            this.debugger.scope.logger.debug([
+                'Open', $tab.text(), 'tab'
+            ].join(' '));
 
             $div.find('div > fieldset').hide();
             $info.find('fieldset').show();

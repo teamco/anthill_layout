@@ -8,7 +8,8 @@
 define([], function defineDebuggerActions() {
 
     /**
-     * Define Debugger Workspace
+     * Define generic Actions
+     * @class Actions
      * @constructor
      */
     var Actions = function Actions() {
@@ -157,7 +158,7 @@ define([], function defineDebuggerActions() {
         renderItemsInfo: function renderItemsInfo(scope) {
             return [
                 '<li class="extend">',
-                this.debugger.component.renderBlock('Items', [
+                this.debugger.component.renderBlock(scope.model.item.name + 's', [
                     this.renderItemsActions(),
                     this._getItemsCount(scope),
                     this.renderItemsList(scope)

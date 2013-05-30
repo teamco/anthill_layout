@@ -11,14 +11,17 @@ define([
     'modules/debugger/component',
     'modules/debugger/tabs',
     'modules/debugger/grid',
+    'modules/debugger/application',
+    'modules/debugger/workspace',
     'modules/debugger/page',
     'modules/debugger/layout',
     'modules/debugger/widget'
-], function defineDebugger(Base, Config, Component, Tabs, Grid, Page, Layout, Widget) {
+], function defineDebugger(Base, Config, Component, Tabs, Grid, Application, Workspace, Page, Layout, Widget) {
 
     /**
      * Define Debugger
      * @param scope
+     * @class Debugger
      * @constructor
      */
     var Debugger = function Debugger(scope) {
@@ -53,12 +56,58 @@ define([
          */
         init: function init() {
 
+            /**
+             * Define config
+             * @type {Config}
+             */
             this.config = new Config(this);
+
+            /**
+             * Define component
+             * @type {Component}
+             */
             this.component = new Component(this);
+
+            /**
+             * Define tabs
+             * @type {Tabs}
+             */
             this.tabs = new Tabs(this);
+
+            /**
+             * Define application
+             * @type {Application}
+             */
+            this.application = new Application(this);
+
+            /**
+             * Define workspace
+             * @type {Workspace}
+             */
+            this.workspace = new Workspace(this);
+
+            /**
+             * Define page
+             * @type {Page}
+             */
             this.page = new Page(this);
+
+            /**
+             * Define layout
+             * @type {Layout}
+             */
             this.layout = new Layout(this);
+
+            /**
+             * Define grid
+             * @type {Grid}
+             */
             this.grid = new Grid(this);
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
             this.widget = new Widget(this);
 
             this.renderDebugger();
@@ -140,13 +189,13 @@ define([
 
                     c.renderBlock('Workspace', [
                         c.renderInline('UUID', workspace.config.uuid),
-                        c.renderInlineOf('Pages', workspace)
+                        this.workspace.renderItemsInfo(workspace)
                     ], false),
 
                     c.renderBlock('Application', [
                         c.renderInline('UUID', scope.config.uuid),
-                        c.renderInlineOf('Workspaces', scope),
-                        c.renderInline('Mode', scope.config.mode)
+                        c.renderInline('Mode', scope.config.mode),
+                        this.application.renderItemsInfo(scope)
                     ], false),
 
                     c.renderBlock('Logger', [

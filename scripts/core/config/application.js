@@ -49,7 +49,7 @@ define([
                 show: true,
                 namespaces: false, //'App',
                 type: {
-                    debug: false,
+                    debug: true,
                     log: false,
                     info: false,
                     error: true,
