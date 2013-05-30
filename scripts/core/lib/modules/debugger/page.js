@@ -12,10 +12,11 @@ define([
     /**
      * Define Debugger Page
      * @param {*} debug
+     * @param {Page} scope
      * @class Page
      * @constructor
      */
-    var Page = function Page(debug) {
+    var Page = function Page(debug, scope) {
 
         /**
          * Define debugger
@@ -23,7 +24,13 @@ define([
          */
         this.debugger = debug;
 
-        this.configScope();
+        /**
+         * Define scope
+         * @type {Page}
+         */
+        this.scope = scope;
+
+        this.init();
 
     };
 

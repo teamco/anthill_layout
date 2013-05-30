@@ -16,7 +16,7 @@ define([
     'modules/debugger/page',
     'modules/debugger/layout',
     'modules/debugger/widget'
-], function defineDebugger(Base, Config, Component, Tabs, Grid, Application, Workspace, Page, Layout, Widget) {
+], function defineDebugger(Base, Config, Component, Tabs, Grid, App, Workspace, Page, Layout, Widget) {
 
     /**
      * Define Debugger
@@ -75,22 +75,22 @@ define([
             this.tabs = new Tabs(this);
 
             /**
-             * Define application
+             * Define app
              * @type {Application}
              */
-            this.application = new Application(this);
+            this.app = new App(this, this.scope);
 
             /**
              * Define workspace
              * @type {Workspace}
              */
-            this.workspace = new Workspace(this);
+            this.workspace = new Workspace(this, this.scopes.workspace);
 
             /**
              * Define page
              * @type {Page}
              */
-            this.page = new Page(this);
+            this.page = new Page(this, this.scopes.page);
 
             /**
              * Define layout
@@ -195,7 +195,7 @@ define([
                     c.renderBlock('Application', [
                         c.renderInline('UUID', scope.config.uuid),
                         c.renderInline('Mode', scope.config.mode),
-                        this.application.renderItemsInfo(scope)
+                        this.app.renderItemsInfo(scope)
                     ], false),
 
                     c.renderBlock('Logger', [
@@ -225,6 +225,8 @@ define([
             this.layout.bindAllowOverlapping();
 
             this.page.bindEnableItemsEditMode(page);
+            this.workspace.bindEnableItemsEditMode(workspace);
+            this.app.bindEnableItemsEditMode(this.scope);
 
             this.tabs.openTab({
                 target: $div.find('li[title="' + this.links[this.showTab - 2] + '"]')

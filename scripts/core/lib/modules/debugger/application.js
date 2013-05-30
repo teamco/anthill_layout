@@ -12,10 +12,11 @@ define([
     /**
      * Define Debugger Application
      * @param {*} debug
+     * @param {App} scope
      * @class Application
      * @constructor
      */
-    var Application = function Application(debug) {
+    var App = function App(debug, scope) {
 
         /**
          * Define debugger
@@ -23,11 +24,17 @@ define([
          */
         this.debugger = debug;
 
+        /**
+         * Define scope
+         * @type {App}
+         */
+        this.scope = scope;
+
         this.configScope();
 
     };
 
-    return Application.extend({
+    return App.extend({
 
     }, Actions.prototype);
 });

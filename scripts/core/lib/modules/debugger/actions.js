@@ -19,6 +19,13 @@ define([], function defineDebuggerActions() {
     return Actions.extend({
 
         /**
+         * Init Actions
+         */
+        init: function init() {
+            this.configScope();
+        },
+
+        /**
          * Config predefined scope
          */
         configScope: function configScope() {
@@ -52,7 +59,15 @@ define([], function defineDebuggerActions() {
         extendSelectors: function extendSelectors(opts) {
             this.selectors = {};
             $.each(opts || {}, function each(i, selector) {
-                this.selectors[i] = [this.debugger.info, selector].join(' ');
+                this.selectors[i] = [
+                    this.debugger.info,
+                    [
+                        'fieldset.',
+                        this.scope.model.item.name.toLowerCase(),
+                        's-info'
+                    ].join(''),
+                    selector
+                ].join(' ');
             }.bind(this));
 
         },
@@ -235,11 +250,11 @@ define([], function defineDebuggerActions() {
         },
 
         /**
-         * Bind enable page item edit mode,
+         * Bind enable page item edit mode
          * @param {*} scope
          */
         bindEnableItemsEditMode: function bindEnableItemsEditMode(scope) {
-            $(this.selectors.edit).on('click.edit', function edit(e) {
+            $(this.selectors.edit).on('click.edit', function enableItemsEditMode(e) {
                 this._enableItemsEditMode(e, scope);
             }.bind(this));
         },
@@ -340,10 +355,16 @@ define([], function defineDebuggerActions() {
          */
         _bindAddNewItem: function _bindAddNewItem(scope) {
             scope.logger.debug('Bind edit mode');
-            this._getItemAction('add-item').on('click.add', function (e) {
-                scope.api.createItem([], true);
-                this._getItemAction('remove-items').removeClass('disabled');
-            }.bind(this));
+            this._getItemAction('add-item').on(
+                'click.add',
+                /**
+                 * Add new item
+                 */
+                function addNewItem(e) {
+                    scope.api.createItem([], true);
+                    this._getItemAction('remove-items').removeClass('disabled');
+                }.bind(this)
+            );
         },
 
         /**
@@ -363,13 +384,19 @@ define([], function defineDebuggerActions() {
          */
         _bindRemoveItems: function _bindRemoveItems(scope) {
             scope.logger.debug('Bind remove items');
-            this._getItemAction('remove-items').on('click.remove', function remove(e) {
-                if ($('li.select', this.selectors.items).length === 0) {
-                    scope.logger.warn('Select items before remove');
-                    return false;
-                }
-                this._removeItems(scope);
-            }.bind(this));
+            this._getItemAction('remove-items').on(
+                'click.remove',
+                /**
+                 * Remove items
+                 */
+                function removeItems(e) {
+                    if ($('li.select', this.selectors.items).length === 0) {
+                        scope.logger.warn('Select items before remove');
+                        return false;
+                    }
+                    this._removeItems(scope);
+                }.bind(this)
+            );
         },
 
         /**
@@ -397,13 +424,19 @@ define([], function defineDebuggerActions() {
                 $action.addClass('disabled');
             }
 
-            $action.on('click.remove', function remove(e) {
-                if ($lis.length === 0) {
-                    scope.logger.warn('Add items before remove');
-                    return false;
-                }
-                this._removeAllItems(scope);
-            }.bind(this));
+            $action.on(
+                'click.remove',
+                /**
+                 * Remove all items
+                 */
+                function removeAllItems(e) {
+                    if ($lis.length === 0) {
+                        scope.logger.warn('Add items before remove');
+                        return false;
+                    }
+                    this._removeAllItems(scope);
+                }.bind(this)
+            );
         },
 
         /**

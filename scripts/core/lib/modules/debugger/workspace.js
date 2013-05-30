@@ -12,16 +12,23 @@ define([
     /**
      * Define Debugger Workspace
      * @param {*} debug
+     * @param {Workspace} scope
      * @class Workspace
      * @constructor
      */
-    var Workspace = function Workspace(debug) {
+    var Workspace = function Workspace(debug, scope) {
 
         /**
          * Define debugger
          * @type {*}
          */
         this.debugger = debug;
+
+        /**
+         * Define scope
+         * @type {Workspace}
+         */
+        this.scope = scope;
 
         this.configScope();
 
