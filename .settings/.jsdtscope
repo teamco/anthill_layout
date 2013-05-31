@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="scripts/app/demo/config"/>
+	<classpathentry kind="src" path="scripts/core/config"/>
+	<classpathentry excluding="widget/|layout/" kind="src" path="scripts/core/controller"/>
+	<classpathentry kind="src" path="scripts/core/controller/layout"/>
+	<classpathentry kind="src" path="scripts/core/controller/widget"/>
+	<classpathentry excluding="template/|page/|application/|widget/|workspace/" kind="src" path="scripts/core/element"/>
+	<classpathentry kind="src" path="scripts/core/element/application"/>
+	<classpathentry kind="src" path="scripts/core/element/page"/>
+	<classpathentry kind="src" path="scripts/core/element/template"/>
+	<classpathentry kind="src" path="scripts/core/element/widget"/>
+	<classpathentry kind="src" path="scripts/core/element/workspace"/>
+	<classpathentry kind="src" path="scripts/core/event"/>
+	<classpathentry excluding="modules/|modules/translations/|extends/|modules/base/|jquery/" kind="src" path="scripts/core/lib"/>
+	<classpathentry kind="src" path="scripts/core/lib/extends"/>
+	<classpathentry kind="src" path="scripts/core/lib/jquery"/>
+	<classpathentry excluding="translations/|base/" kind="src" path="scripts/core/lib/modules"/>
+	<classpathentry kind="src" path="scripts/core/lib/modules/base"/>
+	<classpathentry kind="src" path="scripts/core/lib/modules/translations"/>
+	<classpathentry kind="src" path="scripts/core/model"/>
+	<classpathentry kind="src" path="scripts/core/permission"/>
+	<classpathentry kind="src" path="scripts/core/test"/>
+	<classpathentry kind="src" path="scripts/core/view"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
