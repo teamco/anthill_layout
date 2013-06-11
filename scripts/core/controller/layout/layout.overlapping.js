@@ -21,6 +21,7 @@ define([
     };
 
     return Overlapping.extend({
+
         /**
          * Nested organizer
          * @param {{targets: Object, callback: Function}} opts
@@ -48,6 +49,7 @@ define([
                 callback: opts.callback
             });
         },
+
         /**
          * Nested organizer core
          * @param {{}} widgets
@@ -76,6 +78,7 @@ define([
 
             return nestedMove;
         },
+
         /**
          * Nested organizer callback
          * @param {Function} [callback]
@@ -100,6 +103,7 @@ define([
 
             return true;
         },
+
         /**
          * Organize widget css
          * @private
@@ -127,6 +131,7 @@ define([
                 }
             }
         },
+
         /**
          * Organize widget css callback
          * @private
@@ -149,6 +154,7 @@ define([
             }
 
         },
+
         /**
          * Organize collector
          * @param {{dom}} source
@@ -178,6 +184,7 @@ define([
                 }
             }
         },
+
         /**
          * Snap to grid organizer
          * @param {{organize}} behavior
@@ -233,6 +240,7 @@ define([
             }
 
         },
+
         /**
          * Check overlapping
          * @param {{left: Number, right: Number, bottom: Number, top: Number}} src
@@ -242,24 +250,97 @@ define([
          */
         _overlapped: function _overlapped(src, target) {
 
-            if ((target.left > src.right || target.right < src.left) ||
-                (target.top > src.bottom || target.bottom < src.top)) {
-                this.layout.logger.debug('Overlap not possible', src, target);
+            if (this._isNoOverlapped(src, target)) {
                 return false;
             }
 
-            return (target.left > src.left && target.left < src.right) ||
-                (target.right > src.left && target.right < src.right) ||
-                (target.top > src.top && target.top < src.bottom) ||
-                (target.bottom > src.top && target.bottom < src.bottom) ||
-                (src.left > target.left && src.right < target.right &&
-                    src.top > target.top && src.bottom < target.bottom) ||
-                (src.left === target.left && src.right === target.right &&
-                    src.top === target.top && src.bottom === target.bottom) ||
-                (src.left === target.left && src.right === target.right &&
-                    src.top >= target.top && src.bottom <= target.bottom) ||
-                (src.left >= target.left && src.right <= target.right &&
-                    src.top === target.top && src.bottom === target.bottom);
+            return this._isOverlappedTL(src, target) ||
+                this._isOverlappedTC(src, target)
+                ;
+//            return (target.left > src.left && target.left < src.right) ||
+//                (target.right > src.left && target.right < src.right) ||
+//                (target.top > src.top && target.top < src.bottom) ||
+//                (target.bottom > src.top && target.bottom < src.bottom) ||
+//                (src.left > target.left && src.right < target.right &&
+//                    src.top > target.top && src.bottom < target.bottom) ||
+//                (src.left === target.left && src.right === target.right &&
+//                    src.top === target.top && src.bottom === target.bottom) ||
+//                (src.left === target.left && src.right === target.right &&
+//                    src.top >= target.top && src.bottom <= target.bottom) ||
+//                (src.left >= target.left && src.right <= target.right &&
+//                    src.top === target.top && src.bottom === target.bottom) ||
+//
+//                (src.left <= target.left && src.right === target.right &&
+//                    src.top === target.top && src.bottom <= target.bottom);
+
+        },
+
+        /**
+         * Check if no overlapping
+         * @param {{right: number, left: number, top: number, bottom: number}} src
+         * @param {{left: number, right: number, top: number, bottom: number}} target
+         * @returns {boolean}
+         * @private
+         */
+        _isNoOverlapped: function _isNoOverlapped(src, target) {
+            if ((
+                this._overlapCondition(target.left, src.right, '>') ||
+                    this._overlapCondition(target.right, src.left, '<')
+                ) || (
+                this._overlapCondition(target.top, src.bottom, '>') ||
+                    this._overlapCondition(target.bottom, src.top, '<')
+                )) {
+                this.layout.logger.debug('Overlap not possible', src, target);
+                return true;
+            }
+            return false;
+        },
+
+        /**
+         * Check Top-Left corner overlapping
+         * @param {{left: number, top: number}} src
+         * @param {{left: number, top: number}} target
+         * @return {boolean}
+         * @private
+         */
+        _isOverlappedTL: function _isOverlappedTL(src, target) {
+            var isOverlappedTL = (
+                this._overlapCondition(src.left, target.left, '===') &&
+                    this._overlapCondition(src.top, target.top, '===')
+                );
+            this.layout.logger.debug('Overlap TL', src, target, isOverlappedTL);
+            return isOverlappedTL;
+        },
+
+        /**
+         * Check Top-Center overlapping
+         * @param {{left: number, top: number, right: number}} src
+         * @param {{left: number, top: number, right: number}} target
+         * @return {boolean}
+         * @private
+         */
+        _isOverlappedTC: function _isOverlappedTC(src, target) {
+            var isOverlappedTC = (
+                this._overlapCondition(src.left, target.left, '>=') &&
+                    this._overlapCondition(src.top, target.top, '===') &&
+                    this._overlapCondition(src.right, target.right, '<=')
+                );
+            this.layout.logger.debug('Overlap TC', src, target, isOverlappedTC);
+            return isOverlappedTC;
+        },
+
+        /**
+         * Internal overlapping calc
+         * @param {number} arg1
+         * @param {number} arg2
+         * @param {string} condition
+         * @return {boolean}
+         * @private
+         */
+        _overlapCondition: function _overlapCondition(arg1, arg2, condition) {
+            var _fn = new Function('arg1', 'arg2', 'return Math.floor(arg1) ' + condition + ' Math.floor(arg2)');
+            this.layout.logger.debug('Overlap condition', _fn, arg1, arg2);
+            return _fn(arg1, arg2);
         },
 
         /**
@@ -283,6 +364,7 @@ define([
             }
             return move;
         },
+
         /**
          * Get right position
          * @param {{column: Number, relWidth: Number}} target
@@ -291,6 +373,7 @@ define([
         right: function right(target) {
             return (target.column + target.relWidth - 1);
         },
+
         /**
          * Get bottom position
          * @param {{row: Number, relHeight: Number}} target
