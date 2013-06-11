@@ -117,7 +117,6 @@ define([
                 if (widgets.hasOwnProperty(index)) {
                     widget = page.model.getItemByUUID(widgets[index].model.getUUID());
                     widget.logger.debug('Start nested organizer animation');
-
                     widget.view.elements.$widget._setPosition({
                         animate: true,
                         callback: this._cssOrganizeCallback.bind({
@@ -194,6 +193,7 @@ define([
          * @private
          */
         _snap2gridOrganizer: function _snap2gridOrganizer(behavior, source, widget, max) {
+
             /**
              * Organize by row
              * @param {{top: Number, bottom: Number, height: Number, row: Number}} dom
@@ -255,7 +255,8 @@ define([
             }
 
             return this._isOverlappedTL(src, target) ||
-                this._isOverlappedTC(src, target)
+                this._isOverlappedTCR(src, target) ||
+                this._isOverlappedCL(src, target)
                 ;
 //            return (target.left > src.left && target.left < src.right) ||
 //                (target.right > src.left && target.right < src.right) ||
@@ -283,17 +284,20 @@ define([
          * @private
          */
         _isNoOverlapped: function _isNoOverlapped(src, target) {
-            if ((
+
+            /**
+             * Define local instance
+             * @type {boolean}
+             */
+            var noOverlapped = (
                 this._overlapCondition(target.left, src.right, '>') ||
                     this._overlapCondition(target.right, src.left, '<')
                 ) || (
                 this._overlapCondition(target.top, src.bottom, '>') ||
                     this._overlapCondition(target.bottom, src.top, '<')
-                )) {
-                this.layout.logger.debug('Overlap not possible', src, target);
-                return true;
-            }
-            return false;
+                );
+            this.layout.logger.debug('Overlap not possibility', src, target, noOverlapped);
+            return noOverlapped;
         },
 
         /**
@@ -304,6 +308,11 @@ define([
          * @private
          */
         _isOverlappedTL: function _isOverlappedTL(src, target) {
+
+            /**
+             * Define local instance
+             * @type {boolean}
+             */
             var isOverlappedTL = (
                 this._overlapCondition(src.left, target.left, '===') &&
                     this._overlapCondition(src.top, target.top, '===')
@@ -313,20 +322,47 @@ define([
         },
 
         /**
-         * Check Top-Center overlapping
+         * Check Top-Center-Right overlapping
          * @param {{left: number, top: number, right: number}} src
          * @param {{left: number, top: number, right: number}} target
          * @return {boolean}
          * @private
          */
-        _isOverlappedTC: function _isOverlappedTC(src, target) {
+        _isOverlappedTCR: function _isOverlappedTCR(src, target) {
+
+            /**
+             * Define local instance
+             * @type {boolean}
+             */
             var isOverlappedTC = (
                 this._overlapCondition(src.left, target.left, '>=') &&
                     this._overlapCondition(src.top, target.top, '===') &&
                     this._overlapCondition(src.right, target.right, '<=')
                 );
-            this.layout.logger.debug('Overlap TC', src, target, isOverlappedTC);
+            this.layout.logger.debug('Overlap TCR', src, target, isOverlappedTC);
             return isOverlappedTC;
+        },
+
+        _isOverlappedCL: function _isOverlappedCL(src, target) {
+
+            /**
+             * Define local instance
+             * @type {boolean}
+             */
+            var isOverlappedCL = (
+                this._overlapCondition(src.left, target.left, '===') &&
+                    (
+                        this._overlapCondition(src.top, target.top, '>=') &&
+                            (
+                                this._overlapCondition(src.bottom, target.bottom, '<=') ||
+                                    this._overlapCondition(src.top, target.bottom, '<=')
+                                ) ||
+                            this._overlapCondition(src.top, target.top, '<=') &&
+                                this._overlapCondition(src.bottom, target.top, '>=')
+                        )
+                );
+            this.layout.logger.debug('Overlap CL', src, target, isOverlappedCL);
+            return isOverlappedCL;
         },
 
         /**
@@ -338,6 +374,12 @@ define([
          * @private
          */
         _overlapCondition: function _overlapCondition(arg1, arg2, condition) {
+
+            /**
+             * Define anonymous function
+             * @type {Function}
+             * @private
+             */
             var _fn = new Function('arg1', 'arg2', 'return Math.floor(arg1) ' + condition + ' Math.floor(arg2)');
             this.layout.logger.debug('Overlap condition', _fn, arg1, arg2);
             return _fn(arg1, arg2);

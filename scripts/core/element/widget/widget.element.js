@@ -46,7 +46,6 @@ define([
                 !!opts.animate ? 500 : 0,
                 opts.callback
             );
-
         },
         /**
          * Downgrade widget layer
