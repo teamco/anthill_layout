@@ -9,9 +9,7 @@ define(function defineLayoutIntersect() {
 
     /**
      * Define Intersect
-     * @class Overlapping
-     * @extends {Base}
-     * @param {Layout} layout
+     * @class Intersect
      * @constructor
      */
     var Intersect = function Intersect() {
