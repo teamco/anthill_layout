@@ -243,8 +243,8 @@ define([
 
         /**
          * Check overlapping
-         * @param {{left: Number, right: Number, bottom: Number, top: Number}} src
-         * @param {{left: Number, right: Number, bottom: Number, top: Number}} target
+         * @param {{right: number, left: number, top: number, bottom: number}} src
+         * @param {{right: number, left: number, top: number, bottom: number}} target
          * @returns {boolean}
          * @private
          */
@@ -254,25 +254,8 @@ define([
                 return false;
             }
 
-            return this._isOverlappedTL(src, target) ||
-                this._isOverlappedTCR(src, target) ||
-                this._isOverlappedCL(src, target)
-                ;
-//            return (target.left > src.left && target.left < src.right) ||
-//                (target.right > src.left && target.right < src.right) ||
-//                (target.top > src.top && target.top < src.bottom) ||
-//                (target.bottom > src.top && target.bottom < src.bottom) ||
-//                (src.left > target.left && src.right < target.right &&
-//                    src.top > target.top && src.bottom < target.bottom) ||
-//                (src.left === target.left && src.right === target.right &&
-//                    src.top === target.top && src.bottom === target.bottom) ||
-//                (src.left === target.left && src.right === target.right &&
-//                    src.top >= target.top && src.bottom <= target.bottom) ||
-//                (src.left >= target.left && src.right <= target.right &&
-//                    src.top === target.top && src.bottom === target.bottom) ||
-//
-//                (src.left <= target.left && src.right === target.right &&
-//                    src.top === target.top && src.bottom <= target.bottom);
+            return this._isOverlappedH(src, target) &&
+                this._isOverlappedV(src, target);
 
         },
 
@@ -301,68 +284,57 @@ define([
         },
 
         /**
-         * Check Top-Left corner overlapping
-         * @param {{left: number, top: number}} src
-         * @param {{left: number, top: number}} target
+         * Check Horizontal overlapping
+         * @param {{left: number, right: number, top: number, bottom: number}} src
+         * @param {{left: number, right: number, top: number, bottom: number}} target
          * @return {boolean}
          * @private
          */
-        _isOverlappedTL: function _isOverlappedTL(src, target) {
+        _isOverlappedH: function _isOverlappedH(src, target) {
 
             /**
              * Define local instance
              * @type {boolean}
              */
-            var isOverlappedTL = (
-                this._overlapCondition(src.left, target.left, '===') &&
-                    this._overlapCondition(src.top, target.top, '===')
-                );
-            this.layout.logger.debug('Overlap TL', src, target, isOverlappedTL);
-            return isOverlappedTL;
+            var isOverlappedH = this._overlappedCore(src, target, 'left', 'right');
+
+            this.layout.logger.debug('Overlap TL', src, target, isOverlappedH);
+            return isOverlappedH;
         },
 
         /**
-         * Check Top-Center-Right overlapping
-         * @param {{left: number, top: number, right: number}} src
-         * @param {{left: number, top: number, right: number}} target
+         * Check Vertical overlapping
+         * @param {{left: number, right: number, top: number, bottom: number}} src
+         * @param {{left: number, right: number, top: number, bottom: number}} target
          * @return {boolean}
          * @private
          */
-        _isOverlappedTCR: function _isOverlappedTCR(src, target) {
+        _isOverlappedV: function _isOverlappedV(src, target) {
 
             /**
              * Define local instance
              * @type {boolean}
              */
-            var isOverlappedTC = (
-                this._overlapCondition(src.left, target.left, '>=') &&
-                    this._overlapCondition(src.top, target.top, '===') &&
-                    this._overlapCondition(src.right, target.right, '<=')
-                );
-            this.layout.logger.debug('Overlap TCR', src, target, isOverlappedTC);
-            return isOverlappedTC;
+            var isOverlappedV = this._overlappedCore(src, target, 'top', 'bottom');
+
+            this.layout.logger.debug('Overlap TCR', src, target, isOverlappedV);
+            return isOverlappedV;
         },
 
-        _isOverlappedCL: function _isOverlappedCL(src, target) {
-
-            /**
-             * Define local instance
-             * @type {boolean}
-             */
-            var isOverlappedCL = (
-                this._overlapCondition(src.left, target.left, '===') &&
-                    (
-                        this._overlapCondition(src.top, target.top, '>=') &&
-                            (
-                                this._overlapCondition(src.bottom, target.bottom, '<=') ||
-                                    this._overlapCondition(src.top, target.bottom, '<=')
-                                ) ||
-                            this._overlapCondition(src.top, target.top, '<=') &&
-                                this._overlapCondition(src.bottom, target.top, '>=')
-                        )
-                );
-            this.layout.logger.debug('Overlap CL', src, target, isOverlappedCL);
-            return isOverlappedCL;
+        /**
+         * Overlapping core
+         * @param {{left: number, right: number, top: number, bottom: number}} src
+         * @param {{left: number, right: number, top: number, bottom: number}} target
+         * @param {string} from
+         * @param {string} to
+         * @returns {boolean}
+         * @private
+         */
+        _overlappedCore: function _isOverlappedCore(src, target, from, to) {
+            return (this._overlapCondition(src[from], target[from], '<=') &&
+                this._overlapCondition(src[to], target[from], '>=')) ||
+            (this._overlapCondition(src[from], target[to], '<=') &&
+                this._overlapCondition(src[to], target[from], '>='));
         },
 
         /**
@@ -380,7 +352,7 @@ define([
              * @type {Function}
              * @private
              */
-            var _fn = new Function('arg1', 'arg2', 'return Math.floor(arg1) ' + condition + ' Math.floor(arg2)');
+            var _fn = new Function('arg1', 'arg2', 'return arg1 ' + condition + ' arg2;');
             this.layout.logger.debug('Overlap condition', _fn, arg1, arg2);
             return _fn(arg1, arg2);
         },
@@ -389,7 +361,7 @@ define([
          * Widget intersections
          * @param {{model, dom}} source
          * @private
-         * @returns {{}}
+         * @returns {*}
          */
         _intersectWidgets: function _intersectWidgets(source) {
             var move = {}, index, target,

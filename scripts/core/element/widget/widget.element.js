@@ -14,19 +14,22 @@ define([
     /**
      * Define widget element
      * @param {{}} view
-     * @param {$container} opts
+     * @param {{$container}} opts
      * @returns {*}
      * @constructor
      */
     var Widget = function Widget(view, opts) {
 
-        return this._config(view, opts, $('<li />')).build({
+        this._config(view, opts, $('<li />')).build({
             $container: opts.$container,
             destroy: false
         });
+
+        return this;
     };
 
     return Widget.extend({
+
         /**
          * Set widget position
          * @param {{animate: Boolean, callback: Function}} opts
@@ -47,6 +50,7 @@ define([
                 opts.callback
             );
         },
+
         /**
          * Downgrade widget layer
          * @param {Number} layer
@@ -57,12 +61,13 @@ define([
                 zIndex: layer
             });
         },
+
         /**
          * Get item content
          * @returns {*}
          */
         getContent: function getContent() {
-            return this.$.find('.content');
+            return $('.content', this.$);
         }
 
 
