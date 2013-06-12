@@ -32,7 +32,20 @@ define([
              * @type {*}
              */
             this.scope.dom = this.scope.map.getDOM();
+        },
+
+        /**
+         * Update DOM
+         * @param {*} hash
+         * @returns {*}
+         */
+        updateDOM: function updateDOM(hash) {
+            var scope = this.scope;
+            scope.logger.debug('Update DOM', hash);
+            $.extend(true, scope.dom, hash);
+            return scope;
         }
+
 
     }, BaseModel.prototype, Base);
 });

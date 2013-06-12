@@ -58,6 +58,7 @@ define([
         /**
          * Set scope config
          * @param {String} [key]
+         * @param {*} [value]
          * @returns {scope.config}
          */
         setConfig: function setConfig(key, value) {
