@@ -8,7 +8,6 @@
 define([
 ], function defineLayoutEmptyRows() {
 
-
     /**
      * Define EmptyRows
      * @class EmptyRows
@@ -22,18 +21,23 @@ define([
          * @type {Layout}
          */
         this.layout = layout;
+
+        this.page = layout.controller.getParent();
+
+        this.allowed = layout.config.behavior.snap2grid.emptySpaces === 'row';
+
     };
 
     return EmptyRows.extend({
 
         findRows: function findRows() {
             var rows = [],
-                widgets = this.layout.controller.getParent().model.getItems(),
+                widgets = this.page.model.getItems(),
                 index, i;
             for (index in widgets) {
                 if (widgets.hasOwnProperty(index)) {
                     var widget = widgets[index];
-                    for (i = widget.row; i <= widget.relHeight + widget.row - 1; i++) {
+                    for (i = widget.dom.row; i <= widget.dom.relHeight + widget.dom.row - 1; i += 1) {
                         rows[i] = this.layout.base.define(rows[i], [], true);
                         rows[i].push(widget);
                     }
@@ -47,33 +51,37 @@ define([
          * @return {Boolean}
          */
         remove: function remove() {
-            if (!this.layout.config.overlapping.removeEmptySpaces) {
+            var layout = this.layout;
+            if (!this.allowed) {
+                layout.logger.warn('Remove empty spaces by row does not allowed');
                 return false;
             }
             var rows = this.findRows(),
                 moveIndex = 0,
                 alreadyFixed = [],
-                i;
-            for (i = 0; i <= rows.length; i++) {
-                if (App.base.isDefined(rows[i])) {
+                i = 0;
+            for (i; i <= rows.length; i += 1) {
+                if (layout.base.isDefined(rows[i])) {
                     var widgets = rows[i],
-                        y;
-                    for (y = 0; y <= widgets.length; y++) {
+                        y = 0;
+                    for (y; y <= widgets.length; y += 1) {
                         if (widgets[y]) {
-                            var uuid = widgets[y].uuid;
-                            // TODO Check incorrect ID
-                            if (jQuery.inArray(uuid, alreadyFixed) === -1) {
+                            var widget = widgets[y],
+                                uuid = widget.model.getUUID();
+                            if ($.inArray(uuid, alreadyFixed) === -1) {
                                 alreadyFixed.push(uuid);
-                                this.page.model.updateCollectorByKey({
-                                    uuid: uuid,
-                                    key: 'row',
-                                    value: this.page.model.getWidgetFromCollector(uuid).row - moveIndex
-                                });
+                                this.page.model.updateItem(
+                                    uuid, {
+                                        dom: {
+                                            row: widget.dom.row - moveIndex
+                                        }
+                                    }
+                                );
                             }
                         }
                     }
                 } else {
-                    moveIndex++;
+                    moveIndex += 1;
                     alreadyFixed = [];
                 }
             }
