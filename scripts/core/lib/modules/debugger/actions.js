@@ -472,26 +472,31 @@ define([], function defineDebuggerActions() {
         _unbindLocateItem: function _unbindLocateItem(scope) {
             scope.logger.debug('Unbind locate item');
             this._getItemAction('locate-item').unbind('click.locate');
-//            $('li', this.selectors.items).removeClass('select');
         },
 
+        /**
+         * Locate item
+         * @param scope
+         * @returns {boolean}
+         * @private
+         */
         _locateItem: function _locateItem(scope) {
-//            var $li = $('li.select', this.selectors.items);
-//
-//            if ($li.length !== 1) {
-//                page.logger.warn('Select one item before locate');
-//                return false;
-//            }
-//
-//            var uuid = $li.text(),
-//                item = page.model.getItemByUUID(uuid);
-//
-//            if (!this.debugger.base.isDefined(item)) {
-//                page.logger.warn('Undefined item', uuid);
-//                return false;
-//            }
-//
-//            page.logger.warn('Locate', item);
+            var $li = $('li.select', this.selectors.items);
+
+            if ($li.length !== 1) {
+                scope.logger.warn('Select one item before locate');
+                return false;
+            }
+
+            var uuid = $li.text(),
+                item = scope.model.getItemByUUID(uuid);
+
+            if (!this.debugger.base.isDefined(item)) {
+                sope.logger.warn('Undefined item', uuid);
+                return false;
+            }
+
+            scope.logger.warn('Locate', item);
 
         },
 
