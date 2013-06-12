@@ -11,8 +11,9 @@ define([
     'modules/mvc',
     'controller/layout.controller',
     'event/layout.event.manager',
-    'controller/layout/layout.overlapping'
-], function defineLayout(Base, MVC, Controller, EventManager, Overlapping) {
+    'controller/layout/layout.overlapping',
+    'controller/layout/layout.empty.rows'
+], function defineLayout(Base, MVC, Controller, EventManager, Overlapping, EmptyRows) {
 
     /**
      * Define Layout
@@ -68,6 +69,12 @@ define([
          * @type {Overlapping}
          */
         this.overlapping = new Overlapping(this);
+
+        /**
+         * Define empty rows
+         * @type {EmptyRows}
+         */
+        this.emptyRows = new EmptyRows(this);
 
         this.observer.publish(this.eventmanager.eventList.successCreated);
     };

@@ -13,10 +13,15 @@ define([
      * Define Overlapping
      * @class Overlapping
      * @extends {Base}
-     * @param layout
+     * @param {Layout} layout
      * @constructor
      */
     var Overlapping = function Overlapping(layout) {
+
+        /**
+         * Define layout
+         * @type {Layout}
+         */
         this.layout = layout;
     };
 
@@ -85,15 +90,17 @@ define([
          * @private
          */
         _nestedOrganizerCallback: function _nestedOrganizerCallback(callback) {
-            var emptySpaces = this.layout.config.behavior.snap2grid.emptySpaces;
+            var layout = this.layout,
+                emptySpaces = layout.config.behavior.snap2grid.emptySpaces;
             if (emptySpaces) {
-                this.layout.logger.debug('Remove empty spaces');
+                layout.logger.debug('Remove empty spaces');
                 switch (emptySpaces) {
                     case 'row':
-                        this.layout.logger.debug('Remove empty rows');
+                        layout.logger.debug('Remove empty rows');
+                        layout.emptyRows.remove();
                         break;
                     case 'column':
-                        this.layout.logger.debug('Remove empty columns');
+                        layout.logger.debug('Remove empty columns');
                         break;
 
                 }
