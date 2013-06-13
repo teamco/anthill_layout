@@ -86,8 +86,8 @@ define(function defineEmptyColumns() {
             widgetOrder.sort(function (a, b) {
                 a = widgets[a];
                 b = widgets[b];
-                var aBottom = a.row + a.relHeight,
-                    bBottom = b.row + b.relHeight;
+                var aBottom = a.dom.row + a.dom.relHeight,
+                    bBottom = b.dom.row + b.dom.relHeight;
                 switch (true) {
                     case (aBottom < bBottom):
                         return -1;
@@ -105,20 +105,19 @@ define(function defineEmptyColumns() {
             var length = order.length,
                 i = 0,
                 widget = widgets[uuid],
-                left = widget.column,
-                right = widget.column + widget.relWidth,
+                leftC = widget.dom.column,
+                rightC = widget.dom.column + widget.dom.relWidth,
                 curWidget,
-                curLeft,
-                curRight;
+                curLeft, curRight;
 
             for (i; i < length; i++) {
                 curWidget = widgets[order[i]];
                 curLeft = curWidget.dom.column;
                 curRight = curWidget.dom.column + curWidget.dom.relWidth;
 
-                if ((curLeft > left && curLeft < right)
-                    || (curRight > left && curRight < right)
-                    || (curLeft <= left && curRight >= right)) {
+                if ((curLeft > leftC && curLeft < rightC)
+                    || (curRight > leftC && curRight < rightC)
+                    || (curLeft <= leftC && curRight >= rightC)) {
                     return curWidget;
                 }
             }
