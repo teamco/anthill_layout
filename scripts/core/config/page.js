@@ -83,7 +83,7 @@ define([
                         magnet: false,
                         float: 'none',
                         organize: 'column',     // {row|column}
-                        emptySpaces: 'row'      // {row|column}
+                        emptySpaces: 'none'     // {none|row|column}
                     },
                     freeStyle: {
 

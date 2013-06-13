@@ -102,6 +102,7 @@ define([
                         break;
                     case 'column':
                         layout.logger.debug('Remove empty columns');
+                        layout.emptyColumns.remove();
                         break;
 
                 }

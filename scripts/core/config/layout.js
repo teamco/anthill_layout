@@ -12,8 +12,9 @@ define([
     'controller/layout.controller',
     'event/layout.event.manager',
     'controller/layout/layout.overlapping',
-    'controller/layout/layout.empty.rows'
-], function defineLayout(Base, MVC, Controller, EventManager, Overlapping, EmptyRows) {
+    'controller/layout/layout.empty.rows',
+    'controller/layout/layout.empty.columns'
+], function defineLayout(Base, MVC, Controller, EventManager, Overlapping, EmptyRows, EmptyColumns) {
 
     /**
      * Define Layout
@@ -51,6 +52,15 @@ define([
         };
 
         /**
+         * Define constants
+         * @type {{organize: Array, emptySpaces: Array}}
+         */
+        this.CONSTANTS = {
+            organize: ['row', 'column'],
+            emptySpaces: ['none', 'row', 'column']
+        };
+
+        /**
          * Define MVC
          * @type {MVC}
          */
@@ -75,6 +85,12 @@ define([
          * @type {EmptyRows}
          */
         this.emptyRows = new EmptyRows(this);
+
+        /**
+         * Define empty columns
+         * @type {EmptyColumns}
+         */
+        this.emptyColumns = new EmptyColumns(this);
 
         this.observer.publish(this.eventmanager.eventList.successCreated);
     };

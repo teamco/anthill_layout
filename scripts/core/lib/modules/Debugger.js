@@ -223,8 +223,9 @@ define([
             c.bindDebugClose();
 
             this.layout.bindToggleGrid();
-            this.layout.bindChangeOverlappingMode();
             this.layout.bindAllowOverlapping();
+            this.layout.bindChangeOverlappingMode();
+            this.layout.bindChangeEmptySpacesMode();
 
             this.page.bindEnableItemsEditMode(page);
             this.workspace.bindEnableItemsEditMode(workspace);

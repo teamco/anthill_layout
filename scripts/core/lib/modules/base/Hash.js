@@ -85,7 +85,7 @@ define([
         hashKeys: function hashKeys(h) {
             var keys = [], k;
             for (k in h) {
-                if (h.hasOwnProperty(k) && this.isHashKey(h, k)) {
+                if (this.isHashKey(h, k)) {
                     keys.push(k);
                 }
             }

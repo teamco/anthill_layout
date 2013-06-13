@@ -55,6 +55,15 @@ define([], function defineDebuggerLayout() {
         },
 
         /**
+         * Bind change empty spaces mode
+         */
+        bindChangeEmptySpacesMode: function bindChangeEmptySpacesMode() {
+            $('#empty-spaces-mode').on('change.emptyspaces', function onChange(e) {
+                this.debugger.scopes.page.layout.controller.setEmptySpacesMode($(e.target).val());
+            }.bind(this));
+        },
+
+        /**
          * Bind click to allow / disable overlapping
          */
         bindAllowOverlapping: function bindAllowOverlapping() {
@@ -70,21 +79,27 @@ define([], function defineDebuggerLayout() {
          * @returns {string}
          */
         renderPageLayout: function renderPageLayout(layout) {
-            var c = this.debugger.component;
+            var c = this.debugger.component,
+                cfg = layout.config,
+                b = layout.controller.getBehavior();
             return ['<li class="extend">', c.renderBlock('Layout', [
                 c.renderInput('Snap to Grid', layout.controller.isSnap2Grid()),
-                c.renderInput('Overlapping', layout.controller.getBehavior().overlapping),
+                c.renderInput('Overlapping', b.overlapping),
                 c.renderCombo(
                     'Overlapping mode',
-                    layout.controller.getBehavior().organize,
-                    ['row', 'column']
+                    b.organize,
+                    layout.CONSTANTS.organize
                 ),
-                c.renderInline('Empty spaces', layout.controller.getBehavior().emptySpaces),
-                c.renderInline('Columns', layout.config.grid.columns),
-                c.renderInline('Widgets per row', layout.config.grid.widgetsPerRow),
-                c.renderInline('Cell size (px)', layout.config.grid.minCellWidth.toFixed(3)),
-                c.renderInline('Margin (px)', layout.config.grid.margin),
-                c.renderInline('Padding (px)', layout.config.grid.padding)
+                c.renderCombo(
+                    'Empty spaces mode',
+                    b.emptySpaces,
+                    layout.CONSTANTS.emptySpaces
+                ),
+                c.renderInline('Columns', cfg.grid.columns),
+                c.renderInline('Widgets per row', cfg.grid.widgetsPerRow),
+                c.renderInline('Cell size (px)', cfg.grid.minCellWidth.toFixed(3)),
+                c.renderInline('Margin (px)', cfg.grid.margin),
+                c.renderInline('Padding (px)', cfg.grid.padding)
             ], false), '</li>'].join('');
         }
 

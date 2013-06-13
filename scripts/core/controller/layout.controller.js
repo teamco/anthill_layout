@@ -157,6 +157,19 @@ define([
         },
 
         /**
+         * Set behavior empty spaces mode
+         * @param {String} mode
+         */
+        setEmptySpacesMode: function setEmptySpacesMode(mode) {
+            this.scope.logger.warn(
+                'Empty spaces mode was changed',
+                this.getBehavior().organize,
+                mode
+            );
+            this.getBehavior().emptySpaces = mode;
+        },
+
+        /**
          * Set behavior organize mode
          * @param {String} mode
          */

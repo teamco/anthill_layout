@@ -53,12 +53,12 @@ define([], function defineDebuggerComponent() {
                         '<option', (n === selected ? ' selected' : ''),
                         ' value="', n, '">', n, '</option>'
                     ].join('');
-                });
+                }).join('');
             }
 
             return [
                 '<li><span>', text, ': </span><select id="',
-                text.replace(/ /, '-').toLowerCase(), '">',
+                text.replace(/ /gi, '-').toLowerCase(), '">',
                 _comboList(), '</select></li>'
             ].join('');
         },

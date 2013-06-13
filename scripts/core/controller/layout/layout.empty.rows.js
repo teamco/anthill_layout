@@ -28,12 +28,6 @@ define([
          */
         this.page = this.layout.controller.getParent();
 
-        /**
-         * Define allowed remove empty rows
-         * @type {boolean}
-         */
-        this.allowed = this.isAllowed();
-
     };
 
     return EmptyRows.extend({
@@ -58,8 +52,9 @@ define([
             for (index in widgets) {
                 if (widgets.hasOwnProperty(index)) {
                     widget = widgets[index];
-                    dom = widget.dom,
-                        l = dom.relHeight + dom.row - 1;
+                    dom = widget.dom;
+                    l = dom.relHeight + dom.row - 1;
+
                     for (i = dom.row; i <= l; i += 1) {
                         rows[i] = this.layout.base.define(rows[i], [], true);
                         rows[i].push(widget);
@@ -81,7 +76,7 @@ define([
              */
             var layout = this.layout;
 
-            if (!this.allowed) {
+            if (!this.isAllowed()) {
                 layout.logger.warn('Remove empty spaces by row does not allowed');
                 return false;
             }
