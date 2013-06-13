@@ -43,7 +43,7 @@ define([
          *      footer: boolean,
          *      frameLess: boolean,
          *      opacity: number,
-         *      overlapping: boolean
+         *      freeze: boolean
          *  },
          *  maximize: boolean,
          *  events: {
@@ -77,7 +77,7 @@ define([
                 footer: false,
                 frameLess: false,
                 opacity: 0.6,
-                overlapping: false,
+                freeze: false,
                 style: ''
             },
             type: 'default',

@@ -28,7 +28,7 @@ define([
          *  mode: string,
          *  logger: {
          *      show: boolean,
-         *      namespaces: boolean,
+         *      namespaces: string|boolean,
          *      type: {
          *          debug: boolean,
          *          log: boolean,
@@ -51,7 +51,7 @@ define([
                 show: true,
                 namespaces: false, //'App',
                 type: {
-                    debug: false,
+                    debug: true,
                     log: false,
                     info: false,
                     error: true,
