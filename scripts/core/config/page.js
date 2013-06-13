@@ -60,7 +60,7 @@ define([
          *  isDefault: boolean,
          *  layout: {
          *      behavior: {
-         *          snap2grid: {overlapping: boolean, animate: boolean, magnet: boolean, float: string, organize: string, emptySpaces: string},
+         *          snap2grid: {overlapping: boolean, animate: boolean, float: string, organize: string, emptySpaces: string},
          *          freeStyle: {}
          *      },
          *      mode: String
@@ -80,7 +80,6 @@ define([
                     snap2grid: {
                         overlapping: true,
                         animate: true,
-                        magnet: false,
                         float: 'none',
                         organize: 'column',     // {row|column}
                         emptySpaces: 'none'     // {none|row|column}

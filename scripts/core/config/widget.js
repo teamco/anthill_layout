@@ -42,8 +42,13 @@ define([
          *      header: boolean,
          *      footer: boolean,
          *      frameLess: boolean,
-         *      opacity: number,
-         *      freeze: boolean
+         *      opacity: number
+         *  },
+         *  behavior: {
+         *      freeze: boolean,
+         *      magnet: boolean,
+         *      overlapping: boolean,
+         *      alwaysTop: boolean
          *  },
          *  maximize: boolean,
          *  events: {
@@ -77,11 +82,16 @@ define([
                 footer: false,
                 frameLess: false,
                 opacity: 0.6,
-                freeze: false,
                 style: ''
             },
             type: 'default',
             maximize: false,
+            behavior: {
+                magnet: false,
+                freeze: false,
+                overlapping: false,
+                alwaysTop: false
+            },
             events: {
                 draggable: {
                     snap: false,
