@@ -34,22 +34,23 @@ define([
          * @returns {*}
          */
         nestedOrganizer: function nestedOrganizer(opts) {
-            var base = this.base;
+            var base = this.base,
+                layout = this.layout;
 
             opts = base.define(opts, {}, true);
             opts.targets = base.define(opts.targets, {}, true);
 
-            if (!this.layout.config.behavior.snap2grid.overlapping) {
-                this.layout.logger.debug('Overlapping is allowed');
+            if (!layout.controller.getBehavior().overlapping) {
+                layout.logger.debug('Overlapping is allowed');
                 return this._nestedOrganizerCallback(opts.callback);
             }
 
             if (base.lib.hash.isHashEmpty(opts.targets)) {
-                this.layout.logger.debug('Empty targets');
+                layout.logger.debug('Empty targets');
                 return this._nestedOrganizerCallback(opts.callback);
             }
 
-            this.layout.logger.debug('Starting nested organizer');
+            layout.logger.debug('Starting nested organizer');
             this.nestedOrganizer({
                 targets: this._nestedOrganizerCore(opts.targets),
                 callback: opts.callback
@@ -92,7 +93,7 @@ define([
          */
         _nestedOrganizerCallback: function _nestedOrganizerCallback(callback) {
             var layout = this.layout,
-                emptySpaces = layout.config.behavior.snap2grid.emptySpaces;
+                emptySpaces = layout.controller.getBehavior().emptySpaces;
             if (emptySpaces) {
                 layout.logger.debug('Remove empty spaces');
                 switch (emptySpaces) {
@@ -125,6 +126,7 @@ define([
             for (index in widgets) {
                 if (widgets.hasOwnProperty(index)) {
                     widget = page.model.getItemByUUID(widgets[index].model.getUUID());
+
                     widget.logger.debug('Start nested organizer animation');
                     widget.view.elements.$widget._setPosition({
                         animate: true,
@@ -135,6 +137,7 @@ define([
                             save: counter === length
                         })
                     });
+
                     counter += 1;
                 }
             }
@@ -175,15 +178,18 @@ define([
             for (index in targets) {
                 if (targets.hasOwnProperty(index)) {
                     if (layout.controller.isSnap2Grid()) {
+
                         this._snap2gridOrganizer(
                             this.layout.controller.getBehavior(),
                             source,
                             targets[index],
                             this.layout.controller.getGridWidth()
                         );
+
                     } else if (layout.controller.isFreeStyle()) {
                         // TODO
                     } else {
+
                         this.layout.logger.warn(
                             'Undefined organize mode',
                             layout.controller.getBehaviorMode()

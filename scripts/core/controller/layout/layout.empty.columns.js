@@ -40,12 +40,10 @@ define(function defineEmptyColumns() {
         },
 
         remove: function remove() {
-            var widgets,
-                widget,
-                widgetAbove,
-                order,
-                lookupOrder,
-                i = 0, length, uuid;
+            var widgets, widget, widgetAbove,
+                order, lookupOrder,
+                i = 0, length, uuid,
+                row = 0, dom, top;
 
             if (!this.isAllowed()) {
                 this.layout.logger.warn('Remove empty spaces by column does not allowed');
@@ -62,14 +60,19 @@ define(function defineEmptyColumns() {
                 lookupOrder = order.slice(0).reverse().slice(length - i);
                 widgetAbove = this.getWidgetAbove(uuid, widgets, lookupOrder);
 
-                widget.row = 0;
+                row = 0;
 
                 if (widgetAbove) {
-                    widget.row = widgetAbove.row + widgetAbove.relHeight;
+                    row = widgetAbove.dom.row + widgetAbove.dom.relHeight;
                 }
 
+                dom = widget.map.getDOM();
+                top = widget.map.widgetTop(row);
+
                 widget.model.updateDOM({
-                    row: widget.row
+                    row: row,
+                    top: top,
+                    bottom: widget.map.widgetBottom(top, dom.height)
                 });
 
                 order = this.getWidgetOrder(widgets);

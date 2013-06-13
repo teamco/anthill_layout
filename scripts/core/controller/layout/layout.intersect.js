@@ -74,7 +74,7 @@ define(function defineLayoutIntersect() {
              */
             var isOverlappedH = this._overlappedCore(src, target, 'left', 'right');
 
-            this.layout.logger.debug('Overlap TL', src, target, isOverlappedH);
+            this.layout.logger.debug('Overlap H', src, target, isOverlappedH);
             return isOverlappedH;
         },
 
@@ -93,7 +93,7 @@ define(function defineLayoutIntersect() {
              */
             var isOverlappedV = this._overlappedCore(src, target, 'top', 'bottom');
 
-            this.layout.logger.debug('Overlap TCR', src, target, isOverlappedV);
+            this.layout.logger.debug('Overlap V', src, target, isOverlappedV);
             return isOverlappedV;
         },
 

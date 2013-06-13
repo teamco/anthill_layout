@@ -73,7 +73,7 @@
 #debug-mode {
     position: absolute !important;
     top: 50px;
-    left: 50px;
+    left: 70%;
     z-index: 499;
     padding: 0;
     font-size: 12px;

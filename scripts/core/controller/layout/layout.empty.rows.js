@@ -89,7 +89,7 @@ define([
             for (i; i <= rl; i += 1) {
 
                 if (layout.base.isDefined(rows[i])) {
-                    alreadyFixed = this._getWidget(rows[i], alreadyFixed, moveIndex);
+                    alreadyFixed = this._updateWidgetDOM(rows[i], alreadyFixed, moveIndex);
                 } else {
                     moveIndex += 1;
                     alreadyFixed = [];
@@ -105,11 +105,13 @@ define([
          * @returns {*}
          * @private
          */
-        _getWidget: function _getWidget(widgets, alreadyFixed, moveIndex) {
+        _updateWidgetDOM: function _updateWidgetDOM(widgets, alreadyFixed, moveIndex) {
             var widget, uuid, y = 0,
-                wl = widgets.length;
+                wl = widgets.length,
+                row, top, dom;
 
             for (y; y <= wl; y += 1) {
+
                 if (widgets[y]) {
 
                     /**
@@ -126,8 +128,15 @@ define([
 
                     if ($.inArray(uuid, alreadyFixed) === -1) {
                         alreadyFixed.push(uuid);
+
+                        dom = widget.map.getDOM();
+                        row = widget.dom.row - moveIndex;
+                        top = widget.map.widgetTop(row);
+
                         widget.model.updateDOM({
-                            row: widget.dom.row - moveIndex
+                            row: row,
+                            top: top,
+                            bottom: widget.map.widgetBottom(top, dom.height)
                         });
                     }
                 }
