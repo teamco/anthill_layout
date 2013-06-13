@@ -51,7 +51,7 @@ define([
                 show: true,
                 namespaces: false, //'App',
                 type: {
-                    debug: true,
+                    debug: false,
                     log: false,
                     info: false,
                     error: true,
