@@ -44,8 +44,16 @@ define([
             scope.logger.debug('Update DOM', hash);
             $.extend(true, scope.dom, hash);
             return scope;
-        }
+        },
 
+        getAttributes: function getAttributes() {
+            return this.getConfig('attributes');
+        },
+
+        setAttributes: function setAttributes(key, value) {
+            this.scope.logger.debug('Set widget attributes', arguments);
+            this.getAttributes()[key] = value;
+        }
 
     }, BaseModel.prototype, Base);
 });

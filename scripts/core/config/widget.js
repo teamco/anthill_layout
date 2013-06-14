@@ -44,7 +44,7 @@ define([
          *      frameLess: boolean,
          *      opacity: number
          *  },
-         *  behavior: {
+         *  attributes: {
          *      freeze: boolean,
          *      magnet: boolean,
          *      overlapping: boolean,
@@ -86,7 +86,7 @@ define([
             },
             type: 'default',
             maximize: false,
-            behavior: {
+            attributes: {
                 magnet: false,
                 freeze: false,
                 overlapping: false,

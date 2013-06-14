@@ -262,6 +262,10 @@ define([
                     break;
             }
         },
+
+        /**
+         * Save widget
+         */
         save: function save() {
             this.logger.debug('Save widget');
             this.model.save();

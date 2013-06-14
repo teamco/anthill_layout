@@ -23,6 +23,40 @@ define([], function defineDebuggerWidget() {
 
     return DebuggerWidget.extend({
 
+        getWidget: function getWidget() {
+            return this.debugger.scopes.widget;
+        },
+
+        renderAttributes: function renderAttributes() {
+            var c = this.debugger.component,
+                attr = this.getWidget().model.getAttributes();
+
+            return [
+                '<li class="extend">',
+                c.renderBlock(
+                    'Attributes',
+                    $.map(attr, function (v, k) {
+                        return c.renderInput(k.toUnderscore().humanize(), v);
+                    }),
+                    false
+                ),
+                '</li>'
+            ].join('');
+        },
+
+        renderInteractions: function renderInteractions() {
+
+        },
+
+        /**
+         * Bind change overlapping mode
+         */
+        bindChangeOverlappingMode: function bindChangeOverlappingMode() {
+            $('#overlapping-mode').on('change.overlapping', function onChange(e) {
+                this.debugger.scopes.page.layout.controller.setOrganizeMode($(e.target).val());
+            }.bind(this));
+        },
+
         /**
          * Render widget info
          * @param {{type, timeStamp}} event
@@ -31,15 +65,28 @@ define([], function defineDebuggerWidget() {
          */
         renderWidgetInfo: function renderWidgetInfo(event, ui) {
 
+            var c = this.debugger.component;
+
+            return [
+                c.renderInline('UUID', this.debugger.scopes.widget.config.uuid),
+                this.renderAttributes(),
+                '<li class="extend">',
+                c.renderBlock('Dimensions', this.renderDimensionsInfo(event, ui), false),
+                '</li>'
+            ].join('')
+        },
+
+        renderDimensionsInfo: function renderDimensionsInfo(event, ui) {
             var c = this.debugger.component,
+                widget = this.getWidget(),
+                widgetDOM = widget.map.getDOM(),
+
                 originalPosition = ui.originalPosition || {},
                 originalSize = ui.originalSize || {},
                 offset = ui.offset || {},
                 position = ui.position || {},
-                helper = ui.helper || $();
+                helper = ui.helper || $(),
 
-            var widget = this.debugger.scopes.widget,
-                widgetDOM = widget.map.getDOM(),
                 columnAllowLeft = widget.map.checkWidgetPositionColumnLeft(widgetDOM.column),
                 columnAllowRight = widget.map.checkWidgetPositionColumnRight(widgetDOM),
                 rowAllowTop = widget.map.checkWidgetPositionRowTop(widgetDOM.row);
@@ -64,7 +111,6 @@ define([], function defineDebuggerWidget() {
             }
 
             return [
-                c.renderInline('UUID', this.debugger.scopes.widget.config.uuid),
                 c.renderInline('On', (event.type + '').toUpperCase()),
                 '<li><table>',
                 c.renderTableRow('Location', 'Left', 'Top', true),
@@ -79,9 +125,9 @@ define([], function defineDebuggerWidget() {
                 c.renderTableRow('Relative dimensions', widgetDOM.relWidth, widgetDOM.relHeight, false),
                 c.renderTableRow('Position', 'Column', 'Row', true),
                 c.renderTableRow('Allowed', getAllowedColumn(), getAllowedRow(), false),
-                '</li></table>',
+                '</table></li>',
                 c.renderInline('Timestamp', event.timeStamp)
-            ].join('')
+            ];
         },
 
         /**
@@ -92,7 +138,7 @@ define([], function defineDebuggerWidget() {
          */
         updateWidgetInfo: function updateWidgetInfo(widget, event, ui) {
             this.debugger.scopes.widget = widget;
-            $('.widget-info ul').empty().append(this.renderWidgetInfo(event, ui));
+            $('.dimensions-info ul', '.widget-info').empty().append(this.renderDimensionsInfo(event, ui).join(''));
         }
 
     });

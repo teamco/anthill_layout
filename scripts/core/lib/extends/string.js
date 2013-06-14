@@ -51,4 +51,20 @@
     String.prototype.toClassName = function toClassName() {
         return this.toLowerCase().replace(/ /g, '-');
     };
+
+    /**
+     * Capitalize string
+     * @returns {string}
+     */
+    String.prototype.capitalize = function capitalize() {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    };
+
+    String.prototype.humanize = function humanize() {
+        return this.replace(/_/g, ' ').
+            replace(/(\w+)/g, function _replace(match) {
+                return match.charAt(0).toUpperCase() + match.slice(1);
+            });
+    };
+
 }());
