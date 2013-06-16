@@ -6,7 +6,7 @@
  */
 
 define([
-    'modules/debugger/actions'
+    'modules/debugger/debugger.actions'
 ], function defineDebuggerApplication(Actions) {
 
     /**

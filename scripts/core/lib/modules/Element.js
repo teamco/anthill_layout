@@ -430,6 +430,17 @@ define([
                     (255 - color.b), ')'
                 ].join('');
             }
+        },
+
+        locate: function locate() {
+            var box = this.$.css('box-shadow');
+            this.$.animate({
+                boxShadow: '1px 1px 3px red'
+            }, 500, function locateCallback() {
+                $(this).css({
+                    boxShadow: box
+                });
+            });
         }
 
     }, Base);

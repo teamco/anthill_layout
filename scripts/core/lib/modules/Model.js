@@ -79,9 +79,10 @@ define([
          * @returns {string}
          */
         getNameSpace: function getNameSpace(node) {
-            var scope = this.base.isDefined(node) ?
+            var base = this.base,
+                scope = base.isDefined(node) ?
                     node : this.scope,
-                constructor = this.base.isFunction(scope) ?
+                constructor = base.isFunction(scope) ?
                     scope : scope.constructor;
 
             return constructor.name.toLowerCase();

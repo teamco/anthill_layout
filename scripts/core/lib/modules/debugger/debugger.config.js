@@ -72,7 +72,42 @@ define([
             var node = scope[item];
             this.debugger.scopes[node.constructor.name.toLowerCase()] = node;
             return node;
+        },
+
+        /**
+         * Get current item by type
+         * @param {string} type
+         * @returns {App|Workspace|Page|Widget}
+         */
+        getItem: function getItem(type) {
+            var scope = {};
+
+            scope.app = this.debugger.scope;
+            scope.workspace = app.controller.getCurrentItem();
+            scope.page = scope.workspace.controller.getCurrentItem();
+            scope.widget = scope.page.controller.getCurrentItem();
+
+            scope.app.logger.debug('Get item', scope, type);
+
+            return scope[type];
+        },
+
+        /**
+         * Set item as current
+         * @param {string} type
+         * @param {string} uuid
+         */
+        setItem: function setItem(type, uuid) {
+            var scope = this.getItem(type),
+                item = scope.model.getItemByUUID(uuid);
+
+            item.controller.setAsCurrent();
+
+            scope.logger.debug('Current item', scope, item);
+
+            return this.getItem(item.constructor.name.toLowerCase());
         }
+
 
     });
 

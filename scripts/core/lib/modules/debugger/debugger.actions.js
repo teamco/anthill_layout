@@ -489,14 +489,19 @@ define([], function defineDebuggerActions() {
             }
 
             var uuid = $li.text(),
-                item = scope.model.getItemByUUID(uuid);
+                item = this.debugger.config.setItem(
+                    scope.constructor.name.toLowerCase(),
+                    uuid
+                );
 
             if (!this.debugger.base.isDefined(item)) {
-                sope.logger.warn('Undefined item', uuid);
+                scope.logger.warn('Undefined item', uuid);
                 return false;
             }
 
-            scope.logger.warn('Locate', item);
+            scope.logger.debug('Locate', item);
+
+            item.view.elements['$'+item.constructor.name.toLowerCase()].locate();
 
         },
 
