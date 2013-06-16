@@ -7,16 +7,26 @@
 
 define([
     'modules/base',
-    'modules/debugger/config',
-    'modules/debugger/component',
-    'modules/debugger/tabs',
-    'modules/debugger/grid',
-    'modules/debugger/application',
-    'modules/debugger/workspace',
-    'modules/debugger/page',
-    'modules/debugger/layout',
-    'modules/debugger/widget'
-], function defineDebugger(Base, Config, Component, Tabs, Grid, App, Workspace, Page, Layout, Widget) {
+    'modules/debugger/debugger.config',
+    'modules/debugger/debugger.component',
+    'modules/debugger/debugger.tabs',
+    'modules/debugger/debugger.grid',
+    'modules/debugger/debugger.application',
+    'modules/debugger/debugger.workspace',
+    'modules/debugger/debugger.page',
+    'modules/debugger/debugger.layout',
+    'modules/debugger/debugger.widget'
+], function defineDebugger(
+    Base,
+    DebuggerConfig,
+    DebuggerComponent,
+    DebuggerTabs,
+    DebuggerGrid,
+    DebuggerApp,
+    DebuggerWorkspace,
+    DebuggerPage,
+    DebuggerLayout,
+    DebuggerWidget) {
 
     /**
      * Define Debugger
@@ -63,55 +73,55 @@ define([
              * Define config
              * @type {DebuggerConfig}
              */
-            this.config = new Config(this);
+            this.config = new DebuggerConfig(this);
 
             /**
              * Define component
              * @type {DebuggerComponent}
              */
-            this.component = new Component(this);
+            this.component = new DebuggerComponent(this);
 
             /**
              * Define tabs
              * @type {DebuggerTabs}
              */
-            this.tabs = new Tabs(this, this.pinTabs, this.opacityOff);
+            this.tabs = new DebuggerTabs(this, this.pinTabs, this.opacityOff);
 
             /**
              * Define app
              * @type {DebuggerApp}
              */
-            this.app = new App(this, this.scope);
+            this.app = new DebuggerApp(this, this.scope);
 
             /**
              * Define workspace
              * @type {DebuggerWorkspace}
              */
-            this.workspace = new Workspace(this, this.scopes.workspace);
+            this.workspace = new DebuggerWorkspace(this, this.scopes.workspace);
 
             /**
              * Define page
              * @type {DebuggerPage}
              */
-            this.page = new Page(this, this.scopes.page);
+            this.page = new DebuggerPage(this, this.scopes.page);
 
             /**
              * Define layout
              * @type {DebuggerLayout}
              */
-            this.layout = new Layout(this);
+            this.layout = new DebuggerLayout(this);
 
             /**
              * Define grid
              * @type {DebuggerGrid}
              */
-            this.grid = new Grid(this);
+            this.grid = new DebuggerGrid(this);
 
             /**
              * Define widget
              * @type {DebuggerWidget}
              */
-            this.widget = new Widget(this);
+            this.widget = new DebuggerWidget(this);
 
             this.renderDebugger();
         },

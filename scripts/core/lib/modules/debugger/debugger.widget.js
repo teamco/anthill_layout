@@ -16,7 +16,7 @@ define([], function defineDebuggerWidget() {
 
         /**
          * Define debugger
-         * @type {*}
+         * @type {Debugger}
          */
         this.debugger = debug;
     };

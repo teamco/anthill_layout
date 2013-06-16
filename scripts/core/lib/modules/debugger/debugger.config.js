@@ -17,7 +17,7 @@ define([
 
         /**
          * Define debugger
-         * @type {*}
+         * @type {Debugger}
          */
         this.debugger = debug;
 

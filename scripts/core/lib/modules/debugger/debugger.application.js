@@ -7,34 +7,34 @@
 
 define([
     'modules/debugger/actions'
-], function defineDebuggerPage(Actions) {
+], function defineDebuggerApplication(Actions) {
 
     /**
-     * Define Debugger Page
+     * Define Debugger Application
      * @param {*} debug
-     * @param {Page} scope
-     * @class DebuggerPage
+     * @param {App} scope
+     * @class DebuggerApp
      * @constructor
      */
-    var DebuggerPage = function DebuggerPage(debug, scope) {
+    var DebuggerApp = function DebuggerApp(debug, scope) {
 
         /**
          * Define debugger
-         * @type {*}
+         * @type {Debugger}
          */
         this.debugger = debug;
 
         /**
          * Define scope
-         * @type {Page}
+         * @type {App}
          */
         this.scope = scope;
 
-        this.init();
+        this.configScope();
 
     };
 
-    return DebuggerPage.extend({
+    return DebuggerApp.extend({
 
     }, Actions.prototype);
 });

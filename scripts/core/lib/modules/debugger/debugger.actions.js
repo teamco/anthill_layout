@@ -529,4 +529,5 @@ define([], function defineDebuggerActions() {
             this._removeItems(scope);
         }
     });
+
 });
