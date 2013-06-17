@@ -19,8 +19,8 @@ define(function defineLayoutIntersect() {
 
         /**
          * Check overlapping
-         * @param {{right: number, left: number, top: number, bottom: number}} src
-         * @param {{right: number, left: number, top: number, bottom: number}} target
+         * @param {{column: number, relRight: number, row: number, relBottom: number}} src
+         * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @returns {boolean}
          * @private
          */
@@ -37,8 +37,8 @@ define(function defineLayoutIntersect() {
 
         /**
          * Check if no overlapping
-         * @param {{right: number, left: number, top: number, bottom: number}} src
-         * @param {{left: number, right: number, top: number, bottom: number}} target
+         * @param {{column: number, relRight: number, row: number, relBottom: number}} src
+         * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @returns {boolean}
          * @private
          */
@@ -49,11 +49,11 @@ define(function defineLayoutIntersect() {
              * @type {boolean}
              */
             var noOverlapped = (
-                this._overlapCondition(target.left, src.right, '>') ||
-                    this._overlapCondition(target.right, src.left, '<')
+                this._overlapCondition(target.column, src.relRight, '>') ||
+                    this._overlapCondition(target.relRight, src.column, '<')
                 ) || (
-                this._overlapCondition(target.top, src.bottom, '>') ||
-                    this._overlapCondition(target.bottom, src.top, '<')
+                this._overlapCondition(target.row, src.relBottom, '>') ||
+                    this._overlapCondition(target.relBottom, src.row, '<')
                 );
             this.layout.logger.debug('Overlap not possibility', src, target, noOverlapped);
             return noOverlapped;
@@ -61,8 +61,8 @@ define(function defineLayoutIntersect() {
 
         /**
          * Check Horizontal overlapping
-         * @param {{left: number, right: number, top: number, bottom: number}} src
-         * @param {{left: number, right: number, top: number, bottom: number}} target
+         * @param {{column: number, relRight: number, row: number, relBottom: number}} src
+         * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @return {boolean}
          * @private
          */
@@ -72,7 +72,7 @@ define(function defineLayoutIntersect() {
              * Define local instance
              * @type {boolean}
              */
-            var isOverlappedH = this._overlappedCore(src, target, 'left', 'right');
+            var isOverlappedH = this._overlappedCore(src, target, 'column', 'relRight');
 
             this.layout.logger.debug('Overlap H', src, target, isOverlappedH);
             return isOverlappedH;
@@ -80,8 +80,8 @@ define(function defineLayoutIntersect() {
 
         /**
          * Check Vertical overlapping
-         * @param {{left: number, right: number, top: number, bottom: number}} src
-         * @param {{left: number, right: number, top: number, bottom: number}} target
+         * @param {{column: number, relRight: number, row: number, relBottom: number}} src
+         * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @return {boolean}
          * @private
          */
@@ -91,7 +91,7 @@ define(function defineLayoutIntersect() {
              * Define local instance
              * @type {boolean}
              */
-            var isOverlappedV = this._overlappedCore(src, target, 'top', 'bottom');
+            var isOverlappedV = this._overlappedCore(src, target, 'row', 'relBottom');
 
             this.layout.logger.debug('Overlap V', src, target, isOverlappedV);
             return isOverlappedV;
@@ -99,8 +99,8 @@ define(function defineLayoutIntersect() {
 
         /**
          * Overlapping core
-         * @param {{left: number, right: number, top: number, bottom: number}} src
-         * @param {{left: number, right: number, top: number, bottom: number}} target
+         * @param {{column: number, relRight: number, row: number, relBottom: number}} src
+         * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @param {string} from
          * @param {string} to
          * @returns {boolean}

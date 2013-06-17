@@ -60,6 +60,10 @@
         return this.charAt(0).toUpperCase() + this.slice(1);
     };
 
+    /**
+     * String humanize
+     * @returns {string}
+     */
     String.prototype.humanize = function humanize() {
         return this.replace(/_/g, ' ').
             replace(/(\w+)/g, function _replace(match) {
