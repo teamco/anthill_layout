@@ -415,32 +415,11 @@ define([
             return this.getPaddingTop() + this.getMarginTop();
         },
 
-        /**
-         * Invert CSS color [color|background-color]
-         * @param {String} cssType
-         */
-        invertColor: function invertColor(cssType) {
-            // Create RGBColor object
-            var color = new RGBColor(this.$.css(cssType));
-            if (color.ok) {
-                // Subtract each color component from 255
-                return [
-                    'rgb(', (255 - color.r), ', ',
-                    (255 - color.g), ', ',
-                    (255 - color.b), ')'
-                ].join('');
-            }
-        },
-
         locate: function locate() {
-            var box = this.$.css('box-shadow');
-            this.$.animate({
-                boxShadow: '1px 1px 3px red'
-            }, 500, function locateCallback() {
-                $(this).css({
-                    boxShadow: box
-                });
-            });
+
+            this.$.hasClass('shadow') ?
+                this.$.removeClass('shadow') :
+                this.$.addClass('shadow');
         }
 
     }, Base);

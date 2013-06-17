@@ -17,6 +17,7 @@ define(['modules/base'], function defineBaseGenerator(Base) {
     };
 
     BaseGenerator.extend({
+
         /**
          * Generate UUID
          * RFC4122 Description "http://www.ietf.org/rfc/rfc4122.txt"
@@ -40,6 +41,7 @@ define(['modules/base'], function defineBaseGenerator(Base) {
             s[8] = s[13] = s[18] = s[23] = '-';
             return s.join('');
         },
+
         /**
          * Get timestamp
          * @returns {*}
@@ -47,13 +49,33 @@ define(['modules/base'], function defineBaseGenerator(Base) {
         timestamp: function timestamp() {
             return Number(new Date());
         },
+
         /**
          * Generate random color HEX
          * @returns {string}
          */
         randomColor: function randomColor() {
             return '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+        },
+
+
+        /**
+         * Invert CSS color [color|background-color]
+         * @param {String} cssType
+         */
+        invertColor: function invertColor(cssType) {
+            // Create RGBColor object
+            var color = new RGBColor(this.$.css(cssType));
+            if (color.ok) {
+                // Subtract each color component from 255
+                return [
+                    'rgb(', (255 - color.r), ', ',
+                    (255 - color.g), ', ',
+                    (255 - color.b), ')'
+                ].join('');
+            }
         }
+
     }, Base);
 
     Base.prototype.lib.generator = new BaseGenerator();

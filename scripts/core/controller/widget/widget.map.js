@@ -23,6 +23,7 @@ define([
     };
 
     return Map.extend({
+
         /**
          * Define 0 as 1 relative dims (width|height)
          * @param {Number} dim
@@ -31,6 +32,7 @@ define([
         relDims: function relDims(dim) {
             return dim === 0 ? 1 : dim;
         },
+
         /**
          * Get widget DOM info
          * @returns {*}
@@ -59,6 +61,7 @@ define([
 
             return dom;
         },
+
         /**
          * Get relative width
          * @param {Number} width
@@ -66,8 +69,9 @@ define([
          * @returns {Number}
          */
         relWidth: function relWidth(width, cell) {
-            return this.relDims(Math.ceil(width / cell));
+            return this.relDims(Math.round(width / cell));
         },
+
         /**
          * Get relative height
          * @param {Number} height
@@ -75,8 +79,9 @@ define([
          * @returns {Number}
          */
         relHeight: function relHeight(height, cell) {
-            return this.relDims(Math.ceil(height / cell));
+            return this.relDims(Math.round(height / cell));
         },
+
         /**
          * Get row
          * @param {Number} top
@@ -84,8 +89,9 @@ define([
          * @returns {Number}
          */
         row: function row(top, cell) {
-            return Math.floor(top / cell);
+            return Math.round(top / cell);
         },
+
         /**
          * Get column
          * @param {Number} left
@@ -93,8 +99,9 @@ define([
          * @returns {Number}
          */
         column: function column(left, cell) {
-            return Math.floor(left / cell);
+            return Math.round(left / cell);
         },
+
         /**
          * Get widget top position via grid
          * @param {Number} row
@@ -103,6 +110,7 @@ define([
         widgetTop: function widgetTop(row) {
             return this.getWidgetPosition(row);
         },
+
         /**
          * Get widget bottom position via grid
          * @param {Number} top
@@ -112,6 +120,7 @@ define([
         widgetBottom: function widgetBottom(top, height) {
             return top + height;
         },
+
         /**
          * Get widget left position via grid
          * @param {Number} column
@@ -120,6 +129,7 @@ define([
         widgetLeft: function widgetLeft(column) {
             return this.getWidgetPosition(column);
         },
+
         /**
          * Get widget right position via grid
          * @param {Number} left
@@ -129,6 +139,7 @@ define([
         widgetRight: function widgetRight(left, width){
             return left + width;
         },
+
         /**
          * Get widget height via grid
          * @param {Number} relHeight
@@ -137,6 +148,7 @@ define([
         widgetHeight: function widgetHeight(relHeight) {
             return this.getWidgetDims(relHeight);
         },
+
         /**
          * Get widget width via grid
          * @param {Number} relWidth
@@ -145,6 +157,7 @@ define([
         widgetWidth: function widgetWidth(relWidth) {
             return this.getWidgetDims(relWidth);
         },
+
         /**
          * Get map margins delta in row/column
          * @param column
@@ -158,6 +171,7 @@ define([
                 left: (column + 1) * margin
             };
         },
+
         /**
          * Get map widget top/left
          * @param column
@@ -172,6 +186,7 @@ define([
                 left: column * cell + margins.left
             };
         },
+
         /**
          * Get widget position (top|left) via grid
          * @param {Number} pos
@@ -182,6 +197,7 @@ define([
             return pos * layout.controller.minCellWidth() +
                 (pos + 1) * layout.config.grid.margin;
         },
+
         /**
          * Get widget position (width|height) via grid
          * @param {Number} dim
@@ -192,6 +208,7 @@ define([
             return dim * layout.controller.minCellWidth() +
                 (dim - 1) * layout.config.grid.margin;
         },
+
         /**
          * Check widget column position via grid: Left
          * @param {Number} column
@@ -200,6 +217,7 @@ define([
         checkWidgetPositionColumnLeft: function checkWidgetPositionColumnLeft(column) {
             return column >= 0;
         },
+
         /**
          * Check widget column position via grid: Right
          * @param {{column, relWidth}} dom
@@ -209,6 +227,7 @@ define([
             return (dom.column + dom.relWidth) <=
                 this.layout.config.grid.columns;
         },
+
         /**
          * Check widget column position via grid: Left|Right
          * @param {{column, relWidth}} dom
@@ -220,6 +239,7 @@ define([
                     this.checkWidgetPositionColumnRight(dom)
                 );
         },
+
         /**
          * Check widget row position via grid: Top
          * @param {{Number}} row
@@ -228,6 +248,7 @@ define([
         checkWidgetPositionRowTop: function checkWidgetPositionRowTop(row) {
             return row >= 0;
         },
+
         /**
          * Check widget position
          * @returns {Boolean|*}
@@ -239,6 +260,7 @@ define([
                     this.checkWidgetPositionRowTop(dom.row)
                 );
         },
+
         /**
          * Check if interaction is: resize
          * @param {String} type
@@ -247,6 +269,7 @@ define([
         isResize: function isResize(type) {
             return type.match(/resize/ig);
         },
+
         /**
          * Check if interaction is: drag
          * @param {String} type
@@ -255,6 +278,7 @@ define([
         isDrag: function isDrag(type) {
             return type.match(/drag/ig);
         },
+
         /**
          * Check if interaction is: stop {drag|resize}
          * @param {String} type
@@ -263,6 +287,7 @@ define([
         isStop: function isStop(type) {
             return type.match(/stop/ig);
         },
+
         /**
          * Get animation behavior on stop interaction
          * @param {{animate: Boolean}} behavior
@@ -272,6 +297,7 @@ define([
         animateOnStop: function animateOnStop(type, behavior) {
             return this.isStop(type) ? !!behavior.animate : false;
         },
+
         /**
          * Get overlapping behavior on stop interaction
          * @param {{overlapping: Boolean}} behavior
@@ -281,6 +307,7 @@ define([
         overlappingOnStop: function overlappingOnStop(type, behavior) {
             return this.isStop(type) ? !!behavior.overlapping : false;
         },
+
         /**
          * Grid sticker on interaction (Drag/Resize)
          * @param {{type, $source, callback: Function}} opts
@@ -307,6 +334,7 @@ define([
                 );
             }
         },
+
         /**
          * Map sticker callback
          * @private
@@ -339,6 +367,7 @@ define([
                 margin = layout.config.grid.margin;
             return cell * relDim + margin * (relDim - 1);
         },
+
         /**
          * Drag to
          * @returns {{left: Number, top: Number}}
@@ -346,6 +375,7 @@ define([
         dragTo: function dragTo() {
             return this.widget.controller.getParent().layout.controller.getNextPosition(this.getDOM());
         },
+
         /**
          * Resize to
          * @returns {{width: Number, height: Number}}
@@ -357,5 +387,6 @@ define([
                 height: this.getNextDims(dom.relHeight)
             }, this.dragTo());
         }
+
     }, Base);
 });

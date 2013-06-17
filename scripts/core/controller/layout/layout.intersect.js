@@ -152,6 +152,7 @@ define(function defineLayoutIntersect() {
                     }
                 }
             }
+
             return move;
         }
 

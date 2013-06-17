@@ -22,12 +22,46 @@ define([
     };
 
     return Controller.extend({
+
+        /**
+         * Get parent page instance
+         * @return {Page}
+         */
+        getPage: function getPage() {
+            return this.getParent();
+        },
+
         /**
          * Get page jquery object
-         * @returns {*}
+         * @returns {*|jQuery}
          */
         get$page: function get$page() {
-            return this.getParent().view.elements.$page.$;
+            return this.getPage().view.elements.$page.$;
+        },
+
+        /**
+         * Get merged local padding from widget dom
+         * @returns {{top: number, right: number, bottom: number, left: number}}
+         */
+        getLocalPadding: function getLocalPadding() {
+            var padding = {},
+                global = this.getGlobalPadding(),
+                local = this.scope.base.define(this.scope.dom.padding, {}, true);
+
+            this.scope.logger.debug('Merge local padding', $.extend(padding, global, local));
+
+            return padding;
+        },
+
+        /**
+         * Get global padding from layout config
+         * @returns {{top: number, right: number, bottom: number, left: number}}
+         */
+        getGlobalPadding: function getGlobalPadding() {
+            var padding = this.getPage().controller.getLayout().config.grid.padding;
+            this.scope.logger.debug('Get global padding', padding);
+
+            return padding;
         },
 
         /**
@@ -38,54 +72,63 @@ define([
             scope.observer.publish(scope.eventmanager.eventList.initDrag);
             scope.observer.publish(scope.eventmanager.eventList.initResize);
         },
+
         /**
          * Init drag
          */
         initDrag: function initDrag() {
             this.controller.setInteraction('draggable', new Drag(this));
         },
+
         /**
          * Enable drag
          */
         enableDrag: function enableDrag() {
             this.interactions.draggable.enable();
         },
+
         /**
          * Disable drag
          */
         disableDrag: function disableDrag() {
             this.interactions.draggable.disable();
         },
+
         /**
          * Destroy drag
          */
         destroyDrag: function destroyDrag() {
             this.interactions.draggable.destroy();
         },
+
         /**
          * Init resize
          */
         initResize: function initResize() {
             this.controller.setInteraction('resizable', new Resize(this));
         },
+
         /**
          * Enable resize
          */
         enableResize: function enableResize() {
             this.interactions.resizable.enable();
         },
+
         /**
          * Disable resize
          */
         disableResize: function disableResize() {
             this.interactions.resizable.disable();
         },
+
         /**
          * Destroy resize
          */
         destroyResize: function destroyResize() {
             this.interactions.resizable.destroy();
         },
+
         /**
          * Debug interactions
          * @param {String} interaction
@@ -93,18 +136,21 @@ define([
         debugInteractions: function debugInteractions(interaction) {
             this.logger.debug('Debug interactions', interaction);
         },
+
         /**
          * Create drag
          */
         dragCreate: function dragCreate() {
             this.logger.debug('Create drag', arguments);
         },
+
         /**
          * Start drag
          */
         dragStart: function dragStart() {
             this.logger.debug('Start drag', arguments);
         },
+
         /**
          * Grid sticker on drag
          * @param {String} type
@@ -118,6 +164,7 @@ define([
                 $source: this.wireframe.$
             });
         },
+
         /**
          * Stop drag
          * @param {String} type

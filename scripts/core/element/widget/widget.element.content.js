@@ -18,15 +18,27 @@ define([
             destroy: true
         });
 
+        this.setPadding();
         this.setContent();
 
         return this;
     };
 
     return Content.extend({
+
         setContent: function setContent() {
             this.$.text(this.view.scope.model.getUUID());
+        },
+
+        setPadding: function setPadding() {
+            var padding = this.view.controller.getLocalPadding();
+            this.$.css(padding);
         }
+
+
+
+
+
 
 
     }, Base, BaseElement.prototype);

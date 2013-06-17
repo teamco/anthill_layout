@@ -34,7 +34,7 @@ define([
          *      widgetsPerRow: number,
          *      additionalRows: number,
          *      margin: number,
-         *      padding: number
+         *      padding: {{top: number, right: number, bottom: number, left: number}}
          *  }
          * }}
          */
@@ -47,7 +47,12 @@ define([
                 widgetsPerRow: 3,
                 additionalRows: 1,
                 margin: 1,
-                padding: 14
+                padding: {
+                    top: 14,
+                    right: 0,
+                    bottom: 0,
+                    left: 14
+                }
             }
         };
 
