@@ -59,6 +59,9 @@ define([
             dom.relWidth = this.relWidth(dom.width, cell);
             dom.relHeight = this.relHeight(dom.height, cell);
 
+            dom.relRight = this.relRight(dom.column, dom.relWidth);
+            dom.relBottom = this.relBottom(dom.row, dom.relHeight);
+
             return dom;
         },
 
@@ -80,6 +83,26 @@ define([
          */
         relHeight: function relHeight(height, cell) {
             return this.relDims(Math.round(height / cell));
+        },
+
+        /**
+         * Get relative right
+         * @param {Number} column
+         * @param {Number} width
+         * @returns {Number}
+         */
+        relRight: function relRight(column, width) {
+            return column + width;
+        },
+
+        /**
+         * Get relative bottom
+         * @param {Number} row
+         * @param {Number} height
+         * @returns {Number}
+         */
+        relBottom: function relBottom(row, height) {
+            return row + height;
         },
 
         /**
