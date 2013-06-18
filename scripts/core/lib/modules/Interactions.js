@@ -14,19 +14,38 @@ define([
     };
 
     return Interactions.extend({
+
+        /**
+         * Check permission
+         */
         checkPermission: function checkPermission() {
             this.scope.permission.check({
                 capability: this.constructor.name.toLowerCase(),
                 callback: this.init.bind(this)
             });
         },
+
+        /**
+         * Debug UI
+         * @param event
+         * @param ui
+         */
         debugUI: function debugUI(event, ui) {
             var scope = this.scope;
             scope.observer.publish(
                 scope.eventmanager.eventList.debugInteractions,
                 [this.scope, event, ui]
             );
+        },
+
+        isEnabled: function isEnabled() {
+            return
+        },
+
+        isDisabled: function isDisabled() {
+
         }
+
 
     }, Base);
 

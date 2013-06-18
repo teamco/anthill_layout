@@ -44,8 +44,56 @@ define([], function defineDebuggerWidget() {
             ].join('');
         },
 
-        renderInteractions: function renderInteractions() {
+        /**
+         * Render Interaction component
+         * @param {*|Array} capability
+         * @param {String} name
+         * @returns {string}
+         */
+        renderInteractionComponent: function renderInteractionComponent(capability, name) {
+            var c = this.debugger.component;
+            return [
+                '<li class="extend">',
+                c.renderBlock(
+                    name,
+                    $.map(capability, function (v, k) {
+                        return c.renderInput(
+                            v.toLowerCase().toCamel().toUnderscore().humanize(),
+                            v
+                        );
+                    }),
+                    false
+                ),
+                '</li>'
+            ].join('');
+        },
 
+        /**
+         * Render Interaction capabilities
+         * @returns {string}
+         */
+        renderInteractions: function renderInteractions() {
+            var c = this.debugger.component,
+                widget = this.getWidget();
+
+            var dragHTML = this.renderInteractionComponent(
+                    widget.permission.draggableCapabilities() || [],
+                    'Draggable'
+                ),
+                resizeHTML = this.renderInteractionComponent(
+                    widget.permission.resizableCapabilities() || [],
+                    'Resizeable'
+                );
+
+            return [
+                '<li class="extend">',
+                c.renderBlock(
+                    'Interactions',
+                    [dragHTML, resizeHTML],
+                    false
+                ),
+                '</li>'
+            ].join('');
         },
 
         /**
@@ -70,6 +118,7 @@ define([], function defineDebuggerWidget() {
             return [
                 c.renderInline('UUID', this.debugger.scopes.widget.config.uuid),
                 this.renderAttributes(),
+                this.renderInteractions(),
                 '<li class="extend">',
                 c.renderBlock('Dimensions', this.renderDimensionsInfo(event, ui), false),
                 '</li>'

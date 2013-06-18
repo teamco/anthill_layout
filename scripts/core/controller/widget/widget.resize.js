@@ -24,6 +24,10 @@ define([
     };
 
     return Resizable.extend({
+
+        /**
+         * Init resizable
+         */
         init: function init() {
             var scope = this.scope;
 
@@ -39,25 +43,52 @@ define([
                 );
             }
         },
+
+        /**
+         * Enable resize
+         */
         enable: function enable() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.enable) && this.scope.controller.isResizable()) {
+            if (this.scope.permission.eventTunnelFunctionCall(this.enable) &&
+                this.scope.controller.isResizable()) {
                 this.$scope.resizable('enable');
             }
         },
+
+        /**
+         * Disable resize
+         */
         disable: function disable() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.disable) && this.scope.controller.isResizable()) {
+            if (this.scope.permission.eventTunnelFunctionCall(this.disable) &&
+                this.scope.controller.isResizable()) {
                 this.$scope.resizable('disable');
             }
         },
+
+        /**
+         * Destroy resize
+         */
         destroy: function destroy() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.destroy) && this.scope.controller.isResizable()) {
+            if (this.scope.permission.eventTunnelFunctionCall(this.destroy) &&
+                this.scope.controller.isResizable()) {
                 this.$scope.resizable('destroy');
             }
         },
+
+        /**
+         * Create resize
+         * @param event
+         * @param ui
+         */
         create: function create(event, ui) {
             var scope = this.scope;
             scope.observer.publish(scope.eventmanager.eventList.resizeCreate, [event.type, arguments]);
         },
+
+        /**
+         * Start resize
+         * @param event
+         * @param ui
+         */
         start: function start(event, ui) {
             var scope = this.scope;
             this.debugUI(event, ui);
@@ -65,6 +96,12 @@ define([
             scope.wireframe.resizeSticker();
             scope.observer.publish(scope.eventmanager.eventList.resizeStart, [event.type, arguments]);
         },
+
+        /**
+         * Stop resize
+         * @param event
+         * @param ui
+         */
         stop: function stop(event, ui) {
             var scope = this.scope;
             this.debugUI(event, ui);
@@ -74,6 +111,12 @@ define([
             );
             scope.wireframe.hide();
         },
+
+        /**
+         * On resize event
+         * @param event
+         * @param ui
+         */
         resize: function resize(event, ui) {
             var scope = this.scope;
             this.debugUI(event, ui);
@@ -82,5 +125,6 @@ define([
                 [event.type, arguments]
             );
         }
+
     }, Interactions.prototype);
 });

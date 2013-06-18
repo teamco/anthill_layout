@@ -17,6 +17,7 @@ define([
     'config/layout',
     'config/template'
 ], function definePage(Base, MVC, API, Controller, Model, View, EventManager, Layout, Template) {
+
     /**
      * Define Page
      * @class Page

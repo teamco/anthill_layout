@@ -8,15 +8,22 @@
 define([
     'modules/base'
 ], function defineBaseHash(Base) {
+
+    /**
+     * Define Hash lib
+     * @class BaseHash
+     * @constructor
+     */
     var BaseHash = function BaseHash() {
     };
 
     BaseHash.extend({
+
         /**
          * Extend hash
-         * @param {{}} hash
-         * @param {{}} defaults
-         * @returns {{}}
+         * @param {*} hash
+         * @param {*} defaults
+         * @returns {*}
          */
         extendHash: function extendHash(hash, defaults) {
             defaults = this.base.define(defaults, {}, true);
@@ -24,17 +31,19 @@ define([
             $.extend(true, defaults, hash);
             return defaults;
         },
+
         /**
          * Check if hash empty
-         * @param {{}} o
+         * @param {*} o
          * @returns {boolean}
          */
         isHashEmpty: function isHashEmpty(o) {
             return this.hashLength(o) === 0;
         },
+
         /**
          * Check if Hash(h) has Key(k)
-         * @param {{}} h
+         * @param {*} h
          * @param {String} k
          * @returns {boolean}
          */
@@ -43,9 +52,10 @@ define([
                 return h.hasOwnProperty(k);
             }
         },
+
         /**
          * First hash element value
-         * @param {{}} h
+         * @param {*} h
          * @returns {*}
          */
         firstHashElement: function firstHashElement(h) {
@@ -60,10 +70,11 @@ define([
             }
             return h[k];
         },
+
         /**
          * First hash element's key
-         * @param {{}} h
-         * @returns {String}
+         * @param {*} h
+         * @returns {Boolean|String}
          */
         firstHashKey: function firstHashKey(h) {
             var k;
@@ -77,9 +88,10 @@ define([
             }
             return k;
         },
+
         /**
          * Find all Hash keys
-         * @param {{}} h
+         * @param {*} h
          * @returns {Array}
          */
         hashKeys: function hashKeys(h) {
@@ -91,14 +103,31 @@ define([
             }
             return keys;
         },
+
         /**
          * Get Hash length
-         * @param {{}} o
+         * @param {*} o
          * @returns {Number}
          */
         hashLength: function hashLength(o) {
             return this.hashKeys(this.base.define(o, {}, true)).length;
+        },
+
+        /**
+         * Get hash key by value
+         * @param {*} h
+         * @param {*} v
+         * @returns {string}
+         */
+        getKeyByValue: function getKeyByValue(h, v) {
+            for (var prop in v) {
+                if (this.hasOwnProperty(prop)) {
+                    if (this[prop] === v)
+                        return prop;
+                }
+            }
         }
+
     }, Base);
 
     Base.prototype.lib.hash = new BaseHash();

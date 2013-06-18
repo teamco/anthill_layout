@@ -10,10 +10,20 @@ define([
     'modules/base'
 ], function defineBasePermission(Base) {
 
+    /**
+     * Define Permissions
+     * @class Permission
+     * @extends Base
+     * @constructor
+     */
     var Permission = function Permission() {
     };
 
     return Permission.extend({
+
+        /**
+         * Config capabilities
+         */
         config: function config() {
             var base = this.base,
                 permissions = base.define(this.scope.config.permission, {}, true);
@@ -23,6 +33,7 @@ define([
             }.bind(this));
 
         },
+
         /**
          * Check permission rules
          * @param {{callback: Function, fallback: Function, args: *|Array, capability: String}} opts
@@ -45,15 +56,32 @@ define([
                 }
             }
         },
+
+        /**
+         * Set capabilities
+         * @param {String} key
+         * @param {*} value
+         * @returns {*}
+         */
         setCapability: function setCapability(key, value) {
             this.capability[key] = this.base.defineBoolean(value, false, true);
             return this.getCapability(key);
         },
 
+        /**
+         * Get capabilities
+         * @param {String} key
+         * @returns {*}
+         */
         getCapability: function getCapability(key) {
             return this.base.defineBoolean(this.capability[key], false, true);
         },
 
+        /**
+         * Check if function call is defined as authorized (via permissions)
+         * @param {Function} fn
+         * @returns {boolean}
+         */
         authorizedFunctionCall: function authorizedFunctionCall(fn) {
             if (fn.getCallerName() !== this.check.name) {
                 this.scope.logger.warn('Unauthorized function call');
@@ -62,6 +90,11 @@ define([
             return true;
         },
 
+        /**
+         * Check if function called via tunnel
+         * @param fn
+         * @returns {boolean}
+         */
         eventTunnelFunctionCall: function eventTunnelFunctionCall(fn) {
             var callerName = fn.getCallerName();
             if (callerName.toPoint() !== this.scope.eventmanager.eventList[callerName]) {
