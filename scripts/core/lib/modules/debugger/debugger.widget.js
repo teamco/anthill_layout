@@ -58,7 +58,7 @@ define([], function defineDebuggerWidget() {
                     name,
                     $.map(capability, function (v, k) {
                         return c.renderInput(
-                            v.toLowerCase().toCamel().toUnderscore().humanize(),
+                            v.toUnderscore().humanize(),
                             v
                         );
                     }),

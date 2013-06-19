@@ -52,14 +52,11 @@ define([
             }
 
             if (list) {
-                var res = [
-                    list.init[name],
-                    list.enable[name],
-                    list.disable[name],
-                    list.destroy[name]
-                ];
+                var res = $.map(list, function (k, v) {
+                    return v.match(new RegExp(capability, 'ig')) ? v : null
+                });
 
-                scope.logger.debug('Capabilities', name,  res);
+                scope.logger.debug('Capabilities', name, res);
                 return res;
             }
 
