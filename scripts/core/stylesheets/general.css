@@ -37,3 +37,15 @@ html, body, .app,
     -webkit-box-shadow: inset 0 0 10px #000;
     box-shadow: inset 0 0 10px #000;
 }
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.mr10 {
+    margin-right: 10px;
+}

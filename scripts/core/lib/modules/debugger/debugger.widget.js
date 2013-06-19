@@ -53,7 +53,7 @@ define([], function defineDebuggerWidget() {
         renderInteractionComponent: function renderInteractionComponent(capability, name) {
             var c = this.debugger.component;
             return [
-                '<li class="extend">',
+                '<li class="extend fl mr10">',
                 c.renderBlock(
                     name,
                     $.map(capability, function (v, k) {

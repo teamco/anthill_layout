@@ -49,8 +49,9 @@ define([], function defineDebuggerLayout() {
          * Bind change overlapping mode
          */
         bindChangeOverlappingMode: function bindChangeOverlappingMode() {
+            var layout = this.debugger.scopes.page.layout;
             $('#overlapping-mode').on('change.overlapping', function onChange(e) {
-                this.debugger.scopes.page.layout.controller.setOrganizeMode($(e.target).val());
+                layout.observer.publish(layout.eventmanager.eventList.setOrganizeMode, $(e.target).val());
             }.bind(this));
         },
 
@@ -58,8 +59,9 @@ define([], function defineDebuggerLayout() {
          * Bind change empty spaces mode
          */
         bindChangeEmptySpacesMode: function bindChangeEmptySpacesMode() {
+            var layout = this.debugger.scopes.page.layout;
             $('#empty-spaces-mode').on('change.emptyspaces', function onChange(e) {
-                this.debugger.scopes.page.layout.controller.setEmptySpacesMode($(e.target).val());
+                layout.observer.publish(layout.eventmanager.eventList.setEmptySpacesMode, $(e.target).val());
             }.bind(this));
         },
 
@@ -67,9 +69,10 @@ define([], function defineDebuggerLayout() {
          * Bind click to allow / disable overlapping
          */
         bindAllowOverlapping: function bindAllowOverlapping() {
-            var $input = $('input[name="overlapping"]');
+            var $input = $('input[name="overlapping"]'),
+                layout = this.debugger.scopes.page.layout;
             $input.change(function change(e) {
-                this.debugger.scopes.page.layout.controller.setOverlapping($input.prop('checked'));
+                layout.observer.publish(layout.eventmanager.eventList.setOverlapping, $input.is(':checked'));
             }.bind(this));
         },
 

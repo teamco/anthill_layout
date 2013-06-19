@@ -161,12 +161,7 @@ define([
          * @param {String} mode
          */
         setEmptySpacesMode: function setEmptySpacesMode(mode) {
-            this.scope.logger.warn(
-                'Empty spaces mode was changed',
-                this.getBehavior().organize,
-                mode
-            );
-            this.getBehavior().emptySpaces = mode;
+            this.controller._setLayoutMode('emptySpaces', mode);
         },
 
         /**
@@ -174,25 +169,50 @@ define([
          * @param {String} mode
          */
         setOrganizeMode: function setOrganizeMode(mode) {
-            this.scope.logger.warn(
-                'Organize mode was changed',
-                this.getBehavior().organize,
-                mode
-            );
-            this.getBehavior().organize = mode;
+            this.controller._setLayoutMode('organize', mode);
         },
 
         /**
          * Set behavior overlapping
-         * @param {boolean} overlapping
+         * @param {boolean} mode
          */
-        setOverlapping: function setOverlapping(overlapping) {
-            this.scope.logger.debug(
-                'Overlapping was changed',
-                this.getBehavior().overlapping,
-                overlapping
+        setOverlapping: function setOverlapping(mode) {
+            this.controller._setLayoutMode('overlapping', mode);
+        },
+
+        /**
+         * Set layout mode
+         * @param {string} type
+         * @param {string|boolean} mode
+         * @private
+         */
+        _setLayoutMode: function _setLayoutMode(type, mode) {
+            this.scope.logger.warn(
+                type.toUnderscore().capitalize() + ' was changed',
+                this._getLayoutMode(type),
+                mode
             );
-            this.getBehavior().overlapping = overlapping;
+            this._updateLayoutMode(type, mode);
+        },
+
+        /**
+         * Get layout mode
+         * @param {string} type
+         * @returns {*|Overlapping}
+         * @private
+         */
+        _getLayoutMode: function _getOverlappingMode(type) {
+            return this.getBehavior()[type];
+        },
+
+        /**
+         * Update layout mode
+         * @param mode
+         * @param {string} type
+         * @private
+         */
+        _updateLayoutMode: function _updateOverlappingMode(type, mode) {
+            this.getBehavior()[type] = mode;
         }
 
     }, Base, BaseController.prototype);

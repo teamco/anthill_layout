@@ -14,7 +14,10 @@ define([
         this.eventList = {
             updateMinCellWidth: 'update.min.cell.width',
             beforeNestedOrganizer: 'before.nested.organizer',
-            afterNestedOrganizer: 'after.nested.organizer'
+            afterNestedOrganizer: 'after.nested.organizer',
+            setOverlapping: 'set.overlapping',
+            setOrganizeMode: 'set.organize.mode',
+            setEmptySpacesMode: 'set.empty.spaces.mode'
         };
     };
 

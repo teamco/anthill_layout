@@ -52,8 +52,9 @@ define([
             }
 
             if (list) {
-                var res = $.map(list, function (k, v) {
-                    return v.match(new RegExp(capability, 'ig')) ? v : null
+                var regex = new RegExp(capability, 'ig'),
+                    res = $.map(list, function (k, v) {
+                    return v.match(regex) ? v.replace(regex, '') : null
                 });
 
                 scope.logger.debug('Capabilities', name, res);
