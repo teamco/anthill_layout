@@ -69,63 +69,63 @@ define([
          */
         setupInteractions: function setupInteractions() {
             var scope = this.scope;
-            scope.observer.publish(scope.eventmanager.eventList.initDrag);
-            scope.observer.publish(scope.eventmanager.eventList.initResize);
+            scope.observer.publish(scope.eventmanager.eventList.initDraggable);
+            scope.observer.publish(scope.eventmanager.eventList.initResizable);
         },
 
         /**
          * Init drag
          */
-        initDrag: function initDrag() {
+        initDraggable: function initDraggable() {
             this.controller.setInteraction('draggable', new Drag(this));
         },
 
         /**
          * Enable drag
          */
-        enableDrag: function enableDrag() {
+        enableDraggable: function enableDraggable() {
             this.interactions.draggable.enable();
         },
 
         /**
          * Disable drag
          */
-        disableDrag: function disableDrag() {
+        disableDraggable: function disableDraggable() {
             this.interactions.draggable.disable();
         },
 
         /**
          * Destroy drag
          */
-        destroyDrag: function destroyDrag() {
+        destroyDraggable: function destroyDraggable() {
             this.interactions.draggable.destroy();
         },
 
         /**
          * Init resize
          */
-        initResize: function initResize() {
+        initResizable: function initResizable() {
             this.controller.setInteraction('resizable', new Resize(this));
         },
 
         /**
          * Enable resize
          */
-        enableResize: function enableResize() {
+        enableResizable: function enableResizable() {
             this.interactions.resizable.enable();
         },
 
         /**
          * Disable resize
          */
-        disableResize: function disableResize() {
+        disableResizable: function disableResizable() {
             this.interactions.resizable.disable();
         },
 
         /**
          * Destroy resize
          */
-        destroyResize: function destroyResize() {
+        destroyResizable: function destroyResizable() {
             this.interactions.resizable.destroy();
         },
 
@@ -140,14 +140,14 @@ define([
         /**
          * Create drag
          */
-        dragCreate: function dragCreate() {
+        createDraggable: function createDraggable() {
             this.logger.debug('Create drag', arguments);
         },
 
         /**
          * Start drag
          */
-        dragStart: function dragStart() {
+        startDraggable: function startDraggable() {
             this.logger.debug('Start drag', arguments);
         },
 
@@ -155,7 +155,7 @@ define([
          * Grid sticker on drag
          * @param {String} type
          */
-        dragOn: function dragOn(type) {
+        dragDraggable: function dragDraggable(type) {
             this.logger.debug('On drag', arguments);
             this.controller.behaviorMode({
                 organize: false,
@@ -169,7 +169,7 @@ define([
          * Stop drag
          * @param {String} type
          */
-        dragStop: function dragStop(type) {
+        stopDraggable: function stopDraggable(type) {
             this.logger.debug('Stop drag', arguments);
             this.controller.getParent().controller.downgradeLayer(this);
             this.controller.behaviorMode({
@@ -185,7 +185,7 @@ define([
          * Create resize
          * @param {String} type
          */
-        resizeCreate: function resizeCreate(type) {
+        createResizable: function createResizable(type) {
             this.logger.debug('Create resize', arguments);
         },
 
@@ -193,7 +193,7 @@ define([
          * Resize start
          * @param {String} type
          */
-        resizeStart: function resizeStart(type) {
+        startResizable: function startResizable(type) {
             this.logger.debug('Start resize', arguments);
         },
 
@@ -202,7 +202,7 @@ define([
          * @param {String} type
          * @param {Boolean} animate
          */
-        resizeSticker: function resizeSticker(type, animate) {
+        resizeResizable: function resizeResizable(type, animate) {
             this.logger.debug('On resize', arguments);
             this.controller.behaviorMode({
                 organize: false,
@@ -220,7 +220,7 @@ define([
          * @param {Boolean} animate
          * @param {Boolean} organize
          */
-        resizeStop: function resizeStop(type, organize, animate) {
+        stopResizable: function stopResizable(type, organize, animate) {
             this.logger.debug('Stop resize', arguments);
             this.controller.getParent().controller.downgradeLayer(this);
             this.controller.behaviorMode({

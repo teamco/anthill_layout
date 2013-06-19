@@ -17,12 +17,24 @@ define([
      * @constructor
      */
     var Draggable = function Draggable(scope) {
+
+        /**
+         * Define scope
+         * @type {Widget}
+         */
         this.scope = scope;
+
+        /**
+         * Define widget jquery element
+         * @type {jQuery}
+         */
         this.$scope = scope.view.elements.$widget.$;
+
         this.checkPermission();
     };
 
     return Draggable.extend({
+
         /**
          * Init interaction
          */
@@ -50,30 +62,37 @@ define([
                 });
             }
         },
+
         /**
          * Enable drag
          */
         enable: function enable() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.enable) && this.scope.controller.isDraggable()) {
+            if (this.scope.permission.eventTunnelFunctionCall(this.enable) &&
+                this.scope.controller.isDraggable()) {
                 this.$scope.draggable('enable');
             }
         },
+
         /**
          * Disable drag
          */
         disable: function disable() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.disable) && this.scope.controller.isDraggable()) {
+            if (this.scope.permission.eventTunnelFunctionCall(this.disable) &&
+                this.scope.controller.isDraggable()) {
                 this.$scope.draggable('disable');
             }
         },
+
         /**
          * Destroy drag
          */
         destroy: function destroy() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.destroy) && this.scope.controller.isDraggable()) {
+            if (this.scope.permission.eventTunnelFunctionCall(this.destroy) &&
+                this.scope.controller.isDraggable()) {
                 this.$scope.draggable('destroy');
             }
         },
+
         /**
          * Create drag
          * @param event
@@ -81,8 +100,9 @@ define([
          */
         create: function create(event, ui) {
             var scope = this.scope;
-            scope.observer.publish(scope.eventmanager.eventList.dragCreate, arguments);
+            scope.observer.publish(scope.eventmanager.eventList.createDraggable, arguments);
         },
+
         /**
          * Start drag
          * @param event
@@ -93,8 +113,9 @@ define([
             this.debugUI(event, ui);
             scope.controller.setAsCurrent();
             scope.wireframe.dragSticker();
-            scope.observer.publish(scope.eventmanager.eventList.dragStart, arguments);
+            scope.observer.publish(scope.eventmanager.eventList.startDraggable, arguments);
         },
+
         /**
          * Stop drag
          * @param event
@@ -104,11 +125,12 @@ define([
             var scope = this.scope;
             this.debugUI(event, ui);
             scope.observer.publish(
-                scope.eventmanager.eventList.dragStop,
+                scope.eventmanager.eventList.stopDraggable,
                 [event.type, arguments]
             );
             scope.wireframe.hide();
         },
+
         /**
          * onDrag
          * @param event
@@ -118,9 +140,10 @@ define([
             var scope = this.scope;
             this.debugUI(event, ui);
             scope.observer.publish(
-                scope.eventmanager.eventList.dragOn,
+                scope.eventmanager.eventList.dragDraggable,
                 [event.type, arguments]
             );
         }
+
     }, Interactions.prototype);
 });

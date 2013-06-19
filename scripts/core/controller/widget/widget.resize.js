@@ -18,8 +18,19 @@ define([
      * @constructor
      */
     var Resizable = function Resizable(scope) {
+
+        /**
+         * Define scope
+         * @type {Widget}
+         */
         this.scope = scope;
+
+        /**
+         * Define widget jquery element
+         * @type {jQuery}
+         */
         this.$scope = scope.view.elements.$widget.$;
+
         this.checkPermission();
     };
 
@@ -81,7 +92,7 @@ define([
          */
         create: function create(event, ui) {
             var scope = this.scope;
-            scope.observer.publish(scope.eventmanager.eventList.resizeCreate, [event.type, arguments]);
+            scope.observer.publish(scope.eventmanager.eventList.createResizable, [event.type, arguments]);
         },
 
         /**
@@ -94,7 +105,7 @@ define([
             this.debugUI(event, ui);
             scope.controller.setAsCurrent();
             scope.wireframe.resizeSticker();
-            scope.observer.publish(scope.eventmanager.eventList.resizeStart, [event.type, arguments]);
+            scope.observer.publish(scope.eventmanager.eventList.startResizable, [event.type, arguments]);
         },
 
         /**
@@ -106,7 +117,7 @@ define([
             var scope = this.scope;
             this.debugUI(event, ui);
             scope.observer.publish(
-                scope.eventmanager.eventList.resizeStop,
+                scope.eventmanager.eventList.stopResizable,
                 [event.type, true, true, arguments]
             );
             scope.wireframe.hide();
@@ -121,7 +132,7 @@ define([
             var scope = this.scope;
             this.debugUI(event, ui);
             scope.observer.publish(
-                scope.eventmanager.eventList.resizeSticker,
+                scope.eventmanager.eventList.resizeResizable,
                 [event.type, arguments]
             );
         }

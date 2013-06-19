@@ -9,17 +9,45 @@
 define([
     'modules/event'
 ], function defineWidgetEventManager(Event) {
+
+    /**
+     * Define event manager
+     * @class EventManager
+     * @constructor
+     */
     var EventManager = function EventManager() {
+
+        /**
+         * Define events
+         * @type {{}}
+         */
         this.events = {};
+
+        /**
+         * Define event list
+         * @type {{
+         *      debugInteractions: {eventName: string, params: {buffer: number}},
+         *      initDraggable: string,
+         *      enableDraggable: string,
+         *      disableDraggable: string,
+         *      destroyDraggable: string,
+         *      createDraggable: string,
+         *      startDraggable: string,
+         *      dragDraggable: {eventName: string, params: {buffer: number}},
+         *      stopDraggable: string,
+         *      initResizable: string,
+         *      enableResizable: string,
+         *      disableResizable: string,
+         *      destroyResizable: string,
+         *      createResizable: string,
+         *      startResizable: string,
+         *      resizeResizable: {eventName: string, params: {buffer: number}},
+         *      stopResizable: string,
+         *      save: string
+         * }}
+         *
+         */
         this.eventList = {
-            initDrag: 'init.drag',
-            enableDrag: 'enable.drag',
-            disableDrag: 'disable.drag',
-            destroyDrag: 'destroy.drag',
-            initResize: 'init.resize',
-            enableResize: 'enable.resize',
-            disableResize: 'disable.resize',
-            destroyResize: 'destroy.resize',
             debugInteractions: {
                 eventName: 'debug.interactions',
                 params: { buffer: 1000 }
@@ -27,27 +55,37 @@ define([
             /**
              * Drag events
              */
-            dragCreate: 'drag.create',
-            dragStart: 'drag.start',
-            dragOn: {
-                eventName: 'drag.on',
+            initDraggable: 'init.draggable',
+            enableDraggable: 'enable.draggable',
+            disableDraggable: 'disable.draggable',
+            destroyDraggable: 'destroy.draggable',
+            createDraggable: 'create.draggable',
+            startDraggable: 'start.draggable',
+            dragDraggable: {
+                eventName: 'drag.draggable',
                 params: { buffer: 50 }
             },
-            dragStop: 'drag.stop',
+            stopDraggable: 'stop.draggable',
+
             /**
              * Resize events
              */
-            resizeCreate: 'resize.create',
-            resizeStart: 'resize.start',
-            resizeSticker: {
-                eventName: 'resize.sticker',
+            initResizable: 'init.resizable',
+            enableResizable: 'enable.resizable',
+            disableResizable: 'disable.resizable',
+            destroyResizable: 'destroy.resizable',
+            createResizable: 'create.resizable',
+            startResizable: 'start.resizable',
+            resizeResizable: {
+                eventName: 'resize.resizable',
                 params: { buffer: 50 }
             },
-            resizeStop: 'resize.stop',
+            stopResizable: 'stop.resizable',
             save: 'save'
         };
     };
 
     return EventManager.extend({
+
     }, Event.prototype);
 });
