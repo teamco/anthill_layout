@@ -46,7 +46,7 @@ define([
          *  },
          *  attributes: {
          *      freeze: boolean,
-         *      magnet: boolean,
+         *      magnet: string,
          *      overlapping: boolean,
          *      alwaysTop: boolean
          *  },
@@ -87,7 +87,7 @@ define([
             type: 'default',
             maximize: false,
             attributes: {
-                magnet: false,
+                magnet: 'none',         // {none|+|-}
                 freeze: false,
                 overlapping: false,
                 alwaysTop: false
@@ -113,6 +113,14 @@ define([
                     tolerance: 'pointer'
                 }
             }
+        };
+
+        /**
+         * Define constants
+         * @type {{magnet: Array}}
+         */
+        this.CONSTANTS = {
+            magnet: ['none', '+', '-']
         };
 
         /**

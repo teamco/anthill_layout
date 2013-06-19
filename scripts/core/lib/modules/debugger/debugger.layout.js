@@ -87,7 +87,6 @@ define([], function defineDebuggerLayout() {
                 b = layout.controller.getBehavior();
             return ['<li class="extend">', c.renderBlock('Layout', [
                 c.renderInput('Snap to Grid', layout.controller.isSnap2Grid()),
-                c.renderInput('Overlapping', b.overlapping),
                 c.renderCombo(
                     'Overlapping mode',
                     b.organize,

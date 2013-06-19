@@ -23,6 +23,9 @@ define([
 
     Base.extend({
 
+        /**
+         * Define lib
+         */
         lib: {},
 
         /**
@@ -52,6 +55,15 @@ define([
         },
 
         /**
+         * Check if boolean
+         * @param o
+         * @returns {boolean}
+         */
+        isBoolean: function isBoolean(o) {
+            return typeof o === 'boolean';
+        },
+
+        /**
          * Check if object is empty
          * @param {String|Array|jQuery} o
          * @returns {boolean}
@@ -74,27 +86,47 @@ define([
             return this.getType(o).toLowerCase() === 'string';
         },
 
-        // Check if array
-        // Return: boolean
+        /**
+         * Check if array
+         * @param a
+         * @returns {boolean}
+         */
         isArray: function isArray(a) {
             return this.getType(a).toLowerCase() === 'array';
         },
-        // Check if object is instance of $
+
+        /**
+         * Check if object is instance of jQuery
+         * @param o
+         * @returns {boolean}
+         */
         is$Object: function is$Object(o) {
             return o instanceof $;
         },
-        // Check if object
-        // Return: boolean
+
+        /**
+         * Check if object
+         * @param o
+         * @returns {boolean}
+         */
         isObject: function isObject(o) {
             return !this.isArray(o) && typeof o === 'object' && this.isDefined(o);
         },
-        // Check if function
-        // Return: boolean
+
+        /**
+         * Check if function
+         * @param o
+         * @returns {boolean}
+         */
         isFunction: function isFunction(o) {
             return typeof o === 'function';
         },
-        // Check if value is numeric
-        // Return: boolean
+
+        /**
+         * Check if value is numeric
+         * @param n
+         * @returns {boolean}
+         */
         isNumber: function isNumber(n) {
             n = this.define(n, 0);
             return !!(isNaN(n) ? 0 : n);
@@ -115,6 +147,14 @@ define([
             }
             return o;
         },
+
+        /**
+         * Define boolean if undefined
+         * @param o
+         * @param value
+         * @param force
+         * @returns {*}
+         */
         defineBoolean: function defineBoolean(o, value, force) {
             if (!this.isDefined(o)) {
                 o = value;

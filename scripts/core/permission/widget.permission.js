@@ -46,7 +46,7 @@ define([
             var scope = this.scope,
                 list = scope.eventmanager.eventList,
                 name = capability.capitalize();
-            if (!scope.permission.getCapability(capability)) {
+            if (!this.getCapability(capability)) {debugger
                 scope.logger.warn('Unauthorized capability', capability);
                 return false;
             }

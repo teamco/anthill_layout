@@ -149,6 +149,14 @@ define([
         },
 
         /**
+         * Check if overlapping allowed
+         * @returns {boolean}
+         */
+        isOverlappingAllowed: function isOverlappingAllowed() {
+            return this._getLayoutMode('organize') !== 'none';
+        },
+
+        /**
          * Get layout behavior mode
          * @returns {*}
          */
@@ -173,14 +181,6 @@ define([
         },
 
         /**
-         * Set behavior overlapping
-         * @param {boolean} mode
-         */
-        setOverlapping: function setOverlapping(mode) {
-            this.controller._setLayoutMode('overlapping', mode);
-        },
-
-        /**
          * Set layout mode
          * @param {string} type
          * @param {string|boolean} mode
@@ -189,7 +189,7 @@ define([
         _setLayoutMode: function _setLayoutMode(type, mode) {
             this.scope.logger.warn(
                 type.toUnderscore().capitalize() + ' was changed',
-                this._getLayoutMode(type),
+                    this._getLayoutMode(type),
                 mode
             );
             this._updateLayoutMode(type, mode);

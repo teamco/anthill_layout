@@ -22,20 +22,26 @@ define([
      * @extends {Base}
      * @mixin MVC
      */
-
     var Layout = function Layout(opts, page) {
 
         /**
-         * Default config
+         * Define default config
          * @type {{
-         *  parent: *,
-         *  grid: {
-         *      columns: number,
-         *      widgetsPerRow: number,
-         *      additionalRows: number,
-         *      margin: number,
-         *      padding: {{top: number, right: number, bottom: number, left: number}}
-         *  }
+         *      type: string,
+         *      limit: boolean,
+         *      parent: Page,
+         *      grid: {
+         *          columns: number,
+         *          widgetsPerRow: number,
+         *          additionalRows: number,
+         *          margin: number,
+         *          padding: {
+         *              top: number,
+         *              right: number,
+         *              bottom: number,
+         *              left: number
+         *          }
+         *      }
          * }}
          */
         var DEFAULTS = {
@@ -61,7 +67,7 @@ define([
          * @type {{organize: Array, emptySpaces: Array}}
          */
         this.CONSTANTS = {
-            organize: ['row', 'column'],
+            organize: ['none', 'row', 'column'],
             emptySpaces: ['none', 'row', 'column']
         };
 

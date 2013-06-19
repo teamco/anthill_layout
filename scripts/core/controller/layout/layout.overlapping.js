@@ -40,7 +40,7 @@ define([
             opts = base.define(opts, {}, true);
             opts.targets = base.define(opts.targets, {}, true);
 
-            if (!layout.controller.getBehavior().overlapping) {
+            if (!layout.controller.isOverlappingAllowed()) {
                 layout.logger.debug('Overlapping is allowed');
                 return this._nestedOrganizerCallback(opts.callback);
             }
@@ -50,7 +50,7 @@ define([
                 return this._nestedOrganizerCallback(opts.callback);
             }
 
-            layout.logger.debug('Starting nested organizer');
+            layout.logger.debug('Starting nested organizer', opts);
             this.nestedOrganizer({
                 targets: this._nestedOrganizerCore(opts.targets),
                 callback: opts.callback

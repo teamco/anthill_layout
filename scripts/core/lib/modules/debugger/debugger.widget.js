@@ -29,16 +29,24 @@ define([], function defineDebuggerWidget() {
 
         renderAttributes: function renderAttributes() {
             var c = this.debugger.component,
-                attr = this.getWidget().model.getAttributes();
+                w = this.getWidget(),
+                attr = w.model.getAttributes();
 
             return [
                 '<li class="extend">',
                 c.renderBlock(
-                    'Attributes',
-                    $.map(attr, function (v, k) {
-                        return c.renderInput(k.toUnderscore().humanize(), v);
-                    }),
-                    false
+                    'Attributes', [
+                        $.map(attr,function (v, k) {
+                            return w.base.isBoolean(v) ?
+                                c.renderInput(k.toUnderscore().humanize(), v) :
+                                null;
+                        }).join(''),
+                        c.renderCombo(
+                            'Magnet mode',
+                            attr.magnet,
+                            w.CONSTANTS.magnet
+                        )
+                    ], false
                 ),
                 '</li>'
             ].join('');

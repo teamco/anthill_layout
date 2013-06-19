@@ -159,7 +159,7 @@ define([
          * @param {Number} width
          * @returns {Number}
          */
-        widgetRight: function widgetRight(left, width){
+        widgetRight: function widgetRight(left, width) {
             return left + width;
         },
 
@@ -313,28 +313,28 @@ define([
 
         /**
          * Get animation behavior on stop interaction
-         * @param {{animate: Boolean}} behavior
+         * @param {Boolean} animate
          * @param {String} type
          * @returns {Boolean}
          */
-        animateOnStop: function animateOnStop(type, behavior) {
-            return this.isStop(type) ? !!behavior.animate : false;
+        animateOnStop: function animateOnStop(type, animate) {
+            return this.isStop(type) ? !!animate : false;
         },
 
         /**
          * Get overlapping behavior on stop interaction
-         * @param {{overlapping: Boolean}} behavior
+         * @param {Boolean} overlapping
          * @param {String} type
          * @returns {Boolean}
          */
-        overlappingOnStop: function overlappingOnStop(type, behavior) {
-            return this.isStop(type) ? !!behavior.overlapping : false;
+        overlappingOnStop: function overlappingOnStop(type, overlapping) {
+            return this.isStop(type) ? !!overlapping : false;
         },
 
         /**
          * Grid sticker on interaction (Drag/Resize)
          * @param {{type, $source, callback: Function}} opts
-         * @param {{animate: Boolean, overlapping: Boolean}} behavior
+         * @param {{animate: Boolean}} behavior
          */
         sticker: function sticker(opts, behavior) {
             opts = this.base.define(opts, {}, true);
@@ -345,7 +345,7 @@ define([
             if (css.top >= 0 && css.left >= 0) {
                 opts.$source.stop().animate(
                     css,
-                    this.animateOnStop(opts.type, behavior) ? this.duration : 0,
+                    this.animateOnStop(opts.type, behavior.animate) ? this.duration : 0,
                     this._mapStickerCallback.bind({
                         self: this,
                         widget: this.widget,
@@ -366,7 +366,13 @@ define([
             var hash = {},
                 widget = this.widget;
 
-            if (this.self.overlappingOnStop(this.type, this.behavior)) {
+            if (this.self.overlappingOnStop(
+                this.type,
+                widget.controller.
+                    getPage().controller.
+                    getLayout().controller.
+                    isOverlappingAllowed()
+            )) {
                 widget.model.save();
                 hash[widget.model.getUUID()] = widget;
 
