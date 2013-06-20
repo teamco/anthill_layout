@@ -38,10 +38,12 @@ define([
         getConfig: function getConfig(key) {
             var scope = this.scope,
                 config = scope.config;
+
             if (config.hasOwnProperty(key)) {
                 scope.logger.debug('Get config by key', key);
                 return config[key];
             }
+
             if (this.scope.controller.checkCondition({
                 condition: this.base.isDefined(key),
                 type: 'warn',
@@ -50,6 +52,8 @@ define([
             })) {
                 return false;
             }
+
+            scope.logger.debug('Get config', config);
 
             return config;
         },
@@ -246,6 +250,7 @@ define([
             if (!base.isDefined(limit)) {
                 return false;
             }
+
             return base.lib.hash.hashLength(this.getItems()) >= limit;
 
         },
@@ -257,32 +262,39 @@ define([
          * @returns {*}
          */
         updateCollector: function updateCollector(constructor, opts) {
+
             var namespace = this.getNameSpace(constructor),
-                limit = this.getConfig(namespace).limit,
                 scope = this.scope,
                 cname = constructor.name,
-                node = scope[cname.toLowerCase()];
+                node = scope[cname.toLowerCase()],
+                base = this.base;
+
+            this.setConfig(namespace, base.define(scope.config[namespace], {}, true));
+
+            var limit = this.getConfig(namespace).limit;
+
             if (this.checkLimit(constructor, limit)) {
                 scope.logger.warn(
                     cname + ': Maximum limit reached',
                     limit
                 );
                 node.model.setConfig('limit', true);
+
             } else {
-                var base = this.base;
 
                 node = new constructor(base.define(opts, {}, true));
 
                 if (base.isDefined(node.model)) {
+
                     this.setItem(node);
+
                 } else {
+
                     scope.logger.warn(
                         cname + ' was created with some errors',
                         node
                     );
                 }
-
-                this.setConfig(namespace, base.define(scope.config[namespace], {}, true));
 
                 scope.config[namespace].counter =
                     base.lib.hash.hashLength(this.getItems());

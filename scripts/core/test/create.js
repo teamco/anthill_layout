@@ -21,8 +21,8 @@ define([
         page1 = workspace1.api.createPage([], true),
         widget1 = page1.api.createWidget({type: page1.config.widget.types.template}, true)
 //        ,
-//        page2 = page1.api.createTemplate(widget1),
-//        widget2 = page2.api.createWidget([], true)
+//        page2 = page1.api.createTemplate(widget1)
+//              ,  widget2 = page2.api.createWidget([], true)
         //,
 //        widget3 = page1.api.createWidget([], true),
 //        widget4 = page1.api.createWidget([], true)
