@@ -45,7 +45,7 @@ define([
             if (log && config.type[type]) {
                 try {
                     if (!!config.namespaces) {
-                        var instance = scope.name;
+                        var instance = scope.constructor.name;
                         if (base.isDefined(instance)) {
                             config.namespaces = base.define(
                                 config.namespaces,
