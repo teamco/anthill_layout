@@ -416,8 +416,7 @@
 }
 
 #debug-mode ul.actions li.add-item {
-    background-position-y: -193px;
-    background-position-x: -1px;
+    background-position: -1px -193px;
     background-image: url('smoothness/images/ui-icons_222222_256x240.png');
 }
 
@@ -430,8 +429,7 @@
 }
 
 #debug-mode ul.actions li.remove-items {
-    background-position-y: -193px;
-    background-position-x: -17px;
+    background-position: -17px -193px;
     background-image: url('smoothness/images/ui-icons_222222_256x240.png');
 }
 
@@ -445,8 +443,7 @@
 }
 
 #debug-mode ul.actions li.remove-all-items {
-    background-position-y: -193px;
-    background-position-x: -33px;
+    background-position: -33px -193px;
     background-image: url('smoothness/images/ui-icons_222222_256x240.png');
 }
 
@@ -459,8 +456,7 @@
 }
 
 #debug-mode ul.actions li.locate-item {
-    background-position-y: -193px;
-    background-position-x: -193px;
+    background-position: -193px -193px;
     background-image: url('smoothness/images/ui-icons_222222_256x240.png');
 }
 
@@ -474,8 +470,7 @@
 }
 
 #debug-mode ul.actions li.edit-mode {
-    background-position-y: -193px;
-    background-position-x: -209px;
+    background-position: -209px -193px;
     float: right;
     margin: 0;
     background-image: url('smoothness/images/ui-icons_888888_256x240.png');
@@ -502,8 +497,7 @@
     height: 14px;
     cursor: pointer;
     background: transparent url('smoothness/images/ui-icons_888888_256x240.png') no-repeat;
-    background-position-y: -144px;
-    background-position-x: -128px;
+    background-position: -128px -144px;
 }
 
 #debug-mode .pin:hover {
@@ -513,7 +507,7 @@
 #debug-mode .pin.active,
 #debug-mode .pin.active:hover {
     background-image: url('smoothness/images/ui-icons_cd0a0a_256x240.png');
-    background-position-x: -144px;
+    background-position-x: -144px -144px;
 }
 
 #debug-mode .pin.disabled,

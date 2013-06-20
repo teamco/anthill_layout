@@ -173,9 +173,17 @@ define([
          */
         this.defineSetting();
 
+        /**
+         * Define local instance of eventList
+         * @type {*}
+         */
         var eventList = scope.eventmanager.eventList;
+
         if (eventList) {
 
+            /**
+             * Publish before InitConfig event
+             */
             scope.observer.publish(
                 eventList.beforeInitConfig, [
                     'Config before create',
@@ -183,6 +191,9 @@ define([
                 ]
             );
 
+            /**
+             * Publish after InitConfig event
+             */
             scope.observer.publish(
                 eventList.afterInitConfig, [
                     'Config after create',
@@ -193,15 +204,17 @@ define([
     };
 
     return MVC.extend({
+
         /**
          * Define MVC
-         * @param {Function} mvc
+         * @param {Function|String} mvc
          * @param {Boolean} force
          */
         defineMVC: function defineMVC(mvc, force) {
 
             var base = this.base,
-                name = this.constructorName(mvc),
+                name = base.isString(mvc) ?
+                    mvc : this.constructorName(mvc),
                 scope = this.scope;
 
             if (base.isFunction(mvc)) {
@@ -212,23 +225,28 @@ define([
 
                 if (force) {
 
-                    var scopeName = this.constructorName(scope),
-                        fnName = scopeName + mvc.name;
+                    var scopeName = this.constructorName(scope.constructor);
 
                     var fn = new Function(
-                        name,
+                        scopeName,
                         [
-                            'return function ', fnName,
-                            '(', name, ') { this.', scopeName,
-                            ' = ', name, ' };'
+                            'return function ', mvc,
+                            '(', scopeName, ') { this.scope = ', scopeName, '; };'
                         ].join('')
                     );
 
-                    scope[name] = new fn();
+                    scope[name.toLowerCase()] = new (new fn(scope))(scope);
+
+                    mvc = scope[name.toLowerCase()].constructor;
 
                 }
             }
+
+            return mvc;
+
+            //scope.logger.debug('Define MVC', mvc, force);
         },
+
         /**
          * Get constructor name
          * @param {*} scope
@@ -237,6 +255,7 @@ define([
         constructorName: function constructorName(scope) {
             return scope.name.toLowerCase();
         },
+
         /**
          * Set relation between MVC components
          */
@@ -257,7 +276,10 @@ define([
                 }
             }
 
+            //scope.logger.debug('Set MVC Relations', relations);
+
         },
+
         /**
          * Apply MVC
          * @returns {boolean}
@@ -273,14 +295,19 @@ define([
                     return false;
                 }
 
-                this.defineMVC(mvc, this.force);
-                this.scope[this.constructorName(mvc)].scope = this.scope;
+                this.scope[
+                    this.constructorName(
+                        this.defineMVC(mvc, this.force)
+                    )].scope = this.scope;
 
             }
 
             this.setRelation();
 
+            //this.scope.logger.debug('Apply MVC', this.components);
+
         },
+
         /**
          * Apply config
          */
@@ -297,7 +324,10 @@ define([
                 config.html = base.define(config.html, {}, true);
                 config.html.selector = '.' + this.constructorName(scope.constructor);
             }
+
+            //scope.logger.debug('Apply config', config);
         },
+
         /**
          * Apply event manager
          */
@@ -385,17 +415,21 @@ define([
                     callback: scope.controller.afterDestroyItems
                 }, true);
 
+                scope.logger.debug('Subscribe events', eventManager);
+
                 this.applyGlobalListeners();
 
             } else {
-                scope.logger.warn('Event Manager', scope.eventmanager);
+                scope.logger.warn('Undefined Event manager', scope.eventmanager);
             }
         },
+
         /**
          * Apply global listeners
          */
         applyGlobalListeners: function applyGlobalListeners() {
-            var index, event, scope = this.scope;
+            var index, event,
+                scope = this.scope;
             if (typeof scope.globalListeners === 'object') {
                 for (index in scope.globalListeners) {
                     if (scope.globalListeners.hasOwnProperty(index)) {
@@ -411,7 +445,10 @@ define([
                     }
                 }
             }
+
+            scope.logger.debug('Apply global listeners', scope.globalListeners);
         },
+
         /**
          * Define permissions
          * @returns {boolean}
@@ -425,14 +462,22 @@ define([
 
             if (scope.controller.checkCondition({
                 condition: !this.base.isDefined(permission),
+                type: 'warn',
                 msg: 'Undefined permission'
             })) {
                 return false;
             }
 
             permission.capability = {};
-            permission.config();
+
+            this.base.isFunction(permission.config) ?
+                permission.config() :
+                scope.logger.warn('Force created permissions', permission);
+
+            scope.logger.debug('Local permissions', permission);
+
         },
+
         /**
          * Apply global permissions
          * @returns {*|boolean}
@@ -445,14 +490,15 @@ define([
             if (scope.controller.checkCondition({
                 condition: !base.isDefined(mode),
                 type: 'warn',
-                msg: 'Undefined mode'
+                msg: 'Undefined global mode'
             })) {
                 return false;
             }
 
             if (scope.controller.checkCondition({
                 condition: !base.isDefined(scope.globalPermissions),
-                msg: 'Undefined permission'
+                type: 'warn',
+                msg: 'Undefined global permission'
             })) {
                 return false;
             }
@@ -461,14 +507,18 @@ define([
 
             if (scope.controller.checkCondition({
                 condition: !base.isDefined(capabilities),
-                msg: 'Undefined capabilities',
+                type: 'warn',
+                msg: 'Undefined global capabilities',
                 args: mode
             })) {
                 return false;
             }
 
+            scope.logger.debug('Global permissions', capabilities);
+
             scope.config.permission = capabilities;
         },
+
         /**
          * Apply Observer
          */
@@ -476,7 +526,10 @@ define([
             var scope = this.scope;
             scope.observer = new Observer();
             scope.observer.scope = scope;
+
+            //scope.logger.debug('Apply Observer', scope.observer);
         },
+
         /**
          * Apply Logger
          */
@@ -497,14 +550,19 @@ define([
             logger.scope = scope;
             logger.defineLogs();
 
+            //scope.logger.debug('Apply Logger', scope.logger);
         },
+
         /**
          * Define global setting
          */
         defineSetting: function defineSetting() {
+            var scope = this.scope;
             if (this.base.isDefined(this.scope.model)) {
-                this.scope.model.defineSetting();
+                scope.model.defineSetting();
             }
+
+            //scope.logger.debug('Define model setting', scope.model.setting);
         }
     }, Base);
 

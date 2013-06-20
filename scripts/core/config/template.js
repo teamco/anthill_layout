@@ -21,8 +21,9 @@ define([
     'controller/template.controller',
     'model/template.model',
     'view/template.view',
-    'event/template.event.manager'
-], function defineTemplate(Base, MVC, API, Layout, Controller, Model, View, EventManager) {
+    'event/template.event.manager',
+    'permission/template.permission'
+], function defineTemplate(Base, MVC, API, Layout, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define template
@@ -58,7 +59,8 @@ define([
                 Controller,
                 Model,
                 View,
-                EventManager
+                EventManager,
+                Permission
             ],
             render: true
         });

@@ -5,8 +5,9 @@ define([
     'controller/workspace.controller',
     'model/workspace.model',
     'view/workspace.view',
-    'event/workspace.event.manager'
-], function defineWorkspace(Base, MVC, API, Controller, Model, View, EventManager) {
+    'event/workspace.event.manager',
+    'permission/workspace.permission'
+], function defineWorkspace(Base, MVC, API, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define Workspace
@@ -60,7 +61,8 @@ define([
                 Controller,
                 Model,
                 View,
-                EventManager
+                EventManager,
+                Permission
             ]
         });
 

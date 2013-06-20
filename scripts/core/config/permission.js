@@ -17,10 +17,27 @@ define([
 
     /**
      * Define Application Global permission
-     * @type {{development: {activateDebugger: boolean, destroyDebugger: boolean}}}
+     * @type {{
+     *      development: {activateDebugger: boolean, destroyDebugger: boolean},
+     *      authorize: {activateDebugger: boolean, destroyDebugger: boolean},
+     *      consumption: {activateDebugger: boolean, destroyDebugger: boolean},
+     *      test: {activateDebugger: boolean, destroyDebugger: boolean}
+     * }}
      */
     Application.prototype.globalPermissions = {
         development: {
+            activateDebugger: true,
+            destroyDebugger: true
+        },
+        authorize: {
+            activateDebugger: false,
+            destroyDebugger: false
+        },
+        consumption: {
+            activateDebugger: false,
+            destroyDebugger: false
+        },
+        test: {
             activateDebugger: true,
             destroyDebugger: true
         }
@@ -31,6 +48,14 @@ define([
      * @type {{}}
      */
     Workspace.prototype.globalPermissions = {
+        development: {
+        },
+        authorize: {
+        },
+        consumption: {
+        },
+        test: {
+        }
     };
 
     /**
@@ -38,6 +63,14 @@ define([
      * @type {{}}
      */
     Page.prototype.globalPermissions = {
+        development: {
+        },
+        authorize: {
+        },
+        consumption: {
+        },
+        test: {
+        }
     };
 
     /**
@@ -45,6 +78,14 @@ define([
      * @type {{}}
      */
     Template.prototype.globalPermissions = {
+        development: {
+        },
+        authorize: {
+        },
+        consumption: {
+        },
+        test: {
+        }
     };
 
     /**
@@ -52,14 +93,23 @@ define([
      * @type {{}}
      */
     Layout.prototype.globalPermissions = {
+        development: {
+        },
+        authorize: {
+        },
+        consumption: {
+        },
+        test: {
+        }
     };
 
     /**
      * Define Widget Global permission
      * @type {{
-     *  development: {draggable: boolean, resizable: boolean},
-     *  authorize: {draggable: boolean, resizable: boolean},
-     *  consumption: {draggable: boolean, resizable: boolean}
+     *      development: {draggable: boolean, resizable: boolean},
+     *      authorize: {draggable: boolean, resizable: boolean},
+     *      consumption: {draggable: boolean, resizable: boolean},
+     *      test: {draggable: boolean, resizable: boolean}
      * }}
      */
     Widget.prototype.globalPermissions = {
@@ -72,6 +122,10 @@ define([
             resizable: true
         },
         consumption: {
+            draggable: false,
+            resizable: false
+        },
+        test: {
             draggable: true,
             resizable: true
         }

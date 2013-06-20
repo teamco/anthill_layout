@@ -15,8 +15,9 @@ define([
     'view/page.view',
     'event/page.event.manager',
     'config/layout',
-    'config/template'
-], function definePage(Base, MVC, API, Controller, Model, View, EventManager, Layout, Template) {
+    'config/template',
+    'permission/page.permission'
+], function definePage(Base, MVC, API, Controller, Model, View, EventManager, Layout, Template, Permission) {
 
     /**
      * Define Page
@@ -127,7 +128,8 @@ define([
                 Controller,
                 Model,
                 View,
-                EventManager
+                EventManager,
+                Permission
             ],
             render: true
         });

@@ -13,8 +13,9 @@ define([
     'event/layout.event.manager',
     'controller/layout/layout.overlapping',
     'controller/layout/layout.empty.rows',
-    'controller/layout/layout.empty.columns'
-], function defineLayout(Base, MVC, Controller, EventManager, Overlapping, EmptyRows, EmptyColumns) {
+    'controller/layout/layout.empty.columns',
+    'permission/layout.permission'
+], function defineLayout(Base, MVC, Controller, EventManager, Overlapping, EmptyRows, EmptyColumns, Permission) {
 
     /**
      * Define Layout
@@ -80,7 +81,8 @@ define([
             config: [opts, DEFAULTS],
             components: [
                 Controller,
-                EventManager
+                EventManager,
+                Permission
             ],
             render: false
         });

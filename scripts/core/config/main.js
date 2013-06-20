@@ -15,9 +15,8 @@ requirejs.config({
     }
 });
 
-define([
+require([
     'config/listeners',
     'config/permission',
     'test/create'
-], function defineApp() {
-});
+]);

@@ -9,7 +9,7 @@
 define([
     'modules/base',
     'modules/permission'
-], function defineAppPermission(Base, BasePermission) {
+], function defineTemplatePermission(Base, BasePermission) {
 
     /**
      * Define Permissions
