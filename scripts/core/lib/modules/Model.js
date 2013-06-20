@@ -42,7 +42,6 @@ define([
                 scope.logger.debug('Get config by key', key);
                 return config[key];
             }
-
             if (this.scope.controller.checkCondition({
                 condition: this.base.isDefined(key),
                 type: 'warn',
