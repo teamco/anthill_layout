@@ -39,11 +39,15 @@ define(function defineEmptyColumns() {
             return this.layout.config.behavior.snap2grid.emptySpaces === 'column';
         },
 
+        /**
+         * Remove empty spaces by column
+         * @returns {boolean}
+         */
         remove: function remove() {
             var widgets, widget, widgetAbove,
                 order, lookupOrder,
                 i = 0, length, uuid,
-                row = 0, dom, top;
+                row = 0, top;
 
             if (!this.isAllowed()) {
                 this.layout.logger.warn('Remove empty spaces by column does not allowed');
@@ -66,19 +70,24 @@ define(function defineEmptyColumns() {
                     row = widgetAbove.dom.row + widgetAbove.dom.relHeight;
                 }
 
-                dom = widget.map.getDOM();
                 top = widget.map.widgetTop(row);
 
                 widget.model.updateDOM({
                     row: row,
                     top: top,
-                    bottom: widget.map.widgetBottom(top, dom.height)
+                    bottom: widget.map.widgetBottom(top, widget.dom.height),
+                    relBottom: widget.map.relBottom(row, widget.dom.relHeight)
                 });
 
                 order = this.getWidgetOrder(widgets);
             }
         },
 
+        /**
+         * Get widgets order
+         * @param widgets
+         * @returns {Array}
+         */
         getWidgetOrder: function getWidgetOrder(widgets) {
             var widgetOrder = this.layout.base.lib.hash.hashKeys(widgets);
 
@@ -101,6 +110,13 @@ define(function defineEmptyColumns() {
             return widgetOrder;
         },
 
+        /**
+         * Get widgets above
+         * @param {string} uuid
+         * @param {{}} widgets
+         * @param {Array} order
+         * @returns {*}
+         */
         getWidgetAbove: function (uuid, widgets, order) {
             var length = order.length,
                 i = 0,
