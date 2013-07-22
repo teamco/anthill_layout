@@ -59,6 +59,7 @@ define([
          * Define default config
          * @type {{
          *  order: number,
+         *  type: string,
          *  isDefault: boolean,
          *  layout: {
          *      behavior: {

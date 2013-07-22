@@ -107,10 +107,16 @@ define(function defineLayoutIntersect() {
          * @private
          */
         _overlappedCore: function _isOverlappedCore(src, target, from, to) {
-            return (this._overlapCondition(src[from], target[from], '<=') &&
-                this._overlapCondition(src[to], target[from], '>=')) ||
-                (this._overlapCondition(src[from], target[to], '<=') &&
-                    this._overlapCondition(src[to], target[from], '>='));
+
+
+            return (this._overlapCondition(target[from], src[from], '>') &&
+                this._overlapCondition(target[from], src[to], '<')) ||
+
+                (this._overlapCondition(target[to], src[from], '>') &&
+                    this._overlapCondition(target[to], src[to], '<')) ||
+
+                (this._overlapCondition(target[from], src[from], '<=') &&
+                    this._overlapCondition(target[to], src[to], '>='));
         },
 
         /**
@@ -140,16 +146,14 @@ define(function defineLayoutIntersect() {
          * @returns {*}
          */
         _intersectWidgets: function _intersectWidgets(source) {
-            var move = {}, index, target,
+            var move = {}, i = 0, l, target,
                 partition = this.layout.controller.getParent().model.getItemsApartOf(source);
 
-            for (index in partition) {
-                if (partition.hasOwnProperty(index)) {
-                    target = partition[index];
-                    if (this._overlapped(source.dom, target.dom)) {
-                        this.layout.logger.debug('Overlapped', target);
-                        move[target.model.getUUID()] = target;
-                    }
+            for (i, l = partition.length; i < l; i++) {
+                target = partition[i];
+                if (this._overlapped(source.dom, target.dom)) {
+                    this.layout.logger.debug('Overlapped', target);
+                    move[target.model.getUUID()] = target;
                 }
             }
 

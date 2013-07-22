@@ -14,6 +14,7 @@ define([
      * Define Overlapping
      * @class Overlapping
      * @extends {Base}
+     * @extends {Intersect}
      * @param {Layout} layout
      * @constructor
      */
@@ -210,8 +211,14 @@ define([
         _snap2gridOrganizer: function _snap2gridOrganizer(behavior, source, widget, max) {
 
             /**
+             * Define local cell dims
+             * @type {Number}
+             */
+            var cell = this.layout.controller.minCellWidth() + this.layout.config.grid.margin;
+
+            /**
              * Organize by row
-             * @param {{top: Number, bottom: Number, height: Number, row: Number}} dom
+             * @param {{top: Number, bottom: Number, height: Number, row: Number, relHeight: Number, relBottom: Number}} dom
              * @param {{dom}} source
              * @param {{map}} widget
              * @private
@@ -220,6 +227,8 @@ define([
                 dom.row = this.bottom(source.dom) + 1;
                 dom.top = widget.map.widgetTop(dom.row);
                 dom.bottom = dom.top + dom.height;
+                dom.relHeight = widget.map.relHeight(dom.height, cell);
+                dom.relBottom = widget.map.relBottom(dom.row, dom.relHeight);
             }
 
             if (behavior.organize === 'column') {
@@ -229,10 +238,14 @@ define([
 
                 widget.dom.column = this.right(source.dom) + 1;
                 widget.dom.left = widget.map.widgetLeft(widget.dom.column);
+
                 widget.dom.right = widget.map.widgetRight(
                     widget.dom.left,
                     widget.dom.width
                 );
+
+                widget.dom.relWidth = widget.map.relWidth(widget.dom.width, cell);
+                widget.dom.relRight = widget.map.relRight(widget.dom.column, widget.dom.relWidth);
 
                 if (widget.dom.right >= max) {
                     widget.dom.column = column;

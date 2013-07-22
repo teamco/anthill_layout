@@ -55,10 +55,10 @@ define([
                 additionalRows: 1,
                 margin: 1,
                 padding: {
-                    top: 14,
+                    top: 0,
                     right: 0,
                     bottom: 0,
-                    left: 14
+                    left: 0
                 }
             }
         };
