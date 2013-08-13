@@ -14,6 +14,12 @@ define([], function defineRGB() {
      */
     var RGBColor = function RGBColor(color_string) {
 
+        /**
+         * Define OK
+         * @type {boolean}
+         */
+        this.ok = false;
+
         // strip any leading #
         if (color_string.charAt(0) == '#') {
 
@@ -235,6 +241,7 @@ define([], function defineRGB() {
                 this.r = channels[0];
                 this.g = channels[1];
                 this.b = channels[2];
+                this.ok = true;
             }
 
         }
