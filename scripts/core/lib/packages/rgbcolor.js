@@ -5,19 +5,30 @@
  * license: Use it if you like it
  */
 define([], function defineRGB() {
+
+    /**
+     * Define RGBColor
+     * @param color_string
+     * @class RGBColor
+     * @constructor
+     */
     var RGBColor = function RGBColor(color_string) {
-        this.ok = false;
 
         // strip any leading #
-        if (color_string.charAt(0) == '#') { // remove # if any
+        if (color_string.charAt(0) == '#') {
+
+            // remove # if any
             color_string = color_string.substr(1, 6);
         }
 
         color_string = color_string.replace(/ /g, '');
         color_string = color_string.toLowerCase();
 
-        // before getting into regexps, try simple matches
-        // and overwrite the input
+        /**
+         * before getting into regexps, try simple matches
+         * and overwrite the input
+         * @type {{aliceblue: string, antiquewhite: string, aqua: string, aquamarine: string, azure: string, beige: string, bisque: string, black: string, blanchedalmond: string, blue: string, blueviolet: string, brown: string, burlywood: string, cadetblue: string, chartreuse: string, chocolate: string, coral: string, cornflowerblue: string, cornsilk: string, crimson: string, cyan: string, darkblue: string, darkcyan: string, darkgoldenrod: string, darkgray: string, darkgreen: string, darkkhaki: string, darkmagenta: string, darkolivegreen: string, darkorange: string, darkorchid: string, darkred: string, darksalmon: string, darkseagreen: string, darkslateblue: string, darkslategray: string, darkturquoise: string, darkviolet: string, deeppink: string, deepskyblue: string, dimgray: string, dodgerblue: string, feldspar: string, firebrick: string, floralwhite: string, forestgreen: string, fuchsia: string, gainsboro: string, ghostwhite: string, gold: string, goldenrod: string, gray: string, green: string, greenyellow: string, honeydew: string, hotpink: string, indianred: string, indigo: string, ivory: string, khaki: string, lavender: string, lavenderblush: string, lawngreen: string, lemonchiffon: string, lightblue: string, lightcoral: string, lightcyan: string, lightgoldenrodyellow: string, lightgrey: string, lightgreen: string, lightpink: string, lightsalmon: string, lightseagreen: string, lightskyblue: string, lightslateblue: string, lightslategray: string, lightsteelblue: string, lightyellow: string, lime: string, limegreen: string, linen: string, magenta: string, maroon: string, mediumaquamarine: string, mediumblue: string, mediumorchid: string, mediumpurple: string, mediumseagreen: string, mediumslateblue: string, mediumspringgreen: string, mediumturquoise: string, mediumvioletred: string, midnightblue: string, mintcream: string, mistyrose: string, moccasin: string, navajowhite: string, navy: string, oldlace: string, olive: string, olivedrab: string, orange: string, orangered: string, orchid: string, palegoldenrod: string, palegreen: string, paleturquoise: string, palevioletred: string, papayawhip: string, peachpuff: string, peru: string, pink: string, plum: string, powderblue: string, purple: string, red: string, rosybrown: string, royalblue: string, saddlebrown: string, salmon: string, sandybrown: string, seagreen: string, seashell: string, sienna: string, silver: string, skyblue: string, slateblue: string, slategray: string, snow: string, springgreen: string, steelblue: string, tan: string, teal: string, thistle: string, tomato: string, turquoise: string, violet: string, violetred: string, wheat: string, white: string, whitesmoke: string, yellow: string, yellowgreen: string}}
+         */
         var simple_colors = {
             aliceblue: 'f0f8ff',
             antiquewhite: 'faebd7',
@@ -163,14 +174,21 @@ define([], function defineRGB() {
             yellow: 'ffff00',
             yellowgreen: '9acd32'
         };
+
         for (var key in simple_colors) {
-            if (color_string == key) {
-                color_string = simple_colors[key];
+
+            if (simple_colors.hasOwnProperty(key)) {
+                if (color_string === key) {
+                    color_string = simple_colors[key];
+                }
             }
         }
-        // emd of simple type-in colors
+        // end of simple type-in colors
 
-        // array of color definition objects
+        /**
+         * array of color definition objects
+         * @type {Array}
+         */
         var color_defs = [
             {
                 re: /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/,
@@ -211,26 +229,46 @@ define([], function defineRGB() {
         for (var i = 0; i < color_defs.length; i++) {
             var re = color_defs[i].re;
             var processor = color_defs[i].process;
-            var bits = re.exec(color_string);
+            var bits = re.exec(color_string), channels;
             if (bits) {
                 channels = processor(bits);
                 this.r = channels[0];
                 this.g = channels[1];
                 this.b = channels[2];
-                this.ok = true;
             }
 
         }
 
-        // validate/cleanup values
+        /**
+         * Define Red: validate/cleanup values
+         * @type {number}
+         */
         this.r = (this.r < 0 || isNaN(this.r)) ? 0 : ((this.r > 255) ? 255 : this.r);
+
+        /**
+         * Define Green: validate/cleanup values
+         * @type {number}
+         */
         this.g = (this.g < 0 || isNaN(this.g)) ? 0 : ((this.g > 255) ? 255 : this.g);
+
+        /**
+         * Define Blue: validate/cleanup values
+         * @type {number}
+         */
         this.b = (this.b < 0 || isNaN(this.b)) ? 0 : ((this.b > 255) ? 255 : this.b);
 
-        // some getters
+        /**
+         * Define toRGB getter
+         * @returns {string}
+         */
         this.toRGB = function () {
             return 'rgb(' + this.r + ', ' + this.g + ', ' + this.b + ')';
-        }
+        };
+
+        /**
+         * Define toHex getter
+         * @returns {string}
+         */
         this.toHex = function () {
             var r = this.r.toString(16);
             var g = this.g.toString(16);
@@ -239,51 +277,7 @@ define([], function defineRGB() {
             if (g.length == 1) g = '0' + g;
             if (b.length == 1) b = '0' + b;
             return '#' + r + g + b;
-        }
-
-        // help
-        this.getHelpXML = function () {
-
-            var examples = new Array();
-            // add regexps
-            for (var i = 0; i < color_defs.length; i++) {
-                var example = color_defs[i].example;
-                for (var j = 0; j < example.length; j++) {
-                    examples[examples.length] = example[j];
-                }
-            }
-            // add type-in colors
-            for (var sc in simple_colors) {
-                examples[examples.length] = sc;
-            }
-
-            var xml = document.createElement('ul');
-            xml.setAttribute('id', 'rgbcolor-examples');
-            for (var i = 0; i < examples.length; i++) {
-                try {
-                    var list_item = document.createElement('li');
-                    var list_color = new RGBColor(examples[i]);
-                    var example_div = document.createElement('div');
-                    example_div.style.cssText =
-                        'margin: 3px; '
-                            + 'border: 1px solid black; '
-                            + 'background:' + list_color.toHex() + '; '
-                            + 'color:' + list_color.toHex()
-                    ;
-                    example_div.appendChild(document.createTextNode('test'));
-                    var list_item_value = document.createTextNode(
-                        ' ' + examples[i] + ' -> ' + list_color.toRGB() + ' -> ' + list_color.toHex()
-                    );
-                    list_item.appendChild(example_div);
-                    list_item.appendChild(list_item_value);
-                    xml.appendChild(list_item);
-
-                } catch (e) {
-                }
-            }
-            return xml;
-
-        }
+        };
 
     };
 
