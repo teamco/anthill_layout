@@ -59,6 +59,12 @@ define([], function defineDebuggerActions() {
         extendSelectors: function extendSelectors(opts) {
             this.selectors = {};
             $.each(opts || {}, function each(i, selector) {
+
+                if (!this.debugger.base.isDefined(this.scope)) {
+                    this.debugger.scope.logger.warn('Undefined scope', this, i);
+                    return false;
+                }
+
                 this.selectors[i] = [
                     this.debugger.info,
                     [
@@ -68,6 +74,7 @@ define([], function defineDebuggerActions() {
                     ].join(''),
                     selector
                 ].join(' ');
+
             }.bind(this));
 
         },

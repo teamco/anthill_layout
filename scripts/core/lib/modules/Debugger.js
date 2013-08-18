@@ -173,6 +173,11 @@ define([
                 $(scope.config.html.container).append($div);
             }
 
+            if (scopes instanceof Object) {
+                this.scope.logger.warn('Undefined scopes', scopes, this);
+                return false;
+            }
+
             var workspace = scopes.workspace,
                 page = scopes.page,
                 layout = page.layout,

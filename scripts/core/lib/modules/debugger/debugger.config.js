@@ -37,6 +37,12 @@ define([
 
             while (item !== 'object') {
                 scope = this.setScope(scope, item);
+
+                if (scope instanceof Object) {
+                    this.debugger.scope.logger.warn('Undefined scope', item);
+                    return false;
+                }
+
                 item = scope.model.getItemNameSpace();
             }
 
