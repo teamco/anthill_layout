@@ -173,7 +173,7 @@ define([
                 $(scope.config.html.container).append($div);
             }
 
-            if (scopes instanceof Object) {
+            if (!(scopes.widget instanceof Object)) {
                 this.scope.logger.warn('Undefined scopes', scopes, this);
                 return false;
             }

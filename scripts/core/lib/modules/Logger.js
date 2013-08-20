@@ -11,13 +11,15 @@ define([
 ], function defineLog(Base) {
 
     /**
-     * Logger
+     * Define Logger
+     * @class Logger
      * @constructor Logger
      */
     var Logger = function Logger() {
     };
 
     return Logger.extend({
+
         /**
          * Show Log
          * @returns {boolean}
@@ -25,10 +27,16 @@ define([
         showLog: function showLog() {
             return this.config.show;
         },
+
+        /**
+         * Check if log available
+         * @return {Boolean}
+         */
         isLoggable: function isLoggable() {
             return this.base.isDefined(console) &&
                 (this.scope.controller.isDevelopmentMode() && this.showLog());
         },
+
         /**
          * Puts (internal function)
          * @param {string} type
@@ -91,6 +99,8 @@ define([
             for (i; i < l; i += 1) {
                 hash = content[i];
                 var k = base.lib.hash.firstHashKey(hash);
+                hash[k]['caller'] = this.puts.caller;
+                hash[k]['line'] = this.stackIt((new Error).stack.split("\n"));
                 console[k](hash[k]);
             }
             console.info('timestamp', base.lib.datetime.timestamp());
@@ -98,6 +108,21 @@ define([
 
             return true;
         },
+
+        /**
+         * Stack trace parser
+         * @param {Array} stacks
+         * @returns {Array}
+         */
+        stackIt: function stackIt(stacks) {
+            var log = [];
+            for (var i = 1, l = stacks.length; i < l; i++) {
+                log.push(stacks[i].replace(/^\s+|\s+$/g, '').match(/at (\w+.+)\/?/)[1]);
+            }
+
+            return log;
+        },
+
         /**
          * Timer
          * @param {string} name
@@ -118,6 +143,7 @@ define([
                     console.timeEnd(name);
             }
         },
+
         /**
          * Define available logs
          */
