@@ -18,7 +18,7 @@ define([
      */
     var Map = function Map(widget) {
         this.widget = widget;
-        this.layout = this.widget.controller.getParent().controller.getLayout();
+        this.layout = this.widget.controller.getContainment().controller.getLayout();
         this.duration = 500;
     };
 
@@ -369,7 +369,7 @@ define([
             if (this.self.overlappingOnStop(
                 this.type,
                 widget.controller.
-                    getPage().controller.
+                    getContainment().controller.
                     getLayout().controller.
                     isOverlappingAllowed()
             )) {
@@ -402,7 +402,7 @@ define([
          * @returns {{left: Number, top: Number}}
          */
         dragTo: function dragTo() {
-            return this.widget.controller.getParent().layout.controller.getNextPosition(this.getDOM());
+            return this.widget.controller.getContainment().layout.controller.getNextPosition(this.getDOM());
         },
 
         /**

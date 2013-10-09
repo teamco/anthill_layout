@@ -120,7 +120,7 @@ define([
          * @private
          */
         _cssOrganizer: function _cssOrganizer(callback) {
-            var page = this.layout.controller.getParent(),
+            var page = this.layout.controller.getContainment(),
                 widgets = page.items,
                 index, widget, counter = 1,
                 length = this.base.lib.hash.hashLength(widgets);

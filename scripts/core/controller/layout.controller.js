@@ -27,7 +27,7 @@ define([
          * Before nested organizer
          */
         beforeNestedOrganizer: function beforeNestedOrganizer() {
-            this.controller.getParent().controller.banAddWidget();
+            this.controller.getContainment().controller.banAddWidget();
             this.logger.debug('Before nested organizer');
         },
 
@@ -35,7 +35,7 @@ define([
          * After nested organizer
          */
         afterNestedOrganizer: function afterNestedOrganizer() {
-            this.controller.getParent().controller.allowAddWidget();
+            this.controller.getContainment().controller.allowAddWidget();
             this.logger.debug('After nested organizer');
         },
 
@@ -64,7 +64,7 @@ define([
             var columns = config.columns,
                 margin = config.margin;
 
-            var elements = scope.controller.getParent().view.elements,
+            var elements = scope.controller.getContainment().view.elements,
                 $page = elements.$page || elements.$template,
                 $widgets = elements.$widgets;
 
@@ -99,7 +99,7 @@ define([
          * @returns {{left: Number, top: Number}}
          */
         getNextPosition: function getNextPosition(dom) {
-            var $widgets = this.scope.controller.getParent().controller.getWidgetsContainer(),
+            var $widgets = this.scope.controller.getContainment().controller.getWidgetsContainer(),
                 top = $widgets.getTopDelta(),
                 left = $widgets.getLeftDelta();
 
@@ -137,7 +137,7 @@ define([
          * @returns {boolean}
          */
         isSnap2Grid: function isSnap2Grid() {
-            return this.getBehaviorMode() === this.getParent().LAYOUT_MODES.snap2grid;
+            return this.getBehaviorMode() === this.getContainment().LAYOUT_MODES.snap2grid;
         },
 
         /**
@@ -145,7 +145,7 @@ define([
          * @returns {boolean}
          */
         isFreeStyle: function isFreeStyle() {
-            return this.getBehaviorMode() === this.getParent().LAYOUT_MODES.freeStyle;
+            return this.getBehaviorMode() === this.getContainment().LAYOUT_MODES.freeStyle;
         },
 
         /**

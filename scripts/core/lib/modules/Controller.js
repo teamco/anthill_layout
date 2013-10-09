@@ -30,11 +30,11 @@ define([
         },
 
         /**
-         * Get parent node
+         * Get parent node object
          * @returns {*}
          */
-        getParent: function getParent() {
-            return this.scope.config.parent;
+        getContainment: function getContainment() {
+            return this.scope.config.containment;
         },
 
         /**
@@ -42,10 +42,20 @@ define([
          * @returns {*|string}
          */
         root: function root() {
-            var root = this.scope;
-            while (root.config.hasOwnProperty('parent')) {
-                root = root.config.parent;
+            if (this.scope.config.hasOwnProperty('root')) {
+                return this.scope.config.root;
             }
+
+            /**
+             * Define root instance
+             * @type {*}
+             */
+            var root = this.scope;
+            while (root.config.hasOwnProperty('containment')) {
+                root = root.config.containment;
+            }
+
+            this.scope.config.root = root;
 
             return root;
         },
@@ -98,7 +108,7 @@ define([
          * Set item as current in parent node
          */
         setAsCurrent: function setAsCurrent() {
-            this.getParent().controller.setCurrentItem(this.scope);
+            this.getContainment().controller.setCurrentItem(this.scope);
         },
 
         /**
@@ -187,7 +197,7 @@ define([
                             '-', scope.constructor.name.toLowerCase()
                         ].join('')
                     },
-                    parent: scope
+                    containment: scope
                 }, opts);
 
             scope.logger.debug('Configuration', config);

@@ -33,17 +33,15 @@ define([
      * @param page
      * @constructor
      */
-    var Template = function Template(opts, page) {
-
-        opts = this.base.define(opts, {}, true);
+    var Template = function Template(opts, containment) {
 
         /**
          * Default config
-         * @type {{parent: *}}
+         * @type {*}
          */
         var DEFAULTS = {
             type: 'default',
-            parent: page,
+            containment: containment,
             limit: true
         };
 

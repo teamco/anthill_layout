@@ -147,7 +147,7 @@ define(function defineLayoutIntersect() {
          */
         _intersectWidgets: function _intersectWidgets(source) {
             var move = {}, i = 0, l, target,
-                partition = this.layout.controller.getParent().model.getItemsApartOf(source);
+                partition = this.layout.controller.getContainment().model.getItemsApartOf(source);
 
             for (i, l = partition.length; i < l; i++) {
                 target = partition[i];

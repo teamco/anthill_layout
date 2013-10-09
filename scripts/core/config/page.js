@@ -118,6 +118,24 @@ define([
         };
 
         /**
+         * Init observer
+         * @type {Observer}
+         */
+        this.observer = undefined;
+
+        /**
+         * Init event manager
+         * @type {EventManager}
+         */
+        this.eventmanager = undefined;
+
+        /**
+         * Init config
+         * @type {*}
+         */
+        this.config = undefined;
+
+        /**
          * Define MVC
          * @type {MVC}
          */

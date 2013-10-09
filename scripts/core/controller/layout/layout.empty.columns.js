@@ -25,7 +25,7 @@ define(function defineEmptyColumns() {
          * Define page
          * @type {Page}
          */
-        this.page = this.layout.controller.getParent();
+        this.page = this.layout.controller.getContainment();
 
     };
 
