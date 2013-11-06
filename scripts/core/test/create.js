@@ -15,11 +15,11 @@ define([
         }
     });
 
-//    window.app.view.render();
-//
-//    var workspace1 = window.app.api.createWorkspace([], true),
-//        page1 = workspace1.api.createPage([], true),
-//        widget1 = page1.api.createWidget({type: page1.config.widget.types.template}, true)
+    window.app.view.render();
+
+    var workspace1 = window.app.api.createWorkspace([], true),
+        page1 = workspace1.api.createPage([], true),
+        widget1 = page1.api.createWidget({type: page1.config.widget.types.template}, true)
 //        ,
 //        page2 = page1.api.createTemplate(widget1)
 //        ,  widget2 = page2.api.createWidget([], true)
