@@ -4,19 +4,38 @@ requirejs.config({
         config: 'config',
         application: 'application',
         api: 'api',
+
         controller: 'controller',
         model: 'model',
-        event: 'event',
         view: 'view',
+
+        event: 'event',
         permission: 'permission',
-        test: 'test',
+
         extends: 'lib/extends',
-        modules: 'lib/modules'
+        modules: 'lib/modules',
+
+        test: 'test',
+
+        jquery: 'lib/jquery/jquery.min',
+        jqueryui: 'lib/jquery/jquery-ui-1.10.3.custom.min'
+    },
+
+    shim: {
+        jqueryui: {deps: ['jquery']}
     }
 });
 
 require([
+    'jquery',
+    'jqueryui',
+    'extends/string',
+    'extends/function',
+    'lib/extends/array',
     'config/listeners',
-    'config/permission',
-    'test/create'
-]);
+    'config/permission'
+], function () {
+
+    require(['test/create'])
+
+});
