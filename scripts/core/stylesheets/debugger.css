@@ -95,8 +95,6 @@
     -webkit-border-radius: 0 0 0 5px;
     -moz-border-radius: 0 0 0 5px;
     border-radius: 0 0 0 5px;
-    overflow-y: hidden;
-    overflow-x: hidden;
 }
 
 #debug-mode .debug-container.no-border {
@@ -143,7 +141,7 @@
     border-radius: 5px 5px 0 0;
     background-color: #DEDEDE;
     border: 5px solid #999;
-    border-bottom: 1px solid #999;
+    border-bottom-width: 1px;
     padding: 10px;
     cursor: move;
     height: 35px;
@@ -381,7 +379,7 @@
     top: 0;
     right: 0;
     border: 2px solid #999;
-    border-left: 1px solid #999;
+    border-left-width: 1px;
     background: #fff;
     padding: 5px 10px 5px 20px;
     border-radius: 5px;
@@ -416,8 +414,7 @@
 }
 
 #debug-mode ul.actions li.add-item {
-    background-position: -1px -193px;
-    background-image: url('smoothness/images/ui-icons_222222_256x240.png');
+    background: url('smoothness/images/ui-icons_222222_256x240.png') -1px -193px;
 }
 
 #debug-mode ul.actions li.add-item:hover {
@@ -429,8 +426,7 @@
 }
 
 #debug-mode ul.actions li.remove-items {
-    background-position: -17px -193px;
-    background-image: url('smoothness/images/ui-icons_222222_256x240.png');
+    background: url('smoothness/images/ui-icons_222222_256x240.png') -17px -193px;
 }
 
 #debug-mode ul.actions li.remove-items:hover {
@@ -443,8 +439,7 @@
 }
 
 #debug-mode ul.actions li.remove-all-items {
-    background-position: -33px -193px;
-    background-image: url('smoothness/images/ui-icons_222222_256x240.png');
+    background: url('smoothness/images/ui-icons_222222_256x240.png') -33px -193px;
 }
 
 #debug-mode ul.actions li.remove-all-items:hover {
@@ -456,8 +451,7 @@
 }
 
 #debug-mode ul.actions li.locate-item {
-    background-position: -193px -193px;
-    background-image: url('smoothness/images/ui-icons_222222_256x240.png');
+    background: url('smoothness/images/ui-icons_222222_256x240.png') -193px -193px;
 }
 
 #debug-mode ul.actions li.locate-item:hover {
@@ -470,10 +464,9 @@
 }
 
 #debug-mode ul.actions li.edit-mode {
-    background-position: -209px -193px;
     float: right;
     margin: 0;
-    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+    background: url('smoothness/images/ui-icons_888888_256x240.png') -209px -193px;
 }
 
 #debug-mode ul.actions li.edit-mode:hover {
@@ -496,8 +489,7 @@
     width: 14px;
     height: 14px;
     cursor: pointer;
-    background: transparent url('smoothness/images/ui-icons_888888_256x240.png') no-repeat;
-    background-position: -128px -144px;
+    background: transparent url('smoothness/images/ui-icons_888888_256x240.png') no-repeat -128px -144px;
 }
 
 #debug-mode .pin:hover {
@@ -506,8 +498,7 @@
 
 #debug-mode .pin.active,
 #debug-mode .pin.active:hover {
-    background-image: url('smoothness/images/ui-icons_cd0a0a_256x240.png');
-    background-position-x: -144px -144px;
+    background: url('smoothness/images/ui-icons_cd0a0a_256x240.png') -144px -144px;
 }
 
 #debug-mode .pin.disabled,

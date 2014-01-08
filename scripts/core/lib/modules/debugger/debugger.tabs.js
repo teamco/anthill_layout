@@ -83,17 +83,41 @@ define([], function defineDebuggerTabs() {
          * @private
          */
         _bindPin: function _bindPin($pin) {
-            $pin.on(
-                'click.pin',
-                /**
-                 * Bind click
-                 */
-                function clickPin(e) {
-                    this.pinTabs ?
-                        this.unpin($pin) :
-                        this.pin($pin);
-                }.bind(this)
-            );
+
+            var scope = this;
+
+            /**
+             * Pin tabs
+             * @private
+             */
+            function _clickPin() {
+                scope.pinTabs ?
+                    _unpin($pin) :
+                    _pin($pin);
+            }
+
+            /**
+             * Pin tabs
+             * @private
+             * @param $pin
+             */
+            function _pin($pin) {
+                scope.pinTabs = true;
+                $pin.removeClass('disabled').
+                    addClass('active');
+            }
+
+            /**
+             * Unpin tabs
+             * @private
+             * @param $pin
+             */
+            function _unpin($pin) {
+                scope.pinTabs = false;
+                $pin.removeClass('active disabled');
+            }
+
+            $pin.on('click.pin', _clickPin);
         },
 
         /**
@@ -105,25 +129,6 @@ define([], function defineDebuggerTabs() {
             $pin.unbind('click.pin').
                 removeClass('active').
                 addClass('disabled');
-        },
-
-        /**
-         * Pin tabs
-         * @param $pin
-         */
-        pin: function pin($pin) {
-            this.pinTabs = true;
-            $pin.removeClass('disabled').
-                addClass('active');
-        },
-
-        /**
-         * Unpin tabs
-         * @param $pin
-         */
-        unpin: function unpin($pin) {
-            this.pinTabs = false;
-            $pin.removeClass('active disabled');
         },
 
         /**
