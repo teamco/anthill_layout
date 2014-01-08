@@ -1,41 +1,33 @@
-requirejs.config({
-    baseUrl: 'scripts/core',
-    paths: {
-        config: 'config',
-        application: 'application',
-        api: 'api',
+define(function defineBaseConfig() {
 
-        controller: 'controller',
-        model: 'model',
-        view: 'view',
+    requirejs.config({
+        baseUrl: '../../scripts/core',
+        paths: {
+            config: 'config',
+            application: 'application',
+            api: 'api',
 
-        event: 'event',
-        permission: 'permission',
+            controller: 'controller',
+            model: 'model',
+            view: 'view',
 
-        extends: 'lib/extends',
-        modules: 'lib/modules',
+            event: 'event',
+            permission: 'permission',
 
-        test: 'test',
+            extends: 'lib/extends',
+            modules: 'lib/modules',
 
-        jquery: 'lib/jquery/jquery.min',
-        jqueryui: 'lib/jquery/jquery-ui-1.10.3.custom.min'
-    },
+            test: 'test',
 
-    shim: {
-        jqueryui: {deps: ['jquery']}
-    }
-});
+            jquery: 'lib/jquery/jquery.min',
+            jqueryui: 'lib/jquery/jquery-ui-1.10.3.custom.min'
+        },
 
-require([
-    'jquery',
-    'jqueryui',
-    'extends/string',
-    'extends/function',
-    'lib/extends/array',
-    'config/listeners',
-    'config/permission'
-], function () {
+        shim: {
+            jqueryui: {deps: ['jquery']}
+        }
+    });
 
-    require(['test/create'])
+    return requirejs;
 
 });
