@@ -191,7 +191,6 @@ define([
                 [
                     '<ul class="handler">',
                     c.renderInput('Show Grid', false),
-                    c.renderInput('Expand the Content', false),
                     '</ul>',
                     '<div class="debug-container">',
 
@@ -229,12 +228,12 @@ define([
                     '</div><div class="debug-close">Hide</div>'
 
                 ].join('')
+
             ).show();
 
-            this.tabs.renderTabs($div, opacityOff);
+            this.tabs.renderTabs($div);
 
             c.bindCollapse();
-            c.bindShowHideAll();
             c.bindDebugClose();
 
             this.layout.bindToggleGrid();

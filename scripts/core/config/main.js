@@ -1,7 +1,9 @@
 define(function defineBaseConfig() {
 
     requirejs.config({
+
         baseUrl: '../../scripts/core',
+
         paths: {
             config: 'config',
             application: 'application',
@@ -26,8 +28,7 @@ define(function defineBaseConfig() {
         shim: {
             jqueryui: {deps: ['jquery']}
         }
-    });
 
-    return requirejs;
+    });
 
 });
