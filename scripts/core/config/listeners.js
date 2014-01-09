@@ -25,6 +25,7 @@ define([
      * }}
      */
     Application.prototype.globalListeners = {
+
         successRendered: {
             name: "success.rendered",
             callback: function successRenderedCallback() {
@@ -35,6 +36,7 @@ define([
                 }
             }
         },
+
         debugStart: {
             name: 'debug.start',
             callback: function debugStartCallback() {
@@ -45,18 +47,21 @@ define([
                 this.debugger = new Debugger(this);
             }
         },
+
         debugEnd: {
             name: 'debug.end',
             callback: function debugEndCallback() {
                 this.debugger.destroy();
             }
         },
+
         resizeWindow: {
             name: 'resize.window',
             callback: function resizeWindowCallback() {
-                // TODO
+                this.observer.publish(this.eventmanager.eventList.resizeWorkspaces);
             }
         }
+
     };
 
     /**
@@ -111,7 +116,7 @@ define([
         createWidget: {
             name: 'create.widget',
             callback: function createWidgetCallback() {
-                this.observer.publish(this.eventmanager.eventList.setPageHeight);
+                this.observer.publish(this.eventmanager.eventList.updateHeight);
             }
         }
     };

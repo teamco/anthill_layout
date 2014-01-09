@@ -19,6 +19,7 @@ define([
     };
 
     return Controller.extend({
+
         /**
          * Init window resize
          */
@@ -29,6 +30,7 @@ define([
                 this.resizeWindowPublisher.bind(this)
             );
         },
+
         /**
          * Resize window publisher
          */
@@ -37,24 +39,29 @@ define([
                 this.scope.eventmanager.eventList.resizeWindow
             );
         },
+
         /**
          * Resize window callback
          */
         resizeWindow: function resizeWindow() {
             this.logger.debug('Start resize window');
+            this.model.setConfig('isResized', true);
         },
+
         /**
          * Start debugger
          */
         debugStart: function debugStart() {
             this.logger.debug('Activate debugger');
         },
+
         /**
          * End debugger
          */
         debugEnd: function debugEnd() {
             this.logger.debug('Destroy debugger');
         },
+
         /**
          * Activate debugger
          */
@@ -63,6 +70,7 @@ define([
             scope.observer.publish(scope.eventmanager.eventList.debugStart);
             scope.view.elements.$debugger.deactivate();
         },
+
         /**
          * Deactivate debugger
          */
