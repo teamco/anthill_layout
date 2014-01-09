@@ -27,6 +27,6 @@ define([
  //,
 //        widget3 = page1.api.createWidget([], true),
 //        widget4 = page1.api.createWidget([], true)
-        ;
+//        ;
 
 });

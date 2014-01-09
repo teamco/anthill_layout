@@ -46,6 +46,18 @@ define([
          * }}
          */
         this.RESERVED = {
+            resize: {
+                singular: [
+                    'Workspace',
+                    'Page',
+                    'Widget'
+                ],
+                plural: [
+                    'Workspaces',
+                    'Pages',
+                    'Widgets'
+                ]
+            },
             create: {
                 singular: [
                     'Workspace',
@@ -332,6 +344,7 @@ define([
          * Apply event manager
          */
         applyEventManager: function applyEventManager() {
+
             var scope = this.scope,
                 base = this.base,
                 eventManager = scope.eventmanager;

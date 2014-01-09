@@ -1,22 +1,34 @@
-requirejs.config({
-    baseUrl: 'scripts/core',
-    paths: {
-        config: 'config',
-        application: 'application',
-        api: 'api',
-        controller: 'controller',
-        model: 'model',
-        event: 'event',
-        view: 'view',
-        permission: 'permission',
-        test: 'test',
-        extends: 'lib/extends',
-        modules: 'lib/modules'
-    }
-});
+define(function defineBaseConfig() {
 
-require([
-    'config/listeners',
-    'config/permission',
-    'test/create'
-]);
+    requirejs.config({
+
+        baseUrl: '../../scripts/core',
+
+        paths: {
+            config: 'config',
+            application: 'application',
+            api: 'api',
+
+            controller: 'controller',
+            model: 'model',
+            view: 'view',
+
+            event: 'event',
+            permission: 'permission',
+
+            extends: 'lib/extends',
+            modules: 'lib/modules',
+
+            test: 'test',
+
+            jquery: 'lib/jquery/jquery.min',
+            jqueryui: 'lib/jquery/jquery-ui-1.10.3.custom.min'
+        },
+
+        shim: {
+            jqueryui: {deps: ['jquery']}
+        }
+
+    });
+
+});

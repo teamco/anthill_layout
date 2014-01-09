@@ -20,12 +20,16 @@ define([
 
         /**
          * Default config
+         * Ex. logger.namespace: 'App'
+         *
          * @type {{
          *  workspace: {
          *      limit: number,
          *      counter: number
          *  },
          *  mode: string,
+         *  type: string,
+         *  isResized: boolean,
          *  logger: {
          *      show: boolean,
          *      namespaces: string|boolean,
@@ -46,10 +50,11 @@ define([
             },
             mode: 'development',
             type: 'default',
+            isResized: false,
             limit: true,
             logger: {
                 show: true,
-                namespaces: false, //'App',
+                namespaces: false,
                 type: {
                     debug: false,
                     log: false,
@@ -92,7 +97,9 @@ define([
 
         this.controller.initResizeWindow();
 
-        this.observer.publish(this.eventmanager.eventList.successCreated);
+        this.observer.publish(
+            this.eventmanager.eventList.successCreated
+        );
 
     };
 

@@ -19,7 +19,9 @@ define([
             destroyTemplate: 'destroy.template',
             createLayout: 'create.layout',
             destroyLayout: 'destroy.layout',
-            setPageHeight: 'set.page.height'
+            resizeWidget: 'resize.widget',
+            resizeWidgets: 'resize.widgets',
+            updateHeight: 'update.height'
         };
     };
 

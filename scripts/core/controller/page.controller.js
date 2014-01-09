@@ -48,8 +48,8 @@ define([
             this.model.getConfig('widget').allowToAdd = false;
         },
 
-        setPageHeight: function setPageHeight() {
-//            this.view.elements.$page.defineHeight();
+        updateHeight: function updateHeight() {
+            console.log('TODO: Update height');
         },
 
         /**

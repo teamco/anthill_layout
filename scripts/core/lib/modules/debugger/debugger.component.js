@@ -48,7 +48,7 @@ define([], function defineDebuggerComponent() {
         renderCombo: function renderCombo(text, selected, arr) {
 
             function _comboList() {
-                return $.map(arr, function map(n, i) {
+                return $.map(arr,function map(n, i) {
                     return [
                         '<option', (n === selected ? ' selected' : ''),
                         ' value="', n, '">', n, '</option>'
@@ -159,60 +159,52 @@ define([], function defineDebuggerComponent() {
          * Collapse/expand group
          */
         bindCollapse: function bindCollapse() {
-            $(this.debugger.info).find('legend').on('click.toggle', function clickToggle() {
+
+            /**
+             * Toggle legend
+             * @private
+             */
+            function _clickToggle() {
+
                 var $ul = $(this).parent().find('ul');
                 $ul['slide' + ($ul.is(':visible') ? 'Up' : 'Down')]();
-            });
-        },
 
-        /**
-         * Toggle info content
-         */
-        bindShowHideAll: function bindShowHideAll() {
-            var $label = $(this.debugger.info).find('.handler input:last+label'),
-                $close = $(this.debugger.info).find('.debug-close');
-            $label.on(
-                'click.showAll',
-                function showAll() {
-                    var $fieldset = $(this.debugger.info).find('fieldset'),
-                        $hidden = $fieldset.find('ul:hidden'),
-                        $visible = $fieldset.find('ul:visible');
+            }
 
-                    $fieldset.show();
-
-                    if ($close.text().match(/Show/)) {
-                        $close.text($close.text().replace(/Show/, 'Hide'));
-                    }
-
-                    if ($hidden.length > 0) {
-                        $hidden.slideDown();
-                        $label.text($label.text().replace(/Expand/, 'Collapse'));
-                    } else {
-                        $visible.slideUp();
-                        $label.text($label.text().replace(/Collapse/, 'Expand'));
-                    }
-                }.bind(this)
-            );
+            $('legend', this.debugger.info).on('click.toggle', _clickToggle);
         },
 
         /**
          * Hide/Show info window
          */
         bindDebugClose: function bindDebugClose() {
-            var $close = $(this.debugger.info).find('.debug-close'),
-                $content = $(this.debugger.info).find('.debug-container fieldset');
-            $close.on(
-                'click.hideDebug',
-                function hideDebug() {
-                    if ($(this.debugger.info).find('fieldset:visible').length > 0) {
-                        $content.slideUp();
-                        $close.text($close.text().replace(/Hide/, 'Show'));
-                    } else {
-                        $content.slideDown();
-                        $close.text($close.text().replace(/Show/, 'Hide'));
-                    }
-                }.bind(this)
-            );
+
+            var scope = this,
+                $close = $('.debug-close', scope.debugger.info);
+
+            /**
+             * Toggle hide/show
+             * @private
+             */
+            function _hideDebug() {
+
+                var visible = $('fieldset:visible:first', scope.debugger.info);
+
+                if (visible.length > 0) {
+
+                    visible.slideUp();
+                    $close.text($close.text().replace(/Hide/, 'Show'));
+
+                    scope.visible = visible;
+
+                } else {
+
+                    scope.visible.slideDown();
+                    $close.text($close.text().replace(/Show/, 'Hide'));
+                }
+            }
+
+            $close.on('click.hideDebug', _hideDebug);
         }
 
     });

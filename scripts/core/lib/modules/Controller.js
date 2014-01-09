@@ -112,6 +112,45 @@ define([
         },
 
         /**
+         * Resize item on resize window
+         */
+        resizeItems: function resizeItems() {
+
+            var items = this.model.getItems(),
+                cname = this[this.model.getItemNameSpace()].constructor.name;
+
+            for (var index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    this.observer.publish(
+
+                        this.eventmanager.eventList['resize' + cname],
+                        items[index]
+
+                    );
+
+                    this.logger.debug('Resize items', items[index]);
+                }
+            }
+        },
+
+        /**
+         * Resize item
+         */
+        resizeItem: function resizeItem(item) {
+
+            if (item.model.getItems())  {
+
+                item.observer.publish(
+                    item.eventmanager.eventList[item.eventmanager.abstract.resizeItems]
+                );
+
+                this.logger.debug('Resize item', item);
+            }
+        },
+
+        /**
          * Set current item
          * @param {{}} item
          * @returns {*}
