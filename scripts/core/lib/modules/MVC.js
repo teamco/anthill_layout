@@ -39,6 +39,21 @@ define([
         ];
 
         /**
+         * Define local defaults
+         * @type {string[]}
+         */
+        var singular = [
+                'Workspace',
+                'Page',
+                'Widget'
+            ],
+            plural = [
+                'Workspaces',
+                'Pages',
+                'Widgets'
+            ];
+
+        /**
          * Define reserved methods
          * @type {{
          *  create: {singular: Array},
@@ -47,35 +62,14 @@ define([
          */
         this.RESERVED = {
             resize: {
-                singular: [
-                    'Workspace',
-                    'Page',
-                    'Widget'
-                ],
-                plural: [
-                    'Workspaces',
-                    'Pages',
-                    'Widgets'
-                ]
+                singular: singular
             },
             create: {
-                singular: [
-                    'Workspace',
-                    'Page',
-                    'Widget'
-                ]
+                singular: singular
             },
             destroy: {
-                singular: [
-                    'Workspace',
-                    'Page',
-                    'Widget'
-                ],
-                plural: [
-                    'Workspaces',
-                    'Pages',
-                    'Widgets'
-                ]
+                singular: singular,
+                plural: plural
             }
         };
 
@@ -326,7 +320,9 @@ define([
         applyConfig: function applyConfig() {
             var base = this.base,
                 scope = this.scope,
-                timestamp = base.lib.datetime.timestamp(this.config.timestamp),
+                timestamp = base.lib.datetime.timestamp(
+                    this.config.timestamp
+                ),
                 config = scope.config;
 
             config.uuid = base.lib.generator.UUID(this.config.uuid);
@@ -334,7 +330,9 @@ define([
 
             if (this.render) {
                 config.html = base.define(config.html, {}, true);
-                config.html.selector = '.' + this.constructorName(scope.constructor);
+                config.html.selector = '.' + this.constructorName(
+                    scope.constructor
+                );
             }
 
             //scope.logger.debug('Apply config', config);
@@ -352,7 +350,9 @@ define([
             if (base.isDefined(eventManager)) {
 
                 eventManager.scope = scope;
-                eventManager.abstract = base.define(eventManager.abstract, {}, true);
+                eventManager.abstract = base.define(
+                    eventManager.abstract, {}, true
+                );
 
                 var eventList = eventManager.eventList,
                     index;

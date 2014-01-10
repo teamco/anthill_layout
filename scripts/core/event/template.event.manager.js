@@ -9,8 +9,31 @@
 define([
     'modules/event'
 ], function defineAppEventManager(Event) {
+
+    /**
+     * Define template event manager
+     * @class EventManager
+     * @constructor
+     */
     var EventManager = function EventManager() {
+
+        /**
+         * Define events
+         * @type {{}}
+         */
         this.events = {};
+
+        /**
+         * Define event list
+         * @type {{
+         *      createPage: string,
+         *      destroyPage: string,
+         *      destroyPages: string,
+         *      createWidget: string,
+         *      destroyWidget: string,
+         *      destroyWidgets: string
+         * }}
+         */
         this.eventList = {
             createPage: 'create.page',
             destroyPage: 'destroy.page',

@@ -95,6 +95,7 @@ define([
             template: {
             },
             widget: {
+                resize: true,
                 types: {
                     widget: 'widget',
                     template: 'template'

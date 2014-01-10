@@ -31,6 +31,7 @@ define([
             type: 'default',
             order: 1,
             page: {
+                resize: true,
                 counter: 0,
                 limit: 10,
                 // Show previous page

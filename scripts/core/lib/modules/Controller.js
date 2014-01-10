@@ -115,7 +115,6 @@ define([
          * Resize item on resize window
          */
         resizeItems: function resizeItems() {
-
             var items = this.model.getItems(),
                 cname = this[this.model.getItemNameSpace()].constructor.name;
 
@@ -123,12 +122,12 @@ define([
 
                 if (items.hasOwnProperty(index)) {
 
-                    this.observer.publish(
-
-                        this.eventmanager.eventList['resize' + cname],
-                        items[index]
-
-                    );
+//                    this.observer.publish(
+//
+//                        this.eventmanager.eventList['resize' + cname],
+//                        items[index]
+//
+//                    );
 
                     this.logger.debug('Resize items', items[index]);
                 }
@@ -137,16 +136,19 @@ define([
 
         /**
          * Resize item
+         * @param {*} item
          */
         resizeItem: function resizeItem(item) {
 
             if (item.model.getItems())  {
 
-                item.observer.publish(
-                    item.eventmanager.eventList[item.eventmanager.abstract.resizeItems]
-                );
+                var cname = this.model.getItemNameSpace();
 
-                this.logger.debug('Resize item', item);
+//                item.observer.publish(
+//                    item.eventmanager.eventList[item.eventmanager.abstract.resizeItems]
+//                );
+
+                item.logger.warn('Resize item', item, cname);
             }
         },
 

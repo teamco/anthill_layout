@@ -9,8 +9,34 @@
 define([
     'modules/event'
 ], function definePageEventManager(Event) {
+
+    /**
+     * Define page event manager
+     * @class EventManager
+     * @constructor
+     */
     var EventManager = function EventManager() {
+
+        /**
+         * Define events
+         * @type {{}}
+         */
         this.events = {};
+
+        /**
+         * Define event list
+         * @type {{
+         *      createWidget: string,
+         *      destroyWidget: string,
+         *      destroyWidgets: string,
+         *      createTemplate: string,
+         *      destroyTemplate: string,
+         *      createLayout: string,
+         *      destroyLayout: string,
+         *      resizeWidget: string,
+         *      updateHeight: string
+         * }}
+         */
         this.eventList = {
             createWidget: 'create.widget',
             destroyWidget: 'destroy.widget',
@@ -20,7 +46,7 @@ define([
             createLayout: 'create.layout',
             destroyLayout: 'destroy.layout',
             resizeWidget: 'resize.widget',
-            resizeWidgets: 'resize.widgets',
+//            resizeWidgets: 'resize.widgets',
             updateHeight: 'update.height'
         };
     };

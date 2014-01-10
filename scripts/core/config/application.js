@@ -45,6 +45,7 @@ define([
          */
         var DEFAULTS = {
             workspace: {
+                resize: true,
                 limit: 1,
                 counter: 0
             },

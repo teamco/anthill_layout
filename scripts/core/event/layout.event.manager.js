@@ -9,8 +9,30 @@
 define([
     'modules/event'
 ], function defineLayoutEventManager(Event) {
+
+    /**
+     * Define layout event manager
+     * @class EventManager
+     * @constructor
+     */
     var EventManager = function EventManager() {
+
+        /**
+         * Define events
+         * @type {{}}
+         */
         this.events = {};
+
+        /**
+         * Define event list
+         * @type {{
+         *      updateMinCellWidth: string,
+         *      beforeNestedOrganizer: string,
+         *      afterNestedOrganizer: string,
+         *      setOrganizeMode: string,
+         *      setEmptySpacesMode: string
+         * }}
+         */
         this.eventList = {
             updateMinCellWidth: 'update.min.cell.width',
             beforeNestedOrganizer: 'before.nested.organizer',

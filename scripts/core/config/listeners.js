@@ -59,7 +59,8 @@ define([
             name: 'resize.window',
             callback: function resizeWindowCallback() {
                 this.observer.publish(
-                    this.eventmanager.eventList.resizeWorkspaces
+                    this.eventmanager.eventList.resizeWorkspace,
+                    this
                 );
             }
         }
@@ -71,7 +72,8 @@ define([
      * @type {{
      *  successCreated: {name: string, callback: Function},
      *  successRendered: {name: string, callback: Function},
-     *  createPage: {name: string, callback: Function}
+     *  createPage: {name: string, callback: Function},
+     *  resizePage: {name: string, callback: Function}
      * }}
      */
     Workspace.prototype.globalListeners = {
@@ -111,7 +113,8 @@ define([
      * @type {{
      *  successCreated: {name: string, callback: Function},
      *  successRendered: {name: string, callback: Function},
-     *  createWidget: {name: string, callback: Function}
+     *  createWidget: {name: string, callback: Function},
+     *  resizeWidget: {name: string, callback: Function}
      * }}
      */
     Page.prototype.globalListeners = {
