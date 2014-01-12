@@ -38,7 +38,7 @@ define([
             destroyPage: 'destroy.page',
             destroyPages: 'destroy.pages',
             resizePage: 'resize.page',
-//            resizePages: 'resize.pages',
+            resizePages: 'resize.pages',
             setPageContainerHeight: 'set.page.container.height'
         };
 

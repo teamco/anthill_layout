@@ -32,6 +32,7 @@ define([
             order: 1,
             page: {
                 resize: true,
+                plural: false,
                 counter: 0,
                 limit: 10,
                 // Show previous page

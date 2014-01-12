@@ -62,7 +62,8 @@ define([
          */
         this.RESERVED = {
             resize: {
-                singular: singular
+                singular: singular,
+                plural: plural
             },
             create: {
                 singular: singular

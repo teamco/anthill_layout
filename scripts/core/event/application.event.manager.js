@@ -43,7 +43,7 @@ define([
             destroyWorkspace: 'destroy.workspace',
             destroyWorkspaces: 'destroy.workspaces',
             resizeWorkspace: 'resize.workspace',
-//            resizeWorkspaces: 'resize.workspaces',
+            resizeWorkspaces: 'resize.workspaces',
             debugStart: 'debug.start',
             debugEnd: 'debug.end'
         };

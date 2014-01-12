@@ -6,18 +6,22 @@ require([
 
     require([
         'jquery',
-        'jqueryui',
-        'extends/string',
-        'extends/function',
-        'lib/extends/array',
-        'config/listeners',
-        'config/permission'
+        'jqueryui'
+    ], function loadConfig() {
 
-    ], function loadApplication() {
+        require([
+            'extends/function',
+            'extends/string',
+            'extends/array',
+            'config/listeners',
+            'config/permission'
 
-        require(['test/create']);
+        ], function loadApplication() {
+
+            require(['test/create']);
+
+        });
 
     });
-
 
 });

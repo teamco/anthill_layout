@@ -96,6 +96,7 @@ define([
             },
             widget: {
                 resize: true,
+                plural: true,
                 types: {
                     widget: 'widget',
                     template: 'template'

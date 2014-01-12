@@ -10,6 +10,8 @@ define(['modules/base'], function defineBaseString(Base) {
     };
 
     BaseString.extend({
+
+
     }, Base);
 
     Base.prototype.lib.string = new BaseString();

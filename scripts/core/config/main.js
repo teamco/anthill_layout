@@ -21,7 +21,7 @@ define(function defineBaseConfig() {
 
             test: 'test',
 
-            jquery: 'lib/jquery/jquery.min',
+            jquery: 'lib/jquery/jquery-2.0.3.min',
             jqueryui: 'lib/jquery/jquery-ui-1.10.3.custom.min'
         },
 
@@ -29,7 +29,7 @@ define(function defineBaseConfig() {
             jqueryui: {deps: ['jquery']},
             'extends/function': {deps: ['jquery']},
             'extends/string': {deps: ['jquery']},
-            'lib/extends/array': {deps: ['jquery']}
+            'extends/array': {deps: ['jquery']}
         }
 
     });

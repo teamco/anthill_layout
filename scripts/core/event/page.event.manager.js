@@ -46,7 +46,7 @@ define([
             createLayout: 'create.layout',
             destroyLayout: 'destroy.layout',
             resizeWidget: 'resize.widget',
-//            resizeWidgets: 'resize.widgets',
+            resizeWidgets: 'resize.widgets',
             updateHeight: 'update.height'
         };
     };

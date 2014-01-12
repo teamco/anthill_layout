@@ -66,6 +66,7 @@
      */
     String.prototype.humanize = function humanize() {
         return this.replace(/_/g, ' ').
+            replace(/./g, ' ').
             replace(/(\w+)/g, function _replace(match) {
                 return match.charAt(0).toUpperCase() + match.slice(1);
             });
