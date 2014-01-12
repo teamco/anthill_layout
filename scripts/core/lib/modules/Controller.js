@@ -139,31 +139,29 @@ define([
          */
         resizeItem: function resizeItem(item) {
 
-            var items = item.model.getItems();
+            var items = item.model.getItems(),
+                current;
 
             if (items)  {
 
                 var cname = this.model.getItemNameSpace(),
                     plural = this.model.getConfig(cname).plural,
                     abstract = item.eventmanager.abstract;
+console.log(this, cname)
+                if (!plural) {
 
-                if (plural) {
-
-                    item.observer.publish(
-                        item.eventmanager.eventList[abstract.resizeItems],
-                        items
-                    );
-
-                } else {
-
-                    item.observer.publish(
-                        item.eventmanager.eventList[abstract.resizeItems],
-                        item[item.model.getItemNameSpace()]
-                    );
+                    items = {};
+                    current = item[item.model.getItemNameSpace()];
+                    items[current.model.getConfig('uuid')] = current;
 
                 }
+console.log(items, item, plural)
+                item.observer.publish(
+                    item.eventmanager.eventList[abstract.resizeItems],
+                    items
+                );
 
-                item.logger.warn('Resize item', item, cname);
+                //item.logger.warn('Resize item', item, cname);
             }
         },
 
