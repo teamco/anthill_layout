@@ -122,12 +122,12 @@ define([
 
                 if (items.hasOwnProperty(index)) {
 
-//                    this.observer.publish(
-//
-//                        this.eventmanager.eventList['resize' + cname],
-//                        items[index]
-//
-//                    );
+                    this.observer.publish(
+
+                        this.eventmanager.eventList['resize' + cname],
+                        items[index]
+
+                    );
 
                     this.logger.debug('Resize items', items[index]);
                 }
@@ -144,9 +144,9 @@ define([
 
                 var cname = this.model.getItemNameSpace();
 
-//                item.observer.publish(
-//                    item.eventmanager.eventList[item.eventmanager.abstract.resizeItems]
-//                );
+                item.observer.publish(
+                    item.eventmanager.eventList[item.eventmanager.abstract.resizeItems]
+                );
 
                 item.logger.warn('Resize item', item, cname);
             }

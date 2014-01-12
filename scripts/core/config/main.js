@@ -27,8 +27,8 @@ define(function defineBaseConfig() {
 
         shim: {
             jqueryui: {deps: ['jquery']},
-            'extends/string': {deps: ['jquery']},
             'extends/function': {deps: ['jquery']},
+            'extends/string': {deps: ['jquery']},
             'lib/extends/array': {deps: ['jquery']}
         }
 

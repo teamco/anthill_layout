@@ -58,7 +58,10 @@ define([
         resizeWindow: {
             name: 'resize.window',
             callback: function resizeWindowCallback() {
-                this.observer.publish(this.eventmanager.eventList.resizeWorkspaces);
+                this.observer.publish(
+                    this.eventmanager.eventList.resizeWorkspace,
+                    this[this.model.getItemNameSpace()]
+                );
             }
         }
 
