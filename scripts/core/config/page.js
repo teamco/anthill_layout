@@ -95,6 +95,7 @@ define([
             template: {
             },
             widget: {
+                resize: true,
                 types: {
                     widget: 'widget',
                     template: 'template'
@@ -116,6 +117,24 @@ define([
                 }
             }
         };
+
+        /**
+         * Init observer
+         * @type {Observer}
+         */
+        this.observer = undefined;
+
+        /**
+         * Init event manager
+         * @type {EventManager}
+         */
+        this.eventmanager = undefined;
+
+        /**
+         * Init config
+         * @type {*}
+         */
+        this.config = undefined;
 
         /**
          * Define MVC

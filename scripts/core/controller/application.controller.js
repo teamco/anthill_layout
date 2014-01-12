@@ -25,8 +25,7 @@ define([
          */
         initResizeWindow: function initResizeWindow() {
             this.scope.logger.debug('Init window resize');
-            $(window).on(
-                'resize.window',
+            $(window).resize(
                 this.resizeWindowPublisher.bind(this)
             );
         },

@@ -237,10 +237,10 @@ define([
          * @returns {*}
          */
         stretch: function stretch() {
-            var config = this.view.scope.config,
+            var scope = this.view.scope,
                 items = 1;
-            if (config.parent && config.html.stretch) {
-                items = this.base.lib.hash.hashLength(config.parent.items);
+            if (scope.controller.getContainment() && scope.config.html.stretch) {
+                items = this.base.lib.hash.hashLength(scope.controller.getContainment().items);
                 if (items > 1) {
                     this.$.css({
                         left: (items - 1) * 100 + '%'

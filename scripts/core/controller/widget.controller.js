@@ -24,19 +24,11 @@ define([
     return Controller.extend({
 
         /**
-         * Get parent page instance
-         * @return {Page}
-         */
-        getPage: function getPage() {
-            return this.getParent();
-        },
-
-        /**
          * Get page jquery object
          * @returns {*|jQuery}
          */
         get$page: function get$page() {
-            return this.getPage().view.elements.$page.$;
+            return this.getContainment().view.elements.$page.$;
         },
 
         /**
@@ -58,7 +50,7 @@ define([
          * @returns {{top: number, right: number, bottom: number, left: number}}
          */
         getGlobalPadding: function getGlobalPadding() {
-            var padding = this.getPage().controller.getLayout().config.grid.padding;
+            var padding = this.getContainment().controller.getLayout().config.grid.padding;
             this.scope.logger.debug('Get global padding', padding);
 
             return padding;
@@ -171,7 +163,7 @@ define([
          */
         stopDraggable: function stopDraggable(type) {
             this.logger.debug('Stop drag', arguments);
-            this.controller.getParent().controller.downgradeLayer(this);
+            this.controller.getContainment().controller.downgradeLayer(this);
             this.controller.behaviorMode({
                 organize: false,
                 animate: true,
@@ -222,7 +214,7 @@ define([
          */
         stopResizable: function stopResizable(type, organize, animate) {
             this.logger.debug('Stop resize', arguments);
-            this.controller.getParent().controller.downgradeLayer(this);
+            this.controller.getContainment().controller.downgradeLayer(this);
             this.controller.behaviorMode({
                 organize: organize,
                 animate: animate,
@@ -251,7 +243,7 @@ define([
          */
         _getTemplateItems: function _getTemplateItems() {
             return this.isTemplate() ?
-                this.getParent().template.page.items || {} : {};
+                this.getContainment().template.page.items || {} : {};
         },
 
         /**
@@ -277,7 +269,7 @@ define([
         isTemplate: function isTemplate() {
             var scope = this.scope;
             return scope.config.type ===
-                this.getParent().model.getConfig(
+                this.getContainment().model.getConfig(
                     scope.constructor.name.toLowerCase()
                 ).types.template;
         },
@@ -294,19 +286,15 @@ define([
          */
         behaviorMode: function behaviorMode(opts) {
             var scope = this.scope,
-                page = this.getParent(),
+                page = this.getContainment(),
                 layout = page.controller.getLayout(),
                 mode = layout.controller.getBehavior();
 
-            switch (layout.config.mode) {
-                case page.LAYOUT_MODES.freeStyle:
-                    break;
-                case page.LAYOUT_MODES.snap2grid:
-                    scope.model.save();
-                    scope.map.sticker(opts, mode);
-                    break;
-                default:
-                    break;
+            if (layout.config.mode == page.LAYOUT_MODES.freeStyle) {
+            } else if (layout.config.mode == page.LAYOUT_MODES.snap2grid) {
+                scope.model.save();
+                scope.map.sticker(opts, mode);
+            } else {
             }
         },
 

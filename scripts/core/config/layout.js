@@ -23,14 +23,14 @@ define([
      * @extends {Base}
      * @mixin MVC
      */
-    var Layout = function Layout(opts, page) {
+    var Layout = function Layout(opts, containment) {
 
         /**
          * Define default config
          * @type {{
          *      type: string,
          *      limit: boolean,
-         *      parent: Page,
+         *      containment: Page|Widget,
          *      grid: {
          *          columns: number,
          *          widgetsPerRow: number,
@@ -48,7 +48,7 @@ define([
         var DEFAULTS = {
             type: 'default',
             limit: true,
-            parent: page,
+            containment: containment,
             grid: {
                 columns: 60,
                 widgetsPerRow: 3,
@@ -71,6 +71,18 @@ define([
             organize: ['none', 'row', 'column'],
             emptySpaces: ['none', 'row', 'column']
         };
+
+        /**
+         * Init observer
+         * @type {Observer}
+         */
+        this.observer = undefined;
+
+        /**
+         * Init event manager
+         * @type {EventManager}
+         */
+        this.eventmanager = undefined;
 
         /**
          * Define MVC

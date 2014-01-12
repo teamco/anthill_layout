@@ -11,7 +11,7 @@ define([
 ], function defineWidgetEventManager(Event) {
 
     /**
-     * Define event manager
+     * Define widget event manager
      * @class EventManager
      * @constructor
      */
@@ -48,10 +48,15 @@ define([
          *
          */
         this.eventList = {
+
+            /**
+             * Debugger events
+             */
             debugInteractions: {
                 eventName: 'debug.interactions',
                 params: { buffer: 1000 }
             },
+
             /**
              * Drag events
              */
@@ -81,6 +86,7 @@ define([
                 params: { buffer: 50 }
             },
             stopResizable: 'stop.resizable',
+
             save: 'save'
         };
     };

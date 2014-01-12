@@ -96,7 +96,7 @@ define([
          * @returns {*}
          */
         getParentItems: function getParentItems() {
-            return this.scope.controller.getParent().items;
+            return this.scope.controller.getContainment().items;
         },
 
         /**
@@ -174,7 +174,7 @@ define([
          * @returns {*}
          */
         deleteItem: function deleteItem(uuid) {
-            delete this.scope.controller.getParent().items[uuid];
+            delete this.scope.controller.getContainment().items[uuid];
             return this.getParentItems();
         },
 

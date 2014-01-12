@@ -95,7 +95,6 @@ define([
             events: {
                 draggable: {
                     snap: false,
-                    iframeFix: true,
                     axis: false,
                     scroll: true,
                     connectToSortable: false,
@@ -103,7 +102,6 @@ define([
                     appendTo: 'parent'
                 },
                 resizable: {
-                    iframeFix: true,
                     handles: 'all'
                 },
                 droppable: {
