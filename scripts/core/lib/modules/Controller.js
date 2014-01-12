@@ -139,15 +139,15 @@ define([
          */
         resizeItem: function resizeItem(item) {
 
-            var items = item.model.getItems(),
+            var items = this.model.getItems(),
                 current;
 
-            if (items)  {
+            if (items) {
 
                 var cname = this.model.getItemNameSpace(),
-                    plural = this.model.getConfig(cname).plural,
-                    abstract = item.eventmanager.abstract;
-console.log(this, cname)
+                    plural = item.model.getConfig(cname).plural,
+                    abstract = this.eventmanager.abstract;
+
                 if (!plural) {
 
                     items = {};
@@ -155,13 +155,15 @@ console.log(this, cname)
                     items[current.model.getConfig('uuid')] = current;
 
                 }
-console.log(items, item, plural)
-                item.observer.publish(
-                    item.eventmanager.eventList[abstract.resizeItems],
-                    items
-                );
 
-                //item.logger.warn('Resize item', item, cname);
+                if (abstract.resizeItems) {
+                    item.observer.publish(
+                        item.eventmanager.eventList[abstract.resizeItems],
+                        items
+                    );
+
+                    item.logger.debug('Resize item', cname);
+                }
             }
         },
 

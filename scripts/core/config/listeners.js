@@ -143,7 +143,7 @@ define([
         resizeWidget: {
             name: 'resize.widget',
             callback: function resizeWidgetCallback(widget) {
-                //console.log(this, widget);
+                console.log(this, widget);
             }
         }
     };
