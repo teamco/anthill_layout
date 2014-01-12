@@ -25,15 +25,16 @@ define([
          */
         initResizeWindow: function initResizeWindow() {
             this.scope.logger.debug('Init window resize');
-            $(window).resize(
-                this.resizeWindowPublisher.bind(this)
-            );
+
+            window.attachEvent ?
+                window.attachEvent('onresize', this.resizeWindowPublisher.bind(this)) :
+                window.addEventListener('resize', this.resizeWindowPublisher.bind(this));
         },
 
         /**
          * Resize window publisher
          */
-        resizeWindowPublisher: function resizeWindowPublisher() {
+        resizeWindowPublisher: function resizeWindowPublisher(e) {
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.resizeWindow
             );
