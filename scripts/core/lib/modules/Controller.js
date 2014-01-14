@@ -42,9 +42,6 @@ define([
          * @returns {*|string}
          */
         root: function root() {
-            if (this.scope.config.hasOwnProperty('root')) {
-                return this.scope.config.root;
-            }
 
             /**
              * Define root instance
@@ -54,8 +51,6 @@ define([
             while (root.config.hasOwnProperty('containment')) {
                 root = root.config.containment;
             }
-
-            this.scope.config.root = root;
 
             return root;
         },
@@ -112,59 +107,104 @@ define([
         },
 
         /**
-         * Resize item on resize window
+         * Get resize event name
+         * Get items are ready to be resized
+         * @returns {{event: string|*, items: *}}
+         * @private
          */
-        resizeItems: function resizeItems(items) {
-            var cname = this[this.model.getItemNameSpace()].constructor.name;
-
-            for (var index in items) {
-
-                if (items.hasOwnProperty(index)) {
-
-                    this.observer.publish(
-
-                        this.eventmanager.eventList['resize' + cname],
-                        items[index]
-
-                    );
-
-                    this.logger.debug('Resize items', items[index]);
-                }
-            }
-        },
-
-        /**
-         * Resize item
-         * @param {*} item
-         */
-        resizeItem: function resizeItem(item) {
+        _getResizeItems: function _getResizeItems() {
 
             var items = this.model.getItems(),
-                current;
+                current, event;
 
             if (items) {
 
                 var cname = this.model.getItemNameSpace(),
-                    plural = item.model.getConfig(cname).plural,
-                    abstract = this.eventmanager.abstract;
+                    plural = this.model.getConfig(cname).plural,
+                    abstract = this.scope.eventmanager.abstract;
+
+                /**
+                 * Define resize event
+                 * @type {*}
+                 */
+                event = this.scope.eventmanager.eventList[abstract.resizeItem];
 
                 if (!plural) {
 
                     items = {};
-                    current = item[item.model.getItemNameSpace()];
+                    current = this.scope[this.model.getItemNameSpace()];
                     items[current.model.getConfig('uuid')] = current;
 
                 }
+            }
 
-                if (abstract.resizeItems) {
-                    item.observer.publish(
-                        item.eventmanager.eventList[abstract.resizeItems],
-                        items
-                    );
+            return {
+                event: event,
+                items: items
+            };
+        },
 
-                    item.logger.debug('Resize item', cname);
+        /**
+         * Nested resize
+         * @param resize
+         * @private
+         */
+        _resizeNestedEventTrigger: function _resizeNestedEventTrigger(resize) {
+
+            if (resize.items) {
+
+                /**
+                 * Define local items
+                 * @type {*}
+                 */
+                var items = resize.items;
+
+                for (var index in items) {
+
+                    if (items.hasOwnProperty(index)) {
+
+                        /**
+                         * Define local item
+                         * @type {*}
+                         */
+                        var item = items[index];
+
+                        this.scope.observer.publish(
+
+                            resize.event,
+                            item
+
+                        );
+
+                        item.config.containment.logger.debug(resize.event.humanize(), item);
+                    }
                 }
             }
+
+
+        },
+
+        /**
+         * Resize items on resize window
+         */
+        resizeItems: function resizeItems() {
+
+            this.controller._resizeNestedEventTrigger(
+                this.controller._getResizeItems()
+            );
+
+        },
+
+        /**
+         * Resize item on resize window
+         * @param item
+         */
+        resizeItem: function resizeItem(item) {
+
+            this.controller._resizeNestedEventTrigger(
+                item.controller._getResizeItems()
+            );
+
         },
 
         /**

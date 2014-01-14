@@ -126,7 +126,6 @@ define([
             this.renderDebugger();
         },
 
-
         /**
          * Destroy debugger
          */

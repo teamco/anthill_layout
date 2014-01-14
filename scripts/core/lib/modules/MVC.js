@@ -431,7 +431,8 @@ define([
 
                 scope.logger.debug('Subscribe events', eventManager);
 
-                this.applyGlobalListeners();
+                this.applyListeners('local');
+                this.applyListeners('global');
 
             } else {
                 scope.logger.warn('Undefined Event manager', scope.eventmanager);
@@ -439,15 +440,16 @@ define([
         },
 
         /**
-         * Apply global listeners
+         * Apply listeners
          */
-        applyGlobalListeners: function applyGlobalListeners() {
+        applyListeners: function applyListeners(type) {
             var index, event,
-                scope = this.scope;
-            if (typeof scope.globalListeners === 'object') {
-                for (index in scope.globalListeners) {
-                    if (scope.globalListeners.hasOwnProperty(index)) {
-                        event = scope.globalListeners[index];
+                scope = this.scope,
+                listener = type + 'Listeners';
+            if (typeof scope[listener] === 'object') {
+                for (index in scope[listener]) {
+                    if (scope[listener].hasOwnProperty(index)) {
+                        event = scope[listener][index];
                         scope.eventmanager.subscribe({
                             event: {
                                 eventName: event.name,
@@ -460,7 +462,7 @@ define([
                 }
             }
 
-            scope.logger.debug('Apply global listeners', scope.globalListeners);
+            scope.logger.debug('Apply ' + type + ' listeners', scope[listener]);
         },
 
         /**
@@ -469,7 +471,8 @@ define([
          */
         applyPermissions: function applyPermissions() {
 
-            this.applyGlobalPermissions();
+            this._applyPermissions('local');
+            this._applyPermissions('global');
 
             var scope = this.scope,
                 permission = scope.permission;
@@ -496,41 +499,46 @@ define([
          * Apply global permissions
          * @returns {*|boolean}
          */
-        applyGlobalPermissions: function applyGlobalPermissions() {
+        _applyPermissions: function _applyPermissions(type) {
             var base = this.base,
                 scope = this.scope,
-                mode = scope.controller.getMode();
+                mode = scope.controller.getMode(),
+                permission = type + 'Permissions';
 
             if (scope.controller.checkCondition({
                 condition: !base.isDefined(mode),
                 type: 'warn',
-                msg: 'Undefined global mode'
+                msg: 'Undefined ' + type + ' mode'
             })) {
                 return false;
             }
 
             if (scope.controller.checkCondition({
-                condition: !base.isDefined(scope.globalPermissions),
+                condition: !base.isDefined(scope[permission]),
                 type: 'warn',
-                msg: 'Undefined global permission'
+                msg: 'Undefined ' + type + ' permission'
             })) {
                 return false;
             }
 
-            var capabilities = scope.globalPermissions[mode];
+            var capabilities = scope[permission][mode];
 
             if (scope.controller.checkCondition({
                 condition: !base.isDefined(capabilities),
                 type: 'warn',
-                msg: 'Undefined global capabilities',
+                msg: 'Undefined ' + type + ' capabilities',
                 args: mode
             })) {
                 return false;
             }
 
-            scope.logger.debug('Global permissions', capabilities);
+            scope.logger.debug('Apply ' + type + ' permissions', capabilities);
 
-            scope.config.permission = capabilities;
+            if (!base.isDefined(scope.config.permission)) {
+                scope.config.permission = {};
+            }
+
+            $.extend(scope.config.permission, capabilities);
         },
 
         /**

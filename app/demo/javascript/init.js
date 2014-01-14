@@ -14,7 +14,12 @@ require([
             'extends/string',
             'extends/array',
             'config/listeners',
-            'config/permission'
+            'config/listeners',
+            'config/debugger',
+            'config/permission',
+
+            '../../app/demo/javascript/listeners',
+            '../../app/demo/javascript/permission'
 
         ], function loadApplication() {
 

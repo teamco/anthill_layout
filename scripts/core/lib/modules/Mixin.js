@@ -49,29 +49,6 @@ define([], function defineMixin() {
         },
 
         /**
-         * Get Application Root
-         * @returns {*|string}
-         */
-        root: function root() {
-            if (this.config.hasOwnProperty('root')) {
-                return this.config.root;
-            }
-
-            /**
-             * Define root instance
-             * @type {*}
-             */
-            var root = this;
-            while (this.hasParent(root)) {
-                root = this.getParent();
-            }
-
-            this.config.root = root;
-
-            return root;
-        },
-
-        /**
          * Define getters
          */
         defineGetters: function defineGetters() {

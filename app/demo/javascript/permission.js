@@ -18,28 +18,16 @@ define([
     /**
      * Define Application Global permission
      * @type {{
-     *      development: {activateDebugger: boolean, destroyDebugger: boolean},
-     *      authorize: {activateDebugger: boolean, destroyDebugger: boolean},
-     *      consumption: {activateDebugger: boolean, destroyDebugger: boolean},
-     *      test: {activateDebugger: boolean, destroyDebugger: boolean}
      * }}
      */
-    Application.prototype.localPermissions = {
+    Application.prototype.globalPermissions = {
         development: {
-            activateDebugger: true,
-            destroyDebugger: true
         },
         authorize: {
-            activateDebugger: false,
-            destroyDebugger: false
         },
         consumption: {
-            activateDebugger: false,
-            destroyDebugger: false
         },
         test: {
-            activateDebugger: true,
-            destroyDebugger: true
         }
     };
 
@@ -47,7 +35,7 @@ define([
      * Define Workspace Global permission
      * @type {{}}
      */
-    Workspace.prototype.localPermissions = {
+    Workspace.prototype.globalPermissions = {
         development: {
         },
         authorize: {
@@ -62,7 +50,7 @@ define([
      * Define Page Global permission
      * @type {{}}
      */
-    Page.prototype.localPermissions = {
+    Page.prototype.globalPermissions = {
         development: {
         },
         authorize: {
@@ -77,7 +65,7 @@ define([
      * Define Template Global permission
      * @type {{}}
      */
-    Template.prototype.localPermissions = {
+    Template.prototype.globalPermissions = {
         development: {
         },
         authorize: {
@@ -92,7 +80,7 @@ define([
      * Define Layout Global permission
      * @type {{}}
      */
-    Layout.prototype.localPermissions = {
+    Layout.prototype.globalPermissions = {
         development: {
         },
         authorize: {
@@ -112,23 +100,16 @@ define([
      *      test: {draggable: boolean, resizable: boolean}
      * }}
      */
-    Widget.prototype.localPermissions = {
+    Widget.prototype.globalPermissions = {
         development: {
-            draggable: true,
-            resizable: true
         },
         authorize: {
-            draggable: true,
-            resizable: true
         },
         consumption: {
-            draggable: false,
-            resizable: false
         },
         test: {
-            draggable: true,
-            resizable: true
         }
+
     };
 
 });

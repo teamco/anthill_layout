@@ -207,21 +207,19 @@ define([
         /**
          * Execute event
          * @member {Function} Observer
-         * @param {*} [scope] // Run callback in default scope
-         * @param {{state, callback, scope, params}} opts => {
-         *      state: internal hash (private),
-         *      callback: fn(),
-         *      scope: Override default scope,
+         * @param {*} [scope]               Run callback in default scope
+         * @param {{
+         *      state: *,                   Private internal hash
+         *      callback: Function,         Callback fn
+         *      scope: *,                   Override default scope
          *      params: {
-         *          single: true | false,   // Single run (auto unbind)
-         *          buffer: timeout (ms)    // Single run in timeout range
-         *          timeout: timeout (ms)   // Last call in timeout range,
-         *          delay: timeout (ms)     // Run after timeout
+         *          single: boolean,        Single run auto unbind
+         *          buffer: number,         Single run in timeout range in ms
+         *          timeout: number,        Last call in timeout range in ms
+         *          delay: number           Run after timeout in ms
          *      }
-         * }
-         * @param {Array} [args] => [
-         *      callback params
-         * ]
+         * }} opts
+         * @param {Array} [args]            Callback params
          * @return
          */
         executeEvent: function executeEvent(scope, opts, args) {
@@ -271,14 +269,15 @@ define([
                     opts.callback.eventName = opts.eventName;
                     return opts.callback.apply(scope, args);
                 }
-                return;
+
+                return false;
             };
 
             // Fire event only when timeout is over, each event fill reset timeout
             if (opts.params.timeout) {
 
                 if (opts.state.inTimeout) {
-                    return;
+                    return false;
                 }
 
                 var executeCallbackB4Timeout = executeCallback;

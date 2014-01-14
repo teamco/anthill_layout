@@ -21,10 +21,11 @@ define([
      *  successRendered: {name: string, callback: Function},
      *  debugStart: {name: string, callback: Function},
      *  debugEnd: {name: string, callback: Function},
-     *  resizeWindow: {name: string, callback: Function}
+     *  resizeWindow: {name: string, params: *, callback: Function}
+     *  resizeWorkspace: {name: string, callback: Function}
      * }}
      */
-    Application.prototype.globalListeners = {
+    Application.prototype.localListeners = {
 
         successRendered: {
             name: "success.rendered",
@@ -40,6 +41,7 @@ define([
         debugStart: {
             name: 'debug.start',
             callback: function debugStartCallback() {
+
                 /**
                  * Define Debugger
                  * @type {modules.debugger}
@@ -57,10 +59,21 @@ define([
 
         resizeWindow: {
             name: 'resize.window',
+            params: {
+                buffer: 500
+            },
             callback: function resizeWindowCallback() {
                 this.observer.publish(
-                    this.eventmanager.eventList.resizeWorkspace,
-                    this[this.model.getItemNameSpace()]
+                    this.eventmanager.eventList.resizeWorkspaces
+                );
+            }
+        },
+
+        resizeWorkspace: {
+            name: 'resize.workspace',
+            callback: function resizeWorkspaceCallback(workspace) {
+                workspace.observer.publish(
+                    workspace.eventmanager.eventList.resizePages
                 );
             }
         }
@@ -73,9 +86,10 @@ define([
      *  successCreated: {name: string, callback: Function},
      *  successRendered: {name: string, callback: Function},
      *  createPage: {name: string, callback: Function}
+     *  resizePage: {name: string, callback: Function}
      * }}
      */
-    Workspace.prototype.globalListeners = {
+    Workspace.prototype.localListeners = {
 
         successCreated: {
             name: "success.created",
@@ -102,6 +116,9 @@ define([
         resizePage: {
             name: 'resize.page',
             callback: function resizePageCallback(page) {
+                page.observer.publish(
+                    page.eventmanager.eventList.resizeWidgets
+                );
                 //page.controller.updateLayout();
             }
         }
@@ -113,9 +130,10 @@ define([
      *  successCreated: {name: string, callback: Function},
      *  successRendered: {name: string, callback: Function},
      *  createWidget: {name: string, callback: Function}
+     *  resizeWidget: {name: string, callback: Function}
      * }}
      */
-    Page.prototype.globalListeners = {
+    Page.prototype.localListeners = {
 
         successCreated: {
             name: "success.created",
@@ -156,18 +174,21 @@ define([
      *  createWidget: {name: string, callback: Function}
      * }}
      */
-    Template.prototype.globalListeners = {
+    Template.prototype.localListeners = {
+
         successCreated: {
             name: "success.created",
             callback: function successCreatedCallback() {
             }
         },
+
         successRendered: {
             name: "success.rendered",
             callback: function successRenderedCallback(widget) {
                 this.view.renderTemplate(widget);
             }
         },
+
         createWidget: {
             name: 'create.widget',
             callback: function createWidgetCallback() {
@@ -183,12 +204,14 @@ define([
      *  debugInteractions: {name: string, params: {buffer: number}, callback: Function}
      * }}
      */
-    Widget.prototype.globalListeners = {
+    Widget.prototype.localListeners = {
+
         successCreated: {
             name: "success.created",
             callback: function successCreatedCallback() {
             }
         },
+
         successRendered: {
             name: "success.rendered",
             callback: function successRenderedCallback() {
@@ -198,15 +221,29 @@ define([
                 this.observer.publish(event, [event, true, false, arguments]);
             }
         },
+
         debugInteractions: {
             name: "debug.interactions",
             params: {
                 buffer: 50
             },
             callback: function debugInteractionsCallback() {
+
+                /**
+                 * Define local instance of Debugger
+                 * @type {Debugger}
+                 */
                 var debug = this.controller.root().debugger;
-                if (this.base.isDefined(debug)) {
-                    debug.widget.updateWidgetInfo.apply(debug.widget, arguments);
+
+                if (typeof(debug) !== 'undefined') {
+
+                    /**
+                     * Define debugger widget
+                     * @type {*}
+                     */
+                    var widget = debug.widget;
+
+                    widget.updateWidgetInfo.apply(widget, arguments);
                 }
             }
         }
