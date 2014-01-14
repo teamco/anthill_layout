@@ -107,12 +107,12 @@ define([
         },
 
         /**
-         * Get resize event name
+         * Get resize attributes
          * Get items are ready to be resized
          * @returns {{event: string|*, items: *}}
          * @private
          */
-        _getResizeItems: function _getResizeItems() {
+        _getResizeAttributes: function _getResizeAttributes() {
 
             var items = this.model.getItems(),
                 current, event;
@@ -134,7 +134,6 @@ define([
                     items = {};
                     current = this.scope[this.model.getItemNameSpace()];
                     items[current.model.getConfig('uuid')] = current;
-
                 }
             }
 
@@ -181,7 +180,6 @@ define([
                 }
             }
 
-
         },
 
         /**
@@ -189,8 +187,14 @@ define([
          */
         resizeItems: function resizeItems() {
 
-            this.controller._resizeNestedEventTrigger(
-                this.controller._getResizeItems()
+            /**
+             * Define instance
+             * @type {Controller}
+             */
+            var controller = this.controller;
+
+            controller._resizeNestedEventTrigger(
+                controller._getResizeAttributes()
             );
 
         },
@@ -202,7 +206,7 @@ define([
         resizeItem: function resizeItem(item) {
 
             this.controller._resizeNestedEventTrigger(
-                item.controller._getResizeItems()
+                item.controller._getResizeAttributes()
             );
 
         },
