@@ -7,7 +7,7 @@
  */
 define([
     'modules/controller',
-    'controller/behavior/debugger'
+    'controller/behavior/behavior.debugger'
 ], function defineApplicationController(BaseController, Debugger) {
 
     /**

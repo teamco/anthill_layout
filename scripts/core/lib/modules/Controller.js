@@ -8,8 +8,8 @@
 
 define([
     'modules/base',
-    'controller/behavior/crud',
-    'controller/behavior/window.resize'
+    'controller/behavior/behavior.crud',
+    'controller/behavior/behavior.window.resize'
 ], function defineBaseController(Base, Crud, Resize) {
 
     /**
