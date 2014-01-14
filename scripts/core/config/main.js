@@ -6,7 +6,7 @@ define(function defineBaseConfig() {
 
         paths: {
             // Define public application path
-            app: '../../app',
+            'public': '../../public',
 
             config: 'config',
 
@@ -19,7 +19,7 @@ define(function defineBaseConfig() {
             event: 'event',
             permission: 'permission',
 
-            extends: 'lib/extends',
+            'extends': 'lib/extends',
             modules: 'lib/modules',
 
             test: 'test',

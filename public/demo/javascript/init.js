@@ -18,8 +18,8 @@ require([
             'config/debugger',
             'config/permission',
 
-            'app/demo/javascript/listeners',
-            'app/demo/javascript/permission'
+            'public/demo/javascript/listeners',
+            'public/demo/javascript/permission'
 
         ], function loadApplication() {
 
