@@ -5,8 +5,11 @@ define(function defineBaseConfig() {
         baseUrl: '../../scripts/core',
 
         paths: {
+            // Define public application path
+            app: '../../app',
+
             config: 'config',
-            application: 'application',
+
             api: 'api',
 
             controller: 'controller',
