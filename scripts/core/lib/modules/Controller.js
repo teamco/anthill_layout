@@ -7,8 +7,10 @@
  */
 
 define([
-    'modules/base'
-], function defineBaseController(Base) {
+    'modules/base',
+    'controller/behavior/crud',
+    'controller/behavior/window.resize'
+], function defineBaseController(Base, Crud, Resize) {
 
     /**
      * Define Base Controller
@@ -107,111 +109,6 @@ define([
         },
 
         /**
-         * Get resize attributes
-         * Get items are ready to be resized
-         * @returns {{event: string|*, items: *}}
-         * @private
-         */
-        _getResizeAttributes: function _getResizeAttributes() {
-
-            var items = this.model.getItems(),
-                current, event;
-
-            if (items) {
-
-                var cname = this.model.getItemNameSpace(),
-                    plural = this.model.getConfig(cname).plural,
-                    abstract = this.scope.eventmanager.abstract;
-
-                /**
-                 * Define resize event
-                 * @type {*}
-                 */
-                event = this.scope.eventmanager.eventList[abstract.resizeItem];
-
-                if (!plural) {
-
-                    items = {};
-                    current = this.scope[this.model.getItemNameSpace()];
-                    items[current.model.getConfig('uuid')] = current;
-                }
-            }
-
-            return {
-                event: event,
-                items: items
-            };
-        },
-
-        /**
-         * Nested resize
-         * @param resize
-         * @private
-         */
-        _resizeNestedEventTrigger: function _resizeNestedEventTrigger(resize) {
-
-            if (resize.items) {
-
-                /**
-                 * Define local items
-                 * @type {*}
-                 */
-                var items = resize.items;
-
-                for (var index in items) {
-
-                    if (items.hasOwnProperty(index)) {
-
-                        /**
-                         * Define local item
-                         * @type {*}
-                         */
-                        var item = items[index];
-
-                        this.scope.observer.publish(
-
-                            resize.event,
-                            item
-
-                        );
-
-                        item.config.containment.logger.debug(resize.event.humanize(), item);
-                    }
-                }
-            }
-
-        },
-
-        /**
-         * Resize items on resize window
-         */
-        resizeItems: function resizeItems() {
-
-            /**
-             * Define instance
-             * @type {Controller}
-             */
-            var controller = this.controller;
-
-            controller._resizeNestedEventTrigger(
-                controller._getResizeAttributes()
-            );
-
-        },
-
-        /**
-         * Resize item on resize window
-         * @param item
-         */
-        resizeItem: function resizeItem(item) {
-
-            this.controller._resizeNestedEventTrigger(
-                item.controller._getResizeAttributes()
-            );
-
-        },
-
-        /**
          * Set current item
          * @param {{}} item
          * @returns {*}
@@ -306,129 +203,6 @@ define([
         },
 
         /**
-         * Create Item
-         * @param {{}} opts
-         */
-        createItem: function createItem(opts) {
-            var item = this.model.createItem(
-                this.controller.extendConfig(opts)
-            );
-            this.logger.debug(
-                'Create ' + item.constructor.name,
-                this.model.getUUID(item),
-                item
-            );
-            this.observer.publish(
-                this.eventmanager.eventList.afterCreateItem
-            );
-        },
-
-        /**
-         * Reject to destroy widget
-         */
-        rejectItemDestroy: function rejectItemDestroy() {
-            var scope = this.scope,
-                $modal = scope.view.elements.$modal;
-
-            scope.logger.debug(
-                'Reject destroy',
-                $modal.item
-            );
-
-            $modal.selfDestroy();
-        },
-
-        /**
-         * Approve to destroy items
-         * @param items
-         */
-        approveItemsDestroy: function approveItemsDestroy(items) {
-            var scope = this.scope,
-                $modal = scope.view.elements.$modal;
-
-            if (this.base.isDefined($modal)) {
-                items = $modal.items;
-                $modal.selfDestroy();
-            }
-
-            var count = this.base.lib.hash.hashLength(items || {});
-
-            if (this.checkCondition({
-                condition: count === 0,
-                type: 'warn',
-                msg: 'Undefined items'
-            })) {
-                return false;
-            }
-
-            $.each(items, function each(uuid, item) {
-                this.approveItemDestroy(item, count);
-            }.bind(this));
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.afterDestroyItems
-            );
-
-        },
-
-        /**
-         * Approve to destroy item
-         * @param {*} item
-         * @param {Number} [count]
-         * @returns {boolean}
-         */
-        approveItemDestroy: function approveItemDestroy(item, count) {
-            var base = this.base,
-                scope = this.scope;
-
-            count = base.define(count, 1, true);
-
-            if (this.checkCondition({
-                condition: !base.isDefined(item),
-                type: 'warn',
-                msg: 'Undefined item'
-            })) {
-                return false;
-            }
-
-            if (this.checkCondition({
-                condition: item.constructor.name !== this.model.item.name,
-                type: 'warn',
-                msg: 'Untrusted item',
-                args: [item, item.constructor.name, this.model.item.name]
-            })) {
-                return false;
-            }
-
-            scope.logger.debug(
-                'Destroy ' + item.constructor.name,
-                item,
-                this.model.destroyItem(item)
-            );
-
-            if (count === 1) {
-                scope.observer.publish(
-                    scope.eventmanager.eventList.afterDestroyItem
-                );
-            }
-        },
-
-        /**
-         * Destroy Items
-         * @param {Object} [items]
-         * @param {Boolean} [silent]
-         */
-        destroyItems: function destroyItems(items, silent) {
-            var base = this.base;
-
-            items = base.define(items, this.items);
-
-            base.defineBoolean(silent, false, true) ?
-                this.controller.approveItemsDestroy(items) :
-                this.view.destroyWidgetsModalDialog(items);
-        },
-
-        /**
          * Set Interaction
          * @param {String} event
          * @param {*} callback
@@ -438,6 +212,7 @@ define([
             this.scope.interactions[event] = callback;
             return this.getInteraction(event);
         },
+
         /**
          * Get Interaction
          * @param {String} event
@@ -445,47 +220,7 @@ define([
          */
         getInteraction: function getInteraction(event) {
             return this.scope.interactions[event];
-        },
-
-        /**
-         * After create item event
-         */
-        afterCreateItem: function afterCreateItem() {
-            this.logger.debug('After create item');
-            this.controller.updateDebugger();
-        },
-
-        /**
-         * After destroy item event
-         */
-        afterDestroyItem: function afterDestroyItem() {
-            this.logger.debug('After destroy item');
-            this.controller.updateDebugger();
-        },
-
-        /**
-         * After destroy item event
-         */
-        afterDestroyItems: function afterDestroyItems() {
-            this.logger.debug('After destroy items');
-            this.controller.updateDebugger();
-        },
-
-        /**
-         * Update debugger info
-         * @returns {boolean}
-         */
-        updateDebugger: function updateDebugger() {
-            var scope = this.scope,
-                cname = scope.constructor.name.toLowerCase(),
-                debug = scope.controller.root().debugger;
-
-            if (!this.base.isDefined(debug)) {
-                return false;
-            }
-
-            debug[cname].updateItems(scope);
         }
 
-    }, Base);
+    }, Base, Crud.prototype, Resize.prototype);
 });

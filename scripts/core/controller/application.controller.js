@@ -6,8 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/controller'
-], function defineApplicationController(BaseController) {
+    'modules/controller',
+    'controller/behavior/debugger'
+], function defineApplicationController(BaseController, Debugger) {
 
     /**
      * Define application controller
@@ -46,40 +47,8 @@ define([
         resizeWindow: function resizeWindow() {
             this.logger.debug('Start resize window');
             this.model.setConfig('isResized', true);
-        },
-
-        /**
-         * Start debugger
-         */
-        debugStart: function debugStart() {
-            this.logger.debug('Activate debugger');
-        },
-
-        /**
-         * End debugger
-         */
-        debugEnd: function debugEnd() {
-            this.logger.debug('Destroy debugger');
-        },
-
-        /**
-         * Activate debugger
-         */
-        activateDebugger: function activateDebugger() {
-            var scope = this.scope;
-            scope.observer.publish(scope.eventmanager.eventList.debugStart);
-            scope.view.elements.$debugger.deactivate();
-        },
-
-        /**
-         * Deactivate debugger
-         */
-        deactivateDebugger: function deactivateDebugger() {
-            var scope = this.scope;
-            scope.observer.publish(scope.eventmanager.eventList.debugEnd);
-            scope.view.elements.$debugger.activate();
         }
 
-    }, BaseController.prototype);
+    }, BaseController.prototype, Debugger.prototype);
 
 });
