@@ -31,3 +31,4 @@ scripts/core/stylesheets/.DS_Store
 .settings/org.eclipse.wst.jsdt.ui.superType.container
 .settings/org.eclipse.wst.jsdt.ui.superType.name
 .settings/org.jsuml.plugin.prefs
+.idea
