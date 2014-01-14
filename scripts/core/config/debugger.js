@@ -15,6 +15,12 @@ define([
     'config/widget'
 ], function defineListeners(Debugger, Application, Workspace, Page, Template, Widget) {
 
+    Application.prototype.localListeners = Application.prototype.localListeners || {};
+    Workspace.prototype.localListeners = Workspace.prototype.localListeners || {};
+    Page.prototype.localListeners = Page.prototype.localListeners || {};
+    Template.prototype.localListeners = Template.prototype.localListeners || {};
+    Widget.prototype.localListeners = Widget.prototype.localListeners || {};
+
     /**
      * Define debugStart
      * @type {{name: string, callback: Function}}

@@ -15,6 +15,12 @@ define([
     'config/widget'
 ], function defineListeners(Debugger, Application, Workspace, Page, Template, Widget) {
 
+    Application.prototype.globalListeners = Application.prototype.globalListeners || {};
+    Workspace.prototype.globalListeners = Workspace.prototype.globalListeners || {};
+    Page.prototype.globalListeners = Page.prototype.globalListeners || {};
+    Template.prototype.globalListeners = Template.prototype.globalListeners || {};
+    Widget.prototype.globalListeners = Widget.prototype.globalListeners || {};
+
     /**
      * Define Application Global listeners
      * @type {{

@@ -29,6 +29,7 @@ define([
          *      createPage: string,
          *      destroyPage: string,
          *      destroyPages: string,
+         *      resizePages: string,
          *      resizePage: string,
          *      setPageContainerHeight: string
          * }}

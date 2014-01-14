@@ -15,14 +15,18 @@ define([
     'config/widget'
 ], function defineListeners(Debugger, Application, Workspace, Page, Template, Widget) {
 
+    Application.prototype.localListeners = Application.prototype.localListeners || {};
+    Workspace.prototype.localListeners = Workspace.prototype.localListeners || {};
+    Page.prototype.localListeners = Page.prototype.localListeners || {};
+    Template.prototype.localListeners = Template.prototype.localListeners || {};
+    Widget.prototype.localListeners = Widget.prototype.localListeners || {};
+
     /**
      * Define Application Global listeners
      * @type {{
-     *  successRendered: {name: string, callback: Function},
-     *  debugStart: {name: string, callback: Function},
-     *  debugEnd: {name: string, callback: Function},
-     *  resizeWindow: {name: string, params: *, callback: Function}
-     *  resizeWorkspace: {name: string, callback: Function}
+     *      successRendered: {name: string, callback: Function},
+     *      resizeWindow: {name: string, params: *, callback: Function},
+     *      resizeWorkspace: {name: string, callback: Function}
      * }}
      */
     Application.prototype.localListeners = {
@@ -83,10 +87,10 @@ define([
     /**
      * Define Workspace Global listeners
      * @type {{
-     *  successCreated: {name: string, callback: Function},
-     *  successRendered: {name: string, callback: Function},
-     *  createPage: {name: string, callback: Function}
-     *  resizePage: {name: string, callback: Function}
+     *      successCreated: {name: string, callback: Function},
+     *      successRendered: {name: string, callback: Function},
+     *      createPage: {name: string, callback: Function}
+     *      resizePage: {name: string, callback: Function}
      * }}
      */
     Workspace.prototype.localListeners = {
@@ -116,10 +120,10 @@ define([
         resizePage: {
             name: 'resize.page',
             callback: function resizePageCallback(page) {
+                page.controller.updateLayout();
                 page.observer.publish(
                     page.eventmanager.eventList.resizeWidgets
                 );
-                //page.controller.updateLayout();
             }
         }
     };
@@ -127,10 +131,10 @@ define([
     /**
      * Define Page Global listeners
      * @type {{
-     *  successCreated: {name: string, callback: Function},
-     *  successRendered: {name: string, callback: Function},
-     *  createWidget: {name: string, callback: Function}
-     *  resizeWidget: {name: string, callback: Function}
+     *      successCreated: {name: string, callback: Function},
+     *      successRendered: {name: string, callback: Function},
+     *      createWidget: {name: string, callback: Function}
+     *      resizeWidget: {name: string, callback: Function}
      * }}
      */
     Page.prototype.localListeners = {
@@ -161,7 +165,9 @@ define([
         resizeWidget: {
             name: 'resize.widget',
             callback: function resizeWidgetCallback(widget) {
-                console.log(this, widget);
+                widget.observer.publish(
+                    widget.eventmanager.eventList.adoptDimensions
+                );
             }
         }
     };
@@ -169,9 +175,9 @@ define([
     /**
      * Define Template Global listeners
      * @type {{
-     *  successCreated: {name: string, callback: Function},
-     *  successRendered: {name: string, callback: Function},
-     *  createWidget: {name: string, callback: Function}
+     *      successCreated: {name: string, callback: Function},
+     *      successRendered: {name: string, callback: Function},
+     *      createWidget: {name: string, callback: Function}
      * }}
      */
     Template.prototype.localListeners = {
@@ -199,9 +205,8 @@ define([
     /**
      * Define Widget Global listeners
      * @type {{
-     *  successCreated: {name: string, callback: Function},
-     *  successRendered: {name: string, callback: Function},
-     *  debugInteractions: {name: string, params: {buffer: number}, callback: Function}
+     *      successCreated: {name: string, callback: Function},
+     *      successRendered: {name: string, callback: Function}
      * }}
      */
     Widget.prototype.localListeners = {
@@ -219,32 +224,6 @@ define([
                 this.view.renderWidget();
                 this.controller.setupInteractions();
                 this.observer.publish(event, [event, true, false, arguments]);
-            }
-        },
-
-        debugInteractions: {
-            name: "debug.interactions",
-            params: {
-                buffer: 50
-            },
-            callback: function debugInteractionsCallback() {
-
-                /**
-                 * Define local instance of Debugger
-                 * @type {Debugger}
-                 */
-                var debug = this.controller.root().debugger;
-
-                if (typeof(debug) !== 'undefined') {
-
-                    /**
-                     * Define debugger widget
-                     * @type {*}
-                     */
-                    var widget = debug.widget;
-
-                    widget.updateWidgetInfo.apply(widget, arguments);
-                }
             }
         }
 

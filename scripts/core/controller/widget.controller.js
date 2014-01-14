@@ -212,7 +212,7 @@ define([
          * @param {Boolean} animate
          * @param {Boolean} organize
          */
-        stopResizable: function stopResizable(type, organize, animate) {
+        stopResizable: function stopResizable(type, organize, animate) {console.log(type)
             this.logger.debug('Stop resize', arguments);
             this.controller.getContainment().controller.downgradeLayer(this);
             this.controller.behaviorMode({
@@ -290,12 +290,28 @@ define([
                 layout = page.controller.getLayout(),
                 mode = layout.controller.getBehavior();
 
-            if (layout.config.mode == page.LAYOUT_MODES.freeStyle) {
-            } else if (layout.config.mode == page.LAYOUT_MODES.snap2grid) {
+            if (layout.config.mode === page.LAYOUT_MODES.freeStyle) {
+            } else if (layout.config.mode === page.LAYOUT_MODES.snap2grid) {
                 scope.model.save();
                 scope.map.sticker(opts, mode);
             } else {
             }
+        },
+
+        /**
+         * Adopt widget dimension on resize page
+         */
+        adoptDimensions: function adoptDimensions() {
+
+            this.controller.behaviorMode({
+                organize: false,
+                animate: false,
+                type: 'resizestop',
+                $source: this.view.elements.$widget.$,
+                callback: this.controller._resetInteractions.bind(this.controller)
+            });
+
+
         },
 
         /**

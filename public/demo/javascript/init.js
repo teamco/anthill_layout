@@ -14,7 +14,6 @@ require([
             'extends/string',
             'extends/array',
             'config/listeners',
-            'config/listeners',
             'config/debugger',
             'config/permission',
 

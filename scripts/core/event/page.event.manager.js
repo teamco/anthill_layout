@@ -33,6 +33,7 @@ define([
          *      destroyTemplate: string,
          *      createLayout: string,
          *      destroyLayout: string,
+         *      resizeWidgets: string,
          *      resizeWidget: string,
          *      updateHeight: string
          * }}

@@ -30,7 +30,8 @@ define([
          *      destroyWorkspace: string,
          *      destroyWorkspaces: string,
          *      debugStart: string,
-         *      debugEnd: string
+         *      debugEnd: string,
+         *      resizeWorkspaces: string,
          *      resizeWorkspace: string
          * }}
          */

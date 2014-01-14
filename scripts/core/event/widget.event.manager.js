@@ -43,6 +43,7 @@ define([
          *      startResizable: string,
          *      resizeResizable: {eventName: string, params: {buffer: number}},
          *      stopResizable: string,
+         *      adoptDimensions: string,
          *      save: string
          * }}
          *
@@ -86,6 +87,8 @@ define([
                 params: { buffer: 50 }
             },
             stopResizable: 'stop.resizable',
+
+            adoptDimensions: 'adopt.dimensions',
 
             save: 'save'
         };
