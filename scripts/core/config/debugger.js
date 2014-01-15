@@ -7,19 +7,22 @@
  */
 
 define([
+    'modules/prototype',
     'modules/debugger',
     'config/application',
     'config/workspace',
     'config/page',
     'config/template',
     'config/widget'
-], function defineListeners(Debugger, Application, Workspace, Page, Template, Widget) {
+], function defineListeners(Prototype, Debugger, Application, Workspace, Page, Template, Widget) {
 
-    Application.prototype.localListeners = Application.prototype.localListeners || {};
-    Workspace.prototype.localListeners = Workspace.prototype.localListeners || {};
-    Page.prototype.localListeners = Page.prototype.localListeners || {};
-    Template.prototype.localListeners = Template.prototype.localListeners || {};
-    Widget.prototype.localListeners = Widget.prototype.localListeners || {};
+    Prototype.preload([
+        Application,
+        Workspace,
+        Page,
+        Template,
+        Widget
+    ], 'localListeners', {});
 
     /**
      * Define debugStart

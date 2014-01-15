@@ -7,19 +7,22 @@
  */
 
 define([
+    'modules/prototype',
     'modules/debugger',
     'config/application',
     'config/workspace',
     'config/page',
     'config/template',
     'config/widget'
-], function defineListeners(Debugger, Application, Workspace, Page, Template, Widget) {
+], function defineListeners(Prototype, Debugger, Application, Workspace, Page, Template, Widget) {
 
-    Application.prototype.globalListeners = Application.prototype.globalListeners || {};
-    Workspace.prototype.globalListeners = Workspace.prototype.globalListeners || {};
-    Page.prototype.globalListeners = Page.prototype.globalListeners || {};
-    Template.prototype.globalListeners = Template.prototype.globalListeners || {};
-    Widget.prototype.globalListeners = Widget.prototype.globalListeners || {};
+    Prototype.preload([
+        Application,
+        Workspace,
+        Page,
+        Template,
+        Widget
+    ], 'globalListeners', {});
 
     /**
      * Define Application Global listeners

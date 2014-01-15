@@ -251,7 +251,6 @@ define([
 
             return mvc;
 
-            //scope.logger.debug('Define MVC', mvc, force);
         },
 
         /**
@@ -283,8 +282,6 @@ define([
                 }
             }
 
-            //scope.logger.debug('Set MVC Relations', relations);
-
         },
 
         /**
@@ -311,8 +308,6 @@ define([
 
             this.setRelation();
 
-            //this.scope.logger.debug('Apply MVC', this.components);
-
         },
 
         /**
@@ -335,8 +330,6 @@ define([
                     scope.constructor
                 );
             }
-
-            //scope.logger.debug('Apply config', config);
         },
 
         /**
@@ -548,8 +541,6 @@ define([
             var scope = this.scope;
             scope.observer = new Observer();
             scope.observer.scope = scope;
-
-            //scope.logger.debug('Apply Observer', scope.observer);
         },
 
         /**
@@ -571,8 +562,6 @@ define([
 
             logger.scope = scope;
             logger.defineLogs();
-
-            //scope.logger.debug('Apply Logger', scope.logger);
         },
 
         /**
@@ -583,8 +572,6 @@ define([
             if (this.base.isDefined(this.scope.model)) {
                 scope.model.defineSetting();
             }
-
-            //scope.logger.debug('Define model setting', scope.model.setting);
         }
     }, Base);
 
