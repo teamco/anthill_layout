@@ -7,15 +7,13 @@
  */
 
 define([
-    'modules/base',
     'modules/observer',
     'modules/logger'
-], function defineMVC(Base, Observer, Logger) {
+], function defineMVC(Observer, Logger) {
 
     /**
      * Define MVC
      * @class MVC
-     * @extends {Base}
      * @param opts
      * @constructor
      */
@@ -23,11 +21,11 @@ define([
 
         /**
          * Define local base
-         * @type {Base}
+         * @type {Object}
          * @property
          * @member MVC
          */
-        var base = this.base;
+        this.base = require('modules/base').prototype;
 
         /**
          * Define MVC Relationship from -> to
@@ -78,7 +76,7 @@ define([
          * Define opts
          * @type {*}
          */
-        opts = base.define(opts, {}, true);
+        opts = this.base.define(opts, {}, true);
 
         /**
          * Define scope
@@ -91,18 +89,18 @@ define([
          * Define selfConfig
          * @type {*}
          */
-        var selfConfig = base.define(opts.config[0], {}, true),
+        var selfConfig = this.base.define(opts.config[0], {}, true),
             /**
              * Define selfDefaults
              * @type {*}
              */
-                selfDefaults = base.define(opts.config[1], {}, true);
+                selfDefaults = this.base.define(opts.config[1], {}, true);
 
         /**
          * Define scope config
          * @type {mvc.scope.config}
          */
-        this.scope.config = base.lib.hash.extendHash(
+        this.scope.config = this.base.lib.hash.extendHash(
             selfConfig,
             selfDefaults
         );
@@ -111,25 +109,25 @@ define([
          * Define mvc components
          * @type {mvc.components}
          */
-        this.components = base.define(opts.components, [opts.components], true);
+        this.components = this.base.define(opts.components, [opts.components], true);
 
         /**
          * Define mvc config
          * @type {mvc.config}
          */
-        this.config = base.define(selfConfig, {}, true);
+        this.config = this.base.define(selfConfig, {}, true);
 
         /**
          * Define mvc force creating components
          * @type {mvc.force}
          */
-        this.force = base.defineBoolean(opts.force, false, true);
+        this.force = this.base.defineBoolean(opts.force, false, true);
 
         /**
          * Define mvc render
          * @type {mvc.render}
          */
-        this.render = base.defineBoolean(opts.render, true, true);
+        this.render = this.base.defineBoolean(opts.render, true, true);
 
         var config = {},
             scope = this.scope;
@@ -436,21 +434,38 @@ define([
          * Apply listeners
          */
         applyListeners: function applyListeners(type) {
+
             var index, event,
                 scope = this.scope,
                 listener = type + 'Listeners';
+
             if (typeof scope[listener] === 'object') {
+
                 for (index in scope[listener]) {
+
                     if (scope[listener].hasOwnProperty(index)) {
+
+                        /**
+                         * Define local instance of an event
+                         * @type {*}
+                         */
                         event = scope[listener][index];
-                        scope.eventmanager.subscribe({
-                            event: {
-                                eventName: event.name,
-                                params: event.params,
-                                scope: event.scope
-                            },
-                            callback: event.callback
-                        }, false);
+
+                        if (!this.base.isArray(event)) {
+                            event = [event];
+                        }
+
+                        for (var i = 0, l = event.length; i < l; i++) {
+
+                            scope.eventmanager.subscribe({
+                                event: {
+                                    eventName: event[i].name,
+                                    params: event[i].params,
+                                    scope: event[i].scope
+                                },
+                                callback: event[i].callback
+                            }, false);
+                        }
                     }
                 }
             }
@@ -573,6 +588,6 @@ define([
                 scope.model.defineSetting();
             }
         }
-    }, Base);
+    });
 
 });

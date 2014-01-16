@@ -47,8 +47,8 @@ define([
             this.logger.debug('Start resize window');
             this.model.setConfig('isResized', true);
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.resizeWindowHooks
+            this.observer.publish(
+                this.eventmanager.eventList.resizeWindowHooks
             );
         },
 

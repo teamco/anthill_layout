@@ -20,6 +20,8 @@ define([
     'event/widget.event.manager'
 ], function defineDebuggerBehaviors(Prototype, Debugger, Application, Workspace, Page, Template, Widget, ApplicationController, BehaviorDebugger, ApplicationEventMgr, WidgetEventMgr) {
 
+    var base = require('modules/base').prototype;
+
     /**
      * Load debugger events
      */
@@ -89,14 +91,13 @@ define([
      * Define resizeWindowHooks
      * @type {{name: string, callback: Function}}
      */
-    Application.prototype.localListeners.resizeWindowHooks = Application.prototype.localListeners.resizeWindowHooks || [];
-    Application.prototype.localListeners.resizeWindowHooks = {
+    base.define(Application.prototype.localListeners.resizeWindowHooks, []);
+    Application.prototype.localListeners.resizeWindowHooks.push({
         name: 'resize.window.hooks',
         callback: function resizeWindowHooksCallback() {
             console.log('here')
         }
-
-    };
+    });
 
 
     /**
