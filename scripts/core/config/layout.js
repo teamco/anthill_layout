@@ -33,7 +33,6 @@ define([
          *      containment: Page|Widget,
          *      grid: {
          *          columns: number,
-         *          widgetsPerRow: number,
          *          additionalRows: number,
          *          margin: number,
          *          padding: {
@@ -50,8 +49,7 @@ define([
             limit: true,
             containment: containment,
             grid: {
-                columns: 60,
-                widgetsPerRow: 3,
+                columns: 20,
                 additionalRows: 1,
                 margin: 1,
                 padding: {

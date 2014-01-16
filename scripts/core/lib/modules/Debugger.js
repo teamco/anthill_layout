@@ -235,7 +235,8 @@ define([
             c.bindCollapse();
             c.bindDebugClose();
 
-            this.layout.bindToggleGrid();
+            this.grid.bindToggleGrid();
+
             this.layout.bindAllowOverlapping();
             this.layout.bindChangeOverlappingMode();
             this.layout.bindChangeEmptySpacesMode();

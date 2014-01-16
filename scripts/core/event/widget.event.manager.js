@@ -22,11 +22,13 @@ define([
          * @type {{}}
          */
         this.events = {};
+    };
+
+    return EventManager.extend({
 
         /**
          * Define event list
          * @type {{
-         *      debugInteractions: {eventName: string, params: {buffer: number}},
          *      initDraggable: string,
          *      enableDraggable: string,
          *      disableDraggable: string,
@@ -48,15 +50,7 @@ define([
          * }}
          *
          */
-        this.eventList = {
-
-            /**
-             * Debugger events
-             */
-            debugInteractions: {
-                eventName: 'debug.interactions',
-                params: { buffer: 1000 }
-            },
+        eventList: {
 
             /**
              * Drag events
@@ -91,10 +85,7 @@ define([
             adoptDimensions: 'adopt.dimensions',
 
             save: 'save'
-        };
-    };
-
-    return EventManager.extend({
+        }
 
     }, Event.prototype);
 });

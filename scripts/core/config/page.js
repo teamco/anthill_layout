@@ -58,19 +58,19 @@ define([
         /**
          * Define default config
          * @type {{
-         *  order: number,
-         *  type: string,
-         *  isDefault: boolean,
-         *  layout: {
-         *      behavior: {
-         *          snap2grid: {animate: boolean, float: string, organize: string, emptySpaces: string},
-         *          freeStyle: {}
+         *      order: number,
+         *      type: string,
+         *      isDefault: boolean,
+         *      layout: {
+         *          behavior: {
+         *              snap2grid: {animate: boolean, float: string, organize: string, emptySpaces: string},
+         *              freeStyle: {}
+         *          },
+         *          mode: String
          *      },
-         *      mode: String
-         *  },
-         *  template: {},
-         *  widget: {counter: number, opacity: number, allowToAdd: boolean, addNewTo: string},
-         *  html: {header: boolean, footer: boolean, stretch: boolean, padding: {top: number, right: number, bottom: number, left: number}}
+         *      template: {},
+         *      widget: {counter: number, opacity: number, allowToAdd: boolean, addNewTo: string},
+         *      html: {header: boolean, footer: boolean, stretch: boolean, padding: {top: number, right: number, bottom: number, left: number}}
          * }}
          */
         var DEFAULTS = {

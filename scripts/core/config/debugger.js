@@ -13,9 +13,42 @@ define([
     'config/workspace',
     'config/page',
     'config/template',
-    'config/widget'
-], function defineListeners(Prototype, Debugger, Application, Workspace, Page, Template, Widget) {
+    'config/widget',
+    'controller/application.controller',
+    'controller/behavior/behavior.debugger',
+    'event/application.event.manager',
+    'event/widget.event.manager'
+], function defineDebuggerBehaviors(Prototype, Debugger, Application, Workspace, Page, Template, Widget, ApplicationController, BehaviorDebugger, ApplicationEventMgr, WidgetEventMgr) {
 
+    /**
+     * Load debugger events
+     */
+    Prototype.preload([
+        ApplicationEventMgr
+    ], 'eventList', {});
+
+    ApplicationEventMgr.prototype.eventList.debugStart = 'debug.start';
+    ApplicationEventMgr.prototype.eventList.debugEnd = 'debug.end';
+
+    WidgetEventMgr.prototype.eventList.debugInteractions = {
+        eventName: 'debug.interactions',
+        params: { buffer: 1000 }
+    };
+
+    /**
+     * Inject debugger functionality to application controller
+     */
+    for (var index in BehaviorDebugger.prototype) {
+
+        if (BehaviorDebugger.prototype.hasOwnProperty(index)) {
+            ApplicationController.prototype[index] = BehaviorDebugger.prototype[index];
+        }
+
+    }
+
+    /**
+     * Load listeners
+     */
     Prototype.preload([
         Application,
         Workspace,
@@ -51,6 +84,20 @@ define([
         }
 
     };
+
+    /**
+     * Define resizeWindowHooks
+     * @type {{name: string, callback: Function}}
+     */
+    Application.prototype.localListeners.resizeWindowHooks = Application.prototype.localListeners.resizeWindowHooks || [];
+    Application.prototype.localListeners.resizeWindowHooks = {
+        name: 'resize.window.hooks',
+        callback: function resizeWindowHooksCallback() {
+            console.log('here')
+        }
+
+    };
+
 
     /**
      * Define Widget debugInteractions

@@ -20,9 +20,34 @@ define([], function defineDebuggerGrid() {
          */
         this.debugger = debug;
 
+        this.visibility(false);
     };
 
     return DebuggerGrid.extend({
+
+        /**
+         * Toggle grid
+         */
+        bindToggleGrid: function bindToggleGrid() {
+
+            var $label = $('.handler input:first+label', this.debugger.info);
+
+            $label.on(
+                'click.toggleGrid',
+                function toggleGrid() {
+
+                    if (this.debugger.grid.visible) {
+                        $label.text($label.text().replace(/Hide/, 'Show'));
+                        return this.debugger.grid.destroyGrid();
+                    }
+
+                    $label.text($label.text().replace(/Show/, 'Hide'));
+
+                    this.debugger.grid.showGrid();
+
+                }.bind(this)
+            );
+        },
 
         /**
          * Show grid
@@ -30,6 +55,22 @@ define([], function defineDebuggerGrid() {
         showGrid: function showGrid() {
             this.destroyGrid();
             this.checkAndPlaceGrid();
+
+            this.visibility(true);
+        },
+
+         /**
+         * Set grid visibility
+         * @param {boolean} visible
+         * @returns {visible|*}
+         */
+         visibility: function visibility(visible) {
+
+            if (this.debugger.base.isDefined(visible)) {
+                this.visible = visible;
+            }
+
+            return this.visible;
         },
 
         /**
@@ -37,6 +78,8 @@ define([], function defineDebuggerGrid() {
          */
         destroyGrid: function destroyGrid() {
             $(this.debugger.placeholders).empty();
+
+            this.visibility(false);
         },
 
         /**
@@ -56,12 +99,15 @@ define([], function defineDebuggerGrid() {
         movePlaceHoldersToCurrentPage: function movePlaceHoldersToCurrentPage() {
             var $page = this.debugger.scopes.page.view.elements.$page.$,
                 $placeholder = $(this.debugger.placeholders);
+
             if ($page.find(this.debugger.placeholders).length === 0) {
                 if ($placeholder.length === 0) {
                     $placeholder = this.createPlaceHolder();
                 }
+
                 $page.append($placeholder);
             }
+
             return $page.find(this.debugger.placeholders);
         },
 

@@ -77,6 +77,7 @@ define([
             }
 
             this.eventList[eventKey] = opts.eventName;
+
             this.addListener({
                 eventName: opts.eventName,
                 callback: opts.callback,

@@ -8,13 +8,12 @@
 
 define([
     'modules/prototype',
-    'modules/debugger',
     'config/application',
     'config/workspace',
     'config/page',
     'config/template',
     'config/widget'
-], function defineListeners(Prototype, Debugger, Application, Workspace, Page, Template, Widget) {
+], function defineListeners(Prototype, Application, Workspace, Page, Template, Widget) {
 
     Prototype.preload([
         Application,
@@ -45,36 +44,17 @@ define([
             }
         },
 
-        debugStart: {
-            name: 'debug.start',
-            callback: function debugStartCallback() {
-
-                /**
-                 * Define Debugger
-                 * @type {modules.debugger}
-                 */
-                this.debugger = new Debugger(this);
-            }
-        },
-
-        debugEnd: {
-            name: 'debug.end',
-            callback: function debugEndCallback() {
-                this.debugger.destroy();
-            }
-        },
-
         resizeWindow: {
             name: 'resize.window',
-            params: {
-                buffer: 500
-            },
+            params: { buffer: 500 },
             callback: function resizeWindowCallback() {
                 this.observer.publish(
                     this.eventmanager.eventList.resizeWorkspaces
                 );
             }
         },
+
+        resizeWindowHooks: [],
 
         resizeWorkspace: {
             name: 'resize.workspace',

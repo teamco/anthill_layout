@@ -6,9 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/controller',
-    'controller/behavior/behavior.debugger'
-], function defineApplicationController(BaseController, Debugger) {
+    'modules/controller'
+], function defineApplicationController(BaseController) {
 
     /**
      * Define application controller
@@ -47,8 +46,19 @@ define([
         resizeWindow: function resizeWindow() {
             this.logger.debug('Start resize window');
             this.model.setConfig('isResized', true);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.resizeWindowHooks
+            );
+        },
+
+        /**
+         * Resize window hooks
+         */
+        resizeWindowHooks: function resizeWindowHooks() {
+            this.logger.debug('Start resize window hooks', arguments);
         }
 
-    }, BaseController.prototype, Debugger.prototype);
+    }, BaseController.prototype);
 
 });

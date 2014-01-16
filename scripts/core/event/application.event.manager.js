@@ -21,6 +21,9 @@ define([
          * @type {{}}
          */
         this.events = {};
+    };
+
+    return EventManager.extend({
 
         /**
          * Define event list
@@ -29,27 +32,22 @@ define([
          *      createWorkspace: string,
          *      destroyWorkspace: string,
          *      destroyWorkspaces: string,
-         *      debugStart: string,
-         *      debugEnd: string,
          *      resizeWorkspaces: string,
          *      resizeWorkspace: string
          * }}
          */
-        this.eventList = {
+        eventList: {
             resizeWindow: {
                 eventName: 'resize.window',
                 params: { buffer: 500 }
             },
+            resizeWindowHooks: 'resize.window.hooks',
             createWorkspace: 'create.workspace',
             destroyWorkspace: 'destroy.workspace',
             destroyWorkspaces: 'destroy.workspaces',
             resizeWorkspace: 'resize.workspace',
-            resizeWorkspaces: 'resize.workspaces',
-            debugStart: 'debug.start',
-            debugEnd: 'debug.end'
-        };
-    };
+            resizeWorkspaces: 'resize.workspaces'
+        }
 
-    return EventManager.extend({
     }, Event.prototype);
 });

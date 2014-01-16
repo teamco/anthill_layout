@@ -25,27 +25,6 @@ define([], function defineDebuggerLayout() {
     return DebuggerLayout.extend({
 
         /**
-         * Toggle grid
-         */
-        bindToggleGrid: function bindToggleGrid() {
-            var $label = $(this.debugger.info).find('.handler input:first+label');
-            $label.on(
-                'click.toggleGrid',
-                function toggleGrid() {
-                    var $placeholders = $(this.debugger.placeholders);
-
-                    if ($placeholders.length > 0 &&
-                        $placeholders.find('*').length > 0) {
-                        $label.text($label.text().replace(/Hide/, 'Show'));
-                        return this.debugger.grid.destroyGrid();
-                    }
-                    $label.text($label.text().replace(/Show/, 'Hide'));
-                    this.debugger.grid.showGrid();
-                }.bind(this)
-            );
-        },
-
-        /**
          * Bind change overlapping mode
          */
         bindChangeOverlappingMode: function bindChangeOverlappingMode() {
@@ -98,7 +77,6 @@ define([], function defineDebuggerLayout() {
                     layout.CONSTANTS.emptySpaces
                 ),
                 c.renderInline('Columns', cfg.grid.columns),
-                c.renderInline('Widgets per row', cfg.grid.widgetsPerRow),
                 c.renderInline('Cell size (px)', cfg.grid.minCellWidth.toFixed(3)),
                 c.renderInline('Margin (px)', cfg.grid.margin),
                 c.renderInline('Padding (px)', cfg.grid.padding)
