@@ -45,7 +45,6 @@ define([
         if (BehaviorDebugger.prototype.hasOwnProperty(index)) {
             ApplicationController.prototype[index] = BehaviorDebugger.prototype[index];
         }
-
     }
 
     /**
@@ -84,20 +83,30 @@ define([
         callback: function debugEndCallback() {
             this.debugger.destroy();
         }
-
     };
 
     /**
      * Define resizeWindowHooks
      * @type {{name: string, callback: Function}}
      */
-    base.define(Application.prototype.localListeners.resizeWindowHooks, []);
-    Application.prototype.localListeners.resizeWindowHooks.push({
-        name: 'resize.window.hooks',
-        callback: function resizeWindowHooksCallback() {
-            console.log('here')
+    base.define(
+            Application.prototype.localListeners.resizeWindowHooks, []
+        ).push({
+            name: 'resize.window.hooks',
+            callback: function resizeWindowHooksCallback() {
+
+                /**
+                 * Define local instance of a debugger
+                 * @type {Debugger}
+                 */
+                var debug = this.debugger;
+
+                if (debug && debug.grid.visible) {
+                    debug.grid.showGrid();
+                }
+            }
         }
-    });
+    );
 
 
     /**

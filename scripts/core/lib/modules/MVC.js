@@ -20,14 +20,6 @@ define([
     var MVC = function MVC(opts) {
 
         /**
-         * Define local base
-         * @type {Object}
-         * @property
-         * @member MVC
-         */
-        this.base = require('modules/base').prototype;
-
-        /**
          * Define MVC Relationship from -> to
          * @type {Array}
          */
@@ -209,6 +201,14 @@ define([
     };
 
     return MVC.extend({
+
+        /**
+         * Define local base
+         * @type {Object}
+         * @property
+         * @member MVC
+         */
+        base: require('modules/base').prototype,
 
         /**
          * Define MVC
