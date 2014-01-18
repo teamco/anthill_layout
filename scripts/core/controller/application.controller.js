@@ -26,25 +26,11 @@ define([
         initResizeWindow: function initResizeWindow() {
             this.scope.logger.debug('Init window resize');
 
-            /**
-             * Define data binding
-             * @type {{
-             *      controller: BaseController,
-             *      rtime: Date,
-             *      timeout: boolean,
-             *      delta: number
-             * }}
-             */
-            var data = {
-                controller: this,
-                rtime: new Date(),
-                timeout: false,
-                delta: 200
-            };
+            var callback = this.resizeWindowPublisher.bind(this.scope);
 
             window.attachEvent ?
-                window.attachEvent('onresize', this.resizeWindowPublisher.bind(data)) :
-                window.addEventListener('resize', this.resizeWindowPublisher.bind(data));
+                window.attachEvent('onresize', callback) :
+                window.addEventListener('resize', callback);
         },
 
         /**
@@ -52,36 +38,9 @@ define([
          */
         resizeWindowPublisher: function resizeWindowPublisher(e) {
 
-            /**
-             * Define local scope
-             * @type {BaseController}
-             */
-            var data = this,
-                scope = data.controller.scope;
-
-            /**
-             * Window resize denounce
-             */
-            function resizeEnd() {
-
-                if (new Date() - data.rtime < data.delta) {
-                    setTimeout(resizeEnd.bind(data), data.delta);
-                } else {
-
-                    data.timeout = false;
-
-                    scope.observer.publish(
-                        scope.eventmanager.eventList.resizeWindow
-                    );
-                }
-            }
-
-            data.rtime = new Date();
-
-            if (data.timeout === false) {
-                data.timeout = true;
-                setTimeout(resizeEnd.bind(data), data.delta);
-            }
+            this.observer.publish(
+                this.eventmanager.eventList.resizeWindow
+            );
         },
 
         /**

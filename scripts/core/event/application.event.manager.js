@@ -39,7 +39,6 @@ define([
         eventList: {
             resizeWindow: {
                 eventName: 'resize.window',
-                params: { buffer: 500 }
             },
             resizeWindowHooks: 'resize.window.hooks',
             createWorkspace: 'create.workspace',

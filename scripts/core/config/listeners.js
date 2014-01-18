@@ -46,7 +46,7 @@ define([
 
         resizeWindow: {
             name: 'resize.window',
-            params: { buffer: 500 },
+            params: { buffer: 100 },
             callback: function resizeWindowCallback() {
                 this.observer.publish(
                     this.eventmanager.eventList.resizeWorkspaces
