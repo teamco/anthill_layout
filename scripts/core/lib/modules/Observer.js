@@ -214,6 +214,7 @@ define([
          *      scope: *,                   Override default scope
          *      params: {
          *          single: boolean,        Single run auto unbind
+         *          endOf: boolean,         Single run at end of event
          *          buffer: number,         Single run in timeout range in ms
          *          timeout: number,        Last call in timeout range in ms
          *          delay: number           Run after timeout in ms
@@ -240,6 +241,7 @@ define([
                 }
 
             }
+
             // If args is not array -> force to array (else it will broke .apply())
             if (!base.isArray(args)) {
                 args = [args];
@@ -308,6 +310,36 @@ define([
                     }, this);
 
                 };
+
+            }
+
+            if (opts.params.endOf) {
+
+                /**
+                 * Event denounce
+                 * @private
+                 */
+                function _eventEnd() {
+
+                    if (base.lib.datetime.timestamp() - opts.state.lastCallAt < 200) {
+                        setTimeout(_eventEnd.bind(data), data.delta);
+                    } else {
+
+                        data.timeout = false;
+
+                        scope.observer.publish(
+                            scope.eventmanager.eventList.resizeWindow
+                        );
+                    }
+                }
+
+                data.rtime = new Date();
+
+                if (data.timeout === false) {
+                    data.timeout = true;
+                    setTimeout(resizeEnd.bind(data), data.delta);
+                }
+
 
             }
 
