@@ -50,7 +50,7 @@ define([
                 this.observer.publish(
                     this.eventmanager.eventList.resizeWorkspaces
                 );
-            }
+            }.debounce(100, true)
         },
 
         resizeWindowHooks: [],

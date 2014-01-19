@@ -180,6 +180,7 @@
     });
 
     // Debouncing Javascript Methods
+    // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods
     // The latest rendition takes two parameters:
     // the detection period (“threshold”) and a Boolean indicating whether the signal
     // should happen at the beginning of the detection period (true) or the end (“execAsap”).
@@ -193,6 +194,13 @@
     //    /* do something here, but only once */
     // }.debounce(100, true); // execute at start and use a 100ms detection period
     if (!Function.prototype.debounce) {
+
+        /**
+         * Define function debounce
+         * @param [threshold]
+         * @param [execAsap]
+         * @returns {debounced}
+         */
         Function.prototype.debounce = function debounce(threshold, execAsap) {
             // reference to original function
             var func = this,

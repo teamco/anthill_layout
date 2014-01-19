@@ -26,11 +26,13 @@ define([
         initResizeWindow: function initResizeWindow() {
             this.scope.logger.debug('Init window resize');
 
-            var callback = this.resizeWindowPublisher.bind(this.scope);
+            var callback = this.resizeWindowPublisher.
+                bind(this.scope).
+                debounce();
 
             window.attachEvent ?
-                window.attachEvent('onresizeend', callback) :
-                window.addEventListener('resizeend', callback);
+                window.attachEvent('onresize', callback) :
+                window.addEventListener('resize', callback);
         },
 
         /**
