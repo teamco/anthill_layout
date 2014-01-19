@@ -6,7 +6,7 @@
  * https://github.com/porada/resizeend
  */
 
-(function (window) {
+(function addEventShims(window) {
 
     var currentOrientation,
         debounce,
