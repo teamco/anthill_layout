@@ -28,6 +28,7 @@ define([
      * @type {{
      *      successRendered: {name: string, callback: Function},
      *      resizeWindow: {name: string, params: *, callback: Function},
+     *      resizeWindowHooks: [],
      *      resizeWorkspace: {name: string, callback: Function}
      * }}
      */
@@ -50,7 +51,7 @@ define([
                 this.observer.publish(
                     this.eventmanager.eventList.resizeWorkspaces
                 );
-            }.debounce(100, true)
+            }
         },
 
         resizeWindowHooks: [],

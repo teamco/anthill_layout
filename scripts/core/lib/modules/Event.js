@@ -45,7 +45,7 @@ define([
          * @returns {Boolean}
          */
         subscribe: function subscribe(opts, internal) {
-            var base = this.base, event, params = {};
+            var base = this.base, event;
             opts = base.define(opts, {}, true);
             internal = base.defineBoolean(internal, false, true);
 

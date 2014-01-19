@@ -20,6 +20,12 @@ define([
     var MVC = function MVC(opts) {
 
         /**
+         * Define scope
+         * @type {mvc.scope}
+         */
+        this.scope = opts.scope;
+
+        /**
          * Define MVC Relationship from -> to
          * @type {Array}
          */
@@ -65,28 +71,38 @@ define([
         };
 
         /**
-         * Define opts
+         * Define default listeners
+         * @type {*}
+         */
+        this.defaultListeners = {
+            'before.init.config': 'getConfigLog',
+            'after.init.config': 'getConfigLog',
+            'success.created': 'successCreated',
+            'success.rendered': 'successRendered',
+            'after.create.item': 'afterCreateItem',
+            'after.destroy.item': 'afterDestroyItem',
+            'after.destroy.items': 'afterDestroyItems',
+            'after.resize.window': 'afterResizeWindow'
+        };
+
+        /**
+         * Reset opts
          * @type {*}
          */
         opts = this.base.define(opts, {}, true);
-
-        /**
-         * Define scope
-         * @type {mvc.scope}
-         */
-        this.scope = opts.scope;
 
         /**
          * Apply Configure
          * Define selfConfig
          * @type {*}
          */
-        var selfConfig = this.base.define(opts.config[0], {}, true),
-            /**
-             * Define selfDefaults
-             * @type {*}
-             */
-                selfDefaults = this.base.define(opts.config[1], {}, true);
+        var selfConfig = this.base.define(opts.config[0], {}, true);
+
+        /**
+         * Define selfDefaults
+         * @type {*}
+         */
+        var selfDefaults = this.base.define(opts.config[1], {}, true);
 
         /**
          * Define scope config
@@ -111,13 +127,13 @@ define([
 
         /**
          * Define mvc force creating components
-         * @type {mvc.force}
+         * @type {Boolean}
          */
         this.force = this.base.defineBoolean(opts.force, false, true);
 
         /**
          * Define mvc render
-         * @type {mvc.render}
+         * @type {Boolean}
          */
         this.render = this.base.defineBoolean(opts.render, true, true);
 
@@ -212,25 +228,26 @@ define([
 
         /**
          * Define MVC
-         * @param {Function|String} mvc
-         * @param {Boolean} force
+         * @param {Function|String} mvcPattern
+         * @param {Boolean} [force]
          */
-        defineMVC: function defineMVC(mvc, force) {
+        defineMVC: function defineMVC(mvcPattern, force) {
 
             var base = this.base,
-                name = base.isString(mvc) ?
-                    mvc : this.constructorName(mvc),
+                name = base.isString(mvcPattern) ?
+                    mvcPattern :
+                    mvcPattern.name.toLowerCase(),
                 scope = this.scope;
 
-            if (base.isFunction(mvc)) {
+            if (base.isFunction(mvcPattern)) {
 
-                scope[name] = new mvc();
+                scope[name] = new mvcPattern();
 
             } else {
 
                 if (force) {
 
-                    var scopeName = this.constructorName(scope.constructor);
+                    var scopeName = scope.constructor.name.toLowerCase();
 
                     var fn = new Function(
                         scopeName,
@@ -242,22 +259,13 @@ define([
 
                     scope[name.toLowerCase()] = new (new fn(scope))(scope);
 
-                    mvc = scope[name.toLowerCase()].constructor;
+                    mvcPattern = scope[name.toLowerCase()].constructor;
 
                 }
             }
 
-            return mvc;
+            return mvcPattern;
 
-        },
-
-        /**
-         * Get constructor name
-         * @param {*} scope
-         * @returns {string}
-         */
-        constructorName: function constructorName(scope) {
-            return scope.name.toLowerCase();
         },
 
         /**
@@ -297,15 +305,10 @@ define([
                     return false;
                 }
 
-                this.scope[
-                    this.constructorName(
-                        this.defineMVC(mvc, this.force)
-                    )].scope = this.scope;
-
+                this.scope[this.defineMVC(mvc, this.force).name.toLowerCase()].scope = this.scope;
             }
 
             this.setRelation();
-
         },
 
         /**
@@ -324,9 +327,7 @@ define([
 
             if (this.render) {
                 config.html = base.define(config.html, {}, true);
-                config.html.selector = '.' + this.constructorName(
-                    scope.constructor
-                );
+                config.html.selector = '.' + scope.constructor.name.toLowerCase();
             }
         },
 
@@ -350,7 +351,9 @@ define([
                     index;
 
                 for (index in eventList) {
+
                     if (eventList.hasOwnProperty(index)) {
+
                         var event = eventList[index],
                             callback = scope.controller[index];
 
@@ -362,18 +365,23 @@ define([
                             method = ('.' + method.join('.')).toCamel();
 
                             if (this.RESERVED.hasOwnProperty(key)) {
+
                                 if ($.inArray(method, this.RESERVED[key].singular) > -1) {
+
                                     eventManager.abstract[key + 'Item'] = index;
                                     callback = scope.controller[key + 'Item'];
                                 } else if ($.inArray(method, this.RESERVED[key].plural) > -1) {
+
                                     eventManager.abstract[key + 'Items'] = index;
                                     callback = scope.controller[key + 'Items'];
                                 } else {
+
                                     this.scope.logger.warn(
                                         'Undefined Event Callback', [
                                             scope.controller,
                                             key + method
-                                        ]);
+                                        ]
+                                    );
                                 }
                             }
                         }
@@ -385,40 +393,7 @@ define([
                     }
                 }
 
-                eventManager.subscribe({
-                    event: 'before.init.config',
-                    callback: scope.controller.getConfigLog
-                }, true);
-
-                eventManager.subscribe({
-                    event: 'after.init.config',
-                    callback: scope.controller.getConfigLog
-                }, true);
-
-                eventManager.subscribe({
-                    event: 'success.created',
-                    callback: scope.controller.successCreated
-                }, true);
-
-                eventManager.subscribe({
-                    event: 'success.rendered',
-                    callback: scope.controller.successRendered
-                }, true);
-
-                eventManager.subscribe({
-                    event: 'after.create.item',
-                    callback: scope.controller.afterCreateItem
-                }, true);
-
-                eventManager.subscribe({
-                    event: 'after.destroy.item',
-                    callback: scope.controller.afterDestroyItem
-                }, true);
-
-                eventManager.subscribe({
-                    event: 'after.destroy.items',
-                    callback: scope.controller.afterDestroyItems
-                }, true);
+                this.applyDefaultListeners();
 
                 scope.logger.debug('Subscribe events', eventManager);
 
@@ -426,7 +401,31 @@ define([
                 this.applyListeners('global');
 
             } else {
+
                 scope.logger.warn('Undefined Event manager', scope.eventmanager);
+            }
+        },
+
+        /**
+         * Apply default listeners
+         */
+        applyDefaultListeners: function applyDefaultListeners() {
+
+            /**
+             * Local instance of default listeners
+             * @type {*}
+             */
+            var listeners = this.defaultListeners;
+
+            for (var index in listeners) {
+
+                if (listeners.hasOwnProperty(index)) {
+
+                    this.scope.eventmanager.subscribe({
+                        event: index,
+                        callback: this.scope.controller[listeners[index]]
+                    }, true);
+                }
             }
         },
 
