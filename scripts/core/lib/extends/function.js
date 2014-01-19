@@ -49,13 +49,14 @@
         }
         return false;
     }());
-// http://www.crockford.com/javascript/inheritance.html
 
-// First, the method method, which adds an instance method to a class.
-// This adds a public method to the Function.prototype, so all functions get it by
-// Class Augmentation.
-// It takes a name and a function, and adds them to a function's prototype object.
-// It returns this.
+    // http://www.crockford.com/javascript/inheritance.html
+
+    // First, the method method, which adds an instance method to a class.
+    // This adds a public method to the Function.prototype, so all functions get it by
+    // Class Augmentation.
+    // It takes a name and a function, and adds them to a function's prototype object.
+    // It returns this.
 
     /**
      * Function add Method
@@ -68,20 +69,20 @@
         return this;
     };
 
-// Next comes the inherits method, which indicates that one class inherits from another.
-// It should be called after both classes are defined, but before the inheriting class's
-// methods are added.
-// Again, we augment Function. We make an instance of the parent class and use it as the
-// new prototype. We also correct the constructor field, and we add the uber method to
-// the prototype as well.
-// The uber method looks for the named method in its own prototype. This is the function
-// to invoke in the case of Parasitic Inheritance or Object Augmentation.
-// If we are doing Classical Inheritance, then we need to find the function in the
-// parent's prototype.
-// The return statement uses the function's apply method to invoke the function,
-// explicitly setting this and passing an array of parameters. The parameters (if any)
-// are obtained from the arguments array. Unfortunately, the arguments array is not a
-// true array, so we have to use apply again to invoke the array slice method.
+    // Next comes the inherits method, which indicates that one class inherits from another.
+    // It should be called after both classes are defined, but before the inheriting class's
+    // methods are added.
+    // Again, we augment Function. We make an instance of the parent class and use it as the
+    // new prototype. We also correct the constructor field, and we add the uber method to
+    // the prototype as well.
+    // The uber method looks for the named method in its own prototype. This is the function
+    // to invoke in the case of Parasitic Inheritance or Object Augmentation.
+    // If we are doing Classical Inheritance, then we need to find the function in the
+    // parent's prototype.
+    // The return statement uses the function's apply method to invoke the function,
+    // explicitly setting this and passing an array of parameters. The parameters (if any)
+    // are obtained from the arguments array. Unfortunately, the arguments array is not a
+    // true array, so we have to use apply again to invoke the array slice method.
 
     Function.method('inherits', function inherits(Parent) {
         var d = {},
@@ -111,8 +112,8 @@
         return this;
     });
 
-// The swiss method loops through the arguments. For each name, it copies a
-// member from the parent's prototype to the new class's prototype.
+    // The swiss method loops through the arguments. For each name, it copies a
+    // member from the parent's prototype to the new class's prototype.
     Function.method('swiss', function swiss(Parent) {
         var i, l = arguments.length;
         for (i = 1; i < l; i += 1) {
@@ -127,6 +128,7 @@
      */
     if (Function.prototype.name === undefined && Object.defineProperty !== undefined) {
         Object.defineProperty(Function.prototype, 'name', {
+
             /**
              * Get function name
              * @returns {String}
@@ -139,6 +141,7 @@
 
                 return aliases.indexOf(cname) > -1 ? "Function" : cname;
             },
+
             set: function set(value) {
             }
         });
@@ -175,5 +178,59 @@
 
         return this;
     });
+
+    // Debouncing Javascript Methods
+    // The latest rendition takes two parameters:
+    // the detection period (“threshold”) and a Boolean indicating whether the signal
+    // should happen at the beginning of the detection period (true) or the end (“execAsap”).
+    // Example uses:
+    // using debounce in a constructor or initialization function to debounce
+    // focus events for a widget (onFocus is the original handler):
+    // this.debouncedOnFocus = this.onFocus.debounce(500, false);
+    // this.inputNode.addEventListener('focus', this.debouncedOnFocus, false);
+    // to coordinate the debounce of a method for all objects of a certain class, do this:
+    // MyClass.prototype.someMethod = function () {
+    //    /* do something here, but only once */
+    // }.debounce(100, true); // execute at start and use a 100ms detection period
+    if (!Function.prototype.debounce) {
+        Function.prototype.debounce = function debounce(threshold, execAsap) {
+            // reference to original function
+            var func = this,
+            // handle to setTimeout async task (detection period)
+                timeout;
+
+            // return the new debounced function which executes the original function only once
+            // until the detection period expires
+            return function debounced() {
+                // reference to original context object
+                var obj = this,
+                // arguments at execution time
+                    args = arguments;
+
+                // this is the detection function. it will be executed if/when the threshold expires
+                function delayed() {
+                    // if we're executing at the end of the detection period
+                    if (!execAsap) {
+                        // execute now
+                        func.apply(obj, args);
+                    }
+                    // clear timeout handle
+                    timeout = null;
+                }
+
+                // stop any current detection period
+                if (timeout) {
+                    clearTimeout(timeout);
+                } else if (execAsap) {
+                    // otherwise, if we're not already waiting and we're executing at the beginning of the detection period
+                    // execute now
+                    func.apply(obj, args);
+                }
+
+                // reset the detection period
+                timeout = setTimeout(delayed, threshold || 100);
+            };
+        }
+    }
 
 }());
