@@ -29,8 +29,8 @@ define([
             var callback = this.resizeWindowPublisher.bind(this.scope);
 
             window.attachEvent ?
-                window.attachEvent('onresize', callback) :
-                window.addEventListener('resize', callback);
+                window.attachEvent('onresizeend', callback) :
+                window.addEventListener('resizeend', callback);
         },
 
         /**

@@ -11,6 +11,7 @@ require([
 
         require([
             'extends/function',
+            'extends/event',
             'extends/string',
             'extends/array',
             'config/listeners',

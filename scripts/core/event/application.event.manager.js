@@ -37,9 +37,7 @@ define([
          * }}
          */
         eventList: {
-            resizeWindow: {
-                eventName: 'resize.window',
-            },
+            resizeWindow: 'resize.window',
             resizeWindowHooks: 'resize.window.hooks',
             createWorkspace: 'create.workspace',
             destroyWorkspace: 'destroy.workspace',
