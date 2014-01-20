@@ -145,6 +145,12 @@ define([
         $.extend(config, scope.config);
 
         /**
+         * Define containment
+         * @type {mvc.defineContainment}
+         */
+        this.defineContainment();
+
+        /**
          * Define mvc applyLogger
          * @type {mvc.applyLogger}
          */
@@ -219,6 +225,25 @@ define([
          * @member MVC
          */
         base: require('modules/base').prototype,
+
+        /**
+         * Define parent node
+         */
+        defineContainment: function defineContainment() {
+
+            var scope = this.scope,
+                config = scope.config;
+
+            if (this.base.isDefined(config.containment)) {
+
+                /**
+                 * Define parent node
+                 * @type {*}
+                 */
+                scope.containment = config.containment;
+                delete config.containment;
+            }
+        },
 
         /**
          * Define MVC

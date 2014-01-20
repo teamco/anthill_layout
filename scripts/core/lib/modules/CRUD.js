@@ -14,12 +14,24 @@ define([
     };
 
     return CRUD.extend({
+
+        /**
+         * Create item
+         * @param opts
+         * @returns {*}
+         */
         createItem: function createItem(opts) {
             return this.updateCollector(
                 this.item,
                 opts
             );
         },
+
+        /**
+         * Destroy items
+         * @param item
+         * @returns {*}
+         */
         destroyItem: function destroyItem(item) {
             var scope = this.scope,
                 base = this.base,
@@ -72,6 +84,11 @@ define([
             return items;
 
         },
+
+        /**
+         * Destroy items
+         * @returns {*}
+         */
         destroyItems: function destroyItems() {
             var index,
                 items = this.scope.items;
@@ -82,6 +99,12 @@ define([
             }
             return items;
         },
+
+        /**
+         * Destroy item view
+         * @param item
+         * @returns {*}
+         */
         destroyItemView: function destroyItemView(item) {
             var scope = this.scope,
                 base = this.base,

@@ -194,7 +194,8 @@ define([
                             '#', scope.model.getUUID(),
                             '-', scope.constructor.name.toLowerCase()
                         ].join('')
-                    }
+                    },
+                    containment: scope
                 }, opts);
 
             scope.logger.debug('Configuration', config);

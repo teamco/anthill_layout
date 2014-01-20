@@ -34,8 +34,6 @@ define([
                 this.controller.extendConfig(opts)
             );
 
-            item.containment = this;
-
             this.logger.debug(
                 'Create ' + item.constructor.name,
                 this.model.getUUID(item),

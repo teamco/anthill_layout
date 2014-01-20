@@ -257,23 +257,27 @@ define([
 
         /**
          * Update items collector
-         * @param {Function} constructor
+         * @param {Function} Constructor
          * @param {{}} opts
          * @returns {*}
          */
-        updateCollector: function updateCollector(constructor, opts) {
+        updateCollector: function updateCollector(Constructor, opts) {
 
-            var namespace = this.getNameSpace(constructor),
+            var namespace = this.getNameSpace(Constructor),
                 scope = this.scope,
-                cname = constructor.name,
+                cname = Constructor.name,
                 node = scope[cname.toLowerCase()],
                 base = this.base;
 
             this.setConfig(namespace, base.define(scope.config[namespace], {}, true));
 
+            /**
+             * Define limit
+             * @type {number}
+             */
             var limit = this.getConfig(namespace).limit;
 
-            if (this.checkLimit(constructor, limit)) {
+            if (this.checkLimit(Constructor, limit)) {
                 scope.logger.warn(
                     cname + ': Maximum limit reached',
                     limit
@@ -282,7 +286,11 @@ define([
 
             } else {
 
-                node = new constructor(base.define(opts, {}, true));
+                /**
+                 * Init node
+                 * @type {Constructor}
+                 */
+                node = new Constructor(base.define(opts, {}, true));
 
                 if (base.isDefined(node.model)) {
 
@@ -296,13 +304,20 @@ define([
                     );
                 }
 
+                /**
+                 * Update counter
+                 * @type {Number}
+                 */
                 scope.config[namespace].counter =
                     base.lib.hash.hashLength(this.getItems());
 
+                /**
+                 * Store item
+                 * @type {*}
+                 */
                 scope[cname.toLowerCase()] = node;
 
                 node.model.setConfig('limit', false);
-
             }
 
             return node;
