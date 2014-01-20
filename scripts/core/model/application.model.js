@@ -8,9 +8,9 @@
 
 define([
     'modules/model',
-    'modules/base',
+    'config/setting',
     'config/workspace'
-], function (BaseModel, Base, Workspace) {
+], function (BaseModel, Setting, Workspace) {
 
     /**
      * Define Application model
@@ -29,6 +29,24 @@ define([
     };
 
     return Model.extend({
-    }, BaseModel.prototype, Base);
+
+        /**
+         * Define global setting
+         */
+        defineSetting: function defineSetting() {
+
+            /**
+             * Define setting
+             * @type {config.setting}
+             */
+            this.setting = new Setting(
+                this.scope.controller.getMode(),
+                this.getConfig('appName')
+            );
+
+            this.scope.logger.debug('Define setting', this.setting);
+        }
+
+    }, BaseModel.prototype);
 
 });

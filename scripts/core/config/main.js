@@ -1,4 +1,4 @@
-define(function defineBaseConfig() {
+define(function loadConfig() {
 
     requirejs.config({
 
@@ -25,11 +25,11 @@ define(function defineBaseConfig() {
             test: 'test',
 
             jquery: 'lib/jquery/jquery-2.0.3.min',
-            jqueryui: 'lib/jquery/jquery-ui-1.10.3.custom.min'
+            'jquery.ui': 'lib/jquery/jquery-ui-1.10.3.custom.min'
         },
 
         shim: {
-            jqueryui: {deps: ['jquery']},
+            'jquery.ui': {deps: ['jquery']},
             'extends/function': {deps: ['jquery']},
             'extends/string': {deps: ['jquery']},
             'extends/array': {deps: ['jquery']}
@@ -37,4 +37,17 @@ define(function defineBaseConfig() {
 
     });
 
+    return require([
+        'jquery',
+        'jquery.ui',
+        'extends/function',
+        'extends/event',
+        'extends/string',
+        'extends/array',
+        'config/listeners',
+        'config/permission'
+    ], function loadMandatoryConfig() {
+
+        return require;
+    });
 });

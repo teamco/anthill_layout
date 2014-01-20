@@ -7,10 +7,8 @@
  */
 
 define([
-    'config/setting',
-    'modules/base',
     'modules/crud'
-], function initModel(Setting, Base, CRUD) {
+], function initModel(CRUD) {
 
     /**
      * Define Base model
@@ -24,11 +22,12 @@ define([
     return BaseModel.extend({
 
         /**
-         * Define global setting
+         * Define local base
+         * @type {Object}
+         * @property
+         * @member Model
          */
-        defineSetting: function defineSetting() {
-            this.setting = new Setting(this.scope.controller.getMode());
-        },
+        base: require('modules/base').prototype,
 
         /**
          * Get scope config
@@ -308,6 +307,6 @@ define([
             return node;
         }
 
-    }, Base, CRUD.prototype);
+    }, CRUD.prototype);
 
 });

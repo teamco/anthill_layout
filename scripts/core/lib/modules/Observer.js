@@ -133,17 +133,22 @@ define([
         unEvent: function unEvent(eventName, eventUUID) {
             var eventLength = this.listeners[eventName].length,
                 i = 0;
+
             for (i; i < eventLength; i += 1) {
+
                 if (this.listeners[eventName][i].eventUUID === eventUUID) {
+
                     delete this.listeners[eventName][i];
                     this.listeners[eventName].splice(i, 1);
                     delete this.scope.eventmanager.events[eventUUID];
-                    this.scope.logger.info(
+
+                    return this.scope.logger.info(
                         'Successfully deleted event',
                         [eventName, eventUUID]
                     );
                 }
             }
+
             this.scope.logger.warn(
                 'Unable to delete undefined event',
                 [eventName, eventUUID]

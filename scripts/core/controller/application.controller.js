@@ -21,14 +21,20 @@ define([
     return Controller.extend({
 
         /**
+         * Define setting
+         */
+        defineSetting: function defineSetting() {
+            this.model.defineSetting();
+        },
+
+        /**
          * Init window resize
          */
         initResizeWindow: function initResizeWindow() {
-            this.scope.logger.debug('Init window resize');
+            this.logger.debug('Init window resize');
 
-            var callback = this.resizeWindowPublisher.
-                bind(this.scope).
-                debounce();
+            var callback = this.controller.resizeWindowPublisher.
+                bind(this).debounce();
 
             window.attachEvent ?
                 window.attachEvent('onresize', callback) :

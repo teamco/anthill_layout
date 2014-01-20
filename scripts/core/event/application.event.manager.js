@@ -37,6 +37,11 @@ define([
          * }}
          */
         eventList: {
+            defineSetting: 'define.setting',
+            initResizeWindow: {
+                eventName: 'init.resize.window',
+                params: { single: true }
+            },
             resizeWindow: 'resize.window',
             resizeWindowHooks: 'resize.window.hooks',
             createWorkspace: 'create.workspace',

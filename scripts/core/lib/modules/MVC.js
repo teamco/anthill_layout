@@ -181,12 +181,6 @@ define([
         this.applyPermissions();
 
         /**
-         * Define mvc defineSetting
-         * @type {mvc.defineSetting}
-         */
-        this.defineSetting();
-
-        /**
          * Define local instance of eventList
          * @type {*}
          */
@@ -576,17 +570,8 @@ define([
 
             logger.scope = scope;
             logger.defineLogs();
-        },
-
-        /**
-         * Define global setting
-         */
-        defineSetting: function defineSetting() {
-            var scope = this.scope;
-            if (this.base.isDefined(this.scope.model)) {
-                scope.model.defineSetting();
-            }
         }
+
     });
 
 });

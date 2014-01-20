@@ -2,31 +2,22 @@ require([
 
     '../../../scripts/core/config/main'
 
-], function loadCustomConfig() {
+], function loadCustomConfig(require) {
 
     require([
-        'jquery',
-        'jqueryui'
-    ], function loadConfig() {
+        'config/debugger',
 
-        require([
-            'extends/function',
-            'extends/event',
-            'extends/string',
-            'extends/array',
-            'config/listeners',
-            'config/debugger',
-            'config/permission',
+        'public/demo/javascript/listeners',
+        'public/demo/javascript/permission'
 
-            'public/demo/javascript/listeners',
-            'public/demo/javascript/permission'
+    ], function loadApplication() {
 
-        ], function loadApplication() {
+        require(['test/create'], function initDemo(app) {
+            window.demo = {
+                app: app
+            };
 
-            require(['test/create']);
-
-        });
+        })
 
     });
-
 });

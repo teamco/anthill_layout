@@ -50,6 +50,7 @@ define([
                 limit: 1,
                 counter: 0
             },
+            appName: 'anthill',
             mode: 'development',
             type: 'default',
             isResized: false,
@@ -66,6 +67,24 @@ define([
                 }
             }
         };
+
+        /**
+         * Init observer
+         * @type {Observer}
+         */
+        this.observer = undefined;
+
+        /**
+         * Init event manager
+         * @type {EventManager}
+         */
+        this.eventmanager = undefined;
+
+        /**
+         * Init config
+         * @type {*}
+         */
+        this.config = undefined;
 
         /**
          * Define items
@@ -97,7 +116,13 @@ define([
             render: true
         });
 
-        this.controller.initResizeWindow();
+        this.observer.publish(
+            this.eventmanager.eventList.defineSetting
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.initResizeWindow
+        );
 
         this.observer.publish(
             this.eventmanager.eventList.successCreated

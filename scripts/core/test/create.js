@@ -9,24 +9,27 @@
 define([
     'config/application'
 ], function defineTest(Application) {
-    window.app = new Application({
+
+    var app = new Application({
         html: {
             container: 'body'
         }
     });
 
-    window.app.view.render();
+    app.view.render();
 
-    var workspace1 = window.app.api.createWorkspace([], true),
+    var workspace1 = app.api.createWorkspace([], true),
         page1 = workspace1.api.createPage([], true),
 //        widget1 = page1.api.createWidget({type: page1.config.widget.types.template}, true)
 //        ,
 //        page2 = page1.api.createTemplate(widget1)
 //        ,  widget2 = page2.api.createWidget([], true)
 //        ,  widget3 = page2.api.createWidget([], true)
- //,
+    //,
         widget3 = page1.api.createWidget([], true);
 //        widget4 = page1.api.createWidget([], true)
 //        ;
+
+    return app;
 
 });
