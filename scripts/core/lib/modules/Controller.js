@@ -173,6 +173,7 @@ define([
         setOrder: function setOrder(collector) {
             var scope = this.scope,
                 base = this.base;
+
             scope.config.order = base.define(
                 scope.config.order,
                 base.lib.hash.hashLength(collector)
@@ -220,6 +221,65 @@ define([
          */
         getInteraction: function getInteraction(event) {
             return this.scope.interactions[event];
+        },
+
+        /**
+         * Store data after layout organize
+         * @param [data]
+         */
+        store: function store(data) {
+
+            data = this.base.define(data, {}, true);
+
+            var containment = this.getContainment();
+//
+            if (!this.base.isDefined(containment)) {
+                return false;
+            }
+            data.items = containment.controller.collectItemProperties();
+             console.log(data)
+            this.store.bind(containment.controller)(data)
+
+        },
+
+        collectItemProperties: function collectItemProperties(collectDOM) {
+
+            var collector = {},
+                items = this.model.getItems();
+
+            if (items) {
+
+                for (var index in items) {
+
+                    if (items.hasOwnProperty(index)) {
+
+                        var item = items[index],
+                            uuid = item.model.getConfig('uuid'),
+                            config = item.model.getConfig();
+
+                        collector[uuid] = {config: {}};
+
+                        for (var property in config) {
+
+                            if (config.hasOwnProperty(property)) {
+
+                                if (!(config[property].constructor instanceof Function)) {
+                                    collector[uuid].config[property] = config[property];
+                                }
+                            }
+                        }
+
+                        if (collectDOM) {
+                            collector[uuid].dom = item.dom;
+                        }
+                    }
+
+                }
+
+            }
+
+            return collector;
+
         }
 
     }, Base, Crud.prototype, Resize.prototype);

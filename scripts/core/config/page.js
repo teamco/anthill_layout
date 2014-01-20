@@ -96,7 +96,7 @@ define([
             },
             widget: {
                 resize: true,
-                plural: true,
+                plural: true,                   // allow to resize all items
                 types: {
                     widget: 'widget',
                     template: 'template'

@@ -11,20 +11,22 @@ define([
     'config/application',
     'config/workspace',
     'config/page',
+    'config/layout',
     'config/template',
     'config/widget'
-], function defineListeners(Prototype, Application, Workspace, Page, Template, Widget) {
+], function defineListeners(Prototype, Application, Workspace, Page, Layout, Template, Widget) {
 
     Prototype.preload([
         Application,
         Workspace,
         Page,
+        Layout,
         Template,
         Widget
     ], 'localListeners', {});
 
     /**
-     * Define Application Global listeners
+     * Define Application Local listeners
      * @type {{
      *      successRendered: {name: string, callback: Function},
      *      resizeWindow: {name: string, params: *, callback: Function},
@@ -68,7 +70,7 @@ define([
     };
 
     /**
-     * Define Workspace Global listeners
+     * Define Workspace Local listeners
      * @type {{
      *      successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function},
@@ -113,7 +115,7 @@ define([
     };
 
     /**
-     * Define Page Global listeners
+     * Define Page Local listeners
      * @type {{
      *      successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function},
@@ -157,7 +159,22 @@ define([
     };
 
     /**
-     * Define Template Global listeners
+     * Define Layout Local listeners
+     * @type {{
+     *      afterNestedOrganizer: {name: string, callback: Function}}}
+     */
+    Layout.prototype.localListeners = {
+
+        afterNestedOrganizer: {
+            name: 'after.nested.organizer',
+            callback: function afterNestedOrganizerCallback() {
+                // TODO
+            }
+        }
+    };
+
+    /**
+     * Define Template Local listeners
      * @type {{
      *      successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function},
@@ -187,7 +204,7 @@ define([
     };
 
     /**
-     * Define Widget Global listeners
+     * Define Widget Local listeners
      * @type {{
      *      successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function}

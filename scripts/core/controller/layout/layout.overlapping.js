@@ -124,6 +124,7 @@ define([
                 widgets = page.items,
                 index, widget, counter = 1,
                 length = this.base.lib.hash.hashLength(widgets);
+
             for (index in widgets) {
                 if (widgets.hasOwnProperty(index)) {
                     widget = page.model.getItemByUUID(widgets[index].model.getUUID());

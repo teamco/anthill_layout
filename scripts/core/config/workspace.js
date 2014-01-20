@@ -35,7 +35,8 @@ define([
                 plural: false,
                 counter: 0,
                 limit: 10,
-                // Show previous page
+
+                // Show previous page (false mean Next)
                 onDestroyShowPrevious: true
             },
             html: {

@@ -220,7 +220,8 @@ define([
             if (this.hasOwnProperty('item')) {
                 return this.item.name.toLowerCase();
             }
-            this.scope.logger.info('Undefined item');
+
+            this.scope.logger.warn('Undefined item');
             return this.getNameSpace({});
         },
 

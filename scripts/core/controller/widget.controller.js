@@ -215,6 +215,7 @@ define([
         stopResizable: function stopResizable(type, organize, animate) {console.log(type)
             this.logger.debug('Stop resize', arguments);
             this.controller.getContainment().controller.downgradeLayer(this);
+
             this.controller.behaviorMode({
                 organize: organize,
                 animate: animate,

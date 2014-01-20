@@ -342,19 +342,32 @@ define([
                 css = this.isDrag(opts.type) ?
                     this.dragTo() :
                     this.resizeTo();
+
             if (css.top >= 0 && css.left >= 0) {
-                opts.$source.stop().animate(
-                    css,
-                    this.animateOnStop(opts.type, behavior.animate) ? this.duration : 0,
-                    this._mapStickerCallback.bind({
+
+                var duration = this.animateOnStop(opts.type, behavior.animate) ? this.duration : 0,
+                    callback = this._mapStickerCallback.bind({
                         self: this,
                         widget: this.widget,
                         layout: layout,
                         callback: opts.callback,
                         behavior: behavior,
                         type: opts.type
-                    })
-                );
+                    });
+
+                if (duration === 0) {
+
+                    opts.$source.stop().css(css);
+                    callback();
+
+                } else {
+                    opts.$source.stop().animate(
+                        css,
+                        duration,
+                        callback
+                    );
+                }
+
             }
         },
 
@@ -376,7 +389,9 @@ define([
                 widget.model.save();
                 hash[widget.model.getUUID()] = widget;
 
-                this.layout.observer.publish(this.layout.eventmanager.eventList.beforeNestedOrganizer);
+                this.layout.observer.publish(
+                    this.layout.eventmanager.eventList.beforeNestedOrganizer
+                );
 
                 this.layout.overlapping.nestedOrganizer({
                     targets: hash,

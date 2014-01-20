@@ -48,6 +48,9 @@ define([
             this.model.getConfig('widget').allowToAdd = false;
         },
 
+        /**
+         * Update page height
+         */
         updateHeight: function updateHeight() {
             console.log('TODO: Update height');
         },
@@ -71,10 +74,7 @@ define([
             for (index in items) {
                 if (items.hasOwnProperty(index)) {
                     item = items[index];
-
-                    if (widget.model.getUUID() !== item.model.getUUID()) {
-                        item.view.elements.$widget._downgradeLayer(50);
-                    }
+                    item.view.elements.$widget._downgradeLayer(50);
                 }
             }
 
