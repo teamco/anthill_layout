@@ -238,7 +238,8 @@ define([
             var containment = this.getContainment();
 
             if (!this.base.isDefined(containment)) {
-                return data;//JSON.stringify(data);
+                console.log(JSON.stringify(data))
+                return data;
             }
 
             /**

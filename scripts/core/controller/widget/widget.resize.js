@@ -44,13 +44,13 @@ define([
 
             if (scope.permission.authorizedFunctionCall(this.init)) {
                 this.$scope.resizable(
-                    $.extend(this.scope.config.events.resizable, {
-                        containment: scope.controller.getContainment().view.elements.$page.$,
+                    $.extend({
+                        containment: scope.controller.get$page(),
                         create: this.create.bind(this),
                         start: this.start.bind(this),
                         stop: this.stop.bind(this),
                         resize: this.resize.bind(this)
-                    })
+                    }, scope.model.getConfig('events').resizable)
                 );
             }
         },

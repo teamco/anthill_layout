@@ -40,26 +40,18 @@ define([
          */
         init: function init() {
 
-            var scope = this.scope,
-                config = scope.config.events.draggable;
+            var scope = this.scope;
 
             if (scope.permission.authorizedFunctionCall(this.init)) {
-                this.$scope.draggable({
-                    delay: 300,
-                    cursor: 'move',
-                    snap: config.snap,
-                    iframeFix: config.iframeFix,
-                    scroll: config.scroll,
-                    scrollSensitivity: 100,
-                    scrollSpeed: 100,
-                    opacity: 0.6,
-                    zIndex: 100,
-                    containment: scope.controller.get$page(),
-                    create: this.create.bind(this),
-                    start: this.start.bind(this),
-                    stop: this.stop.bind(this),
-                    drag: this.drag.bind(this)
-                });
+                this.$scope.draggable(
+                    $.extend({
+                        containment: scope.controller.get$page(),
+                        create: this.create.bind(this),
+                        start: this.start.bind(this),
+                        stop: this.stop.bind(this),
+                        drag: this.drag.bind(this)
+                    }, scope.model.getConfig('events').draggable)
+                );
             }
         },
 

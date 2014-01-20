@@ -98,6 +98,11 @@ define([
                     axis: false,
                     scroll: true,
                     connectToSortable: false,
+                    delay: 300,
+                    scrollSensitivity: 100,
+                    scrollSpeed: 100,
+                    opacity: 0.6,
+                    zIndex: 100,
                     cursor: 'move',
                     appendTo: 'parent'
                 },
