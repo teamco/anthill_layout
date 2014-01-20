@@ -62,6 +62,12 @@ define([
         };
 
         /**
+         * Define containment
+         * @type {*}
+         */
+        this.containment = containment;
+
+        /**
          * Define constants
          * @type {{organize: Array, emptySpaces: Array}}
          */

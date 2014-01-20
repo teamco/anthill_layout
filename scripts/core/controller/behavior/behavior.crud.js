@@ -25,14 +25,23 @@ define([
          * @param {{}} opts
          */
         createItem: function createItem(opts) {
+
+            /**
+             * Define item
+             * @type {*}
+             */
             var item = this.model.createItem(
                 this.controller.extendConfig(opts)
             );
+
+            item.containment = this;
+
             this.logger.debug(
                 'Create ' + item.constructor.name,
                 this.model.getUUID(item),
                 item
             );
+
             this.observer.publish(
                 this.eventmanager.eventList.afterCreateItem
             );

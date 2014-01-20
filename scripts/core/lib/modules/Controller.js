@@ -36,7 +36,7 @@ define([
          * @returns {*}
          */
         getContainment: function getContainment() {
-            return this.scope.config.containment;
+            return this.scope.containment;
         },
 
         /**
@@ -50,8 +50,8 @@ define([
              * @type {*}
              */
             var root = this.scope;
-            while (root.config.hasOwnProperty('containment')) {
-                root = root.config.containment;
+            while (root.hasOwnProperty('containment')) {
+                root = root.containment;
             }
 
             return root;
@@ -194,8 +194,7 @@ define([
                             '#', scope.model.getUUID(),
                             '-', scope.constructor.name.toLowerCase()
                         ].join('')
-                    },
-                    containment: scope
+                    }
                 }, opts);
 
             scope.logger.debug('Configuration', config);
@@ -231,15 +230,23 @@ define([
 
             data = this.base.define(data, {}, true);
 
+            /**
+             * Define parent object
+             * @type {*}
+             */
             var containment = this.getContainment();
-//
-            if (!this.base.isDefined(containment)) {
-                return false;
-            }
-            data.items = containment.controller.collectItemProperties();
-             console.log(data)
-            this.store.bind(containment.controller)(data)
 
+            if (!this.base.isDefined(containment)) {
+                return data;//JSON.stringify(data);
+            }
+
+            /**
+             * Define data
+             * @type {*}
+             */
+            data[containment.model.getItemNameSpace()] = containment.controller.collectItemProperties();
+
+            this.store.bind(containment.controller)(data);
         },
 
         collectItemProperties: function collectItemProperties(collectDOM) {
@@ -254,20 +261,13 @@ define([
                     if (items.hasOwnProperty(index)) {
 
                         var item = items[index],
-                            uuid = item.model.getConfig('uuid'),
-                            config = item.model.getConfig();
+                            uuid = item.model.getConfig('uuid');
 
-                        collector[uuid] = {config: {}};
-
-                        for (var property in config) {
-
-                            if (config.hasOwnProperty(property)) {
-
-                                if (!(config[property].constructor instanceof Function)) {
-                                    collector[uuid].config[property] = config[property];
-                                }
-                            }
-                        }
+                        collector[uuid] = {};
+                        collector[uuid].config = this.base.lib.hash.extendHash(
+                            item.model.getConfig(),
+                            collector[uuid].config
+                        );
 
                         if (collectDOM) {
                             collector[uuid].dom = item.dom;
@@ -279,7 +279,6 @@ define([
             }
 
             return collector;
-
         }
 
     }, Base, Crud.prototype, Resize.prototype);

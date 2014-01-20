@@ -33,14 +33,17 @@ define([
 
         /**
          * Get merged local padding from widget dom
-         * @returns {{top: number, right: number, bottom: number, left: number}}
+         * @returns {{top: number, right: number, bottom: number, left: number}|*}
          */
         getLocalPadding: function getLocalPadding() {
             var padding = {},
                 global = this.getGlobalPadding(),
                 local = this.scope.base.define(this.scope.dom.padding, {}, true);
 
-            this.scope.logger.debug('Merge local padding', $.extend(padding, global, local));
+            this.scope.logger.debug(
+                'Merge local padding',
+                $.extend(padding, global, local)
+            );
 
             return padding;
         },

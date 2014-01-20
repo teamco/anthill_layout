@@ -46,6 +46,12 @@ define([
         };
 
         /**
+         * Define containment
+         * @type {*}
+         */
+        this.containment = containment;
+
+        /**
          * Define MVC
          * @type {MVC}
          */

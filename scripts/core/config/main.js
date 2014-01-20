@@ -41,6 +41,7 @@ define(function loadConfig() {
         'jquery',
         'jquery.ui',
         'extends/function',
+        'extends/json',
         'extends/event',
         'extends/string',
         'extends/array',
