@@ -89,7 +89,7 @@ define([
 
                         );
 
-                        item.config.containment.logger.debug(resize.event.humanize(), item);
+                        item.controller.getContainment().logger.debug(resize.event.humanize(), item);
                     }
                 }
             }
