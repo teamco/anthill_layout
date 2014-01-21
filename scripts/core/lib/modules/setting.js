@@ -48,8 +48,7 @@ define([
 
         init: function init() {
 
-            var name = this.getNameSpace(),
-                storage = this.load(name);
+            var storage = this.load();
 
             if (!this.base.isDefined(storage)) {
 
@@ -59,7 +58,7 @@ define([
                  * Init storage
                  * @type {*}
                  */
-                storage = this.load(name);
+                storage = this.load();
             }
 
             if (!this.base.isDefined(storage.token)) {
@@ -70,7 +69,7 @@ define([
                  */
                 this.token = this.base.lib.generator.UUID();
 
-                this.save(name, storage);
+                this.save(storage);
             }
 
         },
@@ -98,19 +97,16 @@ define([
 
             opts = this.base.define(opts, {}, true);
 
-            /**
-             * Define namespace
-             * @type {String}
-             */
-            var namespace = this.getNameSpace();
+            var data = this.load(),
+                _dt = this.base.lib.datetime;
 
-            if (this.base.isDefined(this.load(namespace))) {
+            if (this.base.isDefined(data)) {
 
                 /**
                  * Load created at
                  * @type {*}
                  */
-                opts.createdAt = this.load(namespace).createdAt;
+                opts.createdAt = data.createdAt;
 
             } else {
 
@@ -118,14 +114,14 @@ define([
                  * Define created at
                  * @type {*}
                  */
-                opts.createdAt = this.base.lib.datetime.timestamp();
+                opts.createdAt = _dt.timestamp();
             }
 
             /**
              * Define updated at
              * @type {*}
              */
-            opts.updatedAt = this.base.lib.datetime.timestamp();
+            opts.updatedAt = _dt.timestamp();
 
             /**
              * Define token
@@ -134,18 +130,19 @@ define([
             opts.token = this.token;
 
             this.getStorage().setItem(
-                namespace,
+                this.getNameSpace(),
                 JSON.stringify(opts)
             );
         },
 
         /**
          * Load
-         * @param namespace
          */
         load: function load() {
             return JSON.parse(
-                this.getStorage().getItem(this.getNameSpace())
+                this.getStorage().getItem(
+                    this.getNameSpace()
+                )
             );
         }
 
