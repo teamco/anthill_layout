@@ -322,8 +322,36 @@ define([
             return node;
         },
 
-        loadItems: function loadItems() {
+        loadData: function loadData(data) {
 
+            data = this.base.isDefined(data) ?
+                data : this.setting.load();
+
+            if (!data.hasOwnProperty('collector')) {
+                return false;
+            }
+
+            var cname = this.item.name,
+                lname = cname.toLowerCase(),
+                collector = this.base.define(data.collector, {}, true);
+
+            if (collector.hasOwnProperty(lname)) {
+
+                for (var index in collector[lname]) {
+
+                    if (collector[lname].hasOwnProperty(index)) {
+
+                        var node = collector[lname][index];
+
+                        this.scope.api['create' + cname](node.config, true);
+                    }
+
+                }
+            }
+
+            this.loadData.bind(this.scope[lname].model)(data);
+
+            return data.collector;
 
 
         }
