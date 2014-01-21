@@ -101,16 +101,9 @@ define([
          */
         resizeItems: function resizeItems() {
 
-            /**
-             * Define instance
-             * @type {Controller}
-             */
-            var controller = this.controller;
-
-            controller._resizeNestedEventTrigger(
-                controller._getResizeAttributes()
+            this.controller._resizeNestedEventTrigger(
+                this.controller._getResizeAttributes()
             );
-
         },
 
         /**
