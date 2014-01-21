@@ -61,7 +61,7 @@ define([], function defineDebuggerActions() {
             $.each(opts || {}, function each(i, selector) {
 
                 if (!this.debugger.base.isDefined(this.scope)) {
-                    this.debugger.scope.logger.warn('Undefined scope', this, i);
+                    this.debugger.scope.logger.info('Undefined scope', this, i);
                     return false;
                 }
 
