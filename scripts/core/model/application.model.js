@@ -26,6 +26,16 @@ define([
          * @type {Workspace}
          */
         this.item = Workspace;
+
+        /**
+         * Application hierarchy
+         * @type {string[]}
+         */
+        this.hierarchy = [
+            'workspace',
+            'page',
+            'widget'
+        ];
     };
 
     return Model.extend({
@@ -56,6 +66,26 @@ define([
 
             if (!data.hasOwnProperty('collector')) {
                 return false;
+            }
+
+            for (var i = 0, l = this.hierarchy.length; i < l; i++) {
+
+                var cname = this.hierarchy[i],
+                    collector = this.base.define(data.collector, {}, true);
+
+                if (collector.hasOwnProperty(cname)) {
+
+                    for (var index in collector[cname]) {
+
+                        if (collector[cname].hasOwnProperty(index)) {
+
+                            var node = collector[cname][index];
+
+                            console.log(node)
+                        }
+
+                    }
+                }
             }
 
             return data.collector;

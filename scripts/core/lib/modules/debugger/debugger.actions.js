@@ -175,9 +175,14 @@ define([], function defineDebuggerActions() {
         /**
          * Render items info
          * @param {*} scope
-         * @returns {string}
+         * @returns {string|boolean}
          */
         renderItemsInfo: function renderItemsInfo(scope) {
+
+            if (!scope.model) {
+                return '';
+            }
+
             return [
                 '<li class="extend">',
                 this.debugger.component.renderBlock(scope.model.item.name + 's', [

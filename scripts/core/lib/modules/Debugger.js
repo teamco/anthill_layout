@@ -16,17 +16,7 @@ define([
     'modules/debugger/debugger.page',
     'modules/debugger/debugger.layout',
     'modules/debugger/debugger.widget'
-], function defineDebugger(
-    Base,
-    DebuggerConfig,
-    DebuggerComponent,
-    DebuggerTabs,
-    DebuggerGrid,
-    DebuggerApp,
-    DebuggerWorkspace,
-    DebuggerPage,
-    DebuggerLayout,
-    DebuggerWidget) {
+], function defineDebugger(Base, DebuggerConfig, DebuggerComponent, DebuggerTabs, DebuggerGrid, DebuggerApp, DebuggerWorkspace, DebuggerPage, DebuggerLayout, DebuggerWidget) {
 
     /**
      * Define Debugger
@@ -183,9 +173,9 @@ define([
                 this.noWidget = true;
             }
 
-            var workspace = scopes.workspace,
-                page = scopes.page,
-                layout = page.layout,
+            var workspace = scopes.workspace || {},
+                page = scopes.page || {},
+                layout = page.layout || {},
                 logger = scope.config.logger,
                 c = this.component;
 
@@ -204,13 +194,13 @@ define([
                     ], false),
 
                     c.renderBlock('Page', [
-                        c.renderInline('UUID', page.config.uuid),
+                        c.renderInline('UUID', (page.config || {}).uuid),
                         this.layout.renderPageLayout(layout),
                         this.page.renderItemsInfo(page)
                     ], false),
 
                     c.renderBlock('Workspace', [
-                        c.renderInline('UUID', workspace.config.uuid),
+                        c.renderInline('UUID', (workspace.config || {}).uuid),
                         this.workspace.renderItemsInfo(workspace)
                     ], false),
 

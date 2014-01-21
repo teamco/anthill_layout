@@ -28,6 +28,11 @@ define([], function defineDebuggerLayout() {
          * Bind change overlapping mode
          */
         bindChangeOverlappingMode: function bindChangeOverlappingMode() {
+
+            if (!this.debugger.scopes.page) {
+                return false;
+            }
+
             var layout = this.debugger.scopes.page.layout;
             $('#overlapping-mode').on('change.overlapping', function onChange(e) {
                 layout.observer.publish(layout.eventmanager.eventList.setOrganizeMode, $(e.target).val());
@@ -38,6 +43,11 @@ define([], function defineDebuggerLayout() {
          * Bind change empty spaces mode
          */
         bindChangeEmptySpacesMode: function bindChangeEmptySpacesMode() {
+
+            if (!this.debugger.scopes.page) {
+                return false;
+            }
+
             var layout = this.debugger.scopes.page.layout;
             $('#empty-spaces-mode').on('change.emptyspaces', function onChange(e) {
                 layout.observer.publish(layout.eventmanager.eventList.setEmptySpacesMode, $(e.target).val());
@@ -48,6 +58,11 @@ define([], function defineDebuggerLayout() {
          * Bind click to allow / disable overlapping
          */
         bindAllowOverlapping: function bindAllowOverlapping() {
+
+            if (!this.debugger.scopes.page) {
+                return false;
+            }
+
             var $input = $('input[name="overlapping"]'),
                 layout = this.debugger.scopes.page.layout;
             $input.change(function change(e) {
@@ -61,6 +76,11 @@ define([], function defineDebuggerLayout() {
          * @returns {string}
          */
         renderPageLayout: function renderPageLayout(layout) {
+
+            if (!layout.controller) {
+                return '';
+            }
+
             var c = this.debugger.component,
                 cfg = layout.config,
                 b = layout.controller.getBehavior();

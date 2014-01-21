@@ -18,7 +18,7 @@ define([
 
     app.view.render();
 
-//    if (!app.model.loadData()) {
+    if (!app.model.loadData()) {
         var workspace1 = app.api.createWorkspace([], true),
             page1 = workspace1.api.createPage([], true)
 //        widget1 = page1.api.createWidget({type: page1.config.widget.types.template}, true)
@@ -31,7 +31,7 @@ define([
 //        widget4 = page1.api.createWidget([], true)
 //        ;
 
-//    }
+    }
 
     return app;
 

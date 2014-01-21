@@ -35,7 +35,7 @@ define([
             var scope = this.debugger.scope,
                 item = scope.model.getItemNameSpace();
 
-            while (typeof(item) !== 'undefined') {
+            while (item === 'object' || typeof(item) !== 'undefined') {
                 scope = this.setScope(scope, item);
 
                 if (scope.constructor.name === 'Object') {
@@ -53,7 +53,7 @@ define([
          * Validate required scopes
          */
         validateScopes: function validateScopes() {
-            var hash = this.debugger.scopes,
+            var hash = this.debugger.base.define(this.debugger.scopes, {}, true),
                 scopes = ['Workspace', 'Page', 'Widget'];
 
             if (this.debugger.base.lib.hash.hashLength(hash) < scopes.length) {
@@ -76,7 +76,11 @@ define([
          */
         setScope: function setScope(scope, item) {
             var node = scope[item];
-            this.debugger.scopes[node.constructor.name.toLowerCase()] = node;
+
+            if (node.constructor.name !== 'Object') {
+                this.debugger.scopes[node.constructor.name.toLowerCase()] = node;
+            }
+
             return node;
         },
 
