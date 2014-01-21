@@ -306,9 +306,7 @@ define([
                             collector[uuid].dom = item.dom;
                         }
                     }
-
                 }
-
             }
 
             return collector;

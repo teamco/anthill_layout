@@ -331,6 +331,10 @@ define([
                 return false;
             }
 
+            if (!this.base.isDefined(this.item)) {
+                return data.collector;
+            }
+
             var cname = this.item.name,
                 lname = cname.toLowerCase(),
                 collector = this.base.define(data.collector, {}, true);
@@ -338,22 +342,17 @@ define([
             if (collector.hasOwnProperty(lname)) {
 
                 for (var index in collector[lname]) {
-
                     if (collector[lname].hasOwnProperty(index)) {
 
                         var node = collector[lname][index];
-
                         this.scope.api['create' + cname](node.config, true);
                     }
-
                 }
             }
 
             this.loadData.bind(this.scope[lname].model)(data);
 
             return data.collector;
-
-
         }
 
     }, CRUD.prototype);
