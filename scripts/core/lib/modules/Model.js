@@ -221,8 +221,7 @@ define([
                 return this.item.name.toLowerCase();
             }
 
-            this.scope.logger.warn('Undefined item');
-            return this.getNameSpace({});
+            this.scope.logger.debug('Undefined item');
         },
 
         /**

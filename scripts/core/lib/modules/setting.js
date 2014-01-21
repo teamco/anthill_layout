@@ -53,7 +53,7 @@ define([
 
             if (!this.base.isDefined(storage)) {
 
-                this.save(name);
+                this.save();
 
                 /**
                  * Init storage
@@ -92,12 +92,17 @@ define([
 
         /**
          * Save
-         * @param namespace
          * @param [opts]
          */
-        save: function save(namespace, opts) {
+        save: function save(opts) {
 
             opts = this.base.define(opts, {}, true);
+
+            /**
+             * Define namespace
+             * @type {String}
+             */
+            var namespace = this.getNameSpace();
 
             if (this.base.isDefined(this.load(namespace))) {
 
@@ -138,8 +143,10 @@ define([
          * Load
          * @param namespace
          */
-        load: function load(namespace) {
-            return JSON.parse(this.getStorage().getItem(namespace));
+        load: function load() {
+            return JSON.parse(
+                this.getStorage().getItem(this.getNameSpace())
+            );
         }
 
     });

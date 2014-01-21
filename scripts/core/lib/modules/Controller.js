@@ -225,32 +225,47 @@ define([
 
         /**
          * Store data after layout organize
+         * @param [node]
          * @param [data]
          */
-        store: function store(data) {
+        store: function store(node, data) {
 
-            data = this.base.define(data, {}, true);
+            data = this.base.define(data, {collector: {}}, true);
 
             /**
-             * Define parent object
+             * Define item list
              * @type {*}
              */
-            var containment = this.getContainment();
+            var items = node.model.getItems();
 
-            if (!this.base.isDefined(containment)) {
-                console.log(JSON.stringify(data))
-                return data;
+            if (!items) {
+                node.logger.debug('Collector', data);
+                this.root().model.setting.save(data);
+                return false;
             }
+
+            /**
+             * Define item name space
+             * @type {string}
+             */
+            var cname = node.model.getItemNameSpace();
 
             /**
              * Define data
              * @type {*}
              */
-            data[containment.model.getItemNameSpace()] = containment.controller.collectItemProperties();
+            data.collector[cname] = node.controller.collectItemProperties(
+                !node[cname].model.getItems()
+            );
 
-            this.store.bind(containment.controller)(data);
+            this.store.bind(node.controller)(node[cname], data);
         },
 
+        /**
+         * Collect items data
+         * @param {Boolean} collectDOM
+         * @returns {{}}
+         */
         collectItemProperties: function collectItemProperties(collectDOM) {
 
             var collector = {},
@@ -266,12 +281,28 @@ define([
                             uuid = item.model.getConfig('uuid');
 
                         collector[uuid] = {};
+
+                        /**
+                         * Define config
+                         * @type {{}}
+                         */
                         collector[uuid].config = this.base.lib.hash.extendHash(
                             item.model.getConfig(),
                             collector[uuid].config
                         );
 
+                        /**
+                         * Define containment
+                         * @type {String}
+                         */
+                        collector[uuid].containment = item.containment.model.getConfig('uuid');
+
                         if (collectDOM) {
+
+                            /**
+                             * Collect DOM
+                             * @type {{}}
+                             */
                             collector[uuid].dom = item.dom;
                         }
                     }

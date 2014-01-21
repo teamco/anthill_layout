@@ -8,7 +8,7 @@
 
 define([
     'modules/model',
-    'config/setting',
+    'modules/setting',
     'config/workspace'
 ], function (BaseModel, Setting, Workspace) {
 

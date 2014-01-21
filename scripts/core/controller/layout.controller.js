@@ -36,7 +36,9 @@ define([
          */
         afterNestedOrganizer: function afterNestedOrganizer() {
             this.controller.getContainment().controller.allowAddWidget();
-            this.controller.store();
+            this.controller.store(
+                this.controller.root()
+            );
             this.logger.debug('After nested organizer');
         },
 
