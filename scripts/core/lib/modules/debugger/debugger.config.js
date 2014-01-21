@@ -35,11 +35,11 @@ define([
             var scope = this.debugger.scope,
                 item = scope.model.getItemNameSpace();
 
-            while (item !== 'object') {
+            while (typeof(item) !== 'undefined') {
                 scope = this.setScope(scope, item);
 
                 if (scope.constructor.name === 'Object') {
-                    this.debugger.scope.logger.warn('Undefined scope', item);
+                    this.debugger.scope.logger.debug('Undefined scope', item);
                     return false;
                 }
 

@@ -70,6 +70,12 @@ define([
         init: function init() {
 
             /**
+             * Define no widget scope
+             * @type {Boolean}
+             */
+            this.noWidget = false;
+
+            /**
              * Define config
              * @type {DebuggerConfig}
              */
@@ -140,7 +146,7 @@ define([
          * Destroy info window
          */
         destroyDebuggerDOM: function destroyDebuggerDOM() {
-            $(this.info).stop().fadeOut('slow', function fadeOt() {
+            $(this.info).stop().fadeOut(300, function fadeOt() {
                 $(this).unbind().remove();
             });
         },
@@ -173,8 +179,8 @@ define([
             }
 
             if (!(scopes.widget instanceof Object)) {
-                this.scope.logger.warn('Undefined scopes', scopes, this);
-                return false;
+                this.scope.logger.debug('Debugger undefined widget', scopes, this);
+                this.noWidget = true;
             }
 
             var workspace = scopes.workspace,

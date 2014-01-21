@@ -53,6 +53,14 @@ define([
         },
 
         /**
+         * Reset debugger
+         */
+        reactivateDebugger: function reactivateDebugger() {
+            this.deactivateDebugger();
+            setTimeout(this.activateDebugger.bind(this), 500);
+        },
+
+        /**
          * Update debugger info
          * @returns {boolean}
          */

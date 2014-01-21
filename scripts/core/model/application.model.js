@@ -45,6 +45,21 @@ define([
             );
 
             this.scope.logger.debug('Define setting', this.setting);
+        },
+
+        /**
+         * Load data
+         */
+        loadData: function loadData() {
+
+            var data = this.setting.load();
+
+            if (!data.hasOwnProperty('collector')) {
+                return false;
+            }
+
+            return data.collector;
+
         }
 
     }, BaseModel.prototype);

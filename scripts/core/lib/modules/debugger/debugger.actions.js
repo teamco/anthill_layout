@@ -365,10 +365,18 @@ define([], function defineDebuggerActions() {
             scope.logger.debug('Bind edit mode');
             this._getItemAction('add-item').on(
                 'click.add',
+
                 /**
                  * Add new item
                  */
                 function addNewItem(e) {
+                    if (this.debugger.base.lib.hash.isHashEmpty(scope.model.getItems())) {
+
+                        /**
+                         * Restart debugger
+                         */
+                        this.debugger.scope.controller.reactivateDebugger();
+                    }
                     scope.api.createItem([], true);
                     this._getItemAction('remove-items').removeClass('disabled');
                 }.bind(this)

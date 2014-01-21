@@ -19,6 +19,7 @@ define([
      * @constructor Debugger
      */
     var Debugger = function Debugger(view, opts) {
+
         /**
          * Define config
          * @type {element._config}
@@ -33,6 +34,7 @@ define([
     };
 
     return Debugger.extend({
+
         /**
          * DOM config
          * @returns {*}
@@ -48,6 +50,7 @@ define([
 
             return this;
         },
+
         /**
          * Hover debugger
          */
@@ -66,6 +69,7 @@ define([
                 }
             );
         },
+
         /**
          * Activate debugger
          */
@@ -79,6 +83,7 @@ define([
             })('activateDebugger', 'click');
             $element.removeClass('activated');
         },
+
         /**
          * Deactivate debugger
          */

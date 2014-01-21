@@ -117,9 +117,13 @@ define([], function defineDebuggerWidget() {
          * Render widget info
          * @param {{type, timeStamp}} event
          * @param {{originalPosition, originalSize, offset, position, helper}} ui
-         * @returns {string}
+         * @returns {string|boolean}
          */
         renderWidgetInfo: function renderWidgetInfo(event, ui) {
+
+            if (!this.debugger.scopes.widget) {
+                return false;
+            }
 
             var c = this.debugger.component;
 
