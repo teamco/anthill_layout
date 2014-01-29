@@ -6,9 +6,30 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(['modules/base'], function defineBaseString(Base) {
+define([], function defineBaseString(Base) {
+
+    /**
+     * Define BaseUserAgent
+     * @constructor
+     * @class BaseUserAgent
+     */
     var BaseUserAgent = function BaseUserAgent() {
+
+        /**
+         * Define user agent
+         * @type {string}
+         */
         var ua = navigator.userAgent.toLowerCase();
+
+        /**
+         * Define browsers
+         * @type {{
+         *      mozilla: boolean,
+         *      webkit: boolean,
+         *      opera: boolean,
+         *      msie: boolean
+         * }}
+         */
         this.browser = {
             mozilla: /mozilla/.test(ua) && !/webkit/.test(ua),
             webkit: /webkit/.test(ua),
@@ -45,8 +66,8 @@ define(['modules/base'], function defineBaseString(Base) {
                 }
             }
         }
-    }, Base);
+    });
 
-    Base.prototype.lib.ua = new BaseUserAgent();
+    return new BaseUserAgent();
 
 });

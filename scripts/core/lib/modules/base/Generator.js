@@ -5,7 +5,7 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-define(['modules/base'], function defineBaseGenerator(Base) {
+define([], function defineBaseGenerator() {
 
     /**
      * Define generators
@@ -25,7 +25,7 @@ define(['modules/base'], function defineBaseGenerator(Base) {
          * @returns {String}
          */
         UUID: function UUID(uuid) {
-            if (this.base.isDefined(uuid)) {
+            if (uuid) {
                 return uuid;
             }
             var s = [];
@@ -76,7 +76,7 @@ define(['modules/base'], function defineBaseGenerator(Base) {
             }
         }
 
-    }, Base);
+    });
 
-    Base.prototype.lib.generator = new BaseGenerator();
+    return new BaseGenerator();
 });

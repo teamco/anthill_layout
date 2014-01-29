@@ -5,9 +5,7 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-define([
-    'modules/base'
-], function defineBaseHash(Base) {
+define([], function defineBaseHash() {
 
     /**
      * Define Hash lib
@@ -26,8 +24,8 @@ define([
          * @returns {*}
          */
         extendHash: function extendHash(hash, defaults) {
-            defaults = this.base.define(defaults, {}, true);
-            hash = this.base.define(hash, {}, true);
+            defaults = defaults || {};
+            hash = hash || {};
             $.extend(true, defaults, hash);
             return defaults;
         },
@@ -48,7 +46,7 @@ define([
          * @returns {boolean}
          */
         isHashKey: function isHashKey(h, k) {
-            if (this.base.isObject(h)) {
+            if (typeof(h) === 'object') {
                 return h.hasOwnProperty(k);
             }
         },
@@ -110,7 +108,7 @@ define([
          * @returns {Number}
          */
         hashLength: function hashLength(o) {
-            return this.hashKeys(this.base.define(o, {}, true)).length;
+            return this.hashKeys(o || {}).length;
         },
 
         /**
@@ -128,8 +126,8 @@ define([
             }
         }
 
-    }, Base);
+    });
 
-    Base.prototype.lib.hash = new BaseHash();
+    return new BaseHash();
 
 });

@@ -1,4 +1,4 @@
-requirejs([
+define([
     'modules/base/array',
     'modules/base/function',
     'modules/base/generator',
@@ -8,10 +8,7 @@ requirejs([
     'modules/base/datetime',
     'modules/base/string',
     'modules/base/ua'
-]);
-
-define([
-], function defineBase() {
+], function defineBase(arr, fn, gen, hash, html, num, dt, str, ua) {
 
     /**
      * Define base utils
@@ -19,6 +16,50 @@ define([
      * @constructor
      */
     var Base = function Base() {
+
+        /**
+         * Define shims
+         * @type {{
+         *      array: *,
+         *      function: *,
+         *      generator: *,
+         *      hash: *,
+         *      html: *,
+         *      number: *,
+         *      datetime: *,
+         *      string: *,
+         *      ua: *
+         * }}
+         */
+        var Shims = {
+            'array': arr,
+            'function': fn,
+            'generator': gen,
+            'hash': hash,
+            'html': html,
+            'number': num,
+            'datetime': dt,
+            'string': str,
+            'ua': ua
+        };
+
+        /**
+         * Get shim
+         * @param type
+         * @returns {*}
+         */
+        this.getShims = function getShims(type) {
+            return Shims[type];
+        };
+
+        for (var index in Shims) {
+
+            if (Shims.hasOwnProperty(index)) {
+
+                this.lib[index] = this.getShims(index);
+            }
+        }
+
     };
 
     Base.extend({

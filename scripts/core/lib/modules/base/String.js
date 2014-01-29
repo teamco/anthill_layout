@@ -5,7 +5,8 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-define(['modules/base'], function defineBaseString(Base) {
+define([], function defineBaseString(Base) {
+
     var BaseString = function BaseString() {
     };
 
@@ -14,6 +15,6 @@ define(['modules/base'], function defineBaseString(Base) {
 
     }, Base);
 
-    Base.prototype.lib.string = new BaseString();
+    return new BaseString();
 
 });

@@ -14,7 +14,15 @@ define([
      * @class Logger
      * @constructor Logger
      */
-    var Logger = function Logger() {
+    var Logger = function Logger(config) {
+
+        /**
+         * Define config
+         * @type {*|{}}
+         */
+        this.config = config || {};
+
+        this.defineLogs();
     };
 
     return Logger.extend({

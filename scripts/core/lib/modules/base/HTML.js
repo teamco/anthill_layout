@@ -6,16 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
-    'modules/base'
-], function defineBaseHTML(Base){
+define([], function defineBaseHTML(Base) {
+
     var BaseHTML = function BaseHTML() {
     };
 
     BaseHTML.extend({
         escapeHTML: function escapeHTML(text, escape) {
             var div = $('<div/>');
-            if (this.base.isDefined(text)) {
+            if (typeof(text) === 'string') {
                 return escape ?
                     // Escape the text with HTML encoding chars
                     div.text(text).html() :
@@ -31,8 +30,8 @@ define([
                 target
             );
         }
-    }, Base);
+    });
 
-    Base.prototype.lib.html = new BaseHTML();
+    return new BaseHTML();
 
 });

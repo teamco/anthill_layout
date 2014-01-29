@@ -6,15 +6,18 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(['modules/base'], function defineBaseNumber(Base) {
+define([], function defineBaseNumber(Base) {
+
     var BaseNumber = function BaseNumber() {
     };
 
     BaseNumber.extend({
+
         /**
          * Default number type
          */
         defaultNumberType: 10,
+
         /**
          * Convert String to Integer
          * @param {string} s
@@ -22,9 +25,10 @@ define(['modules/base'], function defineBaseNumber(Base) {
          * @returns {Number}
          */
         str2int: function str2int(s, t) {
-            var number = parseInt(s, this.base.define(t, this.defaultNumberType));
-            return this.base.isNumber(number) ? number : 0;
+            var number = parseInt(s, t || this.defaultNumberType);
+            return typeof(number) === 'number' ? number : 0;
         },
+
         /**
          * Convert String to Integer
          * @param {string} s
@@ -32,8 +36,9 @@ define(['modules/base'], function defineBaseNumber(Base) {
          */
         str2float: function str2float(s) {
             var number = parseFloat(s);
-            return this.base.isNumber(number) ? number : 0;
+            return typeof(number) === 'number' ? number : 0;
         },
+
         /**
          * Get random number
          * @param {number} min
@@ -43,6 +48,7 @@ define(['modules/base'], function defineBaseNumber(Base) {
         getRnd: function getRnd(min, max) {
             return Math.floor(Math.random() * (max - min + 1) + min);
         },
+
         /**
          * Numeric sort
          * @param {Number} a
@@ -53,8 +59,8 @@ define(['modules/base'], function defineBaseNumber(Base) {
             return a - b;
         }
 
-    }, Base);
+    });
 
-    Base.prototype.lib.number = new BaseNumber();
+    return new BaseNumber();
 
 });

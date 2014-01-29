@@ -6,13 +6,11 @@
  */
 
 define([
-    'modules/base'
-], function defineBasePrototype(Base) {
+], function defineBasePrototype() {
 
     /**
      * Define Prototype
      * @class Prototype
-     * @extends Base
      * @constructor
      */
     var BasePrototype = function BasePrototype() {
@@ -28,7 +26,7 @@ define([
          */
         preload: function preload(Constructor, method, defaultValue) {
 
-            if (!this.base.isArray(Constructor)) {
+            if (!anthill._base.isArray(Constructor)) {
                 Constructor = [Constructor];
             }
 
@@ -37,7 +35,7 @@ define([
             }
         }
 
-    }, Base);
+    });
 
     return new BasePrototype;
 

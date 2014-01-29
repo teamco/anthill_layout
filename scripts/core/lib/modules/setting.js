@@ -38,19 +38,11 @@ define([
 
     return Setting.extend({
 
-        /**
-         * Define local base
-         * @type {Object}
-         * @property
-         * @member Setting
-         */
-        base: require('modules/base').prototype,
-
         init: function init() {
 
             var storage = this.load();
 
-            if (!this.base.isDefined(storage)) {
+            if (!anthill._base.isDefined(storage)) {
 
                 this.save();
 
@@ -61,13 +53,13 @@ define([
                 storage = this.load();
             }
 
-            if (!this.base.isDefined(storage.token)) {
+            if (!anthill._base.isDefined(storage.token)) {
 
                 /**
                  * Define token
                  * @type {String}
                  */
-                this.token = this.base.lib.generator.UUID();
+                this.token = anthill._base.lib.generator.UUID();
 
                 this.save(storage);
             }
@@ -95,12 +87,12 @@ define([
          */
         save: function save(opts) {
 
-            opts = this.base.define(opts, {}, true);
+            opts = anthill._base.define(opts, {}, true);
 
             var data = this.load(),
-                _dt = this.base.lib.datetime;
+                _dt = anthill._base.lib.datetime;
 
-            if (this.base.isDefined(data)) {
+            if (anthill._base.isDefined(data)) {
 
                 /**
                  * Load created at

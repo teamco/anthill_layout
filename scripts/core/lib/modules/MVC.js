@@ -7,9 +7,8 @@
  */
 
 define([
-    'modules/observer',
-    'modules/logger'
-], function defineMVC(Observer, Logger) {
+    'modules/observer'
+], function defineMVC(Observer) {
 
     /**
      * Define MVC
@@ -149,12 +148,6 @@ define([
          * @type {mvc.defineContainment}
          */
         this.defineContainment();
-
-        /**
-         * Define mvc applyLogger
-         * @type {mvc.applyLogger}
-         */
-        this.applyLogger();
 
         /**
          * Define mvc applyConfig
@@ -566,27 +559,6 @@ define([
             var scope = this.scope;
             scope.observer = new Observer();
             scope.observer.scope = scope;
-        },
-
-        /**
-         * Apply Logger
-         */
-        applyLogger: function applyLogger() {
-            var scope = this.scope,
-                base = anthill._base;
-            scope.logger = new Logger();
-            var logger = scope.logger;
-
-            if (base.isDefined(scope.config.logger)) {
-                if (base.isObject(Logger.prototype.config)) {
-                    logger.config = scope.config.logger;
-                } else {
-                    Logger.prototype.config = scope.config.logger;
-                }
-            }
-
-            logger.scope = scope;
-            logger.defineLogs();
         }
 
     });

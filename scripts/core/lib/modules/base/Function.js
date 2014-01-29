@@ -5,13 +5,13 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-define(['modules/base'], function defineBaseFunction(Base) {
+define([], function defineBaseFunction() {
     var BaseFunction = function BaseFunction() {
     };
 
     BaseFunction.extend({
     });
 
-    Base.prototype.lib.function = new BaseFunction();
+    return new BaseFunction();
 
 });

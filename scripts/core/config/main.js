@@ -48,8 +48,9 @@ define(function loadConfig() {
     ], function loadMandatoryConfig() {
 
         return require([
-            'modules/base'
-        ], function initBase(Base) {
+            'modules/base',
+            'modules/logger'
+        ], function initBase(Base, Logger) {
 
             /**
              * Define global application instance
@@ -63,6 +64,23 @@ define(function loadConfig() {
              * @private
              */
             window.anthill._base = new Base();
+
+            /**
+             * Define logger
+             * @type {Logger}
+             * @private
+             */
+            window.anthill._logger = new Logger({
+                show: true,
+                namespaces: false,
+                type: {
+                    debug: false,
+                    log: false,
+                    info: false,
+                    error: true,
+                    warn: true
+                }
+            });
 
             return require([
                 'config/listeners',
