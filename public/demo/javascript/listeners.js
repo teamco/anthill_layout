@@ -8,13 +8,12 @@
 
 define([
     'modules/prototype',
-    'modules/debugger',
     'config/application',
     'config/workspace',
     'config/page',
     'config/template',
     'config/widget'
-], function defineListeners(Prototype, Debugger, Application, Workspace, Page, Template, Widget) {
+], function defineListeners(Prototype, Application, Workspace, Page, Template, Widget) {
 
     Prototype.preload([
         Application,

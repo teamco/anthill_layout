@@ -7,23 +7,23 @@
  */
 
 define([
-    'modules/prototype',
     'config/application',
     'config/workspace',
     'config/page',
     'config/layout',
     'config/template',
     'config/widget'
-], function defineListeners(Prototype, Application, Workspace, Page, Layout, Template, Widget) {
+], function defineListeners(Application, Workspace, Page, Layout, Template, Widget) {
 
-    Prototype.preload([
-        Application,
-        Workspace,
-        Page,
-        Layout,
-        Template,
-        Widget
-    ], 'localListeners', {});
+    /**
+     * Load listeners
+     */
+    Application.prototype.localListeners = Application.prototype.localListeners || {};
+    Workspace.prototype.localListeners = Workspace.prototype.localListeners || {};
+    Page.prototype.localListeners = Page.prototype.localListeners || {};
+    Template.prototype.localListeners = Template.prototype.localListeners || {};
+    Layout.prototype.localListeners = Layout.prototype.localListeners || {};
+    Widget.prototype.localListeners = Widget.prototype.localListeners || {};
 
     /**
      * Define Application Local listeners
@@ -34,10 +34,10 @@ define([
      *      resizeWorkspace: {name: string, callback: Function}
      * }}
      */
-    Application.prototype.localListeners = {
+    $.extend(Application.prototype.localListeners, {
 
         successRendered: {
-            name: "success.rendered",
+            name: 'success.rendered',
             callback: function successRenderedCallback() {
                 this.view.renderApplication();
 
@@ -67,7 +67,7 @@ define([
             }
         }
 
-    };
+    });
 
     /**
      * Define Workspace Local listeners
@@ -78,7 +78,7 @@ define([
      *      resizePage: {name: string, callback: Function}
      * }}
      */
-    Workspace.prototype.localListeners = {
+    $.extend(Workspace.prototype.localListeners, {
 
         successCreated: {
             name: "success.created",
@@ -112,7 +112,7 @@ define([
                 );
             }
         }
-    };
+    });
 
     /**
      * Define Page Local listeners
@@ -123,7 +123,7 @@ define([
      *      resizeWidget: {name: string, callback: Function}
      * }}
      */
-    Page.prototype.localListeners = {
+    $.extend(Page.prototype.localListeners, {
 
         successCreated: {
             name: "success.created",
@@ -156,14 +156,14 @@ define([
                 );
             }
         }
-    };
+    });
 
     /**
      * Define Layout Local listeners
      * @type {{
      *      afterNestedOrganizer: {name: string, callback: Function}}}
      */
-    Layout.prototype.localListeners = {
+    $.extend(Layout.prototype.localListeners, {
 
         afterNestedOrganizer: {
             name: 'after.nested.organizer',
@@ -171,7 +171,7 @@ define([
                 // TODO
             }
         }
-    };
+    });
 
     /**
      * Define Template Local listeners
@@ -181,7 +181,7 @@ define([
      *      createWidget: {name: string, callback: Function}
      * }}
      */
-    Template.prototype.localListeners = {
+    $.extend(Template.prototype.localListeners, {
 
         successCreated: {
             name: "success.created",
@@ -201,7 +201,7 @@ define([
             callback: function createWidgetCallback() {
             }
         }
-    };
+    });
 
     /**
      * Define Widget Local listeners
@@ -210,7 +210,7 @@ define([
      *      successRendered: {name: string, callback: Function}
      * }}
      */
-    Widget.prototype.localListeners = {
+    $.extend(Widget.prototype.localListeners, {
 
         successCreated: {
             name: "success.created",
@@ -228,6 +228,6 @@ define([
             }
         }
 
-    };
+    });
 
 });

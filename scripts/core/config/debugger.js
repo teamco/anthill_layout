@@ -7,7 +7,6 @@
  */
 
 define([
-    'modules/prototype',
     'modules/debugger',
     'config/application',
     'config/workspace',
@@ -18,14 +17,7 @@ define([
     'controller/behavior/behavior.debugger',
     'event/application.event.manager',
     'event/widget.event.manager'
-], function defineDebuggerBehaviors(Prototype, Debugger, Application, Workspace, Page, Template, Widget, ApplicationController, BehaviorDebugger, ApplicationEventMgr, WidgetEventMgr) {
-
-    /**
-     * Load debugger events
-     */
-    Prototype.preload([
-        ApplicationEventMgr
-    ], 'eventList', {});
+], function defineDebuggerBehaviors(Debugger, Application, Workspace, Page, Template, Widget, ApplicationController, BehaviorDebugger, ApplicationEventMgr, WidgetEventMgr) {
 
     ApplicationEventMgr.prototype.eventList.debugStart = 'debug.start';
     ApplicationEventMgr.prototype.eventList.debugEnd = 'debug.end';
@@ -48,13 +40,8 @@ define([
     /**
      * Load listeners
      */
-    Prototype.preload([
-        Application,
-        Workspace,
-        Page,
-        Template,
-        Widget
-    ], 'localListeners', {});
+    Application.prototype.localListeners = Application.prototype.localListeners || {};
+    Widget.prototype.localListeners = Widget.prototype.localListeners || {};
 
     /**
      * Define debugStart

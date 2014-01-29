@@ -48,9 +48,8 @@ define(function loadConfig() {
     ], function loadMandatoryConfig() {
 
         return require([
-            'modules/base',
-            'modules/logger'
-        ], function initBase(Base, Logger) {
+            'modules/base'
+        ], function initBase(Base) {
 
             /**
              * Define global application instance
