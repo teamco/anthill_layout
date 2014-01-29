@@ -6,11 +6,18 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function defineButton(Base, BaseElement) {
+], function defineButtonElement(BaseElement) {
 
-    var Button = function Button(view, opts) {
+    /**
+     * Define Button Element
+     * @param view
+     * @param opts
+     * @returns {ButtonElement}
+     * @constructor
+     * @class ButtonElement
+     */
+    var ButtonElement = function ButtonElement(view, opts) {
 
         this.setup(opts);
 
@@ -25,20 +32,16 @@ define([
 
     };
 
-    return Button.extend({
+    return ButtonElement.extend({
 
+        /**
+         * Define setup
+         * @param opts
+         */
         setup: function setup(opts) {
             this.text = opts.text;
         },
 
-        setContent: function setContent() {
-            this.setText();
-        },
-
-        setText: function setText() {
-            this.$.text(this.text);
-        }
-
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 
 });

@@ -6,14 +6,12 @@
  */
 
 define([
-    'modules/base',
     'modules/api'
-], function defineWidgetAPI(Base, BaseAPI) {
+], function defineWidgetAPI(BaseAPI) {
 
     /**
      * Define Widget API
      * @class API
-     * @extends {Base}
      * @mixin {BaseAPI}
      * @constructor
      */
@@ -91,5 +89,5 @@ define([
             );
         }
 
-    }, Base, BaseAPI.prototype);
+    }, BaseAPI.prototype);
 });

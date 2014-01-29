@@ -14,7 +14,6 @@
  */
 
 define([
-    'modules/base',
     'modules/mvc',
     'api/template.api',
     'config/layout',
@@ -23,12 +22,11 @@ define([
     'view/template.view',
     'event/template.event.manager',
     'permission/template.permission'
-], function defineTemplate(Base, MVC, API, Layout, Controller, Model, View, EventManager, Permission) {
+], function defineTemplate(MVC, API, Layout, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define template
      * @class Template
-     * @extends {Base}
      * @param opts
      * @param page
      * @constructor
@@ -85,5 +83,5 @@ define([
 
     };
 
-    return Template.extend(Base);
+    return Template;
 });

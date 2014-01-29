@@ -7,9 +7,8 @@
  */
 
 define([
-    'modules/base',
     'modules/permission'
-], function defineWidgetPermission(Base, BasePermission) {
+], function defineWidgetPermission(BasePermission) {
     /**
      * Define Permissions
      * @constructor
@@ -46,7 +45,7 @@ define([
             var scope = this.scope,
                 list = scope.eventmanager.eventList,
                 name = capability.capitalize();
-            if (!this.getCapability(capability)) {debugger
+            if (!this.getCapability(capability)) {
                 scope.logger.warn('Unauthorized capability', capability);
                 return false;
             }
@@ -65,5 +64,5 @@ define([
 
         }
 
-    }, Base, BasePermission.prototype);
+    }, BasePermission.prototype);
 });

@@ -7,9 +7,8 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function defineWidget(Base, BaseElement) {
+], function defineWidgetElement(BaseElement) {
 
     /**
      * Define widget element
@@ -17,8 +16,9 @@ define([
      * @param {{$container}} opts
      * @returns {*}
      * @constructor
+     * @class WidgetElement
      */
-    var Widget = function Widget(view, opts) {
+    var WidgetElement = function WidgetElement(view, opts) {
 
         this._config(view, opts, $('<li />')).build({
             $container: opts.$container,
@@ -28,7 +28,7 @@ define([
         return this;
     };
 
-    return Widget.extend({
+    return WidgetElement.extend({
 
         /**
          * Set widget position
@@ -71,5 +71,5 @@ define([
         }
 
 
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

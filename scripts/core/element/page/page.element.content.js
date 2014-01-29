@@ -7,11 +7,18 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function defineContent(Base, BaseElement) {
+], function definePageContent(BaseElement) {
 
-    var Content = function Content(view, opts) {
+    /**
+     * Define page content
+     * @param view
+     * @param opts
+     * @returns {*}
+     * @constructor
+     * @class PageContent
+     */
+    var PageContent = function PageContent(view, opts) {
 
         return this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -19,7 +26,7 @@ define([
         });
     };
 
-    return Content.extend({
+    return PageContent.extend({
 
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

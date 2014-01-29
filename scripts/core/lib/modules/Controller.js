@@ -7,10 +7,9 @@
  */
 
 define([
-    'modules/base',
     'controller/behavior/behavior.crud',
     'controller/behavior/behavior.window.resize'
-], function defineBaseController(Base, Crud, Resize) {
+], function defineBaseController(Crud, Resize) {
 
     /**
      * Define Base Controller
@@ -172,7 +171,7 @@ define([
          */
         setOrder: function setOrder(collector) {
             var scope = this.scope,
-                base = this.base;
+                base = anthill._base;
 
             scope.config.order = base.define(
                 scope.config.order,
@@ -186,7 +185,7 @@ define([
          * @returns {*}
          */
         extendConfig: function extendConfig(opts) {
-            var base = this.base,
+            var base = anthill._base,
                 scope = this.scope,
                 config = base.lib.hash.extendHash({
                     html: {
@@ -230,7 +229,7 @@ define([
          */
         store: function store(node, data) {
 
-            data = this.base.define(data, {collector: {}}, true);
+            data = anthill._base.define(data, {collector: {}}, true);
 
             /**
              * Define item list
@@ -286,7 +285,7 @@ define([
                          * Define config
                          * @type {{}}
                          */
-                        collector[uuid].config = this.base.lib.hash.extendHash(
+                        collector[uuid].config = anthill._base.lib.hash.extendHash(
                             item.model.getConfig(),
                             collector[uuid].config
                         );
@@ -312,5 +311,5 @@ define([
             return collector;
         }
 
-    }, Base, Crud.prototype, Resize.prototype);
+    }, Crud.prototype, Resize.prototype);
 });

@@ -14,6 +14,11 @@ define([
     'element/widget/widget.element'
 ], function defineWidgetView(BaseView, Header, Footer, Content, Widget) {
 
+    /**
+     * Define Widget View
+     * @constructor
+     * @class View
+     */
     var View = function View() {
         this.elements = {};
     };
@@ -36,13 +41,15 @@ define([
             this.elements.$content = new Content(this, {
                 style: 'content',
                 css: {
-                    background: this.scope.base.lib.generator.randomColor()
+                    background: anthill._base.lib.generator.randomColor()
                 },
                 $container: this.elements.$widget.$
             });
         },
         render: function render() {
-            this.scope.observer.publish(this.scope.eventmanager.eventList.successRendered);
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered
+            );
         }
     }, BaseView.prototype)
 

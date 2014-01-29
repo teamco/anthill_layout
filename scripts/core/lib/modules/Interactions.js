@@ -7,8 +7,7 @@
  */
 
 define([
-    'modules/base'
-], function defineInteractions(Base) {
+], function defineInteractions() {
 
     var Interactions = function Interactions() {
     };
@@ -47,6 +46,6 @@ define([
         }
 
 
-    }, Base);
+    });
 
 });

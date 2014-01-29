@@ -6,16 +6,14 @@
  */
 
 define([
-    'modules/base',
     'modules/api',
     'config/template',
     'config/widget'
-], function definePageAPI(Base, BaseAPI, Template, Widget) {
+], function definePageAPI(BaseAPI, Template, Widget) {
 
     /**
      * Define Page API
      * @class API
-     * @extends {Base}
      * @mixin {BaseAPI}
      * @constructor
      */
@@ -78,5 +76,5 @@ define([
             return this._renderItem(Template, true, widget).api.createPage([], true);
         }
 
-    }, Base, BaseAPI.prototype)
+    }, BaseAPI.prototype)
 });

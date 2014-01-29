@@ -6,13 +6,11 @@
  */
 
 define([
-    'modules/base'
-], function defineWidgetWireframe(Base) {
+], function defineWidgetWireframe() {
 
     /**
      * Define Widget Wireframe
      * @class Wireframe
-     * @extends {Base}
      * @param {*} widget
      * @constructor
      */
@@ -127,10 +125,10 @@ define([
          * @param opts
          */
         init: function init(opts) {
-            opts = this.base.define(opts, {}, true);
+            opts = anthill._base.define(opts, {}, true);
             this.defineHolder(opts).show();
             this.$.css(opts.style);
         }
 
-    }, Base);
+    });
 });

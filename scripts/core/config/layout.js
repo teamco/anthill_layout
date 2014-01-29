@@ -7,7 +7,6 @@
  */
 
 define([
-    'modules/base',
     'modules/mvc',
     'controller/layout.controller',
     'event/layout.event.manager',
@@ -15,12 +14,11 @@ define([
     'controller/layout/layout.empty.rows',
     'controller/layout/layout.empty.columns',
     'permission/layout.permission'
-], function defineLayout(Base, MVC, Controller, EventManager, Overlapping, EmptyRows, EmptyColumns, Permission) {
+], function defineLayout(MVC, Controller, EventManager, Overlapping, EmptyRows, EmptyColumns, Permission) {
 
     /**
      * Define Layout
      * @class Layout
-     * @extends {Base}
      * @mixin MVC
      */
     var Layout = function Layout(opts, containment) {
@@ -124,5 +122,5 @@ define([
         this.observer.publish(this.eventmanager.eventList.successCreated);
     };
 
-    return Layout.extend(Base);
+    return Layout;
 });

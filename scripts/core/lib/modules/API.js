@@ -6,8 +6,7 @@
  */
 
 define([
-    'modules/base'
-], function defineBaseAPI(Base) {
+], function defineBaseAPI() {
 
     /**
      * Define Base API
@@ -49,7 +48,7 @@ define([
          */
         _executeReference: function _executeReference(arg1, arg2, prefix, suffix) {
 
-            var base = this.base,
+            var base = anthill._base,
                 scope = this.scope,
                 cname = scope.model.item.name;
 
@@ -107,11 +106,11 @@ define([
          */
         _renderItem: function _renderItem(item, render, where) {
             var scope = this.scope[item.name.toLowerCase()];
-            if (this.base.defineBoolean(render, false, true)) {
+            if (anthill._base.defineBoolean(render, false, true)) {
                 scope.view.render(where);
             }
             return scope;
         }
 
-    }, Base)
+    });
 });

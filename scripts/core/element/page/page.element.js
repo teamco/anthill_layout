@@ -7,29 +7,40 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function definePage(Base, BaseElement) {
+], function definePageElement(BaseElement) {
 
-    var Page = function Page(view, opts) {
+    /**
+     * Define page element
+     * @param view
+     * @param opts
+     * @returns {*}
+     * @constructor
+     * @class PageElement
+     */
+    var PageElement = function PageElement(view, opts) {
         return this._config(view, opts, $('<li />')).build({
             $container: opts.$container,
             destroy: false
         });
     };
 
-    return Page.extend({
-        defineHeight: function defineHeight() {
-            var header = this.view.elements.$header,
-                footer = this.view.elements.$footer,
-                $container = this.getRootContainer();
+    return PageElement.extend({
 
-            var headerHeight = header.$ ? header.$.height() : 0,
-                footerHeight = footer.$ ? footer.$.height() : 0,
-                containerHeight = $container.height();
+//        /**
+//         * Define page height
+//         */
+//        defineHeight: function defineHeight() {
+//            var header = this.view.elements.$header,
+//                footer = this.view.elements.$footer,
+//                $container = this.getRootContainer();
+//
+//            var headerHeight = header.$ ? header.$.height() : 0,
+//                footerHeight = footer.$ ? footer.$.height() : 0,
+//                containerHeight = $container.height();
+//
+//            this.setHeight(containerHeight - (headerHeight + footerHeight));
+//        }
 
-            this.setHeight(containerHeight - (headerHeight + footerHeight));
-        }
-
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

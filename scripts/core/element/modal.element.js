@@ -7,13 +7,20 @@
  */
 
 define([
-    'modules/base',
     'modules/element',
     'element/button.element',
     'element/cover.element'
-], function defineModal(Base, BaseElement, Button, Cover) {
+], function defineModalElement(BaseElement, Button, Cover) {
 
-    var Modal = function Modal(view, opts) {
+    /**
+     * Define Modal Element
+     * @param view
+     * @param opts
+     * @returns {ModalElement}
+     * @constructor
+     * @class ModalElement
+     */
+    var ModalElement = function ModalElement(view, opts) {
 
         /**
          * Set button elements
@@ -34,7 +41,7 @@ define([
         return this;
     };
 
-    return Modal.extend({
+    return ModalElement.extend({
 
         /**
          * Setup modal dialog
@@ -386,5 +393,5 @@ define([
             this.destroy();
         }
 
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

@@ -7,8 +7,13 @@
  **/
 
 define([
-    'modules/base'
-], function defineObserver(Base) {
+], function defineObserver() {
+
+    /**
+     * Define observer
+     * @constructor
+     * @class Observer
+     */
     var Observer = function Observer() {
         this.listeners = {};
     };
@@ -70,8 +75,8 @@ define([
          * @return {*}
          */
         defer: function defer(msTimeout, fnCallback, thisScope, args) {
-            msTimeout = this.base.define(msTimeout, 0.01);
-            args = this.base.define(args, [], true);
+            msTimeout = anthill._base.define(msTimeout, 0.01);
+            args = anthill._base.define(args, [], true);
             if (msTimeout === 0) {
                 fnCallback.apply(thisScope, args);
                 return 0;
@@ -91,7 +96,7 @@ define([
          */
         addEvent: function addEvent(eventName) {
             var listeners = this.listeners;
-            listeners[eventName] = this.base.define(listeners[eventName], []);
+            listeners[eventName] = anthill._base.define(listeners[eventName], []);
             return listeners[eventName];
         },
 
@@ -111,7 +116,7 @@ define([
          * @return {String}
          */
         onEvent: function onEvent(opts) {
-            var base = this.base;
+            var base = anthill._base;
             opts = base.define(opts, {}, true);
             opts.eventUUID = base.lib.generator.UUID();
             opts.params = base.define(opts.params, {}, true);
@@ -169,7 +174,7 @@ define([
          * @param {*} [args]
          */
         publish: function publish(eventName, args) {
-            var base = this.base,
+            var base = anthill._base,
                 scope = this.scope;
 
             if (!base.isDefined(eventName)) {
@@ -197,11 +202,11 @@ define([
          */
         fireEvent: function fireEvent(events, args) {
 
-            events = this.base.define(events, [], true);
+            events = anthill._base.define(events, [], true);
 
             var i = 0, l = events.length;
             for (i; i < l; i += 1) {
-                if (this.base.isDefined(events[i])) {
+                if (anthill._base.isDefined(events[i])) {
                     if (false === this.executeEvent(this.scope, events[i], args)) {
                         return false;
                     }
@@ -229,7 +234,7 @@ define([
          */
         executeEvent: function executeEvent(scope, opts, args) {
 
-            var base = this.base;
+            var base = anthill._base;
 
             opts.state.lastCallAt = base.lib.datetime.timestamp();
 
@@ -331,6 +336,6 @@ define([
 
         }
 
-    }, Base);
+    });
 
 });

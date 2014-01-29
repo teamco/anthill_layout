@@ -6,11 +6,18 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function defineCover(Base, BaseElement) {
+], function defineCoverElement(BaseElement) {
 
-    var Cover = function Cover(view, opts) {
+    /**
+     * Define Cover Element
+     * @param view
+     * @param opts
+     * @returns {CoverElement}
+     * @constructor
+     * @class CoverElement
+     */
+    var CoverElement = function CoverElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -22,8 +29,8 @@ define([
         return this;
     };
 
-    return Cover.extend({
+    return CoverElement.extend({
 
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 
 });

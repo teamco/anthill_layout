@@ -7,9 +7,8 @@
  */
 
 define([
-    'modules/base',
     'modules/permission'
-], function defineLayoutPermission(Base, BasePermission) {
+], function defineLayoutPermission(BasePermission) {
 
     /**
      * Define Permissions
@@ -22,5 +21,5 @@ define([
 
     return Permission.extend({
 
-    }, Base, BasePermission.prototype);
+    }, BasePermission.prototype);
 });

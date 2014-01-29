@@ -7,8 +7,8 @@
  */
 
 define([
-    'modules/base'
-], function defineBaseView(Base) {
+], function defineBaseView() {
+
     var BaseView = function BaseView() {
 
     };
@@ -16,7 +16,7 @@ define([
     return BaseView.extend({
         getConfigHTML: function getConfigHTML(key) {
             var html = this.scope.model.getConfig('html');
-            if (this.base.isDefined(key)) {
+            if (anthill._base.isDefined(key)) {
                 return html[key];
             }
             return html;
@@ -34,7 +34,7 @@ define([
             ].join('-');
         },
         renderUUID: function renderUUID(id) {
-            return id || (this.base.lib.generator.UUID() +
+            return id || (anthill._base.lib.generator.UUID() +
                 this.constructor.name.toDash());
         },
         getContainerClassName: function getContainerClassName() {
@@ -109,7 +109,7 @@ define([
          * @param {*} store
          */
         button: function button(Button, opts, store) {
-            $.each(this.base.define(opts, {}, true), function each(i, button){
+            $.each(anthill._base.define(opts, {}, true), function each(i, button){
                 store[i] = new Button(this, {
                     $container: button.$container,
                     style: i.toDash(),
@@ -119,6 +119,12 @@ define([
             }.bind(this));
         },
 
+        /**
+         * Define cover
+         * @param Cover
+         * @param opts
+         * @returns {Cover}
+         */
         cover: function cover(Cover, opts) {
             return new Cover(this, {
                 $container: opts.$container,
@@ -127,5 +133,5 @@ define([
                 events: opts.events
             });
         }
-    }, Base);
+    });
 });

@@ -7,10 +7,17 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function defineDeltaScroll(Base, BaseElement) {
+], function defineDeltaScroll(BaseElement) {
 
+    /**
+     * Define delta scroll
+     * @param view
+     * @param opts
+     * @returns {*}
+     * @constructor
+     * @class DeltaScroll
+     */
     var DeltaScroll = function DeltaScroll(view, opts) {
         return this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -20,5 +27,5 @@ define([
 
     return DeltaScroll.extend({
 
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

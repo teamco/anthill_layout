@@ -44,11 +44,30 @@ define(function loadConfig() {
         'extends/json',
         'extends/event',
         'extends/string',
-        'extends/array',
-        'config/listeners',
-        'config/permission'
+        'extends/array'
     ], function loadMandatoryConfig() {
 
-        return require;
+        return require([
+            'modules/base'
+        ], function initBase(Base) {
+
+            /**
+             * Define global application instance
+             * @type {{}}
+             */
+            window.anthill = {};
+
+            /**
+             * Define global base
+             * @type {Base}
+             * @private
+             */
+            window.anthill._base = new Base();
+
+            return require([
+                'config/listeners',
+                'config/permission'
+            ]);
+        });
     });
 });

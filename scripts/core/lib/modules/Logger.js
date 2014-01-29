@@ -7,8 +7,7 @@
  */
 
 define([
-    'modules/base'
-], function defineLog(Base) {
+], function defineLog() {
 
     /**
      * Define Logger
@@ -33,7 +32,7 @@ define([
          * @return {Boolean}
          */
         isLoggable: function isLoggable() {
-            return this.base.isDefined(console) &&
+            return anthill._base.isDefined(console) &&
                 (this.scope.controller.isDevelopmentMode() && this.showLog());
         },
 
@@ -46,7 +45,7 @@ define([
             var console = window.console,
                 content = [],
                 hash = {},
-                base = this.base,
+                base = anthill._base,
                 config = this.config,
                 scope = this.scope,
                 log = this.isLoggable();
@@ -131,7 +130,7 @@ define([
         timer: function timer(name, start) {
 
             var console = window.console,
-                base = this.base,
+                base = anthill._base,
                 config = this.config,
                 log = this.isLoggable();
 
@@ -148,7 +147,7 @@ define([
          * Define available logs
          */
         defineLogs: function defineLogs() {
-            var base = this.base,
+            var base = anthill._base,
                 availableLogs = base.lib.hash.hashKeys(
                     this.config.type
                 ),
@@ -163,5 +162,5 @@ define([
             }
         }
 
-    }, Base);
+    });
 });

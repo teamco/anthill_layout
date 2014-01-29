@@ -7,9 +7,8 @@
  */
 
 define([
-    'modules/base',
     'modules/controller'
-], function defineLayoutController(Base, BaseController) {
+], function defineLayoutController(BaseController) {
 
     /**
      * Define layout controller
@@ -58,10 +57,9 @@ define([
          * @returns {Number}
          */
         minCellWidth: function minCellWidth() {
-            var base = this.base,
-                scope = this.scope,
+            var scope = this.scope,
                 config = scope.config.grid;
-            if (base.isDefined(config.minCellWidth)) {
+            if (anthill._base.isDefined(config.minCellWidth)) {
                 return config.minCellWidth;
             }
             var columns = config.columns,
@@ -218,5 +216,5 @@ define([
             this.getBehavior()[type] = mode;
         }
 
-    }, Base, BaseController.prototype);
+    }, BaseController.prototype);
 });

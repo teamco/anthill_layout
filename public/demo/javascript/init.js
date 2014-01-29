@@ -13,11 +13,7 @@ require([
     ], function loadApplication() {
 
         require(['test/create'], function initDemo(app) {
-            window.demo = {
-                app: app
-            };
-
-        })
-
+            window.anthill.demo = app;
+        });
     });
 });

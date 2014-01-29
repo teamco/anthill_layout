@@ -7,7 +7,6 @@
  */
 
 define([
-    'modules/base',
     'modules/mvc',
     'api/page.api',
     'controller/page.controller',
@@ -17,12 +16,11 @@ define([
     'config/layout',
     'config/template',
     'permission/page.permission'
-], function definePage(Base, MVC, API, Controller, Model, View, EventManager, Layout, Template, Permission) {
+], function definePage(MVC, API, Controller, Model, View, EventManager, Layout, Template, Permission) {
 
     /**
      * Define Page
      * @class Page
-     * @extends Base
      * @param opts
      * @constructor
      */
@@ -169,5 +167,5 @@ define([
 
     };
 
-    return Page.extend(Base);
+    return Page;
 });

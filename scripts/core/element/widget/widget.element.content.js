@@ -7,10 +7,17 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function defineContent(Base, BaseElement) {
+], function defineContent(BaseElement) {
 
+    /**
+     * Define content
+     * @param view
+     * @param opts
+     * @returns {Content}
+     * @class Content
+     * @constructor
+     */
     var Content = function Content(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
@@ -26,20 +33,21 @@ define([
 
     return Content.extend({
 
+        /**
+         * Set content
+         * @member Content
+         */
         setContent: function setContent() {
             this.$.text(this.view.scope.model.getUUID());
         },
 
+        /**
+         * Set padding
+         */
         setPadding: function setPadding() {
             var padding = this.view.controller.getLocalPadding();
             this.$.css(padding);
         }
 
-
-
-
-
-
-
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

@@ -7,9 +7,8 @@
  */
 
 define([
-    'modules/base',
     'modules/permission'
-], function defineTemplatePermission(Base, BasePermission) {
+], function defineTemplatePermission(BasePermission) {
 
     /**
      * Define Permissions
@@ -22,5 +21,5 @@ define([
 
     return Permission.extend({
 
-    }, Base, BasePermission.prototype);
+    }, BasePermission.prototype);
 });

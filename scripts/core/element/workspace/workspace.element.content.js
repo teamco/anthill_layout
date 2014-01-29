@@ -7,18 +7,29 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function definePageContainer(Base, BaseElement) {
+], function defineWorkspaceContent(BaseElement) {
 
-    var PageContainer = function PageContainer(view, opts) {
+    /**
+     * Define Workspace Content
+     * @param view
+     * @param opts
+     * @returns {*}
+     * @constructor
+     * @class WorkspaceContent
+     */
+    var WorkspaceContent = function WorkspaceContent(view, opts) {
         return this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
             destroy: true
         });
     };
 
-    return PageContainer.extend({
+    return WorkspaceContent.extend({
+
+        /**
+         * Define height
+         */
         defineHeight: function defineHeight() {
             var header = this.view.elements.$header,
                 footer = this.view.elements.$footer,
@@ -31,5 +42,5 @@ define([
             this.setHeight(containerHeight - (headerHeight + footerHeight));
         }
 
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

@@ -7,14 +7,12 @@
  */
 define([
     'modules/model',
-    'modules/base',
     'config/page'
-], function defineWorkspaceModel(BaseModel, Base, Page) {
+], function defineWorkspaceModel(BaseModel, Page) {
 
     /**
      * Define Workspace model
      * @mixin BaseModel
-     * @extends Base
      * @class Model
      * @constructor
      */
@@ -29,6 +27,6 @@ define([
 
     return Model.extend({
 
-    }, BaseModel.prototype, Base);
+    }, BaseModel.prototype);
 
 });

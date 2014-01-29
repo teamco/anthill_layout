@@ -6,7 +6,6 @@
  */
 
 define([
-    'modules/base',
     'modules/debugger/debugger.config',
     'modules/debugger/debugger.component',
     'modules/debugger/debugger.tabs',
@@ -16,7 +15,7 @@ define([
     'modules/debugger/debugger.page',
     'modules/debugger/debugger.layout',
     'modules/debugger/debugger.widget'
-], function defineDebugger(Base, DebuggerConfig, DebuggerComponent, DebuggerTabs, DebuggerGrid, DebuggerApp, DebuggerWorkspace, DebuggerPage, DebuggerLayout, DebuggerWidget) {
+], function defineDebugger(DebuggerConfig, DebuggerComponent, DebuggerTabs, DebuggerGrid, DebuggerApp, DebuggerWorkspace, DebuggerPage, DebuggerLayout, DebuggerWidget) {
 
     /**
      * Define Debugger
@@ -150,7 +149,7 @@ define([
 
             var scope = this.scope,
                 scopes = this.scopes,
-                base = this.base,
+                base = anthill._base,
 
                 $div = $(this.info),
                 opacityOff = this.opacityOff;
@@ -247,5 +246,5 @@ define([
 
         }
 
-    }, Base);
+    });
 });

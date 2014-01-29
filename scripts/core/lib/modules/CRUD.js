@@ -7,8 +7,12 @@
  */
 
 define([
-    'modules/base'
-], function initCRUD(Base) {
+], function initCRUD() {
+
+    /**
+     * Define abstract CRUD
+     * @constructor
+     */
     var CRUD = function CRUD() {
 
     };
@@ -34,7 +38,7 @@ define([
          */
         destroyItem: function destroyItem(item) {
             var scope = this.scope,
-                base = this.base,
+                base = anthill._base,
                 namespace = item.constructor.name.toLowerCase();
 
             if (!base.isDefined(item)) {
@@ -107,7 +111,7 @@ define([
          */
         destroyItemView: function destroyItemView(item) {
             var scope = this.scope,
-                base = this.base,
+                base = anthill._base,
                 namespace = item.constructor.name.toLowerCase();
 
             if (!base.isDefined(item)) {
@@ -132,6 +136,6 @@ define([
             return item;
         }
 
-    }, Base);
+    });
 
 });

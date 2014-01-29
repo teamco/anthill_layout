@@ -7,11 +7,18 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function defineHeader(Base, BaseElement) {
+], function defineHeaderElement(BaseElement) {
 
-    var Header = function Header(view, opts) {
+    /**
+     * Define Header Element
+     * @param view
+     * @param opts
+     * @returns {*}
+     * @constructor
+     * @class HeaderElement
+     */
+    var HeaderElement = function HeaderElement(view, opts) {
 
         if (!view.getConfigHTML('header')) {
             return this;
@@ -23,7 +30,7 @@ define([
         });
     };
 
-    return Header.extend({
+    return HeaderElement.extend({
 
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

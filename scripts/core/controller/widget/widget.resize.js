@@ -59,9 +59,11 @@ define([
          * Enable resize
          */
         enable: function enable() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.enable) &&
-                this.scope.controller.isResizable()) {
-                this.$scope.resizable('enable');
+
+            var scope = this.scope;
+            if (scope.permission.eventTunnelFunctionCall(this.enable) &&
+                scope.controller.isResizable()) {
+                $scope.resizable('enable');
             }
         },
 
@@ -69,9 +71,11 @@ define([
          * Disable resize
          */
         disable: function disable() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.disable) &&
-                this.scope.controller.isResizable()) {
-                this.$scope.resizable('disable');
+
+            var scope = this.scope;
+            if (scope.permission.eventTunnelFunctionCall(this.disable) &&
+                scope.controller.isResizable()) {
+                $scope.resizable('disable');
             }
         },
 
@@ -79,9 +83,11 @@ define([
          * Destroy resize
          */
         destroy: function destroy() {
-            if (this.scope.permission.eventTunnelFunctionCall(this.destroy) &&
-                this.scope.controller.isResizable()) {
-                this.$scope.resizable('destroy');
+
+            var scope = this.scope;
+            if (scope.permission.eventTunnelFunctionCall(this.destroy) &&
+                scope.controller.isResizable()) {
+                $scope.resizable('destroy');
             }
         },
 
@@ -91,8 +97,12 @@ define([
          * @param ui
          */
         create: function create(event, ui) {
+
             var scope = this.scope;
-            scope.observer.publish(scope.eventmanager.eventList.createResizable, [event.type, arguments]);
+            scope.observer.publish(
+                scope.eventmanager.eventList.createResizable,
+                [event.type, arguments]
+            );
         },
 
         /**
@@ -105,7 +115,11 @@ define([
             this.debugUI(event, ui);
             scope.controller.setAsCurrent();
             scope.wireframe.resizeSticker();
-            scope.observer.publish(scope.eventmanager.eventList.startResizable, [event.type, arguments]);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.startResizable,
+                [event.type, arguments]
+            );
         },
 
         /**

@@ -6,8 +6,7 @@
  */
 
 define([
-    'modules/base'
-], function defineBaseResize(Base) {
+], function defineBaseResize() {
 
     /**
      * Define Base Window resize
@@ -118,6 +117,6 @@ define([
 
         }
 
-    }, Base);
+    });
 
 });

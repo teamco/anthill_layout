@@ -7,9 +7,8 @@
  */
 define([
     'modules/model',
-    'modules/base',
     'config/widget'
-], function definePageModel(BaseModel, Base, Widget) {
+], function definePageModel(BaseModel, Widget) {
 
     /**
      * Define Page model
@@ -38,5 +37,5 @@ define([
 
     return Model.extend({
 
-    }, BaseModel.prototype, Base);
+    }, BaseModel.prototype);
 });

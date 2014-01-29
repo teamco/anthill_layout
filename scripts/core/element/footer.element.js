@@ -7,11 +7,18 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function defineFooter(Base, BaseElement) {
+], function defineFooterElement(BaseElement) {
 
-    var Footer = function Footer(view, opts) {
+    /**
+     * Define Footer Element
+     * @param view
+     * @param opts
+     * @returns {*}
+     * @constructor
+     * @class FooterElement
+     */
+    var FooterElement = function FooterElement(view, opts) {
 
         if (!view.getConfigHTML('footer')) {
             return this;
@@ -23,7 +30,7 @@ define([
         });
     };
 
-    return Footer.extend({
+    return FooterElement.extend({
 
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

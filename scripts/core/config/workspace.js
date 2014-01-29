@@ -1,5 +1,4 @@
 define([
-    'modules/base',
     'modules/mvc',
     'api/workspace.api',
     'controller/workspace.controller',
@@ -7,12 +6,11 @@ define([
     'view/workspace.view',
     'event/workspace.event.manager',
     'permission/workspace.permission'
-], function defineWorkspace(Base, MVC, API, Controller, Model, View, EventManager, Permission) {
+], function defineWorkspace(MVC, API, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define Workspace
      * @class Workspace
-     * @extends {Base}
      * @param opts
      * @constructor
      */
@@ -85,6 +83,6 @@ define([
 
     };
 
-    return Workspace.extend(Base);
+    return Workspace;
 
 });

@@ -22,14 +22,6 @@ define([
     return BaseModel.extend({
 
         /**
-         * Define local base
-         * @type {Object}
-         * @property
-         * @member Model
-         */
-        base: require('modules/base').prototype,
-
-        /**
          * Get scope config
          * @param {String} [key]
          * @returns {*}
@@ -44,7 +36,7 @@ define([
             }
 
             if (this.scope.controller.checkCondition({
-                condition: this.base.isDefined(key),
+                condition: anthill._base.isDefined(key),
                 type: 'warn',
                 msg: 'Undefined config key',
                 args: [key]
@@ -81,7 +73,7 @@ define([
          * @returns {string}
          */
         getNameSpace: function getNameSpace(node) {
-            var base = this.base,
+            var base = anthill._base,
                 scope = base.isDefined(node) ?
                     node : this.scope,
                 constructor = base.isFunction(scope) ?
@@ -134,7 +126,7 @@ define([
          * @returns {String}
          */
         getUUID: function getUUID(node) {
-            return this.base.isDefined(node) ?
+            return anthill._base.isDefined(node) ?
                 node.model ?
                     node.model.getUUID() :
                     'Undefined ' + node.constructor.name :
@@ -147,7 +139,7 @@ define([
          * @returns {*}
          */
         getItemByUUID: function getItemByUUID(uuid) {
-            var base = this.base,
+            var base = anthill._base,
                 items = this.getItems(),
                 item = base.lib.hash.isHashKey(items, uuid) ?
                     items[uuid] : undefined;
@@ -196,7 +188,7 @@ define([
          * @returns {*}
          */
         setItem: function setItem(node, force) {
-            var base = this.base;
+            var base = anthill._base;
 
             node = base.define(node, {}, true);
             force = base.defineBoolean(force, false, true);
@@ -239,7 +231,7 @@ define([
          * @returns {boolean}
          */
         checkLimit: function checkLimit(constructor, limit) {
-            var base = this.base,
+            var base = anthill._base,
                 namespace = this.getNameSpace(constructor);
 
             limit = base.isDefined(limit) ?
@@ -266,7 +258,7 @@ define([
                 scope = this.scope,
                 cname = Constructor.name,
                 node = scope[cname.toLowerCase()],
-                base = this.base;
+                base = anthill._base;
 
             this.setConfig(namespace, base.define(scope.config[namespace], {}, true));
 
@@ -324,20 +316,20 @@ define([
 
         loadData: function loadData(data) {
 
-            data = this.base.isDefined(data) ?
+            data = anthill._base.isDefined(data) ?
                 data : this.setting.load();
 
             if (!data.hasOwnProperty('collector')) {
                 return false;
             }
 
-            if (!this.base.isDefined(this.item)) {
+            if (!anthill._base.isDefined(this.item)) {
                 return data.collector;
             }
 
             var cname = this.item.name,
                 lname = cname.toLowerCase(),
-                collector = this.base.define(data.collector, {}, true);
+                collector = anthill._base.define(data.collector, {}, true);
 
             if (collector.hasOwnProperty(lname)) {
 

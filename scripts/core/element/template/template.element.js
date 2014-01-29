@@ -6,11 +6,18 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function defineTemplate(Base, BaseElement) {
+], function defineTemplateElement(BaseElement) {
 
-    var Template = function Template(view, opts) {
+    /**
+     * Define template element
+     * @param view
+     * @param opts
+     * @returns {*}
+     * @constructor
+     * @class TemplateElement
+     */
+    var TemplateElement = function TemplateElement(view, opts) {
 
         return this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -18,7 +25,7 @@ define([
         });
     };
 
-    return Template.extend({
+    return TemplateElement.extend({
 
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

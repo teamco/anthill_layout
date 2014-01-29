@@ -7,18 +7,25 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function defineWorkspace(Base, BaseElement) {
+], function defineWorkspaceElement(BaseElement) {
 
-    var Workspace = function Workspace(view, opts) {
+    /**
+     * Define Workspace Element
+     * @param view
+     * @param opts
+     * @returns {*}
+     * @constructor
+     * @class WorkspaceElement
+     */
+    var WorkspaceElement = function Workspace(view, opts) {
         return this._config(view, opts, $('<li />')).build({
             $container: opts.$container,
             destroy: false
         });
     };
 
-    return Workspace.extend({
+    return WorkspaceElement.extend({
 
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

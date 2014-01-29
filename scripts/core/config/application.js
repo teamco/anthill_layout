@@ -1,5 +1,4 @@
 define([
-    'modules/base',
     'api/application.api',
     'modules/mvc',
     'controller/application.controller',
@@ -7,12 +6,11 @@ define([
     'view/application.view',
     'event/application.event.manager',
     'permission/application.permission'
-], function defineApp(Base, API, MVC, Controller, Model, View, EventManager, Permission) {
+], function defineApp(API, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define App
      * @class App
-     * @extends {Base}
      * @param {{}} opts
      * @constructor
      */
@@ -130,6 +128,6 @@ define([
 
     };
 
-    return App.extend(Base);
+    return App;
 
 });

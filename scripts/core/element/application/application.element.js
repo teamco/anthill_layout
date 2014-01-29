@@ -7,11 +7,17 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function defineAppHTML(Base, BaseElement) {
+], function defineAppElement(BaseElement) {
 
-    var AppHTML = function AppHTML(view, opts) {
+    /**
+     * Define App element
+     * @param view
+     * @param opts
+     * @returns {*}
+     * @constructor
+     */
+    var AppElement = function AppElement(view, opts) {
 
         return this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -19,7 +25,7 @@ define([
         });
     };
 
-    return AppHTML.extend({
+    return AppElement.extend({
 
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

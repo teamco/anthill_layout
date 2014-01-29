@@ -7,9 +7,8 @@
  */
 
 define([
-    'lib/packages/rgbcolor',
-    'modules/base'
-], function defineBaseElement(RGBColor, Base) {
+    'lib/packages/rgbcolor'
+], function defineBaseElement(RGBColor) {
 
     /**
      * Define Base element
@@ -36,7 +35,7 @@ define([
             this.id = view.renderUUID(opts.id);
             this.events = opts.events;
             this.opacity = opts.opacity || 1.0;
-            this.css = this.base.define(opts.css, {}, true);
+            this.css = anthill._base.define(opts.css, {}, true);
 
             this.$ = $html.attr({
                 id: this.id
@@ -52,7 +51,7 @@ define([
             var scope = this.view.scope,
                 $element = this.$;
             $.each(
-                this.base.define(this.events, [], true),
+                anthill._base.define(this.events, [], true),
                 function each(index, event) {
                     scope.eventmanager.onEvent.bind({
                         scope: scope,
@@ -135,7 +134,7 @@ define([
 
             destroyElement.bind(this)($container.find('#' + this.id));
 
-            if (this.base.defineBoolean(destroy, false, true)) {
+            if (anthill._base.defineBoolean(destroy, false, true)) {
                 destroyElement.bind(this)($container.find('.' + this.style));
             }
         },
@@ -146,7 +145,7 @@ define([
          * @returns {*}
          */
         build: function build(opts) {
-            var base = this.base;
+            var base = anthill._base;
             opts = base.define(opts, {}, true);
 
             var append = base.defineBoolean(opts.append, true, true);
@@ -240,7 +239,10 @@ define([
             var scope = this.view.scope,
                 items = 1;
             if (scope.controller.getContainment() && scope.config.html.stretch) {
-                items = this.base.lib.hash.hashLength(scope.controller.getContainment().items);
+                items = anthill._base.lib.hash.hashLength(
+                    scope.controller.getContainment().items
+                );
+
                 if (items > 1) {
                     this.$.css({
                         left: (items - 1) * 100 + '%'
@@ -332,7 +334,7 @@ define([
          * @returns {Number}
          */
         getCSS: function getCSS(value) {
-            return this.base.lib.number.str2float(this.$.css(value));
+            return anthill._base.lib.number.str2float(this.$.css(value));
         },
 
         /**
@@ -422,6 +424,6 @@ define([
                 this.$.addClass('shadow');
         }
 
-    }, Base);
+    });
 })
 ;

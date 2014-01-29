@@ -7,29 +7,24 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function defineContent(Base, BaseElement) {
+], function defineTemplateContent(BaseElement) {
 
-    var PageContainer = function PageContainer(view, opts) {
+    /**
+     * Define Template Content
+     * @param view
+     * @param opts
+     * @returns {*}
+     * @constructor
+     */
+    var TemplateContent = function TemplateContent(view, opts) {
         return this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
             destroy: true
         });
     };
 
-    return PageContainer.extend({
-        defineHeight: function defineHeight() {
-            var header = this.view.elements.$header,
-                footer = this.view.elements.$footer,
-                $container = this.getRootContainer();
+    return TemplateContent.extend({
 
-            var headerHeight = header.$ ? header.$.height() : 0,
-                footerHeight = footer.$ ? footer.$.height() : 0,
-                containerHeight = $container.height();
-
-            this.setHeight(containerHeight - (headerHeight + footerHeight));
-        }
-
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

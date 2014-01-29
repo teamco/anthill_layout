@@ -6,15 +6,13 @@
  */
 
 define([
-    'modules/base',
     'modules/api',
     'config/page'
-], function defineWorkspaceAPI(Base, BaseAPI, Page) {
+], function defineWorkspaceAPI(BaseAPI, Page) {
 
     /**
      * Define Workspace API
      * @class API
-     * @extends {Base}
      * @mixin {BaseAPI}
      * @constructor
      */
@@ -34,5 +32,5 @@ define([
             return this._createItem(Page, args, render);
         }
 
-    }, Base, BaseAPI.prototype);
+    }, BaseAPI.prototype);
 });

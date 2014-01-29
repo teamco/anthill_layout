@@ -8,6 +8,7 @@
 
 define([
 ], function defineBasePage() {
+
     var BasePage = function BasePage() {
 
     };

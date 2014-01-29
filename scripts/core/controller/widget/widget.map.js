@@ -6,13 +6,11 @@
  */
 
 define([
-    'modules/base'
-], function defineWidgetMap(Base) {
+], function defineWidgetMap() {
 
     /**
      * Define Widget Map
      * @class Map
-     * extends {Base}
      * @param {*} widget
      * @constructor
      */
@@ -344,7 +342,7 @@ define([
          * @param {{animate: Boolean}} behavior
          */
         sticker: function sticker(opts, behavior) {
-            opts = this.base.define(opts, {}, true);
+            opts = anthill._base.define(opts, {}, true);
             var layout = this.getLayout(),
                 css = this.isDrag(opts.type) ?
                     this.dragTo() :
@@ -439,5 +437,5 @@ define([
             }, this.dragTo());
         }
 
-    }, Base);
+    });
 });

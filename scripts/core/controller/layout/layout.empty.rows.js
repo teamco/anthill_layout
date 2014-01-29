@@ -56,7 +56,7 @@ define([
                     l = dom.relHeight + dom.row - 1;
 
                     for (i = dom.row; i <= l; i += 1) {
-                        rows[i] = this.layout.base.define(rows[i], [], true);
+                        rows[i] = anthill._base.define(rows[i], [], true);
                         rows[i].push(widget);
                     }
                 }
@@ -88,7 +88,7 @@ define([
 
             for (i; i <= rl; i += 1) {
 
-                if (layout.base.isDefined(rows[i])) {
+                if (anthill._base.isDefined(rows[i])) {
                     alreadyFixed = this._updateWidgetDOM(rows[i], alreadyFixed, moveIndex);
                 } else {
                     moveIndex += 1;

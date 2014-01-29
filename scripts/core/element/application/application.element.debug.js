@@ -7,9 +7,8 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function defineWorkspaceContainer(Base, BaseElement) {
+], function defineWorkspaceContainer(BaseElement) {
 
     /**
      * Debugger element constructor
@@ -98,5 +97,5 @@ define([
             $element.addClass('activated');
         }
 
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

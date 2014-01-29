@@ -7,18 +7,25 @@
  */
 
 define([
-    'modules/base',
     'modules/element'
-], function defineWorkspaceContainer(Base, BaseElement) {
+], function defineAppContent(BaseElement) {
 
-    var WorkspaceContainer = function WorkspaceContainer(view, opts) {
+    /**
+     * Define App content
+     * @param view
+     * @param opts
+     * @returns {*}
+     * @constructor
+     * @class AppContent
+     */
+    var AppContent = function AppContent(view, opts) {
         return this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
             destroy: true
         });
     };
 
-    return WorkspaceContainer.extend({
+    return AppContent.extend({
 
-    }, Base, BaseElement.prototype);
+    }, BaseElement.prototype);
 });

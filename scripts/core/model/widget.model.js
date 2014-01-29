@@ -6,14 +6,12 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/model',
-    'modules/base'
-], function defineWidgetModel(BaseModel, Base) {
+    'modules/model'
+], function defineWidgetModel(BaseModel) {
 
     /**
      * Define Widget model
      * @mixin BaseModel
-     * @extends Base
      * @class Model
      * @constructor
      */
@@ -55,5 +53,5 @@ define([
             this.getAttributes()[key] = value;
         }
 
-    }, BaseModel.prototype, Base);
+    }, BaseModel.prototype);
 });

@@ -7,7 +7,6 @@
  */
 
 define([
-    'modules/base',
     'modules/mvc',
     'api/widget.api',
     'controller/widget.controller',
@@ -17,12 +16,11 @@ define([
     'permission/widget.permission',
     'controller/widget/widget.map',
     'controller/widget/widget.wireframe'
-], function defineWidget(Base, MVC, API, Controller, Model, View, EventManager, Permission, Map, Wireframe) {
+], function defineWidget(MVC, API, Controller, Model, View, EventManager, Permission, Map, Wireframe) {
 
     /**
      * Define Widget
      * @class Widget
-     * @extends {Base}
      * @param opts {object}
      * @constructor
      */
@@ -168,5 +166,5 @@ define([
 
     };
 
-    return Widget.extend(Base);
+    return Widget;
 });

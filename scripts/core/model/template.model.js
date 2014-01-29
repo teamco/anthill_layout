@@ -7,10 +7,9 @@
  */
 
 define([
-    "require",
-    'modules/model',
-    'modules/base'
-], function(require, BaseModel, Base) {
+    'require',
+    'modules/model'
+], function(require, BaseModel) {
 
         /**
          * Circular solution require js
@@ -20,7 +19,6 @@ define([
             /**
              * Define Template model
              * @mixin BaseModel
-             * @extends Base
              * @class Model
              * @constructor
              */
@@ -34,7 +32,7 @@ define([
             };
 
             return Model.extend({
-            }, BaseModel.prototype, Base);
+            }, BaseModel.prototype);
 
         }();
     }

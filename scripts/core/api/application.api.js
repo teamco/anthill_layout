@@ -6,10 +6,9 @@
  */
 
 define([
-    'modules/base',
     'modules/api',
     'config/workspace'
-], function defineApplicationAPI(Base, BaseAPI, Workspace) {
+], function defineApplicationAPI(BaseAPI, Workspace) {
 
     /**
      * Define Application API
@@ -34,5 +33,5 @@ define([
             return this._createItem(Workspace, args, render);
         }
 
-    }, Base, BaseAPI.prototype);
+    }, BaseAPI.prototype);
 });

@@ -53,10 +53,10 @@ define([
          * Validate required scopes
          */
         validateScopes: function validateScopes() {
-            var hash = this.debugger.base.define(this.debugger.scopes, {}, true),
+            var hash = anthill._base.define(this.debugger.scopes, {}, true),
                 scopes = ['Workspace', 'Page', 'Widget'];
 
-            if (this.debugger.base.lib.hash.hashLength(hash) < scopes.length) {
+            if (anthill._base.lib.hash.hashLength(hash) < scopes.length) {
                 $.each(scopes, function each(index, value) {
                     this.debugger.scope.controller.checkCondition({
                         condition: !hash.hasOwnProperty(value.toLowerCase()),

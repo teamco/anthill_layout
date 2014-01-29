@@ -6,8 +6,7 @@
  */
 
 define([
-    'modules/base'
-], function defineBaseCrud(Base) {
+], function defineBaseCrud() {
 
     /**
      * Define Base CRUD
@@ -68,12 +67,12 @@ define([
             var scope = this.scope,
                 $modal = scope.view.elements.$modal;
 
-            if (this.base.isDefined($modal)) {
+            if (anthill._base.isDefined($modal)) {
                 items = $modal.items;
                 $modal.selfDestroy();
             }
 
-            var count = this.base.lib.hash.hashLength(items || {});
+            var count = anthill._base.lib.hash.hashLength(items || {});
 
             if (this.checkCondition({
                 condition: count === 0,
@@ -100,13 +99,12 @@ define([
          * @returns {boolean}
          */
         approveItemDestroy: function approveItemDestroy(item, count) {
-            var base = this.base,
-                scope = this.scope;
+            var scope = this.scope;
 
-            count = base.define(count, 1, true);
+            count = anthill._base.define(count, 1, true);
 
             if (this.checkCondition({
-                condition: !base.isDefined(item),
+                condition: !anthill._base.isDefined(item),
                 type: 'warn',
                 msg: 'Undefined item'
             })) {
@@ -141,11 +139,9 @@ define([
          * @param {Boolean} [silent]
          */
         destroyItems: function destroyItems(items, silent) {
-            var base = this.base;
+            items = anthill._base.define(items, this.items);
 
-            items = base.define(items, this.items);
-
-            base.defineBoolean(silent, false, true) ?
+            anthill._base.defineBoolean(silent, false, true) ?
                 this.controller.approveItemsDestroy(items) :
                 this.view.destroyWidgetsModalDialog(items);
         },
@@ -176,11 +172,11 @@ define([
 
         _afterCrud: function _afterCrud() {
 
-            if (this.base.isFunction(this.updateDebugger)) {
+            if (anthill._base.isFunction(this.updateDebugger)) {
                 this.updateDebugger();
             }
         }
 
-    }, Base);
+    });
 
 });
