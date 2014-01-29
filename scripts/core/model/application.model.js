@@ -15,7 +15,6 @@ define([
     /**
      * Define Application model
      * @mixin BaseModel
-     * @extends Base
      * @class Model
      * @constructor
      */

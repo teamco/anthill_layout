@@ -65,23 +65,6 @@ define(function loadConfig() {
              */
             window.anthill._base = new Base();
 
-            /**
-             * Define logger
-             * @type {Logger}
-             * @private
-             */
-            window.anthill._logger = new Logger({
-                show: true,
-                namespaces: false,
-                type: {
-                    debug: false,
-                    log: false,
-                    info: false,
-                    error: true,
-                    warn: true
-                }
-            });
-
             return require([
                 'config/listeners',
                 'config/permission'

@@ -14,18 +14,34 @@ define([
      * @class Logger
      * @constructor Logger
      */
-    var Logger = function Logger(config) {
+    var Logger = function Logger(scope) {
 
         /**
-         * Define config
-         * @type {*|{}}
+         * Define scope
+         * @type {*}
          */
-        this.config = config || {};
+        this.scope = scope;
 
-        this.defineLogs();
+        this.setConfig(scope.config.logger);
     };
 
     return Logger.extend({
+
+        /**
+         * Set config
+         * @param config
+         */
+        setConfig: function setConfig(config) {
+
+            if (anthill._base.isObject(config)) {
+
+                /**
+                 * Define config
+                 * @type {*}
+                 */
+                this.config = config;
+            }
+        },
 
         /**
          * Show Log
@@ -41,7 +57,7 @@ define([
          */
         isLoggable: function isLoggable() {
             return anthill._base.isDefined(console) &&
-                (this.scope.controller.isDevelopmentMode() && this.showLog());
+                this.showLog();
         },
 
         /**
@@ -50,6 +66,7 @@ define([
          * @returns {boolean}
          */
         puts: function puts(type) {
+
             var console = window.console,
                 content = [],
                 hash = {},
@@ -57,16 +74,25 @@ define([
                 config = this.config,
                 scope = this.scope,
                 log = this.isLoggable();
+
             if (log && config.type[type]) {
                 try {
                     if (!!config.namespaces) {
+
+                        /**
+                         * Define constructor name instance
+                         * @type {Function.name|*}
+                         */
                         var instance = scope.constructor.name;
+
                         if (base.isDefined(instance)) {
+
                             config.namespaces = base.define(
                                 config.namespaces,
                                 [config.namespaces],
                                 true
                             );
+
                             if ($.inArray(instance, config.namespaces) === -1) {
                                 return false;
                             }
@@ -124,7 +150,7 @@ define([
         stackIt: function stackIt(stacks) {
             var log = [];
             for (var i = 1, l = stacks.length; i < l; i++) {
-                log.push(stacks[i].replace(/^\s+|\s+$/g, '').match(/at (\w+.+)\/?/)[1]);
+                log.push(stacks[i].replace(/^\s+at |\s+$/g, ''));
             }
 
             return log;

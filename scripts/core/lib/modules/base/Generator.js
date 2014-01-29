@@ -10,7 +10,6 @@ define([], function defineBaseGenerator() {
     /**
      * Define generators
      * @class BaseGenerator
-     * @extends {Base}
      * @constructor
      */
     var BaseGenerator = function BaseGenerator() {

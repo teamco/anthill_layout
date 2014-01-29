@@ -52,7 +52,18 @@ define([
             mode: 'development',
             type: 'default',
             isResized: false,
-            limit: true
+            limit: true,
+            logger: {
+                show: true,
+                namespaces: false,
+                type: {
+                    debug: false,
+                    log: false,
+                    info: false,
+                    error: true,
+                    warn: true
+                }
+            }
         };
 
         /**

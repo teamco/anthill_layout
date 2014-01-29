@@ -13,7 +13,6 @@ define([
     /**
      * Define Page model
      * @mixin BaseModel
-     * @extends Base
      * @class Model
      * @constructor
      */
