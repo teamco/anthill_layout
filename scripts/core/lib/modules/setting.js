@@ -8,20 +8,26 @@ define([
      * @param {String} name
      * @constructor
      */
-    var Setting = function Setting(mode, name) {
+    var Setting = function Setting(scope, name) {
+
+        /**
+         * Define scope
+         * @type {*}
+         */
+        this.scope = scope;
 
         /**
          * Define setting mode
          * @type {String}
          */
-        this.mode = mode;
+        this.mode = this.scope.controller.getMode();
 
         /**
          * Define setting storage
          * @type {{development: Storage}}
          */
         this.storage = {
-            development:  window.localStorage
+            development: window.localStorage
         };
 
         /**
@@ -125,18 +131,27 @@ define([
                 this.getNameSpace(),
                 JSON.stringify(opts)
             );
+
+            this.scope.logger.debug('Save', opts);
         },
 
         /**
          * Load
          */
         load: function load() {
-            return JSON.parse(
+
+            /**
+             * Define data
+             * @type {*}
+             */
+            var data = JSON.parse(
                 this.getStorage().getItem(
                     this.getNameSpace()
                 )
             );
-        }
 
+            this.scope.logger.debug('Load', data);
+            return data;
+        }
     });
 });

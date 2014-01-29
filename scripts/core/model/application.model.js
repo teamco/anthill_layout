@@ -40,7 +40,7 @@ define([
              * @type {config.setting}
              */
             this.setting = new Setting(
-                this.scope.controller.getMode(),
+                this.scope,
                 this.getConfig('appName')
             );
 
