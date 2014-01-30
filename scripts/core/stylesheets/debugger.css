@@ -414,72 +414,72 @@
 }
 
 #debug-mode ul.actions li.add-item {
-    background: url('smoothness/images/ui-icons_222222_256x240.png') -1px -193px;
+    background: url('ui-lightness/images/ui-icons_ef8c08_256x240.png') -1px -193px;
 }
 
 #debug-mode ul.actions li.add-item:hover {
-    background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
+    background-image: url('ui-lightness/images/ui-icons_228ef1_256x240.png');
 }
 
 #debug-mode ul.actions li.add-item.disabled {
-    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+    background-image: url('ui-lightness/images/ui-icons_ffd27a_256x240.png');
 }
 
 #debug-mode ul.actions li.remove-items {
-    background: url('smoothness/images/ui-icons_222222_256x240.png') -17px -193px;
+    background: url('ui-lightness/images/ui-icons_ef8c08_256x240.png') -17px -193px;
 }
 
 #debug-mode ul.actions li.remove-items:hover {
-    background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
+    background-image: url('ui-lightness/images/ui-icons_228ef1_256x240.png');
 }
 
 #debug-mode ul.actions li.remove-items.disabled,
 #debug-mode ul.actions li.remove-items.select {
-    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+    background-image: url('ui-lightness/images/ui-icons_ffd27a_256x240.png');
 }
 
 #debug-mode ul.actions li.remove-all-items {
-    background: url('smoothness/images/ui-icons_222222_256x240.png') -33px -193px;
+    background: url('ui-lightness/images/ui-icons_ef8c08_256x240.png') -33px -193px;
 }
 
 #debug-mode ul.actions li.remove-all-items:hover {
-    background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
+    background-image: url('ui-lightness/images/ui-icons_228ef1_256x240.png');
 }
 
 #debug-mode ul.actions li.remove-all-items.disabled {
-    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+    background-image: url('ui-lightness/images/ui-icons_ffd27a_256x240.png');
 }
 
 #debug-mode ul.actions li.locate-item {
-    background: url('smoothness/images/ui-icons_222222_256x240.png') -193px -193px;
+    background: url('ui-lightness/images/ui-icons_ef8c08_256x240.png') -193px -193px;
 }
 
 #debug-mode ul.actions li.locate-item:hover {
-    background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
+    background-image: url('ui-lightness/images/ui-icons_228ef1_256x240.png');
 }
 
 #debug-mode ul.actions li.locate-item.disabled,
 #debug-mode ul.actions li.locate-item.select {
-    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+    background-image: url('ui-lightness/images/ui-icons_ffd27a_256x240.png');
 }
 
 #debug-mode ul.actions li.edit-mode {
     float: right;
     margin: 0;
-    background: url('smoothness/images/ui-icons_888888_256x240.png') -209px -193px;
+    background: url('ui-lightness/images/ui-icons_ef8c08_256x240.png') -209px -193px;
 }
 
 #debug-mode ul.actions li.edit-mode:hover {
-    background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
+    background-image: url('ui-lightness/images/ui-icons_228ef1_256x240.png');
 }
 
 #debug-mode ul.actions li.edit-mode.active,
 #debug-mode ul.actions li.edit-mode.active:hover {
-    background-image: url('smoothness/images/ui-icons_cd0a0a_256x240.png');
+    background-image: url('ui-lightness/images/ui-icons_228ef1_256x240.png');
 }
 
 #debug-mode ul.actions li.edit-mode.disabled {
-    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+    background-image: url('ui-lightness/images/ui-icons_ffd27a_256x240.png');
 }
 
 #debug-mode .pin {
@@ -489,19 +489,19 @@
     width: 14px;
     height: 14px;
     cursor: pointer;
-    background: transparent url('smoothness/images/ui-icons_888888_256x240.png') no-repeat -128px -144px;
+    background: transparent url('ui-lightness/images/ui-icons_ffd27a_256x240.png') no-repeat -128px -144px;
 }
 
 #debug-mode .pin:hover {
-    background-image: url('smoothness/images/ui-icons_2e83ff_256x240.png');
+    background-image: url('ui-lightness/images/ui-icons_228ef1_256x240.png');
 }
 
 #debug-mode .pin.active,
 #debug-mode .pin.active:hover {
-    background: url('smoothness/images/ui-icons_cd0a0a_256x240.png') -144px -144px;
+    background: url('ui-lightness/images/ui-icons_ffd27a_256x240.png') -144px -144px;
 }
 
 #debug-mode .pin.disabled,
 #debug-mode .pin.disabled:hover {
-    background-image: url('smoothness/images/ui-icons_888888_256x240.png');
+    background-image: url('ui-lightness/images/ui-icons_ffd27a_256x240.png');
 }
