@@ -55,7 +55,7 @@ define([
 
             var items = scope.items,
                 index = model.getUUID(),
-                onDestroy = this.base.define(model.onDestroy, [], true),
+                onDestroy = anthill._base.define(model.onDestroy, [], true),
                 itemEventManager = item.eventmanager,
                 i = 0, l = onDestroy.length;
 

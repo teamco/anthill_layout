@@ -112,7 +112,7 @@ define([
              * Set hover opacity
              * @type {$modal.hover: Boolean}
              */
-            this.hover = this.base.defineBoolean(opts.hover, true, true);
+            this.hover = anthill._base.defineBoolean(opts.hover, true, true);
 
             /**
              * Set modal opacity hover out
@@ -145,25 +145,25 @@ define([
              * Set modal is draggable condition
              * @type {$modal.draggable: Boolean}
              */
-            this.draggable = this.base.defineBoolean(opts.draggable, true, true);
+            this.draggable = anthill._base.defineBoolean(opts.draggable, true, true);
 
             /**
              * Set close X button
              * @type {$modal.closeX: Boolean}
              */
-            this.closeX = this.base.defineBoolean(opts.draggable, true, true);
+            this.closeX = anthill._base.defineBoolean(opts.draggable, true, true);
 
             /**
              * Set cover config
              * @type {$modal.cover: Boolean}
              */
-            this.cover = this.base.defineBoolean(opts.cover, true, true);
+            this.cover = anthill._base.defineBoolean(opts.cover, true, true);
 
             /**
              * Set close modal on click cover
              * @type {$modal.autoclose: Boolean}
              */
-            this.autoclose = this.base.defineBoolean(opts.autoclose, false, true);
+            this.autoclose = anthill._base.defineBoolean(opts.autoclose, false, true);
 
             /**
              * Set cover opacity
@@ -265,7 +265,7 @@ define([
          */
         setHeader: function setHeader() {
             var $header = this._getHeader();
-            this.base.isDefined(this.title) ?
+            anthill._base.isDefined(this.title) ?
                 $header.text(this.title) :
                 $header.hide();
         },
@@ -275,7 +275,7 @@ define([
          */
         setHTML: function setHTML() {
             var $html = this._getHTML();
-            this.base.isDefined(this.html) ?
+            anthill._base.isDefined(this.html) ?
                 $html.append(this.html) :
                 $html.hide();
         },
@@ -285,7 +285,7 @@ define([
          */
         setText: function setText() {
             var $text = this._getText();
-            this.base.isDefined(this.text) ?
+            anthill._base.isDefined(this.text) ?
                 $text.text(this.text) :
                 $text.hide();
         },

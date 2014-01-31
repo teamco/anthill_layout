@@ -298,7 +298,7 @@ define([
 
                     this.defer(opts.params.timeout, function deferCallback() {
 
-                        var currentTime = this.base.lib.datetime.timestamp();
+                        var currentTime = anthill._base.lib.datetime.timestamp();
                         var triggerTime = opts.state.lastCallAt + opts.params.timeout;
 
                         /**

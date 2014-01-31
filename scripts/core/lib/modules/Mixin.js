@@ -31,7 +31,7 @@ define([], function defineMixin() {
         getParent: function getParent() {
             var parent = this.config.parent;
 
-            if (!this.base.isDefined(parent)) {
+            if (!anthill._base.isDefined(parent)) {
                 this.logger.debug('Instance has no property, parent');
             }
 
