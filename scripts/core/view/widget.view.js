@@ -41,7 +41,7 @@ define([
             this.elements.$content = new Content(this, {
                 style: 'content',
                 css: {
-                    background: anthill._base.lib.generator.randomColor()
+                    background: anthill.base.lib.generator.randomColor()
                 },
                 $container: this.elements.$widget.$
             });

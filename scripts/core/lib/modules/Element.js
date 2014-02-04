@@ -35,7 +35,7 @@ define([
             this.id = view.renderUUID(opts.id);
             this.events = opts.events;
             this.opacity = opts.opacity || 1.0;
-            this.css = anthill._base.define(opts.css, {}, true);
+            this.css = anthill.base.define(opts.css, {}, true);
 
             this.$ = $html.attr({
                 id: this.id
@@ -51,7 +51,7 @@ define([
             var scope = this.view.scope,
                 $element = this.$;
             $.each(
-                anthill._base.define(this.events, [], true),
+                anthill.base.define(this.events, [], true),
                 function each(index, event) {
                     scope.eventmanager.onEvent.bind({
                         scope: scope,
@@ -134,7 +134,7 @@ define([
 
             destroyElement.bind(this)($container.find('#' + this.id));
 
-            if (anthill._base.defineBoolean(destroy, false, true)) {
+            if (anthill.base.defineBoolean(destroy, false, true)) {
                 destroyElement.bind(this)($container.find('.' + this.style));
             }
         },
@@ -145,7 +145,7 @@ define([
          * @returns {*}
          */
         build: function build(opts) {
-            var base = anthill._base;
+            var base = anthill.base;
             opts = base.define(opts, {}, true);
 
             var append = base.defineBoolean(opts.append, true, true);
@@ -239,7 +239,7 @@ define([
             var scope = this.view.scope,
                 items = 1;
             if (scope.controller.getContainment() && scope.config.html.stretch) {
-                items = anthill._base.lib.hash.hashLength(
+                items = anthill.base.lib.hash.hashLength(
                     scope.controller.getContainment().items
                 );
 
@@ -334,7 +334,7 @@ define([
          * @returns {Number}
          */
         getCSS: function getCSS(value) {
-            return anthill._base.lib.number.str2float(this.$.css(value));
+            return anthill.base.lib.number.str2float(this.$.css(value));
         },
 
         /**

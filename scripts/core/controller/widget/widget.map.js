@@ -342,7 +342,7 @@ define([
          * @param {{animate: Boolean}} behavior
          */
         sticker: function sticker(opts, behavior) {
-            opts = anthill._base.define(opts, {}, true);
+            opts = anthill.base.define(opts, {}, true);
             var layout = this.getLayout(),
                 css = this.isDrag(opts.type) ?
                     this.dragTo() :

@@ -66,7 +66,7 @@ define([], function defineDebuggerGrid() {
          */
          visibility: function visibility(visible) {
 
-            if (anthill._base.isDefined(visible)) {
+            if (anthill.base.isDefined(visible)) {
                 this.visible = visible;
             }
 
@@ -192,7 +192,7 @@ define([], function defineDebuggerGrid() {
          * @param {{left, top, [width], [height], text}}opts
          */
         renderPlaceHolder: function renderPlaceHolder(selector, opts) {
-            opts = anthill._base.define(opts, {}, true);
+            opts = anthill.base.define(opts, {}, true);
             $(selector).append(
                 $('<div />').css({
                     left: opts.left,

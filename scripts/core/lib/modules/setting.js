@@ -48,7 +48,7 @@ define([
 
             var storage = this.load();
 
-            if (!anthill._base.isDefined(storage)) {
+            if (!anthill.base.isDefined(storage)) {
 
                 this.save();
 
@@ -59,13 +59,13 @@ define([
                 storage = this.load();
             }
 
-            if (!anthill._base.isDefined(storage.token)) {
+            if (!anthill.base.isDefined(storage.token)) {
 
                 /**
                  * Define token
                  * @type {String}
                  */
-                this.token = anthill._base.lib.generator.UUID();
+                this.token = anthill.base.lib.generator.UUID();
 
                 this.save(storage);
             }
@@ -93,12 +93,12 @@ define([
          */
         save: function save(opts) {
 
-            opts = anthill._base.define(opts, {}, true);
+            opts = anthill.base.define(opts, {}, true);
 
             var data = this.load(),
-                _dt = anthill._base.lib.datetime;
+                _dt = anthill.base.lib.datetime;
 
-            if (anthill._base.isDefined(data)) {
+            if (anthill.base.isDefined(data)) {
 
                 /**
                  * Load created at

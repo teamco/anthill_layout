@@ -89,7 +89,7 @@ define(function defineEmptyColumns() {
          * @returns {Array}
          */
         getWidgetOrder: function getWidgetOrder(widgets) {
-            var widgetOrder = anthill._base.lib.hash.hashKeys(widgets);
+            var widgetOrder = anthill.base.lib.hash.hashKeys(widgets);
 
             // Sort widget UUIDs by widget position
             widgetOrder.sort(function (a, b) {

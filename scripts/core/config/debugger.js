@@ -74,7 +74,7 @@ define([
      * Define resizeWindowHooks
      * @type {{name: string, callback: Function}}
      */
-    anthill._base.define(
+    anthill.base.define(
             Application.prototype.localListeners.resizeWindowHooks, []
         ).push({
             name: 'resize.window.hooks',

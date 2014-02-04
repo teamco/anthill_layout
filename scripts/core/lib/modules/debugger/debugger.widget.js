@@ -37,7 +37,7 @@ define([], function defineDebuggerWidget() {
                 c.renderBlock(
                     'Attributes', [
                         $.map(attr,function (v, k) {
-                            return anthill._base.isBoolean(v) ?
+                            return anthill.base.isBoolean(v) ?
                                 c.renderInput(k.toUnderscore().humanize(), v) :
                                 null;
                         }).join(''),

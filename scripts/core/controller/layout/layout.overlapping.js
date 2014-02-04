@@ -35,15 +35,15 @@ define([
         nestedOrganizer: function nestedOrganizer(opts) {
             var layout = this.layout;
 
-            opts = anthill._base.define(opts, {}, true);
-            opts.targets = anthill._base.define(opts.targets, {}, true);
+            opts = anthill.base.define(opts, {}, true);
+            opts.targets = anthill.base.define(opts.targets, {}, true);
 
             if (!layout.controller.isOverlappingAllowed()) {
                 layout.logger.debug('Overlapping is allowed');
                 return this._nestedOrganizerCallback(opts.callback);
             }
 
-            if (anthill._base.lib.hash.isHashEmpty(opts.targets)) {
+            if (anthill.base.lib.hash.isHashEmpty(opts.targets)) {
                 layout.logger.debug('Empty targets');
                 return this._nestedOrganizerCallback(opts.callback);
             }
@@ -67,7 +67,7 @@ define([
 
             for (index in widgets) {
                 if (widgets.hasOwnProperty(index)) {
-                    if (anthill._base.isDefined(widgets[index])) {
+                    if (anthill.base.isDefined(widgets[index])) {
                         intersecting = this._intersectWidgets(widgets[index]);
                         this._organizeCollector(widgets[index], intersecting);
                         for (moved in intersecting) {
@@ -120,7 +120,7 @@ define([
             var page = this.layout.controller.getContainment(),
                 widgets = page.items,
                 index, widget, counter = 1,
-                length = anthill._base.lib.hash.hashLength(widgets);
+                length = anthill.base.lib.hash.hashLength(widgets);
 
             for (index in widgets) {
                 if (widgets.hasOwnProperty(index)) {
@@ -151,7 +151,7 @@ define([
             var layout = this.scope.layout,
                 callback = this.callback;
 
-            if (anthill._base.isFunction(callback)) {
+            if (anthill.base.isFunction(callback)) {
                 layout.logger.debug('Execute callback', callback);
                 callback();
             }

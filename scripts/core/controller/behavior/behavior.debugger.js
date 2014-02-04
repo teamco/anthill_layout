@@ -68,7 +68,7 @@ define([
                 cname = scope.constructor.name.toLowerCase(),
                 debug = scope.controller.root().debugger;
 
-            if (!anthill._base.isDefined(debug)) {
+            if (!anthill.base.isDefined(debug)) {
                 return false;
             }
 

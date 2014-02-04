@@ -59,7 +59,7 @@ define([
         minCellWidth: function minCellWidth() {
             var scope = this.scope,
                 config = scope.config.grid;
-            if (anthill._base.isDefined(config.minCellWidth)) {
+            if (anthill.base.isDefined(config.minCellWidth)) {
                 return config.minCellWidth;
             }
             var columns = config.columns,

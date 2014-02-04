@@ -67,12 +67,12 @@ define([
             var scope = this.scope,
                 $modal = scope.view.elements.$modal;
 
-            if (anthill._base.isDefined($modal)) {
+            if (anthill.base.isDefined($modal)) {
                 items = $modal.items;
                 $modal.selfDestroy();
             }
 
-            var count = anthill._base.lib.hash.hashLength(items || {});
+            var count = anthill.base.lib.hash.hashLength(items || {});
 
             if (this.checkCondition({
                 condition: count === 0,
@@ -101,10 +101,10 @@ define([
         approveItemDestroy: function approveItemDestroy(item, count) {
             var scope = this.scope;
 
-            count = anthill._base.define(count, 1, true);
+            count = anthill.base.define(count, 1, true);
 
             if (this.checkCondition({
-                condition: !anthill._base.isDefined(item),
+                condition: !anthill.base.isDefined(item),
                 type: 'warn',
                 msg: 'Undefined item'
             })) {
@@ -139,9 +139,9 @@ define([
          * @param {Boolean} [silent]
          */
         destroyItems: function destroyItems(items, silent) {
-            items = anthill._base.define(items, this.items);
+            items = anthill.base.define(items, this.items);
 
-            anthill._base.defineBoolean(silent, false, true) ?
+            anthill.base.defineBoolean(silent, false, true) ?
                 this.controller.approveItemsDestroy(items) :
                 this.view.destroyWidgetsModalDialog(items);
         },
@@ -172,7 +172,7 @@ define([
 
         _afterCrud: function _afterCrud() {
 
-            if (anthill._base.isFunction(this.updateDebugger)) {
+            if (anthill.base.isFunction(this.updateDebugger)) {
                 this.updateDebugger();
             }
         }

@@ -60,7 +60,7 @@ define([], function defineDebuggerActions() {
             this.selectors = {};
             $.each(opts || {}, function each(i, selector) {
 
-                if (!anthill._base.isDefined(this.scope)) {
+                if (!anthill.base.isDefined(this.scope)) {
                     this.debugger.scope.logger.info('Undefined scope', this, i);
                     return false;
                 }
@@ -101,7 +101,7 @@ define([], function defineDebuggerActions() {
             var html = [];
             $.each(this.actions, function each(i, action) {
                 var fn = this['_' + action.toCamel() + 'Button'];
-                if (anthill._base.isFunction(fn)) {
+                if (anthill.base.isFunction(fn)) {
                     html.push(fn.bind(this)());
                 }
             }.bind(this));
@@ -278,7 +278,7 @@ define([], function defineDebuggerActions() {
          * @private
          */
         _bindItemsList: function _bindItemsList(scope) {
-            this.$select = anthill._base.define(
+            this.$select = anthill.base.define(
                 this.$select,
                 $('.select', this.selectors.actions)
             );
@@ -375,7 +375,7 @@ define([], function defineDebuggerActions() {
                  * Add new item
                  */
                 function addNewItem(e) {
-                    if (anthill._base.lib.hash.isHashEmpty(scope.model.getItems())) {
+                    if (anthill.base.lib.hash.isHashEmpty(scope.model.getItems())) {
 
                         /**
                          * Restart debugger
@@ -514,7 +514,7 @@ define([], function defineDebuggerActions() {
                     uuid
                 );
 
-            if (!anthill._base.isDefined(item)) {
+            if (!anthill.base.isDefined(item)) {
                 scope.logger.warn('Undefined item', uuid);
                 return false;
             }

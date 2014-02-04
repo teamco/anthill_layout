@@ -149,7 +149,7 @@ define([
 
             var scope = this.scope,
                 scopes = this.scopes,
-                base = anthill._base,
+                base = anthill.base,
 
                 $div = $(this.info),
                 opacityOff = this.opacityOff;

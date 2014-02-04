@@ -38,7 +38,7 @@ define([
          */
         destroyItem: function destroyItem(item) {
             var scope = this.scope,
-                base = anthill._base,
+                base = anthill.base,
                 namespace = item.constructor.name.toLowerCase();
 
             if (!base.isDefined(item)) {
@@ -55,7 +55,7 @@ define([
 
             var items = scope.items,
                 index = model.getUUID(),
-                onDestroy = anthill._base.define(model.onDestroy, [], true),
+                onDestroy = anthill.base.define(model.onDestroy, [], true),
                 itemEventManager = item.eventmanager,
                 i = 0, l = onDestroy.length;
 
@@ -111,7 +111,7 @@ define([
          */
         destroyItemView: function destroyItemView(item) {
             var scope = this.scope,
-                base = anthill._base,
+                base = anthill.base,
                 namespace = item.constructor.name.toLowerCase();
 
             if (!base.isDefined(item)) {

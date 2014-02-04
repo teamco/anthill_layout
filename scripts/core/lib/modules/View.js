@@ -16,7 +16,7 @@ define([
     return BaseView.extend({
         getConfigHTML: function getConfigHTML(key) {
             var html = this.scope.model.getConfig('html');
-            if (anthill._base.isDefined(key)) {
+            if (anthill.base.isDefined(key)) {
                 return html[key];
             }
             return html;
@@ -34,7 +34,7 @@ define([
             ].join('-');
         },
         renderUUID: function renderUUID(id) {
-            return id || (anthill._base.lib.generator.UUID() +
+            return id || (anthill.base.lib.generator.UUID() +
                 this.constructor.name.toDash());
         },
         getContainerClassName: function getContainerClassName() {
@@ -109,7 +109,7 @@ define([
          * @param {*} store
          */
         button: function button(Button, opts, store) {
-            $.each(anthill._base.define(opts, {}, true), function each(i, button){
+            $.each(anthill.base.define(opts, {}, true), function each(i, button){
                 store[i] = new Button(this, {
                     $container: button.$container,
                     style: i.toDash(),

@@ -26,7 +26,7 @@ define([
             var scope = this.scope,
                 observer = scope.observer,
                 events = this.events,
-                base = anthill._base;
+                base = anthill.base;
 
             opts = base.define(opts, {}, true);
             if (base.lib.hash.isHashEmpty(opts)) {
@@ -44,7 +44,7 @@ define([
          * @returns {Boolean}
          */
         subscribe: function subscribe(opts, internal) {
-            var base = anthill._base, event;
+            var base = anthill.base, event;
             opts = base.define(opts, {}, true);
             internal = base.defineBoolean(internal, false, true);
 
@@ -97,7 +97,7 @@ define([
                 method = controller[event];
 
             if (scope.controller.checkCondition({
-                condition: !anthill._base.isFunction(method),
+                condition: !anthill.base.isFunction(method),
                 msg: 'Undefined method',
                 args: [controller, method]
             })) {

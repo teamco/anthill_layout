@@ -60,9 +60,8 @@ define(function loadConfig() {
             /**
              * Define global base
              * @type {Base}
-             * @private
              */
-            window.anthill._base = new Base();
+            window.anthill.base = new Base();
 
             return require([
                 'config/listeners',

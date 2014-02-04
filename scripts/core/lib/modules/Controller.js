@@ -171,7 +171,7 @@ define([
          */
         setOrder: function setOrder(collector) {
             var scope = this.scope,
-                base = anthill._base;
+                base = anthill.base;
 
             scope.config.order = base.define(
                 scope.config.order,
@@ -185,7 +185,7 @@ define([
          * @returns {*}
          */
         extendConfig: function extendConfig(opts) {
-            var base = anthill._base,
+            var base = anthill.base,
                 scope = this.scope,
                 config = base.lib.hash.extendHash({
                     html: {
@@ -229,7 +229,7 @@ define([
          */
         store: function store(node, data) {
 
-            data = anthill._base.define(data, {collector: {}}, true);
+            data = anthill.base.define(data, {collector: {}}, true);
 
             /**
              * Define item list
@@ -285,7 +285,7 @@ define([
                          * Define config
                          * @type {{}}
                          */
-                        collector[uuid].config = anthill._base.lib.hash.extendHash(
+                        collector[uuid].config = anthill.base.lib.hash.extendHash(
                             item.model.getConfig(),
                             collector[uuid].config
                         );

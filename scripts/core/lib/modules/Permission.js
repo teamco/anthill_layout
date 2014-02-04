@@ -23,7 +23,7 @@ define([
          * Config capabilities
          */
         config: function config() {
-            var base = anthill._base,
+            var base = anthill.base,
                 permissions = base.define(this.scope.config.permission, {}, true);
 
             $.each(permissions, function each(index, permission) {
@@ -37,7 +37,7 @@ define([
          * @param {{callback: Function, fallback: Function, args: *|Array, capability: String}} opts
          */
         check: function check(opts) {
-            var base = anthill._base;
+            var base = anthill.base;
 
             opts = base.define(opts, {}, true);
 
@@ -62,7 +62,7 @@ define([
          * @returns {*}
          */
         setCapability: function setCapability(key, value) {
-            this.capability[key] = anthill._base.defineBoolean(value, false, true);
+            this.capability[key] = anthill.base.defineBoolean(value, false, true);
             return this.getCapability(key);
         },
 
@@ -72,7 +72,7 @@ define([
          * @returns {*}
          */
         getCapability: function getCapability(key) {
-            return anthill._base.defineBoolean(this.capability[key], false, true);
+            return anthill.base.defineBoolean(this.capability[key], false, true);
         },
 
         /**

@@ -108,7 +108,7 @@ define([], function defineDebuggerComponent() {
             var config = item.config[item.model.getItemNameSpace()];
             return [
                 '<li class="items-count"><span>', text, ':</span> ',
-                anthill._base.lib.hash.hashLength(item.items), ' of ',
+                anthill.base.lib.hash.hashLength(item.items), ' of ',
                 (config ? config.limit : 'Undefined') ||
                     'Unlimited', '</li>'
             ].join('');
@@ -121,7 +121,7 @@ define([], function defineDebuggerComponent() {
          * @returns {string}
          */
         renderInput: function renderInput(text, condition) {
-            var uuid = anthill._base.lib.generator.UUID();
+            var uuid = anthill.base.lib.generator.UUID();
             return [
                 '<li><input name="', (text.toLowerCase().replace(/ /g, '-')),
                 '" id="', uuid, '" type="checkbox"',

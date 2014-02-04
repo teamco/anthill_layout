@@ -33,7 +33,7 @@ define([
          */
         setConfig: function setConfig(config) {
 
-            if (anthill._base.isObject(config)) {
+            if (anthill.base.isObject(config)) {
 
                 /**
                  * Define config
@@ -56,7 +56,7 @@ define([
          * @return {Boolean}
          */
         isLoggable: function isLoggable() {
-            return anthill._base.isDefined(console) &&
+            return anthill.base.isDefined(console) &&
                 this.showLog();
         },
 
@@ -70,7 +70,7 @@ define([
             var console = window.console,
                 content = [],
                 hash = {},
-                base = anthill._base,
+                base = anthill.base,
                 config = this.config,
                 scope = this.scope,
                 log = this.isLoggable();
@@ -164,7 +164,7 @@ define([
         timer: function timer(name, start) {
 
             var console = window.console,
-                base = anthill._base,
+                base = anthill.base,
                 config = this.config,
                 log = this.isLoggable();
 
@@ -181,7 +181,7 @@ define([
          * Define available logs
          */
         defineLogs: function defineLogs() {
-            var base = anthill._base,
+            var base = anthill.base,
                 availableLogs = base.lib.hash.hashKeys(
                     this.config.type
                 ),

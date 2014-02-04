@@ -38,7 +38,7 @@ define([
         getLocalPadding: function getLocalPadding() {
             var padding = {},
                 global = this.getGlobalPadding(),
-                local = anthill._base.define(this.scope.dom.padding, {}, true);
+                local = anthill.base.define(this.scope.dom.padding, {}, true);
 
             this.scope.logger.debug(
                 'Merge local padding',
