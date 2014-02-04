@@ -350,7 +350,7 @@ define([
                          */
                         var node = collector[lname][index];
 
-                        this.scope.api['create' + cname](node.config, true);
+                        this.scope.api['create' + cname](node.config, true, true);
                     }
                 }
             }

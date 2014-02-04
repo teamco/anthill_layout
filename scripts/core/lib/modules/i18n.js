@@ -60,12 +60,22 @@ define([
          * @returns {string}
          */
         t: function t(key, params) {
+
+            /**
+             * Get data
+             * @type {string|*}
+             */
             var result = this.getData(key);
+
             if (typeof(params) === 'object') {
                 for (var i = 0, l = params.length; i < l; i++) {
-                    result = result.replace('{' + i + '}', params[i]);
+                    result = result.replace(
+                        new RegExp('\\{' + i + '\\}'),
+                        params[i]
+                    );
                 }
             }
+
             return result;
         }
     });

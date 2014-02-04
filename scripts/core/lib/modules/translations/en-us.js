@@ -9,8 +9,8 @@
 define([], function () {
 
     return {
-        'not.allowed.add.widget': 'Do not allowed to add widget',
         'ban.add.widget': 'Before nested organizer',
+        'not.allowed.add.widget': 'Do not allowed to add widget',
         'silent.add.widget': 'Silent nested organizer'
     };
 
