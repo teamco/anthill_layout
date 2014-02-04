@@ -24,10 +24,14 @@ define([
 
         /**
          * Before nested organizer
+         * @param {boolean} silent
          */
-        beforeNestedOrganizer: function beforeNestedOrganizer() {
-            this.controller.getContainment().controller.banAddWidget();
-            this.logger.debug('Before nested organizer');
+        beforeNestedOrganizer: function beforeNestedOrganizer(silent) {
+            if (!silent) {
+                this.controller.getContainment().controller.banAddWidget();
+                this.logger.debug(anthill.i18n.t('ban.add.widget'));
+            }
+            this.logger.warn(anthill.i18n.t('silent.add.widget'));
         },
 
         /**
@@ -47,8 +51,8 @@ define([
          */
         updateMinCellWidth: function updateMinCellWidth() {
 //            if (this.permission.eventTunnelFunctionCall(this.controller.updateMinCellWidth)) {
-                delete this.config.grid.minCellWidth;
-                return this.controller.minCellWidth();
+            delete this.config.grid.minCellWidth;
+            return this.controller.minCellWidth();
 //            }
         },
 
@@ -190,7 +194,7 @@ define([
         _setLayoutMode: function _setLayoutMode(type, mode) {
             this.scope.logger.warn(
                 type.toUnderscore().capitalize() + ' was changed',
-                    this._getLayoutMode(type),
+                this._getLayoutMode(type),
                 mode
             );
             this._updateLayoutMode(type, mode);

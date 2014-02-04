@@ -25,10 +25,17 @@ define([
 
         /**
          * Check if allowed to add widget to page
+         * @returns {boolean}
          */
         isAllowAddWidget: function isAllowAddWidget() {
+
+            /**
+             * Define allow to add widgets
+             * @type {boolean}
+             */
             var allow = this.model.getConfig('widget').allowToAdd;
             this.scope.logger.debug('Is allowed to add widget?', allow);
+
             return allow;
         },
 

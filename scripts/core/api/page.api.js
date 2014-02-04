@@ -27,18 +27,31 @@ define([
          * Create Widget API
          * @param {*} args
          * @param {Boolean} [render]
+         * @param {Boolean} [silent]
          * @returns {*}
          */
-        createWidget: function createWidget(args, render) {
+        createWidget: function createWidget(args, render, silent) {
+
+            /**
+             * Define scope
+             * @type {Page}
+             */
             var scope = this.scope;
+
             if (!scope.controller.isAllowAddWidget()) {
-                scope.logger.warn('Do not allowed to add widget', arguments);
+                scope.logger.warn(
+                    anthill.i18n.t('not.allowed.add.widget'),
+                    arguments
+                );
+
                 return false;
             }
 
-            scope.layout.observer.publish(scope.layout.eventmanager.eventList.beforeNestedOrganizer);
+            scope.layout.observer.publish(
+                scope.layout.eventmanager.eventList.beforeNestedOrganizer
+            );
 
-            return this._createItem(Widget, args, render);
+            return this._createItem(Widget, args, render, silent);
         },
 
         /**
@@ -73,7 +86,9 @@ define([
          * @returns {*}
          */
         createTemplate: function createTemplate(widget) {
-            return this._renderItem(Template, true, widget).api.createPage([], true);
+            return this._renderItem(
+                Template, true, widget
+            ).api.createPage([], true);
         }
 
     }, BaseAPI.prototype)

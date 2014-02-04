@@ -26,10 +26,11 @@ define([
          * Create Workspace API
          * @param {*} args
          * @param {Boolean} [render]
+         * @param {Boolean} [silent]
          * @returns {*}
          */
-        createWorkspace: function createWorkspace(args, render) {
-            return this._createItem(Workspace, args, render);
+        createWorkspace: function createWorkspace(args, render, silent) {
+            return this._createItem(Workspace, args, render, silent);
         }
 
     }, BaseAPI.prototype);

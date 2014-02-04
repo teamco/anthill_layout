@@ -26,10 +26,11 @@ define([
          * Create Page API
          * @param {*} args
          * @param {Boolean} [render]
+         * @param {Boolean} [silent]
          * @returns {*}
          */
-        createPage: function createPage(args, render) {
-            return this._createItem(Page, args, render);
+        createPage: function createPage(args, render, silent) {
+            return this._createItem(Page, args, render, silent);
         }
 
     }, BaseAPI.prototype);

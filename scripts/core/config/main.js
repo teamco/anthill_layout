@@ -48,8 +48,9 @@ define(function loadConfig() {
     ], function loadMandatoryConfig() {
 
         return require([
-            'modules/base'
-        ], function initBase(Base) {
+            'modules/base',
+            'modules/i18n'
+        ], function initBase(Base, i18n) {
 
             /**
              * Define global application instance
@@ -62,6 +63,7 @@ define(function loadConfig() {
              * @type {Base}
              */
             window.anthill.base = new Base();
+            window.anthill.i18n = new i18n('en-us1');
 
             return require([
                 'config/listeners',

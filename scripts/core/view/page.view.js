@@ -17,18 +17,30 @@ define([
 ], function definePageView(BaseView, Header, Footer, Modal, Page, Content, DeltaScroll) {
 
     var View = function View() {
+
+        /**
+         * Define elements
+         * @type {{}}
+         */
         this.elements = {};
     };
 
     return View.extend({
+
         /**
          * Render Page
          */
         renderPage: function renderPage() {
+
+            /**
+             * Define page element
+             * @type {element.page.page.element}
+             */
             this.elements.$page = new Page(this, {
                 id: this.createUUID(),
                 $container: this.getContainerSelector()
             });
+
             this.header(Header, this.elements.$page);
             this.widgets();
             this.deltaScroll();
@@ -36,13 +48,31 @@ define([
 
             this.elements.$page.stretch();
         },
+
+        /**
+         * Define delta scroll
+         */
         deltaScroll: function deltaScroll() {
+
+            /**
+             * Define delta scroll element
+             * @type {element.page.page.element.delta.scroll}
+             */
             this.elements.$deltaScroll = new DeltaScroll(this, {
                 $container: this.elements.$page.$,
                 style: 'delta-scroll'
             });
         },
+
+        /**
+         * Define widgets container
+         */
         widgets: function widgets() {
+
+            /**
+             * Define widgets container element
+             * @type {element.page.page.element.content}
+             */
             this.elements.$widgets = new Content(this, {
                 style: 'widgets',
                 $container: this.elements.$page.$
@@ -53,6 +83,7 @@ define([
          * Show destroy widgets confirmation modal dialog
          */
         destroyWidgetsModalDialog: function destroyWidgetsModalDialog(widgets) {
+
             this.modalDialog(Modal, {
                 style: this.scope.constructor.name.toLowerCase() + '-modal',
                 $container: this.elements.$page.$,
@@ -91,7 +122,10 @@ define([
          * Render page
          */
         render: function render() {
-            this.scope.observer.publish(this.scope.eventmanager.eventList.successRendered);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered
+            );
         }
 
     }, BaseView.prototype)

@@ -11,6 +11,7 @@ define([
     /**
      * Define Base API
      * @constructor
+     * @class API
      */
     var API = function API() {
 
@@ -70,11 +71,19 @@ define([
          * @param {Function} item
          * @param {*} args
          * @param {Boolean} [render]
+         * @param {Boolean} [silent]
          * @param {*} [where]
          * @returns {*}
          * @private
          */
-        _createItem: function _createItem(item, args, render, where) {
+        _createItem: function _createItem(item, args, render, silent, where) {
+
+            /**
+             * Init silent
+             * @type {Boolean}
+             */
+            silent = anthill.base.defineBoolean(silent, false, true);
+
             var scope = this.scope,
                 cname = item.name;
 
@@ -93,6 +102,7 @@ define([
             }
 
             this._renderItem(item, render, where);
+
             return scope[cname.toLowerCase()];
         },
 
@@ -105,10 +115,17 @@ define([
          * @private
          */
         _renderItem: function _renderItem(item, render, where) {
+
+            /**
+             * Define scope
+             * @type {*}
+             */
             var scope = this.scope[item.name.toLowerCase()];
+
             if (anthill.base.defineBoolean(render, false, true)) {
                 scope.view.render(where);
             }
+
             return scope;
         }
 

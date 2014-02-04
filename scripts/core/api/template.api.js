@@ -27,11 +27,18 @@ define([
              * Create Page API
              * @param {*} args
              * @param {Boolean} [render]
+             * @param {Boolean} [silent]
              * @param {*} widget
              * @returns {*}
              */
-            createPage: function createPage(args, render, widget) {
-                return this._createItem(require('config/page'), args, render, widget);
+            createPage: function createPage(args, render, silent, widget) {
+                return this._createItem(
+                    require('config/page'),
+                    args,
+                    render,
+                    silent,
+                    widget
+                );
             }
 
         }, BaseAPI.prototype);

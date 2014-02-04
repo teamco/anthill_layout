@@ -314,8 +314,16 @@ define([
             return node;
         },
 
+        /**
+         * Load data
+         * @param data
+         * @returns {*}
+         */
         loadData: function loadData(data) {
 
+            /**
+             * Set data
+             */
             data = anthill.base.isDefined(data) ?
                 data : this.setting.load();
 
@@ -336,7 +344,12 @@ define([
                 for (var index in collector[lname]) {
                     if (collector[lname].hasOwnProperty(index)) {
 
+                        /**
+                         * Define node
+                         * @type {*}
+                         */
                         var node = collector[lname][index];
+
                         this.scope.api['create' + cname](node.config, true);
                     }
                 }
