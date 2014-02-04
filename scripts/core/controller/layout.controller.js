@@ -27,11 +27,13 @@ define([
          * @param {boolean} silent
          */
         beforeNestedOrganizer: function beforeNestedOrganizer(silent) {
+
             if (!silent) {
                 this.controller.getContainment().controller.banAddWidget();
                 this.logger.debug(anthill.i18n.t('ban.add.widget'));
             }
-            this.logger.warn(anthill.i18n.t('silent.add.widget'));
+
+            this.logger.debug(anthill.i18n.t('silent.add.widget'));
         },
 
         /**

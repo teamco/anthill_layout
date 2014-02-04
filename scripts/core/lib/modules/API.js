@@ -89,13 +89,13 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList['create' + cname],
-                args
+                [args, silent]
             );
 
             if (scope.controller.checkCondition({
                 condition: scope[cname.toLowerCase()].model.getConfig('limit'),
                 type: 'warn',
-                msg: 'Reached maximum limit',
+                msg: anthill.i18n.t('reached.maximum.limit'),
                 args: [cname, scope.model.getConfig(cname.toLowerCase())]
             })) {
                 return false;

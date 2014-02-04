@@ -322,16 +322,36 @@ define([
         loadData: function loadData(data) {
 
             /**
+             * Set loading instance
+             * @type {boolean}
+             */
+            this.loading = true;
+
+            /**
              * Set data
              */
             data = anthill.base.isDefined(data) ?
                 data : this.setting.load();
 
             if (!data.hasOwnProperty('collector')) {
+
+                /**
+                 * Unset loading instance
+                 * @type {boolean}
+                 */
+                this.loading = false;
+
                 return false;
             }
 
             if (!anthill.base.isDefined(this.item)) {
+
+                /**
+                 * Unset loading instance
+                 * @type {boolean}
+                 */
+                this.loading = false;
+
                 return data.collector;
             }
 
@@ -356,6 +376,12 @@ define([
             }
 
             this.loadData.bind(this.scope[lname].model)(data);
+
+            /**
+             * Unset loading instance
+             * @type {boolean}
+             */
+            this.loading = false;
 
             return data.collector;
         }

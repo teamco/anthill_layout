@@ -22,8 +22,9 @@ define([
         /**
          * Create Item
          * @param {{}} opts
+         * @param {Boolean} silent
          */
-        createItem: function createItem(opts) {
+        createItem: function createItem(opts, silent) {
 
             /**
              * Define item

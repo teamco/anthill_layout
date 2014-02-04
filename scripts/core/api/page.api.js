@@ -48,7 +48,8 @@ define([
             }
 
             scope.layout.observer.publish(
-                scope.layout.eventmanager.eventList.beforeNestedOrganizer
+                scope.layout.eventmanager.eventList.beforeNestedOrganizer,
+                silent
             );
 
             return this._createItem(Widget, args, render, silent);
