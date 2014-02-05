@@ -148,6 +148,14 @@ define([
         },
 
         /**
+         * Check if mode is Snap to Grid
+         * @returns {boolean}
+         */
+        isUIGrid: function isUIGrid() {
+            return this.getBehaviorMode() === this.getContainment().LAYOUT_MODES.jqUIGrid;
+        },
+
+        /**
          * Check if mode is Free Style
          * @returns {boolean}
          */

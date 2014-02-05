@@ -185,6 +185,8 @@ define([
                             this.layout.controller.getGridWidth()
                         );
 
+                    } else if (layout.controller.isUIGrid()) {
+                        // TODO
                     } else if (layout.controller.isFreeStyle()) {
                         // TODO
                     } else {

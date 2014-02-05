@@ -32,6 +32,14 @@ define([
         },
 
         /**
+         * Get layout
+         * @returns {*}
+         */
+        getLayout: function getLayout() {
+            return this.getContainment().controller.getLayout();
+        },
+
+        /**
          * Get merged local padding from widget dom
          * @returns {{top: number, right: number, bottom: number, left: number}|*}
          */
@@ -151,7 +159,9 @@ define([
          * @param {String} type
          */
         dragDraggable: function dragDraggable(type) {
+
             this.logger.debug('On drag', arguments);
+
             this.controller.behaviorMode({
                 organize: false,
                 animate: false,
@@ -165,8 +175,11 @@ define([
          * @param {String} type
          */
         stopDraggable: function stopDraggable(type) {
+
             this.logger.debug('Stop drag', arguments);
+
             this.controller.getContainment().controller.downgradeLayer(this);
+
             this.controller.behaviorMode({
                 organize: false,
                 animate: true,
@@ -215,7 +228,8 @@ define([
          * @param {Boolean} animate
          * @param {Boolean} organize
          */
-        stopResizable: function stopResizable(type, organize, animate) {console.log(type)
+        stopResizable: function stopResizable(type, organize, animate) {
+            console.log(type)
             this.logger.debug('Stop resize', arguments);
             this.controller.getContainment().controller.downgradeLayer(this);
 
@@ -289,17 +303,69 @@ define([
          * }} opts
          */
         behaviorMode: function behaviorMode(opts) {
-            var scope = this.scope,
-                page = this.getContainment(),
-                layout = page.controller.getLayout(),
-                mode = layout.controller.getBehavior();
 
-            if (layout.config.mode === page.LAYOUT_MODES.freeStyle) {
-            } else if (layout.config.mode === page.LAYOUT_MODES.snap2grid) {
-                scope.model.save();
-                scope.map.sticker(opts, mode);
-            } else {
+            var mode = this.isMode();
+
+            if (mode && anthill.base.isFunction(this[mode + 'Mode'])) {
+                this[mode + 'Mode'](
+                    opts,
+                    mode,
+                    this.getLayout().controller.getBehavior()
+                );
             }
+        },
+
+        /**
+         * Define snap2grid mode
+         * @param opts
+         * @param mode
+         * @param behavior
+         */
+        jqUIGridMode: function jqUIGridMode(opts, mode, behavior) {
+
+        },
+
+        /**
+         * Define snap2grid mode
+         * @param opts
+         * @param mode
+         * @param behavior
+         */
+        freeStyleMode: function freeStyleMode(opts, mode, behavior) {
+
+        },
+
+        /**
+         * Define snap2grid mode
+         * @param opts
+         * @param mode
+         * @param behavior
+         */
+        snap2gridMode: function snap2gridMode(opts, mode, behavior) {
+
+            this.scope.map.sticker(opts, mode, behavior);
+        },
+
+        /**
+         * Check behavior mode
+         * @returns {boolean}
+         */
+        isMode: function isMode() {
+
+            var modes = this.getContainment().LAYOUT_MODES,
+                layout = this.getLayout(),
+                mode = layout.config.mode;
+
+            for (var index in modes) {
+
+                if (modes.hasOwnProperty(index)) {
+                    if (mode === modes[index]) {
+                        return mode;
+                    }
+                }
+            }
+
+            return false;
         },
 
         /**
@@ -322,7 +388,7 @@ define([
          * Save widget
          */
         save: function save() {
-            this.logger.debug('Save widget');
+            this.scope.logger.debug(anthill.i18n.t('save.widget'));
             this.model.save();
         }
 

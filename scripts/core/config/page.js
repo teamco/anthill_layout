@@ -50,6 +50,7 @@ define([
          */
         this.LAYOUT_MODES = {
             snap2grid: 'snap2grid',
+            jqUIGrid: 'jqUIGrid',
             freeStyle: 'freeStyle'
         };
 
@@ -84,11 +85,14 @@ define([
                         organize: 'column',     // {none|row|column}
                         emptySpaces: 'none'     // {none|row|column}
                     },
+                    jqUIGrid: {
+
+                    },
                     freeStyle: {
 
                     }
                 },
-                mode: this.LAYOUT_MODES.snap2grid
+                mode: this.LAYOUT_MODES.jqUIGrid
             },
             template: {
             },

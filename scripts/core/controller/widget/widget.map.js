@@ -15,7 +15,17 @@ define([
      * @constructor
      */
     var Map = function Map(widget) {
+
+        /**
+         * Define widget instance
+         * @type {*}
+         */
         this.widget = widget;
+
+        /**
+         * Define animation duration
+         * @type {number}
+         */
         this.duration = 500;
     };
 
@@ -26,7 +36,8 @@ define([
          * @returns {*}
          */
         getLayout: function getLayout() {
-            return this.widget.controller.getContainment().controller.getLayout();
+
+            return this.widget.controller.getLayout();
         },
 
         /**
@@ -35,7 +46,8 @@ define([
          * @returns {Number}
          */
         relDims: function relDims(dim) {
-            return dim === 0 ? 1 : dim;
+
+            return dim ? dim : 1;
         },
 
         /**
@@ -43,6 +55,7 @@ define([
          * @returns {*}
          */
         getDOM: function getDOM() {
+
             var $widget = this.widget.view.elements.$widget,
                 position = $widget.getPosition(),
                 dom = {
@@ -77,6 +90,7 @@ define([
          * @returns {Number}
          */
         relWidth: function relWidth(width, cell) {
+
             return this.relDims(Math.round(width / cell));
         },
 
@@ -87,6 +101,7 @@ define([
          * @returns {Number}
          */
         relHeight: function relHeight(height, cell) {
+
             return this.relDims(Math.round(height / cell));
         },
 
@@ -97,6 +112,7 @@ define([
          * @returns {Number}
          */
         relRight: function relRight(column, width) {
+
             return column + width;
         },
 
@@ -107,6 +123,7 @@ define([
          * @returns {Number}
          */
         relBottom: function relBottom(row, height) {
+
             return row + height;
         },
 
@@ -117,6 +134,7 @@ define([
          * @returns {Number}
          */
         row: function row(top, cell) {
+
             return Math.round(top / cell);
         },
 
@@ -127,6 +145,7 @@ define([
          * @returns {Number}
          */
         column: function column(left, cell) {
+
             return Math.round(left / cell);
         },
 
@@ -136,6 +155,7 @@ define([
          * @returns {Number}
          */
         widgetTop: function widgetTop(row) {
+
             return this.getWidgetPosition(row);
         },
 
@@ -146,6 +166,7 @@ define([
          * @returns {Number}
          */
         widgetBottom: function widgetBottom(top, height) {
+
             return top + height;
         },
 
@@ -155,6 +176,7 @@ define([
          * @returns {Number}
          */
         widgetLeft: function widgetLeft(column) {
+
             return this.getWidgetPosition(column);
         },
 
@@ -165,6 +187,7 @@ define([
          * @returns {Number}
          */
         widgetRight: function widgetRight(left, width) {
+
             return left + width;
         },
 
@@ -174,6 +197,7 @@ define([
          * @returns {Number}
          */
         widgetHeight: function widgetHeight(relHeight) {
+
             return this.getWidgetDims(relHeight);
         },
 
@@ -183,6 +207,7 @@ define([
          * @returns {Number}
          */
         widgetWidth: function widgetWidth(relWidth) {
+
             return this.getWidgetDims(relWidth);
         },
 
@@ -193,7 +218,9 @@ define([
          * @returns {{top: number, left: number}}
          */
         marginFor: function marginFor(column, row) {
+
             var margin = this.getLayout().config.grid.margin;
+
             return {
                 top: (row + 1) * margin,
                 left: (column + 1) * margin
@@ -207,8 +234,10 @@ define([
          * @returns {{top: number, left: number}}
          */
         positionFor: function positionFor(column, row) {
+
             var margins = this.marginFor(column, row),
                 cell = this.getLayout().controller.minCellWidth();
+
             return {
                 top: row * cell + margins.top,
                 left: column * cell + margins.left
@@ -221,7 +250,9 @@ define([
          * @returns {Number}
          */
         getWidgetPosition: function getWidgetPosition(pos) {
+
             var layout = this.getLayout();
+
             return pos * layout.controller.minCellWidth() +
                 (pos + 1) * layout.config.grid.margin;
         },
@@ -232,7 +263,9 @@ define([
          * @returns {Number}
          */
         getWidgetDims: function getWidgetDims(dim) {
+
             var layout = this.getLayout();
+
             return dim * layout.controller.minCellWidth() +
                 (dim - 1) * layout.config.grid.margin;
         },
@@ -243,6 +276,7 @@ define([
          * @returns {Boolean}
          */
         checkWidgetPositionColumnLeft: function checkWidgetPositionColumnLeft(column) {
+
             return column >= 0;
         },
 
@@ -252,6 +286,7 @@ define([
          * @returns {Boolean}
          */
         checkWidgetPositionColumnRight: function checkWidgetPositionColumnRight(dom) {
+
             return (dom.column + dom.relWidth) <=
                 this.getLayout().config.grid.columns;
         },
@@ -262,6 +297,7 @@ define([
          * @returns {Boolean}
          */
         checkWidgetPositionColumn: function checkWidgetPositionColumn(dom) {
+
             return (
                 this.checkWidgetPositionColumnLeft(dom.column) &&
                     this.checkWidgetPositionColumnRight(dom)
@@ -274,6 +310,7 @@ define([
          * @returns {Boolean}
          */
         checkWidgetPositionRowTop: function checkWidgetPositionRowTop(row) {
+
             return row >= 0;
         },
 
@@ -282,7 +319,9 @@ define([
          * @returns {Boolean|*}
          */
         checkWidgetPosition: function checkWidgetPosition() {
+
             var dom = this.getDOM();
+
             return (
                 this.checkWidgetPositionColumn(dom) &&
                     this.checkWidgetPositionRowTop(dom.row)
@@ -339,10 +378,15 @@ define([
         /**
          * Grid sticker on interaction (Drag/Resize)
          * @param {{type, $source, callback: Function}} opts
+         * @param {String} mode
          * @param {{animate: Boolean}} behavior
          */
-        sticker: function sticker(opts, behavior) {
+        sticker: function sticker(opts, mode, behavior) {
+
+            this.widget.controller.save();
+
             opts = anthill.base.define(opts, {}, true);
+
             var layout = this.getLayout(),
                 css = this.isDrag(opts.type) ?
                     this.dragTo() :
@@ -350,9 +394,13 @@ define([
 
             if (css.top >= 0 && css.left >= 0) {
 
-                var duration = this.animateOnStop(opts.type, behavior.animate) ? this.duration : 0,
+                var duration = this.animateOnStop(
+                        opts.type,
+                        behavior.animate
+                    ) ? this.duration : 0,
+
                     callback = this._mapStickerCallback.bind({
-                        self: this,
+                        map: this,
                         widget: this.widget,
                         layout: layout,
                         callback: opts.callback,
@@ -366,13 +414,13 @@ define([
                     callback();
 
                 } else {
+
                     opts.$source.stop().animate(
                         css,
                         duration,
                         callback
                     );
                 }
-
             }
         },
 
@@ -384,10 +432,9 @@ define([
             var hash = {},
                 widget = this.widget;
 
-            if (this.self.overlappingOnStop(
+            if (this.map.overlappingOnStop(
                 this.type,
                 widget.controller.
-                    getContainment().controller.
                     getLayout().controller.
                     isOverlappingAllowed()
             )) {

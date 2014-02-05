@@ -15,24 +15,39 @@ define([
      * @constructor
      */
     var Wireframe = function Wireframe(widget) {
+
         /**
          * Define widget
          * @type {*}
          */
         this.widget = widget;
+
         /**
          * Define opacity
          * @type {number}
          */
         this.opacity = 0.2;
+
+        /**
+         * Define selector
+         * @type {string}
+         */
+        this.selector = '#next-widget-position';
     };
 
     return Wireframe.extend({
+
         /**
          * Move wireframe on widget drag
          */
         dragSticker: function dragSticker() {
+
+            /**
+             * Define DOM
+             * @type {*}
+             */
             var dom = this.widget.map.getDOM();
+
             this.init({
                 style: {
                     left: dom.left,
@@ -44,11 +59,18 @@ define([
                 animate: false
             });
         },
+
         /**
          * Resize wireframe on widget resize
          */
         resizeSticker: function resizeSticker() {
+
+            /**
+             * Define CSS
+             * @type {{width: Number, height: Number}}
+             */
             var css = this.widget.map.resizeTo();
+
             this.init({
                 style: {
                     left: css.left,
@@ -60,16 +82,20 @@ define([
                 animate: false
             });
         },
+
         /**
          * Show wireframe
          */
         show: function show() {
+
             this.setVisibility('fadeIn', 'fast');
         },
+
         /**
          * Hide wireframe
          */
         hide: function hide() {
+
             this.setVisibility('fadeOut', 'fast');
         },
 
@@ -79,6 +105,7 @@ define([
          * @param {String} type
          */
         setVisibility: function setVisibility(fade, type) {
+
             if (this.$) {
                 this.$.stop()[fade](type);
             }
@@ -89,14 +116,19 @@ define([
          * @returns {*}
          */
         getWireFrame: function getWireFrame() {
-            return this.widget.controller.get$page().find('#next-widget-position');
+
+            return $(
+                this.selector,
+                this.widget.controller.get$page()
+            );
         },
 
         /**
          * Move wireframe to current page
          */
         moveToCurrentPage: function moveToCurrentPage() {
-            if (this.widget.controller.get$page().children('#next-widget-position').length === 0) {
+
+            if (this.getWireFrame().length === 0) {
                 this.$.appendTo(this.widget.controller.get$page());
             }
         },
@@ -107,7 +139,13 @@ define([
          * @returns {*}
          */
         defineHolder: function defineHolder(opts) {
+
+            /**
+             * Define wireframe element
+             * @type {*}
+             */
             this.$ = this.getWireFrame();
+
             if (this.$.length === 0) {
                 $('#next-widget-position').remove();
                 this.$ = $('<div />').css(opts.style).attr({
@@ -125,7 +163,9 @@ define([
          * @param opts
          */
         init: function init(opts) {
+
             opts = anthill.base.define(opts, {}, true);
+
             this.defineHolder(opts).show();
             this.$.css(opts.style);
         }
