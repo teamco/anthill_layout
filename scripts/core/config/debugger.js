@@ -43,11 +43,13 @@ define([
     Application.prototype.localListeners = Application.prototype.localListeners || {};
     Widget.prototype.localListeners = Widget.prototype.localListeners || {};
 
+    var appListeners = Application.prototype.localListeners,
+        widgetListeners = Widget.prototype.localListeners;
     /**
      * Define debugStart
      * @type {{name: string, callback: Function}}
      */
-    Application.prototype.localListeners.debugStart = {
+    appListeners.debugStart = {
         name: 'debug.start',
         callback: function debugStartCallback() {
 
@@ -63,7 +65,7 @@ define([
      * Define debugEnd
      * @type {{name: string, callback: Function}}
      */
-    Application.prototype.localListeners.debugEnd = {
+    appListeners.debugEnd = {
         name: 'debug.end',
         callback: function debugEndCallback() {
             this.debugger.destroy();
@@ -74,31 +76,31 @@ define([
      * Define resizeWindowHooks
      * @type {{name: string, callback: Function}}
      */
-    anthill.base.define(
-            Application.prototype.localListeners.resizeWindowHooks, []
-        ).push({
-            name: 'resize.window.hooks',
-            callback: function resizeWindowHooksCallback() {
+    appListeners.resizeWindowHooks =
+        appListeners.resizeWindowHooks || [];
 
-                /**
-                 * Define local instance of a debugger
-                 * @type {Debugger}
-                 */
-                var debug = this.debugger;
+    appListeners.resizeWindowHooks.push({
+        name: 'resize.window.hooks',
+        callback: function resizeWindowHooksCallback() {
 
-                if (debug && debug.grid.visible) {
-                    debug.grid.showGrid();
-                }
+            /**
+             * Define local instance of a debugger
+             * @type {Debugger}
+             */
+            var debug = this.debugger;
+
+            if (debug && debug.grid.visible) {
+                debug.grid.showGrid();
             }
         }
-    );
+    });
 
 
     /**
      * Define Widget debugInteractions
      * @type {{name: string, params: {buffer: number}, callback: Function}}
      */
-    Widget.prototype.localListeners.debugInteractions = {
+    widgetListeners.debugInteractions = {
         name: "debug.interactions",
         params: {
             buffer: 50
