@@ -30,7 +30,7 @@ define([
 
             if (!silent) {
                 this.controller.getContainment().controller.banAddWidget();
-                this.logger.debug(anthill.i18n.t('ban.add.widget'));
+                this.logger.debug(anthill.i18n.t('before.nested.organizer'));
             }
 
             this.logger.debug(anthill.i18n.t('silent.add.widget'));
@@ -44,7 +44,7 @@ define([
             this.controller.store(
                 this.controller.root()
             );
-            this.logger.debug('After nested organizer');
+            this.logger.debug(anthill.i18n.t('after.nested.organizer'));
         },
 
         /**

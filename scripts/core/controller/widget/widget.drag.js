@@ -115,11 +115,14 @@ define([
          */
         stop: function stop(event, ui) {
             var scope = this.scope;
+
             this.debugUI(event, ui);
+
             scope.observer.publish(
                 scope.eventmanager.eventList.stopDraggable,
                 [event.type, arguments]
             );
+
             scope.wireframe.hide();
         },
 

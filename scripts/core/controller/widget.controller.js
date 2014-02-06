@@ -24,6 +24,57 @@ define([
     return Controller.extend({
 
         /**
+         * Get config
+         * @param {string} type
+         * @returns {{}}
+         */
+        getInteractionConfig: function getInteractionConfig(type) {
+
+            /**
+             * Init config
+             * @type {{}}
+             */
+            var config = {};
+
+            switch (type) {
+
+                case 'ongoing':
+
+                    /**
+                     * Set config
+                     * @type {{
+                     *      animate: boolean,
+                     *      $source: ($|*|Element.$)
+                     * }}
+                     */
+                    config = {
+                        animate: false,
+                        $source: this.scope.wireframe.$
+                    };
+                    break;
+
+                case 'stop':
+
+                    /**
+                     * Set config
+                     * @type {{
+                     *      animate: boolean,
+                     *      $source: ($|*|Element.$),
+                     *      callback: (function(this:BaseController)|*)
+                     * }}
+                     */
+                    config = {
+                        animate: true,
+                        $source: this.scope.view.get$widget(),
+                        callback: this._resetInteractions.bind(this)
+                    };
+                    break;
+            }
+
+            return config;
+        },
+
+        /**
          * Get page jquery object
          * @returns {*|jQuery}
          */
@@ -162,12 +213,19 @@ define([
 
             this.logger.debug('On drag', arguments);
 
-            this.controller.behaviorMode({
-                organize: false,
-                animate: false,
-                type: type,
-                $source: this.wireframe.$
-            });
+            /**
+             * Init config
+             * @type {*}
+             */
+            var config = this.controller.getInteractionConfig('ongoing');
+
+            /**
+             * Define event type
+             * @type {String}
+             */
+            config.type = type;
+
+            this.controller.behaviorMode(config);
         },
 
         /**
@@ -180,13 +238,19 @@ define([
 
             this.controller.getContainment().controller.downgradeLayer(this);
 
-            this.controller.behaviorMode({
-                organize: false,
-                animate: true,
-                type: type,
-                $source: this.view.elements.$widget.$,
-                callback: this.controller._resetInteractions.bind(this.controller)
-            });
+            /**
+             * Init config
+             * @type {*}
+             */
+            var config = this.controller.getInteractionConfig('stop');
+
+            /**
+             * Define event type
+             * @type {String}
+             */
+            config.type = type;
+
+            this.controller.behaviorMode(config);
         },
 
         /**
@@ -212,34 +276,45 @@ define([
          */
         resizeResizable: function resizeResizable(type, animate) {
             this.logger.debug('On resize', arguments);
-            this.controller.behaviorMode({
-                organize: false,
-                animate: false,
-                type: type,
-                $source: this.wireframe.$
-            });
 
-//            this.view.elements.$content.demo();
+            /**
+             * Init config
+             * @type {*}
+             */
+            var config = this.controller.getInteractionConfig('ongoing');
+
+            /**
+             * Define event type
+             * @type {String}
+             */
+            config.type = type;
+
+            this.controller.behaviorMode(config);
         },
 
         /**
          * Resize stop
          * @param {String} type
-         * @param {Boolean} animate
-         * @param {Boolean} organize
          */
-        stopResizable: function stopResizable(type, organize, animate) {
-            console.log(type)
+        stopResizable: function stopResizable(type) {
+
             this.logger.debug('Stop resize', arguments);
+
             this.controller.getContainment().controller.downgradeLayer(this);
 
-            this.controller.behaviorMode({
-                organize: organize,
-                animate: animate,
-                type: type,
-                $source: this.view.elements.$widget.$,
-                callback: this.controller._resetInteractions.bind(this.controller)
-            });
+            /**
+             * Init config
+             * @type {*}
+             */
+            var config = this.controller.getInteractionConfig('stop');
+
+            /**
+             * Define event type
+             * @type {String}
+             */
+            config.type = type;
+
+            this.controller.behaviorMode(config);
         },
 
         /**
@@ -370,7 +445,6 @@ define([
          * @param behavior
          */
         snap2gridMode: function snap2gridMode(opts, mode, behavior) {
-
             this.scope.map.sticker(opts, mode, behavior);
         },
 

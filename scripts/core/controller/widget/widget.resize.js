@@ -132,7 +132,7 @@ define([
             this.debugUI(event, ui);
             scope.observer.publish(
                 scope.eventmanager.eventList.stopResizable,
-                [event.type, true, true, arguments]
+                [event.type, arguments]
             );
             scope.wireframe.hide();
         },
