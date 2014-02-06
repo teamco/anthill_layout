@@ -243,6 +243,34 @@ define([
         },
 
         /**
+         * Update Resizable
+         * @param key
+         * @param value
+         */
+        updateResizable: function updateResizable(key, value) {
+            this.updateInteractions('resizable', key, value);
+        },
+
+        /**
+         * Update Draggable
+         * @param key
+         * @param value
+         */
+        updateDraggable: function updateDraggable(key, value) {
+            this.updateInteractions('draggable', key, value);
+        },
+
+        /**
+         * Update interactions
+         * @param type
+         * @param key
+         * @param value
+         */
+        updateInteractions: function updateInteractions(type, key, value) {
+            this.scope.view.get$widget()[type]('option', key, value);
+        },
+
+        /**
          * Reset interactions on resize template
          * @private
          */

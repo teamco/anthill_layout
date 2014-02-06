@@ -52,7 +52,9 @@ define([
                 silent
             );
 
-            return this._createItem(Widget, args, render, silent);
+            return scope.controller.updateWidgetsConfig(
+                this._createItem(Widget, args, render, silent)
+            );
         },
 
         /**

@@ -71,6 +71,42 @@ define([
         },
 
         /**
+         * Update widget properties
+         * @param [item]
+         * @returns {boolean}
+         */
+        updateWidgetsConfig: function updateWidgetsConfig(item) {
+
+            var scope = this.scope,
+                items = this.model.getItems(),
+                grid = scope.layout.controller.minCellWidth();
+
+            if (scope.layout.config.mode === scope.LAYOUT_MODES.jqUIGrid) {
+
+                if (anthill.base.isDefined(item)) {
+
+                    item.controller.updateDraggable('grid', [grid, grid]);
+
+                    return item;
+                }
+
+                for (var index in items) {
+
+                    if (items.hasOwnProperty(index)) {
+
+                        /**
+                         * Define widget
+                         * @type {*}
+                         */
+                        var widget = items[index];
+
+                        widget.controller.updateDraggable('grid', [grid, grid]);
+                    }
+                }
+            }
+        },
+
+        /**
          * Downgrade widgets layer except widget
          * @param {{model, view}} widget
          */

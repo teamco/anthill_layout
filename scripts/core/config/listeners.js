@@ -105,8 +105,9 @@ define([
         resizePage: {
             name: 'resize.page',
             callback: function resizePageCallback(page) {
+
                 page.controller.updateLayout();
-                console.log(page.layout.controller.minCellWidth())
+
                 page.observer.publish(
                     page.eventmanager.eventList.resizeWidgets
                 );

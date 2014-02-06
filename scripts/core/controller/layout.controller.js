@@ -52,10 +52,8 @@ define([
          * @returns {*}
          */
         updateMinCellWidth: function updateMinCellWidth() {
-//            if (this.permission.eventTunnelFunctionCall(this.controller.updateMinCellWidth)) {
             delete this.config.grid.minCellWidth;
             return this.controller.minCellWidth();
-//            }
         },
 
         /**

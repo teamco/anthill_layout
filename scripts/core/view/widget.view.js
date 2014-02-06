@@ -24,6 +24,7 @@ define([
     };
 
     return View.extend({
+
         renderWidget: function renderWidget() {
             this.elements.$widget = new Widget(this, {
                 id: this.createUUID(),
@@ -37,6 +38,7 @@ define([
             this.content();
             this.footer(Footer, this.elements.$widget);
         },
+
         content: function content() {
             this.elements.$content = new Content(this, {
                 style: 'content',
@@ -46,11 +48,22 @@ define([
                 $container: this.elements.$widget.$
             });
         },
+
         render: function render() {
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered
             );
+        },
+
+        /**
+         * Get widget.$
+         * @returns {$|*|Element.$}
+         */
+        get$widget: function get$widget() {
+
+            return this.elements.$widget.$;
         }
+
     }, BaseView.prototype)
 
 });

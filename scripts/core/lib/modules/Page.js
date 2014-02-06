@@ -47,10 +47,18 @@ define([
          * Update layout config
          */
         updateLayout: function updateLayout() {
+
+            /**
+             * Define scope
+             * @type {*}
+             */
             var layout = this.scope.layout;
+
             layout.observer.publish(
                 layout.eventmanager.eventList.updateMinCellWidth
             );
+
+            this.updateWidgetsConfig();
         },
 
         /**
@@ -59,16 +67,24 @@ define([
          * @param {{}} opts
          */
         createTemplate: function createTemplate(Template, opts) {
+
+            /**
+             * Define template instance
+             * @type {Template}
+             */
             this.template = new Template(opts, this);
         },
+
         /**
          * Destroy template
          */
         destroyTemplate: function destroyTemplate() {
+
             this.logger.info(
-                'Destroy Template',
+                anthill.i18n.t('destroy.template'),
                 this.template
             );
+
             delete this.template;
         }
     });

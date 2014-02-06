@@ -66,6 +66,7 @@ define([
                 params: { buffer: 50 }
             },
             stopDraggable: 'stop.draggable',
+            updateDraggable: 'update.draggable',
 
             /**
              * Resize events
@@ -81,6 +82,7 @@ define([
                 params: { buffer: 50 }
             },
             stopResizable: 'stop.resizable',
+            updateResizable: 'update.resizable',
 
             adoptDimensions: 'adopt.dimensions',
 
