@@ -489,7 +489,7 @@
     width: 14px;
     height: 14px;
     cursor: pointer;
-    background: transparent url('ui-lightness/images/ui-icons_ffd27a_256x240.png') no-repeat -128px -144px;
+    background: transparent url('ui-lightness/images/ui-icons_ef8c08_256x240.png') no-repeat -128px -144px;
 }
 
 #debug-mode .pin:hover {
@@ -498,7 +498,7 @@
 
 #debug-mode .pin.active,
 #debug-mode .pin.active:hover {
-    background: url('ui-lightness/images/ui-icons_ffd27a_256x240.png') -144px -144px;
+    background: url('ui-lightness/images/ui-icons_228ef1_256x240.png') -144px -144px;
 }
 
 #debug-mode .pin.disabled,
