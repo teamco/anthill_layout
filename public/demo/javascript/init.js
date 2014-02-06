@@ -13,6 +13,11 @@ define([
     ], function loadApplication() {
 
         require(['test/create'], function initDemo(app) {
+
+            /**
+             * Define demo application
+             * @type {*}
+             */
             window.anthill.demo = app;
         });
     });
