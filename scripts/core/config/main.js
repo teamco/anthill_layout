@@ -63,7 +63,12 @@ define(function loadConfig() {
              * @type {Base}
              */
             window.anthill.base = new Base();
-            window.anthill.i18n = new i18n('en-us1');
+
+            /**
+             * Define global translations
+             * @type {i18n}
+             */
+            window.anthill.i18n = new i18n('en-us');
 
             return require([
                 'config/listeners',

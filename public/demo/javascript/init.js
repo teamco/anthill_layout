@@ -1,4 +1,4 @@
-require([
+define([
 
     '../../../scripts/core/config/main'
 
