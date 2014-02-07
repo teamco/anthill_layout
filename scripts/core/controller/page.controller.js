@@ -108,7 +108,7 @@ define([
 
         /**
          * Downgrade widgets layer except widget
-         * @param {{model, view}} widget
+         * @param {{}} widget
          */
         downgradeLayer: function downgradeLayer(widget) {
             var items = this.model.getItems(),

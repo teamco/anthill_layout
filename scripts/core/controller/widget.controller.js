@@ -26,7 +26,11 @@ define([
         /**
          * Get config
          * @param {string} type
-         * @returns {{}}
+         * @returns {{
+         *      animate: Boolean,
+         *      [callback]: Function,
+         *      $source
+         * }}
          */
         getInteractionConfig: function getInteractionConfig(type) {
 
@@ -213,19 +217,10 @@ define([
 
             this.logger.debug('On drag', arguments);
 
-            /**
-             * Init config
-             * @type {*}
-             */
-            var config = this.controller.getInteractionConfig('ongoing');
-
-            /**
-             * Define event type
-             * @type {String}
-             */
-            config.type = type;
-
-            this.controller.behaviorMode(config);
+            this.controller.behaviorMode(
+                this.controller.getInteractionConfig('ongoing'),
+                type
+            );
         },
 
         /**
@@ -238,19 +233,10 @@ define([
 
             this.controller.getContainment().controller.downgradeLayer(this);
 
-            /**
-             * Init config
-             * @type {*}
-             */
-            var config = this.controller.getInteractionConfig('stop');
-
-            /**
-             * Define event type
-             * @type {String}
-             */
-            config.type = type;
-
-            this.controller.behaviorMode(config);
+            this.controller.behaviorMode(
+                this.controller.getInteractionConfig('stop'),
+                type
+            );
         },
 
         /**
@@ -274,22 +260,13 @@ define([
          * @param {String} type
          * @param {Boolean} animate
          */
-        resizeResizable: function resizeResizable(type, animate) {
+        resizeResizable: function resizeResizable(type) {
             this.logger.debug('On resize', arguments);
 
-            /**
-             * Init config
-             * @type {*}
-             */
-            var config = this.controller.getInteractionConfig('ongoing');
-
-            /**
-             * Define event type
-             * @type {String}
-             */
-            config.type = type;
-
-            this.controller.behaviorMode(config);
+            this.controller.behaviorMode(
+                this.controller.getInteractionConfig('ongoing'),
+                type
+            );
         },
 
         /**
@@ -302,19 +279,10 @@ define([
 
             this.controller.getContainment().controller.downgradeLayer(this);
 
-            /**
-             * Init config
-             * @type {*}
-             */
-            var config = this.controller.getInteractionConfig('stop');
-
-            /**
-             * Define event type
-             * @type {String}
-             */
-            config.type = type;
-
-            this.controller.behaviorMode(config);
+            this.controller.behaviorMode(
+                this.controller.getInteractionConfig('stop'),
+                type
+            );
         },
 
         /**
@@ -372,7 +340,7 @@ define([
          * @returns {Boolean}
          */
         isDraggable: function isDraggable() {
-            return this.scope.view.elements.$widget.$.is('.ui-draggable');
+            return this.scope.view.get$widget().is('.ui-draggable');
         },
 
         /**
@@ -380,7 +348,7 @@ define([
          * @returns {Boolean}
          */
         isResizable: function isResizable() {
-            return this.scope.view.elements.$widget.$.is('.ui-resizable');
+            return this.scope.view.get$widget().is('.ui-resizable');
         },
 
         /**
@@ -388,7 +356,9 @@ define([
          * @returns {Boolean}
          */
         isTemplate: function isTemplate() {
+
             var scope = this.scope;
+
             return scope.config.type ===
                 this.getContainment().model.getConfig(
                     scope.constructor.name.toLowerCase()
@@ -398,16 +368,25 @@ define([
         /**
          * Behavior mode
          * @param {{
-         *      organize: Boolean,
          *      animate: Boolean,
-         *      type: String,
          *      [callback]: Function,
          *      $source
          * }} opts
+         * @param {String} type
          */
-        behaviorMode: function behaviorMode(opts) {
+        behaviorMode: function behaviorMode(opts, type) {
 
+            /**
+             * Check if mod
+             * @type {boolean}
+             */
             var mode = this.isMode();
+
+            /**
+             * Set event type
+             * @type {String}
+             */
+            opts.type = type;
 
             if (mode && anthill.base.isFunction(this[mode + 'Mode'])) {
                 this[mode + 'Mode'](
@@ -479,7 +458,7 @@ define([
                 organize: false,
                 animate: false,
                 type: 'resizestop',
-                $source: this.view.elements.$widget.$,
+                $source: this.view.get$widget(),
                 callback: this.controller._resetInteractions.bind(this.controller)
             });
 

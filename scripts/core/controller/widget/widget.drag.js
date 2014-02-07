@@ -92,7 +92,10 @@ define([
          */
         create: function create(event, ui) {
             var scope = this.scope;
-            scope.observer.publish(scope.eventmanager.eventList.createDraggable, arguments);
+            scope.observer.publish(
+                scope.eventmanager.eventList.createDraggable,
+                arguments
+            );
         },
 
         /**
@@ -105,7 +108,10 @@ define([
             this.debugUI(event, ui);
             scope.controller.setAsCurrent();
             scope.wireframe.dragSticker();
-            scope.observer.publish(scope.eventmanager.eventList.startDraggable, arguments);
+            scope.observer.publish(
+                scope.eventmanager.eventList.startDraggable,
+                arguments
+            );
         },
 
         /**

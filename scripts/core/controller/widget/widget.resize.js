@@ -63,7 +63,7 @@ define([
             var scope = this.scope;
             if (scope.permission.eventTunnelFunctionCall(this.enable) &&
                 scope.controller.isResizable()) {
-                $scope.resizable('enable');
+                this.$scope.resizable('enable');
             }
         },
 
@@ -75,7 +75,7 @@ define([
             var scope = this.scope;
             if (scope.permission.eventTunnelFunctionCall(this.disable) &&
                 scope.controller.isResizable()) {
-                $scope.resizable('disable');
+                this.$scope.resizable('disable');
             }
         },
 
@@ -87,7 +87,7 @@ define([
             var scope = this.scope;
             if (scope.permission.eventTunnelFunctionCall(this.destroy) &&
                 scope.controller.isResizable()) {
-                $scope.resizable('destroy');
+                this.$scope.resizable('destroy');
             }
         },
 
