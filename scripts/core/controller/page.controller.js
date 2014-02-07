@@ -79,7 +79,8 @@ define([
 
             var scope = this.scope,
                 items = this.model.getItems(),
-                grid = scope.layout.controller.minCellWidth();
+                grid = scope.layout.controller.minCellWidth() +
+                    scope.layout.config.grid.margin;
 
             if (scope.layout.config.mode === scope.LAYOUT_MODES.jqUIGrid) {
 

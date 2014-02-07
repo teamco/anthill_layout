@@ -67,11 +67,19 @@ define([
 
         /**
          * Define constants
-         * @type {{organize: Array, emptySpaces: Array}}
+         * @type {{organize: *[], emptySpaces: *[]}}
          */
         this.CONSTANTS = {
-            organize: ['none', 'row', 'column'],
-            emptySpaces: ['none', 'row', 'column']
+            organize: [
+                containment.ORGANIZE_MODES.none,
+                containment.ORGANIZE_MODES.row,
+                containment.ORGANIZE_MODES.column
+            ],
+            emptySpaces: [
+                containment.ORGANIZE_MODES.none,
+                containment.ORGANIZE_MODES.row,
+                containment.ORGANIZE_MODES.column
+            ]
         };
 
         /**

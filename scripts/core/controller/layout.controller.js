@@ -142,7 +142,8 @@ define([
          * @returns {boolean}
          */
         isSnap2Grid: function isSnap2Grid() {
-            return this.getBehaviorMode() === this.getContainment().LAYOUT_MODES.snap2grid;
+            return this.getBehaviorMode() ===
+                this.getContainment().LAYOUT_MODES.snap2grid;
         },
 
         /**
@@ -150,7 +151,8 @@ define([
          * @returns {boolean}
          */
         isUIGrid: function isUIGrid() {
-            return this.getBehaviorMode() === this.getContainment().LAYOUT_MODES.jqUIGrid;
+            return this.getBehaviorMode() ===
+                this.getContainment().LAYOUT_MODES.jqUIGrid;
         },
 
         /**
@@ -158,7 +160,8 @@ define([
          * @returns {boolean}
          */
         isFreeStyle: function isFreeStyle() {
-            return this.getBehaviorMode() === this.getContainment().LAYOUT_MODES.freeStyle;
+            return this.getBehaviorMode() ===
+                this.getContainment().LAYOUT_MODES.freeStyle;
         },
 
         /**
@@ -166,7 +169,8 @@ define([
          * @returns {boolean}
          */
         isOverlappingAllowed: function isOverlappingAllowed() {
-            return this._getLayoutMode('organize') !== 'none';
+            return this._getLayoutMode('organize') !==
+                this.getContainment().ORGANIZE_MODES.none;
         },
 
         /**

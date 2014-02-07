@@ -370,6 +370,7 @@ define([
          * @param {{
          *      animate: Boolean,
          *      [callback]: Function,
+         *      [type]: String
          *      $source
          * }} opts
          * @param {String} type
@@ -404,7 +405,8 @@ define([
          * @param behavior
          */
         jqUIGridMode: function jqUIGridMode(opts, mode, behavior) {
-
+            this.scope.wireframe.hide();
+            this.scope.map.sticker(opts, mode, behavior);
         },
 
         /**
