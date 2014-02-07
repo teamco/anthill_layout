@@ -46,12 +46,32 @@ define([
 
         /**
          * Define layout modes
-         * @type {{snap2grid: string, freeStyle: string}}
+         * @type {{
+         *      snap2grid: string,
+         *      jqUIGrid: string
+         *      freeStyle: string
+         * }}
          */
         this.LAYOUT_MODES = {
             snap2grid: 'snap2grid',
             jqUIGrid: 'jqUIGrid',
             freeStyle: 'freeStyle'
+        };
+
+        /**
+         * Define organize modes
+         * @type {{
+         *      none: string,
+         *      row: string,
+         *      column: string
+         * }}
+         */
+        this.ORGANIZE_MODES = {
+            none: 'none',
+            row: 'row',
+            column: 'column',
+            right: 'right',
+            left: 'left'
         };
 
         /**
@@ -62,14 +82,33 @@ define([
          *      isDefault: boolean,
          *      layout: {
          *          behavior: {
-         *              snap2grid: {animate: boolean, float: string, organize: string, emptySpaces: string},
+         *              snap2grid: {
+         *                  animate: boolean,
+         *                  float: string,
+         *                  organize: string,
+         *                  emptySpaces: string
+         *              },
          *              freeStyle: {}
          *          },
          *          mode: String
          *      },
          *      template: {},
-         *      widget: {counter: number, opacity: number, allowToAdd: boolean, addNewTo: string},
-         *      html: {header: boolean, footer: boolean, stretch: boolean, padding: {top: number, right: number, bottom: number, left: number}}
+         *      widget: {
+         *          counter: number,
+         *          opacity: number,
+         *          allowToAdd: boolean,
+         *          addNewTo: string
+         *      },
+         *      html: {
+         *          header: boolean,
+         *          footer: boolean,
+         *          stretch: boolean,
+         *          padding: {
+         *              top: number,
+         *              right: number,
+         *              bottom: number,
+         *              left: number
+         *      }}
          * }}
          */
         var DEFAULTS = {
@@ -81,18 +120,21 @@ define([
                 behavior: {
                     snap2grid: {
                         animate: true,
-                        float: 'none',
-                        organize: 'column',     // {none|row|column}
-                        emptySpaces: 'none'     // {none|row|column}
+                        float: this.ORGANIZE_MODES.none,
+                        organize: this.ORGANIZE_MODES.column,
+                        emptySpaces: this.ORGANIZE_MODES.none
                     },
                     jqUIGrid: {
-
+                        animate: true,
+                        float: this.ORGANIZE_MODES.none,
+                        organize: this.ORGANIZE_MODES.column,
+                        emptySpaces: this.ORGANIZE_MODES.none
                     },
                     freeStyle: {
 
                     }
                 },
-                mode: this.LAYOUT_MODES.snap2grid
+                mode: this.LAYOUT_MODES.jqUIGrid
             },
             template: {
             },
@@ -106,7 +148,7 @@ define([
                 counter: 0,
                 opacity: 0.6,
                 allowToAdd: true,
-                addNewTo: 'row'                 // {row|column}
+                addNewTo: this.ORGANIZE_MODES.row
             },
             html: {
                 header: false,
