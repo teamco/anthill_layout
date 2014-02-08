@@ -163,7 +163,8 @@ define([
     /**
      * Define Layout Local listeners
      * @type {{
-     *      afterNestedOrganizer: {name: string, callback: Function}}}
+     *      afterNestedOrganizer: {name: string, callback: Function}
+     * }}
      */
     $.extend(Layout.prototype.localListeners, {
 
