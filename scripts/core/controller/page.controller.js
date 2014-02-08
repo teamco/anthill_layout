@@ -87,6 +87,7 @@ define([
                 if (anthill.base.isDefined(item)) {
 
                     item.controller.updateDraggable('grid', [grid, grid]);
+                    item.controller.updateResizable('grid', grid);
 
                     return item;
                 }
@@ -102,6 +103,7 @@ define([
                         var widget = items[index];
 
                         widget.controller.updateDraggable('grid', [grid, grid]);
+                        widget.controller.updateResizable('grid', grid);
                     }
                 }
             }
