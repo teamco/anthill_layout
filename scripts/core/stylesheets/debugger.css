@@ -505,3 +505,15 @@
 #debug-mode .pin.disabled:hover {
     background-image: url('ui-lightness/images/ui-icons_ffd27a_256x240.png');
 }
+
+#debug-mode .debug-clear {
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #999;
+    margin-left: 20px;
+}
+
+#debug-mode .debug-clear:hover {
+    color: #333;
+}

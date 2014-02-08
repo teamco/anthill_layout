@@ -162,7 +162,7 @@ define([
                         opacity: opacityOff
                     }).draggable({
                         handle: '.handler',
-                        cancel: '.plus, .minus, .pin'
+                        cancel: '.plus, .minus, .pin, .debug-clear'
                     });
                 $(scope.config.html.container).append($div);
             }
@@ -185,6 +185,7 @@ define([
                 [
                     '<ul class="handler">',
                     c.renderInput('Show Grid', false),
+                    '<li class="debug-clear">Clear data</li>',
                     '</ul>',
                     '<div class="debug-container">',
 
@@ -229,6 +230,7 @@ define([
 
             c.bindCollapse();
             c.bindDebugClose();
+            c.bindClearData();
 
             this.grid.bindToggleGrid();
 
@@ -243,7 +245,6 @@ define([
             this.tabs.openTab({
                 target: $div.find('li[title="' + this.links[this.showTab - 2] + '"]')
             });
-
         }
 
     });

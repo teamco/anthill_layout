@@ -175,6 +175,18 @@ define([], function defineDebuggerComponent() {
         },
 
         /**
+         * Bind clear data
+         */
+        bindClearData: function bindClearData() {
+            var scope = this,
+                $clear = $('.debug-clear', scope.bugger.info);
+
+            $clear.on('click.clear', function clear() {
+                window.localStorage.clear();
+            });
+        },
+
+        /**
          * Hide/Show info window
          */
         bindDebugClose: function bindDebugClose() {

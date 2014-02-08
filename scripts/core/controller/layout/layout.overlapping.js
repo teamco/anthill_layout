@@ -92,18 +92,20 @@ define([
         _nestedOrganizerCallback: function _nestedOrganizerCallback(callback) {
             var layout = this.layout,
                 emptySpaces = layout.controller.getBehavior().emptySpaces;
+
             if (emptySpaces) {
                 layout.logger.debug('Remove empty spaces');
                 switch (emptySpaces) {
-                    case 'row':
+                    case layout.containment.ORGANIZE_MODES.row:
                         layout.logger.debug('Remove empty rows');
                         layout.emptyRows.remove();
                         break;
-                    case 'column':
+                    case layout.containment.ORGANIZE_MODES.column:
                         layout.logger.debug('Remove empty columns');
                         layout.emptyColumns.remove();
                         break;
-
+                    case layout.containment.ORGANIZE_MODES.none:
+                        break;
                 }
             }
 
@@ -172,11 +174,16 @@ define([
          * @param {*} targets
          */
         _organizeCollector: function _organizeCollector(source, targets) {
-            var index, layout = this.layout;
+
+            var index,
+                layout = this.layout;
 
             for (index in targets) {
+
                 if (targets.hasOwnProperty(index)) {
-                    if (layout.controller.isSnap2Grid()) {
+
+                    if (layout.controller.isSnap2Grid() ||
+                        layout.controller.isUIGrid()) {
 
                         this._snap2gridOrganizer(
                             this.layout.controller.getBehavior(),
@@ -185,16 +192,22 @@ define([
                             this.layout.controller.getGridWidth()
                         );
 
-                    } else if (layout.controller.isUIGrid()) {
-                        // TODO
                     } else if (layout.controller.isFreeStyle()) {
+
                         // TODO
+
                     } else {
 
                         this.layout.logger.warn(
                             'Undefined organize mode',
                             layout.controller.getBehaviorMode()
                         );
+
+                        /**
+                         * Unset targets to prevent infinity loop
+                         * @type {{}}
+                         */
+                        targets = {};
                     }
                 }
             }
@@ -264,9 +277,7 @@ define([
             } else {
 
                 this.layout.logger.warn('Undefined behavior organize', behavior.organize);
-
             }
-
         },
 
         /**
