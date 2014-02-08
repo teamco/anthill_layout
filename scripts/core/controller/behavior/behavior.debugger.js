@@ -66,7 +66,7 @@ define([
         updateDebugger: function updateDebugger() {
             var scope = this.scope,
                 cname = scope.constructor.name.toLowerCase(),
-                debug = scope.controller.root().debugger;
+                debug = scope.controller.root().bugger;
 
             if (!anthill.base.isDefined(debug)) {
                 return false;

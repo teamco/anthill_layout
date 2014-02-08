@@ -26,7 +26,7 @@ define([
         /**
          * Get config
          * @param {string} type
-         * @returns {{
+         * @returns {*|{
          *      animate: Boolean,
          *      [callback]: Function,
          *      $source
@@ -36,7 +36,7 @@ define([
 
             /**
              * Init config
-             * @type {{}}
+             * @type {*}
              */
             var config = {};
 
@@ -258,7 +258,6 @@ define([
         /**
          * Grid sticker on resize
          * @param {String} type
-         * @param {Boolean} animate
          */
         resizeResizable: function resizeResizable(type) {
             this.logger.debug('On resize', arguments);
@@ -437,9 +436,10 @@ define([
 
             var modes = this.getContainment().LAYOUT_MODES,
                 layout = this.getLayout(),
-                mode = layout.config.mode;
+                mode = layout.config.mode,
+                index;
 
-            for (var index in modes) {
+            for (index in modes) {
 
                 if (modes.hasOwnProperty(index)) {
                     if (mode === modes[index]) {

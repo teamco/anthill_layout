@@ -18,7 +18,7 @@ define([], function defineDebuggerLayout() {
          * Define debugger
          * @type {Debugger}
          */
-        this.debugger = debug;
+        this.bugger = debug;
 
     };
 
@@ -29,11 +29,11 @@ define([], function defineDebuggerLayout() {
          */
         bindChangeOverlappingMode: function bindChangeOverlappingMode() {
 
-            if (!this.debugger.scopes.page) {
+            if (!this.bugger.scopes.page) {
                 return false;
             }
 
-            var layout = this.debugger.scopes.page.layout;
+            var layout = this.bugger.scopes.page.layout;
             $('#overlapping-mode').on('change.overlapping', function onChange(e) {
                 layout.observer.publish(layout.eventmanager.eventList.setOrganizeMode, $(e.target).val());
             }.bind(this));
@@ -44,11 +44,11 @@ define([], function defineDebuggerLayout() {
          */
         bindChangeEmptySpacesMode: function bindChangeEmptySpacesMode() {
 
-            if (!this.debugger.scopes.page) {
+            if (!this.bugger.scopes.page) {
                 return false;
             }
 
-            var layout = this.debugger.scopes.page.layout;
+            var layout = this.bugger.scopes.page.layout;
             $('#empty-spaces-mode').on('change.emptyspaces', function onChange(e) {
                 layout.observer.publish(layout.eventmanager.eventList.setEmptySpacesMode, $(e.target).val());
             }.bind(this));
@@ -59,12 +59,12 @@ define([], function defineDebuggerLayout() {
          */
         bindAllowOverlapping: function bindAllowOverlapping() {
 
-            if (!this.debugger.scopes.page) {
+            if (!this.bugger.scopes.page) {
                 return false;
             }
 
             var $input = $('input[name="overlapping"]'),
-                layout = this.debugger.scopes.page.layout;
+                layout = this.bugger.scopes.page.layout;
             $input.change(function change(e) {
                 layout.observer.publish(layout.eventmanager.eventList.setOverlapping, $input.is(':checked'));
             }.bind(this));
@@ -81,7 +81,7 @@ define([], function defineDebuggerLayout() {
                 return '';
             }
 
-            var c = this.debugger.component,
+            var c = this.bugger.component,
                 cfg = layout.config,
                 b = layout.controller.getBehavior();
             return ['<li class="extend">', c.renderBlock('Layout', [

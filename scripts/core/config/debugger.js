@@ -55,9 +55,9 @@ define([
 
             /**
              * Define Debugger
-             * @type {modules.debugger}
+             * @type {modules.bugger}
              */
-            this.debugger = new Debugger(this);
+            this.bugger = new Debugger(this);
         }
     };
 
@@ -68,7 +68,7 @@ define([
     appListeners.debugEnd = {
         name: 'debug.end',
         callback: function debugEndCallback() {
-            this.debugger.destroy();
+            this.bugger.destroy();
         }
     };
 
@@ -87,7 +87,7 @@ define([
              * Define local instance of a debugger
              * @type {Debugger}
              */
-            var debug = this.debugger;
+            var debug = this.bugger;
 
             if (debug && debug.grid.visible) {
                 debug.grid.showGrid();
@@ -111,7 +111,7 @@ define([
              * Define local instance of Debugger
              * @type {Debugger}
              */
-            var debug = this.controller.root().debugger;
+            var debug = this.controller.root().bugger;
 
             if (typeof(debug) !== 'undefined') {
 

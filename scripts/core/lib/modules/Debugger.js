@@ -127,8 +127,8 @@ define([
         destroy: function destroy() {
             this.grid.destroyGrid();
             this.destroyDebuggerDOM();
-            this.scope.debugger = undefined;
-            delete this.scope.debugger;
+            this.scope.bugger = undefined;
+            delete this.scope.bugger;
         },
 
         /**

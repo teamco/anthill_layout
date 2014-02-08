@@ -18,17 +18,17 @@ define([], function defineDebuggerWidget() {
          * Define debugger
          * @type {Debugger}
          */
-        this.debugger = debug;
+        this.bugger = debug;
     };
 
     return DebuggerWidget.extend({
 
         getWidget: function getWidget() {
-            return this.debugger.scopes.widget;
+            return this.bugger.scopes.widget;
         },
 
         renderAttributes: function renderAttributes() {
-            var c = this.debugger.component,
+            var c = this.bugger.component,
                 w = this.getWidget(),
                 attr = w.model.getAttributes();
 
@@ -59,7 +59,7 @@ define([], function defineDebuggerWidget() {
          * @returns {string}
          */
         renderInteractionComponent: function renderInteractionComponent(capability, name) {
-            var c = this.debugger.component;
+            var c = this.bugger.component;
             return [
                 '<li class="extend fl mr10">',
                 c.renderBlock(
@@ -81,7 +81,7 @@ define([], function defineDebuggerWidget() {
          * @returns {string}
          */
         renderInteractions: function renderInteractions() {
-            var c = this.debugger.component,
+            var c = this.bugger.component,
                 widget = this.getWidget();
 
             var dragHTML = this.renderInteractionComponent(
@@ -109,7 +109,7 @@ define([], function defineDebuggerWidget() {
          */
         bindChangeOverlappingMode: function bindChangeOverlappingMode() {
             $('#overlapping-mode').on('change.overlapping', function onChange(e) {
-                this.debugger.scopes.page.layout.controller.setOrganizeMode($(e.target).val());
+                this.bugger.scopes.page.layout.controller.setOrganizeMode($(e.target).val());
             }.bind(this));
         },
 
@@ -121,14 +121,14 @@ define([], function defineDebuggerWidget() {
          */
         renderWidgetInfo: function renderWidgetInfo(event, ui) {
 
-            if (!this.debugger.scopes.widget) {
+            if (!this.bugger.scopes.widget) {
                 return false;
             }
 
-            var c = this.debugger.component;
+            var c = this.bugger.component;
 
             return [
-                c.renderInline('UUID', this.debugger.scopes.widget.config.uuid),
+                c.renderInline('UUID', this.bugger.scopes.widget.config.uuid),
                 this.renderAttributes(),
                 this.renderInteractions(),
                 '<li class="extend">',
@@ -138,7 +138,7 @@ define([], function defineDebuggerWidget() {
         },
 
         renderDimensionsInfo: function renderDimensionsInfo(event, ui) {
-            var c = this.debugger.component,
+            var c = this.bugger.component,
                 widget = this.getWidget(),
                 widgetDOM = widget.map.getDOM(),
 
@@ -198,7 +198,7 @@ define([], function defineDebuggerWidget() {
          * @param {{originalPosition, offset, position, helper}} ui
          */
         updateWidgetInfo: function updateWidgetInfo(widget, event, ui) {
-            this.debugger.scopes.widget = widget;
+            this.bugger.scopes.widget = widget;
             $('.dimensions-info ul', '.widget-info').empty().append(this.renderDimensionsInfo(event, ui).join(''));
         }
 

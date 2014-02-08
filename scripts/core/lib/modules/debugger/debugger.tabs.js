@@ -20,7 +20,7 @@ define([], function defineDebuggerTabs() {
          * Define debugger
          * @type {Debugger}
          */
-        this.debugger = debug;
+        this.bugger = debug;
 
         /**
          * Define pin state
@@ -43,7 +43,7 @@ define([], function defineDebuggerTabs() {
          */
         renderTabs: function renderTabs($div) {
             var $tabs = $('<ul />').addClass('info-tabs');
-            $.each(this.debugger.links, function eachTabs(i, v) {
+            $.each(this.bugger.links, function eachTabs(i, v) {
                 $tabs.append(
                     $('<li />').attr({
                         title: v
@@ -136,12 +136,12 @@ define([], function defineDebuggerTabs() {
          * @param {{target}} e
          */
         openTab: function openTab(e) {
-            var $div = $(this.debugger.info),
+            var $div = $(this.bugger.info),
                 $tab = $(e.target),
                 $info = $div.find('fieldset[class^="' +
                     $tab.text().toLowerCase() + '"]');
 
-            this.debugger.scope.logger.debug([
+            this.bugger.scope.logger.debug([
                 'Open', $tab.text(), 'tab'
             ].join(' '));
 
@@ -156,7 +156,7 @@ define([], function defineDebuggerTabs() {
          * Hover info window
          */
         bindHover: function bindHover() {
-            $(this.debugger.info).hover(
+            $(this.bugger.info).hover(
                 this.open.bind(this),
                 this.close.bind(this)
             );
@@ -187,7 +187,7 @@ define([], function defineDebuggerTabs() {
          * @private
          */
         _animateOpenTabs: function _animateOpenTabs(opacity, right) {
-            $('.info-tabs', this.debugger.info).css({
+            $('.info-tabs', this.bugger.info).css({
                 opacity: opacity
             }).stop().animate({
                     right: right

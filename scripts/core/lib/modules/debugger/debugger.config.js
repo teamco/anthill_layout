@@ -19,7 +19,7 @@ define([
          * Define debugger
          * @type {Debugger}
          */
-        this.debugger = debug;
+        this.bugger = debug;
 
         this.defineScope();
 
@@ -32,14 +32,14 @@ define([
          * @returns {*}
          */
         defineScope: function defineScope() {
-            var scope = this.debugger.scope,
+            var scope = this.bugger.scope,
                 item = scope.model.getItemNameSpace();
 
             while (item === 'object' || typeof(item) !== 'undefined') {
                 scope = this.setScope(scope, item);
 
                 if (scope.constructor.name === 'Object') {
-                    this.debugger.scope.logger.debug('Undefined scope', item);
+                    this.bugger.scope.logger.debug('Undefined scope', item);
                     return false;
                 }
 
@@ -53,12 +53,12 @@ define([
          * Validate required scopes
          */
         validateScopes: function validateScopes() {
-            var hash = anthill.base.define(this.debugger.scopes, {}, true),
+            var hash = anthill.base.define(this.bugger.scopes, {}, true),
                 scopes = ['Workspace', 'Page', 'Widget'];
 
             if (anthill.base.lib.hash.hashLength(hash) < scopes.length) {
                 $.each(scopes, function each(index, value) {
-                    this.debugger.scope.controller.checkCondition({
+                    this.bugger.scope.controller.checkCondition({
                         condition: !hash.hasOwnProperty(value.toLowerCase()),
                         msg: 'Undefined scope',
                         type: 'warn',
@@ -78,7 +78,7 @@ define([
             var node = scope[item];
 
             if (node.constructor.name !== 'Object') {
-                this.debugger.scopes[node.constructor.name.toLowerCase()] = node;
+                this.bugger.scopes[node.constructor.name.toLowerCase()] = node;
             }
 
             return node;
@@ -92,7 +92,7 @@ define([
         getItem: function getItem(type) {
             var scope = {};
 
-            scope.app = this.debugger.scope;
+            scope.app = this.bugger.scope;
             scope.workspace = app.controller.getCurrentItem();
             scope.page = scope.workspace.controller.getCurrentItem();
             scope.widget = scope.page.controller.getCurrentItem();

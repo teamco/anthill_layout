@@ -61,12 +61,12 @@ define([], function defineDebuggerActions() {
             $.each(opts || {}, function each(i, selector) {
 
                 if (!anthill.base.isDefined(this.scope)) {
-                    this.debugger.scope.logger.info('Undefined scope', this, i);
+                    this.bugger.scope.logger.info('Undefined scope', this, i);
                     return false;
                 }
 
                 this.selectors[i] = [
-                    this.debugger.info,
+                    this.bugger.info,
                     [
                         'fieldset.',
                         this.scope.model.item.name.toLowerCase(),
@@ -114,7 +114,7 @@ define([], function defineDebuggerActions() {
          * @private
          */
         _addItemButton: function _addItemButton() {
-            return this.debugger.component.renderInlineAction({
+            return this.bugger.component.renderInlineAction({
                 rel: 'disabled',
                 style: 'disabled',
                 title: 'Add item'
@@ -127,7 +127,7 @@ define([], function defineDebuggerActions() {
          * @private
          */
         _removeItemsButton: function _removeItemsButton() {
-            return this.debugger.component.renderInlineAction({
+            return this.bugger.component.renderInlineAction({
                 rel: 'disabled',
                 style: 'disabled select',
                 title: 'Remove items'
@@ -140,7 +140,7 @@ define([], function defineDebuggerActions() {
          * @private
          */
         _removeAllItemsButton: function _removeAllItemsButton() {
-            return this.debugger.component.renderInlineAction({
+            return this.bugger.component.renderInlineAction({
                 rel: 'disabled',
                 style: 'disabled select',
                 title: 'Remove all items'
@@ -153,7 +153,7 @@ define([], function defineDebuggerActions() {
          * @private
          */
         _locateItemButton: function _locateItemButton() {
-            return this.debugger.component.renderInlineAction({
+            return this.bugger.component.renderInlineAction({
                 rel: 'disabled',
                 style: 'disabled select',
                 title: 'Locate item'
@@ -166,7 +166,7 @@ define([], function defineDebuggerActions() {
          * @private
          */
         _renderEnableEditMode: function _renderEnableEditMode() {
-            return this.debugger.component.renderInlineAction({
+            return this.bugger.component.renderInlineAction({
                 rel: 'disabled',
                 title: 'Edit mode'
             });
@@ -185,7 +185,7 @@ define([], function defineDebuggerActions() {
 
             return [
                 '<li class="extend">',
-                this.debugger.component.renderBlock(scope.model.item.name + 's', [
+                this.bugger.component.renderBlock(scope.model.item.name + 's', [
                     this.renderItemsActions(),
                     this._getItemsCount(scope),
                     this.renderItemsList(scope)
@@ -249,7 +249,7 @@ define([], function defineDebuggerActions() {
          * @private
          */
         _getItemsCount: function _getItemsCount(page) {
-            return this.debugger.component.renderInlineOf('Count', page);
+            return this.bugger.component.renderInlineOf('Count', page);
         },
 
         /**
@@ -380,7 +380,7 @@ define([], function defineDebuggerActions() {
                         /**
                          * Restart debugger
                          */
-                        this.debugger.scope.controller.reactivateDebugger();
+                        this.bugger.scope.controller.reactivateDebugger();
                     }
                     scope.api.createItem([], true);
                     this._getItemAction('remove-items').removeClass('disabled');
@@ -509,7 +509,7 @@ define([], function defineDebuggerActions() {
             }
 
             var uuid = $li.text(),
-                item = this.debugger.config.setItem(
+                item = this.bugger.config.setItem(
                     scope.constructor.name.toLowerCase(),
                     uuid
                 );

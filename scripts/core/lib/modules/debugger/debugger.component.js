@@ -18,7 +18,7 @@ define([], function defineDebuggerComponent() {
          * Define debugger
          * @type {Debugger}
          */
-        this.debugger = debug;
+        this.bugger = debug;
     };
 
     return DebuggerComponent.extend({
@@ -171,7 +171,7 @@ define([], function defineDebuggerComponent() {
 
             }
 
-            $('legend', this.debugger.info).on('click.toggle', _clickToggle);
+            $('legend', this.bugger.info).on('click.toggle', _clickToggle);
         },
 
         /**
@@ -180,7 +180,7 @@ define([], function defineDebuggerComponent() {
         bindDebugClose: function bindDebugClose() {
 
             var scope = this,
-                $close = $('.debug-close', scope.debugger.info);
+                $close = $('.debug-close', scope.bugger.info);
 
             /**
              * Toggle hide/show
@@ -188,7 +188,7 @@ define([], function defineDebuggerComponent() {
              */
             function _hideDebug() {
 
-                var visible = $('fieldset:visible:first', scope.debugger.info);
+                var visible = $('fieldset:visible:first', scope.bugger.info);
 
                 if (visible.length > 0) {
 

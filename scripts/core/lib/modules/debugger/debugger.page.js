@@ -22,7 +22,7 @@ define([
          * Define debugger
          * @type {Debugger}
          */
-        this.debugger = debug;
+        this.bugger = debug;
 
         /**
          * Define scope
