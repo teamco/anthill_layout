@@ -153,7 +153,8 @@ define([
             name: 'resize.widget',
             callback: function resizeWidgetCallback(widget) {
                 widget.observer.publish(
-                    widget.eventmanager.eventList.adoptDimensions
+                    widget.eventmanager.eventList.adoptDimensions,
+                    [false, false]
                 );
             }
         }

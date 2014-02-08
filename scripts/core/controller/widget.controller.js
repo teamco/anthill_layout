@@ -453,18 +453,17 @@ define([
 
         /**
          * Adopt widget dimension on resize page
+         * @param {Boolean} organize
+         * @param {Boolean} animate
          */
-        adoptDimensions: function adoptDimensions() {
+        adoptDimensions: function adoptDimensions(organize, animate) {
 
             this.controller.behaviorMode({
-                organize: false,
-                animate: false,
-                type: 'resizestop',
+                organize: organize,
+                animate: animate,
                 $source: this.view.get$widget(),
                 callback: this.controller._resetInteractions.bind(this.controller)
-            });
-
-
+            }, 'resizestop');
         },
 
         /**
