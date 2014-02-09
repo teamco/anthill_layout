@@ -63,15 +63,15 @@
     height: 100%;
     float: left;
     cursor: pointer;
-    background: transparent url('smoothness/images/ui-icons_888888_256x240.png') no-repeat;
+    background: transparent url('ui-lightness/images/ui-icons_222222_256x240.png') no-repeat;
 }
 
 .modal-dialog ul.actions li:hover {
-    background: transparent url('smoothness/images/ui-icons_454545_256x240.png') no-repeat;
+    background: transparent url('ui-lightness/images/ui-icons_ef8c08_256x240.png') no-repeat;
 }
 
 .modal-dialog ul.actions li:active {
-    background: transparent url('smoothness/images/ui-icons_222222_256x240.png') no-repeat;
+    background: transparent url('ui-lightness/images/ui-icons_228ef1_256x240.png') no-repeat;
 }
 
 .modal-dialog ul.actions li.close-x {

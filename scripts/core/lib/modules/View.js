@@ -7,7 +7,8 @@
  */
 
 define([
-], function defineBaseView() {
+    'element/modal.element'
+], function defineBaseView(Modal) {
 
     var BaseView = function BaseView() {
 
@@ -61,7 +62,6 @@ define([
 
         /**
          * Generic modal dialog window
-         * @param {*} Modal
          * @param {{
          *      [style]: String,
          *      [cover]: Boolean,
@@ -81,7 +81,7 @@ define([
          *      [buttons]
          * }} opts
          */
-        modalDialog: function modalDialog(Modal, opts) {
+        modalDialog: function modalDialog(opts) {
             this.elements.$modal = new Modal(this, {
                 style: opts.style,
                 $container: opts.$container,

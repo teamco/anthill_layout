@@ -4,7 +4,7 @@ define([
     /**
      * Define Setting
      * @class Setting
-     * @param {String} mode
+     * @param {*} scope
      * @param {String} name
      * @constructor
      */
@@ -44,8 +44,15 @@ define([
 
     return Setting.extend({
 
+        /**
+         * Init storage
+         */
         init: function init() {
 
+            /**
+             * Load storage
+             * @type {*}
+             */
             var storage = this.load();
 
             if (!anthill.base.isDefined(storage)) {
@@ -151,6 +158,7 @@ define([
             );
 
             this.scope.logger.debug('Load', data);
+
             return data;
         }
     });

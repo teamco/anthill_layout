@@ -232,7 +232,7 @@ define([
                 $container: this._getActions(),
                 text: 'Close',
                 events: {
-                    click: 'rejectItemDestroy'
+                    click: 'rejectModalEvent'
                 }
             };
         },
@@ -370,7 +370,7 @@ define([
                     $container: this.$container,
                     opacity: this.coverOpacity,
                     style: 'cover-' + this.style,
-                    events: this.autoclose ? { click: 'rejectItemDestroy' } : {}
+                    events: this.autoclose ? { click: 'rejectModalEvent' } : {}
                 });
             }
         },

@@ -84,7 +84,7 @@ define([
          */
         destroyWidgetsModalDialog: function destroyWidgetsModalDialog(widgets) {
 
-            this.modalDialog(Modal, {
+            this.modalDialog({
                 style: this.scope.constructor.name.toLowerCase() + '-modal',
                 $container: this.elements.$page.$,
                 items: widgets,
@@ -110,12 +110,11 @@ define([
                     reject: {
                         text: 'Cancel',
                         events: {
-                            click: 'rejectItemDestroy'
+                            click: 'rejectModalEvent'
                         }
                     }
                 }
             });
-
         },
 
         /**

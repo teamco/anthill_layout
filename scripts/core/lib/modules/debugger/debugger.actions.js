@@ -278,6 +278,11 @@ define([], function defineDebuggerActions() {
          * @private
          */
         _bindItemsList: function _bindItemsList(scope) {
+
+            /**
+             * Define selector
+             * @type {*}
+             */
             this.$select = anthill.base.define(
                 this.$select,
                 $('.select', this.selectors.actions)

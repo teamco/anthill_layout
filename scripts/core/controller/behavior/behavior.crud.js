@@ -46,14 +46,14 @@ define([
         },
 
         /**
-         * Reject to destroy widget
+         * Reject to modal event
          */
-        rejectItemDestroy: function rejectItemDestroy() {
+        rejectModalEvent: function rejectModalEvent() {
             var scope = this.scope,
                 $modal = scope.view.elements.$modal;
 
             scope.logger.debug(
-                'Reject destroy',
+                'Reject modal event',
                 $modal.item
             );
 

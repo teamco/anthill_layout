@@ -68,6 +68,27 @@ define([
          */
         resizeWindowHooks: function resizeWindowHooks() {
             this.logger.debug('Start resize window hooks', arguments);
+        },
+
+        /**
+         * Approve clear data
+         */
+        approveClearData: function approveClearData() {
+
+            /**
+             * Define setting
+             * @type {config.setting}
+             */
+            var setting = this.scope.model.setting,
+                $modal = this.scope.view.elements.$modal;
+
+            setting.clear();
+
+            this.scope.logger.warn('localStorage', setting.getStorage());
+
+            if (anthill.base.isDefined($modal)) {
+                $modal.selfDestroy();
+            }
         }
 
     }, BaseController.prototype);

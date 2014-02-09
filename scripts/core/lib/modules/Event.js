@@ -99,7 +99,8 @@ define([
             if (scope.controller.checkCondition({
                 condition: !anthill.base.isFunction(method),
                 msg: 'Undefined method',
-                args: [controller, method]
+                type: 'warn',
+                args: [controller, event, on]
             })) {
                 return false;
             }
