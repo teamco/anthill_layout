@@ -42,6 +42,14 @@ define([
             this.text = opts.text;
         },
 
+        setContent: function setContent() {
+            this.setText();
+        },
+
+        setText: function setText() {
+            this.$.text(this.text);
+        }
+
     }, BaseElement.prototype);
 
 });
