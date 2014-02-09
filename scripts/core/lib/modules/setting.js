@@ -4,7 +4,7 @@ define([
     /**
      * Define Setting
      * @class Setting
-     * @param {String} mode
+     * @param {*} scope
      * @param {String} name
      * @constructor
      */
