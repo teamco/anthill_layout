@@ -108,7 +108,8 @@ define([
          *              right: number,
          *              bottom: number,
          *              left: number
-         *      }}
+         *          }
+         *      }
          * }}
          */
         var DEFAULTS = {
