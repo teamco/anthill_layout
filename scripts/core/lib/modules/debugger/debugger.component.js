@@ -181,8 +181,33 @@ define([], function defineDebuggerComponent() {
             var scope = this,
                 $clear = $('.debug-clear', scope.bugger.info);
 
-            $clear.on('click.clear', function clear() {
-                window.localStorage.clear();
+            $clear.on('click.clear', this.confirmClearData.bind(this));
+        },
+
+        confirmClearData: function confirmClearData() {
+
+            this.bugger.scope.view.modalDialog({
+                style: this.bugger.constructor.name.toLowerCase() + '-modal',
+                $container: this.bugger.page.scope.view.elements.$page.$,
+                type: 'warning',
+                title: 'Clear localStorage',
+                text: 'Are you sure want to clear localStorage?',
+                cover: true,
+                autoclose: true,
+                buttons: {
+                    approve: {
+                        text: 'OK',
+                        events: {
+                            click: 'approveClearData'
+                        }
+                    },
+                    reject: {
+                        text: 'Cancel',
+                        events: {
+                            click: 'rejectModalEvent'
+                        }
+                    }
+                }
             });
         },
 

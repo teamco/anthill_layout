@@ -95,7 +95,7 @@ define([
          */
         destroyItems: function destroyItems() {
             var index,
-                items = this.scope.items;
+                items = this.scope.items || {};
             for (index in items) {
                 if (items.hasOwnProperty(index)) {
                     this.destroyItem(items[index])
