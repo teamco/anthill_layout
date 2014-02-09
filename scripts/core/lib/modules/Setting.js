@@ -23,18 +23,11 @@ define([
         this.mode = this.scope.controller.getMode();
 
         /**
-         * Define storage modes
-         * @type {{localStorage: Storage}}
-         */
-        this.STORAGE_MODES = {
-            localStorage: window.localStorage
-        };
-        /**
          * Define setting storage
          * @type {{development: Storage}}
          */
         this.storage = {
-            development: this.STORAGE_MODES.localStorage
+            development: window.localStorage
         };
 
         /**
