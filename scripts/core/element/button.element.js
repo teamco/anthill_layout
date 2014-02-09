@@ -42,10 +42,16 @@ define([
             this.text = opts.text;
         },
 
+        /**
+         * Set content
+         */
         setContent: function setContent() {
             this.setText();
         },
 
+        /**
+         * Set text
+         */
         setText: function setText() {
             this.$.text(this.text);
         }
