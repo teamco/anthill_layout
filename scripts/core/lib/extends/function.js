@@ -8,47 +8,38 @@
 
 (function addFunctionMethods() {
 
-    (function bindFunction() {
-        if (!Function.prototype.bind) {
-            /**
-             * Function Bind method
-             * @param context
-             * @returns {*}
-             */
-            Function.prototype.bind = function bound(context) {
-                if (typeof this !== 'function') {
-                    // closest thing possible to the ECMAScript 5 internal IsCallable function
-                    throw new TypeError('Function.prototype.bind - what is trying to be fBound is not callable');
-                }
-                // Callee
-                var fn = this;
-                var bindFn;
-                // If no custom arguments bound -> use 'light' bound version
-                if (arguments.length < 2) {
-                    bindFn = function lightBind() {
-                        if (!arguments.length) {
-                            return fn.call(context);
-                        }
-                        return fn.apply(context, arguments);
-                    };
-                } else {
-                    // Else -> use 'heavy' bound version
-                    var fnSlice = Array.prototype.slice;
-                    var args = (arguments.length > 1) && fnSlice.call(arguments, 1);
-                    bindFn = function heavyBind() {
-                        if (arguments.length) {
-                            return fn.apply(context, args.concat(fnSlice.call(arguments)));
-                        }
-                        return fn.apply(context, args);
-                    };
-                }
-                bindFn.displayName = fn.displayName || fn.name;
-                return bindFn;
-            };
-            return true;
-        }
-        return false;
-    }());
+    if (!Function.prototype.bind) {
+
+        /**
+         * Define bind
+         * @param oThis
+         * @returns {fBound}
+         */
+        Function.prototype.bind = function (oThis) {
+
+            if (typeof this !== "function") {
+                // closest thing possible to the ECMAScript 5 internal IsCallable function
+                throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+            }
+
+            var aArgs = Array.prototype.slice.call(arguments, 1),
+                fToBind = this,
+                fNOP = function fNOP() {
+                },
+                fBound = function fBound() {
+                    return fToBind.apply(this instanceof fNOP && oThis
+                        ? this
+                        : oThis,
+                        aArgs.concat(Array.prototype.slice.call(arguments))
+                    );
+                };
+
+            fNOP.prototype = this.prototype;
+            fBound.prototype = new fNOP();
+
+            return fBound;
+        };
+    }
 
     // http://www.crockford.com/javascript/inheritance.html
 
@@ -127,6 +118,7 @@
      * Get Function name
      */
     if (Function.prototype.name === undefined && Object.defineProperty !== undefined) {
+
         Object.defineProperty(Function.prototype, 'name', {
 
             /**
@@ -158,6 +150,7 @@
     /**
      * Extend Function prototype
      */
+
     Function.method('extend', function extend() {
         var i = 0, l = arguments.length;
 

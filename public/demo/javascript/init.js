@@ -1,24 +1,28 @@
-define([
+require([
 
     '../../../scripts/core/config/main'
 
 ], function loadCustomConfig(require) {
 
     require([
-        'config/debugger',
-
         'public/demo/javascript/listeners',
         'public/demo/javascript/permission'
-
     ], function loadApplication() {
 
-        require(['test/create'], function initDemo(app) {
+        require([
+            'config/debugger'
+        ], function initDebug(){
 
-            /**
-             * Define demo application
-             * @type {*}
-             */
-            window.anthill.demo = app;
+            require([
+                'test/create'
+            ], function initDemo(app) {
+
+                /**
+                 * Define demo application
+                 * @type {*}
+                 */
+                window.anthill.demo = app;
+            });
         });
     });
 });
