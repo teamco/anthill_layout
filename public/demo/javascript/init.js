@@ -2,12 +2,12 @@ require([
 
     '../../../scripts/core/config/main'
 
-], function loadCustomConfig(require) {
+], function loadConfig(require) {
 
     require([
         'public/demo/javascript/listeners',
         'public/demo/javascript/permission'
-    ], function loadApplication() {
+    ], function loadCustomConfig() {
 
         require([
             'config/debugger'

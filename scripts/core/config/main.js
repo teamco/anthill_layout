@@ -32,7 +32,28 @@ define(function loadConfig() {
             'jquery.ui': {deps: ['jquery']},
             'extends/function': {deps: ['jquery']},
             'extends/string': {deps: ['jquery']},
-            'extends/array': {deps: ['jquery']}
+            'extends/array': {deps: ['jquery']},
+
+            'controller/layout/layout.empty.rows': {deps: ['extends/function']},
+            'controller/layout/layout.empty.columns': {deps: ['extends/function']},
+            'controller/layout/layout.intersect': {deps: ['extends/function']},
+
+            'controller/behavior/behavior.crud': {deps: ['extends/function']},
+            'controller/behavior/behavior.window.resize': {deps: ['extends/function']},
+
+            'controller/widget/widget.map': {deps: ['extends/function']},
+            'controller/widget/widget.wireframe': {deps: ['extends/function']},
+
+            'modules/api': {deps: ['extends/function']},
+            'modules/observer': {deps: ['extends/function']},
+            'modules/logger': {deps: ['extends/function']},
+            'modules/setting': {deps: ['extends/function']},
+            'modules/event': {deps: ['extends/function']},
+            'modules/permission': {deps: ['extends/function']},
+            'modules/page': {deps: ['extends/function']},
+            'modules/crud': {deps: ['extends/function']},
+            'modules/interactions': {deps: ['extends/function']},
+            'modules/element': {deps: ['extends/function']}
         }
 
     });
