@@ -46,7 +46,6 @@ define([
         };
 
         this.init();
-
     };
 
     return Setting.extend({
@@ -83,7 +82,6 @@ define([
 
                 this.save(storage);
             }
-
         },
 
         /**
