@@ -25,6 +25,38 @@ define([
 
     return View.extend({
 
+        /*
+         newWidgetDimensions: function newWidgetDimensions() {
+         var lastOccupiedRow = this.layout.html.rowsBasedOnWidgets(),
+         widgetDims = this.computeWidgetDims(
+         this.config.newWidgetSpan[0],
+         this.config.newWidgetSpan[1]
+         );
+         return {
+         // Add the widget to next empty slot - if rows are empty, add to it the first one
+         top: this.widgetTop({
+         row: lastOccupiedRow < 0 ?
+         0 : lastOccupiedRow
+         }),
+         left: this.widgetLeft({
+         column: 0
+         }),
+         width: widgetDims[0],
+         height: widgetDims[1]
+         };
+
+         setPosition: function setPosition() {
+         var config = this.view.widget.config,
+         dims = this.dimensions,
+         css = {
+         left: App.base.define(config.left, dims.left),
+         top: App.base.define(config.top, dims.top),
+         width: App.base.define(config.width, dims.width),
+         height: App.base.define(config.height, dims.height)
+         };
+         this.$.css(css);
+         },
+         */
         renderWidget: function renderWidget() {
             console.warn('fix dom', this.scope.dom);
             this.elements.$widget = new Widget(this, {
