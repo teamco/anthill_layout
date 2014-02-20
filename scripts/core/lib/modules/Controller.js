@@ -181,13 +181,14 @@ define([
 
         /**
          * Extend Config
-         * @param {{}} opts
+         * @param {{config, [dom]}} opts
          * @returns {*}
          */
         extendConfig: function extendConfig(opts) {
             var base = anthill.base,
-                scope = this.scope,
-                config = base.lib.hash.extendHash({
+                scope = this.scope;
+
+                opts.config = base.lib.hash.extendHash({
                     html: {
                         container: [
                             '#', scope.model.getUUID(),
@@ -195,11 +196,11 @@ define([
                         ].join('')
                     },
                     containment: scope
-                }, opts);
+                }, opts.config);
 
-            scope.logger.debug('Configuration', config);
+            scope.logger.debug('Configuration', opts.config);
 
-            return config;
+            return opts;
         },
 
         /**

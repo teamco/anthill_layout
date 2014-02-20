@@ -270,7 +270,7 @@ define([
 
             if (this.checkLimit(Constructor, limit)) {
                 scope.logger.warn(
-                    cname + ': Maximum limit reached',
+                        cname + ': Maximum limit reached',
                     limit
                 );
                 node.model.setConfig('limit', true);
@@ -290,7 +290,7 @@ define([
                 } else {
 
                     scope.logger.warn(
-                        cname + ' was created with some errors',
+                            cname + ' was created with some errors',
                         node
                     );
                 }
@@ -365,12 +365,12 @@ define([
                     if (collector[lname].hasOwnProperty(index)) {
 
                         /**
-                         * Define node
+                         * Define opts
                          * @type {*}
                          */
-                        var node = collector[lname][index];
+                        var opts = anthill.base.define(collector[lname][index], {}, true);
 
-                        this.scope.api['create' + cname](node.config, true, true);
+                        this.scope.api['create' + cname](opts, true, true);
                     }
                 }
             }

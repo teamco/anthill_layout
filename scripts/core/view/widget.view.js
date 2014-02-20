@@ -26,6 +26,7 @@ define([
     return View.extend({
 
         renderWidget: function renderWidget() {
+            console.warn('fix dom', this.scope.dom);
             this.elements.$widget = new Widget(this, {
                 id: this.createUUID(),
                 style: [

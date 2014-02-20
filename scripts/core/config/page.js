@@ -188,7 +188,7 @@ define([
          */
         this.mvc = new MVC({
             scope: this,
-            config: [opts, DEFAULTS],
+            config: [opts.config, DEFAULTS],
             components: [
                 API,
                 Controller,

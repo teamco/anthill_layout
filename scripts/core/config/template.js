@@ -28,7 +28,7 @@ define([
      * Define template
      * @class Template
      * @param opts
-     * @param page
+     * @param containment
      * @constructor
      */
     var Template = function Template(opts, containment) {

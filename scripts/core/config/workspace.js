@@ -51,12 +51,24 @@ define([
         };
 
         /**
+         * Init observer
+         * @type {undefined}
+         */
+        this.observer = undefined;
+
+        /**
+         * Init event manager
+         * @type {undefined}
+         */
+        this.eventmanager = undefined;
+
+        /**
          * Define MVC
          * @type {MVC}
          */
         this.mvc = new MVC({
             scope: this,
-            config: [opts, DEFAULTS],
+            config: [opts.config, DEFAULTS],
             components: [
                 API,
                 Controller,

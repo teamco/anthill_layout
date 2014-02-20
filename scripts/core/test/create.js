@@ -11,8 +11,10 @@ define([
 ], function defineTest(Application) {
 
     var app = new Application({
-        html: {
-            container: 'body'
+        config: {
+            html: {
+                container: 'body'
+            }
         }
     });
 

@@ -30,7 +30,7 @@ define([
          * Define dom
          * @type {*}
          */
-        this.dom = {};
+        this.dom = anthill.base.define(opts.dom, {}, true);
 
         /**
          * Default config
@@ -117,6 +117,18 @@ define([
         };
 
         /**
+         * Init observer
+         * @type {undefined}
+         */
+        this.observer = undefined;
+
+        /**
+         * Init event manager
+         * @type {undefined}
+         */
+        this.eventmanager = undefined;
+
+        /**
          * Define constants
          * @type {{magnet: Array}}
          */
@@ -130,7 +142,7 @@ define([
          */
         this.mvc = new MVC({
             scope: this,
-            config: [opts, DEFAULTS],
+            config: [opts.config, DEFAULTS],
             components: [
                 API,
                 Controller,
@@ -163,7 +175,6 @@ define([
         this.observer.publish(
             this.eventmanager.eventList.successCreated
         );
-
     };
 
     return Widget;
