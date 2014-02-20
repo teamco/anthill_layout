@@ -37,7 +37,7 @@ define([
          * @returns {boolean}
          */
         isAllowed: function isAllowed() {
-            return this.layout.config.behavior.snap2grid.emptySpaces === 'row';
+            return this.layout.controller._getLayoutMode('emptySpaces') === 'row';
         },
 
         /**

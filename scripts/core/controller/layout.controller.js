@@ -227,9 +227,12 @@ define([
          * @param mode
          * @param {string} type
          * @private
+         * @returns {*|Overlapping}
          */
         _updateLayoutMode: function _updateOverlappingMode(type, mode) {
-            this.getBehavior()[type] = mode;
+            this.scope.config.behavior[this.getBehaviorMode()][type] = mode;
+
+            return this._getLayoutMode(type);
         }
 
     }, BaseController.prototype);
