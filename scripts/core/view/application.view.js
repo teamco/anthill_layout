@@ -20,10 +20,10 @@ define([
      * @constructor View
      */
     var View = function View() {
-        this.elements = {};
     };
 
     return View.extend({
+
         /**
          * Render Application
          */

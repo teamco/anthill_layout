@@ -132,7 +132,6 @@ define([
                         emptySpaces: this.ORGANIZE_MODES.none
                     },
                     freeStyle: {
-
                     }
                 },
                 mode: this.LAYOUT_MODES.jqUIGrid
@@ -140,11 +139,18 @@ define([
             template: {
             },
             widget: {
+                // allow to resize item on browser resize
                 resize: true,
-                plural: true,                   // allow to resize all items
+                // allow to resize all items
+                plural: true,
                 types: {
                     widget: 'widget',
                     template: 'template'
+                },
+                // default widget relWidth/relHeight
+                defaults: {
+                    width: 3,
+                    height: 3
                 },
                 counter: 0,
                 opacity: 0.6,

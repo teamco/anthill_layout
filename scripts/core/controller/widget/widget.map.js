@@ -300,7 +300,7 @@ define([
 
             return (
                 this.checkWidgetPositionColumnLeft(dom.column) &&
-                    this.checkWidgetPositionColumnRight(dom)
+                this.checkWidgetPositionColumnRight(dom)
                 );
         },
 
@@ -324,7 +324,7 @@ define([
 
             return (
                 this.checkWidgetPositionColumn(dom) &&
-                    this.checkWidgetPositionRowTop(dom.row)
+                this.checkWidgetPositionRowTop(dom.row)
                 );
         },
 
@@ -482,7 +482,85 @@ define([
                 width: this.getNextDims(dom.relWidth),
                 height: this.getNextDims(dom.relHeight)
             }, this.dragTo());
-        }
+        },
 
+        /**
+         * Set widget position
+         * @param {{
+         *      column: Number,
+         *      row: Number,
+         *      relHeight: Number,
+         *      relWidth: Number
+         * }} dom
+         */
+        setPosition: function setPosition(dom) {
+
+            /**
+             * Define new CSS
+             * @type {{left: Number, top: Number, width: Number, height: Number}}
+             */
+            var css = {
+                left: this.widgetLeft(dom.column),
+                top: this.widgetTop(dom.row),
+                width: this.widgetWidth(dom.relWidth),
+                height: this.widgetHeight(dom.relHeight)
+            };
+
+            this.widget.logger.debug('Position', css);
+            this.$.css(css);
+        },
+
+        occupiedAt: function occupiedAt() {
+            var lastOccupiedRow = this.getLastOccupiedRow(),
+                widgetDims = this.computeWidgetDims(
+                    this.config.newWidgetSpan[0],
+                    this.config.newWidgetSpan[1]
+                );
+            return {
+                // Add the widget to next empty slot - if rows are empty, add to it the first one
+                top: this.widgetTop({
+                    row: lastOccupiedRow < 0 ?
+                        0 : lastOccupiedRow
+                }),
+                left: this.widgetLeft({
+                    column: 0
+                }),
+                width: widgetDims[0],
+                height: widgetDims[1]
+
+            }
+        },
+
+        /**
+         * Retrieve the last row number we are occupying by now
+         * @returns {number}
+         */
+        getLastOccupiedRow: function getLastOccupiedRow() {
+
+            var row = -1,
+                widgets = this.widget.model.getParentItems(),
+                index;
+
+            for (index in widgets) {
+
+                if (widgets.hasOwnProperty(index)) {
+
+                    /**
+                     * Define widget
+                     */
+                    var widget = widgets[index];
+
+                    if (widget.row + widget.relHeight > row) {
+
+                        /**
+                         * Row is current row + blocks it takes to the bottom
+                         */
+                        row = widget.row + widget.relHeight;
+                    }
+                }
+            }
+
+            return row;
+        }
     });
 });

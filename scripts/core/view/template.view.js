@@ -15,7 +15,6 @@ define([
 ], function defineTemplateView(BaseView, Header, Footer, TemplateHTML, PageContainer) {
 
     var View = function View() {
-        this.elements = {};
     };
 
     return View.extend({

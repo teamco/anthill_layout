@@ -117,7 +117,11 @@ define([
          * Define mvc components
          * @type {mvc.components}
          */
-        this.components = anthill.base.define(opts.components, [opts.components], true);
+        this.components = anthill.base.define(
+            opts.components,
+            [opts.components],
+            true
+        );
 
         /**
          * Define mvc config
@@ -316,7 +320,19 @@ define([
                     return false;
                 }
 
-                this.scope[this.defineMVC(mvc, this.force).name.toLowerCase()].scope = this.scope;
+                var pattern = this.defineMVC(mvc, this.force).name.toLowerCase(),
+                    ref = this.scope[pattern];
+
+                ref.scope = this.scope;
+
+                if (pattern === 'view') {
+
+                    /**
+                     * Define elements
+                     * @type {{}}
+                     */
+                    this.scope.view.elements = {};
+                }
             }
 
             this.setRelation();
@@ -390,7 +406,7 @@ define([
                                     this.scope.logger.warn(
                                         'Undefined Event Callback', [
                                             scope.controller,
-                                            key + method
+                                                key + method
                                         ]
                                     );
                                 }

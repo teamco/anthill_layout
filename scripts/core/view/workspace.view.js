@@ -15,7 +15,6 @@ define([
 ], function defineWorkspaceView(BaseView, Workspace, Header, Footer, PageContainer) {
 
     var View = function View() {
-        this.elements = {};
     };
 
     return View.extend({

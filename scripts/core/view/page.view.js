@@ -17,12 +17,6 @@ define([
 ], function definePageView(BaseView, Header, Footer, Modal, Page, Content, DeltaScroll) {
 
     var View = function View() {
-
-        /**
-         * Define elements
-         * @type {{}}
-         */
-        this.elements = {};
     };
 
     return View.extend({
