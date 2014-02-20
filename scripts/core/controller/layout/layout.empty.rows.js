@@ -37,7 +37,8 @@ define([
          * @returns {boolean}
          */
         isAllowed: function isAllowed() {
-            return this.layout.controller._getLayoutMode('emptySpaces') === 'row';
+            return this.layout.controller._getLayoutMode('emptySpaces') ===
+                this.page.ORGANIZE_MODES.row;
         },
 
         /**
@@ -89,7 +90,16 @@ define([
             for (i; i <= rl; i += 1) {
 
                 if (anthill.base.isDefined(rows[i])) {
-                    alreadyFixed = this._updateWidgetDOM(rows[i], alreadyFixed, moveIndex);
+
+                    /**
+                     * Define already fixed widgets
+                     * @type {*}
+                     */
+                    alreadyFixed = this._updateWidgetDOM(
+                        rows[i],
+                        alreadyFixed,
+                        moveIndex
+                    );
                 } else {
                     moveIndex += 1;
                     alreadyFixed = [];

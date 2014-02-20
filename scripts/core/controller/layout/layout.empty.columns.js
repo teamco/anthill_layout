@@ -36,7 +36,8 @@ define(function defineEmptyColumns() {
          * @returns {boolean}
          */
         isAllowed: function isAllowed() {
-            return this.layout.controller._getLayoutMode('emptySpaces') === 'column';
+            return this.layout.controller._getLayoutMode('emptySpaces') ===
+                this.page.ORGANIZE_MODES.column;
         },
 
         /**
