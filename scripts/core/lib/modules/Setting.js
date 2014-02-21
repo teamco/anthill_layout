@@ -105,7 +105,11 @@ define([
          */
         save: function save(opts) {
 
-            anthill.base.define(opts, {}, true);
+            /**
+             * Init opts
+             * @type {*}
+             */
+            opts = anthill.base.define(opts, {}, true);
 
             var data = this.load(),
                 _dt = anthill.base.lib.datetime;
