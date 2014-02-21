@@ -78,14 +78,14 @@ define([
          */
         _createItem: function _createItem(item, args, render, silent, where) {
 
-            /**
-             * Init silent
-             * @type {Boolean}
-             */
-            silent = anthill.base.defineBoolean(silent, false, true);
-
             var scope = this.scope,
                 cname = item.name;
+
+            /**
+             * Define silent
+             * @type {Boolean}
+             */
+            scope.silent = anthill.base.defineBoolean(silent, false, true);
 
             scope.observer.publish(
                 scope.eventmanager.eventList['create' + cname],
@@ -101,7 +101,7 @@ define([
                 return false;
             }
 
-            this._renderItem(item, render, where);
+            this._renderItem(item, render, silent, where);
 
             return scope[cname.toLowerCase()];
         },

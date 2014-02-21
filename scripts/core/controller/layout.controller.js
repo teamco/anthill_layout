@@ -205,7 +205,7 @@ define([
          */
         _setLayoutMode: function _setLayoutMode(type, mode) {
             this.scope.logger.warn(
-                type.toUnderscore().capitalize() + ' was changed',
+                    type.toUnderscore().capitalize() + ' was changed',
                 this._getLayoutMode(type),
                 mode
             );

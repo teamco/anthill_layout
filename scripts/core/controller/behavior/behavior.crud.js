@@ -22,7 +22,7 @@ define([
         /**
          * Create Item
          * @param {{}} opts
-         * @param {Boolean} silent
+         * @param {*|Boolean} silent
          */
         createItem: function createItem(opts, silent) {
 
@@ -171,6 +171,10 @@ define([
             this.controller._afterCrud();
         },
 
+        /**
+         * After CRUD
+         * @private
+         */
         _afterCrud: function _afterCrud() {
 
             if (anthill.base.isFunction(this.updateDebugger)) {
