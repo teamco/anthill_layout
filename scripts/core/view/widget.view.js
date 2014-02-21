@@ -28,16 +28,22 @@ define([
          * Render widget
          */
         renderWidget: function renderWidget() {
-            console.warn('fix dom', this.scope.dom);
+
+            /**
+             * Define $widget
+             * @type {element.widget.widget.element}
+             */
             this.elements.$widget = new Widget(this, {
                 id: this.createUUID(),
                 style: [
                     this.createStyle(),
                     this.scope.config.type
                 ].join(' '),
-                $container: this.getContainerSelector(),
-                dom: this.scope.dom
+                $container: this.getContainerSelector()
             });
+
+            this.scope.map.setPosition();
+
             this.header(Header, this.elements.$widget);
             this.content();
             this.footer(Footer, this.elements.$widget);

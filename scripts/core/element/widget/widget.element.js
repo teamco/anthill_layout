@@ -42,6 +42,7 @@ define([
                     dom.column,
                     dom.row
                 );
+
             this.$.stop().animate({
                     top: position.top,
                     left: position.left

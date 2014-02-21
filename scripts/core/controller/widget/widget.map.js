@@ -491,9 +491,17 @@ define([
          *      row: Number,
          *      relHeight: Number,
          *      relWidth: Number
-         * }} dom
+         * }} [dom]
          */
         setPosition: function setPosition(dom) {
+
+            /**
+             * Init local scope
+             * @type {widget|*}
+             */
+            var widget = this.widget;
+
+            dom = anthill.base.define(dom, widget.dom, true);
 
             /**
              * Define new CSS
@@ -506,8 +514,8 @@ define([
                 height: this.widgetHeight(dom.relHeight)
             };
 
-            this.widget.logger.debug('Position', css);
-            this.$.css(css);
+            widget.logger.debug('Position', css);
+            widget.view.get$widget().css(css);
         },
 
         occupiedAt: function occupiedAt() {
