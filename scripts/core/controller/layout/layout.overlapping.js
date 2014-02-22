@@ -120,7 +120,7 @@ define([
          */
         _cssOrganizer: function _cssOrganizer(callback) {
             var page = this.layout.controller.getContainment(),
-                widgets = page.items,
+                widgets = page.model.getItems(),
                 index, widget, counter = 1,
                 length = anthill.base.lib.hash.hashLength(widgets);
 

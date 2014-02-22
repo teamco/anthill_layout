@@ -432,10 +432,6 @@ define([
             var hash = {},
                 widget = this.widget;
 
-            if (widget.containment.silent) {
-                return false;
-            }
-
             if (this.map.overlappingOnStop(
                 this.type,
                 widget.controller.

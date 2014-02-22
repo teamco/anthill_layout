@@ -50,6 +50,15 @@ define([
         },
 
         /**
+         * Get parent config by key
+         * @param key
+         * @returns {*}
+         */
+        getParentConfig: function getParentConfig(key) {
+            return this.scope.containment.model.getConfig(key);
+        },
+
+        /**
          * Set scope config
          * @param {String} [key]
          * @param {*} [value]

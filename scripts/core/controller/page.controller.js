@@ -18,7 +18,6 @@ define([
      * @constructor
      */
     var Controller = function Controller() {
-
     };
 
     return Controller.extend({
