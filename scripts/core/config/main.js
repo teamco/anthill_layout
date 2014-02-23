@@ -20,7 +20,9 @@ define(function loadConfig() {
             permission: 'permission',
 
             'extends': 'lib/extends',
+
             modules: 'lib/modules',
+            plugins: '../plugins',
 
             test: 'test',
 

@@ -109,7 +109,7 @@ define([
          * @param {*} store
          */
         button: function button(Button, opts, store) {
-            $.each(anthill.base.define(opts, {}, true), function each(i, button){
+            $.each(anthill.base.define(opts, {}, true), function each(i, button) {
                 store[i] = new Button(this, {
                     $container: button.$container,
                     style: i.toDash(),

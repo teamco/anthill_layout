@@ -22,6 +22,11 @@ define([
     return BaseElement.extend({
 
         /**
+         * Define plugin path
+         */
+        pluginPath: '../../scripts/plugins',
+
+        /**
          * Element config before build
          * @param {{createStyle: Function, renderUUID: Function}} view
          * @param {{style: String, id: String, [css], [events], [opacity]}} opts
@@ -132,10 +137,10 @@ define([
                 }
             }
 
-            destroyElement.bind(this)($container.find('#' + this.id));
+            destroyElement.bind(this)($('#' + this.id, $container));
 
             if (anthill.base.defineBoolean(destroy, false, true)) {
-                destroyElement.bind(this)($container.find('.' + this.style));
+                destroyElement.bind(this)($('.' + this.style, $container));
             }
         },
 
@@ -169,14 +174,61 @@ define([
         },
 
         /**
+         * Dynamic CSS
+         * @param {String} url
+         * @param {String} uuid
+         * @param [opts]
+         */
+        addCSS: function addCSS(url, uuid, opts) {
+
+            /**
+             * Define defaults
+             * @type {{type: string, rel: string, media: string}}
+             */
+            var defaults = {
+                type: 'text/css',
+                rel: 'stylesheet',
+                media: 'all'
+            };
+
+            opts = anthill.base.define(opts, {}, true);
+
+            /**
+             * Init Link
+             * @type {HTMLElement}
+             */
+            var link = document.createElement("link");
+
+            link.type = opts.type || defaults.type;
+            link.rel = opts.rel || defaults.rel;
+            link.media = opts.media || defaults.media;
+            link.href = url;
+            link.id = uuid;
+
+            document.getElementsByTagName("head")[0].appendChild(link);
+
+            /**
+             * Define css link instance
+             * @type {*|jQuery|HTMLElement}
+             */
+            this.linkCSS = $('#' + uuid);
+        },
+
+        /**
          * Destroy element
          * @returns {*}
          */
         destroy: function destroy() {
+
             if (this.$) {
                 this.view.scope.logger.debug('Destroy element', this);
                 this.$.unbind().remove();
             }
+
+            if (this.linkCSS) {
+                this.linkCSS.remove();
+            }
+
             return this;
         },
 

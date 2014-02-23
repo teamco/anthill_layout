@@ -1,0 +1,110 @@
+/**
+ * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:02 AM
+ */
+
+define([
+    'modules/mvc',
+    'plugins/gallery/mvc/gallery.controller',
+    'plugins/gallery/mvc/gallery.model',
+    'plugins/gallery/mvc/gallery.view',
+    'plugins/gallery/mvc/gallery.event.manager',
+    'plugins/gallery/mvc/gallery.permission'
+], function defineGallery(MVC, Controller, Model, View, EventManager, Permission){
+
+    /**
+     * Define Gallery
+     * @param opts
+     * @constructor
+     * @class Gallery
+     */
+    var Gallery = function Gallery(opts, containment) {
+
+        /**
+         * Define containment
+         */
+        this.containment = containment;
+
+        /**
+         * Define opened
+         * @type {boolean}
+         */
+        this.opened = false;
+
+        /**
+         * Define defaults
+         * @type {{
+         *      plugin: boolean,
+         *      html: {
+         *          header: boolean,
+         *          footer: boolean,
+         *          floating: boolean,
+         *          padding: {
+         *              top: number,
+         *              right: number,
+         *              bottom: number,
+         *              left: number
+         *          }
+         *      }
+         * }}
+         */
+        var DEFAULTS = {
+            plugin: true,
+            html: {
+                header: true,
+                footer: false,
+                floating: true,
+                padding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                }
+            }
+        };
+
+        /**
+         * Init observer
+         * @type {Observer}
+         */
+        this.observer = undefined;
+
+        /**
+         * Init event manager
+         * @type {EventManager}
+         */
+        this.eventmanager = undefined;
+
+        /**
+         * Init config
+         * @type {*}
+         */
+        this.config = undefined;
+
+        /**
+         * Define MVC
+         * @type {MVC}
+         */
+        this.mvc = new MVC({
+            scope: this,
+            config: [
+                anthill.base.define(opts, {}, true).config,
+                DEFAULTS
+            ],
+            components: [
+                Controller,
+                Model,
+                View,
+                EventManager,
+                Permission
+            ],
+            render: true
+        });
+
+        this.observer.publish(this.eventmanager.eventList.successCreated);
+    };
+
+    return Gallery;
+});

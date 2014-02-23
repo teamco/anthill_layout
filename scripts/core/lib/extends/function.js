@@ -28,8 +28,8 @@
                 },
                 fBound = function fBound() {
                     return fToBind.apply(this instanceof fNOP && oThis
-                        ? this
-                        : oThis,
+                            ? this
+                            : oThis,
                         aArgs.concat(Array.prototype.slice.call(arguments))
                     );
                 };
@@ -150,7 +150,6 @@
     /**
      * Extend Function prototype
      */
-
     Function.method('extend', function extend() {
         var i = 0, l = arguments.length;
 
@@ -170,6 +169,31 @@
         }
 
         return this;
+    });
+
+    /**
+     * Clone function
+     */
+    Function.method('clone', function clone(scope) {
+
+        var cloneObj = this;
+
+        if (this.__isClone) {
+            cloneObj = this.__clonedFrom;
+        }
+
+        var temp = function () {
+            return cloneObj.apply(this, arguments);
+        };
+
+        for (var key in this) {
+            temp[key] = this[key];
+        }
+
+        temp.__isClone = true;
+        temp.__clonedFrom = cloneObj;
+
+        return temp;
     });
 
     // Debouncing Javascript Methods

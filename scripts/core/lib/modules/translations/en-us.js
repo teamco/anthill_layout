@@ -10,6 +10,7 @@ define([], function () {
 
     return {
         'reached.maximum.limit': 'Reached maximum limit',
+        'success.rendered': 'Object {0} was successfully rendered',
 
         'after.nested.organizer': 'After nested organizer',
         'before.nested.organizer': 'Before nested organizer',

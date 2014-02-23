@@ -505,8 +505,10 @@ define([
          */
         applyPermissions: function applyPermissions() {
 
-            this._applyPermissions('local');
-            this._applyPermissions('global');
+            if (!this.scope.config.hasOwnProperty('plugin')) {
+                this._applyPermissions('local');
+                this._applyPermissions('global');
+            }
 
             var scope = this.scope,
                 permission = scope.permission;

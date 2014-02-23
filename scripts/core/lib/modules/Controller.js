@@ -81,8 +81,7 @@ define([
          */
         successRendered: function successRendered() {
             this.logger.debug(
-                this.constructor.name +
-                    ' was successfully rendered',
+                anthill.i18n.t('success.rendered').replace(/\{0\}/, this.constructor.name),
                 this
             );
         },

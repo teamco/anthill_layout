@@ -1,0 +1,44 @@
+div.gallery-container {
+    background: -webkit-linear-gradient(top, rgba(238, 238, 238, 1) 0%, rgba(204, 204, 204, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(238, 238, 238, 1) 0%, rgba(204, 204, 204, 1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(238, 238, 238, 1) 0%, rgba(204, 204, 204, 1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(238, 238, 238, 1) 0%, rgba(204, 204, 204, 1) 100%); /* W3C */
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    border-left: 1px solid #999;
+    box-shadow: 2px 2px 10px #333;
+}
+
+div.gallery-container:hover {
+    width: 10px;
+}
+
+div.gallery-container ul {
+    list-style: none;
+}
+
+div.gallery-container .tab {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 20px;
+    left: -17px;
+    background: #ededed url('../../core/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png') -79px -192px;
+    border: 1px solid #999;
+    border-right: none;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    box-shadow: -4px 0px 10px #ccc;
+    cursor: pointer;
+}
+
+div.gallery-container .tab:hover {
+    background-image: url('../../core/stylesheets/ui-lightness/images/ui-icons_ef8c08_256x240.png');
+}
+
+div.gallery-container .tab:active {
+    background-image: url('../../core/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png');
+}

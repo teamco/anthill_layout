@@ -12,8 +12,9 @@ define([
     'config/page',
     'config/layout',
     'config/template',
-    'config/widget'
-], function defineListeners(Application, Workspace, Page, Layout, Template, Widget) {
+    'config/widget',
+    'plugins/gallery/gallery'
+], function defineListeners(Application, Workspace, Page, Layout, Template, Widget, Gallery) {
 
     /**
      * Load listeners
@@ -34,7 +35,14 @@ define([
         successRendered: {
             name: "success.rendered",
             callback: function successRenderedCallback() {
-                console.log('successRenderedCallback');
+
+                /**
+                 * Init gallery plugin
+                 * @type {plugins.gallery.gallery}
+                 */
+                this.gallery = new Gallery({}, this);
+
+                this.gallery.view.render();
             }
         }
 
