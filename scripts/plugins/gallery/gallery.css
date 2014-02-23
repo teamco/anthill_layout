@@ -10,10 +10,13 @@ div.gallery-container {
     height: 100%;
     border-left: 1px solid #999;
     box-shadow: 2px 2px 10px #333;
+    z-index: 100;
+    opacity: 0.7;
 }
 
 div.gallery-container:hover {
     width: 7px;
+    opacity: 0.9;
 }
 
 div.gallery-container ul {
