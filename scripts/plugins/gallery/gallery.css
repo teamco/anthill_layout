@@ -11,12 +11,12 @@ div.gallery-container {
     border-left: 1px solid #999;
     box-shadow: 2px 2px 10px #333;
     z-index: 100;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 div.gallery-container:hover {
     width: 7px;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
 div.gallery-container ul {
@@ -48,4 +48,25 @@ div.gallery-container .tab:active {
 
 div.gallery-container.close .tab {
     background-position: -47px -192px;
+}
+
+div.gallery-container .gallery-header {
+    height: 40px;
+}
+
+div.gallery-container .gallery {
+    position: absolute;
+    width: 100%;
+    top: 40px;
+    bottom: 0;
+}
+
+div.gallery-container .content {
+    height: 100%;
+    display: block;
+}
+
+div.gallery-container .gallery-footer {
+    position: absolute;
+    bottom: 0;
 }
