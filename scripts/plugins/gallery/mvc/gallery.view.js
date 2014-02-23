@@ -90,10 +90,28 @@ define([
              * Define content
              * @type {plugins.gallery.element.gallery.element}
              */
-            this.elements.$content = new GalleryContent(this, {
-                style: 'content',
-                $container: this.elements.$gallery.$
-            });
+            this.elements.$content = {};
+
+            var index,
+                data = this.controller.getData();
+
+            for (index in data) {
+
+                if (data.hasOwnProperty(index)) {
+
+                    /**
+                     * Render item
+                     * @type {plugins.gallery.element.gallery.content.element}
+                     */
+                    var $item = new GalleryContent(this, {
+                        style: 'content',
+                        $container: this.elements.$gallery.$,
+                        data: data[index]
+                    });
+
+                    this.elements.$content[$item.id] = $item;
+                }
+            }
         },
 
         /**
