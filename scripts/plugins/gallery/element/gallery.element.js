@@ -62,10 +62,13 @@ define([
                 width: opened ?
                     this.maxWidth :
                     this.minWidth
-            }, 200);
+            }, 200, function callbackToggle(){
+                if (!opened) {
+                    $container.$.attr('style', '');
+                }
+            });
 
             this.view.controller.setBehavior(opened);
-
         }
 
     }, BaseElement.prototype);
