@@ -36,7 +36,11 @@ define([
             });
         },
 
+        /**
+         * Render tab to open/close gallery
+         */
         renderTab: function renderTab() {
+
             /**
              * Define container
              * @type {plugins.gallery.element.gallery.container.element}
