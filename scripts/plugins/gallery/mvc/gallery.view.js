@@ -120,7 +120,8 @@ define([
         render: function render() {
 
             this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderGallery.bind(this)
             );
         }
 

@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([], function () {
+define([], function defineEnUs() {
 
     return {
         'reached.maximum.limit': 'Reached maximum limit',
@@ -20,5 +20,4 @@ define([], function () {
 
         'destroy.template': 'Destroy Template'
     };
-
 });

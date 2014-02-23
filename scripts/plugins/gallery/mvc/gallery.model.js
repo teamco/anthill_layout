@@ -16,10 +16,27 @@ define([
      * @constructor
      */
     var Model = function Model() {
-
     };
 
     return Model.extend({
+
+        providers: [
+            ''
+        ],
+
+        /**
+         * Get data provider
+         */
+        getDataProvider: function getDataProvider() {
+
+        },
+
+        /**
+         * Get providers list
+         */
+        getProvidersList: function getProvidersList() {
+
+        }
 
     }, BaseModel.prototype);
 });

@@ -6,8 +6,8 @@
  */
 
 define([
-    'modules/controller'
-], function defineGalleryController(BaseController) {
+    'plugins/plugin'
+], function defineGalleryController(PluginBase) {
 
     /**
      * Define gallery controller
@@ -18,7 +18,7 @@ define([
     var Controller = function Controller() {
     };
 
-    Controller.extend({
+    return Controller.extend({
 
         /**
          * Check if opened
@@ -38,25 +38,14 @@ define([
              * Update opened instance
              */
             this.scope.opened = !!opened;
+        },
+
+        /**
+         * Get providers data
+         */
+        getData: function getData() {
+            return this.model.getDataProvider();
         }
 
-    }, BaseController.prototype);
-
-    /**
-     * Copy successRendered
-     * @type {Function}
-     */
-    var successRenderedSuper = Controller.prototype.successRendered.clone();
-
-    /**
-     * Overwrite success rendered
-     */
-    Controller.prototype.successRendered = function successRendered() {
-
-        successRenderedSuper.bind(this)();
-        this.view.renderGallery();
-    };
-
-    return Controller;
-
+    }, PluginBase.prototype);
 });

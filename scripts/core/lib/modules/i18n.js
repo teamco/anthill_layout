@@ -10,6 +10,10 @@ define([
     'modules/translations/en-us'
 ], function definei18n(EnUs) {
 
+    /**
+     * Define language types
+     * @type {{en-us: *}}
+     */
     var langTypes = {
         'en-us': EnUs
     };
@@ -48,6 +52,22 @@ define([
         this.getData = function getData(key) {
             return data.hasOwnProperty(key) ?
                 data[key] : '';
+        };
+
+        /**
+         * Update data
+         * @param translation
+         */
+        this.updateData = function updateData(translation) {
+
+            var index;
+
+            for (index in translation) {
+
+                if (translation.hasOwnProperty(index)) {
+                    data[index] = translation[index];
+                }
+            }
         };
     };
 
