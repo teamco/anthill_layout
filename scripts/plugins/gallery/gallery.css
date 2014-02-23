@@ -34,7 +34,7 @@ div.gallery-container .tab {
     border-right: none;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
-    box-shadow: -4px 0px 10px #ccc;
+    box-shadow: -4px 0 10px #ccc;
     cursor: pointer;
 }
 
