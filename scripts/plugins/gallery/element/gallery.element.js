@@ -54,7 +54,11 @@ define([
                 return false;
             }
 
-            this.view.elements.$container.$.stop().animate({
+            var $container = this.view.elements.$container;
+
+            $container.opened(opened);
+
+            $container.$.stop().animate({
                 width: opened ?
                     this.maxWidth :
                     this.minWidth
@@ -62,14 +66,6 @@ define([
 
             this.view.controller.setBehavior(opened);
 
-        },
-
-        open: function open() {
-            this.toggle(true);
-        },
-
-        close: function close() {
-            this.toggle(false);
         }
 
     }, BaseElement.prototype);

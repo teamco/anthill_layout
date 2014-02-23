@@ -37,8 +37,8 @@ define([
 
             this.$.on('click.toggle', function(){
                 this.view.controller.isOpened() ?
-                    $gallery.close.bind($gallery)() :
-                    $gallery.open.bind($gallery)()
+                    $gallery.toggle.bind($gallery)(false) :
+                    $gallery.toggle.bind($gallery)(true)
                 }.bind(this)
             )
         }

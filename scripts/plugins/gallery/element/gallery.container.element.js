@@ -29,6 +29,16 @@ define([
 
     return GalleryContainerElement.extend({
 
+        /**
+         * Toggle open class
+         * @param {Boolean} open
+         */
+        opened: function opened(open) {
+            open ?
+                this.$.addClass('close') :
+                this.$.removeClass('close');
+        }
+
     }, BaseElement.prototype);
 
 });

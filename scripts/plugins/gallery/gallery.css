@@ -42,3 +42,7 @@ div.gallery-container .tab:hover {
 div.gallery-container .tab:active {
     background-image: url('../../core/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png');
 }
+
+div.gallery-container.close .tab {
+    background-position: -47px -192px;
+}
