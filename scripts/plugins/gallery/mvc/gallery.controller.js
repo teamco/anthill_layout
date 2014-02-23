@@ -51,10 +51,10 @@ define([
          * Check if providers data was existing
          * @returns {boolean}
          */
-        isDataExist: function isDataExist() {
+        isDataNotExist: function isDataNotExist() {
 
             return anthill.base.lib.hash.isHashEmpty(
-                this.scope.view.content
+                this.scope.view.elements.content
             );
         },
 
@@ -64,7 +64,7 @@ define([
          */
         loadContent: function loadContent(opened) {
 
-            if (opened && this.controller.isDataExist()) {
+            if (opened && this.controller.isDataNotExist()) {
                 this.view.renderContent(
                     this.controller.getData()
                 );
