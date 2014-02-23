@@ -20,8 +20,12 @@ define([
 
     return Model.extend({
 
+        /**
+         * Define providers
+         */
         providers: [
-            ''
+            anthill.i18n.t('gallery.providers.all'),
+            anthill.i18n.t('gallery.providers.favorites')
         ],
 
         /**
