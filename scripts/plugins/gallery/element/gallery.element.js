@@ -46,29 +46,46 @@ define([
 
     return GalleryElement.extend({
 
+        /**
+         * Toggle open/close
+         * @param opened
+         * @returns {boolean}
+         */
         toggle: function toggle(opened) {
 
-            if (this.view.controller.isOpened() === opened) {
+            /**
+             * Define locals
+             */
+            var view = this.view,
+                scope = view.scope,
+                controller = view.controller;
 
-                this.view.scope.logger.debug('No change');
+            if (controller.isOpened() === opened) {
+
+                scope.logger.debug('No change');
                 return false;
             }
 
-            var $container = this.view.elements.$container;
+            var $container = view.elements.$container;
 
             $container.opened(opened);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.loadContent,
+                opened
+            );
 
             $container.$.stop().animate({
                 width: opened ?
                     this.maxWidth :
                     this.minWidth
-            }, 200, function callbackToggle(){
+            }, 200, function callbackToggle() {
                 if (!opened) {
                     $container.$.attr('style', '');
                 }
             });
 
-            this.view.controller.setBehavior(opened);
+            controller.setBehavior(opened);
         }
 
     }, BaseElement.prototype);

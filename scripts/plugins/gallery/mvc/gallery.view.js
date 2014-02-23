@@ -77,23 +77,21 @@ define([
             });
 
             this.renderTab();
-            this.content();
             this.footer(Footer, this.elements.$container);
         },
 
         /**
          * Render gallery content
          */
-        content: function content() {
+        renderContent: function renderContent(data) {
 
             /**
              * Define content
-             * @type {plugins.gallery.element.gallery.element}
+             * @type {{}}
              */
-            this.elements.$content = {};
+            this.elements.content = {};
 
-            var index,
-                data = this.controller.getData();
+            var index;
 
             for (index in data) {
 
@@ -109,7 +107,7 @@ define([
                         data: data[index]
                     });
 
-                    this.elements.$content[$item.id] = $item;
+                    this.elements.content[$item.id] = $item;
                 }
             }
         },

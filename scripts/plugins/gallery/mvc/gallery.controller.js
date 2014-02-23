@@ -44,7 +44,31 @@ define([
          * Get providers data
          */
         getData: function getData() {
-            return this.model.getDataProvider();
+            return this.model.getProvidersList();
+        },
+
+        /**
+         * Check if providers data was existing
+         * @returns {boolean}
+         */
+        isDataExist: function isDataExist() {
+
+            return anthill.base.lib.hash.isHashEmpty(
+                this.scope.view.content
+            );
+        },
+
+        /**
+         * Load gallery content
+         * @param opened
+         */
+        loadContent: function loadContent(opened) {
+
+            if (opened && this.controller.isDataExist()) {
+                this.view.renderContent(
+                    this.controller.getData()
+                );
+            }
         }
 
     }, PluginBase.prototype);

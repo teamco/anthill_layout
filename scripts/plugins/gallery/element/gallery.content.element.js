@@ -21,14 +21,24 @@ define([
 
         this._config(view, opts, $('<li />')).build({
             $container: opts.$container,
-            destroy: true
+            destroy: false
         });
 
-        return this;
+        this.setAttributes(opts.data);
 
+        return this;
     };
 
     return GalleryContentElement.extend({
+
+        setAttributes: function setAttributes(data) {
+
+            this.$.attr({
+                title: data.name,
+                rel: data.description
+            })
+
+        }
 
     }, BaseElement.prototype);
 

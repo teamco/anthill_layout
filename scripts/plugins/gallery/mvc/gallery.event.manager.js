@@ -27,7 +27,8 @@ define([
          * Define event list
          */
         this.eventList = {
-            updateTranslations: 'update.translations'
+            updateTranslations: 'update.translations',
+            loadContent: 'load.content'
         };
     };
 

@@ -16,17 +16,43 @@ define([
      * @constructor
      */
     var Model = function Model() {
+
+        this.staticData = [
+            {
+                name: 'Test name1',
+                description: 'Test description',
+                thumbnail: '',
+                dimensions: {
+                    width: 4,
+                    height: 2
+                },
+                src: ''
+            },
+            {
+                name: 'Test name2',
+                description: 'Test description',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                src: '',
+                group: 'test'
+            }
+        ];
     };
 
     return Model.extend({
 
         /**
-         * Define providers
+         * Define default providers
          */
-        providers: [
+        defaultProviders: [
             anthill.i18n.t('gallery.providers.all'),
             anthill.i18n.t('gallery.providers.favorites')
         ],
+
+        providers: ['test'],
 
         /**
          * Get data provider
@@ -39,7 +65,7 @@ define([
          * Get providers list
          */
         getProvidersList: function getProvidersList() {
-
+            return this.staticData;
         }
 
     }, BaseModel.prototype);
