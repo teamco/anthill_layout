@@ -12,7 +12,7 @@ define([
     'plugins/gallery/mvc/gallery.view',
     'plugins/gallery/mvc/gallery.event.manager',
     'plugins/gallery/mvc/gallery.permission'
-], function defineGallery(MVC, Controller, Model, View, EventManager, Permission){
+], function defineGallery(MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define Gallery
@@ -38,6 +38,10 @@ define([
          * @type {{
          *      plugin: boolean,
          *      html: {
+         *          width: {
+         *              min: number,
+         *              max: number
+         *          },
          *          header: boolean,
          *          footer: boolean,
          *          floating: boolean,
@@ -53,6 +57,10 @@ define([
         var DEFAULTS = {
             plugin: true,
             html: {
+                width: {
+                    min: 5,
+                    max: 300
+                },
                 header: true,
                 footer: false,
                 floating: true,

@@ -61,14 +61,19 @@ define([
             this.header(Header, this.elements.$container);
 
             /**
+             * Define local width
+             */
+            var width = this.scope.model.getConfig('html').width;
+
+            /**
              * Define Gallery element
              * @type {element.page.page.element}
              */
             this.elements.$gallery = new Gallery(this, {
                 id: this.createUUID(),
                 $container: this.elements.$container.$,
-                maxWidth: 300,
-                minWidth: 5
+                maxWidth: width.max,
+                minWidth: width.min
             });
 
             this.renderTab();
