@@ -16,8 +16,21 @@ html, body, .app,
 .workspaces, .workspace,
 .pages, .page {
     height: 100%;
-    /*width: 100%;*/
-    /*position: absolute;*/
+}
+
+html, body, .app,
+.workspaces, .workspace,
+.pages, .page, .widget {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+
+    /*
+      Introduced in IE 10.
+      See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+    */
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .workspaces, .pages, .widgets {
