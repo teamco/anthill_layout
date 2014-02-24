@@ -7,10 +7,10 @@
  */
 define([
     'modules/model'
-], function definePageModel(BaseModel) {
+], function defineGalleryModel(BaseModel) {
 
     /**
-     * Define Page model
+     * Define Gallery model
      * @mixin BaseModel
      * @class Model
      * @constructor

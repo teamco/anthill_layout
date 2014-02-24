@@ -13,8 +13,9 @@ define([
     'config/layout',
     'config/template',
     'config/widget',
+    'plugins/panel/panel',
     'plugins/gallery/gallery'
-], function defineListeners(Application, Workspace, Page, Layout, Template, Widget, Gallery) {
+], function defineListeners(Application, Workspace, Page, Layout, Template, Widget, Panel, Gallery) {
 
     /**
      * Load listeners
@@ -37,12 +38,15 @@ define([
             callback: function successRenderedCallback() {
 
                 /**
-                 * Init gallery plugin
-                 * @type {plugins.gallery.gallery}
+                 * Init panel plugin
+                 * @type {plugins.panel.panel}
                  */
-                this.gallery = new Gallery({}, this);
+                this.panel = new Panel({
+                    config: {},
+                    modules: [Gallery]
+                }, this);
 
-                this.gallery.view.render();
+                this.panel.view.render();
             }
         }
 

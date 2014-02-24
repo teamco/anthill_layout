@@ -16,7 +16,7 @@ define([
 
     return BaseView.extend({
         getConfigHTML: function getConfigHTML(key) {
-            var html = this.scope.model.getConfig('html');
+            var html = this.scope.config.html || {};
             if (anthill.base.isDefined(key)) {
                 return html[key];
             }
@@ -38,6 +38,15 @@ define([
             return id || (anthill.base.lib.generator.UUID() +
                 this.constructor.name.toDash());
         },
+
+        /**
+         * Define $container
+         * @param $container
+         */
+        defineContainer: function defineContainer($container) {
+            this.elements.$container = $container;
+        },
+
         getContainerClassName: function getContainerClassName() {
             return this.getConfigHTML().selector.replace(/\./, '');
         },

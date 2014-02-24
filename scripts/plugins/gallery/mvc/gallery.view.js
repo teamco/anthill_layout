@@ -10,11 +10,9 @@ define([
     'modules/view',
     'element/header.element',
     'element/footer.element',
-    'plugins/gallery/element/gallery.container.element',
     'plugins/gallery/element/gallery.content.element',
-    'plugins/gallery/element/gallery.tab.element',
     'plugins/gallery/element/gallery.element'
-], function defineGalleryView(BaseView, Header, Footer, GalleryContainer, GalleryContent, GalleryTab, Gallery) {
+], function defineGalleryView(BaseView, Header, Footer, GalleryContent, Gallery) {
 
     var View = function View() {
     };
@@ -22,41 +20,9 @@ define([
     return View.extend({
 
         /**
-         * Render container
-         */
-        renderGalleryContainer: function renderGalleryContainer() {
-
-            /**
-             * Define container
-             * @type {plugins.gallery.element.gallery.container.element}
-             */
-            this.elements.$container = new GalleryContainer(this, {
-                $container: 'body',
-                style: 'gallery-container'
-            });
-        },
-
-        /**
-         * Render tab to open/close gallery
-         */
-        renderTab: function renderTab() {
-
-            /**
-             * Define container
-             * @type {plugins.gallery.element.gallery.container.element}
-             */
-            this.elements.$tab = new GalleryTab(this, {
-                $container: this.elements.$container.$,
-                style: 'tab'
-            });
-        },
-
-        /**
          * Render Gallery
          */
         renderGallery: function renderGallery() {
-
-            this.renderGalleryContainer();
 
             this.header(Header, this.elements.$container);
 
@@ -76,7 +42,6 @@ define([
                 minWidth: width.min
             });
 
-            this.renderTab();
             this.footer(Footer, this.elements.$container);
         },
 

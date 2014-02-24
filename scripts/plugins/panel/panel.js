@@ -7,19 +7,20 @@
 
 define([
     'modules/mvc',
-    'plugins/gallery/mvc/gallery.controller',
-    'plugins/gallery/mvc/gallery.model',
-    'plugins/gallery/mvc/gallery.view',
-    'plugins/gallery/mvc/gallery.event.manager',
-    'plugins/gallery/mvc/gallery.permission'
-], function defineGallery(MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/panel/mvc/panel.controller',
+    'plugins/panel/mvc/panel.model',
+    'plugins/panel/mvc/panel.view',
+    'plugins/panel/mvc/panel.event.manager',
+    'plugins/panel/mvc/panel.permission'
+], function definePanel(MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Gallery
+     * Define Panel
+     * @param opts
      * @constructor
-     * @class Gallery
+     * @class Panel
      */
-    var Gallery = function Gallery(containment) {
+    var Panel = function Panel(opts, containment) {
 
         /**
          * Define containment
@@ -97,6 +98,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
+                anthill.base.define(opts, {}, true).config,
                 DEFAULTS
             ],
             components: [
@@ -115,9 +117,14 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.updateTranslations,
-            ['plugins/gallery/translations/en-us']
+            ['plugins/panel/translations/en-us']
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.defineModules,
+            [opts.modules]
         );
     };
 
-    return Gallery;
+    return Panel;
 });
