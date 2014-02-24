@@ -133,7 +133,9 @@ define([
                 hash = content[i];
                 var k = base.lib.hash.firstHashKey(hash);
                 hash[k]['caller'] = this.puts.caller;
-                hash[k]['line'] = this.stackIt((new Error).stack.split("\n"));
+                hash[k]['line'] = this.stackIt(
+                    ((new Error).stack + '').split("\n")
+                );
                 console[k](hash[k]);
             }
             console.info('timestamp', base.lib.datetime.timestamp());
