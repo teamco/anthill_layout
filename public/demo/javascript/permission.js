@@ -17,8 +17,7 @@ define([
 
     /**
      * Define Application Global permission
-     * @type {{
-     * }}
+     * @type {*}
      */
     Application.prototype.globalPermissions = {
         development: {
