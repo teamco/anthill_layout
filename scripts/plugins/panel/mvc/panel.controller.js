@@ -75,17 +75,20 @@ define([
             // TODO change to dynamic
             index = index || 0;
 
-            this.view.renderContent(
-                this.controller.activateModule(index)
-            );
+            if (opened) {
+                this.view.renderContent(
+                    this.controller.activateModule(opened, index)
+                );
+            }
         },
 
         /**
          * Activate module
+         * @param {Boolean} opened
          * @param {Number} index
          * @returns {*}
          */
-        activateModule: function activateModule(index) {
+        activateModule: function activateModule(opened, index) {
 
             /**
              * Define module instance
@@ -96,13 +99,13 @@ define([
             if (data && !data.activated) {
 
                 data.module.view.defineContainer(
-                    this.scope.view.elements.$panel
+                    this.scope.view.elements.$content
                 );
 
                 data.module.view.render();
             }
 
-            return data.module;
+            return data.module.controller.loadContent(opened);
         }
 
 

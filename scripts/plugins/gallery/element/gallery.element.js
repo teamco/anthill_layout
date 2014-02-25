@@ -46,48 +46,6 @@ define([
 
     return GalleryElement.extend({
 
-        /**
-         * Toggle open/close
-         * @param opened
-         * @returns {boolean}
-         */
-        toggle: function toggle(opened) {
-
-            /**
-             * Define locals
-             */
-            var view = this.view,
-                scope = view.scope,
-                controller = view.controller;
-
-            if (controller.isOpened() === opened) {
-
-                scope.logger.debug('No change');
-                return false;
-            }
-
-            var $container = view.elements.$container;
-
-            $container.opened(opened);
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.loadContent,
-                opened
-            );
-
-            $container.$.stop().animate({
-                width: opened ?
-                    this.maxWidth :
-                    this.minWidth
-            }, 200, function callbackToggle() {
-                if (!opened) {
-                    $container.$.attr('style', '');
-                }
-            });
-
-            controller.setBehavior(opened);
-        }
-
     }, BaseElement.prototype);
 
 });

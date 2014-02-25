@@ -27,12 +27,6 @@ define([
         this.containment = containment;
 
         /**
-         * Define opened
-         * @type {boolean}
-         */
-        this.opened = false;
-
-        /**
          * Define defaults
          * @type {{
          *      plugin: boolean,

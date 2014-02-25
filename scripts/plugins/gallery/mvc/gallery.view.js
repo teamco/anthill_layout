@@ -54,7 +54,7 @@ define([
              * Define content
              * @type {{}}
              */
-            this.elements.content = {};
+            this.elements.items = {};
 
             var index;
 
@@ -72,7 +72,7 @@ define([
                         data: data[index]
                     });
 
-                    this.elements.content[$item.id] = $item;
+                    this.elements.items[$item.id] = $item;
                 }
             }
         },

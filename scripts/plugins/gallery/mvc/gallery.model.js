@@ -48,8 +48,8 @@ define([
          * Define default providers
          */
         defaultProviders: [
-            anthill.i18n.t('gallery.providers.all'),
-            anthill.i18n.t('gallery.providers.favorites')
+//            anthill.i18n.t('gallery.providers.all'),
+//            anthill.i18n.t('gallery.providers.favorites')
         ],
 
         providers: ['test'],

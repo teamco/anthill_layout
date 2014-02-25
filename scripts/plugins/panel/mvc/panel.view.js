@@ -12,9 +12,10 @@ define([
     'element/footer.element',
     'plugins/panel/element/panel.container.element',
     'plugins/panel/element/panel.content.element',
+    'plugins/panel/element/panel.content.container.element',
     'plugins/panel/element/panel.tab.element',
     'plugins/panel/element/panel.element'
-], function definePanelView(BaseView, Header, Footer, PanelContainer, PanelContent, PanelTab, Panel) {
+], function definePanelView(BaseView, Header, Footer, PanelContainer, PanelContent, PanelContentContainer, PanelTab, Panel) {
 
     var View = function View() {
     };
@@ -76,20 +77,36 @@ define([
                 minWidth: width.min
             });
 
+            this.renderContentContainer();
+
             this.renderTab();
             this.footer(Footer, this.elements.$container);
+        },
+
+        /**
+         * Render content container
+         */
+        renderContentContainer: function renderContentContainer() {
+            /**
+             * Define Panel element
+             * @type {element.page.page.element}
+             */
+            this.elements.$content = new PanelContentContainer(this, {
+                $container: this.elements.$panel.$,
+                style: 'panel-content'
+            });
         },
 
         /**
          * Render panel content
          */
         renderContent: function renderContent(data) {
-                               debugger
+
             /**
              * Define content
              * @type {{}}
              */
-            this.elements.content = {};
+            this.elements.items = {};
 
             var index;
 
@@ -103,11 +120,11 @@ define([
                      */
                     var $item = new PanelContent(this, {
                         style: 'content',
-                        $container: this.elements.$panel.$,
+                        $container: this.elements.$content.$,
                         data: data[index]
                     });
 
-                    this.elements.content[$item.id] = $item;
+                    this.elements.items[$item.id] = $item;
                 }
             }
         },

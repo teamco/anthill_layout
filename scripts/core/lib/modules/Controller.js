@@ -66,6 +66,14 @@ define([
         },
 
         /**
+         * Get scope view
+         * @returns {view}
+         */
+        getView: function getView() {
+            return this.scope.view;
+        },
+
+        /**
          * Success Created
          */
         successCreated: function successCreated() {

@@ -64,9 +64,9 @@ define([
          */
         loadContent: function loadContent(opened) {
 
-            if (opened && this.controller.isDataNotExist()) {
-                this.view.renderContent(
-                    this.controller.getData()
+            if (opened && this.isDataNotExist()) {
+                this.getView().renderContent(
+                    this.getData()
                 );
             }
         }
