@@ -42,7 +42,7 @@ define([
                  * @type {plugins.panel.panel}
                  */
                 this.panel = new Panel({
-                    config: {},
+                    config: {renderAt: 'right'},
                     modules: [Gallery]
                 }, this);
 

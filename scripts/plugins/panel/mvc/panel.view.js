@@ -34,7 +34,10 @@ define([
              */
             this.elements.$container = new PanelContainer(this, {
                 $container: 'body',
-                style: 'panel-container'
+                style: [
+                    'panel-container',
+                    this.controller.getRenderAt()
+                ].join(' ')
             });
         },
 
@@ -74,6 +77,7 @@ define([
         renderPanel: function renderPanel() {
 
             this.renderPanelContainer();
+            this.renderTab();
 
             this.header(Header, this.elements.$container);
 
@@ -95,7 +99,6 @@ define([
 
             this.renderContentContainer();
 
-            this.renderTab();
             this.renderBar();
 
             this.footer(Footer, this.elements.$container);
