@@ -15,7 +15,9 @@ div.panel-container {
 }
 
 div.panel-container:hover {
-    width: 7px;
+    transition: width 0.5s;
+    -webkit-transition: width 0.5s;
+    width: 50px;
     opacity: 0.95;
 }
 
@@ -23,7 +25,7 @@ div.panel-container ul {
     list-style: none;
 }
 
-div.panel-container .tab {
+div.panel-container .panel-tab {
     width: 17px;
     height: 18px;
     position: absolute;
@@ -38,15 +40,15 @@ div.panel-container .tab {
     cursor: pointer;
 }
 
-div.panel-container .tab:hover {
+div.panel-container .panel-tab:hover {
     background-image: url('../../core/stylesheets/ui-lightness/images/ui-icons_ef8c08_256x240.png');
 }
 
-div.panel-container .tab:active {
+div.panel-container .panel-tab:active {
     background-image: url('../../core/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png');
 }
 
-div.panel-container.close .tab {
+div.panel-container.close .panel-tab {
     background-position: -47px -192px;
 }
 
@@ -81,4 +83,24 @@ div.panel-container .content:active {
 div.panel-container .panel-footer {
     position: absolute;
     bottom: 0;
+}
+
+div.panel-container .panel-bar {
+    height: 100%;
+    width: 40px;
+    position: relative;
+    right: 0;
+    top: -40px;
+    float: right;
+    display: none;
+    background: -webkit-linear-gradient(top, rgba(238, 238, 238, 1) 0%, rgba(204, 204, 204, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(238, 238, 238, 1) 0%, rgba(204, 204, 204, 1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(238, 238, 238, 1) 0%, rgba(204, 204, 204, 1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(238, 238, 238, 1) 0%, rgba(204, 204, 204, 1) 100%); /* W3C */
+}
+
+div.panel-container:hover .panel-bar,
+div.panel-container.close .panel-bar {
+    display: block;
+    box-shadow: -1px 0 10px 1px #999;
 }

@@ -14,8 +14,9 @@ define([
     'plugins/panel/element/panel.content.element',
     'plugins/panel/element/panel.content.container.element',
     'plugins/panel/element/panel.tab.element',
+    'plugins/panel/element/panel.bar.element',
     'plugins/panel/element/panel.element'
-], function definePanelView(BaseView, Header, Footer, PanelContainer, PanelContent, PanelContentContainer, PanelTab, Panel) {
+], function definePanelView(BaseView, Header, Footer, PanelContainer, PanelContent, PanelContentContainer, PanelTab, PanelBar, Panel) {
 
     var View = function View() {
     };
@@ -48,7 +49,22 @@ define([
              */
             this.elements.$tab = new PanelTab(this, {
                 $container: this.elements.$container.$,
-                style: 'tab'
+                style: 'panel-tab'
+            });
+        },
+
+        /**
+         * Render tab to open/close panel
+         */
+        renderBar: function renderBar() {
+
+            /**
+             * Define container
+             * @type {plugins.panel.element.panel.container.element}
+             */
+            this.elements.$bar = new PanelBar(this, {
+                $container: this.elements.$container.$,
+                style: 'panel-bar'
             });
         },
 
@@ -80,6 +96,8 @@ define([
             this.renderContentContainer();
 
             this.renderTab();
+            this.renderBar();
+
             this.footer(Footer, this.elements.$container);
         },
 
