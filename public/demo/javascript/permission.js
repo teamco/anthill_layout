@@ -22,8 +22,8 @@ define([
      */
     Application.prototype.globalPermissions = {
         development: {
-            activateDebugger: true,
-            destroyDebugger: true
+            activateDebugger: false,
+            destroyDebugger: false
         },
         authorize: {
         },

@@ -28,6 +28,11 @@ define([
          * Render Application
          */
         renderApplication: function renderApplication() {
+
+            /**
+             * Define $application
+             * @type {element.application.application.element}
+             */
             this.elements.$application = new AppHTML(this, {
                 $container: this.getConfigHTML().container,
                 id: this.createUUID()
@@ -36,19 +41,31 @@ define([
             this.workspaces();
             this.footer(Footer, this.elements.$application);
         },
+
         /**
          * Render Workspaces container
          */
         workspaces: function workspaces() {
+
+            /**
+             * Define $workspaces
+             * @type {element.application.application.element.content}
+             */
             this.elements.$workspaces = new WorkspaceContainer(this, {
                 $container: this.elements.$application.$,
                 style: 'workspaces'
             });
         },
+
         /**
          * Render Debugger window
          */
         debug: function debug() {
+
+            /**
+             * Define $debugger
+             * @type {element.application.application.element.debug}
+             */
             this.elements.$debugger = new Debugger(this, {
                 $container: this.elements.$application.$,
                 style: 'debugger',
@@ -58,12 +75,17 @@ define([
                 }
             });
         },
+
         /**
          * Start rendering
          */
         render: function render() {
-            this.scope.observer.publish(this.scope.eventmanager.eventList.successRendered);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered
+            );
         }
+
     }, BaseView.prototype)
 
 });
