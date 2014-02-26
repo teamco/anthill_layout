@@ -84,6 +84,17 @@ define([
         },
 
         /**
+         * Get render at
+         * @returns {*}
+         */
+        getRenderAt: function getRenderAt() {
+            return [
+                this.scope.constructor.name.toLowerCase(),
+                this.model.getConfig('renderAt')
+            ].join('-');
+        },
+
+        /**
          * Activate module
          * @param {Boolean} opened
          * @param {Number} index
