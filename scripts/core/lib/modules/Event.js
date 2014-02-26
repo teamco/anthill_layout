@@ -17,6 +17,7 @@ define([
     };
 
     return Event.extend({
+
         /**
          * Add event listener
          * @param {{eventName}} opts
@@ -36,6 +37,7 @@ define([
             events[observer.onEvent(opts)] = opts.eventName;
             return events[opts.eventName];
         },
+
         /**
          * Subscribe event
          * @member {Function} Event

@@ -77,7 +77,8 @@ define([
 
             if (opened) {
                 this.view.renderContent(
-                    this.controller.activateModule(opened, index)
+                    this.controller.activateModule(opened, index),
+                    false
                 );
             }
         },

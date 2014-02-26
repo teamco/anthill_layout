@@ -73,6 +73,10 @@ define([
          */
         renderPanel: function renderPanel() {
 
+            if (this.isCached('$panel', Panel)) {
+                return false;
+            }
+
             this.renderPanelContainer();
 
             this.header(Header, this.elements.$container);
@@ -117,8 +121,15 @@ define([
 
         /**
          * Render panel content
+         * @param data
+         * @param {Boolean} force
+         * @returns {boolean}
          */
-        renderContent: function renderContent(data) {
+        renderContent: function renderContent(data, force) {
+
+            if (this.isCachedItems(force)) {
+                return false;
+            }
 
             /**
              * Define content

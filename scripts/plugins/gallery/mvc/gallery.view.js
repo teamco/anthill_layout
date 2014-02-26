@@ -21,8 +21,13 @@ define([
 
         /**
          * Render Gallery
+         * @returns {boolean}
          */
         renderGallery: function renderGallery() {
+
+            if (this.isCached('$gallery', Gallery)) {
+                return false;
+            }
 
             this.header(Header, this.elements.$container);
 
@@ -47,8 +52,15 @@ define([
 
         /**
          * Render gallery content
+         * @param data
+         * @param {Boolean} force
+         * @returns {boolean}
          */
-        renderContent: function renderContent(data) {
+        renderContent: function renderContent(data, force) {
+
+            if (this.isCachedItems(force)) {
+                return false;
+            }
 
             /**
              * Define content

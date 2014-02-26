@@ -11,6 +11,8 @@ define([], function defineEnUs() {
     return {
         'reached.maximum.limit': 'Reached maximum limit',
         'success.rendered': 'Object {0} was successfully rendered',
+        'element.overwritten': 'Element {0} will overwritten',
+        'element.already.rendered': 'Element {0} already rendered',
 
         'after.nested.organizer': 'After nested organizer',
         'before.nested.organizer': 'Before nested organizer',
