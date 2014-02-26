@@ -90,25 +90,14 @@ div.panel-container.close.panel-left .panel-tab {
 
 div.panel-container .panel-header {
     height: 40px;
+    padding-right: 40px;
 }
 
 div.panel-container .panel {
     position: absolute;
-    width: 100%;
+    padding-right: 40px;
     top: 40px;
     bottom: 0;
-}
-
-div.panel-container .content {
-    height: 60px;
-    width: 60px;
-    display: block;
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 10px #ccc;
-    background-color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
 }
 
 div.panel-container.panel-left .content {
@@ -119,10 +108,6 @@ div.panel-container.panel-left .content {
 div.panel-container.panel-right .content {
     float: left;
     margin-left: 10px;
-}
-
-div.panel-container .content:active {
-    cursor: move;
 }
 
 div.panel-container .panel-footer {
