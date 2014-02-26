@@ -32,6 +32,17 @@ define([
         },
 
         /**
+         * Define packages
+         * @param packages
+         */
+        definePackages: function definePackages(packages) {
+
+            for (var i = 0, l = packages.length; i < l; i++) {
+                this.model.definePackage(packages[i]);
+            }
+        },
+
+        /**
          * Check if opened
          * @returns {boolean|*}
          */
@@ -64,6 +75,7 @@ define([
         openPanel: function openPanel() {
             this.view.elements.$panel.toggle(true);
         },
+
 
         /**
          * Show content
@@ -103,23 +115,61 @@ define([
         activateModule: function activateModule(opened, index) {
 
             /**
-             * Define module instance
+             * Define module config
              * @type {{activated: Boolean, module}}
              */
             var data = this.model.getModule(index);
 
             if (data && !data.activated) {
 
-                data.module.view.defineContainer(
+                /**
+                 * Define module
+                 * @type {{activated: Boolean, module}}
+                 */
+                var module = data.module;
+
+                module.view.defineContainer(
                     this.scope.view.elements.$content
                 );
 
-                data.module.view.render();
+                module.view.render();
+
+                this.renderPackages();
             }
 
-            return data.module.controller.loadContent(opened);
-        }
+            module.controller.loadContent(opened);
 
+            return data.module;
+        },
+
+        renderPackages: function renderPackages() {
+
+            var packages = this.model.getPackage();
+
+            for (var i = 0, l = packages.length; i < l; i++) {
+                this.scope.view.renderContent(
+                    this.activatePackage(packages[i]),
+                    true
+                );
+            }
+        },
+
+        /**
+         * Activate package
+         * @param data
+         * @returns {*}
+         */
+        activatePackage: function activatePackage(data) {
+
+            data.view.defineContainer(
+                this.scope.view.elements.$content
+            );
+
+            data.view.render();
+            data.controller.loadContent();
+
+            return data;
+        }
 
     }, PluginBase.prototype);
 });

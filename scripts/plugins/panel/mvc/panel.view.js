@@ -14,9 +14,8 @@ define([
     'plugins/panel/element/panel.content.element',
     'plugins/panel/element/panel.content.container.element',
     'plugins/panel/element/panel.tab.element',
-    'plugins/panel/element/panel.bar.element',
     'plugins/panel/element/panel.element'
-], function definePanelView(BaseView, Header, Footer, PanelContainer, PanelContent, PanelContentContainer, PanelTab, PanelBar, Panel) {
+], function definePanelView(BaseView, Header, Footer, PanelContainer, PanelContent, PanelContentContainer, PanelTab, Panel) {
 
     var View = function View() {
     };
@@ -57,21 +56,6 @@ define([
         },
 
         /**
-         * Render tab to open/close panel
-         */
-        renderBar: function renderBar() {
-
-            /**
-             * Define container
-             * @type {plugins.panel.element.panel.container.element}
-             */
-            this.elements.$bar = new PanelBar(this, {
-                $container: this.elements.$container.$,
-                style: 'panel-bar'
-            });
-        },
-
-        /**
          * Render Panel
          */
         renderPanel: function renderPanel() {
@@ -103,8 +87,6 @@ define([
 
             this.renderContentContainer();
 
-            this.renderBar();
-
             this.footer(Footer, this.elements.$container);
         },
 
@@ -124,11 +106,11 @@ define([
 
         /**
          * Render panel content
-         * @param data
+         * @param module
          * @param {Boolean} force
          * @returns {boolean}
          */
-        renderContent: function renderContent(data, force) {
+        renderContent: function renderContent(module, force) {
 
             if (this.isCachedItems(force)) {
                 return false;
@@ -138,27 +120,19 @@ define([
              * Define content
              * @type {{}}
              */
-            this.elements.items = {};
+            this.elements.items = this.elements.items || {};
 
-            var index;
+            /**
+             * Render item
+             * @type {plugins.panel.element.panel.content.element}
+             */
+            var $item = new PanelContent(this, {
+                style: 'content',
+                $container: this.elements.$content.$,
+                data: module
+            });
 
-            for (index in data) {
-
-                if (data.hasOwnProperty(index)) {
-
-                    /**
-                     * Render item
-                     * @type {plugins.panel.element.panel.content.element}
-                     */
-                    var $item = new PanelContent(this, {
-                        style: 'content',
-                        $container: this.elements.$content.$,
-                        data: data[index]
-                    });
-
-                    this.elements.items[$item.id] = $item;
-                }
-            }
+            this.elements.items[$item.id] = $item;
         },
 
         /**

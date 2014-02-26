@@ -1,0 +1,38 @@
+div.panel-container .panel-bar {
+    position: absolute;
+    background: -webkit-linear-gradient(top, rgba(238, 238, 238, 1) 0%, rgba(204, 204, 204, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(238, 238, 238, 1) 0%, rgba(204, 204, 204, 1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(238, 238, 238, 1) 0%, rgba(204, 204, 204, 1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(238, 238, 238, 1) 0%, rgba(204, 204, 204, 1) 100%); /* W3C */
+}
+
+div.panel-container.panel-right .panel-bar {
+    height: 100%;
+    width: 0;
+    right: 0;
+    top: 0;
+}
+
+div.panel-container.panel-left .panel-bar {
+    height: 100%;
+    width: 0;
+    left: 0;
+    top: 0;
+}
+
+div.panel-container:hover .panel-bar {
+    transition: width 0.6s;
+    -webkit-transition: width 0.6s;
+}
+
+div.panel-container.panel-right:hover .panel-bar,
+div.panel-container.panel-right.close .panel-bar {
+    box-shadow: -1px 0 10px 1px #999;
+    width: 40px;
+}
+
+div.panel-container.panel-left:hover .panel-bar,
+div.panel-container.panel-left.close .panel-bar {
+    box-shadow: 0 -1px 10px 1px #999;
+    width: 40px;
+}

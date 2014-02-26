@@ -7,27 +7,32 @@
 
 define([
     'modules/element'
-], function definePanelBarElement(BaseElement) {
+], function defineBarElement(BaseElement) {
 
     /**
-     * Define Panel Bar Element
+     * Define Bar Element
      * @param view
      * @param opts
-     * @returns {PanelBarElement}
+     * @returns {BarElement}
      * @constructor
-     * @class PanelBarElement
+     * @class BarElement
      */
-    var PanelBarElement = function PanelBarElement(view, opts) {
+    var BarElement = function BarElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
 
+        var url = this.pluginPath + '/gallery/gallery.css',
+            uuid = this.$.attr('id') + '-css';
+
+        this.addCSS(url, uuid);
+
         return this;
     };
 
-    return PanelBarElement.extend({
+    return BarElement.extend({
 
     }, BaseElement.prototype);
 

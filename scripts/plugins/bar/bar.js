@@ -7,42 +7,25 @@
 
 define([
     'modules/mvc',
-    'plugins/panel/mvc/panel.controller',
-    'plugins/panel/mvc/panel.model',
-    'plugins/panel/mvc/panel.view',
-    'plugins/panel/mvc/panel.event.manager',
-    'plugins/panel/mvc/panel.permission'
-], function definePanel(MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/bar/mvc/bar.controller',
+    'plugins/bar/mvc/bar.model',
+    'plugins/bar/mvc/bar.view',
+    'plugins/bar/mvc/bar.event.manager',
+    'plugins/bar/mvc/bar.permission'
+], function defineBar(MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Panel
+     * Define Bar
      * @param opts
      * @constructor
-     * @class Panel
+     * @class Bar
      */
-    var Panel = function Panel(opts, containment) {
+    var Bar = function Bar(opts, containment) {
 
         /**
          * Define containment
          */
         this.containment = containment;
-
-        /**
-         * Define opened
-         * @type {boolean}
-         */
-        this.opened = false;
-
-        /**
-         * Render side
-         * @type {{top: string, right: string, bottom: string, left: string}}
-         */
-        var RENDER_AT = {
-            top: 'top',
-            right: 'right',
-            bottom: 'bottom',
-            left: 'left'
-        };
 
         /**
          * Define defaults
@@ -67,15 +50,9 @@ define([
          */
         var DEFAULTS = {
             plugin: true,
-            renderAt: RENDER_AT.right,
             html: {
-                width: {
-                    min: 5,
-                    max: 300
-                },
-                header: true,
+                header: false,
                 footer: false,
-                floating: false,
                 padding: {
                     top: 0,
                     right: 0,
@@ -129,19 +106,9 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.updateTranslations,
-            ['plugins/panel/translations/en-us']
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.defineModules,
-            [opts.modules]
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.definePackages,
-            [opts.packages]
+            ['plugins/bar/translations/en-us']
         );
     };
 
-    return Panel;
+    return Bar;
 });

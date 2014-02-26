@@ -144,7 +144,7 @@
     border-bottom-width: 1px;
     padding: 10px;
     cursor: move;
-    height: 35px;
+    height: 60px;
 }
 
 #debug-mode .handler:hover {
@@ -384,7 +384,7 @@
     padding: 5px 10px 5px 20px;
     border-radius: 5px;
     z-index: -1;
-    width: 80px;
+    width: 110px;
 }
 
 #debug-mode ul.info-tabs li {

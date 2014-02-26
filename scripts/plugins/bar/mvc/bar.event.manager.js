@@ -29,10 +29,7 @@ define([
         this.eventList = {
             updateTranslations: 'update.translations',
             showContent: 'show.content',
-            defineModules: 'define.modules',
-            definePackages: 'define.packages',
-            openPanel: 'open.panel',
-            closePanel: 'close.panel'
+            defineModules: 'define.modules'
         };
     };
 

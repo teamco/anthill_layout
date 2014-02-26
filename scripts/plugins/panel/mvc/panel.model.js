@@ -22,6 +22,12 @@ define([
          * @type {Array}
          */
         this.modules = [];
+
+        /**
+         * Define packages
+         * @type {Array}
+         */
+        this.packages = [];
     };
 
     return Model.extend({
@@ -38,12 +44,29 @@ define([
         },
 
         /**
+         * Init package
+         * @param Package
+         */
+        definePackage: function definePackage(Package) {
+            this.packages.push(new Package(this.scope));
+        },
+
+        /**
          * Get module by index
-         * @param index
+         * @param {number} [index]
          * @returns {*}
          */
         getModule: function getModule(index) {
-            return this.modules[index];
+            return this.modules[index] || this.modules;
+        },
+
+        /**
+         * Get package by index
+         * @param {number} [index]
+         * @returns {*}
+         */
+        getPackage: function getPackage(index) {
+            return this.packages[index] || this.packages;
         }
 
     }, BaseModel.prototype);
