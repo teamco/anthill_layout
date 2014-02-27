@@ -7,8 +7,12 @@
 
 define([], function defineWidgetContent() {
 
+    /**
+     * Define WidgetContent
+     * @class WidgetContent
+     * @constructor
+     */
     var WidgetContent = function WidgetContent() {
-
     };
 
     return WidgetContent.extend({
