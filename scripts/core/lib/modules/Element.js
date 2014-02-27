@@ -27,11 +27,6 @@ define([
         pluginPath: '../../scripts/plugins',
 
         /**
-         * Define widgets path
-         */
-        widgetPath: '../../scripts/plugins/widgets',
-
-        /**
          * Element config before build
          * @param {{createStyle: Function, renderUUID: Function}} view
          * @param {{style: String, id: String, [css], [events], [opacity]}} opts
@@ -185,16 +180,18 @@ define([
 
             opts = base.define(opts, {}, true);
 
+            /**
+             * Define append/prepend
+             */
             var append = base.defineBoolean(opts.append, true, true);
 
             if (this.$) {
+
                 this.$container = $(opts.$container);
                 this.destroyB4Create(opts.destroy);
-                if (append) {
-                    this.$.appendTo(opts.$container);
-                } else {
-                    this.$.prependTo(opts.$container);
-                }
+
+                this.$[append ? 'appendTo' : 'prependTo'](opts.$container);
+
                 if (base.isFunction(opts.callback)) {
                     opts.callback();
                 }

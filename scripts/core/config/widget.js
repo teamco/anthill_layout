@@ -35,44 +35,46 @@ define([
         /**
          * Default config
          * @type {{
-         *  order: number,
-         *  html: {
-         *      header: boolean,
-         *      footer: boolean,
-         *      frameLess: boolean,
-         *      opacity: number
-         *  },
-         *  attributes: {
-         *      freeze: boolean,
-         *      magnet: string,
-         *      overlapping: boolean,
-         *      alwaysTop: boolean
-         *  },
-         *  maximize: boolean,
-         *  events: {
-         *      draggable: {
-         *          snap: boolean,
-         *          iframeFix: boolean,
-         *          axis: boolean,
-         *          scroll: boolean,
-         *          connectToSortable: boolean,
-         *          cursor: string,
-         *          appendTo: string
+         *      resource: string,
+         *      order: number,
+         *      html: {
+         *          header: boolean,
+         *          footer: boolean,
+         *          frameLess: boolean,
+         *          opacity: number
          *      },
-         *      resizable: {
-         *          iframeFix: boolean,
-         *          handles: string
+         *      attributes: {
+         *          freeze: boolean,
+         *          magnet: string,
+         *          overlapping: boolean,
+         *          alwaysTop: boolean
          *      },
-         *      droppable: {
-         *          activeClass: string,
-         *          hoverClass: string,
-         *          greedy: boolean,
-         *          tolerance: string
+         *      maximize: boolean,
+         *      events: {
+         *          draggable: {
+         *              snap: boolean,
+         *              iframeFix: boolean,
+         *              axis: boolean,
+         *              scroll: boolean,
+         *              connectToSortable: boolean,
+         *              cursor: string,
+         *              appendTo: string
+         *          },
+         *          resizable: {
+         *              iframeFix: boolean,
+         *              handles: string
+         *          },
+         *          droppable: {
+         *              activeClass: string,
+         *              hoverClass: string,
+         *              greedy: boolean,
+         *              tolerance: string
+         *          }
          *      }
-         *  }
          * }}
          */
         var DEFAULTS = {
+            resource: opts.resource,
             limit: false,
             order: 1,
             html: {
@@ -115,12 +117,6 @@ define([
                 }
             }
         };
-
-        /**
-         * Define resource
-         * @type {resource|*|plugins.plugin.addWidget.resource}
-         */
-        this.resource = opts.resource;
 
         /**
          * Init observer

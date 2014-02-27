@@ -5,7 +5,7 @@
  * Time: 5:40 PM
  */
 
-define([], function defineWidgetContent(){
+define([], function defineWidgetContent() {
 
     var WidgetContent = function WidgetContent() {
 
@@ -19,28 +19,38 @@ define([], function defineWidgetContent(){
         loadContent: function loadContent() {
 
             /**
+             * Get resource
+             * @type {*}
+             */
+            var resource = this.model.getConfig('resource');
+
+            if (!anthill.base.isString(resource)) {
+                this.logger.error('Unable to load resource');
+                return false;
+            }
+
+            /**
              * Define $widget
              * @type {element.widget.widget.element}
              */
             var elements = this.view.elements;
 
             /**
-             * Define resource url
+             * Define resource path
              * @type {string}
              */
-            var resource = elements.$widget.widgetPath +
-                ('/' + this.resource).repeat(2) + '.js';
+            var path = [
+                '../../scripts/plugins/widgets' ,
+                ('/' + resource).repeat(2),
+                '.js'
+            ].join('');
 
-            require([resource], function getDependencies(Content){
+            require([path], function getDependencies(Content) {
 
                 var content = new Content();
 
                 elements.$content.$.html(content.getData());
-
             });
-
         }
-
     });
-
 });
