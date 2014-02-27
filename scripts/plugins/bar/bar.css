@@ -36,3 +36,12 @@ div.panel-container.panel-left.close .bar-content {
     box-shadow: 0 -1px 10px 1px #999;
     width: 40px;
 }
+
+div.panel-container .bar-content li {
+    width: 32px;
+    margin: 4px;
+    display: inline-block;
+    float: left;
+    background: transparent no-repeat top left;
+}
+

@@ -24,10 +24,16 @@ define([
             destroy: true
         });
 
+        this.attachEvent(opts.path);
+
         return this;
     };
 
     return BarContentElement.extend({
+
+        attachEvent: function attachEvent(path) {
+
+        }
 
     }, BaseElement.prototype);
 

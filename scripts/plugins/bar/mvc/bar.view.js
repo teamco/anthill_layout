@@ -75,9 +75,7 @@ define([
              */
             this.elements.items = {};
 
-            var index;
-
-            for (index in data) {
+            for (var index in data) {
 
                 if (data.hasOwnProperty(index)) {
 
