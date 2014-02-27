@@ -26,20 +26,11 @@ define([
         });
 
         this.setPadding();
-        this.setContent();
 
         return this;
     };
 
     return Content.extend({
-
-        /**
-         * Set content
-         * @member Content
-         */
-        setContent: function setContent() {
-            this.$.text(this.view.scope.model.getUUID());
-        },
 
         /**
          * Set padding

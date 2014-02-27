@@ -13,11 +13,14 @@ define([], function defineEmptyWidget(){
      * @constructor
      */
     var EmptyWidget = function EmptyWidget() {
-
+        this.text = 'Empty';
     };
 
     EmptyWidget.extend({
 
+        getData: function getData() {
+            return this.text;
+        }
 
     });
 

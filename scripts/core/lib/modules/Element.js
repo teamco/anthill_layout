@@ -27,6 +27,11 @@ define([
         pluginPath: '../../scripts/plugins',
 
         /**
+         * Define widgets path
+         */
+        widgetPath: '../../scripts/plugins/widgets',
+
+        /**
          * Element config before build
          * @param {{createStyle: Function, renderUUID: Function}} view
          * @param {{style: String, id: String, [css], [events], [opacity]}} opts

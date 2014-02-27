@@ -228,6 +228,9 @@ define([
                 this.view.renderWidget();
                 this.controller.setupInteractions();
                 this.observer.publish(event, [event, true, false, arguments]);
+                this.observer.publish(
+                    this.eventmanager.eventList.loadContent
+                );
             }
         }
 

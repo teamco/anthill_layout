@@ -26,7 +26,7 @@ define([
                     width: 4,
                     height: 2
                 },
-                src: 'empty/empty.js'
+                resource: 'empty'
             },
             {
                 name: 'Test name2',

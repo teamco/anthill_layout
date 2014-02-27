@@ -38,7 +38,7 @@ define([
             this.$.attr({
                 title: data.name,
                 rel: data.description,
-                resource: data.src
+                resource: data.resource
             });
         },
 

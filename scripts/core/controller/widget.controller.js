@@ -9,8 +9,9 @@
 define([
     'modules/controller',
     'controller/widget/widget.drag',
-    'controller/widget/widget.resize'
-], function defineWidgetController(BaseController, Drag, Resize) {
+    'controller/widget/widget.resize',
+    'controller/widget/widget.content'
+], function defineWidgetController(BaseController, Drag, Resize, Content) {
 
     /**
      * Define widget controller
@@ -474,5 +475,5 @@ define([
             this.model.save();
         }
 
-    }, BaseController.prototype);
+    }, BaseController.prototype, Content.prototype);
 });
