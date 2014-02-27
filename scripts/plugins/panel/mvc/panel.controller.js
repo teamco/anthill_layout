@@ -88,10 +88,17 @@ define([
             index = index || 0;
 
             if (opened) {
-                this.view.renderContent(
-                    this.controller.activateModule(opened, index),
-                    false
-                );
+
+                /**
+                 * Define module instance
+                 * @type {*}
+                 */
+                var module = this.controller.activateModule(opened, index);
+
+                this.view.renderContent(module, true);
+
+                module.view.render();
+                module.controller.loadContent(opened);
             }
         },
 
@@ -118,26 +125,16 @@ define([
              * Define module config
              * @type {{activated: Boolean, module}}
              */
-            var data = this.model.getModule(index);
+            var data = this.model.getModule(index) || {};
 
             if (data && !data.activated) {
 
                 /**
-                 * Define module
-                 * @type {{activated: Boolean, module}}
+                 * Activate module
+                 * @type {boolean}
                  */
-                var module = data.module;
-
-                module.view.defineContainer(
-                    this.scope.view.elements.$content
-                );
-
-                module.view.render();
-
-                this.renderPackages();
+                data.activated = true;
             }
-
-            module.controller.loadContent(opened);
 
             return data.module;
         },
@@ -147,28 +144,17 @@ define([
             var packages = this.model.getPackage();
 
             for (var i = 0, l = packages.length; i < l; i++) {
-                this.scope.view.renderContent(
-                    this.activatePackage(packages[i]),
-                    true
-                );
+
+                /**
+                 * Define package local instance
+                 * @type {*}
+                 */
+                var module = packages[i];
+
+                this.scope.view.renderContent(module, false);
+                module.view.render();
+                module.controller.loadContent();
             }
-        },
-
-        /**
-         * Activate package
-         * @param data
-         * @returns {*}
-         */
-        activatePackage: function activatePackage(data) {
-
-            data.view.defineContainer(
-                this.scope.view.elements.$content
-            );
-
-            data.view.render();
-            data.controller.loadContent();
-
-            return data;
         }
 
     }, PluginBase.prototype);

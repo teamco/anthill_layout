@@ -10,8 +10,9 @@ define([
     'modules/view',
     'element/header.element',
     'element/footer.element',
-    'plugins/bar/element/bar.element'
-], function defineBarView(BaseView, Header, Footer, BarElement) {
+    'plugins/bar/element/bar.element',
+    'plugins/bar/element/bar.content.element'
+], function defineBarView(BaseView, Header, Footer, BarElement, BarContentElement) {
 
     var View = function View() {
     };
@@ -35,6 +36,7 @@ define([
              */
             this.elements.$bar = new BarElement(this, {
                 $container: this.elements.$container.$,
+                style: 'panel-bar',
                 id: this.createUUID()
             });
 
@@ -67,7 +69,6 @@ define([
                 return false;
             }
 
-
             /**
              * Define content
              * @type {{}}
@@ -82,9 +83,9 @@ define([
 
                     /**
                      * Render item
-                     * @type {plugins.bar.element.bar.content.element}
+                     * @type {BarElement}
                      */
-                    var $item = new BarContent(this, {
+                    var $item = new BarContentElement(this, {
                         style: 'content',
                         $container: this.elements.$content.$,
                         data: data[index]

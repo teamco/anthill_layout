@@ -20,7 +20,7 @@ define([
      * @constructor
      * @class Bar
      */
-    var Bar = function Bar(opts, containment) {
+    var Bar = function Bar(containment) {
 
         /**
          * Define containment
@@ -86,10 +86,7 @@ define([
          */
         this.mvc = new MVC({
             scope: this,
-            config: [
-                anthill.base.define(opts, {}, true).config,
-                DEFAULTS
-            ],
+            config: [DEFAULTS],
             components: [
                 Controller,
                 Model,

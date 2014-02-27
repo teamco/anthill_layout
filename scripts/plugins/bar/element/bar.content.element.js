@@ -7,29 +7,27 @@
 
 define([
     'modules/element'
-], function defineBarElement(BaseElement) {
+], function defineBarContentElement(BaseElement) {
 
     /**
-     * Define Bar Element
+     * Define Bar Content Element
      * @param view
      * @param opts
-     * @returns {BarElement}
+     * @returns {BarContentElement}
      * @constructor
-     * @class BarElement
+     * @class BarContentElement
      */
-    var BarElement = function BarElement(view, opts) {
+    var BarContentElement = function BarContentElement(view, opts) {
 
-        this._config(view, opts, $('<ul />')).build({
+        this._config(view, opts, $('<li />')).build({
             $container: opts.$container,
             destroy: true
         });
 
-        this.addCSS('/bar/bar.css');
-
         return this;
     };
 
-    return BarElement.extend({
+    return BarContentElement.extend({
 
     }, BaseElement.prototype);
 

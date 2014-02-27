@@ -88,6 +88,9 @@ define([
             this.renderContentContainer();
 
             this.footer(Footer, this.elements.$container);
+
+            this.controller.renderPackages();
+
         },
 
         /**
@@ -112,9 +115,15 @@ define([
          */
         renderContent: function renderContent(module, force) {
 
-            if (this.isCachedItems(force)) {
-                return false;
-            }
+            /**
+             * Define style
+             * @type {string}
+             */
+            var style = [
+                    module.constructor.name.toLowerCase(),
+                    'content'
+                ].join('-'),
+                sname = '$' + style;
 
             /**
              * Define content
@@ -122,17 +131,22 @@ define([
              */
             this.elements.items = this.elements.items || {};
 
+            if (this.isCachedItems(force) || this.elements.items.hasOwnProperty(sname)) {
+                return false;
+            }
+
             /**
              * Render item
              * @type {plugins.panel.element.panel.content.element}
              */
             var $item = new PanelContent(this, {
-                style: 'content',
-                $container: this.elements.$content.$,
-                data: module
+                style: style,
+                $container: this.elements.$content.$
             });
 
-            this.elements.items[$item.id] = $item;
+            module.view.defineContainer($item);
+
+            this.elements.items[sname] = $item;
         },
 
         /**

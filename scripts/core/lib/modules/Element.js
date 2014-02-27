@@ -203,10 +203,15 @@ define([
         /**
          * Dynamic CSS
          * @param {String} url
-         * @param {String} uuid
          * @param [opts]
          */
-        addCSS: function addCSS(url, uuid, opts) {
+        addCSS: function addCSS(url, opts) {
+
+            /**
+             * Generate uuid
+             * @type {string}
+             */
+            var uuid = this.$.attr('id') + '-css';
 
             /**
              * Define defaults
@@ -222,14 +227,14 @@ define([
 
             /**
              * Init Link
-             * @type {HTMLElement}
+             * @type {HTMLElement|{type: string, rel: string, media: string, href: string, id: string}}
              */
             var link = document.createElement("link");
 
             link.type = opts.type || defaults.type;
             link.rel = opts.rel || defaults.rel;
             link.media = opts.media || defaults.media;
-            link.href = url;
+            link.href = this.pluginPath + url;
             link.id = uuid;
 
             document.getElementsByTagName("head")[0].appendChild(link);

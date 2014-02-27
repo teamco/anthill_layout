@@ -94,10 +94,7 @@ div.panel-container .panel-header {
 }
 
 div.panel-container .panel {
-    position: absolute;
     padding-right: 40px;
-    top: 40px;
-    bottom: 0;
 }
 
 div.panel-container.panel-left .content {

@@ -90,9 +90,7 @@ define([
          */
         this.mvc = new MVC({
             scope: this,
-            config: [
-                DEFAULTS
-            ],
+            config: [DEFAULTS],
             components: [
                 Controller,
                 Model,
