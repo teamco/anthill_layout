@@ -69,6 +69,14 @@ define([
                     this.getData()
                 );
             }
+        },
+
+        addWidget: function addWidget($element) {
+            debugger
+
+            anthill.demo.workspace.page.api.createItem({
+                resource: $element.$.attr('resource')
+            }, true);
         }
 
     }, PluginBase.prototype);

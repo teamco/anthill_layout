@@ -117,6 +117,12 @@ define([
         };
 
         /**
+         * Define resource
+         * @type {resource|*|plugins.plugin.addWidget.resource}
+         */
+        this.resource = opts.resource;
+
+        /**
          * Init observer
          * @type {undefined}
          */

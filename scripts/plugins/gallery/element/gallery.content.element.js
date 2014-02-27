@@ -26,6 +26,8 @@ define([
 
         this.setAttributes(opts.data);
 
+        this.installWidget();
+
         return this;
     };
 
@@ -35,9 +37,16 @@ define([
 
             this.$.attr({
                 title: data.name,
-                rel: data.description
-            })
+                rel: data.description,
+                resource: data.src
+            });
+        },
 
+        installWidget: function installWidget() {
+
+            this.$.on('click.install', function clickInstall() {
+                this.view.controller.addWidget(this);
+            }.bind(this))
         }
 
     }, BaseElement.prototype);
