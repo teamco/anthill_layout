@@ -13,9 +13,8 @@ define([
     'config/layout',
     'config/template',
     'config/widget',
-    'plugins/panel/panel',
-    'plugins/gallery/gallery'
-], function defineListeners(Application, Workspace, Page, Layout, Template, Widget, Panel, Gallery) {
+    'plugins/panel/panel'
+], function defineListeners(Application, Workspace, Page, Layout, Template, Widget, Panel) {
 
     /**
      * Load listeners
@@ -37,16 +36,25 @@ define([
             name: "success.rendered",
             callback: function successRenderedCallback() {
 
-                /**
-                 * Init panel plugin
-                 * @type {plugins.panel.panel}
-                 */
-                this.panel = new Panel({
-                    config: {},
-                    modules: [Gallery]
-                }, this);
+                var app = this;
 
-                this.panel.view.render();
+                require([
+                    'plugins/bar/bar',
+                    'plugins/gallery/gallery'
+                ], function definePanel(Bar, Gallery){
+
+                    /**
+                     * Init panel plugin
+                     * @type {plugins.panel.panel}
+                     */
+                    app.panel = new Panel({
+                        config: {renderAt: 'right'},
+                        modules: [Gallery],
+                        packages: [Bar]
+                    }, app);
+
+                    app.panel.view.render();
+                });
             }
         }
 

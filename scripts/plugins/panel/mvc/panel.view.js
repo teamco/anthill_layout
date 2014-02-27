@@ -12,9 +12,10 @@ define([
     'element/footer.element',
     'plugins/panel/element/panel.container.element',
     'plugins/panel/element/panel.content.element',
+    'plugins/panel/element/panel.content.container.element',
     'plugins/panel/element/panel.tab.element',
     'plugins/panel/element/panel.element'
-], function definePanelView(BaseView, Header, Footer, PanelContainer, PanelContent, PanelTab, Panel) {
+], function definePanelView(BaseView, Header, Footer, PanelContainer, PanelContent, PanelContentContainer, PanelTab, Panel) {
 
     var View = function View() {
     };
@@ -32,7 +33,10 @@ define([
              */
             this.elements.$container = new PanelContainer(this, {
                 $container: 'body',
-                style: 'panel-container'
+                style: [
+                    'panel-container',
+                    this.controller.getRenderAt()
+                ].join(' ')
             });
         },
 
@@ -47,7 +51,7 @@ define([
              */
             this.elements.$tab = new PanelTab(this, {
                 $container: this.elements.$container.$,
-                style: 'tab'
+                style: 'panel-tab'
             });
         },
 
@@ -56,7 +60,12 @@ define([
          */
         renderPanel: function renderPanel() {
 
+            if (this.isCached('$panel', Panel)) {
+                return false;
+            }
+
             this.renderPanelContainer();
+            this.renderTab();
 
             this.header(Header, this.elements.$container);
 
@@ -76,40 +85,68 @@ define([
                 minWidth: width.min
             });
 
-            this.renderTab();
+            this.renderContentContainer();
+
             this.footer(Footer, this.elements.$container);
+
+            this.controller.renderPackages();
+
+        },
+
+        /**
+         * Render content container
+         */
+        renderContentContainer: function renderContentContainer() {
+            /**
+             * Define Panel element
+             * @type {element.page.page.element}
+             */
+            this.elements.$content = new PanelContentContainer(this, {
+                $container: this.elements.$panel.$,
+                style: 'panel-content'
+            });
         },
 
         /**
          * Render panel content
+         * @param module
+         * @param {Boolean} force
+         * @returns {boolean}
          */
-        renderContent: function renderContent(data) {
-                               debugger
+        renderContent: function renderContent(module, force) {
+
+            /**
+             * Define style
+             * @type {string}
+             */
+            var style = [
+                    module.constructor.name.toLowerCase(),
+                    'content'
+                ].join('-'),
+                sname = '$' + style;
+
             /**
              * Define content
              * @type {{}}
              */
-            this.elements.content = {};
+            this.elements.items = this.elements.items || {};
 
-            var index;
-
-            for (index in data) {
-
-                if (data.hasOwnProperty(index)) {
-
-                    /**
-                     * Render item
-                     * @type {plugins.panel.element.panel.content.element}
-                     */
-                    var $item = new PanelContent(this, {
-                        style: 'content',
-                        $container: this.elements.$panel.$,
-                        data: data[index]
-                    });
-
-                    this.elements.content[$item.id] = $item;
-                }
+            if (this.isCachedItems(force) || this.elements.items.hasOwnProperty(sname)) {
+                return false;
             }
+
+            /**
+             * Render item
+             * @type {plugins.panel.element.panel.content.element}
+             */
+            var $item = new PanelContent(this, {
+                style: style,
+                $container: this.elements.$content.$
+            });
+
+            module.view.defineContainer($item);
+
+            this.elements.items[sname] = $item;
         },
 
         /**

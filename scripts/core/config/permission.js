@@ -26,8 +26,8 @@ define([
      */
     Application.prototype.localPermissions = {
         development: {
-            activateDebugger: true,
-            destroyDebugger: true
+            activateDebugger: false,
+            destroyDebugger: false
         },
         authorize: {
             activateDebugger: false,
@@ -38,8 +38,8 @@ define([
             destroyDebugger: false
         },
         test: {
-            activateDebugger: true,
-            destroyDebugger: true
+            activateDebugger: false,
+            destroyDebugger: false
         }
     };
 

@@ -27,12 +27,6 @@ define([
         this.containment = containment;
 
         /**
-         * Define opened
-         * @type {boolean}
-         */
-        this.opened = false;
-
-        /**
          * Define defaults
          * @type {{
          *      plugin: boolean,
@@ -96,9 +90,7 @@ define([
          */
         this.mvc = new MVC({
             scope: this,
-            config: [
-                DEFAULTS
-            ],
+            config: [DEFAULTS],
             components: [
                 Controller,
                 Model,

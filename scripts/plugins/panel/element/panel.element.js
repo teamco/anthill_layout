@@ -36,10 +36,7 @@ define([
          */
         this.minWidth = opts.minWidth || 0;
 
-        var url = this.pluginPath + '/panel/panel.css',
-            uuid = this.$.attr('id') + '-css';
-
-        this.addCSS(url, uuid);
+        this.addCSS('/panel/panel.css');
 
         return this;
     };

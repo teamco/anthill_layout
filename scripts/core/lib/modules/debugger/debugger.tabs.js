@@ -65,7 +65,7 @@ define([], function defineDebuggerTabs() {
          * Render pin
          */
         renderPin: function renderPin() {
-            var $pin = $('<div />').
+            var $pin = $('<li />').
                 addClass('pin').
                 addClass(this.pinTabs ? 'active' : '').
                 attr({

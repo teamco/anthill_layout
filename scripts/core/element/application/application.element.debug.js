@@ -19,6 +19,10 @@ define([
      */
     var Debugger = function Debugger(view, opts) {
 
+        if (!view.scope.permission.getCapability('activateDebugger')) {
+            return false;
+        }
+
         /**
          * Define config
          * @type {element._config}
@@ -42,8 +46,8 @@ define([
             this.$.css({
                 opacity: this.opacity
             }).append(
-                    $('<div />')
-                );
+                $('<div />')
+            );
 
             this.bindHover();
 

@@ -30,6 +30,7 @@ define([
             updateTranslations: 'update.translations',
             showContent: 'show.content',
             defineModules: 'define.modules',
+            definePackages: 'define.packages',
             openPanel: 'open.panel',
             closePanel: 'close.panel'
         };

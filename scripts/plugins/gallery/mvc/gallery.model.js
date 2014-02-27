@@ -38,6 +38,105 @@ define([
                 },
                 src: '',
                 group: 'test'
+            },
+            {
+                name: 'Test name2',
+                description: 'Test description',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                src: '',
+                group: 'test'
+            },
+            {
+                name: 'Test name2',
+                description: 'Test description',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                src: '',
+                group: 'test'
+            },
+            {
+                name: 'Test name2',
+                description: 'Test description',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                src: '',
+                group: 'test'
+            },
+            {
+                name: 'Test name2',
+                description: 'Test description',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                src: '',
+                group: 'test'
+            },
+            {
+                name: 'Test name2',
+                description: 'Test description',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                src: '',
+                group: 'test'
+            },
+            {
+                name: 'Test name2',
+                description: 'Test description',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                src: '',
+                group: 'test'
+            },
+            {
+                name: 'Test name2',
+                description: 'Test description',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                src: '',
+                group: 'test'
+            },
+            {
+                name: 'Test name2',
+                description: 'Test description',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                src: '',
+                group: 'test'
+            },
+            {
+                name: 'Test name2',
+                description: 'Test description',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                src: '',
+                group: 'test'
             }
         ];
     };
@@ -48,8 +147,8 @@ define([
          * Define default providers
          */
         defaultProviders: [
-            anthill.i18n.t('gallery.providers.all'),
-            anthill.i18n.t('gallery.providers.favorites')
+//            anthill.i18n.t('gallery.providers.all'),
+//            anthill.i18n.t('gallery.providers.favorites')
         ],
 
         providers: ['test'],

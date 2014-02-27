@@ -42,6 +42,9 @@ define([
             this.opacity = opts.opacity || 1.0;
             this.css = anthill.base.define(opts.css, {}, true);
 
+            /**
+             * Define jQuery element
+             */
             this.$ = $html.attr({
                 id: this.id
             }).addClass(this.style).css(this.css);
@@ -53,8 +56,10 @@ define([
          * Bind element events
          */
         bindEvents: function bindEvents() {
+
             var scope = this.view.scope,
                 $element = this.$;
+
             $.each(
                 anthill.base.define(this.events, [], true),
                 function each(index, event) {
@@ -76,6 +81,7 @@ define([
          * @returns {opts.$item}
          */
         setPosition: function setPosition(opts) {
+
             var cWidth = opts.$container.outerWidth(),
                 cHeight = opts.$container.outerHeight(),
                 $item = opts.$item,
@@ -112,6 +118,9 @@ define([
                 left = mw;
             }
 
+            /**
+             * Define css
+             */
             var css = $.extend({
                 left: left,
                 top: top
@@ -125,13 +134,22 @@ define([
          * @param {Boolean} destroy
          */
         destroyB4Create: function destroyB4Create(destroy) {
+
+            /**
+             * Define $container
+             * @type {$container|*}
+             */
             var $container = this.$container;
 
+            /**
+             * Destroy element
+             * @param $element
+             */
             function destroyElement($element) {
                 if ($element.length > 0) {
                     this.view.scope.logger.warn(
-                        this.constructor.name,
-                        'Element will overwritten'
+                        anthill.i18n.t('element.overwritten').
+                            replace(/\{0\}/, this.constructor.name)
                     );
                     $element.remove();
                 }
@@ -140,7 +158,10 @@ define([
             destroyElement.bind(this)($('#' + this.id, $container));
 
             if (anthill.base.defineBoolean(destroy, false, true)) {
-                destroyElement.bind(this)($('.' + this.style, $container));
+
+                destroyElement.bind(this)(
+                    $('.' + this.style, $container)
+                );
             }
         },
 
@@ -150,7 +171,13 @@ define([
          * @returns {*}
          */
         build: function build(opts) {
+
+            /**
+             * Define base instance
+             * @type {Base}
+             */
             var base = anthill.base;
+
             opts = base.define(opts, {}, true);
 
             var append = base.defineBoolean(opts.append, true, true);
@@ -176,10 +203,15 @@ define([
         /**
          * Dynamic CSS
          * @param {String} url
-         * @param {String} uuid
          * @param [opts]
          */
-        addCSS: function addCSS(url, uuid, opts) {
+        addCSS: function addCSS(url, opts) {
+
+            /**
+             * Generate uuid
+             * @type {string}
+             */
+            var uuid = this.$.attr('id') + '-css';
 
             /**
              * Define defaults
@@ -195,14 +227,14 @@ define([
 
             /**
              * Init Link
-             * @type {HTMLElement}
+             * @type {HTMLElement|{type: string, rel: string, media: string, href: string, id: string}}
              */
             var link = document.createElement("link");
 
             link.type = opts.type || defaults.type;
             link.rel = opts.rel || defaults.rel;
             link.media = opts.media || defaults.media;
-            link.href = url;
+            link.href = this.pluginPath + url;
             link.id = uuid;
 
             document.getElementsByTagName("head")[0].appendChild(link);

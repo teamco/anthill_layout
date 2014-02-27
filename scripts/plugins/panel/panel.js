@@ -34,6 +34,17 @@ define([
         this.opened = false;
 
         /**
+         * Render side
+         * @type {{top: string, right: string, bottom: string, left: string}}
+         */
+        var RENDER_AT = {
+            top: 'top',
+            right: 'right',
+            bottom: 'bottom',
+            left: 'left'
+        };
+
+        /**
          * Define defaults
          * @type {{
          *      plugin: boolean,
@@ -56,6 +67,7 @@ define([
          */
         var DEFAULTS = {
             plugin: true,
+            renderAt: RENDER_AT.right,
             html: {
                 width: {
                     min: 5,
@@ -63,7 +75,7 @@ define([
                 },
                 header: true,
                 footer: false,
-                floating: true,
+                floating: false,
                 padding: {
                     top: 0,
                     right: 0,
@@ -123,6 +135,11 @@ define([
         this.observer.publish(
             this.eventmanager.eventList.defineModules,
             [opts.modules]
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.definePackages,
+            [opts.packages]
         );
     };
 

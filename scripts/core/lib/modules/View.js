@@ -56,15 +56,76 @@ define([
                 '.', this.getContainerClassName(), 's'
             ].join(''));
         },
+
+        /**
+         * Check if element cached
+         * @param $element
+         * @param Constructor
+         * @returns {boolean}
+         */
+        isCached: function isCached($element, Constructor) {
+
+            if (this.elements[$element] instanceof Constructor) {
+
+                this.scope.logger.debug(
+                    anthill.i18n.t('element.already.rendered').
+                        replace(/\{0\}/, Constructor.name)
+                );
+
+                return true;
+            }
+
+            return false;
+        },
+
+        /**
+         * Check if render force
+         * @param {Boolean} force
+         * @returns {boolean}
+         */
+        isCachedItems: function isCachedItems(force) {
+
+            return anthill.base.lib.hash.hashLength(
+                    this.elements.items || {}
+            ) > 0 && !force;
+        },
+
+        /**
+         * Render Header
+         * @param Header
+         * @param $container
+         */
         header: function header(Header, $container) {
+
+            /**
+             * Define $header
+             * @type {Header}
+             */
             this.elements.$header = new Header(this, {
-                style: this.scope.constructor.name.toLowerCase() + '-header',
+                style: [
+                    this.scope.constructor.name.toLowerCase(),
+                    'header'
+                ].join('-'),
                 $container: $container.$
             });
         },
+
+        /**
+         * Render Footer
+         * @param Footer
+         * @param $container
+         */
         footer: function footer(Footer, $container) {
+
+            /**
+             * Define $footer
+             * @type {Footer}
+             */
             this.elements.$footer = new Footer(this, {
-                style: this.scope.constructor.name.toLowerCase() + '-footer',
+                style: [
+                    this.scope.constructor.name.toLowerCase(),
+                    'footer'
+                ].join('-'),
                 $container: $container.$
             });
         },

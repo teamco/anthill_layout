@@ -35,18 +35,30 @@ define([
 
         /**
          * Activate debugger
+         * @returns {boolean}
          */
         activateDebugger: function activateDebugger() {
             var scope = this.scope;
+
+            if (!scope.permission.getCapability('activateDebugger')) {
+                return false;
+            }
+
             scope.observer.publish(scope.eventmanager.eventList.debugStart);
             scope.view.elements.$debugger.deactivate();
         },
 
         /**
          * Deactivate debugger
+         * @returns {boolean}
          */
         deactivateDebugger: function deactivateDebugger() {
             var scope = this.scope;
+
+            if (!scope.permission.getCapability('deactivateDebugger')) {
+                return false;
+            }
+
             scope.observer.publish(scope.eventmanager.eventList.debugEnd);
             scope.view.elements.$debugger.activate();
         },

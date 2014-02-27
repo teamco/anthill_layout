@@ -19,7 +19,7 @@ define([
      */
     var PanelContentElement = function PanelContentElement(view, opts) {
 
-        this._config(view, opts, $('<li />')).build({
+        this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: false
         });

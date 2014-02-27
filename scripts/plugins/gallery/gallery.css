@@ -1,41 +1,28 @@
-div.gallery-container:hover {
-    width: 7px;
-    opacity: 0.95;
-}
-
-div.gallery-container ul {
+div.gallery ul {
     list-style: none;
 }
 
-div.gallery-container .gallery-header {
+div.gallery-header {
     height: 40px;
 }
 
-div.gallery-container .gallery {
-    position: absolute;
-    width: 100%;
-    top: 40px;
-    bottom: 0;
-}
-
-div.gallery-container .content {
-    height: 60px;
-    width: 60px;
+ul.gallery .content {
+    height: 70px;
+    width: 70px;
     display: block;
-    float: left;
-    margin: 10px 0 0 10px;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 10px #ccc;
     background-color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
-div.gallery-container .content:active {
+ul.gallery .content:active {
     cursor: move;
 }
 
-div.gallery-container .gallery-footer {
+div.gallery-footer {
     position: absolute;
     bottom: 0;
 }
