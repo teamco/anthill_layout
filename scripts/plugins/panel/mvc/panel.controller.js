@@ -107,6 +107,7 @@ define([
          * @returns {*}
          */
         getRenderAt: function getRenderAt() {
+
             return [
                 this.scope.constructor.name.toLowerCase(),
                 this.model.getConfig('renderAt')
@@ -139,8 +140,15 @@ define([
             return data.module;
         },
 
+        /**
+         * Render packages
+         */
         renderPackages: function renderPackages() {
 
+            /**
+             * Init packages
+             * @type {*}
+             */
             var packages = this.model.getPackage();
 
             for (var i = 0, l = packages.length; i < l; i++) {
