@@ -242,7 +242,7 @@ define([
             link.type = opts.type || defaults.type;
             link.rel = opts.rel || defaults.rel;
             link.media = opts.media || defaults.media;
-            link.href = this.pluginPath + url;
+            link.href = this.pluginPath + (opts.path || '') + url;
             link.id = uuid;
 
             document.getElementsByTagName("head")[0].appendChild(link);

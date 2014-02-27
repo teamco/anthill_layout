@@ -17,6 +17,7 @@ define([
     /**
      * Define Gallery
      * @constructor
+     * @param containment
      * @class Gallery
      */
     var Gallery = function Gallery(containment) {

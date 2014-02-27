@@ -8,10 +8,10 @@
 
 define([
     'modules/event'
-], function defineBarEventManager(Event) {
+], function defineYoutubeEventManager(Event) {
 
     /**
-     * Define bar event manager
+     * Define Youtube event manager
      * @class EventManager
      * @constructor
      */
@@ -27,9 +27,10 @@ define([
          * Define event list
          */
         this.eventList = {
+            initWidget: 'init.widget',
             updateTranslations: 'update.translations',
-            showContent: 'show.content',
-            defineModules: 'define.modules'
+            defineContainer: 'define.container',
+            setEmbeddedContent: 'set.embedded.content'
         };
     };
 

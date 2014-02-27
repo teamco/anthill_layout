@@ -87,6 +87,7 @@ define([
             adoptDimensions: 'adopt.dimensions',
 
             loadContent: 'load.content',
+            setContent: 'set.content',
 
             save: 'save'
         }

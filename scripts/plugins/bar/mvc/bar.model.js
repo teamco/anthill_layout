@@ -7,10 +7,10 @@
  */
 define([
     'modules/model'
-], function definePanelModel(BaseModel) {
+], function defineBarModel(BaseModel) {
 
     /**
-     * Define Panel model
+     * Define Bar model
      * @mixin BaseModel
      * @class Model
      * @constructor

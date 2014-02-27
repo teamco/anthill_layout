@@ -23,21 +23,20 @@ define([], function defineWidgetContent() {
         loadContent: function loadContent() {
 
             /**
+             * Define widget instance
+             */
+            var widget = this;
+
+            /**
              * Get resource
              * @type {*}
              */
-            var resource = this.model.getConfig('resource');
+            var resource = widget.model.getConfig('resource');
 
             if (!anthill.base.isString(resource)) {
-                this.logger.error('Unable to load resource');
+                widget.logger.error('Unable to load resource');
                 return false;
             }
-
-            /**
-             * Define $widget
-             * @type {element.widget.widget.element}
-             */
-            var elements = this.view.elements;
 
             /**
              * Define resource path
@@ -51,10 +50,26 @@ define([], function defineWidgetContent() {
 
             require([path], function getDependencies(Content) {
 
-                var content = new Content();
-
-                elements.$content.$.html(content.getData());
+                widget.observer.publish(
+                    widget.eventmanager.eventList.setContent,
+                    Content
+                );
             });
+        },
+
+        /**
+         * Set content
+         * @param {Function} Content
+         */
+        setContent: function setContent(Content) {
+
+            /**
+             * Define content
+             * @type {Content}
+             */
+            var content = new Content(this);
+
+            this.logger.debug('Set content', content);
         }
     });
 });

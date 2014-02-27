@@ -7,21 +7,20 @@
 
 define([
     'modules/mvc',
-    'plugins/panel/mvc/panel.controller',
-    'plugins/panel/mvc/panel.model',
-    'plugins/panel/mvc/panel.view',
-    'plugins/panel/mvc/panel.event.manager',
-    'plugins/panel/mvc/panel.permission'
-], function definePanel(MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/youtube/mvc/youtube.controller',
+    'plugins/widgets/youtube/mvc/youtube.model',
+    'plugins/widgets/youtube/mvc/youtube.view',
+    'plugins/widgets/youtube/mvc/youtube.event.manager',
+    'plugins/widgets/youtube/mvc/youtube.permission'
+], function defineYoutube(MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Panel
-     * @param opts
+     * Define Youtube
      * @param containment
      * @constructor
-     * @class Panel
+     * @class Youtube
      */
-    var Panel = function Panel(opts, containment) {
+    var Youtube = function Youtube(containment) {
 
         /**
          * Define containment
@@ -29,31 +28,10 @@ define([
         this.containment = containment;
 
         /**
-         * Define opened
-         * @type {boolean}
-         */
-        this.opened = false;
-
-        /**
-         * Render side
-         * @type {{top: string, right: string, bottom: string, left: string}}
-         */
-        var RENDER_AT = {
-            top: 'top',
-            right: 'right',
-            bottom: 'bottom',
-            left: 'left'
-        };
-
-        /**
          * Define defaults
          * @type {{
          *      plugin: boolean,
          *      html: {
-         *          width: {
-         *              min: number,
-         *              max: number
-         *          },
          *          header: boolean,
          *          footer: boolean,
          *          floating: boolean,
@@ -68,15 +46,9 @@ define([
          */
         var DEFAULTS = {
             plugin: true,
-            renderAt: RENDER_AT.right,
             html: {
-                width: {
-                    min: 5,
-                    max: 300
-                },
-                header: true,
+                header: false,
                 footer: false,
-                floating: false,
                 padding: {
                     top: 0,
                     right: 0,
@@ -110,10 +82,7 @@ define([
          */
         this.mvc = new MVC({
             scope: this,
-            config: [
-                anthill.base.define(opts, {}, true).config,
-                DEFAULTS
-            ],
+            config: [DEFAULTS],
             components: [
                 Controller,
                 Model,
@@ -125,24 +94,9 @@ define([
         });
 
         this.observer.publish(
-            this.eventmanager.eventList.successCreated
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.updateTranslations,
-            ['plugins/panel/translations/en-us']
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.defineModules,
-            [opts.modules]
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.definePackages,
-            [opts.packages]
+            this.eventmanager.eventList.initWidget
         );
     };
 
-    return Panel;
+    return Youtube;
 });

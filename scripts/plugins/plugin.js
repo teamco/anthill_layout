@@ -5,8 +5,15 @@
  * Time: 10:28 PM
  */
 
-define(['modules/controller'], function definePluginBase(BaseController){
+define([
+    'modules/controller'
+], function definePluginControllerBase(BaseController){
 
+    /**
+     * Define Plugin controller
+     * @class PluginController
+     * @constructor
+     */
     var PluginController = function PluginController() {
 
     };

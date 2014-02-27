@@ -8,7 +8,7 @@
 
 define([
     'modules/permission'
-], function defineBarPermission(BasePermission) {
+], function defineYoutubePermission(BasePermission) {
 
     /**
      * Define Permissions

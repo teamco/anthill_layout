@@ -14,6 +14,11 @@ define([
     'plugins/gallery/element/gallery.element'
 ], function defineGalleryView(BaseView, Header, Footer, GalleryContent, Gallery) {
 
+    /**
+     * Define view
+     * @class View
+     * @constructor
+     */
     var View = function View() {
     };
 

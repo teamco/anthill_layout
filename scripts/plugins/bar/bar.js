@@ -16,7 +16,7 @@ define([
 
     /**
      * Define Bar
-     * @param opts
+     * @param containment
      * @constructor
      * @class Bar
      */

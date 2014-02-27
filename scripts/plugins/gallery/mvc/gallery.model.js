@@ -37,6 +37,7 @@ define([
                     height: 2
                 },
                 src: '',
+                resource: 'youtube',
                 group: 'test'
             },
             {
