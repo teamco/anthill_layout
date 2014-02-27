@@ -12,9 +12,8 @@ define([
     'config/page',
     'config/layout',
     'config/template',
-    'config/widget',
-    'plugins/panel/panel'
-], function defineListeners(Application, Workspace, Page, Layout, Template, Widget, Panel) {
+    'config/widget'
+], function defineListeners(Application, Workspace, Page, Layout, Template, Widget) {
 
     /**
      * Load listeners
@@ -39,9 +38,10 @@ define([
                 var app = this;
 
                 require([
+                    'plugins/panel/panel',
                     'plugins/bar/bar',
                     'plugins/gallery/gallery'
-                ], function definePanel(Bar, Gallery){
+                ], function definePanel(Panel, Bar, Gallery){
 
                     /**
                      * Init panel plugin
