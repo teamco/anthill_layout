@@ -31,7 +31,20 @@ define([
 
     return BarContentElement.extend({
 
+        // TODO Redesign
         attachEvent: function attachEvent(path) {
+
+            /**
+             * Define panel instance
+             */
+            var panel = this.view.scope.containment;
+
+            this.$.on('click.toggle', function () {
+                    panel.view.controller.isOpened() ?
+                        panel.observer.publish(panel.eventmanager.eventList.closePanel) :
+                        panel.observer.publish(panel.eventmanager.eventList.openPanel);
+                }
+            )
 
         }
 
