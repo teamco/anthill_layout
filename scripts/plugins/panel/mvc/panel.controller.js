@@ -160,6 +160,7 @@ define([
                 var module = packages[i];
 
                 this.scope.view.renderContent(module, false);
+
                 module.view.render();
                 module.controller.loadContent();
             }
