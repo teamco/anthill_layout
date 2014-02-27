@@ -40,11 +40,10 @@ define([
 
         /**
          * Load gallery content
-         * @param opened
          */
-        loadContent: function loadContent(opened) {
+        loadContent: function loadContent() {
 
-            if (opened && this.isDataNotExist()) {
+            if (this.isDataNotExist()) {
                 this.getView().renderContent(
                     this.getData()
                 );

@@ -27,7 +27,7 @@ define([
     return Model.extend({
 
         getModulesList: function getModulesList() {
-            return [];
+            return this.scope.containment.model.getModule();
         }
 
     }, BaseModel.prototype);

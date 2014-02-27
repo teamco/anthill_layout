@@ -82,13 +82,28 @@ define([
                 if (data.hasOwnProperty(index)) {
 
                     /**
+                     * Define item
+                     */
+                    var item = data[index];
+
+                    /**
+                     * Define module path
+                     * @type {string}
+                     */
+                    var modulePath = item.module.constructor.name.toLowerCase();
+
+                    /**
                      * Render item
-                     * @type {BarElement}
+                     * @type {plugins.bar.element.bar.content.element}
                      */
                     var $item = new BarContentElement(this, {
-                        style: 'content',
-                        $container: this.elements.$content.$,
-                        data: data[index]
+                        style: [
+                            'content',
+                            item.activated ? 'activated' : '',
+                            modulePath
+                        ].join(' '),
+                        path: modulePath,
+                        $container: this.elements.$bar.$
                     });
 
                     this.elements.items[$item.id] = $item;
