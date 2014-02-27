@@ -202,10 +202,16 @@ define([
 
         /**
          * Dynamic CSS
-         * @param {String} url
+         * @param {String} type
          * @param [opts]
          */
-        addCSS: function addCSS(url, opts) {
+        addCSS: function addCSS(type, opts) {
+
+            /**
+             * Create url
+             * @type {string}
+             */
+            var url = ('/' + type).repeat(2) + '.css';
 
             /**
              * Generate uuid

@@ -24,7 +24,7 @@ define([
             destroy: true
         });
 
-        this.addCSS('/bar/bar.css');
+        this.addCSS('bar');
 
         return this;
     };

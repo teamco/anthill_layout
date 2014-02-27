@@ -36,7 +36,7 @@ define([
          */
         this.minWidth = opts.minWidth || 0;
 
-        this.addCSS('/panel/panel.css');
+        this.addCSS('panel');
 
         return this;
     };

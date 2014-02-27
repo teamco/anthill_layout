@@ -36,7 +36,7 @@ define([
          */
         this.minWidth = opts.minWidth || 0;
 
-        this.addCSS('/gallery/gallery.css');
+        this.addCSS('gallery');
 
         return this;
     };

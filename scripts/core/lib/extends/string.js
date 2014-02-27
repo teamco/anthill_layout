@@ -1,6 +1,15 @@
 (function addStringMethods() {
 
     /**
+     * Duplicate string
+     * @param times
+     * @returns {string}
+     */
+    String.prototype.repeat = function(times) {
+        return (new Array(times + 1)).join(this);
+    };
+
+    /**
      * String to CamelCase by dot separator
      * @member {Function} String
      * @returns {String}
