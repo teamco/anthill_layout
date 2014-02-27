@@ -37,11 +37,17 @@ div.panel-container.panel-left.close .bar-content {
     width: 40px;
 }
 
-div.panel-container .bar-content li {
+div.panel-container .bar-content li.content {
     width: 32px;
+    height: 32px;
     margin: 4px;
     display: inline-block;
     float: left;
     background: transparent no-repeat top left;
+    cursor: pointer;
+}
+
+div.panel-container .bar-content li.gallery {
+    background-image: url('../../core/stylesheets/icons/32x32/categories/applications-office-2.png');
 }
 
