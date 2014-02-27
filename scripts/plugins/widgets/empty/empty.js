@@ -16,7 +16,7 @@ define([], function defineEmptyWidget(){
         this.text = 'Empty';
     };
 
-    EmptyWidget.extend({
+    return EmptyWidget.extend({
 
         getData: function getData() {
             return this.text;
