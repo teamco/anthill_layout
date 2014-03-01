@@ -45,10 +45,11 @@ define([
 
         /**
          * Toggle open/close
-         * @param opened
+         * @param {string} path
+         * @param {boolean} opened
          * @returns {boolean}
          */
-        toggle: function toggle(opened) {
+        toggle: function toggle(path, opened) {
 
             /**
              * Define locals
@@ -69,7 +70,7 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList.showContent,
-                [opened, 0]
+                [opened, path]
             );
 
             $container.$.stop().animate({
@@ -82,7 +83,7 @@ define([
                 }
             });
 
-            controller.setBehavior(opened);
+            controller.setBehavior(path, opened);
         }
 
     }, BaseElement.prototype);

@@ -36,6 +36,7 @@ define([
          * Default config
          * @type {{
          *      resource: string,
+         *      preferences: {},
          *      order: number,
          *      html: {
          *          header: boolean,
@@ -75,6 +76,7 @@ define([
          */
         var DEFAULTS = {
             resource: opts.resource,
+            preferences: opts.preferences || {},
             limit: false,
             order: 1,
             html: {

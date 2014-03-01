@@ -51,41 +51,62 @@ define([
         },
 
         /**
+         * Check if panel active
+         * @param {string} path
+         * @returns {boolean}
+         */
+        isActive: function isActive(path) {
+            return this.scope.active === path;
+        },
+
+        /**
          * Update opened
+         * @param {String} path
          * @param {Boolean} opened
          */
-        setBehavior: function setBehavior(opened) {
+        setBehavior: function setBehavior(path, opened) {
 
             /**
              * Update opened instance
              */
             this.scope.opened = !!opened;
+
+            /**
+             * Define active panel
+             * @type {String}
+             */
+            this.scope.active = path;
         },
 
         /**
          * Close panel
+         * @param {string} path
          */
-        closePanel: function closePanel() {
-            this.view.elements.$panel.toggle(false);
+        closePanel: function closePanel(path) {
+            this.view.elements.$panel.toggle(path, false);
         },
 
         /**
          * Open panel
+         * @param {string} path
          */
-        openPanel: function openPanel() {
-            this.view.elements.$panel.toggle(true);
+        openPanel: function openPanel(path) {
+            this.view.elements.$panel.toggle(path, true);
         },
 
 
         /**
          * Show content
          * @param {Boolean} opened
-         * @param {Number} [index]
+         * @param {string} [path]
          */
-        showContent: function showContent(opened, index) {
+        showContent: function showContent(opened, path) {
 
-            // TODO change to dynamic
-            index = index || 0;
+            /**
+             * Define module index
+             * @type {number}
+             */
+            var index = this.model.getIndex(path);
 
             if (opened) {
 
@@ -126,9 +147,15 @@ define([
              * Define module config
              * @type {{activated: Boolean, module}}
              */
-            var data = this.model.getModule(index) || {};
+            var data = this.model.getModule(index);
 
-            if (data && !data.activated) {
+            if (typeof(data) === 'undefined') {
+
+                this.scope.logger.error('Undefined module');
+                return false;
+            }
+
+            if (!data.activated) {
 
                 /**
                  * Activate module

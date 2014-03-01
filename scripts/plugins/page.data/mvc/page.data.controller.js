@@ -7,10 +7,10 @@
 
 define([
     'plugins/plugin'
-], function defineGalleryController(PluginBase) {
+], function definePageDataController(PluginBase) {
 
     /**
-     * Define gallery controller
+     * Define page.data controller
      * @class Controller
      * @mixin {BaseController}
      * @constructor
@@ -19,6 +19,26 @@ define([
     };
 
     return Controller.extend({
+
+        /**
+         * Check if opened
+         * @returns {boolean|*}
+         */
+        isOpened: function isOpened() {
+            return this.scope.opened;
+        },
+
+        /**
+         * Update opened
+         * @param {Boolean} opened
+         */
+        setBehavior: function setBehavior(opened) {
+
+            /**
+             * Update opened instance
+             */
+            this.scope.opened = !!opened;
+        },
 
         /**
          * Get providers data
@@ -39,7 +59,7 @@ define([
         },
 
         /**
-         * Load gallery content
+         * Load page.data content
          * @param opened
          */
         loadContent: function loadContent(opened) {

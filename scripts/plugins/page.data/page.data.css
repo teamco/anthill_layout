@@ -1,0 +1,28 @@
+div.gallery ul {
+    list-style: none;
+}
+
+div.gallery-header {
+    height: 40px;
+}
+
+ul.gallery .content {
+    height: 70px;
+    width: 70px;
+    display: block;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 10px #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+ul.gallery .content:active {
+    cursor: move;
+}
+
+div.gallery-footer {
+    position: absolute;
+    bottom: 0;
+}

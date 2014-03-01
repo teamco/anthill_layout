@@ -31,18 +31,23 @@ define([
 
     return BarContentElement.extend({
 
-        // TODO Redesign
+        /**
+         * Open tab
+         * @param path
+         */
         attachEvent: function attachEvent(path) {
 
             /**
              * Define panel instance
              */
-            var panel = this.view.scope.containment;
+            var panel = this.view.scope.containment,
+                publish = panel.observer.publish.bind(panel.observer),
+                event = panel.eventmanager.eventList;
 
-            this.$.on('click.toggle', function () {
+            this.$.on('click.toggle', function clickToggle() {
                     panel.view.controller.isOpened() ?
-                        panel.observer.publish(panel.eventmanager.eventList.closePanel) :
-                        panel.observer.publish(panel.eventmanager.eventList.openPanel);
+                        publish(event.closePanel, path) :
+                        publish(event.openPanel, path);
                 }
             )
 

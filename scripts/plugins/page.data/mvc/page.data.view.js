@@ -10,9 +10,9 @@ define([
     'modules/view',
     'element/header.element',
     'element/footer.element',
-    'plugins/gallery/element/gallery.content.element',
-    'plugins/gallery/element/gallery.element'
-], function defineGalleryView(BaseView, Header, Footer, GalleryContent, Gallery) {
+    'plugins/page.data/element/page.data.content.element',
+    'plugins/page.data/element/page.data.element'
+], function definePageDataView(BaseView, Header, Footer, PageDataContent, PageData) {
 
     /**
      * Define view
@@ -25,22 +25,22 @@ define([
     return View.extend({
 
         /**
-         * Render Gallery
+         * Render PageData
          * @returns {boolean}
          */
-        renderGallery: function renderGallery() {
+        renderPageData: function renderPageData() {
 
-            if (this.isCached('$gallery', Gallery)) {
+            if (this.isCached('$pagedata', PageData)) {
                 return false;
             }
 
             this.header(Header, this.elements.$container);
 
             /**
-             * Define Gallery element
+             * Define PageData element
              * @type {element.page.page.element}
              */
-            this.elements.$gallery = new Gallery(this, {
+            this.elements.$pagedata = new PageData(this, {
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
@@ -49,7 +49,7 @@ define([
         },
 
         /**
-         * Render gallery content
+         * Render page.data content
          * @param data
          * @param {Boolean} force
          * @returns {boolean}
@@ -74,11 +74,11 @@ define([
 
                     /**
                      * Render item
-                     * @type {plugins.gallery.element.gallery.content.element}
+                     * @type {plugins.page.data.element.page.data.content.element}
                      */
-                    var $item = new GalleryContent(this, {
+                    var $item = new PageDataContent(this, {
                         style: 'content',
-                        $container: this.elements.$gallery.$,
+                        $container: this.elements.$page.data.$,
                         data: data[index]
                     });
 
@@ -88,13 +88,13 @@ define([
         },
 
         /**
-         * Render gallery
+         * Render page.data
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderGallery.bind(this)
+                this.renderPageData.bind(this)
             );
         }
 

@@ -7,20 +7,20 @@
 
 define([
     'modules/mvc',
-    'plugins/gallery/mvc/gallery.controller',
-    'plugins/gallery/mvc/gallery.model',
-    'plugins/gallery/mvc/gallery.view',
-    'plugins/gallery/mvc/gallery.event.manager',
-    'plugins/gallery/mvc/gallery.permission'
-], function defineGallery(MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/page.data/mvc/page.data.controller',
+    'plugins/page.data/mvc/page.data.model',
+    'plugins/page.data/mvc/page.data.view',
+    'plugins/page.data/mvc/page.data.event.manager',
+    'plugins/page.data/mvc/page.data.permission'
+], function definePageData(MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Gallery
+     * Define PageData
      * @constructor
      * @param containment
-     * @class Gallery
+     * @class PageData
      */
-    var Gallery = function Gallery(containment) {
+    var PageData = function PageData(containment) {
 
         /**
          * Define containment
@@ -104,9 +104,9 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.updateTranslations,
-            ['plugins/gallery/translations/en-us']
+            ['plugins/page.data/translations/en-us']
         );
     };
 
-    return Gallery;
+    return PageData;
 });
