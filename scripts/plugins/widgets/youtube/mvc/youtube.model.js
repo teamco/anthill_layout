@@ -22,7 +22,7 @@ define([
          * @type {{url: string}}
          */
         this.preferences = {
-            url: ''
+            url: undefined
         };
     };
 

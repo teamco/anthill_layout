@@ -17,7 +17,6 @@ define([
      */
     var Model = function Model() {
 
-        this.preferences = {};
     };
 
     return Model.extend({
@@ -29,16 +28,6 @@ define([
          */
         getPageData: function getPageData(page) {
             return page.model.getItems();
-        },
-
-        /**
-         * Define preferences
-         * @param widget
-         */
-        definePreferences: function definePreferences(widget) {
-
-            this.preferences[widget.model.getConfig('uuid')] =
-                widget.controller.getContent().model.preferences;
         }
 
     }, BaseModel.prototype);

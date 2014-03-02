@@ -19,7 +19,7 @@ define([], function defineRenderer() {
          * @param {string} text
          * @returns {*|jQuery}
          */
-        renderLabel: function renderLabel(uuid, text){
+        renderLabel: function renderLabel(uuid, text) {
             return $('<label />').attr({
                 'for': uuid
             }).text(text);
@@ -27,7 +27,7 @@ define([], function defineRenderer() {
 
         /**
          * Render text field
-         * @param {{text: string, name: string, placeholder: string}} opts
+         * @param {{text: string, name: string, placeholder: string, value}} opts
          * @returns {*[]}
          */
         renderTextField: function renderTextField(opts) {
@@ -38,14 +38,20 @@ define([], function defineRenderer() {
              */
             var uuid = anthill.base.lib.generator.UUID();
 
+            /**
+             * Define $input
+             * @type {*|jQuery}
+             */
+            var $input = $('<input />').attr({
+                name: opts.name,
+                type: 'text',
+                id: uuid,
+                placeholder: opts.placeholder
+            }).val(opts.value);
+
             return [
                 this.renderLabel(uuid, opts.text),
-                $('<input />').attr({
-                    name: opts.name,
-                    type: 'text',
-                    id: uuid,
-                    placeholder: opts.placeholder
-                })
+                $input
             ];
         },
 

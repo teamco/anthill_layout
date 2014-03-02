@@ -87,11 +87,6 @@ define([
                         data: data[index]
                     });
 
-                    scope.observer.publish(
-                        scope.eventmanager.eventList.setPreferences,
-                        data[index]
-                    );
-
                     this.elements.items[$item.id] = $item;
 
                 }

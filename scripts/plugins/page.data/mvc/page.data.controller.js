@@ -52,15 +52,6 @@ define([
         },
 
         /**
-         * Set preferences
-         * @param data
-         */
-        setPreferences: function setPreferences(data) {
-
-            this.model.definePreferences(data);
-        },
-
-        /**
          * Check if content was updated
          * @param data
          * @param content
