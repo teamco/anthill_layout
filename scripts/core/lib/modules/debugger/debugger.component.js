@@ -184,6 +184,9 @@ define([], function defineDebuggerComponent() {
             $clear.on('click.clear', this.confirmClearData.bind(this));
         },
 
+        /**
+         * Clear data
+         */
         confirmClearData: function confirmClearData() {
 
             this.bugger.scope.view.modalDialog({
