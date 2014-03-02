@@ -26,6 +26,8 @@ define([
 
         this.setAttributes(opts.data);
 
+        this.bindShowPrefs();
+
         return this;
     };
 
@@ -46,6 +48,17 @@ define([
             this.$.attr({
                 title: config.uuid
             }).addClass(config.resource);
+        },
+
+        /**
+         * Bind show prefs
+         */
+        bindShowPrefs: function bindShowPrefs() {
+
+            this.$.bind(
+                'click.prefs',
+                this.view.showPreferences.bind(this.view)
+            );
         }
 
     }, BaseElement.prototype);

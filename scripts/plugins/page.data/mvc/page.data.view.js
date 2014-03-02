@@ -91,6 +91,33 @@ define([
             }
         },
 
+        showPreferences: function showPreferences() {
+
+            this.modalDialog({
+                style: this.scope.constructor.name.toLowerCase() + '-modal',
+                $container: this.controller.getPage().view.elements.$page.$,
+                type: 'info',
+                title: 'Widget preferences',
+                text: 'bla',
+                cover: true,
+                autoclose: false,
+                buttons: {
+                    approve: {
+                        text: 'OK',
+                        events: {
+                            click: 'approveUpdatePreferences'
+                        }
+                    },
+                    reject: {
+                        text: 'Cancel',
+                        events: {
+                            click: 'rejectModalEvent'
+                        }
+                    }
+                }
+            });
+        },
+
         /**
          * Render page.data
          */
