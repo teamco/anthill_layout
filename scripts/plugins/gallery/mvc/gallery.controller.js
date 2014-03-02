@@ -28,17 +28,6 @@ define([
         },
 
         /**
-         * Check if providers data was existing
-         * @returns {boolean}
-         */
-        isDataNotExist: function isDataNotExist() {
-
-            return anthill.base.lib.hash.isHashEmpty(
-                this.scope.view.elements.content
-            );
-        },
-
-        /**
          * Load gallery content
          * @param opened
          */

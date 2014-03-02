@@ -21,6 +21,41 @@ define([
     PluginController.extend({
 
         /**
+         * Get Workspace
+         * @returns {*|Workspace}
+         */
+        getWorkspace: function getWorkspace() {
+            return this.root().workspace;
+        },
+
+        /**
+         * Get Page
+         * @returns {*|Page}
+         */
+        getPage: function getPage() {
+            return this.getWorkspace().page;
+        },
+
+        /**
+         * Get Widget
+         * @returns {*|Widget}
+         */
+        getWidget: function getWidget() {
+            return this.getPage().widget;
+        },
+
+        /**
+         * Check if data was existing
+         * @returns {boolean}
+         */
+        isDataNotExist: function isDataNotExist() {
+
+            return anthill.base.lib.hash.isHashEmpty(
+                this.scope.view.elements.content
+            );
+        },
+
+        /**
          * Update translations
          */
         updateTranslations: function updateTranslations(data) {

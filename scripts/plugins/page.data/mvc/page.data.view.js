@@ -78,7 +78,7 @@ define([
                      */
                     var $item = new PageDataContent(this, {
                         style: 'content',
-                        $container: this.elements.$page.data.$,
+                        $container: this.elements.$pagedata.$,
                         data: data[index]
                     });
 

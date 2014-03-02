@@ -21,40 +21,11 @@ define([
     return Controller.extend({
 
         /**
-         * Check if opened
-         * @returns {boolean|*}
-         */
-        isOpened: function isOpened() {
-            return this.scope.opened;
-        },
-
-        /**
-         * Update opened
-         * @param {Boolean} opened
-         */
-        setBehavior: function setBehavior(opened) {
-
-            /**
-             * Update opened instance
-             */
-            this.scope.opened = !!opened;
-        },
-
-        /**
          * Get providers data
          */
         getData: function getData() {
-            return this.model.getProvidersList();
-        },
-
-        /**
-         * Check if providers data was existing
-         * @returns {boolean}
-         */
-        isDataNotExist: function isDataNotExist() {
-
-            return anthill.base.lib.hash.isHashEmpty(
-                this.scope.view.elements.content
+            return this.model.getPageData(
+                this.getPage()
             );
         },
 
@@ -69,14 +40,6 @@ define([
                     this.getData()
                 );
             }
-        },
-
-        addWidget: function addWidget($element) {
-            debugger
-
-            anthill.demo.workspace.page.api.createItem({
-                resource: $element.$.attr('resource')
-            }, true);
         }
 
     }, PluginBase.prototype);

@@ -16,10 +16,18 @@ define([
      * @constructor
      */
     var Model = function Model() {
-
     };
 
     return Model.extend({
+
+        /**
+         * Get items
+         * @param page
+         * @returns {*}
+         */
+        getPageData: function getPageData(page) {
+            return page.items;
+        }
 
     }, BaseModel.prototype);
 });
