@@ -40,15 +40,16 @@ define([
              * Define widget
              * @type {*}
              */
-            var widget = this.getPage().model.getItemByUUID(uuid);
+            var widget = this.getPage().model.getItemByUUID(uuid),
+                scope = this.scope;
 
             /**
              * Define widget content
              * @type {*|Content}
              */
-            var content = widget.controller.getContent();
+            scope.activeContent = widget.controller.getContent();
 
-            return content.view.renderPreferences();
+            return scope.activeContent.view.renderPreferences();
         },
 
         /**
@@ -69,8 +70,19 @@ define([
                 hash.hashLength(content || {})
         },
 
+        /**
+         * Update prefs
+         */
         approveUpdatePreferences: function approveUpdatePreferences() {
-            console.log('approveUpdatePreferences')
+
+            /**
+             * Define scope
+             */
+            var scope = this.scope;
+
+            scope.activeContent.controller.updatePreferences(
+                scope.view.elements.$modal
+            );
         },
 
         /**
