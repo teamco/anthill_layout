@@ -67,6 +67,16 @@ define([
         setBehavior: function setBehavior(path, opened) {
 
             /**
+             * Define $panel
+             * @type {element.page.page.element}
+             */
+            var $panel = this.scope.view.elements.$panel;
+
+            if (typeof(this.scope.active) === 'string') {
+                $panel.hideActiveModule();
+            }
+
+            /**
              * Update opened instance
              */
             this.scope.opened = !!opened;
@@ -76,6 +86,8 @@ define([
              * @type {String}
              */
             this.scope.active = path;
+
+            $panel.showActiveModule();
         },
 
         /**
@@ -83,7 +95,15 @@ define([
          * @param {string} path
          */
         closePanel: function closePanel(path) {
-            this.view.elements.$panel.toggle(path, false);
+
+            if (this.active === path) {
+                this.view.elements.$panel.toggle(path, false);
+            } else {
+                this.observer.publish(
+                    this.eventmanager.eventList.openPanel,
+                    path
+                );
+            }
         },
 
         /**

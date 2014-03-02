@@ -24,30 +24,10 @@ define([
             destroy: true
         });
 
-        this.bindToggle();
-
         return this;
     };
 
     return PanelTabElement.extend({
-
-        /**
-         * Bind toggle
-         */
-        bindToggle: function bindToggle() {
-
-            /**
-             * Define panel instance
-             */
-            var panel = this.view.scope;
-
-            this.$.on('click.toggle', function () {
-                    this.view.controller.isOpened() ?
-                        panel.observer.publish(panel.eventmanager.eventList.closePanel) :
-                        panel.observer.publish(panel.eventmanager.eventList.openPanel);
-                }.bind(this)
-            )
-        }
 
     }, BaseElement.prototype);
 
