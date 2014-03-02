@@ -62,10 +62,10 @@ define([
 
         /**
          * Get module index
-         * @param path
+         * @param resource
          * @returns {number}
          */
-        getIndex: function getIndex(path) {
+        getIndex: function getIndex(resource) {
 
             /**
              * Define local instance of modules
@@ -74,7 +74,7 @@ define([
             var modules = this.modules;
 
             for (var i = 0, l = modules.length; i < l; i++) {
-                if (path.toLowerCase() === modules[i].module.constructor.name.toLowerCase()) {
+                if (resource.toLowerCase() === modules[i].module.constructor.name.toLowerCase()) {
                     return i;
                 }
             }

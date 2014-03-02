@@ -28,7 +28,8 @@ define([
          */
         this.eventList = {
             updateTranslations: 'update.translations',
-            loadContent: 'load.content'
+            loadContent: 'load.content',
+            setPreferences: 'set.preferences'
         };
     };
 

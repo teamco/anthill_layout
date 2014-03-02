@@ -70,6 +70,20 @@ define([], function defineWidgetContent() {
             var content = new Content(this);
 
             this.logger.debug('Set content', content);
+
+            /**
+             * Define content
+             * @type {Content}
+             */
+            this.content = content;
+        },
+
+        /**
+         * Get content
+         * @returns {Content}
+         */
+        getContent: function getContent() {
+            return this.scope.content;
         }
     });
 });

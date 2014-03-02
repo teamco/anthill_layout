@@ -152,6 +152,11 @@ define([
          * }} opts
          */
         modalDialog: function modalDialog(opts) {
+
+            /**
+             * Define $modal
+             * @type {element.modal.element}
+             */
             this.elements.$modal = new Modal(this, {
                 style: opts.style,
                 $container: opts.$container,

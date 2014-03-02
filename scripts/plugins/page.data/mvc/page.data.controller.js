@@ -29,6 +29,21 @@ define([
             );
         },
 
+        getPreferences: function getPreferences(resource) {
+
+            var panel = this.getContainment();
+
+            var module = panel.model.getModule(
+                panel.model.getIndex(resource)
+            );
+
+        },
+
+        setPreferences: function setPreferences(data) {
+
+            this.model.definePreferences(data);
+        },
+
         /**
          * Check if content was updated
          * @param data
@@ -45,6 +60,10 @@ define([
 
             return hash.hashLength(data || {}) ===
                 hash.hashLength(content || {})
+        },
+
+        approveUpdatePreferences: function approveUpdatePreferences() {
+            console.log('approveUpdatePreferences')
         },
 
         /**

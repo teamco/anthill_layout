@@ -52,19 +52,19 @@ define([
 
         /**
          * Check if panel active
-         * @param {string} path
+         * @param {string} resource
          * @returns {boolean}
          */
-        isActive: function isActive(path) {
-            return this.scope.active === path;
+        isActive: function isActive(resource) {
+            return this.scope.active === resource;
         },
 
         /**
          * Update opened
-         * @param {String} path
+         * @param {String} resource
          * @param {Boolean} opened
          */
-        setBehavior: function setBehavior(path, opened) {
+        setBehavior: function setBehavior(resource, opened) {
 
             /**
              * Define $panel
@@ -85,48 +85,48 @@ define([
              * Define active panel
              * @type {String}
              */
-            this.scope.active = path;
+            this.scope.active = resource;
 
             $panel.showActiveModule();
         },
 
         /**
          * Close panel
-         * @param {string} path
+         * @param {string} resource
          */
-        closePanel: function closePanel(path) {
+        closePanel: function closePanel(resource) {
 
-            if (this.active === path) {
-                this.view.elements.$panel.toggle(path, false);
+            if (this.active === resource) {
+                this.view.elements.$panel.toggle(resource, false);
             } else {
                 this.observer.publish(
                     this.eventmanager.eventList.openPanel,
-                    path
+                    resource
                 );
             }
         },
 
         /**
          * Open panel
-         * @param {string} path
+         * @param {string} resource
          */
-        openPanel: function openPanel(path) {
-            this.view.elements.$panel.toggle(path, true);
+        openPanel: function openPanel(resource) {
+            this.view.elements.$panel.toggle(resource, true);
         },
 
 
         /**
          * Show content
          * @param {Boolean} opened
-         * @param {string} [path]
+         * @param {string} [resource]
          */
-        showContent: function showContent(opened, path) {
+        showContent: function showContent(opened, resource) {
 
             /**
              * Define module index
              * @type {number}
              */
-            var index = this.model.getIndex(path);
+            var index = this.model.getIndex(resource);
 
             if (opened) {
 

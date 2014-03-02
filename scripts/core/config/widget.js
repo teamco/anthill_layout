@@ -176,6 +176,12 @@ define([
          */
         this.interactions = {};
 
+        /**
+         * Init content
+         * @type {undefined}
+         */
+        this.content = undefined;
+
         this.observer.publish(
             this.eventmanager.eventList.successCreated
         );

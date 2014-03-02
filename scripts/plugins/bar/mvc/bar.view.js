@@ -90,10 +90,10 @@ define([
                     var item = data[index];
 
                     /**
-                     * Define module path
+                     * Define module resource
                      * @type {string}
                      */
-                    var modulePath = item.module.constructor.name.toLowerCase();
+                    var moduleResource = item.module.constructor.name.toLowerCase();
 
                     /**
                      * Render item
@@ -103,9 +103,9 @@ define([
                         style: [
                             'content',
                             item.activated ? 'activated' : '',
-                            modulePath
+                            moduleResource
                         ].join(' '),
-                        path: modulePath,
+                        resource: moduleResource,
                         $container: this.elements.$bar.$
                     });
 

@@ -18,10 +18,12 @@ define([
     var Model = function Model() {
 
         /**
-         * Define url
-         * @type {string}
+         * Define preferences
+         * @type {{url: string}}
          */
-        this.url = '//www.youtube.com/embed/6t6DKN0LGd4';
+        this.preferences = {
+            url: ''
+        };
     };
 
     return Model.extend({
@@ -31,7 +33,7 @@ define([
          * @returns {string}
          */
         getUrl: function getUrl() {
-            return this.url;
+            return this.preferences.url;
         },
 
         /**
@@ -44,7 +46,7 @@ define([
              * Define URL
              * @type {string}
              */
-            this.url = url;
+            this.preferences.url = url;
         }
 
     }, BaseModel.prototype);

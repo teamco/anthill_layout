@@ -16,6 +16,8 @@ define([
      * @constructor
      */
     var Model = function Model() {
+
+        this.preferences = {};
     };
 
     return Model.extend({
@@ -26,7 +28,17 @@ define([
          * @returns {*}
          */
         getPageData: function getPageData(page) {
-            return page.items;
+            return page.model.getItems();
+        },
+
+        /**
+         * Define preferences
+         * @param widget
+         */
+        definePreferences: function definePreferences(widget) {
+
+            this.preferences[widget.model.getConfig('resource')] =
+                widget.controller.getContent().model.preferences;
         }
 
     }, BaseModel.prototype);

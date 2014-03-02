@@ -24,7 +24,7 @@ define([
             destroy: true
         });
 
-        this.attachEvent(opts.path);
+        this.attachEvent(opts.resource);
 
         return this;
     };
@@ -33,9 +33,9 @@ define([
 
         /**
          * Open tab
-         * @param path
+         * @param resource
          */
-        attachEvent: function attachEvent(path) {
+        attachEvent: function attachEvent(resource) {
 
             /**
              * Define panel instance
@@ -46,8 +46,8 @@ define([
 
             this.$.on('click.toggle', function clickToggle() {
                     panel.view.controller.isOpened() ?
-                        publish(event.closePanel, path) :
-                        publish(event.openPanel, path);
+                        publish(event.closePanel, resource) :
+                        publish(event.openPanel, resource);
                 }
             )
 

@@ -45,11 +45,11 @@ define([
 
         /**
          * Toggle open/close
-         * @param {string} path
+         * @param {string} resource
          * @param {boolean} opened
          * @returns {boolean}
          */
-        toggle: function toggle(path, opened) {
+        toggle: function toggle(resource, opened) {
 
             /**
              * Define locals
@@ -58,7 +58,7 @@ define([
                 scope = view.scope,
                 controller = view.controller;
 
-            if (controller.isOpened() === opened && scope.active === path) {
+            if (controller.isOpened() === opened && scope.active === resource) {
 
                 scope.logger.debug('No change');
                 return false;
@@ -70,7 +70,7 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList.showContent,
-                [opened, path]
+                [opened, resource]
             );
 
             $container.$.stop().animate({
@@ -83,7 +83,7 @@ define([
                 }
             });
 
-            controller.setBehavior(path, opened);
+            controller.setBehavior(resource, opened);
         },
 
         /**

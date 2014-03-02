@@ -40,10 +40,13 @@ define([
             }
         },
 
+        /**
+         * Add widget
+         * @param $element
+         */
         addWidget: function addWidget($element) {
-            debugger
 
-            anthill.demo.workspace.page.api.createItem({
+            this.getPage().api.createItem({
                 resource: $element.$.attr('resource')
             }, true);
         }

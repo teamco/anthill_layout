@@ -24,7 +24,7 @@ define([
             destroy: true
         });
 
-        this.addCSS('youtube', {path: '/widgets'});
+        this.addCSS('youtube', {resource: '/widgets'});
 
         return this;
     };

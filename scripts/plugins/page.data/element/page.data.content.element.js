@@ -48,16 +48,23 @@ define([
             this.$.attr({
                 title: config.uuid
             }).addClass(config.resource);
+
+
+
         },
 
         /**
          * Bind show prefs
          */
-        bindShowPrefs: function bindShowPrefs() {
+        bindShowPrefs: function bindShowPrefs(resource) {
 
-            this.$.bind(
+            this.$.off('click.prefs').on(
                 'click.prefs',
-                this.view.showPreferences.bind(this.view)
+                function clickPrefs() {
+
+                    this.view.showPreferences(resource)
+
+                }.bind(this)
             );
         }
 

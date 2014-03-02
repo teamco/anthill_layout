@@ -25,7 +25,7 @@ define([
          * @returns {*|Workspace}
          */
         getWorkspace: function getWorkspace() {
-            return this.root().workspace;
+            return this.root().controller.getCurrentItem();
         },
 
         /**
@@ -33,7 +33,7 @@ define([
          * @returns {*|Page}
          */
         getPage: function getPage() {
-            return this.getWorkspace().page;
+            return this.getWorkspace().controller.getCurrentItem();
         },
 
         /**
@@ -41,7 +41,7 @@ define([
          * @returns {*|Widget}
          */
         getWidget: function getWidget() {
-            return this.getPage().widget;
+            return this.getPage().controller.getCurrentItem();
         },
 
         /**

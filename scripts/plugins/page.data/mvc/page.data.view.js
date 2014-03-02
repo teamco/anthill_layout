@@ -66,7 +66,8 @@ define([
              */
             this.elements.items = {};
 
-            var index;
+            var index,
+                scope = this.scope;
 
             for (index in data) {
 
@@ -86,21 +87,36 @@ define([
                         data: data[index]
                     });
 
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.setPreferences,
+                        data[index]
+                    );
+
                     this.elements.items[$item.id] = $item;
+
                 }
             }
         },
 
-        showPreferences: function showPreferences() {
+        renderPreferences: function renderPreferences(resource) {
+
+            var prefs= this.controller.getPreferences(resource);
+
+        },
+
+        showPreferences: function showPreferences(resource) {
+
+            this.renderPreferences(resource);
 
             this.modalDialog({
-                style: this.scope.constructor.name.toLowerCase() + '-modal',
+                style: resource + '-modal',
                 $container: this.controller.getPage().view.elements.$page.$,
                 type: 'info',
                 title: 'Widget preferences',
                 text: 'bla',
+                html:   '',
                 cover: true,
-                autoclose: false,
+                autoclose: true,
                 buttons: {
                     approve: {
                         text: 'OK',
