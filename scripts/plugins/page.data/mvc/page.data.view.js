@@ -98,23 +98,31 @@ define([
             }
         },
 
-        renderPreferences: function renderPreferences(resource) {
+        /**
+         * Show preferences
+         * @param config
+         */
+        showPreferences: function showPreferences(config) {
 
-            var prefs= this.controller.getPreferences(resource);
+            /**
+             * Define $container
+             * @type {$|*|modules.renderer.$}
+             */
+            var $container = this.controller.getPage().view.elements.$page.$;
 
-        },
-
-        showPreferences: function showPreferences(resource) {
-
-            this.renderPreferences(resource);
+            /**
+             * Define $html
+             * @type {$|*|modules.renderer.$}
+             */
+            var $html = this.controller.getPreferences(config.uuid).$;
 
             this.modalDialog({
-                style: resource + '-modal',
-                $container: this.controller.getPage().view.elements.$page.$,
+                style: config.resource + '-modal',
+                $container: $container,
                 type: 'info',
                 title: 'Widget preferences',
                 text: 'bla',
-                html:   '',
+                html: $html,
                 cover: true,
                 autoclose: true,
                 buttons: {

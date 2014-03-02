@@ -187,8 +187,8 @@ define([
                         '<h2 class="header"></h2>',
                         '<ul class="actions"></ul>',
                         '<div class="content">',
-                        '<div class="html"></div>',
                         '<p class="text"></p>',
+                        '<div class="html"></div>',
                         '</div>',
                         '<ul class="buttons"></ul>'
                     ].join('')

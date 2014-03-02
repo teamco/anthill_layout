@@ -29,6 +29,14 @@ define([
             this.view.elements.$youtube.renderEmbeddedContent(
                 this.model.getUrl()
             );
+        },
+
+        /**
+         * Get preferences
+         * @returns {{}|{url: string}}
+         */
+        getPreferences: function getPreferences() {
+            return this.model.preferences;
         }
 
     }, PluginBase.prototype, WidgetBase.prototype);

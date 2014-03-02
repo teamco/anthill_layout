@@ -10,8 +10,9 @@ define([
     'modules/view',
     'element/header.element',
     'element/footer.element',
-    'plugins/widgets/youtube/element/youtube.element'
-], function defineYoutubeView(BaseView, Header, Footer, YoutubeElement) {
+    'plugins/widgets/youtube/element/youtube.element',
+    'plugins/widgets/youtube/element/youtube.preferences.element'
+], function defineYoutubeView(BaseView, Header, Footer, YoutubeElement, YoutubePreferencesElement) {
 
     /**
      * Define view
@@ -44,6 +45,15 @@ define([
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.setEmbeddedContent
             );
+        },
+
+        renderPreferences: function renderPreferences() {
+
+            this.elements.$preferences = new YoutubePreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
         },
 
         /**

@@ -7,8 +7,9 @@
  */
 
 define([
-    'lib/packages/rgbcolor'
-], function defineBaseElement(RGBColor) {
+    'lib/packages/rgbcolor',
+    'modules/renderer'
+], function defineBaseElement(RGBColor, Renderer) {
 
     /**
      * Define Base element
@@ -16,7 +17,6 @@ define([
      * @constructor
      */
     var BaseElement = function BaseElement() {
-
     };
 
     return BaseElement.extend({
@@ -516,6 +516,5 @@ define([
                 this.$.addClass('shadow');
         }
 
-    });
-})
-;
+    }, Renderer.prototype);
+});

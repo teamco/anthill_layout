@@ -25,8 +25,7 @@ define([
         });
 
         this.setAttributes(opts.data);
-
-        this.bindShowPrefs();
+        this.bindShowPrefs(opts.data);
 
         return this;
     };
@@ -43,26 +42,30 @@ define([
              * Get config
              * @type {*}
              */
-            var config= data.model.getConfig();
+            var config = data.model.getConfig();
 
             this.$.attr({
                 title: config.uuid
             }).addClass(config.resource);
-
-
-
         },
 
         /**
          * Bind show prefs
+         * @param data
          */
-        bindShowPrefs: function bindShowPrefs(resource) {
+        bindShowPrefs: function bindShowPrefs(data) {
+
+            /**
+             * Get config
+             * @type {*}
+             */
+            var config = data.model.getConfig();
 
             this.$.off('click.prefs').on(
                 'click.prefs',
                 function clickPrefs() {
 
-                    this.view.showPreferences(resource)
+                    this.view.showPreferences(config)
 
                 }.bind(this)
             );

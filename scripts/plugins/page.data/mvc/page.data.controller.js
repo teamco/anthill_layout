@@ -29,16 +29,32 @@ define([
             );
         },
 
-        getPreferences: function getPreferences(resource) {
+        /**
+         * Get preferences
+         * @param {string} uuid
+         * @returns {*}
+         */
+        getPreferences: function getPreferences(uuid) {
 
-            var panel = this.getContainment();
+            /**
+             * Define widget
+             * @type {*}
+             */
+            var widget = this.getPage().model.getItemByUUID(uuid);
 
-            var module = panel.model.getModule(
-                panel.model.getIndex(resource)
-            );
+            /**
+             * Define widget content
+             * @type {*|Content}
+             */
+            var content = widget.controller.getContent();
 
+            return content.view.renderPreferences();
         },
 
+        /**
+         * Set preferences
+         * @param data
+         */
         setPreferences: function setPreferences(data) {
 
             this.model.definePreferences(data);

@@ -37,7 +37,7 @@ define([
          */
         definePreferences: function definePreferences(widget) {
 
-            this.preferences[widget.model.getConfig('resource')] =
+            this.preferences[widget.model.getConfig('uuid')] =
                 widget.controller.getContent().model.preferences;
         }
 
