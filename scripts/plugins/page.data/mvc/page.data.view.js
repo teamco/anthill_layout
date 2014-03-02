@@ -56,7 +56,7 @@ define([
          */
         renderContent: function renderContent(data, force) {
 
-            if (this.isCachedItems(force)) {
+            if (this.isCachedItems(force) && this.controller.isUpdate(data, this.elements.items)) {
                 return false;
             }
 
@@ -78,6 +78,10 @@ define([
                      */
                     var $item = new PageDataContent(this, {
                         style: 'content',
+                        id: [
+                            data[index].model.getConfig('uuid'),
+                            'view'
+                        ].join('-'),
                         $container: this.elements.$pagedata.$,
                         data: data[index]
                     });

@@ -30,6 +30,24 @@ define([
         },
 
         /**
+         * Check if content was updated
+         * @param data
+         * @param content
+         * @returns {boolean}
+         */
+        isUpdate: function isUpdate(data, content) {
+
+            /**
+             * Define hash
+             * @type {string|*|Observer.executeEvent.options.opts.hash}
+             */
+            var hash = anthill.base.lib.hash;
+
+            return hash.hashLength(data || {}) ===
+                hash.hashLength(content || {})
+        },
+
+        /**
          * Load page.data content
          * @param opened
          */

@@ -147,7 +147,7 @@ define([
              */
             function destroyElement($element) {
                 if ($element.length > 0) {
-                    this.view.scope.logger.warn(
+                    this.view.scope.logger.debug(
                         anthill.i18n.t('element.overwritten').
                             replace(/\{0\}/, this.constructor.name)
                     );
