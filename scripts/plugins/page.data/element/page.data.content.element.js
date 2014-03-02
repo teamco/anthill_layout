@@ -26,27 +26,26 @@ define([
 
         this.setAttributes(opts.data);
 
-        this.installWidget();
-
         return this;
     };
 
     return PageDataContentElement.extend({
 
+        /**
+         * Define attributes
+         * @param data
+         */
         setAttributes: function setAttributes(data) {
 
+            /**
+             * Get config
+             * @type {*}
+             */
+            var config= data.model.getConfig();
+
             this.$.attr({
-                title: data.name,
-                rel: data.description,
-                resource: data.resource
-            });
-        },
-
-        installWidget: function installWidget() {
-
-            this.$.on('click.install', function clickInstall() {
-                this.view.controller.addWidget(this);
-            }.bind(this))
+                title: config.uuid
+            }).addClass(config.resource);
         }
 
     }, BaseElement.prototype);

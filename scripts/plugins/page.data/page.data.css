@@ -1,12 +1,12 @@
-div.gallery ul {
+div.pagedata ul {
     list-style: none;
 }
 
-div.gallery-header {
+div.pagedata-header {
     height: 40px;
 }
 
-ul.gallery .content {
+ul.pagedata .content {
     height: 70px;
     width: 70px;
     display: block;
@@ -18,11 +18,7 @@ ul.gallery .content {
     margin-top: 10px;
 }
 
-ul.gallery .content:active {
-    cursor: move;
-}
-
-div.gallery-footer {
+div.pagedata-footer {
     position: absolute;
     bottom: 0;
 }
