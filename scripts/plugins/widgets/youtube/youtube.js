@@ -99,16 +99,6 @@ define([
             render: true
         });
 
-        /**
-         * Load prefs
-         * @type {*}
-         */
-        var prefs = containment.model.getConfig('preferences');
-
-        if (prefs.hasOwnProperty('url')) {
-            this.model.setUrl(prefs.url);
-        }
-
         this.observer.publish(
             this.eventmanager.eventList.initWidget
         );

@@ -21,6 +21,10 @@ define([
         initWidget: function initWidget() {
 
             this.observer.publish(
+                this.eventmanager.eventList.loadPreferences
+            );
+
+            this.observer.publish(
                 this.eventmanager.eventList.successCreated
             );
 
@@ -90,7 +94,7 @@ define([
                 var setter = 'set' + name,
                     value;
 
-                if (typeof(setter) === 'function') {
+                if (typeof(this.model[setter]) === 'function') {
 
                     /**
                      * Define input value
@@ -120,6 +124,38 @@ define([
         },
 
         /**
+         * Load prefs
+         */
+        loadPreferences: function loadPreferences() {
+
+            /**
+             * Load prefs
+             * @type {*}
+             */
+            var widget = this.controller.getContainment(),
+                prefs = widget.model.getConfig('preferences');
+
+            $.each(prefs, function each(index, value) {
+
+                /**
+                 * Define method name
+                 * @type {string}
+                 */
+                var setter = 'set' + index.toCamel().capitalize();
+
+                if (typeof(this.model[setter]) === 'function') {
+
+                    this.model[setter](value);
+
+                } else {
+
+                    this.logger.debug('Skip', setter);
+                }
+
+            }.bind(this));
+        },
+
+        /**
          * Transfer preferences to containment
          * @param index
          * @param value
@@ -130,7 +166,7 @@ define([
              * Define widget
              * @type {*}
              */
-            var widget =this.controller.getContainment();
+            var widget = this.controller.getContainment();
 
             /**
              * Define prefs

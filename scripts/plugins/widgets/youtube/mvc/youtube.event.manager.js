@@ -31,6 +31,7 @@ define([
             updateTranslations: 'update.translations',
             defineContainer: 'define.container',
             setEmbeddedContent: 'set.embedded.content',
+            loadPreferences: 'load.preferences',
             transferPreferences: 'transfer.preferences'
         };
     };
