@@ -35,8 +35,9 @@ define([
         /**
          * Default config
          * @type {{
-         *      resource: string,
-         *      preferences: {},
+         *      preferences: {
+         *          resource: string
+         *      },
          *      order: number,
          *      html: {
          *          header: boolean,
@@ -75,7 +76,6 @@ define([
          * }}
          */
         var DEFAULTS = {
-            resource: opts.resource,
             preferences: opts.preferences || {},
             limit: false,
             order: 1,
@@ -181,6 +181,10 @@ define([
          * @type {undefined}
          */
         this.content = undefined;
+
+        this.model.updatePreferences({
+            resource: opts.resource
+        });
 
         this.observer.publish(
             this.eventmanager.eventList.successCreated

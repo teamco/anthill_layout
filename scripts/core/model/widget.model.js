@@ -44,13 +44,43 @@ define([
             return scope;
         },
 
+        /**
+         * Get attributes
+         * @returns {*}
+         */
         getAttributes: function getAttributes() {
             return this.getConfig('attributes');
         },
 
+        /**
+         * Set attributes
+         * @param key
+         * @param value
+         */
         setAttributes: function setAttributes(key, value) {
             this.scope.logger.debug('Set widget attributes', arguments);
             this.getAttributes()[key] = value;
+        },
+
+        /**
+         * Update prefs
+         * @param data
+         */
+        updatePreferences: function updatePreferences(data) {
+
+            /**
+             * Get prefs
+             * @type {*}
+             */
+            var preferences = this.getConfig('preferences');
+
+            for (var index in data) {
+
+                if (data.hasOwnProperty(index)) {
+
+                    preferences[index] = data[index];
+                }
+            }
         }
 
     }, BaseModel.prototype);

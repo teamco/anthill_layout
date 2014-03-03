@@ -31,7 +31,7 @@ define([], function defineWidgetContent() {
              * Get resource
              * @type {*}
              */
-            var resource = widget.model.getConfig('resource');
+            var resource = widget.model.getConfig('preferences/resource');
 
             if (!anthill.base.isString(resource)) {
                 widget.logger.error('Unable to load resource');

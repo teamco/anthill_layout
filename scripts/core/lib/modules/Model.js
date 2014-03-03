@@ -28,25 +28,40 @@ define([
          */
         getConfig: function getConfig(key) {
             var scope = this.scope,
-                config = scope.config;
+                config = scope.config,
+                reference = scope.config;
 
-            if (config.hasOwnProperty(key)) {
-                scope.logger.debug('Get config by key', key);
-                return config[key];
+            if (typeof(key) === 'undefined') {
+                return config;
             }
 
-            if (this.scope.controller.checkCondition({
-                condition: anthill.base.isDefined(key),
-                type: 'warn',
-                msg: 'Undefined config key',
-                args: [key]
-            })) {
-                return false;
+            /**
+             * Split key by slash
+             * @type {Array}
+             */
+            var path = key.split('/');
+
+            for (var i = 0, l = path.length; i < l; i++) {
+
+                /**
+                 * Get config node
+                 */
+                var node = path[i];
+
+                if (reference.hasOwnProperty(node)) {
+
+                    scope.logger.debug('Get config by key', node);
+                    reference = reference[node];
+
+                } else {
+                    scope.logger.warn('Undefined config key', node);
+                    return false;
+                }
             }
 
-            scope.logger.debug('Get config', config);
+            scope.logger.debug('Get config', reference);
 
-            return config;
+            return reference;
         },
 
         /**

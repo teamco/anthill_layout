@@ -47,6 +47,10 @@ define([
              * @type {string}
              */
             this.preferences.url = url;
+
+            this.scope.controller.getContainment().model.updatePreferences({
+                url: this.getUrl()
+            });
         }
 
     }, BaseModel.prototype);
