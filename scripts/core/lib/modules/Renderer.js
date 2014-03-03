@@ -21,7 +21,8 @@ define([], function defineRenderer() {
          */
         renderLabel: function renderLabel(uuid, text) {
             return $('<label />').attr({
-                'for': uuid
+                'for': uuid,
+                title: text
             }).text(text);
         },
 
