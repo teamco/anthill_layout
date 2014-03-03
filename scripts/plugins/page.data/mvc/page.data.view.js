@@ -112,7 +112,7 @@ define([
             var $html = this.controller.getPreferences(config.uuid).$;
 
             this.modalDialog({
-                style: config.resource + '-modal',
+                style: config.preferences.resource + '-modal',
                 $container: $container,
                 type: 'info',
                 title: 'Widget preferences',
