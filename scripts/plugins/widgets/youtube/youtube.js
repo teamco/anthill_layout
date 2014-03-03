@@ -77,6 +77,12 @@ define([
         this.config = undefined;
 
         /**
+         * Init model
+         * @type {*}
+         */
+        this.model = undefined;
+
+        /**
          * Define MVC
          * @type {MVC}
          */
