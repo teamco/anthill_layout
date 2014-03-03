@@ -89,7 +89,7 @@ define([
             loadContent: 'load.content',
             setContent: 'set.content',
 
-            save: 'save'
+            saveDOM: 'save.dom'
         }
 
     }, Event.prototype);

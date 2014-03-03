@@ -30,7 +30,8 @@ define([
             initWidget: 'init.widget',
             updateTranslations: 'update.translations',
             defineContainer: 'define.container',
-            setEmbeddedContent: 'set.embedded.content'
+            setEmbeddedContent: 'set.embedded.content',
+            transferPreferences: 'transfer.preferences'
         };
     };
 

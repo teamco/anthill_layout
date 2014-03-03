@@ -47,7 +47,11 @@ define([
         addWidget: function addWidget($element) {
 
             this.getPage().api.createItem({
-                resource: $element.$.attr('resource')
+                config: {
+                    preferences: {
+                        resource: $element.$.attr('resource')
+                    }
+                }
             }, true);
         }
 

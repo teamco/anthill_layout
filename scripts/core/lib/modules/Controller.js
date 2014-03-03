@@ -237,6 +237,20 @@ define([
          */
         store: function store(node, data) {
 
+            /**
+             * Define node
+             * @type {*}
+             */
+            node = anthill.base.define(
+                node,
+                this.root(),
+                true
+            );
+
+            /**
+             * Define data
+             * @type {*}
+             */
             data = anthill.base.define(data, {collector: {}}, true);
 
             /**

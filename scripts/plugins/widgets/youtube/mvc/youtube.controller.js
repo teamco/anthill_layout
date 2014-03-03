@@ -29,29 +29,6 @@ define([
             this.view.elements.$youtube.renderEmbeddedContent(
                 this.model.getUrl()
             );
-        },
-
-        /**
-         * Get preferences
-         * @returns {{}|{url: string}}
-         */
-        getPreferences: function getPreferences() {
-            return this.model.preferences;
-        },
-
-        /**
-         * Update prefs
-         * @param $input
-         */
-        updatePreferences: function updatePreferences($modal) {
-
-            this.model.setUrl(
-                $('input', $modal.$).val()
-            );
-
-            this.scope.view.renderYoutube();
-
-            $modal.selfDestroy();
         }
 
     }, PluginBase.prototype, WidgetBase.prototype);

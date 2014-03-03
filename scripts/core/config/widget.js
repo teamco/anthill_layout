@@ -182,10 +182,6 @@ define([
          */
         this.content = undefined;
 
-        this.model.updatePreferences({
-            resource: opts.resource
-        });
-
         this.observer.publish(
             this.eventmanager.eventList.successCreated
         );

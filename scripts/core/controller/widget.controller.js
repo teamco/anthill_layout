@@ -468,11 +468,11 @@ define([
         },
 
         /**
-         * Save widget
+         * Save widget DOM
          */
-        save: function save() {
-            this.scope.logger.debug(anthill.i18n.t('save.widget'));
-            this.model.save();
+        saveDOM: function saveDOM() {
+            this.logger.debug(anthill.i18n.t('save.widget'));
+            this.model.defineDOM();
         }
 
     }, BaseController.prototype, Content.prototype);

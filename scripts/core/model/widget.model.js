@@ -21,9 +21,9 @@ define([
     return Model.extend({
 
         /**
-         * Save
+         * Define DOM
          */
-        save: function save() {
+        defineDOM: function defineDOM() {
 
             /**
              * Update DOM
@@ -38,9 +38,12 @@ define([
          * @returns {*}
          */
         updateDOM: function updateDOM(hash) {
+
             var scope = this.scope;
+
             scope.logger.debug('Update DOM', hash);
             $.extend(true, scope.dom, hash);
+
             return scope;
         },
 

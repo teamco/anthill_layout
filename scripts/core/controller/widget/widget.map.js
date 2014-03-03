@@ -383,7 +383,15 @@ define([
          */
         sticker: function sticker(opts, mode, behavior) {
 
-            this.widget.controller.save();
+            /**
+             * Define widget
+             * @type {widget|*}
+             */
+            var widget = this.widget;
+
+            widget.observer.publish(
+                widget.eventmanager.eventList.saveDOM
+            );
 
             opts = anthill.base.define(opts, {}, true);
 
@@ -438,7 +446,11 @@ define([
                     getLayout().controller.
                     isOverlappingAllowed()
             )) {
-                widget.model.save();
+
+                widget.observer.publish(
+                    widget.eventmanager.eventList.saveDOM
+                );
+
                 hash[widget.model.getUUID()] = widget;
 
                 this.layout.observer.publish(
