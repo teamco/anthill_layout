@@ -24,6 +24,9 @@
 
 .youtube-modal div.html input[type="text"] {
     border: 1px solid #ccc;
+    border-radius: 2px;
     margin-left: 10px;
     width: 70%;
+    height: 22px;
+    line-height: 22px;
 }

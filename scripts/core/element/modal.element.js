@@ -214,6 +214,18 @@ define([
             }
 
             this.setButtons();
+
+            this.setFocus();
+        },
+
+        /**
+         * Set focus
+         */
+        setFocus: function setFocus() {
+
+            if (this.html) {
+                $('input:first', this.$).focus();
+            }
         },
 
         /**
