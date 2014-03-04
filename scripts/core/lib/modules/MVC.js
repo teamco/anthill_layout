@@ -256,26 +256,41 @@ define([
 
             if (base.isFunction(mvcPattern)) {
 
+                /**
+                 * Define pattern
+                 * @type {mvcPattern}
+                 */
                 scope[name] = new mvcPattern();
 
             } else {
 
                 if (force) {
 
+                    /**
+                     * Define scope name
+                     * @type {string}
+                     */
                     var scopeName = scope.constructor.name.toLowerCase();
 
+                    /**
+                     * Define function
+                     * @type {Function}
+                     */
                     var fn = new Function(
                         scopeName,
                         [
-                            'return function ', mvc,
+                            'return function ', mvcPattern,
                             '(', scopeName, ') { this.scope = ', scopeName, '; };'
                         ].join('')
                     );
 
                     scope[name.toLowerCase()] = new (new fn(scope))(scope);
 
+                    /**
+                     * Set pattern
+                     * @type {constructor|r.constructor|constructor.constructor|number|Function}
+                     */
                     mvcPattern = scope[name.toLowerCase()].constructor;
-
                 }
             }
 
