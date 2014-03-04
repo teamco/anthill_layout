@@ -26,8 +26,8 @@ define(function loadConfig() {
 
             test: 'test',
 
-            jquery: 'lib/jquery/jquery-2.1.0.min',
-            'jquery.ui': 'lib/jquery/jquery-ui-1.10.4.custom.min'
+            jquery: 'lib/jquery/jquery-2.1.0',
+            'jquery.ui': 'lib/jquery/jquery-ui-1.10.4.custom'
         },
 
         shim: {
