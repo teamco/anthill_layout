@@ -77,7 +77,8 @@ define([
          */
         updatePreferences: function updatePreferences($modal) {
 
-            var $inputs = $('input', $modal.$);
+            var $inputs = $('input', $modal.$),
+                scope = this.scope;
 
             $inputs.each(function each(index, input) {
 
@@ -104,19 +105,19 @@ define([
 
                     this.model[setter](value);
 
-                    this.scope.observer.publish(
-                        this.scope.eventmanager.eventList.transferPreferences,
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.transferPreferences,
                         [input.name, value]
                     );
 
                 } else {
 
-                    this.logger.error('Undefined setter', [name, setter]);
+                    scope.logger.error('Undefined setter', [name, setter]);
                 }
 
             }.bind(this));
 
-            this.scope.view['render' + this.constructor.name]();
+            scope.view['render' + scope.constructor.name]();
 
             $modal.selfDestroy();
 
