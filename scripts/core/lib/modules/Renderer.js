@@ -22,7 +22,7 @@ define([], function defineRenderer() {
         renderLabel: function renderLabel(uuid, text) {
             return $('<label />').attr({
                 'for': uuid,
-                title: text
+                title: text.toUpperCase()
             }).text(text);
         },
 
@@ -47,7 +47,8 @@ define([], function defineRenderer() {
                 name: opts.name,
                 type: 'text',
                 id: uuid,
-                placeholder: opts.placeholder
+                placeholder: opts.placeholder,
+                title: opts.value
             }).val(opts.value);
 
             return [
