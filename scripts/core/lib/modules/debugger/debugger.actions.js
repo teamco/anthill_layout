@@ -5,7 +5,9 @@
  * Time: 9:03 PM
  */
 
-define([], function defineDebuggerActions() {
+define([
+    'config/anthill'
+], function defineDebuggerActions(AntHill) {
 
     /**
      * Define generic Actions
@@ -60,7 +62,7 @@ define([], function defineDebuggerActions() {
             this.selectors = {};
             $.each(opts || {}, function each(i, selector) {
 
-                if (!anthill.base.isDefined(this.scope)) {
+                if (!this.base.isDefined(this.scope)) {
                     this.bugger.scope.logger.info('Undefined scope', this, i);
                     return false;
                 }
@@ -101,7 +103,7 @@ define([], function defineDebuggerActions() {
             var html = [];
             $.each(this.actions, function each(i, action) {
                 var fn = this['_' + action.toCamel() + 'Button'];
-                if (anthill.base.isFunction(fn)) {
+                if (this.base.isFunction(fn)) {
                     html.push(fn.bind(this)());
                 }
             }.bind(this));
@@ -283,7 +285,7 @@ define([], function defineDebuggerActions() {
              * Define selector
              * @type {*}
              */
-            this.$select = anthill.base.define(
+            this.$select = this.base.define(
                 this.$select,
                 $('.select', this.selectors.actions)
             );
@@ -380,7 +382,7 @@ define([], function defineDebuggerActions() {
                  * Add new item
                  */
                 function addNewItem(e) {
-                    if (anthill.base.lib.hash.isHashEmpty(scope.model.getItems())) {
+                    if (this.base.lib.hash.isHashEmpty(scope.model.getItems())) {
 
                         /**
                          * Restart debugger
@@ -519,7 +521,7 @@ define([], function defineDebuggerActions() {
                     uuid
                 );
 
-            if (!anthill.base.isDefined(item)) {
+            if (!this.base.isDefined(item)) {
                 scope.logger.warn('Undefined item', uuid);
                 return false;
             }
@@ -558,6 +560,6 @@ define([], function defineDebuggerActions() {
             scope.logger.debug('Start remove all items');
             this._removeItems(scope);
         }
-    });
 
+    }, AntHill.prototype);
 });

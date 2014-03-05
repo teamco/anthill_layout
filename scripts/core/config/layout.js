@@ -7,6 +7,7 @@
  */
 
 define([
+    'config/anthill',
     'modules/mvc',
     'controller/layout.controller',
     'event/layout.event.manager',
@@ -14,7 +15,7 @@ define([
     'controller/layout/layout.empty.rows',
     'controller/layout/layout.empty.columns',
     'permission/layout.permission'
-], function defineLayout(MVC, Controller, EventManager, Overlapping, EmptyRows, EmptyColumns, Permission) {
+], function defineLayout(AntHill, MVC, Controller, EventManager, Overlapping, EmptyRows, EmptyColumns, Permission) {
 
     /**
      * Define Layout
@@ -130,5 +131,7 @@ define([
         this.observer.publish(this.eventmanager.eventList.successCreated);
     };
 
-    return Layout;
+    return Layout.extend({
+
+    }, AntHill.prototype);
 });

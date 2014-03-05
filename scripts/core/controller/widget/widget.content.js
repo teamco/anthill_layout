@@ -5,7 +5,9 @@
  * Time: 5:40 PM
  */
 
-define([], function defineWidgetContent() {
+define([
+    'config/anthill'
+], function defineWidgetContent(AntHill) {
 
     /**
      * Define WidgetContent
@@ -33,7 +35,7 @@ define([], function defineWidgetContent() {
              */
             var resource = widget.model.getConfig('preferences/resource');
 
-            if (!anthill.base.isString(resource)) {
+            if (!this.base.isString(resource)) {
                 widget.logger.error('Unable to load resource');
                 return false;
             }
@@ -85,5 +87,6 @@ define([], function defineWidgetContent() {
         getContent: function getContent() {
             return this.scope.content;
         }
-    });
+
+    }, AntHill.prototype);
 });

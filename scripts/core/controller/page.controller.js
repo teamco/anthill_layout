@@ -7,9 +7,10 @@
  */
 
 define([
+    'config/anthill',
     'modules/controller',
     'modules/page'
-], function definePageController(BaseController, BasePage) {
+], function definePageController(AntHill, BaseController, BasePage) {
 
     /**
      * Define page controller
@@ -83,7 +84,7 @@ define([
 
             if (scope.layout.config.mode === scope.LAYOUT_MODES.jqUIGrid) {
 
-                if (anthill.base.isDefined(item)) {
+                if (this.base.isDefined(item)) {
 
                     item.controller.updateDraggable('grid', [grid, grid]);
                     item.controller.updateResizable('grid', grid);
@@ -126,5 +127,5 @@ define([
             widget.view.elements.$widget._downgradeLayer(51);
         }
 
-    }, BaseController.prototype, BasePage.prototype);
+    }, AntHill.prototype, BaseController.prototype, BasePage.prototype);
 });

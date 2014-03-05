@@ -1,4 +1,5 @@
 define([
+    'config/anthill',
     'api/application.api',
     'modules/mvc',
     'controller/application.controller',
@@ -6,7 +7,7 @@ define([
     'view/application.view',
     'event/application.event.manager',
     'permission/application.permission'
-], function defineApp(API, MVC, Controller, Model, View, EventManager, Permission) {
+], function defineApp(AntHill, API, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define App
@@ -21,24 +22,36 @@ define([
          * Ex. logger.namespace: 'App'
          *
          * @type {{
-         *  workspace: {
-         *      limit: number,
-         *      counter: number
-         *  },
-         *  mode: string,
-         *  type: string,
-         *  isResized: boolean,
-         *  logger: {
-         *      show: boolean,
-         *      namespaces: string|boolean,
-         *      type: {
-         *          debug: boolean,
-         *          log: boolean,
-         *          info: boolean,
-         *          error: boolean,
-         *          warn: boolean
+         *      workspace: {
+         *          limit: number,
+         *          counter: number
+         *      },
+         *      mode: string,
+         *      type: string,
+         *      isResized: boolean,
+         *      logger: {
+         *          show: boolean,
+         *          namespaces: string|boolean,
+         *          type: {
+         *              debug: boolean,
+         *              log: boolean,
+         *              info: boolean,
+         *              error: boolean,
+         *              warn: boolean
+         *          }
+         *      },
+         *      html: {
+         *          style: string,
+         *          header: boolean,
+         *          footer: boolean,
+         *          stretch: boolean,
+         *          padding: {
+         *              top: number,
+         *              right: number,
+         *              bottom: number,
+         *              left: number
+         *          }
          *      }
-         *  }
          * }}
          */
         var DEFAULTS = {
@@ -62,6 +75,18 @@ define([
                     info: false,
                     error: true,
                     warn: true
+                }
+            },
+            html: {
+                style: 'default',
+                header: false,
+                footer: false,
+                stretch: true,
+                padding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
                 }
             }
         };
@@ -140,6 +165,8 @@ define([
 
     };
 
-    return App;
+    return App.extend({
+
+    }, AntHill.prototype);
 
 });

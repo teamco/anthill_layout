@@ -6,13 +6,14 @@
  */
 
 define([
+    'config/anthill',
     'modules/mvc',
     'plugins/gallery/mvc/gallery.controller',
     'plugins/gallery/mvc/gallery.model',
     'plugins/gallery/mvc/gallery.view',
     'plugins/gallery/mvc/gallery.event.manager',
     'plugins/gallery/mvc/gallery.permission'
-], function defineGallery(MVC, Controller, Model, View, EventManager, Permission) {
+], function defineGallery(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define Gallery
@@ -32,10 +33,7 @@ define([
          * @type {{
          *      plugin: boolean,
          *      html: {
-         *          width: {
-         *              min: number,
-         *              max: number
-         *          },
+         *          style: string,
          *          header: boolean,
          *          footer: boolean,
          *          floating: boolean,
@@ -51,6 +49,7 @@ define([
         var DEFAULTS = {
             plugin: true,
             html: {
+                style: 'default',
                 header: true,
                 footer: false,
                 floating: true,
@@ -108,5 +107,7 @@ define([
         );
     };
 
-    return Gallery;
+    return Gallery.extend({
+
+    }, AntHill.prototype);
 });

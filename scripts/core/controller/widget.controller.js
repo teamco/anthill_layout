@@ -7,11 +7,12 @@
  */
 
 define([
+    'config/anthill',
     'modules/controller',
     'controller/widget/widget.drag',
     'controller/widget/widget.resize',
     'controller/widget/widget.content'
-], function defineWidgetController(BaseController, Drag, Resize, Content) {
+], function defineWidgetController(AntHill, BaseController, Drag, Resize, Content) {
 
     /**
      * Define widget controller
@@ -102,7 +103,7 @@ define([
         getLocalPadding: function getLocalPadding() {
             var padding = {},
                 global = this.getGlobalPadding(),
-                local = anthill.base.define(this.scope.dom.padding, {}, true);
+                local = this.base.define(this.scope.dom.padding, {}, true);
 
             this.scope.logger.debug(
                 'Merge local padding',
@@ -389,7 +390,7 @@ define([
              */
             opts.type = type;
 
-            if (mode && anthill.base.isFunction(this[mode + 'Mode'])) {
+            if (mode && this.base.isFunction(this[mode + 'Mode'])) {
                 this[mode + 'Mode'](
                     opts,
                     mode,
@@ -471,9 +472,9 @@ define([
          * Save widget DOM
          */
         saveDOM: function saveDOM() {
-            this.logger.debug(anthill.i18n.t('save.widget'));
+            this.logger.debug(this.i18n.t('save.widget'));
             this.model.defineDOM();
         }
 
-    }, BaseController.prototype, Content.prototype);
+    }, AntHill.prototype, BaseController.prototype, Content.prototype);
 });

@@ -6,7 +6,8 @@
  */
 
 define([
-], function defineWidgetMap() {
+    'config/anthill'
+], function defineWidgetMap(AntHill) {
 
     /**
      * Define Widget Map
@@ -393,7 +394,7 @@ define([
                 widget.eventmanager.eventList.saveDOM
             );
 
-            opts = anthill.base.define(opts, {}, true);
+            opts = this.base.define(opts, {}, true);
 
             var layout = this.getLayout(),
                 css = this.isDrag(opts.type) ?
@@ -513,7 +514,7 @@ define([
              */
             var widget = this.widget;
 
-            dom = anthill.base.define(dom, widget.dom, true);
+            dom = this.base.define(dom, widget.dom, true);
 
             /**
              * Define new CSS
@@ -582,5 +583,6 @@ define([
 
             return row;
         }
-    });
+
+    }, AntHill.prototype);
 });

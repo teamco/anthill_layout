@@ -6,8 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
+    'config/anthill',
     'modules/controller'
-], function defineApplicationController(BaseController) {
+], function defineApplicationController(AntHill, BaseController) {
 
     /**
      * Define application controller
@@ -86,11 +87,11 @@ define([
 
             this.scope.logger.warn('localStorage', setting.getStorage());
 
-            if (anthill.base.isDefined($modal)) {
+            if (this.base.isDefined($modal)) {
                 $modal.selfDestroy();
             }
         }
 
-    }, BaseController.prototype);
+    }, AntHill.prototype, BaseController.prototype);
 
 });

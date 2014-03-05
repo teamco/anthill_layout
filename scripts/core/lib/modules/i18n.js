@@ -34,7 +34,7 @@ define([
          * Define language
          * @type {string}
          */
-        lang = anthill.base.define(lang, defaultLanguage);
+        lang = lang || defaultLanguage;
 
         /**
          * Define data

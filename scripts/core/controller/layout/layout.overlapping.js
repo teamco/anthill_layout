@@ -6,8 +6,9 @@
  */
 
 define([
+    'config/anthill',
     'controller/layout/layout.intersect'
-], function defineLayoutOverlapping(Intersect) {
+], function defineLayoutOverlapping(AntHill, Intersect) {
 
     /**
      * Define Overlapping
@@ -35,15 +36,15 @@ define([
         nestedOrganizer: function nestedOrganizer(opts) {
             var layout = this.layout;
 
-            opts = anthill.base.define(opts, {}, true);
-            opts.targets = anthill.base.define(opts.targets, {}, true);
+            opts = this.base.define(opts, {}, true);
+            opts.targets = this.base.define(opts.targets, {}, true);
 
             if (!layout.controller.isOverlappingAllowed()) {
                 layout.logger.debug('Overlapping is allowed');
                 return this._nestedOrganizerCallback(opts.callback);
             }
 
-            if (anthill.base.lib.hash.isHashEmpty(opts.targets)) {
+            if (this.base.lib.hash.isHashEmpty(opts.targets)) {
                 layout.logger.debug('Empty targets');
                 return this._nestedOrganizerCallback(opts.callback);
             }
@@ -67,7 +68,7 @@ define([
 
             for (index in widgets) {
                 if (widgets.hasOwnProperty(index)) {
-                    if (anthill.base.isDefined(widgets[index])) {
+                    if (this.base.isDefined(widgets[index])) {
                         intersecting = this._intersectWidgets(widgets[index]);
                         this._organizeCollector(widgets[index], intersecting);
                         for (moved in intersecting) {
@@ -122,7 +123,7 @@ define([
             var page = this.layout.controller.getContainment(),
                 widgets = page.model.getItems(),
                 index, widget, counter = 1,
-                length = anthill.base.lib.hash.hashLength(widgets);
+                length = this.base.lib.hash.hashLength(widgets);
 
             for (index in widgets) {
                 if (widgets.hasOwnProperty(index)) {
@@ -153,7 +154,7 @@ define([
             var layout = this.scope.layout,
                 callback = this.callback;
 
-            if (anthill.base.isFunction(callback)) {
+            if (layout.base.isFunction(callback)) {
                 layout.logger.debug('Execute callback', callback);
                 callback();
             }
@@ -298,5 +299,5 @@ define([
             return (target.row + target.relHeight - 1);
         }
 
-    }, Intersect.prototype);
+    }, AntHill.prototype, Intersect.prototype);
 });

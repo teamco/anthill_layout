@@ -1,4 +1,5 @@
 define([
+    'config/anthill',
     'modules/mvc',
     'api/workspace.api',
     'controller/workspace.controller',
@@ -6,7 +7,7 @@ define([
     'view/workspace.view',
     'event/workspace.event.manager',
     'permission/workspace.permission'
-], function defineWorkspace(MVC, API, Controller, Model, View, EventManager, Permission) {
+], function defineWorkspace(AntHill, MVC, API, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define Workspace
@@ -19,9 +20,15 @@ define([
         /**
          * Define default config
          * @type {{
-         *  order: number,
-         *  page: {counter: number, limit: number, onDestroyShowPrevious: boolean},
-         *  html: {header: boolean, footer: boolean, stretch: boolean, padding: {top: number, right: number, bottom: number, left: number}}
+         *      order: number,
+         *      page: {counter: number, limit: number, onDestroyShowPrevious: boolean},
+         *      html: {
+         *          style: string,
+         *          header: boolean,
+         *          footer: boolean,
+         *          stretch: boolean,
+         *          padding: {top: number, right: number, bottom: number, left: number}
+         *      }
          * }}
          */
         var DEFAULTS = {
@@ -38,6 +45,7 @@ define([
                 onDestroyShowPrevious: true
             },
             html: {
+                style: 'default',
                 header: false,
                 footer: false,
                 stretch: true,
@@ -95,6 +103,8 @@ define([
 
     };
 
-    return Workspace;
+    return Workspace.extend({
+
+    }, AntHill.prototype);
 
 });

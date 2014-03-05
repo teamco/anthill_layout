@@ -6,13 +6,14 @@
  */
 
 define([
+    'config/anthill',
     'modules/mvc',
     'plugins/page.data/mvc/page.data.controller',
     'plugins/page.data/mvc/page.data.model',
     'plugins/page.data/mvc/page.data.view',
     'plugins/page.data/mvc/page.data.event.manager',
     'plugins/page.data/mvc/page.data.permission'
-], function definePageData(MVC, Controller, Model, View, EventManager, Permission) {
+], function definePageData(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define PageData
@@ -32,10 +33,7 @@ define([
          * @type {{
          *      plugin: boolean,
          *      html: {
-         *          width: {
-         *              min: number,
-         *              max: number
-         *          },
+         *          style: string,
          *          header: boolean,
          *          footer: boolean,
          *          floating: boolean,
@@ -51,6 +49,7 @@ define([
         var DEFAULTS = {
             plugin: true,
             html: {
+                style: 'default',
                 header: true,
                 footer: false,
                 floating: true,
@@ -108,5 +107,7 @@ define([
         );
     };
 
-    return PageData;
+    return PageData.extend({
+
+    }, AntHill.prototype);
 });

@@ -6,8 +6,9 @@
  */
 
 define([
+    'config/anthill',
     'plugins/plugin'
-], function definePageDataController(PluginBase) {
+], function definePageDataController(AntHill, PluginBase) {
 
     /**
      * Define page.data controller
@@ -64,7 +65,7 @@ define([
              * Define hash
              * @type {string|*|Observer.executeEvent.options.opts.hash}
              */
-            var hash = anthill.base.lib.hash;
+            var hash = this.base.lib.hash;
 
             return hash.hashLength(data || {}) ===
                 hash.hashLength(content || {})
@@ -98,5 +99,5 @@ define([
             }
         }
 
-    }, PluginBase.prototype);
+    }, AntHill.prototype, PluginBase.prototype);
 });

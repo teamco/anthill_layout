@@ -9,6 +9,11 @@ define([
 
 ], function defineWidgetControllerBase() {
 
+    /**
+     * Define Base Widget controller
+     * @class WidgetController
+     * @constructor
+     */
     var WidgetController = function WidgetController() {
 
     };

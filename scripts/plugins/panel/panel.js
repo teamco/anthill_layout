@@ -6,13 +6,14 @@
  */
 
 define([
+    'config/anthill',
     'modules/mvc',
     'plugins/panel/mvc/panel.controller',
     'plugins/panel/mvc/panel.model',
     'plugins/panel/mvc/panel.view',
     'plugins/panel/mvc/panel.event.manager',
     'plugins/panel/mvc/panel.permission'
-], function definePanel(MVC, Controller, Model, View, EventManager, Permission) {
+], function definePanel(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define Panel
@@ -54,6 +55,7 @@ define([
          *              min: number,
          *              max: number
          *          },
+         *          style: string,
          *          header: boolean,
          *          footer: boolean,
          *          floating: boolean,
@@ -74,6 +76,7 @@ define([
                     min: 5,
                     max: 300
                 },
+                style: 'default',
                 header: true,
                 footer: false,
                 floating: false,
@@ -111,7 +114,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                anthill.base.define(opts, {}, true).config,
+                this.base.define(opts, {}, true).config,
                 DEFAULTS
             ],
             components: [
@@ -144,5 +147,8 @@ define([
         );
     };
 
-    return Panel;
+    return Panel.extend({
+
+    }, AntHill.prototype);
+
 });

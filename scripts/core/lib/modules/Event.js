@@ -7,7 +7,8 @@
  */
 
 define([
-], function defineEvent() {
+    'config/anthill'
+], function defineEvent(AntHill) {
 
     /**
      * Event constructor
@@ -27,7 +28,7 @@ define([
             var scope = this.scope,
                 observer = scope.observer,
                 events = this.events,
-                base = anthill.base;
+                base = this.base;
 
             opts = base.define(opts, {}, true);
             if (base.lib.hash.isHashEmpty(opts)) {
@@ -46,7 +47,7 @@ define([
          * @returns {Boolean}
          */
         subscribe: function subscribe(opts, internal) {
-            var base = anthill.base, event;
+            var base = this.base, event;
             opts = base.define(opts, {}, true);
             internal = base.defineBoolean(internal, false, true);
 
@@ -99,7 +100,7 @@ define([
                 method = controller[event];
 
             if (scope.controller.checkCondition({
-                condition: !anthill.base.isFunction(method),
+                condition: !scope.base.isFunction(method),
                 msg: 'Undefined method',
                 type: 'warn',
                 args: [controller, event, on]
@@ -109,6 +110,6 @@ define([
 
             this.$.on([on, event].join('.'), method.bind(controller));
         }
-    });
 
+    }, AntHill.prototype);
 });

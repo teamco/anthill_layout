@@ -5,7 +5,9 @@
  * Time: 12:59 PM
  */
 
-define([], function defineMixin() {
+define([
+    'config/anthill'
+], function defineMixin(AntHill) {
 
     var Mixin = function Mixin() {
 
@@ -31,7 +33,7 @@ define([], function defineMixin() {
         getParent: function getParent() {
             var parent = this.config.parent;
 
-            if (!anthill.base.isDefined(parent)) {
+            if (!this.base.isDefined(parent)) {
                 this.logger.debug('Instance has no property, parent');
             }
 
@@ -104,5 +106,5 @@ define([], function defineMixin() {
             return isInstance;
         }
 
-    });
+    }, AntHill.prototype);
 });

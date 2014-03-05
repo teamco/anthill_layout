@@ -7,7 +7,8 @@
  */
 
 define([
-], function defineBasePage() {
+    'config/anthill'
+], function defineBasePage(AntHill) {
 
     var BasePage = function BasePage() {
 
@@ -81,11 +82,12 @@ define([
         destroyTemplate: function destroyTemplate() {
 
             this.logger.info(
-                anthill.i18n.t('destroy.template'),
+                this.i18n.t('destroy.template'),
                 this.template
             );
 
             delete this.template;
         }
-    });
+
+    }, AntHill.prototype);
 });

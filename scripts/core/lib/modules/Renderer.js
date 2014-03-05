@@ -5,7 +5,9 @@
  * Time: 12:14 AM
  */
 
-define([], function defineRenderer() {
+define([
+    'config/anthill'
+], function defineRenderer(AntHill) {
 
     var Renderer = function Renderer() {
 
@@ -37,7 +39,7 @@ define([], function defineRenderer() {
              * Create UUID
              * @type {String}
              */
-            var uuid = anthill.base.lib.generator.UUID();
+            var uuid = this.base.lib.generator.UUID();
 
             /**
              * Define $input
@@ -64,5 +66,6 @@ define([], function defineRenderer() {
         renderCombobox: function renderCombobox() {
 
         }
-    });
+
+    }, AntHill.prototype);
 });

@@ -6,13 +6,14 @@
  */
 
 define([
+    'config/anthill',
     'modules/mvc',
     'plugins/widgets/youtube/mvc/youtube.controller',
     'plugins/widgets/youtube/mvc/youtube.model',
     'plugins/widgets/youtube/mvc/youtube.view',
     'plugins/widgets/youtube/mvc/youtube.event.manager',
     'plugins/widgets/youtube/mvc/youtube.permission'
-], function defineYoutube(MVC, Controller, Model, View, EventManager, Permission) {
+], function defineYoutube(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define Youtube
@@ -32,6 +33,7 @@ define([
          * @type {{
          *      plugin: boolean,
          *      html: {
+         *          style: string,
          *          header: boolean,
          *          footer: boolean,
          *          floating: boolean,
@@ -47,6 +49,7 @@ define([
         var DEFAULTS = {
             plugin: true,
             html: {
+                style: 'default',
                 header: false,
                 footer: false,
                 padding: {
@@ -104,5 +107,7 @@ define([
         );
     };
 
-    return Youtube;
+    return Youtube.extend({
+
+    }, AntHill.prototype);
 });

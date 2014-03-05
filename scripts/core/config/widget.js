@@ -7,6 +7,7 @@
  */
 
 define([
+    'config/anthill',
     'modules/mvc',
     'api/widget.api',
     'controller/widget.controller',
@@ -16,7 +17,7 @@ define([
     'permission/widget.permission',
     'controller/widget/widget.map',
     'controller/widget/widget.wireframe'
-], function defineWidget(MVC, API, Controller, Model, View, EventManager, Permission, Map, Wireframe) {
+], function defineWidget(AntHill, MVC, API, Controller, Model, View, EventManager, Permission, Map, Wireframe) {
 
     /**
      * Define Widget
@@ -30,7 +31,7 @@ define([
          * Define dom
          * @type {*}
          */
-        this.dom = anthill.base.define(opts.dom, {}, true);
+        this.dom = this.base.define(opts.dom, {}, true);
 
         /**
          * Default config
@@ -187,5 +188,7 @@ define([
         );
     };
 
-    return Widget;
+    return Widget.extend({
+
+    }, AntHill.prototype);
 });

@@ -6,8 +6,9 @@
  */
 
 define([
+    'config/anthill',
     'modules/controller'
-], function definePluginControllerBase(BaseController){
+], function definePluginControllerBase(AntHill, BaseController){
 
     /**
      * Define Plugin controller
@@ -50,7 +51,7 @@ define([
          */
         isDataNotExist: function isDataNotExist() {
 
-            return anthill.base.lib.hash.isHashEmpty(
+            return this.base.lib.hash.isHashEmpty(
                 this.scope.view.elements.content
             );
         },
@@ -60,12 +61,18 @@ define([
          */
         updateTranslations: function updateTranslations(data) {
 
+            /**
+             * Define this reference
+             * @type {AntHill}
+             */
+            var plugin = this;
+
             require([data], function defineEnUs(EnUs){
-                anthill.i18n.updateData(EnUs);
+                plugin.i18n.updateData(EnUs);
             });
         }
 
-    }, BaseController.prototype);
+    }, AntHill.prototype, BaseController.prototype);
 
     /**
      * Copy successRendered
@@ -80,9 +87,10 @@ define([
 
         successRenderedSuper.bind(this)();
 
-        if (anthill.base.isFunction(callback)) {
+        if (typeof(callback) === 'function') {
 
             callback();
+
         } else {
 
             this.logger.warn('Undefined callback');

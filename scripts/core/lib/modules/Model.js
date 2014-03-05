@@ -7,8 +7,9 @@
  */
 
 define([
+    'config/anthill',
     'modules/crud'
-], function initModel(CRUD) {
+], function initModel(AntHill, CRUD) {
 
     /**
      * Define Base model
@@ -88,7 +89,7 @@ define([
          * @returns {string}
          */
         getNameSpace: function getNameSpace(node) {
-            var base = anthill.base,
+            var base = this.base,
                 scope = base.isDefined(node) ?
                     node : this.scope,
                 constructor = base.isFunction(scope) ?
@@ -141,7 +142,7 @@ define([
          * @returns {String}
          */
         getUUID: function getUUID(node) {
-            return anthill.base.isDefined(node) ?
+            return this.base.isDefined(node) ?
                 node.model ?
                     node.model.getUUID() :
                     'Undefined ' + node.constructor.name :
@@ -154,7 +155,7 @@ define([
          * @returns {*}
          */
         getItemByUUID: function getItemByUUID(uuid) {
-            var base = anthill.base,
+            var base = this.base,
                 items = this.getItems(),
                 item = base.lib.hash.isHashKey(items, uuid) ?
                     items[uuid] : undefined;
@@ -203,7 +204,7 @@ define([
          * @returns {*}
          */
         setItem: function setItem(node, force) {
-            var base = anthill.base;
+            var base = this.base;
 
             node = base.define(node, {}, true);
             force = base.defineBoolean(force, false, true);
@@ -246,7 +247,7 @@ define([
          * @returns {boolean}
          */
         checkLimit: function checkLimit(constructor, limit) {
-            var base = anthill.base,
+            var base = this.base,
                 namespace = this.getNameSpace(constructor);
 
             limit = base.isDefined(limit) ?
@@ -273,7 +274,7 @@ define([
                 scope = this.scope,
                 cname = Constructor.name,
                 node = scope[cname.toLowerCase()],
-                base = anthill.base;
+                base = this.base;
 
             this.setConfig(namespace, base.define(scope.config[namespace], {}, true));
 
@@ -339,20 +340,20 @@ define([
             /**
              * Set data
              */
-            data = anthill.base.isDefined(data) ?
+            data = this.base.isDefined(data) ?
                 data : this.setting.load();
 
             if (!data.hasOwnProperty('collector')) {
                 return false;
             }
 
-            if (!anthill.base.isDefined(this.item)) {
+            if (!this.base.isDefined(this.item)) {
                 return data.collector;
             }
 
             var cname = this.item.name,
                 lname = cname.toLowerCase(),
-                collector = anthill.base.define(data.collector, {}, true);
+                collector = this.base.define(data.collector, {}, true);
 
             if (collector.hasOwnProperty(lname)) {
 
@@ -361,7 +362,7 @@ define([
 
                         // Create item
                         this.scope.api['create' + cname](
-                            anthill.base.define(collector[lname][index], {}, true),
+                            this.base.define(collector[lname][index], {}, true),
                             true,
                             true
                         );
@@ -374,6 +375,6 @@ define([
             return data.collector;
         }
 
-    }, CRUD.prototype);
+    }, AntHill.prototype, CRUD.prototype);
 
 });

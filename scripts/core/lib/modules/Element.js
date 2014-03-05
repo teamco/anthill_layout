@@ -7,9 +7,10 @@
  */
 
 define([
+    'config/anthill',
     'lib/packages/rgbcolor',
     'modules/renderer'
-], function defineBaseElement(RGBColor, Renderer) {
+], function defineBaseElement(AntHill, RGBColor, Renderer) {
 
     /**
      * Define Base element
@@ -40,7 +41,7 @@ define([
             this.id = view.renderUUID(opts.id);
             this.events = opts.events;
             this.opacity = opts.opacity || 1.0;
-            this.css = anthill.base.define(opts.css, {}, true);
+            this.css = this.base.define(opts.css, {}, true);
 
             /**
              * Define jQuery element
@@ -61,7 +62,7 @@ define([
                 $element = this.$;
 
             $.each(
-                anthill.base.define(this.events, [], true),
+                this.base.define(this.events, [], true),
                 function each(index, event) {
                     scope.eventmanager.onEvent.bind({
                         scope: scope,
@@ -148,7 +149,7 @@ define([
             function destroyElement($element) {
                 if ($element.length > 0) {
                     this.view.scope.logger.debug(
-                        anthill.i18n.t('element.overwritten').
+                        this.i18n.t('element.overwritten').
                             replace(/\{0\}/, this.constructor.name)
                     );
                     $element.remove();
@@ -157,7 +158,7 @@ define([
 
             destroyElement.bind(this)($('#' + this.id, $container));
 
-            if (anthill.base.defineBoolean(destroy, false, true)) {
+            if (this.base.defineBoolean(destroy, false, true)) {
 
                 destroyElement.bind(this)(
                     $('.' + this.style, $container)
@@ -176,7 +177,7 @@ define([
              * Define base instance
              * @type {Base}
              */
-            var base = anthill.base;
+            var base = this.base;
 
             opts = base.define(opts, {}, true);
 
@@ -231,7 +232,7 @@ define([
                 media: 'all'
             };
 
-            opts = anthill.base.define(opts, {}, true);
+            opts = this.base.define(opts, {}, true);
 
             /**
              * Init Link
@@ -331,7 +332,7 @@ define([
             var scope = this.view.scope,
                 items = 1;
             if (scope.controller.getContainment() && scope.config.html.stretch) {
-                items = anthill.base.lib.hash.hashLength(
+                items = this.base.lib.hash.hashLength(
                     scope.controller.getContainment().items
                 );
 
@@ -426,7 +427,7 @@ define([
          * @returns {Number}
          */
         getCSS: function getCSS(value) {
-            return anthill.base.lib.number.str2float(this.$.css(value));
+            return this.base.lib.number.str2float(this.$.css(value));
         },
 
         /**
@@ -516,5 +517,5 @@ define([
                 this.$.addClass('shadow');
         }
 
-    }, Renderer.prototype);
+    }, AntHill.prototype, Renderer.prototype);
 });
