@@ -18,7 +18,7 @@ define([
     var Model = function Model() {
     };
 
-    return Model.extend({
+    return Model.extend('Model', {
 
         /**
          * Define DOM

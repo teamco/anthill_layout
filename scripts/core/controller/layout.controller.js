@@ -21,7 +21,7 @@ define([
 
     };
 
-    return Controller.extend({
+    return Controller.extend('Controller', {
 
         /**
          * Before nested organizer

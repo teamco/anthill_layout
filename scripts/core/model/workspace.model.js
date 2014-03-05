@@ -25,7 +25,7 @@ define([
         this.item = Page;
     };
 
-    return Model.extend({
+    return Model.extend('Model', {
 
     }, BaseModel.prototype);
 

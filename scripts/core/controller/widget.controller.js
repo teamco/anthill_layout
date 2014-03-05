@@ -23,7 +23,7 @@ define([
     var Controller = function Controller() {
     };
 
-    return Controller.extend({
+    return Controller.extend('Controller', {
 
         /**
          * Get config

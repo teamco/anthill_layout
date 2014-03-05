@@ -17,7 +17,8 @@ define([
     var View = function View() {
     };
 
-    return View.extend({
+    return View.extend('View', {
+
         renderTemplate: function renderTemplate($container) {
             this.elements.$template = new TemplateHTML(this, {
                 id: this.createUUID(),
@@ -29,18 +30,21 @@ define([
             this.pages();
             this.footer(Footer, this.elements.$template);
         },
+
         pages: function pages() {
             this.elements.$pages = new PageContainer(this, {
                 $container: this.elements.$template.$,
                 style: 'pages'
             });
         },
+
         render: function render(widget) {
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
                 widget.view.elements.$widget.getContent()
             );
         }
+
     }, BaseView.prototype)
 
 });

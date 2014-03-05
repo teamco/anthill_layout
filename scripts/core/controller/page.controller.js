@@ -21,7 +21,7 @@ define([
     var Controller = function Controller() {
     };
 
-    return Controller.extend({
+    return Controller.extend('Controller', {
 
         /**
          * Check if allowed to add widget to page

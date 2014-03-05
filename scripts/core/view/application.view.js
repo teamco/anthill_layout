@@ -22,7 +22,7 @@ define([
     var View = function View() {
     };
 
-    return View.extend({
+    return View.extend('View', {
 
         /**
          * Render Application

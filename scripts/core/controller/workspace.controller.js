@@ -18,7 +18,7 @@ define([
     var Controller = function Controller() {
     };
 
-    return Controller.extend({
+    return Controller.extend('Controller', {
 
         /**
          * Set page height

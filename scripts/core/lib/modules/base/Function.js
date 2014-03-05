@@ -17,21 +17,6 @@ define([], function defineBaseFunction() {
 
     BaseFunction.extend({
 
-        defineConstructor: function defineConstructor() {
-
-            /**
-             * Define function
-             * @type {Function}
-             */
-            var fn = new Function(
-                scopeName,
-                [
-                    'return function ', mvcPattern,
-                    '(', scopeName, ') { this.scope = ', scopeName, '; };'
-                ].join('')
-            );
-        }
-
     });
 
     return new BaseFunction();
