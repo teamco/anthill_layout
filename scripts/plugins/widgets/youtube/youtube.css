@@ -1,32 +1,10 @@
-.content .youtube {
+.widget .content .youtube {
     height: 100%;
     width: 100%;
 }
 
-.content .youtube iframe {
+.widget .content .youtube iframe {
     height: 100%;
     width: 100%;
     border: none;
-}
-
-.youtube-modal div.html > ul.youtube {
-    list-style: none;
-    padding: 5px;
-    border: 1px solid #ddd;
-    background-color: #efefef;
-}
-
-.youtube-modal div.html label {
-    font-size: 16px;
-    font-weight: bold;
-    font-variant: small-caps;
-}
-
-.youtube-modal div.html input[type="text"] {
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    margin-left: 10px;
-    width: 70%;
-    height: 22px;
-    line-height: 22px;
 }

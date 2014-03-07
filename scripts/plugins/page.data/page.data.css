@@ -22,3 +22,84 @@ div.pagedata-footer {
     position: absolute;
     bottom: 0;
 }
+
+.modal-dialog.preferences div.html > ul {
+    list-style: none;
+    padding: 5px;
+    border: 1px solid #ddd;
+    background-color: #efefef;
+}
+
+.modal-dialog.preferences div.html label {
+    font-size: 16px;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+.modal-dialog.preferences div.html input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    margin-left: 10px;
+    width: 70%;
+    height: 22px;
+    line-height: 22px;
+}
+
+.modal-dialog.preferences fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+.modal-dialog.preferences fieldset legend {
+    width: 0;
+    padding: 0 3px 0 13px;
+    font-variant: small-caps;
+    font-size: 14px;
+    cursor: pointer;
+    text-transform: lowercase;
+    background: transparent url("../../core/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png") no-repeat -34px -16px;
+}
+
+.modal-dialog.preferences fieldset legend:hover {
+    background-image: url("../../core/stylesheets/ui-lightness/images/ui-icons_ef8c08_256x240.png");
+    background-position: -34px -16px;
+}
+
+.modal-dialog.preferences fieldset legend.open {
+    background-image: url("../../core/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png");
+    background-position: -66px -16px;
+}
+
+.modal-dialog.preferences fieldset legend.open:hover {
+    background-image: url("../../core/stylesheets/ui-lightness/images/ui-icons_ef8c08_256x240.png");
+    background-position: -66px -16px;
+}
+
+.modal-dialog.preferences fieldset ul {
+    display: none;
+    list-style: none;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul.interactions {
+    display: block;
+}
+
+.modal-dialog.preferences fieldset ul.interactions li {
+    width: 50%;
+    float: left;
+    margin-bottom: 5px;
+}
+
+.modal-dialog.preferences fieldset label {
+    text-transform: lowercase;
+    font-variant: small-caps;
+    padding-left: 10px;
+}
+
+.modal-dialog.preferences ul.interactions input[type="text"] {
+    float: right;
+    width: 50%;
+}

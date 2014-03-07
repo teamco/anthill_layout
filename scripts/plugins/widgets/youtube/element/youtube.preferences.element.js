@@ -6,8 +6,9 @@
  */
 
 define([
-    'modules/element'
-], function defineYoutubePreferencesElement(BaseElement) {
+    'modules/element',
+    'plugins/widgets/preferences'
+], function defineYoutubePreferencesElement(BaseElement, BasePreferences) {
 
     /**
      * Define Youtube Preferences Element
@@ -31,42 +32,7 @@ define([
 
     return YoutubePreferencesElement.extend({
 
-        /**
-         * Render data
-         * @param data
-         */
-        renderData: function renderData(data) {
 
-            /**
-             * Define dom nodes
-             * @type {Array}
-             */
-            var nodes = [];
-
-            for (var index in data) {
-
-                if (data.hasOwnProperty(index)) {
-
-                    /**
-                     * Get text field
-                     * @type {*[]}
-                     */
-                    var textField = this.renderTextField({
-                        name: index,
-                        text: index,
-                        placeholder: 'Enter ' + index,
-                        value: data[index]
-                    });
-
-                    nodes.push(
-                        $('<li />').append(textField)
-                    )
-                }
-            }
-
-            this.$.append(nodes);
-        }
-
-    }, BaseElement.prototype);
+    }, BaseElement.prototype, BasePreferences.prototype);
 
 });
