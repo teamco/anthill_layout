@@ -40,9 +40,16 @@ div.pagedata-footer {
     border: 1px solid #ccc;
     border-radius: 2px;
     margin-left: 10px;
-    width: 70%;
+    width: 60%;
     height: 22px;
     line-height: 22px;
+    float: right;
+    transition: width 0.5s;
+    -webkit-transition: width 0.5s;
+}
+
+.modal-dialog.preferences div.html input[type="text"]:focus {
+    width: 80%;
 }
 
 .modal-dialog.preferences fieldset {
@@ -54,28 +61,20 @@ div.pagedata-footer {
 }
 
 .modal-dialog.preferences fieldset legend {
-    width: 0;
-    padding: 0 3px 0 13px;
+    padding: 0 3px;
     font-variant: small-caps;
     font-size: 14px;
     cursor: pointer;
     text-transform: lowercase;
-    background: transparent url("../../core/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png") no-repeat -34px -16px;
-}
-
-.modal-dialog.preferences fieldset legend:hover {
-    background-image: url("../../core/stylesheets/ui-lightness/images/ui-icons_ef8c08_256x240.png");
-    background-position: -34px -16px;
 }
 
 .modal-dialog.preferences fieldset legend.open {
-    background-image: url("../../core/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png");
-    background-position: -66px -16px;
+    color: #ef8c08;
 }
 
+.modal-dialog.preferences fieldset legend:hover,
 .modal-dialog.preferences fieldset legend.open:hover {
-    background-image: url("../../core/stylesheets/ui-lightness/images/ui-icons_ef8c08_256x240.png");
-    background-position: -66px -16px;
+    color: #228ef1;
 }
 
 .modal-dialog.preferences fieldset ul {
@@ -88,18 +87,25 @@ div.pagedata-footer {
 }
 
 .modal-dialog.preferences fieldset ul.interactions li {
-    width: 50%;
+    width: 49%;
     float: left;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
+    margin-right: 2px;
+    background-color: #dedede;
 }
 
 .modal-dialog.preferences fieldset label {
     text-transform: lowercase;
     font-variant: small-caps;
     padding-left: 10px;
+    line-height: 18px;
 }
 
 .modal-dialog.preferences ul.interactions input[type="text"] {
     float: right;
+    width: 50%;
+}
+
+.modal-dialog.preferences ul.interactions input[type="text"]:focus {
     width: 50%;
 }

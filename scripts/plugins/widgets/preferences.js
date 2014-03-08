@@ -59,10 +59,24 @@ define([], function defineBasePreferences() {
         renderInteractions: function renderInteractions(nodes) {
 
             /**
+             * Define controller
+             * @type {controller|*}
+             */
+            var controller = this.view.controller;
+
+            /**
              * Define interactions container
              * @type {*|jQuery}
              */
             var $ul = $('<ul />').addClass('interactions');
+
+            /**
+             * Define dom prefs
+             */
+            var column = controller.getDOMPreferences('column'),
+                row = controller.getDOMPreferences('row'),
+                width = controller.getDOMPreferences('relWidth'),
+                height = controller.getDOMPreferences('relHeight');
 
             nodes.push(
                 $('<li />').append(
@@ -84,10 +98,10 @@ define([], function defineBasePreferences() {
                             }),
 
                         $ul.append([
-                            this.renderPrefs('Cell', 0),
-                            this.renderPrefs('Row', 0),
-                            this.renderPrefs('Width', 0),
-                            this.renderPrefs('Height', 0)
+                            this.renderPrefs('Column', column),
+                            this.renderPrefs('Width', width),
+                            this.renderPrefs('Row', row),
+                            this.renderPrefs('Height', height)
                         ])
                     )
                 )

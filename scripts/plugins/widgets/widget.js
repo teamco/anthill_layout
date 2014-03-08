@@ -182,6 +182,22 @@ define([
 
             prefs[index] = value;
             widget.model.updatePreferences(prefs);
+        },
+
+        /**
+         * Get DOM
+         * @param type
+         * @returns {*}
+         */
+        getDOMPreferences: function getDOMPreferences(type) {
+
+            /**
+             * Define widget
+             * @type {*}
+             */
+            var widget = this.scope.controller.getContainment();
+
+            return (widget.model.getDOM() || {})[type];
         }
 
     });

@@ -33,6 +33,14 @@ define([
         },
 
         /**
+         * Get DOM
+         * @returns {*}
+         */
+        getDOM: function getDOM() {
+            return this.scope.dom;
+        },
+
+        /**
          * Update DOM
          * @param {*} hash
          * @returns {*}
