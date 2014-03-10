@@ -29,30 +29,74 @@ define([
     return Overlapping.extend({
 
         /**
+         * Define exit point
+         * @param opts
+         * @returns {*}
+         * @private
+         */
+        _exitPointOn: function _exitPointOn(opts) {
+
+            if (opts.condition) {
+                this.layout.logger.debug(opts.log);
+                this._nestedOrganizerCallback(opts.callback)
+            }
+
+            return opts.condition;
+        },
+
+        /**
          * Nested organizer
          * @param {{targets: Object, callback: Function}} opts
          * @returns {*}
          */
         nestedOrganizer: function nestedOrganizer(opts) {
+
+            /**
+             * Define layout
+             * @type {callback.layout}
+             */
             var layout = this.layout;
 
             opts = this.base.define(opts, {}, true);
             opts.targets = this.base.define(opts.targets, {}, true);
 
-            if (!layout.controller.isOverlappingAllowed()) {
-                layout.logger.debug('Overlapping is allowed');
-                return this._nestedOrganizerCallback(opts.callback);
-            }
+            /**
+             * Define not organize
+             */
+            var notOrganize = this._exitPointOn({
+                log: 'Do not organize',
+                condition: !opts.organize,
+                callback: opts.callback
+            });
 
-            if (this.base.lib.hash.isHashEmpty(opts.targets)) {
-                layout.logger.debug('Empty targets');
-                return this._nestedOrganizerCallback(opts.callback);
+            /**
+             * Define not overlapping
+             */
+            var notOverlapping = this._exitPointOn({
+                log: 'Overlapping is allowed',
+                condition: !layout.controller.isOverlappingAllowed(),
+                callback: opts.callback
+            });
+
+            /**
+             * Define empty targets
+             */
+            var emptyTargets = this._exitPointOn({
+                log: 'Empty targets',
+                condition: this.base.lib.hash.isHashEmpty(opts.targets),
+                callback: opts.callback
+            });
+
+            if (notOrganize || notOverlapping || emptyTargets) {
+                return false;
             }
 
             layout.logger.debug('Starting nested organizer', opts);
+
             this.nestedOrganizer({
                 targets: this._nestedOrganizerCore(opts.targets),
-                callback: opts.callback
+                callback: opts.callback,
+                organize: opts.organize
             });
         },
 
@@ -163,7 +207,9 @@ define([
 
             if (this.save) {
                 layout.logger.debug('Finish nested organizer');
-                layout.observer.publish(layout.eventmanager.eventList.afterNestedOrganizer);
+                layout.observer.publish(
+                    layout.eventmanager.eventList.afterNestedOrganizer
+                );
             }
 
         },

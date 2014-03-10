@@ -378,7 +378,7 @@ define([
 
         /**
          * Grid sticker on interaction (Drag/Resize)
-         * @param {{type, $source, callback: Function}} opts
+         * @param {{type, $source, callback: Function, organize: Boolean}} opts
          * @param {String} mode
          * @param {{animate: Boolean}} behavior
          */
@@ -403,15 +403,24 @@ define([
 
             if (css.top >= 0 && css.left >= 0) {
 
+                /**
+                 * Define animate duration
+                 * @type {Number}
+                 */
                 var duration = this.animateOnStop(
                         opts.type,
                         behavior.animate
                     ) ? this.duration : 0,
 
+                    /**
+                     * Define callback
+                     * @type {function}
+                     */
                     callback = this._mapStickerCallback.bind({
                         map: this,
                         widget: this.widget,
                         layout: layout,
+                        organize: opts.organize,
                         callback: opts.callback,
                         behavior: behavior,
                         type: opts.type
@@ -438,8 +447,10 @@ define([
          * @private
          */
         _mapStickerCallback: function _mapStickerCallback() {
+
             var hash = {},
-                widget = this.widget;
+                widget = this.widget,
+                layout = this.layout;
 
             if (this.map.overlappingOnStop(
                 this.type,
@@ -454,13 +465,14 @@ define([
 
                 hash[widget.model.getUUID()] = widget;
 
-                this.layout.observer.publish(
-                    this.layout.eventmanager.eventList.beforeNestedOrganizer
+                layout.observer.publish(
+                    layout.eventmanager.eventList.beforeNestedOrganizer
                 );
 
-                this.layout.overlapping.nestedOrganizer({
+                layout.overlapping.nestedOrganizer({
                     targets: hash,
-                    callback: this.callback
+                    callback: this.callback,
+                    organize: this.organize
                 });
             }
         },

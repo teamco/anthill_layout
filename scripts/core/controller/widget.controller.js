@@ -30,6 +30,7 @@ define([
          * @param {string} type
          * @returns {*|{
          *      animate: Boolean,
+         *      organize: Boolean,
          *      [callback]: Function,
          *      $source
          * }}
@@ -50,11 +51,13 @@ define([
                      * Set config
                      * @type {{
                      *      animate: boolean,
+                     *      organize: boolean,
                      *      $source: ($|*|Element.$)
                      * }}
                      */
                     config = {
                         animate: false,
+                        organize: true,
                         $source: this.scope.wireframe.$
                     };
                     break;
@@ -65,12 +68,14 @@ define([
                      * Set config
                      * @type {{
                      *      animate: boolean,
+                     *      organize: boolean,
                      *      $source: ($|*|Element.$),
                      *      callback: (function(this:BaseController)|*)
                      * }}
                      */
                     config = {
                         animate: true,
+                        organize: true,
                         $source: this.scope.view.get$widget(),
                         callback: this._resetInteractions.bind(this)
                     };
@@ -273,17 +278,48 @@ define([
         /**
          * Resize stop
          * @param {String} type
+         * @param {{}} [opts]
+         * @param [args]
          */
-        stopResizable: function stopResizable(type) {
+        stopResizable: function stopResizable(type, opts, args) {
 
             this.logger.debug('Stop resize', arguments);
 
+            /**
+             * Define opts
+             * @type {*}
+             */
+            opts = this.base.define(opts, {}, true);
+
             this.controller.getContainment().controller.downgradeLayer(this);
 
-            this.controller.behaviorMode(
-                this.controller.getInteractionConfig('stop'),
-                type
+            /**
+             * Get config
+             * @type {*|{organize: Boolean, animate: Boolean, callback?: Function, $source}}
+             */
+            var config = this.controller.getInteractionConfig('stop');
+
+            /**
+             * Define organize
+             * @type {boolean}
+             */
+            config.organize = this.base.defineBoolean(
+                opts.organize,
+                config.organize,
+                true
             );
+
+            /**
+             * Define animate
+             * @type {boolean}
+             */
+            config.animate = this.base.defineBoolean(
+                opts.animate,
+                config.animate,
+                true
+            );
+
+            this.controller.behaviorMode(config, type);
         },
 
         /**
@@ -460,11 +496,17 @@ define([
          */
         adoptDimensions: function adoptDimensions(organize, animate) {
 
-            this.controller.behaviorMode({
+            /**
+             * Define controller
+             * @type {controller|*}
+             */
+            var controller = this.controller;
+
+            controller.behaviorMode({
                 organize: organize,
                 animate: animate,
                 $source: this.view.get$widget(),
-                callback: this.controller._resetInteractions.bind(this.controller)
+                callback: controller._resetInteractions.bind(controller)
             }, 'resizestop');
         },
 
