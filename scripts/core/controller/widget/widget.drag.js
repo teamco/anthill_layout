@@ -45,7 +45,7 @@ define([
             if (scope.permission.authorizedFunctionCall(this.init)) {
                 this.$scope.draggable(
                     $.extend({
-                        containment: scope.controller.get$page(),
+                        containment: scope.controller.get$page().$,
                         create: this.create.bind(this),
                         start: this.start.bind(this),
                         stop: this.stop.bind(this),

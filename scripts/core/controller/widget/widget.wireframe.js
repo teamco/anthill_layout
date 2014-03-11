@@ -120,7 +120,7 @@ define([
 
             return $(
                 this.selector,
-                this.widget.controller.get$page()
+                this.widget.controller.get$page().$
             );
         },
 
@@ -130,7 +130,9 @@ define([
         moveToCurrentPage: function moveToCurrentPage() {
 
             if (this.getWireFrame().length === 0) {
-                this.$.appendTo(this.widget.controller.get$page());
+                this.$.appendTo(
+                    this.widget.controller.get$page().$
+                );
             }
         },
 
