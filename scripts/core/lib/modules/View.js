@@ -7,35 +7,49 @@
  */
 
 define([
+    'config/anthill',
     'element/modal.element'
-], function defineBaseView(Modal) {
+], function defineBaseView(AntHill, Modal) {
 
     var BaseView = function BaseView() {
 
     };
 
     return BaseView.extend({
+
+        /**
+         * Get config HTML
+         * @param key
+         * @returns {*}
+         */
         getConfigHTML: function getConfigHTML(key) {
-            var html = this.scope.config.html || {};
-            if (anthill.base.isDefined(key)) {
-                return html[key];
-            }
-            return html;
+
+            /**
+             * Define model
+             * @type {{}}
+             */
+            var model = this.scope.model;
+
+            return key ? model.getConfig('html/' + key) :
+                model.getConfig('html');
         },
+
         createStyle: function createStyle() {
             return [
                 this.getContainerClassName(),
                 this.getConfigHTML('style')
             ].join(' ');
         },
+
         createUUID: function createUUID() {
             return [
                 this.scope.model.getUUID(),
                 this.getContainerClassName()
             ].join('-');
         },
+
         renderUUID: function renderUUID(id) {
-            return id || (anthill.base.lib.generator.UUID() +
+            return id || (this.base.lib.generator.UUID() +
                 this.constructor.name.toDash());
         },
 
@@ -50,6 +64,7 @@ define([
         getContainerClassName: function getContainerClassName() {
             return this.getConfigHTML().selector.replace(/\./, '');
         },
+
         getContainerSelector: function getContainerSelector() {
             var html = this.getConfigHTML();
             return $(html.container).children([
@@ -68,7 +83,7 @@ define([
             if (this.elements[$element] instanceof Constructor) {
 
                 this.scope.logger.debug(
-                    anthill.i18n.t('element.already.rendered').
+                    this.i18n.t('element.already.rendered').
                         replace(/\{0\}/, Constructor.name)
                 );
 
@@ -85,7 +100,7 @@ define([
          */
         isCachedItems: function isCachedItems(force) {
 
-            return anthill.base.lib.hash.hashLength(
+            return this.base.lib.hash.hashLength(
                     this.elements.items || {}
             ) > 0 && !force;
         },
@@ -152,6 +167,11 @@ define([
          * }} opts
          */
         modalDialog: function modalDialog(opts) {
+
+            /**
+             * Define $modal
+             * @type {element.modal.element}
+             */
             this.elements.$modal = new Modal(this, {
                 style: opts.style,
                 $container: opts.$container,
@@ -179,14 +199,17 @@ define([
          * @param {*} store
          */
         button: function button(Button, opts, store) {
-            $.each(anthill.base.define(opts, {}, true), function each(i, button) {
-                store[i] = new Button(this, {
-                    $container: button.$container,
-                    style: i.toDash(),
-                    text: button.text,
-                    events: button.events
-                });
-            }.bind(this));
+            $.each(
+                this.base.define(opts, {}, true),
+                function each(i, button) {
+                    store[i] = new Button(this, {
+                        $container: button.$container,
+                        style: i.toDash(),
+                        text: button.text,
+                        events: button.events
+                    });
+                }.bind(this)
+            );
         },
 
         /**
@@ -203,5 +226,6 @@ define([
                 events: opts.events
             });
         }
-    });
+
+    }, AntHill.prototype);
 });

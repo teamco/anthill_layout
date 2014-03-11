@@ -28,7 +28,7 @@ define([
 
     };
 
-    return Model.extend({
+    return Model.extend('Model', {
 
         /**
          * Define global setting

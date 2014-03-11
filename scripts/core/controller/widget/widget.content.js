@@ -5,10 +5,16 @@
  * Time: 5:40 PM
  */
 
-define([], function defineWidgetContent(){
+define([
+    'config/anthill'
+], function defineWidgetContent(AntHill) {
 
+    /**
+     * Define WidgetContent
+     * @class WidgetContent
+     * @constructor
+     */
     var WidgetContent = function WidgetContent() {
-
     };
 
     return WidgetContent.extend({
@@ -19,28 +25,68 @@ define([], function defineWidgetContent(){
         loadContent: function loadContent() {
 
             /**
-             * Define $widget
-             * @type {element.widget.widget.element}
+             * Define widget instance
              */
-            var elements = this.view.elements;
+            var widget = this;
 
             /**
-             * Define resource url
+             * Get resource
+             * @type {*}
+             */
+            var resource = widget.model.getConfig('preferences/resource');
+
+            if (!this.base.isString(resource)) {
+                widget.logger.error('Unable to load resource');
+                return false;
+            }
+
+            /**
+             * Define resource path
              * @type {string}
              */
-            var resource = elements.$widget.widgetPath +
-                ('/' + this.resource).repeat(2) + '.js';
+            var path = [
+                '../../scripts/plugins/widgets' ,
+                ('/' + resource).repeat(2),
+                '.js'
+            ].join('');
 
-            require([resource], function getDependencies(Content){
+            require([path], function getDependencies(Content) {
 
-                var content = new Content();
-
-                elements.$content.$.html(content.getData());
-
+                widget.observer.publish(
+                    widget.eventmanager.eventList.setContent,
+                    Content
+                );
             });
+        },
 
+        /**
+         * Set content
+         * @param {Function} Content
+         */
+        setContent: function setContent(Content) {
+
+            /**
+             * Define content
+             * @type {Content}
+             */
+            var content = new Content(this);
+
+            this.logger.debug('Set content', content);
+
+            /**
+             * Define content
+             * @type {Content}
+             */
+            this.content = content;
+        },
+
+        /**
+         * Get content
+         * @returns {Content}
+         */
+        getContent: function getContent() {
+            return this.scope.content;
         }
 
-    });
-
+    }, AntHill.prototype);
 });

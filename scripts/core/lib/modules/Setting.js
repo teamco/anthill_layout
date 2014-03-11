@@ -1,5 +1,6 @@
 define([
-], function defineSetting() {
+    'config/anthill'
+], function defineSetting(AntHill) {
 
     /**
      * Define Setting
@@ -61,7 +62,7 @@ define([
              */
             var storage = this.load();
 
-            if (!anthill.base.isDefined(storage)) {
+            if (!this.base.isDefined(storage)) {
 
                 this.save();
 
@@ -72,13 +73,13 @@ define([
                 storage = this.load();
             }
 
-            if (!anthill.base.isDefined(storage.token)) {
+            if (!this.base.isDefined(storage.token)) {
 
                 /**
                  * Define token
                  * @type {String}
                  */
-                this.token = anthill.base.lib.generator.UUID();
+                this.token = this.base.lib.generator.UUID();
 
                 this.save(storage);
             }
@@ -109,12 +110,12 @@ define([
              * Init opts
              * @type {*}
              */
-            opts = anthill.base.define(opts, {}, true);
+            opts = this.base.define(opts, {}, true);
 
             var data = this.load(),
-                _dt = anthill.base.lib.datetime;
+                _dt = this.base.lib.datetime;
 
-            if (anthill.base.isDefined(data)) {
+            if (this.base.isDefined(data)) {
 
                 /**
                  * Load created at
@@ -170,5 +171,6 @@ define([
 
             return data;
         }
-    });
+
+    }, AntHill.prototype);
 });

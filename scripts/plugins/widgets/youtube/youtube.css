@@ -1,0 +1,10 @@
+.widget .content .youtube {
+    height: 100%;
+    width: 100%;
+}
+
+.widget .content .youtube iframe {
+    height: 100%;
+    width: 100%;
+    border: none;
+}

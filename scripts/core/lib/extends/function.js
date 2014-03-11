@@ -151,15 +151,26 @@
      * Extend Function prototype
      */
     Function.method('extend', function extend() {
+
         var i = 0, l = arguments.length;
 
         function extendMethod(node) {
-            if (typeof node === 'function') {
+            if (typeof(node) === 'function') {
+
                 var self = {};
+
                 $.extend(true, self, this.prototype);
                 this.inherits(node);
                 $.extend(true, this.prototype, self);
+
+            } else if (typeof(node) === 'string') {
+
+                if (this.name.length === 0) {
+                    this.prototype.name = this.name.set(node);
+                }
+
             } else {
+
                 $.extend(true, this.prototype, node);
             }
         }

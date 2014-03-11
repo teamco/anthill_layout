@@ -5,8 +5,16 @@
  * Time: 10:28 PM
  */
 
-define(['modules/controller'], function definePluginBase(BaseController){
+define([
+    'config/anthill',
+    'modules/controller'
+], function definePluginControllerBase(AntHill, BaseController){
 
+    /**
+     * Define Plugin controller
+     * @class PluginController
+     * @constructor
+     */
     var PluginController = function PluginController() {
 
     };
@@ -14,16 +22,57 @@ define(['modules/controller'], function definePluginBase(BaseController){
     PluginController.extend({
 
         /**
+         * Get Workspace
+         * @returns {*|Workspace}
+         */
+        getWorkspace: function getWorkspace() {
+            return this.root().controller.getCurrentItem();
+        },
+
+        /**
+         * Get Page
+         * @returns {*|Page}
+         */
+        getPage: function getPage() {
+            return this.getWorkspace().controller.getCurrentItem();
+        },
+
+        /**
+         * Get Widget
+         * @returns {*|Widget}
+         */
+        getWidget: function getWidget() {
+            return this.getPage().controller.getCurrentItem();
+        },
+
+        /**
+         * Check if data was existing
+         * @returns {boolean}
+         */
+        isDataNotExist: function isDataNotExist() {
+
+            return this.base.lib.hash.isHashEmpty(
+                this.scope.view.elements.content
+            );
+        },
+
+        /**
          * Update translations
          */
         updateTranslations: function updateTranslations(data) {
 
+            /**
+             * Define this reference
+             * @type {AntHill}
+             */
+            var plugin = this;
+
             require([data], function defineEnUs(EnUs){
-                anthill.i18n.updateData(EnUs);
+                plugin.i18n.updateData(EnUs);
             });
         }
 
-    }, BaseController.prototype);
+    }, AntHill.prototype, BaseController.prototype);
 
     /**
      * Copy successRendered
@@ -38,9 +87,10 @@ define(['modules/controller'], function definePluginBase(BaseController){
 
         successRenderedSuper.bind(this)();
 
-        if (anthill.base.isFunction(callback)) {
+        if (typeof(callback) === 'function') {
 
             callback();
+
         } else {
 
             this.logger.warn('Undefined callback');

@@ -6,7 +6,8 @@
  */
 
 define([
-], function defineWidgetWireframe() {
+    'config/anthill'
+], function defineWidgetWireframe(AntHill) {
 
     /**
      * Define Widget Wireframe
@@ -164,11 +165,11 @@ define([
          */
         init: function init(opts) {
 
-            opts = anthill.base.define(opts, {}, true);
+            opts = this.base.define(opts, {}, true);
 
             this.defineHolder(opts).show();
             this.$.css(opts.style);
         }
 
-    });
+    }, AntHill.prototype);
 });

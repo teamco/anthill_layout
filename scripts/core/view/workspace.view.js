@@ -17,7 +17,8 @@ define([
     var View = function View() {
     };
 
-    return View.extend({
+    return View.extend('View', {
+
         renderWorkspace: function renderWorkspace() {
             this.elements.$workspace = new Workspace(this, {
                 id: this.createUUID(),
@@ -29,14 +30,18 @@ define([
 
             this.elements.$workspace.stretch();
         },
+
         pages: function pages() {
             this.elements.$pages = new PageContainer(this, {
                 $container: this.elements.$workspace.$,
                 style: 'pages'
             });
         },
+
         render: function render() {
-            this.scope.observer.publish(this.scope.eventmanager.eventList.successRendered);
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered
+            );
         }
     }, BaseView.prototype)
 

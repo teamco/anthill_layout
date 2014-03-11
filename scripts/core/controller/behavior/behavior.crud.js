@@ -6,7 +6,8 @@
  */
 
 define([
-], function defineBaseCrud() {
+    'config/anthill'
+], function defineBaseCrud(AntHill) {
 
     /**
      * Define Base CRUD
@@ -68,12 +69,12 @@ define([
             var scope = this.scope,
                 $modal = scope.view.elements.$modal;
 
-            if (anthill.base.isDefined($modal)) {
+            if (this.base.isDefined($modal)) {
                 items = $modal.items;
                 $modal.selfDestroy();
             }
 
-            var count = anthill.base.lib.hash.hashLength(items || {});
+            var count = this.base.lib.hash.hashLength(items || {});
 
             if (this.checkCondition({
                 condition: count === 0,
@@ -102,10 +103,10 @@ define([
         approveItemDestroy: function approveItemDestroy(item, count) {
             var scope = this.scope;
 
-            count = anthill.base.define(count, 1, true);
+            count = this.base.define(count, 1, true);
 
             if (this.checkCondition({
-                condition: !anthill.base.isDefined(item),
+                condition: !this.base.isDefined(item),
                 type: 'warn',
                 msg: 'Undefined item'
             })) {
@@ -140,9 +141,9 @@ define([
          * @param {Boolean} [silent]
          */
         destroyItems: function destroyItems(items, silent) {
-            items = anthill.base.define(items, this.items);
+            items = this.base.define(items, this.items);
 
-            anthill.base.defineBoolean(silent, false, true) ?
+            this.base.defineBoolean(silent, false, true) ?
                 this.controller.approveItemsDestroy(items) :
                 this.view.destroyWidgetsModalDialog(items);
         },
@@ -177,11 +178,11 @@ define([
          */
         _afterCrud: function _afterCrud() {
 
-            if (anthill.base.isFunction(this.updateDebugger)) {
+            if (this.base.isFunction(this.updateDebugger)) {
                 this.updateDebugger();
             }
         }
 
-    });
+    }, AntHill.prototype);
 
 });

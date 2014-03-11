@@ -12,7 +12,7 @@
 }
 
 .modal-dialog h2.header {
-    height: 20px;
+    height: 24px;
     font-size: 12px;
     font-weight: normal;
     padding: 4px 8px 0;
@@ -76,7 +76,9 @@
 
 .modal-dialog ul.actions li.close-x {
     background-position-x: -99px;
-    background-position-y: -131px;
+    background-position-y: -132px;
+    display: block;
+    margin-top: -1px;
 }
 
 .modal-dialog ul.buttons {

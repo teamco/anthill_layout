@@ -5,7 +5,8 @@
  * Time: 9:32 PM
  */
 define([
-], function defineDebuggerConfig() {
+    'config/anthill'
+], function defineDebuggerConfig(AntHill) {
 
     /**
      * Define Debugger Config
@@ -53,10 +54,10 @@ define([
          * Validate required scopes
          */
         validateScopes: function validateScopes() {
-            var hash = anthill.base.define(this.bugger.scopes, {}, true),
+            var hash = this.base.define(this.bugger.scopes, {}, true),
                 scopes = ['Workspace', 'Page', 'Widget'];
 
-            if (anthill.base.lib.hash.hashLength(hash) < scopes.length) {
+            if (this.base.lib.hash.hashLength(hash) < scopes.length) {
                 $.each(scopes, function each(index, value) {
                     this.bugger.scope.controller.checkCondition({
                         condition: !hash.hasOwnProperty(value.toLowerCase()),
@@ -119,6 +120,6 @@ define([
         }
 
 
-    });
+    }, AntHill.prototype);
 
 });

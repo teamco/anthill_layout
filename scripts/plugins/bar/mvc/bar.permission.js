@@ -8,7 +8,7 @@
 
 define([
     'modules/permission'
-], function defineGalleryPermission(BasePermission) {
+], function defineBarPermission(BasePermission) {
 
     /**
      * Define Permissions

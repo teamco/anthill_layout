@@ -24,25 +24,30 @@ define([
             destroy: true
         });
 
-        this.attachEvent(opts.path);
+        this.attachEvent(opts.resource);
 
         return this;
     };
 
     return BarContentElement.extend({
 
-        // TODO Redesign
-        attachEvent: function attachEvent(path) {
+        /**
+         * Open tab
+         * @param resource
+         */
+        attachEvent: function attachEvent(resource) {
 
             /**
              * Define panel instance
              */
-            var panel = this.view.scope.containment;
+            var panel = this.view.scope.containment,
+                publish = panel.observer.publish.bind(panel.observer),
+                event = panel.eventmanager.eventList;
 
-            this.$.on('click.toggle', function () {
+            this.$.on('click.toggle', function clickToggle() {
                     panel.view.controller.isOpened() ?
-                        panel.observer.publish(panel.eventmanager.eventList.closePanel) :
-                        panel.observer.publish(panel.eventmanager.eventList.openPanel);
+                        publish(event.closePanel, resource) :
+                        publish(event.openPanel, resource);
                 }
             )
 

@@ -14,6 +14,7 @@
  */
 
 define([
+    'config/anthill',
     'modules/mvc',
     'api/template.api',
     'config/layout',
@@ -22,7 +23,7 @@ define([
     'view/template.view',
     'event/template.event.manager',
     'permission/template.permission'
-], function defineTemplate(MVC, API, Layout, Controller, Model, View, EventManager, Permission) {
+], function defineTemplate(AntHill, MVC, API, Layout, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define template
@@ -83,5 +84,7 @@ define([
 
     };
 
-    return Template;
+    return Template.extend({
+
+    }, AntHill.prototype);
 });

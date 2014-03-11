@@ -17,6 +17,11 @@ define([
     'plugins/panel/element/panel.element'
 ], function definePanelView(BaseView, Header, Footer, PanelContainer, PanelContent, PanelContentContainer, PanelTab, Panel) {
 
+    /**
+     * Define view
+     * @class View
+     * @constructor
+     */
     var View = function View() {
     };
 

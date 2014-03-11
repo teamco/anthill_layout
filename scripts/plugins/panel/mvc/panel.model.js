@@ -61,6 +61,28 @@ define([
         },
 
         /**
+         * Get module index
+         * @param resource
+         * @returns {number}
+         */
+        getIndex: function getIndex(resource) {
+
+            /**
+             * Define local instance of modules
+             * @type {Array}
+             */
+            var modules = this.modules;
+
+            for (var i = 0, l = modules.length; i < l; i++) {
+                if (resource.toLowerCase() === modules[i].module.constructor.name.toLowerCase()) {
+                    return i;
+                }
+            }
+
+            this.scope.logger.error('Undefined index');
+        },
+
+        /**
          * Get package by index
          * @param {number} [index]
          * @returns {*}

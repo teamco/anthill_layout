@@ -7,6 +7,7 @@
  */
 
 define([
+    'config/anthill',
     'modules/mvc',
     'api/page.api',
     'controller/page.controller',
@@ -16,7 +17,7 @@ define([
     'config/layout',
     'config/template',
     'permission/page.permission'
-], function definePage(MVC, API, Controller, Model, View, EventManager, Layout, Template, Permission) {
+], function definePage(AntHill, MVC, API, Controller, Model, View, EventManager, Layout, Template, Permission) {
 
     /**
      * Define Page
@@ -100,6 +101,7 @@ define([
          *          addNewTo: string
          *      },
          *      html: {
+         *          style: string,
          *          header: boolean,
          *          footer: boolean,
          *          stretch: boolean,
@@ -158,6 +160,7 @@ define([
                 addNewTo: this.ORGANIZE_MODES.row
             },
             html: {
+                style: 'default',
                 header: false,
                 footer: false,
                 stretch: true,
@@ -220,5 +223,7 @@ define([
 
     };
 
-    return Page;
+    return Page.extend({
+
+    }, AntHill.prototype);
 });

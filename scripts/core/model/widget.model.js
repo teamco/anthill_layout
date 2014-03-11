@@ -18,12 +18,12 @@ define([
     var Model = function Model() {
     };
 
-    return Model.extend({
+    return Model.extend('Model', {
 
         /**
-         * Save
+         * Define DOM
          */
-        save: function save() {
+        defineDOM: function defineDOM() {
 
             /**
              * Update DOM
@@ -33,24 +33,65 @@ define([
         },
 
         /**
+         * Get DOM
+         * @returns {*}
+         */
+        getDOM: function getDOM() {
+            return this.scope.dom;
+        },
+
+        /**
          * Update DOM
          * @param {*} hash
          * @returns {*}
          */
         updateDOM: function updateDOM(hash) {
+
             var scope = this.scope;
+
             scope.logger.debug('Update DOM', hash);
             $.extend(true, scope.dom, hash);
+
             return scope;
         },
 
+        /**
+         * Get attributes
+         * @returns {*}
+         */
         getAttributes: function getAttributes() {
             return this.getConfig('attributes');
         },
 
+        /**
+         * Set attributes
+         * @param key
+         * @param value
+         */
         setAttributes: function setAttributes(key, value) {
             this.scope.logger.debug('Set widget attributes', arguments);
             this.getAttributes()[key] = value;
+        },
+
+        /**
+         * Update prefs
+         * @param data
+         */
+        updatePreferences: function updatePreferences(data) {
+
+            /**
+             * Get prefs
+             * @type {*}
+             */
+            var preferences = this.getConfig('preferences');
+
+            for (var index in data) {
+
+                if (data.hasOwnProperty(index)) {
+
+                    preferences[index] = data[index];
+                }
+            }
         }
 
     }, BaseModel.prototype);

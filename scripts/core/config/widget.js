@@ -7,6 +7,7 @@
  */
 
 define([
+    'config/anthill',
     'modules/mvc',
     'api/widget.api',
     'controller/widget.controller',
@@ -16,7 +17,7 @@ define([
     'permission/widget.permission',
     'controller/widget/widget.map',
     'controller/widget/widget.wireframe'
-], function defineWidget(MVC, API, Controller, Model, View, EventManager, Permission, Map, Wireframe) {
+], function defineWidget(AntHill, MVC, API, Controller, Model, View, EventManager, Permission, Map, Wireframe) {
 
     /**
      * Define Widget
@@ -30,49 +31,53 @@ define([
          * Define dom
          * @type {*}
          */
-        this.dom = anthill.base.define(opts.dom, {}, true);
+        this.dom = this.base.define(opts.dom, {}, true);
 
         /**
          * Default config
          * @type {{
-         *  order: number,
-         *  html: {
-         *      header: boolean,
-         *      footer: boolean,
-         *      frameLess: boolean,
-         *      opacity: number
-         *  },
-         *  attributes: {
-         *      freeze: boolean,
-         *      magnet: string,
-         *      overlapping: boolean,
-         *      alwaysTop: boolean
-         *  },
-         *  maximize: boolean,
-         *  events: {
-         *      draggable: {
-         *          snap: boolean,
-         *          iframeFix: boolean,
-         *          axis: boolean,
-         *          scroll: boolean,
-         *          connectToSortable: boolean,
-         *          cursor: string,
-         *          appendTo: string
+         *      preferences: {
+         *          resource: string
          *      },
-         *      resizable: {
-         *          iframeFix: boolean,
-         *          handles: string
+         *      order: number,
+         *      html: {
+         *          header: boolean,
+         *          footer: boolean,
+         *          frameLess: boolean,
+         *          opacity: number
          *      },
-         *      droppable: {
-         *          activeClass: string,
-         *          hoverClass: string,
-         *          greedy: boolean,
-         *          tolerance: string
+         *      attributes: {
+         *          freeze: boolean,
+         *          magnet: string,
+         *          overlapping: boolean,
+         *          alwaysTop: boolean
+         *      },
+         *      maximize: boolean,
+         *      events: {
+         *          draggable: {
+         *              snap: boolean,
+         *              iframeFix: boolean,
+         *              axis: boolean,
+         *              scroll: boolean,
+         *              connectToSortable: boolean,
+         *              cursor: string,
+         *              appendTo: string
+         *          },
+         *          resizable: {
+         *              iframeFix: boolean,
+         *              handles: string
+         *          },
+         *          droppable: {
+         *              activeClass: string,
+         *              hoverClass: string,
+         *              greedy: boolean,
+         *              tolerance: string
+         *          }
          *      }
-         *  }
          * }}
          */
         var DEFAULTS = {
+            preferences: opts.preferences || {},
             limit: false,
             order: 1,
             html: {
@@ -115,12 +120,6 @@ define([
                 }
             }
         };
-
-        /**
-         * Define resource
-         * @type {resource|*|plugins.plugin.addWidget.resource}
-         */
-        this.resource = opts.resource;
 
         /**
          * Init observer
@@ -178,10 +177,18 @@ define([
          */
         this.interactions = {};
 
+        /**
+         * Init content
+         * @type {undefined}
+         */
+        this.content = undefined;
+
         this.observer.publish(
             this.eventmanager.eventList.successCreated
         );
     };
 
-    return Widget;
+    return Widget.extend({
+
+    }, AntHill.prototype);
 });

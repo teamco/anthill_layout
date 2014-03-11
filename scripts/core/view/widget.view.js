@@ -7,12 +7,13 @@
  */
 
 define([
+    'config/anthill',
     'modules/view',
     'element/header.element',
     'element/footer.element',
     'element/widget/widget.element.content',
     'element/widget/widget.element'
-], function defineWidgetView(BaseView, Header, Footer, Content, Widget) {
+], function defineWidgetView(AntHill, BaseView, Header, Footer, Content, Widget) {
 
     /**
      * Define Widget View
@@ -22,7 +23,7 @@ define([
     var View = function View() {
     };
 
-    return View.extend({
+    return View.extend('View', {
 
         /**
          * Render widget
@@ -53,7 +54,7 @@ define([
             this.elements.$content = new Content(this, {
                 style: 'content',
                 css: {
-                    background: anthill.base.lib.generator.randomColor()
+                    background: this.base.lib.generator.randomColor()
                 },
                 $container: this.elements.$widget.$
             });
@@ -74,6 +75,6 @@ define([
             return this.elements.$widget.$;
         }
 
-    }, BaseView.prototype)
+    }, AntHill.prototype, BaseView.prototype)
 
 });

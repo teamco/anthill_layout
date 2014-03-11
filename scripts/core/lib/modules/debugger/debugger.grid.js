@@ -4,7 +4,9 @@
  * Date: 5/6/13
  * Time: 9:22 PM
  */
-define([], function defineDebuggerGrid() {
+define([
+    'config/anthill'
+], function defineDebuggerGrid(AntHill) {
 
     /**
      * Define Debugger Grid
@@ -66,7 +68,7 @@ define([], function defineDebuggerGrid() {
          */
          visibility: function visibility(visible) {
 
-            if (anthill.base.isDefined(visible)) {
+            if (this.base.isDefined(visible)) {
                 this.visible = visible;
             }
 
@@ -192,7 +194,7 @@ define([], function defineDebuggerGrid() {
          * @param {{left, top, [width], [height], text}}opts
          */
         renderPlaceHolder: function renderPlaceHolder(selector, opts) {
-            opts = anthill.base.define(opts, {}, true);
+            opts = this.base.define(opts, {}, true);
             $(selector).append(
                 $('<div />').css({
                     left: opts.left,
@@ -202,6 +204,7 @@ define([], function defineDebuggerGrid() {
                 }).text(opts.text)
             ).show()
         }
-    });
+
+    }, AntHill.prototype);
 
 });

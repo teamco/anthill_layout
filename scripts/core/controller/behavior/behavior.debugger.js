@@ -6,7 +6,8 @@
  */
 
 define([
-], function defineBaseDebugger() {
+    'config/anthill'
+], function defineBaseDebugger(AntHill) {
 
     /**
      * Define Base Debugger
@@ -80,13 +81,13 @@ define([
                 cname = scope.constructor.name.toLowerCase(),
                 debug = scope.controller.root().bugger;
 
-            if (!anthill.base.isDefined(debug)) {
+            if (!this.base.isDefined(debug)) {
                 return false;
             }
 
             debug[cname].updateItems(scope);
         }
 
-    });
+    }, AntHill.prototype);
 
 });

@@ -7,9 +7,10 @@
  */
 
 define([
+    'config/anthill',
     'modules/observer',
     'modules/logger'
-], function defineMVC(Observer, Logger) {
+], function defineMVC(AntHill, Observer, Logger) {
 
     /**
      * Define MVC
@@ -89,26 +90,26 @@ define([
          * Reset opts
          * @type {*}
          */
-        opts = anthill.base.define(opts, {}, true);
+        opts = this.base.define(opts, {}, true);
 
         /**
          * Apply Configure
          * Define selfConfig
          * @type {*}
          */
-        var selfConfig = anthill.base.define(opts.config[0], {}, true);
+        var selfConfig = this.base.define(opts.config[0], {}, true);
 
         /**
          * Define selfDefaults
          * @type {*}
          */
-        var selfDefaults = anthill.base.define(opts.config[1], {}, true);
+        var selfDefaults = this.base.define(opts.config[1], {}, true);
 
         /**
          * Define scope config
          * @type {mvc.scope.config}
          */
-        this.scope.config = anthill.base.lib.hash.extendHash(
+        this.scope.config = this.base.lib.hash.extendHash(
             selfConfig,
             selfDefaults
         );
@@ -117,7 +118,7 @@ define([
          * Define mvc components
          * @type {mvc.components}
          */
-        this.components = anthill.base.define(
+        this.components = this.base.define(
             opts.components,
             [opts.components],
             true
@@ -127,19 +128,19 @@ define([
          * Define mvc config
          * @type {mvc.config}
          */
-        this.config = anthill.base.define(selfConfig, {}, true);
+        this.config = this.base.define(selfConfig, {}, true);
 
         /**
          * Define mvc force creating components
          * @type {Boolean}
          */
-        this.force = anthill.base.defineBoolean(opts.force, false, true);
+        this.force = this.base.defineBoolean(opts.force, false, true);
 
         /**
          * Define mvc render
          * @type {Boolean}
          */
-        this.render = anthill.base.defineBoolean(opts.render, true, true);
+        this.render = this.base.defineBoolean(opts.render, true, true);
 
         var config = {},
             scope = this.scope;
@@ -230,7 +231,7 @@ define([
             var scope = this.scope,
                 config = scope.config;
 
-            if (anthill.base.isDefined(config.containment)) {
+            if (this.base.isDefined(config.containment)) {
 
                 /**
                  * Define parent node
@@ -248,7 +249,7 @@ define([
          */
         defineMVC: function defineMVC(mvcPattern, force) {
 
-            var base = anthill.base,
+            var base = this.base,
                 name = base.isString(mvcPattern) ?
                     mvcPattern :
                     mvcPattern.name.toLowerCase(),
@@ -256,26 +257,41 @@ define([
 
             if (base.isFunction(mvcPattern)) {
 
+                /**
+                 * Define pattern
+                 * @type {mvcPattern}
+                 */
                 scope[name] = new mvcPattern();
 
             } else {
 
                 if (force) {
 
+                    /**
+                     * Define scope name
+                     * @type {string}
+                     */
                     var scopeName = scope.constructor.name.toLowerCase();
 
+                    /**
+                     * Define function
+                     * @type {Function}
+                     */
                     var fn = new Function(
                         scopeName,
                         [
-                            'return function ', mvc,
+                            'return function ', mvcPattern,
                             '(', scopeName, ') { this.scope = ', scopeName, '; };'
                         ].join('')
                     );
 
                     scope[name.toLowerCase()] = new (new fn(scope))(scope);
 
+                    /**
+                     * Set pattern
+                     * @type {constructor|r.constructor|constructor.constructor|number|Function}
+                     */
                     mvcPattern = scope[name.toLowerCase()].constructor;
-
                 }
             }
 
@@ -291,7 +307,7 @@ define([
                 i = 0, l = relations.length,
                 from, to,
                 scope = this.scope,
-                base = anthill.base;
+                base = this.base;
 
             for (i; i < l; i += 1) {
                 var relation = relations[i];
@@ -316,7 +332,7 @@ define([
             for (i; i < l; i += 1) {
                 var mvc = this.components[i];
 
-                if (!anthill.base.isDefined(mvc)) {
+                if (!this.base.isDefined(mvc)) {
                     return false;
                 }
 
@@ -342,7 +358,7 @@ define([
          * Apply config
          */
         applyConfig: function applyConfig() {
-            var base = anthill.base,
+            var base = this.base,
                 scope = this.scope,
                 timestamp = base.lib.datetime.timestamp(
                     this.config.timestamp
@@ -364,7 +380,7 @@ define([
         applyEventManager: function applyEventManager() {
 
             var scope = this.scope,
-                base = anthill.base,
+                base = this.base,
                 eventManager = scope.eventmanager;
 
             if (base.isDefined(eventManager)) {
@@ -471,13 +487,13 @@ define([
 
                     if (scope[listener].hasOwnProperty(index)) {
 
-                        /**
+                        /**                                                     ß
                          * Define local instance of an event
                          * @type {*}
                          */
                         event = scope[listener][index];
 
-                        if (!anthill.base.isArray(event)) {
+                        if (!this.base.isArray(event)) {
                             event = [event];
                         }
 
@@ -514,7 +530,7 @@ define([
                 permission = scope.permission;
 
             if (scope.controller.checkCondition({
-                condition: !anthill.base.isDefined(permission),
+                condition: !this.base.isDefined(permission),
                 type: 'warn',
                 msg: 'Undefined permission'
             })) {
@@ -523,7 +539,7 @@ define([
 
             permission.capability = {};
 
-            anthill.base.isFunction(permission.config) ?
+            this.base.isFunction(permission.config) ?
                 permission.config() :
                 scope.logger.warn('Force created permissions', permission);
 
@@ -536,7 +552,7 @@ define([
          * @returns {*|boolean}
          */
         _applyPermissions: function _applyPermissions(type) {
-            var base = anthill.base,
+            var base = this.base,
                 scope = this.scope,
                 mode = scope.controller.getMode(),
                 permission = type + 'Permissions';
@@ -591,7 +607,7 @@ define([
          */
         applyLogger: function applyLogger() {
             var scope = this.scope,
-                base = anthill.base,
+                base = this.base,
                 config = scope.config.logger;
 
             scope.logger = new Logger(scope);
@@ -603,6 +619,6 @@ define([
             scope.logger.defineLogs();
         }
 
-    });
+    }, AntHill.prototype);
 
 });

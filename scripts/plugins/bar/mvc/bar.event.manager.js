@@ -8,10 +8,10 @@
 
 define([
     'modules/event'
-], function definePanelEventManager(Event) {
+], function defineBarEventManager(Event) {
 
     /**
-     * Define layout event manager
+     * Define bar event manager
      * @class EventManager
      * @constructor
      */

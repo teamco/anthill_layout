@@ -51,41 +51,82 @@ define([
         },
 
         /**
+         * Check if panel active
+         * @param {string} resource
+         * @returns {boolean}
+         */
+        isActive: function isActive(resource) {
+            return this.scope.active === resource;
+        },
+
+        /**
          * Update opened
+         * @param {String} resource
          * @param {Boolean} opened
          */
-        setBehavior: function setBehavior(opened) {
+        setBehavior: function setBehavior(resource, opened) {
+
+            /**
+             * Define $panel
+             * @type {element.page.page.element}
+             */
+            var $panel = this.scope.view.elements.$panel;
+
+            if (typeof(this.scope.active) === 'string') {
+                $panel.hideActiveModule();
+            }
 
             /**
              * Update opened instance
              */
             this.scope.opened = !!opened;
+
+            /**
+             * Define active panel
+             * @type {String}
+             */
+            this.scope.active = resource;
+
+            $panel.showActiveModule();
         },
 
         /**
          * Close panel
+         * @param {string} resource
          */
-        closePanel: function closePanel() {
-            this.view.elements.$panel.toggle(false);
+        closePanel: function closePanel(resource) {
+
+            if (this.active === resource) {
+                this.view.elements.$panel.toggle(resource, false);
+            } else {
+                this.observer.publish(
+                    this.eventmanager.eventList.openPanel,
+                    resource
+                );
+            }
         },
 
         /**
          * Open panel
+         * @param {string} resource
          */
-        openPanel: function openPanel() {
-            this.view.elements.$panel.toggle(true);
+        openPanel: function openPanel(resource) {
+            this.view.elements.$panel.toggle(resource, true);
         },
 
 
         /**
          * Show content
          * @param {Boolean} opened
-         * @param {Number} [index]
+         * @param {string} [resource]
          */
-        showContent: function showContent(opened, index) {
+        showContent: function showContent(opened, resource) {
 
-            // TODO change to dynamic
-            index = index || 0;
+            /**
+             * Define module index
+             * @type {number}
+             */
+            var index = this.model.getIndex(resource);
 
             if (opened) {
 
@@ -126,9 +167,15 @@ define([
              * Define module config
              * @type {{activated: Boolean, module}}
              */
-            var data = this.model.getModule(index) || {};
+            var data = this.model.getModule(index);
 
-            if (data && !data.activated) {
+            if (typeof(data) === 'undefined') {
+
+                this.scope.logger.error('Undefined module');
+                return false;
+            }
+
+            if (!data.activated) {
 
                 /**
                  * Activate module

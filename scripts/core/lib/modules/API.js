@@ -6,7 +6,8 @@
  */
 
 define([
-], function defineBaseAPI() {
+    'config/anthill'
+], function defineBaseAPI(AntHill) {
 
     /**
      * Define Base API
@@ -49,7 +50,7 @@ define([
          */
         _executeReference: function _executeReference(arg1, arg2, prefix, suffix) {
 
-            var base = anthill.base,
+            var base = this.base,
                 scope = this.scope,
                 cname = scope.model.item.name;
 
@@ -85,7 +86,7 @@ define([
              * Define silent
              * @type {Boolean}
              */
-            scope.silent = anthill.base.defineBoolean(silent, false, true);
+            scope.silent = this.base.defineBoolean(silent, false, true);
 
             scope.observer.publish(
                 scope.eventmanager.eventList['create' + cname],
@@ -95,7 +96,7 @@ define([
             if (scope.controller.checkCondition({
                 condition: scope[cname.toLowerCase()].model.getConfig('limit'),
                 type: 'warn',
-                msg: anthill.i18n.t('reached.maximum.limit'),
+                msg: this.i18n.t('reached.maximum.limit'),
                 args: [cname, scope.model.getConfig(cname.toLowerCase())]
             })) {
                 return false;
@@ -122,12 +123,12 @@ define([
              */
             var scope = this.scope[item.name.toLowerCase()];
 
-            if (anthill.base.defineBoolean(render, false, true)) {
+            if (this.base.defineBoolean(render, false, true)) {
                 scope.view.render(where);
             }
 
             return scope;
         }
 
-    });
+    }, AntHill.prototype);
 });

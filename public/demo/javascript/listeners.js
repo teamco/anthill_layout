@@ -40,8 +40,9 @@ define([
                 require([
                     'plugins/panel/panel',
                     'plugins/bar/bar',
-                    'plugins/gallery/gallery'
-                ], function definePanel(Panel, Bar, Gallery){
+                    'plugins/gallery/gallery',
+                    'plugins/page.data/page.data'
+                ], function definePanel(Panel, Bar, Gallery, PageData){
 
                     /**
                      * Init panel plugin
@@ -49,7 +50,7 @@ define([
                      */
                     app.panel = new Panel({
                         config: {renderAt: 'right'},
-                        modules: [Gallery],
+                        modules: [Gallery, PageData],
                         packages: [Bar]
                     }, app);
 

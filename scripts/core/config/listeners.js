@@ -224,10 +224,24 @@ define([
         successRendered: {
             name: "success.rendered",
             callback: function successRenderedCallback() {
+
+                /**
+                 * Define event
+                 * @type {stopResizable|string}
+                 */
                 var event = this.eventmanager.eventList.stopResizable;
+
                 this.view.renderWidget();
                 this.controller.setupInteractions();
-                this.observer.publish(event, [event, true, false, arguments]);
+
+                this.observer.publish(event, [
+                    event, {
+                        organize: false,
+                        animate: false
+                    },
+                    arguments
+                ]);
+
                 this.observer.publish(
                     this.eventmanager.eventList.loadContent
                 );

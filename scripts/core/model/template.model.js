@@ -31,7 +31,7 @@ define([
                 this.item = require('config/page');
             };
 
-            return Model.extend({
+            return Model.extend('Model', {
             }, BaseModel.prototype);
 
         }();

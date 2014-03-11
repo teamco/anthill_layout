@@ -6,7 +6,8 @@
  */
 
 define([
-], function defineLayoutEmptyRows() {
+    'config/anthill'
+], function defineLayoutEmptyRows(AntHill) {
 
     /**
      * Define EmptyRows
@@ -57,7 +58,7 @@ define([
                     l = dom.relHeight + dom.row - 1;
 
                     for (i = dom.row; i <= l; i += 1) {
-                        rows[i] = anthill.base.define(rows[i], [], true);
+                        rows[i] = this.base.define(rows[i], [], true);
                         rows[i].push(widget);
                     }
                 }
@@ -89,7 +90,7 @@ define([
 
             for (i; i <= rl; i += 1) {
 
-                if (anthill.base.isDefined(rows[i])) {
+                if (this.base.isDefined(rows[i])) {
 
                     /**
                      * Define already fixed widgets
@@ -100,6 +101,7 @@ define([
                         alreadyFixed,
                         moveIndex
                     );
+
                 } else {
                     moveIndex += 1;
                     alreadyFixed = [];
@@ -155,6 +157,6 @@ define([
             return alreadyFixed;
         }
 
-    });
+    }, AntHill.prototype);
 
 });

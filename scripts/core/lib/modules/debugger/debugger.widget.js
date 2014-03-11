@@ -4,7 +4,9 @@
  * Date: 5/6/13
  * Time: 9:03 PM
  */
-define([], function defineDebuggerWidget() {
+define([
+    'config/anthill'
+], function defineDebuggerWidget(AntHill) {
 
     /**
      * Define Debugger Widget
@@ -37,7 +39,7 @@ define([], function defineDebuggerWidget() {
                 c.renderBlock(
                     'Attributes', [
                         $.map(attr,function (v, k) {
-                            return anthill.base.isBoolean(v) ?
+                            return this.base.isBoolean(v) ?
                                 c.renderInput(k.toUnderscore().humanize(), v) :
                                 null;
                         }).join(''),
@@ -202,6 +204,6 @@ define([], function defineDebuggerWidget() {
             $('.dimensions-info ul', '.widget-info').empty().append(this.renderDimensionsInfo(event, ui).join(''));
         }
 
-    });
+    }, AntHill.prototype);
 
 });

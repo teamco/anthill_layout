@@ -14,6 +14,11 @@ define([
     'plugins/gallery/element/gallery.element'
 ], function defineGalleryView(BaseView, Header, Footer, GalleryContent, Gallery) {
 
+    /**
+     * Define view
+     * @class View
+     * @constructor
+     */
     var View = function View() {
     };
 
@@ -32,19 +37,12 @@ define([
             this.header(Header, this.elements.$container);
 
             /**
-             * Define local width
-             */
-            var width = this.scope.model.getConfig('html').width;
-
-            /**
              * Define Gallery element
              * @type {element.page.page.element}
              */
             this.elements.$gallery = new Gallery(this, {
                 id: this.createUUID(),
-                $container: this.elements.$container.$,
-                maxWidth: width.max,
-                minWidth: width.min
+                $container: this.elements.$container.$
             });
 
             this.footer(Footer, this.elements.$container);

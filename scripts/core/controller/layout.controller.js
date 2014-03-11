@@ -7,8 +7,9 @@
  */
 
 define([
+    'config/anthill',
     'modules/controller'
-], function defineLayoutController(BaseController) {
+], function defineLayoutController(AntHill, BaseController) {
 
     /**
      * Define layout controller
@@ -20,7 +21,7 @@ define([
 
     };
 
-    return Controller.extend({
+    return Controller.extend('Controller', {
 
         /**
          * Before nested organizer
@@ -30,10 +31,10 @@ define([
 
             if (!silent) {
                 this.controller.getContainment().controller.banAddWidget();
-                this.logger.debug(anthill.i18n.t('before.nested.organizer'));
+                this.logger.debug(this.i18n.t('before.nested.organizer'));
             }
 
-            this.logger.debug(anthill.i18n.t('silent.add.widget'));
+            this.logger.debug(this.i18n.t('silent.add.widget'));
         },
 
         /**
@@ -44,7 +45,7 @@ define([
             this.controller.store(
                 this.controller.root()
             );
-            this.logger.debug(anthill.i18n.t('after.nested.organizer'));
+            this.logger.debug(this.i18n.t('after.nested.organizer'));
         },
 
         /**
@@ -63,7 +64,7 @@ define([
         minCellWidth: function minCellWidth() {
             var scope = this.scope,
                 config = scope.config.grid;
-            if (anthill.base.isDefined(config.minCellWidth)) {
+            if (this.base.isDefined(config.minCellWidth)) {
                 return config.minCellWidth;
             }
             var columns = config.columns,
@@ -235,5 +236,5 @@ define([
             return this._getLayoutMode(type);
         }
 
-    }, BaseController.prototype);
+    }, AntHill.prototype, BaseController.prototype);
 });

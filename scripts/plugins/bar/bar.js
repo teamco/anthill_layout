@@ -6,17 +6,18 @@
  */
 
 define([
+    'config/anthill',
     'modules/mvc',
     'plugins/bar/mvc/bar.controller',
     'plugins/bar/mvc/bar.model',
     'plugins/bar/mvc/bar.view',
     'plugins/bar/mvc/bar.event.manager',
     'plugins/bar/mvc/bar.permission'
-], function defineBar(MVC, Controller, Model, View, EventManager, Permission) {
+], function defineBar(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define Bar
-     * @param opts
+     * @param containment
      * @constructor
      * @class Bar
      */
@@ -32,10 +33,6 @@ define([
          * @type {{
          *      plugin: boolean,
          *      html: {
-         *          width: {
-         *              min: number,
-         *              max: number
-         *          },
          *          header: boolean,
          *          footer: boolean,
          *          floating: boolean,
@@ -107,5 +104,7 @@ define([
         );
     };
 
-    return Bar;
+    return Bar.extend({
+
+    }, AntHill.prototype);
 });

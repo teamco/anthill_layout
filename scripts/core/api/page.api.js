@@ -6,10 +6,11 @@
  */
 
 define([
+    'config/anthill',
     'modules/api',
     'config/template',
     'config/widget'
-], function definePageAPI(BaseAPI, Template, Widget) {
+], function definePageAPI(AntHill, BaseAPI, Template, Widget) {
 
     /**
      * Define Page API
@@ -40,7 +41,7 @@ define([
 
             if (!scope.controller.isAllowAddWidget()) {
                 scope.logger.warn(
-                    anthill.i18n.t('not.allowed.add.widget'),
+                    this.i18n.t('not.allowed.add.widget'),
                     arguments
                 );
 
@@ -94,5 +95,5 @@ define([
             ).api.createPage([], true);
         }
 
-    }, BaseAPI.prototype)
+    }, AntHill.prototype, BaseAPI.prototype)
 });

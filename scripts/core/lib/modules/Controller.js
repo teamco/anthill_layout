@@ -7,9 +7,10 @@
  */
 
 define([
+    'config/anthill',
     'controller/behavior/behavior.crud',
     'controller/behavior/behavior.window.resize'
-], function defineBaseController(Crud, Resize) {
+], function defineBaseController(AntHill, Crud, Resize) {
 
     /**
      * Define Base Controller
@@ -87,9 +88,9 @@ define([
         /**
          * Success Rendered
          */
-        successRendered: function successRendered() {
+        successRendered: function successRendered() {  if(!this.i18n)debugger
             this.logger.debug(
-                anthill.i18n.t('success.rendered').replace(/\{0\}/, this.constructor.name),
+                this.i18n.t('success.rendered').replace(/\{0\}/, this.constructor.name),
                 this
             );
         },
@@ -178,7 +179,7 @@ define([
          */
         setOrder: function setOrder(collector) {
             var scope = this.scope,
-                base = anthill.base;
+                base = this.base;
 
             scope.config.order = base.define(
                 scope.config.order,
@@ -192,7 +193,7 @@ define([
          * @returns {*}
          */
         extendConfig: function extendConfig(opts) {
-            var base = anthill.base,
+            var base = this.base,
                 scope = this.scope;
 
                 opts.config = base.lib.hash.extendHash({
@@ -237,7 +238,21 @@ define([
          */
         store: function store(node, data) {
 
-            data = anthill.base.define(data, {collector: {}}, true);
+            /**
+             * Define node
+             * @type {*}
+             */
+            node = this.base.define(
+                node,
+                this.root(),
+                true
+            );
+
+            /**
+             * Define data
+             * @type {*}
+             */
+            data = this.base.define(data, {collector: {}}, true);
 
             /**
              * Define item list
@@ -293,7 +308,7 @@ define([
                          * Define config
                          * @type {{}}
                          */
-                        collector[uuid].config = anthill.base.lib.hash.extendHash(
+                        collector[uuid].config = this.base.lib.hash.extendHash(
                             item.model.getConfig(),
                             collector[uuid].config
                         );
@@ -319,5 +334,5 @@ define([
             return collector;
         }
 
-    }, Crud.prototype, Resize.prototype);
+    }, AntHill.prototype, Crud.prototype, Resize.prototype);
 });

@@ -45,10 +45,11 @@ define([
 
         /**
          * Toggle open/close
-         * @param opened
+         * @param {string} resource
+         * @param {boolean} opened
          * @returns {boolean}
          */
-        toggle: function toggle(opened) {
+        toggle: function toggle(resource, opened) {
 
             /**
              * Define locals
@@ -57,7 +58,7 @@ define([
                 scope = view.scope,
                 controller = view.controller;
 
-            if (controller.isOpened() === opened) {
+            if (controller.isOpened() === opened && scope.active === resource) {
 
                 scope.logger.debug('No change');
                 return false;
@@ -69,7 +70,7 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList.showContent,
-                [opened, 0]
+                [opened, resource]
             );
 
             $container.$.stop().animate({
@@ -82,7 +83,29 @@ define([
                 }
             });
 
-            controller.setBehavior(opened);
+            controller.setBehavior(resource, opened);
+        },
+
+        /**
+         * Hide Active module
+         */
+        hideActiveModule: function hideActiveModule() {
+            this.view.elements.items[this.getContentItemIndex()].hide();
+        },
+
+        /**
+         * Show Active module
+         */
+        showActiveModule: function showActiveModule() {
+            this.view.elements.items[this.getContentItemIndex()].show();
+        },
+
+        /**
+         * Get item index
+         * @returns {string}
+         */
+        getContentItemIndex: function getContentItemIndex() {
+            return ['$', this.view.scope.active, '-content'].join('');
         }
 
     }, BaseElement.prototype);

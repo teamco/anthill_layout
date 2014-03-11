@@ -7,7 +7,8 @@
  */
 
 define([
-], function initCRUD() {
+    'config/anthill'
+], function initCRUD(AntHill) {
 
     /**
      * Define abstract CRUD
@@ -38,7 +39,7 @@ define([
          */
         destroyItem: function destroyItem(item) {
             var scope = this.scope,
-                base = anthill.base,
+                base = this.base,
                 namespace = item.constructor.name.toLowerCase();
 
             if (!base.isDefined(item)) {
@@ -55,7 +56,7 @@ define([
 
             var items = scope.items,
                 index = model.getUUID(),
-                onDestroy = anthill.base.define(model.onDestroy, [], true),
+                onDestroy = this.base.define(model.onDestroy, [], true),
                 itemEventManager = item.eventmanager,
                 i = 0, l = onDestroy.length;
 
@@ -111,7 +112,7 @@ define([
          */
         destroyItemView: function destroyItemView(item) {
             var scope = this.scope,
-                base = anthill.base,
+                base = this.base,
                 namespace = item.constructor.name.toLowerCase();
 
             if (!base.isDefined(item)) {
@@ -136,6 +137,6 @@ define([
             return item;
         }
 
-    });
+    }, AntHill.prototype);
 
 });

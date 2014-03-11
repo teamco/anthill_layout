@@ -1,0 +1,111 @@
+div.pagedata ul {
+    list-style: none;
+}
+
+div.pagedata-header {
+    height: 40px;
+}
+
+ul.pagedata .content {
+    height: 70px;
+    width: 70px;
+    display: block;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 10px #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+div.pagedata-footer {
+    position: absolute;
+    bottom: 0;
+}
+
+.modal-dialog.preferences div.html > ul {
+    list-style: none;
+    padding: 5px;
+    border: 1px solid #ddd;
+    background-color: #efefef;
+}
+
+.modal-dialog.preferences div.html label {
+    font-size: 16px;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+.modal-dialog.preferences div.html input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    margin-left: 10px;
+    width: 60%;
+    height: 22px;
+    line-height: 22px;
+    float: right;
+    transition: width 0.5s;
+    -webkit-transition: width 0.5s;
+}
+
+.modal-dialog.preferences div.html input[type="text"]:focus {
+    width: 80%;
+}
+
+.modal-dialog.preferences fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+.modal-dialog.preferences fieldset legend {
+    padding: 0 3px;
+    font-variant: small-caps;
+    font-size: 14px;
+    cursor: pointer;
+    text-transform: lowercase;
+}
+
+.modal-dialog.preferences fieldset legend.open {
+    color: #ef8c08;
+}
+
+.modal-dialog.preferences fieldset legend:hover,
+.modal-dialog.preferences fieldset legend.open:hover {
+    color: #228ef1;
+}
+
+.modal-dialog.preferences fieldset ul {
+    display: none;
+    list-style: none;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul.interactions {
+    display: block;
+}
+
+.modal-dialog.preferences fieldset ul.interactions li {
+    width: 49%;
+    float: left;
+    margin-bottom: 2px;
+    margin-right: 2px;
+    background-color: #dedede;
+}
+
+.modal-dialog.preferences fieldset label {
+    text-transform: lowercase;
+    font-variant: small-caps;
+    padding-left: 10px;
+    line-height: 18px;
+}
+
+.modal-dialog.preferences ul.interactions input[type="text"] {
+    float: right;
+    width: 50%;
+}
+
+.modal-dialog.preferences ul.interactions input[type="text"]:focus {
+    width: 50%;
+}

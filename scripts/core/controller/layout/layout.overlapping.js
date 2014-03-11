@@ -6,8 +6,9 @@
  */
 
 define([
+    'config/anthill',
     'controller/layout/layout.intersect'
-], function defineLayoutOverlapping(Intersect) {
+], function defineLayoutOverlapping(AntHill, Intersect) {
 
     /**
      * Define Overlapping
@@ -28,30 +29,74 @@ define([
     return Overlapping.extend({
 
         /**
+         * Define exit point
+         * @param opts
+         * @returns {*}
+         * @private
+         */
+        _exitPointOn: function _exitPointOn(opts) {
+
+            if (opts.condition) {
+                this.layout.logger.debug(opts.log);
+                this._nestedOrganizerCallback(opts.callback)
+            }
+
+            return opts.condition;
+        },
+
+        /**
          * Nested organizer
          * @param {{targets: Object, callback: Function}} opts
          * @returns {*}
          */
         nestedOrganizer: function nestedOrganizer(opts) {
+
+            /**
+             * Define layout
+             * @type {callback.layout}
+             */
             var layout = this.layout;
 
-            opts = anthill.base.define(opts, {}, true);
-            opts.targets = anthill.base.define(opts.targets, {}, true);
+            opts = this.base.define(opts, {}, true);
+            opts.targets = this.base.define(opts.targets, {}, true);
 
-            if (!layout.controller.isOverlappingAllowed()) {
-                layout.logger.debug('Overlapping is allowed');
-                return this._nestedOrganizerCallback(opts.callback);
-            }
+            /**
+             * Define not organize
+             */
+            var notOrganize = this._exitPointOn({
+                log: 'Do not organize',
+                condition: !opts.organize,
+                callback: opts.callback
+            });
 
-            if (anthill.base.lib.hash.isHashEmpty(opts.targets)) {
-                layout.logger.debug('Empty targets');
-                return this._nestedOrganizerCallback(opts.callback);
+            /**
+             * Define not overlapping
+             */
+            var notOverlapping = this._exitPointOn({
+                log: 'Overlapping is allowed',
+                condition: !layout.controller.isOverlappingAllowed(),
+                callback: opts.callback
+            });
+
+            /**
+             * Define empty targets
+             */
+            var emptyTargets = this._exitPointOn({
+                log: 'Empty targets',
+                condition: this.base.lib.hash.isHashEmpty(opts.targets),
+                callback: opts.callback
+            });
+
+            if (notOrganize || notOverlapping || emptyTargets) {
+                return false;
             }
 
             layout.logger.debug('Starting nested organizer', opts);
+
             this.nestedOrganizer({
                 targets: this._nestedOrganizerCore(opts.targets),
-                callback: opts.callback
+                callback: opts.callback,
+                organize: opts.organize
             });
         },
 
@@ -67,7 +112,7 @@ define([
 
             for (index in widgets) {
                 if (widgets.hasOwnProperty(index)) {
-                    if (anthill.base.isDefined(widgets[index])) {
+                    if (this.base.isDefined(widgets[index])) {
                         intersecting = this._intersectWidgets(widgets[index]);
                         this._organizeCollector(widgets[index], intersecting);
                         for (moved in intersecting) {
@@ -122,7 +167,7 @@ define([
             var page = this.layout.controller.getContainment(),
                 widgets = page.model.getItems(),
                 index, widget, counter = 1,
-                length = anthill.base.lib.hash.hashLength(widgets);
+                length = this.base.lib.hash.hashLength(widgets);
 
             for (index in widgets) {
                 if (widgets.hasOwnProperty(index)) {
@@ -153,7 +198,7 @@ define([
             var layout = this.scope.layout,
                 callback = this.callback;
 
-            if (anthill.base.isFunction(callback)) {
+            if (layout.base.isFunction(callback)) {
                 layout.logger.debug('Execute callback', callback);
                 callback();
             }
@@ -162,7 +207,9 @@ define([
 
             if (this.save) {
                 layout.logger.debug('Finish nested organizer');
-                layout.observer.publish(layout.eventmanager.eventList.afterNestedOrganizer);
+                layout.observer.publish(
+                    layout.eventmanager.eventList.afterNestedOrganizer
+                );
             }
 
         },
@@ -298,5 +345,5 @@ define([
             return (target.row + target.relHeight - 1);
         }
 
-    }, Intersect.prototype);
+    }, AntHill.prototype, Intersect.prototype);
 });

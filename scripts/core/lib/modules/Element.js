@@ -7,8 +7,10 @@
  */
 
 define([
-    'lib/packages/rgbcolor'
-], function defineBaseElement(RGBColor) {
+    'config/anthill',
+    'lib/packages/rgbcolor',
+    'modules/renderer'
+], function defineBaseElement(AntHill, RGBColor, Renderer) {
 
     /**
      * Define Base element
@@ -16,7 +18,6 @@ define([
      * @constructor
      */
     var BaseElement = function BaseElement() {
-
     };
 
     return BaseElement.extend({
@@ -25,11 +26,6 @@ define([
          * Define plugin path
          */
         pluginPath: '../../scripts/plugins',
-
-        /**
-         * Define widgets path
-         */
-        widgetPath: '../../scripts/plugins/widgets',
 
         /**
          * Element config before build
@@ -45,7 +41,7 @@ define([
             this.id = view.renderUUID(opts.id);
             this.events = opts.events;
             this.opacity = opts.opacity || 1.0;
-            this.css = anthill.base.define(opts.css, {}, true);
+            this.css = this.base.define(opts.css, {}, true);
 
             /**
              * Define jQuery element
@@ -66,7 +62,7 @@ define([
                 $element = this.$;
 
             $.each(
-                anthill.base.define(this.events, [], true),
+                this.base.define(this.events, [], true),
                 function each(index, event) {
                     scope.eventmanager.onEvent.bind({
                         scope: scope,
@@ -152,8 +148,8 @@ define([
              */
             function destroyElement($element) {
                 if ($element.length > 0) {
-                    this.view.scope.logger.warn(
-                        anthill.i18n.t('element.overwritten').
+                    this.view.scope.logger.debug(
+                        this.i18n.t('element.overwritten').
                             replace(/\{0\}/, this.constructor.name)
                     );
                     $element.remove();
@@ -162,7 +158,7 @@ define([
 
             destroyElement.bind(this)($('#' + this.id, $container));
 
-            if (anthill.base.defineBoolean(destroy, false, true)) {
+            if (this.base.defineBoolean(destroy, false, true)) {
 
                 destroyElement.bind(this)(
                     $('.' + this.style, $container)
@@ -181,20 +177,22 @@ define([
              * Define base instance
              * @type {Base}
              */
-            var base = anthill.base;
+            var base = this.base;
 
             opts = base.define(opts, {}, true);
 
+            /**
+             * Define append/prepend
+             */
             var append = base.defineBoolean(opts.append, true, true);
 
             if (this.$) {
+
                 this.$container = $(opts.$container);
                 this.destroyB4Create(opts.destroy);
-                if (append) {
-                    this.$.appendTo(opts.$container);
-                } else {
-                    this.$.prependTo(opts.$container);
-                }
+
+                this.$[append ? 'appendTo' : 'prependTo'](opts.$container);
+
                 if (base.isFunction(opts.callback)) {
                     opts.callback();
                 }
@@ -234,7 +232,7 @@ define([
                 media: 'all'
             };
 
-            opts = anthill.base.define(opts, {}, true);
+            opts = this.base.define(opts, {}, true);
 
             /**
              * Init Link
@@ -245,7 +243,7 @@ define([
             link.type = opts.type || defaults.type;
             link.rel = opts.rel || defaults.rel;
             link.media = opts.media || defaults.media;
-            link.href = this.pluginPath + url;
+            link.href = this.pluginPath + (opts.resource || '') + url;
             link.id = uuid;
 
             document.getElementsByTagName("head")[0].appendChild(link);
@@ -334,7 +332,7 @@ define([
             var scope = this.view.scope,
                 items = 1;
             if (scope.controller.getContainment() && scope.config.html.stretch) {
-                items = anthill.base.lib.hash.hashLength(
+                items = this.base.lib.hash.hashLength(
                     scope.controller.getContainment().items
                 );
 
@@ -429,7 +427,7 @@ define([
          * @returns {Number}
          */
         getCSS: function getCSS(value) {
-            return anthill.base.lib.number.str2float(this.$.css(value));
+            return this.base.lib.number.str2float(this.$.css(value));
         },
 
         /**
@@ -519,6 +517,5 @@ define([
                 this.$.addClass('shadow');
         }
 
-    });
-})
-;
+    }, AntHill.prototype, Renderer.prototype);
+});

@@ -7,10 +7,11 @@
  */
 
 define([
+    'config/anthill',
     'modules/element',
     'element/button.element',
     'element/cover.element'
-], function defineModalElement(BaseElement, Button, Cover) {
+], function defineModalElement(AntHill, BaseElement, Button, Cover) {
 
     /**
      * Define Modal Element
@@ -68,37 +69,36 @@ define([
 
             /**
              * Set modal title
-             * @type {$modal.title: String}
+             * @type {String|*}
              */
             this.title = opts.title;
 
             /**
              * Set modal type ['error', 'warning', 'success', 'info']
-             * @type {$modal.type: String}
+             * @type {String|*}
              */
             this.type = opts.type;
 
             /**
              * Set modal html
-             * @type {$modal.html: String}
+             * @type {String|*}
              */
             this.html = opts.html;
 
             /**
              * Set modal text
-             * @type {$modal.text: String}
+             * @type {String|*}
              */
             this.text = opts.text;
 
             /**
              * Set modal item dependency (called from)
-             * @type {$modal.items}
              */
             this.items = opts.items;
 
             /**
              * Set modal style
-             * @type {$modal.style: String}
+             * @type {String|*|string}
              */
             this.style = opts.style || '';
 
@@ -110,25 +110,25 @@ define([
 
             /**
              * Set hover opacity
-             * @type {$modal.hover: Boolean}
+             * @type {*}
              */
-            this.hover = anthill.base.defineBoolean(opts.hover, true, true);
+            this.hover = this.base.defineBoolean(opts.hover, true, true);
 
             /**
              * Set modal opacity hover out
-             * @type {$modal.opacityOff: Number}
+             * @type {Number|*|number}
              */
             this.opacityOff = opts.opacityOff || 0.8;
 
             /**
              * Set modal opacity hover in
-             * @type {$modal.opacityOn: Number}
+             * @type {Number|*|number}
              */
             this.opacityOn = opts.opacityOn || 0.9;
 
             /**
              * Set modal parent container
-             * @type {$modal.$container}
+             * @type {*|jQuery|HTMLElement}
              */
             this.$container = opts.$container || $('body');
 
@@ -143,37 +143,37 @@ define([
 
             /**
              * Set modal is draggable condition
-             * @type {$modal.draggable: Boolean}
+             * @type {*}
              */
-            this.draggable = anthill.base.defineBoolean(opts.draggable, true, true);
+            this.draggable = this.base.defineBoolean(opts.draggable, true, true);
 
             /**
              * Set close X button
-             * @type {$modal.closeX: Boolean}
+             * @type {*}
              */
-            this.closeX = anthill.base.defineBoolean(opts.draggable, true, true);
+            this.closeX = this.base.defineBoolean(opts.draggable, true, true);
 
             /**
              * Set cover config
-             * @type {$modal.cover: Boolean}
+             * @type {*}
              */
-            this.cover = anthill.base.defineBoolean(opts.cover, true, true);
+            this.cover = this.base.defineBoolean(opts.cover, true, true);
 
             /**
              * Set close modal on click cover
-             * @type {$modal.autoclose: Boolean}
+             * @type {*}
              */
-            this.autoclose = anthill.base.defineBoolean(opts.autoclose, false, true);
+            this.autoclose = this.base.defineBoolean(opts.autoclose, false, true);
 
             /**
              * Set cover opacity
-             * @type {$modal.coverOpacity: Number}
+             * @type {Number|*}
              */
             this.coverOpacity = opts.coverOpacity;
 
             /**
              * Set buttons config
-             * @type {$modal.buttons|{}}
+             * @type {*|{}}
              */
             this.buttons = opts.buttons || {};
         },
@@ -187,8 +187,8 @@ define([
                         '<h2 class="header"></h2>',
                         '<ul class="actions"></ul>',
                         '<div class="content">',
-                        '<div class="html"></div>',
                         '<p class="text"></p>',
+                        '<div class="html"></div>',
                         '</div>',
                         '<ul class="buttons"></ul>'
                     ].join('')
@@ -214,6 +214,18 @@ define([
             }
 
             this.setButtons();
+
+            this.setFocus();
+        },
+
+        /**
+         * Set focus
+         */
+        setFocus: function setFocus() {
+
+            if (this.html) {
+                $('input:first', this.$).focus();
+            }
         },
 
         /**
@@ -265,7 +277,7 @@ define([
          */
         setHeader: function setHeader() {
             var $header = this._getHeader();
-            anthill.base.isDefined(this.title) ?
+            this.base.isDefined(this.title) ?
                 $header.text(this.title) :
                 $header.hide();
         },
@@ -275,7 +287,7 @@ define([
          */
         setHTML: function setHTML() {
             var $html = this._getHTML();
-            anthill.base.isDefined(this.html) ?
+            this.base.isDefined(this.html) ?
                 $html.append(this.html) :
                 $html.hide();
         },
@@ -285,7 +297,7 @@ define([
          */
         setText: function setText() {
             var $text = this._getText();
-            anthill.base.isDefined(this.text) ?
+            this.base.isDefined(this.text) ?
                 $text.text(this.text) :
                 $text.hide();
         },
@@ -393,5 +405,5 @@ define([
             this.destroy();
         }
 
-    }, BaseElement.prototype);
+    }, AntHill.prototype, BaseElement.prototype);
 });

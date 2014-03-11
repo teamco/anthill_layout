@@ -5,7 +5,9 @@
  * Time: 3:22 PM
  */
 
-define(function defineEmptyColumns() {
+define([
+    'config/anthill'
+], function defineEmptyColumns(AntHill) {
 
     /**
      * Define EmptyColumns
@@ -90,7 +92,12 @@ define(function defineEmptyColumns() {
          * @returns {Array}
          */
         getWidgetOrder: function getWidgetOrder(widgets) {
-            var widgetOrder = anthill.base.lib.hash.hashKeys(widgets);
+
+            /**
+             * Order widgets
+             * @type {Array}
+             */
+            var widgetOrder = this.base.lib.hash.hashKeys(widgets);
 
             // Sort widget UUIDs by widget position
             widgetOrder.sort(function (a, b) {
@@ -142,7 +149,6 @@ define(function defineEmptyColumns() {
             return null;
         }
 
-
-    });
+    }, AntHill.prototype);
 
 });
