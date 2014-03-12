@@ -90,7 +90,7 @@ define([
          * @returns {*|jQuery}
          */
         get$page: function get$page() {
-            return this.getContainment().view.elements.$page.$;
+            return this.getContainment().view.elements.$page;
         },
 
         /**
@@ -214,6 +214,8 @@ define([
          */
         startDraggable: function startDraggable() {
             this.logger.debug('Start drag', arguments);
+
+            this.controller.get$page().hideItemsContent();
         },
 
         /**
@@ -244,6 +246,8 @@ define([
                 this.controller.getInteractionConfig('stop'),
                 type
             );
+
+            this.controller.get$page().showItemsContent();
         },
 
         /**
@@ -260,6 +264,8 @@ define([
          */
         startResizable: function startResizable(type) {
             this.logger.debug('Start resize', arguments);
+
+            this.controller.get$page().hideItemsContent();
         },
 
         /**
@@ -291,13 +297,19 @@ define([
              */
             opts = this.base.define(opts, {}, true);
 
-            this.controller.getContainment().controller.downgradeLayer(this);
+            /**
+             * Define controller
+             * @type {controller|*}
+             */
+            var controller = this.controller;
+
+            controller.getContainment().controller.downgradeLayer(this);
 
             /**
              * Get config
              * @type {*|{organize: Boolean, animate: Boolean, callback?: Function, $source}}
              */
-            var config = this.controller.getInteractionConfig('stop');
+            var config = controller.getInteractionConfig('stop');
 
             /**
              * Define organize
@@ -319,7 +331,9 @@ define([
                 true
             );
 
-            this.controller.behaviorMode(config, type);
+            controller.behaviorMode(config, type);
+
+            controller.get$page().showItemsContent();
         },
 
         /**

@@ -515,6 +515,64 @@ define([
             this.$.hasClass('shadow') ?
                 this.$.removeClass('shadow') :
                 this.$.addClass('shadow');
+        },
+
+        /**
+         * Get $items
+         * @returns {*|jQuery|HTMLElement}
+         */
+        get$items: function get$items() {
+
+            /**
+             * Define scope;
+             */
+            var scope = this.view.scope;
+
+            /**
+             * Get item
+             * @type {*}
+             */
+            var item = scope.controller.getCurrentItem();
+
+            /**
+             * Get item constructor name
+             * @type {string}
+             */
+            var cname = item.constructor.name.toLowerCase();
+
+            return $('.' + cname + ' > .content > div', this.$);
+        },
+
+        /**
+         * Show items content
+         */
+        showItemsContent: function showItemsContent() {
+            this.get$items().show();
+        },
+
+        /**
+         * Hide items content
+         * @param [item]
+         */
+        hideItemsContent: function hideItemsContent(item) {
+
+            /**
+             * Get $items
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $items = this.get$items();
+
+            if (this.base.isDefined(item)) {
+
+                /**
+                 * Filter all items except itself
+                 */
+                $items = $items.filter(function filter(index){
+                    return this.parentNode.parentNode.id !== item.id;
+                });
+            }
+
+            $items.hide();
         }
 
     }, AntHill.prototype, Renderer.prototype);
