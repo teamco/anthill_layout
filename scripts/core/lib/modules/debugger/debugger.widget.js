@@ -32,14 +32,15 @@ define([
         renderAttributes: function renderAttributes() {
             var c = this.bugger.component,
                 w = this.getWidget(),
-                attr = w.model.getAttributes();
+                attr = w.model.getAttributes(),
+                base = this.base;
 
             return [
                 '<li class="extend">',
                 c.renderBlock(
                     'Attributes', [
                         $.map(attr,function (v, k) {
-                            return this.base.isBoolean(v) ?
+                            return base.isBoolean(v) ?
                                 c.renderInput(k.toUnderscore().humanize(), v) :
                                 null;
                         }).join(''),

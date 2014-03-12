@@ -248,5 +248,5 @@ define([
             });
         }
 
-    });
+    }, AntHill.prototype);
 });
