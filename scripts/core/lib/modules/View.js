@@ -34,6 +34,14 @@ define([
                 model.getConfig('html');
         },
 
+        /**
+         * Get item.$
+         * @returns {$|*|Element.$}
+         */
+        get$item: function get$item() {
+            return this.elements['$' + this.scope.constructor.name.toLowerCase()];
+        },
+
         createStyle: function createStyle() {
             return [
                 this.getContainerClassName(),

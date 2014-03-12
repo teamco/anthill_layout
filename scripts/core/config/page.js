@@ -136,7 +136,7 @@ define([
                     freeStyle: {
                     }
                 },
-                mode: this.LAYOUT_MODES.jqUIGrid
+                mode: this.LAYOUT_MODES.snap2grid
             },
             template: {
             },

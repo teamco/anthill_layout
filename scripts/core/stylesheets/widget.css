@@ -11,13 +11,13 @@
 }
 
 .ui-resizable-n {
-    box-shadow: -2px 2px 2px #fff;
+    box-shadow: -1px 1px 1px #333;
     left: 50%;
     top: -5px;
 }
 
 .ui-resizable-e {
-    box-shadow: -2px 2px 2px #fff;
+    box-shadow: -1px 1px 1px #333;
     top: 50%;
     right: -5px;
 }
@@ -25,35 +25,35 @@
 .ui-resizable-s {
     left: 50%;
     bottom: -5px;
-    box-shadow: -2px -2px 2px #fff;
+    box-shadow: -1px -1px 1px #333;
 }
 
 .ui-resizable-w {
     top: 50%;
     left: -5px;
-    box-shadow: 2px -2px 2px #fff;
+    box-shadow: 1px -1px 1px #333;
 }
 
 .ui-resizable-se {
     right: -5px;
     bottom: -5px;
-    box-shadow: -2px -2px 2px #fff;
+    box-shadow: -1px -1px 1px #333;
 }
 
 .ui-resizable-sw {
     left: -5px;
     bottom: -5px;
-    box-shadow: 2px -2px 2px #fff;
+    box-shadow: 1px -1px 1px #333;
 }
 
 .ui-resizable-ne {
-    box-shadow: -2px 2px 2px #fff;
+    box-shadow: -1px 1px 1px #333;
     right: -5px;
     top: -5px;
 }
 
 .ui-resizable-nw {
-    box-shadow: 2px 2px 2px #fff;
+    box-shadow: 1px 1px 1px #333;
     left: -5px;
     top: -5px;
 }
@@ -68,10 +68,12 @@
     cursor: move;
 }
 
+.widget.ui-resizable-resizing,
 .widget:hover {
     border: 5px solid #ff6347;
 }
 
+.widget.ui-resizable-resizing .ui-resizable-handle,
 .widget:hover .ui-resizable-handle {
     visibility: visible;
 }

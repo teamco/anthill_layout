@@ -69,15 +69,6 @@ define([
                 this.scope.eventmanager.eventList.successRendered,
                 silent
             );
-        },
-
-        /**
-         * Get widget.$
-         * @returns {$|*|Element.$}
-         */
-        get$widget: function get$widget() {
-
-            return this.elements.$widget.$;
         }
 
     }, AntHill.prototype, BaseView.prototype)

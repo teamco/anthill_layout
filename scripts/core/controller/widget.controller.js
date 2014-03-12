@@ -76,7 +76,7 @@ define([
                     config = {
                         animate: true,
                         organize: true,
-                        $source: this.scope.view.get$widget(),
+                        $source: this.scope.view.get$item().$,
                         callback: this._resetInteractions.bind(this)
                     };
                     break;
@@ -361,7 +361,7 @@ define([
          * @param value
          */
         updateInteractions: function updateInteractions(type, key, value) {
-            this.scope.view.get$widget()[type]('option', key, value);
+            this.scope.view.get$item().$[type]('option', key, value);
         },
 
         /**
@@ -391,7 +391,7 @@ define([
          * @returns {Boolean}
          */
         isDraggable: function isDraggable() {
-            return this.scope.view.get$widget().is('.ui-draggable');
+            return this.scope.view.get$item().$.is('.ui-draggable');
         },
 
         /**
@@ -399,7 +399,7 @@ define([
          * @returns {Boolean}
          */
         isResizable: function isResizable() {
-            return this.scope.view.get$widget().is('.ui-resizable');
+            return this.scope.view.get$item().$.is('.ui-resizable');
         },
 
         /**
@@ -519,7 +519,7 @@ define([
             controller.behaviorMode({
                 organize: organize,
                 animate: animate,
-                $source: this.view.get$widget(),
+                $source: this.view.get$item().$,
                 callback: controller._resetInteractions.bind(controller)
             }, 'resizestop');
         },

@@ -219,7 +219,7 @@ define([
          * @returns {*|Overlapping}
          * @private
          */
-        _getLayoutMode: function _getOverlappingMode(type) {
+        _getLayoutMode: function _getLayoutMode(type) {
             return this.getBehavior()[type];
         },
 
@@ -230,7 +230,7 @@ define([
          * @private
          * @returns {*|Overlapping}
          */
-        _updateLayoutMode: function _updateOverlappingMode(type, mode) {
+        _updateLayoutMode: function _updateLayoutMode(type, mode) {
             this.scope.config.behavior[this.getBehaviorMode()][type] = mode;
 
             return this._getLayoutMode(type);

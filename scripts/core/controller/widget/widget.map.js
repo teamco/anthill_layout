@@ -540,7 +540,7 @@ define([
             };
 
             widget.logger.debug('Position', css);
-            widget.view.get$widget().css(css);
+            widget.view.get$item().$.css(css);
         },
 
         occupiedAt: function occupiedAt() {
