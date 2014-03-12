@@ -223,7 +223,13 @@ define([
 
         successRendered: {
             name: "success.rendered",
-            callback: function successRenderedCallback() {
+            callback: function successRenderedCallback(silent) {
+
+                /**
+                 * Define silent
+                 * @type {boolean}
+                 */
+                silent = typeof(silent) === 'undefined' ? false : !!silent;
 
                 /**
                  * Define event
@@ -236,7 +242,7 @@ define([
 
                 this.observer.publish(event, [
                     event, {
-                        organize: false,
+                        organize: !silent,
                         animate: false
                     },
                     arguments

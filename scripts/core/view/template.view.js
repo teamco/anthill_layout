@@ -38,10 +38,10 @@ define([
             });
         },
 
-        render: function render(widget) {
+        render: function render(silent, widget) {
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                widget.view.elements.$widget.getContent()
+                [widget.view.elements.$widget.getContent(), silent]
             );
         }
 

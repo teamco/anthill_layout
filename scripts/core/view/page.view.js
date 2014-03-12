@@ -113,11 +113,13 @@ define([
 
         /**
          * Render page
+         * @param {boolean} silent
          */
-        render: function render() {
+        render: function render(silent) {
 
             this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered
+                this.scope.eventmanager.eventList.successRendered,
+                silent
             );
         }
 

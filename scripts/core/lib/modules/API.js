@@ -111,11 +111,12 @@ define([
          * Render item API
          * @param {Function} item
          * @param {Boolean} [render]
+         * @param {Boolean} [silent]
          * @param {*} [where]
          * @returns {*}
          * @private
          */
-        _renderItem: function _renderItem(item, render, where) {
+        _renderItem: function _renderItem(item, render, silent, where) {
 
             /**
              * Define scope
@@ -124,7 +125,7 @@ define([
             var scope = this.scope[item.name.toLowerCase()];
 
             if (this.base.defineBoolean(render, false, true)) {
-                scope.view.render(where);
+                scope.view.render(silent, where);
             }
 
             return scope;

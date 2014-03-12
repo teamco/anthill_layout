@@ -60,9 +60,14 @@ define([
             });
         },
 
-        render: function render() {
+        /** Render widget
+         * @param {boolean} silent
+         */
+        render: function render(silent) {
+
             this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered
+                this.scope.eventmanager.eventList.successRendered,
+                silent
             );
         },
 

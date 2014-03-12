@@ -38,9 +38,14 @@ define([
             });
         },
 
-        render: function render() {
+        /**
+         * Render workspace
+         * @param silent
+         */
+        render: function render(silent) {
             this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered
+                this.scope.eventmanager.eventList.successRendered,
+                silent
             );
         }
     }, BaseView.prototype)

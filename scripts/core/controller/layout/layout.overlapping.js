@@ -38,7 +38,6 @@ define([
 
             if (opts.condition) {
                 this.layout.logger.debug(opts.log);
-                this._nestedOrganizerCallback(opts.callback)
             }
 
             return opts.condition;
@@ -65,8 +64,7 @@ define([
              */
             var notOrganize = this._exitPointOn({
                 log: 'Do not organize',
-                condition: !opts.organize,
-                callback: opts.callback
+                condition: !opts.organize
             });
 
             /**
@@ -74,8 +72,7 @@ define([
              */
             var notOverlapping = this._exitPointOn({
                 log: 'Overlapping is allowed',
-                condition: !layout.controller.isOverlappingAllowed(),
-                callback: opts.callback
+                condition: !layout.controller.isOverlappingAllowed()
             });
 
             /**
@@ -83,11 +80,11 @@ define([
              */
             var emptyTargets = this._exitPointOn({
                 log: 'Empty targets',
-                condition: this.base.lib.hash.isHashEmpty(opts.targets),
-                callback: opts.callback
+                condition: this.base.lib.hash.isHashEmpty(opts.targets)
             });
 
             if (notOrganize || notOverlapping || emptyTargets) {
+                this._nestedOrganizerCallback(opts.callback);
                 return false;
             }
 
