@@ -18,6 +18,7 @@ div.panel-container.panel-left .bar-content {
     width: 0;
     left: 0;
     top: 0;
+    overflow: hidden;
 }
 
 div.panel-container:hover .bar-content {

@@ -90,11 +90,16 @@ div.panel-container.close.panel-left .panel-tab {
 
 div.panel-container .panel-header {
     height: 40px;
+}
+
+div.panel-container.panel-right .panel-header,
+div.panel-container.panel-right .panel {
     padding-right: 40px;
 }
 
-div.panel-container .panel {
-    padding-right: 40px;
+div.panel-container.panel-right .panel-header,
+div.panel-container.panel-right .panel {
+    padding-left: 40px;
 }
 
 div.panel-container.panel-left .content {

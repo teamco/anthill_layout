@@ -24,7 +24,7 @@ define([
             destroy: true
         });
 
-        return this;
+        return this.bindResize();
     };
 
     return PanelContainerElement.extend({
@@ -37,6 +37,54 @@ define([
             open ?
                 this.$.addClass('close') :
                 this.$.removeClass('close');
+        },
+
+        /**
+         * Bind resize
+         */
+        bindResize: function bindResize() {
+
+            var controller = this.view.controller,
+                resizeFrom = controller.isResizable();
+
+            if (!resizeFrom) {
+                return false;
+            }
+
+            /**
+             * Define handle
+             * @type {string}
+             */
+            var handle = resizeFrom === 'top' ?
+                's' : resizeFrom === 'right' ?
+                'w' : resizeFrom === 'bottom' ?
+                'n' : 'e';
+
+            /**
+             * Set max width
+             * @type {number}
+             */
+            var maxWidth = 290;
+
+            this.$.resizable({
+                handles: handle,
+                containment: 'parent',
+                maxWidth: maxWidth,
+                minWidth: 130,
+                start: function start(event, ui) {
+
+                    /**
+                     * Set width
+                     * @type {number}
+                     */
+                    var width = ui.element.hasClass('close') ?
+                        maxWidth : ui.size.width;
+
+                    ui.element.resizable('option', 'maxWidth', width);
+                }
+            });
+
+            return this;
         }
 
     }, BaseElement.prototype);

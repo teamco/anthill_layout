@@ -21,6 +21,22 @@ define([
     return Controller.extend({
 
         /**
+         * Check if panel resizable
+         * @returns {boolean}
+         */
+        isResizable: function isResizable() {
+
+            /**
+             * Define model
+             * @type {model}
+             */
+            var model = this.model;
+
+            return model.getConfig('html/resizable') ?
+                model.getConfig('renderAt') : false;
+        },
+
+        /**
          * Define modules
          * @param modules
          */

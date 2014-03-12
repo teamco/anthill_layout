@@ -56,6 +56,7 @@ define([
          *              max: number
          *          },
          *          style: string,
+         *          resizable: boolean,
          *          header: boolean,
          *          footer: boolean,
          *          floating: boolean,
@@ -74,8 +75,9 @@ define([
             html: {
                 width: {
                     min: 5,
-                    max: 300
+                    max: 215
                 },
+                resizable: true,
                 style: 'default',
                 header: true,
                 footer: false,
