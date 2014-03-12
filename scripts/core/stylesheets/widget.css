@@ -3,6 +3,61 @@
     z-index: 99999 !important;
 }
 
+.ui-resizable-handle {
+    background: #cd0a0a none;
+    width: 10px;
+    height: 10px;
+    visibility: hidden;
+}
+
+.ui-resizable-n {
+    box-shadow: -2px 2px 2px #fff;
+    left: 50%;
+    top: -5px;
+}
+
+.ui-resizable-e {
+    box-shadow: -2px 2px 2px #fff;
+    top: 50%;
+    right: -5px;
+}
+
+.ui-resizable-s {
+    left: 50%;
+    bottom: -5px;
+    box-shadow: -2px -2px 2px #fff;
+}
+
+.ui-resizable-w {
+    top: 50%;
+    left: -5px;
+    box-shadow: 2px -2px 2px #fff;
+}
+
+.ui-resizable-se {
+    right: -5px;
+    bottom: -5px;
+    box-shadow: -2px -2px 2px #fff;
+}
+
+.ui-resizable-sw {
+    left: -5px;
+    bottom: -5px;
+    box-shadow: 2px -2px 2px #fff;
+}
+
+.ui-resizable-ne {
+    box-shadow: -2px 2px 2px #fff;
+    right: -5px;
+    top: -5px;
+}
+
+.ui-resizable-nw {
+    box-shadow: 2px 2px 2px #fff;
+    left: -5px;
+    top: -5px;
+}
+
 .widget {
     width: 150px;
     height: 150px;
@@ -10,6 +65,15 @@
     top: 10px;
     left: 10px;
     z-index: 50;
+    cursor: move;
+}
+
+.widget:hover {
+    border: 5px solid #ff6347;
+}
+
+.widget:hover .ui-resizable-handle {
+    visibility: visible;
 }
 
 #next-widget-position {
@@ -24,6 +88,7 @@
     left: 0;
     bottom: 0;
     right: 0;
+    cursor: default;
 }
 
 .widget .content ul {
