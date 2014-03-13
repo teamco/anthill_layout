@@ -35,11 +35,9 @@ define([
             this.logger.debug('Init window resize');
 
             var callback = this.controller.resizeWindowPublisher.
-                bind(this).debounce();
+                bind(this);
 
-            window.attachEvent ?
-                window.attachEvent('onresize', callback) :
-                window.addEventListener('resize', callback);
+            $(window).on('resizestop', callback);
         },
 
         /**

@@ -25,11 +25,13 @@ requirejs.config({
         test: 'test',
 
         jquery: 'lib/jquery/jquery-2.1.0',
-        'jquery.ui': 'lib/jquery/jquery-ui-1.10.4.custom'
+        'jquery.ui': 'lib/jquery/jquery-ui-1.10.4.custom',
+        'jquery.resizestop': 'lib/jquery/jquery.resizestop'
     },
 
     shim: {
         'jquery.ui': {deps: ['jquery']},
+        'jquery.resizestop': {deps: ['jquery']},
         'extends/function': {deps: ['jquery']},
         'extends/string': {deps: ['jquery']},
         'extends/array': {deps: ['jquery']},
@@ -61,6 +63,7 @@ requirejs.config({
 define([
     'jquery',
     'jquery.ui',
+    'jquery.resizestop',
     'extends/function',
     'extends/json',
     'extends/event',

@@ -358,12 +358,26 @@ define([
 
         /**
          * Get animation behavior on stop interaction
-         * @param {Boolean} animate
+         * @param {Boolean} animateCfg
+         * @param {Boolean} animateOpts
          * @param {String} type
          * @returns {Boolean}
          */
-        animateOnStop: function animateOnStop(type, animate) {
-            return this.isStop(type) ? !!animate : false;
+        animateOnStop: function animateOnStop(type, animateCfg, animateOpts) {
+
+            /**
+             * Define config animation
+             * @type {*}
+             */
+            animateCfg = this.base.defineBoolean(animateCfg, false, true);
+
+            /**
+             * Define options animation
+             * @type {*}
+             */
+            animateOpts = this.base.defineBoolean(animateOpts, false, true);
+
+            return this.isStop(type) ? (animateCfg && animateOpts) : false;
         },
 
         /**
@@ -378,7 +392,7 @@ define([
 
         /**
          * Grid sticker on interaction (Drag/Resize)
-         * @param {{type, $source, callback: Function, organize: Boolean}} opts
+         * @param {{type, $source, callback: Function, organize: Boolean, animate: Boolean}} opts
          * @param {String} mode
          * @param {{animate: Boolean}} behavior
          */
@@ -409,7 +423,8 @@ define([
                  */
                 var duration = this.animateOnStop(
                         opts.type,
-                        behavior.animate
+                        behavior.animate,
+                        opts.animate
                     ) ? this.duration : 0,
 
                     /**
