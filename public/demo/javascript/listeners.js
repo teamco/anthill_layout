@@ -49,7 +49,7 @@ define([
                      * @type {plugins.panel.panel}
                      */
                     app.panel = new Panel({
-                        config: {renderAt: 'left'},
+                        config: {renderAt: 'right'},
                         modules: [Gallery, PageData],
                         packages: [Bar]
                     }, app);
