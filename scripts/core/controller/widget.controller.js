@@ -505,23 +505,10 @@ define([
 
         /**
          * Adopt widget dimension on resize page
-         * @param {Boolean} organize
          * @param {Boolean} animate
          */
-        adoptDimensions: function adoptDimensions(organize, animate) {
-
-            /**
-             * Define controller
-             * @type {controller|*}
-             */
-            var controller = this.controller;
-
-            controller.behaviorMode({
-                organize: organize,
-                animate: animate,
-                $source: this.view.get$item().$,
-                callback: controller._resetInteractions.bind(controller)
-            }, 'resizestop');
+        adoptDimensions: function adoptDimensions(animate) {
+            this.map.adoptTo(animate);
         },
 
         /**

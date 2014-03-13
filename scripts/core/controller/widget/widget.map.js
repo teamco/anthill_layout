@@ -517,11 +517,29 @@ define([
          * @returns {{width: Number, height: Number}}
          */
         resizeTo: function resizeTo() {
+
+            /**
+             * Get DOM
+             * @type {*}
+             */
             var dom = this.getDOM();
+
             return $.extend({
                 width: this.getNextDims(dom.relWidth),
                 height: this.getNextDims(dom.relHeight)
             }, this.dragTo());
+        },
+
+        /**
+         * Adopt to
+         * @param {boolean} animate
+         */
+        adoptTo: function adoptTo(animate) {
+
+            this.setPosition(
+                this.widget.dom,
+                this.base.defineBoolean(animate, false, true)
+            );
         },
 
         /**
@@ -532,8 +550,9 @@ define([
          *      relHeight: Number,
          *      relWidth: Number
          * }} [dom]
+         * @param {Boolean} [animate]
          */
-        setPosition: function setPosition(dom) {
+        setPosition: function setPosition(dom, animate) {
 
             /**
              * Init local scope
@@ -541,7 +560,23 @@ define([
              */
             var widget = this.widget;
 
+            /**
+             * Set DOM
+             * @type {*}
+             */
             dom = this.base.define(dom, widget.dom, true);
+
+            /**
+             * Init animate
+             * @type {Boolean}
+             */
+            animate = this.base.defineBoolean(animate, false, true);
+
+            /**
+             * Init duration
+             * @type {number}
+             */
+            var duration = animate ? this.duration : 0;
 
             /**
              * Define new CSS
@@ -555,7 +590,24 @@ define([
             };
 
             widget.logger.debug('Position', css);
-            widget.view.get$item().$.css(css);
+
+            /**
+             * Define $widget
+             * @type {$|*|config.anthill.$}
+             */
+            var $widget = widget.view.get$item().$.stop();
+
+            if (duration === 0) {
+
+                $widget.css(css);
+
+            } else {
+
+                $widget.animate(
+                    css,
+                    duration
+                );
+            }
         },
 
         occupiedAt: function occupiedAt() {

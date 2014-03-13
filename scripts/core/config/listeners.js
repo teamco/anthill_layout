@@ -154,7 +154,7 @@ define([
             callback: function resizeWidgetCallback(widget) {
                 widget.observer.publish(
                     widget.eventmanager.eventList.adoptDimensions,
-                    [false, false]
+                    true
                 );
             }
         }
