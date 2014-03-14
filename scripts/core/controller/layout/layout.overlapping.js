@@ -110,13 +110,34 @@ define([
             for (index in widgets) {
                 if (widgets.hasOwnProperty(index)) {
                     if (this.base.isDefined(widgets[index])) {
+
+                        /**
+                         * Find intersections
+                         * @type {*}
+                         */
                         intersecting = this._intersectWidgets(widgets[index]);
-                        this._organizeCollector(widgets[index], intersecting);
+
+                        this._organizeCollector(
+                            widgets[index],
+                            intersecting
+                        );
+
                         for (moved in intersecting) {
                             if (intersecting.hasOwnProperty(moved)) {
+
+                                /**
+                                 * Define intersected widget
+                                 */
                                 widget = intersecting[moved];
+
+                                /**
+                                 * Collect widgets are ready to change position
+                                 */
                                 nestedMove[widget.model.getUUID()] = widget;
-                                widget.view.elements.$widget.setOpacity(widget.config.html.opacity);
+
+                                widget.view.get$item().setOpacity(
+                                    widget.model.getConfig('html/opacity')
+                                );
                             }
                         }
                     }
@@ -132,11 +153,14 @@ define([
          * @private
          */
         _nestedOrganizerCallback: function _nestedOrganizerCallback(callback) {
+
             var layout = this.layout,
                 emptySpaces = layout.controller.getBehavior().emptySpaces;
 
             if (emptySpaces) {
+
                 layout.logger.debug('Remove empty spaces');
+
                 switch (emptySpaces) {
                     case layout.containment.ORGANIZE_MODES.row:
                         layout.logger.debug('Remove empty rows');
@@ -161,17 +185,23 @@ define([
          * @private
          */
         _cssOrganizer: function _cssOrganizer(callback) {
+
             var page = this.layout.controller.getContainment(),
                 widgets = page.model.getItems(),
                 index, widget, counter = 1,
                 length = this.base.lib.hash.hashLength(widgets);
 
             for (index in widgets) {
+
                 if (widgets.hasOwnProperty(index)) {
-                    widget = page.model.getItemByUUID(widgets[index].model.getUUID());
+
+                    widget = page.model.getItemByUUID(
+                        widgets[index].model.getUUID()
+                    );
 
                     widget.logger.debug('Start nested organizer animation');
-                    widget.view.elements.$widget._setPosition({
+
+                    widget.view.get$item()._setPosition({
                         animate: true,
                         callback: this._cssOrganizeCallback.bind({
                             scope: this,
@@ -200,7 +230,7 @@ define([
                 callback();
             }
 
-            this.widget.view.elements.$widget.setOpacity(1.0);
+            this.widget.view.get$item().setOpacity(1.0);
 
             if (this.save) {
                 layout.logger.debug('Finish nested organizer');

@@ -8,10 +8,10 @@
 
 define([
     'modules/event'
-], function defineGalleryEventManager(Event) {
+], function definePagesEventManager(Event) {
 
     /**
-     * Define Gallery event manager
+     * Define Pages event manager
      * @class EventManager
      * @constructor
      */

@@ -33,7 +33,7 @@ define([
              * Define allow to add widgets
              * @type {boolean}
              */
-            var allow = this.model.getConfig('widget').allowToAdd;
+            var allow = this.model.getConfig('widget/allowToAdd');
             this.scope.logger.debug('Is allowed to add widget?', allow);
 
             return allow;

@@ -1,0 +1,28 @@
+.panel div.pages ul {
+    list-style: none;
+}
+
+.panel div.pages-header {
+    height: 40px;
+}
+
+.panel ul.pages .content {
+    height: 70px;
+    width: 70px;
+    display: block;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 10px #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.panel ul.pages .content:active {
+    cursor: move;
+}
+
+.panel div.pages-footer {
+    position: absolute;
+    bottom: 0;
+}

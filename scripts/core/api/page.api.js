@@ -39,6 +39,10 @@ define([
              */
             var scope = this.scope;
 
+            if (silent) {
+                scope.controller.allowAddWidget();
+            }
+
             if (!scope.controller.isAllowAddWidget()) {
                 scope.logger.warn(
                     this.i18n.t('not.allowed.add.widget'),
