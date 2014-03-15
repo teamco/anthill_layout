@@ -15,6 +15,9 @@ define([
     /**
      * Define Base Controller
      * @class BaseController
+     * @extends AntHill
+     * @extends BaseCrud
+     * @extends BaseResize
      * @constructor BaseController
      */
     var BaseController = function BaseController() {
@@ -25,6 +28,7 @@ define([
 
         /**
          * Get Application mode
+         * @member BaseController
          * @returns {*|number}
          */
         getMode: function getMode() {
@@ -33,6 +37,7 @@ define([
 
         /**
          * Get parent node object
+         * @member BaseController
          * @returns {*}
          */
         getContainment: function getContainment() {
@@ -41,6 +46,7 @@ define([
 
         /**
          * Get Application Root
+         * @member BaseController
          * @returns {*|string}
          */
         root: function root() {
@@ -59,6 +65,7 @@ define([
 
         /**
          * Get Config Logger
+         * @member BaseController
          * @param {String} log
          * @param {Object} hash
          */
@@ -68,6 +75,7 @@ define([
 
         /**
          * Get scope view
+         * @member BaseController
          * @returns {view}
          */
         getView: function getView() {
@@ -75,7 +83,17 @@ define([
         },
 
         /**
+         * Get scope model
+         * @member BaseController
+         * @returns {model}
+         */
+        getModel: function getModel() {
+            return this.scope.model;
+        },
+
+        /**
          * Success Created
+         * @member BaseController
          */
         successCreated: function successCreated() {
             this.logger.debug(
@@ -87,8 +105,9 @@ define([
 
         /**
          * Success Rendered
+         * @member BaseController
          */
-        successRendered: function successRendered() {  if(!this.i18n)debugger
+        successRendered: function successRendered() {
             this.logger.debug(
                 this.i18n.t('success.rendered').replace(/\{0\}/, this.constructor.name),
                 this
@@ -97,6 +116,7 @@ define([
 
         /**
          * Get current items
+         * @member BaseController
          * @returns {*}
          */
         getCurrentItem: function getCurrentItem() {
@@ -110,6 +130,7 @@ define([
 
         /**
          * Set item as current in parent node
+         * @member BaseController
          */
         setAsCurrent: function setAsCurrent() {
             this.getContainment().controller.setCurrentItem(this.scope);
@@ -117,6 +138,7 @@ define([
 
         /**
          * Set current item
+         * @member BaseController
          * @param {{}} item
          * @returns {*}
          */
@@ -128,6 +150,7 @@ define([
 
         /**
          * Check condition
+         * @member BaseController
          * @param {{condition, msg, [type], [args]}} opts
          * @returns {boolean}
          */
@@ -143,6 +166,7 @@ define([
 
         /**
          * Get Development Mode
+         * @member BaseController
          * @returns {Boolean}
          */
         isDevelopmentMode: function isDevelopmentMode() {
@@ -151,6 +175,7 @@ define([
 
         /**
          * Get Authorize Mode
+         * @member BaseController
          * @returns {Boolean}
          */
         isAuthorizeMode: function isAuthorizeMode() {
@@ -159,6 +184,7 @@ define([
 
         /**
          * Get Consumption Mode
+         * @member BaseController
          * @returns {boolean}
          */
         isConsumptionMode: function isConsumptionMode() {
@@ -167,6 +193,7 @@ define([
 
         /**
          * Get Custom Mode
+         * @member BaseController
          * @returns {boolean}
          */
         isCustomMode: function isCustomMode() {
@@ -175,6 +202,7 @@ define([
 
         /**
          * Set Order
+         * @member BaseController
          * @param collector
          */
         setOrder: function setOrder(collector) {
@@ -189,6 +217,7 @@ define([
 
         /**
          * Extend Config
+         * @member BaseController
          * @param {{config, [dom]}} opts
          * @returns {*}
          */
@@ -213,6 +242,7 @@ define([
 
         /**
          * Set Interaction
+         * @member BaseController
          * @param {String} event
          * @param {*} callback
          * @returns {*}
@@ -224,6 +254,7 @@ define([
 
         /**
          * Get Interaction
+         * @member BaseController
          * @param {String} event
          * @returns {*}
          */
@@ -233,6 +264,7 @@ define([
 
         /**
          * Store data after layout organize
+         * @member BaseController
          * @param [node]
          * @param [data]
          */
@@ -285,6 +317,7 @@ define([
 
         /**
          * Collect items data
+         * @member BaseController
          * @param {Boolean} collectDOM
          * @returns {{}}
          */

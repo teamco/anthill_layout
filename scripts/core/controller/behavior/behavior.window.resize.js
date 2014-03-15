@@ -22,6 +22,7 @@ define([
         /**
          * Get resize attributes
          * Get items are ready to be resized
+         * @member BaseResize
          * @returns {{event: string|*, items: *}}
          * @private
          */
@@ -58,6 +59,7 @@ define([
 
         /**
          * Nested resize
+         * @member BaseResize
          * @param resize
          * @private
          */
@@ -97,6 +99,7 @@ define([
 
         /**
          * Resize items on resize window
+         * @member BaseResize
          */
         resizeItems: function resizeItems() {
 
@@ -107,6 +110,7 @@ define([
 
         /**
          * Resize item on resize window
+         * @member BaseResize
          * @param item
          */
         resizeItem: function resizeItem(item) {
@@ -114,9 +118,6 @@ define([
             this.controller._resizeNestedEventTrigger(
                 item.controller._getResizeAttributes()
             );
-
         }
-
     });
-
 });

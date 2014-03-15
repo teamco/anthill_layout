@@ -12,6 +12,7 @@ define([
     /**
      * Define Base Debugger
      * @class BaseDebugger
+     * @extends AntHill
      * @constructor BaseDebugger
      */
     var BaseDebugger = function BaseDebugger() {
@@ -22,6 +23,7 @@ define([
 
         /**
          * Start debugger
+         * @member BaseDebugger
          */
         debugStart: function debugStart() {
             this.logger.debug('Activate debugger');
@@ -29,6 +31,7 @@ define([
 
         /**
          * End debugger
+         * @member BaseDebugger
          */
         debugEnd: function debugEnd() {
             this.logger.debug('Destroy debugger');
@@ -36,6 +39,7 @@ define([
 
         /**
          * Activate debugger
+         * @member BaseDebugger
          * @returns {boolean}
          */
         activateDebugger: function activateDebugger() {
@@ -51,6 +55,7 @@ define([
 
         /**
          * Deactivate debugger
+         * @member BaseDebugger
          * @returns {boolean}
          */
         deactivateDebugger: function deactivateDebugger() {
@@ -66,6 +71,7 @@ define([
 
         /**
          * Reset debugger
+         * @member BaseDebugger
          */
         reactivateDebugger: function reactivateDebugger() {
             this.deactivateDebugger();
@@ -74,6 +80,7 @@ define([
 
         /**
          * Update debugger info
+         * @member BaseDebugger
          * @returns {boolean}
          */
         updateDebugger: function updateDebugger() {
