@@ -16,6 +16,7 @@ define([
      * @returns {GalleryContentElement}
      * @constructor
      * @class GalleryContentElement
+     * @extends BaseElement
      */
     var GalleryContentElement = function GalleryContentElement(view, opts) {
 
@@ -25,7 +26,6 @@ define([
         });
 
         this.setAttributes(opts.data);
-
         this.installWidget();
 
         return this;
@@ -33,6 +33,11 @@ define([
 
     return GalleryContentElement.extend({
 
+        /**
+         * Set attributes
+         * @memberOf GalleryContentElement
+         * @param data
+         */
         setAttributes: function setAttributes(data) {
 
             this.$.attr({
@@ -42,11 +47,24 @@ define([
             });
         },
 
+        /**
+         * Install widget
+         * @memberOf GalleryContentElement
+         */
         installWidget: function installWidget() {
 
-            this.$.on('click.install', function clickInstall() {
+            /**
+             * Click to install
+             * @private
+             */
+            function _clickInstall() {
                 this.view.controller.addWidget(this);
-            }.bind(this))
+            }
+
+            this.$.on(
+                'click.install',
+                _clickInstall.bind(this)
+            );
         }
 
     }, BaseElement.prototype);

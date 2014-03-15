@@ -7,6 +7,11 @@
 
 define([], function defineBasePreferences() {
 
+    /**
+     * Define prefs
+     * @class Preferences
+     * @constructor
+     */
     var Preferences = function Preferences() {
 
     };
@@ -15,6 +20,7 @@ define([], function defineBasePreferences() {
 
         /**
          * Render data
+         * @memberOf Preferences
          * @param data
          */
         renderData: function renderData(data) {
@@ -53,6 +59,7 @@ define([], function defineBasePreferences() {
 
         /**
          * Render Interactions
+         * @member Preferences
          * @param {Array} nodes
          * @returns {*}
          */
@@ -60,7 +67,7 @@ define([], function defineBasePreferences() {
 
             /**
              * Define controller
-             * @type {controller|*}
+             * @type {*}
              */
             var controller = this.view.controller;
 
@@ -112,6 +119,7 @@ define([], function defineBasePreferences() {
 
         /**
          * Render move
+         * @memberOf Preferences
          * @param {string} side
          * @param value
          * @returns {*|jQuery}
@@ -132,6 +140,10 @@ define([], function defineBasePreferences() {
             return $('<li />').append($move);
         },
 
+        /**
+         * Render resize
+         * @memberOf Preferences
+         */
         renderResize: function renderResize() {
 
         }

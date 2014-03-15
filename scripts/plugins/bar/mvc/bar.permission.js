@@ -14,6 +14,7 @@ define([
      * Define Permissions
      * @class Permission
      * @constructor
+     * @extends BasePermission
      */
     var Permission = function Permission() {
 

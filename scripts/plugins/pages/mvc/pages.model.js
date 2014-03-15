@@ -14,6 +14,7 @@ define([
      * @mixin BaseModel
      * @class Model
      * @constructor
+     * @extends BaseModel
      */
     var Model = function Model() {
 
@@ -23,6 +24,7 @@ define([
 
         /**
          * Get data provider
+         * @member Model
          */
         getData: function getData(workspace) {
             return workspace.model.getItems();

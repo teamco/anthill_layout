@@ -16,6 +16,7 @@ define([
      * @returns {PanelTabElement}
      * @constructor
      * @class PanelTabElement
+     * @extends BaseElement
      */
     var PanelTabElement = function PanelTabElement(view, opts) {
 

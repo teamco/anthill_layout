@@ -13,6 +13,8 @@ define([
     /**
      * Define Plugin controller
      * @class PluginController
+     * @extends AntHill
+     * @extends BaseController
      * @constructor
      */
     var PluginController = function PluginController() {
@@ -23,6 +25,7 @@ define([
 
         /**
          * Get Workspace
+         * @member PluginController
          * @returns {*|Workspace}
          */
         getWorkspace: function getWorkspace() {
@@ -31,6 +34,7 @@ define([
 
         /**
          * Get Page
+         * @member PluginController
          * @returns {*|Page}
          */
         getPage: function getPage() {
@@ -39,6 +43,7 @@ define([
 
         /**
          * Get Widget
+         * @member PluginController
          * @returns {*|Widget}
          */
         getWidget: function getWidget() {
@@ -47,6 +52,7 @@ define([
 
         /**
          * Check if data was existing
+         * @member PluginController
          * @returns {boolean}
          */
         isDataNotExist: function isDataNotExist() {
@@ -58,12 +64,13 @@ define([
 
         /**
          * Update translations
+         * @member PluginController
          */
         updateTranslations: function updateTranslations(data) {
 
             /**
              * Define this reference
-             * @type {AntHill}
+             * @type {*}
              */
             var plugin = this;
 
@@ -82,6 +89,7 @@ define([
 
     /**
      * Overwrite success rendered
+     * @param {function} [callback]
      */
     PluginController.prototype.successRendered = function successRendered(callback) {
 

@@ -16,6 +16,7 @@ define([
      * @returns {PagesContainerElement}
      * @constructor
      * @class PagesContainerElement
+     * @extends BaseElement
      */
     var PagesContainerElement = function PagesContainerElement(view, opts) {
 

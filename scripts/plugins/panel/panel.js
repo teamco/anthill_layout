@@ -21,16 +21,19 @@ define([
      * @param containment
      * @constructor
      * @class Panel
+     * @extends AntHill
      */
     var Panel = function Panel(opts, containment) {
 
         /**
          * Define containment
+         * @member Panel
          */
         this.containment = containment;
 
         /**
          * Define opened
+         * @member Panel
          * @type {boolean}
          */
         this.opened = false;
@@ -93,24 +96,28 @@ define([
 
         /**
          * Init observer
+         * @member Panel
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
+         * @member Panel
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
+         * @member Panel
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Define MVC
+         * @member Panel
          * @type {MVC}
          */
         this.mvc = new MVC({

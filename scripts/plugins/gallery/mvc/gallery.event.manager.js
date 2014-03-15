@@ -14,21 +14,30 @@ define([
      * Define Gallery event manager
      * @class EventManager
      * @constructor
+     * @extends Event
      */
     var EventManager = function EventManager() {
 
         /**
          * Define events
+         * @member EventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
+         * @member EventManager
+         * @type {{
+         *      updateTranslations: string,
+         *      setProviders: string,
+         *      loadContent: string
+         * }}
          */
         this.eventList = {
             updateTranslations: 'update.translations',
-            loadContent: 'load.content'
+            loadContent: 'load.content',
+            setProviders: 'set.providers'
         };
     };
 

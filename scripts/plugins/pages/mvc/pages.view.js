@@ -17,6 +17,7 @@ define([
     /**
      * Define view
      * @class View
+     * @extends BaseView
      * @constructor
      */
     var View = function View() {
@@ -26,6 +27,7 @@ define([
 
         /**
          * Render Pages
+         * @member View
          * @returns {boolean}
          */
         renderPages: function renderPages() {
@@ -50,6 +52,7 @@ define([
 
         /**
          * Render pages content
+         * @member View
          * @param data
          * @param {Boolean} force
          * @returns {boolean}
@@ -74,7 +77,7 @@ define([
 
                     /**
                      * Render item
-                     * @type {plugins.pages.element.pages.content.element}
+                     * @type {*}
                      */
                     var $item = new PagesContent(this, {
                         style: 'content',
@@ -88,7 +91,56 @@ define([
         },
 
         /**
+         * Show preferences
+         * @member View
+         * @param config
+         */
+        showPreferences: function showPreferences(config) {
+
+            /**
+             * Define $container
+             * @type {BaseElement.$}
+             */
+            var $container = this.controller.getPage().view.elements.$page.$;
+
+            /**
+             * Define $html
+             * @type {$}
+             */
+            var $html = this.controller.getPreferences(config.uuid).$;
+
+            this.modalDialog({
+                style: [
+                    config.preferences.resource,
+                    'preferences'
+                ].join(' '),
+                $container: $container,
+                type: 'info',
+                title: 'Widget preferences',
+                text: 'bla',
+                html: $html,
+                cover: true,
+                autoclose: true,
+                buttons: {
+                    approve: {
+                        text: 'OK',
+                        events: {
+                            click: 'approveUpdatePreferences'
+                        }
+                    },
+                    reject: {
+                        text: 'Cancel',
+                        events: {
+                            click: 'rejectModalEvent'
+                        }
+                    }
+                }
+            });
+        },
+
+        /**
          * Render pages
+         * @member View
          */
         render: function render() {
 

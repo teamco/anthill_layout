@@ -16,6 +16,7 @@ define([
      * Define Base element
      * @class BaseElement
      * @constructor
+     * @extends AntHill
      */
     var BaseElement = function BaseElement() {
     };
@@ -24,11 +25,13 @@ define([
 
         /**
          * Define plugin path
+         * @memberOf BaseElement
          */
         pluginPath: '../../scripts/plugins',
 
         /**
          * Element config before build
+         * @memberOf BaseElement
          * @param {{createStyle: Function, renderUUID: Function}} view
          * @param {{style: String, id: String, [css], [events], [opacity]}} opts
          * @param $html
@@ -36,15 +39,52 @@ define([
          * @private
          */
         _config: function _config(view, opts, $html) {
+
+            /**
+             * Define view
+             * @memberOf BaseElement
+             * @type {{createStyle: Function, renderUUID: Function}}
+             */
             this.view = view;
+
+            /**
+             * Define style
+             * @memberOf BaseElement
+             * @type {String}
+             */
             this.style = opts.style || view.createStyle();
+
+            /**
+             * Define id
+             * @memberOf BaseElement
+             * @type {String}
+             */
             this.id = view.renderUUID(opts.id);
+
+            /**
+             * Define events
+             * @memberOf BaseElement
+             * @type {*}
+             */
             this.events = opts.events;
+
+            /**
+             * Define opacity
+             * @memberOf BaseElement
+             * @type {*|number}
+             */
             this.opacity = opts.opacity || 1.0;
+
+            /**
+             * Define CSS
+             * @memberOf BaseElement
+             * @type {*}
+             */
             this.css = this.base.define(opts.css, {}, true);
 
             /**
              * Define jQuery element
+             * @memberOf BaseElement
              */
             this.$ = $html.attr({
                 id: this.id
@@ -74,6 +114,7 @@ define([
 
         /**
          * Centralize element into container
+         * @memberOf BaseElement
          * @param {{$container, $item, css, position: String}} opts
          * Position options:
          *      ['tl' 'tc' 'tr']
@@ -132,6 +173,7 @@ define([
 
         /**
          * Destroy element before create
+         * @memberOf BaseElement
          * @param {Boolean} destroy
          */
         destroyB4Create: function destroyB4Create(destroy) {
@@ -168,6 +210,7 @@ define([
 
         /**
          * Build element
+         * @memberOf BaseElement
          * @param {{$container, [append], destroy, [callback]}} opts
          * @returns {*}
          */
@@ -205,8 +248,14 @@ define([
 
         /**
          * Dynamic CSS
+         * @memberOf BaseElement
          * @param {String} type
-         * @param [opts]
+         * @param {{
+         *      [type]: string,
+         *      [rel]: string,
+         *      [media]: string,
+         *      [resource]: string
+         * }} [opts]
          */
         addCSS: function addCSS(type, opts) {
 
@@ -236,7 +285,13 @@ define([
 
             /**
              * Init Link
-             * @type {HTMLElement|{type: string, rel: string, media: string, href: string, id: string}}
+             * @type {HTMLElement|{
+             *      type: string,
+             *      rel: string,
+             *      media: string,
+             *      href: string,
+             *      id: string
+             * }}
              */
             var link = document.createElement("link");
 

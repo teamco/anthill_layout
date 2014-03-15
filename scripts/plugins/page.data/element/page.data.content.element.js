@@ -16,6 +16,7 @@ define([
      * @returns {PageDataContentElement}
      * @constructor
      * @class PageDataContentElement
+     * @extends BaseElement
      */
     var PageDataContentElement = function PageDataContentElement(view, opts) {
 
@@ -34,6 +35,7 @@ define([
 
         /**
          * Define attributes
+         * @memberOf PageDataContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
@@ -51,9 +53,18 @@ define([
 
         /**
          * Bind show prefs
+         * @memberOf PageDataContentElement
          * @param data
          */
         bindShowPrefs: function bindShowPrefs(data) {
+
+            /**
+             * Click prefs
+             * @private
+             */
+            function _clickPrefs() {
+                this.view.showPreferences(config);
+            }
 
             /**
              * Get config
@@ -63,11 +74,7 @@ define([
 
             this.$.off('click.prefs').on(
                 'click.prefs',
-                function clickPrefs() {
-
-                    this.view.showPreferences(config)
-
-                }.bind(this)
+                _clickPrefs.bind(this)
             );
         }
 

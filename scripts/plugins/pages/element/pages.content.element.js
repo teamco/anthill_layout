@@ -16,6 +16,7 @@ define([
      * @returns {PagesContentElement}
      * @constructor
      * @class PagesContentElement
+     * @extends BaseElement
      */
     var PagesContentElement = function PagesContentElement(view, opts) {
 
@@ -25,28 +26,56 @@ define([
         });
 
         this.setAttributes(opts.data);
-
-        this.installWidget();
+        this.bindShowPrefs(opts.data);
 
         return this;
     };
 
     return PagesContentElement.extend({
 
+        /**
+         * Define attributes
+         * @memberOf PagesContentElement
+         * @param data
+         */
         setAttributes: function setAttributes(data) {
 
+            /**
+             * Get config
+             * @type {*}
+             */
+            var config = data.model.getConfig();
+
             this.$.attr({
-                title: data.name,
-                rel: data.description,
-                resource: data.resource
-            });
+                title: config.uuid
+            }).addClass(config.resource);
         },
 
-        installWidget: function installWidget() {
+        /**
+         * Bind show prefs
+         * @memberOf PagesContentElement
+         * @param data
+         */
+        bindShowPrefs: function bindShowPrefs(data) {
 
-            this.$.on('click.install', function clickInstall() {
-                this.view.controller.addWidget(this);
-            }.bind(this))
+            /**
+             * Click prefs
+             * @private
+             */
+            function _clickPrefs() {
+                this.view.showPreferences(config);
+            }
+
+            /**
+             * Get config
+             * @type {*}
+             */
+            var config = data.model.getConfig();
+
+            this.$.off('click.prefs').on(
+                'click.prefs',
+                _clickPrefs.bind(this)
+            );
         }
 
     }, BaseElement.prototype);

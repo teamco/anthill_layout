@@ -16,6 +16,7 @@ define([
      * @returns {YoutubeElement}
      * @constructor
      * @class YoutubeElement
+     * @extends BaseElement
      */
     var YoutubeElement = function YoutubeElement(view, opts) {
 
@@ -33,6 +34,7 @@ define([
 
         /**
          * Render Embedded content
+         * @member YoutubeElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

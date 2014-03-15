@@ -15,10 +15,10 @@ define([
      * @class Permission
      * @constructor
      */
-    var Permission = function Permission() {
+    var BasePermission = function BasePermission() {
     };
 
-    return Permission.extend({
+    return BasePermission.extend({
 
         /**
          * Config capabilities

@@ -18,6 +18,7 @@ define([
      * Define view
      * @class View
      * @constructor
+     * @extends BaseView
      */
     var View = function View() {
     };
@@ -26,6 +27,7 @@ define([
 
         /**
          * Render PageData
+         * @member View
          * @returns {boolean}
          */
         renderPageData: function renderPageData() {
@@ -50,13 +52,23 @@ define([
 
         /**
          * Render page.data content
+         * @member View
          * @param data
          * @param {Boolean} force
          * @returns {boolean}
          */
         renderContent: function renderContent(data, force) {
 
-            if (this.isCachedItems(force) && this.controller.isUpdate(data, this.elements.items)) {
+            /**
+             * Check if content was updated
+             * @type {boolean}
+             */
+            var update = this.controller.isUpdate(
+                data,
+                this.elements.items
+            );
+
+            if (this.isCachedItems(force) && update) {
                 return false;
             }
 
@@ -66,10 +78,7 @@ define([
              */
             this.elements.items = {};
 
-            var index,
-                scope = this.scope;
-
-            for (index in data) {
+            for (var index in data) {
 
                 if (data.hasOwnProperty(index)) {
 
@@ -95,19 +104,20 @@ define([
 
         /**
          * Show preferences
+         * @member View
          * @param config
          */
         showPreferences: function showPreferences(config) {
 
             /**
              * Define $container
-             * @type {$|*|modules.renderer.$}
+             * @type {$}
              */
             var $container = this.controller.getPage().view.elements.$page.$;
 
             /**
              * Define $html
-             * @type {$|*|modules.renderer.$}
+             * @type {$}
              */
             var $html = this.controller.getPreferences(config.uuid).$;
 
@@ -142,6 +152,7 @@ define([
 
         /**
          * Render page.data
+         * @member View
          */
         render: function render() {
 

@@ -20,11 +20,13 @@ define([
      * @constructor
      * @param containment
      * @class PageData
+     * @extends AntHill
      */
     var PageData = function PageData(containment) {
 
         /**
          * Define containment
+         * @member PageData
          */
         this.containment = containment;
 
@@ -64,24 +66,28 @@ define([
 
         /**
          * Init observer
+         * @member PageData
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
+         * @member PageData
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
+         * @member PageData
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Define MVC
+         * @member PageData
          * @type {MVC}
          */
         this.mvc = new MVC({

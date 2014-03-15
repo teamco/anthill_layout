@@ -21,6 +21,7 @@ define([
      * Define view
      * @class View
      * @constructor
+     * @extends BaseView
      */
     var View = function View() {
     };
@@ -29,6 +30,7 @@ define([
 
         /**
          * Render container
+         * @member View
          */
         renderPanelContainer: function renderPanelContainer() {
 
@@ -47,6 +49,7 @@ define([
 
         /**
          * Render tab to open/close panel
+         * @member View
          */
         renderTab: function renderTab() {
 
@@ -62,6 +65,7 @@ define([
 
         /**
          * Render Panel
+         * @member View
          */
         renderPanel: function renderPanel() {
 
@@ -100,6 +104,7 @@ define([
 
         /**
          * Render content container
+         * @member View
          */
         renderContentContainer: function renderContentContainer() {
             /**
@@ -114,6 +119,7 @@ define([
 
         /**
          * Render panel content
+         * @member View
          * @param module
          * @param {Boolean} force
          * @returns {boolean}
@@ -156,6 +162,7 @@ define([
 
         /**
          * Render panel
+         * @member View
          */
         render: function render() {
 

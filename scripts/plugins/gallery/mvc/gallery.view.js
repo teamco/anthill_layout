@@ -18,6 +18,7 @@ define([
      * Define view
      * @class View
      * @constructor
+     * @extends BaseView
      */
     var View = function View() {
     };
@@ -26,6 +27,7 @@ define([
 
         /**
          * Render Gallery
+         * @member View
          * @returns {boolean}
          */
         renderGallery: function renderGallery() {
@@ -50,6 +52,7 @@ define([
 
         /**
          * Render gallery content
+         * @member View
          * @param data
          * @param {Boolean} force
          * @returns {boolean}
@@ -66,9 +69,7 @@ define([
              */
             this.elements.items = {};
 
-            var index;
-
-            for (index in data) {
+            for (var index in data) {
 
                 if (data.hasOwnProperty(index)) {
 
@@ -89,6 +90,7 @@ define([
 
         /**
          * Render gallery
+         * @member View
          */
         render: function render() {
 

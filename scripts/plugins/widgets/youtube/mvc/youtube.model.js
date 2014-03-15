@@ -11,7 +11,7 @@ define([
 
     /**
      * Define Youtube model
-     * @mixin BaseModel
+     * @extends BaseModel
      * @class Model
      * @constructor
      */
@@ -19,6 +19,7 @@ define([
 
         /**
          * Define preferences
+         * @member Model
          * @type {{url: string}}
          */
         this.preferences = {
@@ -30,6 +31,7 @@ define([
 
         /**
          * Get URL
+         * @member Model
          * @returns {string}
          */
         getUrl: function getUrl() {
@@ -38,6 +40,7 @@ define([
 
         /**
          * Set URL
+         * @member Model
          * @param {string} url
          */
         setUrl: function setUrl(url) {

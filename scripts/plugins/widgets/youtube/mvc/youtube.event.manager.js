@@ -14,17 +14,28 @@ define([
      * Define Youtube event manager
      * @class EventManager
      * @constructor
+     * @extends Event
      */
     var EventManager = function EventManager() {
 
         /**
          * Define events
+         * @member EventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
+         * @member EventManager
+         * @type {{
+         *      initWidget: string,
+         *      updateTranslations: string,
+         *      defineContainer: string,
+         *      setEmbeddedContent: string,
+         *      loadPreferences: string,
+         *      transferPreferences: string
+         * }}
          */
         this.eventList = {
             initWidget: 'init.widget',

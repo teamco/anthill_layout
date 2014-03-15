@@ -20,11 +20,13 @@ define([
      * @constructor
      * @param containment
      * @class Gallery
+     * @extends AntHill
      */
     var Gallery = function Gallery(containment) {
 
         /**
          * Define containment
+         * @member Gallery
          */
         this.containment = containment;
 
@@ -64,24 +66,28 @@ define([
 
         /**
          * Init observer
+         * @member Gallery
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
+         * @member Gallery
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
+         * @member Gallery
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Define MVC
+         * @member Gallery
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -99,6 +105,10 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.successCreated
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.setProviders
         );
 
         this.observer.publish(

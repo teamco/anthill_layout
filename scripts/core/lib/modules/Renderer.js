@@ -9,6 +9,12 @@ define([
     'config/anthill'
 ], function defineRenderer(AntHill) {
 
+    /**
+     * Define renderer
+     * @class Renderer
+     * @extends AntHill
+     * @constructor
+     */
     var Renderer = function Renderer() {
 
     };
@@ -17,6 +23,7 @@ define([
 
         /**
          * Render label
+         * @member Renderer
          * @param {string} uuid
          * @param {string} text
          * @returns {*|jQuery}
@@ -30,6 +37,7 @@ define([
 
         /**
          * Render text field
+         * @member Renderer
          * @param {{text: string, name: string, placeholder: string, value}} opts
          * @returns {*[]}
          */
@@ -59,10 +67,18 @@ define([
             ];
         },
 
+        /**
+         * Render text area
+         * @member Renderer
+         */
         renderTextArea: function renderTextArea() {
 
         },
 
+        /**
+         * Render combo box
+         * @member Renderer
+         */
         renderCombobox: function renderCombobox() {
 
         }

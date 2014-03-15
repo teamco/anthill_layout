@@ -16,6 +16,7 @@ define([
      * @returns {GalleryContainerElement}
      * @constructor
      * @class GalleryContainerElement
+     * @extends BaseElement
      */
     var GalleryContainerElement = function GalleryContainerElement(view, opts) {
 

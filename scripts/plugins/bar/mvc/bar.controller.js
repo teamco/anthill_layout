@@ -12,7 +12,7 @@ define([
     /**
      * Define bar controller
      * @class Controller
-     * @mixin {BaseController}
+     * @extends PluginController
      * @constructor
      */
     var Controller = function Controller() {
@@ -22,6 +22,7 @@ define([
 
         /**
          * Get modules data
+         * @member Controller
          */
         getData: function getData() {
             return this.model.getModulesList();
@@ -29,6 +30,7 @@ define([
 
         /**
          * Load gallery content
+         * @member Controller
          */
         loadContent: function loadContent() {
 

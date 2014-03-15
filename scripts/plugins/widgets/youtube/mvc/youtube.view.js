@@ -17,6 +17,7 @@ define([
     /**
      * Define view
      * @class View
+     * @extends BaseView
      * @constructor
      */
     var View = function View() {
@@ -26,6 +27,7 @@ define([
 
         /**
          * Render youtube element
+         * @member View
          */
         renderYoutube: function renderYoutube() {
 
@@ -33,7 +35,7 @@ define([
 
             /**
              * Define $youtube
-             * @type {plugins.youtube.element.youtube.element}
+             * @type {YoutubeElement}
              */
             this.elements.$youtube = new YoutubeElement(this, {
                 $container: this.elements.$container.$,
@@ -47,6 +49,11 @@ define([
             );
         },
 
+        /**
+         * Render Prefs
+         * @member View
+         * @returns {YoutubePreferencesElement}
+         */
         renderPreferences: function renderPreferences() {
 
             this.elements.$preferences = new YoutubePreferencesElement(this, {
@@ -58,6 +65,7 @@ define([
 
         /**
          * Render youtube
+         * @member View
          */
         render: function render() {
 

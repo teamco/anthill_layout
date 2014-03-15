@@ -13,7 +13,8 @@ define([
     /**
      * Define youtube controller
      * @class Controller
-     * @mixin {BaseController}
+     * @extends PluginController
+     * @extends WidgetController
      * @constructor
      */
     var Controller = function Controller() {
@@ -23,6 +24,7 @@ define([
 
         /**
          * Set embedded content
+         * @member Controller
          */
         setEmbeddedContent: function setEmbeddedContent() {
 

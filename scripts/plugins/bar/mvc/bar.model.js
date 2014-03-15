@@ -11,7 +11,7 @@ define([
 
     /**
      * Define Bar model
-     * @mixin BaseModel
+     * @extends BaseModel
      * @class Model
      * @constructor
      */
@@ -19,6 +19,7 @@ define([
 
         /**
          * Init modules
+         * @member Model
          * @type {Array}
          */
         this.modules = [];
@@ -26,6 +27,11 @@ define([
 
     return Model.extend({
 
+        /**
+         * Get list of modules
+         * @member Model
+         * @returns {*}
+         */
         getModulesList: function getModulesList() {
             return this.scope.containment.model.getModule();
         }

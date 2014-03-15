@@ -11,7 +11,7 @@ define([
 
     /**
      * Define PageData model
-     * @mixin BaseModel
+     * @extends BaseModel
      * @class Model
      * @constructor
      */
@@ -23,6 +23,7 @@ define([
 
         /**
          * Get items
+         * @member Model
          * @param page
          * @returns {*}
          */

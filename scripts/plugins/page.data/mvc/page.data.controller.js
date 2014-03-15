@@ -13,7 +13,8 @@ define([
     /**
      * Define page.data controller
      * @class Controller
-     * @mixin {BaseController}
+     * @extends AntHill
+     * @extends PluginController
      * @constructor
      */
     var Controller = function Controller() {
@@ -23,6 +24,7 @@ define([
 
         /**
          * Get providers data
+         * @member Controller
          */
         getData: function getData() {
             return this.model.getPageData(
@@ -32,6 +34,7 @@ define([
 
         /**
          * Get preferences
+         * @member Controller
          * @param {string} uuid
          * @returns {*}
          */
@@ -55,6 +58,7 @@ define([
 
         /**
          * Check if content was updated
+         * @member Controller
          * @param data
          * @param content
          * @returns {boolean}
@@ -63,7 +67,7 @@ define([
 
             /**
              * Define hash
-             * @type {string|*|Observer.executeEvent.options.opts.hash}
+             * @type {*}
              */
             var hash = this.base.lib.hash;
 
@@ -73,6 +77,7 @@ define([
 
         /**
          * Update prefs
+         * @member Controller
          */
         approveUpdatePreferences: function approveUpdatePreferences() {
 
@@ -88,6 +93,7 @@ define([
 
         /**
          * Load page.data content
+         * @member Controller
          * @param opened
          */
         loadContent: function loadContent(opened) {

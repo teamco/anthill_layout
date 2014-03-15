@@ -18,6 +18,7 @@ define([
      * Define view
      * @class View
      * @constructor
+     * @extends BaseView
      */
     var View = function View() {
     };
@@ -26,6 +27,7 @@ define([
 
         /**
          * Render Bar
+         * @member View
          */
         renderBar: function renderBar() {
 
@@ -50,6 +52,7 @@ define([
 
         /**
          * Render content container
+         * @member View
          */
         renderContentContainer: function renderContentContainer() {
             /**
@@ -66,6 +69,7 @@ define([
          * Render bar content
          * @param data
          * @param {Boolean} force
+         * @member View
          * @returns {boolean}
          */
         renderContent: function renderContent(data, force) {
@@ -116,6 +120,7 @@ define([
 
         /**
          * Render bar
+         * @member View
          */
         render: function render() {
 

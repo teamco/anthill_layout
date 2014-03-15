@@ -20,11 +20,13 @@ define([
      * @param containment
      * @constructor
      * @class Youtube
+     * @extends AntHill
      */
     var Youtube = function Youtube(containment) {
 
         /**
          * Define containment
+         * @member Youtube
          */
         this.containment = containment;
 
@@ -63,30 +65,35 @@ define([
 
         /**
          * Init observer
+         * @member Youtube
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
+         * @member Youtube
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
+         * @member Youtube
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Init model
+         * @member Youtube
          * @type {*}
          */
         this.model = undefined;
 
         /**
          * Define MVC
+         * @member Youtube
          * @type {MVC}
          */
         this.mvc = new MVC({

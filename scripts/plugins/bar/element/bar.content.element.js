@@ -16,6 +16,7 @@ define([
      * @returns {BarContentElement}
      * @constructor
      * @class BarContentElement
+     * @extends BaseElement
      */
     var BarContentElement = function BarContentElement(view, opts) {
 
@@ -33,6 +34,7 @@ define([
 
         /**
          * Open tab
+         * @memberOf BarContentElement
          * @param resource
          */
         attachEvent: function attachEvent(resource) {

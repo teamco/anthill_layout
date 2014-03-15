@@ -16,6 +16,7 @@ define([
      * @returns {BarElement}
      * @constructor
      * @class BarElement
+     * @extends BaseElement
      */
     var BarElement = function BarElement(view, opts) {
 

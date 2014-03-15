@@ -16,6 +16,7 @@ define([
      * @returns {CoverElement}
      * @constructor
      * @class CoverElement
+     * @extends BaseElement
      */
     var CoverElement = function CoverElement(view, opts) {
 

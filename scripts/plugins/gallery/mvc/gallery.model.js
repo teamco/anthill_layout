@@ -6,17 +6,30 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
+    'config/anthill',
     'modules/model'
-], function defineGalleryModel(BaseModel) {
+], function defineGalleryModel(AntHill, BaseModel) {
 
     /**
      * Define Gallery model
-     * @mixin BaseModel
+     * @extends AntHill
+     * @extends BaseModel
      * @class Model
      * @constructor
      */
     var Model = function Model() {
 
+        /**
+         * Define default providers
+         * @member Model
+         */
+        this.defaultProviders = [];
+
+        /**
+         * Define static data
+         * @member Model
+         * @type {*[]}
+         */
         this.staticData = [
             {
                 name: 'Test name1',
@@ -39,105 +52,6 @@ define([
                 src: '',
                 resource: 'youtube',
                 group: 'test'
-            },
-            {
-                name: 'Test name2',
-                description: 'Test description',
-                thumbnail: '',
-                dimensions: {
-                    width: 2,
-                    height: 2
-                },
-                src: '',
-                group: 'test'
-            },
-            {
-                name: 'Test name2',
-                description: 'Test description',
-                thumbnail: '',
-                dimensions: {
-                    width: 2,
-                    height: 2
-                },
-                src: '',
-                group: 'test'
-            },
-            {
-                name: 'Test name2',
-                description: 'Test description',
-                thumbnail: '',
-                dimensions: {
-                    width: 2,
-                    height: 2
-                },
-                src: '',
-                group: 'test'
-            },
-            {
-                name: 'Test name2',
-                description: 'Test description',
-                thumbnail: '',
-                dimensions: {
-                    width: 2,
-                    height: 2
-                },
-                src: '',
-                group: 'test'
-            },
-            {
-                name: 'Test name2',
-                description: 'Test description',
-                thumbnail: '',
-                dimensions: {
-                    width: 2,
-                    height: 2
-                },
-                src: '',
-                group: 'test'
-            },
-            {
-                name: 'Test name2',
-                description: 'Test description',
-                thumbnail: '',
-                dimensions: {
-                    width: 2,
-                    height: 2
-                },
-                src: '',
-                group: 'test'
-            },
-            {
-                name: 'Test name2',
-                description: 'Test description',
-                thumbnail: '',
-                dimensions: {
-                    width: 2,
-                    height: 2
-                },
-                src: '',
-                group: 'test'
-            },
-            {
-                name: 'Test name2',
-                description: 'Test description',
-                thumbnail: '',
-                dimensions: {
-                    width: 2,
-                    height: 2
-                },
-                src: '',
-                group: 'test'
-            },
-            {
-                name: 'Test name2',
-                description: 'Test description',
-                thumbnail: '',
-                dimensions: {
-                    width: 2,
-                    height: 2
-                },
-                src: '',
-                group: 'test'
             }
         ];
     };
@@ -145,17 +59,24 @@ define([
     return Model.extend({
 
         /**
-         * Define default providers
+         * Set default providers
+         * @member Model
          */
-        defaultProviders: [
-//            anthill.i18n.t('gallery.providers.all'),
-//            anthill.i18n.t('gallery.providers.favorites')
-        ],
+        setDefaultProviders: function getDefaultProviders() {
 
-        providers: ['test'],
+            /**
+             * Set providers
+             * @type {*[]}
+             */
+            this.defaultProviders = [
+                this.i18n.t('gallery.providers.all'),
+                this.i18n.t('gallery.providers.favorites')
+            ]
+        },
 
         /**
          * Get data provider
+         * @member Model
          */
         getDataProvider: function getDataProvider() {
 
@@ -163,10 +84,11 @@ define([
 
         /**
          * Get providers list
+         * @member Model
          */
         getProvidersList: function getProvidersList() {
             return this.staticData;
         }
 
-    }, BaseModel.prototype);
+    }, AntHill.prototype, BaseModel.prototype);
 });

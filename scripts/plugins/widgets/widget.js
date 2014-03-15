@@ -22,6 +22,7 @@ define([
 
         /**
          * Init widget
+         * @member WidgetController
          */
         initWidget: function initWidget() {
 
@@ -50,6 +51,7 @@ define([
 
         /**
          * Define container
+         * @member WidgetController
          */
         defineContainer: function defineContainer() {
 
@@ -69,6 +71,7 @@ define([
 
         /**
          * Get preferences
+         * @member WidgetController
          * @returns {{}}
          */
         getPreferences: function getPreferences() {
@@ -78,7 +81,8 @@ define([
 
         /**
          * Update prefs
-         * @param $input
+         * @member WidgetController
+         * @param $modal
          */
         updatePreferences: function updatePreferences($modal) {
 
@@ -131,6 +135,7 @@ define([
 
         /**
          * Load prefs
+         * @member WidgetController
          */
         loadPreferences: function loadPreferences() {
 
@@ -163,6 +168,7 @@ define([
 
         /**
          * Transfer preferences to containment
+         * @member WidgetController
          * @param index
          * @param value
          */
@@ -186,6 +192,7 @@ define([
 
         /**
          * Get DOM
+         * @member WidgetController
          * @param type
          * @returns {*}
          */

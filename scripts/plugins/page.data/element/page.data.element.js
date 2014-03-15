@@ -16,6 +16,7 @@ define([
      * @returns {PageDataElement}
      * @constructor
      * @class PageDataElement
+     * @extends BaseElement
      */
     var PageDataElement = function PageDataElement(view, opts) {
 
@@ -23,18 +24,6 @@ define([
             $container: opts.$container,
             destroy: false
         });
-
-        /**
-         * Define max width
-         * @type {*|number}
-         */
-        this.maxWidth = opts.maxWidth || 100;
-
-        /**
-         * Define min width
-         * @type {*|number}
-         */
-        this.minWidth = opts.minWidth || 0;
 
         this.addCSS('page.data');
 

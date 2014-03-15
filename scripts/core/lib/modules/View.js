@@ -11,6 +11,12 @@ define([
     'element/modal.element'
 ], function defineBaseView(AntHill, Modal) {
 
+    /**
+     * Define base view
+     * @class BaseView
+     * @extends AntHill
+     * @constructor
+     */
     var BaseView = function BaseView() {
 
     };
@@ -19,7 +25,7 @@ define([
 
         /**
          * Get config HTML
-         * @param key
+         * @param {string} [key]
          * @returns {*}
          */
         getConfigHTML: function getConfigHTML(key) {
@@ -122,7 +128,7 @@ define([
 
             /**
              * Define $header
-             * @type {Header}
+             * @type {HeaderElement}
              */
             this.elements.$header = new Header(this, {
                 style: [
@@ -142,7 +148,7 @@ define([
 
             /**
              * Define $footer
-             * @type {Footer}
+             * @type {FooterElement}
              */
             this.elements.$footer = new Footer(this, {
                 style: [
@@ -224,7 +230,7 @@ define([
          * Define cover
          * @param Cover
          * @param opts
-         * @returns {Cover}
+         * @returns {CoverElement}
          */
         cover: function cover(Cover, opts) {
             return new Cover(this, {

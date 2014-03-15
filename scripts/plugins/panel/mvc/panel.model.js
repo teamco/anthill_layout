@@ -11,7 +11,7 @@ define([
 
     /**
      * Define Panel model
-     * @mixin BaseModel
+     * @extends BaseModel
      * @class Model
      * @constructor
      */
@@ -19,12 +19,14 @@ define([
 
         /**
          * Init modules
+         * @member Model
          * @type {Array}
          */
         this.modules = [];
 
         /**
          * Define packages
+         * @member Model
          * @type {Array}
          */
         this.packages = [];
@@ -34,6 +36,7 @@ define([
 
         /**
          * Init module
+         * @member Model
          * @param Module
          */
         defineModule: function defineModule(Module) {
@@ -45,6 +48,7 @@ define([
 
         /**
          * Init package
+         * @member Model
          * @param Package
          */
         definePackage: function definePackage(Package) {
@@ -53,6 +57,7 @@ define([
 
         /**
          * Get module by index
+         * @member Model
          * @param {number} [index]
          * @returns {*}
          */
@@ -62,6 +67,7 @@ define([
 
         /**
          * Get module index
+         * @member Model
          * @param resource
          * @returns {number}
          */
@@ -84,6 +90,7 @@ define([
 
         /**
          * Get package by index
+         * @member Model
          * @param {number} [index]
          * @returns {*}
          */

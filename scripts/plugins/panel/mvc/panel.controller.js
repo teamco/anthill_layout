@@ -12,8 +12,8 @@ define([
     /**
      * Define panel controller
      * @class Controller
-     * @mixin {BaseController}
      * @constructor
+     * @extends PluginController
      */
     var Controller = function Controller() {
     };
@@ -22,6 +22,7 @@ define([
 
         /**
          * Check if panel resizable
+         * @member Controller
          * @returns {boolean}
          */
         isResizable: function isResizable() {
@@ -38,6 +39,7 @@ define([
 
         /**
          * Define modules
+         * @member Controller
          * @param modules
          */
         defineModules: function defineModules(modules) {
@@ -49,6 +51,7 @@ define([
 
         /**
          * Define packages
+         * @member Controller
          * @param packages
          */
         definePackages: function definePackages(packages) {
@@ -60,6 +63,7 @@ define([
 
         /**
          * Check if opened
+         * @member Controller
          * @returns {boolean|*}
          */
         isOpened: function isOpened() {
@@ -69,6 +73,7 @@ define([
         /**
          * Check if panel active
          * @param {string} resource
+         * @member Controller
          * @returns {boolean}
          */
         isActive: function isActive(resource) {
@@ -77,6 +82,7 @@ define([
 
         /**
          * Update opened
+         * @member Controller
          * @param {String} resource
          * @param {Boolean} opened
          */
@@ -108,6 +114,7 @@ define([
 
         /**
          * Close panel
+         * @member Controller
          * @param {string} resource
          */
         closePanel: function closePanel(resource) {
@@ -124,6 +131,7 @@ define([
 
         /**
          * Open panel
+         * @member Controller
          * @param {string} resource
          */
         openPanel: function openPanel(resource) {
@@ -133,6 +141,7 @@ define([
 
         /**
          * Show content
+         * @member Controller
          * @param {Boolean} opened
          * @param {string} [resource]
          */
@@ -161,6 +170,7 @@ define([
 
         /**
          * Get render at
+         * @member Controller
          * @returns {*}
          */
         getRenderAt: function getRenderAt() {
@@ -173,6 +183,7 @@ define([
 
         /**
          * Activate module
+         * @member Controller
          * @param {Boolean} opened
          * @param {Number} index
          * @returns {*}
@@ -205,6 +216,7 @@ define([
 
         /**
          * Render packages
+         * @member Controller
          */
         renderPackages: function renderPackages() {
 

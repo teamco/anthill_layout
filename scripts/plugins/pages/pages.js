@@ -20,11 +20,13 @@ define([
      * @constructor
      * @param containment
      * @class Pages
+     * @extends AntHill
      */
     var Pages = function Pages(containment) {
 
         /**
          * Define containment
+         * @member Pages
          */
         this.containment = containment;
 
@@ -64,24 +66,28 @@ define([
 
         /**
          * Init observer
+         * @member Pages
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
+         * @member Pages
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
+         * @member Pages
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Define MVC
+         * @member Pages
          * @type {MVC}
          */
         this.mvc = new MVC({

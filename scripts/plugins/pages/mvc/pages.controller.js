@@ -12,7 +12,7 @@ define([
     /**
      * Define pages controller
      * @class Controller
-     * @mixin {BaseController}
+     * @extends PluginController
      * @constructor
      */
     var Controller = function Controller() {
@@ -22,30 +22,78 @@ define([
 
         /**
          * Load pages content
+         * @member Controller
          * @param opened
          */
         loadContent: function loadContent(opened) {
 
             if (opened && this.isDataNotExist()) {
                 this.getView().renderContent(
-                    this.model.getData()
+                    this.model.getData(
+                        this.getWorkspace()
+                    )
                 );
             }
         },
 
         /**
-         * Add widget
-         * @param $element
+         * Get preferences
+         * @member Controller
+         * @param {string} uuid
+         * @returns {*}
          */
-        addWidget: function addWidget($element) {
+        getPreferences: function getPreferences(uuid) {
 
-            this.getPage().api.createItem({
-                config: {
-                    preferences: {
-                        resource: $element.$.attr('resource')
-                    }
-                }
-            }, true);
+            /**
+             * Define page
+             * @type {*}
+             */
+            var page = this.getWorkspace().model.getItemByUUID(uuid),
+                scope = this.scope;
+
+            /**
+             * Define page content
+             * @member Pages
+             * @type {*|Content}
+             */
+            scope.activeContent = page.controller.getContent();
+
+            return scope.activeContent.view.renderPreferences();
+        },
+
+        /**
+         * Check if content was updated
+         * @member Controller
+         * @param data
+         * @param content
+         * @returns {boolean}
+         */
+        isUpdate: function isUpdate(data, content) {
+
+            /**
+             * Define hash
+             * @type {*}
+             */
+            var hash = this.base.lib.hash;
+
+            return hash.hashLength(data || {}) ===
+                hash.hashLength(content || {})
+        },
+
+        /**
+         * Update prefs
+         * @member Controller
+         */
+        approveUpdatePreferences: function approveUpdatePreferences() {
+
+            /**
+             * Define scope
+             */
+            var scope = this.scope;
+
+            scope.activeContent.controller.updatePreferences(
+                scope.view.elements.$modal
+            );
         }
 
     }, PluginBase.prototype);

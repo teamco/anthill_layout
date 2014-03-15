@@ -14,17 +14,25 @@ define([
      * Define bar event manager
      * @class EventManager
      * @constructor
+     * @extends Event
      */
     var EventManager = function EventManager() {
 
         /**
          * Define events
          * @type {{}}
+         * @member EventManager
          */
         this.events = {};
 
         /**
          * Define event list
+         * @member EventManager
+         * @type {{
+         *      updateTranslations: string,
+         *      showContent: string,
+         *      defineModules: string
+         * }}
          */
         this.eventList = {
             updateTranslations: 'update.translations',

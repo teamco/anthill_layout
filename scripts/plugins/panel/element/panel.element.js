@@ -16,6 +16,7 @@ define([
      * @returns {PanelElement}
      * @constructor
      * @class PanelElement
+     * @extends BaseElement
      */
     var PanelElement = function PanelElement(view, opts) {
 
@@ -26,12 +27,14 @@ define([
 
         /**
          * Define max width
+         * @member PanelElement
          * @type {*|number}
          */
         this.maxWidth = opts.maxWidth || 100;
 
         /**
          * Define min width
+         * @member PanelElement
          * @type {*|number}
          */
         this.minWidth = opts.minWidth || 0;
@@ -47,9 +50,20 @@ define([
          * Toggle open/close
          * @param {string} resource
          * @param {boolean} opened
+         * @member PanelElement
          * @returns {boolean}
          */
         toggle: function toggle(resource, opened) {
+
+            /**
+             * Toggle callback
+             * @private
+             */
+            function _callbackToggle() {
+                if (!opened) {
+                    $container.$.attr('style', '');
+                }
+            }
 
             /**
              * Define locals
@@ -77,17 +91,14 @@ define([
                 width: opened ?
                     this.maxWidth :
                     this.minWidth
-            }, 200, function callbackToggle() {
-                if (!opened) {
-                    $container.$.attr('style', '');
-                }
-            });
+            }, 200, _callbackToggle);
 
             controller.setBehavior(resource, opened);
         },
 
         /**
          * Hide Active module
+         * @member PanelElement
          */
         hideActiveModule: function hideActiveModule() {
             this.view.elements.items[this.getContentItemIndex()].hide();
@@ -95,6 +106,7 @@ define([
 
         /**
          * Show Active module
+         * @member PanelElement
          */
         showActiveModule: function showActiveModule() {
             this.view.elements.items[this.getContentItemIndex()].show();
@@ -102,6 +114,7 @@ define([
 
         /**
          * Get item index
+         * @member PanelElement
          * @returns {string}
          */
         getContentItemIndex: function getContentItemIndex() {

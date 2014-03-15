@@ -20,11 +20,13 @@ define([
      * @param containment
      * @constructor
      * @class Bar
+     * @extends AntHill
      */
     var Bar = function Bar(containment) {
 
         /**
          * Define containment
+         * @member Bar
          */
         this.containment = containment;
 
@@ -61,24 +63,28 @@ define([
 
         /**
          * Init observer
+         * @member Bar
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
+         * @member Bar
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
+         * @member Bar
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Define MVC
+         * @member Bar
          * @type {MVC}
          */
         this.mvc = new MVC({

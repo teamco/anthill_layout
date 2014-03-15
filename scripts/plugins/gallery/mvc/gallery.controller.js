@@ -12,7 +12,7 @@ define([
     /**
      * Define gallery controller
      * @class Controller
-     * @mixin {BaseController}
+     * @extends PluginController
      * @constructor
      */
     var Controller = function Controller() {
@@ -22,6 +22,7 @@ define([
 
         /**
          * Get providers data
+         * @member Controller
          */
         getData: function getData() {
             return this.model.getProvidersList();
@@ -29,6 +30,7 @@ define([
 
         /**
          * Load gallery content
+         * @member Controller
          * @param opened
          */
         loadContent: function loadContent(opened) {
@@ -41,7 +43,16 @@ define([
         },
 
         /**
+         * Set providers
+         * @member Controller
+         */
+        setProviders: function setProviders() {
+            this.model.setDefaultProviders();
+        },
+
+        /**
          * Add widget
+         * @member Controller
          * @param $element
          */
         addWidget: function addWidget($element) {

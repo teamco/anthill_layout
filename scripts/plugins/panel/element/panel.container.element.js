@@ -16,6 +16,7 @@ define([
      * @returns {PanelContainerElement}
      * @constructor
      * @class PanelContainerElement
+     * @extends BaseElement
      */
     var PanelContainerElement = function PanelContainerElement(view, opts) {
 
@@ -32,6 +33,7 @@ define([
         /**
          * Toggle open class
          * @param {Boolean} open
+         * @memberOf PanelContainerElement
          */
         opened: function opened(open) {
             open ?
@@ -41,6 +43,7 @@ define([
 
         /**
          * Bind resize
+         * @memberOf PanelContainerElement
          */
         bindResize: function bindResize() {
 

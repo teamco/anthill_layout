@@ -16,6 +16,7 @@ define([
      * @returns {GalleryElement}
      * @constructor
      * @class GalleryElement
+     * @extends BaseElement
      */
     var GalleryElement = function GalleryElement(view, opts) {
 
@@ -23,18 +24,6 @@ define([
             $container: opts.$container,
             destroy: false
         });
-
-        /**
-         * Define max width
-         * @type {*|number}
-         */
-        this.maxWidth = opts.maxWidth || 100;
-
-        /**
-         * Define min width
-         * @type {*|number}
-         */
-        this.minWidth = opts.minWidth || 0;
 
         this.addCSS('gallery');
 
