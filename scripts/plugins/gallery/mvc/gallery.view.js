@@ -75,7 +75,7 @@ define([
 
                     /**
                      * Render item
-                     * @type {plugins.gallery.element.gallery.content.element}
+                     * @type {*}
                      */
                     var $item = new GalleryContent(this, {
                         style: 'content',

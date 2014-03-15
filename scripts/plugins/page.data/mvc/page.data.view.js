@@ -84,7 +84,7 @@ define([
 
                     /**
                      * Render item
-                     * @type {plugins.page.data.element.page.data.content.element}
+                     * @type {*}
                      */
                     var $item = new PageDataContent(this, {
                         style: 'content',

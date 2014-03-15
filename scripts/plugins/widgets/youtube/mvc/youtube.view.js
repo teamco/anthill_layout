@@ -56,6 +56,10 @@ define([
          */
         renderPreferences: function renderPreferences() {
 
+            /**
+             * Define Youtube Preferences Element
+             * @type {YoutubePreferencesElement}
+             */
             this.elements.$preferences = new YoutubePreferencesElement(this, {
                 data: this.controller.getPreferences()
             });
