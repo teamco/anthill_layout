@@ -13,7 +13,7 @@ define([
     /**
      * Define Workspace API
      * @class API
-     * @mixin {BaseAPI}
+     * @extends BaseAPI
      * @constructor
      */
     var API = function API() {
@@ -24,6 +24,7 @@ define([
 
         /**
          * Create Page API
+         * @member API
          * @param {*} args
          * @param {Boolean} [render]
          * @param {Boolean} [silent]

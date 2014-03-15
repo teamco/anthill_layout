@@ -15,7 +15,8 @@ define([
     /**
      * Define Page API
      * @class API
-     * @mixin {BaseAPI}
+     * @extends BaseAPI
+     * @extends AntHill
      * @constructor
      */
     var API = function API() {
@@ -26,6 +27,7 @@ define([
 
         /**
          * Create Widget API
+         * @member API
          * @param {*} args
          * @param {Boolean} [render]
          * @param {Boolean} [silent]
@@ -35,7 +37,6 @@ define([
 
             /**
              * Define scope
-             * @type {Page}
              */
             var scope = this.scope;
 
@@ -64,6 +65,7 @@ define([
 
         /**
          * Destroy widget
+         * @member API
          * @param widget
          * @param {Boolean} [silent]
          */
@@ -77,6 +79,7 @@ define([
 
         /**
          * Destroy widgets
+         * @member API
          * @param {*} [items]
          * @param {Boolean} [silent]
          */
@@ -90,6 +93,7 @@ define([
 
         /**
          * Create Template API
+         * @member API
          * @param {*} widget
          * @returns {*}
          */

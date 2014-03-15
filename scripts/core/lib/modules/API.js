@@ -12,16 +12,18 @@ define([
     /**
      * Define Base API
      * @constructor
-     * @class API
+     * @extends AntHill
+     * @class BaseAPI
      */
-    var API = function API() {
+    var BaseAPI = function BaseAPI() {
 
     };
 
-    return API.extend({
+    return BaseAPI.extend({
 
         /**
          * Create reference to function create [item] ...
+         * @member BaseAPI
          * @param args
          * @param {Boolean} render
          * @returns {*}
@@ -32,6 +34,7 @@ define([
 
         /**
          * Create reference to function destroy [items] ...
+         * @member BaseAPI
          * @param {*} [items]
          * @param {Boolean} [silent]
          * @returns {*}
@@ -42,6 +45,7 @@ define([
 
         /**
          * Execute reference function
+         * @member BaseAPI
          * @param arg1
          * @param arg2
          * @param {String} prefix
@@ -69,6 +73,7 @@ define([
 
         /**
          * Create item API
+         * @member BaseAPI
          * @param {Function} item
          * @param {*} args
          * @param {Boolean} [render]
@@ -109,6 +114,7 @@ define([
 
         /**
          * Render item API
+         * @member BaseAPI
          * @param {Function} item
          * @param {Boolean} [render]
          * @param {Boolean} [silent]

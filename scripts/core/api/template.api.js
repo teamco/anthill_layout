@@ -14,7 +14,7 @@ define([
         /**
          * Define Template API
          * @class API
-         * @mixin {BaseAPI}
+         * @extends BaseAPI
          * @constructor
          */
         var API = function API() {
@@ -25,6 +25,7 @@ define([
 
             /**
              * Create Page API
+             * @member API
              * @param {*} args
              * @param {Boolean} [render]
              * @param {Boolean} [silent]
@@ -32,8 +33,15 @@ define([
              * @returns {*}
              */
             createPage: function createPage(args, render, silent, widget) {
+
+                /**
+                 * Define Page
+                 * @type {Function|exports}
+                 */
+                var Page = require('config/page');
+
                 return this._createItem(
-                    require('config/page'),
+                    Page,
                     args,
                     render,
                     silent,
