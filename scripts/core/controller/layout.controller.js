@@ -14,7 +14,8 @@ define([
     /**
      * Define layout controller
      * @class Controller
-     * @mixin {BaseController}
+     * @extends AntHill
+     * @extends BaseController
      * @constructor
      */
     var Controller = function Controller() {
@@ -25,6 +26,7 @@ define([
 
         /**
          * Before nested organizer
+         * @member Controller
          * @param {boolean} silent
          */
         beforeNestedOrganizer: function beforeNestedOrganizer(silent) {
@@ -39,6 +41,7 @@ define([
 
         /**
          * After nested organizer
+         * @member Controller
          */
         afterNestedOrganizer: function afterNestedOrganizer() {
             this.controller.getContainment().controller.allowAddWidget();
@@ -50,6 +53,7 @@ define([
 
         /**
          * Update cell size on resize container
+         * @member Controller
          * @returns {*}
          */
         updateMinCellWidth: function updateMinCellWidth() {
@@ -59,6 +63,7 @@ define([
 
         /**
          * Calculate cell size
+         * @member Controller
          * @returns {Number}
          */
         minCellWidth: function minCellWidth() {
@@ -90,6 +95,7 @@ define([
 
         /**
          * Get grid width
+         * @member Controller
          * @returns {number}
          */
         getGridWidth: function getGridWidth() {
@@ -101,6 +107,7 @@ define([
 
         /**
          * Get next position
+         * @member Controller
          * @param {{column: Number, row: Number}} dom
          * @returns {{left: Number, top: Number}}
          */
@@ -132,6 +139,7 @@ define([
 
         /**
          * Get layout organizer mode
+         * @member Controller
          * @returns {String}
          */
         getBehaviorMode: function getBehaviorMode() {
@@ -140,6 +148,7 @@ define([
 
         /**
          * Check if mode is Snap to Grid
+         * @member Controller
          * @returns {boolean}
          */
         isSnap2Grid: function isSnap2Grid() {
@@ -149,6 +158,7 @@ define([
 
         /**
          * Check if mode is Snap to Grid
+         * @member Controller
          * @returns {boolean}
          */
         isUIGrid: function isUIGrid() {
@@ -158,6 +168,7 @@ define([
 
         /**
          * Check if mode is Free Style
+         * @member Controller
          * @returns {boolean}
          */
         isFreeStyle: function isFreeStyle() {
@@ -167,6 +178,7 @@ define([
 
         /**
          * Check if overlapping allowed
+         * @member Controller
          * @returns {boolean}
          */
         isOverlappingAllowed: function isOverlappingAllowed() {
@@ -176,6 +188,7 @@ define([
 
         /**
          * Get layout behavior mode
+         * @member Controller
          * @returns {*}
          */
         getBehavior: function getBehavior() {
@@ -184,6 +197,7 @@ define([
 
         /**
          * Set behavior empty spaces mode
+         * @member Controller
          * @param {String} mode
          */
         setEmptySpacesMode: function setEmptySpacesMode(mode) {
@@ -192,6 +206,7 @@ define([
 
         /**
          * Set behavior organize mode
+         * @member Controller
          * @param {String} mode
          */
         setOrganizeMode: function setOrganizeMode(mode) {
@@ -200,6 +215,7 @@ define([
 
         /**
          * Set layout mode
+         * @member Controller
          * @param {string} type
          * @param {string|boolean} mode
          * @private
@@ -215,6 +231,7 @@ define([
 
         /**
          * Get layout mode
+         * @member Controller
          * @param {string} type
          * @returns {*|Overlapping}
          * @private
@@ -225,6 +242,7 @@ define([
 
         /**
          * Update layout mode
+         * @member Controller
          * @param mode
          * @param {string} type
          * @private

@@ -17,7 +17,8 @@ define([
     /**
      * Define widget controller
      * @class Controller
-     * @mixin {BaseController}
+     * @extends AntHill
+     * @extends BaseController
      * @constructor
      */
     var Controller = function Controller() {
@@ -27,6 +28,7 @@ define([
 
         /**
          * Get config
+         * @member Controller
          * @param {string} type
          * @returns {*|{
          *      animate: Boolean,
@@ -87,6 +89,7 @@ define([
 
         /**
          * Get page jquery object
+         * @member Controller
          * @returns {*|jQuery}
          */
         get$page: function get$page() {
@@ -95,6 +98,7 @@ define([
 
         /**
          * Get layout
+         * @member Controller
          * @returns {*}
          */
         getLayout: function getLayout() {
@@ -103,6 +107,7 @@ define([
 
         /**
          * Get merged local padding from widget dom
+         * @member Controller
          * @returns {{top: number, right: number, bottom: number, left: number}|*}
          */
         getLocalPadding: function getLocalPadding() {
@@ -120,10 +125,23 @@ define([
 
         /**
          * Get global padding from layout config
+         * @member Controller
          * @returns {{top: number, right: number, bottom: number, left: number}}
          */
         getGlobalPadding: function getGlobalPadding() {
-            var padding = this.getContainment().controller.getLayout().config.grid.padding;
+
+            /**
+             * Get layout
+             * @type {*}
+             */
+            var layout = this.getContainment().controller.getLayout();
+
+            /**
+             * Get padding
+             * @type {{top: number, right: number, bottom: number, left: number}|*}
+             */
+            var padding = layout.config.grid.padding;
+
             this.scope.logger.debug('Get global padding', padding);
 
             return padding;
@@ -131,22 +149,32 @@ define([
 
         /**
          * Setup interactions {Drag|Resize}
+         * @member Controller
          */
         setupInteractions: function setupInteractions() {
-            var scope = this.scope;
-            scope.observer.publish(scope.eventmanager.eventList.initDraggable);
-            scope.observer.publish(scope.eventmanager.eventList.initResizable);
+
+            var scope = this.scope,
+                observer = scope.observer,
+                eventList = scope.eventmanager.eventList;
+
+            observer.publish(eventList.initDraggable);
+            observer.publish(eventList.initResizable);
         },
 
         /**
          * Init drag
+         * @member Controller
          */
         initDraggable: function initDraggable() {
-            this.controller.setInteraction('draggable', new Drag(this));
+            this.controller.setInteraction(
+                'draggable',
+                new Drag(this)
+            );
         },
 
         /**
          * Enable drag
+         * @member Controller
          */
         enableDraggable: function enableDraggable() {
             this.interactions.draggable.enable();
@@ -154,6 +182,7 @@ define([
 
         /**
          * Disable drag
+         * @member Controller
          */
         disableDraggable: function disableDraggable() {
             this.interactions.draggable.disable();
@@ -161,6 +190,7 @@ define([
 
         /**
          * Destroy drag
+         * @member Controller
          */
         destroyDraggable: function destroyDraggable() {
             this.interactions.draggable.destroy();
@@ -168,13 +198,18 @@ define([
 
         /**
          * Init resize
+         * @member Controller
          */
         initResizable: function initResizable() {
-            this.controller.setInteraction('resizable', new Resize(this));
+            this.controller.setInteraction(
+                'resizable',
+                new Resize(this)
+            );
         },
 
         /**
          * Enable resize
+         * @member Controller
          */
         enableResizable: function enableResizable() {
             this.interactions.resizable.enable();
@@ -182,6 +217,7 @@ define([
 
         /**
          * Disable resize
+         * @member Controller
          */
         disableResizable: function disableResizable() {
             this.interactions.resizable.disable();
@@ -189,6 +225,7 @@ define([
 
         /**
          * Destroy resize
+         * @member Controller
          */
         destroyResizable: function destroyResizable() {
             this.interactions.resizable.destroy();
@@ -196,6 +233,7 @@ define([
 
         /**
          * Debug interactions
+         * @member Controller
          * @param {String} interaction
          */
         debugInteractions: function debugInteractions(interaction) {
@@ -204,6 +242,7 @@ define([
 
         /**
          * Create drag
+         * @member Controller
          */
         createDraggable: function createDraggable() {
             this.logger.debug('Create drag', arguments);
@@ -211,6 +250,7 @@ define([
 
         /**
          * Start drag
+         * @member Controller
          */
         startDraggable: function startDraggable() {
             this.logger.debug('Start drag', arguments);
@@ -220,6 +260,7 @@ define([
 
         /**
          * Grid sticker on drag
+         * @member Controller
          * @param {String} type
          */
         dragDraggable: function dragDraggable(type) {
@@ -234,6 +275,7 @@ define([
 
         /**
          * Stop drag
+         * @member Controller
          * @param {String} type
          */
         stopDraggable: function stopDraggable(type) {
@@ -252,6 +294,7 @@ define([
 
         /**
          * Create resize
+         * @member Controller
          * @param {String} type
          */
         createResizable: function createResizable(type) {
@@ -260,6 +303,7 @@ define([
 
         /**
          * Resize start
+         * @member Controller
          * @param {String} type
          */
         startResizable: function startResizable(type) {
@@ -270,6 +314,7 @@ define([
 
         /**
          * Grid sticker on resize
+         * @member Controller
          * @param {String} type
          */
         resizeResizable: function resizeResizable(type) {
@@ -283,6 +328,7 @@ define([
 
         /**
          * Resize stop
+         * @member Controller
          * @param {String} type
          * @param {{}} [opts]
          * @param [args]
@@ -338,6 +384,7 @@ define([
 
         /**
          * Update Resizable
+         * @member Controller
          * @param key
          * @param value
          */
@@ -347,6 +394,7 @@ define([
 
         /**
          * Update Draggable
+         * @member Controller
          * @param key
          * @param value
          */
@@ -356,6 +404,7 @@ define([
 
         /**
          * Update interactions
+         * @member Controller
          * @param type
          * @param key
          * @param value
@@ -366,6 +415,7 @@ define([
 
         /**
          * Reset interactions on resize template
+         * @member Controller
          * @private
          */
         _resetInteractions: function _resetInteractions() {
@@ -379,6 +429,7 @@ define([
 
         /**
          * Get items from template widget and run callback
+         * @member Controller
          * @private
          */
         _getTemplateItems: function _getTemplateItems() {
@@ -388,6 +439,7 @@ define([
 
         /**
          * Check if widget is draggable
+         * @member Controller
          * @returns {Boolean}
          */
         isDraggable: function isDraggable() {
@@ -396,6 +448,7 @@ define([
 
         /**
          * Check if widget is resizable
+         * @member Controller
          * @returns {Boolean}
          */
         isResizable: function isResizable() {
@@ -404,6 +457,7 @@ define([
 
         /**
          * Check if widget is template
+         * @member Controller
          * @returns {Boolean}
          */
         isTemplate: function isTemplate() {
@@ -418,6 +472,7 @@ define([
 
         /**
          * Behavior mode
+         * @member Controller
          * @param {{
          *      animate: Boolean,
          *      [callback]: Function,
@@ -451,6 +506,7 @@ define([
 
         /**
          * Define snap2grid mode
+         * @member Controller
          * @param opts
          * @param mode
          * @param behavior
@@ -462,6 +518,7 @@ define([
 
         /**
          * Define snap2grid mode
+         * @member Controller
          * @param opts
          * @param mode
          * @param behavior
@@ -472,6 +529,7 @@ define([
 
         /**
          * Define snap2grid mode
+         * @member Controller
          * @param opts
          * @param mode
          * @param behavior
@@ -482,6 +540,7 @@ define([
 
         /**
          * Check behavior mode
+         * @member Controller
          * @returns {boolean}
          */
         isMode: function isMode() {
@@ -505,6 +564,7 @@ define([
 
         /**
          * Adopt widget dimension on resize page
+         * @member Controller
          * @param {Boolean} animate
          */
         adoptDimensions: function adoptDimensions(animate) {
@@ -513,6 +573,7 @@ define([
 
         /**
          * Save widget DOM
+         * @member Controller
          */
         saveDOM: function saveDOM() {
             this.logger.debug(this.i18n.t('save.widget'));

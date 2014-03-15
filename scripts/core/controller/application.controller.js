@@ -13,7 +13,8 @@ define([
     /**
      * Define application controller
      * @class Controller
-     * @mixin {BaseController}
+     * @extends AntHill
+     * @extends BaseController
      * @constructor
      */
     var Controller = function Controller() {
@@ -23,6 +24,7 @@ define([
 
         /**
          * Define setting
+         * @member Controller
          */
         defineSetting: function defineSetting() {
             this.model.defineSetting();
@@ -30,10 +32,16 @@ define([
 
         /**
          * Init window resize
+         * @member Controller
          */
         initResizeWindow: function initResizeWindow() {
+
             this.logger.debug('Init window resize');
 
+            /**
+             * Define resize callback
+             * @type {function(this:Controller)}
+             */
             var callback = this.controller.resizeWindowPublisher.
                 bind(this);
 
@@ -42,6 +50,7 @@ define([
 
         /**
          * Resize window publisher
+         * @member Controller
          */
         resizeWindowPublisher: function resizeWindowPublisher(e) {
 
@@ -52,6 +61,7 @@ define([
 
         /**
          * Resize window callback
+         * @member Controller
          */
         resizeWindow: function resizeWindow() {
             this.logger.debug('Start resize window');
@@ -64,6 +74,7 @@ define([
 
         /**
          * Resize window hooks
+         * @member Controller
          */
         resizeWindowHooks: function resizeWindowHooks() {
             this.logger.debug('Start resize window hooks', arguments);
@@ -71,19 +82,25 @@ define([
 
         /**
          * Approve clear data
+         * @member Controller
          */
         approveClearData: function approveClearData() {
 
             /**
-             * Define setting
-             * @type {config.setting}
+             * Define local scope
              */
-            var setting = this.scope.model.setting,
-                $modal = this.scope.view.elements.$modal;
+            var scope = this.scope;
+
+            /**
+             * Define setting
+             * @type {Setting}
+             */
+            var setting = scope.model.setting,
+                $modal = scope.view.elements.$modal;
 
             setting.clear();
 
-            this.scope.logger.warn('localStorage', setting.getStorage());
+            scope.logger.warn('localStorage', setting.getStorage());
 
             if (this.base.isDefined($modal)) {
                 $modal.selfDestroy();

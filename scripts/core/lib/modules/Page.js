@@ -10,6 +10,12 @@ define([
     'config/anthill'
 ], function defineBasePage(AntHill) {
 
+    /**
+     * Define base page
+     * @class BasePage
+     * @extends AntHill
+     * @constructor
+     */
     var BasePage = function BasePage() {
 
     };
@@ -18,15 +24,23 @@ define([
 
         /**
          * Create page layout
+         * @member BasePage
          * @param {Function} Layout
          * @param {{}} opts
          */
         createLayout: function createLayout(Layout, opts) {
+
+            /**
+             * Define layout
+             * @member BasePage
+             * @type {Layout}
+             */
             this.layout = new Layout(opts, this);
         },
 
         /**
          * Destroy layout
+         * @member BasePage
          */
         destroyLayout: function destroyLayout() {
             this.logger.info(
@@ -38,6 +52,7 @@ define([
 
         /**
          * Get Layout
+         * @member BasePage
          * @returns {*}
          */
         getLayout: function getLayout() {
@@ -46,6 +61,7 @@ define([
 
         /**
          * Update layout config
+         * @member BasePage
          */
         updateLayout: function updateLayout() {
 
@@ -64,6 +80,7 @@ define([
 
         /**
          * Create template
+         * @member BasePage
          * @param {Function} Template
          * @param {{}} opts
          */
@@ -71,6 +88,7 @@ define([
 
             /**
              * Define template instance
+             * @member BasePage
              * @type {Template}
              */
             this.template = new Template(opts, this);
@@ -78,6 +96,7 @@ define([
 
         /**
          * Destroy template
+         * @member BasePage
          */
         destroyTemplate: function destroyTemplate() {
 

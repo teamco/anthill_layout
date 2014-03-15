@@ -13,7 +13,8 @@ define([
     /**
      * Define template controller
      * @class Controller
-     * @mixin {BaseController, BaseWorkspace}
+     * @extends BaseController
+     * @extends BaseWorkspace
      * @constructor
      */
     var Controller = function Controller() {

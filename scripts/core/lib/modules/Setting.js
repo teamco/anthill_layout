@@ -8,23 +8,27 @@ define([
      * @param {*} scope
      * @param {String} name
      * @constructor
+     * @extends AntHill
      */
     var Setting = function Setting(scope, name) {
 
         /**
          * Define scope
+         * @member Setting
          * @type {*}
          */
         this.scope = scope;
 
         /**
          * Define setting mode
+         * @member Setting
          * @type {String}
          */
         this.mode = this.scope.controller.getMode();
 
         /**
          * Define storage modes
+         * @member Setting
          * @type {{localStorage: Storage}}
          */
         this.STORAGE_MODES = {
@@ -32,6 +36,7 @@ define([
         };
         /**
          * Define setting storage
+         * @member Setting
          * @type {{development: Storage}}
          */
         this.storage = {
@@ -40,6 +45,7 @@ define([
 
         /**
          * Get storage namespace
+         * @member Setting
          * @returns {String}
          */
         this.getNameSpace = function getNameSpace() {
@@ -53,6 +59,7 @@ define([
 
         /**
          * Init storage
+         * @memberOf Setting
          */
         init: function init() {
 
@@ -62,7 +69,13 @@ define([
              */
             var storage = this.load();
 
-            if (!this.base.isDefined(storage)) {
+            /**
+             * Define base
+             * @type {*}
+             */
+            var base = this.base;
+
+            if (!base.isDefined(storage)) {
 
                 this.save();
 
@@ -73,13 +86,14 @@ define([
                 storage = this.load();
             }
 
-            if (!this.base.isDefined(storage.token)) {
+            if (!base.isDefined(storage.token)) {
 
                 /**
                  * Define token
+                 * @member Setting
                  * @type {String}
                  */
-                this.token = this.base.lib.generator.UUID();
+                this.token = base.lib.generator.UUID();
 
                 this.save(storage);
             }
@@ -87,6 +101,7 @@ define([
 
         /**
          * Clear local storage
+         * @member Setting
          */
         clear: function clear() {
             window.localStorage.clear();
@@ -94,6 +109,7 @@ define([
 
         /**
          * Get Storage
+         * @member Setting
          * @returns {*}
          */
         getStorage: function getStorage() {
@@ -102,6 +118,7 @@ define([
 
         /**
          * Save
+         * @member Setting
          * @param [opts]
          */
         save: function save(opts) {
@@ -154,6 +171,7 @@ define([
 
         /**
          * Load
+         * @member Setting
          */
         load: function load() {
 

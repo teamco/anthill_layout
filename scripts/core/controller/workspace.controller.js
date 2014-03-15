@@ -12,7 +12,7 @@ define([
     /**
      * Define workspace controller
      * @class Controller
-     * @mixin {BaseController}
+     * @extends BaseController
      * @constructor
      */
     var Controller = function Controller() {
@@ -22,6 +22,7 @@ define([
 
         /**
          * Set page height
+         * @member Controller
          */
         setPageContainerHeight: function setPageContainerHeight() {
             this.view.elements.$pages.defineHeight();

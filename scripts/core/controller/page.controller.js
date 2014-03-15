@@ -15,7 +15,9 @@ define([
     /**
      * Define page controller
      * @class Controller
-     * @mixin {BaseController, BasePage}
+     * @extends BaseController
+     * @extends AntHill
+     * @extends BasePage
      * @constructor
      */
     var Controller = function Controller() {
@@ -25,6 +27,7 @@ define([
 
         /**
          * Check if allowed to add widget to page
+         * @member Controller
          * @returns {boolean}
          */
         isAllowAddWidget: function isAllowAddWidget() {
@@ -41,6 +44,7 @@ define([
 
         /**
          * Allow to add widget to page
+         * @member Controller
          */
         allowAddWidget: function allowAddWidget() {
             this.scope.logger.debug('Allow to add widget');
@@ -49,6 +53,7 @@ define([
 
         /**
          * Do not allow to add widget to page
+         * @member Controller
          */
         banAddWidget: function banAddWidget() {
             this.scope.logger.debug('Do not allow to add widget');
@@ -57,6 +62,7 @@ define([
 
         /**
          * Update page height
+         * @member Controller
          */
         updateHeight: function updateHeight() {
             console.log('TODO: Update height');
@@ -64,6 +70,7 @@ define([
 
         /**
          * Get widgets container
+         * @member Controller
          * @returns {*}
          */
         getWidgetsContainer: function getWidgetsContainer() {
@@ -72,6 +79,7 @@ define([
 
         /**
          * Update widget properties
+         * @member Controller
          * @param [item]
          * @returns {boolean}
          */
@@ -111,6 +119,7 @@ define([
 
         /**
          * Downgrade widgets layer except widget
+         * @member Controller
          * @param {*} widget
          */
         downgradeLayer: function downgradeLayer(widget) {

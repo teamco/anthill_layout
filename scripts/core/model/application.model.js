@@ -14,7 +14,7 @@ define([
 
     /**
      * Define Application model
-     * @mixin BaseModel
+     * @extends BaseModel
      * @class Model
      * @constructor
      */
@@ -22,22 +22,24 @@ define([
 
         /**
          * Define item
+         * @member Model
          * @type {Workspace}
          */
         this.item = Workspace;
-
     };
 
     return Model.extend('Model', {
 
         /**
          * Define global setting
+         * @member Model
          */
         defineSetting: function defineSetting() {
 
             /**
              * Define setting
-             * @type {config.setting}
+             * @member Model
+             * @type {Setting}
              */
             this.setting = new Setting(
                 this.scope,
