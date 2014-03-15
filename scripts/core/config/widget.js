@@ -23,12 +23,14 @@ define([
      * Define Widget
      * @class Widget
      * @param opts {object}
+     * @extends AntHill
      * @constructor
      */
     var Widget = function Widget(opts) {
 
         /**
          * Define dom
+         * @member Widget
          * @type {*}
          */
         this.dom = this.base.define(opts.dom, {}, true);
@@ -36,43 +38,17 @@ define([
         /**
          * Default config
          * @type {{
-         *      preferences: {
-         *          resource: string
-         *      },
+         *      preferences: (*|plugins.plugin.addWidget.preferences|{url: string}|{}),
+         *      limit: boolean,
          *      order: number,
-         *      html: {
-         *          header: boolean,
-         *          footer: boolean,
-         *          frameLess: boolean,
-         *          opacity: number
-         *      },
-         *      attributes: {
-         *          freeze: boolean,
-         *          magnet: string,
-         *          overlapping: boolean,
-         *          alwaysTop: boolean
-         *      },
+         *      html: {header: boolean, footer: boolean, frameLess: boolean, opacity: number, style: string},
+         *      type: string,
          *      maximize: boolean,
+         *      attributes: {magnet: string, freeze: boolean, overlapping: boolean, alwaysTop: boolean},
          *      events: {
-         *          draggable: {
-         *              snap: boolean,
-         *              iframeFix: boolean,
-         *              axis: boolean,
-         *              scroll: boolean,
-         *              connectToSortable: boolean,
-         *              cursor: string,
-         *              appendTo: string
-         *          },
-         *          resizable: {
-         *              iframeFix: boolean,
-         *              handles: string
-         *          },
-         *          droppable: {
-         *              activeClass: string,
-         *              hoverClass: string,
-         *              greedy: boolean,
-         *              tolerance: string
-         *          }
+         *          draggable: {snap: boolean, axis: boolean, scroll: boolean, connectToSortable: boolean, delay: number, scrollSensitivity: number, scrollSpeed: number, opacity: number, zIndex: number, cursor: string, appendTo: string},
+         *          resizable: {handles: string},
+         *          droppable: {activeClass: string, hoverClass: string, greedy: boolean, tolerance: string}
          *      }
          * }}
          */
@@ -123,18 +99,21 @@ define([
 
         /**
          * Init observer
+         * @member Widget
          * @type {undefined}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
+         * @member Widget
          * @type {undefined}
          */
         this.eventmanager = undefined;
 
         /**
          * Define constants
+         * @member Widget
          * @type {{magnet: Array}}
          */
         this.CONSTANTS = {
@@ -143,6 +122,7 @@ define([
 
         /**
          * Define MVC
+         * @member Widget
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -161,24 +141,28 @@ define([
 
         /**
          * Define map
+         * @member Widget
          * @type {Map}
          */
         this.map = new Map(this);
 
         /**
          * Define wireframe
+         * @member Widget
          * @type {Wireframe}
          */
         this.wireframe = new Wireframe(this);
 
         /**
          * Define interactions: Drag/Resize
+         * @member Widget
          * @type {{Draggable, Resizable}}
          */
         this.interactions = {};
 
         /**
          * Init content
+         * @member Widget
          * @type {undefined}
          */
         this.content = undefined;

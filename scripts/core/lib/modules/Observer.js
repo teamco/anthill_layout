@@ -13,9 +13,16 @@ define([
     /**
      * Define observer
      * @constructor
+     * @extends AntHill
      * @class Observer
      */
     var Observer = function Observer() {
+
+        /**
+         * Define listeners
+         * @member Observer
+         * @type {{}}
+         */
         this.listeners = {};
     };
 
@@ -23,7 +30,7 @@ define([
 
         /**
          * Get events list
-         * @member {Function} Observer
+         * @member Observer
          * @returns {*}
          */
         getEventList: function getEventList() {
@@ -31,7 +38,7 @@ define([
         },
         /**
          * Get event UUID
-         * @member {Function} Observer
+         * @member Observer
          * @param {String} eventName
          * @returns {Array}
          */
@@ -54,7 +61,7 @@ define([
         },
         /**
          * Get event name
-         * @member {Function} Observer
+         * @member Observer
          * @param {String} eventUUID
          * @return {{}}
          */
@@ -68,7 +75,7 @@ define([
 
         /**
          * Execute function after specific timeout
-         * @member {Function} Observer
+         * @member Observer
          * @param {Function} fnCallback
          * @param {Number} [msTimeout]
          * @param {*} [thisScope]
@@ -91,7 +98,7 @@ define([
 
         /**
          * Add event
-         * @member {Function} Observer
+         * @member Observer
          * @param {String} eventName
          * @return {{}}
          */
@@ -103,7 +110,7 @@ define([
 
         /**
          * Remove event
-         * @member {Function} Observer
+         * @member Observer
          * @param {String} eventName
          */
         removeEvent: function removeEvent(eventName) {
@@ -112,7 +119,7 @@ define([
 
         /**
          * On event
-         * @member {String} Observer
+         * @member Observer
          * @param {{eventUUID, params, state, priority, eventName}} opts
          * @return {String}
          */
@@ -131,7 +138,7 @@ define([
 
         /**
          * Un event
-         * @member {Function} Observer
+         * @member Observer
          * @param {String} eventName
          * @param {String} eventUUID
          * @return {Boolean}
@@ -162,15 +169,8 @@ define([
         },
 
         /**
-         * @member Observer
-         */
-        hasEvent: function hasEvent() {
-            // TODO
-        },
-
-        /**
          * Publish event
-         * @member {Function} Observer
+         * @member Observer
          * @param {Function} eventName
          * @param {*} [args]
          */
@@ -196,7 +196,7 @@ define([
 
         /**
          * Fire event
-         * @member {Function} Observer
+         * @member Observer
          * @param {Array} events
          * @param {Array} [args]
          * @return {Boolean}
@@ -217,7 +217,7 @@ define([
 
         /**
          * Execute event
-         * @member {Function} Observer
+         * @member Observer
          * @param {*} [scope]               Run callback in default scope
          * @param {{
          *      state: *,                   Private internal hash

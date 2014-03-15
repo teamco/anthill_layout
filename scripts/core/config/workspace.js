@@ -14,6 +14,7 @@ define([
      * @class Workspace
      * @param opts
      * @constructor
+     * @extends AntHill
      */
     var Workspace = function Workspace(opts) {
 
@@ -60,18 +61,21 @@ define([
 
         /**
          * Init observer
+         * @member Workspace
          * @type {undefined}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
+         * @member Workspace
          * @type {undefined}
          */
         this.eventmanager = undefined;
 
         /**
          * Define MVC
+         * @member Workspace
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -89,18 +93,21 @@ define([
 
         /**
          * Define page
+         * @member Workspace
          * @type {*|Page}
          */
         this.page = {};
 
         /**
          * Define items
+         * @member Workspace
          * @type {*}
          */
         this.items = {};
 
-        this.observer.publish(this.eventmanager.eventList.successCreated);
-
+        this.observer.publish(
+            this.eventmanager.eventList.successCreated
+        );
     };
 
     return Workspace.extend({

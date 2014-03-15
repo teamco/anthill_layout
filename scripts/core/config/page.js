@@ -23,30 +23,35 @@ define([
      * Define Page
      * @class Page
      * @param opts
+     * 2extends AntHill
      * @constructor
      */
     var Page = function Page(opts) {
 
         /**
          * Define items
+         * @member Page
          * @type {*}
          */
         this.items = {};
 
         /**
          * Define widget
+         * @member Page
          * @type {*|Widget}
          */
         this.widget = {};
 
         /**
          * Define maximized widget
+         * @member Page
          * @type {*|Widget}
          */
         this.maximized = {};
 
         /**
          * Define layout modes
+         * @member Page
          * @type {{
          *      snap2grid: string,
          *      jqUIGrid: string
@@ -61,6 +66,7 @@ define([
 
         /**
          * Define organize modes
+         * @member Page
          * @type {{
          *      none: string,
          *      row: string,
@@ -175,24 +181,28 @@ define([
 
         /**
          * Init observer
+         * @member Page
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
+         * @member Page
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
+         * @member Page
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Define MVC
+         * @member Page
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -219,7 +229,9 @@ define([
             [Template, this.config.template]
         );
 
-        this.observer.publish(this.eventmanager.eventList.successCreated);
+        this.observer.publish(
+            this.eventmanager.eventList.successCreated
+        );
 
     };
 

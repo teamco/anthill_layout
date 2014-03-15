@@ -20,7 +20,7 @@ define([
     /**
      * Define Layout
      * @class Layout
-     * @mixin MVC
+     * @extends AntHill
      */
     var Layout = function Layout(opts, containment) {
 
@@ -62,12 +62,14 @@ define([
 
         /**
          * Define containment
+         * @member Layout
          * @type {*}
          */
         this.containment = containment;
 
         /**
          * Define constants
+         * @member Layout
          * @type {{organize: *[], emptySpaces: *[]}}
          */
         this.CONSTANTS = {
@@ -85,18 +87,21 @@ define([
 
         /**
          * Init observer
+         * @member Layout
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
+         * @member Layout
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Define MVC
+         * @member Layout
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -112,23 +117,28 @@ define([
 
         /**
          * Define overlapping
+         * @member Layout
          * @type {Overlapping}
          */
         this.overlapping = new Overlapping(this);
 
         /**
          * Define empty rows
+         * @member Layout
          * @type {EmptyRows}
          */
         this.emptyRows = new EmptyRows(this);
 
         /**
          * Define empty columns
+         * @member Layout
          * @type {EmptyColumns}
          */
         this.emptyColumns = new EmptyColumns(this);
 
-        this.observer.publish(this.eventmanager.eventList.successCreated);
+        this.observer.publish(
+            this.eventmanager.eventList.successCreated
+        );
     };
 
     return Layout.extend({

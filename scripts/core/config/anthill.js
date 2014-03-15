@@ -8,14 +8,14 @@
 define([
     'modules/base',
     'modules/i18n'
-], function defineAntHill(Base, i18n){
+], function defineAntHill(Base, i18n) {
 
     /**
      * Define AntHill
      * @class AntHill
      * @constructor
      */
-    var AntHill = function AntHill(){
+    var AntHill = function AntHill() {
     };
 
     /**

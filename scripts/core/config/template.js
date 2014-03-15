@@ -30,6 +30,7 @@ define([
      * @class Template
      * @param opts
      * @param containment
+     * @extends AntHill
      * @constructor
      */
     var Template = function Template(opts, containment) {
@@ -46,12 +47,35 @@ define([
 
         /**
          * Define containment
+         * @member Template
          * @type {*}
          */
         this.containment = containment;
 
         /**
+         * Init observer
+         * @member Page
+         * @type {Observer}
+         */
+        this.observer = undefined;
+
+        /**
+         * Init event manager
+         * @member Page
+         * @type {EventManager}
+         */
+        this.eventmanager = undefined;
+
+        /**
+         * Init config
+         * @member Page
+         * @type {*}
+         */
+        this.config = undefined;
+
+        /**
          * Define MVC
+         * @member Template
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -70,17 +94,21 @@ define([
 
         /**
          * Define page
+         * @member Template
          * @type {*|Page}
          */
         this.page = {};
 
         /**
          * Define items
+         * @member Template
          * @type {*}
          */
         this.items = {};
 
-        this.observer.publish(this.eventmanager.eventList.successCreated);
+        this.observer.publish(
+            this.eventmanager.eventList.successCreated
+        );
 
     };
 

@@ -17,17 +17,20 @@ define([
      * @class MVC
      * @param opts
      * @constructor
+     * @extends AntHill
      */
     var MVC = function MVC(opts) {
 
         /**
          * Define scope
+         * @member MVC
          * @type {mvc.scope}
          */
         this.scope = opts.scope;
 
         /**
          * Define MVC Relationship from -> to
+         * @member MVC
          * @type {Array}
          */
         this.RELATIONS = [
@@ -52,9 +55,10 @@ define([
 
         /**
          * Define reserved methods
+         * @member MVC
          * @type {{
-         *  create: {singular: Array},
-         *  destroy: {singular: Array, plural: Array}
+         *      create: {singular: Array},
+         *      destroy: {singular: Array, plural: Array}
          * }}
          */
         this.RESERVED = {
@@ -73,6 +77,7 @@ define([
 
         /**
          * Define default listeners
+         * @member MVC
          * @type {*}
          */
         this.defaultListeners = {
@@ -107,6 +112,7 @@ define([
 
         /**
          * Define scope config
+         * @member MVC
          * @type {mvc.scope.config}
          */
         this.scope.config = this.base.lib.hash.extendHash(
@@ -116,6 +122,7 @@ define([
 
         /**
          * Define mvc components
+         * @member MVC
          * @type {mvc.components}
          */
         this.components = this.base.define(
@@ -126,18 +133,21 @@ define([
 
         /**
          * Define mvc config
+         * @member MVC
          * @type {mvc.config}
          */
         this.config = this.base.define(selfConfig, {}, true);
 
         /**
          * Define mvc force creating components
+         * @member MVC
          * @type {Boolean}
          */
         this.force = this.base.defineBoolean(opts.force, false, true);
 
         /**
          * Define mvc render
+         * @member MVC
          * @type {Boolean}
          */
         this.render = this.base.defineBoolean(opts.render, true, true);
@@ -149,47 +159,7 @@ define([
 
         $.extend(config, scope.config);
 
-        /**
-         * Define containment
-         * @type {mvc.defineContainment}
-         */
-        this.defineContainment();
-
-        /**
-         * Define mvc applyLogger
-         * @type {mvc.applyLogger}
-         */
-        this.applyLogger();
-
-        /**
-         * Define mvc applyConfig
-         * @type {mvc.applyConfig}
-         */
-        this.applyConfig();
-
-        /**
-         * Define mvc applyMVC
-         * @type {mvc.applyMVC}
-         */
-        this.applyMVC();
-
-        /**
-         * Define mvc applyObserver
-         * @type {mvc.applyObserver}
-         */
-        this.applyObserver();
-
-        /**
-         * Define mvc applyEventManager
-         * @type {mvc.applyEventManager}
-         */
-        this.applyEventManager();
-
-        /**
-         * Define mvc applyPermissions
-         * @type {mvc.applyPermissions}
-         */
-        this.applyPermissions();
+        this.init();
 
         /**
          * Define local instance of eventList
@@ -224,7 +194,57 @@ define([
     return MVC.extend({
 
         /**
+         * Init MVC
+         * @memberOf MVC
+         */
+        init: function init() {
+
+            /**
+             * Define containment
+             * @type {mvc.defineContainment}
+             */
+            this.defineContainment();
+
+            /**
+             * Define mvc applyLogger
+             * @type {mvc.applyLogger}
+             */
+            this.applyLogger();
+
+            /**
+             * Define mvc applyConfig
+             * @type {mvc.applyConfig}
+             */
+            this.applyConfig();
+
+            /**
+             * Define mvc applyMVC
+             * @type {mvc.applyMVC}
+             */
+            this.applyMVC();
+
+            /**
+             * Define mvc applyObserver
+             * @type {mvc.applyObserver}
+             */
+            this.applyObserver();
+
+            /**
+             * Define mvc applyEventManager
+             * @type {mvc.applyEventManager}
+             */
+            this.applyEventManager();
+
+            /**
+             * Define mvc applyPermissions
+             * @type {mvc.applyPermissions}
+             */
+            this.applyPermissions();
+        },
+
+        /**
          * Define parent node
+         * @member MVC
          */
         defineContainment: function defineContainment() {
 
@@ -244,6 +264,7 @@ define([
 
         /**
          * Define MVC
+         * @member MVC
          * @param {Function|String} mvcPattern
          * @param {Boolean} [force]
          */
@@ -356,6 +377,7 @@ define([
 
         /**
          * Apply config
+         * @member MVC
          */
         applyConfig: function applyConfig() {
             var base = this.base,
@@ -376,6 +398,7 @@ define([
 
         /**
          * Apply event manager
+         * @member MVC
          */
         applyEventManager: function applyEventManager() {
 
@@ -451,6 +474,7 @@ define([
 
         /**
          * Apply default listeners
+         * @member MVC
          */
         applyDefaultListeners: function applyDefaultListeners() {
 
@@ -474,6 +498,7 @@ define([
 
         /**
          * Apply listeners
+         * @member MVC
          */
         applyListeners: function applyListeners(type) {
 
@@ -517,6 +542,7 @@ define([
 
         /**
          * Define permissions
+         * @member MVC
          * @returns {boolean}
          */
         applyPermissions: function applyPermissions() {
@@ -549,6 +575,7 @@ define([
 
         /**
          * Apply global permissions
+         * @member MVC
          * @returns {*|boolean}
          */
         _applyPermissions: function _applyPermissions(type) {
@@ -573,6 +600,9 @@ define([
                 return false;
             }
 
+            /**
+             * Define capability
+             */
             var capabilities = scope[permission][mode];
 
             if (scope.controller.checkCondition({
@@ -595,21 +625,37 @@ define([
 
         /**
          * Apply Observer
+         * @member MVC
          */
         applyObserver: function applyObserver() {
+
             var scope = this.scope;
+
+            /**
+             * Define observer
+             * @type {modules.observer}
+             */
             scope.observer = new Observer();
+
+            /**
+             * Define observer scope
+             */
             scope.observer.scope = scope;
         },
 
         /**
          * Apply Logger
+         * @member MVC
          */
         applyLogger: function applyLogger() {
             var scope = this.scope,
                 base = this.base,
                 config = scope.config.logger;
 
+            /**
+             * Define Logger
+             * @type {modules.logger}
+             */
             scope.logger = new Logger(scope);
 
             if (base.isDefined(config)) {

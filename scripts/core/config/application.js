@@ -12,6 +12,7 @@ define([
     /**
      * Define App
      * @class App
+     * @extends AntHill
      * @param {{}} opts
      * @constructor
      */
@@ -93,48 +94,56 @@ define([
 
         /**
          * Init observer
+         * @member App
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
+         * @member App
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
+         * @member App
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Define items
+         * @member App
          * @type {*}
          */
         this.items = {};
 
         /**
          * Define workspace
+         * @member App
          * @type {Workspace}
          */
         this.workspace = {};
 
         /**
          * Init observer
+         * @member App
          * @type {undefined}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
+         * @member App
          * @type {undefined}
          */
         this.eventmanager = undefined;
 
         /**
          * Define MVC
+         * @member App
          * @type {MVC}
          */
         this.mvc = new MVC({
