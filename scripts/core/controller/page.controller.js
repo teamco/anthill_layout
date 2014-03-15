@@ -14,20 +14,20 @@ define([
 
     /**
      * Define page controller
-     * @class Controller
+     * @class PageController
      * @extends BaseController
      * @extends AntHill
      * @extends BasePage
      * @constructor
      */
-    var Controller = function Controller() {
+    var PageController = function PageController() {
     };
 
-    return Controller.extend('Controller', {
+    return PageController.extend('Controller', {
 
         /**
          * Check if allowed to add widget to page
-         * @member Controller
+         * @member PageController
          * @returns {boolean}
          */
         isAllowAddWidget: function isAllowAddWidget() {
@@ -44,7 +44,7 @@ define([
 
         /**
          * Allow to add widget to page
-         * @member Controller
+         * @member PageController
          */
         allowAddWidget: function allowAddWidget() {
             this.scope.logger.debug('Allow to add widget');
@@ -53,7 +53,7 @@ define([
 
         /**
          * Do not allow to add widget to page
-         * @member Controller
+         * @member PageController
          */
         banAddWidget: function banAddWidget() {
             this.scope.logger.debug('Do not allow to add widget');
@@ -62,7 +62,7 @@ define([
 
         /**
          * Update page height
-         * @member Controller
+         * @member PageController
          */
         updateHeight: function updateHeight() {
             console.log('TODO: Update height');
@@ -70,7 +70,7 @@ define([
 
         /**
          * Get widgets container
-         * @member Controller
+         * @member PageController
          * @returns {*}
          */
         getWidgetsContainer: function getWidgetsContainer() {
@@ -79,7 +79,7 @@ define([
 
         /**
          * Update widget properties
-         * @member Controller
+         * @member PageController
          * @param [item]
          * @returns {boolean}
          */
@@ -119,7 +119,7 @@ define([
 
         /**
          * Downgrade widgets layer except widget
-         * @member Controller
+         * @member PageController
          * @param {*} widget
          */
         downgradeLayer: function downgradeLayer(widget) {

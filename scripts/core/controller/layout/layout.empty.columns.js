@@ -12,6 +12,7 @@ define([
     /**
      * Define EmptyColumns
      * @class EmptyColumns
+     * @extends AntHill
      * @param {Layout} layout
      * @constructor
      */
@@ -19,12 +20,14 @@ define([
 
         /**
          * Define layout
+         * @member EmptyColumns
          * @type {Layout}
          */
         this.layout = layout;
 
         /**
          * Define page
+         * @member EmptyColumns
          * @type {Page}
          */
         this.page = this.layout.controller.getContainment();
@@ -35,6 +38,7 @@ define([
 
         /**
          * Check if remove empty spaces is allowed
+         * @member EmptyColumns
          * @returns {boolean}
          */
         isAllowed: function isAllowed() {
@@ -44,6 +48,7 @@ define([
 
         /**
          * Remove empty spaces by column
+         * @member EmptyColumns
          * @returns {boolean}
          */
         remove: function remove() {
@@ -88,6 +93,7 @@ define([
 
         /**
          * Get widgets order
+         * @member EmptyColumns
          * @param widgets
          * @returns {Array}
          */
@@ -120,12 +126,13 @@ define([
 
         /**
          * Get widgets above
+         * @member EmptyColumns
          * @param {string} uuid
          * @param {{}} widgets
          * @param {Array} order
          * @returns {*}
          */
-        getWidgetAbove: function (uuid, widgets, order) {
+        getWidgetAbove: function getWidgetAbove(uuid, widgets, order) {
             var length = order.length,
                 i = 0,
                 widget = widgets[uuid],

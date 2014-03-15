@@ -2,7 +2,7 @@ require([
 
     '../../../scripts/core/config/main'
 
-], function loadConfig(AntHill) {
+], function loadConfig() {
 
     require([
         'public/demo/javascript/listeners',
@@ -21,7 +21,7 @@ require([
                  * Define demo application
                  * @type {*}
                  */
-                var demo = new Application({
+                window.demo = new Application({
                     config: {
                         html: {
                             container: 'body'
@@ -29,19 +29,13 @@ require([
                     }
                 });
 
-                demo.view.render();
+                window.demo.view.render();
 
-                if (!demo.model.loadData()) {
+                if (!window.demo.model.loadData()) {
 
-                    var workspace1 = demo.api.createWorkspace([], true),
+                    var workspace1 = window.demo.api.createWorkspace([], true),
                         page1 = workspace1.api.createPage([], true);
                 }
-
-                /**
-                 * Store demo
-                 * @type {*}
-                 */
-                AntHill.prototype.demo = demo;
             });
         });
     });

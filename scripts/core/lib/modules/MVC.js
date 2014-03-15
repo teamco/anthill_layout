@@ -267,14 +267,19 @@ define([
          * @member MVC
          * @param {Function|String} mvcPattern
          * @param {Boolean} [force]
+         * @param mvcPattern
+         * @param force
+         * @returns {*}
          */
         defineMVC: function defineMVC(mvcPattern, force) {
 
             var base = this.base,
+                scope = this.scope,
                 name = base.isString(mvcPattern) ?
                     mvcPattern :
-                    mvcPattern.name.toLowerCase(),
-                scope = this.scope;
+                    mvcPattern.name.
+                        replace(this.scope.constructor.name, '').
+                        toLowerCase();
 
             if (base.isFunction(mvcPattern)) {
 
@@ -307,16 +312,10 @@ define([
                     );
 
                     scope[name.toLowerCase()] = new (new fn(scope))(scope);
-
-                    /**
-                     * Set pattern
-                     * @type {constructor|r.constructor|constructor.constructor|number|Function}
-                     */
-                    mvcPattern = scope[name.toLowerCase()].constructor;
                 }
             }
 
-            return mvcPattern;
+            return name;
 
         },
 
@@ -357,7 +356,7 @@ define([
                     return false;
                 }
 
-                var pattern = this.defineMVC(mvc, this.force).name.toLowerCase(),
+                var pattern = this.defineMVC(mvc, this.force).toLowerCase(),
                     ref = this.scope[pattern];
 
                 ref.scope = this.scope;

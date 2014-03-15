@@ -12,19 +12,19 @@ define([
 
     /**
      * Define application controller
-     * @class Controller
+     * @class AppController
      * @extends AntHill
      * @extends BaseController
      * @constructor
      */
-    var Controller = function Controller() {
+    var AppController = function AppController() {
     };
 
-    return Controller.extend('Controller', {
+    return AppController.extend('AppController', {
 
         /**
          * Define setting
-         * @member Controller
+         * @member AppController
          */
         defineSetting: function defineSetting() {
             this.model.defineSetting();
@@ -32,7 +32,7 @@ define([
 
         /**
          * Init window resize
-         * @member Controller
+         * @member AppController
          */
         initResizeWindow: function initResizeWindow() {
 
@@ -50,7 +50,7 @@ define([
 
         /**
          * Resize window publisher
-         * @member Controller
+         * @member AppController
          */
         resizeWindowPublisher: function resizeWindowPublisher(e) {
 
@@ -61,7 +61,7 @@ define([
 
         /**
          * Resize window callback
-         * @member Controller
+         * @member AppController
          */
         resizeWindow: function resizeWindow() {
             this.logger.debug('Start resize window');
@@ -74,7 +74,7 @@ define([
 
         /**
          * Resize window hooks
-         * @member Controller
+         * @member AppController
          */
         resizeWindowHooks: function resizeWindowHooks() {
             this.logger.debug('Start resize window hooks', arguments);
@@ -82,7 +82,7 @@ define([
 
         /**
          * Approve clear data
-         * @member Controller
+         * @member AppController
          */
         approveClearData: function approveClearData() {
 

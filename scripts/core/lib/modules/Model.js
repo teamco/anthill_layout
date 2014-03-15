@@ -332,7 +332,7 @@ define([
 
         /**
          * Load data
-         * @param data
+         * @param [data]
          * @returns {*}
          */
         loadData: function loadData(data) {

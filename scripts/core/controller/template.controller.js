@@ -12,15 +12,15 @@ define([
 
     /**
      * Define template controller
-     * @class Controller
+     * @class TemplateController
      * @extends BaseController
-     * @extends BaseWorkspace
+     * @extends WorkspaceController
      * @constructor
      */
-    var Controller = function Controller() {
+    var TemplateController = function TemplateController() {
     };
 
-    return Controller.extend('Controller', {
+    return TemplateController.extend('TemplateController', {
     }, BaseController.prototype, BaseWorkspace.prototype);
 
 });
