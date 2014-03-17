@@ -12,6 +12,7 @@ define([
     /**
      * Define Widget Map
      * @class Map
+     * @extends AntHill
      * @param {*} widget
      * @constructor
      */
@@ -19,12 +20,14 @@ define([
 
         /**
          * Define widget instance
+         * @member Map
          * @type {*}
          */
         this.widget = widget;
 
         /**
          * Define animation duration
+         * @member Map
          * @type {number}
          */
         this.duration = 500;
@@ -34,6 +37,7 @@ define([
 
         /**
          * Get layout
+         * @member Map
          * @returns {*}
          */
         getLayout: function getLayout() {
@@ -43,6 +47,7 @@ define([
 
         /**
          * Define 0 as 1 relative dims (width|height)
+         * @member Map
          * @param {Number} dim
          * @returns {Number}
          */
@@ -53,6 +58,7 @@ define([
 
         /**
          * Get widget DOM info
+         * @member Map
          * @returns {*}
          */
         getDOM: function getDOM() {
@@ -86,6 +92,7 @@ define([
 
         /**
          * Get relative width
+         * @member Map
          * @param {Number} width
          * @param {Number} cell
          * @returns {Number}
@@ -97,6 +104,7 @@ define([
 
         /**
          * Get relative height
+         * @member Map
          * @param {Number} height
          * @param {Number} cell
          * @returns {Number}
@@ -108,6 +116,7 @@ define([
 
         /**
          * Get relative right
+         * @member Map
          * @param {Number} column
          * @param {Number} width
          * @returns {Number}
@@ -119,6 +128,7 @@ define([
 
         /**
          * Get relative bottom
+         * @member Map
          * @param {Number} row
          * @param {Number} height
          * @returns {Number}
@@ -130,6 +140,7 @@ define([
 
         /**
          * Get row
+         * @member Map
          * @param {Number} top
          * @param {Number} cell
          * @returns {Number}
@@ -141,6 +152,7 @@ define([
 
         /**
          * Get column
+         * @member Map
          * @param {Number} left
          * @param {Number} cell
          * @returns {Number}
@@ -152,6 +164,7 @@ define([
 
         /**
          * Get widget top position via grid
+         * @member Map
          * @param {Number} row
          * @returns {Number}
          */
@@ -162,6 +175,7 @@ define([
 
         /**
          * Get widget bottom position via grid
+         * @member Map
          * @param {Number} top
          * @param {Number} height
          * @returns {Number}
@@ -173,6 +187,7 @@ define([
 
         /**
          * Get widget left position via grid
+         * @member Map
          * @param {Number} column
          * @returns {Number}
          */
@@ -183,6 +198,7 @@ define([
 
         /**
          * Get widget right position via grid
+         * @member Map
          * @param {Number} left
          * @param {Number} width
          * @returns {Number}
@@ -194,6 +210,7 @@ define([
 
         /**
          * Get widget height via grid
+         * @member Map
          * @param {Number} relHeight
          * @returns {Number}
          */
@@ -204,6 +221,7 @@ define([
 
         /**
          * Get widget width via grid
+         * @member Map
          * @param {Number} relWidth
          * @returns {Number}
          */
@@ -214,6 +232,7 @@ define([
 
         /**
          * Get map margins delta in row/column
+         * @member Map
          * @param column
          * @param row
          * @returns {{top: number, left: number}}
@@ -230,6 +249,7 @@ define([
 
         /**
          * Get map widget top/left
+         * @member Map
          * @param column
          * @param row
          * @returns {{top: number, left: number}}
@@ -247,6 +267,7 @@ define([
 
         /**
          * Get widget position (top|left) via grid
+         * @member Map
          * @param {Number} pos
          * @returns {Number}
          */
@@ -260,6 +281,7 @@ define([
 
         /**
          * Get widget position (width|height) via grid
+         * @member Map
          * @param {Number} dim
          * @returns {Number}
          */
@@ -273,6 +295,7 @@ define([
 
         /**
          * Check widget column position via grid: Left
+         * @member Map
          * @param {Number} column
          * @returns {Boolean}
          */
@@ -283,6 +306,7 @@ define([
 
         /**
          * Check widget column position via grid: Right
+         * @member Map
          * @param {{column, relWidth}} dom
          * @returns {Boolean}
          */
@@ -294,6 +318,7 @@ define([
 
         /**
          * Check widget column position via grid: Left|Right
+         * @member Map
          * @param {{column, relWidth}} dom
          * @returns {Boolean}
          */
@@ -307,6 +332,7 @@ define([
 
         /**
          * Check widget row position via grid: Top
+         * @member Map
          * @param {{Number}} row
          * @returns {Boolean}
          */
@@ -317,6 +343,7 @@ define([
 
         /**
          * Check widget position
+         * @member Map
          * @returns {Boolean|*}
          */
         checkWidgetPosition: function checkWidgetPosition() {
@@ -331,6 +358,7 @@ define([
 
         /**
          * Check if interaction is: resize
+         * @member Map
          * @param {String} type
          * @returns {*|Array|{index: number, input: string}}
          */
@@ -340,6 +368,7 @@ define([
 
         /**
          * Check if interaction is: drag
+         * @member Map
          * @param {String} type
          * @returns {*|Array|{index: number, input: string}}
          */
@@ -349,6 +378,7 @@ define([
 
         /**
          * Check if interaction is: stop {drag|resize}
+         * @member Map
          * @param {String} type
          * @returns {*|Array|{index: number, input: string}}
          */
@@ -358,6 +388,7 @@ define([
 
         /**
          * Get animation behavior on stop interaction
+         * @member Map
          * @param {Boolean} animateCfg
          * @param {Boolean} animateOpts
          * @param {String} type
@@ -382,6 +413,7 @@ define([
 
         /**
          * Get overlapping behavior on stop interaction
+         * @member Map
          * @param {Boolean} overlapping
          * @param {String} type
          * @returns {Boolean}
@@ -392,6 +424,7 @@ define([
 
         /**
          * Grid sticker on interaction (Drag/Resize)
+         * @member Map
          * @param {{type, $source, callback: Function, organize: Boolean, animate: Boolean}} opts
          * @param {String} mode
          * @param {{animate: Boolean}} behavior
@@ -400,7 +433,7 @@ define([
 
             /**
              * Define widget
-             * @type {widget|*}
+             * @type {Widget}
              */
             var widget = this.widget;
 
@@ -429,7 +462,7 @@ define([
 
                     /**
                      * Define callback
-                     * @type {function}
+                     * @type {function(this:{map: AntHill, widget: *, layout: *, organize: (Boolean|*), callback: (Function|*), behavior: {animate: Boolean}, type: *})}
                      */
                     callback = this._mapStickerCallback.bind({
                         map: this,
@@ -459,6 +492,7 @@ define([
 
         /**
          * Map sticker callback
+         * @member Map
          * @private
          */
         _mapStickerCallback: function _mapStickerCallback() {
@@ -494,6 +528,7 @@ define([
 
         /**
          * Get next dimensions
+         * @member Map
          * @param {Number} relDim
          * @returns {Number}
          */
@@ -506,6 +541,7 @@ define([
 
         /**
          * Drag to
+         * @member Map
          * @returns {{left: Number, top: Number}}
          */
         dragTo: function dragTo() {
@@ -514,6 +550,7 @@ define([
 
         /**
          * Resize to
+         * @member Map
          * @returns {{width: Number, height: Number}}
          */
         resizeTo: function resizeTo() {
@@ -532,6 +569,7 @@ define([
 
         /**
          * Adopt to
+         * @member Map
          * @param {boolean} animate
          */
         adoptTo: function adoptTo(animate) {
@@ -544,6 +582,7 @@ define([
 
         /**
          * Set widget position
+         * @member Map
          * @param {{
          *      column: Number,
          *      row: Number,
@@ -556,7 +595,7 @@ define([
 
             /**
              * Init local scope
-             * @type {widget|*}
+             * @type {Widget}
              */
             var widget = this.widget;
 
@@ -593,7 +632,7 @@ define([
 
             /**
              * Define $widget
-             * @type {$|*|config.anthill.$}
+             * @type {$}
              */
             var $widget = widget.view.get$item().$.stop();
 
@@ -610,6 +649,11 @@ define([
             }
         },
 
+        /**
+         * Get occupied
+         * @member Map
+         * @returns {{top: Number, left: Number, width: *, height: *}}
+         */
         occupiedAt: function occupiedAt() {
             var lastOccupiedRow = this.getLastOccupiedRow(),
                 widgetDims = this.computeWidgetDims(
@@ -633,6 +677,7 @@ define([
 
         /**
          * Retrieve the last row number we are occupying by now
+         * @member Map
          * @returns {number}
          */
         getLastOccupiedRow: function getLastOccupiedRow() {

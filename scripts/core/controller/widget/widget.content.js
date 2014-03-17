@@ -12,6 +12,7 @@ define([
     /**
      * Define WidgetContent
      * @class WidgetContent
+     * @extends AntHill
      * @constructor
      */
     var WidgetContent = function WidgetContent() {
@@ -21,6 +22,7 @@ define([
 
         /**
          * Load widget content
+         * @member WidgetContent
          */
         loadContent: function loadContent() {
 
@@ -61,6 +63,7 @@ define([
 
         /**
          * Set content
+         * @member WidgetContent
          * @param {Function} Content
          */
         setContent: function setContent(Content) {
@@ -75,6 +78,7 @@ define([
 
             /**
              * Define content
+             * @member WidgetContent
              * @type {Content}
              */
             this.content = content;
@@ -82,6 +86,7 @@ define([
 
         /**
          * Get content
+         * @member WidgetContent
          * @returns {Content}
          */
         getContent: function getContent() {

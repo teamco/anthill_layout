@@ -13,7 +13,7 @@ define([
     /**
      * Define Resize
      * @class Resizable
-     * @mixin {Interactions}
+     * @extends Interactions
      * @param scope
      * @constructor
      */
@@ -21,12 +21,14 @@ define([
 
         /**
          * Define scope
+         * @member Resizable
          * @type {Widget}
          */
         this.scope = scope;
 
         /**
          * Define widget jquery element
+         * @member Resizable
          * @type {jQuery}
          */
         this.$scope = scope.view.elements.$widget.$;
@@ -38,8 +40,13 @@ define([
 
         /**
          * Init resizable
+         * @member Resizable
          */
         init: function init() {
+
+            /**
+             * Define scope
+             */
             var scope = this.scope;
 
             if (scope.permission.authorizedFunctionCall(this.init)) {
@@ -57,10 +64,15 @@ define([
 
         /**
          * Enable resize
+         * @member Resizable
          */
         enable: function enable() {
 
+            /**
+             * Define scope
+             */
             var scope = this.scope;
+
             if (scope.permission.eventTunnelFunctionCall(this.enable) &&
                 scope.controller.isResizable()) {
                 this.$scope.resizable('enable');
@@ -69,10 +81,15 @@ define([
 
         /**
          * Disable resize
+         * @member Resizable
          */
         disable: function disable() {
 
+            /**
+             * Define scope
+             */
             var scope = this.scope;
+
             if (scope.permission.eventTunnelFunctionCall(this.disable) &&
                 scope.controller.isResizable()) {
                 this.$scope.resizable('disable');
@@ -81,10 +98,15 @@ define([
 
         /**
          * Destroy resize
+         * @member Resizable
          */
         destroy: function destroy() {
 
+            /**
+             * Define scope
+             */
             var scope = this.scope;
+
             if (scope.permission.eventTunnelFunctionCall(this.destroy) &&
                 scope.controller.isResizable()) {
                 this.$scope.resizable('destroy');
@@ -93,12 +115,17 @@ define([
 
         /**
          * Create resize
+         * @member Resizable
          * @param event
          * @param ui
          */
         create: function create(event, ui) {
 
+            /**
+             * Define scope
+             */
             var scope = this.scope;
+
             scope.observer.publish(
                 scope.eventmanager.eventList.createResizable,
                 [event.type, arguments]
@@ -107,12 +134,19 @@ define([
 
         /**
          * Start resize
+         * @member Resizable
          * @param event
          * @param ui
          */
         start: function start(event, ui) {
+
+            /**
+             * Define scope
+             */
             var scope = this.scope;
+
             this.debugUI(event, ui);
+
             scope.controller.setAsCurrent();
             scope.wireframe.resizeSticker();
 
@@ -124,12 +158,19 @@ define([
 
         /**
          * Stop resize
+         * @member Resizable
          * @param event
          * @param ui
          */
         stop: function stop(event, ui) {
+
+            /**
+             * Define scope
+             */
             var scope = this.scope;
+
             this.debugUI(event, ui);
+
             scope.observer.publish(
                 scope.eventmanager.eventList.stopResizable,
                 [event.type, arguments]
@@ -139,12 +180,19 @@ define([
 
         /**
          * On resize event
+         * @member Resizable
          * @param event
          * @param ui
          */
         resize: function resize(event, ui) {
+
+            /**
+             * Define scope
+             */
             var scope = this.scope;
+
             this.debugUI(event, ui);
+
             scope.observer.publish(
                 scope.eventmanager.eventList.resizeResizable,
                 [event.type, arguments]

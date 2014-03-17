@@ -9,10 +9,11 @@
 define([
     'modules/interactions'
 ], function defineWidgetDrag(Interactions) {
+
     /**
      * Define Widget Drag
      * @class Draggable
-     * @mixin {Interactions}
+     * @extends Interactions
      * @param scope
      * @constructor
      */
@@ -20,15 +21,17 @@ define([
 
         /**
          * Define scope
+         * @member Draggable
          * @type {Widget}
          */
         this.scope = scope;
 
         /**
          * Define widget jquery element
+         * @member Draggable
          * @type {jQuery}
          */
-        this.$scope = scope.view.elements.$widget.$;
+        this.$scope = scope.view.get$item().$;
 
         this.checkPermission();
     };
@@ -37,6 +40,7 @@ define([
 
         /**
          * Init interaction
+         * @member Draggable
          */
         init: function init() {
 
@@ -57,6 +61,7 @@ define([
 
         /**
          * Enable drag
+         * @member Draggable
          */
         enable: function enable() {
             if (this.scope.permission.eventTunnelFunctionCall(this.enable) &&
@@ -67,6 +72,7 @@ define([
 
         /**
          * Disable drag
+         * @member Draggable
          */
         disable: function disable() {
             if (this.scope.permission.eventTunnelFunctionCall(this.disable) &&
@@ -77,6 +83,7 @@ define([
 
         /**
          * Destroy drag
+         * @member Draggable
          */
         destroy: function destroy() {
             if (this.scope.permission.eventTunnelFunctionCall(this.destroy) &&
@@ -87,6 +94,7 @@ define([
 
         /**
          * Create drag
+         * @member Draggable
          * @param event
          * @param ui
          */
@@ -100,6 +108,7 @@ define([
 
         /**
          * Start drag
+         * @member Draggable
          * @param event
          * @param ui
          */
@@ -116,6 +125,7 @@ define([
 
         /**
          * Stop drag
+         * @member Draggable
          * @param event
          * @param ui
          */
@@ -134,6 +144,7 @@ define([
 
         /**
          * onDrag
+         * @member Draggable
          * @param event
          * @param ui
          */

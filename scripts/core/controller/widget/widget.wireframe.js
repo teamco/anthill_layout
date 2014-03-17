@@ -12,6 +12,7 @@ define([
     /**
      * Define Widget Wireframe
      * @class Wireframe
+     * @extends AntHill
      * @param {*} widget
      * @constructor
      */
@@ -19,18 +20,21 @@ define([
 
         /**
          * Define widget
+         * @member Wireframe
          * @type {*}
          */
         this.widget = widget;
 
         /**
          * Define opacity
+         * @member Wireframe
          * @type {number}
          */
         this.opacity = 0.2;
 
         /**
          * Define selector
+         * @member Wireframe
          * @type {string}
          */
         this.selector = '#next-widget-position';
@@ -40,6 +44,7 @@ define([
 
         /**
          * Move wireframe on widget drag
+         * @member Wireframe
          */
         dragSticker: function dragSticker() {
 
@@ -63,6 +68,7 @@ define([
 
         /**
          * Resize wireframe on widget resize
+         * @member Wireframe
          */
         resizeSticker: function resizeSticker() {
 
@@ -86,6 +92,7 @@ define([
 
         /**
          * Show wireframe
+         * @member Wireframe
          */
         show: function show() {
 
@@ -94,6 +101,7 @@ define([
 
         /**
          * Hide wireframe
+         * @member Wireframe
          */
         hide: function hide() {
 
@@ -102,6 +110,7 @@ define([
 
         /**
          * Set wireframe visibility
+         * @member Wireframe
          * @param {String} fade
          * @param {String} type
          */
@@ -114,6 +123,7 @@ define([
 
         /**
          * Get wireframe jQuery element
+         * @member Wireframe
          * @returns {*}
          */
         getWireFrame: function getWireFrame() {
@@ -126,6 +136,7 @@ define([
 
         /**
          * Move wireframe to current page
+         * @member Wireframe
          */
         moveToCurrentPage: function moveToCurrentPage() {
 
@@ -138,6 +149,7 @@ define([
 
         /**
          * Define wireframe jQuery element
+         * @member Wireframe
          * @param {{style}} opts
          * @returns {*}
          */
@@ -145,6 +157,7 @@ define([
 
             /**
              * Define wireframe element
+             * @member Wireframe
              * @type {*}
              */
             this.$ = this.getWireFrame();
@@ -163,6 +176,7 @@ define([
 
         /**
          * Init wireframe
+         * @member Wireframe
          * @param opts
          */
         init: function init(opts) {
