@@ -28,6 +28,7 @@
      */
 
     if (typeof JSON.decycle !== 'function') {
+
         JSON.decycle = function decycle(object) {
             'use strict';
 

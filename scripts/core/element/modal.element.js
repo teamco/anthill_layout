@@ -45,7 +45,7 @@ define([
         return this;
     };
 
-    return ModalElement.extend({
+    return ModalElement.extend('ModalElement', {
 
         /**
          * Setup modal dialog

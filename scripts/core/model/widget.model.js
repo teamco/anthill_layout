@@ -11,22 +11,24 @@ define([
 
     /**
      * Define Widget model
-     * @mixin BaseModel
-     * @class Model
+     * @extends BaseModel
+     * @class WidgetModel
      * @constructor
      */
-    var Model = function Model() {
+    var WidgetModel = function WidgetModel() {
     };
 
-    return Model.extend('Model', {
+    return WidgetModel.extend('WidgetModel', {
 
         /**
          * Define DOM
+         * @member WidgetModel
          */
         defineDOM: function defineDOM() {
 
             /**
              * Update DOM
+             * @member WidgetModel
              * @type {*}
              */
             this.scope.dom = this.scope.map.getDOM();
@@ -34,6 +36,7 @@ define([
 
         /**
          * Get DOM
+         * @member WidgetModel
          * @returns {*}
          */
         getDOM: function getDOM() {
@@ -42,6 +45,7 @@ define([
 
         /**
          * Update DOM
+         * @member WidgetModel
          * @param {*} hash
          * @returns {*}
          */
@@ -57,6 +61,7 @@ define([
 
         /**
          * Get attributes
+         * @member WidgetModel
          * @returns {*}
          */
         getAttributes: function getAttributes() {
@@ -65,6 +70,7 @@ define([
 
         /**
          * Set attributes
+         * @member WidgetModel
          * @param key
          * @param value
          */
@@ -75,6 +81,7 @@ define([
 
         /**
          * Update prefs
+         * @member WidgetModel
          * @param data
          */
         updatePreferences: function updatePreferences(data) {

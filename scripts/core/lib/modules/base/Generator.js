@@ -5,7 +5,9 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-define([], function defineBaseGenerator() {
+define([
+    'lib/packages/rgbcolor'
+], function defineBaseGenerator(RGBColor) {
 
     /**
      * Define generators
@@ -15,18 +17,21 @@ define([], function defineBaseGenerator() {
     var BaseGenerator = function BaseGenerator() {
     };
 
-    BaseGenerator.extend({
+    BaseGenerator.extend('BaseGenerator', {
 
         /**
          * Generate UUID
-         * RFC4122 Description "http://www.ietf.org/rfc/rfc4122.txt"
+         * @description RFC4122 Description "http://www.ietf.org/rfc/rfc4122.txt"
+         * @member BaseGenerator
          * @param {String} [uuid]
          * @returns {String}
          */
         UUID: function UUID(uuid) {
+
             if (uuid) {
                 return uuid;
             }
+
             var s = [];
             var hexDigits = '0123456789abcdef';
             var i;
@@ -43,6 +48,7 @@ define([], function defineBaseGenerator() {
 
         /**
          * Get timestamp
+         * @member BaseGenerator
          * @returns {*}
          */
         timestamp: function timestamp() {
@@ -51,6 +57,7 @@ define([], function defineBaseGenerator() {
 
         /**
          * Generate random color HEX
+         * @member BaseGenerator
          * @returns {string}
          */
         randomColor: function randomColor() {
@@ -60,6 +67,7 @@ define([], function defineBaseGenerator() {
 
         /**
          * Invert CSS color [color|background-color]
+         * @member BaseGenerator
          * @param {String} cssType
          */
         invertColor: function invertColor(cssType) {

@@ -191,7 +191,7 @@ define([
         }
     };
 
-    return MVC.extend({
+    return MVC.extend('MVC', {
 
         /**
          * Init MVC

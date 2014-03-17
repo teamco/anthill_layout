@@ -17,6 +17,7 @@ define([
      * @returns {*}
      * @constructor DebuggerElement
      * @extends BaseElement
+     * @class DebuggerElement
      */
     var DebuggerElement = function DebuggerElement(view, opts) {
 
@@ -37,7 +38,7 @@ define([
 
     };
 
-    return DebuggerElement.extend({
+    return DebuggerElement.extend('DebuggerElement', {
 
         /**
          * DOM config

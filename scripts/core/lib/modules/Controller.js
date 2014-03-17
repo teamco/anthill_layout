@@ -24,7 +24,7 @@ define([
 
     };
 
-    return BaseController.extend({
+    return BaseController.extend('BaseController', {
 
         /**
          * Get Application mode

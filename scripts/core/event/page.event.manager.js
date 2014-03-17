@@ -12,19 +12,24 @@ define([
 
     /**
      * Define page event manager
-     * @class EventManager
+     * @class PageEventManager
      * @constructor
      */
-    var EventManager = function EventManager() {
+    var PageEventManager = function PageEventManager() {
 
         /**
          * Define events
+         * @member PageEventManager
          * @type {{}}
          */
         this.events = {};
+    };
+
+    return PageEventManager.extend('PageEventManager', {
 
         /**
          * Define event list
+         * @member PageEventManager
          * @type {{
          *      createWidget: string,
          *      destroyWidget: string,
@@ -38,7 +43,7 @@ define([
          *      updateHeight: string
          * }}
          */
-        this.eventList = {
+        eventList: {
             createWidget: 'create.widget',
             destroyWidget: 'destroy.widget',
             destroyWidgets: 'destroy.widgets',
@@ -49,9 +54,7 @@ define([
             resizeWidget: 'resize.widget',
             resizeWidgets: 'resize.widgets',
             updateHeight: 'update.height'
-        };
-    };
+        }
 
-    return EventManager.extend({
     }, Event.prototype);
 });

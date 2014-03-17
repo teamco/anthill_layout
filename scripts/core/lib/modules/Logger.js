@@ -13,12 +13,14 @@ define([
     /**
      * Define Logger
      * @class Logger
+     * @extends AntHill
      * @constructor Logger
      */
     var Logger = function Logger(scope) {
 
         /**
          * Define scope
+         * @member Logger
          * @type {*}
          */
         this.scope = scope;
@@ -26,10 +28,11 @@ define([
         this.setConfig(scope.config.logger);
     };
 
-    return Logger.extend({
+    return Logger.extend('Logger', {
 
         /**
          * Set config
+         * @member Logger
          * @param config
          */
         setConfig: function setConfig(config) {
@@ -46,6 +49,7 @@ define([
 
         /**
          * Show Log
+         * @member Logger
          * @returns {boolean}
          */
         showLog: function showLog() {
@@ -54,6 +58,7 @@ define([
 
         /**
          * Check if log available
+         * @member Logger
          * @return {Boolean}
          */
         isLoggable: function isLoggable() {
@@ -63,6 +68,7 @@ define([
 
         /**
          * Puts (internal function)
+         * @member Logger
          * @param {string} type
          * @returns {boolean}
          */
@@ -147,6 +153,7 @@ define([
 
         /**
          * Stack trace parser
+         * @member Logger
          * @param {Array} stacks
          * @returns {Array}
          */
@@ -161,6 +168,7 @@ define([
 
         /**
          * Timer
+         * @member Logger
          * @param {string} name
          * @param {boolean} start
          */
@@ -182,6 +190,7 @@ define([
 
         /**
          * Define available logs
+         * @member Logger
          */
         defineLogs: function defineLogs() {
             var base = this.base,

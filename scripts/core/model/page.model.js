@@ -12,20 +12,22 @@ define([
 
     /**
      * Define Page model
-     * @mixin BaseModel
-     * @class Model
+     * @extends BaseModel
+     * @class PageModel
      * @constructor
      */
-    var Model = function Model() {
+    var PageModel = function PageModel() {
 
         /**
          * Define item
+         * @member PageModel
          * @type {Widget}
          */
         this.item = Widget;
 
         /**
          * Define on destroy dependencies
+         * @member PageModel
          * @type {Array}
          */
         this.onDestroy = [
@@ -34,7 +36,7 @@ define([
         ];
     };
 
-    return Model.extend('Model', {
+    return PageModel.extend('PageModel', {
 
     }, BaseModel.prototype);
 });

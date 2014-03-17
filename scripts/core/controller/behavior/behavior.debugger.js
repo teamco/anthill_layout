@@ -19,7 +19,7 @@ define([
 
     };
 
-    return BaseDebugger.extend({
+    return BaseDebugger.extend('BaseDebugger', {
 
         /**
          * Start debugger

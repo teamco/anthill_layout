@@ -27,7 +27,7 @@ define([
         });
     };
 
-    return AppElement.extend({
+    return AppElement.extend('AppElement', {
 
     }, BaseElement.prototype);
 });

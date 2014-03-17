@@ -36,7 +36,7 @@ define([
         this.checkPermission();
     };
 
-    return Resizable.extend({
+    return Resizable.extend('Resizable', {
 
         /**
          * Init resizable

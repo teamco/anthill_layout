@@ -13,25 +13,28 @@ define([
     'element/footer.element',
     'element/application/application.element.content',
     'element/application/application.element.debug'
-], function defineApplicationView(BaseView, AppHTML, Header, Footer, WorkspaceContainer, Debugger) {
+], function defineApplicationView(BaseView, AppHTML, Header, Footer, AppContent, DebuggerElement) {
 
     /**
      * View
-     * @constructor View
+     * @constructor
+     * @class AppView
+     * @extends BaseView
      */
-    var View = function View() {
+    var AppView = function AppView() {
     };
 
-    return View.extend('View', {
+    return AppView.extend('AppView', {
 
         /**
          * Render Application
+         * @member AppView
          */
         renderApplication: function renderApplication() {
 
             /**
              * Define $application
-             * @type {element.application.application.element}
+             * @type {AppElement}
              */
             this.elements.$application = new AppHTML(this, {
                 $container: this.getConfigHTML().container,
@@ -44,14 +47,15 @@ define([
 
         /**
          * Render Workspaces container
+         * @member AppView
          */
         workspaces: function workspaces() {
 
             /**
              * Define $workspaces
-             * @type {element.application.application.element.content}
+             * @type {AppContent}
              */
-            this.elements.$workspaces = new WorkspaceContainer(this, {
+            this.elements.$workspaces = new AppContent(this, {
                 $container: this.elements.$application.$,
                 style: 'workspaces'
             });
@@ -59,14 +63,15 @@ define([
 
         /**
          * Render Debugger window
+         * @member AppView
          */
         debug: function debug() {
 
             /**
              * Define $debugger
-             * @type {element.application.application.element.debug}
+             * @type {DebuggerElement}
              */
-            this.elements.$debugger = new Debugger(this, {
+            this.elements.$debugger = new DebuggerElement(this, {
                 $container: this.elements.$application.$,
                 style: 'debugger',
                 opacity: 0.6,
@@ -78,6 +83,7 @@ define([
 
         /**
          * Start rendering
+         * @member AppView
          * @param {boolean} silent
          */
         render: function render(silent) {
@@ -89,5 +95,4 @@ define([
         }
 
     }, BaseView.prototype)
-
 });

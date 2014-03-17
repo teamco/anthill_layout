@@ -174,7 +174,7 @@ define([
 
     };
 
-    return App.extend({
+    return App.extend('App', {
 
     }, AntHill.prototype);
 

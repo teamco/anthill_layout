@@ -31,7 +31,7 @@ define([
 
     };
 
-    return EmptyRows.extend({
+    return EmptyRows.extend('EmptyRows', {
 
         /**
          * Check if remove empty spaces is allowed

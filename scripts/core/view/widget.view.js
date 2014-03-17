@@ -18,21 +18,24 @@ define([
     /**
      * Define Widget View
      * @constructor
-     * @class View
+     * @class WidgetView
+     * @extends AntHill
+     * @extends BaseView
      */
-    var View = function View() {
+    var WidgetView = function WidgetView() {
     };
 
-    return View.extend('View', {
+    return WidgetView.extend('WidgetView', {
 
         /**
          * Render widget
+         * @member WidgetView
          */
         renderWidget: function renderWidget() {
 
             /**
              * Define $widget
-             * @type {element.widget.widget.element}
+             * @type {WidgetElement}
              */
             this.elements.$widget = new Widget(this, {
                 id: this.createUUID(),
@@ -50,7 +53,16 @@ define([
             this.footer(Footer, this.elements.$widget);
         },
 
+        /**
+         * Render content
+         * @member WidgetView
+         */
         content: function content() {
+
+            /**
+             * Define $content
+             * @type {WidgetContent}
+             */
             this.elements.$content = new Content(this, {
                 style: 'content',
                 css: {
@@ -60,7 +72,9 @@ define([
             });
         },
 
-        /** Render widget
+        /**
+         * Render widget
+         * @member WidgetView
          * @param {boolean} silent
          */
         render: function render(silent) {

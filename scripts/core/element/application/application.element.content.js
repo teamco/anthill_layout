@@ -26,7 +26,7 @@ define([
         });
     };
 
-    return AppContent.extend({
+    return AppContent.extend('AppContent', {
 
     }, BaseElement.prototype);
 });

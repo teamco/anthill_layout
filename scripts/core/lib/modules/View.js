@@ -9,7 +9,7 @@
 define([
     'config/anthill',
     'element/modal.element'
-], function defineBaseView(AntHill, Modal) {
+], function defineBaseView(AntHill, ModalElement) {
 
     /**
      * Define base view
@@ -21,10 +21,11 @@ define([
 
     };
 
-    return BaseView.extend({
+    return BaseView.extend('BaseView', {
 
         /**
          * Get config HTML
+         * @member BaseView
          * @param {string} [key]
          * @returns {*}
          */
@@ -42,12 +43,18 @@ define([
 
         /**
          * Get item.$
+         * @member BaseView
          * @returns {$|*|Element.$}
          */
         get$item: function get$item() {
             return this.elements['$' + this.scope.constructor.name.toLowerCase()];
         },
 
+        /**
+         * Create style
+         * @member BaseView
+         * @returns {string}
+         */
         createStyle: function createStyle() {
             return [
                 this.getContainerClassName(),
@@ -55,6 +62,11 @@ define([
             ].join(' ');
         },
 
+        /**
+         * Create UUID
+         * @member BaseView
+         * @returns {string}
+         */
         createUUID: function createUUID() {
             return [
                 this.scope.model.getUUID(),
@@ -62,6 +74,12 @@ define([
             ].join('-');
         },
 
+        /**
+         * Render UUID
+         * @member BaseView
+         * @param id
+         * @returns {*|string}
+         */
         renderUUID: function renderUUID(id) {
             return id || (this.base.lib.generator.UUID() +
                 this.constructor.name.toDash());
@@ -69,16 +87,27 @@ define([
 
         /**
          * Define $container
+         * @member BaseView
          * @param $container
          */
         defineContainer: function defineContainer($container) {
             this.elements.$container = $container;
         },
 
+        /**
+         * Get container class name
+         * @member BaseView
+         * @returns {string}
+         */
         getContainerClassName: function getContainerClassName() {
             return this.getConfigHTML().selector.replace(/\./, '');
         },
 
+        /**
+         * Get container selector
+         * @member BaseView
+         * @returns {*|jQuery}
+         */
         getContainerSelector: function getContainerSelector() {
             var html = this.getConfigHTML();
             return $(html.container).children([
@@ -88,6 +117,7 @@ define([
 
         /**
          * Check if element cached
+         * @member BaseView
          * @param $element
          * @param Constructor
          * @returns {boolean}
@@ -109,6 +139,7 @@ define([
 
         /**
          * Check if render force
+         * @member BaseView
          * @param {Boolean} force
          * @returns {boolean}
          */
@@ -121,16 +152,17 @@ define([
 
         /**
          * Render Header
-         * @param Header
+         * @member BaseView
+         * @param HeaderElement
          * @param $container
          */
-        header: function header(Header, $container) {
+        header: function header(HeaderElement, $container) {
 
             /**
              * Define $header
              * @type {HeaderElement}
              */
-            this.elements.$header = new Header(this, {
+            this.elements.$header = new HeaderElement(this, {
                 style: [
                     this.scope.constructor.name.toLowerCase(),
                     'header'
@@ -141,16 +173,17 @@ define([
 
         /**
          * Render Footer
-         * @param Footer
+         * @member BaseView
+         * @param FooterElement
          * @param $container
          */
-        footer: function footer(Footer, $container) {
+        footer: function footer(FooterElement, $container) {
 
             /**
              * Define $footer
              * @type {FooterElement}
              */
-            this.elements.$footer = new Footer(this, {
+            this.elements.$footer = new FooterElement(this, {
                 style: [
                     this.scope.constructor.name.toLowerCase(),
                     'footer'
@@ -161,22 +194,23 @@ define([
 
         /**
          * Generic modal dialog window
+         * @member BaseView
          * @param {{
          *      [style]: String,
+         *      $container,
          *      [cover]: Boolean,
+         *      [coverOpacity]: Number,
+         *      [autoclose]: Boolean,
+         *      [css],
          *      [opacityOff]: Number,
          *      [opacityOn]: Number,
          *      [title]: String,
          *      [type]: String ('info', 'success', 'warning', 'error'),
-         *      [position]: String ('tl/tc/tr', 'cl/cc/cr'. 'bl/bc/br'),
          *      [html]: String,
          *      [text]: String,
          *      [draggable]: Boolean,
-         *      [autoclose]: Boolean,
-         *      [coverOpacity]: Number
-         *      $container,
-         *      [css],
          *      [items],
+         *      [position]: String ('tl/tc/tr', 'cl/cc/cr'. 'bl/bc/br'),
          *      [buttons]
          * }} opts
          */
@@ -184,9 +218,9 @@ define([
 
             /**
              * Define $modal
-             * @type {element.modal.element}
+             * @type {ModalElement}
              */
-            this.elements.$modal = new Modal(this, {
+            this.elements.$modal = new ModalElement(this, {
                 style: opts.style,
                 $container: opts.$container,
                 cover: opts.cover,
@@ -208,15 +242,16 @@ define([
 
         /**
          * Generic button
-         * @param {*} Button
+         * @member BaseView
+         * @param {Function|ButtonElement} ButtonElement
          * @param {*} opts
          * @param {*} store
          */
-        button: function button(Button, opts, store) {
+        button: function button(ButtonElement, opts, store) {
             $.each(
                 this.base.define(opts, {}, true),
                 function each(i, button) {
-                    store[i] = new Button(this, {
+                    store[i] = new ButtonElement(this, {
                         $container: button.$container,
                         style: i.toDash(),
                         text: button.text,
@@ -228,12 +263,13 @@ define([
 
         /**
          * Define cover
-         * @param Cover
+         * @member BaseView
+         * @param CoverElement
          * @param opts
          * @returns {CoverElement}
          */
-        cover: function cover(Cover, opts) {
-            return new Cover(this, {
+        cover: function cover(CoverElement, opts) {
+            return new CoverElement(this, {
                 $container: opts.$container,
                 style: opts.style,
                 opacity: opts.opacity,

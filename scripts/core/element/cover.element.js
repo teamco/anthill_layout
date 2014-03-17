@@ -30,7 +30,7 @@ define([
         return this;
     };
 
-    return CoverElement.extend({
+    return CoverElement.extend('CoverElement', {
 
     }, BaseElement.prototype);
 

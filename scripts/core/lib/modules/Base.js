@@ -45,6 +45,7 @@ define([
 
         /**
          * Get shim
+         * @member Base
          * @param type
          * @returns {*}
          */
@@ -56,6 +57,10 @@ define([
 
             if (Shims.hasOwnProperty(index)) {
 
+                /**
+                 * Define shims
+                 * @type {*}
+                 */
                 this.lib[index] = this.getShims(index);
             }
         }
@@ -66,11 +71,13 @@ define([
 
         /**
          * Define lib
+         * @memberOf Base
          */
         lib: {},
 
         /**
          * Get object type
+         * @member Base
          * @param obj
          * @returns {String}
          */
@@ -79,6 +86,7 @@ define([
         },
         /**
          * Check if object defined
+         * @member Base
          * @param {*} o
          * @return {boolean}
          */
@@ -88,6 +96,7 @@ define([
 
         /**
          * Check if object is blank
+         * @member Base
          * @param {String} o
          * @return {boolean}
          */
@@ -97,6 +106,7 @@ define([
 
         /**
          * Check if boolean
+         * @member Base
          * @param o
          * @returns {boolean}
          */
@@ -106,6 +116,7 @@ define([
 
         /**
          * Check if object is empty
+         * @member Base
          * @param {String|Array|jQuery} o
          * @returns {boolean}
          */
@@ -120,6 +131,7 @@ define([
 
         /**
          * Check if object string type
+         * @member Base
          * @param {String} o
          * @returns {boolean}
          */
@@ -129,6 +141,7 @@ define([
 
         /**
          * Check if array
+         * @member Base
          * @param a
          * @returns {boolean}
          */
@@ -138,6 +151,7 @@ define([
 
         /**
          * Check if object is instance of jQuery
+         * @member Base
          * @param o
          * @returns {boolean}
          */
@@ -147,6 +161,7 @@ define([
 
         /**
          * Check if object
+         * @member Base
          * @param o
          * @returns {boolean}
          */
@@ -156,6 +171,7 @@ define([
 
         /**
          * Check if function
+         * @member Base
          * @param o
          * @returns {boolean}
          */
@@ -165,6 +181,7 @@ define([
 
         /**
          * Check if value is numeric
+         * @member Base
          * @param n
          * @returns {boolean}
          */
@@ -175,6 +192,7 @@ define([
 
         /**
          * Define object if undefined
+         * @member Base
          * @param o
          * @param value
          * @param {Boolean} [force]
@@ -191,6 +209,7 @@ define([
 
         /**
          * Define boolean if undefined
+         * @member Base
          * @param o
          * @param value
          * @param force
@@ -204,9 +223,8 @@ define([
             }
             return o;
         }
-
     });
 
-    return Base;
+    return Base.extend('Base');
 
 });

@@ -23,7 +23,7 @@ define([
     var PageController = function PageController() {
     };
 
-    return PageController.extend('Controller', {
+    return PageController.extend('PageController', {
 
         /**
          * Check if allowed to add widget to page

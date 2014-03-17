@@ -11,19 +11,19 @@ define([
 
     /**
      * Define Widget API
-     * @class API
+     * @class WidgetAPI
      * @extends BaseAPI
      * @constructor
      */
-    var API = function API() {
+    var WidgetAPI = function WidgetAPI() {
 
     };
 
-    return API.extend({
+    return WidgetAPI.extend('WidgetAPI', {
 
         /**
          * Init drag api
-         * @member API
+         * @member WidgetAPI
          */
         initDrag: function initDrag() {
             this._setInteraction('initDraggable');
@@ -31,7 +31,7 @@ define([
 
         /**
          * Enable drag api
-         * @member API
+         * @member WidgetAPI
          */
         enableDrag: function initDrag() {
             this._setInteraction('enableDraggable');
@@ -39,7 +39,7 @@ define([
 
         /**
          * Disable drag api
-         * @member API
+         * @member WidgetAPI
          */
         disableDrag: function initDrag() {
             this._setInteraction('disableDraggable');
@@ -47,7 +47,7 @@ define([
 
         /**
          * Destroy drag api
-         * @member API
+         * @member WidgetAPI
          */
         destroyDrag: function destroyDrag() {
             this._setInteraction('destroyDraggable');
@@ -55,7 +55,7 @@ define([
 
         /**
          * Init resize api
-         * @member API
+         * @member WidgetAPI
          */
         initResize: function initResize() {
             this._setInteraction('initResizable');
@@ -63,7 +63,7 @@ define([
 
         /**
          * Enable resize api
-         * @member API
+         * @member WidgetAPI
          */
         enableResize: function enableResize() {
             this._setInteraction('enableResizable');
@@ -71,7 +71,7 @@ define([
 
         /**
          * Disable resize api
-         * @member API
+         * @member WidgetAPI
          */
         disableResize: function disableResize() {
             this._setInteraction('disableResizable');
@@ -79,7 +79,7 @@ define([
 
         /**
          * Destroy resize api
-         * @member API
+         * @member WidgetAPI
          */
         destroyResize: function destroyResize() {
             this._setInteraction('destroyResizable');
@@ -87,7 +87,7 @@ define([
 
         /**
          * Set interaction
-         * @member API
+         * @member WidgetAPI
          * @param {String} interaction
          * @private
          */

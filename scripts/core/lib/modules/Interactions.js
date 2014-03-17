@@ -17,7 +17,7 @@ define([
     var Interactions = function Interactions() {
     };
 
-    return Interactions.extend({
+    return Interactions.extend('Interactions', {
 
         /**
          * Check permission

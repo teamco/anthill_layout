@@ -26,7 +26,7 @@ define([
         });
     };
 
-    return DeltaScroll.extend({
+    return DeltaScroll.extend('DeltaScroll', {
 
     }, BaseElement.prototype);
 });

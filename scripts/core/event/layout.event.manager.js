@@ -12,19 +12,25 @@ define([
 
     /**
      * Define layout event manager
-     * @class EventManager
+     * @class LayoutEventManager
+     * @extends Event
      * @constructor
      */
-    var EventManager = function EventManager() {
+    var LayoutEventManager = function LayoutEventManager() {
 
         /**
          * Define events
+         * @member LayoutEventManager
          * @type {{}}
          */
         this.events = {};
+    };
+
+    return LayoutEventManager.extend('LayoutEventManager', {
 
         /**
          * Define event list
+         * @member LayoutEventManager
          * @type {{
          *      updateMinCellWidth: string,
          *      beforeNestedOrganizer: string,
@@ -33,15 +39,13 @@ define([
          *      setEmptySpacesMode: string
          * }}
          */
-        this.eventList = {
+        eventList: {
             updateMinCellWidth: 'update.min.cell.width',
             beforeNestedOrganizer: 'before.nested.organizer',
             afterNestedOrganizer: 'after.nested.organizer',
             setOrganizeMode: 'set.organize.mode',
             setEmptySpacesMode: 'set.empty.spaces.mode'
-        };
-    };
+        }
 
-    return EventManager.extend({
     }, Event.prototype);
 });

@@ -14,12 +14,27 @@ define([
     'element/workspace/workspace.element.content'
 ], function defineWorkspaceView(BaseView, Workspace, Header, Footer, PageContainer) {
 
-    var View = function View() {
+    /**
+     * Define WorkspaceView
+     * @class WorkspaceView
+     * @extends BaseView
+     * @constructor
+     */
+    var WorkspaceView = function WorkspaceView() {
     };
 
-    return View.extend('View', {
+    return WorkspaceView.extend('WorkspaceView', {
 
+        /**
+         * Render workspace
+         * @member WorkspaceView
+         */
         renderWorkspace: function renderWorkspace() {
+
+            /**
+             * Define $workspace
+             * @type {WorkspaceElement}
+             */
             this.elements.$workspace = new Workspace(this, {
                 id: this.createUUID(),
                 $container: this.getContainerSelector()
@@ -31,7 +46,15 @@ define([
             this.elements.$workspace.stretch();
         },
 
+        /**
+         * Render pages
+         */
         pages: function pages() {
+
+            /**
+             * Define $pages
+             * @type {WorkspaceContent}
+             */
             this.elements.$pages = new PageContainer(this, {
                 $container: this.elements.$workspace.$,
                 style: 'pages'

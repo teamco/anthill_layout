@@ -31,7 +31,7 @@ define([
         return this;
     };
 
-    return WidgetContent.extend({
+    return WidgetContent.extend('WidgetContent', {
 
         /**
          * Set padding

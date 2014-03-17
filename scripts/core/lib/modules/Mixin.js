@@ -13,7 +13,7 @@ define([
 
     };
 
-    return Mixin.extend({
+    return Mixin.extend('Mixin', {
 
         /**
          * Define default constants of instances

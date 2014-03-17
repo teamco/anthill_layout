@@ -13,19 +13,19 @@ define([
 
         /**
          * Define Template API
-         * @class API
+         * @class TemplateAPI
          * @extends BaseAPI
          * @constructor
          */
-        var API = function API() {
+        var TemplateAPI = function TemplateAPI() {
 
         };
 
-        return API.extend({
+        return TemplateAPI.extend('TemplateAPI', {
 
             /**
              * Create Page API
-             * @member API
+             * @member TemplateAPI
              * @param {*} args
              * @param {Boolean} [render]
              * @param {Boolean} [silent]

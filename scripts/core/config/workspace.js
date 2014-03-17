@@ -110,7 +110,7 @@ define([
         );
     };
 
-    return Workspace.extend({
+    return Workspace.extend('Workspace', {
 
     }, AntHill.prototype);
 

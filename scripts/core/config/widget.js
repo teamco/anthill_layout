@@ -173,7 +173,7 @@ define([
         );
     };
 
-    return Widget.extend({
+    return Widget.extend('Widget', {
 
     }, AntHill.prototype);
 });

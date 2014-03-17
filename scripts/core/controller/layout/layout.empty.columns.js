@@ -34,7 +34,7 @@ define([
 
     };
 
-    return EmptyColumns.extend({
+    return EmptyColumns.extend('EmptyColumns', {
 
         /**
          * Check if remove empty spaces is allowed

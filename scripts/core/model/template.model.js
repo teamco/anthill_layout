@@ -9,20 +9,20 @@
 define([
     'require',
     'modules/model'
-], function(require, BaseModel) {
+], function defineTemplateModel(require, BaseModel) {
 
         /**
          * Circular solution require js
          */
-        return function Model() {
+        return function getTemplateModel() {
 
             /**
              * Define Template model
-             * @mixin BaseModel
-             * @class Model
+             * @extends BaseModel
+             * @class TemplateModel
              * @constructor
              */
-            var Model = function Model() {
+            var TemplateModel = function TemplateModel() {
 
                 /**
                  * Define Page item
@@ -31,7 +31,7 @@ define([
                 this.item = require('config/page');
             };
 
-            return Model.extend('Model', {
+            return TemplateModel.extend('TemplateModel', {
             }, BaseModel.prototype);
 
         }();

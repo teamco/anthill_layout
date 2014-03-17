@@ -20,7 +20,7 @@ define([
 
     };
 
-    return BasePage.extend({
+    return BasePage.extend('BasePage', {
 
         /**
          * Create page layout

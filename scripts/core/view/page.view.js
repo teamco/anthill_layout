@@ -16,19 +16,26 @@ define([
     'element/page/page.element.delta.scroll'
 ], function definePageView(BaseView, Header, Footer, Modal, Page, Content, DeltaScroll) {
 
-    var View = function View() {
+    /**
+     * Define PageView
+     * @class PageView
+     * @extends BaseView
+     * @constructor
+     */
+    var PageView = function PageView() {
     };
 
-    return View.extend('View', {
+    return PageView.extend('PageView', {
 
         /**
          * Render Page
+         * @member PageView
          */
         renderPage: function renderPage() {
 
             /**
              * Define page element
-             * @type {element.page.page.element}
+             * @type {PageElement}
              */
             this.elements.$page = new Page(this, {
                 id: this.createUUID(),
@@ -45,12 +52,13 @@ define([
 
         /**
          * Define delta scroll
+         * @member PageView
          */
         deltaScroll: function deltaScroll() {
 
             /**
              * Define delta scroll element
-             * @type {element.page.page.element.delta.scroll}
+             * @type {DeltaScroll}
              */
             this.elements.$deltaScroll = new DeltaScroll(this, {
                 $container: this.elements.$page.$,
@@ -60,12 +68,13 @@ define([
 
         /**
          * Define widgets container
+         * @member PageView
          */
         widgets: function widgets() {
 
             /**
              * Define widgets container element
-             * @type {element.page.page.element.content}
+             * @type {PageContent}
              */
             this.elements.$widgets = new Content(this, {
                 style: 'widgets',
@@ -75,6 +84,7 @@ define([
 
         /**
          * Show destroy widgets confirmation modal dialog
+         * @member PageView
          */
         destroyWidgetsModalDialog: function destroyWidgetsModalDialog(widgets) {
 
@@ -113,6 +123,7 @@ define([
 
         /**
          * Render page
+         * @member PageView
          * @param {boolean} silent
          */
         render: function render(silent) {

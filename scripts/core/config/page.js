@@ -235,7 +235,7 @@ define([
 
     };
 
-    return Page.extend({
+    return Page.extend('Page', {
 
     }, AntHill.prototype);
 });

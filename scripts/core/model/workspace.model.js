@@ -12,20 +12,21 @@ define([
 
     /**
      * Define Workspace model
-     * @mixin BaseModel
-     * @class Model
+     * @extends BaseModel
+     * @class WorkspaceModel
      * @constructor
      */
-    var Model = function Model() {
+    var WorkspaceModel = function WorkspaceModel() {
 
         /**
          * Define Page item
+         * @member WorkspaceModel
          * @type {Page}
          */
         this.item = Page;
     };
 
-    return Model.extend('Model', {
+    return WorkspaceModel.extend('WorkspaceModel', {
 
     }, BaseModel.prototype);
 

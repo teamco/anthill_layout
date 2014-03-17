@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([], function defineBaseString(Base) {
+define([], function defineBaseString() {
 
     /**
      * Define BaseUserAgent
@@ -23,6 +23,7 @@ define([], function defineBaseString(Base) {
 
         /**
          * Define browsers
+         * @member BaseUserAgent
          * @type {{
          *      mozilla: boolean,
          *      webkit: boolean,
@@ -38,20 +39,44 @@ define([], function defineBaseString(Base) {
         };
     };
 
-    BaseUserAgent.extend({
+    BaseUserAgent.extend('BaseUserAgent', {
+
+        /**
+         * Get version
+         * @member BaseUserAgent
+         * @returns {*}
+         */
         version: function version() {
             return (navigator.userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [])[1];
         },
+
+        /**
+         * Get MSIE
+         * @member BaseUserAgent
+         * @returns {*}
+         */
         msie: function msie() {
             if (this.browser.msie) {
                 return this.version();
             }
         },
+
+        /**
+         * Get Opera
+         * @member BaseUserAgent
+         * @returns {*}
+         */
         opera: function opera() {
             if (this.browser.opera) {
                 return this.version();
             }
         },
+
+        /**
+         * Get Chrome
+         * @member BaseUserAgent
+         * @returns {*}
+         */
         chrome: function chrome() {
             if (this.browser.webkit) {
                 if (navigator.vendor.match(/Google/)) {
@@ -59,6 +84,12 @@ define([], function defineBaseString(Base) {
                 }
             }
         },
+
+        /**
+         * Get Safari
+         * @member BaseUserAgent
+         * @returns {*}
+         */
         safari: function safari() {
             if (this.browser.webkit) {
                 if (navigator.vendor.match(/Apple/)) {

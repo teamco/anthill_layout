@@ -6,20 +6,27 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([], function defineBaseNumber(Base) {
+define([], function defineBaseNumber() {
 
+    /**
+     * Define BaseNumber
+     * @class BaseNumber
+     * @constructor
+     */
     var BaseNumber = function BaseNumber() {
     };
 
-    BaseNumber.extend({
+    BaseNumber.extend('BaseNumber', {
 
         /**
          * Default number type
+         * @member BaseNumber
          */
         defaultNumberType: 10,
 
         /**
          * Convert String to Integer
+         * @member BaseNumber
          * @param {string} s
          * @param {number} t
          * @returns {Number}
@@ -31,6 +38,7 @@ define([], function defineBaseNumber(Base) {
 
         /**
          * Convert String to Integer
+         * @member BaseNumber
          * @param {string} s
          * @returns {Number}
          */
@@ -41,6 +49,7 @@ define([], function defineBaseNumber(Base) {
 
         /**
          * Get random number
+         * @member BaseNumber
          * @param {number} min
          * @param {number} max
          * @returns {number}
@@ -51,6 +60,7 @@ define([], function defineBaseNumber(Base) {
 
         /**
          * Numeric sort
+         * @member BaseNumber
          * @param {Number} a
          * @param {Number} b
          * @returns {Number}

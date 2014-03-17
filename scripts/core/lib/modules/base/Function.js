@@ -15,7 +15,7 @@ define([], function defineBaseFunction() {
     var BaseFunction = function BaseFunction() {
     };
 
-    BaseFunction.extend({
+    BaseFunction.extend('BaseFunction', {
 
     });
 

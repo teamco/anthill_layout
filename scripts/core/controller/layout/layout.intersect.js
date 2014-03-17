@@ -15,10 +15,11 @@ define(function defineLayoutIntersect() {
     var Intersect = function Intersect() {
     };
 
-    return Intersect.extend({
+    return Intersect.extend('Intersect', {
 
         /**
          * Check overlapping
+         * @member Intersect
          * @param {{column: number, relRight: number, row: number, relBottom: number}} src
          * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @returns {boolean}
@@ -37,6 +38,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Check if no overlapping
+         * @member Intersect
          * @param {{column: number, relRight: number, row: number, relBottom: number}} src
          * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @returns {boolean}
@@ -61,6 +63,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Check Horizontal overlapping
+         * @member Intersect
          * @param {{column: number, relRight: number, row: number, relBottom: number}} src
          * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @return {boolean}
@@ -80,6 +83,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Check Vertical overlapping
+         * @member Intersect
          * @param {{column: number, relRight: number, row: number, relBottom: number}} src
          * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @return {boolean}
@@ -99,6 +103,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Overlapping core
+         * @member Intersect
          * @param {{column: number, relRight: number, row: number, relBottom: number}} src
          * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @param {string} from
@@ -121,6 +126,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Internal overlapping calc
+         * @member Intersect
          * @param {number} arg1
          * @param {number} arg2
          * @param {string} condition
@@ -141,6 +147,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Widget intersections
+         * @member Intersect
          * @param {{model, dom}} source
          * @private
          * @returns {*}

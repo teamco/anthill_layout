@@ -12,14 +12,15 @@ define([
 
     /**
      * Define Permissions
-     * @class Permission
+     * @class WorkspacePermission
+     * @extends BasePermission
      * @constructor
      */
-    var Permission = function Permission() {
+    var WorkspacePermission = function WorkspacePermission() {
 
     };
 
-    return Permission.extend({
+    return WorkspacePermission.extend('WorkspacePermission', {
 
     }, BasePermission.prototype);
 });

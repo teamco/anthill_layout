@@ -33,7 +33,7 @@ define([
 
     };
 
-    return ButtonElement.extend({
+    return ButtonElement.extend('ButtonElement', {
 
         /**
          * Define setup

@@ -13,7 +13,8 @@ define([
     /**
      * Define Overlapping
      * @class Overlapping
-     * @extends {Intersect}
+     * @extends Intersect
+     * @extends AntHill
      * @param {Layout} layout
      * @constructor
      */
@@ -21,15 +22,17 @@ define([
 
         /**
          * Define layout
+         * @member Overlapping
          * @type {Layout}
          */
         this.layout = layout;
     };
 
-    return Overlapping.extend({
+    return Overlapping.extend('Overlapping', {
 
         /**
          * Define exit point
+         * @member Overlapping
          * @param opts
          * @returns {*}
          * @private
@@ -45,6 +48,7 @@ define([
 
         /**
          * Nested organizer
+         * @member Overlapping
          * @param {{targets: Object, callback: Function}} opts
          * @returns {*}
          */
@@ -52,7 +56,7 @@ define([
 
             /**
              * Define layout
-             * @type {callback.layout}
+             * @type {Layout}
              */
             var layout = this.layout;
 
@@ -99,6 +103,7 @@ define([
 
         /**
          * Nested organizer core
+         * @member Overlapping
          * @param {{}} widgets
          * @private
          * @returns {{}}
@@ -149,6 +154,7 @@ define([
 
         /**
          * Nested organizer callback
+         * @member Overlapping
          * @param {Function} [callback]
          * @private
          */
@@ -182,6 +188,7 @@ define([
 
         /**
          * Organize widget css
+         * @member Overlapping
          * @private
          */
         _cssOrganizer: function _cssOrganizer(callback) {
@@ -218,6 +225,7 @@ define([
 
         /**
          * Organize widget css callback
+         * @member Overlapping
          * @private
          */
         _cssOrganizeCallback: function _cssOrganizeCallback() {
@@ -243,6 +251,7 @@ define([
 
         /**
          * Organize collector
+         * @member Overlapping
          * @param {{dom}} source
          * @private
          * @param {*} targets
@@ -289,6 +298,7 @@ define([
 
         /**
          * Snap to grid organizer
+         * @member Overlapping
          * @param {{organize}} behavior
          * @param {{dom}} source
          * @param {{map, dom}} widget
@@ -301,7 +311,8 @@ define([
              * Define local cell dims
              * @type {Number}
              */
-            var cell = this.layout.controller.minCellWidth() + this.layout.config.grid.margin;
+            var cell = this.layout.controller.minCellWidth() +
+                this.layout.config.grid.margin;
 
             /**
              * Organize by row
@@ -356,6 +367,7 @@ define([
 
         /**
          * Get right position
+         * @member Overlapping
          * @param {{column: Number, relWidth: Number}} target
          * @returns {number}
          */
@@ -365,6 +377,7 @@ define([
 
         /**
          * Get bottom position
+         * @member Overlapping
          * @param {{row: Number, relHeight: Number}} target
          * @returns {number}
          */

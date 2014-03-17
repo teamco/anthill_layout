@@ -10,35 +10,35 @@ define([
     'modules/model',
     'modules/setting',
     'config/workspace'
-], function (BaseModel, Setting, Workspace) {
+], function defineAppModel(BaseModel, Setting, Workspace) {
 
     /**
      * Define Application model
      * @extends BaseModel
-     * @class Model
+     * @class AppModel
      * @constructor
      */
-    var Model = function Model() {
+    var AppModel = function AppModel() {
 
         /**
          * Define item
-         * @member Model
+         * @member AppModel
          * @type {Workspace}
          */
         this.item = Workspace;
     };
 
-    return Model.extend('Model', {
+    return AppModel.extend('AppModel', {
 
         /**
          * Define global setting
-         * @member Model
+         * @member AppModel
          */
         defineSetting: function defineSetting() {
 
             /**
              * Define setting
-             * @member Model
+             * @member AppModel
              * @type {Setting}
              */
             this.setting = new Setting(

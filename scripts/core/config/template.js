@@ -112,7 +112,7 @@ define([
 
     };
 
-    return Template.extend({
+    return Template.extend('Template', {
 
     }, AntHill.prototype);
 });

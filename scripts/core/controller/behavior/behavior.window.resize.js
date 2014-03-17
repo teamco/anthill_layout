@@ -17,7 +17,7 @@ define([
 
     };
 
-    return BaseResize.extend({
+    return BaseResize.extend('BaseResize', {
 
         /**
          * Get resize attributes

@@ -26,7 +26,7 @@ define([
         });
     };
 
-    return WorkspaceElement.extend({
+    return WorkspaceElement.extend('WorkspaceElement', {
 
     }, BaseElement.prototype);
 });

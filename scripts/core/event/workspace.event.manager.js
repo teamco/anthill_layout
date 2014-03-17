@@ -14,17 +14,24 @@ define([
      * Define workspace event manager
      * @class EventManager
      * @constructor
+     * @extends Event
      */
-    var EventManager = function EventManager() {
+    var WorkspaceEventManager = function WorkspaceEventManager() {
 
         /**
          * Define events
+         * @member WorkspaceEventManager
          * @type {{}}
          */
         this.events = {};
 
+    };
+
+    return WorkspaceEventManager.extend('WorkspaceEventManager', {
+
         /**
          * Define event list
+         * @member WorkspaceEventManager
          * @type {{
          *      createPage: string,
          *      destroyPage: string,
@@ -34,18 +41,14 @@ define([
          *      setPageContainerHeight: string
          * }}
          */
-        this.eventList = {
+        eventList: {
             createPage: 'create.page',
             destroyPage: 'destroy.page',
             destroyPages: 'destroy.pages',
             resizePage: 'resize.page',
             resizePages: 'resize.pages',
             setPageContainerHeight: 'set.page.container.height'
-        };
-
-    };
-
-    return EventManager.extend({
+        }
 
     }, Event.prototype);
 });

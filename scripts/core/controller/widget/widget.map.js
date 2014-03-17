@@ -33,7 +33,7 @@ define([
         this.duration = 500;
     };
 
-    return Map.extend({
+    return Map.extend('Map', {
 
         /**
          * Get layout

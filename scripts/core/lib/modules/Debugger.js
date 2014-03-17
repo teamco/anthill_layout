@@ -52,7 +52,7 @@ define([
 
     };
 
-    return Debugger.extend({
+    return Debugger.extend('Debugger', {
 
         /**
          * Init debugger components

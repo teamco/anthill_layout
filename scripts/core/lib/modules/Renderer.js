@@ -19,7 +19,7 @@ define([
 
     };
 
-    return Renderer.extend({
+    return Renderer.extend('Renderer', {
 
         /**
          * Render label

@@ -40,7 +40,7 @@ define([
         this.selector = '#next-widget-position';
     };
 
-    return Wireframe.extend({
+    return Wireframe.extend('Wireframe', {
 
         /**
          * Move wireframe on widget drag

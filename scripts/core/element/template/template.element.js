@@ -26,7 +26,7 @@ define([
         });
     };
 
-    return TemplateElement.extend({
+    return TemplateElement.extend('TemplateElement', {
 
     }, BaseElement.prototype);
 });

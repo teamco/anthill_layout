@@ -12,10 +12,11 @@
 
         /**
          * Define bind
+         * @memberOf Function
          * @param oThis
          * @returns {fBound}
          */
-        Function.prototype.bind = function (oThis) {
+        Function.prototype.bind = function bind(oThis) {
 
             if (typeof this !== "function") {
                 // closest thing possible to the ECMAScript 5 internal IsCallable function
@@ -24,8 +25,19 @@
 
             var aArgs = Array.prototype.slice.call(arguments, 1),
                 fToBind = this,
+
+                /**
+                 * Define fNOP
+                 * @class fNOP
+                 * @constructor
+                 */
                 fNOP = function fNOP() {
                 },
+
+                /**
+                 * Define fBound
+                 * @returns {*}
+                 */
                 fBound = function fBound() {
                     return fToBind.apply(this instanceof fNOP && oThis
                             ? this
@@ -34,7 +46,16 @@
                     );
                 };
 
+            /**
+             * Set fNOP prototype
+             * @type {Object}
+             */
             fNOP.prototype = this.prototype;
+
+            /**
+             * Set fBound prototype
+             * @type {fNOP}
+             */
             fBound.prototype = new fNOP();
 
             return fBound;
@@ -51,6 +72,7 @@
 
     /**
      * Function add Method
+     * @memberOf Function
      * @param {string} name
      * @param {function} func
      * @returns {Function}
@@ -185,7 +207,7 @@
     /**
      * Clone function
      */
-    Function.method('clone', function clone(scope) {
+    Function.method('clone', function clone() {
 
         var cloneObj = this;
 
@@ -193,7 +215,7 @@
             cloneObj = this.__clonedFrom;
         }
 
-        var temp = function () {
+        var temp = function temp() {
             return cloneObj.apply(this, arguments);
         };
 
@@ -225,6 +247,7 @@
 
         /**
          * Define function debounce
+         * @memberOf Function
          * @param [threshold]
          * @param [execAsap]
          * @returns {debounced}

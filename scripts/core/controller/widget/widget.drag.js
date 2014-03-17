@@ -36,7 +36,7 @@ define([
         this.checkPermission();
     };
 
-    return Draggable.extend({
+    return Draggable.extend('Draggable', {
 
         /**
          * Init interaction

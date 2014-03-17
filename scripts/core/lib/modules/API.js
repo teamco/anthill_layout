@@ -19,7 +19,7 @@ define([
 
     };
 
-    return BaseAPI.extend({
+    return BaseAPI.extend('BaseAPI', {
 
         /**
          * Create reference to function create [item] ...

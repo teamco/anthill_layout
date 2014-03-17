@@ -26,7 +26,7 @@ define([
         this.listeners = {};
     };
 
-    return Observer.extend({
+    return Observer.extend('Observer', {
 
         /**
          * Get events list

@@ -8,7 +8,7 @@
 
 define([
     'modules/translations/en-us'
-], function definei18n(EnUs) {
+], function defineI18n(EnUs) {
 
     /**
      * Define language types
@@ -20,6 +20,8 @@ define([
 
     /**
      * Define translations
+     * @constructor
+     * @class i18n
      * @param {string} lang
      */
     var i18n = function i18n(lang) {
@@ -46,6 +48,7 @@ define([
 
         /**
          * Get data by key
+         * @member i18n
          * @param key
          * @returns {*}
          */
@@ -56,6 +59,7 @@ define([
 
         /**
          * Update data
+         * @member i18n
          * @param translation
          */
         this.updateData = function updateData(translation) {
@@ -71,10 +75,11 @@ define([
         };
     };
 
-    return i18n.extend({
+    return i18n.extend('i18n', {
 
         /**
          * Translate function
+         * @member i18n
          * @param {string} key
          * @param {array} [params]
          * @returns {string}

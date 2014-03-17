@@ -31,7 +31,7 @@ define([
         });
     };
 
-    return HeaderElement.extend({
+    return HeaderElement.extend('HeaderElement', {
 
     }, BaseElement.prototype);
 });

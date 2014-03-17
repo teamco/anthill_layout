@@ -12,22 +12,25 @@ define([
 
     /**
      * Define widget event manager
-     * @class EventManager
+     * @class WidgetEventManager
      * @constructor
+     * @extends Event
      */
-    var EventManager = function EventManager() {
+    var WidgetEventManager = function WidgetEventManager() {
 
         /**
          * Define events
+         * @member WidgetEventManager
          * @type {{}}
          */
         this.events = {};
     };
 
-    return EventManager.extend({
+    return WidgetEventManager.extend('WidgetEventManager', {
 
         /**
          * Define event list
+         * @member WidgetEventManager
          * @type {{
          *      initDraggable: string,
          *      enableDraggable: string,
@@ -37,6 +40,7 @@ define([
          *      startDraggable: string,
          *      dragDraggable: {eventName: string, params: {buffer: number}},
          *      stopDraggable: string,
+         *      updateDraggable: string,
          *      initResizable: string,
          *      enableResizable: string,
          *      disableResizable: string,
@@ -45,10 +49,12 @@ define([
          *      startResizable: string,
          *      resizeResizable: {eventName: string, params: {buffer: number}},
          *      stopResizable: string,
+         *      updateResizable: string,
+         *      loadContent: string,
+         *      setContent: string,
          *      adoptDimensions: string,
-         *      save: string
+         *      saveDOM: string
          * }}
-         *
          */
         eventList: {
 

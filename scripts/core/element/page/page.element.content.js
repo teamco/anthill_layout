@@ -27,7 +27,7 @@ define([
         });
     };
 
-    return PageContent.extend({
+    return PageContent.extend('PageContent', {
 
     }, BaseElement.prototype);
 });

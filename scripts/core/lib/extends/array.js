@@ -11,6 +11,7 @@
 
         /**
          * Get last array element
+         * @member Array
          * @returns {*}
          */
         Array.prototype.last = function last() {
@@ -22,10 +23,11 @@
 
         /**
          * Remove by value
+         * @member Array
          * @param value
          * @returns {*}
          */
-        Array.prototype.remove = function (value) {
+        Array.prototype.remove = function remove(value) {
             var index;
             while ((index = this.indexOf(value)) !== -1)
                 this.splice(index, 1);
@@ -37,6 +39,7 @@
 
         /**
          * Array unique
+         * @member Array
          * @returns {Object}
          */
         Array.prototype.uniq = function uniq() {

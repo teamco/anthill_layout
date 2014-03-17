@@ -11,22 +11,26 @@ define([
 ], function defineAppEventManager(Event) {
 
     /**
-     * @class EventManager
-     * @type {Object}
+     * Define App Event Manager
+     * @class AppEventManager
+     * @extends Event
+     * @constructor
      */
-    var EventManager = function EventManager() {
+    var AppEventManager = function AppEventManager() {
 
         /**
          * Define events
+         * @member AppEventManager
          * @type {{}}
          */
         this.events = {};
     };
 
-    return EventManager.extend({
+    return AppEventManager.extend('AppEventManager', {
 
         /**
          * Define event list
+         * @member AppEventManager
          * @type {{
          *      resizeWindow: {eventName: string, params: {buffer: number}},
          *      createWorkspace: string,

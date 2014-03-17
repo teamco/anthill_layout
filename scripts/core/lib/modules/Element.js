@@ -8,9 +8,8 @@
 
 define([
     'config/anthill',
-    'lib/packages/rgbcolor',
     'modules/renderer'
-], function defineBaseElement(AntHill, RGBColor, Renderer) {
+], function defineBaseElement(AntHill, Renderer) {
 
     /**
      * Define Base element
@@ -21,7 +20,7 @@ define([
     var BaseElement = function BaseElement() {
     };
 
-    return BaseElement.extend({
+    return BaseElement.extend('BaseElement', {
 
         /**
          * Define plugin path

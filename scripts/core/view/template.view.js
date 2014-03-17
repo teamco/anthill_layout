@@ -14,12 +14,28 @@ define([
     'element/template/template.element.content'
 ], function defineTemplateView(BaseView, Header, Footer, TemplateHTML, PageContainer) {
 
-    var View = function View() {
+    /**
+     * Define TemplateView
+     * @class TemplateView
+     * @extends BaseView
+     * @constructor
+     */
+    var TemplateView = function TemplateView() {
     };
 
-    return View.extend('View', {
+    return TemplateView.extend('TemplateView', {
 
+        /**
+         * Render template
+         * @member TemplateView
+         * @param $container
+         */
         renderTemplate: function renderTemplate($container) {
+
+            /**
+             * Define $template
+             * @type {TemplateElement}
+             */
             this.elements.$template = new TemplateHTML(this, {
                 id: this.createUUID(),
                 $container: $container,
@@ -31,13 +47,28 @@ define([
             this.footer(Footer, this.elements.$template);
         },
 
+        /**
+         * Render pages
+         * @member TemplateView
+         */
         pages: function pages() {
+
+            /**
+             * Define $pages
+             * @type {TemplateContent}
+             */
             this.elements.$pages = new PageContainer(this, {
                 $container: this.elements.$template.$,
                 style: 'pages'
             });
         },
 
+        /**
+         * Render template
+         * @member TemplateView
+         * @param silent
+         * @param widget
+         */
         render: function render(silent, widget) {
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,

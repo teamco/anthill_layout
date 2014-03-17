@@ -2,6 +2,7 @@
 
     /**
      * Duplicate string
+     * @member String
      * @param times
      * @returns {string}
      */
@@ -11,7 +12,7 @@
 
     /**
      * String to CamelCase by dot separator
-     * @member {Function} String
+     * @member String
      * @returns {String}
      */
     String.prototype.toCamel = function toCamel() {
@@ -24,7 +25,7 @@
 
     /**
      * String from CamelCase to point separator
-     * @member {Function} String
+     * @member String
      * @returns {String}
      */
     String.prototype.toPoint = function toPoint() {
@@ -35,6 +36,7 @@
 
     /**
      * String from CamelCase to underscore separator
+     * @member String
      * @returns {string}
      */
     String.prototype.toUnderscore = function toUnderscore() {
@@ -45,6 +47,7 @@
 
     /**
      * String from CamelCase to dash separator
+     * @member String
      * @returns {string}
      */
     String.prototype.toDash = function toDash() {
@@ -55,6 +58,7 @@
 
     /**
      * String from CamelCase to dash separator
+     * @member String
      * @returns {string}
      */
     String.prototype.toClassName = function toClassName() {
@@ -63,6 +67,7 @@
 
     /**
      * Capitalize string
+     * @member String
      * @returns {string}
      */
     String.prototype.capitalize = function capitalize() {
@@ -71,6 +76,7 @@
 
     /**
      * String humanize
+     * @member String
      * @returns {string}
      */
     String.prototype.humanize = function humanize() {

@@ -13,15 +13,17 @@ define([
     /**
      * Define Permissions
      * @class Permission
+     * @extends AntHill
      * @constructor
      */
     var BasePermission = function BasePermission() {
     };
 
-    return BasePermission.extend({
+    return BasePermission.extend('BasePermission', {
 
         /**
          * Config capabilities
+         * @member BasePermission
          */
         config: function config() {
             var base = this.base,
@@ -35,6 +37,7 @@ define([
 
         /**
          * Check permission rules
+         * @member BasePermission
          * @param {{callback: Function, fallback: Function, args: *|Array, capability: String}} opts
          */
         check: function check(opts) {
@@ -58,6 +61,7 @@ define([
 
         /**
          * Set capabilities
+         * @member BasePermission
          * @param {String} key
          * @param {*} value
          * @returns {*}
@@ -69,6 +73,7 @@ define([
 
         /**
          * Get capabilities
+         * @member BasePermission
          * @param {String} key
          * @returns {*}
          */
@@ -78,6 +83,7 @@ define([
 
         /**
          * Check if function call is defined as authorized (via permissions)
+         * @member BasePermission
          * @param {Function} fn
          * @returns {boolean}
          */
@@ -91,6 +97,7 @@ define([
 
         /**
          * Check if function called via tunnel
+         * @member BasePermission
          * @param fn
          * @returns {boolean}
          */

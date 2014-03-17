@@ -14,17 +14,23 @@ define([
      * Define template event manager
      * @class EventManager
      * @constructor
+     * @extends Event
      */
-    var EventManager = function EventManager() {
+    var TemplateEventManager = function TemplateEventManager() {
 
         /**
          * Define events
+         * @member TemplateEventManager
          * @type {{}}
          */
         this.events = {};
+    };
+
+    return TemplateEventManager.extend('TemplateEventManager', {
 
         /**
          * Define event list
+         * @member TemplateEventManager
          * @type {{
          *      createPage: string,
          *      destroyPage: string,
@@ -34,20 +40,14 @@ define([
          *      destroyWidgets: string
          * }}
          */
-        this.eventList = {
+        eventList: {
             createPage: 'create.page',
             destroyPage: 'destroy.page',
             destroyPages: 'destroy.pages',
             createWidget: 'create.widget',
             destroyWidget: 'destroy.widget',
             destroyWidgets: 'destroy.widgets'
-        };
-    };
+        }
 
-    /**
-     * @class EventManager
-     * @type {Object}
-     */
-    return EventManager.extend({
     }, Event.prototype);
 });

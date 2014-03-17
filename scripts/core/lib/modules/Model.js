@@ -14,16 +14,19 @@ define([
     /**
      * Define Base model
      * @class BaseModel
+     * @extends CRUD
+     * @extends AntHill
      * @constructor
      */
     var BaseModel = function BaseModel() {
 
     };
 
-    return BaseModel.extend({
+    return BaseModel.extend('BaseModel', {
 
         /**
          * Get scope config
+         * @member BaseModel
          * @param {String} [key]
          * @returns {*}
          */
@@ -67,6 +70,7 @@ define([
 
         /**
          * Set scope config
+         * @member BaseModel
          * @param {String} [key]
          * @param {*} [value]
          * @returns {scope.config}
@@ -85,6 +89,7 @@ define([
 
         /**
          * Get scope namespace
+         * @member BaseModel
          * @param {*} node
          * @returns {string}
          */
@@ -100,6 +105,7 @@ define([
 
         /**
          * Get parent items
+         * @member BaseModel
          * @returns {*}
          */
         getParentItems: function getParentItems() {
@@ -108,6 +114,7 @@ define([
 
         /**
          * Get items
+         * @member BaseModel
          * @returns {*}
          */
         getItems: function getItems() {
@@ -116,6 +123,7 @@ define([
 
         /**
          * Get all items apart of item
+         * @member BaseModel
          * @param {{model}} item
          * @returns {Array}
          */
@@ -138,6 +146,7 @@ define([
 
         /**
          * Get UUID
+         * @member BaseModel
          * @param {{model}} [node]
          * @returns {String}
          */
@@ -151,6 +160,7 @@ define([
 
         /**
          * Get item from collector by UUID
+         * @member BaseModel
          * @param {string} uuid
          * @returns {*}
          */
@@ -168,6 +178,7 @@ define([
 
         /**
          * Reset collector
+         * @member BaseModel
          * @returns {*}
          */
         resetItems: function resetItems() {
@@ -177,6 +188,7 @@ define([
 
         /**
          * Delete widget from collector
+         * @member BaseModel
          * @param uuid
          * @returns {*}
          */
@@ -187,6 +199,7 @@ define([
 
         /**
          * Update collector
+         * @member BaseModel
          * @param {string} uuid
          * @param hash
          * returns {*}
@@ -199,6 +212,7 @@ define([
 
         /**
          * Add item to collector
+         * @member BaseModel
          * @param {{model}} node
          * @param {boolean} [force]
          * @returns {*}
@@ -221,6 +235,7 @@ define([
 
         /**
          * Get Item constructor name
+         * @member BaseModel
          * @returns {string}
          */
         getItemNameSpace: function getItemNameSpace() {
@@ -234,6 +249,7 @@ define([
 
         /**
          * Get items order
+         * @member BaseModel
          * @returns {*}
          */
         getOrder: function getOrder() {
@@ -242,6 +258,7 @@ define([
 
         /**
          * Check items limit
+         * @member BaseModel
          * @param {Function} constructor
          * @param {Number} limit
          * @returns {boolean}
@@ -264,7 +281,8 @@ define([
 
         /**
          * Update items collector
-         * @param {Function} Constructor
+         * @member BaseModel
+         * @param {function} Constructor
          * @param {{}} opts
          * @returns {*}
          */
@@ -332,6 +350,7 @@ define([
 
         /**
          * Load data
+         * @member BaseModel
          * @param [data]
          * @returns {*}
          */

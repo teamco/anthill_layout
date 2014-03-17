@@ -141,7 +141,7 @@ define([
         );
     };
 
-    return Layout.extend({
+    return Layout.extend('Layout', {
 
     }, AntHill.prototype);
 });

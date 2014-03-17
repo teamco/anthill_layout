@@ -12,19 +12,19 @@ define([
 
     /**
      * Define Workspace API
-     * @class API
+     * @class WorkspaceAPI
      * @extends BaseAPI
      * @constructor
      */
-    var API = function API() {
+    var WorkspaceAPI = function WorkspaceAPI() {
 
     };
 
-    return API.extend({
+    return WorkspaceAPI.extend('WorkspaceAPI', {
 
         /**
          * Create Page API
-         * @member API
+         * @member WorkspaceAPI
          * @param {*} args
          * @param {Boolean} [render]
          * @param {Boolean} [silent]

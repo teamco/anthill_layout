@@ -14,20 +14,20 @@ define([
 
     /**
      * Define Page API
-     * @class API
+     * @class PageAPI
      * @extends BaseAPI
      * @extends AntHill
      * @constructor
      */
-    var API = function API() {
+    var PageAPI = function PageAPI() {
 
     };
 
-    return API.extend({
+    return PageAPI.extend('PageAPI', {
 
         /**
          * Create Widget API
-         * @member API
+         * @member PageAPI
          * @param {*} args
          * @param {Boolean} [render]
          * @param {Boolean} [silent]
@@ -65,7 +65,7 @@ define([
 
         /**
          * Destroy widget
-         * @member API
+         * @member PageAPI
          * @param widget
          * @param {Boolean} [silent]
          */
@@ -79,7 +79,7 @@ define([
 
         /**
          * Destroy widgets
-         * @member API
+         * @member PageAPI
          * @param {*} [items]
          * @param {Boolean} [silent]
          */
@@ -93,7 +93,7 @@ define([
 
         /**
          * Create Template API
-         * @member API
+         * @member PageAPI
          * @param {*} widget
          * @returns {*}
          */

@@ -19,7 +19,7 @@ define([
 
     };
 
-    return BaseCrud.extend({
+    return BaseCrud.extend('BaseCrud', {
 
         /**
          * Create Item

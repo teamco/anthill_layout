@@ -55,7 +55,7 @@ define([
         this.init();
     };
 
-    return Setting.extend({
+    return Setting.extend('Setting', {
 
         /**
          * Init storage

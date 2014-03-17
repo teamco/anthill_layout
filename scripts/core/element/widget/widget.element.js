@@ -29,7 +29,7 @@ define([
         return this;
     };
 
-    return WidgetElement.extend({
+    return WidgetElement.extend('WidgetElement', {
 
         /**
          * Set widget position

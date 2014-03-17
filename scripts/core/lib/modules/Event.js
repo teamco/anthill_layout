@@ -12,15 +12,18 @@ define([
 
     /**
      * Event constructor
+     * @class Event
+     * @extends AntHill
      * @constructor
      */
     var Event = function Event() {
     };
 
-    return Event.extend({
+    return Event.extend('Event', {
 
         /**
          * Add event listener
+         * @member Event
          * @param {{eventName}} opts
          * @returns {*}
          */
@@ -41,7 +44,7 @@ define([
 
         /**
          * Subscribe event
-         * @member {Function} Event
+         * @member Event
          * @param {{event, callback, [params], [eventName], [scope]}} opts
          * @param {Boolean} internal
          * @returns {Boolean}
@@ -90,6 +93,7 @@ define([
 
         /**
          * Bind element events
+         * @member Event
          * @param {String} event
          * @param {String} on
          * @returns {Boolean}

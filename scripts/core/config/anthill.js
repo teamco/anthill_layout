@@ -30,5 +30,5 @@ define([
      */
     AntHill.prototype.i18n = new i18n('en-us');
 
-    return AntHill;
+    return AntHill.extend('AntHill');
 });

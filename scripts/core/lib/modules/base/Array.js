@@ -7,22 +7,15 @@
  */
 define([], function defineBaseArray() {
 
+    /**
+     * Define BaseArray
+     * @class BaseArray
+     * @constructor
+     */
     var BaseArray = function BaseArray() {
     };
 
-    BaseArray.extend({
-        // Removes undefined/null items from an Array
-        // Return: Compact Array
-        compact: function compact(array) {
-            var res = [];
-            array = array || [];
-            $.each(array, function (k, v) {
-                if (v) {
-                    res.push(v);
-                }
-            }.bind(this));
-            return res;
-        }
+    BaseArray.extend('BaseArray', {
 
     });
 

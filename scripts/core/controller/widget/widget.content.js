@@ -18,7 +18,7 @@ define([
     var WidgetContent = function WidgetContent() {
     };
 
-    return WidgetContent.extend({
+    return WidgetContent.extend('WidgetContent', {
 
         /**
          * Load widget content

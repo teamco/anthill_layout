@@ -12,16 +12,18 @@ define([
 
     /**
      * Define abstract CRUD
+     * @class CRUD
      * @constructor
      */
     var CRUD = function CRUD() {
 
     };
 
-    return CRUD.extend({
+    return CRUD.extend('CRUD', {
 
         /**
          * Create item
+         * @member CRUD
          * @param opts
          * @returns {*}
          */
@@ -34,6 +36,7 @@ define([
 
         /**
          * Destroy items
+         * @member CRUD
          * @param item
          * @returns {*}
          */
@@ -92,6 +95,7 @@ define([
 
         /**
          * Destroy items
+         * @member CRUD
          * @returns {*}
          */
         destroyItems: function destroyItems() {
@@ -107,6 +111,7 @@ define([
 
         /**
          * Destroy item view
+         * @member CRUD
          * @param item
          * @returns {*}
          */

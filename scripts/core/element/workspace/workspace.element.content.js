@@ -26,7 +26,7 @@ define([
         });
     };
 
-    return WorkspaceContent.extend({
+    return WorkspaceContent.extend('WorkspaceContent', {
 
         /**
          * Define height
