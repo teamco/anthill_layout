@@ -25,6 +25,11 @@
 
                 // event modifying
                 $(this).resize(function (e) {
+
+                    if ($(e.target).hasClass('ui-resizable-resizing')) {
+                        return false;
+                    }
+
                     // every resize event clears handler's timer.
                     // and every handler must have a timer.
                     clearTimeout(handler._timer);
@@ -46,6 +51,11 @@
 
                 // event modifying
                 $(this).on('resize', function (e) {
+
+                    if ($(e.target).hasClass('ui-resizable-resizing')) {
+                        return false;
+                    }
+
                     // every resize event clears handler's timer.
                     // and every handler must have a timer.
                     clearTimeout(handler._timer);
