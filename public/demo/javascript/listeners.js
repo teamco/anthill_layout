@@ -37,7 +37,7 @@ define([
 
                 /**
                  * Define app
-                 * @type {Application.prototype.globalListeners}
+                 * @type {*}
                  */
                 var app = this;
 
