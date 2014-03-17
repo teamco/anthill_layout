@@ -11,18 +11,18 @@ define([
 
     /**
      * Define bar controller
-     * @class Controller
+     * @class BarController
      * @extends PluginController
      * @constructor
      */
-    var Controller = function Controller() {
+    var BarController = function BarController() {
     };
 
-    return Controller.extend({
+    return BarController.extend('BarController', {
 
         /**
          * Get modules data
-         * @member Controller
+         * @member BarController
          */
         getData: function getData() {
             return this.model.getModulesList();
@@ -30,7 +30,7 @@ define([
 
         /**
          * Load gallery content
-         * @member Controller
+         * @member BarController
          */
         loadContent: function loadContent() {
 

@@ -30,7 +30,7 @@ define([
         return this;
     };
 
-    return GalleryElement.extend({
+    return GalleryElement.extend('GalleryElement', {
 
     }, BaseElement.prototype);
 

@@ -16,18 +16,18 @@ define([
 
     /**
      * Define view
-     * @class View
+     * @class PagesView
      * @extends BaseView
      * @constructor
      */
-    var View = function View() {
+    var PagesView = function PagesView() {
     };
 
-    return View.extend({
+    return PagesView.extend('PagesView', {
 
         /**
          * Render Pages
-         * @member View
+         * @member PagesView
          * @returns {boolean}
          */
         renderPages: function renderPages() {
@@ -40,7 +40,7 @@ define([
 
             /**
              * Define Pages element
-             * @type {element.page.page.element}
+             * @type {PagesElement}
              */
             this.elements.$pages = new Pages(this, {
                 id: this.createUUID(),
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render pages content
-         * @member View
+         * @member PagesView
          * @param data
          * @param {Boolean} force
          * @returns {boolean}
@@ -77,7 +77,7 @@ define([
 
                     /**
                      * Render item
-                     * @type {*}
+                     * @type {PagesContentElement}
                      */
                     var $item = new PagesContent(this, {
                         style: 'content',
@@ -92,7 +92,7 @@ define([
 
         /**
          * Show preferences
-         * @member View
+         * @member PagesView
          * @param config
          */
         showPreferences: function showPreferences(config) {
@@ -140,7 +140,7 @@ define([
 
         /**
          * Render pages
-         * @member View
+         * @member PagesView
          */
         render: function render() {
 

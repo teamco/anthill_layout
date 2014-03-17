@@ -11,18 +11,18 @@ define([
 
     /**
      * Define pages controller
-     * @class Controller
+     * @class PagesController
      * @extends PluginController
      * @constructor
      */
-    var Controller = function Controller() {
+    var PagesController = function PagesController() {
     };
 
-    return Controller.extend({
+    return PagesController.extend('PagesController', {
 
         /**
          * Load pages content
-         * @member Controller
+         * @member PagesController
          * @param opened
          */
         loadContent: function loadContent(opened) {
@@ -38,7 +38,7 @@ define([
 
         /**
          * Get preferences
-         * @member Controller
+         * @member PagesController
          * @param {string} uuid
          * @returns {*}
          */
@@ -63,7 +63,7 @@ define([
 
         /**
          * Check if content was updated
-         * @member Controller
+         * @member PagesController
          * @param data
          * @param content
          * @returns {boolean}
@@ -82,7 +82,7 @@ define([
 
         /**
          * Update prefs
-         * @member Controller
+         * @member PagesController
          */
         approveUpdatePreferences: function approveUpdatePreferences() {
 

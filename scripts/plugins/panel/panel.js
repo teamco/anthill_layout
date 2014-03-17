@@ -156,7 +156,7 @@ define([
         );
     };
 
-    return Panel.extend({
+    return Panel.extend('Panel', {
 
     }, AntHill.prototype);
 

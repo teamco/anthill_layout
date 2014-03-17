@@ -12,15 +12,15 @@ define([
 
     /**
      * Define Permissions
-     * @class Permission
+     * @class PanelPermission
      * @constructor
      * @extends BasePermission
      */
-    var Permission = function Permission() {
+    var PanelPermission = function PanelPermission() {
 
     };
 
-    return Permission.extend({
+    return PanelPermission.extend('PanelPermission', {
 
     }, BasePermission.prototype);
 });

@@ -12,22 +12,22 @@ define([
 
     /**
      * Define layout event manager
-     * @class EventManager
+     * @class PanelEventManager
      * @constructor
      * @extends Event
      */
-    var EventManager = function EventManager() {
+    var PanelEventManager = function PanelEventManager() {
 
         /**
          * Define events
-         * @member EventManager
+         * @member PanelEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
-         * @member EventManager
+         * @member PanelEventManager
          * @type {{
          *      updateTranslations: string,
          *      showContent: string,
@@ -47,6 +47,6 @@ define([
         };
     };
 
-    return EventManager.extend({
+    return PanelEventManager.extend('PanelEventManager', {
     }, Event.prototype);
 });

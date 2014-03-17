@@ -114,7 +114,7 @@ define([
         );
     };
 
-    return Youtube.extend({
+    return Youtube.extend('Youtube', {
 
     }, AntHill.prototype);
 });

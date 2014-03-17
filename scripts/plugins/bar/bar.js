@@ -110,7 +110,7 @@ define([
         );
     };
 
-    return Bar.extend({
+    return Bar.extend('Bar', {
 
     }, AntHill.prototype);
 });

@@ -30,7 +30,7 @@ define([
         return this;
     };
 
-    return YoutubeElement.extend({
+    return YoutubeElement.extend('YoutubeElement', {
 
         /**
          * Render Embedded content

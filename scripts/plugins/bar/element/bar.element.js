@@ -30,7 +30,7 @@ define([
         return this;
     };
 
-    return BarElement.extend({
+    return BarElement.extend('BarElement', {
 
     }, BaseElement.prototype);
 

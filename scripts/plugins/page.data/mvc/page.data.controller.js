@@ -12,19 +12,19 @@ define([
 
     /**
      * Define page.data controller
-     * @class Controller
+     * @class PageDataController
      * @extends AntHill
      * @extends PluginController
      * @constructor
      */
-    var Controller = function Controller() {
+    var PageDataController = function PageDataController() {
     };
 
-    return Controller.extend({
+    return PageDataController.extend('PageDataController', {
 
         /**
          * Get providers data
-         * @member Controller
+         * @member PageDataController
          */
         getData: function getData() {
             return this.model.getPageData(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Get preferences
-         * @member Controller
+         * @member PageDataController
          * @param {string} uuid
          * @returns {*}
          */
@@ -58,7 +58,7 @@ define([
 
         /**
          * Check if content was updated
-         * @member Controller
+         * @member PageDataController
          * @param data
          * @param content
          * @returns {boolean}
@@ -77,7 +77,7 @@ define([
 
         /**
          * Update prefs
-         * @member Controller
+         * @member PageDataController
          */
         approveUpdatePreferences: function approveUpdatePreferences() {
 
@@ -93,7 +93,7 @@ define([
 
         /**
          * Load page.data content
-         * @member Controller
+         * @member PageDataController
          * @param opened
          */
         loadContent: function loadContent(opened) {

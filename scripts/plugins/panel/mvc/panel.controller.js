@@ -11,18 +11,18 @@ define([
 
     /**
      * Define panel controller
-     * @class Controller
+     * @class PanelController
      * @constructor
      * @extends PluginController
      */
-    var Controller = function Controller() {
+    var PanelController = function PanelController() {
     };
 
-    return Controller.extend({
+    return PanelController.extend('PanelController', {
 
         /**
          * Check if panel resizable
-         * @member Controller
+         * @member PanelController
          * @returns {boolean}
          */
         isResizable: function isResizable() {
@@ -39,7 +39,7 @@ define([
 
         /**
          * Define modules
-         * @member Controller
+         * @member PanelController
          * @param modules
          */
         defineModules: function defineModules(modules) {
@@ -51,7 +51,7 @@ define([
 
         /**
          * Define packages
-         * @member Controller
+         * @member PanelController
          * @param packages
          */
         definePackages: function definePackages(packages) {
@@ -63,7 +63,7 @@ define([
 
         /**
          * Check if opened
-         * @member Controller
+         * @member PanelController
          * @returns {boolean|*}
          */
         isOpened: function isOpened() {
@@ -73,7 +73,7 @@ define([
         /**
          * Check if panel active
          * @param {string} resource
-         * @member Controller
+         * @member PanelController
          * @returns {boolean}
          */
         isActive: function isActive(resource) {
@@ -82,7 +82,7 @@ define([
 
         /**
          * Update opened
-         * @member Controller
+         * @member PanelController
          * @param {String} resource
          * @param {Boolean} opened
          */
@@ -114,7 +114,7 @@ define([
 
         /**
          * Close panel
-         * @member Controller
+         * @member PanelController
          * @param {string} resource
          */
         closePanel: function closePanel(resource) {
@@ -131,7 +131,7 @@ define([
 
         /**
          * Open panel
-         * @member Controller
+         * @member PanelController
          * @param {string} resource
          */
         openPanel: function openPanel(resource) {
@@ -141,7 +141,7 @@ define([
 
         /**
          * Show content
-         * @member Controller
+         * @member PanelController
          * @param {Boolean} opened
          * @param {string} [resource]
          */
@@ -170,7 +170,7 @@ define([
 
         /**
          * Get render at
-         * @member Controller
+         * @member PanelController
          * @returns {*}
          */
         getRenderAt: function getRenderAt() {
@@ -183,7 +183,7 @@ define([
 
         /**
          * Activate module
-         * @member Controller
+         * @member PanelController
          * @param {Boolean} opened
          * @param {Number} index
          * @returns {*}
@@ -216,7 +216,7 @@ define([
 
         /**
          * Render packages
-         * @member Controller
+         * @member PanelController
          */
         renderPackages: function renderPackages() {
 

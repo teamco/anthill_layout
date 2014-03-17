@@ -117,7 +117,7 @@ define([
         );
     };
 
-    return Gallery.extend({
+    return Gallery.extend('Gallery', {
 
     }, AntHill.prototype);
 });

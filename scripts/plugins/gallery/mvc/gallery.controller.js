@@ -11,18 +11,18 @@ define([
 
     /**
      * Define gallery controller
-     * @class Controller
+     * @class GalleryController
      * @extends PluginController
      * @constructor
      */
-    var Controller = function Controller() {
+    var GalleryController = function GalleryController() {
     };
 
-    return Controller.extend({
+    return GalleryController.extend('GalleryController', {
 
         /**
          * Get providers data
-         * @member Controller
+         * @member GalleryController
          */
         getData: function getData() {
             return this.model.getProvidersList();
@@ -30,7 +30,7 @@ define([
 
         /**
          * Load gallery content
-         * @member Controller
+         * @member GalleryController
          * @param opened
          */
         loadContent: function loadContent(opened) {
@@ -44,7 +44,7 @@ define([
 
         /**
          * Set providers
-         * @member Controller
+         * @member GalleryController
          */
         setProviders: function setProviders() {
             this.model.setDefaultProviders();
@@ -52,7 +52,7 @@ define([
 
         /**
          * Add widget
-         * @member Controller
+         * @member GalleryController
          * @param $element
          */
         addWidget: function addWidget($element) {

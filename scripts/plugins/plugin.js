@@ -21,7 +21,7 @@ define([
 
     };
 
-    PluginController.extend({
+    PluginController.extend('PluginController', {
 
         /**
          * Get Workspace

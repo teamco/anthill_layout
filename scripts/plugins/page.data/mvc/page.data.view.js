@@ -16,18 +16,18 @@ define([
 
     /**
      * Define view
-     * @class View
+     * @class PageDataView
      * @constructor
      * @extends BaseView
      */
-    var View = function View() {
+    var PageDataView = function PageDataView() {
     };
 
-    return View.extend({
+    return PageDataView.extend('PageDataView', {
 
         /**
          * Render PageData
-         * @member View
+         * @member PageDataView
          * @returns {boolean}
          */
         renderPageData: function renderPageData() {
@@ -40,7 +40,7 @@ define([
 
             /**
              * Define PageData element
-             * @type {element.page.page.element}
+             * @type {PageDataElement}
              */
             this.elements.$pagedata = new PageData(this, {
                 id: this.createUUID(),
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render page.data content
-         * @member View
+         * @member PageDataView
          * @param data
          * @param {Boolean} force
          * @returns {boolean}
@@ -84,7 +84,7 @@ define([
 
                     /**
                      * Render item
-                     * @type {*}
+                     * @type {PageDataContentElement}
                      */
                     var $item = new PageDataContent(this, {
                         style: 'content',
@@ -104,7 +104,7 @@ define([
 
         /**
          * Show preferences
-         * @member View
+         * @member PageDataView
          * @param config
          */
         showPreferences: function showPreferences(config) {
@@ -152,7 +152,7 @@ define([
 
         /**
          * Render page.data
-         * @member View
+         * @member PageDataView
          */
         render: function render() {
 

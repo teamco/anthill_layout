@@ -113,7 +113,7 @@ define([
         );
     };
 
-    return Pages.extend({
+    return Pages.extend('Pages', {
 
     }, AntHill.prototype);
 });

@@ -12,22 +12,22 @@ define([
 
     /**
      * Define bar event manager
-     * @class EventManager
+     * @class BarEventManager
      * @constructor
      * @extends Event
      */
-    var EventManager = function EventManager() {
+    var BarEventManager = function BarEventManager() {
 
         /**
          * Define events
          * @type {{}}
-         * @member EventManager
+         * @member BarEventManager
          */
         this.events = {};
 
         /**
          * Define event list
-         * @member EventManager
+         * @member BarEventManager
          * @type {{
          *      updateTranslations: string,
          *      showContent: string,
@@ -41,6 +41,6 @@ define([
         };
     };
 
-    return EventManager.extend({
+    return BarEventManager.extend('BarEventManager', {
     }, Event.prototype);
 });

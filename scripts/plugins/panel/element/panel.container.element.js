@@ -28,7 +28,7 @@ define([
         return this.bindResize();
     };
 
-    return PanelContainerElement.extend({
+    return PanelContainerElement.extend('PanelContainerElement', {
 
         /**
          * Toggle open class

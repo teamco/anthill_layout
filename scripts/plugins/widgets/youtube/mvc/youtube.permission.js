@@ -12,15 +12,15 @@ define([
 
     /**
      * Define Permissions
-     * @class Permission
+     * @class YoutubePermission
      * @constructor
      * @extends BasePermission
      */
-    var Permission = function Permission() {
+    var YoutubePermission = function YoutubePermission() {
 
     };
 
-    return Permission.extend({
+    return YoutubePermission.extend('YoutubePermission', {
 
     }, BasePermission.prototype);
 });

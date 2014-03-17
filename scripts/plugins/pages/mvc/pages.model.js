@@ -12,19 +12,19 @@ define([
     /**
      * Define Pages model
      * @mixin BaseModel
-     * @class Model
+     * @class PagesModel
      * @constructor
      * @extends BaseModel
      */
-    var Model = function Model() {
+    var PagesModel = function PagesModel() {
 
     };
 
-    return Model.extend({
+    return PagesModel.extend('PagesModel', {
 
         /**
          * Get data provider
-         * @member Model
+         * @member PagesModel
          */
         getData: function getData(workspace) {
             return workspace.model.getItems();

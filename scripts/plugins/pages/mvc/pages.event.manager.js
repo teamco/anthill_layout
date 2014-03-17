@@ -12,22 +12,22 @@ define([
 
     /**
      * Define Pages event manager
-     * @class EventManager
+     * @class PagesEventManager
      * @constructor
      * @extends Event
      */
-    var EventManager = function EventManager() {
+    var PagesEventManager = function PagesEventManager() {
 
         /**
          * Define events
-         * @member EventManager
+         * @member PagesEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
-         * @member EventManager
+         * @member PagesEventManager
          * @type {{
          *      updateTranslations: string,
          *      loadContent: string
@@ -39,6 +39,6 @@ define([
         };
     };
 
-    return EventManager.extend({
+    return PagesEventManager.extend('PagesEventManager', {
     }, Event.prototype);
 });

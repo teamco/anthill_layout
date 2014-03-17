@@ -12,14 +12,14 @@ define([
     /**
      * Define Youtube model
      * @extends BaseModel
-     * @class Model
+     * @class YoutubeModel
      * @constructor
      */
-    var Model = function Model() {
+    var YoutubeModel = function YoutubeModel() {
 
         /**
          * Define preferences
-         * @member Model
+         * @member YoutubeModel
          * @type {{url: string}}
          */
         this.preferences = {
@@ -27,11 +27,11 @@ define([
         };
     };
 
-    return Model.extend({
+    return YoutubeModel.extend('YoutubeModel', {
 
         /**
          * Get URL
-         * @member Model
+         * @member YoutubeModel
          * @returns {string}
          */
         getUrl: function getUrl() {
@@ -40,7 +40,7 @@ define([
 
         /**
          * Set URL
-         * @member Model
+         * @member YoutubeModel
          * @param {string} url
          */
         setUrl: function setUrl(url) {

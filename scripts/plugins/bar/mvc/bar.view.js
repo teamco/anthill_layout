@@ -16,18 +16,18 @@ define([
 
     /**
      * Define view
-     * @class View
+     * @class BarView
      * @constructor
      * @extends BaseView
      */
-    var View = function View() {
+    var BarView = function BarView() {
     };
 
-    return View.extend({
+    return BarView.extend('BarView', {
 
         /**
          * Render Bar
-         * @member View
+         * @member BarView
          */
         renderBar: function renderBar() {
 
@@ -39,7 +39,7 @@ define([
 
             /**
              * Define container
-             * @type {plugins.panel.element.panel.container.element}
+             * @type {BarElement}
              */
             this.elements.$bar = new BarElement(this, {
                 $container: this.elements.$container.$,
@@ -51,25 +51,10 @@ define([
         },
 
         /**
-         * Render content container
-         * @member View
-         */
-        renderContentContainer: function renderContentContainer() {
-            /**
-             * Define Bar element
-             * @type {element.page.page.element}
-             */
-            this.elements.$content = new BarContentContainer(this, {
-                $container: this.elements.$bar.$,
-                style: 'bar-content'
-            });
-        },
-
-        /**
          * Render bar content
          * @param data
          * @param {Boolean} force
-         * @member View
+         * @member BarView
          * @returns {boolean}
          */
         renderContent: function renderContent(data, force) {
@@ -101,7 +86,7 @@ define([
 
                     /**
                      * Render item
-                     * @type {plugins.bar.element.bar.content.element}
+                     * @type {BarContentElement}
                      */
                     var $item = new BarContentElement(this, {
                         style: [
@@ -120,7 +105,7 @@ define([
 
         /**
          * Render bar
-         * @member View
+         * @member BarView
          */
         render: function render() {
 

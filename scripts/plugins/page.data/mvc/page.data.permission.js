@@ -12,15 +12,15 @@ define([
 
     /**
      * Define Permissions
-     * @class Permission
+     * @class PageDataPermission
      * @constructor
      * @extends BasePermission
      */
-    var Permission = function Permission() {
+    var PageDataPermission = function PageDataPermission() {
 
     };
 
-    return Permission.extend({
+    return PageDataPermission.extend('PageDataPermission', {
 
     }, BasePermission.prototype);
 });

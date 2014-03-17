@@ -44,7 +44,7 @@ define([
         return this;
     };
 
-    return PanelElement.extend({
+    return PanelElement.extend('PanelElement', {
 
         /**
          * Toggle open/close

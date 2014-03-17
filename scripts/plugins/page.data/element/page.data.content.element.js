@@ -31,7 +31,7 @@ define([
         return this;
     };
 
-    return PageDataContentElement.extend({
+    return PageDataContentElement.extend('PageDataContentElement', {
 
         /**
          * Define attributes

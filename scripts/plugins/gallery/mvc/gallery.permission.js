@@ -12,15 +12,15 @@ define([
 
     /**
      * Define Permissions
-     * @class Permission
+     * @class GalleryPermission
      * @constructor
      * @extends BasePermission
      */
-    var Permission = function Permission() {
+    var GalleryPermission = function GalleryPermission() {
 
     };
 
-    return Permission.extend({
+    return GalleryPermission.extend('GalleryPermission', {
 
     }, BasePermission.prototype);
 });

@@ -35,6 +35,10 @@ define([
             name: "success.rendered",
             callback: function successRenderedCallback() {
 
+                /**
+                 * Define app
+                 * @type {Application.prototype.globalListeners}
+                 */
                 var app = this;
 
                 require([
@@ -47,7 +51,7 @@ define([
 
                     /**
                      * Init panel plugin
-                     * @type {plugins.panel.panel}
+                     * @type {Panel}
                      */
                     app.panel = new Panel({
                         config: {renderAt: 'right'},

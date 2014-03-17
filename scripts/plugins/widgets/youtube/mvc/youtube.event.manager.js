@@ -12,22 +12,22 @@ define([
 
     /**
      * Define Youtube event manager
-     * @class EventManager
+     * @class YoutubeEventManager
      * @constructor
      * @extends Event
      */
-    var EventManager = function EventManager() {
+    var YoutubeEventManager = function YoutubeEventManager() {
 
         /**
          * Define events
-         * @member EventManager
+         * @member YoutubeEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
-         * @member EventManager
+         * @member YoutubeEventManager
          * @type {{
          *      initWidget: string,
          *      updateTranslations: string,
@@ -47,6 +47,6 @@ define([
         };
     };
 
-    return EventManager.extend({
+    return YoutubeEventManager.extend('YoutubeEventManager', {
     }, Event.prototype);
 });

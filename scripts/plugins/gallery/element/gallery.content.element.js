@@ -31,7 +31,7 @@ define([
         return this;
     };
 
-    return GalleryContentElement.extend({
+    return GalleryContentElement.extend('GalleryContentElement', {
 
         /**
          * Set attributes

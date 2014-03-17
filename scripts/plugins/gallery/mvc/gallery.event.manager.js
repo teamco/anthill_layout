@@ -12,22 +12,22 @@ define([
 
     /**
      * Define Gallery event manager
-     * @class EventManager
+     * @class GalleryEventManager
      * @constructor
      * @extends Event
      */
-    var EventManager = function EventManager() {
+    var GalleryEventManager = function GalleryEventManager() {
 
         /**
          * Define events
-         * @member EventManager
+         * @member GalleryEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
-         * @member EventManager
+         * @member GalleryEventManager
          * @type {{
          *      updateTranslations: string,
          *      setProviders: string,
@@ -41,6 +41,6 @@ define([
         };
     };
 
-    return EventManager.extend({
+    return GalleryEventManager.extend('GalleryEventManager', {
     }, Event.prototype);
 });

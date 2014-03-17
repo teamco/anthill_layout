@@ -14,20 +14,20 @@ define([
      * Define Gallery model
      * @extends AntHill
      * @extends BaseModel
-     * @class Model
+     * @class GalleryModel
      * @constructor
      */
-    var Model = function Model() {
+    var GalleryModel = function GalleryModel() {
 
         /**
          * Define default providers
-         * @member Model
+         * @member GalleryModel
          */
         this.defaultProviders = [];
 
         /**
          * Define static data
-         * @member Model
+         * @member GalleryModel
          * @type {*[]}
          */
         this.staticData = [
@@ -56,11 +56,11 @@ define([
         ];
     };
 
-    return Model.extend({
+    return GalleryModel.extend('GalleryModel', {
 
         /**
          * Set default providers
-         * @member Model
+         * @member GalleryModel
          */
         setDefaultProviders: function getDefaultProviders() {
 
@@ -76,7 +76,7 @@ define([
 
         /**
          * Get data provider
-         * @member Model
+         * @member GalleryModel
          */
         getDataProvider: function getDataProvider() {
 
@@ -84,7 +84,7 @@ define([
 
         /**
          * Get providers list
-         * @member Model
+         * @member GalleryModel
          */
         getProvidersList: function getProvidersList() {
             return this.staticData;

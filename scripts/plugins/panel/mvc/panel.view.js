@@ -19,24 +19,24 @@ define([
 
     /**
      * Define view
-     * @class View
+     * @class PanelView
      * @constructor
      * @extends BaseView
      */
-    var View = function View() {
+    var PanelView = function PanelView() {
     };
 
-    return View.extend({
+    return PanelView.extend({
 
         /**
          * Render container
-         * @member View
+         * @member PanelView
          */
         renderPanelContainer: function renderPanelContainer() {
 
             /**
              * Define container
-             * @type {plugins.panel.element.panel.container.element}
+             * @type {PanelContainerElement}
              */
             this.elements.$container = new PanelContainer(this, {
                 $container: 'body',
@@ -49,13 +49,13 @@ define([
 
         /**
          * Render tab to open/close panel
-         * @member View
+         * @member PanelView
          */
         renderTab: function renderTab() {
 
             /**
              * Define container
-             * @type {plugins.panel.element.panel.container.element}
+             * @type {PanelTabElement}
              */
             this.elements.$tab = new PanelTab(this, {
                 $container: this.elements.$container.$,
@@ -65,7 +65,7 @@ define([
 
         /**
          * Render Panel
-         * @member View
+         * @member PanelView
          */
         renderPanel: function renderPanel() {
 
@@ -85,7 +85,7 @@ define([
 
             /**
              * Define Panel element
-             * @type {element.page.page.element}
+             * @type {PanelElement}
              */
             this.elements.$panel = new Panel(this, {
                 id: this.createUUID(),
@@ -104,12 +104,12 @@ define([
 
         /**
          * Render content container
-         * @member View
+         * @member PanelView
          */
         renderContentContainer: function renderContentContainer() {
             /**
              * Define Panel element
-             * @type {element.page.page.element}
+             * @type {PanelContentContainerElement}
              */
             this.elements.$content = new PanelContentContainer(this, {
                 $container: this.elements.$panel.$,
@@ -119,7 +119,7 @@ define([
 
         /**
          * Render panel content
-         * @member View
+         * @member PanelView
          * @param module
          * @param {Boolean} force
          * @returns {boolean}
@@ -148,7 +148,7 @@ define([
 
             /**
              * Render item
-             * @type {plugins.panel.element.panel.content.element}
+             * @type {PanelContentElement}
              */
             var $item = new PanelContent(this, {
                 style: style,
@@ -162,7 +162,7 @@ define([
 
         /**
          * Render panel
-         * @member View
+         * @member PanelView
          */
         render: function render() {
 

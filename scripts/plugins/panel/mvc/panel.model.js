@@ -12,31 +12,31 @@ define([
     /**
      * Define Panel model
      * @extends BaseModel
-     * @class Model
+     * @class PanelModel
      * @constructor
      */
-    var Model = function Model() {
+    var PanelModel = function PanelModel() {
 
         /**
          * Init modules
-         * @member Model
+         * @member PanelModel
          * @type {Array}
          */
         this.modules = [];
 
         /**
          * Define packages
-         * @member Model
+         * @member PanelModel
          * @type {Array}
          */
         this.packages = [];
     };
 
-    return Model.extend({
+    return PanelModel.extend('PanelModel', {
 
         /**
          * Init module
-         * @member Model
+         * @member PanelModel
          * @param Module
          */
         defineModule: function defineModule(Module) {
@@ -48,7 +48,7 @@ define([
 
         /**
          * Init package
-         * @member Model
+         * @member PanelModel
          * @param Package
          */
         definePackage: function definePackage(Package) {
@@ -57,7 +57,7 @@ define([
 
         /**
          * Get module by index
-         * @member Model
+         * @member PanelModel
          * @param {number} [index]
          * @returns {*}
          */
@@ -67,7 +67,7 @@ define([
 
         /**
          * Get module index
-         * @member Model
+         * @member PanelModel
          * @param resource
          * @returns {number}
          */
@@ -90,7 +90,7 @@ define([
 
         /**
          * Get package by index
-         * @member Model
+         * @member PanelModel
          * @param {number} [index]
          * @returns {*}
          */

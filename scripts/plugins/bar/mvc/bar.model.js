@@ -12,24 +12,24 @@ define([
     /**
      * Define Bar model
      * @extends BaseModel
-     * @class Model
+     * @class BarModel
      * @constructor
      */
-    var Model = function Model() {
+    var BarModel = function BarModel() {
 
         /**
          * Init modules
-         * @member Model
+         * @member BarModel
          * @type {Array}
          */
         this.modules = [];
     };
 
-    return Model.extend({
+    return BarModel.extend('BarModel', {
 
         /**
          * Get list of modules
-         * @member Model
+         * @member BarModel
          * @returns {*}
          */
         getModulesList: function getModulesList() {

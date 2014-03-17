@@ -12,18 +12,18 @@ define([
     /**
      * Define PageData model
      * @extends BaseModel
-     * @class Model
+     * @class PageDataModel
      * @constructor
      */
-    var Model = function Model() {
+    var PageDataModel = function PageDataModel() {
 
     };
 
-    return Model.extend({
+    return PageDataModel.extend('PageDataModel', {
 
         /**
          * Get items
-         * @member Model
+         * @member PageDataModel
          * @param page
          * @returns {*}
          */

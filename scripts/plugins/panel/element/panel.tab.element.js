@@ -28,7 +28,7 @@ define([
         return this;
     };
 
-    return PanelTabElement.extend({
+    return PanelTabElement.extend('PanelTabElement', {
 
     }, BaseElement.prototype);
 

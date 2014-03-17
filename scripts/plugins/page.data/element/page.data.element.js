@@ -30,7 +30,7 @@ define([
         return this;
     };
 
-    return PageDataElement.extend({
+    return PageDataElement.extend('PageDataElement', {
 
     }, BaseElement.prototype);
 

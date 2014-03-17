@@ -16,18 +16,18 @@ define([
 
     /**
      * Define view
-     * @class View
+     * @class GalleryView
      * @constructor
      * @extends BaseView
      */
-    var View = function View() {
+    var GalleryView = function GalleryView() {
     };
 
-    return View.extend({
+    return GalleryView.extend('GalleryView', {
 
         /**
          * Render Gallery
-         * @member View
+         * @member GalleryView
          * @returns {boolean}
          */
         renderGallery: function renderGallery() {
@@ -40,7 +40,7 @@ define([
 
             /**
              * Define Gallery element
-             * @type {element.page.page.element}
+             * @type {GalleryElement}
              */
             this.elements.$gallery = new Gallery(this, {
                 id: this.createUUID(),
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render gallery content
-         * @member View
+         * @member GalleryView
          * @param data
          * @param {Boolean} force
          * @returns {boolean}
@@ -75,7 +75,7 @@ define([
 
                     /**
                      * Render item
-                     * @type {*}
+                     * @type {GalleryContentElement}
                      */
                     var $item = new GalleryContent(this, {
                         style: 'content',
@@ -90,7 +90,7 @@ define([
 
         /**
          * Render gallery
-         * @member View
+         * @member GalleryView
          */
         render: function render() {
 

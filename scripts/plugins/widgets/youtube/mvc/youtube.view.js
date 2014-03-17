@@ -16,18 +16,18 @@ define([
 
     /**
      * Define view
-     * @class View
+     * @class YoutubeView
      * @extends BaseView
      * @constructor
      */
-    var View = function View() {
+    var YoutubeView = function YoutubeView() {
     };
 
-    return View.extend({
+    return YoutubeView.extend('YoutubeView', {
 
         /**
          * Render youtube element
-         * @member View
+         * @member YoutubeView
          */
         renderYoutube: function renderYoutube() {
 
@@ -51,7 +51,7 @@ define([
 
         /**
          * Render Prefs
-         * @member View
+         * @member YoutubeView
          * @returns {YoutubePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -69,7 +69,7 @@ define([
 
         /**
          * Render youtube
-         * @member View
+         * @member YoutubeView
          */
         render: function render() {
 

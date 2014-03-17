@@ -18,7 +18,7 @@ define([
 
     };
 
-    return WidgetController.extend({
+    return WidgetController.extend('WidgetController', {
 
         /**
          * Init widget

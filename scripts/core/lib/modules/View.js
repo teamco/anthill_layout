@@ -206,7 +206,7 @@ define([
          *      [opacityOn]: Number,
          *      [title]: String,
          *      [type]: String ('info', 'success', 'warning', 'error'),
-         *      [html]: String,
+         *      [html]: *,
          *      [text]: String,
          *      [draggable]: Boolean,
          *      [items],

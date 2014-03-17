@@ -32,7 +32,7 @@ define([
         return this;
     };
 
-    return YoutubePreferencesElement.extend({
+    return YoutubePreferencesElement.extend('YoutubePreferencesElement', {
 
 
     }, BaseElement.prototype, Preferences.prototype);

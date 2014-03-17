@@ -12,19 +12,19 @@ define([
 
     /**
      * Define youtube controller
-     * @class Controller
+     * @class YoutubeController
      * @extends PluginController
      * @extends WidgetController
      * @constructor
      */
-    var Controller = function Controller() {
+    var YoutubeController = function YoutubeController() {
     };
 
-    return Controller.extend({
+    return YoutubeController.extend('YoutubeController', {
 
         /**
          * Set embedded content
-         * @member Controller
+         * @member YoutubeController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 

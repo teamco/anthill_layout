@@ -16,7 +16,7 @@ define([], function defineBasePreferences() {
 
     };
 
-    return Preferences.extend({
+    return Preferences.extend('Preferences', {
 
         /**
          * Render data

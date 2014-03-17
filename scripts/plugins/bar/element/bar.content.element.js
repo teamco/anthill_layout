@@ -30,7 +30,7 @@ define([
         return this;
     };
 
-    return BarContentElement.extend({
+    return BarContentElement.extend('BarContentElement', {
 
         /**
          * Open tab
