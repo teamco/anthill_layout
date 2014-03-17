@@ -17,6 +17,7 @@ define([
      * @returns {*}
      * @constructor
      * @class DeltaScroll
+     * @extends BaseElement
      */
     var DeltaScroll = function DeltaScroll(view, opts) {
         return this._config(view, opts, $('<div />')).build({

@@ -17,6 +17,7 @@ define([
      * @returns {*}
      * @constructor
      * @class PageElement
+     * @extends BaseElement
      */
     var PageElement = function PageElement(view, opts) {
         return this._config(view, opts, $('<li />')).build({
@@ -26,21 +27,6 @@ define([
     };
 
     return PageElement.extend({
-
-//        /**
-//         * Define page height
-//         */
-//        defineHeight: function defineHeight() {
-//            var header = this.view.elements.$header,
-//                footer = this.view.elements.$footer,
-//                $container = this.getRootContainer();
-//
-//            var headerHeight = header.$ ? header.$.height() : 0,
-//                footerHeight = footer.$ ? footer.$.height() : 0,
-//                containerHeight = $container.height();
-//
-//            this.setHeight(containerHeight - (headerHeight + footerHeight));
-//        }
 
     }, BaseElement.prototype);
 });

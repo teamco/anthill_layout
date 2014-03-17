@@ -12,6 +12,8 @@ define([
 
     /**
      * Define App element
+     * @extends BaseElement
+     * @class AppElement
      * @param view
      * @param opts
      * @returns {*}

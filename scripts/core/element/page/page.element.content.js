@@ -17,6 +17,7 @@ define([
      * @returns {*}
      * @constructor
      * @class PageContent
+     * @extends BaseElement
      */
     var PageContent = function PageContent(view, opts) {
 

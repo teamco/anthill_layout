@@ -14,11 +14,12 @@ define([
      * Define content
      * @param view
      * @param opts
-     * @returns {Content}
-     * @class Content
+     * @returns {WidgetContent}
+     * @class WidgetContent
      * @constructor
+     * @extends BaseElement
      */
-    var Content = function Content(view, opts) {
+    var WidgetContent = function WidgetContent(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -30,10 +31,11 @@ define([
         return this;
     };
 
-    return Content.extend({
+    return WidgetContent.extend({
 
         /**
          * Set padding
+         * @memberOf WidgetContent
          */
         setPadding: function setPadding() {
             var padding = this.view.controller.getLocalPadding();

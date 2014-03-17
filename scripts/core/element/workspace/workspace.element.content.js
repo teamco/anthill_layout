@@ -17,6 +17,7 @@ define([
      * @returns {*}
      * @constructor
      * @class WorkspaceContent
+     * @extends BaseElement
      */
     var WorkspaceContent = function WorkspaceContent(view, opts) {
         return this._config(view, opts, $('<ul />')).build({
@@ -29,8 +30,10 @@ define([
 
         /**
          * Define height
+         * @member WorkspaceContent
          */
         defineHeight: function defineHeight() {
+
             var header = this.view.elements.$header,
                 footer = this.view.elements.$footer,
                 $container = this.getRootContainer();

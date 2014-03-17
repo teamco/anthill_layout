@@ -17,6 +17,7 @@ define([
      * @returns {*}
      * @constructor
      * @class HeaderElement
+     * @extends BaseElement
      */
     var HeaderElement = function HeaderElement(view, opts) {
 

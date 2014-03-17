@@ -17,6 +17,7 @@ define([
      * @returns {*}
      * @constructor
      * @class AppContent
+     * @extends BaseElement
      */
     var AppContent = function AppContent(view, opts) {
         return this._config(view, opts, $('<ul />')).build({

@@ -20,11 +20,14 @@ define([
      * @returns {ModalElement}
      * @constructor
      * @class ModalElement
+     * @extends AntHill
+     * @extends BaseElement
      */
     var ModalElement = function ModalElement(view, opts) {
 
         /**
          * Set button elements
+         * @member ModalElement
          * @type {$modal.$buttons}
          */
         this.$buttons = {};
@@ -46,6 +49,7 @@ define([
 
         /**
          * Setup modal dialog
+         * @memberOf ModalElement
          * @param {{
          *      [style]: String,
          *      [cover]: Boolean,
@@ -69,65 +73,76 @@ define([
 
             /**
              * Set modal title
+             * @member ModalElement
              * @type {String|*}
              */
             this.title = opts.title;
 
             /**
              * Set modal type ['error', 'warning', 'success', 'info']
+             * @member ModalElement
              * @type {String|*}
              */
             this.type = opts.type;
 
             /**
              * Set modal html
+             * @member ModalElement
              * @type {String|*}
              */
             this.html = opts.html;
 
             /**
              * Set modal text
+             * @member ModalElement
              * @type {String|*}
              */
             this.text = opts.text;
 
             /**
              * Set modal item dependency (called from)
+             * @member ModalElement
              */
             this.items = opts.items;
 
             /**
              * Set modal style
+             * @member ModalElement
              * @type {String|*|string}
              */
             this.style = opts.style || '';
 
             /**
              * Set modal css
+             * @member ModalElement
              * @type {$modal.css}
              */
             this.css = opts.css || {};
 
             /**
              * Set hover opacity
+             * @member ModalElement
              * @type {*}
              */
             this.hover = this.base.defineBoolean(opts.hover, true, true);
 
             /**
              * Set modal opacity hover out
+             * @member ModalElement
              * @type {Number|*|number}
              */
             this.opacityOff = opts.opacityOff || 0.8;
 
             /**
              * Set modal opacity hover in
+             * @member ModalElement
              * @type {Number|*|number}
              */
             this.opacityOn = opts.opacityOn || 0.9;
 
             /**
              * Set modal parent container
+             * @member ModalElement
              * @type {*|jQuery|HTMLElement}
              */
             this.$container = opts.$container || $('body');
@@ -137,42 +152,49 @@ define([
              *      ['tl' 'tc' 'tr']
              *      ['cl' 'cc' 'cr']
              *      ['bl' 'bc' 'br']
+             * @member ModalElement
              * @type {$modal}
              */
             this.position = opts.position || 'cc';
 
             /**
              * Set modal is draggable condition
+             * @member ModalElement
              * @type {*}
              */
             this.draggable = this.base.defineBoolean(opts.draggable, true, true);
 
             /**
              * Set close X button
+             * @member ModalElement
              * @type {*}
              */
             this.closeX = this.base.defineBoolean(opts.draggable, true, true);
 
             /**
              * Set cover config
+             * @member ModalElement
              * @type {*}
              */
             this.cover = this.base.defineBoolean(opts.cover, true, true);
 
             /**
              * Set close modal on click cover
+             * @member ModalElement
              * @type {*}
              */
             this.autoclose = this.base.defineBoolean(opts.autoclose, false, true);
 
             /**
              * Set cover opacity
+             * @member ModalElement
              * @type {Number|*}
              */
             this.coverOpacity = opts.coverOpacity;
 
             /**
              * Set buttons config
+             * @member ModalElement
              * @type {*|{}}
              */
             this.buttons = opts.buttons || {};
@@ -180,6 +202,7 @@ define([
 
         /**
          * Render inner content
+         * @member ModalElement
          */
         renderInnerContent: function renderInnerContent() {
             this.$.append(
@@ -220,6 +243,7 @@ define([
 
         /**
          * Set focus
+         * @member ModalElement
          */
         setFocus: function setFocus() {
 
@@ -230,6 +254,7 @@ define([
 
         /**
          * Set close X button
+         * @member ModalElement
          * @returns {boolean|undefined}
          * @private
          */
@@ -251,6 +276,7 @@ define([
 
         /**
          * Set buttons
+         * @member ModalElement
          */
         setButtons: function setButtons() {
             var $container = this._getButtons();
@@ -265,6 +291,7 @@ define([
 
         /**
          * Unset buttons
+         * @member ModalElement
          */
         unsetButtons: function unsetButtons() {
             $.each(this.$buttons, function each(i, $button) {
@@ -274,6 +301,7 @@ define([
 
         /**
          * Set header
+         * @member ModalElement
          */
         setHeader: function setHeader() {
             var $header = this._getHeader();
@@ -284,6 +312,7 @@ define([
 
         /**
          * Set HTML
+         * @member ModalElement
          */
         setHTML: function setHTML() {
             var $html = this._getHTML();
@@ -294,6 +323,7 @@ define([
 
         /**
          * Set text
+         * @member ModalElement
          */
         setText: function setText() {
             var $text = this._getText();
@@ -304,6 +334,7 @@ define([
 
         /**
          * Get action buttons container
+         * @member ModalElement
          * @returns {*}
          * @private
          */
@@ -313,6 +344,7 @@ define([
 
         /**
          * Get HTML container
+         * @member ModalElement
          * @returns {*}
          * @private
          */
@@ -322,6 +354,7 @@ define([
 
         /**
          * Get text container
+         * @member ModalElement
          * @returns {*}
          * @private
          */
@@ -331,6 +364,7 @@ define([
 
         /**
          * Get buttons container
+         * @member ModalElement
          * @returns {*}
          * @private
          */
@@ -340,6 +374,7 @@ define([
 
         /**
          * Get header container
+         * @member ModalElement
          * @returns {*}
          * @private
          */
@@ -349,6 +384,7 @@ define([
 
         /**
          * Set opacity on hover
+         * @member ModalElement
          */
         setHover: function setHover() {
             if (this.hover) {
@@ -367,6 +403,7 @@ define([
 
         /**
          * Unset hover
+         * @member ModalElement
          */
         unsetHover: function unsetHover() {
             this.$.unbind('mouseenter mouseleave').
@@ -375,6 +412,7 @@ define([
 
         /**
          * Set cover
+         * @member ModalElement
          */
         setCover: function setCover() {
             if (this.cover) {
@@ -389,6 +427,7 @@ define([
 
         /**
          * Unset cover
+         * @member ModalElement
          */
         unsetCover: function unsetCover() {
             if (this.$cover) {
@@ -398,6 +437,7 @@ define([
 
         /**
          * Self destroy functionality
+         * @member ModalElement
          */
         selfDestroy: function selfDestroy() {
             this.unsetButtons();

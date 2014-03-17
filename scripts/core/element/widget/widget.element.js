@@ -17,6 +17,7 @@ define([
      * @returns {*}
      * @constructor
      * @class WidgetElement
+     * @extends BaseElement
      */
     var WidgetElement = function WidgetElement(view, opts) {
 
@@ -32,6 +33,7 @@ define([
 
         /**
          * Set widget position
+         * @member WidgetElement
          * @param {{animate: Boolean, callback: Function}} opts
          * @private
          */
@@ -54,6 +56,7 @@ define([
 
         /**
          * Downgrade widget layer
+         * @member WidgetElement
          * @param {Number} layer
          * @private
          */
@@ -65,12 +68,12 @@ define([
 
         /**
          * Get item content
+         * @member WidgetElement
          * @returns {*}
          */
         getContent: function getContent() {
             return $('.content', this.$);
         }
-
 
     }, BaseElement.prototype);
 });

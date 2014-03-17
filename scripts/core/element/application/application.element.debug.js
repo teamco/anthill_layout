@@ -15,9 +15,10 @@ define([
      * @param {*} view
      * @param {{style, [events], [id]}} opts
      * @returns {*}
-     * @constructor Debugger
+     * @constructor DebuggerElement
+     * @extends BaseElement
      */
-    var Debugger = function Debugger(view, opts) {
+    var DebuggerElement = function DebuggerElement(view, opts) {
 
         if (!view.scope.permission.getCapability('activateDebugger')) {
             return false;
@@ -36,10 +37,11 @@ define([
 
     };
 
-    return Debugger.extend({
+    return DebuggerElement.extend({
 
         /**
          * DOM config
+         * @member DebuggerElement
          * @returns {*}
          */
         _extend$: function _extend$() {
@@ -56,6 +58,7 @@ define([
 
         /**
          * Hover debugger
+         * @member DebuggerElement
          */
         bindHover: function bindHover() {
             var opacity = this.opacity;
@@ -75,6 +78,7 @@ define([
 
         /**
          * Activate debugger
+         * @member DebuggerElement
          */
         activate: function activate() {
             var scope = this.view.scope,
@@ -89,6 +93,7 @@ define([
 
         /**
          * Deactivate debugger
+         * @member DebuggerElement
          */
         deactivate: function deactivate() {
             var scope = this.view.scope,

@@ -16,6 +16,7 @@ define([
      * @returns {*}
      * @constructor
      * @class TemplateElement
+     * @extends BaseElement
      */
     var TemplateElement = function TemplateElement(view, opts) {
 

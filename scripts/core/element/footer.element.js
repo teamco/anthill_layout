@@ -17,6 +17,7 @@ define([
      * @returns {*}
      * @constructor
      * @class FooterElement
+     * @extends BaseElement
      */
     var FooterElement = function FooterElement(view, opts) {
 

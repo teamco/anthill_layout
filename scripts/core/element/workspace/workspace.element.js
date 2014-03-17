@@ -17,6 +17,7 @@ define([
      * @returns {*}
      * @constructor
      * @class WorkspaceElement
+     * @extends BaseElement
      */
     var WorkspaceElement = function Workspace(view, opts) {
         return this._config(view, opts, $('<li />')).build({

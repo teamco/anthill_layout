@@ -16,6 +16,8 @@ define([
      * @param opts
      * @returns {*}
      * @constructor
+     * @class TemplateContent
+     * @extends BaseElement
      */
     var TemplateContent = function TemplateContent(view, opts) {
         return this._config(view, opts, $('<ul />')).build({
