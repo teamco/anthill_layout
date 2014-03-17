@@ -46,7 +46,7 @@ define([
          *      maximize: boolean,
          *      attributes: {magnet: string, freeze: boolean, overlapping: boolean, alwaysTop: boolean},
          *      events: {
-         *          draggable: {snap: boolean, axis: boolean, scroll: boolean, connectToSortable: boolean, delay: number, scrollSensitivity: number, scrollSpeed: number, opacity: number, zIndex: number, cursor: string, appendTo: string},
+         *          draggable: {snap: boolean, axis: boolean, scroll: boolean, connectToSortable: boolean, delay: number, scrollSensitivity: number, scrollSpeed: number, opacity: number, zIndex: number, cursor: string, appendTo: string, cancel: string},
          *          resizable: {handles: string},
          *          droppable: {activeClass: string, hoverClass: string, greedy: boolean, tolerance: string}
          *      }
@@ -83,7 +83,8 @@ define([
                     opacity: 0.6,
                     zIndex: 100,
                     cursor: 'move',
-                    appendTo: 'parent'
+                    appendTo: 'parent',
+                    cancel: '.ui-resizable-handle'
                 },
                 resizable: {
                     handles: 'all'
