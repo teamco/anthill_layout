@@ -1,24 +1,24 @@
 .modal-dialog {
-    width: 400px;
-    max-width: 70%;
-    max-height: 70%;
-    min-height: 100px;
-    background-color: #fff;
     position: fixed;
     z-index: 1000;
-    border-radius: 5px;
-    box-shadow: 1px 1px 1px #333;
     overflow: hidden;
+    min-height: 100px;
+    max-width: 70%;
+    max-height: 70%;
+    width: 400px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 1px 1px 1px #333;
 }
 
 .modal-dialog h2.header {
-    height: 24px;
-    font-size: 12px;
-    font-weight: normal;
     padding: 4px 8px 0;
+    height: 24px;
+    border-bottom: 1px solid #999;
     color: #333;
     text-shadow: 1px 1px 1px #fff;
-    border-bottom: 1px solid #999;
+    font-weight: normal;
+    font-size: 12px;
     cursor: move;
 }
 
@@ -39,9 +39,9 @@
 }
 
 .modal-dialog .content {
-    max-height: 400px;
     overflow: auto;
     margin-bottom: 5px;
+    max-height: 400px;
 }
 
 .modal-dialog p.text,
@@ -53,17 +53,17 @@
     position: absolute;
     top: 7px;
     right: 8px;
-    list-style: none;
     height: 10px;
+    list-style: none;
 }
 
 .modal-dialog ul.actions li {
-    text-indent: -9000px;
+    float: left;
     width: 10px;
     height: 100%;
-    float: left;
-    cursor: pointer;
     background: transparent url('ui-lightness/images/ui-icons_222222_256x240.png') no-repeat;
+    text-indent: -9000px;
+    cursor: pointer;
 }
 
 .modal-dialog ul.actions li:hover {
@@ -75,25 +75,25 @@
 }
 
 .modal-dialog ul.actions li.close-x {
-    background-position-x: -99px;
-    background-position-y: -132px;
     display: block;
     margin-top: -1px;
+    background-position-x: -99px;
+    background-position-y: -132px;
 }
 
 .modal-dialog ul.buttons {
-    list-style: none;
     float: right;
     margin-bottom: 10px;
+    list-style: none;
 }
 
 .modal-dialog ul.buttons li {
     float: left;
-    border-radius: 3px;
-    box-shadow: 1px 1px 1px #333;
-    padding: 2px 5px;
     margin-right: 5px;
+    padding: 2px 5px;
+    border-radius: 3px;
     background-color: #dedede;
+    box-shadow: 1px 1px 1px #333;
     cursor: pointer;
 }
 
@@ -107,15 +107,15 @@
 }
 
 .modal-dialog ul.buttons li:active {
-    box-shadow: -1px -1px 1px #333;
     margin-top: 2px;
     margin-left: 1px;
     padding-top: 1px;
     padding-left: 4px;
+    box-shadow: -1px -1px 1px #333;
 }
 
 .modal-dialog div.html ul {
-    list-style: circle inside;
     margin-top: 10px;
+    list-style: circle inside;
 }
 

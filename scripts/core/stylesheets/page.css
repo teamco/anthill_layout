@@ -4,18 +4,18 @@
 }
 
 .page .delta-scroll {
-    height: 10000px;
-    width: 1px;
     display: none;
+    width: 1px;
+    height: 10000px;
 }
 
 .widgets {
     position: absolute;
-    height: auto;
-    width: auto;
-    bottom: 0;
     top: 0;
-    left: 0;
     right: 0;
+    bottom: 0;
+    left: 0;
     margin: 0;
+    width: auto;
+    height: auto;
 }
