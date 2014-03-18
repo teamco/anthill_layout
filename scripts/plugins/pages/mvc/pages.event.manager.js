@@ -40,15 +40,42 @@ define([
         eventList: {
             updateTranslations: 'update.translations',
             loadContent: 'load.content',
-            updateCounter: {
-                eventName: 'update.counter',
-                publishOn: [
+            updateCounter: 'update.counter'
+        },
 
-                ]
-            }
+        /**
+         * Get event publish on
+         * @member PagesEventManager
+         * @returns {{}}
+         */
+        getEventPublishOn: function getEventPublishOn() {
+
+            /**
+             * Define publisher
+             * @type {{}}
+             */
+            var publish = {};
+
+            /**
+             * Define page
+             * @type {Page}
+             */
+            var page = this.scope.controller.getPage();
+
+            /**
+             * Define event list
+             * @type {PageEventManager.eventList}
+             */
+            var pageEventList = page.eventmanager.eventList;
+
+            publish[this.eventList.updateCounter] = [
+                pageEventList.createWidget,
+                pageEventList.destroyWidget,
+                pageEventList.destroyWidgets
+            ];
+
+            return publish;
         }
-
-
 
     }, Event.prototype);
 });
