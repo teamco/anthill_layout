@@ -24,21 +24,31 @@ define([
          * @type {{}}
          */
         this.events = {};
+    };
+
+    return PagesEventManager.extend('PagesEventManager', {
 
         /**
          * Define event list
          * @member PagesEventManager
          * @type {{
          *      updateTranslations: string,
-         *      loadContent: string
+         *      loadContent: string,
+         *      updateCounter: string
          * }}
          */
-        this.eventList = {
+        eventList: {
             updateTranslations: 'update.translations',
-            loadContent: 'load.content'
-        };
-    };
+            loadContent: 'load.content',
+            updateCounter: {
+                eventName: 'update.counter',
+                publishOn: [
 
-    return PagesEventManager.extend('PagesEventManager', {
+                ]
+            }
+        }
+
+
+
     }, Event.prototype);
 });

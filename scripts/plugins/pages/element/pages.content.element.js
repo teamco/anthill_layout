@@ -34,6 +34,24 @@ define([
     return PagesContentElement.extend('PagesContentElement', {
 
         /**
+         * Render page widgets counter
+         * @memberOf PagesContentElement
+         */
+        renderCounter: function renderCounter() {
+            this.$.append(
+                $('<div />').addClass('counter')
+            );
+        },
+
+        /**
+         * Get page $counter
+         * @returns {*|jQuery|HTMLElement}
+         */
+        get$counter: function get$counter() {
+           return $('.counter', this.$);
+        },
+
+        /**
          * Define attributes
          * @memberOf PagesContentElement
          * @param data
@@ -47,6 +65,7 @@ define([
             var config = data.model.getConfig();
 
             this.$.attr({
+                rel: config.uuid,
                 title: config.uuid
             }).addClass(config.resource);
         },

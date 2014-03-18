@@ -77,7 +77,7 @@ define([
 
                     /**
                      * Render item
-                     * @type {PagesContentElement}
+                     * @type {*}
                      */
                     var $item = new PagesContent(this, {
                         style: 'content',

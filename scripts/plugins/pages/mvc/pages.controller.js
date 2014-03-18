@@ -94,6 +94,22 @@ define([
             scope.activeContent.controller.updatePreferences(
                 scope.view.elements.$modal
             );
+        },
+
+        /**
+         * Update widgets counter
+         * @member PagesController
+         */
+        updateCounter: function updateCounter(uuid) {
+
+            /**
+             * Define page
+             * @type {*}
+             */
+            var page = this.getWorkspace().model.getItemByUUID(uuid),
+                scope = this.scope;
+
+
         }
 
     }, PluginBase.prototype);
