@@ -112,7 +112,36 @@ define([
                 return false;
             }
 
-            this.$.on([on, event].join('.'), method.bind(controller));
+            this.$.on(
+                [on, event].join('.'),
+                method.bind(controller)
+            );
+        },
+
+        /**
+         * Subscribe to external published events
+         * @member Event
+         * @param data
+         */
+        publishOn: function publishOn(data) {
+
+            for (var i = 0, l = data.events.length; i < l; i++) {
+
+                /**
+                 * Define event opts
+                 * @member publishOn
+                 */
+                var event = data.events[i];
+
+                data.scope.eventmanager.subscribe({
+                    event: {
+                        eventName: event.eventName,
+                        params: event.params,
+                        scope: event.scope
+                    },
+                    callback: data.callback
+                }, false);
+            }
         }
 
     }, AntHill.prototype);

@@ -32,35 +32,24 @@ define([
          * Define event list
          * @member PagesEventManager
          * @type {{
-         *      updateTranslations: string,
-         *      loadContent: string,
-         *      updateCounter: string
-         * }}
+             *      updateTranslations: string,
+             *      loadContent: string,
+             *      updateCounter: string
+             * }}
          */
         eventList: {
             updateTranslations: 'update.translations',
-            loadContent: 'load.content',
-            updateCounter: 'update.counter'
+            loadContent: 'load.content'
         },
 
         /**
-         * Get event publish on
+         * Subscribe publish on
          * @member PagesEventManager
+         * @param {Page} page
+         * @param {Function} [callback]
          * @returns {{}}
          */
-        getEventPublishOn: function getEventPublishOn() {
-
-            /**
-             * Define publisher
-             * @type {{}}
-             */
-            var publish = {};
-
-            /**
-             * Define page
-             * @type {Page}
-             */
-            var page = this.scope.controller.getPage();
+        subscribePublishOn: function subscribePublishOn(page, callback) {
 
             /**
              * Define event list
@@ -68,13 +57,21 @@ define([
              */
             var pageEventList = page.eventmanager.eventList;
 
-            publish[this.eventList.updateCounter] = [
-                pageEventList.createWidget,
-                pageEventList.destroyWidget,
-                pageEventList.destroyWidgets
-            ];
+            /**
+             * Define events
+             * @type {{scope: Page, events: {eventName: string}[], callback: Function}}
+             */
+            var publish = {
+                scope: page,
+                events: [
+                    {eventName: pageEventList.createWidget},
+                    {eventName: pageEventList.destroyWidget},
+                    {eventName: pageEventList.destroyWidgets}
+                ],
+                callback: callback
+            };
 
-            return publish;
+            this.publishOn(publish);
         }
 
     }, Event.prototype);

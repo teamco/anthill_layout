@@ -97,19 +97,47 @@ define([
         },
 
         /**
+         * Define publisher
+         * @member PagesController
+         * @param page
+         */
+        definePublisher: function definePublisher(page) {
+            this.scope.eventmanager.subscribePublishOn(
+                page,
+                this.updateCounter.bind(this.scope)
+            );
+        },
+
+        /**
          * Update widgets counter
          * @member PagesController
          */
-        updateCounter: function updateCounter(uuid) {
+        updateCounter: function updateCounter() {
 
-            /**
-             * Define page
-             * @type {*}
-             */
-            var page = this.getWorkspace().model.getItemByUUID(uuid),
-                scope = this.scope;
+            var workspace = this.controller.getWorkspace(),
+                pages = workspace.model.getItems(),
+                index, page, $item,
+                cname = '-pages-view';
 
+            for (index in pages) {
 
+                if (pages.hasOwnProperty(index)) {
+
+                    /**
+                     * Define page
+                     * @type {Page}
+                     */
+                    page = pages[index];
+
+                    /**
+                     * Define pages content element
+                     * @type {PagesContentElement}
+                     */
+                    $item = this.view.elements.items[page.model.getConfig('uuid') + cname];
+
+                    $item.updateCounter(page);
+                }
+            }
         }
 
     }, PluginBase.prototype);

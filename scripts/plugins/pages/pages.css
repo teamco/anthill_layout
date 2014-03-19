@@ -16,10 +16,19 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    position: relative;
 }
 
-.panel ul.pages .content:active {
-    cursor: move;
+.panel ul.pages .content .counter {
+    font-size: 11px;
+    position: absolute;
+    background-color: #fff;
+    padding: 2px 5px;
+    border-radius: 5px;
+    border: 1px solid #777;
+    right: -5px;
+    top: -5px;
+    box-shadow: 1px 1px 5px #ccc;
 }
 
 .panel div.pages-footer {

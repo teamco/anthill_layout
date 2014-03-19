@@ -81,6 +81,7 @@ define([
                      */
                     var $item = new PagesContent(this, {
                         style: 'content',
+                        id: data[index].model.getConfig('uuid') + '-pages-view',
                         $container: this.elements.$pages.$,
                         data: data[index]
                     });

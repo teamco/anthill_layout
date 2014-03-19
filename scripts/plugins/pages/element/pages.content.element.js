@@ -25,26 +25,57 @@ define([
             destroy: false
         });
 
-        this.setAttributes(opts.data);
-        this.bindShowPrefs(opts.data);
-
-        return this;
+        return this.init(opts.data);
     };
 
     return PagesContentElement.extend('PagesContentElement', {
 
         /**
-         * Render page widgets counter
+         * Define init
          * @memberOf PagesContentElement
+         * @param page
+         * @returns {PagesContentElement}
          */
-        renderCounter: function renderCounter() {
+        init: function init(page) {
+
+            this.setAttributes(page);
+            this.setPublishOn(page);
+            this.bindShowPrefs(page);
+
+            this.renderCounter(page);
+
+            return this;
+        },
+
+        /**
+         * Render page widgets counter
+         * @member PagesContentElement
+         * @param {Page} page
+         */
+        renderCounter: function renderCounter(page) {
             this.$.append(
                 $('<div />').addClass('counter')
+            );
+
+            this.updateCounter(page);
+        },
+
+        /**
+         * Update counter text
+         * @member PagesContentElement
+         * @param {Page} page
+         */
+        updateCounter: function updateCounter(page) {
+            this.get$counter().text(
+                this.base.lib.hash.hashLength(
+                    page.model.getItems()
+                )
             );
         },
 
         /**
          * Get page $counter
+         * @member PagesContentElement
          * @returns {*|jQuery|HTMLElement}
          */
         get$counter: function get$counter() {
@@ -53,7 +84,7 @@ define([
 
         /**
          * Define attributes
-         * @memberOf PagesContentElement
+         * @member PagesContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
@@ -71,8 +102,17 @@ define([
         },
 
         /**
+         * Set publish on events
+         * @member PagesContentElement
+         * @param page
+         */
+        setPublishOn: function setPublishOn(page) {
+            this.view.scope.controller.definePublisher(page);
+        },
+
+        /**
          * Bind show prefs
-         * @memberOf PagesContentElement
+         * @member PagesContentElement
          * @param data
          */
         bindShowPrefs: function bindShowPrefs(data) {

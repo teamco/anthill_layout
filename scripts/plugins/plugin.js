@@ -8,7 +8,7 @@
 define([
     'config/anthill',
     'modules/controller'
-], function definePluginControllerBase(AntHill, BaseController){
+], function definePluginControllerBase(AntHill, BaseController) {
 
     /**
      * Define Plugin controller
@@ -26,7 +26,7 @@ define([
         /**
          * Get Workspace
          * @member PluginController
-         * @returns {*|Workspace}
+         * @returns {Workspace}
          */
         getWorkspace: function getWorkspace() {
             return this.root().controller.getCurrentItem();
@@ -35,10 +35,26 @@ define([
         /**
          * Get Page
          * @member PluginController
-         * @returns {*|Page}
+         * @param {string} [uuid]
+         * @returns {Page}
          */
-        getPage: function getPage() {
-            return this.getWorkspace().controller.getCurrentItem();
+        getPage: function getPage(uuid) {
+
+            /**
+             * Define workspace
+             * @type {Workspace}
+             */
+            var workspace = this.getWorkspace();
+
+            /**
+             * Define page
+             * @type {Page}
+             */
+            var page = this.base.isDefined(uuid) ?
+                workspace.model.getItemByUUID(uuid) :
+                workspace.controller.getCurrentItem();
+
+            return page;
         },
 
         /**
@@ -74,7 +90,7 @@ define([
              */
             var plugin = this;
 
-            require([data], function defineEnUs(EnUs){
+            require([data], function defineEnUs(EnUs) {
                 plugin.i18n.updateData(EnUs);
             });
         }
