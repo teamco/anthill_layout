@@ -79,10 +79,13 @@ define([
         /**
          * Render combo box
          * @member Renderer
+         * @param data
          */
         renderCombobox: function renderCombobox(data) {
 
-            var $ul = $('<ul />').addClass('combo-box');
+            var $ul = $('<ul />').addClass('combo-box').appendTo(
+                $('<li />')
+            );
 
             for (var index in data) {
 
@@ -110,7 +113,7 @@ define([
                         );
                     }
 
-                    $li.appendTo($ul);
+                    $li.addClass(index).appendTo($ul);
                 }
             }
 

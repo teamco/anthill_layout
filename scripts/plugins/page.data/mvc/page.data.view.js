@@ -116,7 +116,7 @@ define([
                 $html: this.controller.getPreferences(config.uuid).$,
                 style: [
                     config.preferences.resource,
-                    'preferences'
+                    'widget-prefs preferences'
                 ].join(' '),
                 title: 'Widget preferences'
             });

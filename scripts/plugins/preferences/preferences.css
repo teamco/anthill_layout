@@ -57,11 +57,12 @@
     list-style: none;
 }
 
-.modal-dialog.preferences fieldset legend.open + ul.interactions {
+.modal-dialog.widget-prefs.preferences fieldset legend.open + ul.interactions,
+.modal-dialog.pages-prefs.preferences fieldset legend.open + ul.layout-prefs {
     display: block;
 }
 
-.modal-dialog.preferences fieldset ul.interactions li {
+.modal-dialog.widget-prefs.preferences fieldset ul.interactions li {
     width: 49%;
     float: left;
     margin-bottom: 2px;

@@ -105,10 +105,14 @@ define([], function defineBasePreferences() {
                             }),
 
                         $ul.append([
-                            this.renderCombobox({
-                                type: 'text',
-                                data: {value: cellWidth}
-                            })
+                            $('<li />').append(
+                                this.renderTextField({
+                                    name: 'cell',
+                                    text: 'Cell size (px)',
+                                    value: cellWidth,
+                                    disabled: true
+                                })
+                            )
                         ])
                     )
                 )
