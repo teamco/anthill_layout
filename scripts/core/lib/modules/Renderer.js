@@ -38,7 +38,7 @@ define([
         /**
          * Render text field
          * @member Renderer
-         * @param {{text: string, name: string, placeholder: string, value}} opts
+         * @param {{text: string, name: string, placeholder: string, value, [disabled]: boolean}} opts
          * @returns {*[]}
          */
         renderTextField: function renderTextField(opts) {
@@ -58,7 +58,8 @@ define([
                 type: 'text',
                 id: uuid,
                 placeholder: opts.placeholder,
-                title: opts.value
+                title: opts.value,
+                disabled: this.base.defineBoolean(opts.disabled, false, true)
             }).val(opts.value);
 
             return [
@@ -79,8 +80,41 @@ define([
          * Render combo box
          * @member Renderer
          */
-        renderCombobox: function renderCombobox() {
+        renderCombobox: function renderCombobox(data) {
 
+            var $ul = $('<ul />').addClass('combo-box');
+
+            for (var index in data) {
+
+                if (data.hasOwnProperty(index)) {
+
+                    var field = data[index],
+                        $li = $('<li />');
+
+                    if (field.type === 'text') {
+                        $li.text(field.data.value);
+                    }
+
+                    if (field.type === 'html') {
+                        $li.html(field.data.value);
+                    }
+
+                    if (field.type === 'field') {
+                        $li.append(
+                            this.renderTextField({
+                                name: field.data.name,
+                                placeholder: field.data.placeholder,
+                                value: field.data.value,
+                                disabled: field.data.disabled
+                            })
+                        );
+                    }
+
+                    $li.appendTo($ul);
+                }
+            }
+
+            return $ul;
         }
 
     }, AntHill.prototype);

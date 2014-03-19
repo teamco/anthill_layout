@@ -26,6 +26,7 @@ define([
         });
 
         this.addCSS('pages');
+        this.addCSS('preferences');
 
         return this;
     };

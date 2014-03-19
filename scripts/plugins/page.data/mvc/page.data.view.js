@@ -8,17 +8,19 @@
 
 define([
     'modules/view',
+    'plugins/preferences/preferences',
     'element/header.element',
     'element/footer.element',
     'plugins/page.data/element/page.data.content.element',
     'plugins/page.data/element/page.data.element'
-], function definePageDataView(BaseView, Header, Footer, PageDataContent, PageData) {
+], function definePageDataView(BaseView, BasePreferences, Header, Footer, PageDataContent, PageData) {
 
     /**
      * Define view
      * @class PageDataView
      * @constructor
      * @extends BaseView
+     * @extends BasePreferences
      */
     var PageDataView = function PageDataView() {
     };
@@ -109,44 +111,14 @@ define([
          */
         showPreferences: function showPreferences(config) {
 
-            /**
-             * Define $container
-             * @type {$}
-             */
-            var $container = this.controller.getPage().view.elements.$page.$;
-
-            /**
-             * Define $html
-             * @type {$}
-             */
-            var $html = this.controller.getPreferences(config.uuid).$;
-
-            this.modalDialog({
+            this.openPreferences({
+                config: config,
+                $html: this.controller.getPreferences(config.uuid).$,
                 style: [
                     config.preferences.resource,
                     'preferences'
                 ].join(' '),
-                $container: $container,
-                type: 'info',
-                title: 'Widget preferences',
-                text: 'bla',
-                html: $html,
-                cover: true,
-                autoclose: true,
-                buttons: {
-                    approve: {
-                        text: 'OK',
-                        events: {
-                            click: 'approveUpdatePreferences'
-                        }
-                    },
-                    reject: {
-                        text: 'Cancel',
-                        events: {
-                            click: 'rejectModalEvent'
-                        }
-                    }
-                }
+                title: 'Widget preferences'
             });
         },
 
@@ -162,6 +134,6 @@ define([
             );
         }
 
-    }, BaseView.prototype)
+    }, BaseView.prototype, BasePreferences.prototype)
 
 });

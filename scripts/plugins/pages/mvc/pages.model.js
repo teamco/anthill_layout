@@ -11,13 +11,20 @@ define([
 
     /**
      * Define Pages model
-     * @mixin BaseModel
      * @class PagesModel
      * @constructor
      * @extends BaseModel
      */
     var PagesModel = function PagesModel() {
 
+        /**
+         * Define preferences
+         * @member PagesModel
+         * @type {{url: string}}
+         */
+        this.preferences = {
+            url: undefined
+        };
     };
 
     return PagesModel.extend('PagesModel', {

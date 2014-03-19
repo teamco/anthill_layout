@@ -37,28 +37,25 @@ define([
         },
 
         /**
-         * Get preferences
+         * Get Prefs
+         * @member PagesController
+         * @returns {PagesModel.preferences}
+         */
+        getPreferences: function getPreferences() {
+            return this.model.preferences;
+        },
+
+        /**
+         * Define preferences
          * @member PagesController
          * @param {string} uuid
          * @returns {*}
          */
-        getPreferences: function getPreferences(uuid) {
+        definePreferences: function definePreferences(uuid) {
 
-            /**
-             * Define page
-             * @type {*}
-             */
-            var page = this.getWorkspace().model.getItemByUUID(uuid),
-                scope = this.scope;
-
-            /**
-             * Define page content
-             * @member Pages
-             * @type {*|Content}
-             */
-            scope.activeContent = page.controller.getContent();
-
-            return scope.activeContent.view.renderPreferences();
+            return this.scope.view.renderPreferences(
+                this.getWorkspace().model.getItemByUUID(uuid)
+            );
         },
 
         /**

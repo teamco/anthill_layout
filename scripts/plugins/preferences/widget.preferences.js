@@ -9,18 +9,19 @@ define([], function defineBasePreferences() {
 
     /**
      * Define prefs
-     * @class Preferences
+     * @class WidgetPreferences
+     * @extends Renderer
      * @constructor
      */
-    var Preferences = function Preferences() {
+    var WidgetPreferences = function WidgetPreferences() {
 
     };
 
-    return Preferences.extend('Preferences', {
+    return WidgetPreferences.extend('WidgetPreferences', {
 
         /**
          * Render data
-         * @memberOf Preferences
+         * @memberOf WidgetPreferences
          * @param data
          */
         renderData: function renderData(data) {
@@ -59,7 +60,7 @@ define([], function defineBasePreferences() {
 
         /**
          * Render Interactions
-         * @member Preferences
+         * @member WidgetPreferences
          * @param {Array} nodes
          * @returns {*}
          */
@@ -119,7 +120,7 @@ define([], function defineBasePreferences() {
 
         /**
          * Render move
-         * @memberOf Preferences
+         * @memberOf WidgetPreferences
          * @param {string} side
          * @param value
          * @returns {*|jQuery}
@@ -138,16 +139,7 @@ define([], function defineBasePreferences() {
             });
 
             return $('<li />').append($move);
-        },
-
-        /**
-         * Render resize
-         * @memberOf Preferences
-         */
-        renderResize: function renderResize() {
-
         }
-
     });
 
 });

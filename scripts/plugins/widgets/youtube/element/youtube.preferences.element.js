@@ -7,8 +7,8 @@
 
 define([
     'modules/element',
-    'plugins/widgets/preferences'
-], function defineYoutubePreferencesElement(BaseElement, Preferences) {
+    'plugins/preferences/widget.preferences'
+], function defineYoutubePreferencesElement(BaseElement, WidgetPreferences) {
 
     /**
      * Define Youtube Preferences Element
@@ -18,7 +18,7 @@ define([
      * @constructor
      * @class YoutubePreferencesElement
      * @extends BaseElement
-     * @extends Preferences
+     * @extends WidgetPreferences
      */
     var YoutubePreferencesElement = function YoutubePreferencesElement(view, opts) {
 
@@ -35,6 +35,6 @@ define([
     return YoutubePreferencesElement.extend('YoutubePreferencesElement', {
 
 
-    }, BaseElement.prototype, Preferences.prototype);
+    }, BaseElement.prototype, WidgetPreferences.prototype);
 
 });

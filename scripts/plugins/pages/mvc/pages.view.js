@@ -8,11 +8,13 @@
 
 define([
     'modules/view',
+    'plugins/preferences/preferences',
     'element/header.element',
     'element/footer.element',
     'plugins/pages/element/pages.content.element',
+    'plugins/pages/element/pages.preferences.element',
     'plugins/pages/element/pages.element'
-], function definePagesView(BaseView, Header, Footer, PagesContent, Pages) {
+], function definePagesView(BaseView, BasePreferences, Header, Footer, PagesContent, PagesPreferencesElement, Pages) {
 
     /**
      * Define view
@@ -98,45 +100,32 @@ define([
          */
         showPreferences: function showPreferences(config) {
 
-            /**
-             * Define $container
-             * @type {BaseElement.$}
-             */
-            var $container = this.controller.getPage().view.elements.$page.$;
-
-            /**
-             * Define $html
-             * @type {$}
-             */
-            var $html = this.controller.getPreferences(config.uuid).$;
-
-            this.modalDialog({
-                style: [
-                    config.preferences.resource,
-                    'preferences'
-                ].join(' '),
-                $container: $container,
-                type: 'info',
-                title: 'Widget preferences',
-                text: 'bla',
-                html: $html,
-                cover: true,
-                autoclose: true,
-                buttons: {
-                    approve: {
-                        text: 'OK',
-                        events: {
-                            click: 'approveUpdatePreferences'
-                        }
-                    },
-                    reject: {
-                        text: 'Cancel',
-                        events: {
-                            click: 'rejectModalEvent'
-                        }
-                    }
-                }
+            this.openPreferences({
+                config: config,
+                $html: this.controller.definePreferences(config.uuid).$,
+                style: 'pages-prefs preferences',
+                title: 'Page preferences'
             });
+        },
+
+        /**
+         * Render Prefs
+         * @member PagesView
+         * @param {Page} page
+         * @returns {PagesPreferencesElement}
+         */
+        renderPreferences: function renderPreferences(page) {
+
+            /**
+             * Define Pages Preferences Element
+             * @type {PagesPreferencesElement}
+             */
+            this.elements.$preferences = new PagesPreferencesElement(this, {
+                data: this.controller.getPreferences(),
+                page: page
+            });
+
+            return this.elements.$preferences;
         },
 
         /**
@@ -151,6 +140,6 @@ define([
             );
         }
 
-    }, BaseView.prototype)
+    }, BaseView.prototype, BasePreferences.prototype)
 
 });
