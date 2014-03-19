@@ -120,7 +120,7 @@ define([
 
         /**
          * Subscribe to external published events
-         * @member Event
+         * @memberOf Event
          * @param data
          */
         publishOn: function publishOn(data) {

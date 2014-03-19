@@ -53,7 +53,7 @@ define([
         /**
          * Get Layout
          * @member BasePage
-         * @returns {*}
+         * @returns {Layout}
          */
         getLayout: function getLayout() {
             return this.scope.layout;

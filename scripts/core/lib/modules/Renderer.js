@@ -24,7 +24,7 @@ define([
         /**
          * Render label
          * @member Renderer
-         * @param {string} uuid
+         * @param {*|string} uuid
          * @param {string} text
          * @returns {*|jQuery}
          */
@@ -38,7 +38,7 @@ define([
         /**
          * Render text field
          * @member Renderer
-         * @param {{text: string, name: string, placeholder: string, value, [disabled]: boolean}} opts
+         * @param {{text: string, name: string, [placeholder]: string, value, [disabled]: boolean}} opts
          * @returns {*[]}
          */
         renderTextField: function renderTextField(opts) {
@@ -47,7 +47,7 @@ define([
              * Create UUID
              * @type {String}
              */
-            var uuid = this.base.lib.generator.UUID();
+            var uuid = this.base.lib.generator.UUID() + '-input';
 
             /**
              * Define $input
@@ -79,45 +79,70 @@ define([
         /**
          * Render combo box
          * @member Renderer
-         * @param data
+         * @param {Array} data
+         * @param selected
          */
-        renderCombobox: function renderCombobox(data) {
+        renderCombobox: function renderCombobox(data, selected, name) {
 
-            var $ul = $('<ul />').addClass('combo-box').appendTo(
-                $('<li />')
-            );
+            /**
+             * Define container
+             * @type {*|jQuery}
+             */
+            var $div = $('<div />').addClass('combo-box').attr({
+                id: this.base.lib.generator.UUID() + '-combo-box'
+            });
 
-            for (var index in data) {
+            /**
+             * Define $ul
+             * @type {*|jQuery}
+             */
+            var $ul = $('<ul />');
 
-                if (data.hasOwnProperty(index)) {
+            for (var i = 0, l = data.length; i < l; i++) {
 
-                    var field = data[index],
-                        $li = $('<li />');
+                var field = data[i],
+                    $li = $('<li />');
 
-                    if (field.type === 'text') {
-                        $li.text(field.data.value);
-                    }
-
-                    if (field.type === 'html') {
-                        $li.html(field.data.value);
-                    }
-
-                    if (field.type === 'field') {
-                        $li.append(
-                            this.renderTextField({
-                                name: field.data.name,
-                                placeholder: field.data.placeholder,
-                                value: field.data.value,
-                                disabled: field.data.disabled
-                            })
-                        );
-                    }
-
-                    $li.addClass(index).appendTo($ul);
+                if (field.type === 'text') {
+                    $li.text(field.value);
                 }
+
+                if (field.type === 'html') {
+                    $li.html(field.value);
+                }
+
+                if (field.type === 'field') {
+                    $li.append(
+                        this.renderTextField({
+                            name: field.name,
+                            placeholder: field.placeholder,
+                            value: field.value,
+                            disabled: field.disabled
+                        })
+                    );
+                }
+
+                if (selected === field.value) {
+                    $li.addClass('selected');
+                }
+
+                $li.appendTo($ul);
             }
 
-            return $ul;
+            return [
+                this.renderLabel(undefined, name),
+                $div.append([
+                    $ul,
+                    $('<div />').addClass('combo-box-arrow').on(
+                        'click.combo',
+                        function clickCombo() {
+                            $div.hasClass('open') ?
+                                $div.removeClass('open') :
+                                $div.addClass('open');
+                        }
+                    )
+                ])
+            ];
         }
 
     }, AntHill.prototype);

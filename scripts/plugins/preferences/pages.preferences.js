@@ -82,6 +82,7 @@ define([], function defineBasePreferences() {
 
             /**
              * Define dom prefs
+             * @type {Number}
              */
             var cellWidth = layout.controller.minCellWidth();
 
@@ -108,10 +109,30 @@ define([], function defineBasePreferences() {
                             $('<li />').append(
                                 this.renderTextField({
                                     name: 'cell',
-                                    text: 'Cell size (px)',
+                                    text: 'Cell size',
                                     value: cellWidth,
                                     disabled: true
                                 })
+                            ),
+                            $('<li />').append(
+                                this.renderCombobox(
+                                    [
+                                        {
+                                            type: 'text',
+                                            value: page.LAYOUT_MODES.freeStyle
+                                        },
+                                        {
+                                            type: 'text',
+                                            value: page.LAYOUT_MODES.jqUIGrid
+                                        },
+                                        {
+                                            type: 'text',
+                                            value: page.LAYOUT_MODES.snap2grid
+                                        },
+                                    ],
+                                    layout.controller.getBehaviorMode(),
+                                    'Mode'
+                                )
                             )
                         ])
                     )

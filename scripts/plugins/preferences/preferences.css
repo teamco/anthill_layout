@@ -11,16 +11,22 @@
     font-variant: small-caps;
 }
 
-.modal-dialog.preferences div.html input[type="text"] {
+.modal-dialog.preferences div.html input[type="text"],
+.modal-dialog.preferences div.html div.combo-box > ul {
     border: 1px solid #ccc;
     border-radius: 2px;
-    margin-left: 10px;
+    background-color: #fff;
+    margin: 0 0 0 10px;
     width: 60%;
     height: 22px;
     line-height: 22px;
     float: right;
     transition: width 0.5s;
     -webkit-transition: width 0.5s;
+    overflow: hidden;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
 }
 
 .modal-dialog.preferences div.html input[type="text"]:focus {
@@ -52,19 +58,18 @@
     color: #228ef1;
 }
 
-.modal-dialog.preferences fieldset ul {
+.modal-dialog.preferences fieldset legend + ul {
     display: none;
-    list-style: none;
 }
 
-.modal-dialog.widget-prefs.preferences fieldset legend.open + ul.interactions,
-.modal-dialog.pages-prefs.preferences fieldset legend.open + ul.layout-prefs {
+.modal-dialog.preferences fieldset legend.open + ul {
     display: block;
 }
 
-.modal-dialog.widget-prefs.preferences fieldset ul.interactions li {
+.modal-dialog.preferences fieldset ul li {
     width: 49%;
     float: left;
+    list-style: none;
     margin-bottom: 2px;
     margin-right: 2px;
     background-color: #dedede;
@@ -77,11 +82,46 @@
     line-height: 18px;
 }
 
-.modal-dialog.preferences ul.interactions input[type="text"] {
+.modal-dialog.preferences fieldset legend.open + ul input[type="text"],
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box {
     float: right;
+    width: 50%;
+    position: relative;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box > ul {
+    width: 100%;
+    margin: 0;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul input[type="text"]:focus {
     width: 50%;
 }
 
-.modal-dialog.preferences ul.interactions input[type="text"]:focus {
-    width: 50%;
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box-arrow {
+    position: absolute;
+    top: 1px;
+    right: 0px;
+    width: 12px;
+    height: 20px;
+    cursor: pointer;
+    background: transparent url('../../core/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png') no-repeat -69px 2px;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box-arrow:hover {
+    background-image: url('../../core/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png');
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open div.combo-box-arrow {
+    background-position: -4px 2px;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box li {
+    background-color: transparent;
+    display: none;
+    padding: 0 3px;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box li.selected {
+    display: inline-block;
 }
