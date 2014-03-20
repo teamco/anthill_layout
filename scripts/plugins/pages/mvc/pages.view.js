@@ -100,6 +100,17 @@ define([
          */
         showPreferences: function showPreferences(config) {
 
+            /**
+             * Define scope
+             * @type {Pages}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.setActiveContent,
+                config.uuid
+            );
+
             this.openPreferences({
                 config: config,
                 $html: this.controller.definePreferences(config.uuid).$,

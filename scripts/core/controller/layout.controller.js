@@ -138,12 +138,32 @@ define([
         },
 
         /**
-         * Get layout organizer mode
+         * Get layout Behavior mode
          * @member LayoutController
          * @returns {String}
          */
         getBehaviorMode: function getBehaviorMode() {
             return this.scope.config.mode;
+        },
+
+        /**
+         * Set layout Behavior mode
+         * @member LayoutController
+         * @param {string} mode
+         * @returns {String}
+         */
+        setBehaviorMode: function setBehaviorMode(mode) {
+            this.logger.warn(
+                'Behavior mode was changed',
+                this.controller.getBehaviorMode(),
+                mode
+            );
+
+            /**
+             * Define Behavior mode
+             * @type {string}
+             */
+            this.config.mode = mode;
         },
 
         /**

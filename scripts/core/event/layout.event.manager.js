@@ -36,6 +36,7 @@ define([
          *      beforeNestedOrganizer: string,
          *      afterNestedOrganizer: string,
          *      setOrganizeMode: string,
+         *      setBehaviorMode: string,
          *      setEmptySpacesMode: string
          * }}
          */
@@ -44,6 +45,7 @@ define([
             beforeNestedOrganizer: 'before.nested.organizer',
             afterNestedOrganizer: 'after.nested.organizer',
             setOrganizeMode: 'set.organize.mode',
+            setBehaviorMode: 'set.behavior.mode',
             setEmptySpacesMode: 'set.empty.spaces.mode'
         }
 

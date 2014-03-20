@@ -84,6 +84,7 @@ define([
         /**
          * Define default config
          * @type {{
+         *      preferences: {},
          *      order: number,
          *      type: string,
          *      isDefault: boolean,
@@ -121,6 +122,7 @@ define([
          * }}
          */
         var DEFAULTS = {
+            preferences: opts.preferences || {},
             order: 1,
             type: 'default',
             limit: false,

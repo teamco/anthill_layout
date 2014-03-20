@@ -113,7 +113,7 @@ define([], function defineBasePreferences() {
                                     value: cellWidth,
                                     disabled: true
                                 })
-                            ),
+                            ).addClass('layout-cell'),
                             $('<li />').append(
                                 this.renderCombobox(
                                     [
@@ -128,12 +128,12 @@ define([], function defineBasePreferences() {
                                         {
                                             type: 'text',
                                             value: page.LAYOUT_MODES.snap2grid
-                                        },
+                                        }
                                     ],
                                     layout.controller.getBehaviorMode(),
                                     'Mode'
                                 )
-                            )
+                            ).addClass('layout-behavior')
                         ])
                     )
                 )

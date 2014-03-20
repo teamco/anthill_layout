@@ -81,8 +81,9 @@ define([
          * @member Renderer
          * @param {Array} data
          * @param selected
+         * @param {{type: string, callback: function}} [event]
          */
-        renderCombobox: function renderCombobox(data, selected, name) {
+        renderCombobox: function renderCombobox(data, selected, name, event) {
 
             /**
              * Define container
@@ -91,6 +92,22 @@ define([
             var $div = $('<div />').addClass('combo-box').attr({
                 id: this.base.lib.generator.UUID() + '-combo-box'
             });
+
+            /**
+             * Open combo box
+             * @private
+             */
+            function _open() {
+                $div.addClass('open');
+            }
+
+            /**
+             * Hide combo box
+             * @private
+             */
+            function _hide() {
+                $div.removeClass('open');
+            }
 
             /**
              * Define $ul
@@ -126,7 +143,43 @@ define([
                     $li.addClass('selected');
                 }
 
-                $li.appendTo($ul);
+                $li.on(
+                    'click.comboBoxInternal',
+
+                    /**
+                     * Select combo box item
+                     * @param e
+                     * @returns {boolean}
+                     */
+                    function comboBoxInternalEvent(e) {
+
+                        /**
+                         * Define selected $li
+                         * @type {*|jQuery|HTMLElement}
+                         */
+                        var $selected = $(e.target);
+
+                        if ($selected.hasClass('selected')) {
+                            _hide();
+                            return false;
+                        }
+
+                        $('li', $selected.parent()).removeClass('selected');
+                        $selected.addClass('selected');
+
+                        _hide();
+                    }
+                );
+
+                if (this.base.isDefined(event)) {
+                    if (this.base.isFunction(event.callback)) {
+                        $li.on(event.type, function comboBoxEvent(e) {
+                            event.callback($(e.target).attr('rel'));
+                        });
+                    }
+                }
+
+                $li.attr({rel: field.value}).appendTo($ul);
             }
 
             return [
@@ -137,8 +190,7 @@ define([
                         'click.combo',
                         function clickCombo() {
                             $div.hasClass('open') ?
-                                $div.removeClass('open') :
-                                $div.addClass('open');
+                                _hide() : _open();
                         }
                     )
                 ])

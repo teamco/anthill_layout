@@ -83,6 +83,7 @@ define([
 
             /**
              * Define scope
+             * @type {PageData}
              */
             var scope = this.scope;
 

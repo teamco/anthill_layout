@@ -126,6 +126,7 @@
     padding: 0 3px;
     cursor: pointer;
     border-bottom: 1px solid #ccc;
+    line-height: 20px;
 }
 
 .modal-dialog.preferences fieldset legend.open + ul div.combo-box li.selected {

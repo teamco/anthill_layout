@@ -78,6 +78,25 @@ define([
         },
 
         /**
+         * Set active content
+         * @param uuid
+         */
+        setActiveContent: function setActiveContent(uuid) {
+
+            /**
+             * Define workspace
+             * @type {Workspace}
+             */
+            var workspace = this.controller.getWorkspace();
+
+            /**
+             * Set active content
+             * @type {Page}
+             */
+            this.activeContent = workspace.model.getItemByUUID(uuid);
+        },
+
+        /**
          * Update prefs
          * @member PagesController
          */
