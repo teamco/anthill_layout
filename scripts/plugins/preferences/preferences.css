@@ -3,12 +3,15 @@
     padding: 5px;
     border: 1px solid #ddd;
     background-color: #efefef;
+    overflow: visible;
 }
 
 .modal-dialog.preferences div.html label {
     font-size: 16px;
     font-weight: bold;
     font-variant: small-caps;
+    display: inline-block;
+    height: 22px;
 }
 
 .modal-dialog.preferences div.html input[type="text"],
@@ -119,9 +122,40 @@
 .modal-dialog.preferences fieldset legend.open + ul div.combo-box li {
     background-color: transparent;
     display: none;
+    width: 100%;
     padding: 0 3px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
 }
 
 .modal-dialog.preferences fieldset legend.open + ul div.combo-box li.selected {
     display: inline-block;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open ul {
+    overflow: auto;
+    max-height: 200px;
+    height: auto;
+    position: absolute;
+    border: 1px solid #999;
+    box-shadow: 3px 3px 5px #999;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li:hover {
+    background-color: #ffff99;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li:last-child,
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li:last-child:hover {
+    border: none;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li.selected,
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li.selected:hover {
+    background-color: #fbcb09;
 }

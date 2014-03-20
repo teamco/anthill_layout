@@ -1,7 +1,6 @@
 .modal-dialog {
     position: fixed;
     z-index: 1000;
-    overflow: hidden;
     min-height: 100px;
     max-width: 70%;
     max-height: 70%;
@@ -39,9 +38,7 @@
 }
 
 .modal-dialog .content {
-    overflow: auto;
     margin-bottom: 5px;
-    max-height: 400px;
 }
 
 .modal-dialog p.text,
