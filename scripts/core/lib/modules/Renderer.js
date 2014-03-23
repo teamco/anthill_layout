@@ -110,6 +110,29 @@ define([
             }
 
             /**
+             * Store prefs
+             * @param {Renderer} scope
+             * @param $selected
+             * @param selected
+             * @returns {boolean}
+             * @private
+             */
+            function _store(scope, $selected, selected) {
+
+                /**
+                 * Define value
+                 * @type {String}
+                 */
+                var value = $selected.text();
+
+                if (value === selected) {
+                    return false;
+                }
+
+                scope.view.controller.updatePrefs();
+            }
+
+            /**
              * Define $ul
              * @type {*|jQuery}
              */
@@ -161,6 +184,7 @@ define([
 
                         if ($selected.hasClass('selected')) {
                             _hide();
+                            _store(this, $selected, selected);
                             return false;
                         }
 
@@ -168,7 +192,9 @@ define([
                         $selected.addClass('selected');
 
                         _hide();
-                    }
+                        _store(this, $selected, selected);
+
+                    }.bind(this)
                 );
 
                 if (this.base.isDefined(event)) {

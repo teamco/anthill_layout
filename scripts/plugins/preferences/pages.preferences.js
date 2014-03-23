@@ -72,6 +72,7 @@ define([], function defineBasePreferences() {
              * @type {Layout}
              */
             var layout = page.controller.getLayout(),
+                modes = page.LAYOUT_MODES,
                 cname = layout.constructor.name;
 
             /**
@@ -106,6 +107,7 @@ define([], function defineBasePreferences() {
                             }),
 
                         $ul.append([
+
                             $('<li />').append(
                                 this.renderTextField({
                                     name: 'cell',
@@ -113,27 +115,28 @@ define([], function defineBasePreferences() {
                                     value: cellWidth,
                                     disabled: true
                                 })
-                            ).addClass('layout-cell'),
+                            ).attr('rel', 'layout-cell'),
+
                             $('<li />').append(
                                 this.renderCombobox(
                                     [
                                         {
                                             type: 'text',
-                                            value: page.LAYOUT_MODES.freeStyle
+                                            value: modes.freeStyle
                                         },
                                         {
                                             type: 'text',
-                                            value: page.LAYOUT_MODES.jqUIGrid
+                                            value: modes.jqUIGrid
                                         },
                                         {
                                             type: 'text',
-                                            value: page.LAYOUT_MODES.snap2grid
+                                            value: modes.snap2grid
                                         }
                                     ],
                                     layout.controller.getBehaviorMode(),
                                     'Mode'
                                 )
-                            ).addClass('layout-behavior')
+                            ).attr('rel', 'layout-behavior')
                         ])
                     )
                 )
