@@ -93,6 +93,42 @@ define([
             require([data], function defineEnUs(EnUs) {
                 plugin.i18n.updateData(EnUs);
             });
+        },
+
+        /**
+         * Locate element
+         */
+        locateElement: function locateElement($element) {
+
+            /**
+             * Define scope
+             */
+            var scope = this.scope;
+
+            /**
+             * Hide border on locate element
+             * @private
+             */
+            function _hideBorder() {
+                $element.$.removeClass('select');
+                clearTimeout(scope.locateTimeout);
+                scope.allowToLocate = true;
+            }
+
+            if (!scope.allowToLocate) {
+                return false;
+            }
+
+            scope.allowToLocate = false;
+
+            $element.$.addClass('select');
+
+            /**
+             * Define locate
+             * @member {Pages|PageData}
+             * @type {number}
+             */
+            scope.locateTimeout = setTimeout(_hideBorder, 2000);
         }
 
     }, AntHill.prototype, BaseController.prototype);

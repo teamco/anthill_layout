@@ -93,45 +93,18 @@ define([
         },
 
         /**
-         * Locate element
+         * Locate page data element
+         * @member PageDataController
          */
-        locateElement: function locateElement() {
+        locatePageData: function locatePageData() {
 
             /**
-             * Define scope
-             */
-            var scope = this.scope;
-
-            /**
-             * Define $widget
+             * Define $item
              * @type {WidgetElement}
              */
-            var $widget = scope.activeContent.containment.view.get$item();
+            var $item = this.scope.activeContent.containment.view.get$item();
 
-            /**
-             * Hide border on locate element
-             * @private
-             */
-            function _hideBorder() {
-                $widget.$.removeClass('select');
-                clearTimeout(scope.locateTimeout);
-                scope.allowToLocate = true;
-            }
-
-            if (!scope.allowToLocate) {
-                return false;
-            }
-
-            scope.allowToLocate = false;
-
-            $widget.$.addClass('select');
-
-            /**
-             * Define locate
-             * @member PageData
-             * @type {number}
-             */
-            scope.locateTimeout = setTimeout(_hideBorder, 2000);
+            this.locateElement($item);
         },
 
         /**

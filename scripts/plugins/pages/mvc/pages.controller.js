@@ -125,6 +125,21 @@ define([
         },
 
         /**
+         * Locate page data element
+         * @member PageDataController
+         */
+        locatePages: function locatePages() {
+
+            /**
+             * Define $item
+             * @type {PageElement}
+             */
+            var $item = this.scope.activeContent.view.get$item();
+
+            this.locateElement($item);
+        },
+
+        /**
          * Update widgets counter
          * @member PagesController
          */

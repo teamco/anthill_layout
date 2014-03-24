@@ -17,6 +17,7 @@
     text-transform: lowercase;
     display: inline-block;
     height: 22px;
+    line-height: 20px;
 }
 
 .modal-dialog.preferences div.html label.textarea {

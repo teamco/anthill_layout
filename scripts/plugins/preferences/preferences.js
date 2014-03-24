@@ -39,7 +39,7 @@ define([], function defineBasePreferences() {
                     locate: {
                         text: 'Locate',
                         events: {
-                            click: 'locateElement'
+                            click: 'locate' + this.scope.constructor.name
                         }
                     },
                     approve: {

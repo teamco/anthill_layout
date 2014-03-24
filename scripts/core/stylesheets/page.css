@@ -3,6 +3,10 @@
     overflow-x: hidden;
 }
 
+.page.select {
+    border: 5px solid #ff6347;
+}
+
 .page .delta-scroll {
     display: none;
     width: 1px;
