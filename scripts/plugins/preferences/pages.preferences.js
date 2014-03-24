@@ -5,7 +5,7 @@
  * Time: 7:39 PM
  */
 
-define([], function defineBasePreferences() {
+define([], function definePagesPreferences() {
 
     /**
      * Define prefs
@@ -20,6 +20,32 @@ define([], function defineBasePreferences() {
     return PagesPreferences.extend('PagesPreferences', {
 
         /**
+         * Define default widget prefs
+         * @type {{
+         *      title: {type: string, disabled: boolean, value},
+         *      pageUrl: {type: string, disabled: boolean, value},
+         *      description: {type: string, disabled: boolean, value}
+         * }}
+         */
+        defaultPrefs: {
+            title: {
+                type: 'text',
+                disabled: false,
+                value: undefined
+            },
+            description: {
+                type: 'textarea',
+                disabled: false,
+                value: undefined
+            },
+            pageUrl: {
+                type: 'text',
+                disabled: true,
+                value: undefined
+            }
+        },
+
+        /**
          * Render data
          * @memberOf PagesPreferences
          * @param opts
@@ -31,6 +57,12 @@ define([], function defineBasePreferences() {
              * @type {Array}
              */
             var nodes = [];
+
+            /**
+             * Merge prefs with default data
+             */
+           // opts = $.extend(true, this.defaultPrefs, opts);
+
 
             for (var index in opts.data) {
 

@@ -5,7 +5,7 @@
  * Time: 7:39 PM
  */
 
-define([], function defineBasePreferences() {
+define([], function defineWidgetPreferences() {
 
     /**
      * Define prefs

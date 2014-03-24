@@ -101,28 +101,28 @@ define([
 
         /**
          * Define controller
-         * @member PageData
+         * @member Pages
          * @type {*}
          */
         this.controller = undefined;
 
         /**
          * Define model
-         * @member PageData
+         * @member Pages
          * @type {*}
          */
         this.model = undefined;
 
         /**
          * Define view
-         * @member PageData
+         * @member Pages
          * @type {*}
          */
         this.view = undefined;
 
         /**
          * Define permissions
-         * @member PageData
+         * @member Pages
          * @type {*}
          */
         this.permission = undefined;
