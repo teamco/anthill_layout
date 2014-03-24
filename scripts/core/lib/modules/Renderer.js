@@ -26,13 +26,14 @@ define([
          * @member Renderer
          * @param {*|string} uuid
          * @param {string} text
+         * @param {string} type
          * @returns {*|jQuery}
          */
-        renderLabel: function renderLabel(uuid, text) {
+        renderLabel: function renderLabel(uuid, text, type) {
             return $('<label />').attr({
                 'for': uuid,
                 title: text.toUpperCase()
-            }).text(text);
+            }).addClass(type).text(text);
         },
 
         /**
@@ -63,7 +64,7 @@ define([
             }).val(opts.value);
 
             return [
-                this.renderLabel(uuid, opts.text),
+                this.renderLabel(uuid, opts.text, 'text'),
                 $input
             ];
         },
@@ -71,9 +72,47 @@ define([
         /**
          * Render text area
          * @member Renderer
+         * @param {{text: string, name: string, [placeholder]: string, value, [disabled]: boolean}} opts
+         * @returns {*[]}
          */
-        renderTextArea: function renderTextArea() {
+        renderTextArea: function renderTextArea(opts) {
 
+            /**
+             * Create UUID
+             * @type {String}
+             */
+            var uuid = this.base.lib.generator.UUID() + '-input',
+                $input;
+
+            if (this.base.defineBoolean(opts.disabled, false, true)) {
+
+                /**
+                 * Define $input
+                 * @type {*|jQuery}
+                 */
+                $input = $('<p />').attr({
+                    name: opts.name,
+                    id: uuid,
+                    title: opts.value
+                }).addClass('textarea').text(opts.value);
+
+            } else {
+
+                /**
+                 * Define $input
+                 * @type {*|jQuery}
+                 */
+                $input = $('<textarea />').attr({
+                    name: opts.name,
+                    id: uuid,
+                    placeholder: opts.placeholder,
+                    title: opts.value
+                }).val(opts.value);
+            }
+            return [
+                this.renderLabel(uuid, opts.text, 'textarea'),
+                $input
+            ];
         },
 
         /**

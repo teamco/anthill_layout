@@ -29,7 +29,7 @@ define([
         setEmbeddedContent: function setEmbeddedContent() {
 
             this.view.elements.$youtube.renderEmbeddedContent(
-                this.model.getUrl()
+                this.model.getPrefs('youtubeUrl')
             );
         }
 

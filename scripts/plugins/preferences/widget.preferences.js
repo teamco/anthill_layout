@@ -20,6 +20,32 @@ define([], function defineBasePreferences() {
     return WidgetPreferences.extend('WidgetPreferences', {
 
         /**
+         * Define default widget prefs
+         * @type {{
+         *      title: {type: string, disabled: boolean, value},
+         *      widgetUrl: {type: string, disabled: boolean, value},
+         *      description: {type: string, disabled: boolean, value}
+         * }}
+         */
+        defaultPrefs: {
+            title: {
+                type: 'text',
+                disabled: false,
+                value: undefined
+            },
+            description: {
+                type: 'textarea',
+                disabled: false,
+                value: undefined
+            },
+            widgetUrl: {
+                type: 'text',
+                disabled: true,
+                value: undefined
+            }
+        },
+
+        /**
          * Render data
          * @memberOf WidgetPreferences
          * @param data
@@ -32,20 +58,61 @@ define([], function defineBasePreferences() {
              */
             var nodes = [];
 
+            /**
+             * Merge prefs with default data
+             */
+            data = $.extend(true, this.defaultPrefs, data);
+
             for (var index in data) {
 
                 if (data.hasOwnProperty(index)) {
 
                     /**
-                     * Get text field
-                     * @type {*[]}
+                     * Define text
+                     * @type {string}
                      */
-                    var textField = this.renderTextField({
-                        name: index,
-                        text: index,
-                        placeholder: 'Enter ' + index,
-                        value: data[index]
-                    });
+                    var text = index.toPoint().humanize();
+
+                    /**
+                     * Define node
+                     */
+                    var node = data[index];
+
+                    /**
+                     * Define placeholder text
+                     * @type {string}
+                     */
+                    var placeholder = 'Enter ' + text;
+
+                    if (node.type === 'text') {
+
+                        /**
+                         * Get text field
+                         * @type {*[]}
+                         */
+                        var textField = this.renderTextField({
+                            name: index,
+                            text: text,
+                            placeholder: placeholder,
+                            value: node.value,
+                            disabled: node.disabled
+                        });
+                    }
+
+                    if (node.type === 'textarea') {
+
+                        /**
+                         * Get text field
+                         * @type {*[]}
+                         */
+                        var textField = this.renderTextArea({
+                            name: index,
+                            text: text,
+                            placeholder: placeholder,
+                            value: node.value,
+                            disabled: node.disabled
+                        });
+                    }
 
                     nodes.push(
                         $('<li />').append(textField)
@@ -135,7 +202,8 @@ define([], function defineBasePreferences() {
                 name: side.toLowerCase(),
                 text: side,
                 placeholder: side,
-                value: value
+                value: value,
+                disabled: true
             });
 
             return $('<li />').append($move);

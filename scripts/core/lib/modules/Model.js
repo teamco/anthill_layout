@@ -257,6 +257,63 @@ define([
         },
 
         /**
+         * Get prefs
+         * @member BaseModel
+         * @param {string} prefs
+         * @returns {boolean|string}
+         */
+        getPrefs: function getPrefs(prefs) {
+
+            if (!this.preferences[prefs]) {
+                this.scope.logger.warn('Undefined preference');
+                return false;
+            }
+
+            return this.preferences[prefs].value;
+        },
+
+        /**
+         * Set prefs
+         * @member BaseModel
+         * @param {string} prefs
+         * @param {string} value
+         */
+        setPrefs: function setPrefs(prefs, value) {
+
+            /**
+             * Define new prefs
+             * @type {*}
+             */
+            this.preferences[prefs] = this.base.define(
+                this.preferences[prefs], {}, true
+            );
+
+            /**
+             * Define prefs
+             * @type {string}
+             */
+            this.preferences[prefs].value = value;
+        },
+
+        /**
+         * Set Title
+         * @member BaseModel
+         * @param {string} title
+         */
+        setTitle: function setTitle(title) {
+            this.setPrefs('title', title);
+        },
+
+        /**
+         * Set Description
+         * @member BaseModel
+         * @param {string} description
+         */
+        setDescription: function setDescription(description) {
+            this.setPrefs('description', description);
+        },
+
+        /**
          * Check items limit
          * @member BaseModel
          * @param {Function} constructor

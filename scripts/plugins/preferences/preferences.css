@@ -2,16 +2,25 @@
     list-style: none;
     padding: 5px;
     border: 1px solid #ddd;
-    background-color: #efefef;
+    background-color: #e1e1e1;
     overflow: visible;
 }
 
+.modal-dialog.preferences div.html > ul > li {
+    margin-bottom: 3px;
+}
+
 .modal-dialog.preferences div.html label {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     font-variant: small-caps;
+    text-transform: lowercase;
     display: inline-block;
     height: 22px;
+}
+
+.modal-dialog.preferences div.html label.textarea {
+    width: 100%;
 }
 
 .modal-dialog.preferences div.html input[type="text"],
@@ -24,16 +33,45 @@
     height: 22px;
     line-height: 22px;
     float: right;
+    overflow: hidden;
     transition: width 0.5s;
     -webkit-transition: width 0.5s;
-    overflow: hidden;
     -moz-box-shadow: inset 0 0 5px #ccc;
     -webkit-box-shadow: inset 0 0 5px #ccc;
     box-shadow: inset 0 0 5px #ccc;
 }
 
 .modal-dialog.preferences div.html input[type="text"]:focus {
-    width: 80%;
+    width: 70%;
+}
+
+.modal-dialog.preferences div.html textarea,
+.modal-dialog.preferences div.html p.textarea {
+    resize: none;
+    transition: height 0.5s;
+    -webkit-transition: height 0.5s;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #fff;
+    width: 100%;
+    height: 22px;
+    display: inline-block;
+}
+
+.modal-dialog.preferences div.html input[disabled="disabled"] {
+    background-color: #f1f1f1;;
+}
+
+.modal-dialog.preferences div.html p.textarea {
+    background-color: #f1f1f1;;
+    padding: 2px 5px;
+}
+
+.modal-dialog.preferences div.html textarea:focus {
+    height: 50px;
 }
 
 .modal-dialog.preferences fieldset {

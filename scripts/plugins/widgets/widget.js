@@ -75,7 +75,6 @@ define([
          * @returns {{}}
          */
         getPreferences: function getPreferences() {
-
             return this.model.preferences;
         },
 
@@ -86,7 +85,7 @@ define([
          */
         updatePreferences: function updatePreferences($modal) {
 
-            var $inputs = $('input', $modal.$),
+            var $inputs = $('input:not(:disabled), textarea', $modal.$),
                 scope = this.scope;
 
             $inputs.each(function each(index, input) {

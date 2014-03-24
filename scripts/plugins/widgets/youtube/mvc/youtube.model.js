@@ -20,37 +20,30 @@ define([
         /**
          * Define preferences
          * @member YoutubeModel
-         * @type {{url: string}}
+         * @type {{
+         *      youtubeUrl: {}
+         * }}
          */
         this.preferences = {
-            url: undefined
+            youtubeUrl: {
+                type: 'text',
+                disabled: false,
+                value: undefined
+            }
         };
     };
 
     return YoutubeModel.extend('YoutubeModel', {
 
         /**
-         * Get URL
-         * @member YoutubeModel
-         * @returns {string}
-         */
-        getUrl: function getUrl() {
-            return this.preferences.url;
-        },
-
-        /**
-         * Set URL
+         * Set Youtube Url
          * @member YoutubeModel
          * @param {string} url
          */
-        setUrl: function setUrl(url) {
-
-            /**
-             * Define URL
-             * @type {string}
-             */
-            this.preferences.url = url;
+        setYoutubeUrl: function setYoutubeUrl(url) {
+            this.setPrefs('youtubeUrl', url);
         }
+
 
     }, BaseModel.prototype);
 });
