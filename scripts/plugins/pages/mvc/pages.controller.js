@@ -140,6 +140,34 @@ define([
         },
 
         /**
+         * Get page data
+         * @member PageDataController
+         * @returns {Panel}
+         */
+        getPanel: function getPanel() {
+
+            return this.scope.containment;
+        },
+
+        /**
+         * Get page data
+         * @member PageDataController
+         * @returns {PageData}
+         */
+        getPageData: function getPageData() {
+
+            /**
+             * Define panel
+             * @type {Panel}
+             */
+            var panel = this.getPanel();
+
+            return panel.model.getModule(
+                panel.model.getIndex('pagedata')
+            ).module;
+        },
+
+        /**
          * Update widgets counter
          * @member PagesController
          */

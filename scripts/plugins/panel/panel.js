@@ -116,6 +116,34 @@ define([
         this.config = undefined;
 
         /**
+         * Define controller
+         * @member Panel
+         * @type {*}
+         */
+        this.controller = undefined;
+
+        /**
+         * Define model
+         * @member Panel
+         * @type {*}
+         */
+        this.model = undefined;
+
+        /**
+         * Define view
+         * @member Panel
+         * @type {*}
+         */
+        this.view = undefined;
+
+        /**
+         * Define permissions
+         * @member Panel
+         * @type {*}
+         */
+        this.permission = undefined;
+
+        /**
          * Define MVC
          * @member Panel
          * @type {MVC}

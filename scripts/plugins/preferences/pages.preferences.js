@@ -229,7 +229,7 @@ define([
                  * @type {*}
                  */
                 var widgets = page.model.getItems(),
-                    widget;
+                    widget, uuid;
 
                 for (var index in widgets) {
 
@@ -241,13 +241,16 @@ define([
                          */
                         widget = widgets[index];
 
-                        list.push(
-                            $('<li />').append(
+                        /**
+                         * Define uuid
+                         * @type {String}
+                         */
+                        uuid = widget.model.getUUID();
 
-                            ).attr(
-                                'rel',
-                                widget.model.getUUID()
-                            ).text(widget.model.getUUID())
+                        list.push(
+                            $('<li />').attr('rel', uuid).
+                                text(uuid).
+                                on('click.widgetPrefs', this.showWidgetPrefs.bind(this))
                         );
                     }
                 }
@@ -270,12 +273,58 @@ define([
                                 title: cname
                             }),
 
-                        $ul.append(_renderWidgets())
+                        $ul.append(_renderWidgets.bind(this)())
                     )
                 )
             );
 
             return nodes;
+        },
+
+        /**
+         * Show Widget prefs
+         * @member PagesPreferences
+         * @param e
+         */
+        showWidgetPrefs: function showWidgetPrefs(e) {
+
+            /**
+             * Trigger click prefs
+             * @private
+             */
+            function _triggerPrefs() {
+
+                /**
+                 * Define $item
+                 * @type {PageDataContentElement}
+                 */
+                var $item = this.view.elements.items[uuid + '-view'];
+
+                $item.$.trigger('click.prefs');
+            }
+
+            /**
+             * Get uuid
+             * @type {*|jQuery}
+             */
+            var uuid = $(e.target).attr('rel');
+
+            /**
+             * Define panel
+             * @type {Panel}
+             */
+            var panel = this.view.controller.getPanel();
+
+            /**
+             * Define page data
+             * @type {*|PageData}
+             */
+            var pageData = this.view.controller.getPageData();
+
+            panel.observer.publish(
+                panel.eventmanager.eventList.openPanel,
+                ['pagedata', _triggerPrefs.bind(pageData)]
+            );
         }
 
     }, BasePreferences.prototype);

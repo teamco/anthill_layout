@@ -7,13 +7,14 @@
 
 define([
     'plugins/plugin'
-], function definePanelController(PluginBase) {
+], function definePanelController(PluginController) {
 
     /**
      * Define panel controller
      * @class PanelController
      * @constructor
      * @extends PluginController
+     * @extends AntHill
      */
     var PanelController = function PanelController() {
     };
@@ -133,9 +134,15 @@ define([
          * Open panel
          * @member PanelController
          * @param {string} resource
+         * @param {function} [callback]
          */
-        openPanel: function openPanel(resource) {
+        openPanel: function openPanel(resource, callback) {
+
             this.view.elements.$panel.toggle(resource, true);
+
+            if (this.base.isDefined(callback) && this.base.isFunction(callback)) {
+                callback();
+            }
         },
 
 
@@ -241,5 +248,5 @@ define([
             }
         }
 
-    }, PluginBase.prototype);
+    }, PluginController.prototype);
 });
