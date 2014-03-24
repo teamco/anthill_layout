@@ -5,12 +5,15 @@
  * Time: 7:39 PM
  */
 
-define([], function definePagesPreferences() {
+define([
+    'plugins/preferences/preferences'
+], function definePagesPreferences(BasePreferences) {
 
     /**
      * Define prefs
      * @class PagesPreferences
      * @extends Renderer
+     * @extends BasePreferences
      * @constructor
      */
     var PagesPreferences = function PagesPreferences() {
@@ -47,7 +50,7 @@ define([], function definePagesPreferences() {
 
         /**
          * Render data
-         * @memberOf PagesPreferences
+         * @member PagesPreferences
          * @param opts
          */
         renderData: function renderData(opts) {
@@ -61,7 +64,7 @@ define([], function definePagesPreferences() {
             /**
              * Merge prefs with default data
              */
-           // opts = $.extend(true, this.defaultPrefs, opts);
+            opts.data = $.extend(true, this.defaultPrefs, opts.data);
 
 
             for (var index in opts.data) {
@@ -69,15 +72,50 @@ define([], function definePagesPreferences() {
                 if (opts.data.hasOwnProperty(index)) {
 
                     /**
-                     * Get text field
-                     * @type {*[]}
+                     * Define text
+                     * @type {string}
                      */
-                    var textField = this.renderTextField({
-                        name: index,
-                        text: index,
-                        placeholder: 'Enter ' + index,
-                        value: opts.data[index]
-                    });
+                    var text = index.toPoint().humanize();
+
+                    /**
+                     * Define node
+                     */
+                    var node = opts.data[index];
+
+                    /**
+                     * Define placeholder text
+                     * @type {string}
+                     */
+                    var placeholder = 'Enter ' + text;
+
+                    if (node.type === 'text') {
+                        /**
+                         * Get text field
+                         * @type {*[]}
+                         */
+                        var textField = this.renderTextField({
+                            name: index,
+                            text: text,
+                            placeholder: placeholder,
+                            value: node.value,
+                            disabled: node.disabled
+                        });
+                    }
+
+                    if (node.type === 'textarea') {
+
+                        /**
+                         * Get text field
+                         * @type {*[]}
+                         */
+                        var textField = this.renderTextArea({
+                            name: index,
+                            text: text,
+                            placeholder: placeholder,
+                            value: node.value,
+                            disabled: node.disabled
+                        });
+                    }
 
                     nodes.push(
                         $('<li />').append(textField)
@@ -87,6 +125,8 @@ define([], function definePagesPreferences() {
 
             this.$.append(
                 this.renderLayoutPrefs(opts.page, nodes)
+            ).append(
+                this.renderWidgetsPrefs(opts.page, nodes)
             );
         },
 
@@ -108,7 +148,7 @@ define([], function definePagesPreferences() {
                 cname = layout.constructor.name;
 
             /**
-             * Define interactions container
+             * Define layout container
              * @type {*|jQuery}
              */
             var $ul = $('<ul />').addClass('layout-prefs');
@@ -123,18 +163,7 @@ define([], function definePagesPreferences() {
                 $('<li />').append(
                     $('<fieldset />').append(
                         $('<legend />').text(cname).
-                            on('click.toggle', function click() {
-
-                                /**
-                                 * Define $li
-                                 * @type {*|jQuery|HTMLElement}
-                                 */
-                                var $li = $(this);
-
-                                $li.hasClass('open') ?
-                                    $li.removeClass('open') :
-                                    $li.addClass('open');
-                            }).attr({
+                            on('click.toggle', this.toggleFieldset).attr({
                                 title: cname
                             }),
 
@@ -175,7 +204,79 @@ define([], function definePagesPreferences() {
             );
 
             return nodes;
+        },
+
+        /**
+         * Render widgets prefs
+         * @member PagesPreferences
+         * @param {Page} page
+         * @param nodes
+         * @returns {*}
+         */
+        renderWidgetsPrefs: function renderWidgetsPrefs(page, nodes) {
+
+            /**
+             * Render widgets
+             * @returns {Array}
+             * @private
+             */
+            function _renderWidgets() {
+
+                var list = [];
+
+                /**
+                 * Get page widgets
+                 * @type {*}
+                 */
+                var widgets = page.model.getItems(),
+                    widget;
+
+                for (var index in widgets) {
+
+                    if (widgets.hasOwnProperty(index)) {
+
+                        /**
+                         * Define widget
+                         * @type {Widget}
+                         */
+                        widget = widgets[index];
+
+                        list.push(
+                            $('<li />').append(
+
+                            ).attr(
+                                'rel',
+                                widget.model.getUUID()
+                            ).text(widget.model.getUUID())
+                        );
+                    }
+                }
+
+                return list;
+            }
+
+            /**
+             * Define widgets container
+             * @type {*|jQuery}
+             */
+            var $ul = $('<ul />').addClass('widgets-prefs'),
+                cname = 'Widgets';
+
+            nodes.push(
+                $('<li />').append(
+                    $('<fieldset />').append(
+                        $('<legend />').text(cname).
+                            on('click.toggle', this.toggleFieldset).attr({
+                                title: cname
+                            }),
+
+                        $ul.append(_renderWidgets())
+                    )
+                )
+            );
+
+            return nodes;
         }
 
-    });
+    }, BasePreferences.prototype);
 });

@@ -6,6 +6,7 @@ define([], function defineBasePreferences() {
 
     /**
      * Define base prefs
+     * @class BasePreferences
      * @constructor
      */
     var BasePreferences = function BasePreferences() {
@@ -13,6 +14,23 @@ define([], function defineBasePreferences() {
     };
 
     return BasePreferences.extend({
+
+        /**
+         * Toggle fieldset
+         * @member BasePreferences
+         */
+        toggleFieldset: function toggleFieldset() {
+
+            /**
+             * Define $li
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $li = $(this);
+
+            $li.hasClass('open') ?
+                $li.removeClass('open') :
+                $li.addClass('open');
+        },
 
         /**
          * Open preferences

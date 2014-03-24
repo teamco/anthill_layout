@@ -199,3 +199,13 @@
 .modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li.selected:hover {
     background-color: #fbcb09;
 }
+
+.modal-dialog.preferences .layout-prefs,
+.modal-dialog.preferences .widgets-prefs {
+    margin: 0;
+}
+
+.modal-dialog.preferences .widgets-prefs li {
+    padding: 3px 5px;
+    cursor: pointer;
+}

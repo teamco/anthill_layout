@@ -5,12 +5,15 @@
  * Time: 7:39 PM
  */
 
-define([], function defineWidgetPreferences() {
+define([
+    'plugins/preferences/preferences'
+], function defineWidgetPreferences(BasePreferences) {
 
     /**
      * Define prefs
      * @class WidgetPreferences
      * @extends Renderer
+     * @extends BasePreferences
      * @constructor
      */
     var WidgetPreferences = function WidgetPreferences() {
@@ -157,18 +160,7 @@ define([], function defineWidgetPreferences() {
                 $('<li />').append(
                     $('<fieldset />').append(
                         $('<legend />').text('Interactions').
-                            on('click.toggle', function click() {
-
-                                /**
-                                 * Define $li
-                                 * @type {*|jQuery|HTMLElement}
-                                 */
-                                var $li = $(this);
-
-                                $li.hasClass('open') ?
-                                    $li.removeClass('open') :
-                                    $li.addClass('open');
-                            }).attr({
+                            on('click.toggle', this.toggleFieldset).attr({
                                 title: 'Interactions'
                             }),
 
@@ -208,6 +200,6 @@ define([], function defineWidgetPreferences() {
 
             return $('<li />').append($move);
         }
-    });
 
+    }, BasePreferences.prototype);
 });
