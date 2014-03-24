@@ -40,6 +40,12 @@ define([
 
             this.header(Header, this.elements.$container);
 
+            if (this.elements.$header.$) {
+                this.elements.$header.setText(
+                    'Page Widgets'
+                );
+            }
+
             /**
              * Define PageData element
              * @type {PageDataElement}
@@ -50,6 +56,12 @@ define([
             });
 
             this.footer(Footer, this.elements.$container);
+
+            if (this.elements.$footer.$) {
+                this.elements.$footer.setHtml(
+                    this.elements.$pagedata.getFooter()
+                );
+            }
         },
 
         /**

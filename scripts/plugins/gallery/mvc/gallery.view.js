@@ -38,6 +38,12 @@ define([
 
             this.header(Header, this.elements.$container);
 
+            if (this.elements.$header.$) {
+                this.elements.$header.setText(
+                    'Gallery Widgets'
+                );
+            }
+
             /**
              * Define Gallery element
              * @type {GalleryElement}
@@ -48,6 +54,12 @@ define([
             });
 
             this.footer(Footer, this.elements.$container);
+
+            if (this.elements.$footer.$) {
+                this.elements.$footer.setHtml(
+                    this.elements.$gallery.getFooter()
+                );
+            }
         },
 
         /**

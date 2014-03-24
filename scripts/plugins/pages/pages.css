@@ -3,7 +3,15 @@
 }
 
 .panel div.pages-header {
-    height: 40px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    box-shadow: 1px 1px 5px #333;
+    border-bottom: 1px solid #fff;
+    text-shadow: 1px 1px #fff;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    font-size: 14px;
 }
 
 .panel ul.pages .content {
@@ -34,4 +42,20 @@
 .panel div.pages-footer {
     position: absolute;
     bottom: 0;
+    width: 100%;
+    border-top: 1px solid #333;
+    padding-right: 40px;
+    height: 30px;
+    box-shadow: 1px 0 5px #333;
+}
+
+.panel div.pages-footer > div {
+    height: 100%;
+    border-top: 1px solid #fff;
+    line-height: 30px;
+    padding: 0 10px;
+    font-size: 12px;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    text-shadow: 1px 1px #fff;
 }

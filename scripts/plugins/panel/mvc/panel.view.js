@@ -78,6 +78,12 @@ define([
 
             this.header(Header, this.elements.$container);
 
+            if (this.elements.$header.$) {
+                this.elements.$header.setText(
+                    'Configuration'
+                );
+            }
+
             /**
              * Define local width
              */

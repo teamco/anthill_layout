@@ -40,6 +40,12 @@ define([
 
             this.header(Header, this.elements.$container);
 
+            if (this.elements.$header.$) {
+                this.elements.$header.setText(
+                    'Workspace Pages'
+                );
+            }
+
             /**
              * Define Pages element
              * @type {PagesElement}
@@ -50,6 +56,12 @@ define([
             });
 
             this.footer(Footer, this.elements.$container);
+
+            if (this.elements.$footer.$) {
+                this.elements.$footer.setHtml(
+                    this.elements.$pages.getFooter()
+                );
+            }
         },
 
         /**

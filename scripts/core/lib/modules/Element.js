@@ -598,6 +598,24 @@ define([
         },
 
         /**
+         * Set html
+         * @member HeaderElement
+         * @param html
+         */
+        setHtml: function setHtml(html) {
+            this.$.html(html);
+        },
+
+        /**
+         * Set text
+         * @member HeaderElement
+         * @param text
+         */
+        setText: function setText(text) {
+            this.$.text(text);
+        },
+
+        /**
          * Show items content
          */
         showItemsContent: function showItemsContent() {

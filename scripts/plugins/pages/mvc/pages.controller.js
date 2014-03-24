@@ -21,6 +21,17 @@ define([
     return PagesController.extend('PagesController', {
 
         /**
+         * Get data
+         * @member PagesController
+         * @returns {*}
+         */
+        getData: function getData() {
+            return this.model.getDataItems(
+                this.getWorkspace()
+            )
+        },
+
+        /**
          * Load pages content
          * @member PagesController
          * @param opened
@@ -29,9 +40,7 @@ define([
 
             if (opened && this.isDataNotExist()) {
                 this.getView().renderContent(
-                    this.model.getData(
-                        this.getWorkspace()
-                    )
+                    this.getData()
                 );
             }
         },

@@ -32,6 +32,20 @@ define([
 
     return GalleryElement.extend('GalleryElement', {
 
+        /**
+         * Get footer html
+         * @member GalleryElement
+         * @returns {*|jQuery}
+         */
+        getFooter: function getFooter() {
+            return $('<div />').text([
+                this.base.lib.hash.hashLength(
+                    this.view.scope.controller.getData()
+                ),
+                'items'
+            ].join(' '));
+        }
+
     }, BaseElement.prototype);
 
 });

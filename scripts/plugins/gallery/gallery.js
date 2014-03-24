@@ -53,7 +53,7 @@ define([
             html: {
                 style: 'default',
                 header: true,
-                footer: false,
+                footer: true,
                 floating: true,
                 padding: {
                     top: 0,

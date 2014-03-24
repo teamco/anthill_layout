@@ -29,10 +29,10 @@ define([
     return PagesModel.extend('PagesModel', {
 
         /**
-         * Get data provider
+         * Get data items
          * @member PagesModel
          */
-        getData: function getData(workspace) {
+        getDataItems: function getDataItems(workspace) {
             return workspace.model.getItems();
         }
 
