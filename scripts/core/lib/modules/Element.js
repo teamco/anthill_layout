@@ -48,42 +48,42 @@ define([
 
             /**
              * Define style
-             * @memberOf BaseElement
+             * @member BaseElement
              * @type {String}
              */
             this.style = opts.style || view.createStyle();
 
             /**
              * Define id
-             * @memberOf BaseElement
+             * @member BaseElement
              * @type {String}
              */
             this.id = view.renderUUID(opts.id);
 
             /**
              * Define events
-             * @memberOf BaseElement
+             * @member BaseElement
              * @type {*}
              */
             this.events = opts.events;
 
             /**
              * Define opacity
-             * @memberOf BaseElement
+             * @member BaseElement
              * @type {*|number}
              */
             this.opacity = opts.opacity || 1.0;
 
             /**
              * Define CSS
-             * @memberOf BaseElement
+             * @member BaseElement
              * @type {*}
              */
             this.css = this.base.define(opts.css, {}, true);
 
             /**
              * Define jQuery element
-             * @memberOf BaseElement
+             * @member BaseElement
              */
             this.$ = $html.attr({
                 id: this.id

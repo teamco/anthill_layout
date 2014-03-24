@@ -49,7 +49,7 @@ define([
 
             /**
              * Define widget content
-             * @type {*|Content}
+             * @type {WidgetContent}
              */
             scope.activeContent = widget.controller.getContent();
 
@@ -90,6 +90,48 @@ define([
             scope.activeContent.controller.updatePreferences(
                 scope.view.elements.$modal
             );
+        },
+
+        /**
+         * Locate element
+         */
+        locateElement: function locateElement() {
+
+            /**
+             * Define scope
+             */
+            var scope = this.scope;
+
+            /**
+             * Define $widget
+             * @type {WidgetElement}
+             */
+            var $widget = scope.activeContent.containment.view.get$item();
+
+            /**
+             * Hide border on locate element
+             * @private
+             */
+            function _hideBorder() {
+                $widget.$.removeClass('select');
+                clearTimeout(scope.locateTimeout);
+                scope.allowToLocate = true;
+            }
+
+            if (!scope.allowToLocate) {
+                return false;
+            }
+
+            scope.allowToLocate = false;
+
+            $widget.$.addClass('select');
+
+            /**
+             * Define locate
+             * @member PageData
+             * @type {number}
+             */
+            scope.locateTimeout = setTimeout(_hideBorder, 2000);
         },
 
         /**

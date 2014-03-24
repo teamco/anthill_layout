@@ -66,9 +66,11 @@
     left: 10px;
     z-index: 50;
     cursor: move;
+    border: none;
 }
 
 .widget.ui-resizable-resizing,
+.widget.select,
 .widget:hover {
     border: 5px solid #ff6347;
 }

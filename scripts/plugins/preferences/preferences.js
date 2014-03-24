@@ -36,6 +36,12 @@ define([], function defineBasePreferences() {
                 html: opts.$html,
                 cover: true,
                 buttons: {
+                    locate: {
+                        text: 'Locate',
+                        events: {
+                            click: 'locateElement'
+                        }
+                    },
                     approve: {
                         text: 'OK',
                         events: {

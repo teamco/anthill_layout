@@ -31,6 +31,20 @@ define([
         this.containment = containment;
 
         /**
+         * Define active content
+         * @member PageData
+         * @type {*}
+         */
+        this.activeContent = undefined;
+
+        /**
+         * Allow to locate element
+         * @member PageData
+         * @type {boolean}
+         */
+        this.allowToLocate = true;
+
+        /**
          * Define defaults
          * @type {{
          *      plugin: boolean,
@@ -84,6 +98,34 @@ define([
          * @type {*}
          */
         this.config = undefined;
+
+        /**
+         * Define controller
+         * @member PageData
+         * @type {*}
+         */
+        this.controller = undefined;
+
+        /**
+         * Define model
+         * @member PageData
+         * @type {*}
+         */
+        this.model = undefined;
+
+        /**
+         * Define view
+         * @member PageData
+         * @type {*}
+         */
+        this.view = undefined;
+
+        /**
+         * Define permissions
+         * @member PageData
+         * @type {*}
+         */
+        this.permission = undefined;
 
         /**
          * Define MVC
