@@ -601,8 +601,14 @@ define([
          * Set html
          * @member HeaderElement
          * @param html
+         * @returns {boolean}
          */
         setHtml: function setHtml(html) {
+
+            if (!this.$) {
+                return false;
+            }
+
             this.$.html(html);
         },
 
@@ -610,8 +616,14 @@ define([
          * Set text
          * @member HeaderElement
          * @param text
+         * @returns {boolean}
          */
         setText: function setText(text) {
+
+            if (!this.$) {
+                return false;
+            }
+
             this.$.text(text);
         },
 
@@ -639,7 +651,7 @@ define([
                 /**
                  * Filter all items except itself
                  */
-                $items = $items.filter(function filter(index){
+                $items = $items.filter(function filter(index) {
                     return this.parentNode.parentNode.id !== item.id;
                 });
             }

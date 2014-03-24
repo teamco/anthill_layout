@@ -38,13 +38,9 @@ define([
                 return false;
             }
 
-            this.header(Header, this.elements.$container);
-
-            if (this.elements.$header.$) {
-                this.elements.$header.setText(
-                    'Workspace Pages'
-                );
-            }
+            this.header(Header, this.elements.$container).setText(
+                'Workspace Pages'
+            );
 
             /**
              * Define Pages element
@@ -55,13 +51,9 @@ define([
                 $container: this.elements.$container.$
             });
 
-            this.footer(Footer, this.elements.$container);
-
-            if (this.elements.$footer.$) {
-                this.elements.$footer.setHtml(
-                    this.elements.$pages.getFooter()
-                );
-            }
+            this.footer(Footer, this.elements.$container).setHtml(
+                this.elements.$pages.getFooter()
+            );
         },
 
         /**

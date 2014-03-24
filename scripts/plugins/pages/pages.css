@@ -14,6 +14,10 @@
     font-size: 14px;
 }
 
+.panel ul.pages {
+    overflow: hidden;
+}
+
 .panel ul.pages .content {
     height: 70px;
     width: 70px;

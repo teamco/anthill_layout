@@ -155,6 +155,7 @@ define([
          * @member BaseView
          * @param HeaderElement
          * @param $container
+         * @returns {HeaderElement}
          */
         header: function header(HeaderElement, $container) {
 
@@ -169,6 +170,8 @@ define([
                 ].join('-'),
                 $container: $container.$
             });
+
+            return this.elements.$header;
         },
 
         /**
@@ -176,6 +179,7 @@ define([
          * @member BaseView
          * @param FooterElement
          * @param $container
+         * @returns {FooterElement}
          */
         footer: function footer(FooterElement, $container) {
 
@@ -190,6 +194,8 @@ define([
                 ].join('-'),
                 $container: $container.$
             });
+
+            return this.elements.$footer;
         },
 
         /**

@@ -76,13 +76,9 @@ define([
             this.renderPanelContainer();
             this.renderTab();
 
-            this.header(Header, this.elements.$container);
-
-            if (this.elements.$header.$) {
-                this.elements.$header.setText(
-                    'Configuration'
-                );
-            }
+            this.header(Header, this.elements.$container).setText(
+                'Configuration'
+            );
 
             /**
              * Define local width
