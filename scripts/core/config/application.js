@@ -142,6 +142,34 @@ define([
         this.eventmanager = undefined;
 
         /**
+         * Define controller
+         * @member App
+         * @type {*}
+         */
+        this.controller = undefined;
+
+        /**
+         * Define model
+         * @member App
+         * @type {*}
+         */
+        this.model = undefined;
+
+        /**
+         * Define view
+         * @member App
+         * @type {*}
+         */
+        this.view = undefined;
+
+        /**
+         * Define permissions
+         * @member App
+         * @type {*}
+         */
+        this.permission = undefined;
+
+        /**
          * Define MVC
          * @member App
          * @type {MVC}

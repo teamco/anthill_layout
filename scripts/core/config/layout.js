@@ -100,6 +100,20 @@ define([
         this.eventmanager = undefined;
 
         /**
+         * Define controller
+         * @member Layout
+         * @type {*}
+         */
+        this.controller = undefined;
+
+        /**
+         * Define permissions
+         * @member Layout
+         * @type {*}
+         */
+        this.permission = undefined;
+        
+        /**
          * Define MVC
          * @member Layout
          * @type {MVC}

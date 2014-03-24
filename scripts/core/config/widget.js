@@ -101,16 +101,51 @@ define([
         /**
          * Init observer
          * @member Widget
-         * @type {undefined}
+         * @type {*}
          */
         this.observer = undefined;
 
         /**
+         * Init config
+         * @member Widget
+         * @type {*}
+         */
+        this.config = undefined;
+
+        /**
          * Init event manager
          * @member Widget
-         * @type {undefined}
+         * @type {*}
          */
         this.eventmanager = undefined;
+
+        /**
+         * Define controller
+         * @member Widget
+         * @type {*}
+         */
+        this.controller = undefined;
+
+        /**
+         * Define model
+         * @member Widget
+         * @type {*}
+         */
+        this.model = undefined;
+
+        /**
+         * Define view
+         * @member Widget
+         * @type {*}
+         */
+        this.view = undefined;
+
+        /**
+         * Define permissions
+         * @member Widget
+         * @type {*}
+         */
+        this.permission = undefined;
 
         /**
          * Define constants

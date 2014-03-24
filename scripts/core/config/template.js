@@ -54,24 +54,52 @@ define([
 
         /**
          * Init observer
-         * @member Page
+         * @member Template
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
-         * @member Page
+         * @member Template
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
-         * @member Page
+         * @member Template
          * @type {*}
          */
         this.config = undefined;
+
+        /**
+         * Define controller
+         * @member Template
+         * @type {*}
+         */
+        this.controller = undefined;
+
+        /**
+         * Define model
+         * @member Template
+         * @type {*}
+         */
+        this.model = undefined;
+
+        /**
+         * Define view
+         * @member Template
+         * @type {*}
+         */
+        this.view = undefined;
+
+        /**
+         * Define permissions
+         * @member Template
+         * @type {*}
+         */
+        this.permission = undefined;
 
         /**
          * Define MVC
@@ -93,11 +121,11 @@ define([
         });
 
         /**
-         * Define page
+         * Define Template
          * @member Template
-         * @type {*|Page}
+         * @type {*|Template}
          */
-        this.page = {};
+        this.Template = {};
 
         /**
          * Define items

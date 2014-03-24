@@ -203,6 +203,34 @@ define([
         this.config = undefined;
 
         /**
+         * Define controller
+         * @member Page
+         * @type {*}
+         */
+        this.controller = undefined;
+
+        /**
+         * Define model
+         * @member Page
+         * @type {*}
+         */
+        this.model = undefined;
+
+        /**
+         * Define view
+         * @member Page
+         * @type {*}
+         */
+        this.view = undefined;
+
+        /**
+         * Define permissions
+         * @member Page
+         * @type {*}
+         */
+        this.permission = undefined;
+
+        /**
          * Define MVC
          * @member Page
          * @type {MVC}
