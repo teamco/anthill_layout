@@ -79,7 +79,8 @@ define([
             this.getPage().api.createItem({
                 config: {
                     preferences: {
-                        resource: $element.$.attr('resource')
+                        resource: $element.$.attr('resource'),
+                        thumbnail: $element.data.thumbnail
                     }
                 }
             }, true);

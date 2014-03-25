@@ -49,6 +49,10 @@ define([
             this.$.attr({
                 title: config.uuid
             }).addClass(config.resource);
+
+            this.$.css({
+                backgroundImage: 'url("' + config.preferences.thumbnail + '")'
+            });
         },
 
         /**

@@ -18,12 +18,9 @@ ul.pagedata .content {
     height: 70px;
     width: 70px;
     display: block;
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 10px #ccc;
-    background-color: #fff;
-    border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    background: transparent no-repeat center center;
 }
 
 div.pagedata-footer {

@@ -25,7 +25,13 @@ define([
             destroy: false
         });
 
-        this.setAttributes(opts.data);
+        /**
+         * Define data
+         * @type {*}
+         */
+        this.data = opts.data;
+
+        this.setAttributes();
         this.bindInstallWidget();
 
         return this;
@@ -36,18 +42,17 @@ define([
         /**
          * Set attributes
          * @memberOf GalleryContentElement
-         * @param data
          */
-        setAttributes: function setAttributes(data) {
+        setAttributes: function setAttributes() {
 
             this.$.attr({
-                title: data.name,
-                rel: data.description,
-                resource: data.resource
+                title: this.data.name,
+                rel: this.data.description,
+                resource: this.data.resource
             });
 
             this.$.css({
-                backgroundImage: 'url("' + data.thumbnail + '")'
+                backgroundImage: 'url("' + this.data.thumbnail + '")'
             });
         },
 

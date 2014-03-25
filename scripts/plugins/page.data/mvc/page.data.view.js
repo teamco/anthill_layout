@@ -90,7 +90,7 @@ define([
 
                     /**
                      * Render item
-                     * @type {PageDataContentElement}
+                     * @type {*}
                      */
                     var $item = new PageDataContent(this, {
                         style: 'content',
