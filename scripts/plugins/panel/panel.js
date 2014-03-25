@@ -80,7 +80,7 @@ define([
                     min: 5,
                     max: 215
                 },
-                resizable: true,
+                resizable: false,
                 style: 'default',
                 header: true,
                 footer: false,

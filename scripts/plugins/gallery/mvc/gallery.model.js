@@ -60,6 +60,10 @@ define([
          * @type {{indoor: {name: string, data: *[]}}}
          */
         this.providers = {
+            all: {
+                name: 'All',
+                data: []
+            },
             indoor: {
                 name: 'Indoor',
                 data: this.staticData

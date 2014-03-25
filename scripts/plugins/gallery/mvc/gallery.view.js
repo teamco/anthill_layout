@@ -42,6 +42,13 @@ define([
                 'Gallery Widgets'
             );
 
+            this.renderSearch();
+
+            this.renderProviders(
+                this.controller.getData(),
+                this.controller.getDefaultProvider()
+            );
+
             /**
              * Define Gallery element
              * @type {GalleryElement}
@@ -58,6 +65,7 @@ define([
 
         /**
          * Render gallery providers
+         * @member GalleryView
          * @param providers
          * @param defaultProvider
          * @returns {boolean}
@@ -73,7 +81,6 @@ define([
              * @type {GalleryProvidersElement}
              */
             this.elements.$providers = new GalleryProviders(this, {
-                id: this.createUUID(),
                 $container: this.elements.$container.$,
                 style: 'gallery-providers',
                 data: providers,
@@ -83,6 +90,7 @@ define([
 
         /**
          * Render gallery search
+         * @member GalleryView
          * @returns {boolean}
          */
         renderSearch: function renderSearch() {
@@ -96,7 +104,6 @@ define([
              * @type {GallerySearchElement}
              */
             this.elements.$search = new GallerySearch(this, {
-                id: this.createUUID(),
                 $container: this.elements.$container.$,
                 style: 'gallery-search'
             });
@@ -105,11 +112,11 @@ define([
         /**
          * Render gallery content
          * @member GalleryView
-         * @param data
+         * @param provider
          * @param {Boolean} force
          * @returns {boolean}
          */
-        renderContent: function renderContent(data, force) {
+        renderContent: function renderContent(provider, force) {
 
             if (this.isCachedItems(force)) {
                 return false;
@@ -121,22 +128,24 @@ define([
              */
             this.elements.items = {};
 
-            for (var index in data) {
+            /**
+             * Define provider data
+             */
+            var data = provider.data;
 
-                if (data.hasOwnProperty(index)) {
+            for (var i = 0, l = data.length; i < l; i++) {
 
-                    /**
-                     * Render item
-                     * @type {GalleryContentElement}
-                     */
-                    var $item = new GalleryContent(this, {
-                        style: 'content',
-                        $container: this.elements.$gallery.$,
-                        data: data[index]
-                    });
+                /**
+                 * Render item
+                 * @type {GalleryContentElement}
+                 */
+                var $item = new GalleryContent(this, {
+                    style: 'content',
+                    $container: this.elements.$gallery.$,
+                    data: data[i]
+                });
 
-                    this.elements.items[$item.id] = $item;
-                }
+                this.elements.items[$item.id] = $item;
             }
         },
 

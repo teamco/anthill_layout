@@ -26,7 +26,7 @@ define([
         });
 
         this.setAttributes(opts.data);
-        this.installWidget();
+        this.bindInstallWidget();
 
         return this;
     };
@@ -45,13 +45,17 @@ define([
                 rel: data.description,
                 resource: data.resource
             });
+
+            this.$.css({
+                backgroundImage: 'url("' + data.thumbnail + '")'
+            });
         },
 
         /**
-         * Install widget
+         * Bind Install widget
          * @memberOf GalleryContentElement
          */
-        installWidget: function installWidget() {
+        bindInstallWidget: function bindInstallWidget() {
 
             /**
              * Click to install

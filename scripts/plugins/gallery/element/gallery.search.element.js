@@ -39,7 +39,13 @@ define([
                 this.renderTextField({
                     text: '',
                     name: 'search',
-                    placeholder: 'Search'
+                    placeholder: 'Search',
+                    monitor: {
+                        events: ['keyup.gallery-search'],
+                        callback: this.view.controller.filterResults.bind(
+                            this.view.controller
+                        )
+                    }
                 })
             );
 

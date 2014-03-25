@@ -39,7 +39,7 @@ define([
         /**
          * Render text field
          * @member Renderer
-         * @param {{text: string, name: string, [placeholder]: string, value, [disabled]: boolean}} opts
+         * @param {{text: string, name: string, [placeholder]: string, value, [disabled]: boolean, [monitor]}} opts
          * @returns {*[]}
          */
         renderTextField: function renderTextField(opts) {
@@ -62,6 +62,14 @@ define([
                 title: opts.value,
                 disabled: this.base.defineBoolean(opts.disabled, false, true)
             }).val(opts.value);
+
+            if (opts.monitor) {
+
+                $input.on(
+                    opts.monitor.events.join(','),
+                    opts.monitor.callback
+                );
+            }
 
             return [
                 this.renderLabel(uuid, opts.text, 'text'),

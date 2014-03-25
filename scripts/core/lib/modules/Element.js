@@ -190,7 +190,7 @@ define([
              */
             function destroyElement($element) {
                 if ($element.length > 0) {
-                    this.view.scope.logger.debug(
+                    this.view.scope.logger.warn(
                         this.i18n.t('element.overwritten').
                             replace(/\{0\}/, this.constructor.name)
                     );
@@ -198,7 +198,9 @@ define([
                 }
             }
 
-            destroyElement.bind(this)($('#' + this.id, $container));
+            destroyElement.bind(this)(
+                $('#' + this.id, $container)
+            );
 
             if (this.base.defineBoolean(destroy, false, true)) {
 

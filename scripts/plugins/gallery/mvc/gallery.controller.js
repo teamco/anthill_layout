@@ -29,6 +29,15 @@ define([
         },
 
         /**
+         * Get default provider
+         * @member GalleryController
+         * @returns {{name: string, data: *[]}[]}
+         */
+        getDefaultProvider: function getDefaultProvider() {
+            return this.model.defaultProvider;
+        },
+
+        /**
          * Load gallery content
          * @member GalleryController
          * @param opened
@@ -37,16 +46,9 @@ define([
 
             if (opened && this.isDataNotExist()) {
 
-                this.getView().renderSearch();
-
-//                this.getView().renderProviders(
-//                    this.getData(),
-//                    this.model.defaultProvider
-//                );
-
-//                this.getView().renderContent(
-//                    this.getData()
-//                );
+                this.getView().renderContent(
+                    this.getDefaultProvider()
+                );
             }
         },
 
@@ -56,6 +58,15 @@ define([
          */
         setProviders: function setProviders() {
             // TODO
+        },
+
+        /**
+         * Filter search results
+         * @member GalleryController
+         * @param e
+         */
+        filterResults: function filterResults(e) {
+            console.log(this, e)
         },
 
         /**
