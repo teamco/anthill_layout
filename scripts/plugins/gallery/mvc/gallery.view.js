@@ -10,9 +10,10 @@ define([
     'modules/view',
     'element/header.element',
     'element/footer.element',
+    'plugins/gallery/element/gallery.providers.element',
     'plugins/gallery/element/gallery.content.element',
     'plugins/gallery/element/gallery.element'
-], function defineGalleryView(BaseView, Header, Footer, GalleryContent, Gallery) {
+], function defineGalleryView(BaseView, Header, Footer, GalleryProviders, GalleryContent, Gallery) {
 
     /**
      * Define view
@@ -52,6 +53,30 @@ define([
             this.footer(Footer, this.elements.$container).setHtml(
                 this.elements.$gallery.getFooter()
             );
+        },
+
+        /**
+         * Render gallery providers
+         * @param providers
+         * @param defaultProvider
+         * @returns {boolean}
+         */
+        renderProviders: function renderProviders(providers, defaultProvider) {
+
+            if (this.isCached('$providers', GalleryProviders)) {
+                return false;
+            }
+
+            /**
+             * Define Gallery element
+             * @type {ProvidersElement}
+             */
+            this.elements.$providers = new GalleryProviders(this, {
+                id: this.createUUID(),
+                $container: this.elements.$gallery.$,
+                data: providers,
+                default: defaultProvider
+            });
         },
 
         /**

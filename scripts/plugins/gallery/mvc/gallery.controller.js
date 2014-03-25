@@ -36,9 +36,15 @@ define([
         loadContent: function loadContent(opened) {
 
             if (opened && this.isDataNotExist()) {
-                this.getView().renderContent(
-                    this.getData()
+
+                this.getView().renderProviders(
+                    this.getData(),
+                    this.model.defaultProvider
                 );
+
+//                this.getView().renderContent(
+//                    this.getData()
+//                );
             }
         },
 
@@ -47,7 +53,7 @@ define([
          * @member GalleryController
          */
         setProviders: function setProviders() {
-            this.model.setDefaultProviders();
+            // TODO
         },
 
         /**

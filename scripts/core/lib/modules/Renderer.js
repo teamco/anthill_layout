@@ -26,7 +26,7 @@ define([
          * @member Renderer
          * @param {*|string} uuid
          * @param {string} text
-         * @param {string} type
+         * @param {string} [type]
          * @returns {*|jQuery}
          */
         renderLabel: function renderLabel(uuid, text, type) {

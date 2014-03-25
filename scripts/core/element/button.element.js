@@ -37,7 +37,7 @@ define([
 
         /**
          * Define setup
-         * @memberOf ButtonElement
+         * @member ButtonElement
          * @param opts
          */
         setup: function setup(opts) {
@@ -46,18 +46,10 @@ define([
 
         /**
          * Set content
-         * @memberOf ButtonElement
-         */
-        setContent: function setContent() {
-            this.setText();
-        },
-
-        /**
-         * Set text
          * @member ButtonElement
          */
-        setText: function setText() {
-            this.$.text(this.text);
+        setContent: function setContent() {
+            this.setText(this.text);
         }
 
     }, BaseElement.prototype);
