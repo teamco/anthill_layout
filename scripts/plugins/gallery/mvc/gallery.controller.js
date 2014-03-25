@@ -37,10 +37,12 @@ define([
 
             if (opened && this.isDataNotExist()) {
 
-                this.getView().renderProviders(
-                    this.getData(),
-                    this.model.defaultProvider
-                );
+                this.getView().renderSearch();
+
+//                this.getView().renderProviders(
+//                    this.getData(),
+//                    this.model.defaultProvider
+//                );
 
 //                this.getView().renderContent(
 //                    this.getData()

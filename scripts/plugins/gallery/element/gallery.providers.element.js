@@ -10,12 +10,12 @@ define([
      * Define Providers Element
      * @param view
      * @param opts
-     * @returns {ProvidersElement}
+     * @returns {GalleryProvidersElement}
      * @constructor
-     * @class ProvidersElement
+     * @class GalleryProvidersElement
      * @extends BaseElement
      */
-    var ProvidersElement = function ProvidersElement(view, opts) {
+    var GalleryProvidersElement = function GalleryProvidersElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -28,7 +28,7 @@ define([
         );
     };
 
-    return ProvidersElement.extend({
+    return GalleryProvidersElement.extend({
 
         /**
          * Render data

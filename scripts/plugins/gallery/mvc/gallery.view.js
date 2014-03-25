@@ -11,9 +11,10 @@ define([
     'element/header.element',
     'element/footer.element',
     'plugins/gallery/element/gallery.providers.element',
+    'plugins/gallery/element/gallery.search.element',
     'plugins/gallery/element/gallery.content.element',
     'plugins/gallery/element/gallery.element'
-], function defineGalleryView(BaseView, Header, Footer, GalleryProviders, GalleryContent, Gallery) {
+], function defineGalleryView(BaseView, Header, Footer, GalleryProviders, GallerySearch, GalleryContent, Gallery) {
 
     /**
      * Define view
@@ -69,13 +70,35 @@ define([
 
             /**
              * Define Gallery element
-             * @type {ProvidersElement}
+             * @type {GalleryProvidersElement}
              */
             this.elements.$providers = new GalleryProviders(this, {
                 id: this.createUUID(),
-                $container: this.elements.$gallery.$,
+                $container: this.elements.$container.$,
+                style: 'gallery-providers',
                 data: providers,
                 default: defaultProvider
+            });
+        },
+
+        /**
+         * Render gallery search
+         * @returns {boolean}
+         */
+        renderSearch: function renderSearch() {
+
+            if (this.isCached('$search', GallerySearch)) {
+                return false;
+            }
+
+            /**
+             * Define Gallery element
+             * @type {GallerySearchElement}
+             */
+            this.elements.$search = new GallerySearch(this, {
+                id: this.createUUID(),
+                $container: this.elements.$container.$,
+                style: 'gallery-search'
             });
         },
 
