@@ -52,8 +52,25 @@ define([
              * @type {WidgetContent}
              */
             scope.activeContent = widget.controller.getContent();
+            scope.logger.debug('Active component', scope.activeContent);
 
             return scope.activeContent.view.renderPreferences();
+        },
+
+        /**
+         * Load prefs
+         * @member PageDataController
+         * @param config
+         * @param load
+         * @param {function} [callback]
+         */
+        loadPreferences: function loadPreferences(config, load, callback) {
+
+            this.view.showPreferences(config, load);
+
+            if (this.base.isFunction(callback)) {
+                callback();
+            }
         },
 
         /**

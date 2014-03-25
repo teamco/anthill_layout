@@ -207,5 +207,10 @@
 
 .modal-dialog.preferences .widgets-prefs li {
     padding: 3px 5px;
+    display: inline-block;
     cursor: pointer;
+    background: transparent no-repeat center;
+    width: 67px;
+    height: 67px;
+    text-indent: -9000px;
 }

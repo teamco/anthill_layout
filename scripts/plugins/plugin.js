@@ -112,15 +112,13 @@ define([
             function _hideBorder() {
                 $element.$.removeClass('select');
                 clearTimeout(scope.locateTimeout);
-                scope.allowToLocate = true;
             }
 
-            if (!scope.allowToLocate) {
+            if ($element.$.hasClass('select')) {
                 return false;
             }
 
-            scope.allowToLocate = false;
-
+            $element.$.parent().children().removeClass('select');
             $element.$.addClass('select');
 
             /**
@@ -128,7 +126,7 @@ define([
              * @member {Pages|PageData}
              * @type {number}
              */
-            scope.locateTimeout = setTimeout(_hideBorder, 2000);
+            scope.locateTimeout = setTimeout(_hideBorder, 1000);
         }
 
     }, AntHill.prototype, BaseController.prototype);

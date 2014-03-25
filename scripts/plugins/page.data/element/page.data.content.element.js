@@ -67,7 +67,10 @@ define([
              * @private
              */
             function _clickPrefs() {
-                this.view.showPreferences(config);
+                scope.observer.publish(
+                    scope.eventmanager.eventList.loadPreferences,
+                    [config, true]
+                );
             }
 
             /**
@@ -75,6 +78,12 @@ define([
              * @type {*}
              */
             var config = data.model.getConfig();
+
+            /**
+             * Define scope
+             * @type {PageData}
+             */
+            var scope = this.view.scope;
 
             this.$.off('click.prefs').on(
                 'click.prefs',

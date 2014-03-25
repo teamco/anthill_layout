@@ -248,9 +248,12 @@ define([
                         uuid = widget.model.getUUID();
 
                         list.push(
-                            $('<li />').attr('rel', uuid).
+                            $('<li />').
+                                attr('rel', uuid).
                                 text(uuid).
-                                on('click.widgetPrefs', this.showWidgetPrefs.bind(this))
+                                css({backgroundImage: 'url("' + widget.model.getConfig('preferences/thumbnail') + '")'}).
+                                on('mouseenter.widgetPrefs click.widgetPrefs',
+                                this.showWidgetPrefs.bind(this))
                         );
                     }
                 }
@@ -304,6 +307,23 @@ define([
             }
 
             /**
+             * Trigger locate element
+             * @private
+             */
+            function _locateElement() {
+
+                this.observer.publish(
+                    this.eventmanager.eventList.loadPreferences, [
+                        {uuid: uuid},
+                        false,
+                        this.controller.locatePageData.bind(
+                            this.controller
+                        )
+                    ]
+                );
+            }
+
+            /**
              * Get uuid
              * @type {*|jQuery}
              */
@@ -321,10 +341,23 @@ define([
              */
             var pageData = this.view.controller.getPageData();
 
-            panel.observer.publish(
-                panel.eventmanager.eventList.openPanel,
-                ['pagedata', _triggerPrefs.bind(pageData)]
-            );
+            if (e.type === 'click') {
+
+                this.view.elements.$modal.selfDestroy();
+
+                panel.observer.publish(
+                    panel.eventmanager.eventList.openPanel,
+                    ['pagedata', _triggerPrefs.bind(pageData)]
+                );
+            }
+
+            if (e.type === 'mouseenter') {
+
+                panel.observer.publish(
+                    panel.eventmanager.eventList.openPanel,
+                    ['pagedata', _locateElement.bind(pageData)]
+                );
+            }
         }
 
     }, BasePreferences.prototype);

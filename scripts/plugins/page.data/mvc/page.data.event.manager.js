@@ -35,10 +35,12 @@ define([
          */
         this.eventList = {
             updateTranslations: 'update.translations',
-            loadContent: 'load.content'
+            loadContent: 'load.content',
+            loadPreferences: 'load.preferences'
         };
     };
 
     return PageDataEventManager.extend('PageDataEventManager', {
+        
     }, Event.prototype);
 });

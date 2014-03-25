@@ -113,17 +113,25 @@ define([
          * @member PageDataView
          * @param config
          */
-        showPreferences: function showPreferences(config) {
+        showPreferences: function showPreferences(config, load) {
 
-            this.openPreferences({
-                config: config,
-                $html: this.controller.getPreferences(config.uuid).$,
-                style: [
-                    config.preferences.resource,
-                    'widget-prefs preferences'
-                ].join(' '),
-                title: 'Widget preferences'
-            });
+            /**
+             * Define $html
+             * @type {BaseElement.$}
+             */
+            var $html = this.controller.getPreferences(config.uuid).$;
+
+            if (load) {
+                this.openPreferences({
+                    config: config,
+                    $html: $html,
+                    style: [
+                        config.preferences.resource,
+                        'widget-prefs preferences'
+                    ].join(' '),
+                    title: 'Widget preferences'
+                });
+            }
         },
 
         /**
