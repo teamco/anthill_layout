@@ -220,9 +220,11 @@ define([
                 css(this.css);
 
             this.setHeader();
-            this.setHTML();
-            this.setText();
+            this.setHtml(this.html, this._get$HTML());
+            this.setText(this.text, this._get$Text());
             this.setHover();
+
+            this.fixContent();
 
             this.setPosition({
                 $container: this.$container,
@@ -232,7 +234,7 @@ define([
 
             if (this.draggable) {
                 this.$.draggable({
-                    handle: this._getHeader()
+                    handle: this._get$Header()
                 });
             }
 
@@ -259,14 +261,20 @@ define([
          * @private
          */
         _setCloseX: function _setCloseX() {
-            var $actions = this._getActions();
+
+            /**
+             * Get actions
+             * @type {*}
+             */
+            var $actions = this._get$Actions();
+
             if (!this.closeX) {
                 $actions.hide();
                 return false;
             }
 
             this.buttons['closeX'] = {
-                $container: this._getActions(),
+                $container: this._get$Actions(),
                 text: 'Close',
                 events: {
                     click: 'rejectModalEvent'
@@ -279,7 +287,7 @@ define([
          * @member ModalElement
          */
         setButtons: function setButtons() {
-            var $container = this._getButtons();
+            var $container = this._get$Buttons();
             $.each(this.buttons, function each(i, button) {
                 button.$container = $container;
             });
@@ -304,32 +312,25 @@ define([
          * @member ModalElement
          */
         setHeader: function setHeader() {
-            var $header = this._getHeader();
+            var $header = this._get$Header();
             this.base.isDefined(this.title) ?
                 $header.text(this.title) :
                 $header.hide();
         },
 
         /**
-         * Set HTML
+         * Fix content
          * @member ModalElement
          */
-        setHTML: function setHTML() {
-            var $html = this._getHTML();
-            this.base.isDefined(this.html) ?
-                $html.append(this.html) :
-                $html.hide();
-        },
+        fixContent: function fixContent() {
 
-        /**
-         * Set text
-         * @member ModalElement
-         */
-        setText: function setText() {
-            var $text = this._getText();
-            this.base.isDefined(this.text) ?
-                $text.text(this.text) :
-                $text.hide();
+            if (!this.base.isDefined(this.html)) {
+                this._get$HTML().hide();
+            }
+
+            if (!this.base.isDefined(this.text)) {
+                this._get$Text().hide();
+            }
         },
 
         /**
@@ -338,7 +339,7 @@ define([
          * @returns {*}
          * @private
          */
-        _getActions: function _getActions() {
+        _get$Actions: function _get$Actions() {
             return this.$.find('ul.actions');
         },
 
@@ -348,7 +349,7 @@ define([
          * @returns {*}
          * @private
          */
-        _getHTML: function _getHTML() {
+        _get$HTML: function _get$HTML() {
             return this.$.find('div.html');
         },
 
@@ -358,7 +359,7 @@ define([
          * @returns {*}
          * @private
          */
-        _getText: function _getText() {
+        _get$Text: function _get$Text() {
             return this.$.find('p.text');
         },
 
@@ -368,7 +369,7 @@ define([
          * @returns {*}
          * @private
          */
-        _getButtons: function _getButtons() {
+        _get$Buttons: function _get$Buttons() {
             return this.$.find('ul.buttons');
         },
 
@@ -378,7 +379,7 @@ define([
          * @returns {*}
          * @private
          */
-        _getHeader: function _getHeader() {
+        _get$Header: function _get$Header() {
             return this.$.find('h2');
         },
 

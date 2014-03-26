@@ -632,30 +632,32 @@ define([
          * Set html
          * @member BaseElement
          * @param html
+         * @param [$container]
          * @returns {boolean}
          */
-        setHtml: function setHtml(html) {
+        setHtml: function setHtml(html, $container) {
 
             if (!this.$) {
                 return false;
             }
 
-            this.$.html(html);
+            $container ? $container.html(html) : this.$.html(html);
         },
 
         /**
          * Set text
          * @member BaseElement
          * @param text
+         * @param [$container]
          * @returns {boolean}
          */
-        setText: function setText(text) {
+        setText: function setText(text, $container) {
 
             if (!this.$) {
                 return false;
             }
 
-            this.$.text(text);
+            $container ? $container.text(text) : this.$.text(text);
         },
 
         /**
