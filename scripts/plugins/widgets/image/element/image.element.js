@@ -40,6 +40,10 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent(url, text) {
 
+            if (!url) {
+                return false;
+            }
+
             /**
              * Define embedded template
              * @type {string}
