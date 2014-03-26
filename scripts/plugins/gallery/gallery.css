@@ -20,7 +20,7 @@ ul.gallery .content {
     display: block;
     cursor: pointer;
     margin-top: 10px;
-    background: transparent no-repeat center center;
+    background: transparent no-repeat center;
 }
 
 ul.gallery > .content:hover {
