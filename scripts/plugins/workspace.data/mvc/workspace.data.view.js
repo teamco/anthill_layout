@@ -39,7 +39,7 @@ define([
             }
 
             this.header(Header, this.elements.$container).setText(
-                'Workspace WorkspaceData'
+                'Workspace Pages'
             );
 
             /**
