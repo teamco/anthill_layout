@@ -112,6 +112,10 @@ define([
         );
 
         this.observer.publish(
+            this.eventmanager.eventList.setCurrentProvider
+        );
+
+        this.observer.publish(
             this.eventmanager.eventList.updateTranslations,
             ['plugins/gallery/translations/en-us']
         );

@@ -120,6 +120,11 @@ div.panel-container.panel-right .content {
     margin-left: 10px;
 }
 
+div.panel-container.panel-right .gallery > .content:hover {
+    box-shadow: 1px 15px 10px #999;
+    border-radius: 10px;
+}
+
 div.panel-container .panel-footer {
     position: absolute;
     bottom: 0;

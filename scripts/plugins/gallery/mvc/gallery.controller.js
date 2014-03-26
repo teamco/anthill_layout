@@ -29,12 +29,29 @@ define([
         },
 
         /**
-         * Get default provider
+         * Get current provider
          * @member GalleryController
          * @returns {{name: string, data: *[]}[]}
          */
-        getDefaultProvider: function getDefaultProvider() {
-            return this.model.defaultProvider;
+        getCurrentProvider: function getCurrentProvider() {
+            return this.model.currentProvider;
+        },
+
+        /**
+         * Set current provider
+         * @member GalleryController
+         * @param name
+         */
+        setCurrentProvider: function setCurrentProvider(name) {
+            this.model.setProviderAsCurrent(name);
+        },
+
+        /**
+         * Set providers
+         * @member GalleryController
+         */
+        setProviders: function setProviders() {
+            this.logger.debug('Set providers');
         },
 
         /**
@@ -47,17 +64,9 @@ define([
             if (opened && this.isDataNotExist()) {
 
                 this.getView().renderContent(
-                    this.getDefaultProvider()
+                    this.getCurrentProvider()
                 );
             }
-        },
-
-        /**
-         * Set providers
-         * @member GalleryController
-         */
-        setProviders: function setProviders() {
-            // TODO
         },
 
         /**

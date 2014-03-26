@@ -37,7 +37,8 @@ define([
         this.eventList = {
             updateTranslations: 'update.translations',
             loadContent: 'load.content',
-            setProviders: 'set.providers'
+            setProviders: 'set.providers',
+            setCurrentProvider: 'set.current.provider'
         };
     };
 

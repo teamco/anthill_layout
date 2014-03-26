@@ -24,7 +24,7 @@ define([
 
         return this.renderData(
             opts.data,
-            opts.default
+            opts.current
         );
     };
 
@@ -32,12 +32,12 @@ define([
 
         /**
          * Render data
-         * @member ProvidersElement
+         * @member GalleryProvidersElement
          * @param data
-         * @param defaultProvider
+         * @param currentProvider
          * @returns {BaseElement}
          */
-        renderData: function renderData(data, defaultProvider) {
+        renderData: function renderData(data, currentProvider) {
 
             var combo = [];
 
@@ -55,7 +55,7 @@ define([
             this.$.append(
                 this.renderCombobox(
                     combo,
-                    defaultProvider.name,
+                    currentProvider.name,
                     ''
                 )
             );

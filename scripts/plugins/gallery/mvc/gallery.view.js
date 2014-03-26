@@ -46,7 +46,7 @@ define([
 
             this.renderProviders(
                 this.controller.getData(),
-                this.controller.getDefaultProvider()
+                this.controller.getCurrentProvider()
             );
 
             /**
@@ -67,10 +67,10 @@ define([
          * Render gallery providers
          * @member GalleryView
          * @param providers
-         * @param defaultProvider
+         * @param currentProvider
          * @returns {boolean}
          */
-        renderProviders: function renderProviders(providers, defaultProvider) {
+        renderProviders: function renderProviders(providers, currentProvider) {
 
             if (this.isCached('$providers', GalleryProviders)) {
                 return false;
@@ -84,7 +84,7 @@ define([
                 $container: this.elements.$container.$,
                 style: 'gallery-providers',
                 data: providers,
-                default: defaultProvider
+                current: currentProvider
             });
         },
 
