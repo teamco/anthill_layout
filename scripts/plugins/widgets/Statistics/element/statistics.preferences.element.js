@@ -8,19 +8,19 @@
 define([
     'modules/element',
     'plugins/preferences/widget.preferences'
-], function defineImagePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineStatisticsPreferencesElement(BaseElement, WidgetPreferences) {
 
     /**
-     * Define Image Preferences Element
+     * Define Statistics Preferences Element
      * @param view
      * @param opts
-     * @returns {ImagePreferencesElement}
+     * @returns {StatisticsPreferencesElement}
      * @constructor
-     * @class ImagePreferencesElement
+     * @class StatisticsPreferencesElement
      * @extends BaseElement
      * @extends WidgetPreferences
      */
-    var ImagePreferencesElement = function ImagePreferencesElement(view, opts) {
+    var StatisticsPreferencesElement = function StatisticsPreferencesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -32,7 +32,7 @@ define([
         return this;
     };
 
-    return ImagePreferencesElement.extend('ImagePreferencesElement', {
+    return StatisticsPreferencesElement.extend('StatisticsPreferencesElement', {
 
 
     }, BaseElement.prototype, WidgetPreferences.prototype);

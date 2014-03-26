@@ -10,34 +10,34 @@ define([
     'modules/view',
     'element/header.element',
     'element/footer.element',
-    'plugins/widgets/image/element/image.element',
-    'plugins/widgets/image/element/image.preferences.element'
-], function defineImageView(BaseView, Header, Footer, ImageElement, ImagePreferencesElement) {
+    'plugins/widgets/statistics/element/statistics.element',
+    'plugins/widgets/statistics/element/statistics.preferences.element'
+], function defineStatisticsView(BaseView, Header, Footer, StatisticsElement, StatisticsPreferencesElement) {
 
     /**
      * Define view
-     * @class ImageView
+     * @class StatisticsView
      * @extends BaseView
      * @constructor
      */
-    var ImageView = function ImageView() {
+    var StatisticsView = function StatisticsView() {
     };
 
-    return ImageView.extend('ImageView', {
+    return StatisticsView.extend('StatisticsView', {
 
         /**
-         * Render image element
-         * @member ImageView
+         * Render statistics element
+         * @member StatisticsView
          */
-        renderImage: function renderImage() {
+        renderStatistics: function renderStatistics() {
 
             this.header(Header, this.elements.$container);
 
             /**
-             * Define $image
-             * @type {ImageElement}
+             * Define $statistics
+             * @type {StatisticsElement}
              */
-            this.elements.$image = new ImageElement(this, {
+            this.elements.$statistics = new StatisticsElement(this, {
                 $container: this.elements.$container.$,
                 id: this.createUUID()
             });
@@ -51,16 +51,16 @@ define([
 
         /**
          * Render Prefs
-         * @member ImageView
-         * @returns {ImagePreferencesElement}
+         * @member StatisticsView
+         * @returns {StatisticsPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
 
             /**
-             * Define Image Preferences Element
-             * @type {ImagePreferencesElement}
+             * Define Statistics Preferences Element
+             * @type {StatisticsPreferencesElement}
              */
-            this.elements.$preferences = new ImagePreferencesElement(this, {
+            this.elements.$preferences = new StatisticsPreferencesElement(this, {
                 data: this.controller.getPreferences()
             });
 
@@ -68,14 +68,14 @@ define([
         },
 
         /**
-         * Render image
-         * @member ImageView
+         * Render statistics
+         * @member StatisticsView
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderImage.bind(this)
+                this.renderStatistics.bind(this)
             );
         }
 

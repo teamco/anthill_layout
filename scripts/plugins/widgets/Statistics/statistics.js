@@ -8,25 +8,25 @@
 define([
     'config/anthill',
     'modules/mvc',
-    'plugins/widgets/image/mvc/image.controller',
-    'plugins/widgets/image/mvc/image.model',
-    'plugins/widgets/image/mvc/image.view',
-    'plugins/widgets/image/mvc/image.event.manager',
-    'plugins/widgets/image/mvc/image.permission'
-], function defineImage(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/statistics/mvc/statistics.controller',
+    'plugins/widgets/statistics/mvc/statistics.model',
+    'plugins/widgets/statistics/mvc/statistics.view',
+    'plugins/widgets/statistics/mvc/statistics.event.manager',
+    'plugins/widgets/statistics/mvc/statistics.permission'
+], function defineStatistics(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Image
+     * Define Statistics
      * @param containment
      * @constructor
-     * @class Image
+     * @class Statistics
      * @extends AntHill
      */
-    var Image = function Image(containment) {
+    var Statistics = function Statistics(containment) {
 
         /**
          * Define containment
-         * @member Image
+         * @member Statistics
          */
         this.containment = containment;
 
@@ -65,35 +65,35 @@ define([
 
         /**
          * Init observer
-         * @member Image
+         * @member Statistics
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
-         * @member Image
+         * @member Statistics
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
-         * @member Image
+         * @member Statistics
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Init model
-         * @member Image
+         * @member Statistics
          * @type {*}
          */
         this.model = undefined;
 
         /**
          * Define MVC
-         * @member Image
+         * @member Statistics
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -114,7 +114,7 @@ define([
         );
     };
 
-    return Image.extend('Image', {
+    return Statistics.extend('Statistics', {
 
     }, AntHill.prototype);
 });

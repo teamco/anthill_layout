@@ -7,50 +7,45 @@
 
 define([
     'modules/element'
-], function defineImageElement(BaseElement) {
+], function defineStatisticsElement(BaseElement) {
 
     /**
-     * Define Image Element
+     * Define Statistics Element
      * @param view
      * @param opts
-     * @returns {ImageElement}
+     * @returns {StatisticsElement}
      * @constructor
-     * @class ImageElement
+     * @class StatisticsElement
      * @extends BaseElement
      */
-    var ImageElement = function ImageElement(view, opts) {
+    var StatisticsElement = function StatisticsElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
 
-        this.addCSS('image', {resource: '/widgets'});
+        this.addCSS('statistics', {resource: '/widgets'});
 
         return this;
     };
 
-    return ImageElement.extend('ImageElement', {
+    return StatisticsElement.extend('StatisticsElement', {
 
         /**
          * Render Embedded content
-         * @member ImageElement
-         * @param {string} url
+         * @member StatisticsElement
          * @param {string} text
          */
-        renderEmbeddedContent: function renderEmbeddedContent(url, text) {
-
-            if (!url) {
-                return false;
-            }
+        renderEmbeddedContent: function renderEmbeddedContent(text) {
 
             /**
              * Define embedded template
              * @type {string}
              */
             this.setHtml(
-                $('<img />').attr({
-                    src: url,
+                $('<div>Testing statistics widget</div>').attr({
+                  //  src: url,
                     alt: text,
                     title: text
                 })

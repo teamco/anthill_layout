@@ -8,7 +8,7 @@
 define([
     'plugins/plugin',
     'plugins/widgets/widget'
-], function defineImageController(PluginBase, WidgetBase) {
+], function defineStatisticsController(PluginBase, WidgetBase) {
 
     /**
      * Define statistics controller
@@ -28,7 +28,7 @@ define([
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
-            this.view.elements.$image.renderEmbeddedContent(
+            this.view.elements.$statistics.renderEmbeddedContent(
                 this.model.getPrefs('statisticsText')
             );
         }

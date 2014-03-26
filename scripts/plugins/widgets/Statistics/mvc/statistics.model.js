@@ -7,30 +7,22 @@
  */
 define([
     'modules/model'
-], function defineImageModel(BaseModel) {
+], function defineStatisticsModel(BaseModel) {
 
     /**
-     * Define Image model
+     * Define Statistics model
      * @extends BaseModel
-     * @class ImageModel
+     * @class StatisticsModel
      * @constructor
      */
-    var ImageModel = function ImageModel() {
+    var StatisticsModel = function StatisticsModel() {
 
         /**
          * Define preferences
-         * @member ImageModel
-         * @type {{
-         *      imageUrl: {}
-         * }}
+         * @member StatisticsModel
          */
         this.preferences = {
-            imageUrl: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined
-            },
-            imageText: {
+            statisticsText: {
                 type: 'text',
                 disabled: false,
                 value: undefined
@@ -38,24 +30,15 @@ define([
         };
     };
 
-    return ImageModel.extend('ImageModel', {
+    return StatisticsModel.extend('StatisticsModel', {
 
         /**
-         * Set Image Url
-         * @member ImageModel
-         * @param {string} url
-         */
-        setImageUrl: function setImageUrl(url) {
-            this.setPrefs('imageUrl', url);
-        },
-
-        /**
-         * Set Image Text
-         * @member ImageModel
+         * Set Statistics Text
+         * @member StatisticsModel
          * @param {string} text
          */
-        setImageText: function setImageText(text) {
-            this.setPrefs('imageText', text);
+        setStatisticsText: function setStatisticsText(text) {
+            this.setPrefs('statisticsText', text);
         }
 
 

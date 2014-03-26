@@ -8,19 +8,19 @@
 
 define([
     'modules/permission'
-], function defineImagePermission(BasePermission) {
+], function defineStatisticsPermission(BasePermission) {
 
     /**
      * Define Permissions
-     * @class ImagePermission
+     * @class StatisticsPermission
      * @constructor
      * @extends BasePermission
      */
-    var ImagePermission = function ImagePermission() {
+    var StatisticsPermission = function StatisticsPermission() {
 
     };
 
-    return ImagePermission.extend('ImagePermission', {
+    return StatisticsPermission.extend('StatisticsPermission', {
 
     }, BasePermission.prototype);
 });
