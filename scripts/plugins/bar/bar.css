@@ -49,6 +49,10 @@ div.panel-container .bar-content li.content {
     cursor: pointer;
 }
 
+div.panel-container .bar-content li.content.activated {
+    box-shadow: 1px 10px 10px #777;
+}
+
 div.panel-container .bar-content li.gallery {
     background-image: url('../../core/stylesheets/icons/32x32/view-list-icons.png');
 }

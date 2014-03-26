@@ -30,7 +30,7 @@ define([
 
             /**
              * Define model
-             * @type {model}
+             * @type {PanelModel}
              */
             var model = this.model;
 
@@ -91,7 +91,7 @@ define([
 
             /**
              * Define $panel
-             * @type {element.page.page.element}
+             * @type {PanelElement}
              */
             var $panel = this.scope.view.elements.$panel;
 
@@ -122,6 +122,7 @@ define([
 
             if (this.active === resource) {
                 this.view.elements.$panel.toggle(resource, false);
+                this.view.elements.items['$bar-content'].unselectItems();
             } else {
                 this.observer.publish(
                     this.eventmanager.eventList.openPanel,
@@ -137,6 +138,15 @@ define([
          * @param {function} [callback]
          */
         openPanel: function openPanel(resource, callback) {
+
+            /**
+             * Define $bar
+             * @type {PanelContentElement}
+             */
+            var $bar = this.view.elements.items['$bar-content'];
+
+            $bar.unselectItems();
+            $bar.selectItem(resource);
 
             this.view.elements.$panel.toggle(resource, true);
 
