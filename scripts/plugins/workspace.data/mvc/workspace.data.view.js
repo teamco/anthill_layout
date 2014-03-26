@@ -34,7 +34,7 @@ define([
          */
         renderWorkspaceData: function renderWorkspaceData() {
 
-            if (this.isCached('$workspace.data', WorkspaceData)) {
+            if (this.isCached('$workspacedata', WorkspaceData)) {
                 return false;
             }
 
@@ -87,7 +87,7 @@ define([
                      */
                     var $item = new WorkspaceDataContent(this, {
                         style: 'content',
-                        id: data[index].model.getConfig('uuid') + '-workspace.data-view',
+                        id: data[index].model.getConfig('uuid') + '-workspacedata-view',
                         $container: this.elements.$workspacedata.$,
                         data: data[index]
                     });

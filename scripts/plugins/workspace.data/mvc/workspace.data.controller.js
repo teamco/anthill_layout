@@ -186,7 +186,7 @@ define([
             var workspace = this.controller.getWorkspace(),
                 pages = workspace.model.getItems(),
                 index, page, $item, uuid,
-                cname = '-pages-view';
+                cname = '-workspacedata-view';
 
             for (index in pages) {
 
