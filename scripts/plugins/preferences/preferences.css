@@ -46,6 +46,10 @@
     width: 70%;
 }
 
+.modal-dialog.preferences div.html input[type="checkbox"] {
+    margin-right: 10px;
+}
+
 .modal-dialog.preferences div.html textarea,
 .modal-dialog.preferences div.html p.textarea {
     resize: none;

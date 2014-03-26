@@ -45,6 +45,11 @@ define([
                 type: 'text',
                 disabled: true,
                 value: undefined
+            },
+            statistics: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false
             }
         },
 
@@ -85,7 +90,8 @@ define([
                      * Define placeholder text
                      * @type {string}
                      */
-                    var placeholder = 'Enter ' + text;
+                    var placeholder = 'Enter ' + text,
+                        $element;
 
                     if (node.type === 'text') {
 
@@ -93,11 +99,25 @@ define([
                          * Get text field
                          * @type {*[]}
                          */
-                        var textField = this.renderTextField({
+                        $element = this.renderTextField({
                             name: index,
                             text: text,
                             placeholder: placeholder,
                             value: node.value,
+                            disabled: node.disabled
+                        });
+                    }
+
+                    if (node.type === 'checkbox') {
+
+                        /**
+                         * Get checkbox
+                         * @type {*[]}
+                         */
+                        $element = this.renderCheckbox({
+                            name: index,
+                            text: text,
+                            checked: node.checked,
                             disabled: node.disabled
                         });
                     }
@@ -108,7 +128,7 @@ define([
                          * Get text field
                          * @type {*[]}
                          */
-                        var textField = this.renderTextArea({
+                        $element = this.renderTextArea({
                             name: index,
                             text: text,
                             placeholder: placeholder,
@@ -118,7 +138,7 @@ define([
                     }
 
                     nodes.push(
-                        $('<li />').append(textField)
+                        $('<li />').append($element)
                     );
                 }
             }

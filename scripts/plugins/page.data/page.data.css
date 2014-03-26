@@ -23,6 +23,11 @@ ul.pagedata .content {
     background: transparent no-repeat center;
 }
 
+ul.pagedata > .content:hover {
+    box-shadow: 1px 15px 10px #999;
+    border-radius: 10px;
+}
+
 div.pagedata-footer {
     position: absolute;
     bottom: 0;

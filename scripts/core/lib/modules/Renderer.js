@@ -78,6 +78,46 @@ define([
         },
 
         /**
+         * Render checkbox
+         * @member Renderer
+         * @param {{text: string, name: string, value, [disabled]: boolean, [monitor]}} opts
+         * @returns {*[]}
+         */
+        renderCheckbox: function renderCheckbox(opts) {
+
+            /**
+             * Create UUID
+             * @type {String}
+             */
+            var uuid = this.base.lib.generator.UUID() + '-checkbox';
+
+            /**
+             * Define $input
+             * @type {*|jQuery}
+             */
+            var $input = $('<input />').attr({
+                name: opts.name,
+                type: 'checkbox',
+                id: uuid,
+                title: opts.value,
+                disabled: this.base.defineBoolean(opts.disabled, false, true)
+            }).val(opts.value);
+
+            if (opts.monitor) {
+
+                $input.on(
+                    opts.monitor.events.join(','),
+                    opts.monitor.callback
+                );
+            }
+
+            return [
+                $input,
+                this.renderLabel(uuid, opts.text, 'text')
+            ];
+        },
+
+        /**
          * Render text area
          * @member Renderer
          * @param {{text: string, name: string, [placeholder]: string, value, [disabled]: boolean}} opts
@@ -89,7 +129,7 @@ define([
              * Create UUID
              * @type {String}
              */
-            var uuid = this.base.lib.generator.UUID() + '-input',
+            var uuid = this.base.lib.generator.UUID() + '-textarea',
                 $input;
 
             if (this.base.defineBoolean(opts.disabled, false, true)) {
@@ -137,7 +177,7 @@ define([
              * @type {*|jQuery}
              */
             var $div = $('<div />').addClass('combo-box').attr({
-                id: this.base.lib.generator.UUID() + '-combo-box'
+                id: this.base.lib.generator.UUID() + '-combobox'
             });
 
             /**
