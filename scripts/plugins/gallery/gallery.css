@@ -23,6 +23,11 @@ ul.gallery .content {
     background: transparent no-repeat center center;
 }
 
+ul.gallery > .content:hover {
+    box-shadow: 1px 15px 10px #999;
+    border-radius: 10px;
+}
+
 ul.gallery .content:active {
     cursor: move;
 }
