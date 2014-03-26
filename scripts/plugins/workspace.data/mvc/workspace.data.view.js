@@ -46,13 +46,13 @@ define([
              * Define WorkspaceData element
              * @type {WorkspaceDataElement}
              */
-            this.elements.$workspace.data = new WorkspaceData(this, {
+            this.elements.$workspacedata = new WorkspaceData(this, {
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
 
             this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$workspace.data.getFooter()
+                this.elements.$workspacedata.getFooter()
             );
         },
 
@@ -88,7 +88,7 @@ define([
                     var $item = new WorkspaceDataContent(this, {
                         style: 'content',
                         id: data[index].model.getConfig('uuid') + '-workspace.data-view',
-                        $container: this.elements.$workspace.data.$,
+                        $container: this.elements.$workspacedata.$,
                         data: data[index]
                     });
 
@@ -118,7 +118,7 @@ define([
             this.openPreferences({
                 config: config,
                 $html: this.controller.definePreferences(config.uuid).$,
-                style: 'workspace.data-prefs preferences',
+                style: 'workspacedata-prefs preferences',
                 title: 'Page preferences'
             });
         },

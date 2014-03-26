@@ -133,6 +133,10 @@ define([
         );
 
         this.observer.publish(
+            this.eventmanager.eventList.defineModules
+        );
+
+        this.observer.publish(
             this.eventmanager.eventList.updateTranslations,
             ['plugins/bar/translations/en-us']
         );

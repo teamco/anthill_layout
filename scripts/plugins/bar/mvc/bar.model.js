@@ -32,8 +32,25 @@ define([
          * @member BarModel
          * @returns {*}
          */
-        getModulesList: function getModulesList() {
+        getModulesData: function getModulesData() {
             return this.scope.containment.model.getModule();
+        },
+
+        /**
+         * Store modules
+         * @member BarModel
+         */
+        storeModules: function storeModules() {
+            this.modules = this.getModulesData();
+        },
+
+        /**
+         * Get modules
+         * @member BarModel
+         * @returns {Array}
+         */
+        getModules: function getModules() {
+            return this.modules;
         }
 
     }, BaseModel.prototype);

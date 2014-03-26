@@ -25,7 +25,15 @@ define([
          * @member BarController
          */
         getData: function getData() {
-            return this.model.getModulesList();
+            return this.model.getModules();
+        },
+
+        /**
+         * Define modules
+         * @member BarController
+         */
+        defineModules: function defineModules() {
+            this.model.storeModules();
         },
 
         /**

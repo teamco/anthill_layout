@@ -1,8 +1,8 @@
-.panel div.pages ul {
+.panel div.workspacedata ul {
     list-style: none;
 }
 
-.panel div.pages-header {
+.panel div.workspacedata-header {
     height: 30px;
     line-height: 30px;
     padding: 0 10px;
@@ -14,11 +14,11 @@
     font-size: 14px;
 }
 
-.panel ul.pages {
+.panel ul.workspacedata {
     overflow: hidden;
 }
 
-.panel ul.pages .content {
+.panel ul.workspacedata .content {
     height: 70px;
     width: 70px;
     display: block;
@@ -31,7 +31,7 @@
     position: relative;
 }
 
-.panel ul.pages .content .counter {
+.panel ul.workspacedata .content .counter {
     font-size: 11px;
     position: absolute;
     background-color: #fff;
@@ -43,7 +43,7 @@
     box-shadow: 1px 1px 5px #ccc;
 }
 
-.panel div.pages-footer {
+.panel div.workspacedata-footer {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -53,7 +53,7 @@
     box-shadow: 1px 0 5px #333;
 }
 
-.panel div.pages-footer > div {
+.panel div.workspacedata-footer > div {
     height: 100%;
     border-top: 1px solid #fff;
     line-height: 30px;
