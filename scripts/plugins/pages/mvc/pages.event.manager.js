@@ -34,7 +34,7 @@ define([
          * @type {{
              *      updateTranslations: string,
              *      loadContent: string,
-             *      updateCounter: string
+             *      setActiveContent: string
              * }}
          */
         eventList: {
