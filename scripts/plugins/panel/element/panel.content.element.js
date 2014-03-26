@@ -30,6 +30,23 @@ define([
 
     return PanelContentElement.extend('PanelContentElement', {
 
+        /**
+         * Select item
+         * @member PanelContentElement
+         * @param {string} resource
+         */
+        selectItem: function selectItem(resource) {
+            $('.' + resource, this.$).addClass('activated');
+        },
+
+        /**
+         * Remove items selection
+         * @member PanelContentElement
+         */
+        unselectItems: function unselectItems() {
+            $('ul.panel-bar', this.$).children().removeClass('activated');
+        }
+
     }, BaseElement.prototype);
 
 });

@@ -28,7 +28,7 @@ define([
         getData: function getData() {
             return this.model.getDataItems(
                 this.getWorkspace()
-            )
+            );
         },
 
         /**
@@ -88,6 +88,7 @@ define([
 
         /**
          * Set active content
+         * @member PagesController
          * @param uuid
          */
         setActiveContent: function setActiveContent(uuid) {
@@ -135,7 +136,7 @@ define([
 
         /**
          * Locate page data element
-         * @member PageDataController
+         * @member PagesController
          */
         locatePages: function locatePages() {
 
@@ -150,7 +151,7 @@ define([
 
         /**
          * Get page data
-         * @member PageDataController
+         * @member PagesController
          * @returns {Panel}
          */
         getPanel: function getPanel() {
@@ -160,7 +161,7 @@ define([
 
         /**
          * Get page data
-         * @member PageDataController
+         * @member PagesController
          * @returns {PageData}
          */
         getPageData: function getPageData() {
