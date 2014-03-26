@@ -8,12 +8,12 @@
 
 define([
     'modules/event'
-], function defineLayoutEventManager(Event) {
+], function defineLayoutEventManager(BaseEvent) {
 
     /**
      * Define layout event manager
      * @class LayoutEventManager
-     * @extends Event
+     * @extends BaseEvent
      * @constructor
      */
     var LayoutEventManager = function LayoutEventManager() {
@@ -49,5 +49,5 @@ define([
             setEmptySpacesMode: 'set.empty.spaces.mode'
         }
 
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

@@ -8,13 +8,13 @@
 
 define([
     'modules/event'
-], function defineEmptyEventManager(Event) {
+], function defineEmptyEventManager(BaseEvent) {
 
     /**
      * Define Empty event manager
      * @class EmptyEventManager
      * @constructor
-     * @extends Event
+     * @extends BaseEvent
      */
     var EmptyEventManager = function EmptyEventManager() {
 
@@ -47,5 +47,5 @@ define([
     };
 
     return EmptyEventManager.extend('EmptyEventManager', {
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

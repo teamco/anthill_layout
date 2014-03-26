@@ -7,30 +7,30 @@
  */
 define([
     'modules/model'
-], function definePagesModel(BaseModel) {
+], function defineWorkspaceDataModel(BaseModel) {
 
     /**
-     * Define Pages model
-     * @class PagesModel
+     * Define WorkspaceData model
+     * @class WorkspaceDataModel
      * @constructor
      * @extends BaseModel
      */
-    var PagesModel = function PagesModel() {
+    var WorkspaceDataModel = function WorkspaceDataModel() {
 
         /**
          * Define preferences
-         * @member PagesModel
+         * @member WorkspaceDataModel
          * @type {{url: string}}
          */
         this.preferences = {
         };
     };
 
-    return PagesModel.extend('PagesModel', {
+    return WorkspaceDataModel.extend('WorkspaceDataModel', {
 
         /**
          * Get data items
-         * @member PagesModel
+         * @member WorkspaceDataModel
          */
         getDataItems: function getDataItems(workspace) {
             return workspace.model.getItems();

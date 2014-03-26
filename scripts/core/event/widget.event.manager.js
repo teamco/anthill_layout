@@ -8,13 +8,13 @@
 
 define([
     'modules/event'
-], function defineWidgetEventManager(Event) {
+], function defineWidgetEventManager(BaseEvent) {
 
     /**
      * Define widget event manager
      * @class WidgetEventManager
      * @constructor
-     * @extends Event
+     * @extends BaseEvent
      */
     var WidgetEventManager = function WidgetEventManager() {
 
@@ -98,5 +98,5 @@ define([
             saveDOM: 'save.dom'
         }
 
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

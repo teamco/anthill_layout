@@ -8,13 +8,13 @@
 
 define([
     'modules/event'
-], function defineStatisticsEventManager(Event) {
+], function defineStatisticsEventManager(BaseEvent) {
 
     /**
      * Define Statistics event manager
      * @class StatisticsEventManager
      * @constructor
-     * @extends Event
+     * @extends BaseEvent
      */
     var StatisticsEventManager = function StatisticsEventManager() {
 
@@ -48,5 +48,5 @@ define([
     };
 
     return StatisticsEventManager.extend('StatisticsEventManager', {
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

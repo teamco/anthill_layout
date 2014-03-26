@@ -8,7 +8,7 @@
 
 define([
     'modules/event'
-], function definePageEventManager(Event) {
+], function definePageEventManager(BaseEvent) {
 
     /**
      * Define page event manager
@@ -56,5 +56,5 @@ define([
             updateHeight: 'update.height'
         }
 
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

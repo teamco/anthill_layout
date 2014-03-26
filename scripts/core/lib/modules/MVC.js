@@ -81,14 +81,14 @@ define([
          * @type {*}
          */
         this.defaultListeners = {
-            'before.init.config': 'getConfigLog',
-            'after.init.config': 'getConfigLog',
-            'success.created': 'successCreated',
-            'success.rendered': 'successRendered',
-            'after.create.item': 'afterCreateItem',
-            'after.destroy.item': 'afterDestroyItem',
-            'after.destroy.items': 'afterDestroyItems',
-            'after.resize.window': 'afterResizeWindow'
+            beforeInitConfig: 'before.init.config',
+            afterInitConfig: 'after.init.config',
+            successCreated: 'success.created',
+            successRendered: 'success.rendered',
+            afterCreateItem: 'after.create.item',
+            afterDestroyItem: 'after.destroy.item',
+            afterDestroyItems: 'after.destroy.items',
+            afterResizeWindow: 'after.resize.window'
         };
 
         /**
@@ -488,8 +488,8 @@ define([
                 if (listeners.hasOwnProperty(index)) {
 
                     this.scope.eventmanager.subscribe({
-                        event: index,
-                        callback: this.scope.controller[listeners[index]]
+                        event: listeners[index],
+                        callback: this.scope.controller[index]
                     }, true);
                 }
             }

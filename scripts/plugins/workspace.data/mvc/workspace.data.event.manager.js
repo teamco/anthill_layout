@@ -8,34 +8,34 @@
 
 define([
     'modules/event'
-], function definePagesEventManager(Event) {
+], function defineWorkspaceDataEventManager(BaseEvent) {
 
     /**
-     * Define Pages event manager
-     * @class PagesEventManager
+     * Define WorkspaceData event manager
+     * @class WorkspaceDataEventManager
      * @constructor
-     * @extends Event
+     * @extends BaseEvent
      */
-    var PagesEventManager = function PagesEventManager() {
+    var WorkspaceDataEventManager = function WorkspaceDataEventManager() {
 
         /**
          * Define events
-         * @member PagesEventManager
+         * @member WorkspaceDataEventManager
          * @type {{}}
          */
         this.events = {};
     };
 
-    return PagesEventManager.extend('PagesEventManager', {
+    return WorkspaceDataEventManager.extend('WorkspaceDataEventManager', {
 
         /**
          * Define event list
-         * @member PagesEventManager
+         * @member WorkspaceDataEventManager
          * @type {{
-             *      updateTranslations: string,
-             *      loadContent: string,
-             *      setActiveContent: string
-             * }}
+         *      updateTranslations: string,
+         *      loadContent: string,
+         *      setActiveContent: string
+         * }}
          */
         eventList: {
             updateTranslations: 'update.translations',
@@ -45,7 +45,7 @@ define([
 
         /**
          * Subscribe publish on
-         * @member PagesEventManager
+         * @member WorkspaceDataEventManager
          * @param {Page} page
          * @param {Function} [callback]
          * @returns {{}}
@@ -75,5 +75,5 @@ define([
             this.publishOn(publish);
         }
 
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

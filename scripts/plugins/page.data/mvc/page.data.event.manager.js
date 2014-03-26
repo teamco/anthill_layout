@@ -8,13 +8,13 @@
 
 define([
     'modules/event'
-], function definePageDataEventManager(Event) {
+], function definePageDataEventManager(BaseEvent) {
 
     /**
      * Define layout event manager
      * @class PageDataEventManager
      * @constructor
-     * @extends Event
+     * @extends BaseEvent
      */
     var PageDataEventManager = function PageDataEventManager() {
 
@@ -42,5 +42,5 @@ define([
 
     return PageDataEventManager.extend('PageDataEventManager', {
         
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

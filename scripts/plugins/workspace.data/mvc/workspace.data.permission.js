@@ -8,19 +8,19 @@
 
 define([
     'modules/permission'
-], function definePagesPermission(BasePermission) {
+], function defineWorkspaceDataPermission(BasePermission) {
 
     /**
      * Define Permissions
-     * @class PagesPermission
+     * @class WorkspaceDataPermission
      * @constructor
      * @extends BasePermission
      */
-    var PagesPermission = function PagesPermission() {
+    var WorkspaceDataPermission = function WorkspaceDataPermission() {
 
     };
 
-    return PagesPermission.extend('PagesPermission', {
+    return WorkspaceDataPermission.extend('WorkspaceDataPermission', {
 
     }, BasePermission.prototype);
 });

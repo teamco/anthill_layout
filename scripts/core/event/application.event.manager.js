@@ -8,12 +8,12 @@
 
 define([
     'modules/event'
-], function defineAppEventManager(Event) {
+], function defineAppEventManager(BaseEvent) {
 
     /**
-     * Define App Event Manager
+     * Define AppEvent Manager
      * @class AppEventManager
-     * @extends Event
+     * @extends BaseEvent
      * @constructor
      */
     var AppEventManager = function AppEventManager() {
@@ -55,5 +55,5 @@ define([
             resizeWorkspaces: 'resize.workspaces'
         }
 
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

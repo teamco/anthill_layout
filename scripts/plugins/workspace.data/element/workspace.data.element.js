@@ -7,35 +7,35 @@
 
 define([
     'modules/element'
-], function definePagesElement(BaseElement) {
+], function defineWorkspaceDataElement(BaseElement) {
 
     /**
-     * Define Pages Element
+     * Define WorkspaceData Element
      * @param view
      * @param opts
-     * @returns {PagesElement}
+     * @returns {WorkspaceDataElement}
      * @constructor
-     * @class PagesElement
+     * @class WorkspaceDataElement
      * @extends BaseElement
      */
-    var PagesElement = function PagesElement(view, opts) {
+    var WorkspaceDataElement = function WorkspaceDataElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
             destroy: false
         });
 
-        this.addCSS('pages');
+        this.addCSS('workspace.data');
         this.addCSS('preferences');
 
         return this;
     };
 
-    return PagesElement.extend('PagesElement', {
+    return WorkspaceDataElement.extend('WorkspaceDataElement', {
 
         /**
          * Get footer html
-         * @member PagesElement
+         * @member WorkspaceDataElement
          * @returns {*|jQuery}
          */
         getFooter: function getFooter() {

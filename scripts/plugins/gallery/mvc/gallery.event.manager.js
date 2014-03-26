@@ -8,13 +8,13 @@
 
 define([
     'modules/event'
-], function defineGalleryEventManager(Event) {
+], function defineGalleryEventManager(BaseEvent) {
 
     /**
      * Define Gallery event manager
      * @class GalleryEventManager
      * @constructor
-     * @extends Event
+     * @extends BaseEvent
      */
     var GalleryEventManager = function GalleryEventManager() {
 
@@ -43,5 +43,5 @@ define([
     };
 
     return GalleryEventManager.extend('GalleryEventManager', {
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

@@ -8,22 +8,22 @@
 
 define([
     'config/anthill'
-], function defineEvent(AntHill) {
+], function defineBaseEvent(AntHill) {
 
     /**
-     * Event constructor
-     * @class Event
+     * BaseEvent constructor
+     * @class BaseEvent
      * @extends AntHill
      * @constructor
      */
-    var Event = function Event() {
+    var BaseEvent = function BaseEvent() {
     };
 
-    return Event.extend('Event', {
+    return BaseEvent.extend('BaseEvent', {
 
         /**
          * Add event listener
-         * @member Event
+         * @member BaseEvent
          * @param {{eventName}} opts
          * @returns {*}
          */
@@ -44,7 +44,7 @@ define([
 
         /**
          * Subscribe event
-         * @member Event
+         * @member BaseEvent
          * @param {{event, callback, [params], [eventName], [scope]}} opts
          * @param {Boolean} internal
          * @returns {Boolean}
@@ -93,7 +93,7 @@ define([
 
         /**
          * Bind element events
-         * @member Event
+         * @member BaseEvent
          * @param {String} event
          * @param {String} on
          * @returns {Boolean}
@@ -120,7 +120,7 @@ define([
 
         /**
          * Subscribe to external published events
-         * @memberOf Event
+         * @memberOf BaseEvent
          * @param data
          */
         publishOn: function publishOn(data) {

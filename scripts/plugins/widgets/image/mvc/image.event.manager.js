@@ -8,13 +8,13 @@
 
 define([
     'modules/event'
-], function defineImageEventManager(Event) {
+], function defineImageEventManager(BaseEvent) {
 
     /**
      * Define Image event manager
      * @class ImageEventManager
      * @constructor
-     * @extends Event
+     * @extends BaseEvent
      */
     var ImageEventManager = function ImageEventManager() {
 
@@ -48,5 +48,5 @@ define([
     };
 
     return ImageEventManager.extend('ImageEventManager', {
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

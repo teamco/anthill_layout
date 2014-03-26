@@ -8,13 +8,13 @@
 
 define([
     'modules/event'
-], function defineBarEventManager(Event) {
+], function defineBarEventManager(BaseEvent) {
 
     /**
      * Define bar event manager
      * @class BarEventManager
      * @constructor
-     * @extends Event
+     * @extends BaseEvent
      */
     var BarEventManager = function BarEventManager() {
 
@@ -42,5 +42,5 @@ define([
     };
 
     return BarEventManager.extend('BarEventManager', {
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

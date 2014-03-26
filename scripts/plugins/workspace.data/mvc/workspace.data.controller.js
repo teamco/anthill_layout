@@ -7,22 +7,22 @@
 
 define([
     'plugins/plugin'
-], function definePagesController(PluginBase) {
+], function defineWorkspaceDataController(PluginBase) {
 
     /**
      * Define pages controller
-     * @class PagesController
+     * @class WorkspaceDataController
      * @extends PluginController
      * @constructor
      */
-    var PagesController = function PagesController() {
+    var WorkspaceDataController = function WorkspaceDataController() {
     };
 
-    return PagesController.extend('PagesController', {
+    return WorkspaceDataController.extend('WorkspaceDataController', {
 
         /**
          * Get data
-         * @member PagesController
+         * @member WorkspaceDataController
          * @returns {*}
          */
         getData: function getData() {
@@ -33,7 +33,7 @@ define([
 
         /**
          * Load pages content
-         * @member PagesController
+         * @member WorkspaceDataController
          * @param opened
          */
         loadContent: function loadContent(opened) {
@@ -47,8 +47,8 @@ define([
 
         /**
          * Get Prefs
-         * @member PagesController
-         * @returns {PagesModel.preferences}
+         * @member WorkspaceDataController
+         * @returns {WorkspaceDataModel.preferences}
          */
         getPreferences: function getPreferences() {
             return this.model.preferences;
@@ -56,7 +56,7 @@ define([
 
         /**
          * Define preferences
-         * @member PagesController
+         * @member WorkspaceDataController
          * @param {string} uuid
          * @returns {*}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Check if content was updated
-         * @member PagesController
+         * @member WorkspaceDataController
          * @param data
          * @param content
          * @returns {boolean}
@@ -88,7 +88,7 @@ define([
 
         /**
          * Set active content
-         * @member PagesController
+         * @member WorkspaceDataController
          * @param uuid
          */
         setActiveContent: function setActiveContent(uuid) {
@@ -108,7 +108,7 @@ define([
 
         /**
          * Update prefs
-         * @member PagesController
+         * @member WorkspaceDataController
          */
         approveUpdatePreferences: function approveUpdatePreferences() {
 
@@ -124,7 +124,7 @@ define([
 
         /**
          * Define publisher
-         * @member PagesController
+         * @member WorkspaceDataController
          * @param page
          */
         definePublisher: function definePublisher(page) {
@@ -136,9 +136,9 @@ define([
 
         /**
          * Locate page data element
-         * @member PagesController
+         * @member WorkspaceDataController
          */
-        locatePages: function locatePages() {
+        locateWorkspaceData: function locateWorkspaceData() {
 
             /**
              * Define $item
@@ -151,7 +151,7 @@ define([
 
         /**
          * Get page data
-         * @member PagesController
+         * @member WorkspaceDataController
          * @returns {Panel}
          */
         getPanel: function getPanel() {
@@ -161,7 +161,7 @@ define([
 
         /**
          * Get page data
-         * @member PagesController
+         * @member WorkspaceDataController
          * @returns {PageData}
          */
         getPageData: function getPageData() {
@@ -179,13 +179,13 @@ define([
 
         /**
          * Update widgets counter
-         * @member PagesController
+         * @member WorkspaceDataController
          */
         updateCounter: function updateCounter() {
 
             var workspace = this.controller.getWorkspace(),
                 pages = workspace.model.getItems(),
-                index, page, $item,
+                index, page, $item, uuid,
                 cname = '-pages-view';
 
             for (index in pages) {
@@ -199,10 +199,16 @@ define([
                     page = pages[index];
 
                     /**
-                     * Define pages content element
-                     * @type {PagesContentElement}
+                     * Define uuid
+                     * @type {string}
                      */
-                    $item = this.view.elements.items[page.model.getConfig('uuid') + cname];
+                    uuid = page.model.getConfig('uuid');
+
+                    /**
+                     * Define pages content element
+                     * @type {WorkspaceDataContentElement}
+                     */
+                    $item = this.view.elements.items[uuid + cname];
 
                     $item.updateCounter(page);
                 }

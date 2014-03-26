@@ -8,13 +8,13 @@
 
 define([
     'modules/event'
-], function defineYoutubeEventManager(Event) {
+], function defineYoutubeEventManager(BaseEvent) {
 
     /**
      * Define Youtube event manager
      * @class YoutubeEventManager
      * @constructor
-     * @extends Event
+     * @extends BaseEvent
      */
     var YoutubeEventManager = function YoutubeEventManager() {
 
@@ -48,5 +48,5 @@ define([
     };
 
     return YoutubeEventManager.extend('YoutubeEventManager', {
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

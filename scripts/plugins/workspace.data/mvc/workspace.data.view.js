@@ -11,54 +11,54 @@ define([
     'plugins/preferences/preferences',
     'element/header.element',
     'element/footer.element',
-    'plugins/pages/element/pages.content.element',
-    'plugins/pages/element/pages.preferences.element',
-    'plugins/pages/element/pages.element'
-], function definePagesView(BaseView, BasePreferences, Header, Footer, PagesContent, PagesPreferencesElement, Pages) {
+    'plugins/workspace.data/element/workspace.data.content.element',
+    'plugins/workspace.data/element/workspace.data.preferences.element',
+    'plugins/workspace.data/element/workspace.data.element'
+], function defineWorkspaceDataView(BaseView, BasePreferences, Header, Footer, WorkspaceDataContent, WorkspaceDataPreferencesElement, WorkspaceData) {
 
     /**
      * Define view
-     * @class PagesView
+     * @class WorkspaceDataView
      * @extends BaseView
      * @constructor
      */
-    var PagesView = function PagesView() {
+    var WorkspaceDataView = function WorkspaceDataView() {
     };
 
-    return PagesView.extend('PagesView', {
+    return WorkspaceDataView.extend('WorkspaceDataView', {
 
         /**
-         * Render Pages
-         * @member PagesView
+         * Render WorkspaceData
+         * @member WorkspaceDataView
          * @returns {boolean}
          */
-        renderPages: function renderPages() {
+        renderWorkspaceData: function renderWorkspaceData() {
 
-            if (this.isCached('$pages', Pages)) {
+            if (this.isCached('$workspace.data', WorkspaceData)) {
                 return false;
             }
 
             this.header(Header, this.elements.$container).setText(
-                'Workspace Pages'
+                'Workspace WorkspaceData'
             );
 
             /**
-             * Define Pages element
-             * @type {PagesElement}
+             * Define WorkspaceData element
+             * @type {WorkspaceDataElement}
              */
-            this.elements.$pages = new Pages(this, {
+            this.elements.$workspace.data = new WorkspaceData(this, {
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
 
             this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$pages.getFooter()
+                this.elements.$workspace.data.getFooter()
             );
         },
 
         /**
-         * Render pages content
-         * @member PagesView
+         * Render workspace.data content
+         * @member WorkspaceDataView
          * @param data
          * @param {Boolean} force
          * @returns {boolean}
@@ -85,10 +85,10 @@ define([
                      * Render item
                      * @type {*}
                      */
-                    var $item = new PagesContent(this, {
+                    var $item = new WorkspaceDataContent(this, {
                         style: 'content',
-                        id: data[index].model.getConfig('uuid') + '-pages-view',
-                        $container: this.elements.$pages.$,
+                        id: data[index].model.getConfig('uuid') + '-workspace.data-view',
+                        $container: this.elements.$workspace.data.$,
                         data: data[index]
                     });
 
@@ -99,14 +99,14 @@ define([
 
         /**
          * Show preferences
-         * @member PagesView
+         * @member WorkspaceDataView
          * @param config
          */
         showPreferences: function showPreferences(config) {
 
             /**
              * Define scope
-             * @type {Pages}
+             * @type {WorkspaceData}
              */
             var scope = this.scope;
 
@@ -118,24 +118,24 @@ define([
             this.openPreferences({
                 config: config,
                 $html: this.controller.definePreferences(config.uuid).$,
-                style: 'pages-prefs preferences',
+                style: 'workspace.data-prefs preferences',
                 title: 'Page preferences'
             });
         },
 
         /**
          * Render Prefs
-         * @member PagesView
+         * @member WorkspaceDataView
          * @param {Page} page
-         * @returns {PagesPreferencesElement}
+         * @returns {WorkspaceDataPreferencesElement}
          */
         renderPreferences: function renderPreferences(page) {
 
             /**
-             * Define Pages Preferences Element
-             * @type {PagesPreferencesElement}
+             * Define WorkspaceData Preferences Element
+             * @type {WorkspaceDataPreferencesElement}
              */
-            this.elements.$preferences = new PagesPreferencesElement(this, {
+            this.elements.$preferences = new WorkspaceDataPreferencesElement(this, {
                 data: this.controller.getPreferences(),
                 page: page
             });
@@ -144,14 +144,14 @@ define([
         },
 
         /**
-         * Render pages
-         * @member PagesView
+         * Render workspace.data
+         * @member WorkspaceDataView
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderPages.bind(this)
+                this.renderWorkspaceData.bind(this)
             );
         }
 

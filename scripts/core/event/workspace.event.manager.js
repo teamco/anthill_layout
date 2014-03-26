@@ -8,13 +8,13 @@
 
 define([
     'modules/event'
-], function defineWorkspaceEventManager(Event) {
+], function defineWorkspaceEventManager(BaseEvent) {
 
     /**
      * Define workspace event manager
      * @class EventManager
      * @constructor
-     * @extends Event
+     * @extends BaseEvent
      */
     var WorkspaceEventManager = function WorkspaceEventManager() {
 
@@ -50,5 +50,5 @@ define([
             setPageContainerHeight: 'set.page.container.height'
         }
 
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

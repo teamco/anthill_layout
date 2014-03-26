@@ -7,18 +7,18 @@
 
 define([
     'modules/element'
-], function definePagesContentElement(BaseElement) {
+], function defineWorkspaceDataContentElement(BaseElement) {
 
     /**
-     * Define Pages Content Element
+     * Define WorkspaceData Content Element
      * @param view
      * @param opts
-     * @returns {PagesContentElement}
+     * @returns {WorkspaceDataContentElement}
      * @constructor
-     * @class PagesContentElement
+     * @class WorkspaceDataContentElement
      * @extends BaseElement
      */
-    var PagesContentElement = function PagesContentElement(view, opts) {
+    var WorkspaceDataContentElement = function WorkspaceDataContentElement(view, opts) {
 
         this._config(view, opts, $('<li />')).build({
             $container: opts.$container,
@@ -28,13 +28,13 @@ define([
         return this.init(opts.data);
     };
 
-    return PagesContentElement.extend('PagesContentElement', {
+    return WorkspaceDataContentElement.extend('WorkspaceDataContentElement', {
 
         /**
          * Define init
-         * @memberOf PagesContentElement
+         * @memberOf WorkspaceDataContentElement
          * @param page
-         * @returns {PagesContentElement}
+         * @returns {WorkspaceDataContentElement}
          */
         init: function init(page) {
 
@@ -49,7 +49,7 @@ define([
 
         /**
          * Render page widgets counter
-         * @member PagesContentElement
+         * @member WorkspaceDataContentElement
          * @param {Page} page
          */
         renderCounter: function renderCounter(page) {
@@ -62,7 +62,7 @@ define([
 
         /**
          * Update counter text
-         * @member PagesContentElement
+         * @member WorkspaceDataContentElement
          * @param {Page} page
          */
         updateCounter: function updateCounter(page) {
@@ -75,7 +75,7 @@ define([
 
         /**
          * Get page $counter
-         * @member PagesContentElement
+         * @member WorkspaceDataContentElement
          * @returns {*|jQuery|HTMLElement}
          */
         get$counter: function get$counter() {
@@ -84,7 +84,7 @@ define([
 
         /**
          * Define attributes
-         * @member PagesContentElement
+         * @member WorkspaceDataContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
@@ -103,7 +103,7 @@ define([
 
         /**
          * Set publish on events
-         * @member PagesContentElement
+         * @member WorkspaceDataContentElement
          * @param page
          */
         setPublishOn: function setPublishOn(page) {
@@ -112,7 +112,7 @@ define([
 
         /**
          * Bind show prefs
-         * @member PagesContentElement
+         * @member WorkspaceDataContentElement
          * @param data
          */
         bindShowPrefs: function bindShowPrefs(data) {

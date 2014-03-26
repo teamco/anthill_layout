@@ -8,13 +8,13 @@
 
 define([
     'modules/event'
-], function definePanelEventManager(Event) {
+], function definePanelEventManager(BaseEvent) {
 
     /**
      * Define layout event manager
      * @class PanelEventManager
      * @constructor
-     * @extends Event
+     * @extends BaseEvent
      */
     var PanelEventManager = function PanelEventManager() {
 
@@ -48,5 +48,5 @@ define([
     };
 
     return PanelEventManager.extend('PanelEventManager', {
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

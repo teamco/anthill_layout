@@ -8,13 +8,13 @@
 
 define([
     'modules/event'
-], function defineAppEventManager(Event) {
+], function defineAppEventManager(BaseEvent) {
 
     /**
      * Define template event manager
      * @class EventManager
      * @constructor
-     * @extends Event
+     * @extends BaseEvent
      */
     var TemplateEventManager = function TemplateEventManager() {
 
@@ -49,5 +49,5 @@ define([
             destroyWidgets: 'destroy.widgets'
         }
 
-    }, Event.prototype);
+    }, BaseEvent.prototype);
 });

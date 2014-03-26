@@ -8,19 +8,19 @@
 define([
     'modules/element',
     'plugins/preferences/pages.preferences'
-], function definePagesPreferencesElement(BaseElement, PagesPreferences) {
+], function defineWorkspaceDataPreferencesElement(BaseElement, PagesPreferences) {
 
     /**
-     * Define Pages Preferences Element
+     * Define WorkspaceData Preferences Element
      * @param view
      * @param opts
-     * @returns {PagesPreferencesElement}
+     * @returns {WorkspaceDataPreferencesElement}
      * @constructor
-     * @class PagesPreferencesElement
+     * @class WorkspaceDataPreferencesElement
      * @extends BaseElement
      * @extends PagesPreferences
      */
-    var PagesPreferencesElement = function PagesPreferencesElement(view, opts) {
+    var WorkspaceDataPreferencesElement = function WorkspaceDataPreferencesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -32,7 +32,7 @@ define([
         return this;
     };
 
-    return PagesPreferencesElement.extend('PagesPreferencesElement', {
+    return WorkspaceDataPreferencesElement.extend('WorkspaceDataPreferencesElement', {
 
 
     }, BaseElement.prototype, PagesPreferences.prototype);

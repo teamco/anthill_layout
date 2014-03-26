@@ -8,38 +8,38 @@
 define([
     'config/anthill',
     'modules/mvc',
-    'plugins/pages/mvc/pages.controller',
-    'plugins/pages/mvc/pages.model',
-    'plugins/pages/mvc/pages.view',
-    'plugins/pages/mvc/pages.event.manager',
-    'plugins/pages/mvc/pages.permission'
-], function definePages(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/workspace.data/mvc/workspace.data.controller',
+    'plugins/workspace.data/mvc/workspace.data.model',
+    'plugins/workspace.data/mvc/workspace.data.view',
+    'plugins/workspace.data/mvc/workspace.data.event.manager',
+    'plugins/workspace.data/mvc/workspace.data.permission'
+], function defineWorkspaceData(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Pages
+     * Define WorkspaceData
      * @constructor
      * @param containment
-     * @class Pages
+     * @class WorkspaceData
      * @extends AntHill
      */
-    var Pages = function Pages(containment) {
+    var WorkspaceData = function WorkspaceData(containment) {
 
         /**
          * Define containment
-         * @member Pages
+         * @member WorkspaceData
          */
         this.containment = containment;
 
         /**
          * Define active content
-         * @member Pages
+         * @member WorkspaceData
          * @type {*}
          */
         this.activeContent = undefined;
 
         /**
          * Allow to locate element
-         * @member Pages
+         * @member WorkspaceData
          * @type {boolean}
          */
         this.allowToLocate = true;
@@ -80,56 +80,56 @@ define([
 
         /**
          * Init observer
-         * @member Pages
+         * @member WorkspaceData
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
-         * @member Pages
+         * @member WorkspaceData
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
-         * @member Pages
+         * @member WorkspaceData
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Define controller
-         * @member Pages
+         * @member WorkspaceData
          * @type {*}
          */
         this.controller = undefined;
 
         /**
          * Define model
-         * @member Pages
+         * @member WorkspaceData
          * @type {*}
          */
         this.model = undefined;
 
         /**
          * Define view
-         * @member Pages
+         * @member WorkspaceData
          * @type {*}
          */
         this.view = undefined;
 
         /**
          * Define permissions
-         * @member Pages
+         * @member WorkspaceData
          * @type {*}
          */
         this.permission = undefined;
 
         /**
          * Define MVC
-         * @member Pages
+         * @member WorkspaceData
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -151,11 +151,11 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.updateTranslations,
-            ['plugins/pages/translations/en-us']
+            ['plugins/workspace.data/translations/en-us']
         );
     };
 
-    return Pages.extend('Pages', {
+    return WorkspaceData.extend('WorkspaceData', {
 
     }, AntHill.prototype);
 });
