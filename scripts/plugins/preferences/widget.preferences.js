@@ -59,12 +59,12 @@ define([
              * Define dom nodes
              * @type {Array}
              */
-            var nodes = [];
+            var nodes = [], merge = {};
 
             /**
              * Merge prefs with default data
              */
-            data = $.extend(true, this.defaultPrefs, data);
+            data = $.extend(true, merge, this.defaultPrefs, data);
 
             for (var index in data) {
 
