@@ -14,12 +14,12 @@ define([
      * Define content
      * @param view
      * @param opts
-     * @returns {WidgetContent}
-     * @class WidgetContent
+     * @returns {WidgetContentElement}
+     * @class WidgetContentElement
      * @constructor
      * @extends BaseElement
      */
-    var WidgetContent = function WidgetContent(view, opts) {
+    var WidgetContentElement = function WidgetContentElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -27,11 +27,23 @@ define([
         });
 
         this.setPadding();
+        this.setBackgroundImage(opts.thumbnail);
 
         return this;
     };
 
-    return WidgetContent.extend('WidgetContent', {
+    return WidgetContentElement.extend('WidgetContentElement', {
+
+        /**
+         * Set background image
+         * @member WidgetElement
+         * @param {string} url
+         */
+        setBackgroundImage: function setBackgroundImage(url) {
+            this.$.css({
+                backgroundImage: 'url("' + url + '")'
+            });
+        },
 
         /**
          * Set padding

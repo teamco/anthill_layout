@@ -572,6 +572,15 @@ define([
         },
 
         /**
+         * Get widget thumbnail
+         * @member WidgetController
+         * @returns {*}
+         */
+        getThumbnail: function getThumbnail() {
+            return this.model.getConfig('preferences/thumbnail');
+        },
+
+        /**
          * Save widget DOM
          * @member WidgetController
          */

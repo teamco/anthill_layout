@@ -61,13 +61,11 @@ define([
 
             /**
              * Define $content
-             * @type {WidgetContent}
+             * @type {WidgetContentElement}
              */
             this.elements.$content = new Content(this, {
                 style: 'content',
-                css: {
-                    background: this.base.lib.generator.randomColor()
-                },
+                thumbnail: this.controller.getThumbnail(),
                 $container: this.elements.$widget.$
             });
         },

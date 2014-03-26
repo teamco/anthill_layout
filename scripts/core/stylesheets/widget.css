@@ -93,6 +93,7 @@
     bottom: 0;
     right: 0;
     cursor: default;
+    background: transparent no-repeat center;
 }
 
 .widget .content ul {
@@ -106,9 +107,4 @@
 
 .widget .content li h2 {
     margin-bottom: 10px;
-}
-
-.widget img {
-    border: 1px solid #333;
-    margin-bottom: 6px;
 }
