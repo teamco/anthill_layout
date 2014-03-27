@@ -100,8 +100,8 @@ define([
         /**
          * Create Canvas
          * @member ImageGalleryElement
-         * @example Urls: http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/flo1.jpg,http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/lights2.jpg,http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/flo3.jpg,http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/lights1.jpg,http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/flo2.jpg,http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/lights3.jpg
-         * @example Texts: Spring flowers,City lights,Spring flowers,City lights,Spring flowers,City lights
+         * @example Urls: http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/flo3.jpg,http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/lights1.jpg,http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/flo2.jpg,http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/lights3.jpg
+         * @example Texts: Spring flowers,City lights,Spring flowers,City lights
          */
         createCanvas: function createCanvas(image) {
 
