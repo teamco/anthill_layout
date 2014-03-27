@@ -24,6 +24,8 @@ requirejs.config({
 
         test: 'test',
 
+        modernizr: 'lib/modernizr',
+
         jquery: 'lib/jquery/jquery-2.1.0',
         'jquery.ui': 'lib/jquery/jquery-ui-1.10.4.custom',
         'jquery.resizestop': 'lib/jquery/jquery.resizestop'
@@ -61,6 +63,7 @@ requirejs.config({
 });
 
 define([
+    'modernizr',
     'jquery',
     'jquery.ui',
     'jquery.resizestop',

@@ -29,8 +29,8 @@ define([
         setEmbeddedContent: function setEmbeddedContent() {
 
             this.view.elements.$imagegallery.renderEmbeddedContent(
-                this.model.getPrefs('imageUrl'),
-                this.model.getPrefs('imageText')
+                this.model.getPrefs('imageGalleryUrls'),
+                this.model.getPrefs('imageGalleryTexts')
             );
         }
 

@@ -265,7 +265,7 @@ define([
         getPrefs: function getPrefs(prefs) {
 
             if (!this.preferences[prefs]) {
-                this.scope.logger.warn('Undefined preference');
+                this.scope.logger.warn('Undefined preference', prefs);
                 return false;
             }
 
@@ -311,6 +311,15 @@ define([
          */
         setDescription: function setDescription(description) {
             this.setPrefs('description', description);
+        },
+
+        /**
+         * Set statistics
+         * @member BaseModel
+         * @param {string} statistics
+         */
+        setStatistics: function setStatistics(statistics) {
+            this.setPrefs('statistics', statistics);
         },
 
         /**

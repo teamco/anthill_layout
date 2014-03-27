@@ -25,13 +25,13 @@ define([
          * }}
          */
         this.preferences = {
-            imageUrl: {
+            imageGalleryUrls: {
                 type: 'textarea',
                 disabled: false,
                 value: undefined
             },
-            imageText: {
-                type: 'text',
+            imageGalleryTexts: {
+                type: 'textarea',
                 disabled: false,
                 value: undefined
             }
@@ -45,8 +45,8 @@ define([
          * @member ImageGalleryModel
          * @param {string} url
          */
-        setImageGalleryUrl: function setImageGalleryUrl(url) {
-            this.setPrefs('imageUrl', url);
+        setImageGalleryUrls: function setImageGalleryUrls(url) {
+            this.setPrefs('imageGalleryUrls', url);
         },
 
         /**
@@ -54,10 +54,9 @@ define([
          * @member ImageGalleryModel
          * @param {string} text
          */
-        setImageGalleryText: function setImageGalleryText(text) {
-            this.setPrefs('imageText', text);
+        setImageGalleryTexts: function setImageGalleryTexts(text) {
+            this.setPrefs('imageGalleryTexts', text);
         }
-
 
     }, BaseModel.prototype);
 });

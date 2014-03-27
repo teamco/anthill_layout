@@ -92,6 +92,7 @@
     padding: 0 3px;
     font-variant: small-caps;
     font-size: 14px;
+    font-weight: bold;
     cursor: pointer;
     text-transform: lowercase;
 }
