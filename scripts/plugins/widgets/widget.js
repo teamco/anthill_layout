@@ -41,7 +41,7 @@ define([
             this.observer.publish(
                 this.eventmanager.eventList.updateTranslations, [
                     'plugins/widgets/',
-                    this.constructor.name.toLowerCase(),
+                    this.constructor.name.toPoint().replace(/./, ''),
                     '/translations/en-us'
                 ].join('')
             );

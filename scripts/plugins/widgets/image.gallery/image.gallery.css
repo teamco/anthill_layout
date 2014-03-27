@@ -1,0 +1,8 @@
+.widget .content .imagegallery {
+    height: 100%;
+    width: 100%;
+}
+
+.widget .content .imagegallery img {
+    border: none;
+}
