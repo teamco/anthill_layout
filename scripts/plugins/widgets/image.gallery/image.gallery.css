@@ -1,6 +1,7 @@
 .widget .content .imagegallery {
     height: 100%;
     width: 100%;
+    background: #fff;
 }
 
 .widget .content .imagegallery img {
@@ -14,7 +15,7 @@
     width: 300px;
     height: 300px;
     margin: 10px;
-    padding: 10px;
+    border: 10px solid #fff;
     background: #fff;
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .35);
     -moz-boz-shadow: 0 0 5px rgba(0, 0, 0, .35);

@@ -61,19 +61,9 @@ define([
             }).addClass('elastislide-list');
 
             for (var i = 0, l = urls.length; i < l; i++) {
-                $ul.append(
-                    $('<li />').append(
-                        $('<a />').attr({
-                            href: 'javascript:void(0)',
-                            title: texts[i]
-                        }).append([
-                            $('<img />').attr({
-                                src: urls[i],
-                                alt: texts[i]
-                            }),
-                            $('<div />').text(texts[i])
-                        ])
-                    )
+
+                this.preloadImage(
+                    url, $ul, urls[i], texts[i]
                 );
             }
 
@@ -90,11 +80,42 @@ define([
         },
 
         /**
-         * Preload images
+         * Preload image
          * @member ImageGalleryElement
+         * @param {string} url
+         * @param $ul
+         * @param {string} url
+         * @param {string} text
          */
-        preloadImages:function preloadImages() {
-            // TODO
+        preloadImage: function preloadImage(url, $ul, url, text) {
+
+            /**
+             * Define image
+             * @type {Image}
+             */
+            var img = new Image();
+
+            img.src = url;
+            img.onload = function preloadCallback() {
+                $ul.append(
+                    $('<li />').append(
+                        $('<a />').attr({
+                            href: 'javascript:void(0)',
+                            title: text
+                        }).append([
+                            $('<img />').attr({
+                                src: url,
+                                alt: text
+                            }),
+                            $('<div />').text(text)
+                        ])
+                    )
+                );
+            };
+            img.onerror = function onerror(e) {
+                this.view.scope.logger.warn('Error loading image', e);
+            }.bind(this)
+
         },
 
         /**

@@ -94,6 +94,7 @@
     right: 0;
     cursor: default;
     background: transparent no-repeat center;
+    overflow: auto;
 }
 
 .widget .content ul {
