@@ -17,6 +17,8 @@ define([
      * @constructor
      * @class ImageGalleryElement
      * @extends BaseElement
+     * @example Urls: http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/flo3.jpg,http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/lights1.jpg,http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/flo2.jpg,http://pehaa.com/wp-content/uploads/2012/02/tut_pinkonhead/images/lights3.jpg
+     * @example Texts: Spring flowers,City lights,Spring flowers,City lights
      */
     var ImageGalleryElement = function ImageGalleryElement(view, opts) {
 
@@ -48,8 +50,7 @@ define([
              * Define this
              * @type {ImageGalleryElement}
              */
-            var imageGalleryElement = this,
-                urls = url.split(','),
+            var urls = url.split(','),
                 texts = text.split(',');
 
             /**
@@ -72,6 +73,8 @@ define([
              * @type {string}
              */
             this.setHtml($ul);
+
+            this.$.parent().css('background', 'transparent');
         },
 
         /**
