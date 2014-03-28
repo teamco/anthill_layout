@@ -68,25 +68,6 @@ define([
         },
 
         /**
-         * Check if content was updated
-         * @member WorkspaceDataController
-         * @param data
-         * @param content
-         * @returns {boolean}
-         */
-        isUpdate: function isUpdate(data, content) {
-
-            /**
-             * Define hash
-             * @type {*}
-             */
-            var hash = this.base.lib.hash;
-
-            return hash.hashLength(data || {}) ===
-                hash.hashLength(content || {})
-        },
-
-        /**
          * Set active content
          * @member WorkspaceDataController
          * @param uuid

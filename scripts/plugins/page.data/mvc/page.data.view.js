@@ -7,13 +7,14 @@
  */
 
 define([
+    'config/anthill',
     'modules/view',
     'plugins/preferences/preferences',
     'element/header.element',
     'element/footer.element',
     'plugins/page.data/element/page.data.content.element',
     'plugins/page.data/element/page.data.element'
-], function definePageDataView(BaseView, BasePreferences, Header, Footer, PageDataContent, PageData) {
+], function definePageDataView(AntHill, BaseView, BasePreferences, Header, Footer, PageDataContent, PageData) {
 
     /**
      * Define view
@@ -50,10 +51,6 @@ define([
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
-
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$pagedata.getFooter()
-            );
         },
 
         /**
@@ -74,7 +71,7 @@ define([
                 this.elements.items
             );
 
-            if (this.isCachedItems(force) && update) {
+            if (this.isCachedItems(force) && !update) {
                 return false;
             }
 
@@ -83,6 +80,10 @@ define([
              * @type {{}}
              */
             this.elements.items = {};
+
+            if (this.base.lib.hash.hashLength(data) === 0) {
+                this.elements.$pagedata.empty();
+            }
 
             for (var index in data) {
 
@@ -103,9 +104,12 @@ define([
                     });
 
                     this.elements.items[$item.id] = $item;
-
                 }
             }
+
+            this.footer(Footer, this.elements.$container).setHtml(
+                this.elements.$pagedata.getFooter()
+            );
         },
 
         /**
@@ -146,6 +150,6 @@ define([
             );
         }
 
-    }, BaseView.prototype, BasePreferences.prototype)
+    }, AntHill.prototype, BaseView.prototype, BasePreferences.prototype)
 
 });

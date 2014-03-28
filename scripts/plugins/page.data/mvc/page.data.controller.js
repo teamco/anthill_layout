@@ -88,7 +88,7 @@ define([
              */
             var hash = this.base.lib.hash;
 
-            return hash.hashLength(data || {}) ===
+            return hash.hashLength(data || {}) !==
                 hash.hashLength(content || {})
         },
 
