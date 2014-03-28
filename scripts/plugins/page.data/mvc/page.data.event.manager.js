@@ -41,6 +41,6 @@ define([
     };
 
     return PageDataEventManager.extend('PageDataEventManager', {
-        
+
     }, BaseEvent.prototype);
 });

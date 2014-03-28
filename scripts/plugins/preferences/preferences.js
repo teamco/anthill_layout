@@ -40,6 +40,33 @@ define([], function defineBasePreferences() {
         openPreferences: function openPreferences(opts) {
 
             /**
+             * Define buttons
+             * @type {*}
+             */
+            var buttons = opts.buttons || {};
+
+            $.extend(true, buttons, {
+                locate: {
+                    text: 'Locate',
+                    events: {
+                        click: 'locate' + this.scope.constructor.name
+                    }
+                },
+                approve: {
+                    text: 'OK',
+                    events: {
+                        click: 'approveUpdatePreferences'
+                    }
+                },
+                reject: {
+                    text: 'Cancel',
+                    events: {
+                        click: 'rejectModalEvent'
+                    }
+                }
+            });
+
+            /**
              * Define $container
              * @type {$}
              */
@@ -53,26 +80,7 @@ define([], function defineBasePreferences() {
                 text: opts.config.uuid,
                 html: opts.$html,
                 cover: true,
-                buttons: {
-                    locate: {
-                        text: 'Locate',
-                        events: {
-                            click: 'locate' + this.scope.constructor.name
-                        }
-                    },
-                    approve: {
-                        text: 'OK',
-                        events: {
-                            click: 'approveUpdatePreferences'
-                        }
-                    },
-                    reject: {
-                        text: 'Cancel',
-                        events: {
-                            click: 'rejectModalEvent'
-                        }
-                    }
-                }
+                buttons: buttons
             });
         }
     });

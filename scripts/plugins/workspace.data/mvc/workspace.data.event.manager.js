@@ -65,9 +65,9 @@ define([
             var publish = {
                 scope: page,
                 events: [
-                    {eventName: pageEventList.createWidget},
-                    {eventName: pageEventList.destroyWidget},
-                    {eventName: pageEventList.destroyWidgets}
+                    {eventName: pageEventList.afterCreateItem},
+                    {eventName: pageEventList.afterDestroyItem},
+                    {eventName: pageEventList.afterDestroyItems}
                 ],
                 callback: callback
             };

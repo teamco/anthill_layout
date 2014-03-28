@@ -182,6 +182,13 @@ define([
         };
 
         /**
+         * Init API
+         * @member Page
+         * @type {PageAPI}
+         */
+        this.api = undefined;
+
+        /**
          * Init observer
          * @member Page
          * @type {Observer}

@@ -74,9 +74,7 @@ define([
                     itemEventManager.abstract['destroyItems']
                 )) {
                     item.observer.publish(
-                        itemEventManager.eventList[
-                            itemEventManager.abstract.destroyItems
-                            ]
+                        itemEventManager.eventList[itemEventManager.abstract.destroyItems]
                     );
                 }
             }
@@ -90,7 +88,6 @@ define([
             this.scope[namespace] = base.lib.hash.firstHashElement(items) || {};
 
             return items;
-
         },
 
         /**
@@ -99,13 +96,16 @@ define([
          * @returns {*}
          */
         destroyItems: function destroyItems() {
+
             var index,
                 items = this.scope.items || {};
+
             for (index in items) {
                 if (items.hasOwnProperty(index)) {
                     this.destroyItem(items[index])
                 }
             }
+
             return items;
         },
 
@@ -130,12 +130,13 @@ define([
 
             for (index in elements) {
                 if (elements.hasOwnProperty(index)) {
+
+                    /**
+                     * Define element
+                     * @type {BaseElement}
+                     */
                     $element = elements[index];
-                    if ($element.$) {
-                        $element.$.find('*').unbind();
-                        $element.$.unbind();
-                    }
-                    $element.destroy();
+                    $element.unbindElement().destroy();
                 }
             }
 

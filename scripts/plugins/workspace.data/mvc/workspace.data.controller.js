@@ -178,6 +178,25 @@ define([
         },
 
         /**
+         * Destroy page widgets
+         * @member WorkspaceDataController
+         */
+        destroyPageWidgets: function destroyPageWidgets() {
+
+            /**
+             * Define page
+             * @type {Page}
+             */
+            var page = this.scope.activeContent;
+
+            page.api.destroyItems(
+                page.model.getItems()
+            );
+
+            this.scope.view.elements.$modal.selfDestroy();
+        },
+
+        /**
          * Update widgets counter
          * @member WorkspaceDataController
          */

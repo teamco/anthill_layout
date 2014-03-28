@@ -33,7 +33,7 @@ define([
         /**
          * Define active content
          * @member WorkspaceData
-         * @type {*}
+         * @type {Page}
          */
         this.activeContent = undefined;
 

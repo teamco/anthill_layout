@@ -156,8 +156,10 @@ define([
             items = this.base.define(items, this.items);
 
             this.base.defineBoolean(silent, false, true) ?
-                this.controller.approveItemsDestroy(items) :
-                this.view.destroyWidgetsModalDialog(items);
+                this.observer.publish(
+                    this.eventmanager.eventList.approveItemsDestroy,
+                    items
+                ) : this.view.destroyWidgetsModalDialog(items);
         },
 
         /**

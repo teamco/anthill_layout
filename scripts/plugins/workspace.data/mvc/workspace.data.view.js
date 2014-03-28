@@ -119,7 +119,15 @@ define([
                 config: config,
                 $html: this.controller.definePreferences(config.uuid).$,
                 style: 'workspacedata-prefs preferences',
-                title: 'Page preferences'
+                title: 'Page preferences',
+                buttons: {
+                    destroyPageWidgets: {
+                        text: 'Destroy widgets',
+                        events: {
+                            click: 'destroyPageWidgets'
+                        }
+                    }
+                }
             });
         },
 

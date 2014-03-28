@@ -661,6 +661,21 @@ define([
         },
 
         /**
+         * Unbind element
+         * @member BaseElement
+         * @returns {BaseElement}
+         */
+        unbindElement: function unbindElement() {
+
+            if (this.$) {
+                this.$.find('*').off();
+                this.$.off();
+            }
+
+            return this;
+        },
+
+        /**
          * Show items content
          * @member BaseElement
          */

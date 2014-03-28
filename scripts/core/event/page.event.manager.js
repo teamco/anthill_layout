@@ -47,6 +47,7 @@ define([
             createWidget: 'create.widget',
             destroyWidget: 'destroy.widget',
             destroyWidgets: 'destroy.widgets',
+            approveItemsDestroy: 'approve.items.destroy',
             createTemplate: 'create.template',
             destroyTemplate: 'destroy.template',
             createLayout: 'create.layout',
