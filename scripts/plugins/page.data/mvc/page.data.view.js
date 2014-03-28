@@ -57,10 +57,9 @@ define([
          * Render page.data content
          * @member PageDataView
          * @param data
-         * @param {Boolean} force
          * @returns {boolean}
          */
-        renderContent: function renderContent(data, force) {
+        renderContent: function renderContent(data) {
 
             /**
              * Check if content was updated
@@ -71,7 +70,7 @@ define([
                 this.elements.items
             );
 
-            if (this.isCachedItems(force) && !update) {
+            if (!update) {
                 return false;
             }
 
