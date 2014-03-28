@@ -141,7 +141,7 @@ define([
 
             /**
              * Define provider
-             * @type {{}}
+             * @type {*}
              */
             var provider = this.providers[name];
 
