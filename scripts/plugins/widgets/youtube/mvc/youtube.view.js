@@ -11,8 +11,9 @@ define([
     'element/header.element',
     'element/footer.element',
     'plugins/widgets/youtube/element/youtube.element',
-    'plugins/widgets/youtube/element/youtube.preferences.element'
-], function defineYoutubeView(BaseView, Header, Footer, YoutubeElement, YoutubePreferencesElement) {
+    'plugins/widgets/youtube/element/youtube.preferences.element',
+    'plugins/widgets/youtube/element/youtube.rules.element'
+], function defineYoutubeView(BaseView, Header, Footer, YoutubeElement, YoutubePreferencesElement, YoutubeRulesElement) {
 
     /**
      * Define view
@@ -65,6 +66,24 @@ define([
             });
 
             return this.elements.$preferences;
+        },
+
+        /**
+         * Render Rules
+         * @member YoutubeView
+         * @returns {YoutubeRulesElement}
+         */
+        renderRules: function renderRules() {
+
+            /**
+             * Define Youtube Preferences Element
+             * @type {YoutubeRulesElement}
+             */
+            this.elements.$rules = new YoutubeRulesElement(this, {
+                data: this.controller.getRules()
+            });
+
+            return this.elements.$rules;
         },
 
         /**

@@ -53,7 +53,7 @@ define([
          *      loadContent: string,
          *      setContent: string,
          *      adoptDimensions: string,
-         *      saveDOM: string
+         *      saveDom: string
          * }}
          */
         eventList: {
@@ -95,7 +95,7 @@ define([
             loadContent: 'load.content',
             setContent: 'set.content',
 
-            saveDOM: 'save.dom'
+            saveDom: 'save.dom'
         }
 
     }, BaseEvent.prototype);

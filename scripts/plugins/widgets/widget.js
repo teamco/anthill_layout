@@ -79,6 +79,15 @@ define([
         },
 
         /**
+         * Get rules
+         * @member WidgetController
+         * @returns {{}}
+         */
+        getRules: function getRules() {
+            return this.model.rules;
+        },
+
+        /**
          * Update prefs
          * @member WidgetController
          * @param $modal
@@ -166,6 +175,39 @@ define([
         },
 
         /**
+         * Load rules
+         * @member WidgetController
+         */
+        loadRules: function loadRules() {
+
+            /**
+             * Load prefs
+             * @type {*}
+             */
+            var widget = this.controller.getContainment(),
+                rules = widget.model.getConfig('rules');
+
+            $.each(rules, function each(index, value) {
+
+                /**
+                 * Define method name
+                 * @type {string}
+                 */
+                var setter = 'set' + index.toCamel().capitalize();
+
+                if (typeof(this.model[setter]) === 'function') {
+
+                    this.model[setter](value);
+
+                } else {
+
+                    this.logger.debug('Skip', setter);
+                }
+
+            }.bind(this));
+        },
+
+        /**
          * Transfer preferences to containment
          * @member WidgetController
          * @param index
@@ -187,6 +229,30 @@ define([
 
             prefs[index] = value;
             widget.model.updatePreferences(prefs);
+        },
+
+        /**
+         * Transfer rules to containment
+         * @member WidgetController
+         * @param index
+         * @param value
+         */
+        transferRules: function transferRules(index, value) {
+
+            /**
+             * Define widget
+             * @type {*}
+             */
+            var widget = this.controller.getContainment();
+
+            /**
+             * Define rules
+             * @type {{}}
+             */
+            var rules = {};
+
+            rules[index] = value;
+            widget.model.updateRules(rules);
         },
 
         /**

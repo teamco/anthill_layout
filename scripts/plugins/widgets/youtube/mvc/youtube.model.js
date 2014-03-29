@@ -31,6 +31,12 @@ define([
                 value: undefined
             }
         };
+
+        /**
+         * Define rules
+         * @type {{}}
+         */
+        this.rules = {};
     };
 
     return YoutubeModel.extend('YoutubeModel', {

@@ -584,7 +584,7 @@ define([
          * Save widget DOM
          * @member WidgetController
          */
-        saveDOM: function saveDOM() {
+        saveDom: function saveDom() {
             this.logger.debug(this.i18n.t('save.widget'));
             this.model.defineDOM();
         }

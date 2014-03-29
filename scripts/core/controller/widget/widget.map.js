@@ -438,7 +438,7 @@ define([
             var widget = this.widget;
 
             widget.observer.publish(
-                widget.eventmanager.eventList.saveDOM
+                widget.eventmanager.eventList.saveDom
             );
 
             opts = this.base.define(opts, {}, true);
@@ -509,7 +509,7 @@ define([
             )) {
 
                 widget.observer.publish(
-                    widget.eventmanager.eventList.saveDOM
+                    widget.eventmanager.eventList.saveDom
                 );
 
                 hash[widget.model.getUUID()] = widget;
