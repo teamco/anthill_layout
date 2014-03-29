@@ -8,6 +8,7 @@
 
 .modal-dialog.rules div.html > ul > li {
     margin-bottom: 3px;
+    position: relative;
 }
 
 .modal-dialog.rules div.html label {
@@ -40,6 +41,10 @@
     -moz-box-shadow: inset 0 0 5px #ccc;
     -webkit-box-shadow: inset 0 0 5px #ccc;
     box-shadow: inset 0 0 5px #ccc;
+}
+
+.modal-dialog.rules div.html div.combo-box > ul {
+    width: 100%;
 }
 
 .modal-dialog.rules div.html input[type="text"]:focus {
@@ -131,40 +136,41 @@
 }
 
 .modal-dialog.rules fieldset legend.open + ul input[type="text"],
-.modal-dialog.rules fieldset legend.open + ul div.combo-box {
+.modal-dialog.rules div.html div.combo-box {
     float: right;
-    width: 50%;
+    width: 70%;
     position: relative;
 }
 
-.modal-dialog.rules fieldset legend.open + ul div.combo-box > ul {
-    width: 100%;
+.modal-dialog.rules div.html div.combo-box > ul {
+    width: 70%;
     margin: 0;
+    float: left;
 }
 
 .modal-dialog.rules fieldset legend.open + ul input[type="text"]:focus {
     width: 50%;
 }
 
-.modal-dialog.rules fieldset legend.open + ul div.combo-box-arrow {
+.modal-dialog.rules div.html div.combo-box-arrow {
     position: absolute;
     top: 1px;
-    right: 0px;
+    right: 30%;
     width: 12px;
     height: 20px;
     cursor: pointer;
     background: transparent url('../../core/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png') no-repeat -69px 2px;
 }
 
-.modal-dialog.rules fieldset legend.open + ul div.combo-box-arrow:hover {
+.modal-dialog.rules div.html div.combo-box-arrow:hover {
     background-image: url('../../core/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png');
 }
 
-.modal-dialog.rules fieldset legend.open + ul div.combo-box.open div.combo-box-arrow {
+.modal-dialog.rules div.html div.combo-box.open div.combo-box-arrow {
     background-position: -4px 2px;
 }
 
-.modal-dialog.rules fieldset legend.open + ul div.combo-box li {
+.modal-dialog.rules div.html div.combo-box li {
     background-color: transparent;
     display: none;
     width: 100%;
@@ -174,11 +180,11 @@
     line-height: 20px;
 }
 
-.modal-dialog.rules fieldset legend.open + ul div.combo-box li.selected {
+.modal-dialog.rules div.html div.combo-box > ul li.selected {
     display: inline-block;
 }
 
-.modal-dialog.rules fieldset legend.open + ul div.combo-box.open ul {
+.modal-dialog.rules div.html div.combo-box.open > ul {
     overflow: auto;
     max-height: 200px;
     height: auto;
@@ -187,36 +193,54 @@
     box-shadow: 3px 3px 5px #999;
 }
 
-.modal-dialog.rules fieldset legend.open + ul div.combo-box.open li {
+.modal-dialog.rules div.html div.combo-box.open > ul li {
     display: inline-block;
     margin-bottom: 0;
 }
 
-.modal-dialog.rules fieldset legend.open + ul div.combo-box.open li:hover {
+.modal-dialog.rules div.html div.combo-box.open > ul li:hover {
     background-color: #ffff99;
 }
 
-.modal-dialog.rules fieldset legend.open + ul div.combo-box.open li:last-child,
-.modal-dialog.rules fieldset legend.open + ul div.combo-box.open li:last-child:hover {
+.modal-dialog.rules div.html div.combo-box.open > ul li:last-child,
+.modal-dialog.rules div.html div.combo-box.open > ul li:last-child:hover {
     border: none;
 }
 
-.modal-dialog.rules fieldset legend.open + ul div.combo-box.open li.selected,
-.modal-dialog.rules fieldset legend.open + ul div.combo-box.open li.selected:hover {
+.modal-dialog.rules div.html div.combo-box.open > ul li.selected,
+.modal-dialog.rules div.html div.combo-box.open > ul li.selected:hover {
     background-color: #fbcb09;
 }
 
-.modal-dialog.rules .layout-prefs,
-.modal-dialog.rules .widgets-prefs {
+.modal-dialog div.html ul.button-add-rules {
+    position: absolute;
+    list-style: none;
+    right: 0;
+    top: 2px;
     margin: 0;
 }
 
-.modal-dialog.rules .widgets-prefs li {
-    padding: 3px 5px;
-    display: inline-block;
+.modal-dialog div.html ul.button-add-rules li {
+    float: left;
+    margin-right: 5px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    border: 1px solid #fff;
+    background-color: #fff;
+    box-shadow: 1px 1px 1px #333;
     cursor: pointer;
-    background: transparent no-repeat center;
-    width: 67px;
-    height: 67px;
-    text-indent: -9000px;
+}
+
+.modal-dialog div.html ul.button-add-rules li:hover,
+.modal-dialog div.html ul.button-add-rules li:active {
+    background-color: #ededed;
+    border-color: #ccc;
+}
+
+.modal-dialog div.html ul.button-add-rules li:active {
+    margin-top: 2px;
+    margin-left: 1px;
+    padding-top: 1px;
+    padding-left: 4px;
+    box-shadow: -1px -1px 1px #333;
 }

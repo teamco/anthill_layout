@@ -54,7 +54,9 @@ define([
             scope.activeContent = widget.controller.getContent();
             scope.logger.debug('Active component', scope.activeContent);
 
-            return scope.activeContent.view.renderRules();
+            return scope.activeContent.view.renderRules(
+                widget.eventmanager.getEvents()
+            );
         },
 
         /**

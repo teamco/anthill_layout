@@ -256,6 +256,15 @@ define([
         },
 
         /**
+         * Add Rule
+         * @member WidgetController
+         */
+        addRule: function addRule() {
+
+
+        },
+
+        /**
          * Get DOM
          * @member WidgetController
          * @param type

@@ -254,15 +254,22 @@ define([
          * @param {*} store
          */
         button: function button(ButtonElement, opts, store) {
+
             $.each(
                 this.base.define(opts, {}, true),
                 function each(i, button) {
+
+                    /**
+                     * Define button
+                     * @type {ButtonElement}
+                     */
                     store[i] = new ButtonElement(this, {
                         $container: button.$container,
                         style: i.toDash(),
                         text: button.text,
                         events: button.events
                     });
+
                 }.bind(this)
             );
         },

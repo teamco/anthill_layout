@@ -31,6 +31,14 @@ define([
             this.view.elements.$youtube.renderEmbeddedContent(
                 this.model.getPrefs('youtubeUrl')
             );
+        },
+
+        /**
+         * Add Youtube rule
+         * @member YoutubeController
+         */
+        addYoutubeRule: function addYoutubeRule() {
+            this.addRule();
         }
 
     }, PluginBase.prototype, WidgetBase.prototype);

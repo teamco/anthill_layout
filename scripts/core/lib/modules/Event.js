@@ -22,6 +22,15 @@ define([
     return BaseEvent.extend('BaseEvent', {
 
         /**
+         * Get event list
+         * @member BaseEvent
+         * @returns {{}}
+         */
+        getEvents: function getEvents() {
+            return this.eventList;
+        },
+
+        /**
          * Add event listener
          * @member BaseEvent
          * @param {{eventName}} opts
