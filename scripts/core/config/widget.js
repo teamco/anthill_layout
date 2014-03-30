@@ -38,7 +38,8 @@ define([
         /**
          * Default config
          * @type {{
-         *      preferences: (*|plugins.plugin.addWidget.preferences|{url: string}|{}),
+         *      preferences: {},
+         *      rules: {},
          *      limit: boolean,
          *      order: number,
          *      html: {header: boolean, footer: boolean, frameLess: boolean, opacity: number, style: string},
@@ -54,6 +55,7 @@ define([
          */
         var DEFAULTS = {
             preferences: opts.preferences || {},
+            rules: opts.rules || {},
             limit: false,
             order: 1,
             html: {

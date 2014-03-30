@@ -99,6 +99,28 @@ define([
                     preferences[index] = data[index];
                 }
             }
+        },
+
+        /**
+         * Update rules
+         * @member WidgetModel
+         * @param data
+         */
+        updateRules: function updateRules(data) {
+
+            /**
+             * Get rules
+             * @type {*}
+             */
+            var rules = this.getConfig('rules');
+
+            for (var index in data) {
+
+                if (data.hasOwnProperty(index)) {
+
+                    rules[index] = data[index];
+                }
+            }
         }
 
     }, BaseModel.prototype);

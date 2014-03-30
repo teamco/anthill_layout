@@ -247,11 +247,11 @@
     box-shadow: -1px -1px 1px #333;
 }
 
-.modal-dialog.rules div.html ul.add-rules span {
+.modal-dialog.rules div.html ul.publish-rules span {
     font-weight: bold;
 }
 
-.modal-dialog.rules fieldset ul.add-rules li {
+.modal-dialog.rules fieldset ul.publish-rules li {
     width: 100%;
     list-style: square inside;
     margin: 0;

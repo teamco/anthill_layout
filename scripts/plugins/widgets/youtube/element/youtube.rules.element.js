@@ -52,7 +52,7 @@ define([
              * Get $ul
              * @type {*|jQuery|HTMLElement}
              */
-            var $ul = $('div.html ul.add-rules', $container);
+            var $ul = $('div.html ul.publish-rules', $container);
 
             if ($ul.length === 0) {
 
@@ -60,7 +60,7 @@ define([
                  * Set $ul
                  * @type {*|jQuery}
                  */
-                $ul = $('<ul />').addClass('add-rules');
+                $ul = $('<ul />').addClass('publish-rules');
 
                 /**
                  * Define title

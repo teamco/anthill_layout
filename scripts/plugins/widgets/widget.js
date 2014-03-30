@@ -99,7 +99,7 @@ define([
         /**
          * Update prefs
          * @member WidgetContentController
-         * @param $modal
+         * @param {ModalElement} $modal
          */
         updatePreferences: function updatePreferences($modal) {
 
@@ -144,6 +144,43 @@ define([
             }.bind(this));
 
             scope.view['render' + scope.constructor.name]();
+
+            $modal.selfDestroy();
+
+            this.store();
+        },
+
+        /**
+         * Update prefs
+         * @member WidgetContentController
+         * @param {ModalElement} $modal
+         */
+        updateRules: function updateRules($modal) {
+
+            var published = $('ul.publish-rules li', $modal.$),
+                event, events = {
+                    publish: {
+                        widget: []
+                    }
+                },
+                scope = this.scope;
+
+            for (var i = 0, l = published.length; i < l; i++) {
+
+                /**
+                 * Get event
+                 * @type {Array|jQuery}
+                 */
+                event = $(published[i]).attr('value').split(':');
+
+                events.publish[event[0]] = this.base.define(events.publish[event[0]], [], true);
+                events.publish[event[0]].push(event[1]);
+            }
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.transferRules,
+                events
+            );
 
             $modal.selfDestroy();
 
@@ -243,10 +280,9 @@ define([
         /**
          * Transfer rules to containment
          * @member WidgetContentController
-         * @param index
-         * @param value
+         * @param rules
          */
-        transferRules: function transferRules(index, value) {
+        transferRules: function transferRules(rules) {
 
             /**
              * Define widget
@@ -254,13 +290,6 @@ define([
              */
             var widget = this.controller.getContainment();
 
-            /**
-             * Define rules
-             * @type {{}}
-             */
-            var rules = {};
-
-            rules[index] = value;
             widget.model.updateRules(rules);
         },
 
