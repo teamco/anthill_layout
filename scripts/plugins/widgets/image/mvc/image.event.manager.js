@@ -32,6 +32,7 @@ define([
          *      initWidget: string,
          *      updateTranslations: string,
          *      defineContainer: string,
+         *      defineReferrer: string,
          *      setEmbeddedContent: string,
          *      loadPreferences: string,
          *      transferPreferences: string
@@ -41,6 +42,7 @@ define([
             initWidget: 'init.widget',
             updateTranslations: 'update.translations',
             defineContainer: 'define.container',
+            defineReferrer: 'define.referrer',
             setEmbeddedContent: 'set.embedded.content',
             loadPreferences: 'load.preferences',
             transferPreferences: 'transfer.preferences'

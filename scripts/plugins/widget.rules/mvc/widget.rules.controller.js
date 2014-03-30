@@ -55,7 +55,8 @@ define([
             scope.logger.debug('Active component', scope.activeContent);
 
             return scope.activeContent.view.renderRules(
-                widget.eventmanager.getEvents()
+                widget.eventmanager.getEvents(),
+                widget.controller.getContent().eventmanager.getEvents()
             );
         },
 

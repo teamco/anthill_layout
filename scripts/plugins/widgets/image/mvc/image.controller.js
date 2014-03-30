@@ -8,13 +8,13 @@
 define([
     'plugins/plugin',
     'plugins/widgets/widget'
-], function defineImageController(PluginBase, WidgetBase) {
+], function defineImageController(PluginBase, WidgetContentController) {
 
     /**
      * Define image controller
      * @class ImageController
      * @extends PluginController
-     * @extends WidgetController
+     * @extends WidgetContentController
      * @constructor
      */
     var ImageController = function ImageController() {
@@ -34,5 +34,5 @@ define([
             );
         }
 
-    }, PluginBase.prototype, WidgetBase.prototype);
+    }, PluginBase.prototype, WidgetContentController.prototype);
 });

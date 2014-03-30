@@ -7,22 +7,22 @@
 
 define([
 
-], function defineWidgetControllerBase() {
+], function defineWidgetContentControllerBase() {
 
     /**
      * Define Base Widget controller
-     * @class WidgetController
+     * @class WidgetContentController
      * @constructor
      */
-    var WidgetController = function WidgetController() {
+    var WidgetContentController = function WidgetContentController() {
 
     };
 
-    return WidgetController.extend('WidgetController', {
+    return WidgetContentController.extend('WidgetContentController', {
 
         /**
          * Init widget
-         * @member WidgetController
+         * @member WidgetContentController
          */
         initWidget: function initWidget() {
 
@@ -50,8 +50,17 @@ define([
         },
 
         /**
+         * Define referrer
+         * @member WidgetContentController
+         * @param referrer
+         */
+        defineReferrer: function defineReferrer(referrer) {
+            this.referrer = referrer;
+        },
+
+        /**
          * Define container
-         * @member WidgetController
+         * @member WidgetContentController
          */
         defineContainer: function defineContainer() {
 
@@ -71,7 +80,7 @@ define([
 
         /**
          * Get preferences
-         * @member WidgetController
+         * @member WidgetContentController
          * @returns {{}}
          */
         getPreferences: function getPreferences() {
@@ -80,7 +89,7 @@ define([
 
         /**
          * Get rules
-         * @member WidgetController
+         * @member WidgetContentController
          * @returns {{}}
          */
         getRules: function getRules() {
@@ -89,7 +98,7 @@ define([
 
         /**
          * Update prefs
-         * @member WidgetController
+         * @member WidgetContentController
          * @param $modal
          */
         updatePreferences: function updatePreferences($modal) {
@@ -143,7 +152,7 @@ define([
 
         /**
          * Load prefs
-         * @member WidgetController
+         * @member WidgetContentController
          */
         loadPreferences: function loadPreferences() {
 
@@ -176,7 +185,7 @@ define([
 
         /**
          * Load rules
-         * @member WidgetController
+         * @member WidgetContentController
          */
         loadRules: function loadRules() {
 
@@ -209,7 +218,7 @@ define([
 
         /**
          * Transfer preferences to containment
-         * @member WidgetController
+         * @member WidgetContentController
          * @param index
          * @param value
          */
@@ -233,7 +242,7 @@ define([
 
         /**
          * Transfer rules to containment
-         * @member WidgetController
+         * @member WidgetContentController
          * @param index
          * @param value
          */
@@ -256,17 +265,47 @@ define([
         },
 
         /**
-         * Add Rule
-         * @member WidgetController
+         * Add widget rule
+         * @member WidgetContentController
+         * @param e
          */
-        addRule: function addRule() {
+        addWidgetRule: function addWidgetRule(e) {
 
+            /**
+             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target);
 
+            this.publishRule(
+                $button.attr('value'),
+                'Widget'
+            );
+        },
+
+        /**
+         * Publish rule
+         * @member WidgetContentController
+         * @param {string} rule
+         * @param {string} type
+         */
+        publishRule: function publishRule(rule, type) {
+
+            /**
+             * Define referrer
+             * @type {*}
+             */
+            var referrer = this.scope.referrer;
+
+            this.scope.view.elements.$rules.addRule(
+                rule, type,
+                referrer.view.elements.$modal.$
+            );
         },
 
         /**
          * Get DOM
-         * @member WidgetController
+         * @member WidgetContentController
          * @param type
          * @returns {*}
          */

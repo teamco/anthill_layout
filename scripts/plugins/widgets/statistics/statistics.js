@@ -31,6 +31,13 @@ define([
         this.containment = containment;
 
         /**
+         * Define referrer
+         * @member Statistics
+         * @type {*}
+         */
+        this.referrer = undefined;
+
+        /**
          * Define defaults
          * @type {{
          *      plugin: boolean,

@@ -24,6 +24,7 @@ define([
 
         /**
          * Define default widget prefs
+         * @member WidgetPreferences
          * @type {{
          *      title: {type: string, disabled: boolean, value},
          *      widgetUrl: {type: string, disabled: boolean, value},
@@ -55,7 +56,7 @@ define([
 
         /**
          * Render data
-         * @memberOf WidgetPreferences
+         * @member WidgetPreferences
          * @param data
          */
         renderData: function renderData(data) {
@@ -199,7 +200,7 @@ define([
 
         /**
          * Render move
-         * @memberOf WidgetPreferences
+         * @member WidgetPreferences
          * @param {string} side
          * @param value
          * @returns {*|jQuery}

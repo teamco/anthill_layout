@@ -168,6 +168,7 @@
 
 .modal-dialog.rules div.html div.combo-box.open div.combo-box-arrow {
     background-position: -4px 2px;
+    z-index: 11;
 }
 
 .modal-dialog.rules div.html div.combo-box li {
@@ -189,6 +190,7 @@
     max-height: 200px;
     height: auto;
     position: absolute;
+    z-index: 10;
     border: 1px solid #999;
     box-shadow: 3px 3px 5px #999;
 }
@@ -243,4 +245,16 @@
     padding-top: 1px;
     padding-left: 4px;
     box-shadow: -1px -1px 1px #333;
+}
+
+.modal-dialog.rules div.html ul.add-rules span {
+    font-weight: bold;
+}
+
+.modal-dialog.rules fieldset ul.add-rules li {
+    width: 100%;
+    list-style: square inside;
+    margin: 0;
+    padding: 5px 10px;
+    float: none;
 }

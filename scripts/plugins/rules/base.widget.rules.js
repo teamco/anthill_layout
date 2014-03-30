@@ -32,6 +32,7 @@ define([
 
         /**
          * Define default widget rules
+         * @member BaseWidgetRules
          * @type {{
          * }}
          */
@@ -39,38 +40,44 @@ define([
         },
 
         /**
-         * Render data
-         * @memberOf BaseWidgetRules
-         * @param data
-         * @param rules
+         * Transfer selected value
+         * @member BaseWidgetRules
+         * @param {string} value
+         * @private
          */
-        renderData: function renderData(data, rules) {
+        _transferValue: function _transferValue(value) {
+            this.scope.$buttons[this.button].$.attr({
+                value: value
+            })
+        },
+
+        /**
+         * Render widget rules
+         * @member BaseWidgetRules
+         * @param widgetRules
+         */
+        renderWidgetRules: function renderWidgetRules(widgetRules) {
 
             /**
-             * Buttons collector
-             * @member BaseWidgetRules
-             * @type {{}}
-             */
-            this.$buttons = this.base.define(this.$buttons, {}, true);
-
-            /**
-             * Define nodes
+             * Define rules list
              * @type {Array}
              */
-            var nodes = [],
-                merge = {};
-
             var rulesList = [];
 
-            for (var key in rules) {
+            for (var key in widgetRules) {
 
-                if (rules.hasOwnProperty(key)) {
+                if (widgetRules.hasOwnProperty(key)) {
 
                     rulesList.push({
                         type: 'text',
-                        value: rules[key]
+                        value: widgetRules[key]
                     });
                 }
+            }
+
+            if (rulesList.length === 0) {
+                this.view.scope.logger.warn('Widget has no rules', widgetRules);
+                return false;
             }
 
             rulesList.sort(
@@ -86,14 +93,88 @@ define([
                 this.renderCombobox(
                     rulesList,
                     rulesList[0].value,
-                    'Publish on'
+                    'Widget rules', {
+                        type: 'click.transferValue',
+                        callback: this._transferValue.bind({
+                            scope: this,
+                            button: 'addWidgetRule'
+                        })
+                    }
                 )
             ).append($ul);
 
             this.view.button(
                 ButtonElement, {
-                    addRule: {
-                        text: 'Add Rule',
+                    addWidgetRule: {
+                        text: 'Subscribe',
+                        $container: $ul,
+                        events: {
+                            click: 'addWidgetRule'
+                        }
+                    }
+                },
+                this.$buttons
+            );
+
+            this.$.append($li);
+        },
+
+        /**
+         * Render content rules
+         * @member BaseWidgetRules
+         * @param contentRules
+         */
+        renderContentRules: function renderContentRules(contentRules) {
+
+            /**
+             * Define rules list
+             * @type {Array}
+             */
+            var rulesList = [];
+
+            for (var key in contentRules) {
+
+                if (contentRules.hasOwnProperty(key)) {
+
+                    rulesList.push({
+                        type: 'text',
+                        value: contentRules[key]
+                    });
+                }
+            }
+
+            if (rulesList.length === 0) {
+                this.view.scope.logger.warn('Content has no rules', contentRules);
+                return false;
+            }
+
+            rulesList.sort(
+                function sortByValue(a, b) {
+                    return a.value.localeCompare(b.value);
+                }
+            );
+
+            var $li = $('<li />'),
+                $ul = $('<ul />').addClass('button-add-rules');
+
+            $li.append(
+                this.renderCombobox(
+                    rulesList,
+                    rulesList[0].value,
+                    [this.view.scope.constructor.name, 'rules'].join(' '), {
+                        type: 'click.transferValue',
+                        callback: this._transferValue.bind({
+                            scope: this,
+                            button: 'addContentRule'
+                        })
+                    }
+                )
+            ).append($ul);
+
+            this.view.button(
+                ButtonElement, {
+                    addContentRule: {
+                        text: 'Subscribe',
                         $container: $ul,
                         events: {
                             click: [
@@ -108,7 +189,33 @@ define([
             );
 
             this.$.append($li);
+        },
 
+        /**
+         * Render data
+         * @memberOf BaseWidgetRules
+         * @param data
+         * @param widgetRules
+         * @param contentRules
+         */
+        renderData: function renderData(data, widgetRules, contentRules) {
+
+            /**
+             * Buttons collector
+             * @member BaseWidgetRules
+             * @type {{}}
+             */
+            this.$buttons = this.base.define(this.$buttons, {}, true);
+
+            this.renderWidgetRules(widgetRules);
+            this.renderContentRules(contentRules);
+
+            /**
+             * Define nodes
+             * @type {Array}
+             */
+            var nodes = [],
+                merge = {};
 
             /**
              * Merge rules with default data

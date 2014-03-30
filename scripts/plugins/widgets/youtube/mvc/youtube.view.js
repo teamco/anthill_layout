@@ -71,10 +71,11 @@ define([
         /**
          * Render Rules
          * @member YoutubeView
-         * @param rules
+         * @param widgetRules
+         * @param contentRules
          * @returns {YoutubeRulesElement}
          */
-        renderRules: function renderRules(rules) {
+        renderRules: function renderRules(widgetRules, contentRules) {
 
             /**
              * Define Youtube Preferences Element
@@ -82,7 +83,10 @@ define([
              */
             this.elements.$rules = new YoutubeRulesElement(this, {
                 data: this.controller.getRules(),
-                rules: rules
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
             });
 
             return this.elements.$rules;

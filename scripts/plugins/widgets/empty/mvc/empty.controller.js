@@ -8,13 +8,13 @@
 define([
     'plugins/plugin',
     'plugins/widgets/widget'
-], function defineEmptyController(PluginBase, WidgetBase) {
+], function defineEmptyController(PluginBase, WidgetContentController) {
 
     /**
      * Define empty controller
      * @class EmptyController
      * @extends PluginController
-     * @extends WidgetController
+     * @extends WidgetContentController
      * @constructor
      */
     var EmptyController = function EmptyController() {
@@ -24,5 +24,5 @@ define([
 
 
 
-    }, PluginBase.prototype, WidgetBase.prototype);
+    }, PluginBase.prototype, WidgetContentController.prototype);
 });

@@ -8,13 +8,13 @@
 define([
     'plugins/plugin',
     'plugins/widgets/widget'
-], function defineStatisticsController(PluginBase, WidgetBase) {
+], function defineStatisticsController(PluginBase, WidgetContentController) {
 
     /**
      * Define statistics controller
      * @class StatisticsController
      * @extends PluginController
-     * @extends WidgetController
+     * @extends WidgetContentController
      * @constructor
      */
     var StatisticsController = function StatisticsController() {
@@ -33,5 +33,5 @@ define([
             );
         }
 
-    }, PluginBase.prototype, WidgetBase.prototype);
+    }, PluginBase.prototype, WidgetContentController.prototype);
 });

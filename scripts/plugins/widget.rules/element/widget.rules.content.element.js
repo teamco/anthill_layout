@@ -26,7 +26,7 @@ define([
         });
 
         this.setAttributes(opts.data);
-        this.bindShowPrefs(opts.data);
+        this.bindShowRules(opts.data);
 
         return this;
     };
@@ -35,7 +35,7 @@ define([
 
         /**
          * Define attributes
-         * @memberOf WidgetRulesContentElement
+         * @member WidgetRulesContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
@@ -56,17 +56,17 @@ define([
         },
 
         /**
-         * Bind show prefs
-         * @memberOf WidgetRulesContentElement
+         * Bind show rules
+         * @member WidgetRulesContentElement
          * @param data
          */
-        bindShowPrefs: function bindShowPrefs(data) {
+        bindShowRules: function bindShowRules(data) {
 
             /**
              * Click prefs
              * @private
              */
-            function _clickPrefs() {
+            function _clickRules() {
                 scope.observer.publish(
                     scope.eventmanager.eventList.loadRules,
                     [config, true]
@@ -85,9 +85,9 @@ define([
              */
             var scope = this.view.scope;
 
-            this.$.off('click.prefs').on(
-                'click.prefs',
-                _clickPrefs.bind(this)
+            this.$.off('click.rules').on(
+                'click.rules',
+                _clickRules.bind(this)
             );
         }
 

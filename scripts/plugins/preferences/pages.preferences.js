@@ -24,6 +24,7 @@ define([
 
         /**
          * Define default widget prefs
+         * @member PagesPreferences
          * @type {{
          *      title: {type: string, disabled: boolean, value},
          *      pageUrl: {type: string, disabled: boolean, value},

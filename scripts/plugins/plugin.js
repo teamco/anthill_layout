@@ -123,10 +123,29 @@ define([
 
             /**
              * Define locate
-             * @member {Pages|PageData}
+             * @member {WorkspaceData|PageData}
              * @type {number}
              */
             scope.locateTimeout = setTimeout(_hideBorder, 1000);
+        },
+
+        /**
+         * Define content referrer
+         * @member PluginController
+         * @param {Widget} widget
+         */
+        defineContentReferrer: function defineContentReferrer(widget) {
+
+            /**
+             * Define content
+             * @type {*}
+             */
+            var content = widget.controller.getContent();
+
+            content.observer.publish(
+                content.eventmanager.eventList.defineReferrer,
+                this.scope
+            );
         }
 
     }, AntHill.prototype, BaseController.prototype);

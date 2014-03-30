@@ -13,6 +13,7 @@ define([
      * Define renderer
      * @class Renderer
      * @extends AntHill
+     * @extends BaseElement
      * @constructor
      */
     var Renderer = function Renderer() {
@@ -185,6 +186,8 @@ define([
              * @private
              */
             function _open() {
+                // close all como-boxes
+                $('.combo-box').removeClass('open');
                 $div.addClass('open');
             }
 
@@ -198,13 +201,12 @@ define([
 
             /**
              * Store prefs
-             * @param {Renderer} scope
              * @param $selected
              * @param selected
              * @returns {boolean}
              * @private
              */
-            function _store(scope, $selected, selected) {
+            function _store($selected, selected) {
 
                 /**
                  * Define value
@@ -215,8 +217,6 @@ define([
                 if (value === selected) {
                     return false;
                 }
-
-                scope.view.controller.updatePrefs();
             }
 
             /**
@@ -271,7 +271,7 @@ define([
 
                         if ($selected.hasClass('selected')) {
                             _hide();
-                            _store(this, $selected, selected);
+                            _store($selected, selected);
                             return false;
                         }
 
@@ -279,7 +279,7 @@ define([
                         $selected.addClass('selected');
 
                         _hide();
-                        _store(this, $selected, selected);
+                        _store($selected, selected);
 
                     }.bind(this)
                 );

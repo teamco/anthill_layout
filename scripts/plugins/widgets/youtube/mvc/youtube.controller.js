@@ -8,13 +8,13 @@
 define([
     'plugins/plugin',
     'plugins/widgets/widget'
-], function defineYoutubeController(PluginBase, WidgetBase) {
+], function defineYoutubeController(PluginBase, WidgetContentController) {
 
     /**
      * Define youtube controller
      * @class YoutubeController
      * @extends PluginController
-     * @extends WidgetController
+     * @extends WidgetContentController
      * @constructor
      */
     var YoutubeController = function YoutubeController() {
@@ -36,10 +36,21 @@ define([
         /**
          * Add Youtube rule
          * @member YoutubeController
+         * @param e
          */
-        addYoutubeRule: function addYoutubeRule() {
-            this.addRule();
+        addYoutubeRule: function addYoutubeRule(e) {
+
+            /**
+             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target);
+
+            this.publishRule(
+                $button.attr('value'),
+                this.scope.constructor.name
+            );
         }
 
-    }, PluginBase.prototype, WidgetBase.prototype);
+    }, PluginBase.prototype, WidgetContentController.prototype);
 });

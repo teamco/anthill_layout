@@ -106,6 +106,8 @@ define([
                         data: data[index]
                     });
 
+                    this.controller.defineContentReferrer(data[index]);
+
                     this.elements.items[$item.id] = $item;
                 }
             }
