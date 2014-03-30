@@ -51,6 +51,10 @@ define([
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
+
+            this.footer(Footer, this.elements.$container).setHtml(
+                this.elements.$pagedata.getFooter()
+            );
         },
 
         /**

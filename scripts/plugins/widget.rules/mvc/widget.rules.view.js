@@ -51,6 +51,10 @@ define([
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
+
+            this.footer(Footer, this.elements.$container).setHtml(
+                this.elements.$widgetrules.getFooter()
+            );
         },
 
         /**
@@ -120,14 +124,14 @@ define([
 
             /**
              * Define $html
-             * @type {BaseElement.$}
+             * @type {BaseElement}
              */
-            var $html = this.controller.getRules(config.uuid).$;
+            var $html = this.controller.getRules(config.uuid);
 
             if (load) {
                 this.openRules({
                     config: config,
-                    $html: $html,
+                    $html: $html.$,
                     style: [
                         config.preferences.resource,
                         'widget-rules rules'
