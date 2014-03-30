@@ -105,7 +105,15 @@ define([
          */
         this.mvc = new MVC({
             scope: this,
-            config: [DEFAULTS],
+            config: [
+                {
+                    uuid: [
+                        this.containment.model.getUUID(),
+                        this.constructor.name.toDash()
+                    ].join('')
+                },
+                DEFAULTS
+            ],
             components: [
                 Controller,
                 Model,

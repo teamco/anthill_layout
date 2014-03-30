@@ -98,15 +98,6 @@ define([
         this.model = undefined;
 
         /**
-         * Create UUID
-         * @type {string}
-         */
-        var uuid = [
-            this.containment.model.getUUID(),
-            this.constructor.name.toDash()
-        ].join('');
-
-        /**
          * Define MVC
          * @member Youtube
          * @type {MVC}
@@ -114,7 +105,12 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {uuid: uuid},
+                {
+                    uuid: [
+                        this.containment.model.getUUID(),
+                        this.constructor.name.toDash()
+                    ].join('')
+                },
                 DEFAULTS
             ],
             components: [
