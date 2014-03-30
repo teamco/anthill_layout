@@ -164,9 +164,7 @@ define([
             var published = $('ul.publish-rules li', $modal.$),
                 subscribed = $('ul.subscribe-rules > li', $modal.$),
                 event, events = {
-                    publish: {
-                        widget: []
-                    },
+                    publish: {},
                     subscribe: {}
                 },
                 scope = this.scope;

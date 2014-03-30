@@ -137,7 +137,7 @@
 .modal-dialog.rules fieldset legend.open + ul input[type="text"],
 .modal-dialog.rules div.html div.combo-box {
     float: right;
-    width: 70%;
+    width: 60%;
     position: relative;
 }
 
