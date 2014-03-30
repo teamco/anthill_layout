@@ -106,7 +106,7 @@ define([
             this.view.button(
                 ButtonElement, {
                     addWidgetRule: {
-                        text: 'Subscribe',
+                        text: 'Publish',
                         $container: $ul,
                         events: {
                             click: 'addWidgetRule'
@@ -174,7 +174,7 @@ define([
             this.view.button(
                 ButtonElement, {
                     addContentRule: {
-                        text: 'Subscribe',
+                        text: 'Publish',
                         $container: $ul,
                         events: {
                             click: [
@@ -192,8 +192,91 @@ define([
         },
 
         /**
+         * Render subscribe rules
+         * @member BaseWidgetRules
+         */
+        renderSubscribeRules: function renderSubscribeRules() {
+
+            /**
+             * Get published rules
+             * @type {{}}
+             */
+            var published = this.view.controller.getPublishedRules();
+
+            /**
+             * Set $ul
+             * @type {*|jQuery}
+             */
+            var $ul = $('<ul />').addClass('subscribe-rules');
+
+            /**
+             * Define title
+             * @type {string}
+             */
+            var title = 'Subscribe events';
+
+            /**
+             * Define fieldset
+             * @type {*|jQuery}
+             */
+            var $node = $('<li />').append(
+                $('<fieldset />').append([
+                    $('<legend />').text(title).
+                        on('click.toggle', this.toggleFieldset).attr({
+                            title: title
+                        }),
+                    $ul
+                ])
+            );
+
+            for (var index in published) {
+
+                if (published.hasOwnProperty(index)) {
+
+                    var $inner = $('<ul />');
+
+                    for (var type in published[index].rules) {
+
+                        if (published[index].rules.hasOwnProperty(type)) {
+
+                            var rules = published[index].rules[type];
+
+                            for (var i = 0, l = rules.length; i < l; i++) {
+
+                                $inner.append(
+                                    $('<li />').append(
+                                        this.renderCheckbox({
+                                            name: [type, rules[i]].join(':'),
+                                            text: [type, rules[i]].join(' '),
+                                            checked: false,
+                                            disabled: false
+                                        })
+                                    )
+                                );
+                            }
+                        }
+                    }
+
+                    $('<li />').append(
+                        $('<fieldset />').append([
+                            $('<legend />').text(published[index].type).
+                                on('click.toggle', this.toggleFieldset).attr({
+                                    title: index
+                                }),
+                            $inner
+                        ])
+                    ).appendTo($ul);
+                }
+            }
+
+            this.$.append(
+                $('<li />').append($node)
+            );
+        },
+
+        /**
          * Render data
-         * @memberOf BaseWidgetRules
+         * @member BaseWidgetRules
          * @param data
          * @param widgetRules
          * @param contentRules
@@ -210,93 +293,7 @@ define([
             this.renderWidgetRules(widgetRules);
             this.renderContentRules(contentRules);
 
-            /**
-             * Define nodes
-             * @type {Array}
-             */
-            var nodes = [],
-                merge = {};
-
-            /**
-             * Merge rules with default data
-             * @type {{}}
-             */
-            data = $.extend(true, merge, this.defaultRules, data);
-
-            for (var index in data) {
-
-                if (data.hasOwnProperty(index)) {
-
-                    /**
-                     * Define text
-                     * @type {string}
-                     */
-                    var text = index.toPoint().humanize();
-
-                    /**
-                     * Define node
-                     * @type {*}
-                     */
-                    var node = data[index];
-
-                    /**
-                     * Define placeholder text
-                     * @type {string}
-                     */
-                    var placeholder = 'Enter ' + text,
-                        $element;
-
-                    if (node.type === 'text') {
-
-                        /**
-                         * Get text field
-                         * @type {*[]}
-                         */
-                        $element = this.renderTextField({
-                            name: index,
-                            text: text,
-                            placeholder: placeholder,
-                            value: node.value,
-                            disabled: node.disabled
-                        });
-                    }
-
-                    if (node.type === 'checkbox') {
-
-                        /**
-                         * Get checkbox
-                         * @type {*[]}
-                         */
-                        $element = this.renderCheckbox({
-                            name: index,
-                            text: text,
-                            checked: node.checked,
-                            disabled: node.disabled
-                        });
-                    }
-
-                    if (node.type === 'textarea') {
-
-                        /**
-                         * Get text field
-                         * @type {*[]}
-                         */
-                        $element = this.renderTextArea({
-                            name: index,
-                            text: text,
-                            placeholder: placeholder,
-                            value: node.value,
-                            disabled: node.disabled
-                        });
-                    }
-
-                    nodes.push(
-                        $('<li />').append($element)
-                    );
-                }
-            }
-
-            this.$.append(nodes);
+            this.renderSubscribeRules();
         }
 
     }, BaseRules.prototype);

@@ -248,7 +248,7 @@ define([
         /**
          * Get Published rules
          * @member WidgetContentController
-         * @returns {Array}
+         * @returns {{}}
          */
         getPublishedRules: function getPublishedRules() {
 
@@ -260,7 +260,11 @@ define([
                 items = page.model.getItems(),
                 item, rules, uuid;
 
-            var published = [];
+            /**
+             * Init published
+             * @type {*}
+             */
+            var published = {};
 
             for (var index in items) {
 
@@ -276,10 +280,10 @@ define([
                     uuid = item.model.getUUID();
 
                     if (rules.hasOwnProperty('publish') && this.scope.model.getUUID() !== uuid) {
-                        published.push({
-                            uuid: uuid,
-                            rules: rules
-                        });
+                        published[uuid] = {
+                            rules: rules.publish,
+                            type: item.controller.getContent().constructor.name
+                        };
                     }
                 }
             }

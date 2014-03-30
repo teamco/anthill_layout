@@ -89,7 +89,6 @@
     border-radius: 3px;
     padding: 5px 10px;
     margin-top: 10px;
-    border-radius: 3px;
     background-color: #fff;
 }
 
@@ -257,4 +256,18 @@
     margin: 0;
     padding: 5px 10px;
     float: none;
+}
+.modal-dialog.rules fieldset legend.open + ul.subscribe-rules,
+.modal-dialog.rules fieldset legend.open + ul.subscribe-rules ul {
+    margin: 0;
+}
+.modal-dialog.rules fieldset legend.open + ul.subscribe-rules li {
+    width: 100%;
+    background-color: transparent;
+    
+}
+
+.modal-dialog.rules fieldset legend.open + ul.subscribe-rules fieldset ul li label {
+    padding-left: 0;
+    cursor: pointer;
 }
