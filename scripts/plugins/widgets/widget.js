@@ -31,6 +31,10 @@ define([
             );
 
             this.observer.publish(
+                this.eventmanager.eventList.loadRules
+            );
+
+            this.observer.publish(
                 this.eventmanager.eventList.successCreated
             );
 
@@ -161,6 +165,9 @@ define([
                 event, events = {
                     publish: {
                         widget: []
+                    },
+                    subscribe: {
+                        widget: []
                     }
                 },
                 scope = this.scope;
@@ -233,24 +240,59 @@ define([
             var widget = this.controller.getContainment(),
                 rules = widget.model.getConfig('rules');
 
-            $.each(rules, function each(index, value) {
+            this.model.rules = rules;
 
-                /**
-                 * Define method name
-                 * @type {string}
-                 */
-                var setter = 'set' + index.toCamel().capitalize();
+            this.logger.debug('Load rules', rules);
+        },
 
-                if (typeof(this.model[setter]) === 'function') {
+        /**
+         * Get Published rules
+         * @member WidgetContentController
+         * @returns {Array}
+         */
+        getPublishedRules: function getPublishedRules() {
 
-                    this.model[setter](value);
+            /**
+             * Get page
+             * @type {Page}
+             */
+            var page = this.getPage(),
+                items = page.model.getItems(),
+                item, rules, uuid;
 
-                } else {
+            var published = [];
 
-                    this.logger.debug('Skip', setter);
+            for (var index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    /**
+                     * Define page item
+                     * @type {Widget}
+                     */
+                    item = items[index];
+
+                    rules = item.model.getConfig('rules');
+                    uuid = item.model.getUUID();
+
+                    if (rules.hasOwnProperty('publish') && this.scope.model.getUUID() !== uuid) {
+                        published.push({
+                            uuid: uuid,
+                            rules: rules
+                        });
+                    }
                 }
+            }
 
-            }.bind(this));
+            return published;
+        },
+
+        subscribeRules: function subscribeRules() {
+
+        },
+
+        activateRules: function activateRules() {
+
         },
 
         /**
