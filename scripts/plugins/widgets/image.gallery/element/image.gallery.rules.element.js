@@ -8,19 +8,19 @@
 define([
     'modules/element',
     'plugins/rules/base.widget.rules'
-], function defineYoutubeRulesElement(BaseElement, BaseWidgetRules) {
+], function defineImageGalleryRulesElement(BaseElement, BaseWidgetRules) {
 
     /**
-     * Define Youtube Rules Element
+     * Define ImageGallery Rules Element
      * @param view
      * @param opts
-     * @returns {YoutubeRulesElement}
+     * @returns {ImageGalleryRulesElement}
      * @constructor
-     * @class YoutubeRulesElement
+     * @class ImageGalleryRulesElement
      * @extends BaseElement
      * @extends BaseWidgetRules
      */
-    var YoutubeRulesElement = function YoutubeRulesElement(view, opts) {
+    var ImageGalleryRulesElement = function ImageGalleryRulesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -36,7 +36,7 @@ define([
         return this;
     };
 
-    return YoutubeRulesElement.extend('YoutubeRulesElement', {
+    return ImageGalleryRulesElement.extend('ImageGalleryRulesElement', {
 
     }, BaseElement.prototype, BaseWidgetRules.prototype);
 

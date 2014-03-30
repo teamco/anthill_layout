@@ -11,8 +11,9 @@ define([
     'element/header.element',
     'element/footer.element',
     'plugins/widgets/statistics/element/statistics.element',
-    'plugins/widgets/statistics/element/statistics.preferences.element'
-], function defineStatisticsView(BaseView, Header, Footer, StatisticsElement, StatisticsPreferencesElement) {
+    'plugins/widgets/statistics/element/statistics.preferences.element',
+    'plugins/widgets/statistics/element/statistics.rules.element'
+], function defineStatisticsView(BaseView, Header, Footer, StatisticsElement, StatisticsPreferencesElement, StatisticsRulesElement) {
 
     /**
      * Define view
@@ -65,6 +66,30 @@ define([
             });
 
             return this.elements.$preferences;
+        },
+
+        /**
+         * Render Rules
+         * @member StatisticsView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {StatisticsRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+            /**
+             * Define Statistics Rules Element
+             * @type {StatisticsRulesElement}
+             */
+            this.elements.$rules = new StatisticsRulesElement(this, {
+                data: this.controller.getRules(),
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
         },
 
         /**

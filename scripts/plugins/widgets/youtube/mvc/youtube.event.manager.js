@@ -35,9 +35,8 @@ define([
          *      defineReferrer: string,
          *      setEmbeddedContent: string,
          *      loadPreferences: string,
-         *      loadRules: string,
-         *      loadRules: string,
          *      transferPreferences: string,
+         *      loadRules: string,
          *      transferRules: string
          * }}
          */
@@ -48,8 +47,8 @@ define([
             defineReferrer: 'define.referrer',
             setEmbeddedContent: 'set.embedded.content',
             loadPreferences: 'load.preferences',
-            loadRules: 'load.rules',
             transferPreferences: 'transfer.preferences',
+            loadRules: 'load.rules',
             transferRules: 'transfer.rules'
         };
     };

@@ -11,8 +11,9 @@ define([
     'element/header.element',
     'element/footer.element',
     'plugins/widgets/image.gallery/element/image.gallery.element',
-    'plugins/widgets/image.gallery/element/image.gallery.preferences.element'
-], function defineImageGalleryView(BaseView, Header, Footer, ImageGalleryElement, ImageGalleryPreferencesElement) {
+    'plugins/widgets/image.gallery/element/image.gallery.preferences.element',
+    'plugins/widgets/image.gallery/element/image.gallery.rules.element'
+], function defineImageGalleryView(BaseView, Header, Footer, ImageGalleryElement, ImageGalleryPreferencesElement, ImageGalleryRulesElement) {
 
     /**
      * Define view
@@ -65,6 +66,30 @@ define([
             });
 
             return this.elements.$preferences;
+        },
+
+        /**
+         * Render Rules
+         * @member ImageGalleryView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {ImageGalleryRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+            /**
+             * Define ImageGallery Rules Element
+             * @type {ImageGalleryRulesElement}
+             */
+            this.elements.$rules = new ImageGalleryRulesElement(this, {
+                data: this.controller.getRules(),
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
         },
 
         /**

@@ -22,7 +22,24 @@ define([
 
     return EmptyController.extend('EmptyController', {
 
+        /**
+         * Add Empty rule
+         * @member EmptyController
+         * @param e
+         */
+        addEmptyRule: function addEmptyRule(e) {
 
+            /**
+             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target);
+
+            this.publishRule(
+                $button.attr('value'),
+                this.scope.constructor.name
+            );
+        }
 
     }, PluginBase.prototype, WidgetContentController.prototype);
 });

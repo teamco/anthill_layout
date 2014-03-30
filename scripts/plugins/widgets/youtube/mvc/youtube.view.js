@@ -78,7 +78,7 @@ define([
         renderRules: function renderRules(widgetRules, contentRules) {
 
             /**
-             * Define Youtube Preferences Element
+             * Define Youtube Rules Element
              * @type {YoutubeRulesElement}
              */
             this.elements.$rules = new YoutubeRulesElement(this, {

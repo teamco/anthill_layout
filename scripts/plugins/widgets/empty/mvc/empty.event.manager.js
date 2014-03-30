@@ -35,7 +35,9 @@ define([
          *      defineReferrer: string,
          *      setEmbeddedContent: string,
          *      loadPreferences: string,
-         *      transferPreferences: string
+         *      transferPreferences: string,
+         *      loadRules: string,
+         *      transferRules: string
          * }}
          */
         this.eventList = {
@@ -44,7 +46,9 @@ define([
             defineContainer: 'define.container',
             defineReferrer: 'define.referrer',
             loadPreferences: 'load.preferences',
-            transferPreferences: 'transfer.preferences'
+            transferPreferences: 'transfer.preferences',
+            loadRules: 'load.rules',
+            transferRules: 'transfer.rules'
         };
     };
 

@@ -8,19 +8,19 @@
 define([
     'modules/element',
     'plugins/rules/base.widget.rules'
-], function defineYoutubeRulesElement(BaseElement, BaseWidgetRules) {
+], function defineStatisticsRulesElement(BaseElement, BaseWidgetRules) {
 
     /**
-     * Define Youtube Rules Element
+     * Define Statistics Rules Element
      * @param view
      * @param opts
-     * @returns {YoutubeRulesElement}
+     * @returns {StatisticsRulesElement}
      * @constructor
-     * @class YoutubeRulesElement
+     * @class StatisticsRulesElement
      * @extends BaseElement
      * @extends BaseWidgetRules
      */
-    var YoutubeRulesElement = function YoutubeRulesElement(view, opts) {
+    var StatisticsRulesElement = function StatisticsRulesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -36,7 +36,7 @@ define([
         return this;
     };
 
-    return YoutubeRulesElement.extend('YoutubeRulesElement', {
+    return StatisticsRulesElement.extend('StatisticsRulesElement', {
 
     }, BaseElement.prototype, BaseWidgetRules.prototype);
 

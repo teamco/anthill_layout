@@ -21,7 +21,8 @@ define([
          * Define preferences
          * @member ImageGalleryModel
          * @type {{
-         *      imageUrl: {}
+         *      imageGalleryUrls: {type: string, disabled: boolean, value: undefined},
+         *      imageGalleryTexts: {type: string, disabled: boolean, value: undefined}
          * }}
          */
         this.preferences = {
@@ -36,6 +37,13 @@ define([
                 value: undefined
             }
         };
+
+        /**
+         * Define rules
+         * @member ImageGalleryModel
+         * @type {{}}
+         */
+        this.rules = {};
     };
 
     return ImageGalleryModel.extend('ImageGalleryModel', {

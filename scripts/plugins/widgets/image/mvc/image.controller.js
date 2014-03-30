@@ -32,6 +32,25 @@ define([
                 this.model.getPrefs('imageUrl'),
                 this.model.getPrefs('imageText')
             );
+        },
+
+        /**
+         * Add Image rule
+         * @member ImageController
+         * @param e
+         */
+        addImageRule: function addImageRule(e) {
+
+            /**
+             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target);
+
+            this.publishRule(
+                $button.attr('value'),
+                this.scope.constructor.name
+            );
         }
 
     }, PluginBase.prototype, WidgetContentController.prototype);

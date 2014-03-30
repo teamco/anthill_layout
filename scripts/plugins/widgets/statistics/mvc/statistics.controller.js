@@ -31,6 +31,25 @@ define([
             this.view.elements.$statistics.renderEmbeddedContent(
                 this.model.getPrefs('statisticsText')
             );
+        },
+
+        /**
+         * Add Statistics rule
+         * @member StatisticsController
+         * @param e
+         */
+        addStatisticsRule: function addStatisticsRule(e) {
+
+            /**
+             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target);
+
+            this.publishRule(
+                $button.attr('value'),
+                this.scope.constructor.name
+            );
         }
 
     }, PluginBase.prototype, WidgetContentController.prototype);

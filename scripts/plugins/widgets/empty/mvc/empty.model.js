@@ -24,6 +24,13 @@ define([
          */
         this.preferences = {
         };
+
+        /**
+         * Define rules
+         * @member EmptyModel
+         * @type {{}}
+         */
+        this.rules = {};
     };
 
     return EmptyModel.extend('EmptyModel', {

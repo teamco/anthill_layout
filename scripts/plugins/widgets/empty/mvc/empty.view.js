@@ -11,8 +11,9 @@ define([
     'element/header.element',
     'element/footer.element',
     'plugins/widgets/empty/element/empty.element',
-    'plugins/widgets/empty/element/empty.preferences.element'
-], function defineEmptyView(BaseView, Header, Footer, EmptyElement, EmptyPreferencesElement) {
+    'plugins/widgets/empty/element/empty.preferences.element',
+    'plugins/widgets/empty/element/empty.rules.element'
+], function defineEmptyView(BaseView, Header, Footer, EmptyElement, EmptyPreferencesElement, EmptyRulesElement) {
 
     /**
      * Define view
@@ -61,6 +62,30 @@ define([
             });
 
             return this.elements.$preferences;
+        },
+
+        /**
+         * Render Rules
+         * @member EmptyView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {EmptyRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+            /**
+             * Define Empty Rules Element
+             * @type {EmptyRulesElement}
+             */
+            this.elements.$rules = new EmptyRulesElement(this, {
+                data: this.controller.getRules(),
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
         },
 
         /**

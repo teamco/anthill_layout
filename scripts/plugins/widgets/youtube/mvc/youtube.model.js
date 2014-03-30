@@ -34,6 +34,7 @@ define([
 
         /**
          * Define rules
+         * @member YoutubeModel
          * @type {{}}
          */
         this.rules = {};

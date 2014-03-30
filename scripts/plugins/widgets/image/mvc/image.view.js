@@ -11,8 +11,9 @@ define([
     'element/header.element',
     'element/footer.element',
     'plugins/widgets/image/element/image.element',
-    'plugins/widgets/image/element/image.preferences.element'
-], function defineImageView(BaseView, Header, Footer, ImageElement, ImagePreferencesElement) {
+    'plugins/widgets/image/element/image.preferences.element',
+    'plugins/widgets/image/element/image.rules.element'
+], function defineImageView(BaseView, Header, Footer, ImageElement, ImagePreferencesElement, ImageRulesElement) {
 
     /**
      * Define view
@@ -65,6 +66,30 @@ define([
             });
 
             return this.elements.$preferences;
+        },
+
+        /**
+         * Render Rules
+         * @member ImageView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {ImageRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+            /**
+             * Define Image Rules Element
+             * @type {ImageRulesElement}
+             */
+            this.elements.$rules = new ImageRulesElement(this, {
+                data: this.controller.getRules(),
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
         },
 
         /**

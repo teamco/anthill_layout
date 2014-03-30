@@ -28,6 +28,13 @@ define([
                 value: undefined
             }
         };
+
+        /**
+         * Define rules
+         * @member StatisticsModel
+         * @type {{}}
+         */
+        this.rules = {};
     };
 
     return StatisticsModel.extend('StatisticsModel', {
