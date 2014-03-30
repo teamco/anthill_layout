@@ -45,7 +45,6 @@ define([
          *          style: string,
          *          header: boolean,
          *          footer: boolean,
-         *          floating: boolean,
          *          padding: {
          *              top: number,
          *              right: number,
@@ -99,13 +98,25 @@ define([
         this.model = undefined;
 
         /**
+         * Create UUID
+         * @type {string}
+         */
+        var uuid = [
+            this.containment.model.getUUID(),
+            this.constructor.name.toDash()
+        ].join('');
+
+        /**
          * Define MVC
          * @member Youtube
          * @type {MVC}
          */
         this.mvc = new MVC({
             scope: this,
-            config: [DEFAULTS],
+            config: [
+                {uuid: uuid},
+                DEFAULTS
+            ],
             components: [
                 Controller,
                 Model,

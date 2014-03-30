@@ -203,6 +203,11 @@ define([
              */
             var published = this.view.controller.getPublishedRules();
 
+            if (this.base.lib.hash.hashLength(published) === 0) {
+                this.view.scope.logger.warn('Empty published events', published);
+                return false;
+            }
+
             /**
              * Set $ul
              * @type {*|jQuery}
@@ -233,13 +238,16 @@ define([
 
                 if (published.hasOwnProperty(index)) {
 
-                    var $inner = $('<ul />');
+                    var $inner = $('<ul />'),
+                        rulesList = this.base.define(
+                            published[index].rules, {}, true
+                        );
 
-                    for (var type in published[index].rules) {
+                    for (var type in rulesList) {
 
-                        if (published[index].rules.hasOwnProperty(type)) {
+                        if (rulesList.hasOwnProperty(type)) {
 
-                            var rules = published[index].rules[type];
+                            var rules = rulesList[type];
 
                             for (var i = 0, l = rules.length; i < l; i++) {
 

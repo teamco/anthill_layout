@@ -185,7 +185,7 @@ define([
 
             for (var i1 = 0, l1 = subscribed.length; i1 < l1; i1++) {
 
-                var $inputs = $('input:checked', subscribed[i]);
+                var $inputs = $('input:checked', subscribed[i1]);
 
                 for (var i2 = 0, l2 = $inputs.length; i2 < l2; i2++) {
 
@@ -193,20 +193,25 @@ define([
                      * Get event
                      * @type {Array|jQuery}
                      */
-                    event = $($inputs[i]).attr('name').split(':');
+                    event = $($inputs[i2]).attr('name').split(':');
 
                     /**
                      * Get uuid
                      * @type {string}
                      */
-                    var uuid = $('legend', subscribed[i]).attr('title');
+                    var uuid = $('legend', subscribed[i1]).attr('title');
 
-                    events.subscribe[uuid] = this.base.define(events.subscribe[uuid], {}, true)
+                    events.subscribe[uuid] = this.base.define(
+                        events.subscribe[uuid], {}, true
+                    );
 
-                    events.subscribe[uuid][event[0]] = this.base.define(events.subscribe[uuid][event[0]], [], true);
+                    events.subscribe[uuid][event[0]] = this.base.define(
+                        events.subscribe[uuid][event[0]], [], true
+                    );
+
                     events.subscribe[uuid][event[0]].push(event[1]);
                 }
-            }debugger
+            }
 
             scope.observer.publish(
                 scope.eventmanager.eventList.transferRules,
@@ -301,9 +306,10 @@ define([
                     item = items[index];
 
                     rules = item.model.getConfig('rules');
-                    uuid = item.model.getUUID();
+                    uuid = item.controller.getContent().model.getUUID();
 
-                    if (rules.hasOwnProperty('publish') && this.scope.model.getUUID() !== uuid) {
+                    if (rules.hasOwnProperty('publish') &&
+                        this.scope.model.getUUID() !== uuid) {
                         published[uuid] = {
                             rules: rules.publish,
                             type: item.controller.getContent().constructor.name
