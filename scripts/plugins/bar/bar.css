@@ -40,17 +40,17 @@ div.panel-container.panel-left.close .bar-content {
 }
 
 div.panel-container .bar-content li.content {
-    width: 32px;
-    height: 32px;
-    margin: 4px;
+    width: 40px;
+    height: 40px;
+    margin: 0;
     display: inline-block;
     float: left;
-    background: transparent no-repeat top left;
+    background: transparent no-repeat center;
     cursor: pointer;
 }
 
 div.panel-container .bar-content li.content.activated {
-    box-shadow: 1px 10px 10px #777;
+    box-shadow: 1px 5px 10px #777;
 }
 
 div.panel-container .bar-content li.gallery {
