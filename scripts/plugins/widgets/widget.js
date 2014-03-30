@@ -162,13 +162,12 @@ define([
         updateRules: function updateRules($modal) {
 
             var published = $('ul.publish-rules li', $modal.$),
+                subscribed = $('ul.subscribe-rules > li', $modal.$),
                 event, events = {
                     publish: {
                         widget: []
                     },
-                    subscribe: {
-                        widget: []
-                    }
+                    subscribe: {}
                 },
                 scope = this.scope;
 
@@ -183,6 +182,31 @@ define([
                 events.publish[event[0]] = this.base.define(events.publish[event[0]], [], true);
                 events.publish[event[0]].push(event[1]);
             }
+
+            for (var i1 = 0, l1 = subscribed.length; i1 < l1; i1++) {
+
+                var $inputs = $('input:checked', subscribed[i]);
+
+                for (var i2 = 0, l2 = $inputs.length; i2 < l2; i2++) {
+
+                    /**
+                     * Get event
+                     * @type {Array|jQuery}
+                     */
+                    event = $($inputs[i]).attr('name').split(':');
+
+                    /**
+                     * Get uuid
+                     * @type {string}
+                     */
+                    var uuid = $('legend', subscribed[i]).attr('title');
+
+                    events.subscribe[uuid] = this.base.define(events.subscribe[uuid], {}, true)
+
+                    events.subscribe[uuid][event[0]] = this.base.define(events.subscribe[uuid][event[0]], [], true);
+                    events.subscribe[uuid][event[0]].push(event[1]);
+                }
+            }debugger
 
             scope.observer.publish(
                 scope.eventmanager.eventList.transferRules,
