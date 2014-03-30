@@ -1,10 +1,5 @@
-.widget .content .image {
+.widget .content .statistics {
     height: 100%;
     width: 100%;
-}
-
-.widget .content .image img {
-    height: 100%;
-    width: 100%;
-    border: none;
+    overflow: auto;
 }
