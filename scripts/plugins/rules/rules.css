@@ -275,4 +275,15 @@
 .modal-dialog.rules fieldset legend.open + ul.subscribe-rules fieldset ul li label {
     padding-left: 0;
     cursor: pointer;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    font-size: 12px;
+}
+
+.modal-dialog.rules fieldset legend.open + ul.subscribe-rules fieldset ul li label span {
+    font-size: 14px;
+    font-weight: bold;
+    font-variant: small-caps;
+    text-transform: lowercase;
 }

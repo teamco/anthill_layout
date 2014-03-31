@@ -260,7 +260,10 @@ define([
                                     $('<li />').append(
                                         this.renderCheckbox({
                                             name: [type, rules[i]].join(':'),
-                                            text: [type, rules[i]].join(' '),
+                                            text: [
+                                                '<span>', type, '</span>: ',
+                                                rules[i]
+                                            ].join(''),
                                             checked: $.inArray(rules[i], checked) !== -1,
                                             disabled: false
                                         })

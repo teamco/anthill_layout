@@ -296,11 +296,11 @@ define([
         },
 
         /**
-         * Register rules on loading
+         * Set rules on loading
          * @member BaseModel
          * @param rules
          */
-        registerRules: function registerRules(rules) {
+        setRules: function setRules(rules) {
 
             /**
              * Local rules storage

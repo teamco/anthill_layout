@@ -34,7 +34,7 @@ define([
             return $('<label />').attr({
                 'for': uuid,
                 title: text.toUpperCase()
-            }).addClass(type).text(text);
+            }).addClass(type).html(text);
         },
 
         /**

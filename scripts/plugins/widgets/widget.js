@@ -267,7 +267,7 @@ define([
             var widget = this.controller.getContainment(),
                 rules = widget.model.getConfig('rules');
 
-            this.model.registerRules(rules);
+            this.model.setRules(rules);
 
             this.logger.debug('Load rules', rules);
         },
