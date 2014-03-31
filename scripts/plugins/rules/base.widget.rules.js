@@ -198,14 +198,18 @@ define([
          */
         renderSubscribeRules: function renderSubscribeRules(subscribe) {
 
+            subscribe = this.base.define(subscribe, {}, true);
+
             /**
              * Get published rules
              * @type {{}}
              */
-            var published = this.view.controller.getPublishedRules();
+            var published = this.view.controller.getPublishedRules(),
+                empty = false,
+                render = false;
 
             if (this.base.lib.hash.hashLength(published) === 0) {
-                this.view.scope.logger.warn('Empty published events', published);
+                this.view.scope.logger.warn('No published rules', published);
                 return false;
             }
 
@@ -247,6 +251,8 @@ define([
                             subscribe[index], {}, true
                         );
 
+                    empty = this.base.lib.hash.hashLength(rulesList) === 0;
+
                     for (var type in rulesList) {
 
                         if (rulesList.hasOwnProperty(type)) {
@@ -273,21 +279,28 @@ define([
                         }
                     }
 
-                    $('<li />').append(
-                        $('<fieldset />').append([
-                            $('<legend />').text(published[index].type).
-                                on('click.toggle', this.toggleFieldset).attr({
-                                    title: index
-                                }),
-                            $inner
-                        ])
-                    ).appendTo($ul);
+                    if (!empty) {
+
+                        render = true;
+
+                        $('<li />').append(
+                            $('<fieldset />').append([
+                                $('<legend />').text(published[index].type).
+                                    on('click.toggle', this.toggleFieldset).attr({
+                                        title: index
+                                    }),
+                                $inner
+                            ])
+                        ).appendTo($ul);
+                    }
                 }
             }
 
-            this.$.append(
-                $('<li />').append($node)
-            );
+            if (render) {
+                this.$.append(
+                    $('<li />').append($node)
+                );
+            }
         },
 
         /**
