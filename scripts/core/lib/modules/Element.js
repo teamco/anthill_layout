@@ -454,7 +454,7 @@ define([
          * @returns {*}
          */
         getWidth: function getWidth() {
-            return this.$.width();
+            return this.$.outerWidth(true);
         },
 
         /**
@@ -477,7 +477,7 @@ define([
          * @returns {*}
          */
         getHeight: function getHeight() {
-            return this.$.height();
+            return this.$.outerHeight(true);
         },
 
         /**

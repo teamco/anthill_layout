@@ -38,6 +38,7 @@ define([
          *      transferPreferences: string,
          *      loadRules: string,
          *      publishRule: string,
+         *      registerRules: string,
          *      transferRules: string
          * }}
          */
@@ -51,6 +52,7 @@ define([
             transferPreferences: 'transfer.preferences',
             loadRules: 'load.rules',
             publishRule: 'publish.rule',
+            registerRules: 'register.rules',
             transferRules: 'transfer.rules'
         };
     };

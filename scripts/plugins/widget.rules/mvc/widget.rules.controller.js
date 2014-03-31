@@ -84,16 +84,6 @@ define([
         loadStoredRules: function loadStoredRules(rules) {
 
             this.showPublishedRules(rules.publish);
-            this.showSubscribedRules(rules.subscribe);
-        },
-
-        /**
-         * Show subscribed rules
-         * @member WidgetRulesController
-         * @param subscribe
-         */
-        showSubscribedRules: function showSubscribedRules(subscribe) {
-            // TODO
         },
 
         /**

@@ -40,7 +40,7 @@ define([
 
         /**
          * Update prefs
-         * @member WidgetModel
+         * @member PageModel
          * @param data
          */
         updatePreferences: function updatePreferences(data) {
@@ -58,6 +58,24 @@ define([
                     preferences[index] = data[index];
                 }
             }
+        },
+
+        /**
+         * Get widget by content uuid
+         * @member PageModel
+         * @param {string} id
+         * @returns {*}
+         */
+        getWidgetByContentUUID: function getWidgetByContentUUID(id) {
+
+            /**
+             * Split uuid
+             * @type {Array}
+             */
+            var uuid = id.split('-');
+            uuid.pop();
+
+            return this.getItemByUUID(uuid.join('-'));
         }
 
     }, BaseModel.prototype);

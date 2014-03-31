@@ -30,7 +30,7 @@ define([
 
         /**
          * Define event list
-         * @member WidgetEventManager
+         * @memberOf WidgetEventManager
          * @type {{
          *      initDraggable: string,
          *      enableDraggable: string,
@@ -58,9 +58,7 @@ define([
          */
         eventList: {
 
-            /**
-             * Drag events
-             */
+            // Drag events
             initDraggable: 'init.draggable',
             enableDraggable: 'enable.draggable',
             disableDraggable: 'disable.draggable',
@@ -74,9 +72,7 @@ define([
             stopDraggable: 'stop.draggable',
             updateDraggable: 'update.draggable',
 
-            /**
-             * Resize events
-             */
+            // Resize events
             initResizable: 'init.resizable',
             enableResizable: 'enable.resizable',
             disableResizable: 'disable.resizable',

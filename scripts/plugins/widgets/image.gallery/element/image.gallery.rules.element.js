@@ -7,7 +7,7 @@
 
 define([
     'modules/element',
-    'plugins/rules/base.widget.rules'
+    'plugins/rules/widget.base.rules'
 ], function defineImageGalleryRulesElement(BaseElement, BaseWidgetRules) {
 
     /**

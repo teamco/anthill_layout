@@ -6,8 +6,8 @@
  */
 
 define([
-
-], function defineWidgetContentControllerBase() {
+    'plugins/rules/widget.subscribe'
+], function defineWidgetContentControllerBase(WidgetSubscribe) {
 
     /**
      * Define Base Widget controller
@@ -268,8 +268,11 @@ define([
                 rules = widget.model.getConfig('rules');
 
             this.model.setRules(rules);
-
             this.logger.debug('Load rules', rules);
+
+            this.observer.publish(
+                this.eventmanager.eventList.registerRules
+            );
         },
 
         /**
@@ -357,6 +360,132 @@ define([
             var widget = this.controller.getContainment();
 
             widget.model.updateRules(rules);
+
+            this.observer.publish(
+                this.eventmanager.eventList.registerRules
+            );
+        },
+
+        /**
+         * Register rules
+         * @member WidgetContentController
+         */
+        registerRules: function registerRules() {
+
+            /**
+             * Define rules
+             * @type {*}
+             */
+            var rules = this.model.rules || {},
+                subscribe = rules.subscribe || {},
+                types, event, scope;
+
+            for (var index in subscribe) {
+
+                if (subscribe.hasOwnProperty(index)) {
+
+                    /**
+                     * Define types
+                     * @type {{}}
+                     */
+                    types = subscribe[index];
+
+                    for (var type in types) {
+
+                        if (types.hasOwnProperty(type)) {
+
+                            for (var i = 0, l = types[type].length; i < l; i++) {
+
+                                /**
+                                 * Define event
+                                 * @type {string}
+                                 */
+                                event = types[type][i];
+
+                                /**
+                                 * Define widget
+                                 * @type {Widget}
+                                 */
+                                var widget = this.controller.getContainment();
+
+                                /**
+                                 * Define page
+                                 * @type {Page}
+                                 */
+                                var page = widget.controller.getContainment();
+
+                                /**
+                                 * Define widget publisher
+                                 * @type {Widget}
+                                 */
+                                var widgetPublisher = page.model.getWidgetByContentUUID(
+                                    index
+                                );
+
+                                if (type === 'widget') {
+
+                                    /**
+                                     * Define widget scope
+                                     * @type {Widget}
+                                     */
+                                    scope = widgetPublisher;
+
+                                } else {
+
+                                    /**
+                                     * Define widget content scope
+                                     * @type {WidgetContent}
+                                     */
+                                    scope = widgetPublisher.controller.getContent();
+                                }
+
+                                /**
+                                 * Define event list
+                                 * @type {{}}
+                                 */
+                                var eventList = scope.eventmanager.eventList || {};
+
+                                if (!eventList.hasOwnProperty(event.toCamel())) {
+
+                                    scope.logger.warn('Undefined event', event);
+                                    return false;
+                                }
+
+                                /**
+                                 * Define event name
+                                 * @type {String}
+                                 */
+                                var ename = event.toCamel();
+
+                                /**
+                                 * Define callback
+                                 * @type {function}
+                                 */
+                                var callback = this.controller[ename].bind(this);
+
+                                if (!this.base.isFunction(callback)) {
+
+                                    this.logger.warn(
+                                        'Undefined callback',
+                                        event, ename
+                                    );
+
+                                    return false;
+                                }
+
+                                this.eventmanager.publishOn({
+                                    scope: scope,
+                                    events: [
+                                        {eventName: eventList[ename]}
+                                    ],
+                                    callback: callback
+                                });
+
+                            }
+                        }
+                    }
+                }
+            }
         },
 
         /**
@@ -416,6 +545,5 @@ define([
             return (widget.model.getDOM() || {})[type];
         }
 
-    });
-
+    }, WidgetSubscribe.prototype);
 });
