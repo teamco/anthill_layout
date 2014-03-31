@@ -234,7 +234,7 @@ define([
                     $ul
                 ])
             );
-debugger
+
             for (var index in published) {
 
                 if (published.hasOwnProperty(index)) {
@@ -242,19 +242,17 @@ debugger
                     var $inner = $('<ul />'),
                         rulesList = this.base.define(
                             published[index].rules, {}, true
+                        ),
+                        checkedRulesList = this.base.define(
+                            subscribe[index], {}, true
                         );
-//                        ,
-//                        checkedRulesList = this.base.define(
-//                            subscribe[index].rules, {}, true
-//                        );
 
                     for (var type in rulesList) {
 
                         if (rulesList.hasOwnProperty(type)) {
 
-                            var rules = rulesList[type];
-//                        ,
-//                                checked = ;
+                            var rules = rulesList[type],
+                                checked = checkedRulesList[type] || [];
 
                             for (var i = 0, l = rules.length; i < l; i++) {
 
@@ -263,7 +261,7 @@ debugger
                                         this.renderCheckbox({
                                             name: [type, rules[i]].join(':'),
                                             text: [type, rules[i]].join(' '),
-                                            checked: false,
+                                            checked: $.inArray(rules[i], checked) !== -1,
                                             disabled: false
                                         })
                                     )

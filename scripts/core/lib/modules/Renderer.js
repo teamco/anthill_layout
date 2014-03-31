@@ -81,7 +81,7 @@ define([
         /**
          * Render checkbox
          * @member Renderer
-         * @param {{text: string, name: string, value, [disabled]: boolean, [monitor]}} opts
+         * @param {{text: string, name: string, value, [checked]: boolean, [disabled]: boolean, [monitor]}} opts
          * @returns {*[]}
          */
         renderCheckbox: function renderCheckbox(opts) {
@@ -101,6 +101,7 @@ define([
                 type: 'checkbox',
                 id: uuid,
                 title: opts.value,
+                checked: this.base.defineBoolean(opts.checked, false, true),
                 disabled: this.base.defineBoolean(opts.disabled, false, true)
             }).val(opts.value);
 
