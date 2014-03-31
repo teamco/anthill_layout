@@ -79,11 +79,21 @@ define([
         /**
          * Load stored rules
          * @member WidgetRulesController
-         * @param rules
+         * @param {{publish, subscribe}} rules
          */
         loadStoredRules: function loadStoredRules(rules) {
 
             this.showPublishedRules(rules.publish);
+            this.showSubscribedRules(rules.subscribe);
+        },
+
+        /**
+         * Show subscribed rules
+         * @member WidgetRulesController
+         * @param subscribe
+         */
+        showSubscribedRules: function showSubscribedRules(subscribe) {
+            // TODO
         },
 
         /**
@@ -93,7 +103,11 @@ define([
          */
         showPublishedRules: function showPublishedRules(publish) {
 
-            var scope = this.view.scope;
+            /**
+             * Define active content
+             * @type {*}
+             */
+            var scope = this.scope.activeContent;
 
             for (var index in publish) {
 
