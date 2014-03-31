@@ -194,8 +194,9 @@ define([
         /**
          * Render subscribe rules
          * @member BaseWidgetRules
+         * @param subscribe
          */
-        renderSubscribeRules: function renderSubscribeRules() {
+        renderSubscribeRules: function renderSubscribeRules(subscribe) {
 
             /**
              * Get published rules
@@ -242,12 +243,18 @@ define([
                         rulesList = this.base.define(
                             published[index].rules, {}, true
                         );
+//                        ,
+//                        checkedRulesList = this.base.define(
+//                            subscribe[index].rules, {}, true
+//                        );
 
                     for (var type in rulesList) {
 
                         if (rulesList.hasOwnProperty(type)) {
 
                             var rules = rulesList[type];
+//                        ,
+//                                checked = ;
 
                             for (var i = 0, l = rules.length; i < l; i++) {
 
@@ -301,7 +308,7 @@ define([
             this.renderWidgetRules(widgetRules);
             this.renderContentRules(contentRules);
 
-            this.renderSubscribeRules();
+            this.renderSubscribeRules(data.subscribe);
         },
 
         /**
