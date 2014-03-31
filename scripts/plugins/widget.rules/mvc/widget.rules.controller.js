@@ -72,7 +72,47 @@ define([
             this.view.showRules(config, load);
 
             if (this.base.isFunction(callback)) {
-                callback();
+                callback(config);
+            }
+        },
+
+        /**
+         * Load stored rules
+         * @member WidgetRulesController
+         * @param rules
+         */
+        loadStoredRules: function loadStoredRules(rules) {
+
+            this.showPublishedRules(rules.publish);
+        },
+
+        /**
+         * Show published rules
+         * @member WidgetRulesController
+         * @param publish
+         */
+        showPublishedRules: function showPublishedRules(publish) {
+
+            var scope = this.view.scope;
+
+            for (var index in publish) {
+
+                if (publish.hasOwnProperty(index)) {
+
+                    /**
+                     * Define rules
+                     * @type {Array}
+                     */
+                    var rules = publish[index];
+
+                    for (var i = 0, l = rules.length; i < l; i++) {
+
+                        scope.observer.publish(
+                            scope.eventmanager.eventList.publishRule,
+                            [rules[i], index]
+                        );
+                    }
+                }
             }
         },
 

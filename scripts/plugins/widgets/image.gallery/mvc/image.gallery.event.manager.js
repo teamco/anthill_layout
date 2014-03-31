@@ -37,6 +37,7 @@ define([
          *      loadPreferences: string,
          *      transferPreferences: string,
          *      loadRules: string,
+         *      publishRule: string,
          *      transferRules: string
          * }}
          */
@@ -49,6 +50,7 @@ define([
             loadPreferences: 'load.preferences',
             transferPreferences: 'transfer.preferences',
             loadRules: 'load.rules',
+            publishRule: 'publish.rule',
             transferRules: 'transfer.rules'
         };
     };

@@ -267,7 +267,7 @@ define([
             var widget = this.controller.getContainment(),
                 rules = widget.model.getConfig('rules');
 
-            this.model.rules = rules;
+            this.model.registerRules(rules);
 
             this.logger.debug('Load rules', rules);
         },
@@ -317,14 +317,6 @@ define([
             }
 
             return published;
-        },
-
-        subscribeRules: function subscribeRules() {
-
-        },
-
-        activateRules: function activateRules() {
-
         },
 
         /**
@@ -378,11 +370,12 @@ define([
              * Define $button
              * @type {*|jQuery|HTMLElement}
              */
-            var $button = $(e.target);
+            var $button = $(e.target),
+                scope = this.scope;
 
-            this.publishRule(
-                $button.attr('value'),
-                'Widget'
+            scope.observer.publish(
+                scope.eventmanager.eventList.publishRule,
+                [$button.attr('value'), 'Widget']
             );
         },
 
@@ -398,9 +391,9 @@ define([
              * Define referrer
              * @type {*}
              */
-            var referrer = this.scope.referrer;
+            var referrer = this.referrer;
 
-            this.scope.view.elements.$rules.addRule(
+            this.view.elements.$rules.addRule(
                 rule, type,
                 referrer.view.elements.$modal.$
             );

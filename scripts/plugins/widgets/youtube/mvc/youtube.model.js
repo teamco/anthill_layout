@@ -51,6 +51,5 @@ define([
             this.setPrefs('youtubeUrl', url);
         }
 
-
     }, BaseModel.prototype);
 });

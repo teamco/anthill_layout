@@ -63,13 +63,23 @@ define([
         bindShowRules: function bindShowRules(data) {
 
             /**
+             * Load stored rules
+             * @param rules
+             * @private
+             */
+            function _loadStoredRules(config) {
+
+                this.view.controller.loadStoredRules(config.rules);
+            }
+
+            /**
              * Click prefs
              * @private
              */
             function _clickRules() {
                 scope.observer.publish(
                     scope.eventmanager.eventList.loadRules,
-                    [config, true]
+                    [config, true, _loadStoredRules.bind(this)]
                 );
             }
 

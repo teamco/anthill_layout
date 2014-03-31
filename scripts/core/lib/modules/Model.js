@@ -296,6 +296,21 @@ define([
         },
 
         /**
+         * Register rules on loading
+         * @member BaseModel
+         * @param rules
+         */
+        registerRules: function registerRules(rules) {
+
+            /**
+             * Local rules storage
+             * @member BaseModel
+             * @type {{}}
+             */
+            this.rules = rules;
+        },
+
+        /**
          * Set Title
          * @member BaseModel
          * @param {string} title

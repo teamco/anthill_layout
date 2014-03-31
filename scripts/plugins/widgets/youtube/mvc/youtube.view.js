@@ -78,11 +78,17 @@ define([
         renderRules: function renderRules(widgetRules, contentRules) {
 
             /**
+             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+            /**
              * Define Youtube Rules Element
              * @type {YoutubeRulesElement}
              */
             this.elements.$rules = new YoutubeRulesElement(this, {
-                data: this.controller.getRules(),
+                data: data,
                 rules: {
                     widget: widgetRules,
                     content: contentRules
