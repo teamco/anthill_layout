@@ -225,20 +225,6 @@ define([
              */
             var title = 'Subscribe events';
 
-            /**
-             * Define fieldset
-             * @type {*|jQuery}
-             */
-            var $node = $('<li />').append(
-                $('<fieldset />').append([
-                    $('<legend />').text(title).
-                        on('click.toggle', this.toggleFieldset).attr({
-                            title: title
-                        }),
-                    $ul
-                ])
-            );
-
             for (var index in published) {
 
                 if (published.hasOwnProperty(index)) {
@@ -297,8 +283,19 @@ define([
             }
 
             if (render) {
+
                 this.$.append(
-                    $('<li />').append($node)
+                    $('<li />').append(
+                        $('<li />').append(
+                            $('<fieldset />').append([
+                                $('<legend />').text(title).
+                                    on('click.toggle', this.toggleFieldset).attr({
+                                        title: title
+                                    }),
+                                $ul
+                            ])
+                        )
+                    )
                 );
             }
         },

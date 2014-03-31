@@ -48,7 +48,7 @@ define([
             limit: true,
             containment: containment,
             grid: {
-                columns: 20,
+                columns: 60,
                 additionalRows: 1,
                 margin: 1,
                 padding: {
