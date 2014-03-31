@@ -248,6 +248,9 @@
 
 .modal-dialog.rules div.html ul.publish-rules span {
     font-weight: bold;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    font-size: 14px;
 }
 
 .modal-dialog.rules fieldset ul.publish-rules li {
@@ -257,14 +260,16 @@
     padding: 5px 10px;
     float: none;
 }
+
 .modal-dialog.rules fieldset legend.open + ul.subscribe-rules,
 .modal-dialog.rules fieldset legend.open + ul.subscribe-rules ul {
     margin: 0;
 }
+
 .modal-dialog.rules fieldset legend.open + ul.subscribe-rules li {
     width: 100%;
     background-color: transparent;
-    
+
 }
 
 .modal-dialog.rules fieldset legend.open + ul.subscribe-rules fieldset ul li label {

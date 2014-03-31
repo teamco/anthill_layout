@@ -68,7 +68,6 @@ define([
              * @private
              */
             function _loadStoredRules(config) {
-
                 this.view.controller.loadStoredRules(config.rules);
             }
 

@@ -234,7 +234,7 @@ define([
                     $ul
                 ])
             );
-
+debugger
             for (var index in published) {
 
                 if (published.hasOwnProperty(index)) {
