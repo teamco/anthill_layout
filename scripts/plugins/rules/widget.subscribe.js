@@ -67,6 +67,10 @@ define([], function defineWidgetSubscribe() {
          */
         stopDraggable: function stopDraggable() {
 
+            /**
+             * Define widget
+             * @type {Widget}
+             */
             var widget = this.controller.getContainment();
 
             widget.observer.publish(
