@@ -61,6 +61,10 @@ define([], function defineWidgetSubscribe() {
             });
         },
 
+        resizeResizableSimulate: function resizeResizableSimulate(type, args) {
+debugger
+        },
+
         /**
          * On drag stop event simulate
          * @member WidgetSubscribe
@@ -81,6 +85,14 @@ define([], function defineWidgetSubscribe() {
                 widget.eventmanager.eventList.stopDraggable,
                 'stopDraggable'
             );
+        },
+
+        /**
+         * On drag stop event simulate
+         * @member WidgetSubscribe
+         */
+        stopResizableSimulate: function stopResizableSimulate() {
+
         },
 
         /**
