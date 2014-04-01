@@ -111,7 +111,6 @@ define([
              */
             function _hideBorder() {
                 $element.$.removeClass('select');
-                clearTimeout(scope.locateTimeout);
             }
 
             if ($element.$.hasClass('select')) {
@@ -121,12 +120,7 @@ define([
             $element.$.parent().children().removeClass('select');
             $element.$.addClass('select');
 
-            /**
-             * Define locate
-             * @member {WorkspaceData|PageData}
-             * @type {number}
-             */
-            scope.locateTimeout = setTimeout(_hideBorder, 1000);
+            setTimeout(_hideBorder, 300);
         },
 
         /**

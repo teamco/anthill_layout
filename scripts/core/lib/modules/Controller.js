@@ -316,6 +316,24 @@ define([
         },
 
         /**
+         * Get subscribers list
+         * @member BaseController
+         * @param {string} event
+         * @return {Array}
+         */
+        getSubscribers: function getSubscribers(event) {
+
+            /**
+             * Define rules
+             * @type {{}}
+             */
+            var rules = this.model.rules;
+
+            return rules.subscribers ?
+                rules.subscribers[event] : []
+        },
+
+        /**
          * Collect items data
          * @member BaseController
          * @param {Boolean} collectDOM

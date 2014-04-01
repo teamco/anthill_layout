@@ -37,24 +37,48 @@ define([
          * @member ImageElement
          * @param {string} url
          * @param {string} text
+         * @param {number} splitTo
          */
-        renderEmbeddedContent: function renderEmbeddedContent(url, text) {
+        renderEmbeddedContent: function renderEmbeddedContent(url, text, splitTo) {
 
             if (!url) {
                 return false;
             }
 
             /**
+             * Init splitTo
+             * @type {number}
+             */
+            splitTo = this.base.define(splitTo, this.view.controller.getSubscribers(
+                this.view.scope.eventmanager.eventList.setEmbeddedContent
+            ).length + 1, true);
+
+            /**
+             * Define $img
+             * @type {*|jQuery}
+             */
+            var $img = $('<img />').attr({
+                src: url,
+                alt: text,
+                title: text
+            });
+
+            /**
              * Define embedded template
              * @type {string}
              */
-            this.setHtml(
-                $('<img />').attr({
-                    src: url,
-                    alt: text,
-                    title: text
-                })
-            );
+            this.setHtml($img);
+
+            if (splitTo > 1) {
+
+                $img.css({
+                    width: 'auto'
+                });
+
+                $img.parent().css({
+                    overflow: 'hidden'
+                });
+            }
         }
 
     }, BaseElement.prototype);

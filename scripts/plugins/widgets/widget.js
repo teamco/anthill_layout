@@ -390,6 +390,26 @@ define([
                      */
                     types = subscribe[index];
 
+                    /**
+                     * Define widget
+                     * @type {Widget}
+                     */
+                    var widget = this.controller.getContainment();
+
+                    /**
+                     * Define page
+                     * @type {Page}
+                     */
+                    var page = widget.controller.getContainment();
+
+                    /**
+                     * Define widget publisher
+                     * @type {Widget}
+                     */
+                    var widgetPublisher = page.model.getWidgetByContentUUID(
+                        index
+                    );
+
                     for (var type in types) {
 
                         if (types.hasOwnProperty(type)) {
@@ -402,25 +422,8 @@ define([
                                  */
                                 event = types[type][i];
 
-                                /**
-                                 * Define widget
-                                 * @type {Widget}
-                                 */
-                                var widget = this.controller.getContainment();
-
-                                /**
-                                 * Define page
-                                 * @type {Page}
-                                 */
-                                var page = widget.controller.getContainment();
-
-                                /**
-                                 * Define widget publisher
-                                 * @type {Widget}
-                                 */
-                                var widgetPublisher = page.model.getWidgetByContentUUID(
-                                    index
-                                );
+                                // add rule subscriber
+                                widgetPublisher.model.setSubscriber(event, widget);
 
                                 if (type === 'widget') {
 
@@ -445,29 +448,29 @@ define([
                                  */
                                 var eventList = scope.eventmanager.eventList || {};
 
-                                if (!eventList.hasOwnProperty(event.toCamel())) {
-
-                                    scope.logger.warn('Undefined event', event);
-                                    return false;
-                                }
-
                                 /**
                                  * Define event name
                                  * @type {String}
                                  */
                                 var ename = event.toCamel();
 
+                                if (!eventList.hasOwnProperty(ename)) {
+
+                                    scope.logger.warn('Undefined event', event);
+                                    return false;
+                                }
+
                                 /**
                                  * Define callback
                                  * @type {function}
                                  */
-                                var callback = this.controller[ename].bind(this);
+                                var callback = this.controller[ename + 'Simulate'];
 
                                 if (!this.base.isFunction(callback)) {
 
                                     this.logger.warn(
                                         'Undefined callback',
-                                        event, ename
+                                        event, ename + 'Simulate'
                                     );
 
                                     return false;
@@ -478,7 +481,10 @@ define([
                                     events: [
                                         {eventName: eventList[ename]}
                                     ],
-                                    callback: callback
+                                    callback: callback.bind({
+                                        scope: this,
+                                        referrer: scope
+                                    })
                                 });
 
                             }
