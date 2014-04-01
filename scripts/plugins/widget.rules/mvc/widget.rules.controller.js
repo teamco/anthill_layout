@@ -52,6 +52,13 @@ define([
              * @type {WidgetContent}
              */
             scope.activeContent = widget.controller.getContent();
+
+            /**
+             * Define referrer
+             * @type {WidgetRules}
+             */
+            scope.activeContent.referrer = scope;
+
             scope.logger.debug('Active component', scope.activeContent);
 
             return scope.activeContent.view.renderRules(
