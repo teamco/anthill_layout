@@ -51,6 +51,14 @@ define([
                 scope.eventmanager.eventList.publishRule,
                 [$button.attr('value'), scope.constructor.name]
             );
+        },
+
+        collectStats: function collectStats(uuid, $element) {
+            var id = $element.id;
+
+            id = id.length === 0 ? $($element).parents("[id]").attr("id") : id;
+            this.model.storeData(uuid, id);
+
         }
 
     }, PluginBase.prototype, WidgetContentController.prototype);

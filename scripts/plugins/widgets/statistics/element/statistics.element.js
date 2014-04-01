@@ -39,18 +39,16 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent(text) {
 
-            /**
-             * Define embedded template
-             * @type {string}
-             */
-            this.setHtml(
-                $('<div>Testing statistics widget</div>').attr({
-                  //  src: url,
-                    alt: text,
-                    title: text
-                })
-            );
+            require([
+           //     'plugns/.............../highchart'
+            ], function defineChart(){
+
+          //      logic...
+
+            })
+
         }
+
 
     }, BaseElement.prototype);
 

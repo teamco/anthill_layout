@@ -35,6 +35,8 @@ define([
          * @type {{}}
          */
         this.rules = {};
+
+        this.stats = {};
     };
 
     return StatisticsModel.extend('StatisticsModel', {
@@ -46,6 +48,17 @@ define([
          */
         setStatisticsText: function setStatisticsText(text) {
             this.setPrefs('statisticsText', text);
+        },
+
+        storeData: function storeData(uuid, $element) {
+
+            this.stats[uuid] = this.base.define(this.stats[uuid], {}, true);
+
+            this.stats[uuid][$element] = this.base.define(this.stats[uuid][$element], 0, true);
+
+            this.stats[uuid][$element] += 1;
+
+            console.log(this.stats[uuid]);
         }
 
 

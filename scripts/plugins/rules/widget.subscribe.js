@@ -62,7 +62,7 @@ define([], function defineWidgetSubscribe() {
         },
 
         resizeResizableSimulate: function resizeResizableSimulate(type, args) {
-debugger
+            debugger
         },
 
         /**
@@ -80,7 +80,7 @@ debugger
             widget.observer.publish(
                 widget.eventmanager.eventList.saveDom
             );
-            
+
             widget.observer.publish(
                 widget.eventmanager.eventList.stopDraggable,
                 'stopDraggable'
@@ -121,6 +121,15 @@ debugger
                 this.referrer.model.getPrefs('imageText'),
                 splitTo
             );
+        },
+        transferStatsSimulate: function transferStatsSimulate(uuid, $element) {
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.collectStats,
+                [uuid, $element]
+            );
+
         }
 
     });

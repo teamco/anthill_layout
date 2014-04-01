@@ -570,9 +570,15 @@ define([
             var widget = this.controller.getContainment();
 
             var uuid = widget.model.getUUID();
-            debugger;
-            console.log(this, arguments);
 
+            this.observer.publish(
+                this.eventmanager.eventList.transferStats,
+                [uuid, e.target]
+            );
+        },
+
+        transferStats: function transferStats(uuid, $element) {
+            this.logger.debug('Transfer Stats', uuid, $element);
         }
 
     }, WidgetSubscribe.prototype);
