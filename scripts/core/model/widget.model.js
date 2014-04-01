@@ -121,6 +121,30 @@ define([
                     rules[index] = data[index];
                 }
             }
+        },
+
+        /**
+         * Define subscribers
+         * @member WidgetModel
+         * @param {string} event
+         * @param {Widget} subscriber
+         */
+        setSubscriber: function setSubscriber(event, subscriber) {
+
+            /**
+             * Get rules
+             * @type {*}
+             */
+            var rules = this.getConfig('rules'),
+                uuid = subscriber.model.getUUID();
+
+            rules.subscribers = this.base.define(rules.subscribers, {}, true);
+            rules.subscribers[event] = this.base.define(rules.subscribers[event], [], true);
+
+            if ($.inArray(uuid, rules.subscribers[event]) === -1) {
+
+                rules.subscribers[event].push(uuid);
+            }
         }
 
     }, BaseModel.prototype);

@@ -33,11 +33,12 @@ define([
              * Define $button
              * @type {*|jQuery|HTMLElement}
              */
-            var $button = $(e.target);
+            var $button = $(e.target),
+                scope = this.scope;
 
-            this.publishRule(
-                $button.attr('value'),
-                this.scope.constructor.name
+            scope.observer.publish(
+                scope.eventmanager.eventList.publishRule,
+                [$button.attr('value'), this.scope.constructor.name]
             );
         }
 

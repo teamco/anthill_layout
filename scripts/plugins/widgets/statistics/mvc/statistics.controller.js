@@ -49,7 +49,7 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), 'Widget']
+                [$button.attr('value'), scope.constructor.name]
             );
         }
 

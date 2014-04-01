@@ -16,18 +16,18 @@ define([], function defineWidgetSubscribe() {
     return WidgetSubscribe.extend({
 
         /**
-         * On drag event
+         * On drag event simulate
          * @member WidgetSubscribe
          * @param type
          * @param args
          */
-        dragDraggable: function dragDraggable(type, args) {
+        dragDraggableSimulate: function dragDraggableSimulate(type, args) {
 
             /**
              * Define widget
              * @type {Widget}
              */
-            var widget = this.controller.getContainment();
+            var widget = this.scope.controller.getContainment();
 
             /**
              * Get jQuery.UI element
@@ -61,17 +61,21 @@ define([], function defineWidgetSubscribe() {
             });
         },
 
+        resizeResizableSimulate: function resizeResizableSimulate(type, args) {
+debugger
+        },
+
         /**
-         * On drag stop event
+         * On drag stop event simulate
          * @member WidgetSubscribe
          */
-        stopDraggable: function stopDraggable() {
+        stopDraggableSimulate: function stopDraggableSimulate() {
 
             /**
              * Define widget
              * @type {Widget}
              */
-            var widget = this.controller.getContainment();
+            var widget = this.scope.controller.getContainment();
 
             widget.observer.publish(
                 widget.eventmanager.eventList.saveDom
@@ -80,6 +84,42 @@ define([], function defineWidgetSubscribe() {
             widget.observer.publish(
                 widget.eventmanager.eventList.stopDraggable,
                 'stopDraggable'
+            );
+        },
+
+        /**
+         * On drag stop event simulate
+         * @member WidgetSubscribe
+         */
+        stopResizableSimulate: function stopResizableSimulate() {
+
+        },
+
+        /**
+         * Set embedded content simulate
+         * @member WidgetSubscribe
+         */
+        setEmbeddedContentSimulate: function setEmbeddedContentSimulate() {
+
+            /**
+             * Define referrer widget
+             * @type {Widget}
+             */
+            var widget = this.referrer;
+
+            /**
+             * Get subscribers
+             * @type {Array}
+             */
+            var subscribers = widget.controller.getSubscribers(
+                    widget.eventmanager.eventList.setEmbeddedContent
+                ),
+                splitTo = subscribers.length + 1;
+
+            this.scope.view.elements.$image.renderEmbeddedContent(
+                this.referrer.model.getPrefs('imageUrl'),
+                this.referrer.model.getPrefs('imageText'),
+                splitTo
             );
         }
 
