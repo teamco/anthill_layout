@@ -52,7 +52,8 @@ define([
             loadRules: 'load.rules',
             publishRule: 'publish.rule',
             registerRules: 'register.rules',
-            transferRules: 'transfer.rules'
+            transferRules: 'transfer.rules',
+            bindStatistics: 'bind.statistics'
         };
     };
 

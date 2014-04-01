@@ -26,7 +26,7 @@ define([
         });
 
         this.addCSS('image', {resource: '/widgets'});
-
+        this.attachStatisticsCollector();
         return this;
     };
 
@@ -55,6 +55,17 @@ define([
                     title: text
                 })
             );
+
+        },
+
+        attachStatisticsCollector : function attachStatisticsCollector() {
+
+            this.$.on('click.statistics',function clickStatisticsCallback(e) {
+                this.view.scope.observer.publish(
+                    this.view.scope.eventmanager.eventList.bindStatistics,
+                    e
+                );
+            }.bind(this))
         }
 
     }, BaseElement.prototype);

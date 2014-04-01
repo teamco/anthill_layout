@@ -118,7 +118,7 @@ define([
                         $element = this.renderCheckbox({
                             name: index,
                             text: text,
-                            checked: node.checked,
+                            checked: node.value,
                             disabled: node.disabled
                         });
                     }

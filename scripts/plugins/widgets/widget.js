@@ -133,6 +133,11 @@ define([
                      */
                     value = input.value;
 
+                    if (input.type === 'checkbox') {
+                        value = $(input).prop('checked');
+                    }
+
+
                     this.model[setter](value);
 
                     scope.observer.publish(
@@ -543,6 +548,25 @@ define([
             var widget = this.scope.controller.getContainment();
 
             return (widget.model.getDOM() || {})[type];
+        },
+
+        /**
+         * Binds statistics click to widget element
+         * @param e
+         */
+        bindStatistics: function bindStatistics(e) {
+
+            if (!this.model.getPrefs('statistics')) {
+                this.logger.debug('No Statistics Available', e.target);
+                return false;
+            }
+
+            var widget = this.controller.getContainment();
+
+            var uuid = widget.model.getUUID();
+            debugger;
+            console.log(this, arguments);
+
         }
 
     }, WidgetSubscribe.prototype);

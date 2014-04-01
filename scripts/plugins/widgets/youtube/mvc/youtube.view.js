@@ -48,6 +48,7 @@ define([
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.setEmbeddedContent
             );
+
         },
 
         /**

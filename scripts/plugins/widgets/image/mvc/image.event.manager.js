@@ -39,7 +39,8 @@ define([
          *      loadRules: string,
          *      publishRule: string,
          *      registerRules: string,
-         *      transferRules: string
+         *      transferRules: string,
+         *      bindStatistics: string
          * }}
          */
         this.eventList = {
@@ -53,7 +54,8 @@ define([
             loadRules: 'load.rules',
             publishRule: 'publish.rule',
             registerRules: 'register.rules',
-            transferRules: 'transfer.rules'
+            transferRules: 'transfer.rules',
+            bindStatistics: 'bind.statistics'
         };
     };
 

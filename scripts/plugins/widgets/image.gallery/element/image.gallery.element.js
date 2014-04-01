@@ -29,6 +29,8 @@ define([
 
         this.addCSS('image.gallery', {resource: '/widgets'});
 
+        this.attachStatisticsCollector();
+
         return this;
     };
 
@@ -128,6 +130,16 @@ define([
             img.onerror = function onerror(e) {
                 this.view.scope.logger.warn('Error loading image', e);
             }.bind(this)
+        },
+
+        attachStatisticsCollector : function attachStatisticsCollector() {
+
+            this.$.on('click.statistics',function clickStatisticsCallback(e) {
+                this.view.scope.observer.publish(
+                    this.view.scope.eventmanager.eventList.bindStatistics,
+                    e
+                );
+            }.bind(this))
         }
 
     }, BaseElement.prototype);
