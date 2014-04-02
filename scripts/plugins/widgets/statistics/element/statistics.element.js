@@ -47,11 +47,13 @@ define([
             renderEmbeddedContent: function renderEmbeddedContent(text) {
 
                 require([
-                    'plugins/widgets/statistics/lib/highcharts',
-                    'plugins/widgets/statistics/lib/data'
+                    'plugins/widgets/statistics/lib/highcharts'
                 ], function defineChart() {
 
-                    $(function () {
+                    require([
+                        'plugins/widgets/statistics/lib/data'
+                    ], function defineChartData() {
+
                         $('#container').highcharts({
                             data: {
                                 table: document.getElementById('datatable')
@@ -76,8 +78,8 @@ define([
                             }
                         });
                     });
-                });
 
+                });
             },
 
             /**
