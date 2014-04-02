@@ -66,7 +66,10 @@
     left: 10px;
     z-index: 50;
     cursor: move;
-    border: 1px solid #dedede;
+    -webkit-box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
+    box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
+    border: none;
 }
 
 .widget.select,
@@ -74,8 +77,10 @@
     border: 5px solid #ff6347;
 }
 
-.widget.on-resize {
-    border-width: 1px
+.widget.on-resize,
+.widget.on-resize:hover {
+    border: none;
+
 }
 
 .widget.ui-resizable-resizing .ui-resizable-handle,
