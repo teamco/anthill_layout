@@ -52,6 +52,11 @@ define([
                 disabled: false,
                 checked: false
             },
+            alwaysOnTop: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false
+            },
             statistics: {
                 type: 'checkbox',
                 disabled: false,
@@ -124,6 +129,7 @@ define([
                             name: index,
                             text: text,
                             checked: node.value,
+                            value: node.value,
                             disabled: node.disabled
                         });
                     }

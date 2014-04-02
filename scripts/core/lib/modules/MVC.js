@@ -486,7 +486,6 @@ define([
             for (var index in listeners) {
 
                 if (listeners.hasOwnProperty(index)) {
-
                     this.scope.eventmanager.subscribe({
                         event: listeners[index],
                         callback: this.scope.controller[index]

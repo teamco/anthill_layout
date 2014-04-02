@@ -27,6 +27,22 @@ define([
     return BaseController.extend('BaseController', {
 
         /**
+         * Before init config
+         * @member BaseController
+         */
+        beforeInitConfig: function beforeInitConfig() {
+            this.logger.debug('Before init config', arguments);
+        },
+
+        /**
+         * After init config
+         * @member BaseController
+         */
+        afterInitConfig: function afterInitConfig() {
+            this.logger.debug('After init config', arguments);
+        },
+
+        /**
          * Get Application mode
          * @member BaseController
          * @returns {*|number}

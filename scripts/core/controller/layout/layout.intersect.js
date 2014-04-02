@@ -33,7 +33,6 @@ define(function defineLayoutIntersect() {
 
             return this._isOverlappedH(src, target) &&
                 this._isOverlappedV(src, target);
-
         },
 
         /**
@@ -50,14 +49,18 @@ define(function defineLayoutIntersect() {
              * Define local instance
              * @type {boolean}
              */
-            var noOverlapped = (
-                this._overlapCondition(target.column, src.relRight, '>') ||
-                    this._overlapCondition(target.relRight, src.column, '<')
-                ) || (
-                this._overlapCondition(target.row, src.relBottom, '>') ||
-                    this._overlapCondition(target.relBottom, src.row, '<')
-                );
+            var noOverlapped =
+
+                // horizontal
+                (this._overlapCondition(target.column, src.relRight, '>') ||
+                    this._overlapCondition(target.relRight, src.column, '<')) ||
+
+                // vertical
+                (this._overlapCondition(target.row, src.relBottom, '>') ||
+                    this._overlapCondition(target.relBottom, src.row, '<'));
+
             this.layout.logger.debug('Overlap not possibility', src, target, noOverlapped);
+
             return noOverlapped;
         },
 
@@ -98,6 +101,7 @@ define(function defineLayoutIntersect() {
             var isOverlappedV = this._overlappedCore(src, target, 'row', 'relBottom');
 
             this.layout.logger.debug('Overlap V', src, target, isOverlappedV);
+
             return isOverlappedV;
         },
 
@@ -141,26 +145,53 @@ define(function defineLayoutIntersect() {
              * @private
              */
             var _fn = new Function('arg1', 'arg2', 'return arg1 ' + condition + ' arg2;');
+
             this.layout.logger.debug('Overlap condition', _fn, arg1, arg2);
+
             return _fn(arg1, arg2);
+        },
+
+        /**
+         * Check if overlapping was allowed
+         * @param {Widget} src
+         * @param {Widget} target
+         * @returns {boolean}
+         * @private
+         */
+        _allowOverlapping: function _allowOverlapping(src, target) {
+
+            // allow overlapping
+            return (target.model.getPrefs('overlapping') ||
+                src.model.getPrefs('overlapping'));
         },
 
         /**
          * Widget intersections
          * @member Intersect
-         * @param {{model, dom}} source
+         * @param {Widget} source
          * @private
          * @returns {*}
          */
         _intersectWidgets: function _intersectWidgets(source) {
+
             var move = {}, i = 0, l, target,
                 partition = this.layout.controller.getContainment().model.getItemsApartOf(source);
 
             for (i, l = partition.length; i < l; i++) {
+
+                /**
+                 * Define target widget
+                 * @type {Widget}
+                 */
                 target = partition[i];
+
                 if (this._overlapped(source.dom, target.dom)) {
-                    this.layout.logger.debug('Overlapped', target);
-                    move[target.model.getUUID()] = target;
+
+                    if (!this._allowOverlapping(source, target)) {
+
+                        this.layout.logger.debug('Overlapped', target);
+                        move[target.model.getUUID()] = target;
+                    }
                 }
             }
 

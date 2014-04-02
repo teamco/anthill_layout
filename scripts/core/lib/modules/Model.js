@@ -262,7 +262,7 @@ define([
          * @param {string} prefs
          * @returns {boolean|string}
          */
-        getPrefs: function getPrefs(prefs) {
+        getContentPrefs: function getContentPrefs(prefs) {
 
             if (!this.preferences[prefs]) {
                 this.scope.logger.warn('Undefined preference', prefs);
@@ -270,6 +270,33 @@ define([
             }
 
             return this.preferences[prefs].value;
+        },
+
+        /**
+         * Get prefs
+         * @member BaseModel
+         * @param {string} prefs
+         * @returns {boolean|string}
+         */
+        getPrefs: function getPrefs(prefs) {
+
+            if (this.base.isDefined(this.preferences)) {
+
+                return this.getContentPrefs(prefs);
+            }
+
+            /**
+             * Define prefs
+             * @type {{}}
+             */
+            var preferences = this.scope.config.preferences;
+
+            if (!preferences) {
+                this.scope.logger.warn('Unable to locate preference', prefs);
+                return false;
+            }
+
+            return preferences[prefs];
         },
 
         /**
@@ -335,6 +362,26 @@ define([
          */
         setStatistics: function setStatistics(statistics) {
             this.setPrefs('statistics', statistics);
+        },
+
+        /**
+         * Set on top
+         * @member BaseModel
+         * @param {boolean} ontop
+         */
+        setAlwaysOnTop: function setStatistics(ontop) {
+            this.setPrefs('alwaysOnTop', ontop);
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope.controller.getContainment();
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.setOnTop,
+                ontop
+            );
         },
 
         /**

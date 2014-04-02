@@ -1,7 +1,7 @@
 .widget .content .image {
     height: 100%;
     width: 100%;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .widget .content .image img {

@@ -277,12 +277,17 @@ define([
             var executeCallback = function executeCallback() {
 
                 opts.state.lastExecutionAt = opts.state.lastCallAt;
+
                 if (base.isFunction(opts.callback)) {
+
                     opts.callback.eventName = opts.eventName;
                     return opts.callback.apply(scope, args);
-                }
 
-                return false;
+                } else {
+
+                    scope.logger.warn('Undefined callback', opts);
+                    return false;
+                }
             };
 
             // Fire event only when timeout is over, each event fill reset timeout

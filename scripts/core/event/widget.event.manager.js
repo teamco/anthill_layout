@@ -53,6 +53,7 @@ define([
          *      loadContent: string,
          *      setContent: string,
          *      adoptDimensions: string,
+         *      setOnTop: string,
          *      saveDom: string
          * }}
          */
@@ -90,6 +91,8 @@ define([
 
             loadContent: 'load.content',
             setContent: 'set.content',
+
+            setOnTop: 'set.on.top',
 
             saveDom: 'save.dom'
         }

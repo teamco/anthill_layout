@@ -38,14 +38,14 @@ define([
         /**
          * Default config
          * @type {{
-         *      preferences: {},
+         *      preferences: {[overlapping]: boolean},
          *      rules: {},
          *      limit: boolean,
          *      order: number,
          *      html: {header: boolean, footer: boolean, frameLess: boolean, opacity: number, style: string},
          *      type: string,
          *      maximize: boolean,
-         *      attributes: {magnet: string, freeze: boolean, overlapping: boolean, alwaysTop: boolean},
+         *      attributes: {magnet: string, freeze: boolean, alwaysTop: boolean},
          *      events: {
          *          draggable: {snap: boolean, axis: boolean, scroll: boolean, connectToSortable: boolean, delay: number, scrollSensitivity: number, scrollSpeed: number, opacity: number, zIndex: number, cursor: string, appendTo: string, cancel: string},
          *          resizable: {handles: string},
@@ -70,7 +70,6 @@ define([
             attributes: {
                 magnet: 'none',         // {none|+|-}
                 freeze: false,
-                overlapping: false,
                 alwaysTop: false
             },
             events: {
