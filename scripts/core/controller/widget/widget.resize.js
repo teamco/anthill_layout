@@ -62,7 +62,7 @@ define([
                     }, scope.model.getConfig('events').resizable)
                 );
 
-                // bind fix on resize
+                // bind border fix on resize
                 this.scope.view.get$item().bindFixOnResize();
             }
         },
@@ -176,6 +176,7 @@ define([
 
             this.debugUI(event, ui);
 
+            // disable border fix
             scope.view.get$item().fixOnResize(false);
 
             scope.observer.publish(
