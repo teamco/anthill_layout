@@ -92,6 +92,12 @@ define([
             return this.elements.$rules;
         },
 
+        updateChart: function updateChart(data) {
+            this.elements.$statistics.renderStatsTable(data);
+
+        },
+
+
         /**
          * Render statistics
          * @member StatisticsView

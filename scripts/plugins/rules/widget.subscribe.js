@@ -122,6 +122,7 @@ define([], function defineWidgetSubscribe() {
                 splitTo
             );
         },
+
         transferStatsSimulate: function transferStatsSimulate(uuid, $element) {
             var scope = this.scope;
 

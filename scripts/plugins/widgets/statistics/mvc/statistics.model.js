@@ -50,6 +50,11 @@ define([
             this.setPrefs('statisticsText', text);
         },
 
+        /**
+         * Stores Statistic Data (i.e clicks)
+         * @param uuid
+         * @param $element
+         */
         storeData: function storeData(uuid, $element) {
 
             this.stats[uuid] = this.base.define(this.stats[uuid], {}, true);
@@ -59,6 +64,10 @@ define([
             this.stats[uuid][$element] += 1;
 
             console.log(this.stats[uuid]);
+        },
+
+        getData: function getData() {
+            return this.stats;
         }
 
 

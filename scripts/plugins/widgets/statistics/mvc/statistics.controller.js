@@ -53,11 +53,20 @@ define([
             );
         },
 
+        /**
+         * Stores Statistic Data according to the clicked target/element's id
+         * @param uuid
+         * @param $element
+         */
         collectStats: function collectStats(uuid, $element) {
             var id = $element.id;
 
             id = id.length === 0 ? $($element).parents("[id]").attr("id") : id;
             this.model.storeData(uuid, id);
+
+            this.view.updateChart(this.model.getData());
+
+
 
         }
 

@@ -64,6 +64,7 @@ define([
                 this.view.scope.observer.publish(
                     this.view.scope.eventmanager.eventList.bindStatistics,
                     e
+
                 );
             }.bind(this))
         }
