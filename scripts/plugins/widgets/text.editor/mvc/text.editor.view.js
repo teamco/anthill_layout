@@ -10,35 +10,35 @@ define([
     'modules/view',
     'element/header.element',
     'element/footer.element',
-    'plugins/widgets/youtube/element/youtube.element',
-    'plugins/widgets/youtube/element/youtube.preferences.element',
-    'plugins/widgets/youtube/element/youtube.rules.element'
-], function defineYoutubeView(BaseView, Header, Footer, YoutubeElement, YoutubePreferencesElement, YoutubeRulesElement) {
+    'plugins/widgets/text.editor/element/text.editor.element',
+    'plugins/widgets/text.editor/element/text.editor.preferences.element',
+    'plugins/widgets/text.editor/element/text.editor.rules.element'
+], function defineTextEditorView(BaseView, Header, Footer, TextEditorElement, TextEditorPreferencesElement, TextEditorRulesElement) {
 
     /**
      * Define view
-     * @class YoutubeView
+     * @class TextEditorView
      * @extends BaseView
      * @constructor
      */
-    var YoutubeView = function YoutubeView() {
+    var TextEditorView = function TextEditorView() {
     };
 
-    return YoutubeView.extend('YoutubeView', {
+    return TextEditorView.extend('TextEditorView', {
 
         /**
-         * Render youtube element
-         * @member YoutubeView
+         * Render text editor element
+         * @member TextEditorView
          */
-        renderYoutube: function renderYoutube() {
+        renderTextEditor: function renderTextEditor() {
 
             this.header(Header, this.elements.$container);
 
             /**
-             * Define $youtube
-             * @type {YoutubeElement}
+             * Define $text.editor
+             * @type {TextEditorElement}
              */
-            this.elements.$youtube = new YoutubeElement(this, {
+            this.elements.$texteditor = new TextEditorElement(this, {
                 $container: this.elements.$container.$,
                 id: this.createUUID()
             });
@@ -52,16 +52,16 @@ define([
 
         /**
          * Render Prefs
-         * @member YoutubeView
-         * @returns {YoutubePreferencesElement}
+         * @member TextEditorView
+         * @returns {TextEditorPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
 
             /**
-             * Define Youtube Preferences Element
-             * @type {YoutubePreferencesElement}
+             * Define TextEditor Preferences Element
+             * @type {TextEditorPreferencesElement}
              */
-            this.elements.$preferences = new YoutubePreferencesElement(this, {
+            this.elements.$preferences = new TextEditorPreferencesElement(this, {
                 data: this.controller.getPreferences()
             });
 
@@ -70,25 +70,19 @@ define([
 
         /**
          * Render Rules
-         * @member YoutubeView
+         * @member TextEditorView
          * @param widgetRules
          * @param contentRules
-         * @returns {YoutubeRulesElement}
+         * @returns {TextEditorRulesElement}
          */
         renderRules: function renderRules(widgetRules, contentRules) {
 
             /**
-             * Define data
-             * @type {*|{}}
+             * Define TextEditor Rules Element
+             * @type {TextEditorRulesElement}
              */
-            var data = this.controller.getRules();
-
-            /**
-             * Define Youtube Rules Element
-             * @type {YoutubeRulesElement}
-             */
-            this.elements.$rules = new YoutubeRulesElement(this, {
-                data: data,
+            this.elements.$rules = new TextEditorRulesElement(this, {
+                data: this.controller.getRules(),
                 rules: {
                     widget: widgetRules,
                     content: contentRules
@@ -99,14 +93,14 @@ define([
         },
 
         /**
-         * Render youtube
-         * @member YoutubeView
+         * Render text.editor
+         * @member TextEditorView
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderYoutube.bind(this)
+                this.renderTextEditor.bind(this)
             );
         }
 

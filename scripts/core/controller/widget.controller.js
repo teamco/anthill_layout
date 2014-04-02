@@ -567,6 +567,14 @@ define([
         },
 
         /**
+         * Clear thumbnail bg
+         * @member WidgetController
+         */
+        clearThumbnail: function clearThumbnail() {
+            this.view.get$item().clearBackground();
+        },
+
+        /**
          * Adopt widget dimension on resize page
          * @member WidgetController
          * @param {Boolean} animate

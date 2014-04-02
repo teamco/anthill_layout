@@ -61,7 +61,7 @@ define([
         },
 
         /**
-         * Bins stats
+         * Bind stats
          * @member ImageElement
          */
         bindStatsCollector : function bindStatsCollector() {

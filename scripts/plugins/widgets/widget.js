@@ -543,6 +543,23 @@ define([
         },
 
         /**
+         * Clear default thumbnail
+         * @member WidgetContentController
+         */
+        clearParentThumbnail: function clearParentThumbnail() {
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.getContainment();
+
+            widget.observer.publish(
+                widget.eventmanager.eventList.clearThumbnail
+            );
+        },
+
+        /**
          * Get DOM
          * @member WidgetContentController
          * @param type

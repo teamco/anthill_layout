@@ -104,6 +104,14 @@ define([
         },
 
         /**
+         * Clear thumbnail bg
+         * @member WidgetElement
+         */
+        clearBackground: function clearBackground() {
+            this.$.addClass('no-bg');
+        },
+
+        /**
          * Move on top layer
          * @member WidgetElement
          * @param ontop

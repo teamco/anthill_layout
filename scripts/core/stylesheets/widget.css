@@ -109,6 +109,10 @@
     overflow: hidden;
 }
 
+.widget.no-bg .content {
+    background: transparent !important;
+}
+
 .widget .content ul {
     overflow: hidden;
 }

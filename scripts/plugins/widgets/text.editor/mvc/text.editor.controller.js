@@ -8,41 +8,37 @@
 define([
     'plugins/plugin',
     'plugins/widgets/widget'
-], function defineImageController(PluginBase, WidgetContentController) {
+], function defineTextEditorController(PluginBase, WidgetContentController) {
 
     /**
-     * Define image controller
-     * @class ImageController
+     * Define empty controller
+     * @class TextEditorController
      * @extends PluginController
      * @extends WidgetContentController
      * @constructor
      */
-    var ImageController = function ImageController() {
+    var TextEditorController = function TextEditorController() {
     };
 
-    return ImageController.extend('ImageController', {
+    return TextEditorController.extend('TextEditorController', {
 
         /**
          * Set embedded content
-         * @member ImageController
+         * @member TextEditorController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
-            this.view.elements.$image.renderEmbeddedContent(
-                this.model.getPrefs('imageUrl'),
-                this.model.getPrefs('imageText')
+            this.view.get$item().renderEmbeddedContent(
+                this.model.getPrefs('bodyHtml')
             );
         },
 
-//        splitEmbeddedContent: function splitEmbeddedContent() {
-//        },
-
         /**
-         * Add Image rule
-         * @member ImageController
+         * Add TextEditor rule
+         * @member TextEditorController
          * @param e
          */
-        addImageRule: function addImageRule(e) {
+        addTextEditorRule: function addTextEditorRule(e) {
 
             /**
              * Define $button
