@@ -150,7 +150,9 @@ define([
                     }
 
                     nodes.push(
-                        $('<li />').append($element)
+                        $('<li />').
+                            addClass(node.type).
+                            append($element)
                     );
                 }
             }

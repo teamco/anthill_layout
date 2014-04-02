@@ -12,6 +12,26 @@
     margin-bottom: 3px;
 }
 
+.modal-dialog.preferences div.html > ul > li.checkbox {
+    width: 49%;
+    margin-left: 1%;
+    float: left;
+    background-color: #fff;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.modal-dialog.preferences div.html > ul > li.checkbox label {
+    cursor: pointer;
+}
+
+.modal-dialog.preferences div.html > ul > li.checkbox:first-child {
+    margin-left: 0;
+}
+
 .modal-dialog.preferences div.html label {
     font-size: 14px;
     font-weight: bold;
@@ -88,7 +108,6 @@
     margin-top: 10px;
     border-radius: 3px;
     background-color: #fff;
-    position: relative;
 }
 
 .modal-dialog.preferences fieldset legend {
@@ -115,6 +134,7 @@
 
 .modal-dialog.preferences fieldset legend.open + ul {
     display: block;
+    margin: 0;
 }
 
 .modal-dialog.preferences fieldset ul li {
@@ -124,6 +144,7 @@
     margin-bottom: 2px;
     margin-right: 2px;
     background-color: #dedede;
+    position: relative;
 }
 
 .modal-dialog.preferences fieldset label {
