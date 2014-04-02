@@ -27,6 +27,7 @@ define([
 
     /**
      * Define Application Global listeners
+     * @member App
      * @type {{successRendered: {name: string, callback: successRenderedCallback}}}
      */
     Application.prototype.globalListeners = {
@@ -69,6 +70,7 @@ define([
 
     /**
      * Define Workspace Global listeners
+     * @member Workspace
      * @type {{
      * }}
      */
@@ -77,6 +79,7 @@ define([
 
     /**
      * Define Page Global listeners
+     * @member Page
      * @type {{
      * }}
      */
@@ -85,6 +88,7 @@ define([
 
     /**
      * Define Template Global listeners
+     * @member Template
      * @type {{
      * }}
      */
@@ -93,6 +97,7 @@ define([
 
     /**
      * Define Widget Global listeners
+     * @member Widget
      * @type {{
      * }}
      */
