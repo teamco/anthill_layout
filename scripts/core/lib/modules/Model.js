@@ -331,10 +331,19 @@ define([
         /**
          * Set statistics
          * @member BaseModel
-         * @param {string} statistics
+         * @param {boolean} statistics
          */
         setStatistics: function setStatistics(statistics) {
             this.setPrefs('statistics', statistics);
+        },
+
+        /**
+         * Set overlapping
+         * @member BaseModel
+         * @param {boolean} overlapping
+         */
+        setOverlapping: function setOverlapping(overlapping) {
+            this.setPrefs('overlapping', overlapping);
         },
 
         /**

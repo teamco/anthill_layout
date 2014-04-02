@@ -47,6 +47,11 @@ define([
                 disabled: true,
                 value: undefined
             },
+            overlapping: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false
+            },
             statistics: {
                 type: 'checkbox',
                 disabled: false,
