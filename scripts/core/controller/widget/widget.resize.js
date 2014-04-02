@@ -15,6 +15,7 @@ define([
      * @class Resizable
      * @extends Interactions
      * @param {Widget} scope
+     * @member Widget.interactions
      * @constructor
      */
     var Resizable = function Resizable(scope) {

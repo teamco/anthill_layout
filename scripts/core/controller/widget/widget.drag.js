@@ -15,6 +15,7 @@ define([
      * @class Draggable
      * @extends Interactions
      * @param {Widget} scope
+     * @member Widget.interactions
      * @constructor
      */
     var Draggable = function Draggable(scope) {

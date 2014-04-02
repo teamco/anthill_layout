@@ -243,13 +243,24 @@ define([
         /**
          * Set Interaction
          * @member BaseController
-         * @param {String} event
-         * @param {*} callback
+         * @param {Resizable|Draggable|Function} Event
          * @returns {*}
          */
-        setInteraction: function setInteraction(event, callback) {
-            this.scope.interactions[event] = callback;
-            return this.getInteraction(event);
+        setInteraction: function setInteraction(Event) {
+
+            /**
+             * Event name
+             * @type {string}
+             */
+            var ename = Event.name.toLowerCase();
+
+            /**
+             * Register interactions
+             * @type {Draggable|Resizable}
+             */
+            this.scope.interactions[ename] = new Event(this.scope);
+
+            return this.getInteraction(ename);
         },
 
         /**
