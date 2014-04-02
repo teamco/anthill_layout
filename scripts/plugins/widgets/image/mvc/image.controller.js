@@ -30,7 +30,9 @@ define([
 
             this.view.elements.$image.renderEmbeddedContent(
                 this.model.getPrefs('imageUrl'),
-                this.model.getPrefs('imageText')
+                this.model.getPrefs('imageText'),
+                this.model.getPrefs('imageRepeatX'),
+                this.model.getPrefs('imageRepeatY')
             );
         },
 

@@ -35,6 +35,16 @@ define([
                 type: 'text',
                 disabled: false,
                 value: undefined
+            },
+            imageRepeatX: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false
+            },
+            imageRepeatY: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false
             }
         };
 
@@ -64,6 +74,24 @@ define([
          */
         setImageText: function setImageText(text) {
             this.setPrefs('imageText', text);
+        },
+
+        /**
+         * Set image repeat-x
+         * @member ImageModel
+         * @param {boolean} repeatX
+         */
+        setImageRepeatX: function setImageRepeatX(repeatX) {
+            this.setPrefs('imageRepeatX', repeatX);
+        },
+
+        /**
+         * Set image repeat-y
+         * @member ImageModel
+         * @param {boolean} repeatY
+         */
+        setImageRepeatY: function setImageRepeatY(repeatY) {
+            this.setPrefs('imageRepeatY', repeatY);
         }
 
 

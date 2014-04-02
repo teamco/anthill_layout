@@ -28,6 +28,12 @@ define([
         this.addCSS('image', {resource: '/widgets'});
         this.bindStatsCollector();
 
+        /**
+         * Define element
+         * @type {boolean}
+         */
+        this.image = true;
+
         return this;
     };
 
@@ -38,33 +44,66 @@ define([
          * @member ImageElement
          * @param {string} url
          * @param {string} text
-         * @param {number} [splitTo]
-         * @param {number} [index]
+         * @param {boolean} repeatX
+         * @param {boolean} repeatY
          */
-        renderEmbeddedContent: function renderEmbeddedContent(url, text, splitTo, index) {
+        renderEmbeddedContent: function renderEmbeddedContent(url, text, repeatX, repeatY) {
 
             if (!url) {
                 return false;
             }
 
             /**
-             * Define embedded template
+             * Define bg repeat
              * @type {string}
              */
-            this.setHtml(
-                $('<img />').attr({
+            var repeat = 'no-repeat';
+
+            if (repeatX) {
+                repeat = 'repeat-x';
+                this.image = false;
+            }
+
+            if (repeatY) {
+                repeat = 'repeat-y';
+                this.image = false;
+            }
+
+            if (repeatX && repeatY) {
+                repeat = 'repeat';
+                this.image = false;
+            }
+
+            if (this.image) {
+
+                /**
+                 * Define $img
+                 * @type {*|jQuery}
+                 */
+                this.$img = $('<img />').attr({
                     src: url,
                     alt: text,
                     title: text
-                })
-            );
+                });
+
+                this.setHtml(this.$img);
+
+            } else {
+
+                this.$.css({
+                    backgroundImage: "url('" + url + "')",
+                    backgroundRepeat: repeat
+                });
+            }
+
+            this.view.controller.clearParentThumbnail();
         },
 
         /**
          * Bind stats
          * @member ImageElement
          */
-        bindStatsCollector : function bindStatsCollector() {
+        bindStatsCollector: function bindStatsCollector() {
 
             function _clickPrefs(e) {
 
