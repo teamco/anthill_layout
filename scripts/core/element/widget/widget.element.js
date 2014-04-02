@@ -67,6 +67,34 @@ define([
         },
 
         /**
+         * Fix border issue on resize
+         * @member WidgetElement
+         * @param {boolean} resize
+         */
+        fixOnResize: function fixOnResize(resize) {
+
+            resize ? this.$.addClass('on-resize') :
+                this.$.removeClass('on-resize');
+        },
+
+        /**
+         * Bind fix on resize (jumping height on resize up)
+         * @member WidgetElement
+         */
+        bindFixOnResize: function bindFixOnResize() {
+
+            /**
+             * Fix on resize
+             * @private
+             */
+            function _fixOnResize() {
+                this.fixOnResize(true);
+            }
+
+            $('.ui-resizable-handle', this.$).on('mousedown', _fixOnResize.bind(this));
+        },
+
+        /**
          * Get item content
          * @member WidgetElement
          * @returns {*}

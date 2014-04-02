@@ -81,7 +81,58 @@ define([], function defineWidgetSubscribe() {
              */
             var direction = widget.interactions.resizable.getResizeDirection(ui);
 
-            console.log(direction)
+            /**
+             * Get $widget
+             * @type {*}
+             */
+            var $widget = widget.view.get$item().$;
+
+            if (direction === 'w') {
+
+                /**
+                 * Set delta left
+                 * @type {number}
+                 */
+                var deltaLeft = ui.position.left -
+                    ui.originalPosition.left;
+
+                /**
+                 * Set delta width
+                 * @type {number}
+                 */
+                var deltaWidth = widget.dom.width - deltaLeft;
+
+                $widget.css({
+                    left: widget.dom.left + deltaLeft,
+                    width: deltaWidth
+                });
+            }
+
+            if (direction === 'e') {
+
+                /**
+                 * Set delta width
+                 * @type {number}
+                 */
+                var deltaWidth = ui.size.width - ui.originalSize.width;
+
+                $widget.css({
+                    width: widget.dom.width + deltaWidth
+                });
+            }
+
+            if (direction === 'n') {
+
+                /**
+                 * Set delta width
+                 * @type {number}
+                 */
+                var deltaWidth = ui.size.width - ui.originalSize.width;
+
+                $widget.css({
+                    width: widget.dom.width + deltaWidth
+                });
+            }
         },
 
         /**

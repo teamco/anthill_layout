@@ -32,7 +32,7 @@ define([
          * @member Resizable
          * @type {jQuery}
          */
-        this.$scope = scope.view.elements.$widget.$;
+        this.$scope = scope.view.get$item().$;
 
         this.checkPermission();
     };
@@ -51,6 +51,7 @@ define([
             var scope = this.scope;
 
             if (scope.permission.authorizedFunctionCall(this.init)) {
+
                 this.$scope.resizable(
                     $.extend({
                         containment: scope.controller.get$page().$,
@@ -60,6 +61,9 @@ define([
                         resize: this.resize.bind(this)
                     }, scope.model.getConfig('events').resizable)
                 );
+
+                // bind fix on resize
+                this.scope.view.get$item().bindFixOnResize();
             }
         },
 
@@ -171,6 +175,8 @@ define([
             var scope = this.scope;
 
             this.debugUI(event, ui);
+
+            scope.view.get$item().fixOnResize(false);
 
             scope.observer.publish(
                 scope.eventmanager.eventList.stopResizable,
