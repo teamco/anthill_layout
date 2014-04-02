@@ -30,7 +30,7 @@ define([
          * @member Wireframe
          * @type {number}
          */
-        this.opacity = 0.2;
+        this.opacity = 0.05;
 
         /**
          * Define selector

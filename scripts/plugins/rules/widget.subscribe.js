@@ -61,6 +61,12 @@ define([], function defineWidgetSubscribe() {
             });
         },
 
+        /**
+         * On resize event simulate
+         * @member WidgetSubscribe
+         * @param type
+         * @param args
+         */
         resizeResizableSimulate: function resizeResizableSimulate(type, args) {
 
             /**
@@ -76,10 +82,15 @@ define([], function defineWidgetSubscribe() {
             var widget = this.scope.controller.getContainment();
 
             /**
+             * Define resizable
+             * @type {Resizable}
+             */
+            var resizable = widget.interactions.resizable;
+            /**
              * Define direction
              * @type {string}
              */
-            var direction = widget.interactions.resizable.getResizeDirection(ui);
+            var direction = resizable.getResizeDirection(ui);
 
             /**
              * Get $widget
@@ -88,50 +99,39 @@ define([], function defineWidgetSubscribe() {
             var $widget = widget.view.get$item().$;
 
             if (direction === 'w') {
-
-                /**
-                 * Set delta left
-                 * @type {number}
-                 */
-                var deltaLeft = ui.position.left -
-                    ui.originalPosition.left;
-
-                /**
-                 * Set delta width
-                 * @type {number}
-                 */
-                var deltaWidth = widget.dom.width - deltaLeft;
-
-                $widget.css({
-                    left: widget.dom.left + deltaLeft,
-                    width: deltaWidth
-                });
+                $widget.css(resizable.getDirectionW(ui));
             }
 
             if (direction === 'e') {
-
-                /**
-                 * Set delta width
-                 * @type {number}
-                 */
-                var deltaWidth = ui.size.width - ui.originalSize.width;
-
-                $widget.css({
-                    width: widget.dom.width + deltaWidth
-                });
+                $widget.css(resizable.getDirectionE(ui));
             }
 
             if (direction === 'n') {
+                $widget.css(resizable.getDirectionN(ui));
+            }
 
-                /**
-                 * Set delta width
-                 * @type {number}
-                 */
-                var deltaWidth = ui.size.width - ui.originalSize.width;
+            if (direction === 's') {
+                $widget.css(resizable.getDirectionS(ui));
+            }
 
-                $widget.css({
-                    width: widget.dom.width + deltaWidth
-                });
+            if (direction === 'nw') {
+                $widget.css(resizable.getDirectionW(ui));
+                $widget.css(resizable.getDirectionN(ui));
+            }
+
+            if (direction === 'ne') {
+                $widget.css(resizable.getDirectionE(ui));
+                $widget.css(resizable.getDirectionN(ui));
+            }
+
+            if (direction === 'sw') {
+                $widget.css(resizable.getDirectionW(ui));
+                $widget.css(resizable.getDirectionS(ui));
+            }
+
+            if (direction === 'se') {
+                $widget.css(resizable.getDirectionE(ui));
+                $widget.css(resizable.getDirectionS(ui));
             }
         },
 
@@ -158,11 +158,25 @@ define([], function defineWidgetSubscribe() {
         },
 
         /**
-         * On drag stop event simulate
+         * On resize stop event simulate
          * @member WidgetSubscribe
          */
         stopResizableSimulate: function stopResizableSimulate() {
 
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope.controller.getContainment();
+
+            widget.observer.publish(
+                widget.eventmanager.eventList.saveDom
+            );
+
+            widget.observer.publish(
+                widget.eventmanager.eventList.stopResizable,
+                'stopResizable'
+            );
         },
 
         /**

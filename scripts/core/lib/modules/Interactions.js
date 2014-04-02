@@ -124,6 +124,116 @@ define([
             }
 
             return dir;
+        },
+
+        /**
+         * Get West
+         * @param ui
+         * @returns {{left: number, width: number}}
+         */
+        getDirectionW: function getDirectionW(ui) {
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope;
+
+            /**
+             * Set delta left
+             * @type {number}
+             */
+            var deltaLeft = ui.position.left - ui.originalPosition.left;
+
+            /**
+             * Set delta width
+             * @type {number}
+             */
+            var deltaWidth = widget.dom.width - deltaLeft;
+
+            return {
+                left: widget.dom.left + deltaLeft,
+                width: deltaWidth
+            };
+        },
+
+        /**
+         * Get East
+         * @param ui
+         * @returns {{width: number}}
+         */
+        getDirectionE: function getDirectionE(ui) {
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope;
+
+            /**
+             * Set delta width
+             * @type {number}
+             */
+            var deltaWidth = ui.size.width - ui.originalSize.width;
+
+            return {
+                width: widget.dom.width + deltaWidth
+            };
+        },
+
+        /**
+         * Get North
+         * @param ui
+         * @returns {{height: number, top: number}}
+         */
+        getDirectionN: function getDirectionN(ui) {
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope;
+
+            /**
+             * Set delta width
+             * @type {number}
+             */
+            var deltaHeight = ui.size.height - ui.originalSize.height;
+
+            /**
+             * Set delta top
+             * @type {number}
+             */
+            var deltaTop = ui.position.top - ui.originalPosition.top;
+
+            return {
+                height: widget.dom.height + deltaHeight,
+                top: widget.dom.top + deltaTop
+            };
+        },
+
+        /**
+         * Get South
+         * @param ui
+         * @returns {{height: number}}
+         */
+        getDirectionS: function getDirectionS(ui) {
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope;
+
+            /**
+             * Set delta width
+             * @type {number}
+             */
+            var deltaHeight = ui.size.height - ui.originalSize.height;
+
+            return {
+                height: widget.dom.height + deltaHeight
+            };
         }
     });
 
