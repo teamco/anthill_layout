@@ -207,15 +207,24 @@ define([], function defineWidgetSubscribe() {
             );
         },
 
+        /**
+         * Transfer stats
+         * @member WidgetSubscribe
+         * @param {string} uuid
+         * @param $element
+         */
         transferStatsSimulate: function transferStatsSimulate(uuid, $element) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
             var scope = this.scope;
 
             scope.observer.publish(
                 scope.eventmanager.eventList.collectStats,
                 [uuid, $element]
             );
-
         }
-
     });
 });
