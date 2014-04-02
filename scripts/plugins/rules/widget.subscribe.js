@@ -62,7 +62,26 @@ define([], function defineWidgetSubscribe() {
         },
 
         resizeResizableSimulate: function resizeResizableSimulate(type, args) {
-            debugger
+
+            /**
+             * Get jQuery.UI element
+             * @type {*}
+             */
+            var ui = args[1];
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope.controller.getContainment();
+
+            /**
+             * Define direction
+             * @type {string}
+             */
+            var direction = widget.interactions.resizable.getResizeDirection(ui);
+
+            console.log(direction)
         },
 
         /**

@@ -14,7 +14,7 @@ define([
      * Define Resize
      * @class Resizable
      * @extends Interactions
-     * @param scope
+     * @param {Widget} scope
      * @constructor
      */
     var Resizable = function Resizable(scope) {
