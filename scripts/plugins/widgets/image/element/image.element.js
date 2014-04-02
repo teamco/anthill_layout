@@ -27,6 +27,7 @@ define([
 
         this.addCSS('image', {resource: '/widgets'});
         this.attachStatisticsCollector();
+
         return this;
     };
 
@@ -37,8 +38,10 @@ define([
          * @member ImageElement
          * @param {string} url
          * @param {string} text
+         * @param {number} splitTo
+         * @param {number} index
          */
-        renderEmbeddedContent: function renderEmbeddedContent(url, text) {
+        renderEmbeddedContent: function renderEmbeddedContent(url, text, splitTo, index) {
 
             if (!url) {
                 return false;
@@ -55,7 +58,6 @@ define([
                     title: text
                 })
             );
-
         },
 
         attachStatisticsCollector : function attachStatisticsCollector() {
@@ -64,7 +66,6 @@ define([
                 this.view.scope.observer.publish(
                     this.view.scope.eventmanager.eventList.bindStatistics,
                     e
-
                 );
             }.bind(this))
         }

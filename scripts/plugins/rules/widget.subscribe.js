@@ -203,7 +203,8 @@ define([], function defineWidgetSubscribe() {
             this.scope.view.elements.$image.renderEmbeddedContent(
                 this.referrer.model.getPrefs('imageUrl'),
                 this.referrer.model.getPrefs('imageText'),
-                splitTo
+                splitTo,
+                this.subscriber
             );
         },
 

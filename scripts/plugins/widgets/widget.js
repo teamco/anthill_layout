@@ -395,7 +395,8 @@ define([
              * Define page
              * @type {Page}
              */
-            var page = widget.controller.getContainment();
+            var page = widget.controller.getContainment(),
+                subscribersCounter = this.base.lib.hash.hashLength(subscribe);
 
             for (var index in subscribe) {
 
@@ -406,6 +407,8 @@ define([
                      * @type {{}}
                      */
                     types = subscribe[index];
+
+                    subscribersCounter -= 1;
 
                     /**
                      * Define widget publisher
@@ -488,7 +491,8 @@ define([
                                     ],
                                     callback: callback.bind({
                                         scope: this,
-                                        referrer: scope
+                                        referrer: scope,
+                                        subscriber: subscribersCounter
                                     })
                                 });
                             }
