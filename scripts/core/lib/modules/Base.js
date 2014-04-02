@@ -101,7 +101,7 @@ define([
          * @return {boolean}
          */
         isBlank: function isBlank(o) {
-            return !(this.isDefined(o)) || this.isEmpty(o);
+            return !this.isDefined(o) || this.isEmpty(o);
         },
 
         /**

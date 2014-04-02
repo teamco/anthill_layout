@@ -1,4 +1,4 @@
-.modal-dialog.preferences div.html > ul {
+.modal-dialog.preferences div.html ul {
     list-style: none;
     padding: 5px;
     border: 1px solid #ddd;
@@ -7,11 +7,13 @@
     margin: 0;
 }
 
-.modal-dialog.preferences div.html > ul > li {
+.modal-dialog.preferences div.html > ul li {
     margin-bottom: 3px;
+    padding-top: 3px;
+    clear: both;
 }
 
-.modal-dialog.preferences div.html > ul > li.checkbox {
+.modal-dialog.preferences div.html li.checkbox {
     width: 49%;
     margin-left: 1%;
     float: left;
@@ -22,13 +24,15 @@
     border: 1px solid #ccc;
     border-radius: 2px;
     padding: 2px 4px;
+    margin-top: 3px;
+    clear: none;
 }
 
-.modal-dialog.preferences div.html > ul > li.checkbox label {
+.modal-dialog.preferences div.html li.checkbox label {
     cursor: pointer;
 }
 
-.modal-dialog.preferences div.html > ul > li.checkbox:first-child {
+.modal-dialog.preferences div.html li.checkbox:first-child {
     margin-left: 0;
 }
 
@@ -53,7 +57,7 @@
     background-color: #fff;
     margin: 0 0 0 10px;
     width: 60%;
-    height: 22px;
+    height: 24px;
     line-height: 22px;
     float: right;
     overflow: hidden;
@@ -84,7 +88,7 @@
     border-radius: 2px;
     background-color: #fff;
     width: 100%;
-    height: 22px;
+    height: 24px;
     display: inline-block;
 }
 
@@ -135,16 +139,22 @@
 .modal-dialog.preferences fieldset legend.open + ul {
     display: block;
     margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
 }
 
-.modal-dialog.preferences fieldset ul li {
+.modal-dialog.preferences fieldset ul.interactions li {
     width: 49%;
     float: left;
     list-style: none;
     margin-bottom: 2px;
-    margin-right: 2px;
+    margin-right: 1%;
+    padding-bottom: 3px;
+    padding-right: 3px;
     background-color: #dedede;
     position: relative;
+    clear: none;
 }
 
 .modal-dialog.preferences fieldset label {
@@ -164,6 +174,7 @@
 .modal-dialog.preferences fieldset legend.open + ul div.combo-box > ul {
     width: 100%;
     margin: 0;
+    padding: 0;
 }
 
 .modal-dialog.preferences fieldset legend.open + ul input[type="text"]:focus {

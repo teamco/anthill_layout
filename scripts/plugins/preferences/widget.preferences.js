@@ -27,8 +27,11 @@ define([
          * @member WidgetPreferences
          * @type {{
          *      title: {type: string, disabled: boolean, value},
+         *      description: {type: string, disabled: boolean, value},
          *      widgetUrl: {type: string, disabled: boolean, value},
-         *      description: {type: string, disabled: boolean, value}
+         *      overlapping: {type: string, disabled: boolean, value},
+         *      alwaysOnTop: {type: string, disabled: boolean, value},
+         *      statistics: {type: string, disabled: boolean, value}
          * }}
          */
         defaultPrefs: {
@@ -72,93 +75,155 @@ define([
         renderData: function renderData(data) {
 
             /**
-             * Define dom nodes
-             * @type {Array}
+             * Render form element
+             * @param {{}} hash
+             * @private
+             * @return {Array}
              */
-            var nodes = [], merge = {};
+            function _renderForm(hash) {
+
+                /**
+                 * Define dom nodes
+                 * @type {Array}
+                 */
+                var nodes = [];
+
+                for (var index in hash) {
+
+                    if (hash.hasOwnProperty(index)) {
+
+                        /**
+                         * Define text
+                         * @type {string}
+                         */
+                        var text = index.toPoint().humanize();
+
+                        /**
+                         * Define node
+                         */
+                        var node = hash[index];
+
+                        /**
+                         * Define placeholder text
+                         * @type {string}
+                         */
+                        var placeholder = 'Enter ' + text,
+                            $element;
+
+                        if (node.type === 'text') {
+
+                            /**
+                             * Get text field
+                             * @type {*[]}
+                             */
+                            $element = this.renderTextField({
+                                name: index,
+                                text: text,
+                                placeholder: placeholder,
+                                value: node.value,
+                                disabled: node.disabled
+                            });
+                        }
+
+                        if (node.type === 'checkbox') {
+
+                            /**
+                             * Get checkbox
+                             * @type {*[]}
+                             */
+                            $element = this.renderCheckbox({
+                                name: index,
+                                text: text,
+                                checked: node.value,
+                                value: node.value,
+                                disabled: node.disabled
+                            });
+                        }
+
+                        if (node.type === 'textarea') {
+
+                            /**
+                             * Get text field
+                             * @type {*[]}
+                             */
+                            $element = this.renderTextArea({
+                                name: index,
+                                text: text,
+                                placeholder: placeholder,
+                                value: node.value,
+                                disabled: node.disabled
+                            });
+                        }
+
+                        nodes.push(
+                            $('<li />').
+                                addClass(node.type).
+                                append($element)
+                        );
+                    }
+                }
+
+                return nodes;
+            }
 
             /**
-             * Merge prefs with default data
+             * Render node
+             * @param type
+             * @param prefs
+             * @returns {*|jQuery}
+             * @private
              */
-            data = $.extend(true, merge, this.defaultPrefs, data);
+            function _renderNode(type, prefs) {
 
-            for (var index in data) {
+                return $('<li />').append(
+                    $('<ul />').addClass(type).append(
+                        _renderForm.bind(this)(prefs)
+                    )
+                );
+            }
 
-                if (data.hasOwnProperty(index)) {
+            /**
+             * Merge prefs
+             * @param defaults
+             * @param prefs
+             * @param {boolean} condition
+             * @returns {{}}
+             * @private
+             */
+            function _mergePrefs(defaults, prefs, condition) {
 
-                    /**
-                     * Define text
-                     * @type {string}
-                     */
-                    var text = index.toPoint().humanize();
+                var merge = {}, hash = {}, partition;
 
-                    /**
-                     * Define node
-                     */
-                    var node = data[index];
+                $.extend(true, hash, defaults, prefs);
 
-                    /**
-                     * Define placeholder text
-                     * @type {string}
-                     */
-                    var placeholder = 'Enter ' + text,
-                        $element;
+                for (var index in hash) {
 
-                    if (node.type === 'text') {
+                    if (hash.hasOwnProperty(index)) {
 
-                        /**
-                         * Get text field
-                         * @type {*[]}
-                         */
-                        $element = this.renderTextField({
-                            name: index,
-                            text: text,
-                            placeholder: placeholder,
-                            value: node.value,
-                            disabled: node.disabled
-                        });
+                        partition = condition ?
+                            defaults.hasOwnProperty(index) :
+                            !defaults.hasOwnProperty(index);
+
+                        if (partition) {
+                            merge[index] = hash[index];
+                        }
                     }
-
-                    if (node.type === 'checkbox') {
-
-                        /**
-                         * Get checkbox
-                         * @type {*[]}
-                         */
-                        $element = this.renderCheckbox({
-                            name: index,
-                            text: text,
-                            checked: node.value,
-                            value: node.value,
-                            disabled: node.disabled
-                        });
-                    }
-
-                    if (node.type === 'textarea') {
-
-                        /**
-                         * Get text field
-                         * @type {*[]}
-                         */
-                        $element = this.renderTextArea({
-                            name: index,
-                            text: text,
-                            placeholder: placeholder,
-                            value: node.value,
-                            disabled: node.disabled
-                        });
-                    }
-
-                    nodes.push(
-                        $('<li />').
-                            addClass(node.type).
-                            append($element)
-                    );
                 }
+
+                return merge;
             }
 
             this.$.append(
-                this.renderInteractions(nodes)
+                this.renderInteractions([
+                    _renderNode.bind(this)(
+                        'default',
+                        _mergePrefs(this.defaultPrefs, data, true)
+                    ),
+                    _renderNode.bind(this)(
+                        'content',
+                        _mergePrefs(this.defaultPrefs, data, false)
+                    )
+                ])
             );
         },
 

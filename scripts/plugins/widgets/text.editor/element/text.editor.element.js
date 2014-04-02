@@ -40,7 +40,10 @@ define([
         renderEmbeddedContent: function renderEmbeddedContent(html) {
 
             this.setHtml(html);
-            this.view.controller.clearParentThumbnail();
+
+            if (!this.base.isBlank(html)) {
+                this.view.controller.clearParentThumbnail();
+            }
         }
 
     }, BaseElement.prototype);
