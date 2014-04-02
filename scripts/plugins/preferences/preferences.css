@@ -4,6 +4,8 @@
     border: 1px solid #ddd;
     background-color: #e1e1e1;
     overflow: visible;
+    margin: 0;
+    max-height: 350px;
 }
 
 .modal-dialog.preferences div.html > ul > li {
@@ -86,6 +88,7 @@
     margin-top: 10px;
     border-radius: 3px;
     background-color: #fff;
+    position: relative;
 }
 
 .modal-dialog.preferences fieldset legend {
