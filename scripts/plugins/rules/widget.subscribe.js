@@ -61,8 +61,78 @@ define([], function defineWidgetSubscribe() {
             });
         },
 
+        /**
+         * On resize event simulate
+         * @member WidgetSubscribe
+         * @param type
+         * @param args
+         */
         resizeResizableSimulate: function resizeResizableSimulate(type, args) {
-            debugger
+
+            /**
+             * Get jQuery.UI element
+             * @type {*}
+             */
+            var ui = args[1];
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope.controller.getContainment();
+
+            /**
+             * Define resizable
+             * @type {Resizable}
+             */
+            var resizable = widget.interactions.resizable;
+            /**
+             * Define direction
+             * @type {string}
+             */
+            var direction = resizable.getResizeDirection(ui);
+
+            /**
+             * Get $widget
+             * @type {*}
+             */
+            var $widget = widget.view.get$item().$;
+
+            if (direction === 'w') {
+                $widget.css(resizable.getDirectionW(ui));
+            }
+
+            if (direction === 'e') {
+                $widget.css(resizable.getDirectionE(ui));
+            }
+
+            if (direction === 'n') {
+                $widget.css(resizable.getDirectionN(ui));
+            }
+
+            if (direction === 's') {
+                $widget.css(resizable.getDirectionS(ui));
+            }
+
+            if (direction === 'nw') {
+                $widget.css(resizable.getDirectionW(ui));
+                $widget.css(resizable.getDirectionN(ui));
+            }
+
+            if (direction === 'ne') {
+                $widget.css(resizable.getDirectionE(ui));
+                $widget.css(resizable.getDirectionN(ui));
+            }
+
+            if (direction === 'sw') {
+                $widget.css(resizable.getDirectionW(ui));
+                $widget.css(resizable.getDirectionS(ui));
+            }
+
+            if (direction === 'se') {
+                $widget.css(resizable.getDirectionE(ui));
+                $widget.css(resizable.getDirectionS(ui));
+            }
         },
 
         /**
@@ -88,11 +158,25 @@ define([], function defineWidgetSubscribe() {
         },
 
         /**
-         * On drag stop event simulate
+         * On resize stop event simulate
          * @member WidgetSubscribe
          */
         stopResizableSimulate: function stopResizableSimulate() {
 
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope.controller.getContainment();
+
+            widget.observer.publish(
+                widget.eventmanager.eventList.saveDom
+            );
+
+            widget.observer.publish(
+                widget.eventmanager.eventList.stopResizable,
+                'stopResizable'
+            );
         },
 
         /**

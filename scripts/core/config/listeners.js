@@ -27,6 +27,7 @@ define([
 
     /**
      * Define Application Local listeners
+     * @member App
      * @type {{
      *      successRendered: {name: string, callback: Function},
      *      resizeWindow: {name: string, params: *, callback: Function},
@@ -71,6 +72,7 @@ define([
 
     /**
      * Define Workspace Local listeners
+     * @member Workspace
      * @type {{
      *      successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function},
@@ -117,6 +119,7 @@ define([
 
     /**
      * Define Page Local listeners
+     * @member Page
      * @type {{
      *      successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function},
@@ -162,6 +165,7 @@ define([
 
     /**
      * Define Layout Local listeners
+     * @member Layout
      * @type {{
      *      afterNestedOrganizer: {name: string, callback: Function}
      * }}
@@ -208,6 +212,7 @@ define([
 
     /**
      * Define Widget Local listeners
+     * @member Widget
      * @type {{
      *      successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function}

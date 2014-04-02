@@ -385,6 +385,18 @@ define([
                 subscribe = rules.subscribe || {},
                 types, event, scope;
 
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.controller.getContainment();
+
+            /**
+             * Define page
+             * @type {Page}
+             */
+            var page = widget.controller.getContainment();
+
             for (var index in subscribe) {
 
                 if (subscribe.hasOwnProperty(index)) {
@@ -394,18 +406,6 @@ define([
                      * @type {{}}
                      */
                     types = subscribe[index];
-
-                    /**
-                     * Define widget
-                     * @type {Widget}
-                     */
-                    var widget = this.controller.getContainment();
-
-                    /**
-                     * Define page
-                     * @type {Page}
-                     */
-                    var page = widget.controller.getContainment();
 
                     /**
                      * Define widget publisher
@@ -491,7 +491,6 @@ define([
                                         referrer: scope
                                     })
                                 });
-
                             }
                         }
                     }
@@ -558,6 +557,7 @@ define([
 
         /**
          * Binds statistics click to widget element
+         * @member WidgetContentController
          * @param e
          */
         bindStatistics: function bindStatistics(e) {
@@ -567,8 +567,17 @@ define([
                 return false;
             }
 
+            /**
+             * Define widget
+             * @type {Widget}
+             * @type {*}
+             */
             var widget = this.controller.getContainment();
 
+            /**
+             * Define uuid
+             * @type {String}
+             */
             var uuid = widget.model.getUUID();
 
             this.observer.publish(
@@ -577,8 +586,16 @@ define([
             );
         },
 
+        /**
+         * Transfer stats
+         * @member WidgetContentController
+         * @param {string} uuid
+         * @param $element
+         */
         transferStats: function transferStats(uuid, $element) {
             this.logger.debug('Transfer Stats', uuid, $element);
+
+            // TODO save
         }
 
     }, WidgetSubscribe.prototype);

@@ -14,7 +14,8 @@ define([
      * Define Resize
      * @class Resizable
      * @extends Interactions
-     * @param scope
+     * @param {Widget} scope
+     * @member Widget.interactions
      * @constructor
      */
     var Resizable = function Resizable(scope) {
@@ -31,7 +32,7 @@ define([
          * @member Resizable
          * @type {jQuery}
          */
-        this.$scope = scope.view.elements.$widget.$;
+        this.$scope = scope.view.get$item().$;
 
         this.checkPermission();
     };
@@ -50,6 +51,7 @@ define([
             var scope = this.scope;
 
             if (scope.permission.authorizedFunctionCall(this.init)) {
+
                 this.$scope.resizable(
                     $.extend({
                         containment: scope.controller.get$page().$,
@@ -59,6 +61,9 @@ define([
                         resize: this.resize.bind(this)
                     }, scope.model.getConfig('events').resizable)
                 );
+
+                // bind border fix on resize
+                this.scope.view.get$item().bindFixOnResize();
             }
         },
 
@@ -170,6 +175,9 @@ define([
             var scope = this.scope;
 
             this.debugUI(event, ui);
+
+            // disable border fix
+            scope.view.get$item().fixOnResize(false);
 
             scope.observer.publish(
                 scope.eventmanager.eventList.stopResizable,

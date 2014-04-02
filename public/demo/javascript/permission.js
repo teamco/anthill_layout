@@ -17,6 +17,7 @@ define([
 
     /**
      * Define Application Global permission
+     * @member App
      * @type {*}
      */
     Application.prototype.globalPermissions = {
@@ -34,6 +35,7 @@ define([
 
     /**
      * Define Workspace Global permission
+     * @member Workspace
      * @type {{}}
      */
     Workspace.prototype.globalPermissions = {
@@ -49,6 +51,7 @@ define([
 
     /**
      * Define Page Global permission
+     * @member Page
      * @type {{}}
      */
     Page.prototype.globalPermissions = {
@@ -64,6 +67,7 @@ define([
 
     /**
      * Define Template Global permission
+     * @member Template
      * @type {{}}
      */
     Template.prototype.globalPermissions = {
@@ -79,6 +83,7 @@ define([
 
     /**
      * Define Layout Global permission
+     * @member Layout
      * @type {{}}
      */
     Layout.prototype.globalPermissions = {
@@ -94,12 +99,8 @@ define([
 
     /**
      * Define Widget Global permission
-     * @type {{
-     *      development: {draggable: boolean, resizable: boolean},
-     *      authorize: {draggable: boolean, resizable: boolean},
-     *      consumption: {draggable: boolean, resizable: boolean},
-     *      test: {draggable: boolean, resizable: boolean}
-     * }}
+     * @member Widget
+     * @type {{}}
      */
     Widget.prototype.globalPermissions = {
         development: {

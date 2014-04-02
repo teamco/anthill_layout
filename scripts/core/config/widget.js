@@ -192,11 +192,29 @@ define([
         this.wireframe = new Wireframe(this);
 
         /**
-         * Define interactions: Drag/Resize
+         * Define interactions: Drag/Resize/Drop
          * @member Widget
-         * @type {{Draggable, Resizable}}
+         * @type {{
+         *      draggable: Draggable,
+         *      resizable: Resizable,
+         *      droppable: undefined
+         * }}
          */
         this.interactions = {};
+
+        /**
+         * Define draggable interaction
+         * @member Widget.interactions
+         * @type {Draggable}
+         */
+        this.interactions.draggable = undefined;
+
+        /**
+         * Define resizable interaction
+         * @member Widget.interactions
+         * @type {Resizable}
+         */
+        this.interactions.resizable = undefined;
 
         /**
          * Init content

@@ -545,7 +545,9 @@ define([
          * @returns {{left: Number, top: Number}}
          */
         dragTo: function dragTo() {
-            return this.getLayout().controller.getNextPosition(this.getDOM());
+            return this.getLayout().controller.getNextPosition(
+                this.getDOM()
+            );
         },
 
         /**

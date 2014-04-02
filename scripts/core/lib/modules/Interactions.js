@@ -66,9 +66,175 @@ define([
          */
         isDisabled: function isDisabled() {
             return false;
+        },
+
+        /**
+         * Get resize direction
+         * @param ui
+         * @returns {string}
+         */
+        getResizeDirection: function getResizeDirection(ui) {
+
+            /**
+             * Get South/East direction
+             * @param {number} side
+             * @param {number} dir
+             * @returns {boolean}
+             * @private
+             */
+            function _getSE(side, dir) {
+                return side === 0 && (dir > 0 || dir < 0);
+            }
+
+            /**
+             * Get North/West direction
+             * @param {number} side
+             * @param {number} dir
+             * @returns {boolean}
+             * @private
+             */
+            function _getNW(side, dir) {
+                return (side < 0 || side > 0) && (dir > 0 || dir < 0);
+            }
+
+            // determine resize deltas
+            var delta_x = ui.size.width - ui.originalSize.width;
+            var delta_y = ui.size.height - ui.originalSize.height;
+
+            var delta_top = ui.position.top - ui.originalPosition.top;
+            var delta_left = ui.position.left - ui.originalPosition.left;
+
+            // build direction string
+            var dir = '';
+
+            if (_getSE(delta_top, delta_y)) {
+                dir += 's';
+            }
+
+            if (_getNW(delta_top, delta_y)) {
+                dir += 'n';
+            }
+
+            if (_getSE(delta_left, delta_x)) {
+                dir += 'e';
+            }
+
+            if (_getNW(delta_left, delta_x)) {
+                dir += 'w';
+            }
+
+            return dir;
+        },
+
+        /**
+         * Get West
+         * @param ui
+         * @returns {{left: number, width: number}}
+         */
+        getDirectionW: function getDirectionW(ui) {
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope;
+
+            /**
+             * Set delta left
+             * @type {number}
+             */
+            var deltaLeft = ui.position.left - ui.originalPosition.left;
+
+            /**
+             * Set delta width
+             * @type {number}
+             */
+            var deltaWidth = widget.dom.width - deltaLeft;
+
+            return {
+                left: widget.dom.left + deltaLeft,
+                width: deltaWidth
+            };
+        },
+
+        /**
+         * Get East
+         * @param ui
+         * @returns {{width: number}}
+         */
+        getDirectionE: function getDirectionE(ui) {
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope;
+
+            /**
+             * Set delta width
+             * @type {number}
+             */
+            var deltaWidth = ui.size.width - ui.originalSize.width;
+
+            return {
+                width: widget.dom.width + deltaWidth
+            };
+        },
+
+        /**
+         * Get North
+         * @param ui
+         * @returns {{height: number, top: number}}
+         */
+        getDirectionN: function getDirectionN(ui) {
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope;
+
+            /**
+             * Set delta width
+             * @type {number}
+             */
+            var deltaHeight = ui.size.height - ui.originalSize.height;
+
+            /**
+             * Set delta top
+             * @type {number}
+             */
+            var deltaTop = ui.position.top - ui.originalPosition.top;
+
+            return {
+                height: widget.dom.height + deltaHeight,
+                top: widget.dom.top + deltaTop
+            };
+        },
+
+        /**
+         * Get South
+         * @param ui
+         * @returns {{height: number}}
+         */
+        getDirectionS: function getDirectionS(ui) {
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope;
+
+            /**
+             * Set delta width
+             * @type {number}
+             */
+            var deltaHeight = ui.size.height - ui.originalSize.height;
+
+            return {
+                height: widget.dom.height + deltaHeight
+            };
         }
-
-
     });
 
 });

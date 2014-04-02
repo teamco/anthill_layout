@@ -12,7 +12,7 @@ define([
     'controller/widget/widget.drag',
     'controller/widget/widget.resize',
     'controller/widget/widget.content'
-], function defineWidgetController(AntHill, BaseController, Drag, Resize, Content) {
+], function defineWidgetController(AntHill, BaseController, Draggable, Resizable, Content) {
 
     /**
      * Define widget controller
@@ -166,10 +166,7 @@ define([
          * @member WidgetController
          */
         initDraggable: function initDraggable() {
-            this.controller.setInteraction(
-                'draggable',
-                new Drag(this)
-            );
+            this.controller.setInteraction(Draggable);
         },
 
         /**
@@ -201,10 +198,7 @@ define([
          * @member WidgetController
          */
         initResizable: function initResizable() {
-            this.controller.setInteraction(
-                'resizable',
-                new Resize(this)
-            );
+            this.controller.setInteraction(Resizable);
         },
 
         /**
