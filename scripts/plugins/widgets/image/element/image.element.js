@@ -26,7 +26,7 @@ define([
         });
 
         this.addCSS('image', {resource: '/widgets'});
-        this.attachStatisticsCollector();
+        this.bindStatsCollector();
 
         return this;
     };
@@ -38,8 +38,8 @@ define([
          * @member ImageElement
          * @param {string} url
          * @param {string} text
-         * @param {number} splitTo
-         * @param {number} index
+         * @param {number} [splitTo]
+         * @param {number} [index]
          */
         renderEmbeddedContent: function renderEmbeddedContent(url, text, splitTo, index) {
 
@@ -60,14 +60,30 @@ define([
             );
         },
 
-        attachStatisticsCollector : function attachStatisticsCollector() {
+        /**
+         * Bins stats
+         * @member ImageElement
+         */
+        bindStatsCollector : function bindStatsCollector() {
 
-            this.$.on('click.statistics',function clickStatisticsCallback(e) {
-                this.view.scope.observer.publish(
-                    this.view.scope.eventmanager.eventList.bindStatistics,
+            function _clickPrefs(e) {
+
+                /**
+                 * Define scope
+                 * @type {Image}
+                 */
+                var scope = this.scope;
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.provideStats,
                     e
                 );
-            }.bind(this))
+            }
+
+            this.$.on(
+                'click.statistics',
+                _clickPrefs.bind(this.view)
+            );
         }
 
     }, BaseElement.prototype);

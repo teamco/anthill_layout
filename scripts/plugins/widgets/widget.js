@@ -560,14 +560,14 @@ define([
         },
 
         /**
-         * Binds statistics click to widget element
+         * Provide statistics before transfer
          * @member WidgetContentController
          * @param e
          */
-        bindStatistics: function bindStatistics(e) {
+        provideStats: function provideStats(e) {
 
             if (!this.model.getPrefs('statistics')) {
-                this.logger.debug('No Statistics Available', e.target);
+                this.logger.debug('No Statistics available', e);
                 return false;
             }
 
@@ -598,8 +598,6 @@ define([
          */
         transferStats: function transferStats(uuid, $element) {
             this.logger.debug('Transfer Stats', uuid, $element);
-
-            // TODO save
         }
 
     }, WidgetSubscribe.prototype);

@@ -34,13 +34,14 @@ define([
          *      defineContainer: string,
          *      defineReferrer: string,
          *      setEmbeddedContent: string,
+         *      splitEmbeddedContent: string,
          *      loadPreferences: string,
          *      transferPreferences: string,
          *      loadRules: string,
          *      publishRule: string,
          *      registerRules: string,
          *      transferRules: string,
-         *      bindStatistics: string,
+         *      provideStats: string,
          *      transferStats: string
          * }}
          */
@@ -50,13 +51,14 @@ define([
             defineContainer: 'define.container',
             defineReferrer: 'define.referrer',
             setEmbeddedContent: 'set.embedded.content',
+            splitEmbeddedContent: 'split.embedded.content',
             loadPreferences: 'load.preferences',
             transferPreferences: 'transfer.preferences',
             loadRules: 'load.rules',
             publishRule: 'publish.rule',
             registerRules: 'register.rules',
             transferRules: 'transfer.rules',
-            bindStatistics: 'bind.statistics',
+            provideStats: 'provide.stats',
             transferStats: 'transfer.stats'
         };
     };

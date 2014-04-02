@@ -179,11 +179,7 @@ define([], function defineWidgetSubscribe() {
             );
         },
 
-        /**
-         * Set embedded content simulate
-         * @member WidgetSubscribe
-         */
-        setEmbeddedContentSimulate: function setEmbeddedContentSimulate() {
+        splitEmbeddedContentSimulate: function splitEmbeddedContentSimulate() {
 
             /**
              * Define referrer widget
@@ -205,6 +201,18 @@ define([], function defineWidgetSubscribe() {
                 this.referrer.model.getPrefs('imageText'),
                 splitTo,
                 this.subscriber
+            );
+        },
+
+        /**
+         * Set embedded content simulate
+         * @member WidgetSubscribe
+         */
+        setEmbeddedContentSimulate: function setEmbeddedContentSimulate() {
+
+            this.scope.view.elements.$image.renderEmbeddedContent(
+                this.referrer.model.getPrefs('imageUrl'),
+                this.referrer.model.getPrefs('imageText')
             );
         },
 

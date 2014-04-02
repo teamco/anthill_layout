@@ -52,18 +52,7 @@ define([
                 scope.eventmanager.eventList.publishRule,
                 [$button.attr('value'), this.scope.constructor.name]
             );
-        },
-
-        attachStatisticsCollector : function attachStatisticsCollector() {
-
-            this.$.on('click.statistics',function clickStatisticsCallback(e) {
-                this.view.scope.observer.publish(
-                    this.view.scope.eventmanager.eventList.bindStatistics,
-                    e
-                );
-            }.bind(this))
         }
-
 
     }, PluginBase.prototype, WidgetContentController.prototype);
 });
