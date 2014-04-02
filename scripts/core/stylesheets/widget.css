@@ -88,6 +88,10 @@
     visibility: visible;
 }
 
+.widget.ontop {
+    z-index: 100 !important;
+}
+
 #next-widget-position {
     position: absolute;
     z-index: 51;

@@ -101,6 +101,17 @@ define([
          */
         getContent: function getContent() {
             return $('.content', this.$);
+        },
+
+        /**
+         * Move on top layer
+         * @member WidgetElement
+         * @param ontop
+         */
+        moveOnTopLayer: function moveOnTopLayer(ontop) {
+
+            ontop ? this.$.addClass('ontop') :
+                this.$.removeClass('ontop');
         }
 
     }, BaseElement.prototype);

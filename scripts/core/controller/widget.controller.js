@@ -557,6 +557,16 @@ define([
         },
 
         /**
+         * Set widget on top
+         * @member WidgetController
+         * @param {boolean} ontop
+         */
+        setOnTop: function setOnTop(ontop) {
+
+            this.view.get$item().moveOnTopLayer(ontop);
+        },
+
+        /**
          * Adopt widget dimension on resize page
          * @member WidgetController
          * @param {Boolean} animate
