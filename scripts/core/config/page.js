@@ -126,6 +126,7 @@ define([
             order: 1,
             type: 'default',
             limit: false,
+            isResized: true,
             isDefault: false,
             layout: {
                 behavior: {
@@ -149,8 +150,6 @@ define([
             template: {
             },
             widget: {
-                // allow to resize item on browser resize
-                resize: true,
                 // allow to resize all items
                 plural: true,
                 types: {

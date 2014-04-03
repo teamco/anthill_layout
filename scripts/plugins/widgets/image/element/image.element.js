@@ -46,8 +46,9 @@ define([
          * @param {string} text
          * @param {boolean} repeatX
          * @param {boolean} repeatY
+         * @param {boolean} stretch
          */
-        renderEmbeddedContent: function renderEmbeddedContent(url, text, repeatX, repeatY) {
+        renderEmbeddedContent: function renderEmbeddedContent(url, text, repeatX, repeatY, stretch) {
 
             if (!url) {
                 return false;
@@ -86,13 +87,21 @@ define([
                     title: text
                 });
 
+                if (stretch) {
+                    this.$img.css({
+                        width: '100%',
+                        height: '100%'
+                    });
+                }
+
                 this.setHtml(this.$img);
 
             } else {
 
                 this.$.css({
                     backgroundImage: "url('" + url + "')",
-                    backgroundRepeat: repeat
+                    backgroundRepeat: repeat,
+                    backgroundSize: stretch ? 'cover' : 'auto'
                 });
             }
 

@@ -138,6 +138,11 @@
 
 .modal-dialog.preferences fieldset legend.open + ul {
     display: block;
+    float: left;
+    width: 100%;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul.interactions {
     margin: 0;
     padding: 0;
     background: transparent;
@@ -164,7 +169,7 @@
     line-height: 18px;
 }
 
-.modal-dialog.preferences fieldset legend.open + ul input[type="text"],
+.modal-dialog.preferences fieldset legend.open + ul.interactions input[type="text"],
 .modal-dialog.preferences fieldset legend.open + ul div.combo-box {
     float: right;
     width: 50%;
@@ -177,7 +182,7 @@
     padding: 0;
 }
 
-.modal-dialog.preferences fieldset legend.open + ul input[type="text"]:focus {
+.modal-dialog.preferences fieldset legend.open + ul.interactions input[type="text"]:focus {
     width: 50%;
 }
 

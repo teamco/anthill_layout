@@ -32,7 +32,8 @@ define([
                 this.model.getPrefs('imageUrl'),
                 this.model.getPrefs('imageText'),
                 this.model.getPrefs('imageRepeatX'),
-                this.model.getPrefs('imageRepeatY')
+                this.model.getPrefs('imageRepeatY'),
+                this.model.getPrefs('imageStretch')
             );
         },
 

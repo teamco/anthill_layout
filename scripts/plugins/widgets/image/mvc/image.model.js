@@ -32,7 +32,7 @@ define([
                 value: undefined
             },
             imageText: {
-                type: 'text',
+                type: 'textarea',
                 disabled: false,
                 value: undefined
             },
@@ -42,6 +42,11 @@ define([
                 checked: false
             },
             imageRepeatY: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false
+            },
+            imageStretch: {
                 type: 'checkbox',
                 disabled: false,
                 checked: false
@@ -92,6 +97,15 @@ define([
          */
         setImageRepeatY: function setImageRepeatY(repeatY) {
             this.setPrefs('imageRepeatY', repeatY);
+        },
+
+        /**
+         * Set image stretch
+         * @member ImageModel
+         * @param {boolean} stretch
+         */
+        setImageStretch: function setImageStretch(stretch) {
+            this.setPrefs('imageStretch', stretch);
         }
 
 

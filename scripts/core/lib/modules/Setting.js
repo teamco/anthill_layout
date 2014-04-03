@@ -117,6 +117,19 @@ define([
         },
 
         /**
+         * Import data
+         * @param data
+         */
+        importData: function importData(data) {
+
+            /**
+             * Set data
+             * @type {*}
+             */
+            this.getStorage()[this.getNameSpace()] = JSON.stringify(data);
+        },
+
+        /**
          * Save
          * @member Setting
          * @param [opts]

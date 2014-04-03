@@ -57,7 +57,6 @@ define([
          */
         var DEFAULTS = {
             workspace: {
-                resize: true,
                 plural: false,
                 limit: 1,
                 counter: 0

@@ -3,19 +3,3 @@
     width: 100%;
     overflow: hidden;
 }
-
-.widget .content .texteditor h1 {
-    font-size: 72px;
-    line-height: 64px;
-    font-variant: small-caps;
-    color: #fff;
-}
-
-.widget .content .texteditor p {
-    font-size: 14px;
-    line-height: 22px;
-    margin: 10px 0;
-    color: #fff;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #fff;
-}

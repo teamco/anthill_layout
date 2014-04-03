@@ -77,10 +77,11 @@ define([
             /**
              * Render form element
              * @param {{}} hash
+             * @param {string} title
              * @private
              * @return {Array}
              */
-            function _renderForm(hash) {
+            function _renderForm(hash, title) {
 
                 /**
                  * Define dom nodes
@@ -96,7 +97,7 @@ define([
                          * Define text
                          * @type {string}
                          */
-                        var text = index.toPoint().humanize();
+                        var text = index.replace(title.toLowerCase(), '').toPoint().humanize();
 
                         /**
                          * Define node
@@ -170,14 +171,29 @@ define([
              * Render node
              * @param type
              * @param prefs
+             * @param {string} title
+             * @param {boolean} [isOpened]
              * @returns {*|jQuery}
              * @private
              */
-            function _renderNode(type, prefs) {
+            function _renderNode(type, prefs, title, isOpened) {
+
+                /**
+                 * Define css class
+                 * @type {string}
+                 */
+                var open = isOpened ? 'open' : undefined;
 
                 return $('<li />').append(
-                    $('<ul />').addClass(type).append(
-                        _renderForm.bind(this)(prefs)
+                    $('<fieldset />').append(
+                        $('<legend />').addClass(open).text(title).
+                            on('click.toggle', this.toggleFieldset).attr({
+                                title: title
+                            }),
+
+                        $('<ul />').addClass(type).append(
+                            _renderForm.bind(this)(prefs, title)
+                        )
                     )
                 );
             }
@@ -217,11 +233,14 @@ define([
                 this.renderInteractions([
                     _renderNode.bind(this)(
                         'default',
-                        _mergePrefs(this.defaultPrefs, data, true)
+                        _mergePrefs(this.defaultPrefs, data, true),
+                        'Widget'
                     ),
                     _renderNode.bind(this)(
                         'content',
-                        _mergePrefs(this.defaultPrefs, data, false)
+                        _mergePrefs(this.defaultPrefs, data, false),
+                        this.view.scope.constructor.name,
+                        true
                     )
                 ])
             );
