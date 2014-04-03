@@ -389,15 +389,15 @@ define([
              * Define subscriber events
              * @type {*}
              */
-            this.eventmanager.subscribe = this.base.define(
-                this.eventmanager.subscribe, {}, true
+            this.eventmanager.subscribers = this.base.define(
+                this.eventmanager.subscribers, {}, true
             );
 
             /**
              * Simplify instance name
              * @type {*}
              */
-            var subscribeEM = this.eventmanager.subscribe;
+            var subscribeEM = this.eventmanager.subscribers;
 
             /**
              * Define widget
