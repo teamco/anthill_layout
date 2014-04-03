@@ -374,6 +374,7 @@ define([
         /**
          * Unregister rules
          * @member WidgetContentController
+         * @return {boolean}
          */
         unregisterRules: function unregisterRules() {
 
@@ -393,12 +394,13 @@ define([
                      * Find item
                      * @type {*}
                      */
-                    var item = this.model.findItemByUUID(this.root(), index);
+                    var item = this.model.findItemByUUID(this.root(), index.replace(/-[a-z]+(.\w+)/g, ''));
 
                     this.scope.logger.debug(item, events);
 
                     if (!item) {
                         this.scope.logger.error('Undefined item', events);
+                        return false;
                     }
 
                     for (var event in events) {
@@ -417,6 +419,8 @@ define([
                     }
                 }
             }
+
+            return true;
         },
 
         /**
@@ -447,7 +451,9 @@ define([
              */
             var subscribeEM = this.eventmanager.subscribers;
 
-            this.controller.unregisterRules();
+            if (!this.controller.unregisterRules()) {
+                return false;
+            }
 
             /**
              * Define widget
