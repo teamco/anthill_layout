@@ -498,6 +498,8 @@ define([
                                     return false;
                                 }
 
+                                // TODO remove events before continue
+
                                 /**
                                  * Define scope uuid
                                  * @type {String}
