@@ -22,6 +22,57 @@ define([
     return BaseEvent.extend('BaseEvent', {
 
         /**
+         * Find event in a whole project
+         * @member BaseEvent
+         * @param {*} root
+         * @param {string} uuid
+         * @return {*}
+         */
+        findItemByEventUUID: function findItemByEventUUID(root, uuid) {
+
+            if (!root) {
+                this.scope.logger.error('Undefined root', root);
+            }
+
+            // Get child node
+            var child = root.observer.getEventName(uuid);
+
+            if (child) {
+                return root;
+            }
+
+            if (typeof(root.controller.getContent) === 'function') {
+
+                child = root.controller.getContent().
+                    observer.getEventName(uuid);
+
+                if (child) {
+                    return root;
+                }
+            }
+
+            // Get all items
+            var items = root.model.getItems();
+
+            for (var index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    var item = items[index];
+
+                    // Recursive search
+                    var search = item.eventmanager.findItemByEventUUID(
+                        item, uuid
+                    );
+
+                    if (search) {
+                        return item;
+                    }
+                }
+            }
+        },
+
+        /**
          * Get event list
          * @member BaseEvent
          * @returns {{}}

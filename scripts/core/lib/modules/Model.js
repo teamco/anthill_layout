@@ -105,6 +105,7 @@ define([
 
         /**
          * Find item in a whole project
+         * @member BaseModel
          * @param {*} root
          * @param {string} uuid
          * @return {*}
@@ -115,30 +116,32 @@ define([
                 this.scope.logger.error('Undefined root', root);
             }
 
+            // Get child node
             var child = root.model.getItemByUUID(uuid);
 
             if (child) {
                 return child;
             }
 
+            // Get all items
             var items = root.model.getItems();
 
             for (var index in items) {
 
                 if (items.hasOwnProperty(index)) {
 
-                    var item = items[index],
+                    var item = items[index];
 
-                        search = item.model.findItemByUUID(
-                            item, uuid
-                        );
+                    // Recursive search
+                    var search = item.model.findItemByUUID(
+                        item, uuid
+                    );
 
                     if (search) {
                         return search;
                     }
                 }
             }
-
         },
 
         /**

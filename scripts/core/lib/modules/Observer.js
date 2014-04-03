@@ -66,10 +66,13 @@ define([
          * @return {{}}
          */
         getEventName: function getEventName(eventUUID) {
+
             var events = this.getEventList();
+
             if (events.hasOwnProperty(eventUUID)) {
                 return events[eventUUID];
             }
+
             this.scope.logger.warn('Undefined event UUID', eventUUID);
         },
 
@@ -144,21 +147,35 @@ define([
          * @return {Boolean}
          */
         unEvent: function unEvent(eventName, eventUUID) {
-            var eventLength = this.listeners[eventName].length,
-                i = 0;
 
-            for (i; i < eventLength; i += 1) {
+            var scope = this.scope,
+                listener = this.listeners[eventName];
 
-                if (this.listeners[eventName][i].eventUUID === eventUUID) {
+            if (!listener) {
+                scope.logger.warn(
+                    'Undefined event',
+                    this.listeners,
+                    eventName,
+                    eventUUID
+                );
 
-                    delete this.listeners[eventName][i];
-                    this.listeners[eventName].splice(i, 1);
-                    delete this.scope.eventmanager.events[eventUUID];
+                return false;
+            }
 
-                    return this.scope.logger.info(
+            for (var i = 0, l = listener.length; i < l; i++) {
+
+                if (listener[i].eventUUID === eventUUID) {
+
+                    delete listener[i];
+                    listener.splice(i, 1);
+                    delete scope.eventmanager.events[eventUUID];
+
+                    scope.logger.info(
                         'Successfully deleted event',
                         [eventName, eventUUID]
                     );
+
+                    return true;
                 }
             }
 
@@ -166,6 +183,8 @@ define([
                 'Unable to delete undefined event',
                 [eventName, eventUUID]
             );
+
+            return false;
         },
 
         /**
@@ -246,7 +265,7 @@ define([
                 // break event execution
                 if (opts.state.lastExecutionAt
                     && ((opts.state.lastCallAt - opts.state.lastExecutionAt) <
-                    opts.params.buffer)) {
+                        opts.params.buffer)) {
                     return;
                 }
 
