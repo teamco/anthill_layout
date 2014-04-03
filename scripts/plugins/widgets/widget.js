@@ -520,6 +520,11 @@ define([
                                     scope = widgetPublisher.controller.getContent();
                                 }
 
+                                if (!this.base.isDefined(scope)) {
+                                    this.logger.error('Undefined scope', type);
+                                    return false;
+                                }
+
                                 /**
                                  * Define event list
                                  * @type {{}}
