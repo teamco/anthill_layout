@@ -25,7 +25,8 @@ require([
                     config: {
                         html: {
                             container: 'body'
-                        }
+                        },
+                        appName: 'anthill'
                     }
                 });
 
