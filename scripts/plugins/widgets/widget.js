@@ -372,6 +372,54 @@ define([
         },
 
         /**
+         * Unregister rules
+         * @member WidgetContentController
+         */
+        unregisterRules: function unregisterRules() {
+
+            /**
+             * Define subscriber events
+             * @type {*}
+             */
+            var subscribeEM = this.scope.eventmanager.subscribers;
+
+            for (var index in subscribeEM) {
+
+                if (subscribeEM.hasOwnProperty(index)) {
+
+                    var events = subscribeEM[index];
+
+                    /**
+                     * Find item
+                     * @type {*}
+                     */
+                    var item = this.model.findItemByUUID(this.root(), index);
+
+                    this.scope.logger.debug(item, events);
+
+                    if (!item) {
+                        this.scope.logger.error('Undefined item', events);
+                    }
+
+                    for (var event in events) {
+
+                        if (events.hasOwnProperty(event)) {
+
+                            for (var i = 0, l = events[event].length; i < l; i++) {
+                                item.observer.unEvent(
+                                    event,
+                                    events[event][i]
+                                );
+                            }
+                        }
+
+                        delete subscribeEM[index][event];
+                    }
+                }
+            }
+        },
+
+        /**
          * Register rules
          * @member WidgetContentController
          */
@@ -398,6 +446,8 @@ define([
              * @type {*}
              */
             var subscribeEM = this.eventmanager.subscribers;
+
+            this.controller.unregisterRules();
 
             /**
              * Define widget
@@ -498,8 +548,6 @@ define([
                                     return false;
                                 }
 
-                                // TODO remove events before continue
-
                                 /**
                                  * Define scope uuid
                                  * @type {String}
@@ -513,26 +561,27 @@ define([
                                 if (subscribeEM[sUUID][eventList[ename]]) {
 
                                     scope.logger.warn('Duplicate event', subscribeEM[sUUID], eventList[ename]);
-                                    return false;
+
+                                } else {
+
+                                    /**
+                                     * Subscribe to event
+                                     * @type {Array}
+                                     */
+                                    var eventUUIDs = this.eventmanager.publishOn({
+                                        scope: scope,
+                                        events: [
+                                            {eventName: eventList[ename]}
+                                        ],
+                                        callback: callback.bind({
+                                            scope: this,
+                                            referrer: scope,
+                                            subscriber: subscribersCounter
+                                        })
+                                    });
+
+                                    subscribeEM[sUUID][eventList[ename]] = eventUUIDs;
                                 }
-
-                                /**
-                                 * Subscribe to event
-                                 * @type {Array}
-                                 */
-                                var eventUUIDs = this.eventmanager.publishOn({
-                                    scope: scope,
-                                    events: [
-                                        {eventName: eventList[ename]}
-                                    ],
-                                    callback: callback.bind({
-                                        scope: this,
-                                        referrer: scope,
-                                        subscriber: subscribersCounter
-                                    })
-                                });
-
-                                subscribeEM[sUUID][eventList[ename]] = eventUUIDs;
                             }
                         }
                     }

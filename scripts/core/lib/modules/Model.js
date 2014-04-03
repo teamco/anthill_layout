@@ -104,6 +104,44 @@ define([
         },
 
         /**
+         * Find item in a whole project
+         * @param {*} root
+         * @param {string} uuid
+         * @return {*}
+         */
+        findItemByUUID: function findItemByUUID(root, uuid) {
+
+            if (!root) {
+                this.scope.logger.error('Undefined root', root);
+            }
+
+            var child = root.model.getItemByUUID(uuid);
+
+            if (child) {
+                return child;
+            }
+
+            var items = root.model.getItems();
+
+            for (var index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    var item = items[index],
+
+                        search = item.model.findItemByUUID(
+                            item, uuid
+                        );
+
+                    if (search) {
+                        return search;
+                    }
+                }
+            }
+
+        },
+
+        /**
          * Get parent items
          * @member BaseModel
          * @returns {*}
