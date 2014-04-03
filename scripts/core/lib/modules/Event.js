@@ -48,7 +48,8 @@ define([
             }
             observer.addEvent(opts.eventName);
             events[observer.onEvent(opts)] = opts.eventName;
-            return events[opts.eventName];
+
+            return opts.eventUUID;
         },
 
         /**
@@ -56,7 +57,7 @@ define([
          * @member BaseEvent
          * @param {{event, callback, [params], [eventName], [scope]}} opts
          * @param {Boolean} internal
-         * @returns {Boolean}
+         * @returns {Boolean|String}
          */
         subscribe: function subscribe(opts, internal) {
             var base = this.base, event;
@@ -92,7 +93,7 @@ define([
 
             this.eventList[eventKey] = opts.eventName;
 
-            this.addListener({
+            return this.addListener({
                 eventName: opts.eventName,
                 callback: opts.callback,
                 scope: opts.scope,
@@ -131,8 +132,11 @@ define([
          * Subscribe to external published events
          * @memberOf BaseEvent
          * @param data
+         * @return {Array}
          */
         publishOn: function publishOn(data) {
+
+            var eventUUIDs = [];
 
             for (var i = 0, l = data.events.length; i < l; i++) {
 
@@ -142,15 +146,19 @@ define([
                  */
                 var event = data.events[i];
 
-                data.scope.eventmanager.subscribe({
-                    event: {
-                        eventName: event.eventName,
-                        params: event.params,
-                        scope: event.scope
-                    },
-                    callback: data.callback
-                }, false);
+                eventUUIDs.push(
+                    data.scope.eventmanager.subscribe({
+                        event: {
+                            eventName: event.eventName,
+                            params: event.params,
+                            scope: event.scope
+                        },
+                        callback: data.callback
+                    }, false)
+                );
             }
+
+            return eventUUIDs;
         }
 
     }, AntHill.prototype);

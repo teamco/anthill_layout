@@ -386,6 +386,20 @@ define([
                 types, event, scope;
 
             /**
+             * Define subscriber events
+             * @type {*}
+             */
+            this.eventmanager.subscribe = this.base.define(
+                this.eventmanager.subscribe, {}, true
+            );
+
+            /**
+             * Simplify instance name
+             * @type {*}
+             */
+            var subscribeEM = this.eventmanager.subscribe;
+
+            /**
              * Define widget
              * @type {Widget}
              */
@@ -484,7 +498,27 @@ define([
                                     return false;
                                 }
 
-                                this.eventmanager.publishOn({
+                                /**
+                                 * Define scope uuid
+                                 * @type {String}
+                                 */
+                                var sUUID = scope.model.getUUID();
+
+                                subscribeEM[sUUID] = this.base.define(
+                                    subscribeEM[sUUID], {}, true
+                                );
+
+                                if (subscribeEM[sUUID][eventList[ename]]) {
+
+                                    scope.logger.warn('Duplicate event', subscribeEM[sUUID], eventList[ename]);
+                                    return false;
+                                }
+
+                                /**
+                                 * Subscribe to event
+                                 * @type {Array}
+                                 */
+                                var eventUUIDs = this.eventmanager.publishOn({
                                     scope: scope,
                                     events: [
                                         {eventName: eventList[ename]}
@@ -495,6 +529,8 @@ define([
                                         subscriber: subscribersCounter
                                     })
                                 });
+
+                                subscribeEM[sUUID][eventList[ename]] = eventUUIDs;
                             }
                         }
                     }
