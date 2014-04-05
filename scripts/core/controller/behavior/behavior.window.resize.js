@@ -84,13 +84,17 @@ define([
                         var item = items[index];
 
                         this.scope.observer.publish(
-
                             resize.event,
                             item
-
                         );
 
-                        item.controller.getContainment().logger.debug(resize.event.humanize(), item);
+                        /**
+                         * Define containment
+                         * @type {*}
+                         */
+                        var containment = item.controller.getContainment();
+
+                        containment.logger.debug(resize.event.humanize(), item);
                     }
                 }
             }
