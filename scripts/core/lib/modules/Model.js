@@ -364,6 +364,41 @@ define([
         },
 
         /**
+         * Copy prefs
+         * @member BaseModel
+         * @param source
+         * @returns {boolean}
+         */
+        copyPrefs: function copyPrefs(source) {
+
+            /**
+             * Define
+             * @type {string}
+             */
+            var cname = this.scope.constructor.name.toLowerCase(),
+                prefs = source.model.preferences;
+
+            if (source.constructor.name.toLowerCase() !== cname) {
+                this.scope.logger.warn('Unable to copy preferences', source);
+                return false;
+            }
+
+            for (var index in prefs) {
+
+                if (prefs.hasOwnProperty(index)) {
+
+                    if (index.match(new RegExp(cname))) {
+
+                        this.setPrefs(index, prefs[index]);
+                        this.scope.logger.debug(
+                            'Copied prefs', source, index, prefs[index]
+                        );
+                    }
+                }
+            }
+        },
+
+        /**
          * Set rules on loading
          * @member BaseModel
          * @param rules

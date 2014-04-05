@@ -44,17 +44,24 @@ define([
              * Define widget
              * @type {*}
              */
-            var widget = this.getPage().model.getItemByUUID(uuid),
-                scope = this.scope;
+            var widget = this.getPage().model.getItemByUUID(uuid);
 
-            /**
-             * Define widget content
-             * @type {WidgetContent}
-             */
-            scope.activeContent = widget.controller.getContent();
-            scope.logger.debug('Active component', scope.activeContent);
+            // set active content
+            this.setActiveContent(
+                widget.controller.getContent()
+            );
 
-            return scope.activeContent.view.renderPreferences();
+            return this.scope.activeContent.view.renderPreferences();
+        },
+
+        /**
+         * Set active content
+         * @member PageDataController
+         * @param {WidgetContent} content
+         */
+        setActiveContent: function setActiveContent(content) {
+            this.scope.activeContent = content;
+            this.scope.logger.debug('Active content', content);
         },
 
         /**
@@ -117,7 +124,7 @@ define([
 
             /**
              * Define $item
-             * @type {WidgetElement}
+             * @type {BaseElement}
              */
             var $item = this.scope.activeContent.containment.view.get$item();
 

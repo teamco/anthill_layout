@@ -89,7 +89,7 @@ define([
          */
         onClickOpenUrl: function onClickOpenUrl(url) {
 
-            if (!this.base.isUrl(url)) {
+            if (!this.base.isUrl(url) && url.length > 0) {
                 this.logger.warn('None valid url', url);
                 return false;
             }
