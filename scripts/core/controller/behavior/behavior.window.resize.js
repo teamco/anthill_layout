@@ -103,10 +103,15 @@ define([
          */
         resizeItems: function resizeItems() {
 
+            this.logger.debug(
+                'Resize items',
+                this.model.getConfig('isResized')
+            );
+
             if (!this.model.getConfig('isResized')) {
                 return false;
             }
-console.log(this, this.model.getConfig('isResized'))
+
             this.controller._resizeNestedEventTrigger(
                 this.controller._getResizeAttributes()
             );
