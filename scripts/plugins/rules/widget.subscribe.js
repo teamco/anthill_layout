@@ -210,6 +210,10 @@ define([], function defineWidgetSubscribe() {
          */
         setEmbeddedContentSimulate: function setEmbeddedContentSimulate() {
 
+            /**
+             * Define scope
+             * @type {Widget|*}
+             */
             var scope = this.scope;
 
             scope.model.copyPrefs(this.referrer);
