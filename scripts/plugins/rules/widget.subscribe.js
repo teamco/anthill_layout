@@ -212,7 +212,7 @@ define([], function defineWidgetSubscribe() {
 
             /**
              * Define scope
-             * @type {Widget|*}
+             * @type {*}
              */
             var scope = this.scope;
 
