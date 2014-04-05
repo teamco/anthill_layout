@@ -44,7 +44,7 @@ define([
         /**
          * Get item.$
          * @member BaseView
-         * @returns {$|*|Element.$}
+         * @returns {BaseElement}
          */
         get$item: function get$item() {
             return this.elements['$' + this.scope.constructor.name.toLowerCase()];

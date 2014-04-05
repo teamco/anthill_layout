@@ -397,6 +397,26 @@ define([
         },
 
         /**
+         * Set on click Url
+         * @member BaseModel
+         * @param {string} url
+         */
+        setOnClickOpenUrl: function setOnClickOpenUrl(url) {
+            this.setPrefs('onClickOpenUrl', url);
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope.controller.getContainment();
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.setOnClickUrl,
+                url
+            );
+        },
+
+        /**
          * Set statistics
          * @member BaseModel
          * @param {boolean} statistics

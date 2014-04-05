@@ -26,24 +26,25 @@ define([
          */
         initWidget: function initWidget() {
 
-            this.observer.publish(
-                this.eventmanager.eventList.loadPreferences
-            );
+            /**
+             * Define observer
+             * @type {Observer}
+             */
+            var observer = this.observer;
 
-            this.observer.publish(
-                this.eventmanager.eventList.loadRules
-            );
+            /**
+             * Define event list
+             * @type {EventManager.eventList}
+             */
+            var eventList = this.eventmanager.eventList;
 
-            this.observer.publish(
-                this.eventmanager.eventList.successCreated
-            );
+            observer.publish(eventList.loadPreferences);
+            observer.publish(eventList.loadRules);
+            observer.publish(eventList.successCreated);
+            observer.publish(eventList.defineContainer);
 
-            this.observer.publish(
-                this.eventmanager.eventList.defineContainer
-            );
-
-            this.observer.publish(
-                this.eventmanager.eventList.updateTranslations, [
+            observer.publish(
+                eventList.updateTranslations, [
                     'plugins/widgets/',
                     this.constructor.name.toPoint().replace(/./, ''),
                     '/translations/en-us'
@@ -51,6 +52,49 @@ define([
             );
 
             this.view.render();
+        },
+
+        /**
+         * Transfer containment events
+         * @member WidgetContentController
+         * @param events
+         */
+        transferEvents: function transferEvents(events) {
+
+            for (var event in events) {
+
+                if (events.hasOwnProperty(event)) {
+
+                    /**
+                     * Define event
+                     * @type {*}
+                     */
+                    var params = events[event];
+
+                    this.logger.debug('Transfer event', event, params);
+
+                    this.observer.publish(
+                        this.eventmanager.eventList[event],
+                        params
+                    );
+                }
+            }
+        },
+
+        /**
+         * Transfer event onClickOpenUrl
+         * @member WidgetContentController
+         * @param {string} url
+         * @returns {boolean}
+         */
+        onClickOpenUrl: function onClickOpenUrl(url) {
+
+            if (!this.base.isUrl(url)) {
+                this.logger.warn('None valid url', url);
+                return false;
+            }
+
+            this.view.get$item().bindOnClickOpenUrl(url);
         },
 
         /**

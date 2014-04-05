@@ -114,10 +114,9 @@ define([
         /**
          * Move on top layer
          * @member WidgetElement
-         * @param ontop
+         * @param {boolean} ontop
          */
         moveOnTopLayer: function moveOnTopLayer(ontop) {
-
             ontop ? this.$.addClass('ontop') :
                 this.$.removeClass('ontop');
         }

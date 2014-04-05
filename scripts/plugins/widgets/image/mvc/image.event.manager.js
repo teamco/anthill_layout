@@ -42,6 +42,8 @@ define([
          *      registerRules: string,
          *      transferRules: string,
          *      provideStats: string,
+         *      transferEvents: string,
+         *      onClickOpenUrl: string,
          *      transferStats: string
          * }}
          */
@@ -59,7 +61,9 @@ define([
             registerRules: 'register.rules',
             transferRules: 'transfer.rules',
             provideStats: 'provide.stats',
-            transferStats: 'transfer.stats'
+            transferStats: 'transfer.stats',
+            onClickOpenUrl: 'on.click.open.url',
+            transferEvents: 'transfer.events'
         };
     };
 

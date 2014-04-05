@@ -29,6 +29,7 @@ define([
          *      title: {type: string, disabled: boolean, value},
          *      description: {type: string, disabled: boolean, value},
          *      widgetUrl: {type: string, disabled: boolean, value},
+         *      onClickOpenUrl: {type: string, disabled: boolean, value},
          *      overlapping: {type: string, disabled: boolean, value},
          *      alwaysOnTop: {type: string, disabled: boolean, value},
          *      statistics: {type: string, disabled: boolean, value}
@@ -46,8 +47,13 @@ define([
                 value: undefined
             },
             widgetUrl: {
-                type: 'text',
+                type: 'textarea',
                 disabled: true,
+                value: undefined
+            },
+            onClickOpenUrl: {
+                type: 'textarea',
+                disabled: false,
                 value: undefined
             },
             overlapping: {

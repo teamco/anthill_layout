@@ -54,6 +54,7 @@ define([
          *      setContent: string,
          *      adoptDimensions: string,
          *      setOnTop: string,
+         *      setOnClickUrl: string,
          *      clearThumbnail: string,
          *      saveDom: string
          * }}
@@ -94,7 +95,7 @@ define([
             setContent: 'set.content',
 
             setOnTop: 'set.on.top',
-
+            setOnClickUrl: 'set.on.click.url',
             clearThumbnail: 'clear.thumbnail',
 
             saveDom: 'save.dom'

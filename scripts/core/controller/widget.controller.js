@@ -562,8 +562,16 @@ define([
          * @param {boolean} ontop
          */
         setOnTop: function setOnTop(ontop) {
-
             this.view.get$item().moveOnTopLayer(ontop);
+        },
+
+        /**
+         * Transfer click to content
+         * @member WidgetController
+         * @param {string} url
+         */
+        setOnClickUrl: function setOnClickUrl(url) {
+            this.contentEvents['onClickOpenUrl'] = url;
         },
 
         /**

@@ -17,12 +17,13 @@ define([
 
     /**
      * Define Image
-     * @param containment
+     * @param {Widget} containment
+     * @param [opts]
      * @constructor
      * @class Image
      * @extends AntHill
      */
-    var Image = function Image(containment) {
+    var Image = function Image(containment, opts) {
 
         /**
          * Define containment
@@ -126,6 +127,11 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.initWidget
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.transferEvents,
+            opts.events
         );
     };
 

@@ -191,6 +191,17 @@ define([
         },
 
         /**
+         * Check if url
+         * @param {string} url
+         * @returns {Array|{index: number, input: string}|*}
+         */
+        isUrl: function isUrl(url) {
+            return url.match(
+                /^(http(?:s)?\:\/\/[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)*\.[a-zA-Z]{2,6}(?:\/?|(?:\/[\w\-]+)*)(?:\/?|\/\w+\.[a-zA-Z]{2,4}(?:\?[\w]+\=[\w\-]+)?)?(?:\&[\w]+\=[\w\-]+)*)$/
+            );
+        },
+
+        /**
          * Define object if undefined
          * @member Base
          * @param o

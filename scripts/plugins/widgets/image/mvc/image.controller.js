@@ -37,9 +37,6 @@ define([
             );
         },
 
-//        splitEmbeddedContent: function splitEmbeddedContent() {
-//        },
-
         /**
          * Add Image rule
          * @member ImageController

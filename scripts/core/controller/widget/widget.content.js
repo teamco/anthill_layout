@@ -48,15 +48,16 @@ define([
              */
             var path = [
                 '../../scripts/plugins/widgets' ,
-                ('/' + resource).repeat(2),
-                '.js'
+                ('/' + resource).repeat(2)
             ].join('');
 
             require([path], function getDependencies(Content) {
 
                 widget.observer.publish(
                     widget.eventmanager.eventList.setContent,
-                    Content
+                    [Content, {
+                        events: widget.contentEvents
+                    }]
                 );
             });
         },
@@ -65,16 +66,17 @@ define([
          * Set content
          * @member WidgetContent
          * @param {Function} Content
+         * @param {{}} [opts]
          */
-        setContent: function setContent(Content) {
+        setContent: function setContent(Content, opts) {
 
             /**
              * Define content
              * @type {Content}
              */
-            var content = new Content(this);
+            var content = new Content(this, opts);
 
-            this.logger.debug('Set content', content);
+            this.logger.debug('Set content', content, opts);
 
             /**
              * Define content

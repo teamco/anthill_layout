@@ -109,6 +109,18 @@ define([
         },
 
         /**
+         * Bind click
+         * @member ImageElement
+         * @param {string} url
+         */
+        bindOnClickOpenUrl: function bindOnClickOpenUrl(url) {
+
+            this.$.on('click.openUrl', function openUrl() {
+                window.open(url);
+            });
+        },
+
+        /**
          * Bind stats
          * @member ImageElement
          */

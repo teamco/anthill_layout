@@ -158,6 +158,13 @@ define([
         };
 
         /**
+         * Transfer content events
+         * @member Widget
+         * @type {{}}
+         */
+        this.contentEvents = {};
+
+        /**
          * Define MVC
          * @member Widget
          * @type {MVC}
