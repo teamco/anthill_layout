@@ -31,9 +31,17 @@ define([
          * @returns {*|jQuery}
          */
         renderLabel: function renderLabel(uuid, text, type) {
+
+            /**
+             * Parse Html
+             * @type {Array}
+             */
+            var parse = $.parseHTML(text) || [''],
+                title = parse[parse.length - 1].data || '';
+
             return $('<label />').attr({
                 'for': uuid,
-                title: text.toUpperCase()
+                title: title.toUpperCase()
             }).addClass(type).html(text);
         },
 

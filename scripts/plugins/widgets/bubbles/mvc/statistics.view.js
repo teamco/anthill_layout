@@ -93,7 +93,7 @@ define([
         },
 
         updateChart: function updateChart(data,zCounter) {
-            debugger;
+
             this.elements.$statistics.renderData(data,zCounter);
 
         },

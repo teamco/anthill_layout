@@ -435,15 +435,26 @@ define([
                     var events = subscribeEM[index];
 
                     /**
+                     * Define uuid
+                     * @type {string}
+                     */
+                    var uuid = index.substring(0, index.lastIndexOf('-'));
+
+                    /**
                      * Find item
                      * @type {*}
                      */
-                    var item = this.model.findItemByUUID(this.root(), index.replace(/-[a-z]+(.\w+)/g, ''));
+                    var item = this.model.findItemByUUID(this.root(), uuid);
 
                     this.scope.logger.debug(item, events);
 
                     if (!item) {
-                        this.scope.logger.error('Undefined item', events);
+                        this.scope.logger.warn('Undefined item', events);
+                        return false;
+                    }
+
+                    if (this.base.lib.hash.hashLength(events) === 0) {
+                        this.scope.logger.warn('Empty events', subscribeEM, index);
                         return false;
                     }
 
@@ -452,7 +463,7 @@ define([
                         if (events.hasOwnProperty(event)) {
 
                             for (var i = 0, l = events[event].length; i < l; i++) {
-                                item.observer.unEvent(
+                                item.observer.unRegister(
                                     event,
                                     events[event][i]
                                 );
@@ -460,6 +471,10 @@ define([
                         }
 
                         delete subscribeEM[index][event];
+
+                        if (this.base.lib.hash.hashLength(subscribeEM[index]) === 0) {
+                            delete subscribeEM[index];
+                        }
                     }
                 }
             }
@@ -562,85 +577,133 @@ define([
                                      * @type {WidgetContent}
                                      */
                                     scope = widgetPublisher.controller.getContent();
+
+                                    if (!this.base.isDefined(scope)) {
+
+                                        /**
+                                         * Get publisher uuid
+                                         * @type {String}
+                                         */
+                                        var puuid = widgetPublisher.model.getUUID();
+
+                                        this[puuid] = setInterval(function () {
+
+                                            /**
+                                             * Define scope
+                                             * @type {Content|*}
+                                             */
+                                            scope = widgetPublisher.controller.getContent();
+
+                                            this.logger.warn('Wait until scope will be available', scope);
+
+                                            if (scope) {
+                                                this.logger.warn('Scope available', scope);
+                                                clearInterval(this[puuid]);
+                                            }
+
+                                        }.bind(this), 100);
+                                    }
                                 }
 
                                 if (!this.base.isDefined(scope)) {
-                                    this.logger.error('Undefined scope', type);
+
+                                    this.logger.error('Undefined scope', widgetPublisher, type);
                                     return false;
                                 }
 
-                                /**
-                                 * Define event list
-                                 * @type {{}}
-                                 */
-                                var eventList = scope.eventmanager.eventList || {};
-
-                                /**
-                                 * Define event name
-                                 * @type {String}
-                                 */
-                                var ename = event.toCamel();
-
-                                if (!eventList.hasOwnProperty(ename)) {
-
-                                    scope.logger.warn('Undefined event', event);
-                                    return false;
-                                }
-
-                                /**
-                                 * Define callback
-                                 * @type {function}
-                                 */
-                                var callback = this.controller[ename + 'Simulate'];
-
-                                if (!this.base.isFunction(callback)) {
-
-                                    this.logger.warn(
-                                        'Undefined callback',
-                                        event, ename + 'Simulate'
-                                    );
-
-                                    return false;
-                                }
-
-                                /**
-                                 * Define scope uuid
-                                 * @type {String}
-                                 */
-                                var sUUID = scope.model.getUUID();
-
-                                subscribeEM[sUUID] = this.base.define(
-                                    subscribeEM[sUUID], {}, true
+                                this.controller.registerRule(
+                                    scope,
+                                    event,
+                                    subscribeEM,
+                                    subscribersCounter
                                 );
-
-                                if (subscribeEM[sUUID][eventList[ename]]) {
-
-                                    scope.logger.warn('Duplicate event', subscribeEM[sUUID], eventList[ename]);
-
-                                } else {
-
-                                    /**
-                                     * Subscribe to event
-                                     * @type {Array}
-                                     */
-                                    var eventUUIDs = this.eventmanager.publishOn({
-                                        scope: scope,
-                                        events: [
-                                            {eventName: eventList[ename]}
-                                        ],
-                                        callback: callback.bind({
-                                            scope: this,
-                                            referrer: scope,
-                                            subscriber: subscribersCounter
-                                        })
-                                    });
-
-                                    subscribeEM[sUUID][eventList[ename]] = eventUUIDs;
-                                }
                             }
                         }
                     }
                 }
+            }
+        },
+
+        /**
+         * Register rule
+         * @param scope
+         * @param subscribeEM
+         * @param subscribersCounter
+         * @returns {boolean}
+         */
+        registerRule: function registerRule(scope, event, subscribeEM, subscribersCounter) {
+
+            /**
+             * Define event list
+             * @type {{}}
+             */
+            var eventList = scope.eventmanager.eventList || {};
+
+            /**
+             * Define event name
+             * @type {String}
+             */
+            var ename = event.toCamel();
+
+            if (!eventList.hasOwnProperty(ename)) {
+
+                scope.logger.warn('Undefined event', event);
+                return false;
+            }
+
+            /**
+             * Define callback
+             * @type {function}
+             */
+            var callback = this[ename + 'Simulate'];
+
+            if (!this.base.isFunction(callback)) {
+
+                this.scope.logger.warn(
+                    'Undefined callback',
+                    event, ename + 'Simulate'
+                );
+
+                return false;
+            }
+
+            /**
+             * Define scope uuid
+             * @type {String}
+             */
+            var sUUID = scope.model.getUUID();
+
+            subscribeEM[sUUID] = this.base.define(
+                subscribeEM[sUUID], {}, true
+            );
+
+            if (subscribeEM[sUUID][eventList[ename]]) {
+
+                scope.logger.warn(
+                    'Duplicate event',
+                    subscribeEM[sUUID],
+                    eventList[ename]
+                );
+
+            } else {
+
+                /**
+                 * Subscribe to event
+                 * @type {Array}
+                 */
+                var eventUUIDs = this.scope.eventmanager.publishOn({
+                    scope: scope,
+                    events: [
+                        {eventName: eventList[ename]}
+                    ],
+                    callback: callback.bind({
+                        scope: this.scope,
+                        referrer: scope,
+                        subscriber: subscribersCounter
+                    })
+                });
+
+                subscribeEM[sUUID][eventList[ename]] = eventUUIDs;
             }
         },
 

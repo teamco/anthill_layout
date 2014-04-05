@@ -22,14 +22,16 @@ define([], function defineBasePreferences() {
         toggleFieldset: function toggleFieldset() {
 
             /**
-             * Define $li
+             * Define $el
              * @type {*|jQuery|HTMLElement}
              */
-            var $li = $(this);
+            var $el = $(this);
 
-            $li.hasClass('open') ?
-                $li.removeClass('open') :
-                $li.addClass('open');
+            $el.parents('div.html').
+                find('.open').
+                removeClass('open');
+
+            $el.addClass('open');
         },
 
         /**

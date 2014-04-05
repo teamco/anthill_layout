@@ -140,6 +140,67 @@ define([
         },
 
         /**
+         * Unregister event
+         * @param {string} event
+         * @param {string} uuid
+         * @returns {string|boolean}
+         */
+        unRegister: function unRegister(event, uuid) {
+
+            var scope = this.scope,
+                listener = this.listeners[event];
+
+            if (!listener) {
+
+                /**
+                 * Get content
+                 * @type {*}
+                 */
+                var content = scope.controller.getContent();
+
+                if (content) {
+
+                    return content.observer.unRegister.
+                        bind(content.observer)(event, uuid);
+
+                } else {
+
+                    scope.logger.warn(
+                        'Undefined event',
+                        this.listeners,
+                        event,
+                        uuid
+                    );
+
+                    return false;
+                }
+            }
+
+            for (var i = 0, l = listener.length; i < l; i++) {
+
+                if (listener[i].eventUUID === uuid) {
+
+                    delete listener[i];
+                    listener.splice(i, 1);
+
+                    scope.logger.info(
+                        'Successfully unregistered event',
+                        [event, uuid]
+                    );
+
+                    return uuid;
+                }
+            }
+
+            this.scope.logger.warn(
+                'Unable to delete undefined event',
+                [event, uuid]
+            );
+
+            return false;
+        },
+
+        /**
          * Un event
          * @member Observer
          * @param {String} eventName
@@ -148,41 +209,12 @@ define([
          */
         unEvent: function unEvent(eventName, eventUUID) {
 
-            var scope = this.scope,
-                listener = this.listeners[eventName];
+            eventUUID = this.unRegister(eventName, eventUUID);
 
-            if (!listener) {
-                scope.logger.warn(
-                    'Undefined event',
-                    this.listeners,
-                    eventName,
-                    eventUUID
-                );
-
-                return false;
+            if (eventUUID) {
+                delete this.scope.eventmanager.events[eventUUID];
+                return true;
             }
-
-            for (var i = 0, l = listener.length; i < l; i++) {
-
-                if (listener[i].eventUUID === eventUUID) {
-
-                    delete listener[i];
-                    listener.splice(i, 1);
-                    delete scope.eventmanager.events[eventUUID];
-
-                    scope.logger.info(
-                        'Successfully deleted event',
-                        [eventName, eventUUID]
-                    );
-
-                    return true;
-                }
-            }
-
-            this.scope.logger.warn(
-                'Unable to delete undefined event',
-                [eventName, eventUUID]
-            );
 
             return false;
         },

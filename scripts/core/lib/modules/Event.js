@@ -34,6 +34,11 @@ define([
                 this.scope.logger.error('Undefined root', root);
             }
 
+            if (!root.observer) {
+                this.scope.logger.error('Undefined observer', root);
+                return false;
+            }
+
             // Get child node
             var child = root.observer.getEventName(uuid);
 
