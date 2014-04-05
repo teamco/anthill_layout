@@ -21,6 +21,9 @@ define([
         /**
          * Define default config
          * @type {{
+         *      limit: boolean,
+         *      isResized: boolean,
+         *      type: string,
          *      order: number,
          *      page: {counter: number, limit: number, onDestroyShowPrevious: boolean},
          *      html: {
@@ -34,15 +37,14 @@ define([
          */
         var DEFAULTS = {
             limit: false,
-            isResized: true,
+            isResized: false,
             type: 'default',
             order: 1,
             page: {
                 plural: false,
                 counter: 0,
                 limit: 10,
-
-                // Show previous page (false mean Next)
+                // Show previous page (false means Next)
                 onDestroyShowPrevious: true
             },
             html: {

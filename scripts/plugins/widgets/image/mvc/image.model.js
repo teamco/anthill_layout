@@ -31,6 +31,11 @@ define([
                 disabled: false,
                 value: undefined
             },
+            imageOnClickUrl: {
+                type: 'textarea',
+                disabled: false,
+                value: undefined
+            },
             imageText: {
                 type: 'textarea',
                 disabled: false,
