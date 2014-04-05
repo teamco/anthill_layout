@@ -50,6 +50,11 @@ define([
                 type: 'checkbox',
                 disabled: false,
                 checked: false
+            },
+            imageSplitContent: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false
             }
         };
 
@@ -106,8 +111,16 @@ define([
          */
         setImageStretch: function setImageStretch(stretch) {
             this.setPrefs('imageStretch', stretch);
-        }
+        },
 
+        /**
+         * Set image split content
+         * @member ImageModel
+         * @param {boolean} split
+         */
+        setImageSplitContent: function setImageSplitContent(split) {
+            this.setPrefs('imageSplitContent', split);
+        }
 
     }, BaseModel.prototype);
 });

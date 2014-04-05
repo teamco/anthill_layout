@@ -182,26 +182,17 @@ define([], function defineWidgetSubscribe() {
         splitEmbeddedContentSimulate: function splitEmbeddedContentSimulate() {
 
             /**
-             * Define referrer widget
-             * @type {Widget}
-             */
-            var widget = this.referrer;
-
-            /**
              * Get subscribers
-             * @type {Array}
+             * @type {*}
              */
-//            var subscribers = widget.controller.getSubscribers(
-//                    widget.eventmanager.eventList.setEmbeddedContent
-//                ),
-//                splitTo = subscribers.length + 1;
+            var scope = this.scope;
 
-//            this.scope.view.elements.$image.renderEmbeddedContent(
-//                this.referrer.model.getPrefs('imageUrl'),
-//                this.referrer.model.getPrefs('imageText'),
-//                splitTo,
-//                this.subscriber
-//            );
+            scope.model.copyPrefs(this.referrer);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.splitEmbeddedContent
+            );
+
         },
 
         /**

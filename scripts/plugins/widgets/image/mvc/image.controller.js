@@ -23,6 +23,23 @@ define([
     return ImageController.extend('ImageController', {
 
         /**
+         * Check rendering content
+         * @member @ImageController
+         */
+        checkEmbeddedContent: function checkEmbeddedContent() {
+
+            /**
+             * Define event
+             * @type {splitEmbeddedContent|setEmbeddedContent|string}
+             */
+            var event = this.model.getPrefs('imageSplitContent') ?
+                this.eventmanager.eventList.splitEmbeddedContent :
+                this.eventmanager.eventList.setEmbeddedContent;
+
+            this.observer.publish(event);
+        },
+
+        /**
          * Set embedded content
          * @member ImageController
          */
@@ -35,6 +52,25 @@ define([
                 this.model.getPrefs('imageRepeatY'),
                 this.model.getPrefs('imageStretch')
             );
+        },
+
+
+        splitEmbeddedContent: function splitEmbeddedContent() {
+
+            var subscribers = this.controller.getSubscribers(
+                    this.eventmanager.eventList.splitEmbeddedContent
+                ),
+                splitTo = subscribers.length + 1;
+
+            this.view.elements.$image.renderSplitEmbeddedContent(
+                this.model.getPrefs('imageUrl'),
+                this.model.getPrefs('imageText'),
+                this.model.getPrefs('imageRepeatX'),
+                this.model.getPrefs('imageRepeatY'),
+                this.model.getPrefs('imageStretch'),
+                splitTo
+            );
+
         },
 
         /**

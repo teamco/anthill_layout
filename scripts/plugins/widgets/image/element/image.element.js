@@ -109,6 +109,61 @@ define([
         },
 
         /**
+         * Render Embedded content
+         * @member ImageElement
+         * @param {string} url
+         * @param {string} text
+         * @param {boolean} repeatX
+         * @param {boolean} repeatY
+         * @param {boolean} stretch,
+         * @param {number} splitTo
+         */
+        renderSplitEmbeddedContent: function renderSplitEmbeddedContent(url, text, repeatX, repeatY, stretch, splitTo) {
+
+            if (!url) {
+                return false;
+            }
+
+            /**
+             * Set img dimensions
+             * @param e
+             * @private
+             */
+            function _setDimensions(e) {
+                this.$img.css({
+                    height: '100%',
+                    marginLeft: -e.target.width / splitTo
+                });
+            }
+
+            /**
+             * Load image
+             * @type {Image}
+             */
+            var img = new Image();
+
+            img.src = url;
+            img.onload = _setDimensions.bind(this);
+            img.onerror = function () {
+                this.view.scope.logger.warn('Unable to load image', img);
+            }.bind(this);
+console.log(url, text)
+            /**
+             * Define $img
+             * @type {*|jQuery}
+             */
+            this.$img = $('<img />').attr({
+                src: img.src,
+                alt: text,
+                title: text
+            });
+
+            this.setHtml(this.$img);
+
+            return false;
+        },
+
+        /**
          * Bind click
          * @member ImageElement
          * @param {string} url
