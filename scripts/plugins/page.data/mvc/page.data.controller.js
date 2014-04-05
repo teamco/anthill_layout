@@ -23,6 +23,16 @@ define([
     return PageDataController.extend('PageDataController', {
 
         /**
+         * Store item
+         * @member PageDataController
+         * @param item
+         */
+        storeItem: function storeItem(item) {
+            this.logger.debug('Update storage', item);
+            this.model.collectItems(item);
+        },
+
+        /**
          * Get providers data
          * @member PageDataController
          */
@@ -92,6 +102,19 @@ define([
         loadPreferences: function loadPreferences(config, load, callback) {
 
             this.view.showPreferences(config, load);
+
+            /**
+             * Define collected items
+             * @type {{}}
+             */
+            var items = this.model.getCollectedItems();
+
+            for(var index in items){
+
+                if(items.hasOwnProperty(index)) {
+                    this.controller.defineContentReferrer(items[index]);
+                }
+            }
 
             if (this.base.isFunction(callback)) {
                 callback();

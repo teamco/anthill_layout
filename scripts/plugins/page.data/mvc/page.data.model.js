@@ -16,7 +16,12 @@ define([
      * @constructor
      */
     var PageDataModel = function PageDataModel() {
-
+        /**
+         * Define data
+         * @member PageDataModel
+         * @type {{}}
+         */
+        this.data = {};
     };
 
     return PageDataModel.extend('PageDataModel', {
@@ -29,6 +34,24 @@ define([
          */
         getPageData: function getPageData(page) {
             return page.model.getItems();
+        },
+
+        /**
+         * Collect items
+         * @member PageDataModel
+         * @param item
+         */
+        collectItems: function collectItems(item) {
+            this.data[item.model.getUUID()] = item;
+        },
+
+        /**
+         * Get data
+         * @member PageDataModel
+         * @returns {{}}
+         */
+        getCollectedItems: function getCollectedItems() {
+            return this.data;
         }
 
     }, BaseModel.prototype);
