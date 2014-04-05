@@ -132,7 +132,7 @@ define([
             function _setDimensions(e) {
                 this.$img.css({
                     height: '100%',
-                    marginLeft: -e.target.width / splitTo
+                    marginLeft: -e.target.width / (splitTo + 1)
                 });
             }
 
@@ -147,7 +147,7 @@ define([
             img.onerror = function () {
                 this.view.scope.logger.warn('Unable to load image', img);
             }.bind(this);
-console.log(url, text)
+
             /**
              * Define $img
              * @type {*|jQuery}

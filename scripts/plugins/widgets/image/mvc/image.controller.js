@@ -55,12 +55,14 @@ define([
         },
 
 
-        splitEmbeddedContent: function splitEmbeddedContent() {
+        splitEmbeddedContent: function splitEmbeddedContent(subscribers) {
 
-            var subscribers = this.controller.getSubscribers(
+            subscribers = this.base.define(
+                subscribers,
+                this.controller.getSubscribers(
                     this.eventmanager.eventList.splitEmbeddedContent
-                ),
-                splitTo = subscribers.length + 1;
+                )
+            );
 
             this.view.elements.$image.renderSplitEmbeddedContent(
                 this.model.getPrefs('imageUrl'),
@@ -68,7 +70,7 @@ define([
                 this.model.getPrefs('imageRepeatX'),
                 this.model.getPrefs('imageRepeatY'),
                 this.model.getPrefs('imageStretch'),
-                splitTo
+                subscribers.length
             );
 
         },
