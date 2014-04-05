@@ -44,14 +44,37 @@ define([
              * Define widget
              * @type {*}
              */
-            var widget = this.getPage().model.getItemByUUID(uuid),
-                scope = this.scope;
+            var widget = this.getPage().model.getItemByUUID(uuid);
+
+            // set active content
+            this.setActiveContent(
+                widget.controller.getContent()
+            );
+
+            return this.scope.activeContent.view.renderRules(
+                widget.eventmanager.getEvents(),
+                widget.controller.getContent().eventmanager.getEvents()
+            );
+        },
+
+        /**
+         * Set active content
+         * @member WidgetRulesController
+         * @param {WidgetContent} content
+         */
+        setActiveContent: function setActiveContent(content) {
 
             /**
-             * Define widget content
+             * Define scope;
+             * @type {*}
+             */
+            var scope = this.scope;
+
+            /**
+             * Set active content
              * @type {WidgetContent}
              */
-            scope.activeContent = widget.controller.getContent();
+            scope.activeContent = content;
 
             /**
              * Define referrer
@@ -59,12 +82,7 @@ define([
              */
             scope.activeContent.referrer = scope;
 
-            scope.logger.debug('Active component', scope.activeContent);
-
-            return scope.activeContent.view.renderRules(
-                widget.eventmanager.getEvents(),
-                widget.controller.getContent().eventmanager.getEvents()
-            );
+            scope.logger.debug('Active content', content);
         },
 
         /**

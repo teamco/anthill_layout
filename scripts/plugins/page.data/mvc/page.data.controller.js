@@ -60,8 +60,26 @@ define([
          * @param {WidgetContent} content
          */
         setActiveContent: function setActiveContent(content) {
-            this.scope.activeContent = content;
-            this.scope.logger.debug('Active content', content);
+
+            /**
+             * Define scope;
+             * @type {*}
+             */
+            var scope = this.scope;
+
+            /**
+             * Set active content
+             * @type {WidgetContent}
+             */
+            scope.activeContent = content;
+
+            /**
+             * Define referrer
+             * @type {PageData}
+             */
+            scope.activeContent.referrer = scope;
+
+            scope.logger.debug('Active content', content);
         },
 
         /**

@@ -224,6 +224,8 @@ define([], function defineWidgetSubscribe() {
 
             scope.referrer.controller.setActiveContent(scope);
             scope.referrer.controller.approveUpdatePreferences();
+
+            return false;
         },
 
         /**
