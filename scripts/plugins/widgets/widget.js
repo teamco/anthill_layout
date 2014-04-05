@@ -94,7 +94,9 @@ define([
                 return false;
             }
 
-            this.view.get$item().bindOnClickOpenUrl(url);
+            if (url.length > 0) {
+                this.view.get$item().bindOnClickOpenUrl(url);
+            }
         },
 
         /**
