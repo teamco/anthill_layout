@@ -389,7 +389,7 @@ define([
 
                     if (index.match(new RegExp(cname))) {
 
-                        this.setPrefs(index, prefs[index]);
+                        this.setPrefs(index, prefs[index].value);
                         this.scope.logger.debug(
                             'Copied prefs', source, index, prefs[index]
                         );
