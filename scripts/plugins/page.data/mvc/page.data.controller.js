@@ -97,15 +97,16 @@ define([
          * @member PageDataController
          * @param config
          * @param load
+         * @param event
          * @param {function} [callback]
          */
-        loadPreferences: function loadPreferences(config, load, callback) {
+        loadPreferences: function loadPreferences(config, load, event, callback) {
 
             this.view.showPreferences(config, load);
 
             /**
              * Define collected items
-             * @type {{}}
+             * @type {*}
              */
             var items = this.model.getCollectedItems();
 
@@ -117,7 +118,7 @@ define([
             }
 
             if (this.base.isFunction(callback)) {
-                callback();
+                callback(event);
             }
         },
 
@@ -160,8 +161,9 @@ define([
         /**
          * Locate page data element
          * @member PageDataController
+         * @param e
          */
-        locatePageData: function locatePageData() {
+        locatePageData: function locatePageData(e) {
 
             /**
              * Define $item
@@ -169,7 +171,7 @@ define([
              */
             var $item = this.scope.activeContent.containment.view.get$item();
 
-            this.locateElement($item);
+            this.locateElement($item, e);
         },
 
         /**

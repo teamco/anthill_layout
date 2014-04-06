@@ -309,14 +309,16 @@ define([
 
             /**
              * Trigger locate element
+             * @param event
              * @private
              */
-            function _locateElement() {
+            function _locateElement(event) {
 
                 this.observer.publish(
                     this.eventmanager.eventList.loadPreferences, [
                         {uuid: uuid},
                         false,
+                        event,
                         this.controller.locatePageData.bind(
                             this.controller
                         )
@@ -352,7 +354,7 @@ define([
                 );
             }
 
-            if (e.type === 'mouseenter') {
+            if (e.type === 'mouseenter.pageprefs' || e.type === 'mouseleave.pageprefs') {
 
                 panel.observer.publish(
                     panel.eventmanager.eventList.openPanel,

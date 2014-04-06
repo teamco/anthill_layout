@@ -97,13 +97,11 @@ define([
 
         /**
          * Locate element
+         * @param $element
+         * @param {*} e
+         * @returns {boolean}
          */
-        locateElement: function locateElement($element) {
-
-            /**
-             * Define scope
-             */
-            var scope = this.scope;
+        locateElement: function locateElement($element, e) {
 
             /**
              * Hide border on locate element
@@ -113,14 +111,12 @@ define([
                 $element.$.removeClass('select');
             }
 
-            if ($element.$.hasClass('select')) {
-                return false;
-            }
-
             $element.$.parent().children().removeClass('select');
             $element.$.addClass('select');
 
-            setTimeout(_hideBorder, 300);
+            if (e.type === 'mouseleave' || e.type === 'click') {
+                setTimeout(_hideBorder, 300);
+            }
         },
 
         /**

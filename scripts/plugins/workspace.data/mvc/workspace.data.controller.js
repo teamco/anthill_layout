@@ -118,8 +118,9 @@ define([
         /**
          * Locate page data element
          * @member WorkspaceDataController
+         * @param e
          */
-        locateWorkspaceData: function locateWorkspaceData() {
+        locateWorkspaceData: function locateWorkspaceData(e) {
 
             /**
              * Define $item
@@ -127,7 +128,7 @@ define([
              */
             var $item = this.scope.activeContent.view.get$item();
 
-            this.locateElement($item);
+            this.locateElement($item, e);
         },
 
         /**

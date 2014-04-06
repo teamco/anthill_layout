@@ -184,8 +184,9 @@ define([
         /**
          * Locate page data element
          * @member WidgetRulesController
+         * @param e
          */
-        locateWidgetRules: function locateWidgetRules() {
+        locateWidgetRules: function locateWidgetRules(e) {
 
             /**
              * Define $item
@@ -193,7 +194,7 @@ define([
              */
             var $item = this.scope.activeContent.containment.view.get$item();
 
-            this.locateElement($item);
+            this.locateElement($item, e);
         },
 
         /**
