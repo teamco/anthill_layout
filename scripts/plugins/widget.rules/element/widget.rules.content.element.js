@@ -27,6 +27,7 @@ define([
 
         this.setAttributes(opts.data);
         this.bindShowRules(opts.data);
+        this.bindLocate(opts.data);
 
         return this;
     };
@@ -53,6 +54,47 @@ define([
             this.$.css({
                 backgroundImage: 'url("' + config.preferences.thumbnail + '")'
             });
+        },
+
+        /**
+         * Locate widget before showing rules
+         * @member WidgetRulesContentElement
+         * @param data
+         */
+        bindLocate: function bindLocate(data) {
+
+            /**
+             * Locate widget
+             * @private
+             */
+            function _locatePrefs() {
+                scope.observer.publish(
+                    scope.eventmanager.eventList.loadRules, [
+                        {uuid: config.uuid},
+                        false,
+                        scope.controller.locateWidgetRules.bind(
+                            scope.controller
+                        )
+                    ]
+                );
+            }
+
+            /**
+             * Get config
+             * @type {*}
+             */
+            var config = data.model.getConfig();
+
+            /**
+             * Define scope
+             * @type {WidgetRules}
+             */
+            var scope = this.view.scope;
+
+            this.$.off('mouseenter.rules').on(
+                'mouseenter.rules',
+                _locatePrefs.bind(this)
+            );
         },
 
         /**

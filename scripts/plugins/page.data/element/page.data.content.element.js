@@ -27,6 +27,7 @@ define([
 
         this.setAttributes(opts.data);
         this.bindShowPrefs(opts.data);
+        this.bindLocate(opts.data);
 
         return this;
     };
@@ -53,6 +54,47 @@ define([
             this.$.css({
                 backgroundImage: 'url("' + config.preferences.thumbnail + '")'
             });
+        },
+
+        /**
+         * Locate widget before showing prefs
+         * @member PageDataContentElement
+         * @param data
+         */
+        bindLocate: function bindLocate(data) {
+
+            /**
+             * Locate widget
+             * @private
+             */
+            function _locatePrefs() {
+                scope.observer.publish(
+                    scope.eventmanager.eventList.loadPreferences, [
+                        {uuid: config.uuid},
+                        false,
+                        scope.controller.locatePageData.bind(
+                            scope.controller
+                        )
+                    ]
+                );
+            }
+
+            /**
+             * Get config
+             * @type {*}
+             */
+            var config = data.model.getConfig();
+
+            /**
+             * Define scope
+             * @type {PageData}
+             */
+            var scope = this.view.scope;
+
+            this.$.off('mouseenter.prefs').on(
+                'mouseenter.prefs',
+                _locatePrefs.bind(this)
+            );
         },
 
         /**
