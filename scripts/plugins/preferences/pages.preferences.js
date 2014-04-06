@@ -253,7 +253,7 @@ define([
                                 attr('rel', uuid).
                                 text(uuid).
                                 css({backgroundImage: 'url("' + widget.model.getConfig('preferences/thumbnail') + '")'}).
-                                on('mouseenter.widgetPrefs click.widgetPrefs',
+                                on('mouseenter.widgetPrefs mouseleave.widgetPrefs click.widgetPrefs',
                                 this.showWidgetPrefs.bind(this))
                         );
                     }
@@ -291,7 +291,7 @@ define([
          * @param e
          */
         showWidgetPrefs: function showWidgetPrefs(e) {
-
+console.log(e.type)
             /**
              * Trigger click prefs
              * @private
