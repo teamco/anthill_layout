@@ -201,7 +201,7 @@ define([
                             ).attr('rel', 'layout-behavior')
                         ])
                     )
-                )
+                ).addClass('auto')
             );
 
             return nodes;

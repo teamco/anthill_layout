@@ -69,14 +69,14 @@ define([], function defineBasePreferences() {
             });
 
             /**
-             * Define $container
-             * @type {$}
+             * Define page
+             * @type {Page}
              */
-            var $container = this.controller.getPage().view.elements.$page.$;
+            var page = this.controller.getPage();
 
             this.modalDialog({
                 style: opts.style,
-                $container: $container,
+                $container: page.view.get$item().$,
                 type: opts.type || 'info',
                 title: opts.title,
                 text: opts.config.uuid,

@@ -9,6 +9,12 @@
 .modal-dialog.rules div.html > ul > li {
     margin-bottom: 3px;
     position: relative;
+    clear: both;
+    height: 22px;
+}
+
+.modal-dialog.rules div.html li.auto {
+    height: auto;
 }
 
 .modal-dialog.rules div.html label {
@@ -19,6 +25,7 @@
     display: inline-block;
     height: 22px;
     line-height: 20px;
+    float: left;
 }
 
 .modal-dialog.rules div.html label.textarea {
@@ -90,15 +97,20 @@
     padding: 5px 10px;
     margin-top: 10px;
     background-color: #fff;
+    clear: both;
 }
 
 .modal-dialog.rules fieldset legend {
-    padding: 0 3px;
     font-variant: small-caps;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     text-transform: lowercase;
+    background: #fff;
+    border-top: 1px solid #bbb;
+    border-radius: 10px;
+    padding: 0 10px;
+    margin-left: -10px;
 }
 
 .modal-dialog.rules fieldset legend.open,
@@ -134,7 +146,7 @@
 .modal-dialog.rules fieldset legend.open + ul input[type="text"],
 .modal-dialog.rules div.html div.combo-box {
     float: right;
-    width: 60%;
+    width: 65%;
     position: relative;
 }
 
@@ -183,6 +195,7 @@
 
 .modal-dialog.rules div.html div.combo-box.open > ul {
     overflow: auto;
+    overflow-x: hidden;
     max-height: 200px;
     height: auto;
     position: absolute;
@@ -276,6 +289,7 @@
     font-variant: normal;
     text-transform: none;
     font-size: 12px;
+    float: none;
 }
 
 .modal-dialog.rules fieldset legend.open + ul.subscribe-rules fieldset ul li label span {

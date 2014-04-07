@@ -13,6 +13,10 @@
     clear: both;
 }
 
+.modal-dialog.preferences div.html li.auto {
+    height: auto;
+}
+
 .modal-dialog.preferences div.html li.checkbox {
     width: 49%;
     margin-left: 1%;
@@ -121,6 +125,11 @@
     font-weight: bold;
     cursor: pointer;
     text-transform: lowercase;
+    background: #fff;
+    border-radius: 10px;
+    border-top: 1px solid #bbb;
+    padding: 0 10px;
+    margin-left: -10px;
 }
 
 .modal-dialog.preferences fieldset legend.open {

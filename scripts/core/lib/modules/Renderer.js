@@ -186,7 +186,7 @@ define([
              * Define container
              * @type {*|jQuery}
              */
-            var $div = $('<div />').addClass('combo-box').attr({
+            var $div = $('<div style="display: none;" />').addClass('combo-box').attr({
                 id: this.base.lib.generator.UUID() + '-combobox'
             });
 
@@ -272,6 +272,9 @@ define([
                      */
                     function comboBoxInternalEvent(e) {
 
+                        $div.hasClass('open') ?
+                            _hide() : _open();
+
                         /**
                          * Define selected $li
                          * @type {*|jQuery|HTMLElement}
@@ -279,7 +282,6 @@ define([
                         var $selected = $(e.target);
 
                         if ($selected.hasClass('selected')) {
-                            _hide();
                             _store($selected, selected);
                             return false;
                         }
@@ -287,7 +289,6 @@ define([
                         $('li', $selected.parent()).removeClass('selected');
                         $selected.addClass('selected');
 
-                        _hide();
                         _store($selected, selected);
 
                     }.bind(this)
@@ -304,17 +305,15 @@ define([
                 $li.attr({rel: field.value}).appendTo($ul);
             }
 
+            setTimeout(function () {
+                $div.show();
+            }, 500);
+
             return [
                 this.renderLabel(undefined, name),
                 $div.append([
                     $ul,
-                    $('<div />').addClass('combo-box-arrow').on(
-                        'click.combo',
-                        function clickCombo() {
-                            $div.hasClass('open') ?
-                                _hide() : _open();
-                        }
-                    )
+                    $('<div />').addClass('combo-box-arrow')
                 ])
             ];
         }

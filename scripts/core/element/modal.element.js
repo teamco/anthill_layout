@@ -169,7 +169,7 @@ define([
              * @member ModalElement
              * @type {*}
              */
-            this.closeX = this.base.defineBoolean(opts.draggable, true, true);
+            this.closeX = this.base.defineBoolean(opts.closeX, true, true);
 
             /**
              * Set cover config

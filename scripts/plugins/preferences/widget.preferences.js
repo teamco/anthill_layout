@@ -201,7 +201,7 @@ define([
                             _renderForm.bind(this)(prefs, title)
                         )
                     )
-                );
+                ).addClass('auto');
             }
 
             /**
@@ -295,7 +295,7 @@ define([
                             this.renderPrefs('Height', height)
                         ])
                     )
-                )
+                ).addClass('auto')
             );
 
             return nodes;

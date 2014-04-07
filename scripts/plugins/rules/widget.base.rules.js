@@ -277,7 +277,7 @@ define([
                                     }),
                                 $inner
                             ])
-                        ).appendTo($ul);
+                        ).addClass('auto').appendTo($ul);
                     }
                 }
             }
@@ -293,7 +293,7 @@ define([
                                 }),
                             $ul
                         ])
-                    )
+                    ).addClass('auto')
                 );
             }
         },
