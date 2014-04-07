@@ -132,34 +132,6 @@ define([
         },
 
         /**
-         * Get page data
-         * @member WorkspaceDataController
-         * @returns {Panel}
-         */
-        getPanel: function getPanel() {
-
-            return this.scope.containment;
-        },
-
-        /**
-         * Get page data
-         * @member WorkspaceDataController
-         * @returns {PageData}
-         */
-        getPageData: function getPageData() {
-
-            /**
-             * Define panel
-             * @type {Panel}
-             */
-            var panel = this.getPanel();
-
-            return panel.model.getModule(
-                panel.model.getIndex('pagedata')
-            ).module;
-        },
-
-        /**
          * Destroy page widgets
          * @member WorkspaceDataController
          */

@@ -67,6 +67,51 @@ define([
         },
 
         /**
+         * Get page data
+         * @member PluginController
+         * @returns {Panel}
+         */
+        getPanel: function getPanel() {
+            return this.scope.containment;
+        },
+
+        /**
+         * Get page data
+         * @member PluginController
+         * @returns {PageData}
+         */
+        getPageData: function getPageData() {
+
+            /**
+             * Define panel
+             * @type {Panel}
+             */
+            var panel = this.getPanel();
+
+            return panel.model.getModule(
+                panel.model.getIndex('pagedata')
+            ).module;
+        },
+
+        /**
+         * Get widget rules
+         * @member PluginController
+         * @returns {WidgetRules}
+         */
+        getWidgetRules: function getWidgetRules() {
+
+            /**
+             * Define panel
+             * @type {Panel}
+             */
+            var panel = this.getPanel();
+
+            return panel.model.getModule(
+                panel.model.getIndex('widgetrules')
+            ).module;
+        },
+
+        /**
          * Check if data was existing
          * @member PluginController
          * @returns {boolean}

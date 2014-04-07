@@ -48,12 +48,6 @@ define([], function defineBasePreferences() {
             var buttons = opts.buttons || {};
 
             $.extend(true, buttons, {
-                rules: {
-                    text: 'Rules',
-                    events: {
-                        click: 'rules' + this.scope.constructor.name
-                    }
-                },
                 locate: {
                     text: 'Locate',
                     events: {

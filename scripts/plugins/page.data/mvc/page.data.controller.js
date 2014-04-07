@@ -194,7 +194,41 @@ define([
          * @param {string} uuid
          */
         rulesPageData: function rulesPageData(uuid) {
-            debugger
+
+            /**
+             * Trigger click rules
+             * @private
+             */
+            function _triggerRules() {
+debugger
+
+                /**
+                 * Define $item
+                 * @type {PageDataContentElement}
+                 */
+                var $item = this.view.elements.items[uuid + '-view'];
+
+                $item.$.trigger('click.rules');
+            }
+
+            /**
+             * Define panel
+             * @type {Panel}
+             */
+            var panel = this.getPanel();
+
+            /**
+             * Define widget rules
+             * @type {WidgetRules}
+             */
+            var widgetRules = this.getWidgetRules();
+
+            panel.observer.publish(
+                panel.eventmanager.eventList.openPanel,
+                ['widgetrules', _triggerRules.bind(widgetRules)]
+            );
+
+            this.scope.view.elements.$modal.selfDestroy();
         }
 
     }, AntHill.prototype, PluginBase.prototype);
