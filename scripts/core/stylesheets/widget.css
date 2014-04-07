@@ -91,6 +91,7 @@
     position: absolute;
     z-index: 51;
     background: #000;
+    opacity: 0.05;
 }
 
 .widget .content {

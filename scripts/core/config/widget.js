@@ -42,12 +42,12 @@ define([
          *      rules: {},
          *      limit: boolean,
          *      order: number,
-         *      html: {header: boolean, footer: boolean, frameLess: boolean, opacity: number, style: string},
+         *      html: {header: boolean, footer: boolean, frameLess: boolean, style: string},
          *      type: string,
          *      maximize: boolean,
          *      attributes: {magnet: string, freeze: boolean, alwaysTop: boolean},
          *      events: {
-         *          draggable: {snap: boolean, axis: boolean, scroll: boolean, connectToSortable: boolean, delay: number, scrollSensitivity: number, scrollSpeed: number, opacity: number, zIndex: number, cursor: string, appendTo: string, cancel: string},
+         *          draggable: {snap: boolean, axis: boolean, scroll: boolean, connectToSortable: boolean, delay: number, scrollSensitivity: number, scrollSpeed: number, cursor: string, appendTo: string, cancel: string},
          *          resizable: {handles: string},
          *          droppable: {activeClass: string, hoverClass: string, greedy: boolean, tolerance: string}
          *      }

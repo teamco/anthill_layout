@@ -26,13 +26,6 @@ define([
         this.widget = widget;
 
         /**
-         * Define opacity
-         * @member Wireframe
-         * @type {number}
-         */
-        this.opacity = 0.05;
-
-        /**
          * Define selector
          * @member Wireframe
          * @type {string}
@@ -59,8 +52,7 @@ define([
                     left: dom.left,
                     top: dom.top,
                     width: dom.width,
-                    height: dom.height,
-                    opacity: this.opacity
+                    height: dom.height
                 },
                 animate: false
             });
@@ -83,8 +75,7 @@ define([
                     left: css.left,
                     top: css.top,
                     width: css.width,
-                    height: css.height,
-                    opacity: this.opacity
+                    height: css.height
                 },
                 animate: false
             });

@@ -104,7 +104,6 @@ define([
          *      template: {},
          *      widget: {
          *          counter: number,
-         *          opacity: number,
          *          allowToAdd: boolean,
          *          addNewTo: string
          *      },
@@ -163,7 +162,6 @@ define([
                     height: 3
                 },
                 counter: 0,
-                opacity: 0.6,
                 allowToAdd: true,
                 addNewTo: this.ORGANIZE_MODES.row
             },
