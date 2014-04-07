@@ -673,22 +673,6 @@ define([
             }
 
             return this;
-        },
-
-        /**
-         * Show items content
-         * @member BaseElement
-         */
-        showItemsContent: function showItemsContent() {
-            this.get$items().removeClass('hide');
-        },
-
-        /**
-         * Hide items content
-         * @member BaseElement
-         */
-        hideItemsContent: function hideItemsContent() {
-            this.get$items().addClass('hide');
         }
 
     }, AntHill.prototype, Renderer.prototype);

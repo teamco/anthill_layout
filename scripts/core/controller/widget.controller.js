@@ -248,8 +248,6 @@ define([
          */
         startDraggable: function startDraggable() {
             this.logger.debug('Start drag', arguments);
-
-            this.controller.get$page().hideItemsContent();
         },
 
         /**
@@ -282,8 +280,6 @@ define([
                 this.controller.getInteractionConfig('stop'),
                 type
             );
-
-            this.controller.get$page().showItemsContent();
         },
 
         /**
@@ -302,8 +298,6 @@ define([
          */
         startResizable: function startResizable(type) {
             this.logger.debug('Start resize', arguments);
-
-            this.controller.get$page().hideItemsContent();
         },
 
         /**
@@ -339,7 +333,7 @@ define([
 
             /**
              * Define controller
-             * @type {controller|*}
+             * @type {WidgetController}
              */
             var controller = this.controller;
 
@@ -372,8 +366,6 @@ define([
             );
 
             controller.behaviorMode(config, type);
-
-            controller.get$page().showItemsContent();
         },
 
         /**

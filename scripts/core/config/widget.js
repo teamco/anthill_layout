@@ -62,15 +62,13 @@ define([
                 header: false,
                 footer: false,
                 frameLess: false,
-                opacity: 0.6,
                 style: ''
             },
             type: 'default',
             maximize: false,
             attributes: {
                 magnet: 'none',         // {none|+|-}
-                freeze: false,
-                alwaysTop: false
+                freeze: false
             },
             events: {
                 draggable: {
@@ -81,8 +79,6 @@ define([
                     delay: 300,
                     scrollSensitivity: 100,
                     scrollSpeed: 100,
-                    opacity: 0.6,
-                    zIndex: 100,
                     cursor: 'move',
                     appendTo: 'parent',
                     cancel: '.ui-resizable-handle'

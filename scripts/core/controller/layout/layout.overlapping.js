@@ -139,10 +139,6 @@ define([
                                  * Collect widgets are ready to change position
                                  */
                                 nestedMove[widget.model.getUUID()] = widget;
-
-                                widget.view.get$item().setOpacity(
-                                    widget.model.getConfig('html/opacity')
-                                );
                             }
                         }
                     }
