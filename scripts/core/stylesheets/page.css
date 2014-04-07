@@ -13,7 +13,7 @@
     height: 10000px;
 }
 
-.widgets {
+.page .widgets {
     position: absolute;
     top: 0;
     right: 0;
@@ -22,4 +22,6 @@
     margin: 0;
     width: auto;
     height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
