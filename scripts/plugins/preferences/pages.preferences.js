@@ -302,7 +302,7 @@ define([
                  * Define $item
                  * @type {PageDataContentElement}
                  */
-                var $item = this.view.elements.items[uuid + '-view'];
+                var $item = this.view.elements.items[uuid + '-pagedata'];
 
                 $item.$.trigger('click.prefs');
             }

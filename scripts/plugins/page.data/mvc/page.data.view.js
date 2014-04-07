@@ -100,7 +100,7 @@ define([
                         style: 'content',
                         id: [
                             data[index].model.getConfig('uuid'),
-                            'view'
+                            this.scope.constructor.name.toLowerCase()
                         ].join('-'),
                         $container: this.elements.$pagedata.$,
                         data: data[index]

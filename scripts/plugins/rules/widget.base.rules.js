@@ -286,15 +286,13 @@ define([
 
                 this.$.append(
                     $('<li />').append(
-                        $('<li />').append(
-                            $('<fieldset />').append([
-                                $('<legend />').text(title).
-                                    on('click.toggle', this.toggleFieldset).attr({
-                                        title: title
-                                    }),
-                                $ul
-                            ])
-                        )
+                        $('<fieldset />').append([
+                            $('<legend />').text(title).
+                                on('click.toggle', this.toggleFieldset).attr({
+                                    title: title
+                                }),
+                            $ul
+                        ])
                     )
                 );
             }

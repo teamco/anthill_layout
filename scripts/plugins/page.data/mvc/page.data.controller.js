@@ -191,22 +191,21 @@ define([
         /**
          * Open rules from prefs dialog
          * @member PageDataController
-         * @param {string} uuid
+         * @param {*} event
          */
-        rulesPageData: function rulesPageData(uuid) {
+        rulesPageData: function rulesPageData(event) {
 
             /**
              * Trigger click rules
              * @private
              */
             function _triggerRules() {
-debugger
 
                 /**
                  * Define $item
                  * @type {PageDataContentElement}
                  */
-                var $item = this.view.elements.items[uuid + '-view'];
+                var $item = this.view.elements.items[widget.model.getUUID() + '-widgetrules'];
 
                 $item.$.trigger('click.rules');
             }
@@ -223,9 +222,21 @@ debugger
              */
             var widgetRules = this.getWidgetRules();
 
+            /**
+             * Define active content
+             * @type {*}
+             */
+            var content = this.scope.activeContent;
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = content.controller.getContainment();
+
             panel.observer.publish(
                 panel.eventmanager.eventList.openPanel,
-                ['widgetrules', _triggerRules.bind(widgetRules)]
+                ['widgetrules', event, _triggerRules.bind(widgetRules)]
             );
 
             this.scope.view.elements.$modal.selfDestroy();
