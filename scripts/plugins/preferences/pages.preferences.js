@@ -291,7 +291,7 @@ define([
          * @param e
          */
         showWidgetPrefs: function showWidgetPrefs(e) {
-console.log(e.type)
+
             /**
              * Trigger click prefs
              * @private
@@ -350,15 +350,15 @@ console.log(e.type)
 
                 panel.observer.publish(
                     panel.eventmanager.eventList.openPanel,
-                    ['pagedata', _triggerPrefs.bind(pageData)]
+                    ['pagedata', e, _triggerPrefs.bind(pageData)]
                 );
             }
 
-            if (e.type === 'mouseenter.pageprefs' || e.type === 'mouseleave.pageprefs') {
+            if (e.type === 'mouseenter' || e.type === 'mouseleave') {
 
                 panel.observer.publish(
                     panel.eventmanager.eventList.openPanel,
-                    ['pagedata', _locateElement.bind(pageData)]
+                    ['pagedata', e, _locateElement.bind(pageData)]
                 );
             }
         }

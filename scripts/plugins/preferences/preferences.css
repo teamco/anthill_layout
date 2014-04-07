@@ -142,6 +142,11 @@
     width: 100%;
 }
 
+.modal-dialog.preferences fieldset legend.open + ul.widgets-prefs {
+    margin: 0;
+    padding: 0;
+}
+
 .modal-dialog.preferences fieldset legend.open + ul.interactions {
     margin: 0;
     padding: 0;

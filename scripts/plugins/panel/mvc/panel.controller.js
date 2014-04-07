@@ -135,9 +135,10 @@ define([
          * Open panel
          * @member PanelController
          * @param {string} resource
+         * @param {*} [event]
          * @param {function} [callback]
          */
-        openPanel: function openPanel(resource, callback) {
+        openPanel: function openPanel(resource, event, callback) {
 
             /**
              * Define $bar
@@ -151,7 +152,7 @@ define([
             this.view.elements.$panel.toggle(resource, true);
 
             if (this.base.isDefined(callback) && this.base.isFunction(callback)) {
-                callback();
+                callback(event);
             }
         },
 
