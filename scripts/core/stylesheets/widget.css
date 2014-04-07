@@ -113,15 +113,6 @@
     background: transparent !important;
 }
 
-.widget .content ul {
-    overflow: hidden;
-}
-
-.widget .content li {
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-
-.widget .content li h2 {
-    margin-bottom: 10px;
+.widget.hide iframe {
+    display: none !important;
 }

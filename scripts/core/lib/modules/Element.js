@@ -625,7 +625,7 @@ define([
              */
             var cname = item.constructor.name.toLowerCase();
 
-            return $('.' + cname + ' > .content > div', this.$);
+            return $('.' + cname, this.$);
         },
 
         /**
@@ -680,33 +680,15 @@ define([
          * @member BaseElement
          */
         showItemsContent: function showItemsContent() {
-            this.get$items().show();
+            this.get$items().removeClass('hide');
         },
 
         /**
          * Hide items content
          * @member BaseElement
-         * @param [item]
          */
-        hideItemsContent: function hideItemsContent(item) {
-
-            /**
-             * Get $items
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $items = this.get$items();
-
-            if (this.base.isDefined(item)) {
-
-                /**
-                 * Filter all items except itself
-                 */
-                $items = $items.filter(function filter(index) {
-                    return this.parentNode.parentNode.id !== item.id;
-                });
-            }
-
-            $items.hide();
+        hideItemsContent: function hideItemsContent() {
+            this.get$items().addClass('hide');
         }
 
     }, AntHill.prototype, Renderer.prototype);
