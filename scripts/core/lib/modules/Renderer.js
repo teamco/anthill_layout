@@ -263,6 +263,7 @@ define([
                 }
 
                 $li.on(
+
                     'click.comboBoxInternal',
 
                     /**
@@ -305,6 +306,7 @@ define([
                 $li.attr({rel: field.value}).appendTo($ul);
             }
 
+            // fix to define modal dialog height
             setTimeout(function () {
                 $div.show();
             }, 500);
