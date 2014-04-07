@@ -233,6 +233,60 @@ define([
                     this.getData()
                 );
             }
+        },
+
+        /**
+         * Open prefs from rules dialog
+         * @member WidgetRulesController
+         * @param {*} event
+         */
+        preferencesWidgetRules: function preferencesWidgetRules(event) {
+
+            /**
+             * Trigger click prefs
+             * @private
+             */
+            function _triggerPrefs() {
+
+                /**
+                 * Define $item
+                 * @type {PageDataContentElement}
+                 */
+                var $item = this.view.elements.items[widget.model.getUUID() + '-pagedata'];
+
+                $item.$.trigger('click.prefs');
+            }
+
+            /**
+             * Define panel
+             * @type {Panel}
+             */
+            var panel = this.getPanel();
+
+            /**
+             * Define widget rules
+             * @type {PageData}
+             */
+            var pageData = this.getPageData();
+
+            /**
+             * Define active content
+             * @type {*}
+             */
+            var content = this.scope.activeContent;
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = content.controller.getContainment();
+
+            panel.observer.publish(
+                panel.eventmanager.eventList.openPanel,
+                ['pagedata', event, _triggerPrefs.bind(pageData)]
+            );
+
+            this.scope.view.elements.$modal.selfDestroy();
         }
 
     }, AntHill.prototype, PluginBase.prototype);

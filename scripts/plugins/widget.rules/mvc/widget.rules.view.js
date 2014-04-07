@@ -143,7 +143,15 @@ define([
                         config.preferences.resource,
                         'widget-rules rules'
                     ].join(' '),
-                    title: 'Widget rules'
+                    title: 'Widget rules',
+                    buttons: {
+                        preferences: {
+                            text: 'Preferences',
+                            events: {
+                                click: 'preferences' + this.scope.constructor.name
+                            }
+                        }
+                    }
                 });
             }
         },

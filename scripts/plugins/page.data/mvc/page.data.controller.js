@@ -203,7 +203,7 @@ define([
 
                 /**
                  * Define $item
-                 * @type {PageDataContentElement}
+                 * @type {WidgetRulesContentElement}
                  */
                 var $item = this.view.elements.items[widget.model.getUUID() + '-widgetrules'];
 
