@@ -30,13 +30,15 @@ define([
          * @member WidgetRulesEventManager
          * @type {{
          *      updateTranslations: string,
-         *      loadContent: string
+         *      loadContent: string,
+         *      storeItem: string
          * }}
          */
         this.eventList = {
             updateTranslations: 'update.translations',
             loadContent: 'load.content',
-            loadRules: 'load.rules'
+            loadRules: 'load.rules',
+            storeItem: 'store.item'
         };
     };
 

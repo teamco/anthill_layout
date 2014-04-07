@@ -192,6 +192,7 @@ define([
 
         /**
          * Check if url
+         * @member Base
          * @param {string} url
          * @returns {Array|{index: number, input: string}|*}
          */

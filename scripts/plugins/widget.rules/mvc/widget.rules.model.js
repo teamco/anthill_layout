@@ -17,6 +17,12 @@ define([
      */
     var WidgetRulesModel = function WidgetRulesModel() {
 
+        /**
+         * Define data
+         * @member WidgetRulesModel
+         * @type {{}}
+         */
+        this.data = {};
     };
 
     return WidgetRulesModel.extend('WidgetRulesModel', {
@@ -29,6 +35,24 @@ define([
          */
         getWidgetRules: function getWidgetRules(page) {
             return page.model.getItems();
+        },
+
+        /**
+         * Collect items
+         * @member WidgetRulesModel
+         * @param item
+         */
+        collectItems: function collectItems(item) {
+            this.data[item.model.getUUID()] = item;
+        },
+
+        /**
+         * Get data
+         * @member WidgetRulesModel
+         * @returns {{}}
+         */
+        getCollectedItems: function getCollectedItems() {
+            return this.data;
         }
 
     }, BaseModel.prototype);

@@ -16,6 +16,7 @@ define([
      * @constructor
      */
     var PageDataModel = function PageDataModel() {
+
         /**
          * Define data
          * @member PageDataModel

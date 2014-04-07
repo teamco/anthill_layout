@@ -186,6 +186,15 @@ define([
                     this.getData()
                 );
             }
+        },
+
+        /**
+         * Open rules from prefs dialog
+         * @member PageDataController
+         * @param {string} uuid
+         */
+        rulesPageData: function rulesPageData(uuid) {
+            debugger
         }
 
     }, AntHill.prototype, PluginBase.prototype);

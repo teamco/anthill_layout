@@ -106,6 +106,11 @@ define([
                         data: data[index]
                     });
 
+                    this.scope.observer.publish(
+                        this.scope.eventmanager.eventList.storeItem,
+                        data[index]
+                    );
+
                     this.controller.defineContentReferrer(data[index]);
 
                     this.elements.items[$item.id] = $item;

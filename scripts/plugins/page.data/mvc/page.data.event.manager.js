@@ -30,14 +30,15 @@ define([
          * @member PageDataEventManager
          * @type {{
          *      updateTranslations: string,
-         *      loadContent: string
+         *      loadContent: string,
+         *      storeItem: string
          * }}
          */
         this.eventList = {
             updateTranslations: 'update.translations',
             loadContent: 'load.content',
             loadPreferences: 'load.preferences',
-            storeItem: 'store.items'
+            storeItem: 'store.item'
         };
     };
 
