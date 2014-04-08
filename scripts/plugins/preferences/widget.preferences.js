@@ -74,11 +74,11 @@ define([
         },
 
         /**
-         * Render data
+         * Render prefs data
          * @member WidgetPreferences
          * @param data
          */
-        renderData: function renderData(data) {
+        renderBasePrefsData: function renderBasePrefsData(data) {
 
             /**
              * Render form element

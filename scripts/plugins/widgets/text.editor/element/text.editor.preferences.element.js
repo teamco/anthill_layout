@@ -27,7 +27,7 @@ define([
             destroy: true
         });
 
-        this.renderData(opts.data);
+        this.renderBasePrefsData(opts.data);
 
         return this;
     };

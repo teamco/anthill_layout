@@ -8,19 +8,19 @@
 define([
     'modules/element',
     'plugins/preferences/widget.preferences'
-], function defineTwitsPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineGeolocationPreferencesElement(BaseElement, WidgetPreferences) {
 
     /**
-     * Define Twits Preferences Element
+     * Define Geolocation Preferences Element
      * @param view
      * @param opts
-     * @returns {TwitsPreferencesElement}
+     * @returns {GeolocationPreferencesElement}
      * @constructor
-     * @class TwitsPreferencesElement
+     * @class GeolocationPreferencesElement
      * @extends BaseElement
      * @extends WidgetPreferences
      */
-    var TwitsPreferencesElement = function TwitsPreferencesElement(view, opts) {
+    var GeolocationPreferencesElement = function GeolocationPreferencesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -32,7 +32,7 @@ define([
         return this;
     };
 
-    return TwitsPreferencesElement.extend('TwitsPreferencesElement', {
+    return GeolocationPreferencesElement.extend('GeolocationPreferencesElement', {
 
 
     }, BaseElement.prototype, WidgetPreferences.prototype);
