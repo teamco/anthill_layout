@@ -131,7 +131,6 @@ define([
          * @param {{publish, subscribe}} rules
          */
         loadStoredRules: function loadStoredRules(rules) {
-
             this.showPublishedRules(rules.publish);
         },
 

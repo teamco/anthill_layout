@@ -305,7 +305,7 @@ define([
          * @param widgetRules
          * @param contentRules
          */
-        renderData: function renderData(data, widgetRules, contentRules) {
+        renderBaseRulesData: function renderBaseRulesData(data, widgetRules, contentRules) {
 
             /**
              * Buttons collector

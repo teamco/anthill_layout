@@ -27,7 +27,7 @@ define([
             destroy: true
         });
 
-        this.renderData(
+        this.renderBaseRulesData(
             opts.data,
             opts.rules.widget,
             opts.rules.content
