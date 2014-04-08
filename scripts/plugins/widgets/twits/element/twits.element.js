@@ -69,10 +69,15 @@ define([
             });
 
             this.$.append($post);
+            this.view.controller.clearParentThumbnail();
 
             require([
                 'plugins/widgets/twits/lib/twitter.post.fetcher'
             ], function renderTwits() {
+
+                function _dateFormat(date) {
+                    return this.base.lib.datetime.dateFormat(date);
+                }
 
                 twitterFetcher.fetch(
                     opts.twitsWidgetId,
@@ -81,9 +86,10 @@ define([
                     opts.showHashAsLink,
                     opts.showPhoto,
                     opts.showTime,
-                    this.base.lib.datetime.dateFormat,
+                    _dateFormat.bind(this),
                     opts.showRetweets
                 );
+
             }.bind(this));
         }
 

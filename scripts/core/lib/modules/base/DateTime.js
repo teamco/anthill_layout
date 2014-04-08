@@ -130,8 +130,19 @@ define([], function defineBaseDateTime() {
                 isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"
             };
 
+            var i18n = {
+                dayNames: [
+                    "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
+                    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+                ],
+                monthNames: [
+                    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+                    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+                ]
+            };
+
             // Regexes and supporting functions are cached through closure
-            return function (date, mask, utc) {
+            return (function (date, mask, utc) {
                 var dF = dateFormat;
 
                 // You can't provide utc if you skip other args (use the "UTC:" mask prefix)
@@ -165,12 +176,12 @@ define([], function defineBaseDateTime() {
                     flags = {
                         d: d,
                         dd: pad(d),
-                        ddd: dF.i18n.dayNames[D],
-                        dddd: dF.i18n.dayNames[D + 7],
+                        ddd: i18n.dayNames[D],
+                        dddd: i18n.dayNames[D + 7],
                         m: m + 1,
                         mm: pad(m + 1),
-                        mmm: dF.i18n.monthNames[m],
-                        mmmm: dF.i18n.monthNames[m + 12],
+                        mmm: i18n.monthNames[m],
+                        mmmm: i18n.monthNames[m + 12],
                         yy: String(y).slice(2),
                         yyyy: y,
                         h: H % 12 || 12,
@@ -195,7 +206,7 @@ define([], function defineBaseDateTime() {
                 return mask.replace(token, function ($0) {
                     return $0 in flags ? flags[$0] : $0.slice(1, $0.length - 1);
                 });
-            };
+            })();
         }
     });
 
