@@ -35,20 +35,22 @@ define([
         /**
          * Render Embedded content
          * @member GeolocationElement
-         * @param {*} position
+         * @param {{latitude, longitude}} position
+         * @param {{zoom, width, height, sensor}} opts
          */
-        renderEmbeddedContent: function renderEmbeddedContent(position, sensor) {
+        renderEmbeddedContent: function renderEmbeddedContent(position, opts) {
 
             var url = [
                 'http://maps.googleapis.com/maps/api/staticmap?center=',
-                [position.coords.latitude, position.coords.longitude],
-                '&zoom=14&sensor=', sensor
+                position.latitude, ',', position.longitude,
+                '&zoom=', opts.zoom, '&size=', opts.width, 'x', opts.height,
+                'sensor=', opts.sensor
             ].join('');
 
             this.$.append(
                 $('<img />').attr({
                     src: url
-                })
+                }).addClass(opts.stretch ? 'stretch' : null)
             );
         }
 

@@ -20,15 +20,43 @@ define([
         /**
          * Define preferences
          * @member GeolocationModel
-         * @type {{
-         *      youtubeUrl: {}
-         * }}
+         * @type {*}
          */
         this.preferences = {
-            youtubeUrl: {
+            geolocationLatitude: {
                 type: 'text',
                 disabled: false,
                 value: undefined
+            },
+            geolocationLongitude: {
+                type: 'text',
+                disabled: false,
+                value: undefined
+            },
+            geolocationZoom: {
+                type: 'text',
+                disabled: false,
+                value: 14
+            },
+            geolocationWidth: {
+                type: 'text',
+                disabled: false,
+                value: 400
+            },
+            geolocationHeight: {
+                type: 'text',
+                disabled: false,
+                value: 300
+            },
+            geolocationSensor: {
+                type: 'checkbox',
+                disabled: false,
+                value: false
+            },
+            geolocationStretch: {
+                type: 'checkbox',
+                disabled: false,
+                value: false
             }
         };
 

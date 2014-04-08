@@ -59,7 +59,7 @@ define([
          */
         getLocation: function getLocation() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
+                return navigator.geolocation.getCurrentPosition(
                     this.getView().showPosition,
                     this.errorHandler
                 );
