@@ -28,9 +28,14 @@ define([
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
-            this.view.elements.$twits.renderEmbeddedContent(
-                this.model.getPrefs('twitsUrl')
-            );
+            this.view.elements.$twits.renderEmbeddedContent({
+                twitsWidgetId: this.model.getPrefs('twitsWidgetId'),
+                maximumNumberOfTweets: this.model.getPrefs('maximumNumberOfTweets'),
+                showHashAsLink: this.model.getPrefs('showHashAsLink'),
+                showPhoto: this.model.getPrefs('showPhoto'),
+                showTime: this.model.getPrefs('showTime'),
+                showRetweets: this.model.getPrefs('showRetweets')
+            });
         },
 
         /**

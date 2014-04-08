@@ -8,31 +8,31 @@
 define([
     'config/anthill',
     'modules/mvc',
-    'plugins/widgets/tweets/mvc/tweets.controller',
-    'plugins/widgets/tweets/mvc/tweets.model',
-    'plugins/widgets/tweets/mvc/tweets.view',
-    'plugins/widgets/tweets/mvc/tweets.event.manager',
-    'plugins/widgets/tweets/mvc/tweets.permission'
-], function defineTweets(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/twits/mvc/twits.controller',
+    'plugins/widgets/twits/mvc/twits.model',
+    'plugins/widgets/twits/mvc/twits.view',
+    'plugins/widgets/twits/mvc/twits.event.manager',
+    'plugins/widgets/twits/mvc/twits.permission'
+], function defineTwits(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Tweets
+     * Define Twits
      * @param containment
      * @constructor
-     * @class Tweets
+     * @class Twits
      * @extends AntHill
      */
-    var Tweets = function Tweets(containment) {
+    var Twits = function Twits(containment) {
 
         /**
          * Define containment
-         * @member Tweets
+         * @member Twits
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Tweets
+         * @member Twits
          * @type {*}
          */
         this.referrer = undefined;
@@ -71,35 +71,35 @@ define([
 
         /**
          * Init observer
-         * @member Tweets
+         * @member Twits
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
-         * @member Tweets
+         * @member Twits
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
-         * @member Tweets
+         * @member Twits
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Init model
-         * @member Tweets
+         * @member Twits
          * @type {*}
          */
         this.model = undefined;
 
         /**
          * Define MVC
-         * @member Tweets
+         * @member Twits
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -128,7 +128,7 @@ define([
         );
     };
 
-    return Tweets.extend('Tweets', {
+    return Twits.extend('Twits', {
 
     }, AntHill.prototype);
 });

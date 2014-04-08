@@ -36,17 +36,18 @@ define([
          * Render Embedded content
          * @member TwitsElement
          * @param {{
-         *      twitterWidgetId: string,
-         *      [twitsNumber]: number,
-         *      [showHashTagsAsLinks]: boolean,
+         *      twitsWidgetId: string,
+         *      [maximumNumberOfTweets]: number,
+         *      [showHashAsLink]: boolean,
          *      [showPhoto]: boolean,
-         *      [showTime]: boolean
+         *      [showTime]: boolean,
+         *      [showRetweets]: boolean
          * }} opts
          * @returns {boolean|*}
          */
         renderEmbeddedContent: function renderEmbeddedContent(opts) {
 
-            if (!opts.twitterWidgetId) {
+            if (!opts.twitsWidgetId) {
                 return false;
             }
 
@@ -72,15 +73,18 @@ define([
             require([
                 'plugins/widgets/twits/lib/twitter.post.fetcher'
             ], function renderTwits() {
+
                 twitterFetcher.fetch(
-                    opts.twitterWidgetId,
+                    opts.twitsWidgetId,
                     uuid,
-                    opts.twitsNumber,
-                    opts.showHashTagsAsLinks,
+                    opts.maximumNumberOfTweets,
+                    opts.showHashAsLink,
                     opts.showPhoto,
-                    opts.showTime
+                    opts.showTime,
+                    this.base.lib.datetime.dateFormat,
+                    opts.showRetweets
                 );
-            });
+            }.bind(this));
         }
 
     }, BaseElement.prototype);
