@@ -442,6 +442,7 @@ define([
                      */
                     var uuid = index;
 
+                    // check widget/content uuid
                     if (index.split('-').length > 5) {
                         uuid = index.substring(0, index.lastIndexOf('-'));
                     }
