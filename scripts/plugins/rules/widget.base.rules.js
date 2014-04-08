@@ -209,7 +209,7 @@ define([
                 render = false;
 
             if (this.base.lib.hash.hashLength(published) === 0) {
-                this.view.scope.logger.warn('No published rules', published);
+                this.view.scope.logger.debug('No published rules', published);
                 return false;
             }
 

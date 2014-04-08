@@ -126,6 +126,7 @@ define([
          * Show rules
          * @member WidgetRulesView
          * @param config
+         * @returns {boolean|*}
          */
         showRules: function showRules(config, load) {
 
@@ -135,25 +136,27 @@ define([
              */
             var $html = this.controller.getRules(config.uuid);
 
-            if (load) {
-                this.openRules({
-                    config: config,
-                    $html: $html.$,
-                    style: [
-                        config.preferences.resource,
-                        'widget-rules rules'
-                    ].join(' '),
-                    title: 'Widget rules',
-                    buttons: {
-                        preferences: {
-                            text: 'Preferences',
-                            events: {
-                                click: 'preferences' + this.scope.constructor.name
-                            }
+            if (!load) {
+                return false;
+            }
+
+            this.openRules({
+                config: config,
+                $html: $html.$,
+                style: [
+                    config.preferences.resource,
+                    'widget-rules rules'
+                ].join(' '),
+                title: 'Widget rules',
+                buttons: {
+                    preferences: {
+                        text: 'Preferences',
+                        events: {
+                            click: 'preferences' + this.scope.constructor.name
                         }
                     }
-                });
-            }
+                }
+            });
         },
 
         /**

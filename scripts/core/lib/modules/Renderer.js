@@ -295,6 +295,9 @@ define([
                     }.bind(this)
                 );
 
+                // hide on mouse leave
+                $ul.on('mouseleave.comboBoxInternal', _hide);
+
                 if (this.base.isDefined(event)) {
                     if (this.base.isFunction(event.callback)) {
                         $li.on(event.type, function comboBoxEvent(e) {

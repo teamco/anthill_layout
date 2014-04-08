@@ -68,14 +68,14 @@ define([
              * @param event
              * @private
              */
-            function _locatePrefs(event) {
+            function _locateRules(event) {
                 scope.observer.publish(
                     scope.eventmanager.eventList.loadRules, [
                         {uuid: config.uuid},
                         false,
+                        event,
                         scope.controller.locateWidgetRules.bind(
-                            scope.controller,
-                            event
+                            scope.controller
                         )
                     ]
                 );
@@ -95,7 +95,7 @@ define([
 
             this.$.off('mouseenter.rules mouseleave.rules').on(
                 'mouseenter.rules mouseleave.rules',
-                _locatePrefs.bind(this)
+                _locateRules.bind(this)
             );
         },
 
