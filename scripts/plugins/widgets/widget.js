@@ -440,7 +440,11 @@ define([
                      * Define uuid
                      * @type {string}
                      */
-                    var uuid = index.substring(0, index.lastIndexOf('-'));
+                    var uuid = index;
+
+                    if (index.split('-').length > 5) {
+                        uuid = index.substring(0, index.lastIndexOf('-'));
+                    }
 
                     /**
                      * Find item
