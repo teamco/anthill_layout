@@ -145,3 +145,7 @@ div.gallery-content div.combo-box.open li.selected:hover {
     background-color: #fbcb09;
 }
 
+div.gallery-content .scroll-cover {
+    top: 113px;
+    bottom: 30px;
+}

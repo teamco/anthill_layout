@@ -117,6 +117,10 @@ define([
                 }
             }
 
+            this.elements.$pagedata.scrollCover(
+                this.elements.$container.$
+            );
+
             this.footer(Footer, this.elements.$container).setHtml(
                 this.elements.$pagedata.getFooter()
             );

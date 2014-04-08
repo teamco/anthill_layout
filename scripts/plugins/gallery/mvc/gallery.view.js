@@ -147,6 +147,14 @@ define([
 
                 this.elements.items[$item.id] = $item;
             }
+
+            this.elements.$gallery.scrollCover(
+                this.elements.$container.$
+            );
+
+            this.footer(Footer, this.elements.$container).setHtml(
+                this.elements.$gallery.getFooter()
+            );
         },
 
         /**

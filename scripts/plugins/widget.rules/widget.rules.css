@@ -48,3 +48,8 @@ div.widgetrules-footer > div {
     font-variant: small-caps;
     text-shadow: 1px 1px #fff;
 }
+
+.panel div.widgetrules-content .scroll-cover {
+    top: 70px;
+    bottom: 30px;
+}

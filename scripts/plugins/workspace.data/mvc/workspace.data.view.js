@@ -95,6 +95,14 @@ define([
                     this.elements.items[$item.id] = $item;
                 }
             }
+
+            this.elements.$workspacedata.scrollCover(
+                this.elements.$container.$
+            );
+
+            this.footer(Footer, this.elements.$container).setHtml(
+                this.elements.$workspacedata.getFooter()
+            );
         },
 
         /**

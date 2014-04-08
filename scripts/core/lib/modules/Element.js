@@ -673,6 +673,15 @@ define([
             }
 
             return this;
+        },
+
+        scrollCover: function scrollCover($container) {
+
+            $('<div class="scroll-cover" />').
+                appendTo($container).append(
+                this.$,
+                '<div class="clear" />'
+            );
         }
 
     }, AntHill.prototype, Renderer.prototype);
