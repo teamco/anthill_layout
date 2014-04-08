@@ -37,7 +37,7 @@ define([
          * @member TwitsElement
          * @param {{
          *      twitsWidgetId: string,
-         *      [maximumNumberOfTweets]: number,
+         *      [maximumNumberOfTweets]: string,
          *      [showHashAsLink]: boolean,
          *      [showPhoto]: boolean,
          *      [showTime]: boolean,
