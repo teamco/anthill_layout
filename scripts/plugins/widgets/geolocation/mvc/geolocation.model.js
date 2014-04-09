@@ -26,7 +26,14 @@ define([
          *      geolocationZoom: {type: string, disabled: boolean, value: number},
          *      geolocationWidth: {type: string, disabled: boolean, value: number},
          *      geolocationHeight: {type: string, disabled: boolean, value: number},
+         *      geolocationMapType: {
+         *          type: string,
+         *          disabled: boolean,
+         *          list: {type: string, value: string}[],
+         *          value: string
+         *      },
          *      geolocationSensor: {type: string, disabled: boolean, value: boolean},
+         *      geolocationScale: {type: string, disabled: boolean, value: boolean},
          *      geolocationStretch: {type: string, disabled: boolean, value: boolean}
          * }}
          */
@@ -75,7 +82,7 @@ define([
                     {
                         type: 'text',
                         value: 'hybrid'
-                    },
+                    }
                 ],
                 value: 'roadmap'
             },
@@ -166,7 +173,7 @@ define([
          * @param {boolean} scale
          */
         setGeolocationScale: function setGeolocationScale(scale) {
-            this.setPrefs('geolocationSensor', scale);
+            this.setPrefs('geolocationScale', scale);
         },
 
         /**

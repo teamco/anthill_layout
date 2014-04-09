@@ -98,7 +98,7 @@ define([
             function _setLocation(position) {
                 this.model.setGeolocationLatitude(position.coords.latitude);
                 this.model.setGeolocationLongitude(position.coords.longitude);
-                this.controller._setEmbeddedContent();
+                this.controller._setEmbeddedContent.bind(this)();
             }
 
             if (navigator.geolocation) {
