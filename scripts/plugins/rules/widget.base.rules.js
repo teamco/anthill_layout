@@ -93,7 +93,8 @@ define([
                 this.renderCombobox(
                     rulesList,
                     rulesList[0].value,
-                    'Widget rules', {
+                    'Widget rules',
+                    'widgetRule', {
                         type: 'click.transferValue',
                         callback: this._transferValue.bind({
                             scope: this,
@@ -155,13 +156,15 @@ define([
             );
 
             var $li = $('<li />'),
-                $ul = $('<ul />').addClass('button-add-rules');
+                $ul = $('<ul />').addClass('button-add-rules'),
+                cname = this.view.scope.constructor.name;
 
             $li.append(
                 this.renderCombobox(
                     rulesList,
                     rulesList[0].value,
-                    [this.view.scope.constructor.name, 'rules'].join(' '), {
+                    [cname, 'rules'].join(' '),
+                    [cname, 'Rule'].join(''), {
                         type: 'click.transferValue',
                         callback: this._transferValue.bind({
                             scope: this,

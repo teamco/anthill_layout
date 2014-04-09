@@ -196,7 +196,8 @@ define([
                                         }
                                     ],
                                     layout.controller.getBehaviorMode(),
-                                    'Mode'
+                                    'Mode',
+                                    'layoutMode'
                                 )
                             ).attr('rel', 'layout-behavior')
                         ])

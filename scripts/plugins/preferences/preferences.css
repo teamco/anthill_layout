@@ -13,6 +13,10 @@
     clear: both;
 }
 
+.modal-dialog.preferences .hidden {
+    display: none;
+}
+
 .modal-dialog.preferences div.html li.auto {
     height: auto;
 }

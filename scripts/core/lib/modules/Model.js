@@ -317,12 +317,11 @@ define([
          * Get prefs
          * @member BaseModel
          * @param {string} prefs
-         * @returns {boolean|string}
+         * @returns {*}
          */
         getPrefs: function getPrefs(prefs) {
 
             if (this.base.isDefined(this.preferences)) {
-
                 return this.getContentPrefs(prefs);
             }
 

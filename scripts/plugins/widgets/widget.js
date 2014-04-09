@@ -153,7 +153,7 @@ define([
          */
         updatePreferences: function updatePreferences($modal) {
 
-            var $inputs = $('input:not(:disabled), textarea', $modal.$),
+            var $inputs = $('input:not(:disabled), textarea, div.combo-box > input', $modal.$),
                 scope = this.scope;
 
             $inputs.each(function each(index, input) {

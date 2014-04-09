@@ -56,7 +56,8 @@ define([
                 this.renderCombobox(
                     combo,
                     currentProvider.name,
-                    ''
+                    '',
+                    'galleryProviders'
                 )
             );
 

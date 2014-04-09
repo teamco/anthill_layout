@@ -100,7 +100,7 @@ define([
          * Show position
          * @member GeolocationView
          */
-        showPosition: function showPosition() {debugger
+        showPosition: function showPosition() {
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.setEmbeddedContent
             );

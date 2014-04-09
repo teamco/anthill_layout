@@ -41,6 +41,9 @@ define([
          *      zoom: number,
          *      width: number,
          *      height: number,
+         *      maptype: string,
+         *      sensor: boolean,
+         *      scale: boolean,
          *      sensor: boolean,
          *      stretch: boolean
          * }} opts
@@ -50,8 +53,11 @@ define([
             var url = [
                 'http://maps.googleapis.com/maps/api/staticmap?center=',
                 opts.latitude, ',', opts.longitude,
-                '&zoom=', opts.zoom, '&size=', opts.width, 'x', opts.height,
-                'sensor=', opts.sensor
+                '&maptype=', opts.maptype,
+                '&zoom=', opts.zoom,
+                '&scale=', (opts.scale ? 2 : 1),
+                '&size=', opts.width, 'x', opts.height,
+                '&sensor=', opts.sensor
             ].join('');
 
             this.$.append(
@@ -59,6 +65,8 @@ define([
                     src: url
                 }).addClass(opts.stretch ? 'stretch' : undefined)
             );
+
+            this.view.controller.clearParentThumbnail();
         }
 
     }, BaseElement.prototype);

@@ -28,6 +28,27 @@ define([
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
+            var latitude = this.model.getPrefs('geolocationLatitude'),
+                longitude = this.model.getPrefs('geolocationLongitude');
+
+            if (!latitude || !longitude) {
+
+                this.observer.publish(
+                    this.eventmanager.eventList.getLocation
+                );
+
+                return false;
+            }
+
+            this.controller._setEmbeddedContent.bind(this)();
+        },
+
+        /**
+         * Set embedded content
+         * @member GeolocationController
+         * @private
+         */
+        _setEmbeddedContent: function _setEmbeddedContent() {
             this.view.elements.$geolocation.renderEmbeddedContent({
                     latitude: this.model.getPrefs('geolocationLatitude'),
                     longitude: this.model.getPrefs('geolocationLongitude'),
@@ -35,7 +56,9 @@ define([
                     width: this.model.getPrefs('geolocationWidth'),
                     height: this.model.getPrefs('geolocationHeight'),
                     sensor: this.model.getPrefs('geolocationSensor'),
-                    stretch: this.model.getPrefs('geolocationStretch')
+                    sensor: this.model.getPrefs('geolocationScale'),
+                    stretch: this.model.getPrefs('geolocationStretch'),
+                    maptype: this.model.getPrefs('geolocationMapType')
                 }
             );
         },
@@ -65,10 +88,23 @@ define([
          * @member GeolocationController
          */
         getLocation: function getLocation() {
+
+            /**
+             * Set Location callback
+             * @param position
+             * @returns {*}
+             * @private
+             */
+            function _setLocation(position) {
+                this.model.setGeolocationLatitude(position.coords.latitude);
+                this.model.setGeolocationLongitude(position.coords.longitude);
+                this.controller._setEmbeddedContent();
+            }
+
             if (navigator.geolocation) {
-                return navigator.geolocation.getCurrentPosition(
-                    this.getView().showPosition,
-                    this.errorHandler
+                navigator.geolocation.getCurrentPosition(
+                    _setLocation.bind(this),
+                    this.controller.errorHandler
                 );
             } else {
                 this.errorHandler();

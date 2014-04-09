@@ -56,7 +56,35 @@ define([
                 disabled: false,
                 value: 300
             },
+            geolocationMapType: {
+                type: 'combobox',
+                disabled: false,
+                list: [
+                    {
+                        type: 'text',
+                        value: 'roadmap'
+                    },
+                    {
+                        type: 'text',
+                        value: 'satellite'
+                    },
+                    {
+                        type: 'text',
+                        value: 'terrain'
+                    },
+                    {
+                        type: 'text',
+                        value: 'hybrid'
+                    },
+                ],
+                value: 'roadmap'
+            },
             geolocationSensor: {
+                type: 'checkbox',
+                disabled: false,
+                value: false
+            },
+            geolocationScale: {
                 type: 'checkbox',
                 disabled: false,
                 value: false
@@ -79,12 +107,84 @@ define([
     return GeolocationModel.extend('GeolocationModel', {
 
         /**
-         * Set Geolocation Url
+         * Set Geolocation Latitude
          * @member GeolocationModel
-         * @param {string} url
+         * @param {number} latitude
          */
-        setGeolocationUrl: function setGeolocationUrl(url) {
-            this.setPrefs('youtubeUrl', url);
+        setGeolocationLatitude: function setGeolocationLatitude(latitude) {
+            this.setPrefs('geolocationLatitude', latitude);
+        },
+
+        /**
+         * Set Geolocation Longitude
+         * @member GeolocationModel
+         * @param {number} longitude
+         */
+        setGeolocationLongitude: function setGeolocationLongitude(longitude) {
+            this.setPrefs('geolocationLongitude', longitude);
+        },
+
+        /**
+         * Set Geolocation Zoom
+         * @member GeolocationModel
+         * @param {number} zoom
+         */
+        setGeolocationZoom: function setGeolocationZoom(zoom) {
+            this.setPrefs('geolocationZoom', zoom);
+        },
+
+        /**
+         * Set Geolocation Width
+         * @member GeolocationModel
+         * @param {number} width
+         */
+        setGeolocationWidth: function setGeolocationWidth(width) {
+            this.setPrefs('geolocationWidth', width);
+        },
+
+        /**
+         * Set Geolocation Height
+         * @member GeolocationModel
+         * @param {number} height
+         */
+        setGeolocationHeight: function setGeolocationHeight(height) {
+            this.setPrefs('geolocationHeight', height);
+        },
+
+        /**
+         * Set Geolocation Height
+         * @member GeolocationModel
+         * @param {string} type
+         */
+        setGeolocationMapType: function setGeolocationMapType(type) {
+            this.setPrefs('geolocationMapType', type);
+        },
+
+        /**
+         * Set Geolocation Scale
+         * @member GeolocationModel
+         * @param {boolean} scale
+         */
+        setGeolocationScale: function setGeolocationScale(scale) {
+            this.setPrefs('geolocationSensor', scale);
+        },
+
+        /**
+         * Set Geolocation Sensor
+         * @member GeolocationModel
+         * @param {boolean} sensor
+         */
+        setGeolocationSensor: function setGeolocationSensor(sensor) {
+            this.setPrefs('geolocationSensor', sensor);
+        },
+
+        /**
+         * Set Geolocation Stretch
+         * @member GeolocationModel
+         * @param {boolean} stretch
+         */
+        setGeolocationStretch: function setGeolocationStretch(stretch) {
+            this.setPrefs('geolocationStretch', stretch);
         }
 
     }, BaseModel.prototype);

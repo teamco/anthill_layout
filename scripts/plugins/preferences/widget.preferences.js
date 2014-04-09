@@ -162,6 +162,20 @@ define([
                             });
                         }
 
+                        if (node.type === 'combobox') {
+
+                            /**
+                             * Get text field
+                             * @type {*[]}
+                             */
+                            $element = this.renderCombobox(
+                                node.list,
+                                node.value,
+                                text,
+                                index
+                            );
+                        }
+
                         nodes.push(
                             $('<li />').
                                 addClass(node.type).

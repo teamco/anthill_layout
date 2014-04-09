@@ -178,9 +178,11 @@ define([
          * @member Renderer
          * @param {Array} data
          * @param selected
+         * @param {string} name
+         * @param {string} index
          * @param {{type: string, callback: function}} [event]
          */
-        renderCombobox: function renderCombobox(data, selected, name, event) {
+        renderCombobox: function renderCombobox(data, selected, name, index, event) {
 
             /**
              * Define container
@@ -188,7 +190,13 @@ define([
              */
             var $div = $('<div style="display: none;" />').addClass('combo-box').attr({
                 id: this.base.lib.generator.UUID() + '-combobox'
-            });
+            }).append(
+                $('<input class="hidden" />').attr({
+                    name: index,
+                    disabled: true,
+                    type: 'text'
+                })
+            );
 
             /**
              * Open combo box
@@ -226,6 +234,8 @@ define([
                 if (value === selected) {
                     return false;
                 }
+
+                $('input[name="' + index + '"]', $div).val(value);
             }
 
             /**
@@ -263,7 +273,6 @@ define([
                 }
 
                 $li.on(
-
                     'click.comboBoxInternal',
 
                     /**
