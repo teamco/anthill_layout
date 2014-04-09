@@ -22,7 +22,8 @@ define([
          * @member ImageGalleryModel
          * @type {{
          *      imageGalleryUrls: {type: string, disabled: boolean, value: undefined},
-         *      imageGalleryTexts: {type: string, disabled: boolean, value: undefined}
+         *      imageGalleryTexts: {type: string, disabled: boolean, value: undefined},
+         *      imageGalleryResponsive: {type: string, disabled: boolean, value: boolean}
          * }}
          */
         this.preferences = {
@@ -35,6 +36,11 @@ define([
                 type: 'textarea',
                 disabled: false,
                 value: undefined
+            },
+            imageGalleryResponsive: {
+                type: 'checkbox',
+                disabled: false,
+                value: false
             }
         };
 

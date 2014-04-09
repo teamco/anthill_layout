@@ -20,7 +20,9 @@ define([
         /**
          * Define preferences
          * @member TextEditorModel
-         * @type {{bodyText: {type: string, disabled: boolean, value: undefined}}}
+         * @type {{
+         *      bodyHtml: {type: string, disabled: boolean, value: undefined}
+         * }}
          */
         this.preferences = {
             bodyHtml: {

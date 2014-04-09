@@ -21,7 +21,12 @@ define([
          * Define preferences
          * @member TwitsModel
          * @type {{
-         *      twitsUrl: {}
+         *      twitsWidgetId: {type: string, disabled: boolean, value: undefined},
+         *      maximumNumberOfTweets: {type: string, disabled: boolean, value: number},
+         *      showHashAsLink: {type: string, disabled: boolean, value: boolean},
+         *      showPhoto: {type: string, disabled: boolean, value: boolean},
+         *      showTime: {type: string, disabled: boolean, value: boolean},
+         *      showRetweets: {type: string, disabled: boolean, value: boolean}
          * }}
          */
         this.preferences = {

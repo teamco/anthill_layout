@@ -21,7 +21,7 @@ define([
          * Define preferences
          * @member YoutubeModel
          * @type {{
-         *      youtubeUrl: {}
+         *      youtubeUrl: {type: string, disabled: boolean, value: undefined}
          * }}
          */
         this.preferences = {

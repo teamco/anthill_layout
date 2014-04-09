@@ -28,8 +28,15 @@ define([
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
-            this.view.elements.$geolocation.renderEmbeddedContent(
-//                this.model.getPrefs('youtubeUrl')
+            this.view.elements.$geolocation.renderEmbeddedContent({
+                    latitude: this.model.getPrefs('geolocationLatitude'),
+                    longitude: this.model.getPrefs('geolocationLongitude'),
+                    zoom: this.model.getPrefs('geolocationZoom'),
+                    width: this.model.getPrefs('geolocationWidth'),
+                    height: this.model.getPrefs('geolocationHeight'),
+                    sensor: this.model.getPrefs('geolocationSensor'),
+                    stretch: this.model.getPrefs('geolocationStretch')
+                }
             );
         },
 

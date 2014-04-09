@@ -20,7 +20,15 @@ define([
         /**
          * Define preferences
          * @member GeolocationModel
-         * @type {*}
+         * @type {{
+         *      geolocationLatitude: {type: string, disabled: boolean, value: undefined},
+         *      geolocationLongitude: {type: string, disabled: boolean, value: undefined},
+         *      geolocationZoom: {type: string, disabled: boolean, value: number},
+         *      geolocationWidth: {type: string, disabled: boolean, value: number},
+         *      geolocationHeight: {type: string, disabled: boolean, value: number},
+         *      geolocationSensor: {type: string, disabled: boolean, value: boolean},
+         *      geolocationStretch: {type: string, disabled: boolean, value: boolean}
+         * }}
          */
         this.preferences = {
             geolocationLatitude: {

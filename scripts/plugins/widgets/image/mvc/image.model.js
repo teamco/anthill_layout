@@ -22,7 +22,11 @@ define([
          * @member ImageModel
          * @type {{
          *      imageUrl: {type: string, disabled: boolean, value: undefined},
-         *      imageText: {type: string, disabled: boolean, value: undefined}
+         *      imageText: {type: string, disabled: boolean, value: undefined},
+         *      imageRepeatX: {type: string, disabled: boolean, checked: boolean},
+         *      imageRepeatY: {type: string, disabled: boolean, checked: boolean},
+         *      imageStretch: {type: string, disabled: boolean, checked: boolean},
+         *      imageSplitContent: {type: string, disabled: boolean, checked: boolean}
          * }}
          */
         this.preferences = {
