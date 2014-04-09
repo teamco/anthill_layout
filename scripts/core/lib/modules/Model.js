@@ -343,7 +343,7 @@ define([
          * Set prefs
          * @member BaseModel
          * @param {string} prefs
-         * @param {string} value
+         * @param {*} value
          */
         setPrefs: function setPrefs(prefs, value) {
 

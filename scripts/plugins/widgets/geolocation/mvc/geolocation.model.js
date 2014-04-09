@@ -69,19 +69,19 @@ define([
                 list: [
                     {
                         type: 'text',
-                        value: 'roadmap'
+                        value: 'Roadmap'
                     },
                     {
                         type: 'text',
-                        value: 'satellite'
+                        value: 'Satellite'
                     },
                     {
                         type: 'text',
-                        value: 'terrain'
+                        value: 'Terrain'
                     },
                     {
                         type: 'text',
-                        value: 'hybrid'
+                        value: 'Hybrid'
                     }
                 ],
                 value: 'roadmap'

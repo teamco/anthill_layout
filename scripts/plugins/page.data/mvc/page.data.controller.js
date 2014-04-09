@@ -46,9 +46,10 @@ define([
          * Get preferences
          * @member PageDataController
          * @param {string} uuid
+         * @param {boolean} load
          * @returns {*}
          */
-        getPreferences: function getPreferences(uuid) {
+        getPreferences: function getPreferences(uuid, load) {
 
             /**
              * Define widget
@@ -61,7 +62,9 @@ define([
                 widget.controller.getContent()
             );
 
-            return this.scope.activeContent.view.renderPreferences();
+            if (load) {
+                return this.scope.activeContent.view.renderPreferences();
+            }
         },
 
         /**

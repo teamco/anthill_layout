@@ -135,14 +135,14 @@ define([
 
             /**
              * Define $html
-             * @type {BaseElement.$}
+             * @type {BaseElement}
              */
-            var $html = this.controller.getPreferences(config.uuid).$;
+            var $html = this.controller.getPreferences(config.uuid, load);
 
             if (load) {
                 this.openPreferences({
                     config: config,
-                    $html: $html,
+                    $html: $html.$,
                     style: [
                         config.preferences.resource,
                         'widget-prefs preferences'

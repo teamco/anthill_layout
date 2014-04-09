@@ -1,3 +1,7 @@
+.modal-dialog.rules .hidden {
+    display: none;
+}
+
 .modal-dialog.rules div.html > ul {
     list-style: none;
     padding: 5px;

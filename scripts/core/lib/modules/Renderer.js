@@ -194,7 +194,8 @@ define([
                 $('<input class="hidden" />').attr({
                     name: index,
                     disabled: true,
-                    type: 'text'
+                    type: 'text',
+                    value: selected
                 })
             );
 
