@@ -125,7 +125,7 @@ define([
                              */
                             $element = this.renderTextField({
                                 name: index,
-                                text: text,
+                                text: text.trim(),
                                 placeholder: placeholder,
                                 value: node.value,
                                 disabled: node.disabled
@@ -140,7 +140,7 @@ define([
                              */
                             $element = this.renderCheckbox({
                                 name: index,
-                                text: text,
+                                text: text.trim(),
                                 checked: node.value,
                                 value: node.value,
                                 disabled: node.disabled
@@ -155,7 +155,7 @@ define([
                              */
                             $element = this.renderTextArea({
                                 name: index,
-                                text: text,
+                                text: text.trim(),
                                 placeholder: placeholder,
                                 value: node.value,
                                 disabled: node.disabled
@@ -165,13 +165,19 @@ define([
                         if (node.type === 'combobox') {
 
                             /**
+                             * Define selected item
+                             * @type {string}
+                             */
+                            var selected = node.value;
+
+                            /**
                              * Get text field
                              * @type {*[]}
                              */
                             $element = this.renderCombobox(
                                 node.list,
-                                node.value,
-                                text,
+                                (selected.length === 0 ? node.list[0].value : selected),
+                                text.trim(),
                                 index
                             );
                         }

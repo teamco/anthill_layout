@@ -84,9 +84,9 @@ define([
                         value: 'Hybrid'
                     }
                 ],
-                value: 'roadmap'
+                value: 'Roadmap'
             },
-            geolocationSensor: {
+            geolocationGpsSensor: {
                 type: 'checkbox',
                 disabled: false,
                 value: false
@@ -181,8 +181,8 @@ define([
          * @member GeolocationModel
          * @param {boolean} sensor
          */
-        setGeolocationSensor: function setGeolocationSensor(sensor) {
-            this.setPrefs('geolocationSensor', sensor);
+        setGeolocationGpsSensor: function setGeolocationGpsSensor(sensor) {
+            this.setPrefs('geolocationGpsSensor', sensor);
         },
 
         /**

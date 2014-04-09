@@ -51,9 +51,10 @@ define([
         renderEmbeddedContent: function renderEmbeddedContent(opts) {
 
             var url = [
-                'http://maps.googleapis.com/maps/api/staticmap?center=',
-                opts.latitude, ',', opts.longitude,
-                '&maptype=', opts.maptype,
+                'http://maps.googleapis.com/maps/api/staticmap',
+                '?center=', opts.latitude, ',', opts.longitude,
+                '&markers=color:blue|label:S|', opts.latitude, ',', opts.longitude,
+                '&maptype=', opts.maptype.toLowerCase(),
                 '&zoom=', opts.zoom,
                 '&scale=', (opts.scale ? 2 : 1),
                 '&size=', opts.width, 'x', opts.height,
@@ -62,7 +63,8 @@ define([
 
             this.$.append(
                 $('<img />').attr({
-                    src: url
+                    src: url,
+                    alt: url
                 }).addClass(opts.stretch ? 'stretch' : undefined)
             );
 

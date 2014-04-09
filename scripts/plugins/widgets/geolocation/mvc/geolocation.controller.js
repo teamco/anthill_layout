@@ -55,8 +55,8 @@ define([
                     zoom: this.model.getPrefs('geolocationZoom'),
                     width: this.model.getPrefs('geolocationWidth'),
                     height: this.model.getPrefs('geolocationHeight'),
-                    sensor: this.model.getPrefs('geolocationSensor'),
-                    sensor: this.model.getPrefs('geolocationScale'),
+                    sensor: this.model.getPrefs('geolocationGpsSensor'),
+                    scale: this.model.getPrefs('geolocationScale'),
                     stretch: this.model.getPrefs('geolocationStretch'),
                     maptype: this.model.getPrefs('geolocationMapType')
                 }
