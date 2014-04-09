@@ -32,7 +32,7 @@ define([
          *          list: {type: string, value: string}[],
          *          value: string
          *      },
-         *      geolocationSensor: {type: string, disabled: boolean, value: boolean},
+         *      geolocationGpsSensor: {type: string, disabled: boolean, value: boolean},
          *      geolocationScale: {type: string, disabled: boolean, value: boolean},
          *      geolocationStretch: {type: string, disabled: boolean, value: boolean}
          * }}
