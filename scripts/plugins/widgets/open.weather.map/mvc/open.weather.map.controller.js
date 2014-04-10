@@ -8,28 +8,28 @@
 define([
     'plugins/plugin',
     'plugins/widgets/widget'
-], function defineGeolocationController(PluginBase, WidgetContentController) {
+], function defineOpenWeatherMapController(PluginBase, WidgetContentController) {
 
     /**
      * Define youtube controller
-     * @class GeolocationController
+     * @class OpenWeatherMapController
      * @extends PluginController
      * @extends WidgetContentController
      * @constructor
      */
-    var GeolocationController = function GeolocationController() {
+    var OpenWeatherMapController = function OpenWeatherMapController() {
     };
 
-    return GeolocationController.extend('GeolocationController', {
+    return OpenWeatherMapController.extend('OpenWeatherMapController', {
 
         /**
          * Set embedded content
-         * @member GeolocationController
+         * @member OpenWeatherMapController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
-            var latitude = this.model.getPrefs('geolocationLatitude'),
-                longitude = this.model.getPrefs('geolocationLongitude');
+            var latitude = this.model.getPrefs('openweathermapLatitude'),
+                longitude = this.model.getPrefs('openweathermapLongitude');
 
             if (!latitude || !longitude) {
 
@@ -45,30 +45,30 @@ define([
 
         /**
          * Set embedded content
-         * @member GeolocationController
+         * @member OpenWeatherMapController
          * @private
          */
         _setEmbeddedContent: function _setEmbeddedContent() {
-            this.view.elements.$geolocation.renderEmbeddedContent({
-                    latitude: this.model.getPrefs('geolocationLatitude'),
-                    longitude: this.model.getPrefs('geolocationLongitude'),
-                    zoom: this.model.getPrefs('geolocationZoom'),
-                    width: this.model.getPrefs('geolocationWidth'),
-                    height: this.model.getPrefs('geolocationHeight'),
-                    sensor: this.model.getPrefs('geolocationGpsSensor'),
-                    scale: this.model.getPrefs('geolocationScale'),
-                    stretch: this.model.getPrefs('geolocationStretch'),
-                    maptype: this.model.getPrefs('geolocationMapType')
+            this.view.elements.$openweathermap.renderEmbeddedContent({
+                    latitude: this.model.getPrefs('openweathermapLatitude'),
+                    longitude: this.model.getPrefs('openweathermapLongitude'),
+                    zoom: this.model.getPrefs('openweathermapZoom'),
+                    width: this.model.getPrefs('openweathermapWidth'),
+                    height: this.model.getPrefs('openweathermapHeight'),
+                    sensor: this.model.getPrefs('openweathermapGpsSensor'),
+                    scale: this.model.getPrefs('openweathermapScale'),
+                    stretch: this.model.getPrefs('openweathermapStretch'),
+                    maptype: this.model.getPrefs('openweathermapMapType')
                 }
             );
         },
 
         /**
-         * Add Geolocation rule
-         * @member GeolocationController
+         * Add OpenWeatherMap rule
+         * @member OpenWeatherMapController
          * @param e
          */
-        addGeolocationRule: function addGeolocationRule(e) {
+        addOpenWeatherMapRule: function addOpenWeatherMapRule(e) {
 
             /**
              * Define $button
@@ -85,7 +85,7 @@ define([
 
         /**
          * Get location
-         * @member GeolocationController
+         * @member OpenWeatherMapController
          */
         getLocation: function getLocation() {
 
@@ -96,8 +96,8 @@ define([
              * @private
              */
             function _setLocation(position) {
-                this.model.setGeolocationLatitude(position.coords.latitude);
-                this.model.setGeolocationLongitude(position.coords.longitude);
+                this.model.setOpenWeatherMapLatitude(position.coords.latitude);
+                this.model.setOpenWeatherMapLongitude(position.coords.longitude);
                 this.controller._setEmbeddedContent.bind(this)();
             }
 
@@ -113,7 +113,7 @@ define([
 
         /**
          * Error handler
-         * @member GeolocationController
+         * @member OpenWeatherMapController
          * @param [error]
          */
         errorHandler: function errorHandler(error) {
@@ -122,11 +122,11 @@ define([
              * Define default message
              * @type {string}
              */
-            var message = 'Geolocation is not supported by this browser';
+            var message = 'OpenWeatherMap is not supported by this browser';
 
             switch (error.code) {
                 case error.PERMISSION_DENIED:
-                    message = 'User denied the request for Geolocation';
+                    message = 'User denied the request for OpenWeatherMap';
                     break;
                 case error.POSITION_UNAVAILABLE:
                     message = 'Location information is unavailable';
