@@ -22,6 +22,11 @@ define([
          * @member OpenWeatherMapModel
          */
         this.preferences = {
+            openweathermapApiKey: {
+                type: 'text',
+                disabled: true,
+                value: '259681e7bb4cfa2cd775fb127d09ca74'
+            },
             openweathermapLatitude: {
                 type: 'text',
                 disabled: false,
@@ -96,6 +101,15 @@ define([
     };
 
     return OpenWeatherMapModel.extend('OpenWeatherMapModel', {
+
+        /**
+         * Set OpenWeatherMap API Key
+         * @member OpenWeatherMapModel
+         * @param {number} key
+         */
+        setOpenWeatherMapApiKey: function setOpenWeatherMapApiKey(key) {
+            this.setPrefs('openweathermapApiKey', key);
+        },
 
         /**
          * Set OpenWeatherMap Latitude
