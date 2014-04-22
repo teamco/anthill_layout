@@ -30,7 +30,7 @@ define([
          * @member Wireframe
          * @type {string}
          */
-        this.selector = '#next-widget-position';
+        this.selector = 'next-widget-position';
     };
 
     return Wireframe.extend('Wireframe', {
@@ -86,8 +86,7 @@ define([
          * @member Wireframe
          */
         show: function show() {
-
-            this.setVisibility('fadeIn', 'fast');
+            this.$.show();
         },
 
         /**
@@ -95,21 +94,7 @@ define([
          * @member Wireframe
          */
         hide: function hide() {
-
-            this.setVisibility('fadeOut', 'fast');
-        },
-
-        /**
-         * Set wireframe visibility
-         * @member Wireframe
-         * @param {String} fade
-         * @param {String} type
-         */
-        setVisibility: function setVisibility(fade, type) {
-
-            if (this.$) {
-                this.$.stop()[fade](type);
-            }
+            this.$.hide();
         },
 
         /**
@@ -119,8 +104,14 @@ define([
          */
         getWireFrame: function getWireFrame() {
 
+            /**
+             * Define uuid
+             * @type {string}
+             */
+            var uuid = '#' + this.selector;
+
             return $(
-                this.selector,
+                uuid,
                 this.widget.controller.get$page().$
             );
         },
@@ -130,7 +121,6 @@ define([
          * @member Wireframe
          */
         moveToCurrentPage: function moveToCurrentPage() {
-
             if (this.getWireFrame().length === 0) {
                 this.$.appendTo(
                     this.widget.controller.get$page().$
@@ -154,9 +144,9 @@ define([
             this.$ = this.getWireFrame();
 
             if (this.$.length === 0) {
-                $('#next-widget-position').remove();
+                $('#' + this.selector).remove();
                 this.$ = $('<div />').css(opts.style).attr({
-                    id: 'next-widget-position'
+                    id: this.selector
                 });
             }
 

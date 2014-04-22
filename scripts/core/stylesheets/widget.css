@@ -1,3 +1,33 @@
+.widget {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 50;
+    cursor: move;
+    -webkit-box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
+    box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
+    border: none;
+}
+
+.widget.select,
+.widget:hover,
+.widget.ui-draggable-dragging {
+    border: 5px solid #ff6347;
+}
+
+.widget.on-resize,
+.widget.on-resize:hover {
+    border: none;
+}
+
+.widget.ui-resizable-resizing .ui-resizable-handle,
+.widget:hover .ui-resizable-handle {
+    visibility: visible;
+}
+
 .widget .ui-resizable-handle {
     background: #cd0a0a none;
     width: 10px;
@@ -53,36 +83,6 @@
     top: -5px;
 }
 
-.widget {
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 50;
-    cursor: move;
-    -webkit-box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
-    -moz-box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
-    box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
-    border: none;
-}
-
-.widget.select,
-.widget:hover {
-    border: 5px solid #ff6347;
-}
-
-.widget.on-resize,
-.widget.on-resize:hover {
-    border: none;
-
-}
-
-.widget.ui-resizable-resizing .ui-resizable-handle,
-.widget:hover .ui-resizable-handle {
-    visibility: visible;
-}
-
 .widget.ontop {
     z-index: 100 !important;
 }
@@ -112,6 +112,10 @@
 .widget.ui-resizable-resizing iframe,
 .widget.ui-draggable-dragging iframe {
     display: none !important;
+}
+
+.widget.ui-draggable-dragging .ui-resizable-handle {
+    display: none;
 }
 
 .widget.ui-draggable-dragging,
