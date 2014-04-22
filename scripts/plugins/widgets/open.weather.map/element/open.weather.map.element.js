@@ -52,7 +52,6 @@ define([
 
             require([
                 'jquery',
-                'jquery.ui',
                 'http://openlayers.org/api/OpenLayers.js'
             ], function defineOpenLayers(jQuery) {
 
