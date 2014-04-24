@@ -382,7 +382,9 @@ define([
                             var puuid = widgetPublisher.model.getUUID(),
                                 interval = 100;
 
-                            this[puuid] = setInterval(function () {
+                            this[puuid] = setInterval(
+
+                                function () {
 
                                     this.scope.controller._getContentScope(this.interval, this.opts);
 
@@ -392,7 +394,8 @@ define([
                                         opts: opts
                                     }),
 
-                                interval);
+                                interval
+                            );
                         }
                     }
                 }
