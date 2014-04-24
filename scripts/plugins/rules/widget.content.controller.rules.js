@@ -426,7 +426,7 @@ define([
 
             if (this[puuid] * interval > timeout) {
 
-                this.logger.warn('Timeout on loading scope rules', opts.widgetPublisher);
+                this.scope.logger.warn('Timeout on loading scope rules', opts.widgetPublisher);
                 return false;
             }
 
@@ -436,12 +436,12 @@ define([
              */
             var scope = opts.widgetPublisher.controller.getContent();
 
-            this.logger.debug('Wait until scope will be available', scope);
+            this.scope.logger.debug('Wait until scope will be available', scope);
 
             if (scope) {
 
-                this.logger.info('Scope available', scope);
-                clearInterval(this[puuid]);
+                this.scope.logger.info('Scope available', scope);
+                clearInterval(this.scope[puuid]);
 
                 this._registerScopeRule(scope, opts);
             }
