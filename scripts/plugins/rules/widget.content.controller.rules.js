@@ -133,23 +133,24 @@ define([
             for (var index in items) {
 
                 if (items.hasOwnProperty(index)) {
+                    continue;
+                }
 
-                    /**
-                     * Define page item
-                     * @type {Widget}
-                     */
-                    item = items[index];
+                /**
+                 * Define page item
+                 * @type {Widget}
+                 */
+                item = items[index];
 
-                    rules = item.model.getConfig('rules');
-                    uuid = item.controller.getContent().model.getUUID();
+                rules = item.model.getConfig('rules');
+                uuid = item.controller.getContent().model.getUUID();
 
-                    if (rules.hasOwnProperty('publish') &&
-                        this.scope.model.getUUID() !== uuid) {
-                        published[uuid] = {
-                            rules: rules.publish,
-                            type: item.controller.getContent().constructor.name
-                        };
-                    }
+                if (rules.hasOwnProperty('publish') &&
+                    this.scope.model.getUUID() !== uuid) {
+                    published[uuid] = {
+                        rules: rules.publish,
+                        type: item.controller.getContent().constructor.name
+                    };
                 }
             }
 
@@ -191,56 +192,58 @@ define([
 
             for (var index in subscribeEM) {
 
-                if (subscribeEM.hasOwnProperty(index)) {
+                if (!subscribeEM.hasOwnProperty(index)) {
+                    continue;
+                }
 
-                    var events = subscribeEM[index];
+                var events = subscribeEM[index];
 
-                    /**
-                     * Define uuid
-                     * @type {string}
-                     */
-                    var uuid = index;
+                /**
+                 * Define uuid
+                 * @type {string}
+                 */
+                var uuid = index;
 
-                    // check widget/content uuid
-                    if (index.split('-').length > 5) {
-                        uuid = index.substring(0, index.lastIndexOf('-'));
+                // check widget/content uuid
+                if (index.split('-').length > 5) {
+                    uuid = index.substring(0, index.lastIndexOf('-'));
+                }
+
+                /**
+                 * Find item
+                 * @type {*}
+                 */
+                var item = this.model.findItemByUUID(this.root(), uuid);
+
+                this.scope.logger.debug(item, events);
+
+                if (!item) {
+                    this.scope.logger.warn('Undefined item', events);
+                    return false;
+                }
+
+                if (this.base.lib.hash.hashLength(events) === 0) {
+                    this.scope.logger.warn('Empty events', subscribeEM, index);
+                    return false;
+                }
+
+                for (var event in events) {
+
+                    if (!events.hasOwnProperty(event)) {
+                        continue;
                     }
 
-                    /**
-                     * Find item
-                     * @type {*}
-                     */
-                    var item = this.model.findItemByUUID(this.root(), uuid);
-
-                    this.scope.logger.debug(item, events);
-
-                    if (!item) {
-                        this.scope.logger.warn('Undefined item', events);
-                        return false;
+                    for (var i = 0, l = events[event].length; i < l; i++) {
+                        item.observer.unRegister(
+                            event,
+                            events[event][i]
+                        );
                     }
 
-                    if (this.base.lib.hash.hashLength(events) === 0) {
-                        this.scope.logger.warn('Empty events', subscribeEM, index);
-                        return false;
-                    }
+                    delete subscribeEM[index][event];
 
-                    for (var event in events) {
-
-                        if (events.hasOwnProperty(event)) {
-
-                            for (var i = 0, l = events[event].length; i < l; i++) {
-                                item.observer.unRegister(
-                                    event,
-                                    events[event][i]
-                                );
-                            }
-                        }
-
-                        delete subscribeEM[index][event];
-
-                        if (this.base.lib.hash.hashLength(subscribeEM[index]) === 0) {
-                            delete subscribeEM[index];
-                        }
+                    if (this.base.lib.hash.hashLength(subscribeEM[index]) === 0) {
+                        delete subscribeEM[index];
                     }
                 }
             }
@@ -295,92 +298,101 @@ define([
 
             for (var index in subscribe) {
 
-                if (subscribe.hasOwnProperty(index)) {
+                if (!subscribe.hasOwnProperty(index)) {
+                    continue;
+                }
 
-                    /**
-                     * Define types
-                     * @type {{}}
-                     */
-                    types = subscribe[index];
+                /**
+                 * Define types
+                 * @type {{}}
+                 */
+                types = subscribe[index];
 
-                    subscribersCounter -= 1;
+                subscribersCounter -= 1;
 
-                    /**
-                     * Define widget publisher
-                     * @type {Widget}
-                     */
-                    var widgetPublisher = page.model.getWidgetByContentUUID(
-                        index
-                    );
+                /**
+                 * Define widget publisher
+                 * @type {Widget}
+                 */
+                var widgetPublisher = page.model.getWidgetByContentUUID(
+                    index
+                );
 
-                    for (var type in types) {
+                for (var type in types) {
 
-                        if (types.hasOwnProperty(type)) {
+                    if (!types.hasOwnProperty(type)) {
+                        continue;
+                    }
 
-                            for (var i = 0, l = types[type].length; i < l; i++) {
+                    for (var i = 0, l = types[type].length; i < l; i++) {
 
-                                /**
-                                 * Define event
-                                 * @type {string}
-                                 */
-                                event = types[type][i];
+                        /**
+                         * Define event
+                         * @type {string}
+                         */
+                        event = types[type][i];
 
-                                // add rule subscriber
-                                widgetPublisher.model.setSubscriber(event, widget);
+                        // add rule subscriber
+                        widgetPublisher.model.setSubscriber(event, widget);
 
-                                /**
-                                 * Define opts
-                                 * @type {{
+                        /**
+                         * Define opts
+                         * @type {{
                                  *      widgetPublisher: Widget,
                                  *      type: string,
                                  *      event: *,
                                  *      subscribeEM: *,
                                  *      subscribersCounter: Number
                                  * }}
-                                 */
-                                var opts = {
-                                    widgetPublisher: widgetPublisher,
-                                    type: type,
-                                    event: event,
-                                    subscribeEM: subscribeEM,
-                                    subscribersCounter: subscribersCounter
-                                };
+                         */
+                        var opts = {
+                            widgetPublisher: widgetPublisher,
+                            type: type,
+                            event: event,
+                            subscribeEM: subscribeEM,
+                            subscribersCounter: subscribersCounter
+                        };
 
-                                if (type === 'widget') {
+                        if (type === 'widget') {
 
-                                    /**
-                                     * Define widget scope
-                                     * @type {Widget}
-                                     */
-                                    scope = widgetPublisher;
+                            /**
+                             * Define widget scope
+                             * @type {Widget}
+                             */
+                            scope = widgetPublisher;
 
-                                    this.controller._registerScopeRule(scope, opts);
+                            this.controller._registerScopeRule(scope, opts);
 
-                                } else {
+                        } else {
 
-                                    /**
-                                     * Define widget content scope
-                                     * @type {WidgetContent}
-                                     */
-                                    scope = widgetPublisher.controller.getContent();
+                            /**
+                             * Define widget content scope
+                             * @type {WidgetContent}
+                             */
+                            scope = widgetPublisher.controller.getContent();
 
-                                    if (!this.base.isDefined(scope)) {
-
-                                        /**
-                                         * Get publisher uuid
-                                         * @type {String}
-                                         */
-                                        var puuid = widgetPublisher.model.getUUID(),
-                                            interval = 100;
-
-                                        this[puuid] = setInterval(function () {
-
-                                            this.controller._getContentScope(interval, opts);
-
-                                        }.bind(this), interval);
-                                    }
-                                }
+                            if (this.base.isDefined(scope)) {
+                                return this.controller._registerScopeRule(scope, opts);
                             }
+
+                            /**
+                             * Get publisher uuid
+                             * @type {String}
+                             */
+                            var puuid = widgetPublisher.model.getUUID(),
+                                interval = 100;
+
+                            this[puuid] = setInterval(function () {
+
+                                    this.scope.controller._getContentScope(this.interval, this.opts);
+
+                                }.bind({
+                                        scope: this,
+                                        interval: interval,
+                                        opts: opts
+                                    }),
+
+                                interval);
                         }
                     }
                 }
