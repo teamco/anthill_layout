@@ -7,207 +7,23 @@
 
 define([
     'plugins/rules/widget.subscribe'
-], function defineWidgetContentControllerBase(WidgetSubscribe) {
+], function defineWidgetContentControllerRulesBase(WidgetSubscribe) {
 
     /**
-     * Define Base Widget controller
-     * @class WidgetContentController
+     * Define Base Widget controller Rules
+     * @class WidgetContentControllerRules
+     * @extends WidgetSubscribe
      * @constructor
      */
-    var WidgetContentController = function WidgetContentController() {
+    var WidgetContentControllerRules = function WidgetContentControllerRules() {
 
     };
 
-    return WidgetContentController.extend('WidgetContentController', {
-
-        /**
-         * Init widget
-         * @member WidgetContentController
-         */
-        initWidget: function initWidget() {
-
-            /**
-             * Define observer
-             * @type {Observer}
-             */
-            var observer = this.observer;
-
-            /**
-             * Define event list
-             * @type {EventManager.eventList}
-             */
-            var eventList = this.eventmanager.eventList;
-
-            observer.publish(eventList.loadPreferences);
-            observer.publish(eventList.loadRules);
-            observer.publish(eventList.successCreated);
-            observer.publish(eventList.defineContainer);
-
-            observer.publish(
-                eventList.updateTranslations, [
-                    'plugins/widgets/',
-                    this.constructor.name.toPoint().replace(/./, ''),
-                    '/translations/en-us'
-                ].join('')
-            );
-
-            this.view.render();
-        },
-
-        /**
-         * Transfer containment events
-         * @member WidgetContentController
-         * @param events
-         */
-        transferEvents: function transferEvents(events) {
-
-            for (var event in events) {
-
-                if (events.hasOwnProperty(event)) {
-
-                    /**
-                     * Define event
-                     * @type {*}
-                     */
-                    var params = events[event];
-
-                    this.logger.debug('Transfer event', event, params);
-
-                    this.observer.publish(
-                        this.eventmanager.eventList[event],
-                        params
-                    );
-                }
-            }
-        },
-
-        /**
-         * Transfer event onClickOpenUrl
-         * @member WidgetContentController
-         * @param {string} url
-         * @returns {boolean}
-         */
-        onClickOpenUrl: function onClickOpenUrl(url) {
-
-            if (!this.base.isUrl(url) && url.length > 0) {
-                this.logger.warn('None valid url', url);
-                return false;
-            }
-
-            if (url.length > 0) {
-                this.view.get$item().bindOnClickOpenUrl(url);
-            }
-        },
-
-        /**
-         * Define referrer
-         * @member WidgetContentController
-         * @param referrer
-         */
-        defineReferrer: function defineReferrer(referrer) {
-            this.referrer = referrer;
-        },
-
-        /**
-         * Define container
-         * @member WidgetContentController
-         */
-        defineContainer: function defineContainer() {
-
-            /**
-             * Define widget
-             * @type {*}
-             */
-            var widget = this.controller.getContainment();
-
-            /**
-             * Define $container
-             * @type {modules.view.elements.$content|*|element.page.page.element}
-             */
-            this.view.elements.$container =
-                widget.view.elements.$content;
-        },
-
-        /**
-         * Get preferences
-         * @member WidgetContentController
-         * @returns {{}}
-         */
-        getPreferences: function getPreferences() {
-            return this.model.preferences;
-        },
-
-        /**
-         * Get rules
-         * @member WidgetContentController
-         * @returns {{}}
-         */
-        getRules: function getRules() {
-            return this.model.rules;
-        },
+    return WidgetContentControllerRules.extend('WidgetContentControllerRules', {
 
         /**
          * Update prefs
-         * @member WidgetContentController
-         * @param {ModalElement} $modal
-         */
-        updatePreferences: function updatePreferences($modal) {
-
-            var $inputs = $('input:not(:disabled), textarea, div.combo-box > input', $modal.$),
-                scope = this.scope;
-
-            $inputs.each(function each(index, input) {
-
-                /**
-                 * Transform input name
-                 * @type {string|jQuery}
-                 */
-                var name = input.name.toCamel().capitalize();
-
-                /**
-                 * Define method name
-                 * @type {string}
-                 */
-                var setter = 'set' + name,
-                    value;
-
-                if (typeof(this.model[setter]) === 'function') {
-
-                    /**
-                     * Define input value
-                     * @type {*|jQuery}
-                     */
-                    value = input.value;
-
-                    if (input.type === 'checkbox') {
-                        value = $(input).prop('checked');
-                    }
-
-
-                    this.model[setter](value);
-
-                    scope.observer.publish(
-                        scope.eventmanager.eventList.transferPreferences,
-                        [input.name, value]
-                    );
-
-                } else {
-
-                    scope.logger.error('Undefined setter', [name, setter]);
-                }
-
-            }.bind(this));
-
-            scope.view['render' + scope.constructor.name]();
-
-            $modal.selfDestroy();
-
-            this.store();
-        },
-
-        /**
-         * Update prefs
-         * @member WidgetContentController
+         * @member WidgetContentControllerRules
          * @param {ModalElement} $modal
          */
         updateRules: function updateRules($modal) {
@@ -273,41 +89,8 @@ define([
         },
 
         /**
-         * Load prefs
-         * @member WidgetContentController
-         */
-        loadPreferences: function loadPreferences() {
-
-            /**
-             * Load prefs
-             * @type {*}
-             */
-            var widget = this.controller.getContainment(),
-                prefs = widget.model.getConfig('preferences');
-
-            $.each(prefs, function each(index, value) {
-
-                /**
-                 * Define method name
-                 * @type {string}
-                 */
-                var setter = 'set' + index.toCamel().capitalize();
-
-                if (typeof(this.model[setter]) === 'function') {
-
-                    this.model[setter](value);
-
-                } else {
-
-                    this.logger.debug('Skip', setter);
-                }
-
-            }.bind(this));
-        },
-
-        /**
          * Load rules
-         * @member WidgetContentController
+         * @member WidgetContentControllerRules
          */
         loadRules: function loadRules() {
 
@@ -328,7 +111,7 @@ define([
 
         /**
          * Get Published rules
-         * @member WidgetContentController
+         * @member WidgetContentControllerRules
          * @returns {{}}
          */
         getPublishedRules: function getPublishedRules() {
@@ -374,32 +157,8 @@ define([
         },
 
         /**
-         * Transfer preferences to containment
-         * @member WidgetContentController
-         * @param index
-         * @param value
-         */
-        transferPreferences: function transferPreferences(index, value) {
-
-            /**
-             * Define widget
-             * @type {*}
-             */
-            var widget = this.controller.getContainment();
-
-            /**
-             * Define prefs
-             * @type {{}}
-             */
-            var prefs = {};
-
-            prefs[index] = value;
-            widget.model.updatePreferences(prefs);
-        },
-
-        /**
          * Transfer rules to containment
-         * @member WidgetContentController
+         * @member WidgetContentControllerRules
          * @param rules
          */
         transferRules: function transferRules(rules) {
@@ -419,7 +178,7 @@ define([
 
         /**
          * Unregister rules
-         * @member WidgetContentController
+         * @member WidgetContentControllerRules
          * @return {boolean}
          */
         unregisterRules: function unregisterRules() {
@@ -491,7 +250,7 @@ define([
 
         /**
          * Register rules
-         * @member WidgetContentController
+         * @member WidgetContentControllerRules
          */
         registerRules: function registerRules() {
 
@@ -569,6 +328,24 @@ define([
                                 // add rule subscriber
                                 widgetPublisher.model.setSubscriber(event, widget);
 
+                                /**
+                                 * Define opts
+                                 * @type {{
+                                 *      widgetPublisher: Widget,
+                                 *      type: string,
+                                 *      event: *,
+                                 *      subscribeEM: *,
+                                 *      subscribersCounter: Number
+                                 * }}
+                                 */
+                                var opts = {
+                                    widgetPublisher: widgetPublisher,
+                                    type: type,
+                                    event: event,
+                                    subscribeEM: subscribeEM,
+                                    subscribersCounter: subscribersCounter
+                                };
+
                                 if (type === 'widget') {
 
                                     /**
@@ -576,6 +353,8 @@ define([
                                      * @type {Widget}
                                      */
                                     scope = widgetPublisher;
+
+                                    this.controller._registerScopeRule(scope, opts);
 
                                 } else {
 
@@ -591,39 +370,16 @@ define([
                                          * Get publisher uuid
                                          * @type {String}
                                          */
-                                        var puuid = widgetPublisher.model.getUUID();
+                                        var puuid = widgetPublisher.model.getUUID(),
+                                            interval = 100;
 
                                         this[puuid] = setInterval(function () {
 
-                                            /**
-                                             * Define scope
-                                             * @type {Content|*}
-                                             */
-                                            scope = widgetPublisher.controller.getContent();
+                                            this.controller._getContentScope(interval, opts);
 
-                                            this.logger.warn('Wait until scope will be available', scope);
-
-                                            if (scope) {
-                                                this.logger.warn('Scope available', scope);
-                                                clearInterval(this[puuid]);
-                                            }
-
-                                        }.bind(this), 100);
+                                        }.bind(this), interval);
                                     }
                                 }
-
-                                if (!this.base.isDefined(scope)) {
-
-                                    this.logger.error('Undefined scope', widgetPublisher, type);
-                                    return false;
-                                }
-
-                                this.controller.registerRule(
-                                    scope,
-                                    event,
-                                    subscribeEM,
-                                    subscribersCounter
-                                );
                             }
                         }
                     }
@@ -632,7 +388,77 @@ define([
         },
 
         /**
+         * Get content scope via interval
+         * @member WidgetContentControllerRules
+         * @param interval
+         * @param opts
+         * @returns {boolean}
+         * @private
+         */
+        _getContentScope: function _getContentScope(interval, opts) {
+
+            /**
+             * Define timeout
+             * @type {number}
+             */
+            var timeout = 30000;
+
+            /**
+             * Get publisher uuid
+             * @type {String}
+             */
+            var puuid = opts.widgetPublisher.model.getUUID();
+
+            if (this[puuid] * interval > timeout) {
+
+                this.logger.warn('Timeout on loading scope rules', opts.widgetPublisher);
+                return false;
+            }
+
+            /**
+             * Define scope
+             * @type {WidgetContent}
+             */
+            var scope = opts.widgetPublisher.controller.getContent();
+
+            this.logger.debug('Wait until scope will be available', scope);
+
+            if (scope) {
+
+                this.logger.info('Scope available', scope);
+                clearInterval(this[puuid]);
+
+                this._registerScopeRule(scope, opts);
+            }
+        },
+
+        /**
+         * Register scope rule
+         * @member WidgetContentControllerRules
+         * @param scope
+         * @param opts
+         * @returns {boolean}
+         * @private
+         */
+        _registerScopeRule: function _registerScopeRule(scope, opts) {
+
+            if (!this.base.isDefined(scope)) {
+
+                this.logger.error('Undefined scope', opts.widgetPublisher, type);
+                return false;
+            }
+
+            this.registerRule(
+                scope,
+                opts.event,
+                opts.subscribeEM,
+                opts.subscribersCounter
+            );
+        },
+
+        /**
          * Register rule
+         * @member WidgetContentControllerRules
          * @param scope
          * @param subscribeEM
          * @param subscribersCounter
@@ -716,7 +542,7 @@ define([
 
         /**
          * Add widget rule
-         * @member WidgetContentController
+         * @member WidgetContentControllerRules
          * @param e
          */
         addWidgetRule: function addWidgetRule(e) {
@@ -736,7 +562,7 @@ define([
 
         /**
          * Publish rule
-         * @member WidgetContentController
+         * @member WidgetContentControllerRules
          * @param {string} rule
          * @param {string} type
          */
@@ -752,81 +578,6 @@ define([
                 rule, type,
                 referrer.view.elements.$modal.$
             );
-        },
-
-        /**
-         * Clear default thumbnail
-         * @member WidgetContentController
-         */
-        clearParentThumbnail: function clearParentThumbnail() {
-
-            /**
-             * Define widget
-             * @type {Widget}
-             */
-            var widget = this.getContainment();
-
-            widget.observer.publish(
-                widget.eventmanager.eventList.clearThumbnail
-            );
-        },
-
-        /**
-         * Get DOM
-         * @member WidgetContentController
-         * @param type
-         * @returns {*}
-         */
-        getDOMPreferences: function getDOMPreferences(type) {
-
-            /**
-             * Define widget
-             * @type {*}
-             */
-            var widget = this.scope.controller.getContainment();
-
-            return (widget.model.getDOM() || {})[type];
-        },
-
-        /**
-         * Provide statistics before transfer
-         * @member WidgetContentController
-         * @param e
-         */
-        provideStats: function provideStats(e) {
-
-            if (!this.model.getPrefs('statistics')) {
-                this.logger.debug('No Statistics available', e);
-                return false;
-            }
-
-            /**
-             * Define widget
-             * @type {Widget}
-             * @type {*}
-             */
-            var widget = this.controller.getContainment();
-
-            /**
-             * Define uuid
-             * @type {String}
-             */
-            var uuid = widget.model.getUUID();
-
-            this.observer.publish(
-                this.eventmanager.eventList.transferStats,
-                [uuid, e.target]
-            );
-        },
-
-        /**
-         * Transfer stats
-         * @member WidgetContentController
-         * @param {string} uuid
-         * @param $element
-         */
-        transferStats: function transferStats(uuid, $element) {
-            this.logger.debug('Transfer Stats', uuid, $element);
         }
 
     }, WidgetSubscribe.prototype);

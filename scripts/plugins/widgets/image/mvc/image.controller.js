@@ -7,7 +7,7 @@
 
 define([
     'plugins/plugin',
-    'plugins/widgets/widget'
+    'plugins/widgets/widget.content.controller'
 ], function defineImageController(PluginBase, WidgetContentController) {
 
     /**
