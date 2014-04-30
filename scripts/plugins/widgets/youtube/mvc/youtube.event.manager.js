@@ -7,56 +7,22 @@
  */
 
 define([
-    'modules/event'
-], function defineYoutubeEventManager(BaseEvent) {
+    'plugins/widgets/widget.content.event.manager'
+], function defineYoutubeEventManager(WidgetContentEventManager) {
 
     /**
      * Define Youtube event manager
      * @class YoutubeEventManager
      * @constructor
      * @extends BaseEvent
+     * @extends WidgetContentEventManager
      */
     var YoutubeEventManager = function YoutubeEventManager() {
 
-        /**
-         * Define events
-         * @member YoutubeEventManager
-         * @type {{}}
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @member YoutubeEventManager
-         * @type {{
-         *      initWidget: string,
-         *      updateTranslations: string,
-         *      defineContainer: string,
-         *      defineReferrer: string,
-         *      setEmbeddedContent: string,
-         *      loadPreferences: string,
-         *      transferPreferences: string,
-         *      loadRules: string,
-         *      publishRule: string,
-         *      registerRules: string,
-         *      transferRules: string
-         * }}
-         */
-        this.eventList = {
-            initWidget: 'init.widget',
-            updateTranslations: 'update.translations',
-            defineContainer: 'define.container',
-            defineReferrer: 'define.referrer',
-            setEmbeddedContent: 'set.embedded.content',
-            loadPreferences: 'load.preferences',
-            transferPreferences: 'transfer.preferences',
-            loadRules: 'load.rules',
-            publishRule: 'publish.rule',
-            registerRules: 'register.rules',
-            transferRules: 'transfer.rules'
-        };
+        this.updateEventList({});
     };
 
     return YoutubeEventManager.extend('YoutubeEventManager', {
-    }, BaseEvent.prototype);
+
+    }, WidgetContentEventManager.prototype);
 });

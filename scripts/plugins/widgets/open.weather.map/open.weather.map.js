@@ -18,11 +18,12 @@ define([
     /**
      * Define OpenWeatherMap
      * @param containment
+     * @param [opts]
      * @constructor
      * @class OpenWeatherMap
      * @extends AntHill
      */
-    var OpenWeatherMap = function OpenWeatherMap(containment) {
+    var OpenWeatherMap = function OpenWeatherMap(containment, opts) {
 
         /**
          * Define containment
@@ -125,6 +126,11 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.initWidget
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.transferEvents,
+                (opts || {}).events || {}
         );
     };
 

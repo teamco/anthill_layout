@@ -7,59 +7,24 @@
  */
 
 define([
-    'modules/event'
-], function defineOpenWeatherMapEventManager(BaseEvent) {
+    'plugins/widgets/widget.content.event.manager'
+], function defineOpenWeatherMapEventManager(WidgetContentEventManager) {
 
     /**
      * Define OpenWeatherMap event manager
      * @class OpenWeatherMapEventManager
      * @constructor
+     * @extends WidgetContentEventManager
      * @extends BaseEvent
      */
     var OpenWeatherMapEventManager = function OpenWeatherMapEventManager() {
 
-        /**
-         * Define events
-         * @member OpenWeatherMapEventManager
-         * @type {{}}
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @member OpenWeatherMapEventManager
-         * @type {{
-         *      initWidget: string,
-         *      updateTranslations: string,
-         *      defineContainer: string,
-         *      defineReferrer: string,
-         *      setEmbeddedContent: string,
-         *      loadPreferences: string,
-         *      transferPreferences: string,
-         *      loadRules: string,
-         *      publishRule: string,
-         *      registerRules: string,
-         *      transferRules: string,
-         *      getLocation: string
-         * }}
-         */
-        this.eventList = {
-            initWidget: 'init.widget',
-            updateTranslations: 'update.translations',
-            defineContainer: 'define.container',
-            defineReferrer: 'define.referrer',
-            setEmbeddedContent: 'set.embedded.content',
-            loadPreferences: 'load.preferences',
-            transferPreferences: 'transfer.preferences',
-            loadRules: 'load.rules',
-            publishRule: 'publish.rule',
-            registerRules: 'register.rules',
-            transferRules: 'transfer.rules',
+        this.updateEventList({
             getLocation: 'get.location'
-        };
+        });
     };
 
     return OpenWeatherMapEventManager.extend('OpenWeatherMapEventManager', {
 
-    }, BaseEvent.prototype);
+    }, WidgetContentEventManager.prototype);
 });

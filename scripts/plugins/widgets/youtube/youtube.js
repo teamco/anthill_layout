@@ -18,11 +18,12 @@ define([
     /**
      * Define Youtube
      * @param containment
+     * @param [opts]
      * @constructor
      * @class Youtube
      * @extends AntHill
      */
-    var Youtube = function Youtube(containment) {
+    var Youtube = function Youtube(containment, opts) {
 
         /**
          * Define containment
@@ -125,6 +126,11 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.initWidget
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.transferEvents,
+                (opts || {}).events || {}
         );
     };
 

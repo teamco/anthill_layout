@@ -18,11 +18,12 @@ define([
     /**
      * Define Rss
      * @param containment
+     * @param [opts]
      * @constructor
      * @class Rss
      * @extends AntHill
      */
-    var Rss = function Rss(containment) {
+    var Rss = function Rss(containment, opts) {
 
         /**
          * Define containment
@@ -129,6 +130,11 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.initWidget
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.transferEvents,
+                (opts || {}).events || {}
         );
     };
 

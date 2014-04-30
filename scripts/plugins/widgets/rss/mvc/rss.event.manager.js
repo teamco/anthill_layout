@@ -7,59 +7,24 @@
  */
 
 define([
-    'modules/event'
-], function defineRssEventManager(BaseEvent) {
+    'plugins/widgets/widget.content.event.manager'
+], function defineRssEventManager(WidgetContentEventManager) {
 
     /**
      * Define Rss event manager
      * @class RssEventManager
      * @constructor
      * @extends BaseEvent
+     * @extends WidgetContentEventManager
      */
     var RssEventManager = function RssEventManager() {
 
-        /**
-         * Define events
-         * @member RssEventManager
-         * @type {{}}
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @member RssEventManager
-         * @type {{
-         *      initWidget: string,
-         *      updateTranslations: string,
-         *      defineContainer: string,
-         *      defineReferrer: string,
-         *      setEmbeddedContent: string,
-         *      loadPreferences: string,
-         *      transferPreferences: string,
-         *      loadRules: string,
-         *      publishRule: string,
-         *      registerRules: string,
-         *      transferRules: string,
-         *      parseRSS: string
-         * }}
-         */
-        this.eventList = {
-            initWidget: 'init.widget',
-            updateTranslations: 'update.translations',
-            defineContainer: 'define.container',
-            defineReferrer: 'define.referrer',
-            setEmbeddedContent: 'set.embedded.content',
-            loadPreferences: 'load.preferences',
-            transferPreferences: 'transfer.preferences',
-            loadRules: 'load.rules',
-            publishRule: 'publish.rule',
-            registerRules: 'register.rules',
-            transferRules: 'transfer.rules',
-            parseRSS: 'parse.rss'
-        };
+        this.updateEventList({
+            parseRss: 'parse.rss'
+        });
     };
 
     return RssEventManager.extend('RssEventManager', {
 
-    }, BaseEvent.prototype);
+    }, WidgetContentEventManager.prototype);
 });

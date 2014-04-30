@@ -18,11 +18,12 @@ define([
     /**
      * Define ImageGallery
      * @param containment
+     * @param [opts]
      * @constructor
      * @class ImageGallery
      * @extends AntHill
      */
-    var ImageGallery = function ImageGallery(containment) {
+    var ImageGallery = function ImageGallery(containment, opts) {
 
         /**
          * Define containment
@@ -126,6 +127,11 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.initWidget
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.transferEvents,
+                (opts || {}).events || {}
         );
     };
 

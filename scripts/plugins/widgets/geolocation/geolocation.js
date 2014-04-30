@@ -18,11 +18,12 @@ define([
     /**
      * Define Geolocation
      * @param containment
+     * @param [opts]
      * @constructor
      * @class Geolocation
      * @extends AntHill
      */
-    var Geolocation = function Geolocation(containment) {
+    var Geolocation = function Geolocation(containment, opts) {
 
         /**
          * Define containment
@@ -125,6 +126,11 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.initWidget
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.transferEvents,
+                (opts || {}).events || {}
         );
     };
 

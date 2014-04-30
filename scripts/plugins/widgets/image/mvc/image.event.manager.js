@@ -7,68 +7,25 @@
  */
 
 define([
-    'modules/event'
-], function defineImageEventManager(BaseEvent) {
+    'plugins/widgets/widget.content.event.manager'
+], function defineImageEventManager(WidgetContentEventManager) {
 
     /**
      * Define Image event manager
      * @class ImageEventManager
      * @constructor
+     * @extends WidgetContentEventManager
      * @extends BaseEvent
      */
     var ImageEventManager = function ImageEventManager() {
 
-        /**
-         * Define events
-         * @member ImageEventManager
-         * @type {{}}
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @member ImageEventManager
-         * @type {{
-         *      initWidget: string,
-         *      updateTranslations: string,
-         *      defineContainer: string,
-         *      defineReferrer: string,
-         *      checkEmbeddedContent: string,
-         *      setEmbeddedContent: string,
-         *      splitEmbeddedContent: string,
-         *      loadPreferences: string,
-         *      transferPreferences: string,
-         *      loadRules: string,
-         *      publishRule: string,
-         *      registerRules: string,
-         *      transferRules: string,
-         *      provideStats: string,
-         *      transferEvents: string,
-         *      onClickOpenUrl: string,
-         *      transferStats: string
-         * }}
-         */
-        this.eventList = {
-            initWidget: 'init.widget',
-            updateTranslations: 'update.translations',
-            defineContainer: 'define.container',
-            defineReferrer: 'define.referrer',
+        this.updateEventList({
             checkEmbeddedContent: 'check.embedded.content',
-            setEmbeddedContent: 'set.embedded.content',
-            splitEmbeddedContent: 'split.embedded.content',
-            loadPreferences: 'load.preferences',
-            transferPreferences: 'transfer.preferences',
-            loadRules: 'load.rules',
-            publishRule: 'publish.rule',
-            registerRules: 'register.rules',
-            transferRules: 'transfer.rules',
-            provideStats: 'provide.stats',
-            transferStats: 'transfer.stats',
-            onClickOpenUrl: 'on.click.open.url',
-            transferEvents: 'transfer.events'
-        };
+            splitEmbeddedContent: 'split.embedded.content'
+        });
     };
 
     return ImageEventManager.extend('ImageEventManager', {
-    }, BaseEvent.prototype);
+
+    }, WidgetContentEventManager.prototype);
 });

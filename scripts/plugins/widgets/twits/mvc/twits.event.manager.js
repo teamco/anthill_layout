@@ -7,56 +7,22 @@
  */
 
 define([
-    'modules/event'
-], function defineTwitsEventManager(BaseEvent) {
+    'plugins/widgets/widget.content.event.manager'
+], function defineTwitsEventManager(WidgetContentEventManager) {
 
     /**
      * Define Twits event manager
      * @class TwitsEventManager
      * @constructor
+     * @extends WidgetContentEventManager
      * @extends BaseEvent
      */
     var TwitsEventManager = function TwitsEventManager() {
 
-        /**
-         * Define events
-         * @member TwitsEventManager
-         * @type {{}}
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @member TwitsEventManager
-         * @type {{
-         *      initWidget: string,
-         *      updateTranslations: string,
-         *      defineContainer: string,
-         *      defineReferrer: string,
-         *      setEmbeddedContent: string,
-         *      loadPreferences: string,
-         *      transferPreferences: string,
-         *      loadRules: string,
-         *      publishRule: string,
-         *      registerRules: string,
-         *      transferRules: string
-         * }}
-         */
-        this.eventList = {
-            initWidget: 'init.widget',
-            updateTranslations: 'update.translations',
-            defineContainer: 'define.container',
-            defineReferrer: 'define.referrer',
-            setEmbeddedContent: 'set.embedded.content',
-            loadPreferences: 'load.preferences',
-            transferPreferences: 'transfer.preferences',
-            loadRules: 'load.rules',
-            publishRule: 'publish.rule',
-            registerRules: 'register.rules',
-            transferRules: 'transfer.rules'
-        };
+        this.updateEventList({});
     };
 
     return TwitsEventManager.extend('TwitsEventManager', {
-    }, BaseEvent.prototype);
+
+    }, WidgetContentEventManager.prototype);
 });

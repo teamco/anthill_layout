@@ -18,11 +18,12 @@ define([
     /**
      * Define Twits
      * @param containment
+     * @param [opts]
      * @constructor
      * @class Twits
      * @extends AntHill
      */
-    var Twits = function Twits(containment) {
+    var Twits = function Twits(containment, opts) {
 
         /**
          * Define containment
@@ -125,6 +126,11 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.initWidget
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.transferEvents,
+                (opts || {}).events || {}
         );
     };
 

@@ -7,59 +7,24 @@
  */
 
 define([
-    'modules/event'
-], function defineGeolocationEventManager(BaseEvent) {
+    'plugins/widgets/widget.content.event.manager'
+], function defineGeolocationEventManager(WidgetContentEventManager) {
 
     /**
      * Define Geolocation event manager
      * @class GeolocationEventManager
      * @constructor
+     * @extends WidgetContentEventManager
      * @extends BaseEvent
      */
     var GeolocationEventManager = function GeolocationEventManager() {
 
-        /**
-         * Define events
-         * @member GeolocationEventManager
-         * @type {{}}
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @member GeolocationEventManager
-         * @type {{
-         *      initWidget: string,
-         *      updateTranslations: string,
-         *      defineContainer: string,
-         *      defineReferrer: string,
-         *      setEmbeddedContent: string,
-         *      loadPreferences: string,
-         *      transferPreferences: string,
-         *      loadRules: string,
-         *      publishRule: string,
-         *      registerRules: string,
-         *      transferRules: string,
-         *      getLocation: string
-         * }}
-         */
-        this.eventList = {
-            initWidget: 'init.widget',
-            updateTranslations: 'update.translations',
-            defineContainer: 'define.container',
-            defineReferrer: 'define.referrer',
-            setEmbeddedContent: 'set.embedded.content',
-            loadPreferences: 'load.preferences',
-            transferPreferences: 'transfer.preferences',
-            loadRules: 'load.rules',
-            publishRule: 'publish.rule',
-            registerRules: 'register.rules',
-            transferRules: 'transfer.rules',
+        this.updateEventList({
             getLocation: 'get.location'
-        };
+        });
     };
 
     return GeolocationEventManager.extend('GeolocationEventManager', {
 
-    }, BaseEvent.prototype);
+    }, WidgetContentEventManager.prototype);
 });

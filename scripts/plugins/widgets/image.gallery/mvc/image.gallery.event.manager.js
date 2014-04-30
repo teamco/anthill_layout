@@ -7,57 +7,22 @@
  */
 
 define([
-    'modules/event'
-], function defineImageGalleryEventManager(BaseEvent) {
+    'plugins/widgets/widget.content.event.manager'
+], function defineImageGalleryEventManager(WidgetContentEventManager) {
 
     /**
      * Define ImageGallery event manager
      * @class ImageGalleryEventManager
      * @constructor
+     * @extends WidgetContentEventManager
      * @extends BaseEvent
      */
     var ImageGalleryEventManager = function ImageGalleryEventManager() {
 
-        /**
-         * Define events
-         * @member ImageGalleryEventManager
-         * @type {{}}
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @member ImageGalleryEventManager
-         * @type {{
-         *      initWidget: string,
-         *      updateTranslations: string,
-         *      defineContainer: string,
-         *      defineReferrer: string,
-         *      setEmbeddedContent: string,
-         *      loadPreferences: string,
-         *      transferPreferences: string,
-         *      loadRules: string,
-         *      publishRule: string,
-         *      registerRules: string,
-         *      transferRules: string
-         * }}
-         */
-        this.eventList = {
-            initWidget: 'init.widget',
-            updateTranslations: 'update.translations',
-            defineContainer: 'define.container',
-            defineReferrer: 'define.referrer',
-            setEmbeddedContent: 'set.embedded.content',
-            loadPreferences: 'load.preferences',
-            transferPreferences: 'transfer.preferences',
-            loadRules: 'load.rules',
-            publishRule: 'publish.rule',
-            registerRules: 'register.rules',
-            transferRules: 'transfer.rules',
-            bindStatistics: 'bind.statistics'
-        };
+        this.updateEventList({});
     };
 
     return ImageGalleryEventManager.extend('ImageGalleryEventManager', {
-    }, BaseEvent.prototype);
+
+    }, WidgetContentEventManager.prototype);
 });

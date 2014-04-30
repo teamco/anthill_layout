@@ -131,7 +131,7 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.transferEvents,
-            opts.events
+                (opts || {}).events || {}
         );
     };
 

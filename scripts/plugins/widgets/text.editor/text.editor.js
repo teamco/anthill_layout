@@ -18,11 +18,12 @@ define([
     /**
      * Define TextEditor
      * @param containment
+     * @param [opts]
      * @constructor
      * @class TextEditor
      * @extends AntHill
      */
-    var TextEditor = function TextEditor(containment) {
+    var TextEditor = function TextEditor(containment, opts) {
 
         /**
          * Define containment
@@ -126,6 +127,11 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.initWidget
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.transferEvents,
+                (opts || {}).events || {}
         );
     };
 

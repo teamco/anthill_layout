@@ -7,57 +7,22 @@
  */
 
 define([
-    'modules/event'
-], function defineTextEditorEventManager(BaseEvent) {
+    'plugins/widgets/widget.content.event.manager'
+], function defineTextEditorEventManager(WidgetContentEventManager) {
 
     /**
      * Define TextEditor event manager
      * @class TextEditorEventManager
      * @constructor
+     * @extends WidgetContentEventManager
      * @extends BaseEvent
      */
     var TextEditorEventManager = function TextEditorEventManager() {
 
-        /**
-         * Define events
-         * @member TextEditorEventManager
-         * @type {{}}
-         */
-        this.events = {};
-
-        /**
-         * Define event list
-         * @member TextEditorEventManager
-         * @type {{
-         *      initWidget: string,
-         *      updateTranslations: string,
-         *      defineContainer: string,
-         *      defineReferrer: string,
-         *      setEmbeddedContent: string,
-         *      loadPreferences: string,
-         *      transferPreferences: string,
-         *      loadRules: string,
-         *      publishRule: string,
-         *      registerRules: string,
-         *      transferRules: string
-         * }}
-         */
-        this.eventList = {
-            initWidget: 'init.widget',
-            updateTranslations: 'update.translations',
-            defineContainer: 'define.container',
-            defineReferrer: 'define.referrer',
-            setEmbeddedContent: 'set.embedded.content',
-            loadPreferences: 'load.preferences',
-            transferPreferences: 'transfer.preferences',
-            loadRules: 'load.rules',
-            publishRule: 'publish.rule',
-            registerRules: 'register.rules',
-            transferRules: 'transfer.rules',
-            provideStats: 'provide.stats'
-        };
+        this.updateEventList({});
     };
 
     return TextEditorEventManager.extend('TextEditorEventManager', {
-    }, BaseEvent.prototype);
+
+    }, WidgetContentEventManager.prototype);
 });

@@ -39,7 +39,7 @@ define([
          * @param {string} url
          * @param {function} callback
          */
-        parseRSS: function parseRSS(url, callback) {
+        parseRss: function parseRss(url, callback) {
 
             if (!this.base.isUrl(url + '')) {
                 this.logger.warn('The specified feed URL is invalid', url);

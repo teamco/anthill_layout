@@ -18,11 +18,12 @@ define([
     /**
      * Define Empty
      * @param containment
+     * @param [opts]
      * @constructor
      * @class Empty
      * @extends AntHill
      */
-    var Empty = function Empty(containment) {
+    var Empty = function Empty(containment, opts) {
 
         /**
          * Define containment
@@ -126,6 +127,11 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.initWidget
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.transferEvents,
+                (opts || {}).events || {}
         );
     };
 
