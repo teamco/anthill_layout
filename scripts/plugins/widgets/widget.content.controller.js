@@ -85,6 +85,24 @@ define([
             },
 
             /**
+             * Execute on widget event
+             * @member WidgetContentController
+             * @param {string} eventName
+             */
+            executeOnWidgetEvent: function executeOnWidgetEvent(eventName) {
+
+                /**
+                 * Define widget
+                 * @type {Widget}
+                 */
+                var widget = this.controller.getContainment();
+
+                widget.observer.publish(
+                    widget.eventmanager.eventList[eventName]
+                );
+            },
+
+            /**
              * Transfer event onClickOpenUrl
              * @member WidgetContentController
              * @param {string} url

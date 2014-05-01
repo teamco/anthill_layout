@@ -66,6 +66,16 @@ define([
                 disabled: false,
                 checked: false
             },
+            setLayerUp: {
+                type: 'event',
+                disabled: false,
+                events: ['click']
+            },
+            setLayerDown: {
+                type: 'event',
+                disabled: false,
+                events: ['click']
+            },
             statistics: {
                 type: 'checkbox',
                 disabled: false,
@@ -116,6 +126,20 @@ define([
                          */
                         var placeholder = 'Enter ' + text,
                             $element;
+
+                        if (node.type === 'event') {
+
+                            /**
+                             * Get text field
+                             * @type {*[]}
+                             */
+                            $element = this.renderEventLink({
+                                name: index,
+                                title: text.trim(),
+                                disabled: node.disabled,
+                                events: node.events
+                            });
+                        }
 
                         if (node.type === 'text') {
 

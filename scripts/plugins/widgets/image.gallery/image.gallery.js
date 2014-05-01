@@ -22,6 +22,7 @@ define([
      * @constructor
      * @class ImageGallery
      * @extends AntHill
+     * @member WidgetContent
      */
     var ImageGallery = function ImageGallery(containment, opts) {
 

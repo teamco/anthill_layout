@@ -28,6 +28,7 @@ define([
 
             /**
              * Define widget instance
+             * @type {*}
              */
             var widget = this;
 

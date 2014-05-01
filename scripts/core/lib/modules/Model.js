@@ -451,20 +451,11 @@ define([
         },
 
         /**
-         * Set statistics
-         * @member BaseModel
-         * @param {boolean} statistics
-         */
-        setStatistics: function setStatistics(statistics) {
-            this.setPrefs('statistics', statistics);
-        },
-
-        /**
          * Set on top
          * @member BaseModel
          * @param {boolean} ontop
          */
-        setAlwaysOnTop: function setStatistics(ontop) {
+        setAlwaysOnTop: function setAlwaysOnTop(ontop) {
             this.setPrefs('alwaysOnTop', ontop);
 
             /**
@@ -474,7 +465,7 @@ define([
             var scope = this.scope.controller.getContainment();
 
             scope.observer.publish(
-                scope.eventmanager.eventList.setOnTop,
+                scope.eventmanager.eventList.setAlwaysOnTop,
                 ontop
             );
         },

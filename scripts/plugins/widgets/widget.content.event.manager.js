@@ -57,7 +57,8 @@ define([
             registerRules: 'register.rules',
             transferRules: 'transfer.rules',
             transferEvents: 'transfer.events',
-            onClickOpenUrl: 'on.click.open.url'
+            onClickOpenUrl: 'on.click.open.url',
+            executeOnWidgetEvent: 'execute.on.widget.event'
         },
 
         /**

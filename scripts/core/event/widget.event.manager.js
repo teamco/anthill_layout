@@ -53,7 +53,9 @@ define([
          *      loadContent: string,
          *      setContent: string,
          *      adoptDimensions: string,
-         *      setOnTop: string,
+         *      setLayerUp: string,
+         *      setLayerDown: string,
+         *      setAlwaysOnTop: string,
          *      setOnClickUrl: string,
          *      clearThumbnail: string,
          *      saveDom: string
@@ -94,7 +96,10 @@ define([
             loadContent: 'load.content',
             setContent: 'set.content',
 
-            setOnTop: 'set.on.top',
+            setLayerUp: 'set.layer.up',
+            setLayerDown: 'set.layer.down',
+            setAlwaysOnTop: 'set.always.on.down',
+
             setOnClickUrl: 'set.on.click.url',
             clearThumbnail: 'clear.thumbnail',
 

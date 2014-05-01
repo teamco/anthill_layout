@@ -46,6 +46,56 @@ define([
         },
 
         /**
+         * Render link event
+         * @param opts
+         * @returns {*|jQuery}
+         */
+        renderEventLink: function renderEventLink(opts) {
+
+            /**
+             * Create UUID
+             * @type {String}
+             */
+            var uuid = this.base.lib.generator.UUID() + '-event';
+
+            /**
+             * Define $link
+             * @type {*|jQuery}
+             */
+            var $link = $('<a />').attr({
+                rel: opts.name,
+                id: uuid,
+                title: opts.title
+            }).text(opts.title);
+
+            $link.on(
+
+                opts.events.join(' '),
+
+                /**
+                 * On event
+                 * @private
+                 */
+                function _onEvent() {
+
+                    /**
+                     * Define widget content
+                     * @type {WidgetContent}
+                     */
+                    var content = this.view.scope;
+
+                    content.observer.publish(
+                        content.eventmanager.eventList.executeOnWidgetEvent,
+                        opts.name
+                    );
+
+                }.bind(this)
+            );
+
+            return $link;
+        },
+
+        /**
          * Render text field
          * @member Renderer
          * @param {{text: string, name: string, [placeholder]: string, value, [disabled]: boolean, [monitor]}} opts

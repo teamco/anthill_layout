@@ -549,11 +549,27 @@ define([
         },
 
         /**
-         * Set widget on top
+         * Set widget layer up
+         * @member WidgetController
+         */
+        setLayerUp: function setLayerUp() {
+            debugger
+        },
+
+        /**
+         * Set widget layer down
+         * @member WidgetController
+         */
+        setLayerDown: function setLayerDown() {
+            debugger
+        },
+
+        /**
+         * Set widget always on top
          * @member WidgetController
          * @param {boolean} ontop
          */
-        setOnTop: function setOnTop(ontop) {
+        setAlwaysOnTop: function setAlwaysOnTop(ontop) {
             this.view.get$item().moveOnTopLayer(ontop);
         },
 
