@@ -61,6 +61,11 @@ define([
                 disabled: false,
                 checked: false
             },
+            statistics: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false
+            },
             alwaysOnTop: {
                 type: 'checkbox',
                 disabled: false,
@@ -75,11 +80,6 @@ define([
                 type: 'event',
                 disabled: false,
                 events: ['click']
-            },
-            statistics: {
-                type: 'checkbox',
-                disabled: false,
-                checked: false
             }
         },
 

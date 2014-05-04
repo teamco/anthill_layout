@@ -62,11 +62,12 @@ define([
              * Define $link
              * @type {*|jQuery}
              */
-            var $link = $('<a />').attr({
+            var $link = $('<div />').attr({
                 rel: opts.name,
                 id: uuid,
                 title: opts.title
-            }).text(opts.title);
+            }).text(opts.title).
+                addClass(opts.name.toLowerCase());
 
             $link.on(
 
@@ -76,7 +77,10 @@ define([
                  * On event
                  * @private
                  */
-                function _onEvent() {
+                function _onEvent(e) {
+
+                    e.preventDefault();
+                    e.stopPropagation();
 
                     /**
                      * Define widget content

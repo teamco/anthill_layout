@@ -41,7 +41,9 @@ define([
          *      registerRules: string,
          *      transferRules: string,
          *      transferEvents: string,
-         *      onClickOpenUrl: string
+         *      onClickOpenUrl: string,
+         *      transferStatistics: string,
+         *      executeOnWidgetEvent: string
          * }}
          */
         eventList: {
@@ -58,6 +60,7 @@ define([
             transferRules: 'transfer.rules',
             transferEvents: 'transfer.events',
             onClickOpenUrl: 'on.click.open.url',
+            transferStatistics: 'transferStatistics',
             executeOnWidgetEvent: 'execute.on.widget.event'
         },
 

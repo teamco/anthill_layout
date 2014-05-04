@@ -227,7 +227,7 @@ define([
                 var uuid = widget.model.getUUID();
 
                 this.observer.publish(
-                    this.eventmanager.eventList.transferStats,
+                    this.eventmanager.eventList.transferStatistics,
                     [uuid, e.target]
                 );
             },
@@ -238,7 +238,7 @@ define([
              * @param {string} uuid
              * @param $element
              */
-            transferStats: function transferStats(uuid, $element) {
+            transferStatistics: function transferStatistics(uuid, $element) {
                 this.logger.debug('Transfer Stats', uuid, $element);
             }
 
