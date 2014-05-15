@@ -23,16 +23,16 @@ define([
     return WidgetPreferences.extend('WidgetPreferences', {
 
         /**
-         * Define default widget prefs
-         * @member WidgetPreferences
          * @type {{
          *      title: {type: string, disabled: boolean, value},
          *      description: {type: string, disabled: boolean, value},
          *      widgetUrl: {type: string, disabled: boolean, value},
          *      onClickOpenUrl: {type: string, disabled: boolean, value},
-         *      overlapping: {type: string, disabled: boolean, value},
-         *      alwaysOnTop: {type: string, disabled: boolean, value},
-         *      statistics: {type: string, disabled: boolean, value}
+         *      overlapping: {type: string, disabled: boolean, checked: boolean},
+         *      alwaysOnTop: {type: string, disabled: boolean, checked: boolean},
+         *      statistics: {type: string, disabled: boolean, checked: boolean},
+         *      setLayerUp: {type: string, disabled: boolean, events: array},
+         *      setLayerDown: {type: string, disabled: boolean, events: array}
          * }}
          */
         defaultPrefs: {
