@@ -480,6 +480,15 @@ define([
         },
 
         /**
+         * Set statistics
+         * @member BaseModel
+         * @param {boolean} statistics
+         */
+        setStatistics: function setStatistics(statistics) {
+            this.setPrefs('statistics', statistics);
+        },
+
+        /**
          * Check items limit
          * @member BaseModel
          * @param {Function} constructor
