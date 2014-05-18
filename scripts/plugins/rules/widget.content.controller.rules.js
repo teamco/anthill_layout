@@ -132,7 +132,7 @@ define([
 
             for (var index in items) {
 
-                if (items.hasOwnProperty(index)) {
+                if (!items.hasOwnProperty(index)) {
                     continue;
                 }
 

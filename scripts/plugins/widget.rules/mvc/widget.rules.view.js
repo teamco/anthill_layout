@@ -138,7 +138,7 @@ define([
              * Define $html
              * @type {BaseElement}
              */
-            var $html = this.controller.getRules(config.uuid);
+            var $html = this.controller.getRules(config.uuid, load);
 
             if (!load) {
                 return false;

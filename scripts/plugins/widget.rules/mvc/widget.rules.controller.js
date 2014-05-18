@@ -46,9 +46,10 @@ define([
          * Get rules
          * @member WidgetRulesController
          * @param {string} uuid
+         * @param {boolean} load
          * @returns {*}
          */
-        getRules: function getRules(uuid) {
+        getRules: function getRules(uuid, load) {
 
             /**
              * Define widget
@@ -61,10 +62,14 @@ define([
                 widget.controller.getContent()
             );
 
-            return this.scope.activeContent.view.renderRules(
-                widget.eventmanager.getEvents(),
-                widget.controller.getContent().eventmanager.getEvents()
-            );
+            if (load) {
+
+                return this.scope.activeContent.view.renderRules(
+                    widget.eventmanager.getEvents(),
+                    widget.controller.getContent().eventmanager.getEvents()
+                );
+
+            }
         },
 
         /**
@@ -113,9 +118,9 @@ define([
              */
             var items = this.model.getCollectedItems();
 
-            for(var index in items){
+            for (var index in items) {
 
-                if(items.hasOwnProperty(index)) {
+                if (items.hasOwnProperty(index)) {
                     this.controller.defineContentReferrer(items[index]);
                 }
             }
