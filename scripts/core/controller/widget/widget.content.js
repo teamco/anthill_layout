@@ -73,18 +73,12 @@ define([
 
             /**
              * Define content
-             * @type {Content}
-             */
-            var content = new Content(this, opts);
-
-            this.logger.debug('Set content', content, opts);
-
-            /**
-             * Define content
              * @member WidgetContent
              * @type {Content}
              */
-            this.content = content;
+            this.content = new Content(this, opts);
+
+            this.logger.debug('Set content', this.content, opts);
         },
 
         /**
