@@ -18,8 +18,8 @@
     border: 5px solid #ff6347;
 }
 
-.widget.on-resize,
-.widget.on-resize:hover {
+.widget.ui-resizable-resizing,
+.widget.ui-resizable-resizing:hover {
     border: none;
 }
 

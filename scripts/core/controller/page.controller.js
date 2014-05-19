@@ -115,25 +115,6 @@ define([
                     }
                 }
             }
-        },
-
-        /**
-         * Downgrade widgets layer except widget
-         * @member PageController
-         * @param {*} widget
-         */
-        downgradeLayer: function downgradeLayer(widget) {
-            var items = this.model.getItems(),
-                item, index;
-
-            for (index in items) {
-                if (items.hasOwnProperty(index)) {
-                    item = items[index];
-                    item.view.elements.$widget._downgradeLayer(50);
-                }
-            }
-
-            widget.view.elements.$widget._downgradeLayer(51);
         }
 
     }, AntHill.prototype, BaseController.prototype, BasePage.prototype);

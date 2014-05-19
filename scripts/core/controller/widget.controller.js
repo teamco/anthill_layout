@@ -274,8 +274,6 @@ define([
 
             this.logger.debug('Stop drag', arguments);
 
-            this.controller.getContainment().controller.downgradeLayer(this);
-
             this.controller.behaviorMode(
                 this.controller.getInteractionConfig('stop'),
                 type
@@ -336,8 +334,6 @@ define([
              * @type {WidgetController}
              */
             var controller = this.controller;
-
-            controller.getContainment().controller.downgradeLayer(this);
 
             /**
              * Get config
