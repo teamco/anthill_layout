@@ -308,7 +308,10 @@ define([
          * @param {String} type
          */
         resizeResizable: function resizeResizable(type) {
+
             this.logger.debug('On resize', arguments);
+
+            this.map.selectOverlappedWidgets();
 
             this.controller.behaviorMode(
                 this.controller.getInteractionConfig('ongoing'),
@@ -326,6 +329,8 @@ define([
         stopResizable: function stopResizable(type, opts, args) {
 
             this.logger.debug('Stop resize', arguments);
+
+            this.map.unSelectOverlappedWidgets();
 
             /**
              * Define opts
