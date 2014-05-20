@@ -51,9 +51,19 @@ define([
                 resource: this.data.resource
             });
 
-            this.$.css({
-                backgroundImage: 'url("' + this.data.thumbnail + '")'
-            });
+
+            if (this.data.thumbnail.length > 0) {
+
+                this.$.css({
+                    backgroundImage: 'url("' + this.data.thumbnail + '")'
+                });
+
+            } else {
+
+                this.$.addClass(
+                    this.data.name.toLowerCase().split(' ').join('')
+                );
+            }
         },
 
         /**

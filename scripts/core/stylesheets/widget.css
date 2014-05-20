@@ -12,9 +12,9 @@
     border: none;
 }
 
-.widget.select,
-.widget:hover,
-.widget.ui-draggable-dragging {
+.widget:after.select,
+.widget:after:hover,
+.widget.ui-draggable-dragging:after {
     border: 5px solid #ff6347;
 }
 

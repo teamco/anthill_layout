@@ -65,6 +65,7 @@ define([
              */
             this.elements.$content = new Content(this, {
                 style: 'content',
+                resource: this.controller.getResource(),
                 thumbnail: this.controller.getThumbnail(),
                 $container: this.elements.$widget.$
             });

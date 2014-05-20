@@ -26,6 +26,13 @@ define([
             destroy: false
         });
 
+        /**
+         * Define overlapped css class
+         * @member WidgetElement
+         * @type {string}
+         */
+        this.overlapped = 'overlapped';
+
         return this;
     };
 
@@ -79,6 +86,26 @@ define([
         moveOnTopLayer: function moveOnTopLayer(ontop) {
             ontop ? this.$.addClass('ontop') :
                 this.$.removeClass('ontop');
+        },
+
+        /**
+         * Select overlapped widgets
+         * @member WidgetElement
+         * @param {boolean} select
+         */
+        selectWidget: function selectWidget(select) {
+
+            if (select) {
+
+                this.$.addClass(this.overlapped);
+
+            } else {
+
+                if (this.$.hasClass(this.overlapped)) {
+
+                    this.$.removeClass(this.overlapped);
+                }
+            }
         }
 
     }, BaseElement.prototype);

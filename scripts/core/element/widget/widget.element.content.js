@@ -27,7 +27,7 @@ define([
         });
 
         this.setPadding();
-        this.setBackgroundImage(opts.thumbnail);
+        this.setBackgroundImage(opts);
 
         return this;
     };
@@ -37,12 +37,22 @@ define([
         /**
          * Set background image
          * @member WidgetElement
-         * @param {string} url
+         * @param {{url: string|*}} opts
          */
-        setBackgroundImage: function setBackgroundImage(url) {
-            this.$.css({
-                backgroundImage: 'url("' + url + '")'
-            });
+        setBackgroundImage: function setBackgroundImage(opts) {
+
+            if (opts.thumbnail.length > 0) {
+
+                this.$.css({
+                    backgroundImage: 'url("' + opts.thumbnail + '")'
+                });
+
+            } else {
+
+                this.$.addClass(
+                    opts.resource.replace(/\./g, '')
+                );
+            }
         },
 
         /**
