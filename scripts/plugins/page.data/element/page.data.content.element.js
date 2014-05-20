@@ -49,11 +49,17 @@ define([
 
             this.$.attr({
                 title: config.uuid
-            }).addClass(config.resource);
+            }).addClass(
+                config.preferences.resource.replace(/\./g, '')
+            );
 
-            this.$.css({
-                backgroundImage: 'url("' + config.preferences.thumbnail + '")'
-            });
+            if (config.preferences.thumbnail.length > 0) {
+
+                this.$.css({
+                    backgroundImage: 'url("' + config.preferences.thumbnail + '")'
+                });
+
+            }
         },
 
         /**

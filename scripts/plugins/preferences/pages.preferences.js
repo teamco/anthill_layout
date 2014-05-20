@@ -249,11 +249,15 @@ define([
                          */
                         uuid = widget.model.getUUID();
 
+                        var thumbnail = widget.model.getConfig('preferences/thumbnail'),
+                            css = thumbnail.length > 0 ? {backgroundImage: 'url("' + thumbnail + '")'} : {};
+
                         list.push(
                             $('<li />').
+                                addClass(widget.model.getConfig('preferences/resource').replace(/\./g, '')).
                                 attr('rel', uuid).
                                 text(uuid).
-                                css({backgroundImage: 'url("' + widget.model.getConfig('preferences/thumbnail') + '")'}).
+                                css(css).
                                 on('mouseenter.widgetPrefs mouseleave.widgetPrefs click.widgetPrefs',
                                 this.showWidgetPrefs.bind(this))
                         );
