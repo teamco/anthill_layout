@@ -708,6 +708,85 @@ define([
             }
 
             return row;
+        },
+
+        /**
+         * Select overlapped widgets
+         * @member Map
+         * @returns {*}
+         */
+        selectOverlappedWidgets: function selectOverlappedWidgets(){
+
+            /**
+             * Define layout
+             * @type {Layout}
+             */
+            var layout = this.getLayout();
+
+            /**
+             * Define page
+             * @type {Page}
+             */
+            var page = this.widget.controller.getContainment();
+
+            var markedWidgets = layout.overlapping._intersectWidgets(this.widget, true),
+                widgets = page.model.getItems(),
+                widget;
+
+            // Clean overlapped styles
+            this.unSelectOverlappedWidgets();
+
+            for (widget in markedWidgets)  {
+
+                if (markedWidgets.hasOwnProperty(widget) && widgets.hasOwnProperty(widget)){
+
+                    /**
+                     * Define widget
+                     * @type {Widget}
+                     */
+                    var item = widgets[widget];
+
+                    this.widget.logger.debug('Mark widget', item);
+
+                    item.view.get$item().selectWidget(true);
+                }
+            }
+
+            return markedWidgets;
+        },
+
+        /**
+         * unSelect overlapped widgets
+         * @member Map
+         * @param source
+         * @returns {*}
+         */
+        unSelectOverlappedWidgets: function unSelectOverlappedWidgets(){
+
+            /**
+             * Define page
+             * @type {Page}
+             */
+            var page = this.widget.controller.getContainment();
+
+            var widgets = page.model.getItems(),
+                widget;
+
+            for (widget in widgets)  {
+
+                if (widgets.hasOwnProperty(widget)){
+
+                    /**
+                     * Define widget
+                     * @type {Widget}
+                     */
+                    var item = widgets[widget];
+
+                    this.widget.logger.debug('Mark widget', item);
+
+                    item.view.get$item().selectWidget(false);
+                }
+            }
         }
 
     }, AntHill.prototype);

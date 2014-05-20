@@ -169,10 +169,11 @@ define(function defineLayoutIntersect() {
          * Widget intersections
          * @member Intersect
          * @param {Widget} source
+         * @param {boolean} force
          * @private
          * @returns {*}
          */
-        _intersectWidgets: function _intersectWidgets(source) {
+        _intersectWidgets: function _intersectWidgets(source, force) {
 
             var move = {}, i = 0, l, target,
                 partition = this.layout.controller.getContainment().model.getItemsApartOf(source);
@@ -187,7 +188,7 @@ define(function defineLayoutIntersect() {
 
                 if (this._overlapped(source.dom, target.dom)) {
 
-                    if (!this._allowOverlapping(source, target)) {
+                    if (!this._allowOverlapping(source, target) || force) {
 
                         this.layout.logger.debug('Overlapped', target);
                         move[target.model.getUUID()] = target;
@@ -197,6 +198,5 @@ define(function defineLayoutIntersect() {
 
             return move;
         }
-
     });
 });

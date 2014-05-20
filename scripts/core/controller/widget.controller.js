@@ -259,6 +259,8 @@ define([
 
             this.logger.debug('On drag', arguments);
 
+            this.map.selectOverlappedWidgets();
+
             this.controller.behaviorMode(
                 this.controller.getInteractionConfig('ongoing'),
                 type
@@ -273,6 +275,8 @@ define([
         stopDraggable: function stopDraggable(type) {
 
             this.logger.debug('Stop drag', arguments);
+
+            this.map.unSelectOverlappedWidgets();
 
             this.controller.behaviorMode(
                 this.controller.getInteractionConfig('stop'),
@@ -602,6 +606,15 @@ define([
          */
         getThumbnail: function getThumbnail() {
             return this.model.getConfig('preferences/thumbnail');
+        },
+
+        /**
+         * Get widget resource
+         * @member WidgetController
+         * @returns {*}
+         */
+        getResource: function getResource() {
+            return this.model.getConfig('preferences/resource');
         },
 
         /**

@@ -109,37 +109,45 @@ define([
          * @returns {{}}
          */
         _nestedOrganizerCore: function _nestedOrganizerCore(widgets) {
+
             var intersecting = {}, nestedMove = {},
                 index, moved, widget;
 
             for (index in widgets) {
+
                 if (widgets.hasOwnProperty(index)) {
-                    if (this.base.isDefined(widgets[index])) {
 
-                        /**
-                         * Find intersections
-                         * @type {*}
-                         */
-                        intersecting = this._intersectWidgets(widgets[index]);
+                    /**
+                     * Define source widget
+                     * @type {Widget}
+                     */
+                    var src = widgets[index];
 
-                        this._organizeCollector(
-                            widgets[index],
-                            intersecting
-                        );
+                    /**
+                     * Find intersections
+                     * @type {*}
+                     */
+                    intersecting = this._intersectWidgets(src, false);
 
-                        for (moved in intersecting) {
-                            if (intersecting.hasOwnProperty(moved)) {
+                    this._organizeCollector(
+                        src,
+                        intersecting
+                    );
 
-                                /**
-                                 * Define intersected widget
-                                 */
-                                widget = intersecting[moved];
+                    for (moved in intersecting) {
 
-                                /**
-                                 * Collect widgets are ready to change position
-                                 */
-                                nestedMove[widget.model.getUUID()] = widget;
-                            }
+                        if (intersecting.hasOwnProperty(moved)) {
+
+                            /**
+                             * Define intersected widget
+                             * @type {Widget}
+                             */
+                            widget = intersecting[moved];
+
+                            /**
+                             * Collect widgets are ready to change position
+                             */
+                            nestedMove[widget.model.getUUID()] = widget;
                         }
                     }
                 }
@@ -248,7 +256,7 @@ define([
         /**
          * Organize collector
          * @member Overlapping
-         * @param {{dom}} source
+         * @param {Widget} source
          * @private
          * @param {*} targets
          */
