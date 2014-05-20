@@ -88,15 +88,27 @@ define([
                 this.$.removeClass('ontop');
         },
 
+        /**
+         * Front z-index layer
+         * @member WidgetElement
+         */
         moveFront: function moveFront() {
             this.$.css({zIndex: parseInt(this.$.css('z-index'), 10) + 1});
         },
 
+        /**
+         * Back z-index layer
+         * @member WidgetElement
+         */
         moveBack: function moveBack() {
             var zIndex = parseInt(this.$.css('z-index'), 10) - 1;
             this.$.css({zIndex: zIndex < 0 ? 0 : zIndex});
         },
 
+        /**
+         * Reset z-index layer
+         * @member WidgetElement
+         */
         resetLayer: function resetLayer() {
             this.$.css({zIndex: 0});
         },

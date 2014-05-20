@@ -754,11 +754,17 @@ define([
                 }
             }
 
+            /**
+             * Define $widget
+             * @type {WidgetElement|BaseElement}
+             */
             var $widget = this.widget.view.get$item();
 
+            $widget.resetLayer();
+
             up ?
-                $widget.moveFront() :
-                $widget.moveBack();
+                $widget.moveBack() :
+                $widget.moveFront();
         },
 
         /**
