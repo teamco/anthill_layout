@@ -558,7 +558,7 @@ define([
          * @member WidgetController
          */
         setLayerUp: function setLayerUp() {
-            debugger
+            this.map.updateLayer(false);
         },
 
         /**
@@ -566,7 +566,7 @@ define([
          * @member WidgetController
          */
         setLayerDown: function setLayerDown() {
-            debugger
+           this.map.updateLayer(true);
         },
 
         /**

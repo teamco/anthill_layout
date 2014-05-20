@@ -88,6 +88,19 @@ define([
                 this.$.removeClass('ontop');
         },
 
+        moveFront: function moveFront() {
+            this.$.css({zIndex: parseInt(this.$.css('z-index'), 10) + 1});
+        },
+
+        moveBack: function moveBack() {
+            var zIndex = parseInt(this.$.css('z-index'), 10) - 1;
+            this.$.css({zIndex: zIndex < 0 ? 0 : zIndex});
+        },
+
+        resetLayer: function resetLayer() {
+            this.$.css({zIndex: 0});
+        },
+
         /**
          * Select overlapped widgets
          * @member WidgetElement

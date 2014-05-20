@@ -4,7 +4,6 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    z-index: 50;
     cursor: move;
     -webkit-box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
     -moz-box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);

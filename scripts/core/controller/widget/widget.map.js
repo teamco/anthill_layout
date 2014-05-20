@@ -711,11 +711,11 @@ define([
         },
 
         /**
-         * Select overlapped widgets
+         * Update widget z-index layer
          * @member Map
-         * @returns {*}
+         * @param {boolean} up
          */
-        selectOverlappedWidgets: function selectOverlappedWidgets(){
+        updateLayer: function updateLayer(up) {
 
             /**
              * Define layout
@@ -725,20 +725,71 @@ define([
 
             /**
              * Define page
-             * @type {Page}
+             * @type {Page|*}
              */
-            var page = this.widget.controller.getContainment();
+            var containment = this.widget.controller.getContainment();
 
             var markedWidgets = layout.overlapping._intersectWidgets(this.widget, true),
-                widgets = page.model.getItems(),
+                widgets = containment.model.getItems(),
+                widget;
+
+            for (widget in markedWidgets) {
+
+                if (markedWidgets.hasOwnProperty(widget) && widgets.hasOwnProperty(widget)) {
+
+                    /**
+                     * Define widget
+                     * @type {Widget}
+                     */
+                    var item = widgets[widget],
+                        $item = item.view.get$item();
+
+                    this.widget.logger.debug('Update widget layer', item);
+
+                    $item.resetLayer();
+
+                    up ?
+                        $item.moveFront() :
+                        $item.moveBack();
+                }
+            }
+
+            var $widget = this.widget.view.get$item();
+
+            up ?
+                $widget.moveFront() :
+                $widget.moveBack();
+        },
+
+        /**
+         * Select overlapped widgets
+         * @member Map
+         * @returns {*}
+         */
+        selectOverlappedWidgets: function selectOverlappedWidgets() {
+
+            /**
+             * Define layout
+             * @type {Layout}
+             */
+            var layout = this.getLayout();
+
+            /**
+             * Define page
+             * @type {Page|*}
+             */
+            var containment = this.widget.controller.getContainment();
+
+            var markedWidgets = layout.overlapping._intersectWidgets(this.widget, true),
+                widgets = containment.model.getItems(),
                 widget;
 
             // Clean overlapped styles
             this.unSelectOverlappedWidgets();
 
-            for (widget in markedWidgets)  {
+            for (widget in markedWidgets) {
 
-                if (markedWidgets.hasOwnProperty(widget) && widgets.hasOwnProperty(widget)){
+                if (markedWidgets.hasOwnProperty(widget) && widgets.hasOwnProperty(widget)) {
 
                     /**
                      * Define widget
@@ -761,20 +812,20 @@ define([
          * @param source
          * @returns {*}
          */
-        unSelectOverlappedWidgets: function unSelectOverlappedWidgets(){
+        unSelectOverlappedWidgets: function unSelectOverlappedWidgets() {
 
             /**
              * Define page
-             * @type {Page}
+             * @type {Page|*}
              */
-            var page = this.widget.controller.getContainment();
+            var containment = this.widget.controller.getContainment();
 
-            var widgets = page.model.getItems(),
+            var widgets = containment.model.getItems(),
                 widget;
 
-            for (widget in widgets)  {
+            for (widget in widgets) {
 
-                if (widgets.hasOwnProperty(widget)){
+                if (widgets.hasOwnProperty(widget)) {
 
                     /**
                      * Define widget
