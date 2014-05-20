@@ -61,7 +61,7 @@ define([
             } else {
 
                 this.$.addClass(
-                    this.data.name.toLowerCase().split(' ').join('')
+                    this.data.resource.replace(/\./g, '')
                 );
             }
         },
