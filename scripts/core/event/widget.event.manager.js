@@ -100,6 +100,7 @@ define([
             setLayerUp: 'set.layer.up',
             setLayerDown: 'set.layer.down',
             restoreLayerIndex: 'restore.layer.index',
+            updateLayerIndex: 'update.layer.index',
             setAlwaysOnTop: 'set.always.on.down',
 
             setOnClickUrl: 'set.on.click.url',

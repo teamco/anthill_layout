@@ -572,6 +572,23 @@ define([
         },
 
         /**
+         * Update layout z-index
+         * @member WidgetController
+         * @param index
+         */
+        updateLayerIndex: function updateLayerIndex(index) {
+
+            /**
+             * Define config html
+             * @type {}
+             */
+            var configHtml = this.model.getConfig('html');
+
+            configHtml.zIndex = index;
+            this.mode.setConfig('html', configHtml);
+        },
+
+        /**
          * Restore layer index
          * @member WidgetController
          */
