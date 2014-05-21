@@ -6,13 +6,15 @@
  */
 
 define([
-    'config/anthill'
-], function defineWidgetMap(AntHill) {
+    'config/anthill',
+    'controller/widget/widget.overlapping'
+], function defineWidgetMap(AntHill, WidgetOverlapping) {
 
     /**
      * Define Widget Map
      * @class Map
      * @extends AntHill
+     * @extends WidgetOverlapping
      * @param {*} widget
      * @constructor
      */
@@ -708,153 +710,7 @@ define([
             }
 
             return row;
-        },
-
-        revertLayer: function revertLayer() {
-
-        },
-
-        /**
-         * Update widget z-index layer
-         * @member Map
-         * @param {boolean} up
-         * @param {boolean} save
-         */
-        updateLayer: function updateLayer(up, save) {
-
-            /**
-             * Define layout
-             * @type {Layout}
-             */
-            var layout = this.getLayout();
-
-            /**
-             * Define page
-             * @type {Page|*}
-             */
-            var containment = this.widget.controller.getContainment();
-
-            var markedWidgets = layout.overlapping._intersectWidgets(this.widget, true),
-                widgets = containment.model.getItems(),
-                widget;
-
-            for (widget in markedWidgets) {
-
-                if (markedWidgets.hasOwnProperty(widget) && widgets.hasOwnProperty(widget)) {
-
-                    /**
-                     * Define widget
-                     * @type {Widget}
-                     */
-                    var item = widgets[widget],
-                        $item = item.view.get$item();
-
-                    this.widget.logger.debug('Update widget layer', item);
-
-                    $item.resetLayer();
-
-                    up ?
-                        $item.moveFront() :
-                        $item.moveBack();
-                }
-            }
-
-            /**
-             * Define $widget
-             * @type {WidgetElement|BaseElement}
-             */
-            var $widget = this.widget.view.get$item();
-
-            $widget.resetLayer();
-
-            up ?
-                $widget.moveBack() :
-                $widget.moveFront();
-
-            if (save) {
-
-                // TODO
-            }
-        },
-
-        /**
-         * Select overlapped widgets
-         * @member Map
-         * @returns {*}
-         */
-        selectOverlappedWidgets: function selectOverlappedWidgets() {
-
-            /**
-             * Define layout
-             * @type {Layout}
-             */
-            var layout = this.getLayout();
-
-            /**
-             * Define page
-             * @type {Page|*}
-             */
-            var containment = this.widget.controller.getContainment();
-
-            var markedWidgets = layout.overlapping._intersectWidgets(this.widget, true),
-                widgets = containment.model.getItems(),
-                widget;
-
-            // Clean overlapped styles
-            this.unSelectOverlappedWidgets();
-
-            for (widget in markedWidgets) {
-
-                if (markedWidgets.hasOwnProperty(widget) && widgets.hasOwnProperty(widget)) {
-
-                    /**
-                     * Define widget
-                     * @type {Widget}
-                     */
-                    var item = widgets[widget];
-
-                    this.widget.logger.debug('Mark widget', item);
-
-                    item.view.get$item().selectWidget(true);
-                }
-            }
-
-            return markedWidgets;
-        },
-
-        /**
-         * unSelect overlapped widgets
-         * @member Map
-         * @param source
-         * @returns {*}
-         */
-        unSelectOverlappedWidgets: function unSelectOverlappedWidgets() {
-
-            /**
-             * Define page
-             * @type {Page|*}
-             */
-            var containment = this.widget.controller.getContainment();
-
-            var widgets = containment.model.getItems(),
-                widget;
-
-            for (widget in widgets) {
-
-                if (widgets.hasOwnProperty(widget)) {
-
-                    /**
-                     * Define widget
-                     * @type {Widget}
-                     */
-                    var item = widgets[widget];
-
-                    this.widget.logger.debug('Mark widget', item);
-
-                    item.view.get$item().selectWidget(false);
-                }
-            }
         }
 
-    }, AntHill.prototype);
+    }, AntHill.prototype, WidgetOverlapping.prototype);
 });
