@@ -56,7 +56,6 @@ define([
                         value = $(input).prop('checked');
                     }
 
-
                     this.model[setter](value);
 
                     scope.observer.publish(

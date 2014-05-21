@@ -287,7 +287,9 @@ define([
          * @member ModalElement
          */
         setButtons: function setButtons() {
+
             var $container = this._get$Buttons();
+
             $.each(this.buttons, function each(i, button) {
                 button.$container = $container;
             });
@@ -302,6 +304,7 @@ define([
          * @member ModalElement
          */
         unsetButtons: function unsetButtons() {
+
             $.each(this.$buttons, function each(i, $button) {
                 $button.destroy();
             });

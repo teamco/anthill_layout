@@ -556,17 +556,27 @@ define([
         /**
          * Set widget layer up
          * @member WidgetController
+         * @param {boolean} save
          */
-        setLayerUp: function setLayerUp() {
-            this.map.updateLayer(false);
+        setLayerUp: function setLayerUp(save) {
+            this.map.updateLayer(false, save);
         },
 
         /**
          * Set widget layer down
          * @member WidgetController
+         * @param {boolean} save
          */
-        setLayerDown: function setLayerDown() {
-           this.map.updateLayer(true);
+        setLayerDown: function setLayerDown(save) {
+           this.map.updateLayer(true, save);
+        },
+
+        /**
+         * Restore layer index
+         * @member WidgetController
+         */
+        restoreLayerIndex: function restoreLayerIndex() {
+            this.map.revertLayer();
         },
 
         /**

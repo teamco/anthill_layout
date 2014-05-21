@@ -53,6 +53,7 @@ define([
          *      loadContent: string,
          *      setContent: string,
          *      adoptDimensions: string,
+         *      restoreLayerIndex: string,
          *      setLayerUp: string,
          *      setLayerDown: string,
          *      setAlwaysOnTop: string,
@@ -98,6 +99,7 @@ define([
 
             setLayerUp: 'set.layer.up',
             setLayerDown: 'set.layer.down',
+            restoreLayerIndex: 'restore.layer.index',
             setAlwaysOnTop: 'set.always.on.down',
 
             setOnClickUrl: 'set.on.click.url',

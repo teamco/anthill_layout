@@ -67,10 +67,15 @@ define([
                 id: uuid,
                 title: opts.title
             }).text(opts.title).
-                addClass(opts.name.toLowerCase());
+                addClass(opts.name.toLowerCase()).append(
+
+                $('<input />').attr({
+                    name: opts.group,
+                    type: 'radio'
+                })
+            );
 
             $link.on(
-
                 opts.events.join(' '),
 
                 /**
@@ -87,6 +92,10 @@ define([
                      * @type {WidgetContent}
                      */
                     var content = this.view.scope;
+
+                    $('input', $(e.target)).prop({
+                        checked: true
+                    }).val(opts.name);
 
                     content.observer.publish(
                         content.eventmanager.eventList.executeOnWidgetEvent,

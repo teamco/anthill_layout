@@ -31,8 +31,8 @@ define([
          *      overlapping: {type: string, disabled: boolean, checked: boolean},
          *      alwaysOnTop: {type: string, disabled: boolean, checked: boolean},
          *      statistics: {type: string, disabled: boolean, checked: boolean},
-         *      setLayerUp: {type: string, disabled: boolean, events: array},
-         *      setLayerDown: {type: string, disabled: boolean, events: array}
+         *      setLayerUp: {type: string, disabled: boolean, group: string, events: array},
+         *      setLayerDown: {type: string, disabled: boolean, group: string, events: array}
          * }}
          */
         defaultPrefs: {
@@ -74,11 +74,13 @@ define([
             setLayerUp: {
                 type: 'event',
                 disabled: false,
+                group: 'layer',
                 events: ['click']
             },
             setLayerDown: {
                 type: 'event',
                 disabled: false,
+                group: 'layer',
                 events: ['click']
             }
         },
@@ -136,6 +138,7 @@ define([
                             $element = this.renderEventLink({
                                 name: index,
                                 title: text.trim(),
+                                group: node.group || index,
                                 disabled: node.disabled,
                                 events: node.events
                             });

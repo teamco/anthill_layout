@@ -42,7 +42,7 @@ define([
          *      rules: {},
          *      limit: boolean,
          *      order: number,
-         *      html: {header: boolean, footer: boolean, frameLess: boolean, style: string},
+         *      html: {header: boolean, footer: boolean, frameLess: boolean, style: string, zIndex: number},
          *      type: string,
          *      maximize: boolean,
          *      attributes: {magnet: string, freeze: boolean, alwaysTop: boolean},
@@ -62,7 +62,8 @@ define([
                 header: false,
                 footer: false,
                 frameLess: false,
-                style: ''
+                style: '',
+                zIndex: 0
             },
             type: 'default',
             maximize: false,

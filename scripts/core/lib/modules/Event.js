@@ -160,28 +160,37 @@ define([
         /**
          * Bind element events
          * @member BaseEvent
-         * @param {String} event
+         * @param {String|Array} events
          * @param {String} on
          * @returns {Boolean}
          */
-        onEvent: function onEvent(event, on) {
+        onEvent: function onEvent(events, on) {
             var scope = this.scope,
-                controller = scope.controller,
-                method = controller[event];
+                controller = scope.controller;
 
-            if (scope.controller.checkCondition({
-                condition: !scope.base.isFunction(method),
-                msg: 'Undefined method',
-                type: 'warn',
-                args: [controller, event, on]
-            })) {
-                return false;
+            if (typeof(events) === 'string') {
+                events = [events];
             }
 
-            this.$.on(
-                [on, event].join('.'),
-                method.bind(controller)
-            );
+            for (var i = 0, l = events.length; i < l; i++) {
+
+                var event = events[i],
+                    method = controller[events[i]];
+
+                if (scope.controller.checkCondition({
+                    condition: !scope.base.isFunction(method),
+                    msg: 'Undefined method',
+                    type: 'warn',
+                    args: [controller, event, on]
+                })) {
+                    continue;
+                }
+
+                this.$.on(
+                    [on, event].join('.'),
+                    method.bind(controller)
+                );
+            }
         },
 
         /**

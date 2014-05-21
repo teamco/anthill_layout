@@ -63,7 +63,7 @@ define([], function defineBasePreferences() {
                 reject: {
                     text: 'Cancel',
                     events: {
-                        click: 'rejectModalEvent'
+                        click: ['rejectModalEvent', 'restoreWidgetsLayerIndex']
                     }
                 }
             });

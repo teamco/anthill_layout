@@ -471,6 +471,24 @@ define([
         },
 
         /**
+         * Save widget layer
+         * @member BaseModel
+         */
+        setLayer: function setLayer(eventName) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope.controller.getContainment();
+
+            scope.observer.publish(
+                scope.eventmanager.eventList[eventName],
+                true
+            );
+        },
+
+        /**
          * Set overlapping
          * @member BaseModel
          * @param {boolean} overlapping

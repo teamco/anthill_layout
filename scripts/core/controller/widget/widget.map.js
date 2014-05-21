@@ -710,12 +710,17 @@ define([
             return row;
         },
 
+        revertLayer: function revertLayer() {
+
+        },
+
         /**
          * Update widget z-index layer
          * @member Map
          * @param {boolean} up
+         * @param {boolean} save
          */
-        updateLayer: function updateLayer(up) {
+        updateLayer: function updateLayer(up, save) {
 
             /**
              * Define layout
@@ -765,6 +770,11 @@ define([
             up ?
                 $widget.moveBack() :
                 $widget.moveFront();
+
+            if (save) {
+
+                // TODO
+            }
         },
 
         /**

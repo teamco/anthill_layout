@@ -243,6 +243,24 @@ define([
             );
 
             this.scope.view.elements.$modal.selfDestroy();
+        },
+
+        /**
+         * Restore layer index
+         * @member PageDataController
+         */
+        restoreWidgetsLayerIndex: function restoreWidgetsLayerIndex() {
+
+            /**
+             * Define active content
+             * @type {*}
+             */
+            var content = this.scope.activeContent;
+
+            content.observer.publish(
+                content.eventmanager.eventList.executeOnWidgetEvent,
+                'restoreLayerIndex'
+            );
         }
 
     }, AntHill.prototype, PluginBase.prototype);
