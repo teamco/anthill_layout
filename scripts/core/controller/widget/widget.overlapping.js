@@ -50,28 +50,12 @@ define([], function defineWidgetOverlapping() {
         },
 
         /**
-         * Bring widget to front layer
-         * @member WidgetOverlapping
-         */
-        bringToFrontLayer: function bringToFrontLayer() {
-            this.controller.adoptLayer(true);
-        },
-
-        /**
-         * Send widget to back layer
-         * @member WidgetOverlapping
-         */
-        sendToBackLayer: function sendToBackLayer() {
-            this.controller.adoptLayer(false);
-        },
-
-        /**
          * Get container target widgets
          * @member WidgetOverlapping
          * @param {boolean} [up]
          * @returns {{}}
          */
-        getContainerTargets: function getContainerTargets(up) {
+        getTargetsData: function getTargetsData(up) {
 
             var targets = {
                     widgets: {},

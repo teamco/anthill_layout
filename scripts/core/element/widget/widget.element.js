@@ -110,7 +110,16 @@ define([
          * @member WidgetElement
          */
         resetLayer: function resetLayer() {
-            this.$.css({zIndex: 0});
+
+            /**
+             * Get z-index
+             * @type {number}
+             */
+            var zIndex = this.getZIndex();
+
+            this.$.css({
+                zIndex: isNaN(zIndex) ? 0 : zIndex
+            });
         },
 
         /**

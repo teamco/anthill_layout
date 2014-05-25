@@ -501,7 +501,18 @@ define([
          * @returns {Number}
          */
         getCSS: function getCSS(value) {
-            return this.base.lib.number.str2float(this.$.css(value));
+            return this.base.lib.number.str2float(
+                this.$.css(value)
+            );
+        },
+
+        /**
+         * Get z-index
+         * @member BaseElement
+         * @returns {Number}
+         */
+        getZIndex: function getZIndex() {
+            return this.getCSS('z-index');
         },
 
         /**
@@ -594,6 +605,10 @@ define([
             return this.getPaddingTop() + this.getMarginTop();
         },
 
+        /**
+         * Locate element
+         * @member BaseElement
+         */
         locate: function locate() {
 
             this.$.hasClass('shadow') ?
