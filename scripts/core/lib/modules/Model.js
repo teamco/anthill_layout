@@ -169,14 +169,18 @@ define([
          * @returns {Array}
          */
         getItemsApartOf: function getItemsApartOf(item) {
+
             var items = this.getItems(),
                 nodes = [], index, node, nodeUUID,
                 uuid = item.model.getUUID();
 
             for (index in items) {
+
                 if (items.hasOwnProperty(index)) {
+
                     node = items[index];
                     nodeUUID = node.model.getUUID();
+
                     if (uuid !== nodeUUID) {
                         nodes.push(node);
                     }

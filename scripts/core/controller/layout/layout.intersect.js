@@ -175,8 +175,21 @@ define(function defineLayoutIntersect() {
          */
         _intersectWidgets: function _intersectWidgets(source, force) {
 
-            var move = {}, i = 0, l, target,
-                partition = this.layout.controller.getContainment().model.getItemsApartOf(source);
+            var move = {}, i = 0, l, target;
+
+            /**
+             * Define layout controller
+             * @type {LayoutController}
+             */
+            var controller = this.layout.controller;
+
+            /**
+             * Define page
+             * @type {Page}
+             */
+            var page = controller.getContainment(),
+                partition = page.model.getItemsApartOf(source),
+                overlapped;
 
             for (i, l = partition.length; i < l; i++) {
 
@@ -186,17 +199,102 @@ define(function defineLayoutIntersect() {
                  */
                 target = partition[i];
 
-                if (this._overlapped(source.dom, target.dom)) {
+                if (!this._allowOverlapping(source, target) || force) {
 
-                    if (!this._allowOverlapping(source, target) || force) {
+                    if (controller.isSnap2Grid() || controller.isUIGrid()) {
 
-                        this.layout.logger.debug('Overlapped', target);
+                        overlapped = this.gridStyleOverlpping(source, target);
+
+                    } else if (controller.isFreeStyle()) {
+
+                        overlapped = this.freeStyleOverlapping(source, target);
+                    }
+
+                    if (overlapped) {
                         move[target.model.getUUID()] = target;
                     }
                 }
             }
 
             return move;
+        },
+
+        /**
+         * Grid style overlapping
+         * @member Intersect
+         * @param source
+         * @param target
+         * @returns {*}
+         */
+        gridStyleOverlpping: function gridStyleOverlpping(source, target) {
+
+            if (this._overlapped(source.dom, target.dom)) {
+
+                this.layout.logger.debug('Grid style Overlapped', target);
+                return target;
+            }
+        },
+
+        /**
+         * Check free style overlapped widgets
+         * @member Intersect
+         * @param source
+         * @param target
+         * @returns {*}
+         */
+        freeStyleOverlapping: function freeStyleOverlapping(source, target) {
+
+            /**
+             * Is overlapped?
+             * @type {{collide: collide, inside: inside}}
+             */
+            var is = {
+
+                /**
+                 * Check collide
+                 * @param el1
+                 * @param el2
+                 * @returns {boolean}
+                 */
+                collide: function collide(el1, el2) {
+
+                    var rect1 = el1.getBoundingClientRect(),
+                        rect2 = el2.getBoundingClientRect();
+
+                    return !(
+                        rect1.top > rect2.bottom ||
+                        rect1.right < rect2.left ||
+                        rect1.bottom < rect2.top ||
+                        rect1.left > rect2.right
+                        );
+                },
+
+                /**
+                 * Check inside
+                 * @param el1
+                 * @param el2
+                 * @returns {boolean}
+                 */
+                inside: function inside(el1, el2) {
+
+                    var rect1 = el1.getBoundingClientRect(),
+                        rect2 = el2.getBoundingClientRect();
+
+                    return (
+                        ((rect2.top <= rect1.top) && (rect1.top <= rect2.bottom)) &&
+                        ((rect2.top <= rect1.bottom) && (rect1.bottom <= rect2.bottom)) &&
+                        ((rect2.left <= rect1.left) && (rect1.left <= rect2.right)) &&
+                        ((rect2.left <= rect1.right) && (rect1.right <= rect2.right))
+                        );
+                }
+            };
+
+            var $source = source.view.get$item()[0],
+                $widget = target.view.get$item()[0];
+
+            if (is.collide($source, $widget) || is.inside($source, $widget)) {
+                return target;
+            }
         }
     });
 });

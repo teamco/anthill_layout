@@ -102,14 +102,14 @@ define([
         /**
          * Define controller
          * @member Layout
-         * @type {*}
+         * @type {LayoutController}
          */
         this.controller = undefined;
 
         /**
          * Define permissions
          * @member Layout
-         * @type {*}
+         * @type {LayoutPermission}
          */
         this.permission = undefined;
         
