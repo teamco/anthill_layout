@@ -160,6 +160,8 @@ define([
                             layer = 0;
                         }
 
+                        layer = up ? layer : layer + 1;
+
                         if (targets.maxLayer < layer) {
                             targets.maxLayer = layer;
                         }
@@ -168,11 +170,9 @@ define([
                             targets.minLayer = layer;
                         }
 
-                        layer = up ? layer : layer + 1;
-
                         this.scope.logger.debug('Adopt widget layer', widget, layer);
 
-                        widget.controller.adoptLayer(layer);
+                        widget.map.adoptLayer(layer);
                     }
                 }
             }
