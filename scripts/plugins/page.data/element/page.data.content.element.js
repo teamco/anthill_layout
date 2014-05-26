@@ -58,7 +58,6 @@ define([
                 this.$.css({
                     backgroundImage: 'url("' + config.preferences.thumbnail + '")'
                 });
-
             }
         },
 
