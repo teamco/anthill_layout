@@ -37,6 +37,10 @@ define([
                  */
                 var name = input.name.toCamel().capitalize();
 
+                if (input.type === 'radio') {
+                    name = input.value;
+                }
+
                 /**
                  * Define method name
                  * @type {string}
@@ -65,7 +69,10 @@ define([
 
                 } else {
 
-                    scope.logger.error('Undefined setter', [name, setter]);
+                    if (input.type !== 'radio') {
+
+                        scope.logger.warn('Undefined setter', [name, setter]);
+                    }
                 }
 
             }.bind(this));

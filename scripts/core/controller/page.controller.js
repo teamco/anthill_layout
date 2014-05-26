@@ -170,14 +170,14 @@ define([
 
                         layer = up ? layer : layer + 1;
 
-                        this.page.logger.debug('Adopt widget layer', widget, layer);
+                        this.scope.logger.debug('Adopt widget layer', widget, layer);
 
                         widget.controller.adoptLayer(layer);
                     }
                 }
             }
 
-            this.page.logger.debug('Get container target widgets', targets);
+            this.scope.logger.debug('Get container target widgets', targets);
 
             return targets;
         }

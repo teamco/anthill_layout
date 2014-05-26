@@ -123,6 +123,17 @@ define([
         },
 
         /**
+         * Update layer of a widgets
+         * @member WidgetElement
+         * @param {number} layer
+         */
+        updateElementLayer: function updateElementLayer(layer) {
+            this.$.css({
+                zIndex: layer
+            });
+        },
+
+        /**
          * Select overlapped widgets
          * @member WidgetElement
          * @param {boolean} select

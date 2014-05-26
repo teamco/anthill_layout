@@ -68,7 +68,6 @@ define([
                 title: opts.title
             }).text(opts.title).
                 addClass(opts.name.toLowerCase()).append(
-
                 $('<input />').attr({
                     name: opts.group,
                     type: 'radio'
@@ -93,6 +92,10 @@ define([
                      */
                     var content = this.view.scope;
 
+                    // Reset to default value
+                    $('input:radio[name="' + e.target.name + '"]').val('on');
+
+                    // Set new value
                     $('input', $(e.target)).prop({
                         checked: true
                     }).val(opts.name);
