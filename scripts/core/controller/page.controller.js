@@ -115,6 +115,71 @@ define([
                     }
                 }
             }
+        },
+
+        /**
+         * Get container target widgets
+         * @member PageController
+         * @param {Widget} source
+         * @param {boolean} [up]
+         * @returns {{}}
+         */
+        getTargetWidgetsData: function getTargetWidgetsData(source, up) {
+
+            var targets = {
+                    widgets: {},
+                    minLayer: 16777271,
+                    maxLayer: 0
+                },
+                widget, items = this.model.getItems(),
+                index, layer, uuid;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    /**
+                     * Define widget
+                     * @type {Widget}
+                     */
+                    widget = items[index];
+
+                    /**
+                     * Get widget UUID
+                     * @type {String}
+                     */
+                    uuid = widget.model.getUUID();
+
+                    if (source.model.getUUID() !== uuid) {
+
+                        targets.widgets[uuid] = widget;
+
+                        layer = widget.dom.zIndex;
+
+                        if (!layer || layer === 'auto') {
+                            layer = 0;
+                        }
+
+                        if (targets.maxLayer < layer) {
+                            targets.maxLayer = layer;
+                        }
+
+                        if (targets.minLayer > layer) {
+                            targets.minLayer = layer;
+                        }
+
+                        layer = up ? layer : layer + 1;
+
+                        this.page.logger.debug('Adopt widget layer', widget, layer);
+
+                        widget.controller.adoptLayer(layer);
+                    }
+                }
+            }
+
+            this.page.logger.debug('Get container target widgets', targets);
+
+            return targets;
         }
 
     }, AntHill.prototype, BaseController.prototype, BasePage.prototype);
