@@ -20,7 +20,7 @@ define([], function defineWidgetOverlapping() {
          * @member WidgetOverlapping
          */
         revertLayer: function revertLayer() {
-
+debugger
         },
 
         /**
@@ -74,6 +74,8 @@ define([], function defineWidgetOverlapping() {
             );
 
             if (save) {
+
+                containment.controller.reorderLayers();
 
                 // TODO
             }

@@ -460,6 +460,7 @@ define([
          * @param {boolean} ontop
          */
         setAlwaysOnTop: function setAlwaysOnTop(ontop) {
+
             this.setPrefs('alwaysOnTop', ontop);
 
             /**

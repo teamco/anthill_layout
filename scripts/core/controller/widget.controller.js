@@ -559,7 +559,7 @@ define([
          * @param {boolean} save
          */
         setLayerUp: function setLayerUp(save) {
-            this.map.updateLayer(false, save);
+            this.map.updateLayer(true, save);
         },
 
         /**
@@ -568,7 +568,7 @@ define([
          * @param {boolean} save
          */
         setLayerDown: function setLayerDown(save) {
-           this.map.updateLayer(true, save);
+           this.map.updateLayer(false, save);
         },
 
         /**

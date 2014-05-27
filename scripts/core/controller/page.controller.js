@@ -180,6 +180,57 @@ define([
             this.scope.logger.debug('Get container target widgets', targets);
 
             return targets;
+        },
+
+        /**
+         * Re-order layers before save
+         * @member PageController
+         */
+        reorderLayers: function reorderLayers() {
+
+            /**
+             * Get page items
+             * @type {*}
+             */
+            var items = this.model.getItems(),
+                minLayer = 16777271,
+                index, widget, layer;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    /**
+                     * Define widget
+                     * @type {Widget}
+                     */
+                    widget = items[index];
+
+                    layer = widget.dom.zIndex;
+
+                    if (!layer || layer === 'auto') {
+                        layer = 0;
+                    }
+
+                    if (minLayer > layer) {
+                        minLayer = layer;
+                    }
+                }
+            }
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    /**
+                     * Define widget
+                     * @type {Widget}
+                     */
+                    widget = items[index];
+
+                    widget.map.adoptLayer(widget.dom.zIndex - minLayer);
+                }
+            }
         }
 
     }, AntHill.prototype, BaseController.prototype, BasePage.prototype);
