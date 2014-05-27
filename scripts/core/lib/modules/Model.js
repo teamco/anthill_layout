@@ -479,7 +479,7 @@ define([
          * Save widget layer
          * @member BaseModel
          */
-        setLayer: function setLayer(eventName) {
+        setLayerUp: function setLayerUp(eventName) {
 
             /**
              * Define scope

@@ -37,10 +37,6 @@ define([
                  */
                 var name = input.name.toCamel().capitalize();
 
-                if (input.type === 'radio') {
-                    name = input.value;
-                }
-
                 /**
                  * Define method name
                  * @type {string}
@@ -48,17 +44,21 @@ define([
                 var setter = 'set' + name,
                     value;
 
+                /**
+                 * Define input value
+                 * @type {string}
+                 */
+                value = input.value;
+
+                if (input.type === 'checkbox') {
+                    value = $(input).prop('checked');
+                }
+
+                if (input.type === 'radio') {
+                    setter = value;
+                }
+
                 if (typeof(this.model[setter]) === 'function') {
-
-                    /**
-                     * Define input value
-                     * @type {*|jQuery}
-                     */
-                    value = input.value;
-
-                    if (input.type === 'checkbox') {
-                        value = $(input).prop('checked');
-                    }
 
                     this.model[setter](value);
 
@@ -69,7 +69,7 @@ define([
 
                 } else {
 
-                    if (input.type !== 'radio') {
+                    if (input.type !== 'radio' || (input.type === 'radio' && setter !== 'on')) {
 
                         scope.logger.warn('Undefined setter', [name, setter]);
                     }

@@ -206,7 +206,8 @@ define([
                      */
                     widget = items[index];
 
-                    layer = widget.dom.zIndex;
+                    layer = widget.view.elements.$widget.getZIndex();
+                    widget.dom.zIndex = layer;
 
                     if (!layer || layer === 'auto') {
                         layer = 0;
