@@ -593,7 +593,14 @@ define([
          * @member WidgetController
          */
         restoreLayerIndex: function restoreLayerIndex() {
-            this.map.revertLayer();
+
+            /**
+             * Get containment
+             * @type {Page|*}
+             */
+            var containment = this.controller.getContainment();
+
+            containment.controller.revertLayer();
         },
 
         /**

@@ -172,7 +172,7 @@ define([
 
                         this.scope.logger.debug('Adopt widget layer', widget, layer);
 
-                        widget.map.adoptLayer(layer);
+                        widget.map.adoptLayer(layer, false);
                     }
                 }
             }
@@ -228,7 +228,35 @@ define([
                      */
                     widget = items[index];
 
-                    widget.map.adoptLayer(widget.dom.zIndex - minLayer);
+                    widget.map.adoptLayer(widget.dom.zIndex - minLayer, true);
+                }
+            }
+        },
+
+        /**
+         * Revert layer
+         * @member PageController
+         */
+        revertLayer: function revertLayer() {
+
+            /**
+             * Get page items
+             * @type {*}
+             */
+            var items = this.model.getItems(),
+                index, widget;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    /**
+                     * Define widget
+                     * @type {Widget}
+                     */
+                    widget = items[index];
+
+                    widget.map.adoptLayer(widget.dom.zIndex || 'auto', false);
                 }
             }
         }

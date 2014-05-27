@@ -45,6 +45,7 @@ define([
          * @private
          */
         _setPosition: function _setPosition(opts) {
+
             var widget = this.view.scope,
                 dom = widget.dom,
                 position = widget.map.positionFor(
@@ -86,40 +87,6 @@ define([
         moveOnTopLayer: function moveOnTopLayer(ontop) {
             ontop ? this.$.addClass('ontop') :
                 this.$.removeClass('ontop');
-        },
-
-        /**
-         * Front z-index layer
-         * @member WidgetElement
-         */
-        moveFront: function moveFront() {
-            this.$.css({zIndex: parseInt(this.$.css('z-index'), 10) + 1});
-        },
-
-        /**
-         * Back z-index layer
-         * @member WidgetElement
-         */
-        moveBack: function moveBack() {
-            var zIndex = parseInt(this.$.css('z-index'), 10) - 1;
-            this.$.css({zIndex: zIndex < 0 ? 0 : zIndex});
-        },
-
-        /**
-         * Reset z-index layer
-         * @member WidgetElement
-         */
-        resetLayer: function resetLayer() {
-
-            /**
-             * Get z-index
-             * @type {number}
-             */
-            var zIndex = this.getZIndex();
-
-            this.$.css({
-                zIndex: isNaN(zIndex) ? 0 : zIndex
-            });
         },
 
         /**

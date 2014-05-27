@@ -16,19 +16,12 @@ define([], function defineWidgetOverlapping() {
     return WidgetOverlapping.extend('WidgetOverlapping', {
 
         /**
-         * Revert layer
-         * @member WidgetOverlapping
-         */
-        revertLayer: function revertLayer() {
-debugger
-        },
-
-        /**
          * Adopt layer of a widgets
          * @member WidgetOverlapping
          * @param {number} layer
+         * @param {boolean} [save]
          */
-        adoptLayer: function adoptLayer(layer) {
+        adoptLayer: function adoptLayer(layer, save) {
 
             /**
              * Define widget
@@ -36,7 +29,10 @@ debugger
              */
             var widget = this.widget;
 
-            widget.dom.zIndex = layer;
+            if (save) {
+                widget.dom.zIndex = layer;
+            }
+
             widget.view.get$item().updateElementLayer(layer);
         },
 
@@ -76,8 +72,9 @@ debugger
             if (save) {
 
                 containment.controller.reorderLayers();
-
-                // TODO
+                containment.controller.store(
+                    this.controller.root()
+                );
             }
         },
 

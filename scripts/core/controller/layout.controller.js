@@ -44,10 +44,25 @@ define([
          * @member LayoutController
          */
         afterNestedOrganizer: function afterNestedOrganizer() {
-            this.controller.getContainment().controller.allowAddWidget();
-            this.controller.store(
-                this.controller.root()
+
+            /**
+             * Define controller instance
+             * @type {LayoutController}
+             */
+            var controller = this.controller;
+
+            /**
+             * Get containment
+             * @type {Page|*}
+             */
+            var containment = controller.getContainment();
+
+            containment.controller.allowAddWidget();
+
+            controller.store(
+                controller.root()
             );
+
             this.logger.debug(this.i18n.t('after.nested.organizer'));
         },
 
