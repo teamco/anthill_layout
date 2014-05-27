@@ -101,7 +101,7 @@ define([
             setLayerDown: 'set.layer.down',
             restoreLayerIndex: 'restore.layer.index',
             updateLayerIndex: 'update.layer.index',
-            setAlwaysOnTop: 'set.always.on.down',
+            setAlwaysOnTop: 'set.always.on.top',
 
             setOnClickUrl: 'set.on.click.url',
             clearThumbnail: 'clear.thumbnail',
