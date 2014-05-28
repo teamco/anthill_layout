@@ -6,119 +6,131 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
-    'config/application',
-    'config/workspace',
-    'config/page',
-    'config/layout',
-    'config/template',
-    'config/widget'
-], function defineListeners(Application, Workspace, Page, Layout, Template, Widget) {
+define(
+    [
+        'config/application',
+        'config/workspace',
+        'config/page',
+        'config/layout',
+        'config/template',
+        'config/widget'
+    ],
 
     /**
-     * Load listeners
+     * @param {App} Application
+     * @param {Workspace} Workspace
+     * @param {Page} Page
+     * @param {Layout} Layout
+     * @param {Template} Template
+     * @param {Widget} Widget
      */
-    Application.prototype.globalListeners = Application.prototype.globalListeners || {};
-    Workspace.prototype.globalListeners = Workspace.prototype.globalListeners || {};
-    Page.prototype.globalListeners = Page.prototype.globalListeners || {};
-    Template.prototype.globalListeners = Template.prototype.globalListeners || {};
-    Layout.prototype.globalListeners = Layout.prototype.globalListeners || {};
-    Widget.prototype.globalListeners = Widget.prototype.globalListeners || {};
+        function defineListeners(Application, Workspace, Page, Layout, Template, Widget) {
 
-    /**
-     * Define Application Global listeners
-     * @member App
-     * @type {{successRendered: {name: string, callback: successRenderedCallback}}}
-     */
-    Application.prototype.globalListeners = {
+        /**
+         * Load listeners
+         */
+        Application.prototype.globalListeners = Application.prototype.globalListeners || {};
+        Workspace.prototype.globalListeners = Workspace.prototype.globalListeners || {};
+        Page.prototype.globalListeners = Page.prototype.globalListeners || {};
+        Template.prototype.globalListeners = Template.prototype.globalListeners || {};
+        Layout.prototype.globalListeners = Layout.prototype.globalListeners || {};
+        Widget.prototype.globalListeners = Widget.prototype.globalListeners || {};
 
-        successRendered: {
-            name: "success.rendered",
-            callback: function successRenderedCallback() {
+        /**
+         * Define Application Global listeners
+         * @member App
+         * @type {{successRendered: {name: string, callback: successRenderedCallback}}}
+         * @type {{createAuthorPanel: {name: string, callback: createAuthorPanelCallback}}}
+         */
+        Application.prototype.globalListeners = {
 
-                this.permission.check({
-                    capability: 'createAuthorPanel',
-                    callback: function createAuthorPanelCallback(){
+            successRendered: {
+                name: "success.rendered",
+                callback: function successRenderedCallback() {
 
-                        this.observer.publish(
-                            this.eventmanager.eventList.createAuthorPanel
-                        );
+                    this.permission.check({
+                        capability: this.eventmanager.eventList.createAuthorPanel,
+                        callback: function () {
 
-                    }.bind(this)
-                });
-            }
-        },
+                            this.observer.publish(
+                                this.eventmanager.eventList.createAuthorPanel
+                            );
 
-        createAuthorPanel: {
-            name: 'create.author.panel',
-            callback: function createAuthorPanelCallback() {
+                        }.bind(this)
+                    });
+                }
+            },
 
-                /**
-                 * Define app
-                 * @type {*}
-                 */
-                var app = this;
-
-                require([
-                    'plugins/panel/panel',
-                    'plugins/bar/bar',
-                    'plugins/gallery/gallery',
-                    'plugins/page.data/page.data',
-                    'plugins/workspace.data/workspace.data',
-                    'plugins/widget.rules/widget.rules'
-                ], function definePanel(Panel, Bar, Gallery, PageData, WorkspaceData, WidgetRules){
+            createAuthorPanel: {
+                name: 'create.author.panel',
+                callback: function createAuthorPanelCallback() {
 
                     /**
-                     * Init panel plugin
-                     * @type {Panel}
+                     * Define app
+                     * @type {*}
                      */
-                    app.panel = new Panel({
-                        config: {renderAt: 'right'},
-                        modules: [Gallery, PageData, WorkspaceData, WidgetRules],
-                        packages: [Bar]
-                    }, app);
+                    var app = this;
 
-                    app.panel.view.render();
-                });
+                    require([
+                        'plugins/panel/panel',
+                        'plugins/bar/bar',
+                        'plugins/gallery/gallery',
+                        'plugins/page.data/page.data',
+                        'plugins/workspace.data/workspace.data',
+                        'plugins/widget.rules/widget.rules'
+                    ], function definePanel(Panel, Bar, Gallery, PageData, WorkspaceData, WidgetRules) {
+
+                        /**
+                         * Init panel plugin
+                         * @type {Panel}
+                         */
+                        app.panel = new Panel({
+                            config: {renderAt: 'right'},
+                            modules: [Gallery, PageData, WorkspaceData, WidgetRules],
+                            packages: [Bar]
+                        }, app);
+
+                        app.panel.view.render();
+                    });
+                }
             }
-        }
+        };
 
-    };
+        /**
+         * Define Workspace Global listeners
+         * @member Workspace
+         * @type {{}}
+         */
+        Workspace.prototype.globalListeners = {
 
-    /**
-     * Define Workspace Global listeners
-     * @member Workspace
-     * @type {{
-     * }}
-     */
-    Workspace.prototype.globalListeners = {
-    };
+        };
 
-    /**
-     * Define Page Global listeners
-     * @member Page
-     * @type {{
-     * }}
-     */
-    Page.prototype.globalListeners = {
-    };
+        /**
+         * Define Page Global listeners
+         * @member Page
+         * @type {{}}
+         */
+        Page.prototype.globalListeners = {
 
-    /**
-     * Define Template Global listeners
-     * @member Template
-     * @type {{
-     * }}
-     */
-    Template.prototype.globalListeners = {
-    };
+        };
 
-    /**
-     * Define Widget Global listeners
-     * @member Widget
-     * @type {{
-     * }}
-     */
-    Widget.prototype.globalListeners = {
-    };
+        /**
+         * Define Template Global listeners
+         * @member Template
+         * @type {{}}
+         */
+        Template.prototype.globalListeners = {
 
-});
+        };
+
+        /**
+         * Define Widget Global listeners
+         * @member Widget
+         * @type {{}}
+         */
+        Widget.prototype.globalListeners = {
+
+        };
+
+    }
+);
