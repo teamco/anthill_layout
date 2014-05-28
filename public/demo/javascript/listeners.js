@@ -39,8 +39,8 @@ define(
         /**
          * Define Application Global listeners
          * @member App
-         * @type {{successRendered: {name: string, callback: successRenderedCallback}}}
-         * @type {{createAuthorPanel: {name: string, callback: createAuthorPanelCallback}}}
+         * @type {{successRendered: {name: string, callback: function}}}
+         * @type {{createAuthorPanel: {name: string, callback: function}}}
          */
         Application.prototype.globalListeners = {
 
