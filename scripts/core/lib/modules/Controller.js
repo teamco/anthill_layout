@@ -298,12 +298,18 @@ define([
         store: function store(node, data) {
 
             /**
+             * Define root
+             * @type {App}
+             */
+            var root = this.root();
+
+            /**
              * Define node
              * @type {*}
              */
             node = this.base.define(
                 node,
-                this.root(),
+                root,
                 true
             );
 
@@ -321,7 +327,7 @@ define([
 
             if (!items) {
                 node.logger.debug('Collector', data);
-                this.root().model.setting.save(data);
+                root.model.setting.save(data);
                 return false;
             }
 

@@ -49,7 +49,7 @@ define(
                 callback: function successRenderedCallback() {
 
                     this.permission.check({
-                        capability: this.eventmanager.eventList.createAuthorPanel,
+                        capability: 'createAuthorPanel',
                         callback: function () {
 
                             this.observer.publish(
