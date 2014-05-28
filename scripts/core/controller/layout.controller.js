@@ -147,7 +147,8 @@ define([
 
             return {
                 left: _getNextPosition(dom.column) + left,
-                top: _getNextPosition(dom.row) + top
+                top: _getNextPosition(dom.row) + top,
+                zIndex: dom.zIndex
             };
 
         },
