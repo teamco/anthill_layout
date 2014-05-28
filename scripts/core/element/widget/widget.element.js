@@ -101,6 +101,15 @@ define([
         },
 
         /**
+         * Check if widget on top
+         * @member WidgetElement
+         * @returns {boolean}
+         */
+        isOnTop: function isOnTop() {
+            return this.$.hasClass('ontop');
+        },
+
+        /**
          * Select overlapped widgets
          * @member WidgetElement
          * @param {boolean} select

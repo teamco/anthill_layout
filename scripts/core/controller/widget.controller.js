@@ -609,7 +609,16 @@ define([
          * @param {boolean} ontop
          */
         setAlwaysOnTop: function setAlwaysOnTop(ontop) {
+
             this.view.get$item().moveOnTopLayer(ontop);
+
+            /**
+             * Get containment
+             * @type {Page|*}
+             */
+            var containment = this.controller.getContainment();
+
+            containment.controller.reorderLayers();
         },
 
         /**

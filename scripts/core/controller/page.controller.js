@@ -194,7 +194,9 @@ define([
              */
             var items = this.model.getItems(),
                 minLayer = 16777271,
-                index, widget, layer;
+                maxLayer = 0,
+                index, widget, layer,
+                ontop;
 
             for (index in items) {
 
@@ -216,6 +218,16 @@ define([
                     if (minLayer > layer) {
                         minLayer = layer;
                     }
+
+                    if (maxLayer < layer) {
+                        maxLayer = layer;
+                    }
+
+                    if (widget.view.get$item().isOnTop()) {
+
+                        ontop = widget;
+                        this.scope.logger.debug('Get always on top widget', ontop);
+                    }
                 }
             }
 
@@ -231,6 +243,10 @@ define([
 
                     widget.map.adoptLayer(widget.dom.zIndex - minLayer, true);
                 }
+            }
+
+            if (ontop) {
+                ontop.map.adoptLayer(maxLayer - minLayer + 2, true);
             }
         },
 
