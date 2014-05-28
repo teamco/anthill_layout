@@ -11,6 +11,10 @@
     border: none;
 }
 
+.widget:hover {
+    z-index: 1000 !important;
+}
+
 .widget.overlapped:after {
     content: " ";
     position: absolute;

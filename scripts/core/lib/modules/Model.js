@@ -440,6 +440,7 @@ define([
          * @param {string} url
          */
         setOnClickOpenUrl: function setOnClickOpenUrl(url) {
+
             this.setPrefs('onClickOpenUrl', url);
 
             /**
