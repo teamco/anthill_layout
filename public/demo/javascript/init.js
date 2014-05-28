@@ -27,7 +27,7 @@ require([
                             container: 'body'
                         },
                         appName: 'anthill',
-                        mode: 'consumption'
+                        mode: 'development'
                     }
                 });
 
