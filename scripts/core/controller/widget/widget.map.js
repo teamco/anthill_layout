@@ -65,7 +65,8 @@ define([
          */
         getDOM: function getDOM() {
 
-            var $widget = this.widget.view.elements.$widget,
+            var widget = this.widget,
+                $widget = widget.view.get$item(),
                 position = $widget.getPosition(),
                 dom = {
                     left: position.left,
@@ -88,6 +89,8 @@ define([
 
             dom.relRight = this.relRight(dom.column, dom.relWidth);
             dom.relBottom = this.relBottom(dom.row, dom.relHeight);
+
+            dom.zIndex = widget.dom.zIndex;
 
             return dom;
         },

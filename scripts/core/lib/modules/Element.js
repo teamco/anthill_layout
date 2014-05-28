@@ -512,7 +512,7 @@ define([
          * @returns {Number}
          */
         getZIndex: function getZIndex() {
-            return this.getCSS('z-index');
+            return this.getCSS('z-index') || 0;
         },
 
         /**
