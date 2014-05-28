@@ -321,6 +321,7 @@ define([
 
         /**
          * Set relation between MVC components
+         * @member MVC
          */
         setRelation: function setRelation() {
             var relations = this.RELATIONS,
@@ -343,6 +344,7 @@ define([
 
         /**
          * Apply MVC
+         * @member MVC
          * @returns {boolean}
          */
         applyMVC: function applyMVC() {
