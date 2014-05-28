@@ -54,6 +54,10 @@ define([
          */
         nestedOrganizer: function nestedOrganizer(opts) {
 
+            if (this.layout.controller.isLoading()) {
+                return false;
+            }
+
             /**
              * Define layout
              * @type {Layout}

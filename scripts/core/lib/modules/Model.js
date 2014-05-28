@@ -604,12 +604,26 @@ define([
         },
 
         /**
+         * Return loaded data
+         * @member BaseModel
+         * @param data
+         * @returns {*}
+         * @private
+         */
+        _returnLoadData: function _returnLoadData(data) {
+            this.scope.controller.setAsLoading(false);
+            return data;
+        },
+
+        /**
          * Load data
          * @member BaseModel
          * @param [data]
          * @returns {*}
          */
         loadData: function loadData(data) {
+
+            this.scope.controller.setAsLoading(true);
 
             /**
              * Set data
@@ -618,11 +632,11 @@ define([
                 data : this.setting.load();
 
             if (!data.hasOwnProperty('collector')) {
-                return false;
+                return this._returnLoadData(false);
             }
 
             if (!this.base.isDefined(this.item)) {
-                return data.collector;
+                return this._returnLoadData(data.collector);
             }
 
             var cname = this.item.name,
@@ -632,6 +646,7 @@ define([
             if (collector.hasOwnProperty(lname)) {
 
                 for (var index in collector[lname]) {
+
                     if (collector[lname].hasOwnProperty(index)) {
 
                         // Create item
@@ -646,7 +661,7 @@ define([
 
             this.loadData.bind(this.scope[lname].model)(data);
 
-            return data.collector;
+            return this._returnLoadData(data.collector);
         }
 
     }, AntHill.prototype, CRUD.prototype);

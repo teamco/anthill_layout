@@ -43,6 +43,24 @@ define([
         },
 
         /**
+         * Set core loading attribute
+         * @member BaseController
+         * @param load
+         */
+        setAsLoading: function setAsLoading(load) {
+            this.root().loading = load;
+        },
+
+        /**
+         * Check if core already loaded
+         * @member @BaseController
+         * @returns {boolean}
+         */
+        isLoading: function isLoading() {
+            return this.root().loading;
+        },
+
+        /**
          * Get Application mode
          * @member BaseController
          * @returns {*|number}
@@ -113,7 +131,7 @@ define([
          */
         successCreated: function successCreated() {
             this.logger.debug(
-                this.constructor.name +
+                    this.constructor.name +
                     ' was successfully created',
                 this
             );
@@ -241,15 +259,15 @@ define([
             var base = this.base,
                 scope = this.scope;
 
-                opts.config = base.lib.hash.extendHash({
-                    html: {
-                        container: [
-                            '#', scope.model.getUUID(),
-                            '-', scope.constructor.name.toLowerCase()
-                        ].join('')
-                    },
-                    containment: scope
-                }, opts.config);
+            opts.config = base.lib.hash.extendHash({
+                html: {
+                    container: [
+                        '#', scope.model.getUUID(),
+                        '-', scope.constructor.name.toLowerCase()
+                    ].join('')
+                },
+                containment: scope
+            }, opts.config);
 
             scope.logger.debug('Configuration', opts.config);
 

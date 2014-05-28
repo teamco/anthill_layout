@@ -30,6 +30,7 @@ define([
          *      mode: string,
          *      type: string,
          *      isResized: boolean,
+         *      loading: boolean,
          *      logger: {
          *          show: boolean,
          *          namespaces: string|boolean,
@@ -65,6 +66,7 @@ define([
             mode: 'development',
             type: 'default',
             isResized: false,
+            loading: false,
             limit: true,
             logger: {
                 show: true,
