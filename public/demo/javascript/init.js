@@ -26,7 +26,8 @@ require([
                         html: {
                             container: 'body'
                         },
-                        appName: 'anthill'
+                        appName: 'anthill',
+                        mode: 'consumption'
                     }
                 });
 

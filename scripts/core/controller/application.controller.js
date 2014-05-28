@@ -81,6 +81,13 @@ define([
         },
 
         /**
+         * Create authoring panel
+         */
+        createAuthorPanel: function createAuthorPanel() {
+            this.logger.debug('Create authoring panel', arguments);
+        },
+
+        /**
          * Approve clear data
          * @member AppController
          */

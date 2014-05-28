@@ -36,6 +36,23 @@ define([
             name: "success.rendered",
             callback: function successRenderedCallback() {
 
+                this.permission.check({
+                    capability: 'createAuthorPanel',
+                    callback: function createAuthorPanelCallback(){
+
+                        this.observer.publish(
+                            this.eventmanager.eventList.createAuthorPanel
+                        );
+
+                    }.bind(this)
+                });
+            }
+        },
+
+        createAuthorPanel: {
+            name: 'create.author.panel',
+            callback: function createAuthorPanelCallback() {
+
                 /**
                  * Define app
                  * @type {*}

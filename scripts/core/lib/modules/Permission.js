@@ -38,7 +38,7 @@ define([
         /**
          * Check permission rules
          * @member BasePermission
-         * @param {{callback: Function, fallback: Function, args: *|Array, capability: String}} opts
+         * @param {{[callback]: function, [fallback]: function, args: *|Array, capability: String}} opts
          */
         check: function check(opts) {
             var base = this.base;

@@ -40,7 +40,10 @@ define([
          * @type {{development: Storage}}
          */
         this.storage = {
-            development: this.STORAGE_MODES.localStorage
+            development: this.STORAGE_MODES.localStorage,
+            authorize: this.STORAGE_MODES.localStorage,
+            consumption: this.STORAGE_MODES.localStorage,
+            test: this.STORAGE_MODES.localStorage
         };
 
         /**
