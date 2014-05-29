@@ -26,6 +26,16 @@ define([
          */
         this.staticData = [
             {
+                name: 'Page Tabs',
+                description: 'Show page tabs',
+                thumbnail: '',
+                dimensions: {
+                    width: 4,
+                    height: 2
+                },
+                resource: 'page.tabs'
+            },
+            {
                 name: 'Empty',
                 description: 'Empty widget',
                 thumbnail: '',
