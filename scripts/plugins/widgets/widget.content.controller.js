@@ -169,7 +169,7 @@ define([
                 var data = this.model.getPrefs(pref);
 
                 if (!data) {
-                    this.logger.warn('No Preference available', pref);
+                    this.scope.logger.debug('No Preference available', pref);
                     return false;
                 }
 
