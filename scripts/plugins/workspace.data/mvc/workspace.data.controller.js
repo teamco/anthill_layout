@@ -217,6 +217,10 @@ define(
                  */
                 var page = workspace.api.createPage([], true);
 
+                this.store(
+                    this.root()
+                );
+
                 workspace.observer.publish(
                     workspace.eventmanager.eventList.switchToPage,
                     page

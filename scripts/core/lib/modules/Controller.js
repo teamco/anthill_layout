@@ -343,17 +343,17 @@ define([
              */
             var items = node.model.getItems();
 
-            if (!items) {
-                node.logger.debug('Collector', data);
-                root.model.setting.save(data);
-                return false;
-            }
-
             /**
              * Define item name space
              * @type {string}
              */
             var cname = node.model.getItemNameSpace();
+
+            if (!items || !node[cname].model) {
+                node.logger.debug('Collector', data);
+                root.model.setting.save(data);
+                return false;
+            }
 
             /**
              * Define data

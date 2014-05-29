@@ -30,7 +30,7 @@ define([
          * @member PageTabsItemElement
          * @type {$pageTab.pageTab|*}
          */
-        this.pageTab = opts.pageTab;console.log(this.pageTab)
+        this.pageTab = opts.pageTab;
 
         this.initContent();
 

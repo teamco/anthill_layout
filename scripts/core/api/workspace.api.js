@@ -31,7 +31,14 @@ define([
          * @returns {*}
          */
         createPage: function createPage(args, render, silent) {
-            return this._createItem(Page, args, render, silent);
+
+            /**
+             * Define page
+             * @type {Page}
+             */
+            var page = this._createItem(Page, args, render, silent);
+
+            return page;
         }
 
     }, BaseAPI.prototype);
