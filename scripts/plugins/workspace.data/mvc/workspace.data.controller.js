@@ -211,7 +211,16 @@ define(
                  */
                 var workspace = this.getWorkspace();
 
-                workspace.api.createPage([], true);
+                /**
+                 * Define page
+                 * @type {Page}
+                 */
+                var page = workspace.api.createPage([], true);
+
+                workspace.observer.publish(
+                    workspace.eventmanager.eventList.switchToPage,
+                    page
+                );
             }
 
         }, PluginBase.prototype);
