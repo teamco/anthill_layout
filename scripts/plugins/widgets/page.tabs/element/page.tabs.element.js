@@ -20,7 +20,7 @@ define([
      */
     var PageTabsElement = function PageTabsElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
+        this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
             destroy: true
         });
@@ -31,6 +31,22 @@ define([
     };
 
     return PageTabsElement.extend('PageTabsElement', {
+
+        /**
+         * Render Embedded content
+         * @member PageTabsElement
+         * @param {{}} pages
+         */
+        renderEmbeddedContent: function renderEmbeddedContent(pages) {
+
+            for (var index in pages) {
+
+                if (pages.hasOwnProperty(index)) {
+
+                    this.view.renderPageTabsItem(pages[index]);
+                }
+            }
+        }
 
     }, BaseElement.prototype);
 

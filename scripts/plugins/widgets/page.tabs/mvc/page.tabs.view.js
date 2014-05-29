@@ -12,8 +12,9 @@ define([
     'element/footer.element',
     'plugins/widgets/page.tabs/element/page.tabs.element',
     'plugins/widgets/page.tabs/element/page.tabs.preferences.element',
-    'plugins/widgets/page.tabs/element/page.tabs.rules.element'
-], function definePageTabsView(BaseView, Header, Footer, PageTabsElement, PageTabsPreferencesElement, PageTabsRulesElement) {
+    'plugins/widgets/page.tabs/element/page.tabs.rules.element',
+    'plugins/widgets/page.tabs/element/page.tabs.item.element'
+], function definePageTabsView(BaseView, Header, Footer, PageTabsElement, PageTabsPreferencesElement, PageTabsRulesElement, PageTabsItemElement) {
 
     /**
      * Define view
@@ -22,6 +23,7 @@ define([
      * @constructor
      */
     var PageTabsView = function PageTabsView() {
+
     };
 
     return PageTabsView.extend('PageTabsView', {
@@ -44,6 +46,37 @@ define([
             });
 
             this.footer(Footer, this.elements.$container);
+
+            /**
+             * Define page tab items
+             * @member PageTabsView
+             * @type {Array}
+             */
+            this.elements.items = [];
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+        /**
+         * Render page tab element
+         * @member PageTabsView
+         * @param pageTab
+         */
+        renderPageTabsItem: function renderPageTabsItem(pageTab) {
+
+            /**
+             * Define page tab item
+             * @type {PageTabsItemElement}
+             */
+            var $pageTab = new PageTabsItemElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID(),
+                pageTab: pageTab
+            });
+
+            this.elements.items.push($pageTab);
         },
 
         /**

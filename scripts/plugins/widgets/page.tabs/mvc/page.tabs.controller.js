@@ -18,9 +18,21 @@ define([
      * @constructor
      */
     var PageTabsController = function PageTabsController() {
+
     };
 
     return PageTabsController.extend('PageTabsController', {
+
+        /**
+         * Set embedded content
+         * @member VimeoController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
+
+            this.view.elements.$pagetabs.renderEmbeddedContent(
+                this.controller.getWorkspace().model.getItems()
+            );
+        },
 
         /**
          * Add PageTabs rule
