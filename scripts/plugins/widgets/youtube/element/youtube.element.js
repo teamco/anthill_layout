@@ -35,21 +35,10 @@ define([
         /**
          * Render Embedded content
          * @member YoutubeElement
-         * @param {string} url
+         * @param {string} iframe
          */
-        renderEmbeddedContent: function renderEmbeddedContent(url) {
-
-            /**
-             * Define embedded template
-             * @type {string}
-             */
-            var iframe = '<iframe scrolling="no" allowtransparency="true" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>';
-
-            this.$.append(
-                $(iframe).attr({
-                    src: url
-                })
-            );
+        renderEmbeddedContent: function renderEmbeddedContent(iframe) {
+            this.$.append(iframe);
         }
 
     }, BaseElement.prototype);

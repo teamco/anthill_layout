@@ -67,7 +67,9 @@ define([
                     bottom: 0,
                     left: 0
                 }
-            }
+            },
+            regex: /^.*(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i,
+            mask: '<iframe id="ytplayer" type="text/html" width="100%" height="100%" scrolling="no" allowtransparency="true" src="https://www.youtube.com/embed/{{videoId}}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowfullscreen>'
         };
 
         /**

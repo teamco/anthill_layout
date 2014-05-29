@@ -28,9 +28,50 @@ define([
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
-            this.view.elements.$youtube.renderEmbeddedContent(
-                this.model.getPrefs('youtubeUrl')
-            );
+            /**
+             * Get url
+             * @type {string|*}
+             */
+            var url = this.model.getPrefs('youtubeUrl'),
+                embed = this.controller.getEmbedCode(url);
+
+            if (embed) {
+                this.view.elements.$youtube.renderEmbeddedContent(embed);
+            }
+        },
+
+        /**
+         * Validate youtube
+         * @member YoutubeController
+         * @param {string} url
+         * @return {string|boolean}
+         */
+        getEmbedCode: function getEmbedCode(url) {
+
+            if (!url) {
+                this.scope.logger.debug('Initial state');
+                return false;
+            }
+
+            var mask = this.model.getConfig('mask'),
+                embed, regex = this.model.getConfig('regex');
+
+            if (!url.match(regex)) {
+                this.scope.logger.warn('Invalid youtube url');
+                return false;
+            }
+
+            if (url.match(/iframe/)) {
+
+                /**
+                 * Embed iframe fix
+                 * @type {string}
+                 */
+                url = $(url).attr('src');
+            }
+
+            return url.replace(regex, mask.replace(/{{videoId}}/g, '$1')).
+                replace(/embed\/embed/, 'embed');
         },
 
         /**
