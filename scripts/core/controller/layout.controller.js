@@ -51,19 +51,28 @@ define([
              */
             var controller = this.controller;
 
-            /**
-             * Get containment
-             * @type {Page|*}
-             */
-            var containment = controller.getContainment();
-
-            containment.controller.allowAddWidget();
+            controller.readyToOrganize();
 
             controller.store(
                 controller.root()
             );
 
             this.logger.debug(this.i18n.t('after.nested.organizer'));
+        },
+
+        /**
+         * Ready to organize
+         * @member LayoutController
+         */
+        readyToOrganize: function readyToOrganize() {
+
+            /**
+             * Get containment
+             * @type {Page|*}
+             */
+            var containment = this.getContainment();
+
+            containment.controller.allowAddWidget();
         },
 
         /**

@@ -55,6 +55,8 @@ define([
         nestedOrganizer: function nestedOrganizer(opts) {
 
             if (this.layout.controller.isLoading()) {
+
+                this.layout.controller.readyToOrganize();
                 return false;
             }
 
