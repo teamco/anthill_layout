@@ -660,7 +660,10 @@ define([
                 }
             }
 
-            this.loadData.bind(this.scope[lname].model)(data);
+            if (this.scope[lname].model) {
+
+                this.loadData.bind(this.scope[lname].model)(data);
+            }
 
             return this._returnLoadData(data.collector);
         }
