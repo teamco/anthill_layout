@@ -52,7 +52,9 @@ define([
          *              bottom: number,
          *              left: number
          *          }
-         *      }
+         *      },
+         *      regex: RegExp,
+         *      mask: string
          * }}
          */
         var DEFAULTS = {
