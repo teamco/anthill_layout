@@ -35,6 +35,25 @@ define([
         },
 
         /**
+         * Switch to page
+         * @member VimeoController
+         * @param {Page} page
+         */
+        switchTo: function switchTo(page) {
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.getWorkspace();
+
+            workspace.observer.publish(
+                workspace.eventmanager.eventList.switchToPage,
+                page
+            );
+        },
+
+        /**
          * Add PageTabs rule
          * @member PageTabsController
          * @param e

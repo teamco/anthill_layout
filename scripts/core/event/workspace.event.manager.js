@@ -38,7 +38,8 @@ define([
          *      destroyPages: string,
          *      resizePages: string,
          *      resizePage: string,
-         *      setPageContainerHeight: string
+         *      setPageContainerHeight: string,
+         *      switchToPage: string
          * }}
          */
         eventList: {
@@ -47,7 +48,8 @@ define([
             destroyPages: 'destroy.pages',
             resizePage: 'resize.page',
             resizePages: 'resize.pages',
-            setPageContainerHeight: 'set.page.container.height'
+            setPageContainerHeight: 'set.page.container.height',
+            switchToPage: 'switch.to.page'
         }
 
     }, BaseEvent.prototype);

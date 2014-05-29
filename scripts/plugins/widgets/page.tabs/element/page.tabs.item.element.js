@@ -30,7 +30,7 @@ define([
          * @member PageTabsItemElement
          * @type {$pageTab.pageTab|*}
          */
-        this.pageTab = opts.pageTab;
+        this.pageTab = opts.pageTab;console.log(this.pageTab)
 
         this.initContent();
 
@@ -44,8 +44,84 @@ define([
          * @member PageTabsItemElement
          */
         initContent: function initContent() {
+            this.init();
+        },
 
+        /**
+         * Set title
+         * @member PageTabsItemElement
+         */
+        setTitle: function setTitle() {
+
+            /**
+             * Define title
+             * @member PageTabsItemElement
+             * @type {*}
+             */
+            this.title = this.view.controller.getPreference('title');
+        },
+
+        /**
+         * Set description
+         * @member PageTabsItemElement
+         */
+        setDescription: function setDescription() {
+
+            /**
+             * Define description
+             * @member PageTabsItemElement
+             * @type {*}
+             */
+            this.description = this.view.controller.getPreference('description');
+        },
+
+        /**
+         * Set page external url
+         * @member PageTabsItemElement
+         */
+        setPageUrl: function setPageUrl() {
+
+            /**
+             * Define pageUrl
+             * @member PageTabsItemElement
+             * @type {*}
+             */
+            this.pageUrl = this.view.controller.getPreference('pageUrl');
+        },
+
+        /**
+         * Init page tabs item
+         * @member PageTabsItemElement
+         */
+        init: function init() {
+
+            this.setTitle();
+            this.setDescription();
+            this.setPageUrl();
+
+            this.$.append(
+                $('<div />').attr({
+                    title: this.title,
+                    description: this.description
+                })
+            );
+
+            if (this.pageUrl) {
+
+                this.$.on('click.pageUrl', function (e){
+
+                    this.view.scope.logger.debug('Open url', e);
+                    window.open(this.pageUrl);
+
+                }.bind(this))
+
+            } else {
+
+                this.view.controller.switchTo(this.pageTab);
+            }
         }
+
+
 
     }, BaseElement.prototype);
 

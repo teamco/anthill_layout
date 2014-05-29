@@ -26,6 +26,10 @@ define([
          */
         setPageContainerHeight: function setPageContainerHeight() {
             this.view.elements.$pages.defineHeight();
+        },
+
+        switchToPage: function switchToPage(page) {
+
         }
 
     }, BaseController.prototype);

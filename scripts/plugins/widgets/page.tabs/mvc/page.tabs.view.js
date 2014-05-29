@@ -42,7 +42,8 @@ define([
              */
             this.elements.$pagetabs = new PageTabsElement(this, {
                 $container: this.elements.$container.$,
-                id: this.createUUID()
+                id: this.createUUID(),
+                style: 'page-tabs-container'
             });
 
             this.footer(Footer, this.elements.$container);
@@ -63,6 +64,7 @@ define([
          * Render page tab element
          * @member PageTabsView
          * @param pageTab
+         * @return {PageTabsItemElement}
          */
         renderPageTabsItem: function renderPageTabsItem(pageTab) {
 
@@ -71,12 +73,14 @@ define([
              * @type {PageTabsItemElement}
              */
             var $pageTab = new PageTabsItemElement(this, {
-                $container: this.elements.$container.$,
-                id: this.createUUID(),
-                pageTab: pageTab
+                $container: this.elements.$pagetabs.$,
+                pageTab: pageTab,
+                style: 'page-tabs-item'
             });
 
             this.elements.items.push($pageTab);
+
+            return $pageTab;
         },
 
         /**

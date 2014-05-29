@@ -43,7 +43,9 @@ define([
 
                 if (pages.hasOwnProperty(index)) {
 
-                    this.view.renderPageTabsItem(pages[index]);
+                    this.$.append(
+                        this.view.renderPageTabsItem(pages[index])
+                    );
                 }
             }
         }

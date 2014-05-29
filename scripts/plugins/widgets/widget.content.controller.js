@@ -159,6 +159,24 @@ define([
             },
 
             /**
+             * Get Preference
+             * @member WidgetContentController
+             * @param {string} pref
+             * @returns {*}
+             */
+            getPreference: function getPreference(pref) {
+
+                var data = this.model.getPrefs(pref);
+
+                if (!data) {
+                    this.logger.warn('No Preference available', pref);
+                    return false;
+                }
+
+                return data;
+            },
+
+            /**
              * Get rules
              * @member WidgetContentController
              * @returns {{}}
