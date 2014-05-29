@@ -662,7 +662,7 @@ define([
         /**
          * Set text
          * @member BaseElement
-         * @param text
+         * @param {string} text
          * @param [$container]
          * @returns {boolean}
          */
@@ -673,6 +673,22 @@ define([
             }
 
             $container ? $container.text(text) : this.$.text(text);
+        },
+
+        /**
+         * Set title
+         * @member BaseElement
+         * @param {string} title
+         */
+        setTitle: function setTitle(title) {
+
+            if (!this.$) {
+                return false;
+            }
+
+            this.$.attr({
+                title: title
+            });
         },
 
         /**

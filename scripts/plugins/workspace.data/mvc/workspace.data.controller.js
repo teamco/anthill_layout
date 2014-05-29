@@ -5,188 +5,215 @@
  * Time: 11:03 AM
  */
 
-define([
-    'plugins/plugin'
-], function defineWorkspaceDataController(PluginBase) {
+define(
+    ['plugins/plugin'],
 
     /**
-     * Define pages controller
-     * @class WorkspaceDataController
-     * @extends PluginController
-     * @constructor
+     * Define WorkspaceDataController
+     * @param {PluginBase} PluginBase
+     * @returns {WorkspaceDataController}
      */
-    var WorkspaceDataController = function WorkspaceDataController() {
-    };
-
-    return WorkspaceDataController.extend('WorkspaceDataController', {
+        function defineWorkspaceDataController(PluginBase) {
 
         /**
-         * Get data
-         * @member WorkspaceDataController
-         * @returns {*}
+         * Define pages controller
+         * @class WorkspaceDataController
+         * @extends PluginController
+         * @constructor
          */
-        getData: function getData() {
-            return this.model.getDataItems(
-                this.getWorkspace()
-            );
-        },
+        var WorkspaceDataController = function WorkspaceDataController() {
 
-        /**
-         * Load pages content
-         * @member WorkspaceDataController
-         * @param opened
-         */
-        loadContent: function loadContent(opened) {
+        };
 
-            if (opened && this.isDataNotExist()) {
-                this.getView().renderContent(
-                    this.getData()
-                );
-            }
-        },
-
-        /**
-         * Get Prefs
-         * @member WorkspaceDataController
-         * @returns {WorkspaceDataModel.preferences}
-         */
-        getPreferences: function getPreferences() {
-            return this.model.preferences;
-        },
-
-        /**
-         * Define preferences
-         * @member WorkspaceDataController
-         * @param {string} uuid
-         * @returns {*}
-         */
-        definePreferences: function definePreferences(uuid) {
-
-            return this.scope.view.renderPreferences(
-                this.getWorkspace().model.getItemByUUID(uuid)
-            );
-        },
-
-        /**
-         * Set active content
-         * @member WorkspaceDataController
-         * @param uuid
-         */
-        setActiveContent: function setActiveContent(uuid) {
+        return WorkspaceDataController.extend('WorkspaceDataController', {
 
             /**
-             * Define workspace
-             * @type {Workspace}
+             * Get data
+             * @member WorkspaceDataController
+             * @returns {*}
              */
-            var workspace = this.controller.getWorkspace();
+            getData: function getData() {
+                return this.model.getDataItems(
+                    this.getWorkspace()
+                );
+            },
+
+            /**
+             * Load pages content
+             * @member WorkspaceDataController
+             * @param opened
+             */
+            loadContent: function loadContent(opened) {
+
+                if (opened && this.isDataNotExist()) {
+                    this.getView().renderContent(
+                        this.getData()
+                    );
+                }
+            },
+
+            /**
+             * Get Prefs
+             * @member WorkspaceDataController
+             * @returns {WorkspaceDataModel.preferences}
+             */
+            getPreferences: function getPreferences() {
+                return this.model.preferences;
+            },
+
+            /**
+             * Define preferences
+             * @member WorkspaceDataController
+             * @param {string} uuid
+             * @returns {*}
+             */
+            definePreferences: function definePreferences(uuid) {
+
+                return this.scope.view.renderPreferences(
+                    this.getWorkspace().model.getItemByUUID(uuid)
+                );
+            },
 
             /**
              * Set active content
-             * @type {Page}
+             * @member WorkspaceDataController
+             * @param uuid
              */
-            this.activeContent = workspace.model.getItemByUUID(uuid);
-        },
+            setActiveContent: function setActiveContent(uuid) {
 
-        /**
-         * Update prefs
-         * @member WorkspaceDataController
-         */
-        approveUpdatePreferences: function approveUpdatePreferences() {
+                /**
+                 * Define workspace
+                 * @type {Workspace}
+                 */
+                var workspace = this.controller.getWorkspace();
+
+                /**
+                 * Set active content
+                 * @type {Page}
+                 */
+                this.activeContent = workspace.model.getItemByUUID(uuid);
+            },
 
             /**
-             * Define scope
+             * Update prefs
+             * @member WorkspaceDataController
              */
-            var scope = this.scope;
+            approveUpdatePreferences: function approveUpdatePreferences() {
 
-            scope.activeContent.controller.updatePreferences(
-                scope.view.elements.$modal
-            );
-        },
+                /**
+                 * Define scope
+                 */
+                var scope = this.scope;
 
-        /**
-         * Define publisher
-         * @member WorkspaceDataController
-         * @param page
-         */
-        definePublisher: function definePublisher(page) {
-            this.scope.eventmanager.subscribePublishOn(
-                page,
-                this.updateCounter.bind(this.scope)
-            );
-        },
-
-        /**
-         * Locate page data element
-         * @member WorkspaceDataController
-         * @param e
-         */
-        locateWorkspaceData: function locateWorkspaceData(e) {
+                scope.activeContent.controller.updatePreferences(
+                    scope.view.elements.$modal
+                );
+            },
 
             /**
-             * Define $item
-             * @type {PageElement}
+             * Define publisher
+             * @member WorkspaceDataController
+             * @param page
              */
-            var $item = this.scope.activeContent.view.get$item();
-
-            this.locateElement($item, e);
-        },
-
-        /**
-         * Destroy page widgets
-         * @member WorkspaceDataController
-         */
-        destroyPageWidgets: function destroyPageWidgets() {
+            definePublisher: function definePublisher(page) {
+                this.scope.eventmanager.subscribePublishOn(
+                    page,
+                    this.updateCounter.bind(this.scope)
+                );
+            },
 
             /**
-             * Define page
-             * @type {Page}
+             * Locate page data element
+             * @member WorkspaceDataController
+             * @param e
              */
-            var page = this.scope.activeContent;
+            locateWorkspaceData: function locateWorkspaceData(e) {
 
-            page.api.destroyItems(
-                page.model.getItems()
-            );
+                /**
+                 * Define $item
+                 * @type {PageElement}
+                 */
+                var $item = this.scope.activeContent.view.get$item();
 
-            this.scope.view.elements.$modal.selfDestroy();
-        },
+                this.locateElement($item, e);
+            },
 
-        /**
-         * Update widgets counter
-         * @member WorkspaceDataController
-         */
-        updateCounter: function updateCounter() {
+            /**
+             * Destroy page widgets
+             * @member WorkspaceDataController
+             */
+            destroyPageWidgets: function destroyPageWidgets() {
 
-            var workspace = this.controller.getWorkspace(),
-                pages = workspace.model.getItems(),
-                index, page, $item, uuid,
-                cname = '-workspacedata-view';
+                /**
+                 * Define page
+                 * @type {Page}
+                 */
+                var page = this.scope.activeContent;
 
-            for (index in pages) {
+                page.api.destroyItems(
+                    page.model.getItems()
+                );
 
-                if (pages.hasOwnProperty(index)) {
+                this.scope.view.elements.$modal.selfDestroy();
+            },
 
-                    /**
-                     * Define page
-                     * @type {Page}
-                     */
-                    page = pages[index];
+            /**
+             * Update widgets counter
+             * @member WorkspaceDataController
+             */
+            updateCounter: function updateCounter() {
 
-                    /**
-                     * Define uuid
-                     * @type {string}
-                     */
-                    uuid = page.model.getConfig('uuid');
+                /**
+                 * Get workspace
+                 * @type {Workspace}
+                 */
+                var workspace = this.controller.getWorkspace(),
+                    pages = workspace.model.getItems(),
+                    index, page, $item, uuid,
+                    cname = '-workspacedata-view';
 
-                    /**
-                     * Define pages content element
-                     * @type {WorkspaceDataContentElement}
-                     */
-                    $item = this.view.elements.items[uuid + cname];
+                for (index in pages) {
 
-                    $item.updateCounter(page);
+                    if (pages.hasOwnProperty(index)) {
+
+                        /**
+                         * Define page
+                         * @type {Page}
+                         */
+                        page = pages[index];
+
+                        /**
+                         * Define uuid
+                         * @type {string}
+                         */
+                        uuid = page.model.getConfig('uuid');
+
+                        /**
+                         * Define pages content element
+                         * @type {WorkspaceDataContentElement}
+                         */
+                        $item = this.view.elements.items[uuid + cname];
+
+                        $item.updateCounter(page);
+                    }
                 }
-            }
-        }
+            },
 
-    }, PluginBase.prototype);
-});
+            /**
+             * Create new page
+             * @member WorkspaceDataController
+             */
+            createPage: function createPage() {
+
+                /**
+                 * Get workspace
+                 * @type {Workspace}
+                 */
+                var workspace = this.getWorkspace();
+
+                workspace.api.createPage([], true);
+            }
+
+        }, PluginBase.prototype);
+    }
+);

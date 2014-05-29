@@ -51,9 +51,9 @@ define([
             /**
              * Define page tab items
              * @member PageTabsView
-             * @type {Array}
+             * @type {{}}
              */
-            this.elements.items = [];
+            this.elements.items = {};
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.setEmbeddedContent
@@ -78,7 +78,7 @@ define([
                 style: 'page-tabs-item'
             });
 
-            this.elements.items.push($pageTab);
+            this.elements.items[$pageTab.id] = $pageTab;
 
             return $pageTab;
         },

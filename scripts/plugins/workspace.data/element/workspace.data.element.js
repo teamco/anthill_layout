@@ -13,10 +13,11 @@ define([
      * Define WorkspaceData Element
      * @param view
      * @param opts
-     * @returns {WorkspaceDataElement}
      * @constructor
      * @class WorkspaceDataElement
+     * @type {Function}
      * @extends BaseElement
+     * @returns {WorkspaceDataElement}
      */
     var WorkspaceDataElement = function WorkspaceDataElement(view, opts) {
 

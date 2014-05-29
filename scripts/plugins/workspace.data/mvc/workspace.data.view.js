@@ -6,171 +6,208 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
-    'modules/view',
-    'plugins/preferences/preferences',
-    'element/header.element',
-    'element/footer.element',
-    'plugins/workspace.data/element/workspace.data.content.element',
-    'plugins/workspace.data/element/workspace.data.preferences.element',
-    'plugins/workspace.data/element/workspace.data.element'
-], function defineWorkspaceDataView(BaseView, BasePreferences, Header, Footer, WorkspaceDataContent, WorkspaceDataPreferencesElement, WorkspaceData) {
+define(
+    [
+        'modules/view',
+        'plugins/preferences/preferences',
+        'element/header.element',
+        'element/footer.element',
+        'plugins/workspace.data/element/workspace.data.content.element',
+        'plugins/workspace.data/element/workspace.data.preferences.element',
+        'plugins/workspace.data/element/workspace.data.add.page.element',
+        'plugins/workspace.data/element/workspace.data.element'
+    ],
 
     /**
-     * Define view
-     * @class WorkspaceDataView
-     * @extends BaseView
-     * @constructor
+     * Define WorkspaceDataView
+     * @param {BaseView} BaseView
+     * @param {BasePreferences} BasePreferences
+     * @param {BaseView} Header
+     * @param {BaseView} Footer
+     * @param {WorkspaceDataContentElement} WorkspaceDataContent
+     * @param {WorkspaceDataPreferencesElement} WorkspaceDataPreferencesElement
+     * @param {WorkspaceDataAddPageElement} WorkspaceDataAddPageElement
+     * @param {WorkspaceDataElement} WorkspaceDataElement
+     * @returns {*}
      */
-    var WorkspaceDataView = function WorkspaceDataView() {
-    };
-
-    return WorkspaceDataView.extend('WorkspaceDataView', {
+        function defineWorkspaceDataView(BaseView, BasePreferences, Header, Footer, WorkspaceDataContentElement, WorkspaceDataPreferencesElement, WorkspaceDataAddPageElement, WorkspaceDataElement) {
 
         /**
-         * Render WorkspaceData
-         * @member WorkspaceDataView
-         * @returns {boolean}
+         * Define view
+         * @class WorkspaceDataView
+         * @extends BaseView
+         * @constructor
          */
-        renderWorkspaceData: function renderWorkspaceData() {
+        var WorkspaceDataView = function WorkspaceDataView() {
+        };
 
-            if (this.isCached('$workspacedata', WorkspaceData)) {
-                return false;
-            }
-
-            this.header(Header, this.elements.$container).setText(
-                'Workspace Pages'
-            );
+        return WorkspaceDataView.extend('WorkspaceDataView', {
 
             /**
-             * Define WorkspaceData element
-             * @type {WorkspaceDataElement}
+             * Render WorkspaceData
+             * @member WorkspaceDataView
+             * @returns {boolean}
              */
-            this.elements.$workspacedata = new WorkspaceData(this, {
-                id: this.createUUID(),
-                $container: this.elements.$container.$
-            });
+            renderWorkspaceData: function renderWorkspaceData() {
 
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$workspacedata.getFooter()
-            );
-        },
-
-        /**
-         * Render workspace.data content
-         * @member WorkspaceDataView
-         * @param data
-         * @param {Boolean} force
-         * @returns {boolean}
-         */
-        renderContent: function renderContent(data, force) {
-
-            if (this.isCachedItems(force)) {
-                return false;
-            }
-
-            /**
-             * Define content
-             * @type {{}}
-             */
-            this.elements.items = {};
-
-            var index;
-
-            for (index in data) {
-
-                if (data.hasOwnProperty(index)) {
-
-                    /**
-                     * Render item
-                     * @type {*}
-                     */
-                    var $item = new WorkspaceDataContent(this, {
-                        style: 'content',
-                        id: data[index].model.getConfig('uuid') + '-workspacedata-view',
-                        $container: this.elements.$workspacedata.$,
-                        data: data[index]
-                    });
-
-                    this.elements.items[$item.id] = $item;
+                if (this.isCached('$workspacedata', WorkspaceDataElement)) {
+                    return false;
                 }
-            }
 
-            this.elements.$workspacedata.scrollCover(
-                this.elements.$container.$
-            );
+                this.header(Header, this.elements.$container).setText(
+                    'Workspace Pages'
+                );
 
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$workspacedata.getFooter()
-            );
-        },
+                /**
+                 * Define WorkspaceData element
+                 * @type {WorkspaceDataElement}
+                 */
+                this.elements.$workspacedata = new WorkspaceDataElement(this, {
+                    id: this.createUUID(),
+                    $container: this.elements.$container.$
+                });
 
-        /**
-         * Show preferences
-         * @member WorkspaceDataView
-         * @param config
-         */
-        showPreferences: function showPreferences(config) {
+                this.footer(Footer, this.elements.$container).setHtml(
+                    this.elements.$workspacedata.getFooter()
+                );
+            },
 
             /**
-             * Define scope
-             * @type {WorkspaceData}
+             * Render workspace.data content
+             * @member WorkspaceDataView
+             * @param data
+             * @param {Boolean} force
+             * @returns {boolean}
              */
-            var scope = this.scope;
+            renderContent: function renderContent(data, force) {
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.setActiveContent,
-                config.uuid
-            );
+                if (this.isCachedItems(force)) {
+                    return false;
+                }
 
-            this.openPreferences({
-                config: config,
-                $html: this.controller.definePreferences(config.uuid).$,
-                style: 'workspacedata-prefs preferences',
-                title: 'Page preferences',
-                buttons: {
-                    destroyPageWidgets: {
-                        text: 'Destroy widgets',
-                        events: {
-                            click: 'destroyPageWidgets'
-                        }
+                /**
+                 * Define content
+                 * @type {{}}
+                 */
+                this.elements.items = {};
+
+                var index;
+
+                for (index in data) {
+
+                    if (data.hasOwnProperty(index)) {
+
+                        /**
+                         * Render item
+                         * @type {WorkspaceDataContentElement}
+                         */
+                        var $item = new WorkspaceDataContentElement(this, {
+                            style: 'content',
+                            id: data[index].model.getConfig('uuid') + '-workspacedata-view',
+                            $container: this.elements.$workspacedata.$,
+                            data: data[index]
+                        });
+
+                        this.elements.items[$item.id] = $item;
                     }
                 }
-            });
-        },
 
-        /**
-         * Render Prefs
-         * @member WorkspaceDataView
-         * @param {Page} page
-         * @returns {WorkspaceDataPreferencesElement}
-         */
-        renderPreferences: function renderPreferences(page) {
+                this.renderCreatePage();
+
+                this.elements.$workspacedata.scrollCover(
+                    this.elements.$container.$
+                );
+
+                this.footer(Footer, this.elements.$container).setHtml(
+                    this.elements.$workspacedata.getFooter()
+                );
+            },
 
             /**
-             * Define WorkspaceData Preferences Element
-             * @type {WorkspaceDataPreferencesElement}
+             * Render create new page
+             * @member WorkspaceDataView
              */
-            this.elements.$preferences = new WorkspaceDataPreferencesElement(this, {
-                data: this.controller.getPreferences(),
-                page: page
-            });
+            renderCreatePage: function renderCreatePage() {
 
-            return this.elements.$preferences;
-        },
+                /**
+                 * Render add new pages
+                 * @type {WorkspaceDataAddPageElement}
+                 */
+                this.$addPage = new WorkspaceDataAddPageElement(this, {
+                    style: 'add-page',
+                    $container: this.elements.$workspacedata.$,
+                    events: {
+                        click: ['createPage']
+                    }
+                });
+            },
 
-        /**
-         * Render workspace.data
-         * @member WorkspaceDataView
-         */
-        render: function render() {
+            /**
+             * Show preferences
+             * @member WorkspaceDataView
+             * @param config
+             */
+            showPreferences: function showPreferences(config) {
 
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderWorkspaceData.bind(this)
-            );
-        }
+                /**
+                 * Define scope
+                 * @type {WorkspaceData}
+                 */
+                var scope = this.scope;
 
-    }, BaseView.prototype, BasePreferences.prototype)
+                scope.observer.publish(
+                    scope.eventmanager.eventList.setActiveContent,
+                    config.uuid
+                );
 
-});
+                this.openPreferences({
+                    config: config,
+                    $html: this.controller.definePreferences(config.uuid).$,
+                    style: 'workspacedata-prefs preferences',
+                    title: 'Page preferences',
+                    buttons: {
+                        destroyPageWidgets: {
+                            text: 'Destroy widgets',
+                            events: {
+                                click: 'destroyPageWidgets'
+                            }
+                        }
+                    }
+                });
+            },
+
+            /**
+             * Render Prefs
+             * @member WorkspaceDataView
+             * @param {Page} page
+             * @returns {WorkspaceDataPreferencesElement}
+             */
+            renderPreferences: function renderPreferences(page) {
+
+                /**
+                 * Define WorkspaceData Preferences Element
+                 * @type {WorkspaceDataPreferencesElement}
+                 */
+                this.elements.$preferences = new WorkspaceDataPreferencesElement(this, {
+                    data: this.controller.getPreferences(),
+                    page: page
+                });
+
+                return this.elements.$preferences;
+            },
+
+            /**
+             * Render workspace.data
+             * @member WorkspaceDataView
+             */
+            render: function render() {
+
+                this.scope.observer.publish(
+                    this.scope.eventmanager.eventList.successRendered,
+                    this.renderWorkspaceData.bind(this)
+                );
+            }
+
+        }, BaseView.prototype, BasePreferences.prototype)
+    }
+);
