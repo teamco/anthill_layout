@@ -6,51 +6,62 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
-    'modules/event'
-], function defineWorkspaceEventManager(BaseEvent) {
+define(
+
+    ['modules/event'],
 
     /**
-     * Define workspace event manager
-     * @class EventManager
-     * @constructor
-     * @extends BaseEvent
+     * Define WorkspaceEventManager
+     * @param {BaseEvent} BaseEvent
+     * @returns {*}
      */
-    var WorkspaceEventManager = function WorkspaceEventManager() {
+    function defineWorkspaceEventManager(BaseEvent) {
 
         /**
-         * Define events
-         * @member WorkspaceEventManager
-         * @type {{}}
+         * Define workspace event manager
+         * @class EventManager
+         * @constructor
+         * @extends BaseEvent
          */
-        this.events = {};
+        var WorkspaceEventManager = function WorkspaceEventManager() {
 
-    };
+            /**
+             * Define events
+             * @member WorkspaceEventManager
+             * @type {{}}
+             */
+            this.events = {};
+        };
 
-    return WorkspaceEventManager.extend('WorkspaceEventManager', {
+        return WorkspaceEventManager.extend('WorkspaceEventManager', {
 
-        /**
-         * Define event list
-         * @member WorkspaceEventManager
-         * @type {{
+            /**
+             * Define event list
+             * @member WorkspaceEventManager
+             * @type {{
          *      createPage: string,
          *      destroyPage: string,
          *      destroyPages: string,
          *      resizePages: string,
          *      resizePage: string,
          *      setPageContainerHeight: string,
-         *      switchToPage: string
+         *      beforeSwitchToPage: string,
+         *      switchToPage: string,
+         *      afterSwitchToPage: string
          * }}
-         */
-        eventList: {
-            createPage: 'create.page',
-            destroyPage: 'destroy.page',
-            destroyPages: 'destroy.pages',
-            resizePage: 'resize.page',
-            resizePages: 'resize.pages',
-            setPageContainerHeight: 'set.page.container.height',
-            switchToPage: 'switch.to.page'
-        }
+             */
+            eventList: {
+                createPage: 'create.page',
+                destroyPage: 'destroy.page',
+                destroyPages: 'destroy.pages',
+                resizePage: 'resize.page',
+                resizePages: 'resize.pages',
+                setPageContainerHeight: 'set.page.container.height',
+                beforeSwitchToPage: 'before.switch.to.page',
+                switchToPage: 'switch.to.page',
+                afterSwitchToPage: 'after.switch.to.page'
+            }
 
-    }, BaseEvent.prototype);
-});
+        }, BaseEvent.prototype);
+    }
+);

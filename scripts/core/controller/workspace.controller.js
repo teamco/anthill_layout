@@ -5,32 +5,107 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-define([
-    'modules/controller'
-], function defineWorkspaceController(BaseController) {
+define(
+
+    ['modules/controller'],
 
     /**
-     * Define workspace controller
-     * @class WorkspaceController
-     * @extends BaseController
-     * @constructor
+     * Define WorkspaceController
+     * @param BaseController
+     * @returns {*}
      */
-    var WorkspaceController = function WorkspaceController() {
-    };
-
-    return WorkspaceController.extend('WorkspaceController', {
+        function defineWorkspaceController(BaseController) {
 
         /**
-         * Set page height
-         * @member WorkspaceController
+         * Define workspace controller
+         * @class WorkspaceController
+         * @extends BaseController
+         * @constructor
          */
-        setPageContainerHeight: function setPageContainerHeight() {
-            this.view.elements.$pages.defineHeight();
-        },
+        var WorkspaceController = function WorkspaceController() {
 
-        switchToPage: function switchToPage(page) {
+        };
 
-        }
+        return WorkspaceController.extend('WorkspaceController', {
 
-    }, BaseController.prototype);
-});
+            /**
+             * Set page height
+             * @member WorkspaceController
+             */
+            setPageContainerHeight: function setPageContainerHeight() {
+                this.view.elements.$pages.defineHeight();
+            },
+
+            /**
+             * Before Switch to page
+             * @param {Page} page
+             */
+            beforeSwitchToPage: function beforeSwitchToPage(page) {
+                this.logger.debug('Before switch to page', page);
+            },
+
+            /**
+             * Switch to page
+             * @param {Page} page
+             * @returns {boolean|*}
+             */
+            switchToPage: function switchToPage(page) {
+
+                this.observer.publish(
+                    this.eventmanager.eventList.beforeSwitchToPage,
+                    page
+                );
+
+                if (page && this.items.hasOwnProperty(page.model.getUUID())) {
+
+                    /**
+                     * Get all items
+                     * @type {*}
+                     */
+                    var items = this.model.getItems(),
+                        index;
+
+                    for (index in items) {
+
+                        if (items.hasOwnProperty(index)) {
+
+                            /**
+                             * Define item
+                             * @type {Page}
+                             */
+                            var item = items[index];
+
+                            if (item.model.getUUID() !== page.model.getUUID()) {
+
+                                item.view.get$item().hide();
+
+                            } else {
+
+                                this.controller.setCurrentItem(page);
+                                item.view.get$item().show();
+                            }
+                        }
+                    }
+
+                    this.observer.publish(
+                        this.eventmanager.eventList.afterSwitchToPage
+                    );
+
+                } else {
+
+                    this.logger.warn('Undefined page', page);
+                    return false;
+                }
+            },
+
+            /**
+             * After Switch to page
+             * @param {Page} page
+             */
+            afterSwitchToPage: function afterSwitchToPage(page) {
+                this.logger.debug('After switch to page', page);
+            }
+
+        }, BaseController.prototype);
+    }
+);
