@@ -56,6 +56,16 @@ define([
                 resource: 'youtube'
             },
             {
+                name: 'Vimeo',
+                description: 'Vimeo is video + you. We put your videos first and give you the best ways to share, discover, and be inspired',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                resource: 'vimeo'
+            },
+            {
                 name: 'Image',
                 description: 'A simple image widget that uses the native media manager to add image widgets to your site',
                 thumbnail: '',
