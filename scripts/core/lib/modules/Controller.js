@@ -341,7 +341,8 @@ define([
              * Define item list
              * @type {*}
              */
-            var items = node.model.getItems();
+            var items = node.model.getItems(),
+                index;
 
             /**
              * Define item name space
@@ -359,11 +360,23 @@ define([
              * Define data
              * @type {*}
              */
-            data.collector[cname] = node.controller.collectItemProperties(
-                !node[cname].model.getItems()
+            data.collector[cname] = data.collector[cname] || {};
+
+            $.extend(
+                true,
+                data.collector[cname],
+                node.controller.collectItemProperties(
+                    !node[cname].model.getItems()
+                )
             );
 
-            this.store.bind(node.controller)(node[cname], data);
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    this.store.bind(node.controller)(items[index], data);
+                }
+            }
         },
 
         /**
