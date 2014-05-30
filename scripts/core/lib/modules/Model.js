@@ -76,14 +76,18 @@ define([
          * @returns {scope.config}
          */
         setConfig: function setConfig(key, value) {
+
             var scope = this.scope,
                 config = scope.config;
+
             if (config.hasOwnProperty(key)) {
                 scope.logger.debug('Update config', key, value);
                 config[key] = value;
             }
+
             scope.logger.debug('Set config new data', key, value);
             config[key] = value;
+
             return this.getConfig(key);
         },
 
@@ -624,45 +628,71 @@ define([
          */
         loadData: function loadData(data) {
 
-            this.scope.controller.setAsLoading(true);
+            /**
+             * Define local scope
+             */
+            var scope = this.scope,
+                base = this.base;
+
+            scope.controller.setAsLoading(true);
 
             /**
              * Set data
              */
-            data = this.base.isDefined(data) ?
+            data = base.isDefined(data) ?
                 data : this.setting.load();
 
             if (!data.hasOwnProperty('collector')) {
                 return this._returnLoadData(false);
             }
 
-            if (!this.base.isDefined(this.item)) {
+            if (!base.isDefined(this.item)) {
                 return this._returnLoadData(data.collector);
             }
 
-            var cname = this.item.name,
+            var isRoot = scope.controller.isRoot(scope),
+                cname = this.item.name,
                 lname = cname.toLowerCase(),
-                collector = this.base.define(data.collector, {}, true);
+                collector = base.define(data.collector, {}, true);
 
             if (collector.hasOwnProperty(lname)) {
 
-                for (var index in collector[lname]) {
+                var items = collector[lname],
+                    index, node;
 
-                    if (collector[lname].hasOwnProperty(index)) {
+                for (index in items) {
 
-                        // Create item
-                        this.scope.api['create' + cname](
-                            this.base.define(collector[lname][index], {}, true),
-                            true,
-                            true
-                        );
+                    if (items.hasOwnProperty(index)) {
+
+                        if (this.getUUID() === items[index].containment || isRoot) {
+
+                            node = base.define(items[index], {}, true);
+
+                            // Create item
+                            scope.api['create' + cname](
+                                node,
+                                true,
+                                true
+                            );
+
+                            /**
+                             * Define current item
+                             * @type {*}
+                             */
+                            var item = scope[lname];
+
+                            if (item.model) {
+
+                                if (isRoot && node.containment) {
+
+                                    this.scope.controller.loadConfig(node.containment);
+                                }
+
+                                this.loadData.bind(item.model)(data);
+                            }
+                        }
                     }
                 }
-            }
-
-            if (this.scope[lname].model) {
-
-                this.loadData.bind(this.scope[lname].model)(data);
             }
 
             return this._returnLoadData(data.collector);

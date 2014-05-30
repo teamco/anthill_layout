@@ -308,6 +308,16 @@ define([
         },
 
         /**
+         * Check is root
+         * @member BaseController
+         * @param scope
+         * @returns {boolean}
+         */
+        isRoot: function isRoot(scope) {
+            return scope === this.root();
+        },
+
+        /**
          * Store data after layout organize
          * @member BaseController
          * @param [node]
@@ -335,7 +345,9 @@ define([
              * Define data
              * @type {*}
              */
-            data = this.base.define(data, {collector: {}}, true);
+            data = this.base.define(data, {
+                collector: {}
+            }, true);
 
             /**
              * Define item list

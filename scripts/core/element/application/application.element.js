@@ -29,5 +29,15 @@ define([
 
     return AppElement.extend('AppElement', {
 
+        /**
+         * Update uuid after loading
+         * @member AppElement
+         */
+        updateUUID: function updateUUID() {
+            this.$.attr({
+                id: this.view.createUUID()
+            })
+        }
+
     }, BaseElement.prototype);
 });

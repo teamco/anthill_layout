@@ -168,7 +168,8 @@ define([
                     this.scope.constructor.name.toLowerCase(),
                     'header'
                 ].join('-'),
-                $container: $container.$
+                $container: $container.$,
+                append: false
             });
 
             return this.elements.$header;

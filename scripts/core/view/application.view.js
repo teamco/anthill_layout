@@ -36,13 +36,16 @@ define([
              * Define $application
              * @type {AppElement}
              */
-            this.elements.$application = new AppHTML(this, {
+            this.elements.$app = new AppHTML(this, {
                 $container: this.getConfigHTML().container,
                 id: this.createUUID()
             });
-            this.header(Header, this.elements.$application);
+
+            this.header(Header, this.elements.$app);
+
             this.workspaces();
-            this.footer(Footer, this.elements.$application);
+
+            this.footer(Footer, this.elements.$app);
         },
 
         /**
@@ -56,7 +59,7 @@ define([
              * @type {AppContent}
              */
             this.elements.$workspaces = new AppContent(this, {
-                $container: this.elements.$application.$,
+                $container: this.elements.$app.$,
                 style: 'workspaces'
             });
         },
@@ -72,7 +75,7 @@ define([
              * @type {DebuggerElement}
              */
             this.elements.$debugger = new DebuggerElement(this, {
-                $container: this.elements.$application.$,
+                $container: this.elements.$app.$,
                 style: 'debugger',
                 opacity: 0.6,
                 events: {

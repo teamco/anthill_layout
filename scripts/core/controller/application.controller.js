@@ -31,6 +31,18 @@ define([
         },
 
         /**
+         * Load updated uuid
+         * @member AppController
+         * @param {string} uuid
+         */
+        loadConfig: function loadConfig(uuid) {
+            this.model.setConfig('uuid', uuid);
+            this.scope.view.get$item().updateUUID();
+
+            this.scope.logger.debug('Update uuid after loading', uuid);
+        },
+
+        /**
          * Init window resize
          * @member AppController
          */
@@ -51,20 +63,23 @@ define([
         /**
          * Resize window publisher
          * @member AppController
+         * @param e
          */
         resizeWindowPublisher: function resizeWindowPublisher(e) {
 
             this.observer.publish(
-                this.eventmanager.eventList.resizeWindow
+                this.eventmanager.eventList.resizeWindow,
+                e
             );
         },
 
         /**
          * Resize window callback
          * @member AppController
+         * @param e
          */
-        resizeWindow: function resizeWindow() {
-            this.logger.debug('Start resize window');
+        resizeWindow: function resizeWindow(e) {
+            this.logger.debug('Start resize window', e);
             this.model.setConfig('isResized', true);
 
             this.observer.publish(
