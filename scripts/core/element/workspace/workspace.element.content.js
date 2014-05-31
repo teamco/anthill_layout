@@ -55,8 +55,6 @@ define([
             this.$.css({
                 width: (100 * to) + '%'
             });
-
-
         },
 
         /**

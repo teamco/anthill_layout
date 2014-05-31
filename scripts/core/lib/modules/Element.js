@@ -394,16 +394,23 @@ define([
          * @returns {*}
          */
         stretch: function stretch() {
+
             var scope = this.view.scope,
-                items = 1;
-            if (scope.controller.getContainment() && scope.config.html.stretch) {
+                items = 1,
+                containment = scope.controller.getContainment(),
+                stretch = containment &&
+                    scope.model.getConfig('html/stretch');
+
+            if (stretch) {
+
                 items = this.base.lib.hash.hashLength(
-                    scope.controller.getContainment().items
+                    containment.model.getItems()
                 );
 
                 if (items > 1) {
+
                     this.$.css({
-                        left: (items - 1) * 100 + '%'
+                        left: ((items - 1) * (100 / items)) + '%'
                     });
                 }
             }
