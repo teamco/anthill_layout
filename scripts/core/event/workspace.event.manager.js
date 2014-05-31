@@ -7,7 +7,6 @@
  */
 
 define(
-
     ['modules/event'],
 
     /**
@@ -15,7 +14,7 @@ define(
      * @param {BaseEvent} BaseEvent
      * @returns {*}
      */
-    function defineWorkspaceEventManager(BaseEvent) {
+        function defineWorkspaceEventManager(BaseEvent) {
 
         /**
          * Define workspace event manager
@@ -39,16 +38,17 @@ define(
              * Define event list
              * @member WorkspaceEventManager
              * @type {{
-         *      createPage: string,
-         *      destroyPage: string,
-         *      destroyPages: string,
-         *      resizePages: string,
-         *      resizePage: string,
-         *      setPageContainerDimensions: string,
-         *      beforeSwitchToPage: string,
-         *      switchToPage: string,
-         *      afterSwitchToPage: string
-         * }}
+             *      createPage: string,
+             *      destroyPage: string,
+             *      destroyPages: string,
+             *      resizePages: string,
+             *      resizePage: string,
+             *      setPageContainerDimensions: string,
+             *      beforeSwitchToPage: string,
+             *      switchToPage: string,
+             *      afterSwitchToPage: string,
+             *      adoptContentWidth: string
+             * }}
              */
             eventList: {
                 createPage: 'create.page',
@@ -59,7 +59,8 @@ define(
                 setPageContainerDimensions: 'set.page.container.dimensions',
                 beforeSwitchToPage: 'before.switch.to.page',
                 switchToPage: 'switch.to.page',
-                afterSwitchToPage: 'after.switch.to.page'
+                afterSwitchToPage: 'after.switch.to.page',
+                adoptContentWidth: 'adopt.content.width'
             }
 
         }, BaseEvent.prototype);

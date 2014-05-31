@@ -48,6 +48,7 @@ define([
 
         /**
          * Render pages
+         * @member WorkspaceView
          */
         pages: function pages() {
 
@@ -63,6 +64,7 @@ define([
 
         /**
          * Render workspace
+         * @member WorkspaceView
          * @param silent
          */
         render: function render(silent) {

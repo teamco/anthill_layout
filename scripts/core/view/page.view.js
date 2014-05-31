@@ -48,6 +48,16 @@ define([
             this.footer(Footer, this.elements.$page);
 
             this.elements.$page.stretch();
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var containment = this.controller.getContainment();
+
+            containment.observer.publish(
+                containment.eventmanager.eventList.adoptContentWidth
+            );
         },
 
         /**

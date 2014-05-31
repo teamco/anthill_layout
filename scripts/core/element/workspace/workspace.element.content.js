@@ -54,7 +54,34 @@ define([
 
             this.$.css({
                 width: (100 * to) + '%'
-            })
+            });
+
+
+        },
+
+        /**
+         * Define pages width after add page
+         * @member WorkspaceContentElement
+         * @param {*} items
+         * @param {number} counter
+         */
+        adoptPagesWidth: function adoptPagesWidth(items, counter) {
+
+            var index, $item;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    /**
+                     * Define page
+                     * @type {Page}
+                     */
+                    $item = items[index].view.get$item();
+
+                    $item.setWidth((100 / counter) + '%');
+                }
+            }
         },
 
         /**

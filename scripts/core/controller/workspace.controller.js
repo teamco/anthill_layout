@@ -32,8 +32,26 @@ define(
              * @member WorkspaceController
              */
             setPageContainerDimensions: function setPageContainerDimensions() {
-                this.view.elements.$pages.defineHeight();
-                this.view.elements.$pages.defineWidth(
+
+                /**
+                 * Get $pages
+                 * @type {WorkspaceContentElement}
+                 */
+                var $pages = this.view.elements.$pages,
+                    counter = this.model.getConfig('page/counter');
+
+                $pages.defineHeight();
+                $pages.defineWidth(counter);
+            },
+
+            /**
+             * Adopt content width after adding new page
+             * @member WorkspaceController
+             */
+            adoptContentWidth: function adoptContentWidth() {
+
+                this.view.elements.$pages.adoptPagesWidth(
+                    this.model.getItems(),
                     this.model.getConfig('page/counter')
                 );
             },
