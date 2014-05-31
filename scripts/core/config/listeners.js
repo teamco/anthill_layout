@@ -99,7 +99,7 @@ define([
             name: 'create.page',
             callback: function createPageCallback() {
                 this.observer.publish(
-                    this.eventmanager.eventList.setPageContainerHeight
+                    this.eventmanager.eventList.setPageContainerDimensions
                 );
             }
         },

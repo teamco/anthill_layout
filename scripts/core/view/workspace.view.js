@@ -12,7 +12,7 @@ define([
     'element/header.element',
     'element/footer.element',
     'element/workspace/workspace.element.content'
-], function defineWorkspaceView(BaseView, Workspace, Header, Footer, PageContainer) {
+], function defineWorkspaceView(BaseView, Workspace, Header, Footer, WorkspaceContentElement) {
 
     /**
      * Define WorkspaceView
@@ -53,9 +53,9 @@ define([
 
             /**
              * Define $pages
-             * @type {WorkspaceContent}
+             * @type {WorkspaceContentElement}
              */
-            this.elements.$pages = new PageContainer(this, {
+            this.elements.$pages = new WorkspaceContentElement(this, {
                 $container: this.elements.$workspace.$,
                 style: 'pages'
             });

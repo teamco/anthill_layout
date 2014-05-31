@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 define(
-
     ['modules/controller'],
 
     /**
@@ -32,12 +31,16 @@ define(
              * Set page height
              * @member WorkspaceController
              */
-            setPageContainerHeight: function setPageContainerHeight() {
+            setPageContainerDimensions: function setPageContainerDimensions() {
                 this.view.elements.$pages.defineHeight();
+                this.view.elements.$pages.defineWidth(
+                    this.model.getConfig('page/counter')
+                );
             },
 
             /**
              * Before Switch to page
+             * @member WorkspaceController
              * @param {Page} page
              */
             beforeSwitchToPage: function beforeSwitchToPage(page) {
@@ -46,6 +49,7 @@ define(
 
             /**
              * Switch to page
+             * @member WorkspaceController
              * @param {Page} page
              * @returns {boolean|*}
              */
@@ -75,14 +79,9 @@ define(
                              */
                             var item = items[index];
 
-                            if (item.model.getUUID() !== page.model.getUUID()) {
-
-                                item.view.get$item().swipe();
-
-                            } else {
+                            if (item.model.getUUID() === page.model.getUUID()) {
 
                                 this.controller.setCurrentItem(page);
-                                item.view.get$item().swipe();
                             }
                         }
                     }
@@ -100,11 +99,30 @@ define(
 
             /**
              * After Switch to page
+             * @member WorkspaceController
              * @param {Page} page
              */
             afterSwitchToPage: function afterSwitchToPage(page) {
                 this.logger.debug('After switch to page', page);
+                this.swipeToCurrentPage();
+            },
+
+            /**
+             * Swipe to current page
+             * @member WorkspaceController
+             */
+            swipeToCurrentPage: function swipeToCurrentPage() {
+
+                /**
+                 * Get current page
+                 * @type {Page}
+                 */
+                var page = this.getCurrentItem(),
+                    order = page.model.getConfig('order');
+
+                this.scope.view.elements.$pages.swipeTo(order);
             }
+
 
         }, BaseController.prototype);
     }

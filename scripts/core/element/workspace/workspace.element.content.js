@@ -12,25 +12,25 @@ define([
 
     /**
      * Define Workspace Content
-     * @param view
+     * @param {WorkspaceView} view
      * @param opts
      * @returns {*}
      * @constructor
-     * @class WorkspaceContent
+     * @class WorkspaceContentElement
      * @extends BaseElement
      */
-    var WorkspaceContent = function WorkspaceContent(view, opts) {
+    var WorkspaceContentElement = function WorkspaceContentElement(view, opts) {
         return this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
             destroy: true
         });
     };
 
-    return WorkspaceContent.extend('WorkspaceContent', {
+    return WorkspaceContentElement.extend('WorkspaceContentElement', {
 
         /**
-         * Define height
-         * @member WorkspaceContent
+         * Define height after add page
+         * @member WorkspaceContentElement
          */
         defineHeight: function defineHeight() {
 
@@ -43,6 +43,27 @@ define([
                 containerHeight = $container.height();
 
             this.setHeight(containerHeight - (headerHeight + footerHeight));
+        },
+
+        /**
+         * Define width after add page
+         * @member WorkspaceContentElement
+         * @param {number} to
+         */
+        defineWidth: function defineWidth(to) {
+
+            this.$.css({
+                width: (100 * to) + '%'
+            })
+        },
+
+        /**
+         * Swipe container to current page
+         * @member WorkspaceContentElement
+         * @param to
+         */
+        swipeTo: function swipeTo(to) {
+
         }
 
     }, BaseElement.prototype);

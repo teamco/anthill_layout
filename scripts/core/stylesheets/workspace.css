@@ -18,3 +18,9 @@
     position: fixed;
     bottom: 0;
 }
+
+.workspace .pages {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+}

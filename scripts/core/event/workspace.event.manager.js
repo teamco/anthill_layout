@@ -44,7 +44,7 @@ define(
          *      destroyPages: string,
          *      resizePages: string,
          *      resizePage: string,
-         *      setPageContainerHeight: string,
+         *      setPageContainerDimensions: string,
          *      beforeSwitchToPage: string,
          *      switchToPage: string,
          *      afterSwitchToPage: string
@@ -56,7 +56,7 @@ define(
                 destroyPages: 'destroy.pages',
                 resizePage: 'resize.page',
                 resizePages: 'resize.pages',
-                setPageContainerHeight: 'set.page.container.height',
+                setPageContainerDimensions: 'set.page.container.dimensions',
                 beforeSwitchToPage: 'before.switch.to.page',
                 switchToPage: 'switch.to.page',
                 afterSwitchToPage: 'after.switch.to.page'
