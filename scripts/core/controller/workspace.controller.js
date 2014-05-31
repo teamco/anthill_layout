@@ -122,7 +122,7 @@ define(
              */
             afterSwitchToPage: function afterSwitchToPage(page) {
                 this.logger.debug('After switch to page', page);
-                this.swipeToCurrentPage();
+                this.controller.swipeToCurrentPage();
             },
 
             /**
