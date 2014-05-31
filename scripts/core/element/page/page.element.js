@@ -28,5 +28,13 @@ define([
 
     return PageElement.extend('PageElement', {
 
+        /**
+         * Swipe element
+         * @member PageElement
+         */
+        swipe: function swipe(to) {
+
+        }
+
     }, BaseElement.prototype);
 });

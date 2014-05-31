@@ -77,12 +77,12 @@ define(
 
                             if (item.model.getUUID() !== page.model.getUUID()) {
 
-                                item.view.get$item().hide();
+                                item.view.get$item().swipe();
 
                             } else {
 
                                 this.controller.setCurrentItem(page);
-                                item.view.get$item().show();
+                                item.view.get$item().swipe();
                             }
                         }
                     }

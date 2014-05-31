@@ -596,6 +596,8 @@ define([
                 scope.config[namespace].counter =
                     base.lib.hash.hashLength(this.getItems());
 
+                node.model.setConfig('order', scope.config[namespace].counter);
+
                 /**
                  * Store item
                  * @type {*}
