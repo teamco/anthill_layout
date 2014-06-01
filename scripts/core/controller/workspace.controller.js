@@ -73,6 +73,11 @@ define(
              */
             switchToPage: function switchToPage(page) {
 
+                if (page === this.getCurrentItem()) {
+                    this.logger.debug('Page already current', page);
+                    return false;
+                }
+
                 this.observer.publish(
                     this.eventmanager.eventList.beforeSwitchToPage,
                     page
