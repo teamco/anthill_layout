@@ -104,6 +104,8 @@ define(
                         }
                     }
 
+                    this.controller.swipeToCurrentPage();
+
                 } else {
 
                     this.logger.warn('Undefined page', page);
@@ -118,7 +120,6 @@ define(
              */
             afterSwitchToPage: function afterSwitchToPage(page) {
                 this.logger.debug('After switch to page', page);
-                this.controller.swipeToCurrentPage();
             },
 
             /**

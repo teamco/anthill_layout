@@ -250,6 +250,42 @@ define([
         },
 
         /**
+         * Get preferences
+         * @member BaseController
+         * @returns {{}}
+         */
+        getPreferences: function getPreferences() {
+            return this.model.preferences;
+        },
+
+        /**
+         * Get Preference
+         * @member BaseController
+         * @param {string} pref
+         * @returns {*}
+         */
+        getPreference: function getPreference(pref) {
+
+            var data = this.model.getPrefs(pref);
+
+            if (!data) {
+                this.scope.logger.debug('No Preference available', pref);
+                return false;
+            }
+
+            return data;
+        },
+
+        /**
+         * Get rules
+         * @member BaseController
+         * @returns {{}}
+         */
+        getRules: function getRules() {
+            return this.model.rules;
+        },
+
+        /**
          * Extend Config
          * @member BaseController
          * @param {{config, [dom]}} opts

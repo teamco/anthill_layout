@@ -150,42 +150,6 @@ define([
             },
 
             /**
-             * Get preferences
-             * @member WidgetContentController
-             * @returns {{}}
-             */
-            getPreferences: function getPreferences() {
-                return this.model.preferences;
-            },
-
-            /**
-             * Get Preference
-             * @member WidgetContentController
-             * @param {string} pref
-             * @returns {*}
-             */
-            getPreference: function getPreference(pref) {
-
-                var data = this.model.getPrefs(pref);
-
-                if (!data) {
-                    this.scope.logger.debug('No Preference available', pref);
-                    return false;
-                }
-
-                return data;
-            },
-
-            /**
-             * Get rules
-             * @member WidgetContentController
-             * @returns {{}}
-             */
-            getRules: function getRules() {
-                return this.model.rules;
-            },
-
-            /**
              * Clear default thumbnail
              * @member WidgetContentController
              */
