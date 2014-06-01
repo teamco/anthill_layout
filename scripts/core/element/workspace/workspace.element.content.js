@@ -100,11 +100,14 @@ define([
 
                 left: ((1 - page.model.getConfig('order')) * 100) + '%'
 
-            }, 500, function() {
+            }, {
+                duration: 500,
+                complete: function complete() {
 
-                scope.observer.publish(
-                    scope.eventmanager.eventList.afterSwitchToPage
-                );
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.afterSwitchToPage
+                    );
+                }
             });
         }
 
