@@ -31,14 +31,16 @@ define([
          * @type {{
          *      updateTranslations: string,
          *      loadContent: string,
-         *      storeItem: string
+         *      storeItem: string,
+         *      setActiveContent: string
          * }}
          */
         this.eventList = {
             updateTranslations: 'update.translations',
             loadContent: 'load.content',
             loadPreferences: 'load.preferences',
-            storeItem: 'store.item'
+            storeItem: 'store.item',
+            setActiveContent: 'set.active.content'
         };
     };
 

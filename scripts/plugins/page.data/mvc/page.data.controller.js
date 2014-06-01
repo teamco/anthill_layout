@@ -43,56 +43,31 @@ define([
         },
 
         /**
-         * Get preferences
-         * @member PageDataController
-         * @param {string} uuid
-         * @param {boolean} load
-         * @returns {*}
-         */
-        getPreferences: function getPreferences(uuid, load) {
-
-            /**
-             * Define widget
-             * @type {*}
-             */
-            var widget = this.getPage().model.getItemByUUID(uuid);
-
-            // set active content
-            this.setActiveContent(
-                widget.controller.getContent()
-            );
-
-            if (load) {
-                return this.scope.activeContent.view.renderPreferences();
-            }
-        },
-
-        /**
          * Set active content
          * @member PageDataController
          * @param {WidgetContent} content
          */
-        setActiveContent: function setActiveContent(content) {
+        setActiveContent: function setActiveContent(uuid) {
 
             /**
-             * Define scope;
-             * @type {*}
+             * Get widget
+             * @type {widget}
              */
-            var scope = this.scope;
+            var widget = this.controller.getPage().model.getItemByUUID(uuid);
 
             /**
              * Set active content
              * @type {WidgetContent}
              */
-            scope.activeContent = content;
+            this.activeContent = widget.controller.getContent();
 
             /**
              * Define referrer
              * @type {PageData}
              */
-            scope.activeContent.referrer = scope;
+            this.activeContent.referrer = this;
 
-            scope.logger.debug('Active content', content);
+            this.logger.debug('Active content', this.activeContent);
         },
 
         /**

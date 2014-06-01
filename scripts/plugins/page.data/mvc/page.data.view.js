@@ -134,12 +134,24 @@ define([
         showPreferences: function showPreferences(config, load) {
 
             /**
-             * Define $html
-             * @type {BaseElement}
+             * Define scope
+             * @type {PageData}
              */
-            var $html = this.controller.getPreferences(config.uuid, load);
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.setActiveContent,
+                config.uuid
+            );
 
             if (load) {
+
+                /**
+                 * Define $html
+                 * @type {BaseElement}
+                 */
+                var $html = this.scope.activeContent.view.renderPreferences();
+
                 this.openPreferences({
                     config: config,
                     $html: $html.$,
