@@ -23,6 +23,15 @@ define([
     return EmptyController.extend('EmptyController', {
 
         /**
+         * Set embedded content
+         * @member EmptyController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
+
+            this.view.elements.$empty.renderEmbeddedContent();
+        },
+
+        /**
          * Add Empty rule
          * @member EmptyController
          * @param e

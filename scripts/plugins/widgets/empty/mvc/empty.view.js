@@ -44,6 +44,10 @@ define([
             });
 
             this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
         },
 
         /**

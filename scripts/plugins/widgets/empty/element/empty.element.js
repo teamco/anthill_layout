@@ -32,6 +32,14 @@ define([
 
     return EmptyElement.extend('EmptyElement', {
 
+        /**
+         * Render Embedded content
+         * @member EmptyElement
+         */
+        renderEmbeddedContent: function renderEmbeddedContent() {
+            // TODO
+        }
+
     }, BaseElement.prototype);
 
 });
