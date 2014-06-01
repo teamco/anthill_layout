@@ -141,7 +141,6 @@ define([
                     workspace.eventmanager.eventList.switchToPage,
                     view.scope.activeContent
                 );
-
             }
 
             /**

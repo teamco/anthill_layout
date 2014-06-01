@@ -105,7 +105,8 @@ define([
                 complete: function complete() {
 
                     scope.observer.publish(
-                        scope.eventmanager.eventList.afterSwitchToPage
+                        scope.eventmanager.eventList.afterSwitchToPage,
+                        page
                     );
                 }
             });

@@ -125,6 +125,13 @@ define(
              */
             afterSwitchToPage: function afterSwitchToPage(page) {
                 this.logger.debug('After switch to page', page);
+
+                window.location.hash = ':page/' + page.model.getUUID();
+
+                // TODO
+                // $(window).on('hashchange', function() {
+                //     .. work ..
+                // });
             },
 
             /**

@@ -72,7 +72,7 @@ define([], function defineBasePreferences() {
              * Define page
              * @type {Page}
              */
-            var page = this.controller.getPage();
+            var page = this.controller.getPage(opts.config.uuid);
 
             this.modalDialog({
                 style: opts.style,
