@@ -40,46 +40,25 @@ define([
     return PageTabsItemElement.extend('PageTabsItemElement', {
 
         /**
-         * Init Embedded content
+         * Init page tabs item
          * @member PageTabsItemElement
          */
         initContent: function initContent() {
-            this.init();
-        },
-
-        /**
-         * Set title
-         * @member PageTabsItemElement
-         */
-        setTitle: function setTitle() {
 
             /**
              * Define title
              * @member PageTabsItemElement
-             * @type {*}
+             * @type {*|string}
              */
-            this.title = this.view.controller.getPreference('title');
-        },
-
-        /**
-         * Set description
-         * @member PageTabsItemElement
-         */
-        setDescription: function setDescription() {
+            this.title = this.view.controller.getPreference('title') ||
+                'Default';
 
             /**
              * Define description
              * @member PageTabsItemElement
-             * @type {*}
+             * @type {*|string}
              */
             this.description = this.view.controller.getPreference('description');
-        },
-
-        /**
-         * Set page external url
-         * @member PageTabsItemElement
-         */
-        setPageUrl: function setPageUrl() {
 
             /**
              * Define pageUrl
@@ -87,26 +66,12 @@ define([
              * @type {*}
              */
             this.pageUrl = this.view.controller.getPreference('pageUrl');
-        },
-
-        /**
-         * Init page tabs item
-         * @member PageTabsItemElement
-         */
-        init: function init() {
-
-            this.setTitle();
-            this.setDescription();
-            this.setPageUrl();
 
             this.$.append(
-
-                $('<div />').attr({
-
-                    title: this.title
-
-                }).text(this.title)
+                $('<div />').text(this.title)
             );
+
+            this.setTitle(this.title);
 
             this.$.on('click.pageUrl', function (e) {
 
