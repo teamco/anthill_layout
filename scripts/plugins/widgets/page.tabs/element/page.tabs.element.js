@@ -48,6 +48,8 @@ define([
                     );
                 }
             }
+
+            this.view.controller.clearParentThumbnail();
         }
 
     }, BaseElement.prototype);
