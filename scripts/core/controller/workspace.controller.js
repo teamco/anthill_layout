@@ -73,7 +73,7 @@ define(
              */
             switchToPage: function switchToPage(page) {
 
-                if (page === this.getCurrentItem()) {
+                if (page === this.controller.getCurrentItem()) {
                     this.logger.debug('Page already current', page);
                     return false;
                 }
