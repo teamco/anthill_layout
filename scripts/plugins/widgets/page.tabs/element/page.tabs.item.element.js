@@ -28,7 +28,7 @@ define([
         /**
          * Define page tab item
          * @member PageTabsItemElement
-         * @type {$pageTab.pageTab|*}
+         * @type {Page}
          */
         this.pageTab = opts.pageTab;
 
@@ -57,7 +57,11 @@ define([
              * @member PageTabsItemElement
              * @type {*|string}
              */
-            this.title = scope.base.define(preferences.title, 'Default', true);
+            this.title = scope.base.define(
+                preferences.title,
+                this.pageTab.model.getUUID(),
+                true
+            );
 
             /**
              * Define description
