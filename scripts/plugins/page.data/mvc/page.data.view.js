@@ -154,6 +154,12 @@ define([
                             events: {
                                 click: 'rules' + this.scope.constructor.name
                             }
+                        },
+                        reject: {
+                            text: 'Cancel',
+                            events: {
+                                click: ['rejectModalEvent', 'restoreWidgetsLayerIndex']
+                            }
                         }
                     }
                 });

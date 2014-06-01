@@ -22,7 +22,7 @@ define([
 
         this._config(view, opts, $('<li />')).build({
             $container: opts.$container,
-            destroy: true
+            destroy: false
         });
 
         /**
@@ -100,29 +100,28 @@ define([
             this.setPageUrl();
 
             this.$.append(
+
                 $('<div />').attr({
-                    title: this.title,
-                    description: this.description
-                })
+
+                    title: this.title
+
+                }).text(this.title)
             );
 
-            if (this.pageUrl) {
+            this.$.on('click.pageUrl', function (e) {
 
-                this.$.on('click.pageUrl', function (e){
+                if (this.pageUrl) {
 
                     this.view.scope.logger.debug('Open url', e);
                     window.open(this.pageUrl);
 
-                }.bind(this))
+                } else {
 
-            } else {
+                    this.view.controller.switchTo(this.pageTab);
+                }
 
-                this.view.controller.switchTo(this.pageTab);
-            }
+            }.bind(this))
         }
 
-
-
     }, BaseElement.prototype);
-
 });

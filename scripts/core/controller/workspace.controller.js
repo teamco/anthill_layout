@@ -104,10 +104,6 @@ define(
                         }
                     }
 
-                    this.observer.publish(
-                        this.eventmanager.eventList.afterSwitchToPage
-                    );
-
                 } else {
 
                     this.logger.warn('Undefined page', page);
@@ -135,10 +131,9 @@ define(
                  * Get current page
                  * @type {Page}
                  */
-                var page = this.getCurrentItem(),
-                    order = page.model.getConfig('order');
+                var page = this.getCurrentItem();
 
-                this.scope.view.elements.$pages.swipeTo(order);
+                this.scope.view.elements.$pages.swipeTo(page);
             }
 
 

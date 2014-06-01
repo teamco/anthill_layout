@@ -80,28 +80,6 @@ define([
         },
 
         /**
-         * Update prefs
-         * @member WidgetModel
-         * @param data
-         */
-        updatePreferences: function updatePreferences(data) {
-
-            /**
-             * Get prefs
-             * @type {*}
-             */
-            var preferences = this.getConfig('preferences');
-
-            for (var index in data) {
-
-                if (data.hasOwnProperty(index)) {
-
-                    preferences[index] = data[index];
-                }
-            }
-        },
-
-        /**
          * Update rules
          * @member WidgetModel
          * @param data

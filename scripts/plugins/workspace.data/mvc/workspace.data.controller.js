@@ -225,16 +225,6 @@ define(
                     workspace.eventmanager.eventList.switchToPage,
                     page
                 );
-            },
-
-            /**
-             * Bulk function
-             * @member WorkspaceDataController
-             * @returns {boolean}
-             */
-            restoreWidgetsLayerIndex: function restoreWidgetsLayerIndex() {
-                // TODO fix - page prefs event
-                return false;
             }
 
         }, PluginBase.prototype);

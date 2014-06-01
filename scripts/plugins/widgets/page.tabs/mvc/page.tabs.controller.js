@@ -25,7 +25,7 @@ define([
 
         /**
          * Set embedded content
-         * @member VimeoController
+         * @member PageTabsController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -36,7 +36,7 @@ define([
 
         /**
          * Switch to page
-         * @member VimeoController
+         * @member PageTabsController
          * @param {Page} page
          */
         switchTo: function switchTo(page) {

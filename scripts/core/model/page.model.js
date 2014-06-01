@@ -39,28 +39,6 @@ define([
     return PageModel.extend('PageModel', {
 
         /**
-         * Update prefs
-         * @member PageModel
-         * @param data
-         */
-        updatePreferences: function updatePreferences(data) {
-
-            /**
-             * Get prefs
-             * @type {*}
-             */
-            var preferences = this.getConfig('preferences');
-
-            for (var index in data) {
-
-                if (data.hasOwnProperty(index)) {
-
-                    preferences[index] = data[index];
-                }
-            }
-        },
-
-        /**
          * Get widget by content uuid
          * @member PageModel
          * @param {string} id

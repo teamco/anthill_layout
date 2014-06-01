@@ -85,10 +85,27 @@ define([
         /**
          * Swipe container to current page
          * @member WorkspaceContentElement
-         * @param to
+         * @param {Page} page
          */
-        swipeTo: function swipeTo(to) {
+        swipeTo: function swipeTo(page) {
 
+            /**
+             * Define view
+             * @type {WorkspaceView}
+             */
+            var view = this.view,
+                scope = view.scope;
+
+            view.elements.$pages.$.stop().animate({
+
+                left: ((1 - page.model.getConfig('order')) * 100) + '%'
+
+            }, 500, function() {
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.afterSwitchToPage
+                );
+            });
         }
 
     }, BaseElement.prototype);
