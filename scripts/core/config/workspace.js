@@ -36,19 +36,19 @@ define(
             /**
              * Define default config
              * @type {{
-         *      limit: boolean,
-         *      isResized: boolean,
-         *      type: string,
-         *      order: number,
-         *      page: {counter: number, limit: number, onDestroyShowPrevious: boolean},
-         *      html: {
-         *          style: string,
-         *          header: boolean,
-         *          footer: boolean,
-         *          stretch: boolean,
-         *          padding: {top: number, right: number, bottom: number, left: number}
-         *      }
-         * }}
+             *      limit: boolean,
+             *      isResized: boolean,
+             *      type: string,
+             *      order: number,
+             *      page: {counter: number, limit: number, onDestroyShowPrevious: boolean},
+             *      html: {
+             *          style: string,
+             *          header: boolean,
+             *          footer: boolean,
+             *          stretch: boolean,
+             *          padding: {top: number, right: number, bottom: number, left: number}
+             *      }
+             * }}
              */
             var DEFAULTS = {
                 limit: false,
@@ -158,7 +158,7 @@ define(
             this.page = {};
 
             /**
-             * Define items
+             * Define itemsÒ
              * @member Workspace
              * @type {*}
              */
@@ -166,6 +166,10 @@ define(
 
             this.observer.publish(
                 this.eventmanager.eventList.successCreated
+            );
+
+            this.observer.publish(
+                this.eventmanager.eventList.bindHashChange
             );
         };
 

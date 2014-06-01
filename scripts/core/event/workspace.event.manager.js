@@ -38,6 +38,7 @@ define(
              * Define event list
              * @member WorkspaceEventManager
              * @type {{
+             *      bindHashChange: string,
              *      createPage: string,
              *      destroyPage: string,
              *      destroyPages: string,
@@ -51,6 +52,7 @@ define(
              * }}
              */
             eventList: {
+                bindHashChange: 'bind.hash.change',
                 createPage: 'create.page',
                 destroyPage: 'destroy.page',
                 destroyPages: 'destroy.pages',

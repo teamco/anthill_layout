@@ -31,6 +31,25 @@ define(
              * Set page height
              * @member WorkspaceController
              */
+            bindHashChange: function bindHashChange() {
+
+                $(window).on('hashchange', function() {
+
+                    var hash = window.location.hash,
+                        pageUUID = hash.match(/page\/([\w\d\-]*):?/i)[1];
+
+                    this.observer.publish(
+                        this.eventmanager.eventList.switchToPage,
+                        this.model.getItemByUUID(pageUUID)
+                    );
+
+                }.bind(this));
+            },
+
+            /**
+             * Set page height
+             * @member WorkspaceController
+             */
             setPageContainerDimensions: function setPageContainerDimensions() {
 
                 /**
@@ -127,11 +146,6 @@ define(
                 this.logger.debug('After switch to page', page);
 
                 window.location.hash = ':page/' + page.model.getUUID();
-
-                // TODO
-                // $(window).on('hashchange', function() {
-                //     .. work ..
-                // });
             },
 
             /**
