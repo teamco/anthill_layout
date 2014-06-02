@@ -72,7 +72,7 @@ define([
          * @returns {Panel}
          */
         getPanel: function getPanel() {
-            return this.scope.containment;
+            return this.root().panel;
         },
 
         /**
@@ -119,7 +119,7 @@ define([
         isDataNotExist: function isDataNotExist() {
 
             return this.base.lib.hash.isHashEmpty(
-                this.scope.view.elements.content
+                this.scope.view.elements.items
             );
         },
 

@@ -15,7 +15,7 @@ define([
     'plugins/panel/element/panel.content.container.element',
     'plugins/panel/element/panel.tab.element',
     'plugins/panel/element/panel.element'
-], function definePanelView(BaseView, Header, Footer, PanelContainer, PanelContent, PanelContentContainer, PanelTab, Panel) {
+], function definePanelView(BaseView, Header, Footer, PanelContainer, PanelContentElement, PanelContentContainer, PanelTab, Panel) {
 
     /**
      * Define view
@@ -152,7 +152,7 @@ define([
              * Render item
              * @type {PanelContentElement}
              */
-            var $item = new PanelContent(this, {
+            var $item = new PanelContentElement(this, {
                 style: style,
                 $container: this.elements.$content.$
             });

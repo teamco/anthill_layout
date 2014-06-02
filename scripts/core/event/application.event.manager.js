@@ -32,12 +32,17 @@ define([
          * Define event list
          * @member AppEventManager
          * @type {{
+         *      defineSetting: string,
+         *      initResizeWindow: string,
          *      resizeWindow: {eventName: string, params: {buffer: number}},
+         *      resizeWindowHooks: string,
          *      createWorkspace: string,
          *      destroyWorkspace: string,
          *      destroyWorkspaces: string,
          *      resizeWorkspaces: string,
-         *      resizeWorkspace: string
+         *      resizeWorkspace: string,
+         *      setAsLoaded: string,
+         *      createAuthorPanel: string
          * }}
          */
         eventList: {
@@ -53,6 +58,7 @@ define([
             destroyWorkspaces: 'destroy.workspaces',
             resizeWorkspace: 'resize.workspace',
             resizeWorkspaces: 'resize.workspaces',
+            setAsLoaded: 'set.as.loaded',
             createAuthorPanel: 'create.author.panel'
         }
 

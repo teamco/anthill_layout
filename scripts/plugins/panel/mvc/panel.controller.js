@@ -82,6 +82,30 @@ define([
         },
 
         /**
+         * Refresh modules content
+         * @member PanelController
+         */
+        refreshModulesContent: function refreshModulesContent() {
+
+            if (this.controller.isOpened()) {
+
+                this.observer.publish(
+                    this.eventmanager.eventList.showContent,
+                    [true, this.controller.getActiveResource()]
+                );
+            }
+        },
+
+        /**
+         * Get active resource
+         * @member PanelController
+         * @returns {string}
+         */
+        getActiveResource: function getActiveResource() {
+            return this.scope.active;
+        },
+
+        /**
          * Update opened
          * @member PanelController
          * @param {String} resource

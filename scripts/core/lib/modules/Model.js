@@ -640,6 +640,7 @@ define([
          * @private
          */
         _returnLoadData: function _returnLoadData(data) {
+
             this.scope.controller.setAsLoading(false);
             return data;
         },
@@ -670,49 +671,48 @@ define([
                 return this._returnLoadData(false);
             }
 
-            if (!base.isDefined(this.item)) {
-                return this._returnLoadData(data.collector);
-            }
+            if (base.isDefined(this.item)) {
 
-            var isRoot = scope.controller.isRoot(scope),
-                cname = this.item.name,
-                lname = cname.toLowerCase(),
-                collector = base.define(data.collector, {}, true);
+                var isRoot = scope.controller.isRoot(scope),
+                    cname = this.item.name,
+                    lname = cname.toLowerCase(),
+                    collector = base.define(data.collector, {}, true);
 
-            if (collector.hasOwnProperty(lname)) {
+                if (collector.hasOwnProperty(lname)) {
 
-                var items = collector[lname],
-                    index, node;
+                    var items = collector[lname],
+                        index, node;
 
-                for (index in items) {
+                    for (index in items) {
 
-                    if (items.hasOwnProperty(index)) {
+                        if (items.hasOwnProperty(index)) {
 
-                        if (this.getUUID() === items[index].containment || isRoot) {
+                            if (this.getUUID() === items[index].containment || isRoot) {
 
-                            node = base.define(items[index], {}, true);
+                                node = base.define(items[index], {}, true);
 
-                            // Create item
-                            scope.api['create' + cname](
-                                node,
-                                true,
-                                true
-                            );
+                                // Create item
+                                scope.api['create' + cname](
+                                    node,
+                                    true,
+                                    true
+                                );
 
-                            /**
-                             * Define current item
-                             * @type {*}
-                             */
-                            var item = scope[lname];
+                                /**
+                                 * Define current item
+                                 * @type {*}
+                                 */
+                                var item = scope[lname];
 
-                            if (item.model) {
+                                if (item.model) {
 
-                                if (isRoot && node.containment) {
+                                    if (isRoot && node.containment) {
 
-                                    this.scope.controller.loadConfig(node.containment);
+                                        this.scope.controller.loadConfig(node.containment);
+                                    }
+
+                                    this.loadData.bind(item.model)(data);
                                 }
-
-                                this.loadData.bind(item.model)(data);
                             }
                         }
                     }

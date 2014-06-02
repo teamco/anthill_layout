@@ -33,17 +33,23 @@ define(
              */
             bindHashChange: function bindHashChange() {
 
-                $(window).on('hashchange', function() {
+                $(window).on('hashchange', this.controller.switchPageOnHachChange.bind(this));
+            },
 
-                    var hash = window.location.hash,
-                        pageUUID = hash.match(/page\/([\w\d\-]*):?/i)[1];
+            /**
+             * Switch page on hash change
+             * @member WorkspaceController
+             */
+            switchPageOnHachChange: function switchPageOnHachChange() {
 
-                    this.observer.publish(
-                        this.eventmanager.eventList.switchToPage,
-                        this.model.getItemByUUID(pageUUID)
-                    );
+                var hash = window.location.hash,
+                    pageUUID = hash.match(/page\/([\w\d\-]*):?/i)[1];
 
-                }.bind(this));
+                this.observer.publish(
+                    this.eventmanager.eventList.switchToPage,
+                        this.model.getItemByUUID(pageUUID) ||
+                        this.model.getCurrentItem()
+                );
             },
 
             /**
@@ -94,6 +100,7 @@ define(
 
                 if (page === this.controller.getCurrentItem()) {
                     this.logger.debug('Page already current', page);
+                    this.controller.swipeToCurrentPage();
                     return false;
                 }
 

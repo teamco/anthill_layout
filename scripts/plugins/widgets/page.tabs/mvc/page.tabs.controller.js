@@ -42,6 +42,16 @@ define([
         switchTo: function switchTo(page) {
 
             /**
+             * Get panel
+             * @type {Panel}
+             */
+            var panel = this.getPanel();
+
+            panel.observer.publish(
+                panel.eventmanager.eventList.refreshModulesContent
+            );
+
+            /**
              * Get workspace
              * @type {Workspace}
              */

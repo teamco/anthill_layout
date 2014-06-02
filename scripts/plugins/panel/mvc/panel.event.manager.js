@@ -34,7 +34,8 @@ define([
          *      defineModules: string,
          *      definePackages: string,
          *      openPanel: string,
-         *      closePanel: string
+         *      closePanel: string,
+         *      refreshModulesContent: string
          * }}
          */
         this.eventList = {
@@ -43,7 +44,8 @@ define([
             defineModules: 'define.modules',
             definePackages: 'define.packages',
             openPanel: 'open.panel',
-            closePanel: 'close.panel'
+            closePanel: 'close.panel',
+            refreshModulesContent: 'refresh.modules.content'
         };
     };
 

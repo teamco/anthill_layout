@@ -48,7 +48,47 @@ define([
          * @param load
          */
         setAsLoading: function setAsLoading(load) {
-            this.root().loading = load;
+
+            /**
+             * Get root
+             * @type {App}
+             */
+            var root = this.root();
+
+            root.loading = load;
+
+            if (this.scope === root) {
+
+                root.observer.publish(
+                    root.eventmanager.eventList.setAsLoaded
+                );
+            }
+        },
+
+        /**
+         * Set as loaded
+         * @member BaseController
+         */
+        setAsLoaded: function setAsLoaded() {
+
+            this.logger.debug('Application was loaded');
+
+            /**
+             * Get item constructor name
+             * @type {string}
+             */
+            var namespace = this.model.getItemNameSpace();
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this[namespace];
+
+            if (workspace.controller) {
+
+                workspace.controller.switchPageOnHachChange.bind(workspace)();
+            }
         },
 
         /**
