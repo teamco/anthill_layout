@@ -51,9 +51,15 @@ define([
          */
         getRulesHtml: function getRulesHtml(uuid, load) {
 
+            /**
+             * Define scope
+             * @type {WidgetRules}
+             */
+            var scope = this.scope;
+
             // set active content
-            this.observer.publish(
-                this.eventmanager.eventList.setActiveContent,
+            scope.observer.publish(
+                scope.eventmanager.eventList.setActiveContent,
                 uuid
             );
 
@@ -121,9 +127,8 @@ define([
          */
         loadRules: function loadRules(config, load, event, callback) {
 
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.setActiveContent,
+            this.observer.publish(
+                this.eventmanager.eventList.setActiveContent,
                 config.uuid
             );
 
