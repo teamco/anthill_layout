@@ -45,13 +45,13 @@ define([
         /**
          * Set active content
          * @member PageDataController
-         * @param {WidgetContent} content
+         * @param {string} uuid
          */
         setActiveContent: function setActiveContent(uuid) {
 
             /**
              * Get widget
-             * @type {widget}
+             * @type {Widget}
              */
             var widget = this.controller.getPage().model.getItemByUUID(uuid);
 
