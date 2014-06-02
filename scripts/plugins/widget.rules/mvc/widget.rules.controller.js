@@ -43,26 +43,27 @@ define([
         },
 
         /**
-         * Get rules
+         * Get rules html
          * @member WidgetRulesController
          * @param {string} uuid
          * @param {boolean} load
          * @returns {*}
          */
-        getRules: function getRules(uuid, load) {
-
-            /**
-             * Define widget
-             * @type {*}
-             */
-            var widget = this.getPage().model.getItemByUUID(uuid);
+        getRulesHtml: function getRulesHtml(uuid, load) {
 
             // set active content
-            this.setActiveContent(
-                widget.controller.getContent()
+            this.observer.publish(
+                this.eventmanager.eventList.setActiveContent,
+                uuid
             );
 
             if (load) {
+
+                /**
+                 * Define widget
+                 * @type {Widget}
+                 */
+                var widget = this.getPage().model.getItemByUUID(uuid);
 
                 return this.scope.activeContent.view.renderRules(
                     widget.eventmanager.getEvents(),
@@ -77,27 +78,37 @@ define([
          * @member WidgetRulesController
          * @param {WidgetContent} content
          */
-        setActiveContent: function setActiveContent(content) {
+        setActiveContent: function setActiveContent(uuid) {
 
             /**
-             * Define scope;
-             * @type {*}
+             * Get current page
+             * @type {Page}
              */
-            var scope = this.scope;
+            var page = this.controller.getPage();
+
+            /**
+             * Get widget
+             * @type {Widget}
+             */
+            var widget = page.model.getItemByUUID(uuid);
+
+            if (!widget) {
+                this.logger.warn('Undefined widget', uuid, page);
+            }
 
             /**
              * Set active content
              * @type {WidgetContent}
              */
-            scope.activeContent = content;
+            this.activeContent = widget.controller.getContent();
 
             /**
              * Define referrer
              * @type {WidgetRules}
              */
-            scope.activeContent.referrer = scope;
+            this.activeContent.referrer = this;
 
-            scope.logger.debug('Active content', content);
+            this.logger.debug('Active content', this.activeContent);
         },
 
         /**
@@ -109,6 +120,12 @@ define([
          * @param {function} [callback]
          */
         loadRules: function loadRules(config, load, event, callback) {
+
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.setActiveContent,
+                config.uuid
+            );
 
             this.view.showRules(config, load);
 

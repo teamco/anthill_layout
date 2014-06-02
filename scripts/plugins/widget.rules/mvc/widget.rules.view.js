@@ -135,32 +135,42 @@ define([
         showRules: function showRules(config, load) {
 
             /**
-             * Define $html
-             * @type {BaseElement}
+             * Define scope
+             * @type {PageData}
              */
-            var $html = this.controller.getRules(config.uuid, load);
+            var scope = this.scope;
 
-            if (!load) {
-                return false;
-            }
+            scope.observer.publish(
+                scope.eventmanager.eventList.setActiveContent,
+                config.uuid
+            );
 
-            this.openRules({
-                config: config,
-                $html: $html.$,
-                style: [
-                    config.preferences.resource,
-                    'widget-rules rules'
-                ].join(' '),
-                title: 'Widget rules',
-                buttons: {
-                    preferences: {
-                        text: 'Preferences',
-                        events: {
-                            click: 'preferences' + this.scope.constructor.name
+            if (load) {
+
+                /**
+                 * Define $html
+                 * @type {BaseElement}
+                 */
+                var $html = this.controller.getRulesHtml(config.uuid, load);
+
+                this.openRules({
+                    config: config,
+                    $html: $html.$,
+                    style: [
+                        config.preferences.resource,
+                        'widget-rules rules'
+                    ].join(' '),
+                    title: 'Widget rules',
+                    buttons: {
+                        preferences: {
+                            text: 'Preferences',
+                            events: {
+                                click: 'preferences' + this.scope.constructor.name
+                            }
                         }
                     }
-                }
-            });
+                });
+            }
         },
 
         /**
