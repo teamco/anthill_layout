@@ -23,9 +23,13 @@ define([
             switchToPage: 'switch.to.page'
         });
 
-        this.executeOnLoad([
+        /**
+         * Define onload events
+         * @type {*[]}
+         */
+        this.onLoadEvents = [
             this.eventList.switchToPage
-        ]);
+        ];
     };
 
     return PageTabsEventManager.extend('PageTabsEventManager', {

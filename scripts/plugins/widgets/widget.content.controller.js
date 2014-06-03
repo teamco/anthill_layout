@@ -66,6 +66,10 @@ define([
                     eventList.transferRules,
                         (opts || {}).rules || {}
                 );
+
+                observer.publish(
+                    eventList.executeOnWidgetContentOnLoadEvent
+                );
             },
 
             /**
@@ -111,6 +115,14 @@ define([
                 widget.observer.publish(
                     widget.eventmanager.eventList[eventName]
                 );
+            },
+
+            /**
+             * Execute widget content events onload
+             * @member WidgetContentController
+             */
+            executeOnWidgetContentOnLoadEvent: function executeOnWidgetContentOnLoadEvent() {
+                this.eventmanager.executeEventsOnLoad();
             },
 
             /**

@@ -50,7 +50,8 @@ define([
          *      transferEvents: string,
          *      onClickOpenUrl: string,
          *      transferStatistics: string,
-         *      executeOnWidgetEvent: string
+         *      executeOnWidgetEvent: string,
+         *      executeOnWidgetContentOnLoadEvent: string
          * }}
          */
         eventList: {
@@ -68,7 +69,8 @@ define([
             transferEvents: 'transfer.events',
             onClickOpenUrl: 'on.click.open.url',
             transferStatistics: 'transferStatistics',
-            executeOnWidgetEvent: 'execute.on.widget.event'
+            executeOnWidgetEvent: 'execute.on.widget.event',
+            executeOnWidgetContentOnLoadEvent: 'execute.on.widget.content.on.load.event'
         },
 
         /**
@@ -83,9 +85,12 @@ define([
         /**
          * Execute events on load
          * @member WidgetContentEventManager
-         * @param {Array} events
          */
-        executeOnLoad: function executeOnLoad(events) {
+        executeEventsOnLoad: function executeEventsOnLoad() {
+
+            if (this.onLoadEvents.length === 0) {
+                return false;
+            }
 
             var scope = this.scope;
 
@@ -102,11 +107,9 @@ define([
 
             publish[lname] = scope.base.define(publish[lname], [], true);
 
-            for (var i = 0, l = events.length; i < l; i++) {
+            for (var i = 0, l = this.onLoadEvents.length; i < l; i++) {
 
-                event = events[i];
-
-                this.onLoadEvents.push(event);
+                event = this.onLoadEvents[i];
 
                 if (!publish[lname].join(':').match(new RegExp(event, 'gi'))) {
 
