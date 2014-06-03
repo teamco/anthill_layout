@@ -85,15 +85,12 @@ define([
 
             this.$.on('click.pageTab', function (e) {
 
-                if (this.pageUrl) {
+                var scope = this.view.scope;
 
-                    this.view.scope.logger.debug('Open url', e);
-                    window.open(this.pageUrl);
-
-                } else {
-
-                    this.view.controller.switchTo(this.pageTab);
-                }
+                scope.observer.publish(
+                    scope.eventmanager.eventList.switchToPage,
+                    [this, e]
+                );
 
             }.bind(this))
         }

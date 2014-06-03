@@ -582,7 +582,7 @@ define([
          * @param {string} type
          */
         publishRule: function publishRule(rule, type) {
-
+debugger
             /**
              * Define referrer
              * @type {*}

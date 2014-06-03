@@ -37,30 +37,29 @@ define([
         /**
          * Switch to page
          * @member PageTabsController
-         * @param {Page} page
+         * @param {PageTabsItemElement} $page
+         * @param {Event} e
          */
-        switchTo: function switchTo(page) {
+        switchToPage: function switchToPage($page, e) {
 
-            /**
-             * Get panel
-             * @type {Panel}
-             */
-            var panel = this.getPanel();
+            if ($page.pageUrl) {
 
-            panel.observer.publish(
-                panel.eventmanager.eventList.refreshModulesContent
-            );
+                this.logger.debug('Open url', e);
+                window.open($page.pageUrl);
 
-            /**
-             * Get workspace
-             * @type {Workspace}
-             */
-            var workspace = this.getWorkspace();
+            } else {
 
-            workspace.observer.publish(
-                workspace.eventmanager.eventList.switchToPage,
-                page
-            );
+                /**
+                 * Get workspace
+                 * @type {Workspace}
+                 */
+                var workspace = this.controller.getWorkspace();
+
+                workspace.observer.publish(
+                    workspace.eventmanager.eventList.switchToPage,
+                    $page.pageTab
+                );
+            }
         },
 
         /**

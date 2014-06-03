@@ -19,7 +19,9 @@ define([
      */
     var PageTabsEventManager = function PageTabsEventManager() {
 
-        this.updateEventList({});
+        this.updateEventList({
+            switchToPage: 'switch.to.page'
+        });
     };
 
     return PageTabsEventManager.extend('PageTabsEventManager', {
