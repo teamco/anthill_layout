@@ -179,7 +179,9 @@ define([
 
             this.getStorage().setItem(
                 this.getNameSpace(),
-                JSON.stringify(opts)
+                LZString.compress(
+                    JSON.stringify(opts)
+                )
             );
 
             this.scope.logger.debug('Save', opts);
@@ -196,9 +198,11 @@ define([
              * @type {*}
              */
             var data = JSON.parse(
-                this.getStorage().getItem(
-                    this.getNameSpace()
-                )
+                LZString.decompress(
+                    this.getStorage().getItem(
+                        this.getNameSpace()
+                    )
+                ) || '[]'
             );
 
             this.scope.logger.debug('Load', data);

@@ -33,22 +33,29 @@ define(
              */
             bindHashChange: function bindHashChange() {
 
-                $(window).on('hashchange', this.controller.switchPageOnHachChange.bind(this));
+                $(window).on('hashchange', this.controller.switchPageOnHashChange.bind(this));
             },
 
             /**
              * Switch page on hash change
              * @member WorkspaceController
              */
-            switchPageOnHachChange: function switchPageOnHachChange() {
+            switchPageOnHashChange: function switchPageOnHashChange() {
 
                 var hash = window.location.hash,
-                    pageUUID = hash.match(/page\/([\w\d\-]*):?/i)[1];
+                    match = hash.match(/page\/([\w\d\-]*):?/i);
+
+                /**
+                 * Get page
+                 * @type {Page}
+                 */
+                var page = match ?
+                    this.model.getItemByUUID(match[1]) :
+                    this.controller.getCurrentItem();
 
                 this.observer.publish(
                     this.eventmanager.eventList.switchToPage,
-                        this.model.getItemByUUID(pageUUID) ||
-                        this.model.getCurrentItem()
+                    page
                 );
             },
 

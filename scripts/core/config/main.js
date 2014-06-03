@@ -25,6 +25,7 @@ requirejs.config({
         test: 'test',
 
         modernizr: 'lib/modernizr',
+        'lz-string': 'lib/lz-string',
 
         jquery: 'lib/jquery/jquery-2.1.1',
         'jquery.ui': 'lib/jquery/jquery-ui-1.10.4.custom',
@@ -51,7 +52,7 @@ requirejs.config({
         'modules/api': {deps: ['extends/function']},
         'modules/observer': {deps: ['extends/function']},
         'modules/logger': {deps: ['extends/function']},
-        'modules/setting': {deps: ['extends/function']},
+        'modules/setting': {deps: ['extends/function', 'lz-string']},
         'modules/event': {deps: ['extends/function']},
         'modules/permission': {deps: ['extends/function']},
         'modules/page': {deps: ['extends/function']},
@@ -64,6 +65,7 @@ requirejs.config({
 
 define([
     'modernizr',
+    'lz-string',
     'jquery',
     'jquery.ui',
     'jquery.resizestop',
