@@ -55,7 +55,7 @@ define(
 
                 this.observer.publish(
                     this.eventmanager.eventList.switchToPage,
-                    page
+                    page ? page : this.controller.getCurrentItem()
                 );
             },
 
