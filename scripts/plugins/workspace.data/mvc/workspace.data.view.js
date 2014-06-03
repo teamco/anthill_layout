@@ -81,15 +81,13 @@ define(
              */
             renderContent: function renderContent(data, force) {
 
-                if (this.isCachedItems()) {
-                    return false;
-                }
-
                 /**
                  * Define content
                  * @type {{}}
                  */
                 this.elements.items = {};
+
+                this.elements.$workspacedata.empty();
                 this.renderCreatePage();
 
                 var index;
@@ -97,7 +95,6 @@ define(
                 for (index in data) {
 
                     if (data.hasOwnProperty(index)) {
-
 
                         /**
                          * Render item
@@ -109,10 +106,10 @@ define(
                             $container: this.elements.$workspacedata.$,
                             data: data[index]
                         });
+
                         this.elements.items[$item.id] = $item;
                     }
                 }
-
 
                 this.elements.$workspacedata.scrollCover(
                     this.elements.$container.$

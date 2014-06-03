@@ -222,8 +222,20 @@ define(
 
                 workspace.observer.publish(
                     workspace.eventmanager.eventList.switchToPage,
-                    page
+                    [page, true]
                 );
+
+                /**
+                 * Get panel
+                 * @type {Panel}
+                 */
+                var panel = this.getAuthorPanel();
+
+                panel.observer.publish(
+                    panel.eventmanager.eventList.showContent,
+                    [true, panel.active]
+                );
+
             }
 
         }, PluginBase.prototype);
