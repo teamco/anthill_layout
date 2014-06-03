@@ -50,10 +50,21 @@ define([
              * Split uuid
              * @type {Array}
              */
-            var uuid = id.split('-');
-            uuid.pop();
+            var split = id.split('-'),
+                uuidArr = id.split('-'),
+                uuid;
 
-            return this.getItemByUUID(uuid.join('-'));
+            for (var i = 0, l = uuidArr.length; i < l; i++) {
+
+                split.pop();
+
+                uuid = split.join('-');
+
+                if (this.scope.base.isUUID(uuid)) {
+                    return this.getItemByUUID(uuid);
+                    break;
+                }
+            }
         }
 
     }, BaseModel.prototype);
