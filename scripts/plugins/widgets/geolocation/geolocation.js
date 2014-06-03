@@ -125,12 +125,8 @@ define([
         });
 
         this.observer.publish(
-            this.eventmanager.eventList.initWidget
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.transferEvents,
-                (opts || {}).events || {}
+            this.eventmanager.eventList.initWidget,
+            opts
         );
     };
 

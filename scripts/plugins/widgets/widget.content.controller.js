@@ -26,8 +26,9 @@ define([
             /**
              * Init widget
              * @member WidgetContentController
+             * @param {*} opts
              */
-            initWidget: function initWidget() {
+            initWidget: function initWidget(opts) {
 
                 /**
                  * Define observer
@@ -55,6 +56,16 @@ define([
                 );
 
                 this.view.render();
+
+                observer.publish(
+                    eventList.transferEvents,
+                        (opts || {}).events || {}
+                );
+
+                observer.publish(
+                    eventList.transferRules,
+                        (opts || {}).rules || {}
+                );
             },
 
             /**
