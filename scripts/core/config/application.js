@@ -103,7 +103,7 @@ define([
         /**
          * Init event manager
          * @member App
-         * @type {EventManager}
+         * @type {AppEventManager}
          */
         this.eventmanager = undefined;
 
@@ -131,42 +131,35 @@ define([
         /**
          * Init observer
          * @member App
-         * @type {undefined}
+         * @type {Observer}
          */
         this.observer = undefined;
 
         /**
-         * Init event manager
-         * @member App
-         * @type {undefined}
-         */
-        this.eventmanager = undefined;
-
-        /**
          * Define controller
          * @member App
-         * @type {*}
+         * @type {AppController}
          */
         this.controller = undefined;
 
         /**
          * Define model
          * @member App
-         * @type {*}
+         * @type {AppModel}
          */
         this.model = undefined;
 
         /**
          * Define view
          * @member App
-         * @type {*}
+         * @type {AppView}
          */
         this.view = undefined;
 
         /**
          * Define permissions
          * @member App
-         * @type {*}
+         * @type {AppPermission}
          */
         this.permission = undefined;
 
@@ -200,7 +193,6 @@ define([
         this.observer.publish(
             this.eventmanager.eventList.successCreated
         );
-
     };
 
     return App.extend('App', {
