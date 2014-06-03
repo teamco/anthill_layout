@@ -182,6 +182,10 @@ define([
             this.eventmanager.eventList.definePackages,
             [opts.packages]
         );
+
+        this.observer.publish(
+            this.eventmanager.eventList.subscribeGenericEvent
+        );
     };
 
     return Panel.extend('Panel', {

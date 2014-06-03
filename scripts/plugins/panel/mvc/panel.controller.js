@@ -144,6 +144,10 @@ define([
          */
         closePanel: function closePanel(resource) {
 
+            if (!resource) {
+                return false;
+            }
+
             if (this.active === resource) {
                 this.view.elements.$panel.toggle(resource, false);
                 this.view.elements.items['$bar-content'].unselectItems();
@@ -179,7 +183,6 @@ define([
                 callback(event);
             }
         },
-
 
         /**
          * Show content
@@ -281,6 +284,37 @@ define([
                 module.view.render();
                 module.controller.loadContent();
             }
+        },
+
+        /**
+         * Execute generic event
+         * @member PanelController
+         */
+        executeGenericEvent: function executeGenericEvent() {
+            this.observer.publish(
+                this.eventmanager.eventList.closePanel,
+                this.active
+            );
+        },
+
+        /**
+         * Subscribe to generic event
+         * @member PanelController
+         */
+        subscribeGenericEvent: function subscribeGenericEvent() {
+
+            /**
+             * Get workspace
+             * @type {WorkspaceEventManager}
+             */
+            var wsEventManager = this.controller.getWorkspace().eventmanager;
+
+            wsEventManager.subscribe({
+                event: {
+                    eventName: wsEventManager.eventList.switchToPage
+                },
+                callback: this.controller.executeGenericEvent.bind(this)
+            }, false)
         }
 
     }, PluginController.prototype);

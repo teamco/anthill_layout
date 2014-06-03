@@ -35,7 +35,8 @@ define([
          *      definePackages: string,
          *      openPanel: string,
          *      closePanel: string,
-         *      refreshModulesContent: string
+         *      refreshModulesContent: string,
+         *      subscribeGenericEvent: string
          * }}
          */
         this.eventList = {
@@ -45,7 +46,8 @@ define([
             definePackages: 'define.packages',
             openPanel: 'open.panel',
             closePanel: 'close.panel',
-            refreshModulesContent: 'refresh.modules.content'
+            refreshModulesContent: 'refresh.modules.content',
+            subscribeGenericEvent: 'subscribe.generic.event'
         };
     };
 
