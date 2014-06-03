@@ -34,6 +34,13 @@ define(
         var Workspace = function Workspace(opts) {
 
             /**
+             * Define swipe page
+             * @member Workspace
+             * @type {boolean}
+             */
+            this.swipePage = false;
+
+            /**
              * Define default config
              * @type {{
              *      limit: boolean,
