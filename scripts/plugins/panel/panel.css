@@ -8,6 +8,14 @@ div.panel-container {
     opacity: 0.8;
 }
 
+div.panel-container .panel-content {
+    overflow: hidden;
+}
+
+div.panel-container.close .panel-content {
+    overflow: visible;
+}
+
 div.panel-container.panel-right {
     width: 5px;
     height: 100%;
@@ -105,6 +113,16 @@ div.panel-container.panel-left .panel {
     padding-left: 40px;
 }
 
+div.panel-container.panel-left .panel-header {
+    display: none;
+}
+
+div.panel-container.panel-left.close .panel-header {
+    display: block;
+    margin-left: 40px;
+    padding-left: 10px;
+}
+
 div.panel-container.panel-right .panel-header,
 div.panel-container.panel-right .panel {
     padding-right: 40px;
@@ -112,12 +130,12 @@ div.panel-container.panel-right .panel {
 
 div.panel-container.panel-left .content {
     float: right;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 div.panel-container.panel-right .content {
     float: left;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 div.panel-container .panel-footer {
@@ -130,10 +148,29 @@ div.panel-container .scroll-cover {
     background: transparent;
     top: 0;
     bottom: 0;
-    margin-right: 40px;
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+div.panel-container.panel-left .scroll-cover {
+    direction: rtl;
+    margin-left: -40px;
+}
+
+div.panel-container.panel-right .scroll-cover {
+    margin-right: 40px;
+}
+
+div.panel-container.panel-left .scroll-cover + div {
+    margin-left: -40px;
+    padding-left: 40px;
+    padding-right: 0;
+    display: none;
+}
+
+div.panel-container.panel-left.close .scroll-cover + div {
+    display: block;
 }
 
 div.panel-container .clear {
