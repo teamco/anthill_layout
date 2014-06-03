@@ -140,14 +140,13 @@ define([
         /**
          * Check if render force
          * @member BaseView
-         * @param {Boolean} force
          * @returns {boolean}
          */
-        isCachedItems: function isCachedItems(force) {
+        isCachedItems: function isCachedItems() {
 
             return this.base.lib.hash.hashLength(
                     this.elements.items || {}
-            ) > 0 && !force;
+            ) > 0;
         },
 
         /**

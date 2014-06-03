@@ -44,8 +44,7 @@ define(
              * @param opened
              */
             loadContent: function loadContent(opened) {
-
-                if (opened && this.isDataNotExist()) {
+                if (opened) {
                     this.getView().renderContent(
                         this.getData()
                     );

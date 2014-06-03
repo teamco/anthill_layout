@@ -118,7 +118,7 @@ define([
          */
         renderContent: function renderContent(provider, force) {
 
-            if (this.isCachedItems(force)) {
+            if (this.isCachedItems() && !force) {
                 return false;
             }
 

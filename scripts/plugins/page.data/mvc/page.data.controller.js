@@ -46,6 +46,7 @@ define([
          * Set active content
          * @member PageDataController
          * @param {string} uuid
+         * @returns {*|boolean}
          */
         setActiveContent: function setActiveContent(uuid) {
 
@@ -62,8 +63,21 @@ define([
             var widget = page.model.getItemByUUID(uuid);
 
             if (!widget) {
+
                 this.logger.warn('Invalid data', page, uuid);
-                this.controller.getAuthorPanel()
+
+                /**
+                 * Get panel
+                 * @type {Panel}
+                 */
+                var panel = this.controller.getAuthorPanel();
+
+                panel.observer.publish(
+                    panel.eventmanager.eventList.closePanel,
+                    panel.active
+                );
+
+                return false;
             }
 
             /**
@@ -154,11 +168,18 @@ define([
          */
         locatePageData: function locatePageData(e) {
 
+            // Get active content
+            var active = this.scope.activeContent;
+
+            if (!active) {
+                return false;
+            }
+
             /**
              * Define $item
              * @type {BaseElement}
              */
-            var $item = this.scope.activeContent.containment.view.get$item();
+            var $item = active.controller.getContainment().view.get$item();
 
             this.locateElement($item, e);
         },
@@ -170,7 +191,7 @@ define([
          */
         loadContent: function loadContent(opened) {
 
-            if (opened && this.isDataNotExist()) {
+            if (opened) {
                 this.getView().renderContent(
                     this.getData()
                 );

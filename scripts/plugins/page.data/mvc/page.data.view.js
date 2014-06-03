@@ -66,27 +66,11 @@ define([
         renderContent: function renderContent(data) {
 
             /**
-             * Check if content was updated
-             * @type {boolean}
-             */
-            var update = this.controller.isUpdate(
-                data,
-                this.elements.items
-            );
-
-            if (!update) {
-                return false;
-            }
-
-            /**
              * Define content
              * @type {{}}
              */
             this.elements.items = {};
-
-            if (this.base.lib.hash.hashLength(data) === 0) {
-                this.elements.$pagedata.empty();
-            }
+            this.elements.$pagedata.empty();
 
             for (var index in data) {
 

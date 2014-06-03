@@ -133,7 +133,6 @@ define([
          * @returns {boolean}
          */
         isDataNotExist: function isDataNotExist() {
-
             return this.base.lib.hash.isHashEmpty(
                 this.scope.view.elements.items
             );

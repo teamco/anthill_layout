@@ -81,7 +81,7 @@ define(
              */
             renderContent: function renderContent(data, force) {
 
-                if (this.isCachedItems(force)) {
+                if (this.isCachedItems() && !force) {
                     return false;
                 }
 

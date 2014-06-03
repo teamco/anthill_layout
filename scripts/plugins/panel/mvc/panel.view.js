@@ -144,7 +144,7 @@ define([
              */
             this.elements.items = this.elements.items || {};
 
-            if (this.isCachedItems(force) || this.elements.items.hasOwnProperty(sname)) {
+            if ((this.isCachedItems() && !force) || this.elements.items.hasOwnProperty(sname)) {
                 return false;
             }
 

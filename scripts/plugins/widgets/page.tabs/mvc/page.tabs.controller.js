@@ -57,7 +57,7 @@ define([
 
                 workspace.observer.publish(
                     workspace.eventmanager.eventList.switchToPage,
-                    $page.pageTab
+                    [$page.pageTab, true]
                 );
             }
         },

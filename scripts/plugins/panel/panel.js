@@ -39,6 +39,12 @@ define([
         this.opened = false;
 
         /**
+         * Define active module
+         * @type {string}
+         */
+        this.active = undefined;
+
+        /**
          * Render side
          * @type {{top: string, right: string, bottom: string, left: string}}
          */

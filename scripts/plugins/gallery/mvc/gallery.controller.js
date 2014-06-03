@@ -61,8 +61,7 @@ define([
          */
         loadContent: function loadContent(opened) {
 
-            if (opened && this.isDataNotExist()) {
-
+            if (opened) {
                 this.getView().renderContent(
                     this.getCurrentProvider()
                 );
