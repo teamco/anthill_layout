@@ -82,6 +82,7 @@ define([
 
         /**
          * Update events are ready to subscribe
+         * @member WidgetContentControllerRules
          * @param events
          * @param {Array} event
          * @param {string} uuid
