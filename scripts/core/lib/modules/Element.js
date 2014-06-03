@@ -713,13 +713,21 @@ define([
             return this;
         },
 
+        /**
+         * Add scroll cover
+         * @member BaseElement
+         * @param $container
+         */
         scrollCover: function scrollCover($container) {
 
-            $('<div class="scroll-cover" />').
-                appendTo($container).append(
-                this.$,
-                '<div class="clear" />'
-            );
+            if ($('.scroll-cover', $container).length === 0) {
+
+                $('<div class="scroll-cover" />').
+                    appendTo($container).append(
+                    this.$,
+                    '<div class="clear" />'
+                );
+            }
         }
 
     }, AntHill.prototype, Renderer.prototype);
