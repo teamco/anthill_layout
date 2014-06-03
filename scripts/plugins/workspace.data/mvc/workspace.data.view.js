@@ -81,7 +81,7 @@ define(
              */
             renderContent: function renderContent(data, force) {
 
-                if (this.isCachedItems() && !force) {
+                if (this.isCachedItems()) {
                     return false;
                 }
 
@@ -90,12 +90,14 @@ define(
                  * @type {{}}
                  */
                 this.elements.items = {};
+                this.renderCreatePage();
 
                 var index;
 
                 for (index in data) {
 
                     if (data.hasOwnProperty(index)) {
+
 
                         /**
                          * Render item
@@ -107,12 +109,10 @@ define(
                             $container: this.elements.$workspacedata.$,
                             data: data[index]
                         });
-
                         this.elements.items[$item.id] = $item;
                     }
                 }
 
-                this.renderCreatePage();
 
                 this.elements.$workspacedata.scrollCover(
                     this.elements.$container.$
