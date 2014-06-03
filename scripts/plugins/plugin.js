@@ -26,10 +26,26 @@ define([
         /**
          * Get Workspace
          * @member PluginController
+         * @param {string} [uuid]
          * @returns {Workspace}
          */
-        getWorkspace: function getWorkspace() {
-            return this.root().controller.getCurrentItem();
+        getWorkspace: function getWorkspace(uuid) {
+
+            /**
+             * Get root
+             * @type {App}
+             */
+            var root = this.root();
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.base.isDefined(uuid) ?
+                root.model.getItemByUUID(uuid) :
+                root.controller.getCurrentItem();
+
+            return workspace;
         },
 
         /**
