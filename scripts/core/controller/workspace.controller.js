@@ -55,7 +55,7 @@ define(
 
                 this.observer.publish(
                     this.eventmanager.eventList.switchToPage,
-                    page ? page : this.controller.getCurrentItem()
+                    [page ? page : this.controller.getCurrentItem(), false]
                 );
             },
 
@@ -96,6 +96,7 @@ define(
             beforeSwitchToPage: function beforeSwitchToPage(page) {
                 this.logger.debug('Before switch to page', page);
 
+                this.switchPage = true;
                 window.location.hash = ':page/' + page.model.getUUID();
             },
 
@@ -103,13 +104,18 @@ define(
              * Switch to page
              * @member WorkspaceController
              * @param {Page} page
+             * @param {boolean} animate
              * @returns {boolean|*}
              */
-            switchToPage: function switchToPage(page) {
+            switchToPage: function switchToPage(page, animate) {
+
+                if (this.switchPage) {
+                    return false;
+                }
 
                 if (page === this.controller.getCurrentItem()) {
                     this.logger.debug('Page already current', page);
-                    this.controller.swipeToCurrentPage();
+                    this.controller.swipeToCurrentPage(animate);
                     return false;
                 }
 
@@ -144,7 +150,7 @@ define(
                         }
                     }
 
-                    this.controller.swipeToCurrentPage();
+                    this.controller.swipeToCurrentPage(animate);
 
                 } else {
 
@@ -160,13 +166,15 @@ define(
              */
             afterSwitchToPage: function afterSwitchToPage(page) {
                 this.logger.debug('After switch to page', page);
+                this.switchPage = false;
             },
 
             /**
              * Swipe to current page
              * @member WorkspaceController
+             * @param {boolean} animate
              */
-            swipeToCurrentPage: function swipeToCurrentPage() {
+            swipeToCurrentPage: function swipeToCurrentPage(animate) {
 
                 /**
                  * Get current page
@@ -174,7 +182,7 @@ define(
                  */
                 var page = this.getCurrentItem();
 
-                this.scope.view.elements.$pages.swipeTo(page);
+                this.scope.view.elements.$pages.swipeTo(page, animate);
             }
 
 
