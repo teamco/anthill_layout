@@ -95,6 +95,8 @@ define(
              */
             beforeSwitchToPage: function beforeSwitchToPage(page) {
                 this.logger.debug('Before switch to page', page);
+
+                window.location.hash = ':page/' + page.model.getUUID();
             },
 
             /**
@@ -158,8 +160,6 @@ define(
              */
             afterSwitchToPage: function afterSwitchToPage(page) {
                 this.logger.debug('After switch to page', page);
-
-                window.location.hash = ':page/' + page.model.getUUID();
             },
 
             /**
