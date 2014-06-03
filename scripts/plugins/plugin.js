@@ -87,8 +87,8 @@ define([
          * @member PluginController
          * @returns {Panel}
          */
-        getPanel: function getPanel() {
-            return this.root().panel;
+        getAuthorPanel: function getAuthorPanel() {
+            return this.root().authorPanel;
         },
 
         /**
@@ -102,7 +102,7 @@ define([
              * Define panel
              * @type {Panel}
              */
-            var panel = this.getPanel();
+            var panel = this.getAuthorPanel();
 
             return panel.model.getModule(
                 panel.model.getIndex('pagedata')
@@ -120,7 +120,7 @@ define([
              * Define panel
              * @type {Panel}
              */
-            var panel = this.getPanel();
+            var panel = this.getAuthorPanel();
 
             return panel.model.getModule(
                 panel.model.getIndex('widgetrules')

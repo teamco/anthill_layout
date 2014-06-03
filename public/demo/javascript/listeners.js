@@ -84,13 +84,13 @@ define(
                          * Init panel plugin
                          * @type {Panel}
                          */
-                        app.panel = new Panel({
+                        app.authorPanel = new Panel({
                             config: {renderAt: 'right'},
                             modules: [Gallery, PageData, WorkspaceData, WidgetRules],
                             packages: [Bar]
                         }, app);
 
-                        app.panel.view.render();
+                        app.authorPanel.view.render();
                     });
                 }
             }

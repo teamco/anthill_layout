@@ -287,7 +287,7 @@ define([
              * Define panel
              * @type {Panel}
              */
-            var panel = this.getPanel();
+            var panel = this.getAuthorPanel();
 
             /**
              * Define widget rules

@@ -50,10 +50,21 @@ define([
         setActiveContent: function setActiveContent(uuid) {
 
             /**
+             * Get page
+             * @type {Page}
+             */
+            var page = this.controller.getPage();
+
+            /**
              * Get widget
              * @type {Widget}
              */
-            var widget = this.controller.getPage().model.getItemByUUID(uuid);
+            var widget = page.model.getItemByUUID(uuid);
+
+            if (!widget) {
+                this.logger.warn('Invalid data', page, uuid);
+                this.controller.getAuthorPanel()
+            }
 
             /**
              * Set active content
@@ -192,7 +203,7 @@ define([
              * Define panel
              * @type {Panel}
              */
-            var panel = this.getPanel();
+            var panel = this.getAuthorPanel();
 
             /**
              * Define widget rules
