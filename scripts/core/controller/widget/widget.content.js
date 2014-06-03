@@ -57,7 +57,8 @@ define([
                 widget.observer.publish(
                     widget.eventmanager.eventList.setContent,
                     [Content, {
-                        events: widget.contentEvents
+                        events: widget.contentEvents || {},
+                        rules: widget.contentRules || {}
                     }]
                 );
             });
