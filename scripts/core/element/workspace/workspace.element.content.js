@@ -86,22 +86,24 @@ define([
          * Swipe container to current page
          * @member WorkspaceContentElement
          * @param {Page} page
+         * @param {boolean} animate
          */
-        swipeTo: function swipeTo(page) {
+        swipeTo: function swipeTo(page, animate) {
 
             /**
              * Define view
              * @type {WorkspaceView}
              */
             var view = this.view,
-                scope = view.scope;
+                scope = view.scope,
+                duration = animate ? 500 : 0;
 
             view.elements.$pages.$.stop().animate({
 
                 left: ((1 - page.model.getConfig('order')) * 100) + '%'
 
             }, {
-                duration: 500,
+                duration: duration,
                 complete: function complete() {
 
                     scope.observer.publish(
