@@ -81,7 +81,7 @@ define([
         /**
          * Init event manager
          * @member PageTabs
-         * @type {EventManager}
+         * @type {PageTabsEventManager}
          */
         this.eventmanager = undefined;
 
