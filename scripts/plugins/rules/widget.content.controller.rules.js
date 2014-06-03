@@ -66,15 +66,7 @@ define([
                      */
                     var uuid = $('legend', subscribed[i1]).attr('title');
 
-                    events.subscribe[uuid] = this.base.define(
-                        events.subscribe[uuid], {}, true
-                    );
-
-                    events.subscribe[uuid][event[0]] = this.base.define(
-                        events.subscribe[uuid][event[0]], [], true
-                    );
-
-                    events.subscribe[uuid][event[0]].push(event[1]);
+                    this.updateEventSubscribes(events, event, uuid);
                 }
             }
 
@@ -86,6 +78,25 @@ define([
             $modal.selfDestroy();
 
             this.store();
+        },
+
+        /**
+         * Update events are ready to subscribe
+         * @param events
+         * @param {Array} event
+         * @param {string} uuid
+         */
+        updateEventSubscribes: function updateEventSubscribes(events, event, uuid) {
+
+            events.subscribe[uuid] = this.base.define(
+                events.subscribe[uuid], {}, true
+            );
+
+            events.subscribe[uuid][event[0]] = this.base.define(
+                events.subscribe[uuid][event[0]], [], true
+            );
+
+            events.subscribe[uuid][event[0]].push(event[1]);
         },
 
         /**
@@ -383,7 +394,6 @@ define([
                                 interval = 100;
 
                             this[puuid] = setInterval(
-
                                 function () {
 
                                     this.scope.controller._getContentScope(this.interval, this.opts);
@@ -582,14 +592,20 @@ define([
          * @param {string} type
          */
         publishRule: function publishRule(rule, type) {
-debugger
+
             /**
              * Define referrer
              * @type {*}
              */
             var referrer = this.referrer;
 
-            this.view.elements.$rules.addRule(
+            /**
+             * Get $rules
+             * @type {*}
+             */
+            var $rules = this.view.elements.$rules;
+
+            $rules.addRule(
                 rule, type,
                 referrer.view.elements.$modal.$
             );

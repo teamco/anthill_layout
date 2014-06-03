@@ -162,6 +162,13 @@ define([
         this.contentEvents = {};
 
         /**
+         * Transfer content rules
+         * @member Widget
+         * @type {{}}
+         */
+        this.contentRules = {};
+
+        /**
          * Define MVC
          * @member Widget
          * @type {MVC}

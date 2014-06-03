@@ -46,7 +46,6 @@ define([
          *          style: string,
          *          header: boolean,
          *          footer: boolean,
-         *          floating: boolean,
          *          padding: {
          *              top: number,
          *              right: number,

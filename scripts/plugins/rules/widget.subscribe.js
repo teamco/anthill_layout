@@ -248,6 +248,16 @@ define([], function defineWidgetSubscribe() {
                 scope.eventmanager.eventList.collectStats,
                 [uuid, $element]
             );
+        },
+
+        /**
+         * Switch to page
+         * @member WidgetSubscribe
+         * @param {PageTabsItemElement} $page
+         * @param {Event} e
+         */
+        switchToPageSimulate: function switchToPageSimulate($page, e) {
+            debugger
         }
     });
 });

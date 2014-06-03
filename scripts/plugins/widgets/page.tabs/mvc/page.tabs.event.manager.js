@@ -22,6 +22,10 @@ define([
         this.updateEventList({
             switchToPage: 'switch.to.page'
         });
+
+        this.executeOnLoad([
+            this.eventList.switchToPage
+        ]);
     };
 
     return PageTabsEventManager.extend('PageTabsEventManager', {

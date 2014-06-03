@@ -191,6 +191,16 @@ define([
         },
 
         /**
+         * Check if uuid has uuid format
+         * @member Base
+         * @param {string} uuid
+         * @returns {Array|{index: number, input: string}|*}
+         */
+        isUUID: function isUUID(uuid) {
+            return uuid.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i);
+        },
+
+        /**
          * Check if url
          * @member Base
          * @param {string} url
@@ -224,7 +234,7 @@ define([
          * @member Base
          * @param o
          * @param value
-         * @param force
+         * @param [force]
          * @returns {*}
          */
         defineBoolean: function defineBoolean(o, value, force) {
