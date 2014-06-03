@@ -87,7 +87,7 @@ define([
         /**
          * Start rendering
          * @member AppView
-         * @param {boolean} silent
+         * @param {boolean} [silent]
          */
         render: function render(silent) {
 
