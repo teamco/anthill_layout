@@ -302,3 +302,7 @@
     font-variant: small-caps;
     text-transform: lowercase;
 }
+
+.modal-dialog ul.buttons li.preferences {
+    margin-left: 30px;
+}

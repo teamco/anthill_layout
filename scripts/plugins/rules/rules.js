@@ -43,9 +43,7 @@ define([], function defineBaseRules() {
              * Define buttons
              * @type {*}
              */
-            var buttons = opts.buttons || {};
-
-            $.extend(true, buttons, {
+            var buttons = $.extend(true, {}, {
                 locate: {
                     text: 'Locate',
                     events: {
@@ -64,7 +62,7 @@ define([], function defineBaseRules() {
                         click: 'rejectModalEvent'
                     }
                 }
-            });
+            }, opts.buttons || {});
 
             /**
              * Define page

@@ -302,3 +302,7 @@
     height: 67px;
     text-indent: -9000px;
 }
+
+.modal-dialog ul.buttons li.rules {
+    margin-left: 30px;
+}
