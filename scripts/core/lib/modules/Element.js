@@ -273,6 +273,30 @@ define([
              */
             var uuid = this.$.attr('id') + '-css';
 
+            opts = this.base.define(opts, {}, true);
+
+            this.createLinkCss({
+                href: this.pluginPath + (opts.resource || '') + url,
+                type: opts.type,
+                rel: opts.rel,
+                media: opts.media,
+                id: uuid
+            });
+
+            /**
+             * Define css link instance
+             * @type {*|jQuery|HTMLElement}
+             */
+            this.linkCSS = $('#' + uuid);
+        },
+
+        /**
+         * Create link css
+         * @member BaseElement
+         * @param opts
+         */
+        createLinkCss: function createLinkCss(opts) {
+
             /**
              * Define defaults
              * @type {{type: string, rel: string, media: string}}
@@ -282,8 +306,6 @@ define([
                 rel: 'stylesheet',
                 media: 'all'
             };
-
-            opts = this.base.define(opts, {}, true);
 
             /**
              * Init Link
@@ -300,16 +322,10 @@ define([
             link.type = opts.type || defaults.type;
             link.rel = opts.rel || defaults.rel;
             link.media = opts.media || defaults.media;
-            link.href = this.pluginPath + (opts.resource || '') + url;
-            link.id = uuid;
+            link.href = opts.href;
+            link.id = opts.uuid;
 
             document.getElementsByTagName("head")[0].appendChild(link);
-
-            /**
-             * Define css link instance
-             * @type {*|jQuery|HTMLElement}
-             */
-            this.linkCSS = $('#' + uuid);
         },
 
         /**
@@ -758,10 +774,10 @@ define([
              * @type {ModalElement}
              */
             $modal = referrer ?
-                referrer.view.elements.$modal:
+                referrer.view.elements.$modal :
                 scope.view.elements.$modal;
 
-            if($modal) {
+            if ($modal) {
 
                 $modal.setPosition({
                     $container: $modal.$container,
