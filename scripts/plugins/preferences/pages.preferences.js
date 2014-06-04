@@ -164,7 +164,7 @@ define([
                 $('<li />').append(
                     $('<fieldset />').append(
                         $('<legend />').text(cname).
-                            on('click.toggle', this.toggleFieldset).attr({
+                            on('click.toggle', this.toggleFieldset.bind(this)).attr({
                                 title: cname
                             }),
 
@@ -278,7 +278,7 @@ define([
                 $('<li />').append(
                     $('<fieldset />').append(
                         $('<legend />').text(cname).
-                            on('click.toggle', this.toggleFieldset).attr({
+                            on('click.toggle', this.toggleFieldset.bind(this)).attr({
                                 title: cname
                             }),
 

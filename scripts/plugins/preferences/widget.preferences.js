@@ -240,7 +240,7 @@ define([
                 return $('<li />').append(
                     $('<fieldset />').append(
                         $('<legend />').addClass(open).text(title).
-                            on('click.toggle', this.toggleFieldset).attr({
+                            on('click.toggle', this.toggleFieldset.bind(this)).attr({
                                 title: title
                             }),
 
@@ -331,7 +331,7 @@ define([
                 $('<li />').append(
                     $('<fieldset />').append(
                         $('<legend />').text('Interactions').
-                            on('click.toggle', this.toggleFieldset).attr({
+                            on('click.toggle', this.toggleFieldset.bind(this)).attr({
                                 title: 'Interactions'
                             }),
 

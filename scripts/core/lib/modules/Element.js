@@ -741,6 +741,34 @@ define([
                     '<div class="clear" />'
                 );
             }
+        },
+
+        /**
+         * Adopt modal dialog position on content config
+         * @member BaseElement
+         */
+        adoptModalDialogPosition: function adoptModalDialogPosition() {
+
+            var scope = this.view.scope,
+                referrer = scope.referrer,
+                $modal;
+
+            /**
+             * Get modal dialog
+             * @type {ModalElement}
+             */
+            $modal = referrer ?
+                referrer.view.elements.$modal:
+                scope.view.elements.$modal;
+
+            if($modal) {
+
+                $modal.setPosition({
+                    $container: $modal.$container,
+                    $item: $modal.$,
+                    position: $modal.position
+                });
+            }
         }
 
     }, AntHill.prototype, Renderer.prototype);

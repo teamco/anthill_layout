@@ -18,18 +18,21 @@ define([], function defineBaseRules() {
         /**
          * Toggle fieldset
          * @member BaseRules
+         * @param e
          */
-        toggleFieldset: function toggleFieldset() {
+        toggleFieldset: function toggleFieldset(e) {
 
             /**
              * Define $li
              * @type {*|jQuery|HTMLElement}
              */
-            var $li = $(this);
+            var $li = $(e.target);
 
             $li.hasClass('open') ?
                 $li.removeClass('open') :
                 $li.addClass('open');
+
+            this.adoptModalDialogPosition();
         },
 
         /**
@@ -82,5 +85,4 @@ define([], function defineBaseRules() {
             });
         }
     });
-
 });

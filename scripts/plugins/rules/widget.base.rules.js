@@ -275,7 +275,7 @@ define([
                         $('<li />').append(
                             $('<fieldset />').append([
                                 $('<legend />').text(published[index].type).
-                                    on('click.toggle', this.toggleFieldset).attr({
+                                    on('click.toggle', this.toggleFieldset.bind(this)).attr({
                                         title: index
                                     }),
                                 $inner
@@ -291,7 +291,7 @@ define([
                     $('<li />').append(
                         $('<fieldset />').append([
                             $('<legend />').text(title).
-                                on('click.toggle', this.toggleFieldset).attr({
+                                on('click.toggle', this.toggleFieldset.bind(this)).attr({
                                     title: title
                                 }),
                             $ul
@@ -356,7 +356,7 @@ define([
                 $('div.html', $container).append(
                     $('<fieldset />').append([
                         $('<legend />').text(title).
-                            on('click.toggle', this.toggleFieldset).attr({
+                            on('click.toggle', this.toggleFieldset.bind(this)).attr({
                                 title: title
                             }),
                         $ul

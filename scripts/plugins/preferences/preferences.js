@@ -18,20 +18,23 @@ define([], function defineBasePreferences() {
         /**
          * Toggle fieldset
          * @member BasePreferences
+         * @param e
          */
-        toggleFieldset: function toggleFieldset() {
+        toggleFieldset: function toggleFieldset(e) {
 
             /**
              * Define $el
              * @type {*|jQuery|HTMLElement}
              */
-            var $el = $(this);
+            var $el = $(e.target);
 
             $el.parents('div.html').
                 find('.open').
                 removeClass('open');
 
             $el.addClass('open');
+
+            this.adoptModalDialogPosition();
         },
 
         /**
