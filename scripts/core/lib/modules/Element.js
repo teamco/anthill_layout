@@ -396,22 +396,35 @@ define([
         stretch: function stretch() {
 
             var scope = this.view.scope,
-                items = 1,
                 containment = scope.controller.getContainment(),
-                stretch = containment &&
-                    scope.model.getConfig('html/stretch');
+                items = containment.model.getItems();
 
-            if (stretch) {
+            var index, $item, item, stretch,
+                itemsLength = this.base.lib.hash.hashLength(items),
+                counter = 0;
 
-                items = this.base.lib.hash.hashLength(
-                    containment.model.getItems()
-                );
+            for (index in items) {
 
-                if (items > 1) {
+                if (items.hasOwnProperty(index)) {
 
-                    this.$.css({
-                        left: ((items - 1) * (100 / items)) + '%'
-                    });
+                    item = items[index];
+
+                    /**
+                     * Define page
+                     * @type {Page}
+                     */
+                    $item = item.view.get$item();
+
+                    stretch = containment &&
+                        item.model.getConfig('html/stretch');
+
+                    if (stretch) {
+                        $item.$.css({
+                            left: counter * (100 / itemsLength) + '%'
+                        });
+                    }
+
+                    counter += 1;
                 }
             }
 
