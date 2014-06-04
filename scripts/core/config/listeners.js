@@ -113,6 +113,8 @@ define([
                 page.observer.publish(
                     page.eventmanager.eventList.resizeWidgets
                 );
+
+                page.controller.updateHeight();
             }
         }
     });
@@ -146,6 +148,7 @@ define([
         createWidget: {
             name: 'create.widget',
             callback: function createWidgetCallback() {
+
                 this.observer.publish(
                     this.eventmanager.eventList.updateHeight
                 );
@@ -155,9 +158,14 @@ define([
         resizeWidget: {
             name: 'resize.widget',
             callback: function resizeWidgetCallback(widget) {
+
                 widget.observer.publish(
                     widget.eventmanager.eventList.adoptDimensions,
                     true
+                );
+
+                this.observer.publish(
+                    this.eventmanager.eventList.updateHeight
                 );
             }
         }

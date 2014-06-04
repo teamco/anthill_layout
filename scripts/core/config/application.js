@@ -65,7 +65,7 @@ define([
             appName: 'anthill',
             mode: 'development',
             type: 'default',
-            isResized: false,
+            isResized: true,
             loading: false,
             limit: true,
             logger: {

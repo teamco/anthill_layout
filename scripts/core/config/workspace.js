@@ -59,7 +59,7 @@ define(
              */
             var DEFAULTS = {
                 limit: false,
-                isResized: false,
+                isResized: true,
                 type: 'default',
                 order: 1,
                 page: {
