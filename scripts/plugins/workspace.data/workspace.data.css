@@ -89,3 +89,7 @@ ul.workspacedata > .add-page:hover {
     top: 70px;
     bottom: 30px;
 }
+
+.modal-dialog ul.buttons li.destroy-page-widgets {
+    margin-left: 30px;
+}
