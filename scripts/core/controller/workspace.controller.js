@@ -113,16 +113,16 @@ define(
                     return false;
                 }
 
+                this.observer.publish(
+                    this.eventmanager.eventList.beforeSwitchToPage,
+                    page
+                );
+
                 if (page === this.controller.getCurrentItem()) {
                     this.logger.debug('Page already current', page);
                     this.controller.swipeToCurrentPage(animate);
                     return false;
                 }
-
-                this.observer.publish(
-                    this.eventmanager.eventList.beforeSwitchToPage,
-                    page
-                );
 
                 if (page && this.items.hasOwnProperty(page.model.getUUID())) {
 
