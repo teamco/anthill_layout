@@ -240,6 +240,8 @@ define([
                 position: this.position
             });
 
+            this.adoptPositionOnResize();
+
             if (this.draggable) {
                 this.$.draggable({
                     handle: this._get$Header()
@@ -259,6 +261,35 @@ define([
 
             if (this.html) {
                 $('input:first', this.$).focus();
+            }
+        },
+
+        /**
+         * Adopt position on resize
+         * @member ModalElement
+         */
+        adoptPositionOnResize: function adoptPositionOnResize() {
+
+            if (this.adoptOnResize) {
+
+                /**
+                 * Get app event manager
+                 * @type {AppEventManager}
+                 */
+                var appEventManager = this.view.controller.root().eventmanager;
+
+                appEventManager.subscribe({
+                    event: {
+                        eventName: appEventManager.eventList.resizeWindow
+                    },
+                    callback: function resizeCallback() {
+                        this.setPosition({
+                            $container: this.$container,
+                            $item: this.$,
+                            position: this.position
+                        });
+                    }.bind(this)
+                }, false)
             }
         },
 
