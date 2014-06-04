@@ -57,7 +57,8 @@ define([
          *      [opacityOn]: Number,
          *      [title]: String,
          *      [type]: String ('info', 'success', 'warning', 'error'),
-         *      [position]: String ('0/00/000', '1/11/111'. '2/22/222'),
+         *      [position]: String ('t(l-c-r), c(l-c-r), b(l-c-r)'),
+         *      [adoptOnResize]: boolean,
          *      [html]: String,
          *      [text]: String,
          *      [draggable]: Boolean,
@@ -158,6 +159,13 @@ define([
             this.position = opts.position || 'cc';
 
             /**
+             * Adopt position on resize
+             * @member ModalElement
+             * @type {boolean}
+             */
+            this.adoptOnResize = this.base.defineBoolean(opts.adoptOnResize, true, true);
+
+            /**
              * Set modal is draggable condition
              * @member ModalElement
              * @type {*}
@@ -206,16 +214,16 @@ define([
          */
         renderInnerContent: function renderInnerContent() {
             this.$.append(
-                    [
-                        '<h2 class="header"></h2>',
-                        '<ul class="actions"></ul>',
-                        '<div class="content">',
-                        '<p class="text"></p>',
-                        '<div class="html"></div>',
-                        '</div>',
-                        '<ul class="buttons"></ul>'
-                    ].join('')
-                ).
+                [
+                    '<h2 class="header"></h2>',
+                    '<ul class="actions"></ul>',
+                    '<div class="content">',
+                    '<p class="text"></p>',
+                    '<div class="html"></div>',
+                    '</div>',
+                    '<ul class="buttons"></ul>'
+                ].join('')
+            ).
                 addClass([this.style, this.type].join(' ')).
                 css(this.css);
 
@@ -391,17 +399,39 @@ define([
          * @member ModalElement
          */
         setHover: function setHover() {
+
+            /**
+             * Set opacity
+             * @param e
+             * @private
+             */
+            function _setOpacity(e) {
+
+                /**
+                 * Define $item
+                 * @type {*}
+                 */
+                var $item = $(e.target),
+                    opacity;
+
+                opacity = e.type === 'mouseenter' ?
+                    this.opacityOn :
+                    this.opacityOff;
+
+                $item.css('opacity', opacity);
+            }
+
             if (this.hover) {
+
                 this.$.hover(
-                    function on() {
-                        this.$.css('opacity', this.opacityOn);
-                    }.bind(this),
-                    function Off() {
-                        this.$.css('opacity', this.opacityOff);
-                    }.bind(this)
+                    _setOpacity.bind(this),
+                    _setOpacity.bind(this)
                 );
 
-                this.$.css('opacity', this.opacityOn);
+                this.$.css(
+                    'opacity',
+                    this.opacityOn
+                );
             }
         },
 
