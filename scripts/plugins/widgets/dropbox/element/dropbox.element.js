@@ -53,11 +53,14 @@ define([
                 if (opts.download) {
 
                     this.$.append(
-                        $('<a />').attr({
+                        $('<a />').addClass('download').attr({
                             href: opts.url,
                             title: opts.name || this.download
                         }).text(opts.name || this.download)
                     );
+
+                } else {
+                    // TODO verify file type
                 }
 
                 return this;
@@ -71,9 +74,11 @@ define([
              * Define dropbox element
              * @type {DropboxElement}
              */
-            var $element = this;
+            var $element = this,
+                view = $element.view,
+                controller = view.controller;
 
-            $element.view.controller.clearParentThumbnail();
+            controller.clearParentThumbnail();
 
             require([
                 'https://www.dropbox.com/static/api/2/dropins.js'
@@ -92,19 +97,19 @@ define([
                          */
                         var hash = data[0];
 
-                        $element.view.controller.setHiddenPreferences('dropboxBytes', hash.bytes);
-                        $element.view.controller.setHiddenPreferences('dropboxIcon', hash.icon);
-                        $element.view.controller.setHiddenPreferences('dropboxUrl', hash.link);
-                        $element.view.controller.setHiddenPreferences('dropboxFileName', hash.name);
-                        $element.view.controller.setHiddenPreferences('dropboxThumbnail', hash.thumbnailLink);
+                        controller.setHiddenPreferences('dropboxBytes', hash.bytes);
+                        controller.setHiddenPreferences('dropboxIcon', hash.icon);
+                        controller.setHiddenPreferences('dropboxUrl', hash.link);
+                        controller.setHiddenPreferences('dropboxFileName', hash.name);
+                        controller.setHiddenPreferences('dropboxThumbnail', hash.thumbnailLink);
 
-                        $element.view.controller.store();
+                        controller.store();
 
                         /**
                          * Get scope
                          * @type {Dropbox}
                          */
-                        var scope = $element.view.scope;
+                        var scope = view.scope;
 
                         scope.observer.publish(
                             scope.eventmanager.eventList.setEmbeddedContent
