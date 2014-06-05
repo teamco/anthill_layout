@@ -73,6 +73,8 @@ define([
              */
             var $element = this;
 
+            $element.view.controller.clearParentThumbnail();
+
             require([
                 'https://www.dropbox.com/static/api/2/dropins.js'
             ], function getDropboxApi() {
@@ -95,6 +97,8 @@ define([
                         $element.view.controller.setHiddenPreferences('dropboxUrl', hash.link);
                         $element.view.controller.setHiddenPreferences('dropboxFileName', hash.name);
                         $element.view.controller.setHiddenPreferences('dropboxThumbnail', hash.thumbnailLink);
+
+                        $element.view.controller.store();
 
                         /**
                          * Get scope

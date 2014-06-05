@@ -42,6 +42,11 @@ define([
          */
         setHiddenPreferences: function setHiddenPreferences(preference, value) {
             this.model.setPrefs(preference, value);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.transferPreferences,
+                [preference, value]
+            );
         },
 
         /**
