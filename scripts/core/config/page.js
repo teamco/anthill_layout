@@ -15,9 +15,8 @@ define([
     'view/page.view',
     'event/page.event.manager',
     'config/layout',
-    'config/template',
     'permission/page.permission'
-], function definePage(AntHill, MVC, API, Controller, Model, View, EventManager, Layout, Template, Permission) {
+], function definePage(AntHill, MVC, API, Controller, Model, View, EventManager, Layout, Permission) {
 
     /**
      * Define Page
@@ -101,7 +100,6 @@ define([
          *          },
          *          mode: String
          *      },
-         *      template: {},
          *      widget: {
          *          counter: number,
          *          allowToAdd: boolean,
@@ -147,14 +145,11 @@ define([
                 },
                 mode: this.LAYOUT_MODES.snap2grid
             },
-            template: {
-            },
             widget: {
                 // allow to resize all items
                 plural: true,
                 types: {
-                    widget: 'widget',
-                    template: 'template'
+                    widget: 'widget'
                 },
                 // default widget relWidth/relHeight
                 defaults: {
@@ -260,14 +255,8 @@ define([
         );
 
         this.observer.publish(
-            this.eventmanager.eventList.createTemplate,
-            [Template, this.config.template]
-        );
-
-        this.observer.publish(
             this.eventmanager.eventList.successCreated
         );
-
     };
 
     return Page.extend('Page', {

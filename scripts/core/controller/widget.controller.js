@@ -71,15 +71,13 @@ define([
                      * @type {{
                      *      animate: boolean,
                      *      organize: boolean,
-                     *      $source: ($|*|Element.$),
-                     *      callback: (function(this:BaseController)|*)
+                     *      $source: ($|*|Element.$)
                      * }}
                      */
                     config = {
                         animate: true,
                         organize: true,
-                        $source: this.scope.view.get$item().$,
-                        callback: this._resetInteractions.bind(this)
+                        $source: this.scope.view.get$item().$
                     };
                     break;
             }
@@ -405,30 +403,6 @@ define([
         },
 
         /**
-         * Reset interactions on resize template
-         * @member WidgetController
-         * @private
-         */
-        _resetInteractions: function _resetInteractions() {
-            $.each(this._getTemplateItems(), function each(uuid, widget) {
-                widget.api.destroyResize();
-                widget.api.destroyDrag();
-                widget.api.initResize();
-                widget.api.initDrag();
-            });
-        },
-
-        /**
-         * Get items from template widget and run callback
-         * @member WidgetController
-         * @private
-         */
-        _getTemplateItems: function _getTemplateItems() {
-            return this.isTemplate() ?
-                this.getContainment().template.page.items || {} : {};
-        },
-
-        /**
          * Check if widget is draggable
          * @member WidgetController
          * @returns {Boolean}
@@ -444,21 +418,6 @@ define([
          */
         isResizable: function isResizable() {
             return this.scope.view.get$item().$.is('.ui-resizable');
-        },
-
-        /**
-         * Check if widget is template
-         * @member WidgetController
-         * @returns {Boolean}
-         */
-        isTemplate: function isTemplate() {
-
-            var scope = this.scope;
-
-            return scope.config.type ===
-                this.getContainment().model.getConfig(
-                    scope.constructor.name.toLowerCase()
-                ).types.template;
         },
 
         /**

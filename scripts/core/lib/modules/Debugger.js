@@ -36,7 +36,6 @@ define([
             'Application',
             'Workspace',
             'Page',
-            'Template',
             'Widget'
         ];
 

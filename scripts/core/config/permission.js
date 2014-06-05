@@ -10,10 +10,9 @@ define([
     'config/application',
     'config/workspace',
     'config/page',
-    'config/template',
     'config/layout',
     'config/widget'
-], function definePermissions(Application, Workspace, Page, Template, Layout, Widget) {
+], function definePermissions(Application, Workspace, Page, Layout, Widget) {
 
     /**
      * Define Application Global permission
@@ -63,21 +62,6 @@ define([
      * @type {{}}
      */
     Page.prototype.localPermissions = {
-        development: {
-        },
-        authorize: {
-        },
-        consumption: {
-        },
-        test: {
-        }
-    };
-
-    /**
-     * Define Template Global permission
-     * @type {{}}
-     */
-    Template.prototype.localPermissions = {
         development: {
         },
         authorize: {

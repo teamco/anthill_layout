@@ -11,9 +11,8 @@ define([
     'config/workspace',
     'config/page',
     'config/layout',
-    'config/template',
     'config/widget'
-], function defineListeners(Application, Workspace, Page, Layout, Template, Widget) {
+], function defineListeners(Application, Workspace, Page, Layout, Widget) {
 
     /**
      * Load listeners
@@ -21,7 +20,6 @@ define([
     Application.prototype.localListeners = Application.prototype.localListeners || {};
     Workspace.prototype.localListeners = Workspace.prototype.localListeners || {};
     Page.prototype.localListeners = Page.prototype.localListeners || {};
-    Template.prototype.localListeners = Template.prototype.localListeners || {};
     Layout.prototype.localListeners = Layout.prototype.localListeners || {};
     Widget.prototype.localListeners = Widget.prototype.localListeners || {};
 
@@ -184,36 +182,6 @@ define([
             name: 'after.nested.organizer',
             callback: function afterNestedOrganizerCallback() {
                 // TODO
-            }
-        }
-    });
-
-    /**
-     * Define Template Local listeners
-     * @type {{
-     *      successCreated: {name: string, callback: Function},
-     *      successRendered: {name: string, callback: Function},
-     *      createWidget: {name: string, callback: Function}
-     * }}
-     */
-    $.extend(Template.prototype.localListeners, {
-
-        successCreated: {
-            name: "success.created",
-            callback: function successCreatedCallback() {
-            }
-        },
-
-        successRendered: {
-            name: "success.rendered",
-            callback: function successRenderedCallback(widget) {
-                this.view.renderTemplate(widget);
-            }
-        },
-
-        createWidget: {
-            name: 'create.widget',
-            callback: function createWidgetCallback() {
             }
         }
     });

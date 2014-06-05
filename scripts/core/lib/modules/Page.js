@@ -76,36 +76,6 @@ define([
             );
 
             this.updateWidgetsConfig();
-        },
-
-        /**
-         * Create template
-         * @member BasePage
-         * @param {Function} Template
-         * @param {{}} opts
-         */
-        createTemplate: function createTemplate(Template, opts) {
-
-            /**
-             * Define template instance
-             * @member BasePage
-             * @type {Template}
-             */
-            this.template = new Template(opts, this);
-        },
-
-        /**
-         * Destroy template
-         * @member BasePage
-         */
-        destroyTemplate: function destroyTemplate() {
-
-            this.logger.info(
-                this.i18n.t('destroy.template'),
-                this.template
-            );
-
-            delete this.template;
         }
 
     }, AntHill.prototype);

@@ -18,8 +18,6 @@ define([], function defineEnUs() {
         'before.nested.organizer': 'Before nested organizer',
         'not.allowed.add.widget': 'Do not allowed to add widget',
         'save.widget': 'Save widget',
-        'silent.add.widget': 'Silent nested organizer',
-
-        'destroy.template': 'Destroy Template'
+        'silent.add.widget': 'Silent nested organizer'
     };
 });

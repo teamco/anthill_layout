@@ -8,9 +8,8 @@
 define([
     'config/anthill',
     'modules/api',
-    'config/template',
     'config/widget'
-], function definePageAPI(AntHill, BaseAPI, Template, Widget) {
+], function definePageAPI(AntHill, BaseAPI, Widget) {
 
     /**
      * Define Page API
@@ -89,18 +88,6 @@ define([
                 scope.eventmanager.eventList.destroyWidgets,
                 [items, silent]
             );
-        },
-
-        /**
-         * Create Template API
-         * @member PageAPI
-         * @param {*} widget
-         * @returns {*}
-         */
-        createTemplate: function createTemplate(widget) {
-            return this._renderItem(
-                Template, true, widget
-            ).api.createPage([], true);
         }
 
     }, AntHill.prototype, BaseAPI.prototype)

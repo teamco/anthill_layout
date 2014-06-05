@@ -31,8 +31,7 @@ define([
          * @type {Array}
          */
         this.onDestroy = [
-            'Layout',
-            'Template'
+            'Layout'
         ];
     };
 

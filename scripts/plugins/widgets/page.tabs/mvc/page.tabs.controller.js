@@ -24,6 +24,41 @@ define([
     return PageTabsController.extend('PageTabsController', {
 
         /**
+         * Subscribe to create page event
+         * @member PageTabsController
+         */
+        subscribeCreatePageEvent: function subscribeCreatePageEvent() {
+
+            /**
+             * Get widget
+             * @type {widget}
+             */
+            var widget = this.controller.getContainment();
+
+            /**
+             * Get PageEventManager
+             * @type {PageEventManager}
+             */
+            var pageEventManager = widget.controller.getContainment().eventmanager;
+
+            pageEventManager.subscribe({
+
+                event: {
+                    eventName: pageEventManager.eventList.successRendered
+                },
+
+                callback: function onCreatePageCallback() {
+
+                    this.observer.publish(
+                        this.eventmanager.eventList.setEmbeddedContent
+                    );
+
+                }.bind(this)
+
+            }, false)
+        },
+
+        /**
          * Set embedded content
          * @member PageTabsController
          */

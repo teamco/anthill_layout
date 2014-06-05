@@ -100,7 +100,7 @@ define([
                 margin = config.margin;
 
             var elements = scope.controller.getContainment().view.elements,
-                $page = elements.$page || elements.$template,
+                $page = elements.$page,
                 $widgets = elements.$widgets;
 
             var pl = $widgets.getPaddingLeft(),

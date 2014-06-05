@@ -12,7 +12,6 @@ define(
         'config/workspace',
         'config/page',
         'config/layout',
-        'config/template',
         'config/widget'
     ],
 
@@ -21,10 +20,9 @@ define(
      * @param {Workspace} Workspace
      * @param {Page} Page
      * @param {Layout} Layout
-     * @param {Template} Template
      * @param {Widget} Widget
      */
-        function defineListeners(Application, Workspace, Page, Layout, Template, Widget) {
+        function defineListeners(Application, Workspace, Page, Layout, Widget) {
 
         /**
          * Load listeners
@@ -32,7 +30,6 @@ define(
         Application.prototype.globalListeners = Application.prototype.globalListeners || {};
         Workspace.prototype.globalListeners = Workspace.prototype.globalListeners || {};
         Page.prototype.globalListeners = Page.prototype.globalListeners || {};
-        Template.prototype.globalListeners = Template.prototype.globalListeners || {};
         Layout.prototype.globalListeners = Layout.prototype.globalListeners || {};
         Widget.prototype.globalListeners = Widget.prototype.globalListeners || {};
 
@@ -111,15 +108,6 @@ define(
          * @type {{}}
          */
         Page.prototype.globalListeners = {
-
-        };
-
-        /**
-         * Define Template Global listeners
-         * @member Template
-         * @type {{}}
-         */
-        Template.prototype.globalListeners = {
 
         };
 

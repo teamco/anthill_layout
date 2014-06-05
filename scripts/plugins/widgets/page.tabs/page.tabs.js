@@ -128,6 +128,10 @@ define([
             this.eventmanager.eventList.initWidget,
             opts
         );
+
+        this.observer.publish(
+            this.eventmanager.eventList.subscribeCreatePageEvent
+        );
     };
 
     return PageTabs.extend('PageTabs', {

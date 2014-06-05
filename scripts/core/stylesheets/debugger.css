@@ -365,9 +365,6 @@
 #debug-mode ul.items-info li {
 }
 
-#debug-mode ul.items-info li.template {
-}
-
 #debug-mode ul.items-info li.select {
     background-color: #1c94c4;
     border: 1px solid darkolivegreen;

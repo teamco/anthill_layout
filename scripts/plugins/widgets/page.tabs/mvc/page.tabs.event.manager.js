@@ -20,12 +20,13 @@ define([
     var PageTabsEventManager = function PageTabsEventManager() {
 
         this.updateEventList({
-            switchToPage: 'switch.to.page'
+            switchToPage: 'switch.to.page',
+            subscribeCreatePageEvent: 'subscribe.create.page.event'
         });
 
         /**
          * Define onload events
-         * @type {*[]}
+         * @type {[string]}
          */
         this.onLoadEvents = [
             this.eventList.switchToPage

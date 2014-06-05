@@ -11,13 +11,12 @@ define([
     'config/application',
     'config/workspace',
     'config/page',
-    'config/template',
     'config/widget',
     'controller/application.controller',
     'controller/behavior/behavior.debugger',
     'event/application.event.manager',
     'event/widget.event.manager'
-], function defineDebuggerBehaviors(Debugger, Application, Workspace, Page, Template, Widget, ApplicationController, BehaviorDebugger, ApplicationEventMgr, WidgetEventMgr) {
+], function defineDebuggerBehaviors(Debugger, Application, Workspace, Page, Widget, ApplicationController, BehaviorDebugger, ApplicationEventMgr, WidgetEventMgr) {
 
     ApplicationEventMgr.prototype.eventList.debugStart = 'debug.start';
     ApplicationEventMgr.prototype.eventList.debugEnd = 'debug.end';
