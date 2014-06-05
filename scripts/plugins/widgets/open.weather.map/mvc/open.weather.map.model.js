@@ -25,32 +25,38 @@ define([
             openweathermapApiKey: {
                 type: 'text',
                 disabled: true,
-                value: '259681e7bb4cfa2cd775fb127d09ca74'
+                value: '259681e7bb4cfa2cd775fb127d09ca74',
+                visible: true
             },
             openweathermapLatitude: {
                 type: 'text',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             openweathermapLongitude: {
                 type: 'text',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             openweathermapZoom: {
                 type: 'text',
                 disabled: false,
-                value: 14
+                value: 14,
+                visible: true
             },
             openweathermapWidth: {
                 type: 'text',
                 disabled: false,
-                value: 400
+                value: 400,
+                visible: true
             },
             openweathermapHeight: {
                 type: 'text',
                 disabled: false,
-                value: 300
+                value: 300,
+                visible: true
             },
             openweathermapMapType: {
                 type: 'combobox',
@@ -73,22 +79,26 @@ define([
                         value: 'Hybrid'
                     }
                 ],
-                value: 'Roadmap'
+                value: 'Roadmap',
+                visible: true
             },
             openweathermapGpsSensor: {
                 type: 'checkbox',
                 disabled: false,
-                value: false
+                value: false,
+                visible: true
             },
             openweathermapScale: {
                 type: 'checkbox',
                 disabled: false,
-                value: false
+                value: false,
+                visible: true
             },
             openweathermapStretch: {
                 type: 'checkbox',
                 disabled: false,
-                value: false
+                value: false,
+                visible: true
             }
         };
 

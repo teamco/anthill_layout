@@ -21,44 +21,50 @@ define([
          * Define preferences
          * @member TwitsModel
          * @type {{
-         *      twitsWidgetId: {type: string, disabled: boolean, value: undefined},
-         *      maximumNumberOfTweets: {type: string, disabled: boolean, value: number},
-         *      showHashAsLink: {type: string, disabled: boolean, value: boolean},
-         *      showPhoto: {type: string, disabled: boolean, value: boolean},
-         *      showTime: {type: string, disabled: boolean, value: boolean},
-         *      showRetweets: {type: string, disabled: boolean, value: boolean}
+         *      twitsWidgetId: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      maximumNumberOfTweets: {type: string, disabled: boolean, value: number, visible: boolean},
+         *      showHashAsLink: {type: string, disabled: boolean, value: boolean, visible: boolean},
+         *      showPhoto: {type: string, disabled: boolean, value: boolean, visible: boolean},
+         *      showTime: {type: string, disabled: boolean, value: boolean, visible: boolean},
+         *      showRetweets: {type: string, disabled: boolean, value: boolean, visible: boolean}
          * }}
          */
         this.preferences = {
             twitsWidgetId: {
                 type: 'text',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             maximumNumberOfTweets: {
                 type: 'text',
                 disabled: false,
-                value: 1
+                value: 1,
+                visible: true
             },
             showHashAsLink: {
                 type: 'checkbox',
                 disabled: false,
-                value: true
+                value: true,
+                visible: true
             },
             showPhoto: {
                 type: 'checkbox',
                 disabled: false,
-                value: true
+                value: true,
+                visible: true
             },
             showTime: {
                 type: 'checkbox',
                 disabled: false,
-                value: true
+                value: true,
+                visible: true
             },
             showRetweets: {
                 type: 'checkbox',
                 disabled: false,
-                value: false
+                value: false,
+                visible: true
             }
         };
 

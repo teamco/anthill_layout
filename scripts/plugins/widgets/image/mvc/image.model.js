@@ -21,44 +21,50 @@ define([
          * Define preferences
          * @member ImageModel
          * @type {{
-         *      imageUrl: {type: string, disabled: boolean, value: undefined},
-         *      imageText: {type: string, disabled: boolean, value: undefined},
-         *      imageRepeatX: {type: string, disabled: boolean, checked: boolean},
-         *      imageRepeatY: {type: string, disabled: boolean, checked: boolean},
-         *      imageStretch: {type: string, disabled: boolean, checked: boolean},
-         *      imageSplitContent: {type: string, disabled: boolean, checked: boolean}
+         *      imageUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      imageText: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      imageRepeatX: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *      imageRepeatY: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *      imageStretch: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *      imageSplitContent: {type: string, disabled: boolean, checked: boolean, visible: boolean}
          * }}
          */
         this.preferences = {
             imageUrl: {
                 type: 'textarea',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             imageText: {
                 type: 'textarea',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             imageRepeatX: {
                 type: 'checkbox',
                 disabled: false,
-                checked: false
+                checked: false,
+                visible: true
             },
             imageRepeatY: {
                 type: 'checkbox',
                 disabled: false,
-                checked: false
+                checked: false,
+                visible: true
             },
             imageStretch: {
                 type: 'checkbox',
                 disabled: false,
-                checked: false
+                checked: false,
+                visible: true
             },
             imageSplitContent: {
                 type: 'checkbox',
                 disabled: false,
-                checked: false
+                checked: false,
+                visible: true
             }
         };
 

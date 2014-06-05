@@ -21,47 +21,53 @@ define([
          * Define preferences
          * @member GeolocationModel
          * @type {{
-         *      geolocationLatitude: {type: string, disabled: boolean, value: undefined},
-         *      geolocationLongitude: {type: string, disabled: boolean, value: undefined},
-         *      geolocationZoom: {type: string, disabled: boolean, value: number},
-         *      geolocationWidth: {type: string, disabled: boolean, value: number},
-         *      geolocationHeight: {type: string, disabled: boolean, value: number},
+         *      geolocationLatitude: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      geolocationLongitude: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      geolocationZoom: {type: string, disabled: boolean, value: number, visible: boolean},
+         *      geolocationWidth: {type: string, disabled: boolean, value: number, visible: boolean},
+         *      geolocationHeight: {type: string, disabled: boolean, value: number, visible: boolean},
          *      geolocationMapType: {
          *          type: string,
          *          disabled: boolean,
          *          list: {type: string, value: string}[],
-         *          value: string
+         *          value: string,
+         *          visible: boolean
          *      },
-         *      geolocationGpsSensor: {type: string, disabled: boolean, value: boolean},
-         *      geolocationScale: {type: string, disabled: boolean, value: boolean},
-         *      geolocationStretch: {type: string, disabled: boolean, value: boolean}
+         *      geolocationGpsSensor: {type: string, disabled: boolean, value: boolean, visible: boolean},
+         *      geolocationScale: {type: string, disabled: boolean, value: boolean, visible: boolean},
+         *      geolocationStretch: {type: string, disabled: boolean, value: boolean, visible: boolean}
          * }}
          */
         this.preferences = {
             geolocationLatitude: {
                 type: 'text',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             geolocationLongitude: {
                 type: 'text',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             geolocationZoom: {
                 type: 'text',
                 disabled: false,
-                value: 14
+                value: 14,
+                visible: true
             },
             geolocationWidth: {
                 type: 'text',
                 disabled: false,
-                value: 400
+                value: 400,
+                visible: true
             },
             geolocationHeight: {
                 type: 'text',
                 disabled: false,
-                value: 300
+                value: 300,
+                visible: true
             },
             geolocationMapType: {
                 type: 'combobox',
@@ -84,22 +90,26 @@ define([
                         value: 'Hybrid'
                     }
                 ],
-                value: 'Roadmap'
+                value: 'Roadmap',
+                visible: true
             },
             geolocationGpsSensor: {
                 type: 'checkbox',
                 disabled: false,
-                value: false
+                value: false,
+                visible: true
             },
             geolocationScale: {
                 type: 'checkbox',
                 disabled: false,
-                value: false
+                value: false,
+                visible: true
             },
             geolocationStretch: {
                 type: 'checkbox',
                 disabled: false,
-                value: false
+                value: false,
+                visible: true
             }
         };
 

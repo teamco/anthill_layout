@@ -204,7 +204,8 @@
     clear: none;
 }
 
-.modal-dialog.preferences fieldset label {
+.modal-dialog.preferences fieldset label,
+.modal-dialog.preferences div.html fieldset label {
     text-transform: lowercase;
     font-variant: small-caps;
     padding-left: 10px;

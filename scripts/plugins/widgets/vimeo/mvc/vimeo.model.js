@@ -21,14 +21,15 @@ define([
          * Define preferences
          * @member VimeoModel
          * @type {{
-         *      vimeoUrl: {type: string, disabled: boolean, value: undefined}
+         *      vimeoUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
          */
         this.preferences = {
             vimeoUrl: {
                 type: 'text',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             }
         };
 

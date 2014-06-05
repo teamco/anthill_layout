@@ -35,17 +35,20 @@ define([
             title: {
                 type: 'text',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             description: {
                 type: 'textarea',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             pageUrl: {
                 type: 'text',
                 disabled: true,
-                value: undefined
+                value: undefined,
+                visible: true
             }
         },
 
@@ -99,7 +102,8 @@ define([
                             text: text,
                             placeholder: placeholder,
                             value: node.value,
-                            disabled: node.disabled
+                            disabled: node.disabled,
+                            visible: node.visible
                         });
                     }
 
@@ -114,7 +118,8 @@ define([
                             text: text,
                             placeholder: placeholder,
                             value: node.value,
-                            disabled: node.disabled
+                            disabled: node.disabled,
+                            visible: node.visible
                         });
                     }
 

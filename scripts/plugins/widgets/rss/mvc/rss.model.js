@@ -21,14 +21,15 @@ define([
          * Define preferences
          * @member RssModel
          * @type {{
-         *      rssUrl: {type: string, disabled: boolean, value: undefined}
+         *      rssUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
          */
         this.preferences = {
             rssFeedUrl: {
                 type: 'text',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             }
         };
 

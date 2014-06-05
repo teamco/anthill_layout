@@ -21,26 +21,29 @@ define([
          * Define preferences
          * @member ImageGalleryModel
          * @type {{
-         *      imageGalleryUrls: {type: string, disabled: boolean, value: undefined},
-         *      imageGalleryTexts: {type: string, disabled: boolean, value: undefined},
-         *      imageGalleryResponsive: {type: string, disabled: boolean, value: boolean}
+         *      imageGalleryUrls: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      imageGalleryTexts: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      imageGalleryResponsive: {type: string, disabled: boolean, value: boolean, visible: boolean}
          * }}
          */
         this.preferences = {
             imageGalleryUrls: {
                 type: 'textarea',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             imageGalleryTexts: {
                 type: 'textarea',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             imageGalleryResponsive: {
                 type: 'checkbox',
                 disabled: false,
-                value: false
+                value: false,
+                visible: true
             }
         };
 

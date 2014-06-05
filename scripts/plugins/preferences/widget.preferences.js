@@ -39,49 +39,58 @@ define([
             title: {
                 type: 'text',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             description: {
                 type: 'textarea',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             widgetUrl: {
                 type: 'textarea',
                 disabled: true,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             onClickOpenUrl: {
                 type: 'textarea',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             },
             overlapping: {
                 type: 'checkbox',
                 disabled: false,
-                checked: false
+                checked: false,
+                visible: true
             },
             statistics: {
                 type: 'checkbox',
                 disabled: false,
-                checked: false
+                checked: false,
+                visible: true
             },
             alwaysOnTop: {
                 type: 'checkbox',
                 disabled: false,
-                checked: false
+                checked: false,
+                visible: true
             },
             setLayerUp: {
                 type: 'event',
                 disabled: false,
                 group: 'layer',
-                events: ['click']
+                events: ['click'],
+                visible: true
             },
             setLayerDown: {
                 type: 'event',
                 disabled: false,
                 group: 'layer',
-                events: ['click']
+                events: ['click'],
+                visible: true
             }
         },
 
@@ -140,7 +149,8 @@ define([
                                 title: text.trim(),
                                 group: node.group || index,
                                 disabled: node.disabled,
-                                events: node.events
+                                events: node.events,
+                                visible: node.visible
                             });
                         }
 
@@ -155,7 +165,8 @@ define([
                                 text: text.trim(),
                                 placeholder: placeholder,
                                 value: node.value,
-                                disabled: node.disabled
+                                disabled: node.disabled,
+                                visible: node.visible
                             });
                         }
 
@@ -170,7 +181,8 @@ define([
                                 text: text.trim(),
                                 checked: node.value,
                                 value: node.value,
-                                disabled: node.disabled
+                                disabled: node.disabled,
+                                visible: node.visible
                             });
                         }
 
@@ -185,7 +197,8 @@ define([
                                 text: text.trim(),
                                 placeholder: placeholder,
                                 value: node.value,
-                                disabled: node.disabled
+                                disabled: node.disabled,
+                                visible: node.visible
                             });
                         }
 
@@ -205,13 +218,14 @@ define([
                                 node.list,
                                 (selected.length === 0 ? node.list[0].value : selected),
                                 text.trim(),
-                                index
+                                index,
+                                node.visible
                             );
                         }
 
                         nodes.push(
                             $('<li />').
-                                addClass(node.type).
+                                addClass([node.type, node.visible ? '' : 'hidden'].join(' ')).
                                 append($element)
                         );
                     }
@@ -366,7 +380,8 @@ define([
                 text: side,
                 placeholder: side,
                 value: value,
-                disabled: true
+                disabled: true,
+                visible: true
             });
 
             return $('<li />').append($move);

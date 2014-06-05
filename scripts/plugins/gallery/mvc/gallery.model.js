@@ -56,6 +56,16 @@ define([
                 resource: 'text.editor'
             },
             {
+                name: 'Dropbox',
+                description: 'Dropbox is a free service that lets you bring your photos, docs, and videos anywhere and share them easily.',
+                thumbnail: '',
+                dimensions: {
+                    width: 1,
+                    height: 1
+                },
+                resource: 'dropbox'
+            },
+            {
                 name: 'Youtube',
                 description: 'YouTube provides a forum for people to connect, inform, and inspire others across the globe and acts as a distribution platform for original content creators and advertisers large and small',
                 thumbnail: '',

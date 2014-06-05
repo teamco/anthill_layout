@@ -33,6 +33,9 @@ requirejs.config({
     },
 
     shim: {
+        jquery: {
+            exports: '$'
+        },
         'jquery.ui': {deps: ['jquery']},
         'jquery.resizestop': {deps: ['jquery']},
         'extends/function': {deps: ['jquery']},

@@ -27,10 +27,11 @@ define([
          * @member Renderer
          * @param {*|string} uuid
          * @param {string} text
-         * @param {string} [type]
+         * @param {*|string} [type]
+         * @param {boolean} [visible]
          * @returns {*|jQuery}
          */
-        renderLabel: function renderLabel(uuid, text, type) {
+        renderLabel: function renderLabel(uuid, text, type, visible) {
 
             /**
              * Parse Html
@@ -39,10 +40,16 @@ define([
             var parse = $.parseHTML(text) || [''],
                 title = parse[parse.length - 1].data || '';
 
-            return $('<label />').attr({
+            var $label = $('<label />').attr({
                 'for': uuid,
                 title: title.toUpperCase()
             }).addClass(type).html(text);
+
+            if (!visible) {
+                $label.hide();
+            }
+
+            return $label;
         },
 
         /**
@@ -108,6 +115,10 @@ define([
                 }.bind(this)
             );
 
+            if (!opts.visible) {
+                $link.hide();
+            }
+
             return $link;
         },
 
@@ -146,8 +157,12 @@ define([
                 );
             }
 
+            if (!opts.visible) {
+                $input.hide();
+            }
+
             return [
-                this.renderLabel(uuid, opts.text, 'text'),
+                this.renderLabel(uuid, opts.text, 'text', opts.visible),
                 $input
             ];
         },
@@ -164,7 +179,8 @@ define([
              * Create UUID
              * @type {String}
              */
-            var uuid = this.base.lib.generator.UUID() + '-checkbox';
+            var uuid = this.base.lib.generator.UUID() + '-checkbox',
+                checked = this.base.defineBoolean(opts.checked, false, true);
 
             /**
              * Define $input
@@ -175,9 +191,14 @@ define([
                 type: 'checkbox',
                 id: uuid,
                 title: opts.value,
-                checked: this.base.defineBoolean(opts.checked, false, true),
+                checked: checked,
                 disabled: this.base.defineBoolean(opts.disabled, false, true)
             }).val(opts.value);
+
+            $input.prop(
+                'checked',
+                checked
+            );
 
             if (opts.monitor) {
 
@@ -187,9 +208,13 @@ define([
                 );
             }
 
+            if (!opts.visible) {
+                $input.hide();
+            }
+
             return [
                 $input,
-                this.renderLabel(uuid, opts.text, 'text')
+                this.renderLabel(uuid, opts.text, 'text', opts.visible)
             ];
         },
 
@@ -233,8 +258,13 @@ define([
                     title: opts.value
                 }).val(opts.value);
             }
+
+            if (!opts.visible) {
+                $input.hide();
+            }
+
             return [
-                this.renderLabel(uuid, opts.text, 'textarea'),
+                this.renderLabel(uuid, opts.text, 'textarea', opts.visible),
                 $input
             ];
         },
@@ -247,8 +277,9 @@ define([
          * @param {string} name
          * @param {string} index
          * @param {{type: string, callback: function}} [event]
+         * @param {boolean} [visible]
          */
-        renderCombobox: function renderCombobox(data, selected, name, index, event) {
+        renderCombobox: function renderCombobox(data, selected, name, index, event, visible) {
 
             /**
              * Define container
@@ -387,11 +418,11 @@ define([
 
             // fix to define modal dialog height
             setTimeout(function () {
-                $div.show();
+                visible ? $div.show() : $div.hide();
             }, 500);
 
             return [
-                this.renderLabel(undefined, name),
+                this.renderLabel(undefined, name, undefined, visible),
                 $div.append([
                     $ul,
                     $('<div />').addClass('combo-box-arrow')

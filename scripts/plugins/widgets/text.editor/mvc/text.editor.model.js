@@ -21,14 +21,15 @@ define([
          * Define preferences
          * @member TextEditorModel
          * @type {{
-         *      bodyHtml: {type: string, disabled: boolean, value: undefined}
+         *      bodyHtml: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
          */
         this.preferences = {
             bodyHtml: {
                 type: 'textarea',
                 disabled: false,
-                value: undefined
+                value: undefined,
+                visible: true
             }
         };
 
