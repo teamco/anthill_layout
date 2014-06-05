@@ -314,7 +314,7 @@ define([
                     eventName: wsEventManager.eventList.switchToPage
                 },
                 callback: this.controller.executeGenericEvent.bind(this)
-            }, false)
+            }, false);
         }
 
     }, PluginController.prototype);

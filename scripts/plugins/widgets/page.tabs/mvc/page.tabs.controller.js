@@ -30,21 +30,15 @@ define([
         subscribeCreatePageEvent: function subscribeCreatePageEvent() {
 
             /**
-             * Get widget
-             * @type {widget}
+             * Get workspace
+             * @type {WorkspaceEventManager}
              */
-            var widget = this.controller.getContainment();
+            var wsEventManager = this.controller.getWorkspace().eventmanager;
 
-            /**
-             * Get PageEventManager
-             * @type {PageEventManager}
-             */
-            var pageEventManager = widget.controller.getContainment().eventmanager;
-
-            pageEventManager.subscribe({
+            wsEventManager.subscribe({
 
                 event: {
-                    eventName: pageEventManager.eventList.successRendered
+                    eventName: wsEventManager.eventList.afterCreateItem
                 },
 
                 callback: function onCreatePageCallback() {
@@ -55,7 +49,7 @@ define([
 
                 }.bind(this)
 
-            }, false)
+            }, false);
         },
 
         /**

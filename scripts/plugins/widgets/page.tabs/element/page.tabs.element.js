@@ -39,6 +39,8 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent(pages) {
 
+            this.empty();
+
             for (var index in pages) {
 
                 if (pages.hasOwnProperty(index)) {
