@@ -21,7 +21,8 @@ define([
 
         this.updateEventList({
             switchToPage: 'switch.to.page',
-            subscribeCreatePageEvent: 'subscribe.create.page.event'
+            subscribeCreatePageEvent: 'subscribe.create.page.event',
+            subscribeDestroyPageEvent: 'subscribe.destroy.page.event'
         });
 
         /**

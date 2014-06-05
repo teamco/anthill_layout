@@ -124,7 +124,7 @@ define([
             order: 1,
             type: 'default',
             limit: false,
-            isResized: true,
+            isResized: false,
             isDefault: false,
             layout: {
                 behavior: {

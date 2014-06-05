@@ -29,6 +29,26 @@ define([
          */
         subscribeCreatePageEvent: function subscribeCreatePageEvent() {
 
+            this.controller._subscribePageEventCallback.bind(this)('afterCreateItem');
+        },
+
+        /**
+         * Subscribe to destroy page event
+         * @member PageTabsController
+         */
+        subscribeDestroyPageEvent: function subscribeDestroyPageEvent() {
+
+            this.controller._subscribePageEventCallback.bind(this)('afterDestroyItem');
+        },
+
+        /**
+         * Subscribe to create page event
+         * @member PageTabsController
+         * @private
+         * @param {string} eventName
+         */
+        _subscribePageEventCallback: function _subscribePageEventCallback(eventName) {
+
             /**
              * Get workspace
              * @type {WorkspaceEventManager}
@@ -38,10 +58,10 @@ define([
             wsEventManager.subscribe({
 
                 event: {
-                    eventName: wsEventManager.eventList.afterCreateItem
+                    eventName: wsEventManager.eventList[eventName]
                 },
 
-                callback: function onCreatePageCallback() {
+                callback: function onPageEventCallback() {
 
                     this.observer.publish(
                         this.eventmanager.eventList.setEmbeddedContent
