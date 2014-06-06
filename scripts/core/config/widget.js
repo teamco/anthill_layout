@@ -78,6 +78,7 @@ define([
                     scroll: true,
                     connectToSortable: false,
                     delay: 300,
+                    distance: 20,
                     scrollSensitivity: 100,
                     scrollSpeed: 100,
                     cursor: 'move',

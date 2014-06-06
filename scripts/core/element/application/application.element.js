@@ -21,10 +21,14 @@ define([
      */
     var AppElement = function AppElement(view, opts) {
 
-        return this._config(view, opts, $('<div />')).build({
+        this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
+
+        $(opts.$container).addClass(opts.mode);
+
+        return this;
     };
 
     return AppElement.extend('AppElement', {

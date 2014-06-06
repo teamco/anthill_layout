@@ -33,7 +33,10 @@ define(
              */
             bindHashChange: function bindHashChange() {
 
-                $(window).on('hashchange', this.controller.switchPageOnHashChange.bind(this));
+                $(window).on(
+                    'hashchange',
+                    this.controller.switchPageOnHashChange.bind(this)
+                );
             },
 
             /**
@@ -97,7 +100,7 @@ define(
                 this.logger.debug('Before switch to page', page);
 
                 this.switchPage = true;
-                window.location.hash = ':page/' + page.model.getUUID();
+                window.location.hash = 'page/' + page.model.getUUID();
             },
 
             /**

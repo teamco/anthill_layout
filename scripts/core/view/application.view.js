@@ -38,7 +38,8 @@ define([
              */
             this.elements.$app = new AppHTML(this, {
                 $container: this.getConfigHTML().container,
-                id: this.createUUID()
+                id: this.createUUID(),
+                mode: this.controller.getMode()
             });
 
             this.header(Header, this.elements.$app);
