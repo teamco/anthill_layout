@@ -219,6 +219,7 @@ define([
                                 (selected.length === 0 ? node.list[0].value : selected),
                                 text.trim(),
                                 index,
+                                undefined,
                                 node.visible
                             );
                         }
