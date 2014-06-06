@@ -104,7 +104,7 @@ define([
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     _setLocation.bind(this),
-                    this.controller.errorHandler
+                    this.controller.errorHandler.bind(this)
                 );
             } else {
                 this.controller.errorHandler({});
@@ -137,6 +137,11 @@ define([
                 case error.UNKNOWN_ERROR:
                     message = 'An unknown error occurred';
                     break;
+            }
+
+            if (!this.scope) {
+                console.warn(message, error);
+                return false;
             }
 
             this.scope.logger.warn(message, error);
