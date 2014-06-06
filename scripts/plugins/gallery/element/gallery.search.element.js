@@ -45,7 +45,8 @@ define([
                         callback: this.view.controller.filterResults.bind(
                             this.view.controller
                         )
-                    }
+                    },
+                    visible: true
                 })
             );
 

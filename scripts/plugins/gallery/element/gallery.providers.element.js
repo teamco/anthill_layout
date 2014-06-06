@@ -35,7 +35,7 @@ define([
          * @member GalleryProvidersElement
          * @param data
          * @param currentProvider
-         * @returns {BaseElement}
+         * @returns {GalleryProvidersElement}
          */
         renderData: function renderData(data, currentProvider) {
 
@@ -57,7 +57,9 @@ define([
                     combo,
                     currentProvider.name,
                     '',
-                    'galleryProviders'
+                    'galleryProviders',
+                    undefined,
+                    true
                 )
             );
 

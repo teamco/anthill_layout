@@ -66,6 +66,16 @@ define([
                 resource: 'dropbox'
             },
             {
+                name: 'JW Player',
+                description: 'JW Player powers online publishing, with clients ranging in size from Fortune 500 companies to individual bloggers',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                resource: 'jwplayer'
+            },
+            {
                 name: 'Youtube',
                 description: 'YouTube provides a forum for people to connect, inform, and inspire others across the globe and acts as a distribution platform for original content creators and advertisers large and small',
                 thumbnail: '',
