@@ -154,6 +154,16 @@ define([
                     height: 2
                 },
                 resource: 'open.weather.map'
+            },
+            {
+                name: 'Login',
+                description: 'Login to your page',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                resource: 'login'
             }
         ];
 
