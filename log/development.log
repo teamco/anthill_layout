@@ -13082,3 +13082,665 @@ Started GET "/assets/scripts/plugins/widget.rules/widget.rules.css" for 127.0.0.
 
 
 Started GET "/assets/scripts/plugins/rules/rules.css" for 127.0.0.1 at 2014-06-08 17:42:08 +0300
+
+
+Started GET "/demos" for 127.0.0.1 at 2014-06-08 17:50:04 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DemosController#index as HTML
+  [1m[35mDemo Load (0.1ms)[0m  SELECT "demos".* FROM "demos"
+  Rendered demos/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 56ms (Views: 46.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/demos.css?body=1" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/stylesheets/cover.css?body=1" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/stylesheets/general.css?body=1" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/stylesheets/debugger.css?body=1" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/stylesheets/ui-lightness/jquery-ui-1.10.4.custom.min.css?body=1" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/stylesheets/modal.css?body=1" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/stylesheets/page.css?body=1" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/stylesheets/reset.css?body=1" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/stylesheets/widget.css?body=1" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/stylesheets/workspace.css?body=1" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/lib/require.js?body=1" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/public/demo/javascript/init.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/config/main.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/lib/modernizr.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/lib/extends/json.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/lib/extends/event.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/lib/lz-string.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/lib/jquery/jquery-2.1.1.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/lib/jquery/jquery-ui-1.10.4.custom.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/lib/jquery/jquery.resizestop.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/lib/extends/function.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/lib/extends/array.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/lib/extends/string.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/config/listeners.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/public/demo/javascript/permission.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/config/anthill.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/public/demo/javascript/listeners.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/config/permission.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/config/workspace.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/config/application.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/config/page.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/config/layout.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/config/widget.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Base.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/i18n.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/MVC.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/api/workspace.api.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/controller/workspace.controller.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/model/workspace.model.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/view/workspace.view.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/event/workspace.event.manager.js" for 127.0.0.1 at 2014-06-08 17:50:05 +0300
+
+
+Started GET "/assets/scripts/core/permission/workspace.permission.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/api/application.api.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/application.controller.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/model/application.model.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/view/application.view.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/event/application.event.manager.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/permission/application.permission.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/api/page.api.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/page.controller.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/model/page.model.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/view/page.view.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/event/page.event.manager.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/permission/page.permission.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/layout.controller.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/event/layout.event.manager.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/layout/layout.overlapping.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/permission/layout.permission.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/layout/layout.empty.rows.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/layout/layout.empty.columns.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/api/widget.api.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/widget.controller.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/model/widget.model.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/view/widget.view.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/event/widget.event.manager.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/permission/widget.permission.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/widget/widget.map.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/widget/widget.wireframe.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/base/Array.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/base/Function.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/base/Generator.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/base/Hash.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/base/HTML.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/base/Number.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/base/DateTime.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/base/String.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/base/UA.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/translations/en-us.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Observer.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Logger.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/API.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Controller.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Model.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/View.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/workspace/workspace.element.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/header.element.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/footer.element.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/workspace/workspace.element.content.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Event.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Permission.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Setting.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/application/application.element.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/application/application.element.content.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/application/application.element.debug.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Page.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/modal.element.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/page/page.element.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/page/page.element.content.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/page/page.element.delta.scroll.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/layout/layout.intersect.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/widget/widget.drag.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/widget/widget.resize.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/widget/widget.content.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/widget/widget.element.content.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/widget/widget.element.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/widget/widget.overlapping.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/packages/rgbcolor.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/behavior/behavior.crud.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/behavior/behavior.window.resize.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/CRUD.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Element.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/button.element.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/element/cover.element.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Interactions.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Renderer.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/config/debugger.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Debugger.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/controller/behavior/behavior.debugger.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Debugger/debugger.config.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Debugger/debugger.component.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Debugger/debugger.grid.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Debugger/debugger.workspace.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Debugger/debugger.application.js" for 127.0.0.1 at 2014-06-08 17:50:06 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Debugger/debugger.tabs.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Debugger/debugger.page.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Debugger/debugger.layout.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Debugger/debugger.widget.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/core/lib/modules/Debugger/debugger.actions.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/panel/panel.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/bar/bar.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/gallery/gallery.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widget.rules/widget.rules.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/workspace.data/workspace.data.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/page.data/page.data.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widgets/youtube/youtube.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/panel/mvc/panel.controller.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/panel/mvc/panel.model.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/panel/mvc/panel.view.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/panel/mvc/panel.event.manager.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/panel/mvc/panel.permission.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/bar/mvc/bar.controller.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/bar/mvc/bar.model.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/bar/mvc/bar.view.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/bar/mvc/bar.event.manager.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/bar/mvc/bar.permission.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/gallery/mvc/gallery.controller.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/gallery/mvc/gallery.model.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/gallery/mvc/gallery.view.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/gallery/mvc/gallery.event.manager.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/gallery/mvc/gallery.permission.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widget.rules/mvc/widget.rules.controller.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widget.rules/mvc/widget.rules.model.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widget.rules/mvc/widget.rules.view.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widget.rules/mvc/widget.rules.event.manager.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widget.rules/mvc/widget.rules.permission.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/workspace.data/mvc/workspace.data.controller.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/workspace.data/mvc/workspace.data.model.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/workspace.data/mvc/workspace.data.view.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/workspace.data/mvc/workspace.data.event.manager.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/workspace.data/mvc/workspace.data.permission.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/page.data/mvc/page.data.controller.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/page.data/mvc/page.data.model.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/page.data/mvc/page.data.view.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/page.data/mvc/page.data.event.manager.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/page.data/mvc/page.data.permission.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widgets/youtube/mvc/youtube.controller.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widgets/youtube/mvc/youtube.model.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widgets/youtube/mvc/youtube.view.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widgets/youtube/mvc/youtube.event.manager.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widgets/youtube/mvc/youtube.permission.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/plugin.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/panel/element/panel.container.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/panel/element/panel.content.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/panel/element/panel.content.container.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/panel/element/panel.tab.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/panel/element/panel.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/bar/element/bar.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/bar/element/bar.content.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/gallery/element/gallery.providers.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/gallery/element/gallery.search.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/gallery/element/gallery.content.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/gallery/element/gallery.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/rules/rules.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widget.rules/element/widget.rules.content.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widget.rules/element/widget.rules.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/preferences/preferences.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/workspace.data/element/workspace.data.content.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/workspace.data/element/workspace.data.preferences.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/workspace.data/element/workspace.data.add.page.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/workspace.data/element/workspace.data.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/page.data/element/page.data.content.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/page.data/element/page.data.element.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widgets/widget.content.controller.js" for 127.0.0.1 at 2014-06-08 17:50:07 +0300
+
+
+Started GET "/assets/scripts/plugins/widgets/youtube/element/youtube.element.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/widgets/youtube/element/youtube.preferences.element.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/widgets/youtube/element/youtube.rules.element.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/widgets/widget.content.event.manager.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/preferences/pages.preferences.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/preferences/widget.content.controller.preferences.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/rules/widget.content.controller.rules.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/preferences/widget.preferences.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/rules/widget.base.rules.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/panel/panel.css" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/bar/bar.css" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/gallery/translations/en-us.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/panel/translations/en-us.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/page.data/translations/en-us.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/workspace.data/translations/en-us.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/widget.rules/translations/en-us.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/bar/translations/en-us.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/rules/widget.subscribe.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/core/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/widgets/youtube/youtube.css" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/plugins/widgets/youtube/translations/en-us.js" for 127.0.0.1 at 2014-06-08 17:50:08 +0300
+
+
+Started GET "/assets/scripts/core/stylesheets/ui-lightness/images/ui-icons_ef8c08_256x240.png" for 127.0.0.1 at 2014-06-08 17:50:11 +0300
