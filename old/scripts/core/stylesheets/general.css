@@ -1,0 +1,70 @@
+@import url("reset.css");
+@import url("workspace.css");
+@import url("page.css");
+@import url("widget.css");
+@import url("modal.css");
+@import url("cover.css");
+@import url("debugger.css");
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+html, body {
+    overflow: hidden;
+    font: normal normal 12px/14px Tahoma, Arial, sans-serif;
+}
+
+html, body, .app,
+.workspaces, .workspace,
+.pages, .page {
+    height: 100%;
+}
+
+html, body, .app,
+.workspaces, .workspace,
+.pages, .page, .widget {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+
+    /*
+      Introduced in IE 10.
+      See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+    */
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.workspaces, .pages, .widgets {
+    list-style: none;
+}
+
+.workspaces, .pages {
+    overflow: auto;
+}
+
+.workspace, .page {
+    display: block;
+}
+
+.shadow {
+    -moz-box-shadow: inset 0 0 10px #000;
+    -webkit-box-shadow: inset 0 0 10px #000;
+    box-shadow: inset 0 0 10px #000;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.mr10 {
+    margin-right: 10px;
+}

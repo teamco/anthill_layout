@@ -1,0 +1,309 @@
+.modal-dialog.preferences div.html ul {
+    list-style: none;
+    padding: 5px;
+    border: 1px solid #ddd;
+    background-color: #e1e1e1;
+    overflow: visible;
+    margin: 0;
+}
+
+.modal-dialog.preferences div.html > ul li {
+    margin-bottom: 3px;
+    padding-top: 3px;
+    clear: both;
+}
+
+.modal-dialog.preferences .hidden {
+    display: none;
+}
+
+.modal-dialog.preferences div.html li.auto {
+    height: auto;
+}
+
+.modal-dialog.preferences div.html li.event {
+    width: 34px;
+    height: 34px;
+    margin-left: 10px;
+    float: left;
+    clear: none;
+}
+
+.modal-dialog.preferences div.html li.event div {
+    height: 100%;
+    cursor: pointer;
+    text-indent: -9000px;
+    background: transparent no-repeat top left;
+}
+
+.modal-dialog.preferences div.html li.event div.setlayerup {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA1lJREFUeNqsl79PFEEUx9/83CMGghcrC4VYYYMhMSRSaKEFITFiTIgFrbY2aGOBPwqXS/QfkP/BGPA0sTGG1sSIFhZo6BAiEjTH3e3O883u3sLB7e6xe3OZ+zU7M5997/vevGUAICuVyitjzJTv+3DcJoQAzvny3NzcDfrpQY7W77ouFmmu+wztOnk2l9RLrTtf/foNGGNhjy5gCRMxeAGcHxkBhsH8EvXdPADxHo7jgBQctOQguQVJn4wGg88S99NYMwHi5igFJS2g8mYN3n3ZilbEZAAa4uwTKHUBLj14vSE6IdB/gm5GMlx+//T6EZ20AShHQZ8j4O3nTai6NwH9TD8EY3aYsaOXtdAV7TLzaGmKvvYddlMbgJYKtL2aphrafPHjD7rDbFekWcjQ253Lw+AjdtRJuwW0InPKmN1RpIVIlPkAEDy7McZLslQNKKmBKwEY2U5RjMuCFmCI3YtQa/rJZQysSDyiMMAxokCQBg4qSFNIcs4g5/7BTQiDgFkANp22gXAeDtLmRQFM7H5MBqBcvruwsNCPJH1NSUWp0UAuUrIwCooA8NRUEgA06CC5Mjk5OdFo1P2d7d91cXXsZSBCLjrG93EAsAsN/KP+s1qtbkZhMjB+LZwlBesJQChqlgjQpL5NfScCaIrIZpK00CsAgyw1Cuw1rcTr8yh2lMzv/8MQfgbA0WkYWaBHAE3fwAv3yUbdkK74fhEj0ybaRNSLZtfyPA/u3X8Y/0dRFxxOMlWhokcAGJ4L62vf4W/dD4qYqAgqyTRsLUQwsUg7eJDZgqeJbeUAS3WBtUDB/UMADK2gqeDRPutChK3TkERoChLYTNpKxfaoV6YLABadgFr1BiAyAgFoUL6XDWBruJIOhw12FhUcSDKpAHYVGYpQkAVkFxZA3Puzcvvx0oRvj9I2CzDKVixIKh7FdaPRBHqggSwMm4anx8+QJcgFkmcC7H14PnuXPk8lWeji2OjZ2Zlbi2FcI2TbIajhKRcYckM2QI36OvVfCfWwGBo+V7YZbb9k7iJfMKovVXep2Isq16SnHDlYLjdsOi3SWkVQnlRnZ56mB9pV8v9A3gfaWq22Mj8/P50HwM45SX2I+mDOm7BW3rKuzpvsrTdP2EK6wPm0Z/X2X4ABAM63cBReoDPAAAAAAElFTkSuQmCC');
+}
+
+.modal-dialog.preferences div.html li.event div.setlayerdown {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAylJREFUeNqsV71rFEEUf/NmZm9FIzkQrNOqtRYWqUMgWATEwlb/gpBCUKJH8O7A/8C/QAuLfDQ2IrGyEL+qiCCoRFMED7mY3M743t7uupu7ndudc2Dudvdu5v3m937vYwUAqG63+8wYsxhFEdQdUkpAxM2VlZVrdDsAjzHTbrftNKPdfmh5Hx/jimaYnvz9h48ghKi8mGzDpYsXAEy8PqTZ8wGQWWw0GnQnoAoEO0QQXyMYyO9TF0A2AqVBYA0GzBCAIQaurG7taRERClv8E20naU8l7Obz1tKITgoAVKBqu4DHYBDB07UFQJNSk2OJhiYr19c2Funy1Ek3FRnQAfiOxy+/gzDHTEsOILFDH7fm5yAagg2dAJRWXsaZszBAwAjJqigwNGDDNqNDODWgVVDksJLpZC3KoRhPMCCsrSFC0oC11QGkeuE1ioSGDKjAAAOoEwVB4Hl+QRFE5mMXFEUoKVLsJACcTkc3rT6QTq8xOX2eAQ7RzKm2HADl8l6n05nhjCh4iTHA10ytmECBJDeEs+fJBYmBkwDQLSsGcESFZJ6+mwkB+vLq1vaTuwvwavcgfjCJlT9HxxDnL9aEKAKwFTTwm+Znml+TZ826Lgg4fFn9Uoyk639RKEoBUPaAg+LDaLgfLcMy7vM1Iz41jq0XMQOCtSAmR0EmqiR2tBxfmASS4lHxhds/6enpb0dWVQeQrlSII/sLMsrF59vrbdjffQOmQty+I4EszyhYXm/tMaeYa2KUq9zqsZWRko7W8PPTW7hz74F37aCoi4uTM/krOZ5fpOepun2bmKQJCpXLfwFRNS41I8ostH2bmNSjTheo3ElHGJiyiXGL0KYVDuN6PsoAZifxbWKcAHhD3jPQRQAp0SjxvzQxpQC4hwuD4c/jwozDHxPafZsYFwBrDw92btzfuBpxKc0xkKZTQwiWzsipm5gyAIcvHt28Td/nyhMV6KX11vY0TYwLQJ/mF5o/HIWwmVYJ/yamHMAg6Vx7k94Jp2li0vXeCqJQ/EXp9KzvC22/398pti/1xizNuVwTU3cwy/vsal8AmuZploDnepbNIevtrwADAOBKY9g4hUenAAAAAElFTkSuQmCC');
+}
+
+.modal-dialog.preferences div.html li.checkbox {
+    width: 49%;
+    margin-left: 1%;
+    float: left;
+    background-color: #fff;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin-top: 3px;
+    clear: none;
+}
+
+.modal-dialog.preferences div.html li.checkbox label {
+    cursor: pointer;
+}
+
+.modal-dialog.preferences div.html li.checkbox:first-child {
+    margin-left: 0;
+}
+
+.modal-dialog.preferences div.html label {
+    font-size: 14px;
+    font-weight: bold;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    display: inline-block;
+    height: 22px;
+    line-height: 20px;
+    padding-left: 0;
+}
+
+.modal-dialog.preferences div.html label.textarea {
+    width: 100%;
+}
+
+.modal-dialog.preferences div.html input[type="text"],
+.modal-dialog.preferences div.html div.combo-box > ul {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #fff;
+    margin: 0 0 0 10px;
+    width: 60%;
+    height: 24px;
+    line-height: 22px;
+    float: right;
+    overflow: hidden;
+    transition: width 0.5s;
+    -webkit-transition: width 0.5s;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
+}
+
+.modal-dialog.preferences div.html input[type="text"]:focus {
+    width: 70%;
+}
+
+.modal-dialog.preferences div.html input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.modal-dialog.preferences div.html textarea,
+.modal-dialog.preferences div.html p.textarea {
+    resize: none;
+    transition: height 0.5s;
+    -webkit-transition: height 0.5s;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #fff;
+    width: 100%;
+    height: 24px;
+    display: inline-block;
+}
+
+.modal-dialog.preferences div.html input[disabled="disabled"] {
+    background-color: #f1f1f1;;
+}
+
+.modal-dialog.preferences div.html p.textarea {
+    background-color: #f1f1f1;;
+    padding: 2px 5px;
+}
+
+.modal-dialog.preferences div.html textarea:focus {
+    height: 50px;
+}
+
+.modal-dialog.preferences fieldset {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+.modal-dialog.preferences fieldset legend {
+    padding: 0 3px;
+    font-variant: small-caps;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: lowercase;
+    background: #fff;
+    border-radius: 10px;
+    border-top: 1px solid #bbb;
+    padding: 0 10px;
+    margin-left: -10px;
+}
+
+.modal-dialog.preferences fieldset legend.open {
+    color: #ef8c08;
+}
+
+.modal-dialog.preferences fieldset legend:hover,
+.modal-dialog.preferences fieldset legend.open:hover {
+    color: #228ef1;
+}
+
+.modal-dialog.preferences fieldset legend + ul {
+    display: none;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul.widgets-prefs {
+    margin: 0;
+    padding: 0;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul.interactions {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+.modal-dialog.preferences fieldset ul.interactions li {
+    width: 49%;
+    float: left;
+    list-style: none;
+    margin-bottom: 2px;
+    margin-right: 1%;
+    padding-bottom: 3px;
+    padding-right: 3px;
+    background-color: #dedede;
+    position: relative;
+    clear: none;
+}
+
+.modal-dialog.preferences fieldset label,
+.modal-dialog.preferences div.html fieldset label {
+    text-transform: lowercase;
+    font-variant: small-caps;
+    padding-left: 10px;
+    line-height: 18px;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul.interactions input[type="text"],
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box {
+    float: right;
+    width: 50%;
+    position: relative;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box > ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul.interactions input[type="text"]:focus {
+    width: 50%;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box-arrow {
+    position: absolute;
+    top: 1px;
+    right: 0px;
+    width: 12px;
+    height: 20px;
+    cursor: pointer;
+    background: transparent url('../../core/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png') no-repeat -69px 2px;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box-arrow:hover {
+    background-image: url('../../core/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png');
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open div.combo-box-arrow {
+    background-position: -4px 2px;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box li {
+    background-color: transparent;
+    display: none;
+    width: 100%;
+    padding: 0 3px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    line-height: 20px;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box li.selected {
+    display: inline-block;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open ul {
+    overflow: auto;
+    max-height: 200px;
+    height: auto;
+    position: absolute;
+    border: 1px solid #999;
+    box-shadow: 3px 3px 5px #999;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li:hover {
+    background-color: #ffff99;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li:last-child,
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li:last-child:hover {
+    border: none;
+}
+
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li.selected,
+.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li.selected:hover {
+    background-color: #fbcb09;
+}
+
+.modal-dialog.preferences .layout-prefs,
+.modal-dialog.preferences .widgets-prefs {
+    margin: 0;
+}
+
+.modal-dialog.preferences .widgets-prefs li {
+    padding: 3px 5px;
+    display: inline-block;
+    cursor: pointer;
+    background: transparent no-repeat center;
+    width: 67px;
+    height: 67px;
+    text-indent: -9000px;
+}
+
+.modal-dialog ul.buttons li.rules {
+    margin-left: 30px;
+}
