@@ -6,6 +6,8 @@
 #
 default: &default
   adapter: mysql2
+  hostname: localhost
+  port: 3306
   encoding: utf8
   pool: 5
   username: root

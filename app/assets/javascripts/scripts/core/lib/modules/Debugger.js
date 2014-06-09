@@ -7,15 +7,15 @@
 
 define([
     'config/anthill',
-    'modules/Debugger/debugger.config',
-    'modules/Debugger/debugger.component',
-    'modules/Debugger/debugger.tabs',
-    'modules/Debugger/debugger.grid',
-    'modules/Debugger/debugger.application',
-    'modules/Debugger/debugger.workspace',
-    'modules/Debugger/debugger.page',
-    'modules/Debugger/debugger.layout',
-    'modules/Debugger/debugger.widget'
+    'modules/debugger/debugger.config',
+    'modules/debugger/debugger.component',
+    'modules/debugger/debugger.tabs',
+    'modules/debugger/debugger.grid',
+    'modules/debugger/debugger.application',
+    'modules/debugger/debugger.workspace',
+    'modules/debugger/debugger.page',
+    'modules/debugger/debugger.layout',
+    'modules/debugger/debugger.widget'
 ], function defineDebugger(AntHill, DebuggerConfig, DebuggerComponent, DebuggerTabs, DebuggerGrid, DebuggerApp, DebuggerWorkspace, DebuggerPage, DebuggerLayout, DebuggerWidget) {
 
     /**
