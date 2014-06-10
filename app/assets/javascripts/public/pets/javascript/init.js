@@ -5,8 +5,8 @@ require([
 ], function loadConfig() {
 
     require([
-        'public/demo/javascript/listeners',
-        'public/demo/javascript/permission'
+        'public/pets/javascript/listeners',
+        'public/pets/javascript/permission'
     ], function loadCustomConfig() {
 
         require([
@@ -18,10 +18,10 @@ require([
             ], function initDemo(Application) {
 
                 /**
-                 * Define demo application
+                 * Define pets application
                  * @type {*}
                  */
-                window.demo = new Application({
+                window['pet'] = new Application({
                     config: {
                         html: {
                             container: 'body'
@@ -31,11 +31,11 @@ require([
                     }
                 });
 
-                window.demo.view.render();
+                window['pet'].view.render();
 
-                if (!window.demo.model.loadData()) {
+                if (!window['pet'].model.loadData()) {
 
-                    var workspace1 = window.demo.api.createWorkspace([], true),
+                    var workspace1 = window['pet'].api.createWorkspace([], true),
                         page1 = workspace1.api.createPage([], true);
                 }
             });

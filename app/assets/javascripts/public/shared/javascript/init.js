@@ -18,10 +18,10 @@ require([
             ], function initDemo(Application) {
 
                 /**
-                 * Define pets application
+                 * Define shared application
                  * @type {*}
                  */
-                window.pets = new Application({
+                window.shared = new Application({
                     config: {
                         html: {
                             container: 'body'
@@ -31,11 +31,11 @@ require([
                     }
                 });
 
-                window.demo.view.render();
+                window.shared.view.render();
 
-                if (!window.demo.model.loadData()) {
+                if (!window.shared.model.loadData()) {
 
-                    var workspace1 = window.demo.api.createWorkspace([], true),
+                    var workspace1 = window.shared.api.createWorkspace([], true),
                         page1 = workspace1.api.createPage([], true);
                 }
             });

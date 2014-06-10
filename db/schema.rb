@@ -11,18 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609174013) do
+ActiveRecord::Schema.define(version: 20140610075447) do
 
-  create_table "demos", force: true do |t|
-    t.string   "mode"
-    t.string   "name"
+  create_table "author_histories", force: true do |t|
+    t.integer  "site_id"
+    t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "sites", force: true do |t|
+  create_table "author_sites", force: true do |t|
     t.string   "name"
-    t.text     "data",       limit: 16777215
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "demos", force: true do |t|
+    t.string   "mode"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

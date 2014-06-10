@@ -1,0 +1,6 @@
+<%= javascript_tag "window.pet = #{@author_site.name}", defer: 'defer' %>
+<%= javascript_include_tag(
+            'scripts/core/lib/require',
+            'data-turbolinks-track' => true,
+            'data-main' => javascript_path("public/#{@author_site.name.length > 0 ? 'pets' : 'shared'}/javascript/init")
+    ) %>

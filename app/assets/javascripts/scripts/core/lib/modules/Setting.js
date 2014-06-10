@@ -1,6 +1,7 @@
 define([
-    'config/anthill'
-], function defineSetting(AntHill) {
+    'config/anthill',
+    'modules/Router'
+], function defineSetting(AntHill, Router) {
 
     /**
      * Define Setting
@@ -29,10 +30,11 @@ define([
         /**
          * Define storage modes
          * @member Setting
-         * @type {{localStorage: Storage}}
+         * @type {{localStorage: Storage, serverStorage: Storage}}
          */
         this.STORAGE_MODES = {
-            localStorage: window.localStorage
+            localStorage: window.localStorage,
+            serverStorage: 'rails'
         };
         /**
          * Define setting storage
@@ -41,7 +43,7 @@ define([
          */
         this.storage = {
             development: this.STORAGE_MODES.localStorage,
-            authorize: this.STORAGE_MODES.localStorage,
+            authorize: this.STORAGE_MODES.serverStorage,
             consumption: this.STORAGE_MODES.localStorage,
             test: this.STORAGE_MODES.localStorage
         };
@@ -210,5 +212,5 @@ define([
             return data;
         }
 
-    }, AntHill.prototype);
+    }, AntHill.prototype, Router);
 });
