@@ -5,8 +5,8 @@ require([
 ], function loadConfig() {
 
     require([
-        'public/demo/javascript/listeners',
-        'public/demo/javascript/permission'
+        'public/pets/javascript/listeners',
+        'public/pets/javascript/permission'
     ], function loadCustomConfig() {
 
         require([
@@ -18,24 +18,24 @@ require([
             ], function initDemo(Application) {
 
                 /**
-                 * Define demo application
+                 * Define shared application
                  * @type {*}
                  */
-                window.demo = new Application({
+                window.shared = new Application({
                     config: {
                         html: {
                             container: 'body'
                         },
-                        appName: 'anthill',
+                        appName: 'shared',
                         mode: 'development'
                     }
                 });
 
-                window.demo.view.render();
+                window.shared.view.render();
 
-                if (!window.demo.model.loadData()) {
+                if (!window.shared.model.loadData()) {
 
-                    var workspace1 = window.demo.api.createWorkspace([], true),
+                    var workspace1 = window.shared.api.createWorkspace([], true),
                         page1 = workspace1.api.createPage([], true);
                 }
             });

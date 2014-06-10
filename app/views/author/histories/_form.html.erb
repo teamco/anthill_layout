@@ -1,0 +1,25 @@
+<%= form_for(@author_history) do |f| %>
+  <% if @author_history.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@author_history.errors.count, "error") %> prohibited this author_history from being saved:</h2>
+
+      <ul>
+      <% @author_history.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :site_id %><br>
+    <%= f.text_field :site_id %>
+  </div>
+  <div class="field">
+    <%= f.label :data %><br>
+    <%= f.text_area :data %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

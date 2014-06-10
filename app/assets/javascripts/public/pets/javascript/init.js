@@ -18,10 +18,21 @@ require([
             ], function initDemo(Application) {
 
                 /**
+                 * Define route
+                 * @type {string}
+                 */
+                var route = window['route'];
+
+                if (!route) {
+                    new Error('Undefined pet', route)
+                    return false;
+                }
+
+                /**
                  * Define pets application
                  * @type {*}
                  */
-                window.pets = new Application({
+                window[route] = new Application({
                     config: {
                         html: {
                             container: 'body'
@@ -31,11 +42,11 @@ require([
                     }
                 });
 
-                window.demo.view.render();
+                window[route].view.render();
 
-                if (!window.demo.model.loadData()) {
+                if (!window[route].model.loadData()) {
 
-                    var workspace1 = window.demo.api.createWorkspace([], true),
+                    var workspace1 = window[route].api.createWorkspace([], true),
                         page1 = workspace1.api.createPage([], true);
                 }
             });
