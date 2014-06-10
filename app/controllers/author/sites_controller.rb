@@ -1,16 +1,18 @@
 class Author::SitesController < ApplicationController
-  before_action :set_author_site, only: [:show, :edit, :update, :destroy]
+
+  before_action :set_author_site, only: [:index, :show, :edit, :update, :destroy]
 
   # GET /author/sites
   # GET /author/sites.json
   def index
-    @author_sites = Author::Site.all
+    redirect_to sites_url if params[:id].nil?
   end
 
   # GET /author/sites/1
   # GET /author/sites/1.json
   def show
-    @rout = @author_site.name.blank? ? 'shared' : 'pets'
+    @route = 'pets'
+    redirect_to sites_url if @author_site.name.blank?
   end
 
   # GET /author/sites/new
@@ -63,13 +65,13 @@ class Author::SitesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_author_site
-      @author_site = Author::Site.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_author_site
+    @author_site = Author::Site.find(params[:id]) unless params[:id].nil?
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def author_site_params
-      params.require(:author_site).permit(:name, :data)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def author_site_params
+    params.require(:author_site).permit(:name, :data)
+  end
 end

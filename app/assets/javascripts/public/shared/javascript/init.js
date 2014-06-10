@@ -26,7 +26,7 @@ require([
                         html: {
                             container: 'body'
                         },
-                        appName: 'anthill',
+                        appName: 'shared',
                         mode: 'development'
                     }
                 });

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :sites
+
   namespace :author do
     resources :histories
   end
