@@ -21,7 +21,7 @@ require([
                  * Define pets application
                  * @type {*}
                  */
-                window['pet'] = new Application({
+                window[window['pet']] = new Application({
                     config: {
                         html: {
                             container: 'body'
@@ -31,11 +31,11 @@ require([
                     }
                 });
 
-                window['pet'].view.render();
+                window[window['pet']].view.render();
 
-                if (!window['pet'].model.loadData()) {
+                if (!window[window['pet']].model.loadData()) {
 
-                    var workspace1 = window['pet'].api.createWorkspace([], true),
+                    var workspace1 = window[window['pet']].api.createWorkspace([], true),
                         page1 = workspace1.api.createPage([], true);
                 }
             });

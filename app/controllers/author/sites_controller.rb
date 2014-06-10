@@ -10,6 +10,7 @@ class Author::SitesController < ApplicationController
   # GET /author/sites/1
   # GET /author/sites/1.json
   def show
+    @rout = @author_site.name.blank? ? 'shared' : 'pets'
   end
 
   # GET /author/sites/new
