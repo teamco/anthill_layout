@@ -1,4 +1,4 @@
-class Author::HistoriesController < ApplicationController
+class Author::HistoriesController < Author::AuthorController
   before_action :set_author_history, only: [:show, :edit, :update, :destroy]
 
   # GET /author/histories

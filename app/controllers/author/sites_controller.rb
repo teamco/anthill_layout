@@ -1,4 +1,4 @@
-class Author::SitesController < ApplicationController
+class Author::SitesController < Author::AuthorController
 
   before_action :set_author_site, only: [:index, :show, :edit, :update, :destroy]
 
@@ -12,7 +12,7 @@ class Author::SitesController < ApplicationController
   # GET /author/sites/1.json
   def show
     @route = 'pets'
-    redirect_to sites_url if @author_site.name.blank?
+    redirect_to sites_url unless @author_site
   end
 
   # GET /author/sites/new
@@ -67,7 +67,7 @@ class Author::SitesController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site
-    @author_site = Author::Site.find(params[:id]) unless params[:id].nil?
+    @author_site = Author::Site.find_by_id(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
