@@ -66,6 +66,16 @@ define([
                 resource: 'dropbox'
             },
             {
+                name: 'Avatar',
+                description: 'Pick a photo and put it as your Avatar',
+                thumbnail: '',
+                dimensions: {
+                    width: 5,
+                    height: 5
+                },
+                resource: 'avatar'
+            },
+            {
                 name: 'JW Player',
                 description: 'JW Player powers online publishing, with clients ranging in size from Fortune 500 companies to individual bloggers',
                 thumbnail: '',
@@ -164,7 +174,18 @@ define([
                     height: 2
                 },
                 resource: 'login'
+            },
+            {
+                name: 'Share',
+                description: 'Share your page with your friends',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                resource: 'share'
             }
+
         ];
 
         /**
