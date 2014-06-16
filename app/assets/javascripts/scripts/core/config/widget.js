@@ -86,8 +86,7 @@ define([
                     cancel: '.ui-resizable-handle'
                 },
                 resizable: {
-                    handles: 'all',
-                    zIndex: 2001
+                    handles: 'all'
                 },
                 droppable: {
                     activeClass: 'widget-ui-hover',

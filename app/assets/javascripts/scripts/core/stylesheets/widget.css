@@ -42,7 +42,6 @@
     right: 0;
     bottom: 0;
     border: 4px solid lightcoral;
-    z-index: 2000;
 }
 
 .widget.ui-draggable:hover .content {
