@@ -7,12 +7,13 @@
  */
 
 define([
+    'jquery.ui',
     'config/anthill',
     'modules/Controller',
     'controller/widget/widget.drag',
     'controller/widget/widget.resize',
     'controller/widget/widget.content'
-], function defineWidgetController(AntHill, BaseController, Draggable, Resizable, Content) {
+], function defineWidgetController(ui, AntHill, BaseController, Draggable, Resizable, Content) {
 
     /**
      * Define widget controller
