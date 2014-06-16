@@ -202,7 +202,9 @@ define([
                                     ],
                                     layout.controller.getBehaviorMode(),
                                     'Mode',
-                                    'layoutMode'
+                                    'layoutMode',
+                                    undefined,
+                                    true
                                 )
                             ).attr('rel', 'layout-behavior')
                         ])

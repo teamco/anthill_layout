@@ -5,8 +5,8 @@ require([
 ], function loadConfig() {
 
     require([
-        'public/pets/javascript/listeners',
-        'public/pets/javascript/permission'
+        'public/demo/javascript/listeners',
+        'public/demo/javascript/permission'
     ], function loadCustomConfig() {
 
         require([
@@ -21,7 +21,7 @@ require([
                  * Define pets application
                  * @type {*}
                  */
-                window.pets = new Application({
+                window.demo = new Application({
                     config: {
                         html: {
                             container: 'body'

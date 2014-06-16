@@ -100,7 +100,8 @@ define([
                             scope: this,
                             button: 'addWidgetRule'
                         })
-                    }
+                    },
+                    true
                 )
             ).append($ul);
 
@@ -170,7 +171,8 @@ define([
                             scope: this,
                             button: 'addContentRule'
                         })
-                    }
+                    },
+                    true
                 )
             ).append($ul);
 
