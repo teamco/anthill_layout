@@ -66,6 +66,16 @@ define([
                 resource: 'dropbox'
             },
             {
+                name: 'Map Locator',
+                description: 'Map locator',
+                thumbnail: '',
+                dimensions: {
+                    width: 5,
+                    height: 5
+                },
+                resource: 'map.locator'
+            },
+            {
                 name: 'Avatar',
                 description: 'Pick a photo and put it as your Avatar',
                 thumbnail: '',

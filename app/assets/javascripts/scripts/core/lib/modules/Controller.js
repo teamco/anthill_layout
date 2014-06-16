@@ -43,6 +43,17 @@ define([
         },
 
         /**
+         * After loading items
+         * @member BaseController
+         */
+        afterLoadingItems: function afterLoadingItems() {
+            this.logger.debug(
+                'After loading items',
+                this.model.getItems()
+            );
+        },
+
+        /**
          * Set core loading attribute
          * @member BaseController
          * @param load
