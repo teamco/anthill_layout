@@ -74,7 +74,8 @@ define([
      * @type {{
      *      successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function},
-     *      createPage: {name: string, callback: Function}
+     *      createPage: {name: string, callback: Function},
+     *      afterLoadingItems: {name: string, callback: Function},
      *      resizePage: {name: string, callback: Function}
      * }}
      */
@@ -99,6 +100,13 @@ define([
                 this.observer.publish(
                     this.eventmanager.eventList.setPageContainerDimensions
                 );
+            }
+        },
+
+        afterLoadingItems: {
+            name: 'after.loading.items',
+            callback: function afterLoadingItemsCallback() {
+                this.controller.switchPageOnHashChange.bind(this)
             }
         },
 

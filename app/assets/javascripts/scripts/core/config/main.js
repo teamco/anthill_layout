@@ -70,7 +70,6 @@ define([
     'modernizr',
     'lz-string',
     'jquery',
-    'jquery.ui',
     'jquery.resizestop',
     'extends/function',
     'extends/json',
