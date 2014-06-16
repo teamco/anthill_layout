@@ -708,7 +708,7 @@ define([
 
                                     if (isRoot && node.containment) {
 
-                                        this.scope.controller.loadConfig(node.containment);
+                                        scope.controller.loadConfig(node.containment);
                                     }
 
                                     this.loadData.bind(item.model)(data);
@@ -716,6 +716,10 @@ define([
                             }
                         }
                     }
+
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.afterLoadingItems
+                    );
                 }
             }
 
