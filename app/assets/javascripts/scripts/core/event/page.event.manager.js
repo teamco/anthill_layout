@@ -38,7 +38,8 @@ define([
          *      destroyLayout: string,
          *      resizeWidgets: string,
          *      resizeWidget: string,
-         *      updateHeight: string
+         *      updateHeight: string,
+         *      afterLoadingItems: string
          * }}
          */
         eventList: {
@@ -50,7 +51,8 @@ define([
             destroyLayout: 'destroy.layout',
             resizeWidget: 'resize.widget',
             resizeWidgets: 'resize.widgets',
-            updateHeight: 'update.height'
+            updateHeight: 'update.height',
+            afterLoadingItems: 'after.loading.items'
         }
 
     }, BaseEvent.prototype);

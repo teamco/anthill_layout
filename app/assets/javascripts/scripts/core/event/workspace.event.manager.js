@@ -48,7 +48,8 @@ define(
              *      beforeSwitchToPage: string,
              *      switchToPage: string,
              *      afterSwitchToPage: string,
-             *      adoptContentWidth: string
+             *      adoptContentWidth: string,
+             *      afterLoadingItems: string
              * }}
              */
             eventList: {
@@ -62,7 +63,8 @@ define(
                 beforeSwitchToPage: 'before.switch.to.page',
                 switchToPage: 'switch.to.page',
                 afterSwitchToPage: 'after.switch.to.page',
-                adoptContentWidth: 'adopt.content.width'
+                adoptContentWidth: 'adopt.content.width',
+                afterLoadingItems: 'after.loading.items'
             }
 
         }, BaseEvent.prototype);

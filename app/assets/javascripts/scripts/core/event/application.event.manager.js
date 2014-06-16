@@ -42,6 +42,7 @@ define([
          *      resizeWorkspaces: string,
          *      resizeWorkspace: string,
          *      setAsLoaded: string,
+         *      afterLoadingItems: string,
          *      createAuthorPanel: string
          * }}
          */
@@ -59,6 +60,7 @@ define([
             resizeWorkspace: 'resize.workspace',
             resizeWorkspaces: 'resize.workspaces',
             setAsLoaded: 'set.as.loaded',
+            afterLoadingItems: 'after.loading.items',
             createAuthorPanel: 'create.author.panel'
         }
 
