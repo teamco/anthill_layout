@@ -11,7 +11,7 @@ define([
 ], function defineGeolocationController(PluginBase, WidgetContentController) {
 
     /**
-     * Define youtube controller
+     * Define geolocation controller
      * @class GeolocationController
      * @extends PluginController
      * @extends WidgetContentController
@@ -50,17 +50,16 @@ define([
          */
         _setEmbeddedContent: function _setEmbeddedContent() {
             this.view.elements.$geolocation.renderEmbeddedContent({
-                    latitude: this.model.getPrefs('geolocationLatitude'),
-                    longitude: this.model.getPrefs('geolocationLongitude'),
-                    zoom: this.model.getPrefs('geolocationZoom'),
-                    width: this.model.getPrefs('geolocationWidth'),
-                    height: this.model.getPrefs('geolocationHeight'),
-                    sensor: this.model.getPrefs('geolocationGpsSensor'),
-                    scale: this.model.getPrefs('geolocationScale'),
-                    stretch: this.model.getPrefs('geolocationStretch'),
-                    maptype: this.model.getPrefs('geolocationMapType')
-                }
-            );
+                latitude: this.model.getPrefs('geolocationLatitude'),
+                longitude: this.model.getPrefs('geolocationLongitude'),
+                zoom: this.model.getPrefs('geolocationZoom'),
+                width: this.model.getPrefs('geolocationWidth'),
+                height: this.model.getPrefs('geolocationHeight'),
+                sensor: this.model.getPrefs('geolocationGpsSensor'),
+                scale: this.model.getPrefs('geolocationScale'),
+                stretch: this.model.getPrefs('geolocationStretch'),
+                maptype: this.model.getPrefs('geolocationMapType')
+            });
         },
 
         /**
