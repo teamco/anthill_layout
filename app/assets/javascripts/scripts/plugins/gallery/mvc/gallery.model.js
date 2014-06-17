@@ -106,6 +106,16 @@ define([
                 resource: 'youtube'
             },
             {
+                name: 'Quicktime',
+                description: 'A powerful multimedia technology with a built-in media player, QuickTime lets you view internet video, HD movie trailers, and personal media in a wide range of file formats',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                resource: 'quicktime'
+            },
+            {
                 name: 'Vimeo',
                 description: 'Vimeo is video + you. We put your videos first and give you the best ways to share, discover, and be inspired',
                 thumbnail: '',
