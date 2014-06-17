@@ -41,6 +41,7 @@ requirejs.config({
         'extends/function': {deps: ['jquery']},
         'extends/string': {deps: ['jquery']},
         'extends/array': {deps: ['jquery']},
+        'lib/jquery/jquery.knob': {deps: ['jquery']},
 
         'controller/layout/layout.empty.rows': {deps: ['extends/function']},
         'controller/layout/layout.empty.columns': {deps: ['extends/function']},

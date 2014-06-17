@@ -5,146 +5,113 @@
  * Time: 11:03 AM
  */
 
-define([
-    'plugins/plugin',
-    'plugins/widgets/widget.content.controller'
-], function defineGeolocationController(PluginBase, WidgetContentController) {
+define(
+    [
+        'modules/Geolocation',
+        'plugins/plugin',
+        'plugins/widgets/widget.content.controller'
+    ],
 
     /**
      * Define geolocation controller
-     * @class GeolocationController
-     * @extends PluginController
-     * @extends WidgetContentController
-     * @constructor
+     * @param {BaseGeolocation} BaseGeolocation
+     * @param {PluginController} PluginController
+     * @param {WidgetContentController} WidgetContentController
+     * @returns {*}
      */
-    var GeolocationController = function GeolocationController() {
-    };
-
-    return GeolocationController.extend('GeolocationController', {
+    function defineGeolocationController(BaseGeolocation, PluginController, WidgetContentController) {
 
         /**
-         * Set embedded content
-         * @member GeolocationController
+         * Define geolocation controller
+         * @class GeolocationController
+         * @extends BaseGeolocation
+         * @extends PluginController
+         * @extends WidgetContentController
+         * @constructor
          */
-        setEmbeddedContent: function setEmbeddedContent() {
+        var GeolocationController = function GeolocationController() {
+        };
 
-            var latitude = this.model.getPrefs('geolocationLatitude'),
-                longitude = this.model.getPrefs('geolocationLongitude');
+        return GeolocationController.extend('GeolocationController', {
 
-            if (!latitude || !longitude) {
+                /**
+                 * Set embedded content
+                 * @member GeolocationController
+                 */
+                setEmbeddedContent: function setEmbeddedContent() {
 
-                this.observer.publish(
-                    this.eventmanager.eventList.getLocation
-                );
+                    var latitude = this.model.getPrefs('geolocationLatitude'),
+                        longitude = this.model.getPrefs('geolocationLongitude');
 
-                return false;
-            }
+                    if (!latitude || !longitude) {
 
-            this.controller._setEmbeddedContent.bind(this)();
-        },
+                        this.observer.publish(
+                            this.eventmanager.eventList.getLocation
+                        );
 
-        /**
-         * Set embedded content
-         * @member GeolocationController
-         * @private
-         */
-        _setEmbeddedContent: function _setEmbeddedContent() {
-            this.view.elements.$geolocation.renderEmbeddedContent({
-                latitude: this.model.getPrefs('geolocationLatitude'),
-                longitude: this.model.getPrefs('geolocationLongitude'),
-                zoom: this.model.getPrefs('geolocationZoom'),
-                width: this.model.getPrefs('geolocationWidth'),
-                height: this.model.getPrefs('geolocationHeight'),
-                sensor: this.model.getPrefs('geolocationGpsSensor'),
-                scale: this.model.getPrefs('geolocationScale'),
-                stretch: this.model.getPrefs('geolocationStretch'),
-                maptype: this.model.getPrefs('geolocationMapType')
-            });
-        },
+                        return false;
+                    }
 
-        /**
-         * Add Geolocation rule
-         * @member GeolocationController
-         * @param e
-         */
-        addGeolocationRule: function addGeolocationRule(e) {
+                    this.controller._setEmbeddedContent.bind(this)();
+                },
 
-            /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
-             */
-            var $button = $(e.target),
-                scope = this.scope;
+                /**
+                 * Set embedded content
+                 * @member GeolocationController
+                 * @private
+                 */
+                _setEmbeddedContent: function _setEmbeddedContent() {
+                    this.view.elements.$geolocation.renderEmbeddedContent({
+                        latitude: this.model.getPrefs('geolocationLatitude'),
+                        longitude: this.model.getPrefs('geolocationLongitude'),
+                        zoom: this.model.getPrefs('geolocationZoom'),
+                        width: this.model.getPrefs('geolocationWidth'),
+                        height: this.model.getPrefs('geolocationHeight'),
+                        sensor: this.model.getPrefs('geolocationGpsSensor'),
+                        scale: this.model.getPrefs('geolocationScale'),
+                        stretch: this.model.getPrefs('geolocationStretch'),
+                        maptype: this.model.getPrefs('geolocationMapType')
+                    });
+                },
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), scope.constructor.name]
-            );
-        },
+                /**
+                 * Add Geolocation rule
+                 * @member GeolocationController
+                 * @param e
+                 */
+                addGeolocationRule: function addGeolocationRule(e) {
 
-        /**
-         * Get location
-         * @member GeolocationController
-         */
-        getLocation: function getLocation() {
+                    /**
+                     * Define $button
+                     * @type {*|jQuery|HTMLElement}
+                     */
+                    var $button = $(e.target),
+                        scope = this.scope;
 
-            /**
-             * Set Location callback
-             * @param position
-             * @returns {*}
-             * @private
-             */
-            function _setLocation(position) {
-                this.model.setGeolocationLatitude(position.coords.latitude);
-                this.model.setGeolocationLongitude(position.coords.longitude);
-                this.controller._setEmbeddedContent.bind(this)();
-            }
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.publishRule,
+                        [$button.attr('value'), scope.constructor.name]
+                    );
+                },
 
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    _setLocation.bind(this),
-                    this.controller.errorHandler.bind(this)
-                );
-            } else {
-                this.controller.errorHandler({});
-            }
-        },
+                /**
+                 * Get location
+                 * @member GeolocationController
+                 */
+                getLocation: function getLocation() {
+                    this.controller.getPosition(
+                        function _setLocation(position) {
+                            this.model.setGeolocationLatitude(position.coords.latitude);
+                            this.model.setGeolocationLongitude(position.coords.longitude);
+                            this._setEmbeddedContent.bind(this.scope)();
+                        }
+                    );
+                }
 
-        /**
-         * Error handler
-         * @member GeolocationController
-         * @param [error]
-         */
-        errorHandler: function errorHandler(error) {
-
-            /**
-             * Define default message
-             * @type {string}
-             */
-            var message = 'Geolocation is not supported by this browser';
-
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    message = 'User denied the request for Geolocation';
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    message = 'Location information is unavailable';
-                    break;
-                case error.TIMEOUT:
-                    message = 'The request to get user location timed out';
-                    break;
-                case error.UNKNOWN_ERROR:
-                    message = 'An unknown error occurred';
-                    break;
-            }
-
-            if (!this.scope) {
-                console.warn(message, error);
-                return false;
-            }
-
-            this.scope.logger.warn(message, error);
-        }
-
-    }, PluginBase.prototype, WidgetContentController.prototype);
-});
+            },
+            BaseGeolocation.prototype,
+            PluginController.prototype,
+            WidgetContentController.prototype
+        );
+    }
+);
