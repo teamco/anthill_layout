@@ -33,10 +33,39 @@ define([
          */
         this.overlapped = 'overlapped';
 
+        this.bindHover();
+
         return this;
     };
 
     return WidgetElement.extend('WidgetElement', {
+
+        bindHover: function bindHover() {
+
+            /**
+             * Define scope
+             * @type {WidgetElement}
+             */
+            var scope = this;
+
+            /**
+             * Define show content class
+             * @type {string}
+             */
+            var content = 'show-content';
+
+            scope.$.on('mouseenter.widget', function mouseEnter() {
+
+                scope.$.on('dblclick.widget', function dblClick() {
+                    scope.$.addClass(content);
+                });
+            });
+
+            scope.$.on('mouseleave.widget', function mouseLeave() {
+                scope.$.removeClass(content);
+                scope.$.off('dblclick.widget');
+            });
+        },
 
         /**
          * Set widget position

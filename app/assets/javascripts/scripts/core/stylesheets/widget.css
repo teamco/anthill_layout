@@ -60,6 +60,11 @@
     visibility: hidden;
 }
 
+.widget.show-content:after,
+.widget.show-content .ui-resizable-handle {
+    display: none;
+}
+
 .widget .ui-resizable-n {
     box-shadow: -1px 1px 1px #333;
     left: 50%;
