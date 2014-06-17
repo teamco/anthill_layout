@@ -132,7 +132,7 @@ define([
             scope.defineMapStyle(opts);
 
             require([
-                'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=true'
+                'async!https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=true'
             ], function defineGoogleMapsApi() {
 
                 /**
@@ -194,15 +194,23 @@ define([
 
                 /**
                  * Define service
+                 * @member MapLocatorElement
                  * @type {google.maps.places.PlacesService}
                  */
                 scope.service = new google.maps.places.PlacesService(
                     scope.map
                 );
 
+                /**
+                 * Define search radius
+                 * @member MapLocatorElement
+                 * @type {searchRadius|*}
+                 */
+                scope.searchRadius = opts.searchRadius;
+
                 scope.service.nearbySearch({
 
-                    radius: opts.searchRadius,
+                    radius: scope.searchRadius,
                     location: scope.position,
                     types: scope.currentType
 
@@ -279,13 +287,13 @@ define([
              * @type {google.maps.Circle}
              */
             this.circle = new google.maps.Circle({
-                map: map,
-                radius: searchRadius,
+                map: this.map,
+                radius: this.searchRadius,
+                center: this.position,
                 fillColor: '#48E990',
                 strokeColor: '#11BF5F',
                 strokeOpacity: 0.15,
-                fillOpacity: 0.08,
-                center: pos
+                fillOpacity: 0.08
             });
 
             this.circle.bindTo('center', marker, 'position');
@@ -304,15 +312,21 @@ define([
              */
             var location = place.geometry.location;
 
+            /**
+             * Define scope
+             * @type {MapLocatorElement}
+             */
+            var scope = this;
+
             var marker = new google.maps.Marker({
-                map: map,
+                map: scope.map,
                 position: location
             });
 
             google.maps.event.addListener(marker, 'click', function () {
-                infowindow.setContent(place.name);
-                infowindow.open(map, this);
-                calcRoute(location);
+                scope.infowindow.setContent(place.name);
+                scope.infowindow.open(scope.map, this);
+                scope.view.controller.calculateRoute(location);
             });
         },
 
@@ -324,7 +338,7 @@ define([
          */
         createMarkers: function createMarkers(results, status) {
 
-            this.createMyLocationMarker(pos);
+            this.createMyLocationMarker(this.position);
 
             if (status == google.maps.places.PlacesServiceStatus.OK) {
 
