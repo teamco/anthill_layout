@@ -29,7 +29,21 @@ requirejs.config({
 
         jquery: 'lib/jquery/jquery-2.1.1',
         'jquery.ui': 'lib/jquery/jquery-ui-1.10.4.custom',
-        'jquery.resizestop': 'lib/jquery/jquery.resizestop'
+        'jquery.resizestop': 'lib/jquery/jquery.resizestop',
+        'jquery.pseudo': 'lib/jquery/jquery.pseudo',
+
+        // create alias to plugins (not needed if plugins are on the baseUrl)
+        // https://github.com/millermedeiros/requirejs-plugins
+        async: 'lib/require/async',
+        font: 'lib/require/font',
+        goog: 'lib/require/goog',
+        image: 'lib/require/image',
+        json: 'lib/require/json',
+        noext: 'lib/require/noext',
+        mdown: 'lib/require/mdown',
+        text: 'lib/require/text',
+        propertyParser: 'lib/require/propertyParser',
+        markdownConverter: 'lib/require/Markdown.Converter'
     },
 
     shim: {
@@ -38,6 +52,7 @@ requirejs.config({
         },
         'jquery.ui': {deps: ['jquery']},
         'jquery.resizestop': {deps: ['jquery']},
+        'jquery.pseudo': {deps: ['jquery']},
         'extends/function': {deps: ['jquery']},
         'extends/string': {deps: ['jquery']},
         'extends/array': {deps: ['jquery']},
@@ -72,6 +87,7 @@ define([
     'lz-string',
     'jquery',
     'jquery.resizestop',
+    'jquery.pseudo',
     'extends/function',
     'extends/json',
     'extends/event',
