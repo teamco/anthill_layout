@@ -8,32 +8,32 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/quicktime/mvc/quicktime.controller',
-    'plugins/widgets/quicktime/mvc/quicktime.model',
-    'plugins/widgets/quicktime/mvc/quicktime.view',
-    'plugins/widgets/quicktime/mvc/quicktime.event.manager',
-    'plugins/widgets/quicktime/mvc/quicktime.permission'
-], function defineQuicktime(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/pdf/mvc/pdf.controller',
+    'plugins/widgets/pdf/mvc/pdf.model',
+    'plugins/widgets/pdf/mvc/pdf.view',
+    'plugins/widgets/pdf/mvc/pdf.event.manager',
+    'plugins/widgets/pdf/mvc/pdf.permission'
+], function definePdf(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Quicktime
+     * Define Pdf
      * @param containment
      * @param [opts]
      * @constructor
-     * @class Quicktime
+     * @class Pdf
      * @extends AntHill
      */
-    var Quicktime = function Quicktime(containment, opts) {
+    var Pdf = function Pdf(containment, opts) {
 
         /**
          * Define containment
-         * @member Quicktime
+         * @member Pdf
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Quicktime
+         * @member Pdf
          * @type {*}
          */
         this.referrer = undefined;
@@ -72,35 +72,35 @@ define([
 
         /**
          * Init observer
-         * @member Quicktime
+         * @member Pdf
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
-         * @member Quicktime
-         * @type {EventManager}
+         * @member Pdf
+         * @type {PdfEventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
-         * @member Quicktime
+         * @member Pdf
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Init model
-         * @member Quicktime
+         * @member Pdf
          * @type {*}
          */
         this.model = undefined;
 
         /**
          * Define MVC
-         * @member Quicktime
+         * @member Pdf
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -130,7 +130,7 @@ define([
         );
     };
 
-    return Quicktime.extend('Quicktime', {
+    return Pdf.extend('Pdf', {
 
     }, AntHill.prototype);
 });

@@ -166,6 +166,16 @@ define([
                 resource: 'twits'
             },
             {
+                name: 'Pdf',
+                description: 'Portable Document Format (PDF) is a file format used to present documents in a manner independent of application software, hardware, and operating systems',
+                thumbnail: '',
+                dimensions: {
+                    width: 2,
+                    height: 2
+                },
+                resource: 'pdf'
+            },
+            {
                 name: 'Geolocation',
                 description: 'Geolocation is the identification of the real-world geographic location of an object, such as a radar, mobile phone or an Internet-connected computer terminal',
                 thumbnail: '',
