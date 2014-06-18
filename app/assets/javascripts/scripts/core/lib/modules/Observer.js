@@ -127,15 +127,39 @@ define([
          * @return {String}
          */
         onEvent: function onEvent(opts) {
-            var base = this.base;
+
+            var base = this.base,
+                priority = {
+                    'high': 3,
+                    'normal': 2,
+                    'low': 1
+                },
+                defaultPriority = 'normal';
+
             opts = base.define(opts, {}, true);
             opts.eventUUID = base.lib.generator.UUID();
             opts.params = base.define(opts.params, {}, true);
             opts.state = {};
-            // Default: normal,
-            // high, low
-            var priority = base.define(opts.priority, 'normal');
+            opts.priority = base.define(opts.priority, defaultPriority, true);
+
+            /**
+             * Define array of events
+             * @type {Array}
+             */
+            this.listeners[opts.eventName] = base.define(
+                this.listeners[opts.eventName],
+                [], true
+            );
+
+            // Push event item
             this.listeners[opts.eventName].push(opts);
+
+            // Sort by priority
+            this.listeners[opts.eventName].sort(function (a, b) {
+                return priority[b.priority || defaultPriority] -
+                    priority[a.priority || defaultPriority];
+            });
+
             return opts.eventUUID;
         },
 
