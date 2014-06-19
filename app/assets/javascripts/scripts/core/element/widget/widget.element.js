@@ -33,37 +33,86 @@ define([
          */
         this.overlapped = 'overlapped';
 
-        this.bindHover();
+        /**
+         * Define show content class
+         * @member WidgetElement
+         * @type {string}
+         */
+        this.content = 'disable-interactions';
+
+        this.bindHoverInteractions();
 
         return this;
     };
 
     return WidgetElement.extend('WidgetElement', {
 
-        bindHover: function bindHover() {
+        /**
+         * Bind interactions on hover
+         * @member WidgetElement
+         */
+        bindHoverInteractions: function bindHoverInteractions() {
 
             /**
              * Define scope
-             * @type {WidgetElement}
+             * @type {BaseElement}
              */
-            var scope = this;
+            var $widget = this.$;
 
             /**
-             * Define show content class
-             * @type {string}
+             * Define scope
+             * @type {Widget}
              */
-            var content = 'show-content';
+            var scope = this.view.scope;
 
-            scope.$.on('mouseenter.widget', function mouseEnter() {
+            this._bindDisableInteractions(scope, $widget, this.content);
+            this._bindEnableInteractions(scope, $widget, this.content);
+        },
 
-                scope.$.on('dblclick.widget', function dblClick() {
-                    scope.$.addClass(content);
+        /**
+         * Bind disable interactions
+         * @member WidgetElement
+         * @private
+         * @param {Widget} scope
+         * @param {BaseElement} $widget
+         * @param {string} content
+         */
+        _bindDisableInteractions: function _bindDisableInteractions(scope, $widget, content) {
+
+            $widget.on('mouseenter.widget', function mouseEnter() {
+
+                $widget.on('dblclick.widget', function dblClick() {
+
+                    $widget.addClass(content);
+
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.disableDraggable
+                    );
                 });
             });
+        },
 
-            scope.$.on('mouseleave.widget', function mouseLeave() {
-                scope.$.removeClass(content);
-                scope.$.off('dblclick.widget');
+        /**
+         * Bind enable interactions
+         * @member WidgetElement
+         * @private
+         * @param {Widget} scope
+         * @param {BaseElement} $widget
+         * @param {string} content
+         */
+        _bindEnableInteractions: function _bindEnableInteractions(scope, $widget, content) {
+
+            $widget.on('mouseleave.widget', function mouseLeave() {
+
+                if ($widget.hasClass(content)) {
+
+                    $widget.removeClass(content);
+                    $widget.off('dblclick.widget');
+
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.enableDraggable
+                    );
+                }
             });
         },
 

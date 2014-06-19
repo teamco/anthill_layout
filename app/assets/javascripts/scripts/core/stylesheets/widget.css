@@ -60,8 +60,8 @@
     visibility: hidden;
 }
 
-.widget.show-content:after,
-.widget.show-content .ui-resizable-handle {
+.widget.disable-interactions:after,
+.widget.disable-interactions .ui-resizable-handle {
     display: none;
 }
 

@@ -100,7 +100,13 @@ define([
          * @param ui
          */
         create: function create(event, ui) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
             var scope = this.scope;
+
             scope.observer.publish(
                 scope.eventmanager.eventList.createDraggable,
                 arguments
@@ -114,10 +120,18 @@ define([
          * @param ui
          */
         start: function start(event, ui) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
             var scope = this.scope;
+
             this.debugUI(event, ui);
+
             scope.controller.setAsCurrent();
             scope.wireframe.dragSticker();
+
             scope.observer.publish(
                 scope.eventmanager.eventList.startDraggable,
                 arguments
@@ -131,6 +145,11 @@ define([
          * @param ui
          */
         stop: function stop(event, ui) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
             var scope = this.scope;
 
             this.debugUI(event, ui);
@@ -150,8 +169,15 @@ define([
          * @param ui
          */
         drag: function drag(event, ui) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
             var scope = this.scope;
+
             this.debugUI(event, ui);
+
             scope.observer.publish(
                 scope.eventmanager.eventList.dragDraggable,
                 [event.type, arguments]
