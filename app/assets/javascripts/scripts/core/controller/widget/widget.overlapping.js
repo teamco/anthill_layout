@@ -48,7 +48,7 @@ define([], function defineWidgetOverlapping() {
              * Define layout
              * @type {Layout}
              */
-            var layout = this.getLayout();
+            var layout = this.widget.controller.getPageLayout();
             /**
              * Define page
              * @type {Page|*}
@@ -90,7 +90,7 @@ define([], function defineWidgetOverlapping() {
              * Define layout
              * @type {Layout}
              */
-            var layout = this.getLayout();
+            var layout = this.widget.controller.getPageLayout();
 
             /**
              * Define page

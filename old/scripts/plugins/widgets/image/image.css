@@ -1,9 +1,0 @@
-.widget .content .image {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-}
-
-.widget .content .image img {
-    border: none;
-}

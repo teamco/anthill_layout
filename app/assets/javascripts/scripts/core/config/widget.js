@@ -17,7 +17,7 @@ define([
     'permission/widget.permission',
     'controller/widget/widget.map',
     'controller/widget/widget.wireframe'
-], function defineWidget(AntHill, MVC, API, Controller, Model, View, EventManager, Permission, Map, Wireframe) {
+], function defineWidget(AntHill, MVC, API, Controller, Model, View, EventManager, Permission, WidgetMap, Wireframe) {
 
     /**
      * Define Widget
@@ -63,7 +63,11 @@ define([
                 footer: false,
                 frameLess: false,
                 style: '',
-                zIndex: 0
+                zIndex: 0,
+                dimensions: {
+                    width: 5,
+                    height: 5
+                }
             },
             type: 'default',
             maximize: false,
@@ -191,9 +195,9 @@ define([
         /**
          * Define map
          * @member Widget
-         * @type {Map}
+         * @type {WidgetMap}
          */
-        this.map = new Map(this);
+        this.map = new WidgetMap(this);
 
         /**
          * Define wireframe

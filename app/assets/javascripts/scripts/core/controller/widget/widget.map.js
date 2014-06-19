@@ -12,44 +12,34 @@ define([
 
     /**
      * Define Widget Map
-     * @class Map
+     * @class WidgetMap
      * @extends AntHill
      * @extends WidgetOverlapping
      * @param {*} widget
      * @constructor
      */
-    var Map = function Map(widget) {
+    var WidgetMap = function WidgetMap(widget) {
 
         /**
          * Define widget instance
-         * @member Map
+         * @member WidgetMap
          * @type {*}
          */
         this.widget = widget;
 
         /**
          * Define animation duration
-         * @member Map
+         * @member WidgetMap
          * @type {number}
          */
         this.duration = 500;
     };
 
-    return Map.extend('Map', {
-
-        /**
-         * Get layout
-         * @member Map
-         * @returns {*}
-         */
-        getLayout: function getLayout() {
-
-            return this.widget.controller.getLayout();
-        },
+    return WidgetMap.extend('WidgetMap', {
 
         /**
          * Define 0 as 1 relative dims (width|height)
-         * @member Map
+         * @member WidgetMap
          * @param {Number} dim
          * @returns {Number}
          */
@@ -60,7 +50,7 @@ define([
 
         /**
          * Get widget DOM info
-         * @member Map
+         * @member WidgetMap
          * @returns {*}
          */
         getDOM: function getDOM() {
@@ -74,7 +64,7 @@ define([
                     width: $widget.getWidth(),
                     height: $widget.getHeight()
                 },
-                layout = this.getLayout(),
+                layout = widget.controller.getPageLayout(),
                 cell = layout.controller.minCellWidth() +
                     layout.config.grid.margin;
 
@@ -97,7 +87,7 @@ define([
 
         /**
          * Get relative width
-         * @member Map
+         * @member WidgetMap
          * @param {Number} width
          * @param {Number} cell
          * @returns {Number}
@@ -109,7 +99,7 @@ define([
 
         /**
          * Get relative height
-         * @member Map
+         * @member WidgetMap
          * @param {Number} height
          * @param {Number} cell
          * @returns {Number}
@@ -121,7 +111,7 @@ define([
 
         /**
          * Get relative right
-         * @member Map
+         * @member WidgetMap
          * @param {Number} column
          * @param {Number} width
          * @returns {Number}
@@ -133,7 +123,7 @@ define([
 
         /**
          * Get relative bottom
-         * @member Map
+         * @member WidgetMap
          * @param {Number} row
          * @param {Number} height
          * @returns {Number}
@@ -145,7 +135,7 @@ define([
 
         /**
          * Get row
-         * @member Map
+         * @member WidgetMap
          * @param {Number} top
          * @param {Number} cell
          * @returns {Number}
@@ -157,7 +147,7 @@ define([
 
         /**
          * Get column
-         * @member Map
+         * @member WidgetMap
          * @param {Number} left
          * @param {Number} cell
          * @returns {Number}
@@ -169,7 +159,7 @@ define([
 
         /**
          * Get widget top position via grid
-         * @member Map
+         * @member WidgetMap
          * @param {Number} row
          * @returns {Number}
          */
@@ -180,7 +170,7 @@ define([
 
         /**
          * Get widget bottom position via grid
-         * @member Map
+         * @member WidgetMap
          * @param {Number} top
          * @param {Number} height
          * @returns {Number}
@@ -192,7 +182,7 @@ define([
 
         /**
          * Get widget left position via grid
-         * @member Map
+         * @member WidgetMap
          * @param {Number} column
          * @returns {Number}
          */
@@ -203,7 +193,7 @@ define([
 
         /**
          * Get widget right position via grid
-         * @member Map
+         * @member WidgetMap
          * @param {Number} left
          * @param {Number} width
          * @returns {Number}
@@ -215,7 +205,7 @@ define([
 
         /**
          * Get widget height via grid
-         * @member Map
+         * @member WidgetMap
          * @param {Number} relHeight
          * @returns {Number}
          */
@@ -226,7 +216,7 @@ define([
 
         /**
          * Get widget width via grid
-         * @member Map
+         * @member WidgetMap
          * @param {Number} relWidth
          * @returns {Number}
          */
@@ -237,14 +227,14 @@ define([
 
         /**
          * Get map margins delta in row/column
-         * @member Map
+         * @member WidgetMap
          * @param column
          * @param row
          * @returns {{top: number, left: number}}
          */
         marginFor: function marginFor(column, row) {
 
-            var margin = this.getLayout().config.grid.margin;
+            var margin = this.widget.controller.getPageLayout().config.grid.margin;
 
             return {
                 top: (row + 1) * margin,
@@ -254,7 +244,7 @@ define([
 
         /**
          * Get map widget top/left
-         * @member Map
+         * @member WidgetMap
          * @param column
          * @param row
          * @returns {{top: number, left: number}}
@@ -262,7 +252,8 @@ define([
         positionFor: function positionFor(column, row) {
 
             var margins = this.marginFor(column, row),
-                cell = this.getLayout().controller.minCellWidth();
+                layout = this.widget.controller.getPageLayout(),
+                cell = layout.controller.minCellWidth();
 
             return {
                 top: row * cell + margins.top,
@@ -272,13 +263,17 @@ define([
 
         /**
          * Get widget position (top|left) via grid
-         * @member Map
+         * @member WidgetMap
          * @param {Number} pos
          * @returns {Number}
          */
         getWidgetPosition: function getWidgetPosition(pos) {
 
-            var layout = this.getLayout();
+            /**
+             * Get layout
+             * @type {Layout}
+             */
+            var layout = this.widget.controller.getPageLayout();
 
             return pos * layout.controller.minCellWidth() +
                 (pos + 1) * layout.config.grid.margin;
@@ -286,13 +281,17 @@ define([
 
         /**
          * Get widget position (width|height) via grid
-         * @member Map
+         * @member WidgetMap
          * @param {Number} dim
          * @returns {Number}
          */
         getWidgetDims: function getWidgetDims(dim) {
 
-            var layout = this.getLayout();
+            /**
+             * Get layout
+             * @type {Layout}
+             */
+            var layout = this.widget.controller.getPageLayout();
 
             return dim * layout.controller.minCellWidth() +
                 (dim - 1) * layout.config.grid.margin;
@@ -300,7 +299,7 @@ define([
 
         /**
          * Check widget column position via grid: Left
-         * @member Map
+         * @member WidgetMap
          * @param {Number} column
          * @returns {Boolean}
          */
@@ -311,19 +310,19 @@ define([
 
         /**
          * Check widget column position via grid: Right
-         * @member Map
+         * @member WidgetMap
          * @param {{column, relWidth}} dom
          * @returns {Boolean}
          */
         checkWidgetPositionColumnRight: function checkWidgetPositionColumnRight(dom) {
 
             return (dom.column + dom.relWidth) <=
-                this.getLayout().config.grid.columns;
+                this.widget.controller.getPageLayout().config.grid.columns;
         },
 
         /**
          * Check widget column position via grid: Left|Right
-         * @member Map
+         * @member WidgetMap
          * @param {{column, relWidth}} dom
          * @returns {Boolean}
          */
@@ -337,7 +336,7 @@ define([
 
         /**
          * Check widget row position via grid: Top
-         * @member Map
+         * @member WidgetMap
          * @param {{Number}} row
          * @returns {Boolean}
          */
@@ -348,7 +347,7 @@ define([
 
         /**
          * Check widget position
-         * @member Map
+         * @member WidgetMap
          * @returns {Boolean|*}
          */
         checkWidgetPosition: function checkWidgetPosition() {
@@ -363,7 +362,7 @@ define([
 
         /**
          * Check if interaction is: resize
-         * @member Map
+         * @member WidgetMap
          * @param {String} type
          * @returns {*|Array|{index: number, input: string}}
          */
@@ -373,7 +372,7 @@ define([
 
         /**
          * Check if interaction is: drag
-         * @member Map
+         * @member WidgetMap
          * @param {String} type
          * @returns {*|Array|{index: number, input: string}}
          */
@@ -383,7 +382,7 @@ define([
 
         /**
          * Check if interaction is: stop {drag|resize}
-         * @member Map
+         * @member WidgetMap
          * @param {String} type
          * @returns {*|Array|{index: number, input: string}}
          */
@@ -393,7 +392,7 @@ define([
 
         /**
          * Get animation behavior on stop interaction
-         * @member Map
+         * @member WidgetMap
          * @param {Boolean} animateCfg
          * @param {Boolean} animateOpts
          * @param {String} type
@@ -418,7 +417,7 @@ define([
 
         /**
          * Get overlapping behavior on stop interaction
-         * @member Map
+         * @member WidgetMap
          * @param {Boolean} overlapping
          * @param {String} type
          * @returns {Boolean}
@@ -429,7 +428,7 @@ define([
 
         /**
          * Grid sticker on interaction (Drag/Resize)
-         * @member Map
+         * @member WidgetMap
          * @param {{type, $source, callback: Function, organize: Boolean, animate: Boolean}} opts
          * @param {String} mode
          * @param {{animate: Boolean}} behavior
@@ -442,16 +441,37 @@ define([
              */
             var widget = this.widget;
 
+            /**
+             * Define layout
+             * @type {Layout}
+             */
+            var layout = this.widget.controller.getPageLayout();
+
+            if (!widget.dom.width) {
+                widget.controller.getView().get$item().setWidth(
+                    this.widgetWidth(
+                        widget.model.getConfig('html/dimensions/width')
+                    )
+                );
+            }
+
+            if (!widget.dom.height) {
+                widget.controller.getView().get$item().setHeight(
+                    this.widgetHeight(
+                        widget.model.getConfig('html/dimensions/height')
+                    )
+                );
+            }
+
             widget.observer.publish(
                 widget.eventmanager.eventList.saveDom
             );
 
             opts = this.base.define(opts, {}, true);
 
-            var layout = this.getLayout(),
-                css = this.isDrag(opts.type) ?
-                    this.dragTo() :
-                    this.resizeTo();
+            var css = this.isDrag(opts.type) ?
+                this.dragTo() :
+                this.resizeTo();
 
             if (css.top >= 0 && css.left >= 0) {
 
@@ -497,7 +517,7 @@ define([
 
         /**
          * Map sticker callback
-         * @member Map
+         * @member WidgetMap
          * @private
          */
         _mapStickerCallback: function _mapStickerCallback() {
@@ -508,8 +528,7 @@ define([
 
             if (this.map.overlappingOnStop(
                 this.type,
-                widget.controller.
-                    getLayout().controller.
+                widget.controller.getPageLayout().controller.
                     isOverlappingAllowed()
             )) {
 
@@ -533,12 +552,16 @@ define([
 
         /**
          * Get next dimensions
-         * @member Map
+         * @member WidgetMap
          * @param {Number} relDim
          * @returns {Number}
          */
         getNextDims: function getNextDims(relDim) {
-            var layout = this.getLayout(),
+            /**
+             * Get layout
+             * @type {Layout}
+             */
+            var layout = this.widget.controller.getPageLayout(),
                 cell = layout.controller.minCellWidth(),
                 margin = layout.config.grid.margin;
             return cell * relDim + margin * (relDim - 1);
@@ -546,18 +569,25 @@ define([
 
         /**
          * Drag to
-         * @member Map
+         * @member WidgetMap
          * @returns {{left: Number, top: Number}}
          */
         dragTo: function dragTo() {
-            return this.getLayout().controller.getNextPosition(
+
+            /**
+             * Get layout
+             * @type {Layout}
+             */
+            var layout = this.widget.controller.getPageLayout();
+
+            return layout.controller.getNextPosition(
                 this.getDOM()
             );
         },
 
         /**
          * Resize to
-         * @member Map
+         * @member WidgetMap
          * @returns {{width: Number, height: Number}}
          */
         resizeTo: function resizeTo() {
@@ -576,7 +606,7 @@ define([
 
         /**
          * Adopt to
-         * @member Map
+         * @member WidgetMap
          * @param {boolean} animate
          */
         adoptTo: function adoptTo(animate) {
@@ -589,7 +619,7 @@ define([
 
         /**
          * Set widget position
-         * @member Map
+         * @member WidgetMap
          * @param {{
          *      column: Number,
          *      row: Number,
@@ -658,7 +688,7 @@ define([
 
         /**
          * Get occupied
-         * @member Map
+         * @member WidgetMap
          * @returns {{top: Number, left: Number, width: *, height: *}}
          */
         occupiedAt: function occupiedAt() {
@@ -684,7 +714,7 @@ define([
 
         /**
          * Retrieve the last row number we are occupying by now
-         * @member Map
+         * @member WidgetMap
          * @returns {number}
          */
         getLastOccupiedRow: function getLastOccupiedRow() {

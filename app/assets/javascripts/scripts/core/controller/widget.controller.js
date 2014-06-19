@@ -96,11 +96,11 @@ define([
         },
 
         /**
-         * Get layout
+         * Get page layout
          * @member WidgetController
-         * @returns {*}
+         * @returns {Layout}
          */
-        getLayout: function getLayout() {
+        getPageLayout: function getPageLayout() {
             return this.getContainment().controller.getLayout();
         },
 
@@ -131,9 +131,9 @@ define([
 
             /**
              * Get layout
-             * @type {*}
+             * @type {Layout}
              */
-            var layout = this.getContainment().controller.getLayout();
+            var layout = this.getPageLayout();
 
             /**
              * Get padding
@@ -450,7 +450,7 @@ define([
                 this[mode + 'Mode'](
                     opts,
                     mode,
-                    this.getLayout().controller.getBehavior()
+                    this.getPageLayout().controller.getBehavior()
                 );
             }
         },
@@ -497,7 +497,7 @@ define([
         isMode: function isMode() {
 
             var modes = this.getContainment().LAYOUT_MODES,
-                layout = this.getLayout(),
+                layout = this.getPageLayout(),
                 mode = layout.config.mode,
                 index;
 

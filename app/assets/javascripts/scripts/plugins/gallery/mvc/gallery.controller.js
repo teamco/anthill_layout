@@ -89,6 +89,12 @@ define([
                     preferences: {
                         resource: $element.$.attr('resource'),
                         thumbnail: $element.data.thumbnail
+                    },
+                    html: {
+                        dimensions: {
+                            width: $element.data.dimensions.width,
+                            height: $element.data.dimensions.height
+                        }
                     }
                 }
             }, true);
