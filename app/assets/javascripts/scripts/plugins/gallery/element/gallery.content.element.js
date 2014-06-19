@@ -42,7 +42,7 @@ define([
 
         /**
          * Set attributes
-         * @memberOf GalleryContentElement
+         * @member GalleryContentElement
          */
         setAttributes: function setAttributes() {
 
@@ -68,7 +68,7 @@ define([
 
         /**
          * Bind Install widget
-         * @memberOf GalleryContentElement
+         * @member GalleryContentElement
          */
         bindInstallWidget: function bindInstallWidget() {
 
@@ -86,6 +86,10 @@ define([
             );
         },
 
+        /**
+         * Show item info
+         * @member GalleryContentElement
+         */
         bindShowInfo: function bindShowInfo() {
 
             /**
@@ -100,7 +104,6 @@ define([
             );
 
             $content.$.hover(
-
                 function on() {
 
                     $content.$.append(
@@ -109,7 +112,7 @@ define([
                             title: ''
                         });
 
-                    $content.$.on('mousemove.gallery', function(e){
+                    $content.$.on('mousemove.gallery', function (e) {
                         $tooltip.offset({
                             top: e.pageY - $tooltip.height() - 30,
                             left: e.pageX - 100
