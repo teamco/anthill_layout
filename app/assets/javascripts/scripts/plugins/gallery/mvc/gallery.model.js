@@ -30,8 +30,8 @@ define([
                 description: 'Show page tabs',
                 thumbnail: '',
                 dimensions: {
-                    width: 4,
-                    height: 2
+                    width: 10,
+                    height: 5
                 },
                 resource: 'page.tabs'
             },
@@ -40,8 +40,8 @@ define([
                 description: 'Empty widget',
                 thumbnail: '',
                 dimensions: {
-                    width: 4,
-                    height: 2
+                    width: 5,
+                    height: 5
                 },
                 resource: 'empty'
             },
@@ -50,8 +50,8 @@ define([
                 description: 'Text Editor',
                 thumbnail: '',
                 dimensions: {
-                    width: 4,
-                    height: 2
+                    width: 10,
+                    height: 7
                 },
                 resource: 'text.editor'
             },
@@ -60,8 +60,8 @@ define([
                 description: 'Dropbox is a free service that lets you bring your photos, docs, and videos anywhere and share them easily.',
                 thumbnail: '',
                 dimensions: {
-                    width: 1,
-                    height: 1
+                    width: 5,
+                    height: 5
                 },
                 resource: 'dropbox'
             },
@@ -70,8 +70,8 @@ define([
                 description: 'Map locator',
                 thumbnail: '',
                 dimensions: {
-                    width: 5,
-                    height: 5
+                    width: 10,
+                    height: 10
                 },
                 resource: 'map.locator'
             },
@@ -80,8 +80,8 @@ define([
                 description: 'Pick a photo and put it as your Avatar',
                 thumbnail: '',
                 dimensions: {
-                    width: 5,
-                    height: 5
+                    width: 10,
+                    height: 10
                 },
                 resource: 'avatar'
             },
@@ -90,8 +90,8 @@ define([
                 description: 'JW Player powers online publishing, with clients ranging in size from Fortune 500 companies to individual bloggers',
                 thumbnail: '',
                 dimensions: {
-                    width: 2,
-                    height: 2
+                    width: 10,
+                    height: 10
                 },
                 resource: 'jwplayer'
             },
@@ -100,8 +100,8 @@ define([
                 description: 'YouTube provides a forum for people to connect, inform, and inspire others across the globe and acts as a distribution platform for original content creators and advertisers large and small',
                 thumbnail: '',
                 dimensions: {
-                    width: 2,
-                    height: 2
+                    width: 10,
+                    height: 10
                 },
                 resource: 'youtube'
             },
@@ -110,8 +110,8 @@ define([
                 description: 'A powerful multimedia technology with a built-in media player, QuickTime lets you view internet video, HD movie trailers, and personal media in a wide range of file formats',
                 thumbnail: '',
                 dimensions: {
-                    width: 2,
-                    height: 2
+                    width: 10,
+                    height: 10
                 },
                 resource: 'quicktime'
             },
@@ -120,8 +120,8 @@ define([
                 description: 'Vimeo is video + you. We put your videos first and give you the best ways to share, discover, and be inspired',
                 thumbnail: '',
                 dimensions: {
-                    width: 2,
-                    height: 2
+                    width: 10,
+                    height: 10
                 },
                 resource: 'vimeo'
             },
@@ -130,8 +130,8 @@ define([
                 description: 'A simple image widget that uses the native media manager to add image widgets to your site',
                 thumbnail: '',
                 dimensions: {
-                    width: 2,
-                    height: 2
+                    width: 10,
+                    height: 10
                 },
                 resource: 'image'
             },
@@ -140,8 +140,8 @@ define([
                 description: 'Image gallery provides an image viewer',
                 thumbnail: '',
                 dimensions: {
-                    width: 2,
-                    height: 2
+                    width: 10,
+                    height: 10
                 },
                 resource: 'image.gallery'
             },
@@ -150,8 +150,8 @@ define([
                 description: 'Subscribing to a website RSS removes the need for the user to manually check the web site for new content',
                 thumbnail: '',
                 dimensions: {
-                    width: 2,
-                    height: 2
+                    width: 10,
+                    height: 5
                 },
                 resource: 'rss'
             },
@@ -160,8 +160,8 @@ define([
                 description: 'Show unique twitter thread',
                 thumbnail: '',
                 dimensions: {
-                    width: 2,
-                    height: 2
+                    width: 10,
+                    height: 5
                 },
                 resource: 'twits'
             },
@@ -170,8 +170,8 @@ define([
                 description: 'Portable Document Format (PDF) is a file format used to present documents in a manner independent of application software, hardware, and operating systems',
                 thumbnail: '',
                 dimensions: {
-                    width: 2,
-                    height: 2
+                    width: 10,
+                    height: 10
                 },
                 resource: 'pdf'
             },
@@ -180,8 +180,8 @@ define([
                 description: 'Geolocation is the identification of the real-world geographic location of an object, such as a radar, mobile phone or an Internet-connected computer terminal',
                 thumbnail: '',
                 dimensions: {
-                    width: 2,
-                    height: 2
+                    width: 10,
+                    height: 10
                 },
                 resource: 'geolocation'
             },
@@ -190,8 +190,8 @@ define([
                 description: 'The OpenWeatherMap service provides free weather data and forecast API suitable for any cartographic services like web and smartphones applications',
                 thumbnail: '',
                 dimensions: {
-                    width: 2,
-                    height: 2
+                    width: 10,
+                    height: 10
                 },
                 resource: 'open.weather.map'
             },
@@ -200,8 +200,8 @@ define([
                 description: 'Login to your page',
                 thumbnail: '',
                 dimensions: {
-                    width: 2,
-                    height: 2
+                    width: 5,
+                    height: 5
                 },
                 resource: 'login'
             },
@@ -210,8 +210,8 @@ define([
                 description: 'Share your page with your friends',
                 thumbnail: '',
                 dimensions: {
-                    width: 2,
-                    height: 2
+                    width: 5,
+                    height: 10
                 },
                 resource: 'share'
             }

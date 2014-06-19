@@ -427,6 +427,30 @@ define([
         },
 
         /**
+         * Set widget default size defined in gallery model
+         * Run before saving dom
+         * @member WidgetMap
+         * @param {string} type
+         */
+        setDefaultSize: function setDefaultSize(type){
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.widget,
+                size = type.toLowerCase();
+
+            if (!widget.dom[size]) {
+                widget.controller.getView().get$item()['set' + type](
+                    this['widget' + type](
+                        widget.model.getConfig('html/dimensions/' + size)
+                    )
+                );
+            }
+        },
+
+        /**
          * Grid sticker on interaction (Drag/Resize)
          * @member WidgetMap
          * @param {{type, $source, callback: Function, organize: Boolean, animate: Boolean}} opts
@@ -447,21 +471,8 @@ define([
              */
             var layout = this.widget.controller.getPageLayout();
 
-            if (!widget.dom.width) {
-                widget.controller.getView().get$item().setWidth(
-                    this.widgetWidth(
-                        widget.model.getConfig('html/dimensions/width')
-                    )
-                );
-            }
-
-            if (!widget.dom.height) {
-                widget.controller.getView().get$item().setHeight(
-                    this.widgetHeight(
-                        widget.model.getConfig('html/dimensions/height')
-                    )
-                );
-            }
+            this.setDefaultSize('Width');
+            this.setDefaultSize('Height');
 
             widget.observer.publish(
                 widget.eventmanager.eventList.saveDom
