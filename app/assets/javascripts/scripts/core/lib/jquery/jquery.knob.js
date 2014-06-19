@@ -128,8 +128,7 @@
 
                     // Output formatting, allows to add unit: %, ms ...
                     format: function(v) {
-                        var searchRadius = parseInt(v + '000');
-                        return 'Search radius: ' + v + ' km';
+                        return v;
                     },
                     parse: function (v) {
                         return parseFloat(v);

@@ -127,6 +127,8 @@ define([
              */
             var scope = this;
 
+            scope.empty();
+
             scope.view.controller.clearParentThumbnail();
 
             scope.defineMapStyle(opts);
@@ -234,10 +236,28 @@ define([
             });
 
             searchButton.click(function () {
-                initialize();
+
+                /**
+                 * Define map locator scope
+                 * @type {MapLocator}
+                 */
+                var mapLocator = scope.view.scope;
+
+                mapLocator.model.setMapLocatorSearchRadius(scope.$dial.val() + '000');
+
+                mapLocator.observer.publish(
+                    mapLocator.eventmanager.eventList.setEmbeddedContent
+                );
             });
 
-            $(".dial", this.$).knob({
+            /**
+             * Define search radius
+             * @member MapLocatorElement
+             * @type {*|jQuery|HTMLElement}
+             */
+            scope.$dial = $(".dial", scope.$);
+
+            scope.$dial.knob({
                 'min': 1,
                 'max': 10,
                 'angleOffset': 310,

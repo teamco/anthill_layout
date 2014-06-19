@@ -114,16 +114,22 @@ define(
                  */
                 calculateRoute: function calculateRoute(destination) {
 
-                    directionsService.route({
+                    /**
+                     * Define $maplocator
+                     * @type {MapLocatorElement}
+                     */
+                    var $maplocator = this.scope.view.elements.$maplocator;
 
-                        origin: pos,
+                    $maplocator.directionsService.route({
+
+                        origin: $maplocator.pos,
                         destination: destination,
                         travelMode: google.maps.TravelMode.DRIVING
 
                     }, function directionsServiceCallback(response, status) {
 
                         if (status === google.maps.DirectionsStatus.OK) {
-                            directionsDisplay.setDirections(response);
+                            $maplocator.directionsDisplay.setDirections(response);
                         }
                     });
                 }

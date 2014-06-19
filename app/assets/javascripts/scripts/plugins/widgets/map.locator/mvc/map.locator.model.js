@@ -161,10 +161,10 @@ define([
         /**
          * Set MapLocator Search radius
          * @member MapLocatorModel
-         * @param {number} radius
+         * @param {string} radius
          */
         setMapLocatorSearchRadius: function setMapLocatorSearchRadius(radius) {
-            this.setPrefs('mapLocatorSearchRadius', radius);
+            this.setPrefs('mapLocatorSearchRadius', parseInt(radius, 10));
         }
 
     }, BaseModel.prototype);
