@@ -107,7 +107,7 @@ define([
                 function on() {
 
                     $content.$.append(
-                        $tooltip.stop().fadeIn()
+                        $tooltip.stop().fadeTo('slow', 0.8)
                     ).attr({
                             title: ''
                         });
