@@ -23,6 +23,50 @@ define([
     return Renderer.extend('Renderer', {
 
         /**
+         * Render tooltip
+         * @param {string} title
+         * @param {string} [description]
+         * @param {string} [imageUrl]
+         * @param {string} [imageFloat]
+         * @param {string} [linkUrl]
+         * @param {string} [linkTitle]
+         * @returns {*|jQuery}
+         */
+        renderTooltip: function renderTooltip(title, description, imageUrl, imageFloat, linkUrl, linkTitle) {
+
+            var $title = $('<h2 />').text(title),
+                $description = $('<p />').text(description),
+                $image, $link;
+
+            if (imageUrl) {
+
+                $image = $('<img />').attr({
+                    src: image,
+                    alt: title
+                }).css({
+                    cssFloat: imageFloat || 'none'
+                });
+            }
+
+            if (linkUrl) {
+
+                $link = $('<a />').attr({
+                    href: linkUrl,
+                    title: linkTitle || linkUrl
+                });
+            }
+
+            return $('<div />').append([
+
+                $title,
+                $image,
+                $description,
+                $link
+
+            ]).addClass('tooltip');
+        },
+
+        /**
          * Render label
          * @member Renderer
          * @param {*|string} uuid
