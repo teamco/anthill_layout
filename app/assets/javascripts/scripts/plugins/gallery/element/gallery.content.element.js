@@ -33,6 +33,7 @@ define([
 
         this.setAttributes();
         this.bindInstallWidget();
+        this.bindShowInfo();
 
         return this;
     };
@@ -47,7 +48,6 @@ define([
 
             this.$.attr({
                 title: this.data.name,
-                rel: this.data.description,
                 resource: this.data.resource
             });
 
@@ -83,6 +83,46 @@ define([
             this.$.on(
                 'click.install',
                 _clickInstall.bind(this)
+            );
+        },
+
+        bindShowInfo: function bindShowInfo() {
+
+            /**
+             * Define content element
+             * @type {GalleryContentElement}
+             */
+            var $content = this;
+
+            var $tooltip = $content.renderTooltip(
+                $content.data.name,
+                $content.data.description
+            );
+
+            $content.$.hover(
+
+                function on() {
+
+                    $content.$.append(
+                        $tooltip.stop().fadeIn()
+                    ).attr({
+                            title: ''
+                        });
+
+                    $content.$.on('mousemove.gallery', function(e){
+                        $tooltip.offset({
+                            top: e.pageY - $tooltip.height() - 30,
+                            left: e.pageX - 100
+                        });
+                    });
+                },
+
+                function off() {
+                    $tooltip.remove();
+                    $content.$.off('mousemove.gallery').attr({
+                        title: $content.data.name
+                    });
+                }
             );
         }
 
