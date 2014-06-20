@@ -262,7 +262,8 @@ define([
                                                 rules[i]
                                             ].join(''),
                                             checked: $.inArray(rules[i], checked) !== -1,
-                                            disabled: false
+                                            disabled: false,
+                                            visible: true
                                         })
                                     )
                                 );
