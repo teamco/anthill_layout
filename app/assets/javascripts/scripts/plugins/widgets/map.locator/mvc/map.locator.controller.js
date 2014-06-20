@@ -54,22 +54,22 @@ define(
                  */
                 _setEmbeddedContent: function _setEmbeddedContent() {
                     this.view.elements.$maplocator.renderEmbeddedContent({
-                        latitude: this.model.getPrefs('mapLocatorLatitude'),
-                        longitude: this.model.getPrefs('mapLocatorLongitude'),
-                        zoom: this.model.getPrefs('mapLocatorZoom'),
-                        searchRadius: this.model.getPrefs('mapLocatorSearchRadius'),
-                        waterColor: this.model.getPrefs('mapLocatorMapStyleWaterColor'),
-                        waterVisibility: this.model.getPrefs('mapLocatorMapStyleWaterVisibility'),
-                        landscapeColor: this.model.getPrefs('mapLocatorMapStyleLandscapeColor'),
-                        roadSaturation: this.model.getPrefs('mapLocatorMapStyleRoadSaturation'),
-                        roadLightness: this.model.getPrefs('mapLocatorMapStyleRoadLightness'),
-                        roadHighwayVisibility: this.model.getPrefs('mapLocatorMapStyleRoadHighwayVisibility'),
-                        roadArterialElementType: this.model.getPrefs('mapLocatorMapStyleRoadArterialElementType'),
-                        roadArterialVisibility: this.model.getPrefs('mapLocatorMapStyleRoadArterialVisibility'),
-                        administrativeElementType: this.model.getPrefs('mapLocatorMapStyleAdministrativeElementType'),
-                        administrativeColor: this.model.getPrefs('mapLocatorMapStyleAdministrativeColor'),
-                        transitVisibility: this.model.getPrefs('mapLocatorMapStyleTransitVisibility'),
-                        poiVisibility: this.model.getPrefs('mapLocatorMapStylePoiVisibility')
+                        latitude: this.model.getPrefs('maplocatorLatitude'),
+                        longitude: this.model.getPrefs('maplocatorLongitude'),
+                        zoom: this.model.getPrefs('maplocatorZoom'),
+                        searchRadius: this.model.getPrefs('maplocatorSearchRadius'),
+                        waterColor: this.model.getPrefs('maplocatorMapStyleWaterColor'),
+                        waterVisibility: this.model.getPrefs('maplocatorMapStyleWaterVisibility'),
+                        landscapeColor: this.model.getPrefs('maplocatorMapStyleLandscapeColor'),
+                        roadSaturation: this.model.getPrefs('maplocatorMapStyleRoadSaturation'),
+                        roadLightness: this.model.getPrefs('maplocatorMapStyleRoadLightness'),
+                        roadHighwayVisibility: this.model.getPrefs('maplocatorMapStyleRoadHighwayVisibility'),
+                        roadArterialElementType: this.model.getPrefs('maplocatorMapStyleRoadArterialElementType'),
+                        roadArterialVisibility: this.model.getPrefs('maplocatorMapStyleRoadArterialVisibility'),
+                        administrativeElementType: this.model.getPrefs('maplocatorMapStyleAdministrativeElementType'),
+                        administrativeColor: this.model.getPrefs('maplocatorMapStyleAdministrativeColor'),
+                        transitVisibility: this.model.getPrefs('maplocatorMapStyleTransitVisibility'),
+                        poiVisibility: this.model.getPrefs('maplocatorMapStylePoiVisibility')
                     });
                 },
 

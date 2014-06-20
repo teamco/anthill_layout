@@ -23,97 +23,97 @@ define([
          * @type {{}}
          */
         this.preferences = {
-            mapLocatorLatitude: {
+            maplocatorLatitude: {
                 type: 'text',
                 disabled: false,
                 value: undefined,
                 visible: true
             },
-            mapLocatorLongitude: {
+            maplocatorLongitude: {
                 type: 'text',
                 disabled: false,
                 value: undefined,
                 visible: true
             },
-            mapLocatorZoom: {
+            maplocatorZoom: {
                 type: 'text',
                 disabled: false,
                 value: 13,
                 visible: true
             },
-            mapLocatorSearchRadius: {
+            maplocatorSearchRadius: {
                 type: 'text',
                 disabled: false,
                 value: 1000,
                 visible: true
             },
-            mapLocatorMapStyleWaterColor: {
+            maplocatorMapStyleWaterColor: {
                 type: 'text',
                 disabled: true,
                 value: '#46bcec',
                 visible: false
             },
-            mapLocatorMapStyleWaterVisibility: {
+            maplocatorMapStyleWaterVisibility: {
                 type: 'text',
                 disabled: true,
                 value: 'on',
                 visible: false
             },
-            mapLocatorMapStyleLandscapeColor: {
+            maplocatorMapStyleLandscapeColor: {
                 type: 'text',
                 disabled: true,
                 value: '#f2f2f2',
                 visible: false
             },
-            mapLocatorMapStyleRoadSaturation: {
+            maplocatorMapStyleRoadSaturation: {
                 type: 'text',
                 disabled: true,
                 value: -100,
                 visible: false
             },
-            mapLocatorMapStyleRoadLightness: {
+            maplocatorMapStyleRoadLightness: {
                 type: 'text',
                 disabled: true,
                 value: 45,
                 visible: false
             },
-            mapLocatorMapStyleRoadHighwayVisibility: {
+            maplocatorMapStyleRoadHighwayVisibility: {
                 type: 'text',
                 disabled: true,
                 value: 'simplified',
                 visible: false
             },
-            mapLocatorMapStyleRoadArterialElementType: {
+            maplocatorMapStyleRoadArterialElementType: {
                 type: 'text',
                 disabled: true,
                 value: 'labels.icon',
                 visible: false
             },
-            mapLocatorMapStyleRoadArterialVisibility: {
+            maplocatorMapStyleRoadArterialVisibility: {
                 type: 'text',
                 disabled: true,
                 value: 'off',
                 visible: false
             },
-            mapLocatorMapStyleAdministrativeElementType: {
+            maplocatorMapStyleAdministrativeElementType: {
                 type: 'text',
                 disabled: true,
                 value: 'labels.text.fill',
                 visible: false
             },
-            mapLocatorMapStyleAdministrativeColor: {
+            maplocatorMapStyleAdministrativeColor: {
                 type: 'text',
                 disabled: true,
                 value: '#444444',
                 visible: false
             },
-            mapLocatorMapStyleTransitVisibility: {
+            maplocatorMapStyleTransitVisibility: {
                 type: 'text',
                 disabled: true,
                 value: 'off',
                 visible: false
             },
-            mapLocatorMapStylePoiVisibility: {
+            maplocatorMapStylePoiVisibility: {
                 type: 'text',
                 disabled: true,
                 value: 'off',
@@ -137,7 +137,7 @@ define([
          * @param {number} latitude
          */
         setMapLocatorLatitude: function setMapLocatorLatitude(latitude) {
-            this.setPrefs('mapLocatorLatitude', latitude);
+            this.setPrefs('maplocatorLatitude', latitude);
         },
 
         /**
@@ -146,7 +146,7 @@ define([
          * @param {number} longitude
          */
         setMapLocatorLongitude: function setMapLocatorLongitude(longitude) {
-            this.setPrefs('mapLocatorLongitude', longitude);
+            this.setPrefs('maplocatorLongitude', longitude);
         },
 
         /**
@@ -155,7 +155,7 @@ define([
          * @param {number} zoom
          */
         setMapLocatorZoom: function setMapLocatorZoom(zoom) {
-            this.setPrefs('mapLocatorZoom', zoom);
+            this.setPrefs('maplocatorZoom', zoom);
         },
 
         /**
@@ -164,7 +164,7 @@ define([
          * @param {string} radius
          */
         setMapLocatorSearchRadius: function setMapLocatorSearchRadius(radius) {
-            this.setPrefs('mapLocatorSearchRadius', parseInt(radius, 10));
+            this.setPrefs('maplocatorSearchRadius', parseInt(radius, 10));
         }
 
     }, BaseModel.prototype);
