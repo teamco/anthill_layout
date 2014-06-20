@@ -58,6 +58,10 @@
     visibility: hidden;
 }
 
+.widget.ui-draggable.disable-interactions:hover .content {
+    cursor: default;
+}
+
 .widget.disable-interactions:after,
 .widget.disable-interactions .ui-resizable-handle {
     display: none;
