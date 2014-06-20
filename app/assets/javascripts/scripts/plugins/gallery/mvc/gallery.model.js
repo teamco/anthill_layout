@@ -214,8 +214,17 @@ define([
                     height: 10
                 },
                 resource: 'share'
+            },
+            {
+                name: 'Adobe Flash player',
+                description: 'Adobe Flash Player is the standard for delivering high-impact, rich Web content. Designs, animation, and application user interfaces are deployed immediately across all browsers and platforms, attracting and engaging users with a rich Web experience.',
+                thumbnail: '',
+                dimensions: {
+                    width: 15,
+                    height: 15
+                },
+                resource: 'swf'
             }
-
         ];
 
         /**
