@@ -143,7 +143,7 @@ define([
                          */
                         regex = new RegExp(value, 'ig');
 
-                        $item.data.name.match(regex) ?
+                        ($item.data.name.match(regex) || $item.data.resource.match(regex)) ?
                             $item.show() :
                             $item.hide();
                     }
