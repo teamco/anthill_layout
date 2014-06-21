@@ -101,7 +101,54 @@ define([
          * @param e
          */
         filterResults: function filterResults(e) {
-            console.log(this, e)
+
+            e.preventDefault();
+
+            if (e.which === 13) {
+                return false;
+            }
+
+            if (e.which === 27) {
+                e.target.value = '';
+            }
+
+            /**
+             * Get item elements
+             * @type {{}}
+             */
+            var items = this.getView().elements.items,
+                index, $item,
+                value = e.target.value,
+                regex;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    /**
+                     * Define item
+                     * @type {GalleryContentElement}
+                     */
+                    $item = items[index];
+
+                    if (value.length === 0) {
+
+                        $item.show();
+
+                    } else {
+
+                        /**
+                         * Define regex
+                         * @type {RegExp}
+                         */
+                        regex = new RegExp(value, 'ig');
+
+                        $item.data.name.match(regex) ?
+                            $item.show() :
+                            $item.hide();
+                    }
+                }
+            }
         },
 
         /**
