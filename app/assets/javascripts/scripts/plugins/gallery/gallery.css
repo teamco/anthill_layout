@@ -74,6 +74,12 @@ div.gallery-content div.combo-box > ul {
     box-shadow: inset 0 0 5px #ccc;
 }
 
+div.gallery-content div.combo-box > ul {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
 div.gallery-content div.combo-box {
     position: relative;
     background-color: #fff;
@@ -84,8 +90,9 @@ div.gallery-content div.combo-box {
 
 div.gallery-content div.combo-box-arrow {
     position: absolute;
+    z-index: 2;
     top: 1px;
-    right: 0px;
+    right: 0;
     width: 12px;
     height: 20px;
     cursor: pointer;
