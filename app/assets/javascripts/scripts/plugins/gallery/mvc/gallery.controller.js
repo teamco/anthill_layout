@@ -51,19 +51,46 @@ define([
          * @member GalleryController
          */
         setProviders: function setProviders() {
+
             this.logger.debug('Set providers');
+
+            /**
+             * Get available providers
+             * @type {*}
+             */
+            var data = this.model.staticData,
+                index;
+
+            for (index in data) {
+
+                if (data.hasOwnProperty(index)) {
+                    this.model.setProvider(data[index]);
+                }
+            }
+        },
+
+        changeProvider: function changeProvider(provider) {
+
+            if (provider === this.getCurrentProvider().key) {
+                return false;
+            }
+
+            this.setCurrentProvider(provider);
+            this.loadContent(true, true);
         },
 
         /**
          * Load gallery content
          * @member GalleryController
-         * @param opened
+         * @param {boolean} opened
+         * @param {boolean} [force]
          */
-        loadContent: function loadContent(opened) {
+        loadContent: function loadContent(opened, force) {
 
             if (opened) {
                 this.getView().renderContent(
-                    this.getCurrentProvider()
+                    this.getCurrentProvider(),
+                    force
                 );
             }
         },

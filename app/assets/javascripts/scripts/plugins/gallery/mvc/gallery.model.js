@@ -20,6 +20,20 @@ define([
     var GalleryModel = function GalleryModel() {
 
         /**
+         * Define provider types
+         * @type {{regular: string, text: string, video: string, map: string, files: string, image: string, social: string}}
+         */
+        this.dataTypes = {
+            regular: 'Regular widgets',
+            text: 'Text editor',
+            video: 'Video player',
+            map: 'Map widgets',
+            files: 'Show file',
+            image: 'Image gallery',
+            social: 'Social data'
+        };
+
+        /**
          * Define static data
          * @member GalleryModel
          * @type {*[]}
@@ -33,6 +47,7 @@ define([
                     width: 10,
                     height: 5
                 },
+                type: 'regular',
                 resource: 'page.tabs'
             },
             {
@@ -43,6 +58,7 @@ define([
                     width: 5,
                     height: 5
                 },
+                type: 'regular',
                 resource: 'empty'
             },
             {
@@ -53,6 +69,7 @@ define([
                     width: 10,
                     height: 7
                 },
+                type: 'text',
                 resource: 'text.editor'
             },
             {
@@ -63,6 +80,7 @@ define([
                     width: 5,
                     height: 5
                 },
+                type: 'files',
                 resource: 'dropbox'
             },
             {
@@ -73,6 +91,7 @@ define([
                     width: 10,
                     height: 10
                 },
+                type: 'map',
                 resource: 'map.locator'
             },
             {
@@ -83,6 +102,7 @@ define([
                     width: 10,
                     height: 10
                 },
+                type: 'image',
                 resource: 'avatar'
             },
             {
@@ -93,6 +113,7 @@ define([
                     width: 10,
                     height: 10
                 },
+                type: 'video',
                 resource: 'jwplayer'
             },
             {
@@ -103,6 +124,7 @@ define([
                     width: 10,
                     height: 10
                 },
+                type: 'video',
                 resource: 'youtube'
             },
             {
@@ -113,6 +135,7 @@ define([
                     width: 10,
                     height: 10
                 },
+                type: 'video',
                 resource: 'quicktime'
             },
             {
@@ -123,6 +146,7 @@ define([
                     width: 10,
                     height: 10
                 },
+                type: 'video',
                 resource: 'vimeo'
             },
             {
@@ -133,6 +157,7 @@ define([
                     width: 10,
                     height: 10
                 },
+                type: 'image',
                 resource: 'image'
             },
             {
@@ -143,6 +168,7 @@ define([
                     width: 10,
                     height: 10
                 },
+                type: 'image',
                 resource: 'image.gallery'
             },
             {
@@ -153,6 +179,7 @@ define([
                     width: 10,
                     height: 5
                 },
+                type: 'social',
                 resource: 'rss'
             },
             {
@@ -163,6 +190,7 @@ define([
                     width: 10,
                     height: 5
                 },
+                type: 'social',
                 resource: 'twits'
             },
             {
@@ -173,6 +201,7 @@ define([
                     width: 10,
                     height: 10
                 },
+                type: 'files',
                 resource: 'pdf'
             },
             {
@@ -183,6 +212,7 @@ define([
                     width: 10,
                     height: 10
                 },
+                type: 'map',
                 resource: 'geolocation'
             },
             {
@@ -193,6 +223,7 @@ define([
                     width: 10,
                     height: 10
                 },
+                type: 'map',
                 resource: 'open.weather.map'
             },
             {
@@ -203,6 +234,7 @@ define([
                     width: 5,
                     height: 5
                 },
+                type: 'social',
                 resource: 'login'
             },
             {
@@ -213,6 +245,7 @@ define([
                     width: 5,
                     height: 10
                 },
+                type: 'social',
                 resource: 'share'
             },
             {
@@ -223,6 +256,7 @@ define([
                     width: 15,
                     height: 15
                 },
+                type: 'video',
                 resource: 'swf'
             }
         ];
@@ -234,11 +268,8 @@ define([
          */
         this.providers = {
             all: {
-                name: 'All',
-                data: []
-            },
-            indoor: {
-                name: 'Indoor',
+                name: 'All widgets',
+                key: 'all',
                 data: this.staticData
             }
         };
@@ -248,7 +279,7 @@ define([
          * @member GalleryModel
          * @type {{name: string, data: *[]}[]}
          */
-        this.defaultProvider = this.getProvidersList().indoor;
+        this.defaultProvider = this.getProvidersList().all;
 
         /**
          * Define current provider
@@ -281,43 +312,61 @@ define([
         /**
          * Set provider as current
          * @member GalleryModel
-         * @param {string} name
+         * @param {string} key
          */
-        setProviderAsCurrent: function setProviderAsCurrent(name) {
+        setProviderAsCurrent: function setProviderAsCurrent(key) {
 
             /**
              * Define provider
              * @type {*}
              */
-            var provider = this.providers[name];
+            var provider = this.providers[key];
 
-            if (provider) {
-                this.scope.logger.debug('Current provider', provider);
-            } else {
+            if (!provider) {
                 provider = this.defaultProvider;
-                this.scope.logger.debug('Undefined provider, set default', provider);
+                this.scope.logger.warn('Undefined provider, set default', provider);
             }
 
             this.currentProvider = provider;
+            this.scope.logger.debug('Current provider', provider);
         },
 
         /**
-         * Set provider
+         * Set widget to provider
          * @member GalleryModel
-         * @param provider
+         * @param {{}} meta
          */
-        setProvider: function setProvider(provider) {
+        setProvider: function setProvider(meta) {
 
             /**
-             * Define hash
-             * @type {{}}
+             * Get providers list
+             * @type {*}
              */
-            var merge = {};
+            var providers = this.getProvidersList();
 
             /**
-             * Merge provider data
+             * Get data types
+             * @type {{regular: string, text: string, video: string, map: string, files: string, image: string, social: string}}
              */
-            this.providers = $.extend(true, merge, this.providers, provider);
+            var dataTypes = this.dataTypes;
+
+            if (meta.type) {
+
+                providers[meta.type] = this.base.define(
+                    providers[meta.type], {
+                        name: dataTypes[meta.type] || meta.type,
+                        key: meta.type,
+                        data: []
+                    },
+                    true
+                );
+
+                providers[meta.type].data.push(meta);
+
+            } else {
+
+                providers.all.data.push(meta);
+            }
         }
 
     }, AntHill.prototype, BaseModel.prototype);

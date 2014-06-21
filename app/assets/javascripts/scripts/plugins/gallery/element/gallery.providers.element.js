@@ -47,6 +47,7 @@ define([
 
                     combo.push({
                         type: 'text',
+                        key: data[index].key,
                         value: data[index].name
                     });
                 }
@@ -57,8 +58,12 @@ define([
                     combo,
                     currentProvider.name,
                     '',
-                    'galleryProviders',
-                    undefined,
+                    'galleryProviders', {
+                        type: 'click.changeProvider',
+                        callback: this.view.controller.changeProvider.bind(
+                            this.view.controller
+                        )
+                    },
                     true
                 )
             );

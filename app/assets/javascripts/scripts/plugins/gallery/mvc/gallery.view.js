@@ -72,10 +72,6 @@ define([
          */
         renderProviders: function renderProviders(providers, currentProvider) {
 
-            if (this.isCached('$providers', GalleryProviders)) {
-                return false;
-            }
-
             /**
              * Define Gallery element
              * @type {GalleryProvidersElement}
@@ -121,6 +117,9 @@ define([
             if (this.isCachedItems() && !force) {
                 return false;
             }
+
+            // clean content
+            this.elements.$gallery.empty();
 
             /**
              * Define content

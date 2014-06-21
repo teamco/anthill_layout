@@ -457,7 +457,7 @@ define([
                     }
                 }
 
-                $li.attr({rel: field.value}).appendTo($ul);
+                $li.attr({rel: field.key || field.value}).appendTo($ul);
             }
 
             // fix to define modal dialog height
