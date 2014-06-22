@@ -96,72 +96,6 @@ define([
         },
 
         /**
-         * Load prefs
-         * @member MaximizeController
-         * @param config
-         * @param load
-         * @param event
-         * @param {function} [callback]
-         */
-        loadPreferences: function loadPreferences(config, load, event, callback) {
-
-            this.view.showPreferences(config, load);
-
-            /**
-             * Define collected items
-             * @type {*}
-             */
-            var items = this.model.getCollectedItems();
-
-            for(var index in items){
-
-                if(items.hasOwnProperty(index)) {
-                    this.controller.defineContentReferrer(items[index]);
-                }
-            }
-
-            if (this.base.isFunction(callback)) {
-                callback(event);
-            }
-        },
-
-        /**
-         * Check if content was updated
-         * @member MaximizeController
-         * @param data
-         * @param content
-         * @returns {boolean}
-         */
-        isUpdate: function isUpdate(data, content) {
-
-            /**
-             * Define hash
-             * @type {*}
-             */
-            var hash = this.base.lib.hash;
-
-            return hash.hashLength(data || {}) !==
-                hash.hashLength(content || {})
-        },
-
-        /**
-         * Update prefs
-         * @member MaximizeController
-         */
-        approveUpdatePreferences: function approveUpdatePreferences() {
-
-            /**
-             * Define scope
-             * @type {Maximize}
-             */
-            var scope = this.scope;
-
-            scope.activeContent.controller.updatePreferences(
-                scope.view.elements.$modal
-            );
-        },
-
-        /**
          * Locate page data element
          * @member MaximizeController
          * @param e
@@ -198,76 +132,9 @@ define([
             }
         },
 
-        /**
-         * Open rules from prefs dialog
-         * @member MaximizeController
-         * @param {*} event
-         */
-        rulesMaximize: function rulesMaximize(event) {
+        defineInteraction: function defineInteraction(widget) {
 
-            /**
-             * Trigger click rules
-             * @private
-             */
-            function _triggerRules() {
-
-                /**
-                 * Define $item
-                 * @type {WidgetRulesContentElement}
-                 */
-                var $item = this.view.elements.items[widget.model.getUUID() + '-widgetrules'];
-
-                $item.$.trigger('click.rules');
-            }
-
-            /**
-             * Define panel
-             * @type {Panel}
-             */
-            var panel = this.getAuthorPanel();
-
-            /**
-             * Define widget rules
-             * @type {WidgetRules}
-             */
-            var widgetRules = this.getWidgetRules();
-
-            /**
-             * Define active content
-             * @type {*}
-             */
-            var content = this.scope.activeContent;
-
-            /**
-             * Define widget
-             * @type {Widget}
-             */
-            var widget = content.controller.getContainment();
-
-            panel.observer.publish(
-                panel.eventmanager.eventList.openPanel,
-                ['widgetrules', event, _triggerRules.bind(widgetRules)]
-            );
-
-            this.scope.view.elements.$modal.selfDestroy();
-        },
-
-        /**
-         * Restore layer index
-         * @member MaximizeController
-         */
-        restoreWidgetsLayerIndex: function restoreWidgetsLayerIndex() {
-
-            /**
-             * Define active content
-             * @type {*}
-             */
-            var content = this.scope.activeContent;
-
-            content.observer.publish(
-                content.eventmanager.eventList.executeOnWidgetEvent,
-                'restoreLayerIndex'
-            );
+            debugger
         }
 
     }, AntHill.prototype, PluginBase.prototype);
