@@ -133,7 +133,7 @@ define([
 
                     if (value.length === 0) {
 
-                        $item.show();
+                        $item.$.removeAttr('style');
 
                     } else {
 
@@ -144,11 +144,13 @@ define([
                         regex = new RegExp(value, 'ig');
 
                         ($item.data.name.match(regex) || $item.data.resource.match(regex)) ?
-                            $item.show() :
+                            $item.$.removeAttr('style') :
                             $item.hide();
                     }
                 }
             }
+
+            this.getView().renderFooter();
         },
 
         /**

@@ -38,8 +38,22 @@ define([
          * @returns {*|jQuery}
          */
         getFooter: function getFooter() {
+
+            var counter = 0, index,
+                items = this.view.elements.items;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    if (!items[index].$.attr('style')) {
+                        counter += 1;
+                    }
+                }
+            }
+
             return $('<div />').text([
-                this.view.scope.controller.getCurrentProvider().data.length,
+                counter,
                 'items'
             ].join(' '));
         }

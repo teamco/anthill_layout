@@ -57,7 +57,13 @@ define([
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
+        },
 
+        /**
+         * Render footer
+         * @member GalleryView
+         */
+        renderFooter: function renderFooter() {
             this.footer(Footer, this.elements.$container).setHtml(
                 this.elements.$gallery.getFooter()
             );
@@ -151,9 +157,7 @@ define([
                 this.elements.$container.$
             );
 
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$gallery.getFooter()
-            );
+            this.renderFooter();
         },
 
         /**
