@@ -46,14 +46,15 @@ define(
             switchPageOnHashChange: function switchPageOnHashChange() {
 
                 var hash = window.location.hash,
-                    match = hash.match(/page\/([\w\d\-]*):?/i);
+                    pageMatch = hash.match(/page\/([\w\d\-]*):?/i),
+                    widgetMatch = hash.match(/widget\/([\w\d\-]*):?/i);
 
                 /**
                  * Get page
                  * @type {Page}
                  */
-                var page = match ?
-                    this.model.getItemByUUID(match[1]) :
+                var page = pageMatch ?
+                    this.model.getItemByUUID(pageMatch[1]) :
                     this.controller.getCurrentItem();
 
                 this.observer.publish(
