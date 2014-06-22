@@ -156,6 +156,7 @@
 
 ul.gallery .content.empty,
 ul.pagedata .content.empty,
+ul.maximize .content.empty,
 ul.widgetrules .content.empty,
 .modal-dialog.preferences .widgets-prefs li.empty,
 .widget .content.empty {
@@ -164,6 +165,7 @@ ul.widgetrules .content.empty,
 
 ul.gallery .content.texteditor,
 ul.pagedata .content.texteditor,
+ul.maximize .content.texteditor,
 ul.widgetrules .content.texteditor,
 .modal-dialog.preferences .widgets-prefs li.texteditor,
 .widget .content.texteditor {
@@ -172,6 +174,7 @@ ul.widgetrules .content.texteditor,
 
 ul.gallery .content.youtube,
 ul.pagedata .content.youtube,
+ul.maximize .content.youtube,
 ul.widgetrules .content.youtube,
 .modal-dialog.preferences .widgets-prefs li.youtube,
 .widget .content.youtube {
@@ -180,6 +183,7 @@ ul.widgetrules .content.youtube,
 
 ul.gallery .content.vimeo,
 ul.pagedata .content.vimeo,
+ul.maximize .content.vimeo,
 ul.widgetrules .content.vimeo,
 .modal-dialog.preferences .widgets-prefs li.vimeo,
 .widget .content.vimeo {
@@ -188,6 +192,7 @@ ul.widgetrules .content.vimeo,
 
 ul.gallery .content.image,
 ul.pagedata .content.image,
+ul.maximize .content.image,
 ul.widgetrules .content.image,
 .modal-dialog.preferences .widgets-prefs li.image,
 .widget .content.image {
@@ -196,6 +201,7 @@ ul.widgetrules .content.image,
 
 ul.gallery .content.imagegallery,
 ul.pagedata .content.imagegallery,
+ul.maximize .content.imagegallery,
 ul.widgetrules .content.imagegallery,
 .modal-dialog.preferences .widgets-prefs li.imagegallery,
 .widget .content.imagegallery {
@@ -204,6 +210,7 @@ ul.widgetrules .content.imagegallery,
 
 ul.gallery .content.rss,
 ul.pagedata .content.rss,
+ul.maximize .content.rss,
 ul.widgetrules .content.rss,
 .modal-dialog.preferences .widgets-prefs li.rss,
 .widget .content.rss {
@@ -212,6 +219,7 @@ ul.widgetrules .content.rss,
 
 ul.gallery .content.twits,
 ul.pagedata .content.twits,
+ul.maximize .content.twits,
 ul.widgetrules .content.twits,
 .modal-dialog.preferences .widgets-prefs li.twits,
 .widget .content.twits {
@@ -220,6 +228,7 @@ ul.widgetrules .content.twits,
 
 ul.gallery .content.geolocation,
 ul.pagedata .content.geolocation,
+ul.maximize .content.geolocation,
 ul.widgetrules .content.geolocation,
 .modal-dialog.preferences .widgets-prefs li.geolocation,
 .widget .content.geolocation {
@@ -228,6 +237,7 @@ ul.widgetrules .content.geolocation,
 
 ul.gallery .content.openweathermap,
 ul.pagedata .content.openweathermap,
+ul.maximize .content.openweathermap,
 ul.widgetrules .content.openweathermap,
 .modal-dialog.preferences .widgets-prefs li.openweathermap,
 .widget .content.openweathermap {
@@ -236,6 +246,7 @@ ul.widgetrules .content.openweathermap,
 
 ul.gallery .content.pagetabs,
 ul.pagedata .content.pagetabs,
+ul.maximize .content.pagetabs,
 ul.widgetrules .content.pagetabs,
 .modal-dialog.preferences .widgets-prefs li.pagetabs,
 .widget .content.pagetabs {
@@ -244,6 +255,7 @@ ul.widgetrules .content.pagetabs,
 
 ul.gallery .content.dropbox,
 ul.pagedata .content.dropbox,
+ul.maximize .content.dropbox,
 ul.widgetrules .content.dropbox,
 .modal-dialog.preferences .widgets-prefs li.dropbox,
 .widget .content.dropbox {
@@ -252,6 +264,7 @@ ul.widgetrules .content.dropbox,
 
 ul.gallery .content.jwplayer,
 ul.pagedata .content.jwplayer,
+ul.maximize .content.jwplayer,
 ul.widgetrules .content.jwplayer,
 .modal-dialog.preferences .widgets-prefs li.jwplayer,
 .widget .content.jwplayer {
@@ -260,6 +273,7 @@ ul.widgetrules .content.jwplayer,
 
 ul.gallery .content.login,
 ul.pagedata .content.login,
+ul.maximize .content.login,
 ul.widgetrules .content.login,
 .modal-dialog.preferences .widgets-prefs li.login,
 .widget .content.login {
@@ -268,6 +282,7 @@ ul.widgetrules .content.login,
 
 ul.gallery .content.share,
 ul.pagedata .content.share,
+ul.maximize .content.share,
 ul.widgetrules .content.share,
 .modal-dialog.preferences .widgets-prefs li.share,
 .widget .content.share {
@@ -276,6 +291,7 @@ ul.widgetrules .content.share,
 
 ul.gallery .content.avatar,
 ul.pagedata .content.avatar,
+ul.maximize .content.avatar,
 ul.widgetrules .content.avatar,
 .modal-dialog.preferences .widgets-prefs li.avatar,
 .widget .content.avatar {
@@ -284,6 +300,7 @@ ul.widgetrules .content.avatar,
 
 ul.gallery .content.maplocator,
 ul.pagedata .content.maplocator,
+ul.maximize .content.maplocator,
 ul.widgetrules .content.maplocator,
 .modal-dialog.preferences .widgets-prefs li.maplocator,
 .widget .content.maplocator {
@@ -292,6 +309,7 @@ ul.widgetrules .content.maplocator,
 
 ul.gallery .content.quicktime,
 ul.pagedata .content.quicktime,
+ul.maximize .content.quicktime,
 ul.widgetrules .content.quicktime,
 .modal-dialog.preferences .widgets-prefs li.quicktime,
 .widget .content.quicktime {
@@ -300,6 +318,7 @@ ul.widgetrules .content.quicktime,
 
 ul.gallery .content.pdf,
 ul.pagedata .content.pdf,
+ul.maximize .content.pdf,
 ul.widgetrules .content.pdf,
 .modal-dialog.preferences .widgets-prefs li.pdf,
 .widget .content.pdf {
@@ -308,6 +327,7 @@ ul.widgetrules .content.pdf,
 
 ul.gallery .content.swf,
 ul.pagedata .content.swf,
+ul.maximize .content.swf,
 ul.widgetrules .content.swf,
 .modal-dialog.preferences .widgets-prefs li.swf,
 .widget .content.swf {
