@@ -323,7 +323,7 @@ define([
             link.rel = opts.rel || defaults.rel;
             link.media = opts.media || defaults.media;
             link.href = opts.href;
-            link.id = opts.uuid;
+            link.id = opts.id;
 
             document.getElementsByTagName("head")[0].appendChild(link);
         },
