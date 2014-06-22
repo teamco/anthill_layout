@@ -31,6 +31,7 @@ define([
          * @type {{
          *      updateTranslations: string,
          *      loadContent: string,
+         *      loadPreferences: string,
          *      storeItem: string,
          *      setActiveContent: string
          * }}
