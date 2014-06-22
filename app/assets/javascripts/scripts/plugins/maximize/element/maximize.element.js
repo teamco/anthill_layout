@@ -25,7 +25,7 @@ define([
             destroy: false
         });
 
-        this.addCSS('page.data');
+        this.addCSS('maximize');
         this.addCSS('preferences');
 
         return this;
