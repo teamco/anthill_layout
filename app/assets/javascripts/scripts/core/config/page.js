@@ -191,7 +191,7 @@ define([
         /**
          * Init event manager
          * @member Page
-         * @type {EventManager}
+         * @type {PageEventManager}
          */
         this.eventmanager = undefined;
 
@@ -205,28 +205,28 @@ define([
         /**
          * Define controller
          * @member Page
-         * @type {*}
+         * @type {PageController}
          */
         this.controller = undefined;
 
         /**
          * Define model
          * @member Page
-         * @type {*}
+         * @type {PageModel}
          */
         this.model = undefined;
 
         /**
          * Define view
          * @member Page
-         * @type {*}
+         * @type {PageView}
          */
         this.view = undefined;
 
         /**
          * Define permissions
          * @member Page
-         * @type {*}
+         * @type {PagePermission}
          */
         this.permission = undefined;
 

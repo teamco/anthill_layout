@@ -118,6 +118,37 @@ define([
         },
 
         /**
+         * Set widget as maximized
+         * @member {PageController}
+         * @param {Widget} widget
+         */
+        setMaximized: function setMaximized(widget) {
+
+            /**
+             * Set maximized
+             * @type {Widget}
+             */
+            this.maximized = widget;
+
+            this.logger.debug('Set maximized', this.maximized);
+        },
+
+        /**
+         * Unset widget as maximized
+         * @member {PageController}
+         */
+        unsetMaximized: function unsetMaximized() {
+
+            /**
+             * Unset maximized
+             * @type {{}}
+             */
+            this.maximized = {};
+
+            this.logger.debug('Unset maximized', this.maximized);
+        },
+
+        /**
          * Get container target widgets
          * @member PageController
          * @param {Widget} source

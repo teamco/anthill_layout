@@ -31,6 +31,8 @@ define([
          * Define event list
          * @member PageEventManager
          * @type {{
+         *      setMaximized: string,
+         *      unsetMaximized: string,
          *      createWidget: string,
          *      destroyWidget: string,
          *      destroyWidgets: string,
@@ -43,6 +45,8 @@ define([
          * }}
          */
         eventList: {
+            setMaximized: 'set.maximized',
+            unsetMaximized: 'unset.maximized',
             createWidget: 'create.widget',
             destroyWidget: 'destroy.widget',
             destroyWidgets: 'destroy.widgets',

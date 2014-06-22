@@ -14,7 +14,11 @@
 }
 
 .widget:hover {
-    z-index: 1000 !important;
+    z-index: 1000;
+}
+
+.widget.maximize:hover {
+    z-index: 0;
 }
 
 .widget.overlapped:after {
@@ -58,12 +62,15 @@
     visibility: hidden;
 }
 
-.widget.ui-draggable.disable-interactions:hover .content {
+.widget.ui-draggable.disable-interactions:hover .content,
+.widget.maximize,
+.widget.maximize:hover .content {
     cursor: default;
 }
 
 .widget.disable-interactions:after,
-.widget.disable-interactions .ui-resizable-handle {
+.widget.disable-interactions .ui-resizable-handle,
+.widget.maximize .ui-resizable-handle {
     display: none;
 }
 

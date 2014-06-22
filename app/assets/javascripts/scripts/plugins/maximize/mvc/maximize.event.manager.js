@@ -36,7 +36,11 @@ define([
          *      enlargeWidget: string,
          *      reduceWidget: string,
          *      loadPreferences: string,
-         *      defineInteraction: string
+         *      defineInteraction: string,
+         *      afterMaximize: string,
+         *      beforeMaximize: string,
+         *      afterReduce: string,
+         *      beforeReduce: string
          * }}
          */
         this.eventList = {
@@ -47,7 +51,13 @@ define([
             defineInteraction: 'define.interaction',
             loadPreferences: 'load.preferences',
             storeItem: 'store.item',
-            setActiveContent: 'set.active.content'
+            setActiveContent: 'set.active.content',
+
+            afterMaximize: 'after.maximize',
+            beforeMaximize: 'before.maximize',
+
+            afterReduce: 'after.reduce',
+            beforeReduce: 'before.reduce'
         };
     };
 

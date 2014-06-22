@@ -115,9 +115,9 @@ define([
              */
             var items = this.model.getCollectedItems();
 
-            for(var index in items){
+            for (var index in items) {
 
-                if(items.hasOwnProperty(index)) {
+                if (items.hasOwnProperty(index)) {
                     this.controller.defineContentReferrer(items[index]);
                 }
             }
@@ -164,9 +164,181 @@ define([
             }
         },
 
+        /**
+         * Define maximize interaction
+         * @member MaximizeController
+         * @param {Widget} widget
+         */
         defineInteraction: function defineInteraction(widget) {
 
-            debugger
+            /**
+             * Get page
+             * @type {Page}
+             */
+            var page = this.controller.getPage();
+
+            if (page.maximized === widget) {
+
+                this.observer.publish(
+                    this.eventmanager.eventList.reduceWidget,
+                    [widget, page]
+                );
+
+            } else {
+
+                this.observer.publish(
+                    this.eventmanager.eventList.reduceWidget,
+                    [page.maximized, page]
+                );
+
+                this.observer.publish(
+                    this.eventmanager.eventList.enlargeWidget,
+                    [widget, page]
+                );
+            }
+        },
+
+        /**
+         * Reduce widget
+         * @member MaximizeController
+         * @param {Widget} widget
+         * @param {Page} page
+         */
+        reduceWidget: function reduceWidget(widget, page) {
+
+            if (!widget.view) {
+                return false;
+            }
+
+            this.observer.publish(
+                this.eventmanager.eventList.beforeReduce,
+                [widget, page]
+            );
+
+            this.view.get$item().reduce(widget);
+        },
+
+        /**
+         * Enlarge widget
+         * @member MaximizeController
+         * @param {Widget} widget
+         * @param {Page} page
+         */
+        enlargeWidget: function enlargeWidget(widget, page) {
+
+            this.observer.publish(
+                this.eventmanager.eventList.beforeMaximize,
+                [widget, page]
+            );
+
+            this.view.get$item().enlarge(widget);
+        },
+
+        /**
+         * Before maximize callback
+         * @member WidgetController
+         * @param {Widget} widget
+         * @param {Page} page
+         */
+        beforeMaximize: function beforeMaximize(widget, page) {
+
+            this.logger.debug('Before maximize', widget);
+
+            var items = page.model.getItems(),
+                index, item;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    /**
+                     * Define item
+                     * @type {Widget}
+                     */
+                    item = items[index];
+
+                    item.observer.publish(
+                        item.eventmanager.eventList.disableDraggable
+                    );
+
+                    item.observer.publish(
+                        item.eventmanager.eventList.disableResizable
+                    );
+
+                    if (widget !== item) {
+                        item.view.get$item().hide();
+                    }
+                }
+            }
+
+            widget.view.get$item().show();
+
+            page.controller.banAddWidget();
+
+            page.observer.publish(
+                page.eventmanager.eventList.setMaximized,
+                widget
+            );
+        },
+
+        /**
+         * After maximize callback
+         * @member WidgetController
+         * @param {Widget} widget
+         */
+        afterMaximize: function afterMaximize(widget) {
+            this.logger.debug('After maximize', widget);
+        },
+
+        /**
+         * Before reduce callback
+         * @member WidgetController
+         * @param {Widget} widget
+         * @param {Page} page
+         */
+        beforeReduce: function beforeReduce(widget, page) {
+
+            this.logger.debug('Before reduce', widget);
+
+            var items = page.model.getItems(),
+                index, item;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    /**
+                     * Define item
+                     * @type {Widget}
+                     */
+                    item = items[index];
+
+                    item.observer.publish(
+                        item.eventmanager.eventList.enableDraggable
+                    );
+
+                    item.observer.publish(
+                        item.eventmanager.eventList.enableResizable
+                    );
+
+                    item.view.get$item().show();
+                }
+            }
+
+            page.controller.allowAddWidget();
+
+            page.observer.publish(
+                page.eventmanager.eventList.unsetMaximized
+            );
+        },
+
+        /**
+         * After reduce callback
+         * @member WidgetController
+         * @param {Widget} widget
+         */
+        afterReduce: function afterReduce(widget) {
+            this.logger.debug('After reduce', widget);
         }
 
     }, AntHill.prototype, PluginBase.prototype);
