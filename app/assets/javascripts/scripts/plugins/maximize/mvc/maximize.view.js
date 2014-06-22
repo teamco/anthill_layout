@@ -14,7 +14,7 @@ define([
     'element/footer.element',
     'plugins/maximize/element/maximize.content.element',
     'plugins/maximize/element/maximize.element'
-], function defineMaximizeView(AntHill, BaseView, BasePreferences, Header, Footer, MaximizeContent, Maximize) {
+], function defineMaximizeView(AntHill, BaseView, BasePreferences, Header, Footer, MaximizeContentElement, MaximizeElement) {
 
     /**
      * Define view
@@ -35,7 +35,7 @@ define([
          */
         renderMaximize: function renderMaximize() {
 
-            if (this.isCached('$maximize', Maximize)) {
+            if (this.isCached('$maximize', MaximizeElement)) {
                 return false;
             }
 
@@ -47,7 +47,7 @@ define([
              * Define Maximize element
              * @type {MaximizeElement}
              */
-            this.elements.$maximize = new Maximize(this, {
+            this.elements.$maximize = new MaximizeElement(this, {
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
@@ -78,9 +78,9 @@ define([
 
                     /**
                      * Render item
-                     * @type {*}
+                     * @type {MaximizeContentElement}
                      */
-                    var $item = new MaximizeContent(this, {
+                    var $item = new MaximizeContentElement(this, {
                         style: 'content',
                         id: [
                             data[index].model.getConfig('uuid'),
@@ -108,58 +108,6 @@ define([
             this.footer(Footer, this.elements.$container).setHtml(
                 this.elements.$maximize.getFooter()
             );
-        },
-
-        /**
-         * Show preferences
-         * @member MaximizeView
-         * @param config
-         */
-        showPreferences: function showPreferences(config, load) {
-
-            /**
-             * Define scope
-             * @type {Maximize}
-             */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.setActiveContent,
-                config.uuid
-            );
-
-            if (load) {
-
-                /**
-                 * Define $html
-                 * @type {BaseElement}
-                 */
-                var $html = this.scope.activeContent.view.renderPreferences();
-
-                this.openPreferences({
-                    config: config,
-                    $html: $html.$,
-                    style: [
-                        config.preferences.resource,
-                        'widget-prefs preferences'
-                    ].join(' '),
-                    title: 'Widget preferences',
-                    buttons: {
-                        rules: {
-                            text: 'Rules',
-                            events: {
-                                click: 'rules' + this.scope.constructor.name
-                            }
-                        },
-                        reject: {
-                            text: 'Cancel',
-                            events: {
-                                click: ['rejectModalEvent', 'restoreWidgetsLayerIndex']
-                            }
-                        }
-                    }
-                });
-            }
         },
 
         /**

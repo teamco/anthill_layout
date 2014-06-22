@@ -96,6 +96,38 @@ define([
         },
 
         /**
+         * Load prefs
+         * @member MaximizeController
+         * @param config
+         * @param event
+         * @param {function} [callback]
+         */
+        loadPreferences: function loadPreferences(config, event, callback) {
+
+            this.observer.publish(
+                this.eventmanager.eventList.setActiveContent,
+                config.uuid
+            );
+
+            /**
+             * Define collected items
+             * @type {*}
+             */
+            var items = this.model.getCollectedItems();
+
+            for(var index in items){
+
+                if(items.hasOwnProperty(index)) {
+                    this.controller.defineContentReferrer(items[index]);
+                }
+            }
+
+            if (this.base.isFunction(callback)) {
+                callback(event);
+            }
+        },
+
+        /**
          * Locate page data element
          * @member MaximizeController
          * @param e

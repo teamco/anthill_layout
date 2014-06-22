@@ -32,12 +32,19 @@ define([
          *      updateTranslations: string,
          *      loadContent: string,
          *      storeItem: string,
-         *      setActiveContent: string
+         *      setActiveContent: string,
+         *      enlargeWidget: string,
+         *      reduceWidget: string,
+         *      loadPreferences: string,
+         *      defineInteraction: string
          * }}
          */
         this.eventList = {
             updateTranslations: 'update.translations',
             loadContent: 'load.content',
+            enlargeWidget: 'enlarge.widget',
+            reduceWidget: 'reduce.widget',
+            defineInteraction: 'define.interaction',
             loadPreferences: 'load.preferences',
             storeItem: 'store.item',
             setActiveContent: 'set.active.content'

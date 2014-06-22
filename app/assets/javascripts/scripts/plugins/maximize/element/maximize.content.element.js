@@ -26,8 +26,8 @@ define([
         });
 
         this.setAttributes(opts.data);
-        this.bindShowPrefs(opts.data);
         this.bindLocate(opts.data);
+        this.bindMaximize(opts.data);
 
         return this;
     };
@@ -77,7 +77,6 @@ define([
                 scope.observer.publish(
                     scope.eventmanager.eventList.loadPreferences, [
                         {uuid: config.uuid},
-                        false,
                         event,
                         scope.controller.locateMaximize.bind(
                             scope.controller
@@ -94,7 +93,7 @@ define([
 
             /**
              * Define scope
-             * @type {Maximize}
+             * @type {PageData}
              */
             var scope = this.view.scope;
 
@@ -105,28 +104,22 @@ define([
         },
 
         /**
-         * Bind show prefs
+         * Bind maximize
          * @memberOf MaximizeContentElement
          * @param data
          */
-        bindShowPrefs: function bindShowPrefs(data) {
+        bindMaximize: function bindMaximize(data) {
 
             /**
-             * Click prefs
+             * Click maximize
              * @private
              */
-            function _clickPrefs() {
+            function _clickMaximize() {
                 scope.observer.publish(
-                    scope.eventmanager.eventList.loadPreferences,
-                    [config, true]
+                    scope.eventmanager.eventList.defineInteraction,
+                    data
                 );
             }
-
-            /**
-             * Get config
-             * @type {*}
-             */
-            var config = data.model.getConfig();
 
             /**
              * Define scope
@@ -134,9 +127,9 @@ define([
              */
             var scope = this.view.scope;
 
-            this.$.off('click.prefs').on(
-                'click.prefs',
-                _clickPrefs.bind(this)
+            this.$.off('click.maximize').on(
+                'click.maximize',
+                _clickMaximize.bind(this)
             );
         }
 
