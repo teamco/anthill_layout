@@ -75,7 +75,7 @@ define([
             /**
              * Define content
              * @member WidgetContent
-             * @type {Content}
+             * @type {*}
              */
             this.content = new Content(this, opts);
 
@@ -85,10 +85,122 @@ define([
         /**
          * Get content
          * @member WidgetContent
-         * @returns {Content}
+         * @returns {*}
          */
         getContent: function getContent() {
             return this.scope.content;
+        },
+
+        /**
+         * Set widget layer up
+         * @member WidgetController
+         * @param {boolean} save
+         */
+        setLayerUp: function setLayerUp(save) {
+            this.map.updateLayer(true, save);
+        },
+
+        /**
+         * Set widget layer down
+         * @member WidgetController
+         * @param {boolean} save
+         */
+        setLayerDown: function setLayerDown(save) {
+            this.map.updateLayer(false, save);
+        },
+
+        /**
+         * Update layout z-index
+         * @member WidgetController
+         * @param index
+         */
+        updateLayerIndex: function updateLayerIndex(index) {
+
+            /**
+             * Define config html
+             * @type {{}}
+             */
+            var configHtml = this.model.getConfig('html');
+
+            configHtml.zIndex = index;
+            this.mode.setConfig('html', configHtml);
+        },
+
+        /**
+         * Restore layer index
+         * @member WidgetController
+         */
+        restoreLayerIndex: function restoreLayerIndex() {
+
+            /**
+             * Get containment
+             * @type {Page|*}
+             */
+            var containment = this.controller.getContainment();
+
+            containment.controller.revertLayer();
+        },
+
+        /**
+         * Set widget always on top
+         * @member WidgetController
+         * @param {boolean} ontop
+         */
+        setAlwaysOnTop: function setAlwaysOnTop(ontop) {
+
+            this.view.get$item().moveOnTopLayer(ontop);
+
+            /**
+             * Get containment
+             * @type {Page|*}
+             */
+            var containment = this.controller.getContainment();
+
+            containment.controller.reorderLayers();
+        },
+
+        /**
+         * Transfer click to content
+         * @member WidgetController
+         * @param {string} url
+         */
+        setOnClickUrl: function setOnClickUrl(url) {
+            this.contentEvents['onClickOpenUrl'] = url;
+        },
+
+        /**
+         * Clear thumbnail bg
+         * @member WidgetController
+         */
+        clearThumbnail: function clearThumbnail() {
+            this.view.get$item().clearBackground();
+        },
+
+        /**
+         * Adopt widget dimension on resize page
+         * @member WidgetController
+         * @param {Boolean} animate
+         */
+        adoptDimensions: function adoptDimensions(animate) {
+            this.map.adoptTo(animate);
+        },
+
+        /**
+         * Get widget thumbnail
+         * @member WidgetController
+         * @returns {*}
+         */
+        getThumbnail: function getThumbnail() {
+            return this.model.getConfig('preferences/thumbnail');
+        },
+
+        /**
+         * Get widget resource
+         * @member WidgetController
+         * @returns {*}
+         */
+        getResource: function getResource() {
+            return this.model.getConfig('preferences/resource');
         }
 
     }, AntHill.prototype);
