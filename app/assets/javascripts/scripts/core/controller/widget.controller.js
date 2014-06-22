@@ -712,10 +712,9 @@ define([
         /**
          * After reduce callback
          * @member WidgetController
-         * @param {Widget} widget
          */
-        afterReduce: function afterReduce(widget) {
-            this.logger.debug('After reduce', widget);
+        afterReduce: function afterReduce() {
+            this.logger.debug('After reduce');
         }
 
     }, AntHill.prototype, BaseController.prototype, Content.prototype);
