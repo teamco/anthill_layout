@@ -224,7 +224,11 @@ define([], function defineWidgetSubscribe() {
                 scope.eventmanager.eventList.setEmbeddedContent
             );
 
-            scope.referrer.controller.setActiveContent(scope);
+            scope.referrer.observer.publish(
+                scope.referrer.eventmanager.eventList.setActiveContent,
+                scope.controller.getContainment().model.getUUID()
+            );
+
             scope.referrer.controller.approveUpdatePreferences();
 
             return false;
