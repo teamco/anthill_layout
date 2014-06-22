@@ -94,6 +94,13 @@ define([
         };
 
         /**
+         * Define panels
+         * @member App
+         * @type {{}}
+         */
+        this.panels = {};
+
+        /**
          * Init observer
          * @member App
          * @type {Observer}

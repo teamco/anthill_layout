@@ -149,13 +149,47 @@ define([
             }
 
             if (this.active === resource) {
+
                 this.view.elements.$panel.toggle(resource, false);
                 this.view.elements.items['$bar-content'].unselectItems();
+
             } else {
+
                 this.observer.publish(
                     this.eventmanager.eventList.openPanel,
                     resource
                 );
+            }
+        },
+
+        /**
+         * Close panels [except this]
+         * @member PanelController
+         * @param {Panel} [except]
+         */
+        closePanels: function closePanels(except) {
+
+            /**
+             * Get panels
+             * @type {App.panels}
+             */
+            var panels = this.root().panels,
+                index, panel;
+
+            for (index in panels) {
+
+                if (panels.hasOwnProperty(index)) {
+
+                    panel = panels[index];
+
+                    if (panel !== except) {
+
+                        panel.observer.publish(
+                            panel.eventmanager.eventList.closePanel,
+                            panel.active
+                        );
+                    }
+                }
             }
         },
 
@@ -168,6 +202,8 @@ define([
          */
         openPanel: function openPanel(resource, event, callback) {
 
+            this.controller.closePanels(this);
+
             /**
              * Define $bar
              * @type {PanelContentElement}
@@ -179,7 +215,7 @@ define([
 
             this.view.elements.$panel.toggle(resource, true);
 
-            if (this.base.isDefined(callback) && this.base.isFunction(callback)) {
+            if (this.base.isFunction(callback)) {
                 callback(event);
             }
         },

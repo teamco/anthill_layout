@@ -354,7 +354,7 @@ define([
              * Define page data
              * @type {*|PageData}
              */
-            var pageData = this.view.controller.getPageData();
+            var pageData = this.view.controller.getModuleByName('pagedata');
 
             if (e.type === 'click') {
 

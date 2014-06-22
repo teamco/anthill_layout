@@ -293,7 +293,7 @@ define([
              * Define widget rules
              * @type {PageData}
              */
-            var pageData = this.getPageData();
+            var pageData = this.getModuleByName('pagedata');
 
             /**
              * Define active content

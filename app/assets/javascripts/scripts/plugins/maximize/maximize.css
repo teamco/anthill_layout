@@ -1,0 +1,55 @@
+div.maximize ul {
+    list-style: none;
+}
+
+div.maximize-header {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    box-shadow: 1px 1px 5px #333;
+    border-bottom: 1px solid #fff;
+    text-shadow: 1px 1px #fff;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    font-size: 14px;
+}
+
+ul.maximize .content {
+    height: 70px;
+    width: 70px;
+    display: block;
+    cursor: pointer;
+    margin-top: 10px;
+    background: transparent no-repeat center;
+}
+
+ul.maximize > .content:hover {
+    box-shadow: 1px 15px 10px #999;
+    border-radius: 10px;
+}
+
+div.maximize-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #333;
+    padding-right: 40px;
+    height: 30px;
+    box-shadow: 1px 0 5px #333;
+}
+
+div.maximize-footer > div {
+    height: 100%;
+    border-top: 1px solid #fff;
+    line-height: 30px;
+    padding: 0 10px;
+    font-size: 12px;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    text-shadow: 1px 1px #fff;
+}
+
+div.maximize-content .scroll-cover {
+    top: 70px;
+    bottom: 30px;
+}

@@ -88,15 +88,15 @@ define([
          * @returns {Panel}
          */
         getAuthorPanel: function getAuthorPanel() {
-            return this.root().authorPanel;
+            return this.root().panels.author;
         },
 
         /**
-         * Get page data
+         * Get module by name
          * @member PluginController
-         * @returns {PageData}
+         * @returns {*}
          */
-        getPageData: function getPageData() {
+        getModuleByName: function getModuleByName(name) {
 
             /**
              * Define panel
@@ -105,7 +105,7 @@ define([
             var panel = this.getAuthorPanel();
 
             return panel.model.getModule(
-                panel.model.getIndex('pagedata')
+                panel.model.getIndex(name)
             ).module;
         },
 

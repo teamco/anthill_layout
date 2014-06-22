@@ -93,13 +93,13 @@ define(
                          * Init panel plugin
                          * @type {Panel}
                          */
-                        app.authorPanel = new Panel({
+                        app.panels.author = new Panel({
                             config: {renderAt: 'right'},
                             modules: [Gallery, PageData, WorkspaceData, WidgetRules],
                             packages: [Bar]
                         }, app);
 
-                        app.authorPanel.view.render();
+                        app.panels.author.view.render();
                     });
                 }
             },
@@ -124,13 +124,13 @@ define(
                          * Init panel plugin
                          * @type {Panel}
                          */
-                        app.toolPanel = new Panel({
+                        app.panels.tool = new Panel({
                             config: {renderAt: 'left'},
                             modules: [Maximize],
                             packages: [Bar]
                         }, app);
 
-                        app.toolPanel.view.render();
+                        app.panels.tool.view.render();
                     });
                 }
             }
