@@ -43,7 +43,8 @@ define([
          *      resizeWorkspace: string,
          *      setAsLoaded: string,
          *      afterLoadingItems: string,
-         *      createAuthorPanel: string
+         *      createAuthorPanel: string,
+         *      createToolPanel: string
          * }}
          */
         eventList: {
@@ -61,7 +62,8 @@ define([
             resizeWorkspaces: 'resize.workspaces',
             setAsLoaded: 'set.as.loaded',
             afterLoadingItems: 'after.loading.items',
-            createAuthorPanel: 'create.author.panel'
+            createAuthorPanel: 'create.author.panel',
+            createToolPanel: 'create.tool.panel'
         }
 
     }, BaseEvent.prototype);

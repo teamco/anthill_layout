@@ -24,7 +24,7 @@ require([
                 var route = window['route'];
 
                 if (!route) {
-                    new Error('Undefined pet', route)
+                    new Error('Undefined pet', route);
                     return false;
                 }
 

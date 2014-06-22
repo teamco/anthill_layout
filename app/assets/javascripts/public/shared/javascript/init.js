@@ -5,8 +5,8 @@ require([
 ], function loadConfig() {
 
     require([
-        'public/pets/javascript/listeners',
-        'public/pets/javascript/permission'
+        'public/shared/javascript/listeners',
+        'public/shared/javascript/permission'
     ], function loadCustomConfig() {
 
         require([

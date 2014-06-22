@@ -21,10 +21,15 @@ define([
      */
     Application.prototype.globalPermissions = {
         development: {
+            activateDebugger: true,
+            deactivateDebugger: true,
+            createAuthorPanel: true,
+            createToolPanel: true
         },
         authorize: {
         },
         consumption: {
+            createAuthorPanel: false
         },
         test: {
         }

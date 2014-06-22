@@ -38,8 +38,102 @@ define(
          * @member App
          * @type {{successRendered: {name: string, callback: function}}}
          * @type {{createAuthorPanel: {name: string, callback: function}}}
+         * @type {{createToolPanel: {name: string, callback: function}}}
          */
         Application.prototype.globalListeners = {
+
+            successRendered: {
+                name: "success.rendered",
+                callback: function successRenderedCallback() {
+
+                    this.permission.check({
+                        capability: 'createAuthorPanel',
+                        callback: function () {
+
+                            this.observer.publish(
+                                this.eventmanager.eventList.createAuthorPanel
+                            );
+
+                        }.bind(this)
+                    });
+
+                    this.permission.check({
+                        capability: 'createToolPanel',
+                        callback: function () {
+
+                            this.observer.publish(
+                                this.eventmanager.eventList.createToolPanel
+                            );
+
+                        }.bind(this)
+                    });
+                }
+            },
+
+            createAuthorPanel: {
+                name: 'create.author.panel',
+                callback: function createAuthorPanelCallback() {
+
+                    /**
+                     * Define app
+                     * @type {*}
+                     */
+                    var app = this;
+
+                    require([
+                        'plugins/panel/panel',
+                        'plugins/bar/bar',
+                        'plugins/gallery/gallery',
+                        'plugins/page.data/page.data',
+                        'plugins/workspace.data/workspace.data',
+                        'plugins/widget.rules/widget.rules'
+                    ], function definePanel(Panel, Bar, Gallery, PageData, WorkspaceData, WidgetRules) {
+
+                        /**
+                         * Init panel plugin
+                         * @type {Panel}
+                         */
+                        app.authorPanel = new Panel({
+                            config: {renderAt: 'right'},
+                            modules: [Gallery, PageData, WorkspaceData, WidgetRules],
+                            packages: [Bar]
+                        }, app);
+
+                        app.authorPanel.view.render();
+                    });
+                }
+            },
+
+            createToolPanel: {
+                name: 'create.tool.panel',
+                callback: function createToolPanelCallback() {
+
+                    /**
+                     * Define app
+                     * @type {*}
+                     */
+                    var app = this;
+
+                    require([
+                        'plugins/panel/panel',
+                        'plugins/bar/bar',
+                        'plugins/maximize/maximize'
+                    ], function definePanel(Panel, Bar, Maximize) {
+
+                        /**
+                         * Init panel plugin
+                         * @type {Panel}
+                         */
+                        app.toolPanel = new Panel({
+                            config: {renderAt: 'left'},
+                            modules: [Maximize],
+                            packages: [Bar]
+                        }, app);
+
+                        app.toolPanel.view.render();
+                    });
+                }
+            }
         };
 
         /**
