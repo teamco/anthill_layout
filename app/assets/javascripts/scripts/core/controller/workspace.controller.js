@@ -57,9 +57,20 @@ define(
                     this.model.getItemByUUID(pageMatch[1]) :
                     this.controller.getCurrentItem();
 
+                /**
+                 * Get widget
+                 * @type {*|Widget}
+                 */
+                var widget = widgetMatch ?
+                    page.model.getItemByUUID(widgetMatch[1]) :
+                    null;
+
                 this.observer.publish(
-                    this.eventmanager.eventList.switchToPage,
-                    [page ? page : this.controller.getCurrentItem(), false]
+                    this.eventmanager.eventList.switchToPage, [
+                        page ? page : this.controller.getCurrentItem(),
+                        false,
+                        widget
+                    ]
                 );
             },
 
@@ -109,9 +120,10 @@ define(
              * @member WorkspaceController
              * @param {Page} page
              * @param {boolean} animate
+             * @param {*|Widget} widget
              * @returns {boolean|*}
              */
-            switchToPage: function switchToPage(page, animate) {
+            switchToPage: function switchToPage(page, animate, widget) {
 
                 if (this.switchPage) {
                     return false;
@@ -154,7 +166,7 @@ define(
                         }
                     }
 
-                    this.controller.swipeToCurrentPage(animate);
+                    this.controller.swipeToCurrentPage(animate, widget);
 
                 } else {
 
@@ -167,18 +179,24 @@ define(
              * After Switch to page
              * @member WorkspaceController
              * @param {Page} page
+             * @param {Widget} widget
              */
-            afterSwitchToPage: function afterSwitchToPage(page) {
-                this.logger.debug('After switch to page', page);
+            afterSwitchToPage: function afterSwitchToPage(page, widget) {
+
+                this.logger.debug('After switch to page', page, widget);
+
                 this.switchPage = false;
+
+                console.log('TODO add widget implementation');
             },
 
             /**
              * Swipe to current page
              * @member WorkspaceController
              * @param {boolean} animate
+             * @param {*|Widget} widget
              */
-            swipeToCurrentPage: function swipeToCurrentPage(animate) {
+            swipeToCurrentPage: function swipeToCurrentPage(animate, widget) {
 
                 /**
                  * Get current page
@@ -186,7 +204,7 @@ define(
                  */
                 var page = this.getCurrentItem();
 
-                this.scope.view.elements.$pages.swipeTo(page, animate);
+                this.scope.view.elements.$pages.swipeTo(page, animate, widget);
             }
 
 

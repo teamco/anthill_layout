@@ -41,7 +41,9 @@ define([
          *      resizeWidgets: string,
          *      resizeWidget: string,
          *      updateHeight: string,
-         *      afterLoadingItems: string
+         *      afterLoadingItems: string,
+         *      disableItemInteractions: string,
+         *      enableItemInteractions: string
          * }}
          */
         eventList: {
@@ -56,7 +58,9 @@ define([
             resizeWidget: 'resize.widget',
             resizeWidgets: 'resize.widgets',
             updateHeight: 'update.height',
-            afterLoadingItems: 'after.loading.items'
+            afterLoadingItems: 'after.loading.items',
+            disableItemInteractions: 'disable.item.interactions',
+            enableItemInteractions: 'enable.item.interactions'
         }
 
     }, BaseEvent.prototype);

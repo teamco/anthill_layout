@@ -87,8 +87,9 @@ define([
          * @member WorkspaceContentElement
          * @param {Page} page
          * @param {boolean} animate
+         * @param {Widget} widget
          */
-        swipeTo: function swipeTo(page, animate) {
+        swipeTo: function swipeTo(page, animate, widget) {
 
             /**
              * Define view
@@ -108,7 +109,7 @@ define([
 
                     scope.observer.publish(
                         scope.eventmanager.eventList.afterSwitchToPage,
-                        page
+                        [page, widget]
                     );
                 }
             });

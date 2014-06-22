@@ -59,7 +59,13 @@ define([
          *      setAlwaysOnTop: string,
          *      setOnClickUrl: string,
          *      clearThumbnail: string,
-         *      saveDom: string
+         *      saveDom: string,
+         *      afterMaximize: string,
+         *      beforeMaximize: string,
+         *      afterReduce: string,
+         *      beforeReduce: string,
+         *      enlargeWidget: string,
+         *      reduceWidget: string
          * }}
          */
         eventList: {
@@ -106,7 +112,16 @@ define([
             setOnClickUrl: 'set.on.click.url',
             clearThumbnail: 'clear.thumbnail',
 
-            saveDom: 'save.dom'
+            saveDom: 'save.dom',
+
+            enlargeWidget: 'enlarge.widget',
+            reduceWidget: 'reduce.widget',
+
+            afterMaximize: 'after.maximize',
+            beforeMaximize: 'before.maximize',
+
+            afterReduce: 'after.reduce',
+            beforeReduce: 'before.reduce'
         }
 
     }, BaseEvent.prototype);

@@ -33,31 +33,17 @@ define([
          *      loadContent: string,
          *      storeItem: string,
          *      setActiveContent: string,
-         *      enlargeWidget: string,
-         *      reduceWidget: string,
          *      loadPreferences: string,
-         *      defineInteraction: string,
-         *      afterMaximize: string,
-         *      beforeMaximize: string,
-         *      afterReduce: string,
-         *      beforeReduce: string
+         *      defineInteraction: string
          * }}
          */
         this.eventList = {
             updateTranslations: 'update.translations',
             loadContent: 'load.content',
-            enlargeWidget: 'enlarge.widget',
-            reduceWidget: 'reduce.widget',
             defineInteraction: 'define.interaction',
             loadPreferences: 'load.preferences',
             storeItem: 'store.item',
-            setActiveContent: 'set.active.content',
-
-            afterMaximize: 'after.maximize',
-            beforeMaximize: 'before.maximize',
-
-            afterReduce: 'after.reduce',
-            beforeReduce: 'before.reduce'
+            setActiveContent: 'set.active.content'
         };
     };
 

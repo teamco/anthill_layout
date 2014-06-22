@@ -40,6 +40,13 @@ define([
          */
         this.content = 'disable-interactions';
 
+        /**
+         * Define maximize class
+         * @member WidgetElement
+         * @type {string}
+         */
+        this.maximize = 'maximize';
+
         this.bindHoverInteractions();
 
         return this;
@@ -205,6 +212,63 @@ define([
                     this.$.removeClass(this.overlapped);
                 }
             }
+        },
+
+        /**
+         * Enlarge widget
+         * @member WidgetElement
+         */
+        enlarge: function enlarge() {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.view.scope;
+
+            this.$.stop().animate({
+
+                width: '100%',
+                height: '100%',
+                left: 0,
+                top: 0
+
+            }, 500, function afterEnlarge() {
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.afterMaximize
+                );
+
+            }.bind(scope)).addClass(this.maximize);
+        },
+
+        /**
+         * Reduce widget
+         * @member MaximizeContentElement
+         */
+        reduce: function reduce() {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.view.scope,
+                dom = scope.dom;
+
+            this.$.stop().animate({
+
+                width: dom.width,
+                height: dom.height,
+                left: dom.left,
+                top: dom.top
+
+            }, 500, function afterReduce() {
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.afterReduce
+                );
+
+            }.bind(scope)).removeClass(this.maximize);
         }
 
     }, BaseElement.prototype);

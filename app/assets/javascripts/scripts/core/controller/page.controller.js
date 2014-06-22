@@ -307,6 +307,86 @@ define([
                     widget.map.adoptLayer(widget.dom.zIndex || 'auto', false);
                 }
             }
+        },
+
+        /**
+         * Disable items interactions on enlarge
+         * @member PageController
+         * @param {Widget} widget
+         */
+        disableItemInteractions: function disableItemInteractions(widget) {
+
+            var items = this.model.getItems(),
+                index, item;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    /**
+                     * Define item
+                     * @type {Widget}
+                     */
+                    item = items[index];
+
+                    item.observer.publish(
+                        item.eventmanager.eventList.disableDraggable
+                    );
+
+                    item.observer.publish(
+                        item.eventmanager.eventList.disableResizable
+                    );
+
+                    if (widget !== item) {
+                        item.view.get$item().hide();
+                    }
+                }
+            }
+
+            this.controller.banAddWidget();
+
+            this.observer.publish(
+                this.eventmanager.eventList.setMaximized,
+                widget
+            );
+        },
+
+        /**
+         * Enable item interaction on reduce
+         * @member PageController
+         */
+        enableItemInteractions: function enableItemInteractions() {
+
+            var items = this.model.getItems(),
+                index, item;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    /**
+                     * Define item
+                     * @type {Widget}
+                     */
+                    item = items[index];
+
+                    item.observer.publish(
+                        item.eventmanager.eventList.enableDraggable
+                    );
+
+                    item.observer.publish(
+                        item.eventmanager.eventList.enableResizable
+                    );
+
+                    item.view.get$item().show();
+                }
+            }
+
+            this.controller.allowAddWidget();
+
+            this.observer.publish(
+                this.eventmanager.eventList.unsetMaximized
+            );
         }
 
     }, AntHill.prototype, BaseController.prototype, BasePage.prototype);
