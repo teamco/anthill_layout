@@ -9,7 +9,8 @@ gem 'sqlite3'
 #gem 'mysql2'
 
 gem 'thin'
-
+gem 'tzinfo-data'
+gem 'tzinfo'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
