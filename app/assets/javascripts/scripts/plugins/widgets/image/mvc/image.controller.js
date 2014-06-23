@@ -24,7 +24,7 @@ define([
 
         /**
          * Check rendering content
-         * @member @ImageController
+         * @member ImageController
          */
         checkEmbeddedContent: function checkEmbeddedContent() {
 
@@ -45,17 +45,23 @@ define([
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
-            this.view.elements.$image.renderEmbeddedContent(
-                this.model.getPrefs('imageUrl'),
-                this.model.getPrefs('imageText'),
-                this.model.getPrefs('imageRepeatX'),
-                this.model.getPrefs('imageRepeatY'),
-                this.model.getPrefs('imageStretch')
-            );
+            this.view.elements.$image.renderEmbeddedContent({
+                url: this.model.getPrefs('imageUrl'),
+                text: this.model.getPrefs('imageText'),
+                repeatX: this.model.getPrefs('imageRepeatX'),
+                repeatY: this.model.getPrefs('imageRepeatY'),
+                stretch: this.model.getPrefs('imageStretch')
+            });
         },
 
 
-        splitEmbeddedContent: function splitEmbeddedContent(subscribers) {
+        /**
+         * Split embedded content
+         * @member ImageController
+         * @param subscribers
+         * @param {boolean|*} simulate
+         */
+        splitEmbeddedContent: function splitEmbeddedContent(subscribers, simulate) {
 
             subscribers = this.base.define(
                 subscribers,
@@ -64,14 +70,15 @@ define([
                 )
             );
 
-            this.view.elements.$image.renderSplitEmbeddedContent(
-                this.model.getPrefs('imageUrl'),
-                this.model.getPrefs('imageText'),
-                this.model.getPrefs('imageRepeatX'),
-                this.model.getPrefs('imageRepeatY'),
-                this.model.getPrefs('imageStretch'),
-                subscribers.length
-            );
+            this.view.elements.$image.renderSplitEmbeddedContent({
+                url: this.model.getPrefs('imageUrl'),
+                text: this.model.getPrefs('imageText'),
+                repeatX: this.model.getPrefs('imageRepeatX'),
+                repeatY: this.model.getPrefs('imageRepeatY'),
+                stretch: this.model.getPrefs('imageStretch'),
+                splitTo: subscribers.length,
+                simulate: this.base.defineBoolean(simulate, false, true)
+            });
 
         },
 

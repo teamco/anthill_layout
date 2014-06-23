@@ -179,6 +179,11 @@ define([], function defineWidgetSubscribe() {
             );
         },
 
+        /**
+         * Split embedded content
+         * @member WidgetSubscribe
+         * @returns {boolean}
+         */
         splitEmbeddedContentSimulate: function splitEmbeddedContentSimulate() {
 
             /**
@@ -201,9 +206,17 @@ define([], function defineWidgetSubscribe() {
 
             scope.observer.publish(
                 scope.eventmanager.eventList.splitEmbeddedContent,
-                [subscribers]
+                [subscribers, true]
             );
 
+            scope.referrer.observer.publish(
+                scope.referrer.eventmanager.eventList.setActiveContent,
+                scope.controller.getContainment().model.getUUID()
+            );
+
+            scope.referrer.controller.approveUpdatePreferences();
+
+            return false;
         },
 
         /**

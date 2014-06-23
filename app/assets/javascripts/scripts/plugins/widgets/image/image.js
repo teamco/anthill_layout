@@ -28,6 +28,7 @@ define([
         /**
          * Define containment
          * @member Image
+         * @type {Widget}
          */
         this.containment = containment;
 
@@ -81,7 +82,7 @@ define([
         /**
          * Init event manager
          * @member Image
-         * @type {EventManager}
+         * @type {ImageEventManager}
          */
         this.eventmanager = undefined;
 
@@ -95,9 +96,23 @@ define([
         /**
          * Init model
          * @member Image
-         * @type {*}
+         * @type {ImageModel}
          */
         this.model = undefined;
+
+        /**
+         * Init controller
+         * @member Image
+         * @type {ImageController}
+         */
+        this.controller = undefined;
+
+        /**
+         * Init view
+         * @member Image
+         * @type {ImageView}
+         */
+        this.view = undefined;
 
         /**
          * Define MVC

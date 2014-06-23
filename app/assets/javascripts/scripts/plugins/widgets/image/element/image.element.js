@@ -42,15 +42,11 @@ define([
         /**
          * Render Embedded content
          * @member ImageElement
-         * @param {string} url
-         * @param {string} text
-         * @param {boolean} repeatX
-         * @param {boolean} repeatY
-         * @param {boolean} stretch
+         * @param {{}} opts
          */
-        renderEmbeddedContent: function renderEmbeddedContent(url, text, repeatX, repeatY, stretch) {
+        renderEmbeddedContent: function renderEmbeddedContent(opts) {
 
-            if (!url) {
+            if (!opts.url) {
                 return false;
             }
 
@@ -60,17 +56,17 @@ define([
              */
             var repeat = 'no-repeat';
 
-            if (repeatX) {
+            if (opts.repeatX) {
                 repeat = 'repeat-x';
                 this.image = false;
             }
 
-            if (repeatY) {
+            if (opts.repeatY) {
                 repeat = 'repeat-y';
                 this.image = false;
             }
 
-            if (repeatX && repeatY) {
+            if (opts.repeatX && opts.repeatY) {
                 repeat = 'repeat';
                 this.image = false;
             }
@@ -82,12 +78,12 @@ define([
                  * @type {*|jQuery}
                  */
                 this.$img = $('<img />').attr({
-                    src: url,
-                    alt: text,
-                    title: text
+                    src: opts.url,
+                    alt: opts.text,
+                    title: opts.text
                 });
 
-                if (stretch) {
+                if (opts.stretch) {
                     this.$img.css({
                         width: '100%',
                         height: '100%'
@@ -99,9 +95,9 @@ define([
             } else {
 
                 this.$.css({
-                    backgroundImage: "url('" + url + "')",
+                    backgroundImage: "url('" + opts.url + "')",
                     backgroundRepeat: repeat,
-                    backgroundSize: stretch ? 'cover' : 'auto'
+                    backgroundSize: opts.stretch ? 'cover' : 'auto'
                 });
             }
 
@@ -111,18 +107,19 @@ define([
         /**
          * Render Embedded content
          * @member ImageElement
-         * @param {string} url
-         * @param {string} text
-         * @param {boolean} repeatX
-         * @param {boolean} repeatY
-         * @param {boolean} stretch,
-         * @param {number} splitTo
+         * @param {{}} opts
          */
-        renderSplitEmbeddedContent: function renderSplitEmbeddedContent(url, text, repeatX, repeatY, stretch, splitTo) {
+        renderSplitEmbeddedContent: function renderSplitEmbeddedContent(opts) {
 
-            if (!url) {
+            if (!opts.url) {
                 return false;
             }
+
+            /**
+             * Define scope
+             * @type {ImageElement}
+             */
+            var $image = this;
 
             /**
              * Set img dimensions
@@ -130,9 +127,18 @@ define([
              * @private
              */
             function _setDimensions(e) {
-                this.$img.css({
+
+                /**
+                 * Calculate image proportions
+                 * @type {number}
+                 */
+                var proportions = ($image.$.height() * 100) / e.target.height,
+                    width = e.target.width * (proportions / 100);
+
+                $image.$img.css({
                     height: '100%',
-                    marginLeft: -e.target.width / (splitTo + 1)
+                    width: width,
+                    marginLeft: opts.simulate ? -(width / (opts.splitTo + 1)) : 0
                 });
             }
 
@@ -142,23 +148,26 @@ define([
              */
             var img = new Image();
 
-            img.src = url;
-            img.onload = _setDimensions.bind(this);
+            img.src = opts.url;
+            img.onload = _setDimensions;
             img.onerror = function () {
-                this.view.scope.logger.warn('Unable to load image', img);
-            }.bind(this);
+                $image.view.scope.logger.warn(
+                    'Unable to load image',
+                    img
+                );
+            };
 
             /**
              * Define $img
              * @type {*|jQuery}
              */
-            this.$img = $('<img />').attr({
+            $image.$img = $('<img />').attr({
                 src: img.src,
-                alt: text,
-                title: text
+                alt: opts.text,
+                title: opts.text
             });
 
-            this.setHtml(this.$img);
+            $image.setHtml($image.$img);
 
             return false;
         },
