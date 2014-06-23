@@ -1,28 +1,11 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+1. Install rvm: https://rvm.io/
+2. Install latest ruby version: https://www.ruby-lang.org/en/downloads/
+3. Install rails: gem install rails
+   - for windows: install sqlite: http://www.sqlite.org/2014/sqlite-dll-win32-x86-3080500.zip
+   - extract dll to ruby/bin directory (should be in PATH)
+4. Update bundler: bundle install
+5. Update db: rake db:migrate
+6. Run server: rails s
+7. Open in browser: http://127.0.0.1:3000/sites
