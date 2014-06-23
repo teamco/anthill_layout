@@ -1,7 +1,9 @@
 == README
 
 1. Install rvm: https://rvm.io/
-2. Install latest ruby version: https://www.ruby-lang.org/en/downloads/
+2. Install latest ruby version:
+   - via rvm: rvm install 2.1.2
+   - or as a global ruby: https://www.ruby-lang.org/en/downloads/
 3. Install rails: gem install rails
    - for windows: install sqlite: http://www.sqlite.org/2014/sqlite-dll-win32-x86-3080500.zip
    - extract dll to ruby/bin directory (should be in PATH)
