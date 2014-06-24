@@ -258,7 +258,19 @@ define([
                 },
                 type: 'video',
                 resource: 'swf'
+            },
+            {
+                name: 'Rutube',
+                description: 'Rutube is a web video streaming service targeted at Russian speakers',
+                thumbnail: '',
+                dimensions: {
+                    width: 15,
+                    height: 15
+                },
+                type: 'video',
+                resource: 'rutube'
             }
+
         ];
 
         /**
@@ -285,7 +297,7 @@ define([
          * Define current provider
          * @member GalleryModel
          */
-        this.currentProvider = undefined;
+        this.currentProvider = this.defaultProvider;
     };
 
     return GalleryModel.extend('GalleryModel', {

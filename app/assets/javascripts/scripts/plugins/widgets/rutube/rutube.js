@@ -8,27 +8,35 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/gallery/mvc/gallery.controller',
-    'plugins/gallery/mvc/gallery.model',
-    'plugins/gallery/mvc/gallery.view',
-    'plugins/gallery/mvc/gallery.event.manager',
-    'plugins/gallery/mvc/gallery.permission'
-], function defineGallery(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/rutube/mvc/rutube.controller',
+    'plugins/widgets/rutube/mvc/rutube.model',
+    'plugins/widgets/rutube/mvc/rutube.view',
+    'plugins/widgets/rutube/mvc/rutube.event.manager',
+    'plugins/widgets/rutube/mvc/rutube.permission'
+], function defineRutube(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Gallery
-     * @constructor
+     * Define Rutube
      * @param containment
-     * @class Gallery
+     * @param [opts]
+     * @constructor
+     * @class Rutube
      * @extends AntHill
      */
-    var Gallery = function Gallery(containment) {
+    var Rutube = function Rutube(containment, opts) {
 
         /**
          * Define containment
-         * @member Gallery
+         * @member Rutube
          */
         this.containment = containment;
+
+        /**
+         * Define referrer
+         * @member Rutube
+         * @type {*}
+         */
+        this.referrer = undefined;
 
         /**
          * Define defaults
@@ -38,7 +46,6 @@ define([
          *          style: string,
          *          header: boolean,
          *          footer: boolean,
-         *          floating: boolean,
          *          padding: {
          *              top: number,
          *              right: number,
@@ -52,9 +59,8 @@ define([
             plugin: true,
             html: {
                 style: 'default',
-                header: true,
-                footer: true,
-                floating: true,
+                header: false,
+                footer: false,
                 padding: {
                     top: 0,
                     right: 0,
@@ -66,33 +72,48 @@ define([
 
         /**
          * Init observer
-         * @member Gallery
+         * @member Rutube
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
-         * @member Gallery
-         * @type {GalleryEventManager}
+         * @member Rutube
+         * @type {RutubeEventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
-         * @member Gallery
+         * @member Rutube
          * @type {*}
          */
         this.config = undefined;
 
         /**
+         * Init model
+         * @member Rutube
+         * @type {*}
+         */
+        this.model = undefined;
+
+        /**
          * Define MVC
-         * @member Gallery
+         * @member Rutube
          * @type {MVC}
          */
         this.mvc = new MVC({
             scope: this,
-            config: [DEFAULTS],
+            config: [
+                {
+                    uuid: [
+                        this.containment.model.getUUID(),
+                        this.constructor.name.toDash()
+                    ].join('')
+                },
+                DEFAULTS
+            ],
             components: [
                 Controller,
                 Model,
@@ -104,25 +125,12 @@ define([
         });
 
         this.observer.publish(
-            this.eventmanager.eventList.successCreated
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.setProviders
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.setCurrentProvider,
-            this.model.currentProvider.key
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.updateTranslations,
-            ['plugins/gallery/translations/en-us']
+            this.eventmanager.eventList.initWidget,
+            opts
         );
     };
 
-    return Gallery.extend('Gallery', {
+    return Rutube.extend('Rutube', {
 
     }, AntHill.prototype);
 });
