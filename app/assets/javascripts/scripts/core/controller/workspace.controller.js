@@ -50,12 +50,19 @@ define(
                     widgetMatch = hash.match(/widget\/([\w\d\-]*):?/i);
 
                 /**
+                 * Get current page
+                 * @type {Page}
+                 */
+                var currentPage = this.controller.getCurrentItem();
+
+                /**
                  * Get page
                  * @type {Page}
                  */
                 var page = pageMatch ?
-                    this.model.getItemByUUID(pageMatch[1]) :
-                    this.controller.getCurrentItem();
+                    (this.model.getItemByTitle(pageMatch[1]) ||
+                        this.model.getItemByUUID(pageMatch[1])) :
+                    currentPage;
 
                 /**
                  * Get widget
@@ -67,7 +74,7 @@ define(
 
                 this.observer.publish(
                     this.eventmanager.eventList.switchToPage, [
-                        page ? page : this.controller.getCurrentItem(),
+                        page ? page : currentPage,
                         false,
                         widget
                     ]
@@ -112,7 +119,7 @@ define(
                 this.logger.debug('Before switch to page', page);
 
                 this.switchPage = true;
-                window.location.hash = 'page/' + page.model.getUUID();
+                window.location.hash = 'page/' + page.controller.getIdentity();
             },
 
             /**

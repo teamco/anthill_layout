@@ -91,14 +91,15 @@ define([
                      * Define placeholder text
                      * @type {string}
                      */
-                    var placeholder = 'Enter ' + text;
+                    var placeholder = 'Enter ' + text,
+                        textField;
 
                     if (node.type === 'text') {
                         /**
                          * Get text field
                          * @type {*[]}
                          */
-                        var textField = this.renderTextField({
+                        textField = this.renderTextField({
                             name: index,
                             text: text,
                             placeholder: placeholder,
@@ -114,7 +115,7 @@ define([
                          * Get text field
                          * @type {*[]}
                          */
-                        var textField = this.renderTextArea({
+                        textField = this.renderTextArea({
                             name: index,
                             text: text,
                             placeholder: placeholder,

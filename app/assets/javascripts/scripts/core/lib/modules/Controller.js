@@ -205,12 +205,25 @@ define([
          * @returns {*}
          */
         getCurrentItem: function getCurrentItem() {
+
             var scope = this.scope,
-                item = scope.model.getItemNameSpace();
-            if (item === 'object') {
-                scope.logger.warn('Unable to locate current item');
+                sname = scope.model.getItemNameSpace();
+
+            if (sname === 'object') {
+                scope.logger.error('Unable to locate current item');
             }
-            return scope[scope.model.getItemNameSpace()];
+
+            return scope[sname];
+        },
+
+        /**
+         * Get identity
+         * @member BaseController
+         * @returns {*|String}
+         */
+        getIdentity: function getIdentity() {
+            return this.model.getPrefs('title') ||
+                this.model.getUUID();
         },
 
         /**
@@ -218,7 +231,9 @@ define([
          * @member BaseController
          */
         setAsCurrent: function setAsCurrent() {
-            this.getContainment().controller.setCurrentItem(this.scope);
+            this.getContainment().controller.setCurrentItem(
+                this.scope
+            );
         },
 
         /**

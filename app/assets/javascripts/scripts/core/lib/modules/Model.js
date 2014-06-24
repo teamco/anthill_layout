@@ -232,6 +232,7 @@ define([
          * @returns {*}
          */
         getItemByTitle: function getItemByTitle(title) {
+
             var items = this.getItems(),
                 index, item;
 
@@ -245,10 +246,14 @@ define([
                      */
                     item = items[index];
 
-                    debugger
+                    if (item.model.getPrefs('title') === title) {
+
+                        return item;
+                    }
                 }
             }
-            return item;
+
+            this.scope.logger.warn('Unable locate item by title', items, title);
         },
 
         /**
@@ -340,7 +345,7 @@ define([
         getContentPrefs: function getContentPrefs(prefs) {
 
             if (!this.preferences[prefs]) {
-                this.scope.logger.warn('Undefined preference', prefs);
+                this.scope.logger.info('Undefined preference', prefs);
                 return false;
             }
 
