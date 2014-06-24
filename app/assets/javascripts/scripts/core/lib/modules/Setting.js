@@ -131,7 +131,9 @@ define([
              * Set data
              * @type {*}
              */
-            this.getStorage()[this.getNameSpace()] = JSON.stringify(data);
+            this.getStorage()[this.getNameSpace()] = LZString.compress(
+                JSON.stringify(data)
+            );
         },
 
         /**
