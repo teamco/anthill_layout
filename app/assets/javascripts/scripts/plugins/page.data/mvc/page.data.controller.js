@@ -157,7 +157,8 @@ define([
             var scope = this.scope;
 
             scope.activeContent.controller.updatePreferences(
-                scope.view.elements.$modal
+                scope.view.elements.$modal,
+                true
             );
         },
 

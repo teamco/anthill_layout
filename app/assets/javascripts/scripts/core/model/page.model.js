@@ -64,6 +64,15 @@ define([
                     break;
                 }
             }
+        },
+
+        /**
+         * Set layout mode
+         * @member PageModel
+         * @param {string} layout
+         */
+        setLayoutMode: function setLayoutMode(layout) {
+            this.setPrefs('layoutMode', layout);
         }
 
     }, BaseModel.prototype);

@@ -43,7 +43,9 @@ define([
          *      updateHeight: string,
          *      afterLoadingItems: string,
          *      disableItemInteractions: string,
-         *      enableItemInteractions: string
+         *      enableItemInteractions: string,
+         *      loadPreferences: string,
+         *      transferPreferences: string
          * }}
          */
         eventList: {
@@ -60,7 +62,9 @@ define([
             updateHeight: 'update.height',
             afterLoadingItems: 'after.loading.items',
             disableItemInteractions: 'disable.item.interactions',
-            enableItemInteractions: 'enable.item.interactions'
+            enableItemInteractions: 'enable.item.interactions',
+            loadPreferences: 'load.preferences',
+            transferPreferences: 'transfer.preferences'
         }
 
     }, BaseEvent.prototype);

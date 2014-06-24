@@ -6,14 +6,15 @@
  */
 
 define([
-    'plugins/preferences/widget.content.controller.preferences',
+    'plugins/preferences/preferences.controller',
+    'plugins/preferences/widget.content.preferences.controller',
     'plugins/rules/widget.content.controller.rules'
-], function defineWidgetContentControllerBase(WidgetContentControllerPreferences, WidgetContentControllerRules) {
+], function defineWidgetContentControllerBase(PreferencesController, WidgetContentPreferencesController, WidgetContentControllerRules) {
 
     /**
      * Define Base Widget controller
      * @class WidgetContentController
-     * @extends WidgetContentControllerPreferences
+     * @extends PreferencesController
      * @extends WidgetContentControllerRules
      * @constructor
      */
@@ -249,7 +250,8 @@ define([
 
         },
 
-        WidgetContentControllerPreferences.prototype,
+        PreferencesController.prototype,
+        WidgetContentPreferencesController.prototype,
         WidgetContentControllerRules.prototype
     );
 });

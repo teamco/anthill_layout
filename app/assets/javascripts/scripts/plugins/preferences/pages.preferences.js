@@ -67,6 +67,7 @@ define([
 
             /**
              * Merge prefs with default data
+             * @type {{}}
              */
             opts.data = $.extend(true, this.defaultPrefs, opts.data);
 

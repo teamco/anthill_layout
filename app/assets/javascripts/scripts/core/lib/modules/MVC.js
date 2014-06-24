@@ -352,9 +352,15 @@ define([
                 l = this.components.length;
 
             for (i; i < l; i += 1) {
+
+                /**
+                 * Get mvc component
+                 * @type {function}
+                 */
                 var mvc = this.components[i];
 
                 if (!this.base.isDefined(mvc)) {
+                    this.scope.logger.warn('Undefined pattern', i, this.components);
                     return false;
                 }
 
@@ -363,17 +369,39 @@ define([
 
                 ref.scope = this.scope;
 
-                if (pattern === 'view') {
-
-                    /**
-                     * Define elements
-                     * @type {{}}
-                     */
-                    this.scope.view.elements = {};
-                }
+                this.applyMVCShims(pattern);
             }
 
             this.setRelation();
+        },
+
+        /**
+         * Apply MVC shims
+         * @member MVC
+         * @param pattern
+         */
+        applyMVCShims: function applyMVCShims(pattern) {
+
+            if (pattern === 'view') {
+
+                /**
+                 * Define elements
+                 * @type {{}}
+                 */
+                this.scope.view.elements = {};
+            }
+
+            if (pattern === 'model') {
+
+                /**
+                 * Define preferences
+                 * @type {*}
+                 */
+                this.scope.model.preferences = this.base.define(
+                    this.scope.model.preferences,
+                    {}, true
+                );
+            }
         },
 
         /**

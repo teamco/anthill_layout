@@ -226,6 +226,32 @@ define([
         },
 
         /**
+         * Get item from collector by title
+         * @member BaseModel
+         * @param {string} title
+         * @returns {*}
+         */
+        getItemByTitle: function getItemByTitle(title) {
+            var items = this.getItems(),
+                index, item;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    /**
+                     * Get item
+                     * @type {{Page|Widget|*}}
+                     */
+                    item = items[index];
+
+                    debugger
+                }
+            }
+            return item;
+        },
+
+        /**
          * Reset collector
          * @member BaseModel
          * @returns {*}
@@ -354,6 +380,15 @@ define([
          * @param {*} value
          */
         setPrefs: function setPrefs(prefs, value) {
+
+            /**
+             * Define preferences
+             * @member BaseModel
+             * @type {*}
+             */
+            this.preferences = this.base.define(
+                this.preferences, {}, true
+            );
 
             /**
              * Define new prefs

@@ -6,19 +6,23 @@
  */
 
 define(
-    ['plugins/plugin'],
+    [
+        'plugins/plugin',
+        'plugins/preferences/preferences.controller'
+    ],
 
     /**
      * Define WorkspaceDataController
-     * @param {PluginBase} PluginBase
+     * @param {PluginController} PluginBase
      * @returns {WorkspaceDataController}
      */
-        function defineWorkspaceDataController(PluginBase) {
+        function defineWorkspaceDataController(PluginBase, PreferencesController) {
 
         /**
          * Define pages controller
          * @class WorkspaceDataController
          * @extends PluginController
+         * @extends PreferencesController
          * @constructor
          */
         var WorkspaceDataController = function WorkspaceDataController() {
@@ -101,11 +105,13 @@ define(
 
                 /**
                  * Define scope
+                 * @type {WorkspaceData}
                  */
                 var scope = this.scope;
 
                 scope.activeContent.controller.updatePreferences(
-                    scope.view.elements.$modal
+                    scope.view.elements.$modal,
+                    false
                 );
             },
 
@@ -238,6 +244,6 @@ define(
 
             }
 
-        }, PluginBase.prototype);
+        }, PluginBase.prototype, PreferencesController.prototype);
     }
 );

@@ -186,7 +186,7 @@ define(
                  * @type {WorkspaceDataPreferencesElement}
                  */
                 this.elements.$preferences = new WorkspaceDataPreferencesElement(this, {
-                    data: this.controller.getPreferences(),
+                    data: page.controller.getPreferences(),
                     page: page
                 });
 
