@@ -71,7 +71,7 @@ define(
                 },
                 html: {
                     style: 'default',
-                    header: false,
+                    header: true,
                     footer: false,
                     stretch: true,
                     padding: {
