@@ -111,7 +111,13 @@ define([
          */
         getItemIdentity: function getItemIdentity(item) {
 
-            if (!item) {
+            /**
+             * Define item
+             * @type {*}
+             */
+            item = this.scope.base.define(item, {}, true);
+
+            if (!item.model) {
                 return false;
             }
 

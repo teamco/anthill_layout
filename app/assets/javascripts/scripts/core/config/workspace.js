@@ -178,6 +178,8 @@ define(
             this.observer.publish(
                 this.eventmanager.eventList.bindHashChange
             );
+
+            this.controller.switchPageOnHashChange.bind(this)();
         };
 
         return Workspace.extend('Workspace', {

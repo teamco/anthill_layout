@@ -91,6 +91,7 @@ define(
              * @param {Page} page
              */
             beforeSwitchToPage: function beforeSwitchToPage(page) {
+
                 this.logger.debug('Before switch to page', page);
 
                 this.switchPage = true;
@@ -121,6 +122,11 @@ define(
              * @returns {boolean|*}
              */
             switchToPage: function switchToPage(page, animate) {
+
+                if (!page.model) {
+                    window.location.hash = '';
+                    return false;
+                }
 
                 if (this.switchPage) {
                     return false;

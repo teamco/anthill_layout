@@ -92,6 +92,10 @@ define([
                 return false;
             }
 
+            /**
+             * Define scope
+             * @type {*}
+             */
             var scope = this.scope;
 
             /**

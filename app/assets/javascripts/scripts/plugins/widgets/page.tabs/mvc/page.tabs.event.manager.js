@@ -21,6 +21,7 @@ define([
 
         this.updateEventList({
             switchToPage: 'switch.to.page',
+            setAsCurrentPage: 'set.as.current.page',
             subscribeCreatePageEvent: 'subscribe.create.page.event',
             subscribeDestroyPageEvent: 'subscribe.destroy.page.event'
         });
@@ -30,7 +31,8 @@ define([
          * @type {[string]}
          */
         this.onLoadEvents = [
-            this.eventList.switchToPage
+            this.eventList.switchToPage,
+            this.eventList.setAsCurrentPage
         ];
     };
 

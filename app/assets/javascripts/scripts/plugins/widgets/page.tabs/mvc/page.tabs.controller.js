@@ -111,6 +111,17 @@ define([
             }
         },
 
+        setAsCurrentPage: function setAsCurrentPage() {
+
+            /**
+             * Get workspace
+             * @type {Page}
+             */
+            var page = this.controller.getPage();
+
+            debugger
+        },
+
         /**
          * Add PageTabs rule
          * @member PageTabsController
