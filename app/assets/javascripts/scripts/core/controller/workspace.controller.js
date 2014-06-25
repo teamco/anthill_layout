@@ -6,14 +6,17 @@
  * To change this template use File | Settings | File Templates.
  */
 define(
-    ['modules/Controller'],
+    [
+        'modules/Controller',
+        'modules/Router'
+    ],
 
     /**
      * Define WorkspaceController
      * @param BaseController
      * @returns {*}
      */
-        function defineWorkspaceController(BaseController) {
+        function defineWorkspaceController(BaseController, Router) {
 
         /**
          * Define workspace controller
@@ -45,38 +48,10 @@ define(
              */
             switchPageOnHashChange: function switchPageOnHashChange() {
 
-                var hash = window.location.hash,
-                    pageMatch = hash.match(/page\/([\w\d\-]*):?/i),
-                    widgetMatch = hash.match(/widget\/([\w\d\-]*):?/i);
-
-                /**
-                 * Get current page
-                 * @type {Page}
-                 */
-                var currentPage = this.controller.getCurrentItem();
-
-                /**
-                 * Get page
-                 * @type {Page}
-                 */
-                var page = pageMatch ?
-                    (this.model.getItemByTitle(pageMatch[1]) ||
-                        this.model.getItemByUUID(pageMatch[1])) :
-                    currentPage;
-
-                /**
-                 * Get widget
-                 * @type {*|Widget}
-                 */
-                var widget = widgetMatch ?
-                    page.model.getItemByUUID(widgetMatch[1]) :
-                    null;
-
                 this.observer.publish(
                     this.eventmanager.eventList.switchToPage, [
-                        page ? page : currentPage,
-                        false,
-                        widget
+                        this.controller.getPageByHashLocation(),
+                        false
                     ]
                 );
             },
@@ -119,7 +94,27 @@ define(
                 this.logger.debug('Before switch to page', page);
 
                 this.switchPage = true;
-                window.location.hash = 'page/' + page.controller.getIdentity();
+
+                /**
+                 * Get widget
+                 * @type {Widget|*}
+                 */
+                var widget= this.controller.getWidgetByHashLocation();
+
+                var purl = page ? [
+                        'page/',
+                        this.controller.getItemIdentity(page)
+                    ] : [],
+
+                    wurl = widget ? [
+                        '/widget/',
+                        this.controller.getItemIdentity(widget)
+                    ] : [];
+
+                window.location.hash = ''.concat(
+                    purl.join(''),
+                    wurl.join('')
+                );
             },
 
             /**
@@ -127,10 +122,9 @@ define(
              * @member WorkspaceController
              * @param {Page} page
              * @param {boolean} animate
-             * @param {*|Widget} widget
              * @returns {boolean|*}
              */
-            switchToPage: function switchToPage(page, animate, widget) {
+            switchToPage: function switchToPage(page, animate) {
 
                 if (this.switchPage) {
                     return false;
@@ -173,7 +167,7 @@ define(
                         }
                     }
 
-                    this.controller.swipeToCurrentPage(animate, widget);
+                    this.controller.swipeToCurrentPage(animate);
 
                 } else {
 
@@ -186,14 +180,14 @@ define(
              * After Switch to page
              * @member WorkspaceController
              * @param {Page} page
-             * @param {Widget} widget
              */
-            afterSwitchToPage: function afterSwitchToPage(page, widget) {
+            afterSwitchToPage: function afterSwitchToPage(page) {
 
-                this.logger.debug('After switch to page', page, widget);
+                this.logger.debug('After switch to page', page);
 
                 this.switchPage = false;
 
+                //this.getWidgetByHashLocation()
                 console.log('TODO add widget implementation');
             },
 
@@ -215,6 +209,6 @@ define(
             }
 
 
-        }, BaseController.prototype);
+        }, BaseController.prototype, Router.prototype);
     }
 );

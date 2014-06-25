@@ -246,14 +246,21 @@ define([
                      */
                     item = items[index];
 
-                    if (item.model.getPrefs('title') === title) {
+                    /**
+                     * Get item title
+                     * @type {*|string}
+                     */
+                    itemTitle = item.model.getPrefs('title');
 
-                        return item;
+                    if (itemTitle) {
+                        if (itemTitle.toClassName() === title.toClassName()) {
+                            return item;
+                        }
                     }
                 }
             }
 
-            this.scope.logger.warn('Unable locate item by title', items, title);
+            this.scope.logger.debug('Unable locate item by title', items, title);
         },
 
         /**

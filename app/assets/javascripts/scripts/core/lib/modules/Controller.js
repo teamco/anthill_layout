@@ -54,26 +54,6 @@ define([
         },
 
         /**
-         * Success Render Footer
-         * @member BaseController
-         * @param {HeaderElement} $header
-         * @param {boolean} render
-         */
-        successRenderHeader: function successRenderHeader($header, render) {
-            this.logger.warn('Success Render Header', render, $header);
-        },
-
-        /**
-         * Success Render Footer
-         * @member BaseController
-         * @param {FooterElement} $footer
-         * @param {boolean} render
-         */
-        successRenderFooter: function successRenderFooter($footer, render) {
-            this.logger.debug('Success Render Footer', render, $footer);
-        },
-
-        /**
          * Set core loading attribute
          * @member BaseController
          * @param load
@@ -220,6 +200,26 @@ define([
         },
 
         /**
+         * Success Render Footer
+         * @member BaseController
+         * @param {HeaderElement} $header
+         * @param {boolean} render
+         */
+        successRenderHeader: function successRenderHeader($header, render) {
+            this.logger.debug('Success Render Header', render, $header);
+        },
+
+        /**
+         * Success Render Footer
+         * @member BaseController
+         * @param {FooterElement} $footer
+         * @param {boolean} render
+         */
+        successRenderFooter: function successRenderFooter($footer, render) {
+            this.logger.debug('Success Render Footer', render, $footer);
+        },
+
+        /**
          * Get current items
          * @member BaseController
          * @returns {*}
@@ -234,16 +234,6 @@ define([
             }
 
             return scope[sname];
-        },
-
-        /**
-         * Get identity
-         * @member BaseController
-         * @returns {*|String}
-         */
-        getIdentity: function getIdentity() {
-            return this.model.getPrefs('title') ||
-                this.model.getUUID();
         },
 
         /**

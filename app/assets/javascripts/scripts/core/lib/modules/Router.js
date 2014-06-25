@@ -4,7 +4,7 @@
 
 define([
 
-], function defineRouter(){
+], function defineRouter() {
 
     /**
      * Define router
@@ -24,7 +24,103 @@ define([
         };
     };
 
-    return Router.extend({
+    return Router.extend('Router', {
 
+        /**
+         * Get Hash location
+         * @member Router
+         * @returns {string}
+         */
+        getHashLocation: function getHashLocation() {
+            return window.location.hash;
+        },
+
+        /**
+         * Get page by hash
+         * @member Router
+         * @returns {Page}
+         */
+        getPageByHashLocation: function getPageByHashLocation() {
+
+            /**
+             * Define hash
+             * @type {string}
+             */
+            var hash = this.getHashLocation();
+
+            /**
+             * Match regex
+             * @type {Array|{index: number, input: string}|*}
+             */
+            var pageMatch = hash.match(/page\/([\w\d\-]*):?/i);
+
+            /**
+             * Get current page
+             * @type {Page}
+             */
+            var currentPage = this.getCurrentItem();
+
+            /**
+             * Get page
+             * @type {Page}
+             */
+            var page = pageMatch ?
+                (this.model.getItemByTitle(pageMatch[1]) ||
+                    this.model.getItemByUUID(pageMatch[1])) :
+                currentPage;
+
+            return page;
+        },
+
+        /**
+         * Get widget by hash
+         * @member Router
+         * @returns {Widget|*}
+         */
+        getWidgetByHashLocation: function getWidgetByHashLocation() {
+
+            /**
+             * Define hash
+             * @type {string}
+             */
+            var hash = this.getHashLocation();
+
+            /**
+             * Match regex
+             * @type {Array|{index: number, input: string}}
+             */
+            var widgetMatch = hash.match(/widget\/([\w\d\-]*):?/i);
+
+            /**
+             * Get widget
+             * @type {*|Widget}
+             */
+            var widget = widgetMatch ?
+                page.model.getItemByUUID(widgetMatch[1]) :
+                null;
+
+            return widget;
+        },
+
+        /**
+         * Get item identity
+         * @member BaseController
+         * @param {Page|Widget} item
+         * @returns {*|String}
+         */
+        getItemIdentity: function getItemIdentity(item) {
+
+            if (!item) {
+                return false;
+            }
+
+            var title = item.model.getPrefs('title');
+
+            if (title) {
+                return title.toClassName();
+            }
+
+            return item.model.getUUID();
+        }
     });
 });
