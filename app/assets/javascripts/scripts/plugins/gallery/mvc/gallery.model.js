@@ -44,7 +44,7 @@ define([
                 description: 'Show page tabs',
                 thumbnail: '',
                 dimensions: {
-                    width: 10,
+                    width: 30,
                     height: 5
                 },
                 type: 'regular',
