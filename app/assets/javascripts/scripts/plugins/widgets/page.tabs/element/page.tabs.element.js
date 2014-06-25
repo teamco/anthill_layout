@@ -25,6 +25,12 @@ define([
             destroy: true
         });
 
+        /**
+         * Define current page class name
+         * @type {string}
+         */
+        this.current = 'current';
+
         this.addCSS('page.tabs', {resource: '/widgets'});
 
         return this;
@@ -36,8 +42,9 @@ define([
          * Render Embedded content
          * @member PageTabsElement
          * @param {{}} pages
+         * @param {Page} page
          */
-        renderEmbeddedContent: function renderEmbeddedContent(pages) {
+        renderEmbeddedContent: function renderEmbeddedContent(pages, page) {
 
             this.empty();
 
@@ -46,7 +53,10 @@ define([
                 if (pages.hasOwnProperty(index)) {
 
                     this.$.append(
-                        this.view.renderPageTabsItem(pages[index])
+                        this.view.renderPageTabsItem(
+                            pages[index],
+                            page === pages[index] ? this.current : ''
+                        )
                     );
                 }
             }

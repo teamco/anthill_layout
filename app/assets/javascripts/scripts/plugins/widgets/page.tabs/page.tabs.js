@@ -130,7 +130,15 @@ define([
         );
 
         this.observer.publish(
+            this.eventmanager.eventList.subscribeAfterSwitchPageEvent
+        );
+
+        this.observer.publish(
             this.eventmanager.eventList.subscribeCreatePageEvent
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.subscribeDestroyPageEvent
         );
     };
 

@@ -63,10 +63,11 @@ define([
         /**
          * Render page tab element
          * @member PageTabsView
-         * @param pageTab
+         * @param {Page} pageTab
+         * @param {string} current
          * @return {PageTabsItemElement}
          */
-        renderPageTabsItem: function renderPageTabsItem(pageTab) {
+        renderPageTabsItem: function renderPageTabsItem(pageTab, current) {
 
             /**
              * Define page tab item
@@ -75,7 +76,7 @@ define([
             var $pageTab = new PageTabsItemElement(this, {
                 $container: this.elements.$pagetabs.$,
                 pageTab: pageTab,
-                style: 'page-tabs-item'
+                style: ['page-tabs-item', current].join(' ')
             });
 
             this.elements.items[$pageTab.id] = $pageTab;

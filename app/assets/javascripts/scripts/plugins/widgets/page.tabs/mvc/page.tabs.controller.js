@@ -24,12 +24,23 @@ define([
     return PageTabsController.extend('PageTabsController', {
 
         /**
+         * Subscribe to after switch page event
+         * @member PageTabsController
+         */
+        subscribeAfterSwitchPageEvent: function subscribeAfterSwitchPageEvent() {
+            this.controller._subscribePageEventCallback.bind(this)(
+                'afterSwitchToPage'
+            );
+        },
+
+        /**
          * Subscribe to create page event
          * @member PageTabsController
          */
         subscribeCreatePageEvent: function subscribeCreatePageEvent() {
-
-            this.controller._subscribePageEventCallback.bind(this)('afterCreateItem');
+            this.controller._subscribePageEventCallback.bind(this)(
+                'afterCreateItem'
+            );
         },
 
         /**
@@ -38,7 +49,13 @@ define([
          */
         subscribeDestroyPageEvent: function subscribeDestroyPageEvent() {
 
-            this.controller._subscribePageEventCallback.bind(this)('afterDestroyItem');
+            this.controller._subscribePageEventCallback.bind(this)(
+                'afterDestroyItem'
+            );
+
+            this.controller._subscribePageEventCallback.bind(this)(
+                'afterDestroyItems'
+            );
         },
 
         /**
@@ -51,9 +68,15 @@ define([
 
             /**
              * Get workspace
+             * @type {Workspace}
+             */
+            var ws = this.controller.getWorkspace();
+
+            /**
+             * Get workspace
              * @type {WorkspaceEventManager}
              */
-            var wsEventManager = this.controller.getWorkspace().eventmanager;
+            var wsEventManager = ws.eventmanager;
 
             wsEventManager.subscribe({
 
@@ -78,8 +101,15 @@ define([
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var ws = this.controller.getWorkspace();
+
             this.view.elements.$pagetabs.renderEmbeddedContent(
-                this.controller.getWorkspace().model.getItems()
+                ws.model.getItems(),
+                ws.controller.getCurrentItem()
             );
         },
 
@@ -109,17 +139,6 @@ define([
                     [$page.pageTab, true]
                 );
             }
-        },
-
-        setAsCurrentPage: function setAsCurrentPage() {
-
-            /**
-             * Get workspace
-             * @type {Page}
-             */
-            var page = this.controller.getPage();
-
-            debugger
         },
 
         /**

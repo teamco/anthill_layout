@@ -36,3 +36,7 @@
 .widget .content.pagetabs ul.page-tabs-container > li:last-child {
     border-top-right-radius: 5px;
 }
+
+.widget .content.pagetabs ul.page-tabs-container .current {
+    font-weight: bold;
+}
