@@ -25,6 +25,12 @@ define([
             destroy: false
         });
 
+        /**
+         * Define page index
+         * @type {number}
+         */
+        this.index = opts.counter;
+
         return this.init(opts.data);
     };
 
@@ -66,11 +72,20 @@ define([
          * @param {Page} page
          */
         updateCounter: function updateCounter(page) {
-            this.get$counter().text(
-                this.base.lib.hash.hashLength(
-                    page.model.getItems()
-                )
+
+            /**
+             * Get items length
+             * @type {Number}
+             */
+            var items = this.base.lib.hash.hashLength(
+                page.model.getItems()
             );
+
+            this.get$counter().
+                text(items).
+                attr({
+                    title: [items, 'items'].join(' ')
+                });
         },
 
         /**
@@ -79,7 +94,7 @@ define([
          * @returns {*|jQuery|HTMLElement}
          */
         get$counter: function get$counter() {
-           return $('.counter', this.$);
+            return $('.counter', this.$);
         },
 
         /**

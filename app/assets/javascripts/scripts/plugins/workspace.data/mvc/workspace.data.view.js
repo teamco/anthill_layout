@@ -90,7 +90,7 @@ define(
                 this.elements.$workspacedata.empty();
                 this.renderCreatePage();
 
-                var index;
+                var index, counter = 1;
 
                 for (index in data) {
 
@@ -104,8 +104,11 @@ define(
                             style: 'content',
                             id: data[index].model.getConfig('uuid') + '-workspacedata-view',
                             $container: this.elements.$workspacedata.$,
-                            data: data[index]
+                            data: data[index],
+                            counter: counter
                         });
+
+                        counter += 1;
 
                         this.elements.items[$item.id] = $item;
                     }
