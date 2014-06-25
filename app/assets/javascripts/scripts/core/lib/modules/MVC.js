@@ -78,7 +78,18 @@ define([
         /**
          * Define default listeners
          * @member MVC
-         * @type {*}
+         * @type {{
+         *      beforeInitConfig: string,
+         *      afterInitConfig: string,
+         *      successCreated: string,
+         *      successRendered: string,
+         *      afterCreateItem: string,
+         *      afterDestroyItem: string,
+         *      afterDestroyItems: string,
+         *      afterResizeWindow: string,
+         *      successRenderHeader: string,
+         *      successRenderFooter: string
+         * }}
          */
         this.defaultListeners = {
             beforeInitConfig: 'before.init.config',
@@ -88,7 +99,9 @@ define([
             afterCreateItem: 'after.create.item',
             afterDestroyItem: 'after.destroy.item',
             afterDestroyItems: 'after.destroy.items',
-            afterResizeWindow: 'after.resize.window'
+            afterResizeWindow: 'after.resize.window',
+            successRenderHeader: 'success.render.header',
+            successRenderFooter: 'success.render.footer'
         };
 
         /**

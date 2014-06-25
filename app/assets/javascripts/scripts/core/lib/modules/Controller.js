@@ -54,6 +54,26 @@ define([
         },
 
         /**
+         * Success Render Footer
+         * @member BaseController
+         * @param {HeaderElement} $header
+         * @param {boolean} render
+         */
+        successRenderHeader: function successRenderHeader($header, render) {
+            this.logger.warn('Success Render Header', render, $header);
+        },
+
+        /**
+         * Success Render Footer
+         * @member BaseController
+         * @param {FooterElement} $footer
+         * @param {boolean} render
+         */
+        successRenderFooter: function successRenderFooter($footer, render) {
+            this.logger.debug('Success Render Footer', render, $footer);
+        },
+
+        /**
          * Set core loading attribute
          * @member BaseController
          * @param load

@@ -171,6 +171,19 @@ define([
                 append: false
             });
 
+            /**
+             * Define scope
+             * @type {{}}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.successRenderHeader, [
+                    this.elements.$header,
+                    this.getConfigHTML('header')
+                ]
+            );
+
             return this.elements.$header;
         },
 
@@ -194,6 +207,19 @@ define([
                 ].join('-'),
                 $container: $container.$
             });
+
+            /**
+             * Define scope
+             * @type {{}}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.successRenderFooter, [
+                    this.elements.$footer,
+                    this.getConfigHTML('footer')
+                ]
+            );
 
             return this.elements.$footer;
         },
