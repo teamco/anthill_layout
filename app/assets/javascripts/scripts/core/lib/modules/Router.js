@@ -52,7 +52,7 @@ define([
              * Match regex
              * @type {Array|{index: number, input: string}|*}
              */
-            var pageMatch = hash.match(/page\/([\w\d\-]*):?/i);
+            var pageMatch = hash.match(/#([\w\d\-]*):?/i);
 
             /**
              * Get current page
@@ -69,15 +69,16 @@ define([
                     this.model.getItemByUUID(pageMatch[1])) :
                 currentPage;
 
-            return page;
+            return page || currentPage;
         },
 
         /**
          * Get widget by hash
          * @member Router
+         * @param {Page} page
          * @returns {Widget|*}
          */
-        getWidgetByHashLocation: function getWidgetByHashLocation() {
+        getWidgetByHashLocation: function getWidgetByHashLocation(page) {
 
             /**
              * Define hash
@@ -89,7 +90,7 @@ define([
              * Match regex
              * @type {Array|{index: number, input: string}}
              */
-            var widgetMatch = hash.match(/widget\/([\w\d\-]*):?/i);
+            var widgetMatch = hash.match(/\/([\w\d\-]*):?/i);
 
             /**
              * Get widget

@@ -99,21 +99,17 @@ define(
                  * Get widget
                  * @type {Widget|*}
                  */
-                var widget= this.controller.getWidgetByHashLocation();
+                var widget = this.controller.getWidgetByHashLocation(page);
 
-                var purl = page ? [
-                        'page/',
-                        this.controller.getItemIdentity(page)
-                    ] : [],
+                var purl = page ?
+                        this.controller.getItemIdentity(page) : '',
 
-                    wurl = widget ? [
-                        '/widget/',
-                        this.controller.getItemIdentity(widget)
-                    ] : [];
+                    wurl = widget ?
+                        '/' + this.controller.getItemIdentity(widget) : '';
 
                 window.location.hash = ''.concat(
-                    purl.join(''),
-                    wurl.join('')
+                    purl,
+                    wurl
                 );
             },
 
