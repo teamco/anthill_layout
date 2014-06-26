@@ -42,33 +42,34 @@ define([
         setAttributes: function setAttributes(data) {
 
             /**
-             * Get config
-             * @type {*}
-             */
-            var config = data.model.getConfig();
-
-            /**
              * Get title
              * @type {boolean|string}
              */
-            var title = data.model.getPrefs('title') || config.uuid;
+            var title = data.model.getConfig('preferences/title') ||
+                data.model.getUUID();
 
             /**
              * Get description
              * @type {string}
              */
-            var description = data.model.getPrefs('description') || '';
+            var description = data.model.getConfig('preferences/description') || '';
 
             this.$.attr({
                 title: title
             }).addClass(
-                config.preferences.resource.replace(/\./g, '')
+                data.model.getConfig('preferences/resource').replace(/\./g, '')
             );
 
-            if (config.preferences.thumbnail.length > 0) {
+            /**
+             * Get thumbnail
+             * @type {string|*}
+             */
+            var thumbnail = data.model.getConfig('preferences/thumbnail');
+
+            if (thumbnail.length > 0) {
 
                 this.$.css({
-                    backgroundImage: 'url("' + config.preferences.thumbnail + '")'
+                    backgroundImage: 'url("' + thumbnail + '")'
                 });
             }
 

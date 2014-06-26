@@ -164,7 +164,9 @@ define([
                 config: {
                     preferences: {
                         resource: $element.$.attr('resource'),
-                        thumbnail: $element.data.thumbnail
+                        thumbnail: $element.data.thumbnail,
+                        title: $element.data.name,
+                        description: $element.data.description
                     },
                     html: {
                         dimensions: {
