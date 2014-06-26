@@ -36,7 +36,7 @@ define([
 
         /**
          * Define attributes
-         * @memberOf PageDataContentElement
+         * @member PageDataContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
@@ -47,8 +47,20 @@ define([
              */
             var config = data.model.getConfig();
 
+            /**
+             * Get title
+             * @type {boolean|string}
+             */
+            var title = data.model.getPrefs('title') || config.uuid;
+
+            /**
+             * Get description
+             * @type {string}
+             */
+            var description = data.model.getPrefs('description') || '';
+
             this.$.attr({
-                title: config.uuid
+                title: title
             }).addClass(
                 config.preferences.resource.replace(/\./g, '')
             );
@@ -59,6 +71,12 @@ define([
                     backgroundImage: 'url("' + config.preferences.thumbnail + '")'
                 });
             }
+
+            this.renderTooltip({
+                title: title,
+                description: description,
+                $container: this
+            });
         },
 
         /**
@@ -106,7 +124,7 @@ define([
 
         /**
          * Bind show prefs
-         * @memberOf PageDataContentElement
+         * @member PageDataContentElement
          * @param data
          */
         bindShowPrefs: function bindShowPrefs(data) {
