@@ -94,7 +94,8 @@ define([
                             item.activated ? 'activated' : '',
                             moduleResource
                         ].join(' '),
-                        resource: moduleResource,
+                        resource: item,
+                        cname: moduleResource,
                         $container: this.elements.$bar.$
                     });
 

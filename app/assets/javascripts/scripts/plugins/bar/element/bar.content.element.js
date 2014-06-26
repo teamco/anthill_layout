@@ -17,6 +17,7 @@ define([
      * @constructor
      * @class BarContentElement
      * @extends BaseElement
+     * @extends Renderer
      */
     var BarContentElement = function BarContentElement(view, opts) {
 
@@ -25,7 +26,13 @@ define([
             destroy: true
         });
 
-        this.attachEvent(opts.resource);
+        /**
+         * Define resource
+         * @member BarContentElement
+         */
+        this.resource = opts.resource;
+
+        this.attachEvent(opts.cname);
 
         return this;
     };
@@ -51,8 +58,12 @@ define([
                         publish(event.closePanel, resource) :
                         publish(event.openPanel, resource);
                 }
-            )
+            );
 
+            this.renderTooltip({
+                title: this.resource.module.constructor.name.humanize(),
+                $container: this
+            })
         }
 
     }, BaseElement.prototype);
