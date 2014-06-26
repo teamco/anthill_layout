@@ -80,11 +80,12 @@
      * @returns {string}
      */
     String.prototype.humanize = function humanize() {
-        return this.replace(/_/g, ' ').
+        return this.toString().
             replace(/\./g, ' ').
-            replace(/(\w+)/g, function _replace(match) {
-                return match.charAt(0).toUpperCase() + match.slice(1);
-            });
+            replace(/([a-z\d])([A-Z]+)/g, '$1_$2').
+            replace(/[-\s]+/g, '_').toLowerCase().
+            replace(/[\W_]+/g, ' ').
+            capitalize()
     };
 
 }());
