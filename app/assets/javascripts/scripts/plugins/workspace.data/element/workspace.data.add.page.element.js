@@ -6,7 +6,6 @@
  */
 
 define(
-
     ['modules/Element'],
 
     /**
@@ -32,6 +31,18 @@ define(
                 destroy: false
             });
 
+            /**
+             * Define title
+             * @type {string}
+             */
+            this.title = 'Create new page';
+
+            /**
+             * Define description
+             * @type {string}
+             */
+            this.description = 'Clicking a button will take you to the edit page for the new widgets';
+
             return this.init();
         };
 
@@ -44,8 +55,12 @@ define(
              */
             init: function init() {
 
-                this.setText('Create new page');
-                this.setTitle('Create new page');
+                this.setTitle(this.title);
+                this.renderTooltip({
+                    title: this.title,
+                    description: this.description,
+                    $container: this
+                });
 
                 return this;
             }

@@ -86,6 +86,17 @@ define([
                 attr({
                     title: [items, 'items'].join(' ')
                 });
+
+            this.renderTooltip({
+                title: page.model.getPrefs('title'),
+                description: [
+                    page.model.getPrefs('description'), '<br />',
+                    '<span>uuid: </span>', page.model.getUUID(), '<br /><br />',
+                    '<span>items: </span>', items, '<br />',
+                    '<span>index: </span>', 0
+                ].join(''),
+                $container: this
+            });
         },
 
         /**
@@ -112,7 +123,7 @@ define([
 
             this.$.attr({
                 rel: config.uuid,
-                title: config.uuid
+                title: data.model.getPrefs('title') || config.uuid
             }).addClass(config.resource);
         },
 

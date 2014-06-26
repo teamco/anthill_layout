@@ -157,27 +157,3 @@ div.gallery-content .scroll-cover {
     top: 113px;
     bottom: 30px;
 }
-
-div.gallery-content .tooltip {
-    position: fixed;
-    z-index: 10;
-    max-width: 150px;
-    min-width: 100px;
-    background: #fff;
-    padding: 5px 10px;
-    box-shadow: 1px 1px 5px #333;
-    border: 2px solid lightblue;
-    border-radius: 5px;
-    display: none;
-}
-
-div.gallery-content .tooltip h2 {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-div.gallery-content .tooltip p {
-    margin-top: 5px;
-    font-size: 12px;
-    font-style: italic;
-}

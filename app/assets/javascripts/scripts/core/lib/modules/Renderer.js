@@ -36,8 +36,8 @@ define([
         renderTooltip: function renderTooltip(opts) {
 
             var $title = $('<h2 />').text(opts.title),
-                $description = $('<p />').text(opts.description),
-                $image, $link;
+                $description = $('<p />').html(opts.description),
+                $image;
 
             if (opts.imageUrl) {
 
@@ -71,7 +71,7 @@ define([
 
                     opts.$container.$.on('mousemove.gallery', function (e) {
                         $tooltip.offset({
-                            top: e.pageY - $tooltip.height() - 30,
+                            top: e.pageY - $tooltip.height() - 20,
                             left: e.pageX - 100
                         });
                     });
