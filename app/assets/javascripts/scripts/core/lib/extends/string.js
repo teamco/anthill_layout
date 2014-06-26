@@ -85,7 +85,7 @@
             replace(/([a-z\d])([A-Z]+)/g, '$1_$2').
             replace(/[-\s]+/g, '_').toLowerCase().
             replace(/[\W_]+/g, ' ').
-            capitalize()
+            capitalize();
     };
 
 }());
