@@ -240,7 +240,8 @@ define([
                  * @type {*}
                  */
                 var widgets = page.model.getItems(),
-                    widget, uuid;
+                    widget, uuid,
+                    title;
 
                 for (var index in widgets) {
 
@@ -261,15 +262,32 @@ define([
                         var thumbnail = widget.model.getConfig('preferences/thumbnail'),
                             css = thumbnail.length > 0 ? {backgroundImage: 'url("' + thumbnail + '")'} : {};
 
-                        list.push(
-                            $('<li />').
-                                addClass(widget.model.getConfig('preferences/resource').replace(/\./g, '')).
-                                attr('rel', uuid).
-                                text(uuid).
-                                css(css).
-                                on('mouseenter.widgetPrefs mouseleave.widgetPrefs click.widgetPrefs',
-                                this.showWidgetPrefs.bind(this))
-                        );
+                        /**
+                         * Get title
+                         * @type {*|String}
+                         */
+                        title = widget.model.getConfig('preferences/title') || uuid;
+
+                        /**
+                         * Define widget element
+                         * @type {*|jQuery}
+                         */
+                        var $li = $('<li />').
+                            addClass(widget.model.getConfig('preferences/resource').replace(/\./g, '')).
+                            attr({
+                                rel: uuid,
+                                title: title
+                            }).css(css).
+                            on('mouseenter.widgetPrefs mouseleave.widgetPrefs click.widgetPrefs',
+                            this.showWidgetPrefs.bind(this));
+
+                        this.renderTooltip({
+                            title: title,
+                            description: widget.model.getConfig('preferences/description') || '',
+                            $container: {$: $li}
+                        });
+
+                        list.push($li);
                     }
                 }
 

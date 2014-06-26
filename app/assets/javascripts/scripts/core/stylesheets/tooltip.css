@@ -1,0 +1,37 @@
+.tooltip {
+    position: fixed;
+    z-index: 10;
+    max-width: 150px;
+    min-width: 100px;
+    background: #fff;
+    padding: 5px 10px;
+    box-shadow: 1px 1px 5px #333;
+    border: 2px solid lightblue;
+    border-radius: 5px;
+    display: none;
+}
+
+.tooltip h2 {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.tooltip p {
+    margin-top: 5px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.tooltip p span {
+    font-style: normal;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.tooltip p span.overflow {
+    text-overflow: ellipsis;
+    display: inline-block;
+    font-variant: normal;
+    font-weight: normal;
+}
