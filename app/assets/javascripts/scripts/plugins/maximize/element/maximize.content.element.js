@@ -42,23 +42,42 @@ define([
         setAttributes: function setAttributes(data) {
 
             /**
-             * Get config
-             * @type {*}
+             * Get title
+             * @type {boolean|string}
              */
-            var config = data.model.getConfig();
+            var title = data.model.getConfig('preferences/title') ||
+                data.model.getUUID();
+
+            /**
+             * Get description
+             * @type {string}
+             */
+            var description = data.model.getConfig('preferences/description') || '';
 
             this.$.attr({
-                title: config.uuid
+                title: title
             }).addClass(
-                config.preferences.resource.replace(/\./g, '')
+                data.model.getConfig('preferences/resource').replace(/\./g, '')
             );
 
-            if (config.preferences.thumbnail.length > 0) {
+            /**
+             * Get thumbnail
+             * @type {string|*}
+             */
+            var thumbnail = data.model.getConfig('preferences/thumbnail');
+
+            if (thumbnail.length > 0) {
 
                 this.$.css({
-                    backgroundImage: 'url("' + config.preferences.thumbnail + '")'
+                    backgroundImage: 'url("' + thumbnail + '")'
                 });
             }
+
+            this.renderTooltip({
+                title: title,
+                description: description,
+                $container: this
+            });
         },
 
         /**

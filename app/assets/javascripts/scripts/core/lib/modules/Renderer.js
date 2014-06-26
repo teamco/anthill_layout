@@ -60,19 +60,36 @@ define([
             }
 
             opts.$container.$.hover(
-
                 function on() {
 
                     opts.$container.$.append(
-                        $tooltip.stop().fadeTo('slow' , 0.9)
+
+                        $tooltip.stop().
+                            fadeTo('slow', 0.9)
+
                     ).attr({
                             title: ''
                         });
 
                     opts.$container.$.on('mousemove.gallery', function (e) {
+
+                        /**
+                         * Define top
+                         * @type {number}
+                         */
+                        var topL = e.pageY - $tooltip.height() - 20,
+                            topM = e.pageY + $tooltip.height();
+
+                        /**
+                         * Define left
+                         * @type {number}
+                         */
+                        var leftL = e.pageX - 100,
+                            leftM = e.pageX;
+
                         $tooltip.offset({
-                            top: e.pageY - $tooltip.height() - 20,
-                            left: e.pageX - 100
+                            top: topL < 0 ? topM : topL,
+                            left: leftL < 0 ? leftM : leftL
                         });
                     });
                 },

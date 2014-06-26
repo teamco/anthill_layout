@@ -14,17 +14,17 @@ div.panel-container.panel-right .bar-content {
     top: 0;
 }
 
-div.panel-container.panel-right .bar-content .tooltip h2 {
-    font-size: 12px;
-    font-weight: normal;
-}
-
 div.panel-container.panel-left .bar-content {
     height: 100%;
     width: 0;
     left: 0;
     top: 0;
     overflow: hidden;
+}
+
+div.panel-container .bar-content .tooltip h2 {
+    font-size: 12px;
+    font-weight: normal;
 }
 
 div.panel-container:hover .bar-content {
