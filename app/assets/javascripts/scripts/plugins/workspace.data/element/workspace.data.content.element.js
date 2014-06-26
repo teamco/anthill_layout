@@ -88,9 +88,9 @@ define([
                 });
 
             this.renderTooltip({
-                title: page.model.getPrefs('title'),
+                title: page.model.getPrefs('title') || page.model.getUUID(),
                 description: [
-                    page.model.getPrefs('description'), '<br />',
+                    page.model.getPrefs('description') || '', '<br />',
                     '<span>uuid: </span>', page.model.getUUID(), '<br /><br />',
                     '<span>items: </span>', items, '<br />',
                     '<span>index: </span>', 0
