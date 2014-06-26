@@ -17,6 +17,7 @@ define([
      * @constructor
      * @class GalleryContentElement
      * @extends BaseElement
+     * @extends Renderer
      */
     var GalleryContentElement = function GalleryContentElement(view, opts) {
 
@@ -98,35 +99,11 @@ define([
              */
             var $content = this;
 
-            var $tooltip = $content.renderTooltip(
-                $content.data.name,
-                $content.data.description
-            );
-
-            $content.$.hover(
-                function on() {
-
-                    $content.$.append(
-                        $tooltip.stop().fadeTo('slow', 0.8)
-                    ).attr({
-                            title: ''
-                        });
-
-                    $content.$.on('mousemove.gallery', function (e) {
-                        $tooltip.offset({
-                            top: e.pageY - $tooltip.height() - 30,
-                            left: e.pageX - 100
-                        });
-                    });
-                },
-
-                function off() {
-                    $tooltip.remove();
-                    $content.$.off('mousemove.gallery').attr({
-                        title: $content.data.name
-                    });
-                }
-            );
+            $content.renderTooltip({
+                title: $content.data.name,
+                description: $content.data.description,
+                $container: $content
+            });
         }
 
     }, BaseElement.prototype);

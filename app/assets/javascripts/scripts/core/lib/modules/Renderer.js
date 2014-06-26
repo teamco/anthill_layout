@@ -24,46 +24,68 @@ define([
 
         /**
          * Render tooltip
-         * @param {string} title
-         * @param {string} [description]
-         * @param {string} [imageUrl]
-         * @param {string} [imageFloat]
-         * @param {string} [linkUrl]
-         * @param {string} [linkTitle]
+         * @param {{
+         *      $container: *|jQuery,
+         *      title: string,
+         *      [description]: string,
+         *      [imageUrl]: string,
+         *      [imageFloat]: string
+         * }} opts
          * @returns {*|jQuery}
          */
-        renderTooltip: function renderTooltip(title, description, imageUrl, imageFloat, linkUrl, linkTitle) {
+        renderTooltip: function renderTooltip(opts) {
 
-            var $title = $('<h2 />').text(title),
-                $description = $('<p />').text(description),
+            var $title = $('<h2 />').text(opts.title),
+                $description = $('<p />').text(opts.description),
                 $image, $link;
 
-            if (imageUrl) {
+            if (opts.imageUrl) {
 
                 $image = $('<img />').attr({
-                    src: image,
-                    alt: title
+                    src: opts.imageUrl,
+                    alt: opts.title
                 }).css({
-                    cssFloat: imageFloat || 'none'
+                    cssFloat: opts.imageFloat || 'none'
                 });
             }
 
-            if (linkUrl) {
-
-                $link = $('<a />').attr({
-                    href: linkUrl,
-                    title: linkTitle || linkUrl
-                });
-            }
-
-            return $('<div />').append([
-
+            var $tooltip = $('<div />').append([
                 $title,
                 $image,
-                $description,
-                $link
-
+                $description
             ]).addClass('tooltip');
+
+            if (!opts.$container) {
+                return $tooltip;
+            }
+
+            opts.$container.$.hover(
+
+                function on() {
+
+                    opts.$container.$.append(
+                        $tooltip.stop().fadeTo('slow' , 0.9)
+                    ).attr({
+                            title: ''
+                        });
+
+                    opts.$container.$.on('mousemove.gallery', function (e) {
+                        $tooltip.offset({
+                            top: e.pageY - $tooltip.height() - 30,
+                            left: e.pageX - 100
+                        });
+                    });
+                },
+
+                function off() {
+
+                    $tooltip.remove();
+
+                    opts.$container.$.off('mousemove.gallery').attr({
+                        title: opts.title
+                    });
+                }
+            );
         },
 
         /**
