@@ -17,6 +17,7 @@ define([
      * @constructor
      * @class MaximizeContentElement
      * @extends BaseElement
+     * @extends Renderer
      */
     var MaximizeContentElement = function MaximizeContentElement(view, opts) {
 
