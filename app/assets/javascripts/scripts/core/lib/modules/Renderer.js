@@ -78,7 +78,7 @@ define([
                          * @type {number}
                          */
                         var topL = e.pageY - $tooltip.height() - 20,
-                            topM = e.pageY + $tooltip.height();
+                            topM = e.pageY + 20;
 
                         /**
                          * Define left
