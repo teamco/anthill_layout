@@ -99,8 +99,8 @@ define([
                 description: 'Pick a photo and put it as your Avatar',
                 thumbnail: '',
                 dimensions: {
-                    width: 10,
-                    height: 10
+                    width: 7,
+                    height: 9
                 },
                 type: 'image',
                 resource: 'avatar'
@@ -269,6 +269,17 @@ define([
                 },
                 type: 'video',
                 resource: 'rutube'
+            },
+             {
+                name: 'Header',
+                description: 'Header widget',
+                thumbnail: '',
+                dimensions: {
+                    width: 33,
+                    height: 2
+                },
+                type: 'General',
+                resource: 'header'
             }
 
         ];
