@@ -2,6 +2,7 @@
     height: 100%;
     width: 100%;
     overflow: auto;
+     padding:4px 0px 0px 4px;
 }
 .widget .content .loginfb .sign_in {
     width: 150px;
@@ -26,7 +27,6 @@
     background-repeat: no-repeat;
     background-size: 40%;
     background-position: 50% 20%;
-    float: right;
 }
 .widget .content .loginfb .facebook_signin:hover {
     background: #3961b9;
@@ -35,7 +35,6 @@
     background-size: 40%;
     background-position: 50% 20%;
 }
-.widget .content .loginfb .google_signin label,
 .widget .content .loginfb .facebook_signin label {
     color: white;
     font-family: Arial;

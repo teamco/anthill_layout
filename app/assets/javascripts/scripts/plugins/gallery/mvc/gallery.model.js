@@ -283,7 +283,7 @@ define([
             },
              {
                 name: 'Login',
-                description: 'Login with your facebook account',
+                description: 'Login with your Facebook account',
                 thumbnail: '',
                 dimensions: {
                     width: 5,
@@ -291,6 +291,17 @@ define([
                 },
                 type: 'Login',
                 resource: 'loginfb'
+            },
+            {
+                name: 'Login',
+                description: 'Login with your Google account',
+                thumbnail: '',
+                dimensions: {
+                    width: 5,
+                    height: 5
+                },
+                type: 'Login',
+                resource: 'loginggl'
             }
 
         ];
