@@ -6,7 +6,7 @@
      * @param times
      * @returns {string}
      */
-    String.prototype.repeat = function(times) {
+    String.prototype.repeat = function (times) {
         return (new Array(times + 1)).join(this);
     };
 
@@ -16,11 +16,11 @@
      * @returns {String}
      */
     String.prototype.toCamel = function toCamel() {
-        return this.replace(/(\.[a-z])/g,function ($1) {
+        return this.replace(/(\.[a-z])/g, function ($1) {
             return $1.toUpperCase().replace(/\./, '');
         }).replace(/(-[a-z])/g, function ($1) {
-                return $1.toUpperCase().replace(/-/, '');
-            });
+            return $1.toUpperCase().replace(/-/, '');
+        });
     };
 
     /**
@@ -62,7 +62,10 @@
      * @returns {string}
      */
     String.prototype.toClassName = function toClassName() {
-        return this.toLowerCase().replace(/ /g, '-');
+        return this.toLowerCase().
+            replace(/[^\w\s]|_/g, ' ').
+            replace(/ +(?= )/g, '').
+            replace(/ /g, '-');
     };
 
     /**
@@ -81,7 +84,6 @@
      */
     String.prototype.humanize = function humanize() {
         return this.toString().
-            replace(/\./g, ' ').
             replace(/([a-z\d])([A-Z]+)/g, '$1_$2').
             replace(/[-\s]+/g, '_').toLowerCase().
             replace(/[\W_]+/g, ' ').
