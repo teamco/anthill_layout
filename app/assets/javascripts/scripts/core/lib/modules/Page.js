@@ -76,24 +76,6 @@ define([
             );
 
             this.updateWidgetsConfig();
-        },
-
-        /**
-         * Transfer preferences to containment
-         * @member BasePage
-         * @param index
-         * @param value
-         */
-        transferPreferences: function transferPreferences(index, value) {
-
-            /**
-             * Define prefs
-             * @type {{}}
-             */
-            var prefs = {};
-
-            prefs[index] = value;
-            this.model.updatePreferences(prefs);
         }
 
     }, AntHill.prototype);

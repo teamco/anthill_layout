@@ -149,6 +149,65 @@ define([
         },
 
         /**
+         * Get Workspace
+         * @member BaseController
+         * @param {string} [uuid]
+         * @returns {Workspace}
+         */
+        getWorkspace: function getWorkspace(uuid) {
+
+            /**
+             * Get root
+             * @type {App}
+             */
+            var root = this.root();
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.base.isDefined(uuid) ?
+                root.model.getItemByUUID(uuid) :
+                root.controller.getCurrentItem();
+
+            return workspace;
+        },
+
+        /**
+         * Get Page
+         * @member BaseController
+         * @param {string} [uuid]
+         * @returns {Page}
+         */
+        getPage: function getPage(uuid) {
+
+            /**
+             * Define workspace
+             * @type {Workspace}
+             */
+            var workspace = this.getWorkspace();
+
+            /**
+             * Define page
+             * @type {Page}
+             */
+            var page = this.base.isDefined(uuid) ?
+                workspace.model.getItemByUUID(uuid) :
+                workspace.controller.getCurrentItem();
+
+            return page;
+        },
+
+        /**
+         * Get Widget
+         * @member BaseController
+         * @returns {*|Widget}
+         */
+        getWidget: function getWidget() {
+            return this.getPage().controller.getCurrentItem();
+        },
+
+        /**
          * Get Config Logger
          * @member BaseController
          * @param {String} log
@@ -323,6 +382,24 @@ define([
                 scope.config.order,
                 base.lib.hash.hashLength(collector)
             );
+        },
+
+        /**
+         * Transfer preferences to containment
+         * @member BaseController
+         * @param index
+         * @param value
+         */
+        transferPreferences: function transferPreferences(index, value) {
+
+            /**
+             * Define prefs
+             * @type {{}}
+             */
+            var prefs = {};
+
+            prefs[index] = value;
+            this.model.updatePreferences(prefs);
         },
 
         /**

@@ -51,6 +51,8 @@ define([
          *      stopResizable: string,
          *      updateResizable: string,
          *      loadContent: string,
+         *      loadPreferences: string,
+         *      transferPreferences: string,
          *      setContent: string,
          *      adoptDimensions: string,
          *      restoreLayerIndex: string,
@@ -102,6 +104,9 @@ define([
 
             loadContent: 'load.content',
             setContent: 'set.content',
+
+            loadPreferences: 'load.preferences',
+            transferPreferences: 'transfer.preferences',
 
             setLayerUp: 'set.layer.up',
             setLayerDown: 'set.layer.down',

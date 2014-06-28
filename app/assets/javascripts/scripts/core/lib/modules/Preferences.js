@@ -58,7 +58,7 @@ define([], function defineBasePreferences(){
                     this.model[setter](value);
 
                     scope.observer.publish(
-                        scope.eventmanager.eventList.transferPreferences,
+                        scope.eventmanager.eventList.transferContentPreferences,
                         [input.name, value]
                     );
 

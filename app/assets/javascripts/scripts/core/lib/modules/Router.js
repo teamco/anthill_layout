@@ -36,6 +36,14 @@ define([
         },
 
         /**
+         * Set Hash location
+         * @member Router
+         */
+        setHashLocation: function setHashLocation(hash) {
+            window.location.hash = hash;
+        },
+
+        /**
          * Get page by hash
          * @member Router
          * @returns {Page}
@@ -97,10 +105,52 @@ define([
              * @type {*|Widget}
              */
             var widget = widgetMatch ?
-                page.model.getItemByUUID(widgetMatch[1]) :
+                (page.model.getItemByTitle(widgetMatch[1]) ||
+                    page.model.getItemByUUID(widgetMatch[1])) :
                 null;
 
             return widget;
+        },
+
+        /**
+         * Update hash on widget maximize
+         * @member Router
+         * @param {Widget} widget
+         */
+        updateHashOnMaximize: function updateHashOnMaximize(widget) {
+
+            /**
+             * Get hash location
+             * @type {string}
+             */
+            var hash = this.controller.getHashLocation();
+
+            this.controller.setHashLocation(
+                ''.concat(
+                    hash, '/',
+                    this.controller.getItemIdentity(widget)
+                )
+            );
+        },
+
+        /**
+         * Update hash on widget reduce
+         * @member Router
+         * @param {Widget} widget
+         */
+        updateHashOnReduce: function updateHashOnReduce(widget) {
+
+            /**
+             * Get page
+             * @type {Page}
+             */
+            var page = this.controller.getPageByHashLocation.bind(
+                this.controller.getWorkspace().controller
+            )();
+
+            this.controller.setHashLocation(
+                    this.controller.getItemIdentity(page) || ''
+            );
         },
 
         /**

@@ -52,7 +52,7 @@ define([], function defineWidgetContentPreferencesController(){
          * @param index
          * @param value
          */
-        transferPreferences: function transferPreferences(index, value) {
+        transferContentPreferences: function transferContentPreferences(index, value) {
 
             /**
              * Define widget
@@ -60,14 +60,10 @@ define([], function defineWidgetContentPreferencesController(){
              */
             var widget = this.controller.getContainment();
 
-            /**
-             * Define prefs
-             * @type {{}}
-             */
-            var prefs = {};
-
-            prefs[index] = value;
-            widget.model.updatePreferences(prefs);
+            widget.observer.publish(
+                widget.eventmanager.eventList.transferPreferences,
+                [index, value]
+            );
         }
     });
 });

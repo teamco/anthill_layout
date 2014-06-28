@@ -40,6 +40,8 @@ define([
          *      destroyLayout: string,
          *      resizeWidgets: string,
          *      resizeWidget: string,
+         *      updateHashOnMaximize: string,
+         *      updateHashOnReduce: string,
          *      updateHeight: string,
          *      afterLoadingItems: string,
          *      disableItemInteractions: string,
@@ -49,20 +51,31 @@ define([
          * }}
          */
         eventList: {
+
             setMaximized: 'set.maximized',
             unsetMaximized: 'unset.maximized',
+
             createWidget: 'create.widget',
             destroyWidget: 'destroy.widget',
             destroyWidgets: 'destroy.widgets',
             approveItemsDestroy: 'approve.items.destroy',
+
             createLayout: 'create.layout',
             destroyLayout: 'destroy.layout',
+
             resizeWidget: 'resize.widget',
             resizeWidgets: 'resize.widgets',
+
+            updateHashOnMaximize: 'update.hash.on.maximize',
+            updateHashOnReduce: 'update.hash.on.reduce',
+
             updateHeight: 'update.height',
+
             afterLoadingItems: 'after.loading.items',
+
             disableItemInteractions: 'disable.item.interactions',
             enableItemInteractions: 'enable.item.interactions',
+
             loadPreferences: 'load.preferences',
             transferPreferences: 'transfer.preferences'
         }

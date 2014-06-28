@@ -11,9 +11,10 @@ define(
         'config/anthill',
         'modules/Controller',
         'modules/Page',
-        'modules/Preferences'
+        'modules/Preferences',
+        'modules/Router'
     ],
-    function definePageController(AntHill, BaseController, BasePage, BasePreferences) {
+    function definePageController(AntHill, BaseController, BasePage, BasePreferences, Router) {
 
         /**
          * Define page controller
@@ -429,7 +430,8 @@ define(
             AntHill.prototype,
             BaseController.prototype,
             BasePage.prototype,
-            BasePreferences.prototype
+            BasePreferences.prototype,
+            Router.prototype
         );
     }
 );

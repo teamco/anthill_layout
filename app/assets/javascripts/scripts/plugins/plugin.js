@@ -24,65 +24,6 @@ define([
     PluginController.extend('PluginController', {
 
         /**
-         * Get Workspace
-         * @member PluginController
-         * @param {string} [uuid]
-         * @returns {Workspace}
-         */
-        getWorkspace: function getWorkspace(uuid) {
-
-            /**
-             * Get root
-             * @type {App}
-             */
-            var root = this.root();
-
-            /**
-             * Get workspace
-             * @type {Workspace}
-             */
-            var workspace = this.base.isDefined(uuid) ?
-                root.model.getItemByUUID(uuid) :
-                root.controller.getCurrentItem();
-
-            return workspace;
-        },
-
-        /**
-         * Get Page
-         * @member PluginController
-         * @param {string} [uuid]
-         * @returns {Page}
-         */
-        getPage: function getPage(uuid) {
-
-            /**
-             * Define workspace
-             * @type {Workspace}
-             */
-            var workspace = this.getWorkspace();
-
-            /**
-             * Define page
-             * @type {Page}
-             */
-            var page = this.base.isDefined(uuid) ?
-                workspace.model.getItemByUUID(uuid) :
-                workspace.controller.getCurrentItem();
-
-            return page;
-        },
-
-        /**
-         * Get Widget
-         * @member PluginController
-         * @returns {*|Widget}
-         */
-        getWidget: function getWidget() {
-            return this.getPage().controller.getCurrentItem();
-        },
-
-        /**
          * Get page data
          * @member PluginController
          * @returns {Panel}

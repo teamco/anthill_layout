@@ -38,8 +38,8 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
             var $element = this;
-            var $facebookLogin =  '<a class="facebook_signin sign_in"><label>Sign In with Facebook</label></a>';
-            
+            var $facebookLogin = '<a class="facebook_signin sign_in"><label>Sign In with Facebook</label></a>';
+
             $element.view.controller.clearParentThumbnail();
             $element.$.append(
                 $facebookLogin

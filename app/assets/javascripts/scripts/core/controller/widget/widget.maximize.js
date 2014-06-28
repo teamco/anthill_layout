@@ -11,6 +11,7 @@ define([], function defineWidgetMaximize() {
      * Define WidgetMaximize
      * @class WidgetMaximize
      * @constructor
+     * @extends Router
      */
     var WidgetMaximize = function WidgetMaximize() {
 
@@ -63,6 +64,11 @@ define([], function defineWidgetMaximize() {
                 this
             );
 
+            page.observer.publish(
+                page.eventmanager.eventList.updateHashOnMaximize,
+                this
+            );
+
             this.view.get$item().show();
         },
 
@@ -90,6 +96,11 @@ define([], function defineWidgetMaximize() {
 
             page.observer.publish(
                 page.eventmanager.eventList.enableItemInteractions
+            );
+
+            page.observer.publish(
+                page.eventmanager.eventList.updateHashOnReduce,
+                this
             );
         },
 

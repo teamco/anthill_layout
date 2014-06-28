@@ -22,6 +22,7 @@ define(
          * Define workspace controller
          * @class WorkspaceController
          * @extends BaseController
+         * @extends Router
          * @constructor
          */
         var WorkspaceController = function WorkspaceController() {
@@ -106,11 +107,10 @@ define(
                         this.controller.getItemIdentity(page) : '',
 
                     wurl = widget ?
-                        '/' + this.controller.getItemIdentity(widget) : '';
+                        '/' + page.controller.getItemIdentity(widget) : '';
 
-                window.location.hash = ''.concat(
-                    purl,
-                    wurl
+                this.controller.setHashLocation(
+                    ''.concat(purl, wurl)
                 );
             },
 
