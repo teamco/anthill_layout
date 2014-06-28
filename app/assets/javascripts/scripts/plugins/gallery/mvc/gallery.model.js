@@ -281,6 +281,17 @@ define([
                 type: 'General',
                 resource: 'header'
             },
+            {
+                name: 'Ice Floe',
+                description: 'White scrollable base container for several widgets',
+                thumbnail: '',
+                dimensions: {
+                    width: 8,
+                    height: 20
+                },
+                type: 'General',
+                resource: 'icefloe'
+            },
              {
                 name: 'Login',
                 description: 'Login with your Facebook account',
