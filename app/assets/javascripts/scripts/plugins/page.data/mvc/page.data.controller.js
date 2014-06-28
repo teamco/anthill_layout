@@ -113,9 +113,9 @@ define([
              */
             var items = this.model.getCollectedItems();
 
-            for(var index in items){
+            for (var index in items) {
 
-                if(items.hasOwnProperty(index)) {
+                if (items.hasOwnProperty(index)) {
                     this.controller.defineContentReferrer(items[index]);
                 }
             }
@@ -154,11 +154,31 @@ define([
              * Define scope
              * @type {PageData}
              */
-            var scope = this.scope;
+            var scope = this.scope,
+                content = scope.activeContent;
 
-            scope.activeContent.controller.updatePreferences(
+            content.controller.updatePreferences(
                 scope.view.elements.$modal,
                 true
+            );
+
+            /**
+             * Get widget
+             * @type {Widget}
+             */
+            var widget = content.controller.getContainment();
+
+            /**
+             * Get element uuid
+             * @type {string}
+             */
+            var uuid = [
+                widget.model.getUUID(),
+                scope.constructor.name.toLowerCase()
+            ].join('-');
+
+            this.getView().elements.items[uuid].setAttributes(
+                widget
             );
         },
 
