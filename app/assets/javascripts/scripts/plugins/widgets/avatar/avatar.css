@@ -2,6 +2,7 @@
     height: 100%;
     width: 100%;
     overflow: auto;
+    padding: 4px 0px 0px 4px;
 }
 .widget .content .avatar .imageFrame,
 .widget .content .avatar .under_layer {
