@@ -109,10 +109,34 @@ define(
                  */
                 var scope = this.scope;
 
-                scope.activeContent.controller.updatePreferences(
+                /**
+                 * Get page
+                 * @type {Page}
+                 */
+                var page = scope.activeContent;
+
+                page.controller.updatePreferences(
                     scope.view.elements.$modal,
                     false
                 );
+
+                /**
+                 * Get element uuid
+                 * @type {string}
+                 */
+                var uuid = page.model.getUUID() + '-workspacedata-view';
+
+                this.getView().elements.items[uuid].updateCounter(
+                    page
+                );
+
+                /**
+                 * Get workspace
+                 * @type {Workspace}
+                 */
+                var workspace = this.getWorkspace();
+
+                workspace.controller.setPageByHashLocation(page);
             },
 
             /**

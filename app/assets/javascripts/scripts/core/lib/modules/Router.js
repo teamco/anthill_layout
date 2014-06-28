@@ -44,6 +44,22 @@ define([
         },
 
         /**
+         * Set page by hash location
+         * @member Router
+         * @param {Page} page
+         */
+        setPageByHashLocation: function setPageByHashLocation(page) {
+
+            /**
+             * Define hash
+             * @type {*|String|string}
+             */
+            var hash = this.getItemIdentity(page) || '';
+
+            this.setHashLocation(hash);
+        },
+
+        /**
          * Get page by hash
          * @member Router
          * @returns {Page}
@@ -123,7 +139,9 @@ define([
              * Get hash location
              * @type {string}
              */
-            var hash = this.controller.getHashLocation();
+            var hash = this.controller.getItemIdentity(
+                widget.controller.getContainment()
+            );
 
             this.controller.setHashLocation(
                 ''.concat(
@@ -148,9 +166,7 @@ define([
                 this.controller.getWorkspace().controller
             )();
 
-            this.controller.setHashLocation(
-                    this.controller.getItemIdentity(page) || ''
-            );
+            this.controller.setPageByHashLocation(page);
         },
 
         /**

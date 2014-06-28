@@ -470,6 +470,7 @@ define([
                 if (data.hasOwnProperty(index)) {
 
                     preferences[index] = data[index];
+                    this.setPrefs(index, data[index]);
                 }
             }
         },

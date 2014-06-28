@@ -507,6 +507,49 @@ define([
         },
 
         /**
+         * Check is workspace
+         * @member BaseController
+         * @returns {boolean}
+         */
+        isWorkspace: function isWorkspace() {
+            return this.scope.constructor.name === 'Workspace';
+        },
+
+        /**
+         * Check is page
+         * @member BaseController
+         * @returns {boolean}
+         */
+        isPage: function isPage() {
+            return this.scope.constructor.name === 'Page';
+        },
+
+        /**
+         * Check is widget
+         * @member BaseController
+         * @returns {boolean}
+         */
+        isWidget: function isWidget() {
+            return this.scope.constructor.name === 'Widget';
+        },
+
+        /**
+         * Check is widget content
+         * @member BaseController
+         * @returns {boolean}
+         */
+        isWidgetContent: function isWidgetContent() {
+
+            /**
+             * Get widget
+             * @type {Widget}
+             */
+            var widget = this.scope.controller.getContainment();
+
+            return widget.controller.isWidget();
+        },
+
+        /**
          * Store data after layout organize
          * @member BaseController
          * @param [node]

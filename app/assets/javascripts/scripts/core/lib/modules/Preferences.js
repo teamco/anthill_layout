@@ -5,7 +5,7 @@
  * Time: 1:23 PM
  */
 
-define([], function defineBasePreferences(){
+define([], function defineBasePreferences() {
 
     var BasePreferences = function BasePreferences() {
 
@@ -23,6 +23,14 @@ define([], function defineBasePreferences(){
 
             var $inputs = $('input:not(:disabled), textarea, div.combo-box > input', $modal.$),
                 scope = this.scope;
+
+            /**
+             * Get event name
+             * @type {string|*}
+             */
+            var event = scope.controller.isWidgetContent() ?
+                scope.eventmanager.eventList.transferContentPreferences :
+                scope.eventmanager.eventList.transferPreferences;
 
             $inputs.each(function each(index, input) {
 
@@ -58,7 +66,7 @@ define([], function defineBasePreferences(){
                     this.model[setter](value);
 
                     scope.observer.publish(
-                        scope.eventmanager.eventList.transferContentPreferences,
+                        event,
                         [input.name, value]
                     );
 
