@@ -280,6 +280,17 @@ define([
                 },
                 type: 'General',
                 resource: 'header'
+            },
+             {
+                name: 'Login',
+                description: 'Login with your facebook account',
+                thumbnail: '',
+                dimensions: {
+                    width: 5,
+                    height: 5
+                },
+                type: 'Login',
+                resource: 'loginfb'
             }
 
         ];
