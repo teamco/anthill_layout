@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineOpenWeatherMapModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineOpenWeatherMapModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define OpenWeatherMap model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class OpenWeatherMapModel
      * @constructor
      */
@@ -202,5 +204,5 @@ define([
             this.setPrefs('openweathermapStretch', stretch);
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

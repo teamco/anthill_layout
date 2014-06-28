@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineSwfModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineSwfModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Swf model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class SwfModel
      * @constructor
      */
@@ -100,5 +102,5 @@ define([
             this.setPrefs('swfAttributes', attributes);
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

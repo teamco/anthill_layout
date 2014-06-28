@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineLoginModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineLoginModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Login model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class LoginModel
      * @constructor
      */
@@ -36,5 +38,5 @@ define([
     return LoginModel.extend('LoginModel', {
 
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

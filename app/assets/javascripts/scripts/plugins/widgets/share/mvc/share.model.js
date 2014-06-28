@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineShareModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineShareModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Share model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class ShareModel
      * @constructor
      */
@@ -45,5 +47,5 @@ define([
             this.setPrefs('shareFacebook', checked);
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

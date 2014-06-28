@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineJwplayerModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineJwplayerModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Jwplayer model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class JwplayerModel
      * @constructor
      */
@@ -162,5 +164,5 @@ define([
             this.setPrefs('jwplayerAutoStart', autostart);
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

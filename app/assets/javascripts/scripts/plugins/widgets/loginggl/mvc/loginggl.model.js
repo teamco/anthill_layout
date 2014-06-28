@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineLogingglModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineLogingglModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Loginggl model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class LogingglModel
      * @constructor
      */
@@ -36,5 +38,5 @@ define([
     return LogingglModel.extend('LogingglModel', {
 
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

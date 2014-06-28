@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineEmptyModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineEmptyModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Empty model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class EmptyModel
      * @constructor
      */
@@ -36,5 +38,5 @@ define([
     return EmptyModel.extend('EmptyModel', {
 
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

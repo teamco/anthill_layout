@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineLoginfbModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineLoginfbModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Loginfb model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class LoginfbModel
      * @constructor
      */
@@ -36,5 +38,5 @@ define([
     return LoginfbModel.extend('LoginfbModel', {
 
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

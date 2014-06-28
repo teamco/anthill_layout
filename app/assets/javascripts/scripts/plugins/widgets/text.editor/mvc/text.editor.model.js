@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineTextEditorModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineTextEditorModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define TextEditor model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class TextEditorModel
      * @constructor
      */
@@ -53,5 +55,5 @@ define([
         }
 
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

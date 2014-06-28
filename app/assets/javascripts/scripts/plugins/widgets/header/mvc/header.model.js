@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineHeaderModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineHeaderModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Header model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class HeaderModel
      * @constructor
      */
@@ -36,5 +38,5 @@ define([
     return HeaderModel.extend('HeaderModel', {
 
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

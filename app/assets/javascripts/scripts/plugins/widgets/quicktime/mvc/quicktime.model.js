@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineQuicktimeModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineQuicktimeModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Quicktime model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class QuicktimeModel
      * @constructor
      */
@@ -52,5 +54,5 @@ define([
             this.setPrefs('quicktimeUrl', url);
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

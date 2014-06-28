@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineIcefloeModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineIcefloeModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Icefloe model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class IcefloeModel
      * @constructor
      */
@@ -36,5 +38,5 @@ define([
     return IcefloeModel.extend('IcefloeModel', {
 
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

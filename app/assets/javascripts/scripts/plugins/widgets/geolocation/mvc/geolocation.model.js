@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineGeolocationModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineGeolocationModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Geolocation model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class GeolocationModel
      * @constructor
      */
@@ -204,5 +206,5 @@ define([
             this.setPrefs('geolocationStretch', stretch);
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

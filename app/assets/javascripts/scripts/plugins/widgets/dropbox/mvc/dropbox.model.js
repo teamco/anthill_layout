@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineDropboxModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineDropboxModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Dropbox model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class DropboxModel
      * @constructor
      */
@@ -152,5 +154,5 @@ define([
             window.Dropbox.appKey = apiKey;
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

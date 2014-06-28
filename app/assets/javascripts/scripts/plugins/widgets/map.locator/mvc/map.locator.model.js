@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineMapLocatorModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineMapLocatorModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define MapLocator model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class MapLocatorModel
      * @constructor
      */
@@ -167,5 +169,5 @@ define([
             this.setPrefs('maplocatorSearchRadius', parseInt(radius, 10));
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineRutubeModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineRutubeModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Rutube model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class RutubeModel
      * @constructor
      */
@@ -52,5 +54,5 @@ define([
             this.setPrefs('rutubeEmbedCode', embed);
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

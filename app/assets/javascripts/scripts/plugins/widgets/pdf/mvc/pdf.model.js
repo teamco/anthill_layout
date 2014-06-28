@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function definePdfModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function definePdfModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Pdf model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class PdfModel
      * @constructor
      */
@@ -52,5 +54,5 @@ define([
             this.setPrefs('pdfUrl', url);
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

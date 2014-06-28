@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineYoutubeModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineYoutubeModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Youtube model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class YoutubeModel
      * @constructor
      */
@@ -52,5 +54,5 @@ define([
             this.setPrefs('youtubeUrl', url);
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineImageGalleryModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineImageGalleryModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define ImageGallery model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class ImageGalleryModel
      * @constructor
      */
@@ -75,5 +77,5 @@ define([
             this.setPrefs('imageGalleryTexts', text);
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

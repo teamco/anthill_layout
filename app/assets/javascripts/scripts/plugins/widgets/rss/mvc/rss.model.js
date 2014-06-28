@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineRssModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineRssModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Rss model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class RssModel
      * @constructor
      */
@@ -52,5 +54,5 @@ define([
             this.setPrefs('rssFeedUrl', url);
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

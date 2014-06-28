@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineVimeoModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineVimeoModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Vimeo model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class VimeoModel
      * @constructor
      */
@@ -52,5 +54,5 @@ define([
             this.setPrefs('vimeoUrl', url);
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

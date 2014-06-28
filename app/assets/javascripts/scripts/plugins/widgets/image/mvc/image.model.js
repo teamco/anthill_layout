@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineImageModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineImageModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Image model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class ImageModel
      * @constructor
      */
@@ -132,5 +134,5 @@ define([
             this.setPrefs('imageSplitContent', split);
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

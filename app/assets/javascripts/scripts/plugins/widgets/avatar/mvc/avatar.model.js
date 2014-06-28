@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineAvatarModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineAvatarModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Avatar model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class AvatarModel
      * @constructor
      */
@@ -36,5 +38,5 @@ define([
     return AvatarModel.extend('AvatarModel', {
 
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

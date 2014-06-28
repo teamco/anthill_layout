@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function definePageTabsModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function definePageTabsModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define PageTabs model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class PageTabsModel
      * @constructor
      */
@@ -36,5 +38,5 @@ define([
     return PageTabsModel.extend('PageTabsModel', {
 
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

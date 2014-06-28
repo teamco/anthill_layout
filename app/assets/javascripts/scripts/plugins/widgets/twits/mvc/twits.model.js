@@ -6,12 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineTwitsModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineTwitsModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Twits model
      * @extends BaseModel
+     * @extends WidgetContentModel
      * @class TwitsModel
      * @constructor
      */
@@ -132,5 +134,5 @@ define([
             this.setPrefs('showRetweets', retweets);
         }
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });
