@@ -59,50 +59,48 @@ define([
                 return $tooltip;
             }
 
-            opts.$container.$.hover(
-                function on() {
+            opts.$container.$.off('mouseenter.hover').on('mouseenter.hover', function on() {
 
-                    opts.$container.$.append(
+                opts.$container.$.append(
 
-                        $tooltip.stop().
-                            fadeTo('slow', 0.9)
+                    $tooltip.stop().
+                        fadeTo('slow', 0.9)
 
-                    ).attr({
-                            title: ''
-                        });
-
-                    opts.$container.$.on('mousemove.gallery', function (e) {
-
-                        /**
-                         * Define top
-                         * @type {number}
-                         */
-                        var topL = e.pageY - $tooltip.height() - 20,
-                            topM = e.pageY + 20;
-
-                        /**
-                         * Define left
-                         * @type {number}
-                         */
-                        var leftL = e.pageX - 100,
-                            leftM = e.pageX;
-
-                        $tooltip.offset({
-                            top: topL < 0 ? topM : topL,
-                            left: leftL < 0 ? leftM : leftL
-                        });
+                ).attr({
+                        title: ''
                     });
-                },
 
-                function off() {
+                opts.$container.$.on('mousemove.gallery', function (e) {
 
-                    $tooltip.remove();
+                    /**
+                     * Define top
+                     * @type {number}
+                     */
+                    var topL = e.pageY - $tooltip.height() - 20,
+                        topM = e.pageY + 20;
 
-                    opts.$container.$.off('mousemove.gallery').attr({
-                        title: opts.title
+                    /**
+                     * Define left
+                     * @type {number}
+                     */
+                    var leftL = e.pageX - 100,
+                        leftM = e.pageX;
+
+                    $tooltip.offset({
+                        top: topL < 0 ? topM : topL,
+                        left: leftL < 0 ? leftM : leftL
                     });
-                }
-            );
+                });
+            });
+
+            opts.$container.$.off('mouseleave.hover').on('mouseleave.hover', function on() {
+
+                $tooltip.remove();
+
+                opts.$container.$.off('mousemove.gallery').attr({
+                    title: opts.title
+                });
+            });
         },
 
         /**
