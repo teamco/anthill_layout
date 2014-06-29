@@ -95,6 +95,17 @@ define([
                 resource: 'map.locator'
             },
             {
+                name: 'Pet Radar',
+                description: 'Shows online pets arround you',
+                thumbnail: '',
+                dimensions: {
+                    width: 30,
+                    height: 30
+                },
+                type: 'map',
+                resource: 'petradar'
+            },
+            {
                 name: 'Avatar',
                 description: 'Pick a photo and put it as your Avatar',
                 thumbnail: '',
@@ -283,7 +294,7 @@ define([
             },
             {
                 name: 'Ice Floe',
-                description: 'White scrollable base container for several widgets',
+                description: 'White base container for several widgets',
                 thumbnail: '',
                 dimensions: {
                     width: 8,
