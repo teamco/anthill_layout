@@ -197,9 +197,8 @@ define(
              * Swipe to current page
              * @member WorkspaceController
              * @param {boolean} animate
-             * @param {*|Widget} widget
              */
-            swipeToCurrentPage: function swipeToCurrentPage(animate, widget) {
+            swipeToCurrentPage: function swipeToCurrentPage(animate) {
 
                 /**
                  * Get current page
@@ -207,7 +206,7 @@ define(
                  */
                 var page = this.getCurrentItem();
 
-                this.scope.view.elements.$pages.swipeTo(page, animate, widget);
+                this.scope.view.elements.$pages.swipeTo(page, animate);
             }
 
 
