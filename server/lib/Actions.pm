@@ -77,10 +77,15 @@ sub MapRoutingFunctions{
 
 sub GetServerBasicInfo{
 
+	my $this = shift;
 
+	my $init_time = shift || 0;
+	my $time  = time();
+	
 	return {
 
-		'SERVER_TIME' => time(),
+		'SERVER_TIME' => $time,
+		'RESPONSE_TIME' => sprintf( "%.5f",($time - $init_time)),
 		'VCARD' => 'Pet Project Rest Service v1.0',
 		'USER' => 'some user name',
 		'REMOTE_ADDRESS' => '8.8.8.8' ### test
@@ -94,12 +99,13 @@ sub GetServerBasicInfo{
 sub ActionTest1{
 
 	my $this = shift;
+	my $T1   = time();
 
 
 	my $data  = {}; 
 	
 	$data->{DATA} = {'test1'=> 33333, 'bla bla '=> 'ddddddd'};
-	$data->{INFO} = $this->GetServerBasicInfo();
+	$data->{INFO} = $this->GetServerBasicInfo($T1);
 	$this->{OG}->PrintJSONOut($data);
 
 }
@@ -107,11 +113,12 @@ sub ActionTest1{
 sub ActionTest2{
 	
 	my $this = shift;
+	my $T1   = time();
 
 	my $data  = {}; 
 
 	$data->{DATA} = {'test2'=> 33333};
-	$data->{INFO} = $this->GetServerBasicInfo();
+	$data->{INFO} = $this->GetServerBasicInfo($T1);
 	$this->{OG}->PrintJSONOut($data);
 
 }
@@ -121,6 +128,7 @@ sub RouteAction{
 	my $this   = shift;
 	my $REQUEST = shift || return;
 	
+	my $T1 = time();
 	$this->{FUNCTIONS}->{uc($REQUEST->{VERB})}->() if($this->{FUNCTIONS}->{uc($REQUEST->{VERB})});
 
 }
