@@ -3,7 +3,7 @@ package OutGate;
 
 =pod
 	Author: Nudelman Alex
-			June 13, 2014
+			June 30, 2014
 =cut
 
 
