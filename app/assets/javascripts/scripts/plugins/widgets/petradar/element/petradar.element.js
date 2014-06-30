@@ -40,25 +40,26 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
             var $element = this;
-            
-            
-            
+
+
             require([
-                'https://maps.googleapis.com/maps/api/js',
-                '../plugins/widgets/petradar/mvc/petradar.behavior'
+                'async!https://maps.googleapis.com/maps/api/js'
             ], function getPetsAroundMe() {
 
-                
-                var $radarContainer = ['<div class="close_friends_container">',
-                                   '<h2 class="main_title">Pets Around You</h2>',
-                                   '<div id="map_canvas"></div>',
-                                   '</div>'].join('');
+                require(['plugins/widgets/petradar/mvc/petradar.behavior'], function behavior() {
 
-                $element.view.controller.clearParentThumbnail();
-                $element.$.append(
-                    $radarContainer
-                );
-            })
+                    var $radarContainer = ['<div class="close_friends_container">',
+                        '<h2 class="main_title">Pets Around You</h2>',
+                        '<div id="map_canvas"></div>',
+                        '</div>'].join('');
+
+                    $element.view.controller.clearParentThumbnail();
+                    $element.$.append(
+                        $radarContainer
+                    );
+
+                });
+            });
 
         }
 
