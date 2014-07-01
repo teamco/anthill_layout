@@ -53,8 +53,8 @@ define([
                         
              require([
                 'plugins/widgets/passport/mvc/passport.behavior'
-            ], function showPassport() {
-                
+            ], function showPassport(PassportBehavior) {
+                var showPassport = new PassportBehavior();
             });
             
            
