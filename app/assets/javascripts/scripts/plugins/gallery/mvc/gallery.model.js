@@ -128,6 +128,17 @@ define([
                 resource: 'passport'
             },
             {
+                name: 'Friends Online',
+                description: 'Shows all your friends which are currently online',
+                thumbnail: '',
+                dimensions: {
+                    width: 6,
+                    height: 17
+                },
+                type: 'General',
+                resource: 'onlinefriends'
+            },
+            {
                 name: 'JW Player',
                 description: 'JW Player powers online publishing, with clients ranging in size from Fortune 500 companies to individual bloggers',
                 thumbnail: '',

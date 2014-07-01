@@ -57,6 +57,7 @@ requirejs.config({
         'extends/string': {deps: ['jquery']},
         'extends/array': {deps: ['jquery']},
         'lib/jquery/jquery.knob': {deps: ['jquery']},
+        'lib/jquery/jquery.nicescroll': {deps: ['jquery']},
 
         'controller/layout/layout.empty.rows': {deps: ['extends/function']},
         'controller/layout/layout.empty.columns': {deps: ['extends/function']},
