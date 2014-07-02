@@ -28,7 +28,7 @@ requirejs.config({
         'lz-string': 'lib/lz-string',
 
         jquery: 'lib/jquery/jquery-2.1.1',
-        'jquery.ui': 'lib/jquery/jquery-ui-1.10.4.custom',
+        'jquery.ui': 'lib/jquery/jquery-ui.min',
         'jquery.resizestop': 'lib/jquery/jquery.resizestop',
         'jquery.pseudo': 'lib/jquery/jquery.pseudo',
 
