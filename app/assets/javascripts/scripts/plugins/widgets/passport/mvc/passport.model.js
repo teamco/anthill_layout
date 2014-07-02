@@ -6,8 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function definePassportModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function definePassportModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Passport model
@@ -36,5 +37,5 @@ define([
     return PassportModel.extend('PassportModel', {
 
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

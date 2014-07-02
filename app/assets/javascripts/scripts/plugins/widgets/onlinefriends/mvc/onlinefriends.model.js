@@ -6,8 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function defineOnlinefriendsModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function defineOnlinefriendsModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Onlinefriends model
@@ -36,5 +37,5 @@ define([
     return OnlinefriendsModel.extend('OnlinefriendsModel', {
 
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });

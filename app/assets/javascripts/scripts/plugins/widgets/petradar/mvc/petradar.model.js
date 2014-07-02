@@ -6,8 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 define([
-    'modules/Model'
-], function definePetradarModel(BaseModel) {
+    'modules/Model',
+    'plugins/widgets/widget.content.model'
+], function definePetradarModel(BaseModel, WidgetContentModel) {
 
     /**
      * Define Petradar model
@@ -36,5 +37,5 @@ define([
     return PetradarModel.extend('PetradarModel', {
 
 
-    }, BaseModel.prototype);
+    }, BaseModel.prototype, WidgetContentModel.prototype);
 });
