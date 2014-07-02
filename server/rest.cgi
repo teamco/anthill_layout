@@ -1,6 +1,5 @@
-
 #!/usr/bin/perl
-
+ 
 =pod
 	Author: Nudelman Alex
 			Jun 26, 2014 
@@ -17,12 +16,7 @@ use Time::HiRes qw(time);
 use lib './lib';
 use Actions;
 
-
-
-
 my $debug =1;
-
-
 
 ################ Debug Tools ################
 
@@ -48,8 +42,6 @@ sub PrintPosted{
 	}
 	print '<br>######################################<br><br>';
 }
-
-
 
 
 ############### Main ########################
