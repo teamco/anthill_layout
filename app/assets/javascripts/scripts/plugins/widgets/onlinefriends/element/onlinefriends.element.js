@@ -41,7 +41,7 @@ define([
         renderEmbeddedContent: function renderEmbeddedContent() {
             var $element = this;
             var $structure = [
-            '<div class="mainContainer"><h3>Friends Online</h3>',
+            '<div class="mainContainer"><h3>Friends Online</h3><i class="online_amount"></i>',
         '<div class="scrollableContent"><ul class="friendsRowsContainer"></ul>',
         '</div><div class="viewAllMenu">View All</div></div>'].join('');
             

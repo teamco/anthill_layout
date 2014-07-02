@@ -56,7 +56,7 @@
 
              this.mainContainer.on('mouseenter', function () {
                  this.editMenu.addClass('extended');
-             });
+             }.bind(this));
 
              this.mainContainer.on('mouseleave', function () {
                  this.editMenu.removeClass('extended');
@@ -68,14 +68,14 @@
                          $(this).attr('contenteditable', 'false').removeAttr('class');
                      });
                  }
-             });
+             }.bind(this));
 
              this.editMenu.on('click', function () {
                  $('.passportRows label').each(function () {
                      $(this).attr('contenteditable', 'true').addClass('edit');
                  });
-                 $(this).removeClass('extended');
-             });
+                 this.editMenu.removeClass('extended');
+             }.bind(this));
 
          }
 

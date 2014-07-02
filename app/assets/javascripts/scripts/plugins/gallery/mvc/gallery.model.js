@@ -132,8 +132,8 @@ define([
                 description: 'Shows all your friends which are currently online',
                 thumbnail: '',
                 dimensions: {
-                    width: 6,
-                    height: 17
+                    width: 12,
+                    height: 12
                 },
                 type: 'General',
                 resource: 'onlinefriends'

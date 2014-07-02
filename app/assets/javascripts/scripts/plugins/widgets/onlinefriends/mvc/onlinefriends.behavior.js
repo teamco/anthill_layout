@@ -5,6 +5,9 @@ define([], function defineOnlineFriendsBehavior() {
         this.rowsContiner = $('.friendsRowsContainer');
         this.viewAllmenu = $('.viewAllMenu');
         this.scrollContent = $('.scrollableContent');
+        this.onlineUsersAmount = $('.online_amount');
+
+
         this.friendsData = [
             {
                 'id': '564647',
@@ -69,13 +72,15 @@ define([], function defineOnlineFriendsBehavior() {
                 this.rowsContiner.append([
                     '<li><img id="',
                     this.friendsData[i].id,
-                    '" src="../../assets/scripts/plugins/widgets/onlinefriends/images/',
+                    '" src="../../assets/scripts/plugins/widgets/onlinefriends/mvc/',
                     this.friendsData[i].image,
                     '" title="Click to visit"><label>',
                     this.friendsData[i].name,
                     '</label></li>'
                 ].join(''));
             }
+            
+            this.onlineUsersAmount.text(this.friendsData.length);
 
             this.mainContainer.on('mouseenter', function () {
 
