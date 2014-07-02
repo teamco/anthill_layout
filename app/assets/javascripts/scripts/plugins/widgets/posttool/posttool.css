@@ -1,0 +1,62 @@
+.widget .content .posttool {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+.widget .content .posttool .mainContainer {
+    height: 60px;
+    background: #4096ee;
+    padding: 5px;
+    font-family: Arial;
+}
+.widget .content .posttool .mainContainer a {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.widget .content .posttool .mainContainer input {
+    display: inline-block;
+    width: 98%;
+    float: none;
+    padding: 3px 5px 3px 5px;
+    border-radius: 5px;
+}
+.widget .content .posttool .buttonsContainer {
+    height: 20px;
+    margin-top: 5px;
+    font-size: 12px;
+    color: white;
+    line-height: 20px;
+}
+.widget .content .posttool .image,
+.widget .content .posttool .link {
+    height: 20px;
+    display: inline-block;
+    line-height: 23px;
+    padding-left: 25px;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    background-size: 22px;
+    cursor: pointer;
+}
+.widget .content .posttool .image {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAN1JREFUeNpiYBgFo2CAASM2wf///5+hiWWMjCboYix41H8G4ltUslsNiHmJVg0KASCeSS2fg8zCFapMA50GRh0w6oBRBzCRmJ99gViNmg5gIdJiUClWD8QOoBISyO8DFqub6eIAoGXGQKoHqSgFOwYozkANRzARsBwU3DNxlOMgRxSjRc9MKFajVggQqkAigZZJAml1IJZEEl8GFF8OpGcBQ+kzrXOBA5rlcMcB8SagQ6QGMhvy4nDcaEFEXCIEJqCzQMqECg0SstqEVG+SYWsTDnijdBSMggEHAAEGABgUXet4z8XwAAAAAElFTkSuQmCC');
+}
+.widget .content .posttool .link {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAASFJREFUeNpiYBgFIx0w0sLQ////SwEpHyj3OSMj42a6OQBouS+QqkcTvgXE6UCHfKapA4CW8wKpTUDMi0V6C9ABDbR2gAOQ6sEZ3IyMJuhiTFSOAV5SNTBROe7T8Cg5S5NECLTYGGqxMSzVA7EkmrLP0ER4i2oOAFqsBqSKkSwG+XAW0JKz0NDwQXLQMmyW43UANEWDDHGAGrIZargU1MfIFszCl9dJLoigvpuJJVEdgDoIFqx95FpMyAE9SBYxYInP5SCMrWChlgPO4NHTSKmvKc2Gn6lZcAzaKBjYRIiUDSOh+Zy+2ZDKBdFnqPgtqjpgwItiPJWRJK7KCOiAdFq3B7C1hujaHvhMj4KIgUCdj8sRW4Z/o5ScZvkoGAUAAQYAhHqQAtOdh9YAAAAASUVORK5CYII=');
+}
+.widget .content .posttool .shareBtn {
+    float: right;
+    border: solid 1px white;
+    padding: 0px 10px 0px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.widget .content .posttool .shareBtn:hover {
+    background: #49A4FF;
+}
+.widget .content .posttool .shareBtn:active {
+    background: #1E8EFF;
+}

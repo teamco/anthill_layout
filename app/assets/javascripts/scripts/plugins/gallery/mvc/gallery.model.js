@@ -128,6 +128,17 @@ define([
                 resource: 'passport'
             },
             {
+                name: 'Post Tool',
+                description: 'Post news, images, videos etc. on your wall',
+                thumbnail: '',
+                dimensions: {
+                    width: 35,
+                    height: 6
+                },
+                type: 'General',
+                resource: 'posttool'
+            },
+            {
                 name: 'Friends Online',
                 description: 'Shows all your friends which are currently online',
                 thumbnail: '',
