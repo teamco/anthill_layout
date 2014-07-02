@@ -124,18 +124,21 @@ define([
          */
         setPosition: function setPosition(opts) {
 
-            var cWidth = opts.$container.outerWidth(),
-                cHeight = opts.$container.outerHeight(),
+            var rectC = opts.$container[0].getBoundingClientRect(),
+                cWidth = rectC.width,
+                cHeight = rectC.height,
+
                 $item = opts.$item,
-                eWidth = $item.outerWidth(),
-                eHeight = $item.outerHeight();
+                rectI = $item[0].getBoundingClientRect(),
+                eWidth = rectI.width,
+                eHeight = rectI.height;
 
             var top = 'auto',
                 left = 'auto',
                 mw = cWidth - eWidth,
-                cw = mw / 2,
+                cw = rectC.left + (mw / 2),
                 mh = cHeight - eHeight,
-                ch = mh / 2;
+                ch = rectC.top + (mh / 2);
 
             if (opts.position == 'tl') {
             } else if (opts.position == 'tc') {

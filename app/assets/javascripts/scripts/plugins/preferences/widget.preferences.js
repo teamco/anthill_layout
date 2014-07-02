@@ -91,6 +91,18 @@ define([
                 group: 'layer',
                 events: ['click'],
                 visible: true
+            },
+            stretchWidth: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false,
+                visible: true
+            },
+            stretchHeight: {
+                type: 'checkbox',
+                disabled: false,
+                checked: false,
+                visible: true
             }
         },
 

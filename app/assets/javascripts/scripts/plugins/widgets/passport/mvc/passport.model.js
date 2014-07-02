@@ -8,19 +8,19 @@
 define([
     'modules/Model',
     'plugins/widgets/widget.content.model'
-], function definePetradarModel(BaseModel, WidgetContentModel) {
+], function definePassportModel(BaseModel, WidgetContentModel) {
 
     /**
-     * Define Petradar model
+     * Define Passport model
      * @extends BaseModel
-     * @class PetradarModel
+     * @class PassportModel
      * @constructor
      */
-    var PetradarModel = function PetradarModel() {
+    var PassportModel = function PassportModel() {
 
         /**
          * Define preferences
-         * @member PetradarModel
+         * @member PassportModel
          * @type {{}}
          */
         this.preferences = {
@@ -28,13 +28,13 @@ define([
 
         /**
          * Define rules
-         * @member PetradarModel
+         * @member PassportModel
          * @type {{}}
          */
         this.rules = {};
     };
 
-    return PetradarModel.extend('PetradarModel', {
+    return PassportModel.extend('PassportModel', {
 
 
     }, BaseModel.prototype, WidgetContentModel.prototype);

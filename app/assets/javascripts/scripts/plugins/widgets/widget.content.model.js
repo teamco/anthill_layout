@@ -13,9 +13,9 @@ define([], function defineWidgetContentModel() {
      * @constructor
      */
     var WidgetContentModel = function WidgetContentModel() {
-        
+
     };
-    
+
     return WidgetContentModel.extend('WidgetContentModel', {
 
         /**
@@ -106,6 +106,52 @@ define([], function defineWidgetContentModel() {
          */
         setStatistics: function setStatistics(statistics) {
             this.setPrefs('statistics', statistics);
+        },
+
+        /**
+         * Set stretch width
+         * Adopt to container width
+         * @param {boolean} stretch
+         */
+        setStretchWidth: function setStretchWidth(stretch) {
+            this.setPrefs('stretchWidth', stretch);
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope.controller.getContainment();
+
+            if (scope.controller.isWidgetContent()) {
+                return false;
+            }
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.stretchWidth
+            );
+        },
+
+        /**
+         * Set stretch height
+         * Adopt to container height
+         * @param {boolean} stretch
+         */
+        setStretchHeight: function setStretchHeight(stretch) {
+            this.setPrefs('stretchHeight', stretch);
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope.controller.getContainment();
+
+            if (scope.controller.isWidgetContent()) {
+                return false;
+            }
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.stretchWidth
+            );
         }
     });
 });

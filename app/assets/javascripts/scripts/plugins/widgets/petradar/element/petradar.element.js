@@ -46,7 +46,9 @@ define([
                 'async!https://maps.googleapis.com/maps/api/js'
             ], function getPetsAroundMe() {
 
-                require(['plugins/widgets/petradar/mvc/petradar.behavior'], function behavior() {
+                require(['plugins/widgets/petradar/mvc/petradar.behavior'], function behavior(PetRadarBehavior) {
+
+                    var behavior = new PetRadarBehavior();
 
                     var $radarContainer = ['<div class="close_friends_container">',
                         '<h2 class="main_title">Pets Around You</h2>',

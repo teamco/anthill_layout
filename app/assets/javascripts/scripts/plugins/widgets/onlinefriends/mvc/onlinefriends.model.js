@@ -8,19 +8,19 @@
 define([
     'modules/Model',
     'plugins/widgets/widget.content.model'
-], function definePetradarModel(BaseModel, WidgetContentModel) {
+], function defineOnlinefriendsModel(BaseModel, WidgetContentModel) {
 
     /**
-     * Define Petradar model
+     * Define Onlinefriends model
      * @extends BaseModel
-     * @class PetradarModel
+     * @class OnlinefriendsModel
      * @constructor
      */
-    var PetradarModel = function PetradarModel() {
+    var OnlinefriendsModel = function OnlinefriendsModel() {
 
         /**
          * Define preferences
-         * @member PetradarModel
+         * @member OnlinefriendsModel
          * @type {{}}
          */
         this.preferences = {
@@ -28,13 +28,13 @@ define([
 
         /**
          * Define rules
-         * @member PetradarModel
+         * @member OnlinefriendsModel
          * @type {{}}
          */
         this.rules = {};
     };
 
-    return PetradarModel.extend('PetradarModel', {
+    return OnlinefriendsModel.extend('OnlinefriendsModel', {
 
 
     }, BaseModel.prototype, WidgetContentModel.prototype);
