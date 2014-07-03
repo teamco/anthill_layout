@@ -173,7 +173,9 @@ define([
                          * Define text
                          * @type {string}
                          */
-                        var text = index.replace(title.toLowerCase(), '').toPoint().humanize();
+                        var text = index.replace(title.toLowerCase(), '').
+                            toPoint().
+                            humanize();
 
                         /**
                          * Define node
