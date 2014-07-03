@@ -32,7 +32,9 @@ define([
          *      alwaysOnTop: {type: string, disabled: boolean, checked: boolean},
          *      statistics: {type: string, disabled: boolean, checked: boolean},
          *      setLayerUp: {type: string, disabled: boolean, group: string, events: array},
-         *      setLayerDown: {type: string, disabled: boolean, group: string, events: array}
+         *      setLayerDown: {type: string, disabled: boolean, group: string, events: array},
+         *      stretchWidth: {type: string, disabled: boolean, group: string, events: array},
+         *      stretchHeight: {type: string, disabled: boolean, group: string, events: array}
          * }}
          */
         defaultPrefs: {
@@ -102,6 +104,41 @@ define([
                 type: 'checkbox',
                 disabled: false,
                 checked: false,
+                visible: true
+            },
+            stickToLeft: {
+                type: 'event',
+                disabled: false,
+                group: 'stick',
+                events: ['click'],
+                visible: true
+            },
+            stickToTop: {
+                type: 'event',
+                disabled: false,
+                group: 'stick',
+                events: ['click'],
+                visible: true
+            },
+            stickToCenter: {
+                type: 'event',
+                disabled: false,
+                group: 'stick',
+                events: ['click'],
+                visible: true
+            },
+            stickToBottom: {
+                type: 'event',
+                disabled: false,
+                group: 'stick',
+                events: ['click'],
+                visible: true
+            },
+            stickToRight: {
+                type: 'event',
+                disabled: false,
+                group: 'stick',
+                events: ['click'],
                 visible: true
             }
         },
