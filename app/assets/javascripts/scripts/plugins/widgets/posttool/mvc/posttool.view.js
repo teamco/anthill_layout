@@ -13,22 +13,22 @@ define([
     'plugins/widgets/posttool/element/posttool.element',
     'plugins/widgets/posttool/element/posttool.preferences.element',
     'plugins/widgets/posttool/element/posttool.rules.element'
-], function definePostoolView(BaseView, Header, Footer, PostoolElement, PostoolPreferencesElement, PostoolRulesElement) {
+], function definePosttoolView(BaseView, Header, Footer, PosttoolElement, PosttoolPreferencesElement, PosttoolRulesElement) {
 
     /**
      * Define view
-     * @class PostoolView
+     * @class PosttoolView
      * @extends BaseView
      * @constructor
      */
-    var PostoolView = function PostoolView() {
+    var PosttoolView = function PosttoolView() {
     };
 
-    return PostoolView.extend('PostoolView', {
+    return PosttoolView.extend('PosttoolView', {
 
         /**
          * Render posttool element
-         * @member PostoolView
+         * @member PosttoolView
          */
         renderPostool: function renderPostool() {
 
@@ -36,9 +36,9 @@ define([
 
             /**
              * Define $posttool
-             * @type {PostoolElement}
+             * @type {PosttoolElement}
              */
-            this.elements.$posttool = new PostoolElement(this, {
+            this.elements.$posttool = new PosttoolElement(this, {
                 $container: this.elements.$container.$,
                 id: this.createUUID()
             });
@@ -52,16 +52,16 @@ define([
 
         /**
          * Render Prefs
-         * @member PostoolView
+         * @member PosttoolView
          * @returns {PostoolPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
 
             /**
-             * Define Postool Preferences Element
-             * @type {PostoolPreferencesElement}
+             * Define Post tool Preferences Element
+             * @type {PosttoolPreferencesElement}
              */
-            this.elements.$preferences = new PostoolPreferencesElement(this, {
+            this.elements.$preferences = new PosttoolPreferencesElement(this, {
                 data: this.controller.getPreferences()
             });
 
@@ -70,18 +70,18 @@ define([
 
         /**
          * Render Rules
-         * @member PostoolView
+         * @member PosttoolView
          * @param widgetRules
          * @param contentRules
-         * @returns {PostoolRulesElement}
+         * @returns {PosttoolRulesElement}
          */
         renderRules: function renderRules(widgetRules, contentRules) {
 
             /**
              * Define Postool Rules Element
-             * @type {PostoolRulesElement}
+             * @type {PosttoolRulesElement}
              */
-            this.elements.$rules = new PostoolRulesElement(this, {
+            this.elements.$rules = new PosttoolRulesElement(this, {
                 data: this.controller.getRules(),
                 rules: {
                     widget: widgetRules,
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render posttool
-         * @member PostoolView
+         * @member PosttoolView
          */
         render: function render() {
 

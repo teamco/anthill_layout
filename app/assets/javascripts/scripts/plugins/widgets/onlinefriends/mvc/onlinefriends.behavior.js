@@ -63,7 +63,7 @@ define([], function defineOnlineFriendsBehavior() {
 
         this.initialize();
 
-    }
+    };
 
     return OnlineFriendsBehavior.extend('OnlineFriendsBehavior', {
 
