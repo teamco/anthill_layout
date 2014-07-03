@@ -244,7 +244,7 @@ define([
 
         /**
          * Reduce widget
-         * @member MaximizeContentElement
+         * @member WidgetElement
          */
         reduce: function reduce() {
 
@@ -269,6 +269,66 @@ define([
                 );
 
             }.bind(scope)).removeClass(this.maximize);
+        },
+
+        /**
+         * Stretch element width
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stretchWidth: function stretchWidth(page) {
+
+            this.$.css({
+
+                left: 0,
+                width: page.view.get$item().getWidth()
+
+            });
+        },
+
+        /**
+         * Restore original width
+         * @member WidgetElement
+         */
+        restoreWidth: function restoreWidth() {
+
+            var scope = this.view.scope;
+
+            this.$.css({
+
+                left: scope.dom.left,
+                width: scope.dom.width
+
+            });
+        },
+
+        /**
+         * Stretch element height
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stretchHeight: function stretchHeight(page) {
+
+            this.$.css({
+                top: 0,
+                height: page.view.get$item().getHeight()
+            });
+        },
+
+        /**
+         * Restore original height
+         * @member WidgetElement
+         */
+        restoreHeight: function restoreHeight() {
+
+            var scope = this.view.scope;
+
+            this.$.css({
+
+                top: scope.dom.top,
+                height: scope.dom.height
+
+            });
         }
 
     }, BaseElement.prototype);

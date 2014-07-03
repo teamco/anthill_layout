@@ -126,7 +126,10 @@ define([
             beforeMaximize: 'before.maximize',
 
             afterReduce: 'after.reduce',
-            beforeReduce: 'before.reduce'
+            beforeReduce: 'before.reduce',
+
+            stretchHeight: 'stretch.height',
+            stretchWidth: 'stretch.width'
         }
 
     }, BaseEvent.prototype);

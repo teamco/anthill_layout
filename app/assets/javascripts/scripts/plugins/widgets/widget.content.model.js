@@ -127,7 +127,8 @@ define([], function defineWidgetContentModel() {
             }
 
             scope.observer.publish(
-                scope.eventmanager.eventList.stretchWidth
+                scope.eventmanager.eventList.stretchWidth,
+                stretch
             );
         },
 
@@ -150,7 +151,8 @@ define([], function defineWidgetContentModel() {
             }
 
             scope.observer.publish(
-                scope.eventmanager.eventList.stretchWidth
+                scope.eventmanager.eventList.stretchHeight,
+                stretch
             );
         }
     });
