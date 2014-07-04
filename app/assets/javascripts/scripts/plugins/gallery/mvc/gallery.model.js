@@ -286,8 +286,8 @@ define([
                 description: 'Share your page with your friends',
                 thumbnail: '',
                 dimensions: {
-                    width: 5,
-                    height: 10
+                    width: 10,
+                    height: 3
                 },
                 type: 'social',
                 resource: 'share'
@@ -357,6 +357,17 @@ define([
                 },
                 type: 'Login',
                 resource: 'loginggl'
+            },
+            {
+                name: 'Post Template',
+                description: 'Visual layout of posted note on the wall',
+                thumbnail: '',
+                dimensions: {
+                    width: 34,
+                    height: 10
+                },
+                type: 'Template',
+                resource: 'postTemplate'
             }
 
         ];
