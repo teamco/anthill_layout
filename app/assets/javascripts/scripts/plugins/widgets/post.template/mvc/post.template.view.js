@@ -10,9 +10,9 @@ define([
     'modules/View',
     'element/header.element',
     'element/footer.element',
-    'plugins/widgets/postTemplate/element/postTemplate.element',
-    'plugins/widgets/postTemplate/element/postTemplate.preferences.element',
-    'plugins/widgets/postTemplate/element/postTemplate.rules.element'
+    'plugins/widgets/post.template/element/post.template.element',
+    'plugins/widgets/post.template/element/post.template.preferences.element',
+    'plugins/widgets/post.template/element/post.template.rules.element'
 ], function definePostTemplateView(BaseView, Header, Footer, PostTemplateElement, PostTemplatePreferencesElement, PostTemplateRulesElement) {
 
     /**
@@ -27,7 +27,7 @@ define([
     return PostTemplateView.extend('PostTemplateView', {
 
         /**
-         * Render postTemplate element
+         * Render post.template element
          * @member PostTemplateView
          */
         renderPostTemplate: function renderPostTemplate() {
@@ -35,7 +35,7 @@ define([
             this.header(Header, this.elements.$container);
 
             /**
-             * Define $postTemplate
+             * Define $post.template
              * @type {PostTemplateElement}
              */
             this.elements.$postTemplate = new PostTemplateElement(this, {
@@ -93,7 +93,7 @@ define([
         },
 
         /**
-         * Render postTemplate
+         * Render post.template
          * @member PostTemplateView
          */
         render: function render() {

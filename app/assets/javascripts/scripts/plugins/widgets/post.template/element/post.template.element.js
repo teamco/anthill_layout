@@ -25,7 +25,7 @@ define([
             destroy: true
         });
 
-        this.addCSS('postTemplate', {
+        this.addCSS('post.template', {
             resource: '/widgets'
         });
 

@@ -11,7 +11,7 @@ define([
 ], function definePostTemplateController(PluginBase, WidgetContentController) {
 
     /**
-     * Define postTemplate controller
+     * Define post.template controller
      * @class PostTemplateController
      * @extends PluginController
      * @extends WidgetContentController

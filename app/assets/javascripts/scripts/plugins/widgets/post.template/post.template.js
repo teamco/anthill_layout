@@ -8,11 +8,11 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/postTemplate/mvc/postTemplate.controller',
-    'plugins/widgets/postTemplate/mvc/postTemplate.model',
-    'plugins/widgets/postTemplate/mvc/postTemplate.view',
-    'plugins/widgets/postTemplate/mvc/postTemplate.event.manager',
-    'plugins/widgets/postTemplate/mvc/postTemplate.permission'
+    'plugins/widgets/post.template/mvc/post.template.controller',
+    'plugins/widgets/post.template/mvc/post.template.model',
+    'plugins/widgets/post.template/mvc/post.template.view',
+    'plugins/widgets/post.template/mvc/post.template.event.manager',
+    'plugins/widgets/post.template/mvc/post.template.permission'
 ], function definePostTemplate(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
@@ -81,7 +81,7 @@ define([
         /**
          * Init event manager
          * @member PostTemplate
-         * @type {EventManager}
+         * @type {PostTemplateEventManager}
          */
         this.eventmanager = undefined;
 
@@ -95,7 +95,7 @@ define([
         /**
          * Init model
          * @member PostTemplate
-         * @type {*}
+         * @type {PostTemplateModel}
          */
         this.model = undefined;
 

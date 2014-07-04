@@ -1,15 +1,14 @@
-.widget .content .postTemplate {
+.widget .content .post-template {
     height: 100%;
     width: 100%;
     overflow: auto;
 }
-.widget .content .postTemplate .mainContainer {
+.widget .content .post-template .mainContainer {
     height: 250px;
     border-bottom: solid 1px lightgray;
-    font-family: Arial;
     position: relative;
 }
-.widget .content .postTemplate .authorContainer {
+.widget .content .post-template .authorContainer {
     display: inline-block;
     position: absolute;
     height: 100%;
@@ -20,7 +19,7 @@
     -o-user-select: none;
     user-select: none;
 }
-.widget .content .postTemplate .authorImage {
+.widget .content .post-template .authorImage {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -28,11 +27,11 @@
     display: inline-block;
     background: url('bird.jpg') center no-repeat;
     background-size: 150%;
-    border-bottom: -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
-    box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
+    -webkit-box-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.5);
+    -moz-box-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.5);
+    box-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.5);
 }
-.widget .content .postTemplate .postHead {
+.widget .content .post-template .postHead {
     height: 20px;
     display: inline-block;
     float: right;
@@ -42,18 +41,18 @@
     width: calc(100% - 80px);
     border-bottom: solid 1px lightgray
 }
-.widget .content .postTemplate .postContent {
+.widget .content .post-template .postContent {
     height: 230px;
     display: inline-block;
     float: right;
-    vertical-align: width: -moz-calc(100% - 80px);
+    width: -moz-calc(100% - 80px);
     width: -webkit-calc(100% - 80px);
     width: -o-calc(100% - 80px);
     width: calc(100% - 80px);
     white-space: nowrap;
     overflow: hidden;
 }
-.widget .content .postTemplate .postHead h4 {
+.widget .content .post-template .postHead h4 {
     margin: 0;
     padding: 0;
     line-height: 20px;
@@ -62,25 +61,25 @@
     color: #4096ee;
     display: inline-block;
 }
-.widget .content .postTemplate .social {
+.widget .content .post-template .social {
     display: block;
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    margin: 5px 0px 10px 20px;
+    margin: 5px 0 10px 20px;
     cursor: pointer;
     position: relative;
-    border-bottom: -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
-    box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
+    -webkit-box-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.5);
+    -moz-box-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.5);
+    box-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.5);
 }
-.widget .content .postTemplate .socialAmount {
+.widget .content .post-template .socialAmount {
     position: absolute;
     font-size: 11px;
     line-height: 16px;
     top: 4px;
     left: 30px;
-    padding: 0px 3px 0px 3px;
+    padding: 0 3px 0 3px;
     border: solid 1px lightgray;
     color: #1E8EFF;
     border-radius: 2px;
@@ -89,11 +88,11 @@
     opacity: 0;
     transition: opacity 400ms ease;
 }
-.widget .content .postTemplate .socialAmount.show {
+.widget .content .post-template .socialAmount.show {
     opacity: 1;
     transition: opacity 400ms ease;
 }
-.widget .content .postTemplate .removePost {
+.widget .content .post-template .removePost {
     width: 13px;
     height: 13px;
     float: right;
@@ -103,36 +102,36 @@
     background-size: 100%;
     opacity: .7;
 }
-.widget .content .postTemplate .removePost.show {
+.widget .content .post-template .removePost.show {
     display: inline-block;
 }
-.widget .content .postTemplate .bigThumb {
+.widget .content .post-template .bigThumb {
     width: auto;
     height: 210px;
     display: inline-block;
     float: left;
     margin-right: 5px;
 }
-.widget .content .postTemplate .postContent img {
+.widget .content .post-template .postContent img {
     height: 100px;
     cursor: pointer;
     border: solid 4px white;
     border-radius: 10px;
     vertical-align: top;
     margin-top: 5px;
-    border-bottom: -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
-    box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
+    -webkit-box-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.5);
+    -moz-box-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.5);
+    box-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.5);
     float: left;
     transition: height 500ms ease;
 }
-.widget .content .postTemplate .postContent img:first-child {
+.widget .content .post-template .postContent img:first-child {
     height: 210px;
     cursor: pointer;
     border: solid 4px white;
     border-radius: 10px;
 }
-.widget .content .postTemplate .postContent img.extend {
+.widget .content .post-template .postContent img.extend {
     height: 210px;
     position: absolute;
     z-index: 5;
