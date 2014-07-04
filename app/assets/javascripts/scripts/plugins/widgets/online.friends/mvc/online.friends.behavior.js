@@ -72,7 +72,7 @@ define([], function defineOnlineFriendsBehavior() {
                 this.rowsContiner.append([
                     '<li><img id="',
                     this.friendsData[i].id,
-                    '" src="../../assets/scripts/plugins/widgets/onlinefriends/images/',
+                    '" src="../../assets/scripts/plugins/widgets/online.friends/images/',
                     this.friendsData[i].image,
                     '" title="Click to visit"><label>',
                     this.friendsData[i].name,
