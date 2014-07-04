@@ -8,23 +8,23 @@
 define([
     'plugins/plugin',
     'plugins/widgets/widget.content.controller'
-], function definePosttoolController(PluginBase, WidgetContentController) {
+], function definePostToolController(PluginBase, WidgetContentController) {
 
     /**
-     * Define posttool controller
-     * @class PosttoolController
+     * Define post.tool controller
+     * @class PostToolController
      * @extends PluginController
      * @extends WidgetContentController
      * @constructor
      */
-    var PosttoolController = function PosttoolController() {
+    var PostToolController = function PostToolController() {
     };
 
-    return PosttoolController.extend('PosttoolController', {
+    return PostToolController.extend('PostToolController', {
 
         /**
          * Set embedded content
-         * @member PosttoolController
+         * @member PostToolController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -32,11 +32,11 @@ define([
         },
 
         /**
-         * Add Posttool rule
-         * @member PosttoolController
+         * Add PostTool rule
+         * @member PostToolController
          * @param e
          */
-        addPosttoolRule: function addPosttoolRule(e) {
+        addPostToolRule: function addPostToolRule(e) {
 
             /**
              * Define $button

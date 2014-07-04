@@ -8,20 +8,20 @@
 define([
     'modules/Model',
     'plugins/widgets/widget.content.model'
-], function definePosttoolModel(BaseModel, WidgetContentModel) {
+], function definePostToolModel(BaseModel, WidgetContentModel) {
 
     /**
-     * Define Posttool model
+     * Define PostTool model
      * @extends BaseModel
      * @extends WidgetContentModel
-     * @class PosttoolModel
+     * @class PostToolModel
      * @constructor
      */
-    var PosttoolModel = function PosttoolModel() {
+    var PostToolModel = function PostToolModel() {
 
         /**
          * Define preferences
-         * @member PosttoolModel
+         * @member PostToolModel
          * @type {{}}
          */
         this.preferences = {
@@ -29,13 +29,13 @@ define([
 
         /**
          * Define rules
-         * @member PosttoolModel
+         * @member PostToolModel
          * @type {{}}
          */
         this.rules = {};
     };
 
-    return PosttoolModel.extend('PosttoolModel', {
+    return PostToolModel.extend('PostToolModel', {
 
 
     }, BaseModel.prototype, WidgetContentModel.prototype);

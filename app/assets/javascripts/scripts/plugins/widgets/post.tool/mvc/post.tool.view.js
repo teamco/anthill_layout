@@ -10,35 +10,35 @@ define([
     'modules/View',
     'element/header.element',
     'element/footer.element',
-    'plugins/widgets/posttool/element/posttool.element',
-    'plugins/widgets/posttool/element/posttool.preferences.element',
-    'plugins/widgets/posttool/element/posttool.rules.element'
-], function definePosttoolView(BaseView, Header, Footer, PosttoolElement, PosttoolPreferencesElement, PosttoolRulesElement) {
+    'plugins/widgets/post.tool/element/post.tool.element',
+    'plugins/widgets/post.tool/element/post.tool.preferences.element',
+    'plugins/widgets/post.tool/element/post.tool.rules.element'
+], function definePostToolView(BaseView, Header, Footer, PostToolElement, PostToolPreferencesElement, PostToolRulesElement) {
 
     /**
      * Define view
-     * @class PosttoolView
+     * @class PostToolView
      * @extends BaseView
      * @constructor
      */
-    var PosttoolView = function PosttoolView() {
+    var PostToolView = function PostToolView() {
     };
 
-    return PosttoolView.extend('PosttoolView', {
+    return PostToolView.extend('PostToolView', {
 
         /**
-         * Render posttool element
-         * @member PosttoolView
+         * Render post.tool element
+         * @member PostToolView
          */
-        renderPostool: function renderPostool() {
+        renderPostTool: function renderPostTool() {
 
             this.header(Header, this.elements.$container);
 
             /**
-             * Define $posttool
-             * @type {PosttoolElement}
+             * Define $post.tool
+             * @type {PostToolElement}
              */
-            this.elements.$posttool = new PosttoolElement(this, {
+            this.elements.$posttool = new PostToolElement(this, {
                 $container: this.elements.$container.$,
                 id: this.createUUID()
             });
@@ -52,16 +52,16 @@ define([
 
         /**
          * Render Prefs
-         * @member PosttoolView
-         * @returns {PostoolPreferencesElement}
+         * @member PostToolView
+         * @returns {PostToolPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
 
             /**
              * Define Post tool Preferences Element
-             * @type {PosttoolPreferencesElement}
+             * @type {PostToolPreferencesElement}
              */
-            this.elements.$preferences = new PosttoolPreferencesElement(this, {
+            this.elements.$preferences = new PostToolPreferencesElement(this, {
                 data: this.controller.getPreferences()
             });
 
@@ -70,18 +70,18 @@ define([
 
         /**
          * Render Rules
-         * @member PosttoolView
+         * @member PostToolView
          * @param widgetRules
          * @param contentRules
-         * @returns {PosttoolRulesElement}
+         * @returns {PostToolRulesElement}
          */
         renderRules: function renderRules(widgetRules, contentRules) {
 
             /**
-             * Define Postool Rules Element
-             * @type {PosttoolRulesElement}
+             * Define PostTool Rules Element
+             * @type {PostToolRulesElement}
              */
-            this.elements.$rules = new PosttoolRulesElement(this, {
+            this.elements.$rules = new PostToolRulesElement(this, {
                 data: this.controller.getRules(),
                 rules: {
                     widget: widgetRules,
@@ -93,14 +93,14 @@ define([
         },
 
         /**
-         * Render posttool
-         * @member PosttoolView
+         * Render post.tool
+         * @member PostToolView
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderPostool.bind(this)
+                this.renderPostTool.bind(this)
             );
         }
 

@@ -8,19 +8,19 @@
 define([
     'modules/Element',
     'plugins/preferences/widget.preferences'
-], function definePosttoolPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePostToolPreferencesElement(BaseElement, WidgetPreferences) {
 
     /**
-     * Define Posttool Preferences Element
+     * Define PostTool Preferences Element
      * @param view
      * @param opts
-     * @returns {PosttoolPreferencesElement}
+     * @returns {PostToolPreferencesElement}
      * @constructor
-     * @class PosttoolPreferencesElement
+     * @class PostToolPreferencesElement
      * @extends BaseElement
      * @extends WidgetPreferences
      */
-    var PosttoolPreferencesElement = function PosttoolPreferencesElement(view, opts) {
+    var PostToolPreferencesElement = function PostToolPreferencesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -32,7 +32,7 @@ define([
         return this;
     };
 
-    return PosttoolPreferencesElement.extend('PosttoolPreferencesElement', {
+    return PostToolPreferencesElement.extend('PostToolPreferencesElement', {
 
 
     }, BaseElement.prototype, WidgetPreferences.prototype);

@@ -8,19 +8,19 @@
 define([
     'modules/Element',
     'plugins/rules/widget.base.rules'
-], function definePosttoolRulesElement(BaseElement, BaseWidgetRules) {
+], function definePostToolRulesElement(BaseElement, BaseWidgetRules) {
 
     /**
-     * Define Posttool Rules Element
+     * Define PostTool Rules Element
      * @param view
      * @param opts
-     * @returns {PosttoolRulesElement}
+     * @returns {PostToolRulesElement}
      * @constructor
-     * @class PosttoolRulesElement
+     * @class PostToolRulesElement
      * @extends BaseElement
      * @extends BaseWidgetRules
      */
-    var PosttoolRulesElement = function PosttoolRulesElement(view, opts) {
+    var PostToolRulesElement = function PostToolRulesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -36,7 +36,7 @@ define([
         return this;
     };
 
-    return PosttoolRulesElement.extend('PosttoolRulesElement', {
+    return PostToolRulesElement.extend('PostToolRulesElement', {
 
     }, BaseElement.prototype, BaseWidgetRules.prototype);
 

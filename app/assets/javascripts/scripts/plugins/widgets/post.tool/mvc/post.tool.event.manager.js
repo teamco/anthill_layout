@@ -8,21 +8,21 @@
 
 define([
     'plugins/widgets/widget.content.event.manager'
-], function definePosttoolEventManager(WidgetContentEventManager) {
+], function definePostToolEventManager(WidgetContentEventManager) {
 
     /**
-     * Define Posttool event manager
-     * @class PosttoolEventManager
+     * Define PostTool event manager
+     * @class PostToolEventManager
      * @constructor
      * @extends BaseEvent
      * @extends WidgetContentEventManager
      */
-    var PosttoolEventManager = function PosttoolEventManager() {
+    var PostToolEventManager = function PostToolEventManager() {
 
         this.updateEventList({});
     };
 
-    return PosttoolEventManager.extend('PosttoolEventManager', {
+    return PostToolEventManager.extend('PostToolEventManager', {
 
     }, WidgetContentEventManager.prototype);
 });

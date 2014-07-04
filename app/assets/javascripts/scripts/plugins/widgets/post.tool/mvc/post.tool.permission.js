@@ -8,19 +8,19 @@
 
 define([
     'modules/Permission'
-], function definePosttoolPermission(BasePermission) {
+], function definePostToolPermission(BasePermission) {
 
     /**
      * Define Permissions
-     * @class PosttoolPermission
+     * @class PostToolPermission
      * @constructor
      * @extends BasePermission
      */
-    var PosttoolPermission = function PosttoolPermission() {
+    var PostToolPermission = function PostToolPermission() {
 
     };
 
-    return PosttoolPermission.extend('PosttoolPermission', {
+    return PostToolPermission.extend('PostToolPermission', {
 
     }, BasePermission.prototype);
 });

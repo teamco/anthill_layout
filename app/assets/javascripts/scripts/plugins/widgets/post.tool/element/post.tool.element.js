@@ -7,36 +7,36 @@
 
 define([
     'modules/Element'
-], function definePosttoolElement(BaseElement) {
+], function definePostToolElement(BaseElement) {
 
     /**
-     * Define Posttool Element
+     * Define PostTool Element
      * @param view
      * @param opts
-     * @returns {PosttoolElement}
+     * @returns {PostToolElement}
      * @constructor
-     * @class PosttoolElement
+     * @class PostToolElement
      * @extends BaseElement
      */
-    var PosttoolElement = function PosttoolElement(view, opts) {
+    var PostToolElement = function PostToolElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
 
-        this.addCSS('posttool', {
+        this.addCSS('post.tool', {
             resource: '/widgets'
         });
 
         return this;
     };
 
-    return PosttoolElement.extend('PosttoolElement', {
+    return PostToolElement.extend('PostToolElement', {
 
         /**
          * Render Embedded content
-         * @member PosttoolElement
+         * @member PostToolElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
             var $element = this;

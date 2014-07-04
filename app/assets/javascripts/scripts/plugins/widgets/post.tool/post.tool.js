@@ -8,32 +8,32 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/posttool/mvc/posttool.controller',
-    'plugins/widgets/posttool/mvc/posttool.model',
-    'plugins/widgets/posttool/mvc/posttool.view',
-    'plugins/widgets/posttool/mvc/posttool.event.manager',
-    'plugins/widgets/posttool/mvc/posttool.permission'
-], function definePosttool(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/post.tool/mvc/post.tool.controller',
+    'plugins/widgets/post.tool/mvc/post.tool.model',
+    'plugins/widgets/post.tool/mvc/post.tool.view',
+    'plugins/widgets/post.tool/mvc/post.tool.event.manager',
+    'plugins/widgets/post.tool/mvc/post.tool.permission'
+], function definePostTool(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Posttool
+     * Define PostTool
      * @param containment
      * @param [opts]
      * @constructor
-     * @class Posttool
+     * @class PostTool
      * @extends AntHill
      */
-    var Posttool = function Posttool(containment, opts) {
+    var PostTool = function PostTool(containment, opts) {
 
         /**
          * Define containment
-         * @member Posttool
+         * @member PostTool
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Posttool
+         * @member PostTool
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,35 +73,35 @@ define([
 
         /**
          * Init observer
-         * @member Posttool
+         * @member PostTool
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
-         * @member Posttool
+         * @member PostTool
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
-         * @member Posttool
+         * @member PostTool
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Init model
-         * @member Posttool
+         * @member PostTool
          * @type {*}
          */
         this.model = undefined;
 
         /**
          * Define MVC
-         * @member Posttool
+         * @member PostTool
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -131,7 +131,7 @@ define([
         );
     };
 
-    return Posttool.extend('Posttool', {
+    return PostTool.extend('PostTool', {
 
     }, AntHill.prototype);
 });
