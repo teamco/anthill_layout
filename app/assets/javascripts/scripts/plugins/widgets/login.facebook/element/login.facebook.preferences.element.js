@@ -8,19 +8,19 @@
 define([
     'modules/Element',
     'plugins/preferences/widget.preferences'
-], function defineLoginfbPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineLoginFacebookPreferencesElement(BaseElement, WidgetPreferences) {
 
     /**
-     * Define Loginfb Preferences Element
+     * Define LoginFacebook Preferences Element
      * @param view
      * @param opts
-     * @returns {LoginfbPreferencesElement}
+     * @returns {LoginFacebookPreferencesElement}
      * @constructor
-     * @class LoginfbPreferencesElement
+     * @class LoginFacebookPreferencesElement
      * @extends BaseElement
      * @extends WidgetPreferences
      */
-    var LoginfbPreferencesElement = function LoginfbPreferencesElement(view, opts) {
+    var LoginFacebookPreferencesElement = function LoginFacebookPreferencesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -32,7 +32,7 @@ define([
         return this;
     };
 
-    return LoginfbPreferencesElement.extend('LoginfbPreferencesElement', {
+    return LoginFacebookPreferencesElement.extend('LoginFacebookPreferencesElement', {
 
 
     }, BaseElement.prototype, WidgetPreferences.prototype);

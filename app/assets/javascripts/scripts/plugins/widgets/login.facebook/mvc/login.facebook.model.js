@@ -8,20 +8,20 @@
 define([
     'modules/Model',
     'plugins/widgets/widget.content.model'
-], function defineLoginfbModel(BaseModel, WidgetContentModel) {
+], function defineLoginFacebookModel(BaseModel, WidgetContentModel) {
 
     /**
-     * Define Loginfb model
+     * Define LoginFacebook model
      * @extends BaseModel
      * @extends WidgetContentModel
-     * @class LoginfbModel
+     * @class LoginFacebookModel
      * @constructor
      */
-    var LoginfbModel = function LoginfbModel() {
+    var LoginFacebookModel = function LoginFacebookModel() {
 
         /**
          * Define preferences
-         * @member LoginfbModel
+         * @member LoginFacebookModel
          * @type {{}}
          */
         this.preferences = {
@@ -29,13 +29,13 @@ define([
 
         /**
          * Define rules
-         * @member LoginfbModel
+         * @member LoginFacebookModel
          * @type {{}}
          */
         this.rules = {};
     };
 
-    return LoginfbModel.extend('LoginfbModel', {
+    return LoginFacebookModel.extend('LoginFacebookModel', {
 
 
     }, BaseModel.prototype, WidgetContentModel.prototype);

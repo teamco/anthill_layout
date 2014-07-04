@@ -10,35 +10,35 @@ define([
     'modules/View',
     'element/header.element',
     'element/footer.element',
-    'plugins/widgets/loginfb/element/loginfb.element',
-    'plugins/widgets/loginfb/element/loginfb.preferences.element',
-    'plugins/widgets/loginfb/element/loginfb.rules.element'
-], function defineLoginfbView(BaseView, Header, Footer, LoginfbElement, LoginfbPreferencesElement, LoginfbRulesElement) {
+    'plugins/widgets/login.facebook/element/login.facebook.element',
+    'plugins/widgets/login.facebook/element/login.facebook.preferences.element',
+    'plugins/widgets/login.facebook/element/login.facebook.rules.element'
+], function defineLoginFacebookView(BaseView, Header, Footer, LoginFacebookElement, LoginFacebookPreferencesElement, LoginFacebookRulesElement) {
 
     /**
      * Define view
-     * @class LoginfbView
+     * @class LoginFacebookView
      * @extends BaseView
      * @constructor
      */
-    var LoginfbView = function LoginfbView() {
+    var LoginFacebookView = function LoginFacebookView() {
     };
 
-    return LoginfbView.extend('LoginfbView', {
+    return LoginFacebookView.extend('LoginFacebookView', {
 
         /**
-         * Render loginfb element
-         * @member LoginfbView
+         * Render LoginFacebook element
+         * @member LoginFacebookView
          */
-        renderLoginfb: function renderLoginfb() {
+        renderLoginFacebook: function renderLoginFacebook() {
 
             this.header(Header, this.elements.$container);
 
             /**
-             * Define $loginfb
-             * @type {LoginfbElement}
+             * Define $login.facebook
+             * @type {LoginFacebookElement}
              */
-            this.elements.$loginfb = new LoginfbElement(this, {
+            this.elements.$loginfacebook = new LoginFacebookElement(this, {
                 $container: this.elements.$container.$,
                 id: this.createUUID()
             });
@@ -52,16 +52,16 @@ define([
 
         /**
          * Render Prefs
-         * @member LoginfbView
-         * @returns {LoginfbPreferencesElement}
+         * @member LoginFacebookView
+         * @returns {LoginFacebookPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
 
             /**
-             * Define Loginfb Preferences Element
-             * @type {LoginfbPreferencesElement}
+             * Define LoginFacebook Preferences Element
+             * @type {LoginFacebookPreferencesElement}
              */
-            this.elements.$preferences = new LoginfbPreferencesElement(this, {
+            this.elements.$preferences = new LoginFacebookPreferencesElement(this, {
                 data: this.controller.getPreferences()
             });
 
@@ -70,18 +70,18 @@ define([
 
         /**
          * Render Rules
-         * @member LoginfbView
+         * @member LoginFacebookView
          * @param widgetRules
          * @param contentRules
-         * @returns {LoginfbRulesElement}
+         * @returns {LoginFacebookRulesElement}
          */
         renderRules: function renderRules(widgetRules, contentRules) {
 
             /**
-             * Define Loginfb Rules Element
-             * @type {LoginfbRulesElement}
+             * Define LoginFacebook Rules Element
+             * @type {LoginFacebookRulesElement}
              */
-            this.elements.$rules = new LoginfbRulesElement(this, {
+            this.elements.$rules = new LoginFacebookRulesElement(this, {
                 data: this.controller.getRules(),
                 rules: {
                     widget: widgetRules,
@@ -93,14 +93,14 @@ define([
         },
 
         /**
-         * Render loginfb
-         * @member LoginfbView
+         * Render login.facebook
+         * @member LoginFacebookView
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderLoginfb.bind(this)
+                this.renderLoginFacebook.bind(this)
             );
         }
 

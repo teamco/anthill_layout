@@ -7,34 +7,34 @@
 
 define([
     'modules/Element'
-], function defineLoginfbElement(BaseElement) {
+], function defineLoginFacebookElement(BaseElement) {
 
     /**
-     * Define Loginfb Element
+     * Define LoginFacebook Element
      * @param view
      * @param opts
-     * @returns {LoginfbElement}
+     * @returns {LoginFacebookElement}
      * @constructor
-     * @class LoginfbElement
+     * @class LoginFacebookElement
      * @extends BaseElement
      */
-    var LoginfbElement = function LoginfbElement(view, opts) {
+    var LoginFacebookElement = function LoginFacebookElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
 
-        this.addCSS('loginfb', {resource: '/widgets'});
+        this.addCSS('login.facebook', {resource: '/widgets'});
 
         return this;
     };
 
-    return LoginfbElement.extend('LoginfbElement', {
+    return LoginFacebookElement.extend('LoginFacebookElement', {
 
         /**
          * Render Embedded content
-         * @member LoginfbElement
+         * @member LoginFacebookElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
             var $element = this;

@@ -8,21 +8,21 @@
 
 define([
     'plugins/widgets/widget.content.event.manager'
-], function defineLoginfbEventManager(WidgetContentEventManager) {
+], function defineLoginFacebookEventManager(WidgetContentEventManager) {
 
     /**
-     * Define Loginfb event manager
-     * @class LoginfbEventManager
+     * Define LoginFacebook event manager
+     * @class LoginFacebookEventManager
      * @constructor
      * @extends BaseEvent
      * @extends WidgetContentEventManager
      */
-    var LoginfbEventManager = function LoginfbEventManager() {
+    var LoginFacebookEventManager = function LoginFacebookEventManager() {
 
         this.updateEventList({});
     };
 
-    return LoginfbEventManager.extend('LoginfbEventManager', {
+    return LoginFacebookEventManager.extend('LoginFacebookEventManager', {
 
     }, WidgetContentEventManager.prototype);
 });

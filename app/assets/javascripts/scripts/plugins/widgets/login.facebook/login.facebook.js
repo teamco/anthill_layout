@@ -8,32 +8,32 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/loginfb/mvc/loginfb.controller',
-    'plugins/widgets/loginfb/mvc/loginfb.model',
-    'plugins/widgets/loginfb/mvc/loginfb.view',
-    'plugins/widgets/loginfb/mvc/loginfb.event.manager',
-    'plugins/widgets/loginfb/mvc/loginfb.permission'
-], function defineLoginfb(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/login.facebook/mvc/login.facebook.controller',
+    'plugins/widgets/login.facebook/mvc/login.facebook.model',
+    'plugins/widgets/login.facebook/mvc/login.facebook.view',
+    'plugins/widgets/login.facebook/mvc/login.facebook.event.manager',
+    'plugins/widgets/login.facebook/mvc/login.facebook.permission'
+], function defineLoginFacebook(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Loginfb
+     * Define LoginFacebook
      * @param containment
      * @param [opts]
      * @constructor
-     * @class Loginfb
+     * @class LoginFacebook
      * @extends AntHill
      */
-    var Loginfb = function Loginfb(containment, opts) {
+    var LoginFacebook = function LoginFacebook(containment, opts) {
 
         /**
          * Define containment
-         * @member Loginfb
+         * @member LoginFacebook
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Loginfb
+         * @member LoginFacebook
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,35 +73,35 @@ define([
 
         /**
          * Init observer
-         * @member Loginfb
+         * @member LoginFacebook
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
-         * @member Loginfb
-         * @type {EventManager}
+         * @member LoginFacebook
+         * @type {LoginFacebookEventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
-         * @member Loginfb
+         * @member LoginFacebook
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Init model
-         * @member Loginfb
-         * @type {*}
+         * @member LoginFacebook
+         * @type {LoginFacebookModel}
          */
         this.model = undefined;
 
         /**
          * Define MVC
-         * @member Loginfb
+         * @member LoginFacebook
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -131,7 +131,7 @@ define([
         );
     };
 
-    return Loginfb.extend('Loginfb', {
+    return LoginFacebook.extend('LoginFacebook', {
 
     }, AntHill.prototype);
 });

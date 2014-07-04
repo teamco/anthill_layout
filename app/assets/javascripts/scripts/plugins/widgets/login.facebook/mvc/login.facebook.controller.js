@@ -8,23 +8,23 @@
 define([
     'plugins/plugin',
     'plugins/widgets/widget.content.controller'
-], function defineLoginfbController(PluginBase, WidgetContentController) {
+], function defineLoginFacebookController(PluginBase, WidgetContentController) {
 
     /**
      * Define loginfb controller
-     * @class LoginfbController
+     * @class LoginFacebookController
      * @extends PluginController
      * @extends WidgetContentController
      * @constructor
      */
-    var LoginfbController = function LoginfbController() {
+    var LoginFacebookController = function LoginFacebookController() {
     };
 
-    return LoginfbController.extend('LoginfbController', {
+    return LoginFacebookController.extend('LoginFacebookController', {
 
         /**
          * Set embedded content
-         * @member LoginfbController
+         * @member LoginFacebookController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -32,11 +32,11 @@ define([
         },
 
         /**
-         * Add Loginfb rule
-         * @member LoginfbController
+         * Add LoginFacebook rule
+         * @member LoginFacebookController
          * @param e
          */
-        addLoginfbRule: function addLoginfbRule(e) {
+        addLoginFacebookRule: function addLoginFacebookRule(e) {
 
             /**
              * Define $button
