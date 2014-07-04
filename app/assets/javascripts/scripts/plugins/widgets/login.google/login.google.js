@@ -8,32 +8,32 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/loginggl/mvc/loginggl.controller',
-    'plugins/widgets/loginggl/mvc/loginggl.model',
-    'plugins/widgets/loginggl/mvc/loginggl.view',
-    'plugins/widgets/loginggl/mvc/loginggl.event.manager',
-    'plugins/widgets/loginggl/mvc/loginggl.permission'
-], function defineLoginggl(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/login.google/mvc/login.google.controller',
+    'plugins/widgets/login.google/mvc/login.google.model',
+    'plugins/widgets/login.google/mvc/login.google.view',
+    'plugins/widgets/login.google/mvc/login.google.event.manager',
+    'plugins/widgets/login.google/mvc/login.google.permission'
+], function defineLoginGoogle(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Loginggl
+     * Define LoginGoogle
      * @param containment
      * @param [opts]
      * @constructor
-     * @class Loginggl
+     * @class LoginGoogle
      * @extends AntHill
      */
-    var Loginggl = function Loginggl(containment, opts) {
+    var LoginGoogle = function LoginGoogle(containment, opts) {
 
         /**
          * Define containment
-         * @member Loginggl
+         * @member LoginGoogle
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Loginggl
+         * @member LoginGoogle
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,35 +73,35 @@ define([
 
         /**
          * Init observer
-         * @member Loginggl
+         * @member LoginGoogle
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
-         * @member Loginggl
-         * @type {EventManager}
+         * @member LoginGoogle
+         * @type {LoginGoogleEventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
-         * @member Loginggl
+         * @member LoginGoogle
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Init model
-         * @member Loginggl
-         * @type {*}
+         * @member LoginGoogle
+         * @type {LoginGoogleModel}
          */
         this.model = undefined;
 
         /**
          * Define MVC
-         * @member Loginggl
+         * @member LoginGoogle
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -131,7 +131,7 @@ define([
         );
     };
 
-    return Loginggl.extend('Loginggl', {
+    return LoginGoogle.extend('LoginGoogle', {
 
     }, AntHill.prototype);
 });

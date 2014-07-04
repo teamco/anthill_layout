@@ -8,35 +8,35 @@
 define([
     'plugins/plugin',
     'plugins/widgets/widget.content.controller'
-], function defineLogingglController(PluginBase, WidgetContentController) {
+], function defineLoginGoogleController(PluginBase, WidgetContentController) {
 
     /**
-     * Define loginggl controller
-     * @class LogingglController
+     * Define login.google controller
+     * @class LoginGoogleController
      * @extends PluginController
      * @extends WidgetContentController
      * @constructor
      */
-    var LogingglController = function LogingglController() {
+    var LoginGoogleController = function LoginGoogleController() {
     };
 
-    return LogingglController.extend('LogingglController', {
+    return LoginGoogleController.extend('LoginGoogleController', {
 
         /**
          * Set embedded content
-         * @member LogingglController
+         * @member LoginGoogleController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
-            this.view.elements.$loginggl.renderEmbeddedContent();
+            this.view.elements.$logingoogle.renderEmbeddedContent();
         },
 
         /**
-         * Add Loginggl rule
-         * @member LogingglController
+         * Add LoginGoogle rule
+         * @member LoginGoogleController
          * @param e
          */
-        addLogingglRule: function addLogingglRule(e) {
+        addLoginGoogleRule: function addLoginGoogleRule(e) {
 
             /**
              * Define $button

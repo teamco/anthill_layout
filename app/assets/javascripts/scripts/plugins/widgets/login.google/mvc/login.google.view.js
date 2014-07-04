@@ -10,35 +10,35 @@ define([
     'modules/View',
     'element/header.element',
     'element/footer.element',
-    'plugins/widgets/loginggl/element/loginggl.element',
-    'plugins/widgets/loginggl/element/loginggl.preferences.element',
-    'plugins/widgets/loginggl/element/loginggl.rules.element'
-], function defineLogingglView(BaseView, Header, Footer, LogingglElement, LogingglPreferencesElement, LogingglRulesElement) {
+    'plugins/widgets/login.google/element/login.google.element',
+    'plugins/widgets/login.google/element/login.google.preferences.element',
+    'plugins/widgets/login.google/element/login.google.rules.element'
+], function defineLoginGoogleView(BaseView, Header, Footer, LoginGoogleElement, LoginGooglePreferencesElement, LoginGoogleRulesElement) {
 
     /**
      * Define view
-     * @class LogingglView
+     * @class LoginGoogleView
      * @extends BaseView
      * @constructor
      */
-    var LogingglView = function LogingglView() {
+    var LoginGoogleView = function LoginGoogleView() {
     };
 
-    return LogingglView.extend('LogingglView', {
+    return LoginGoogleView.extend('LoginGoogleView', {
 
         /**
-         * Render loginggl element
-         * @member LogingglView
+         * Render login.google element
+         * @member LoginGoogleView
          */
-        renderLoginggl: function renderLoginggl() {
+        renderLoginGoogle: function renderLoginGoogle() {
 
             this.header(Header, this.elements.$container);
 
             /**
-             * Define $loginggl
-             * @type {LogingglElement}
+             * Define $login.google
+             * @type {LoginGoogleElement}
              */
-            this.elements.$loginggl = new LogingglElement(this, {
+            this.elements.$logingoogle = new LoginGoogleElement(this, {
                 $container: this.elements.$container.$,
                 id: this.createUUID()
             });
@@ -52,16 +52,16 @@ define([
 
         /**
          * Render Prefs
-         * @member LogingglView
-         * @returns {LogingglPreferencesElement}
+         * @member LoginGoogleView
+         * @returns {LoginGooglePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
 
             /**
-             * Define Loginggl Preferences Element
-             * @type {LogingglPreferencesElement}
+             * Define LoginGoogle Preferences Element
+             * @type {LoginGooglePreferencesElement}
              */
-            this.elements.$preferences = new LogingglPreferencesElement(this, {
+            this.elements.$preferences = new LoginGooglePreferencesElement(this, {
                 data: this.controller.getPreferences()
             });
 
@@ -70,18 +70,18 @@ define([
 
         /**
          * Render Rules
-         * @member LogingglView
+         * @member LoginGoogleView
          * @param widgetRules
          * @param contentRules
-         * @returns {LogingglRulesElement}
+         * @returns {LoginGoogleRulesElement}
          */
         renderRules: function renderRules(widgetRules, contentRules) {
 
             /**
-             * Define Loginggl Rules Element
-             * @type {LogingglRulesElement}
+             * Define LoginGoogle Rules Element
+             * @type {LoginGoogleRulesElement}
              */
-            this.elements.$rules = new LogingglRulesElement(this, {
+            this.elements.$rules = new LoginGoogleRulesElement(this, {
                 data: this.controller.getRules(),
                 rules: {
                     widget: widgetRules,
@@ -93,14 +93,14 @@ define([
         },
 
         /**
-         * Render loginggl
-         * @member LogingglView
+         * Render login.google
+         * @member LoginGoogleView
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderLoginggl.bind(this)
+                this.renderLoginGoogle.bind(this)
             );
         }
 

@@ -28,7 +28,7 @@ define([
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
-            this.view.elements.$loginfb.renderEmbeddedContent();
+            this.view.elements.$loginfacebook.renderEmbeddedContent();
         },
 
         /**

@@ -8,21 +8,21 @@
 
 define([
     'plugins/widgets/widget.content.event.manager'
-], function defineLogingglEventManager(WidgetContentEventManager) {
+], function defineLoginGoogleEventManager(WidgetContentEventManager) {
 
     /**
-     * Define Loginggl event manager
-     * @class LogingglEventManager
+     * Define LoginGoogle event manager
+     * @class LoginGoogleEventManager
      * @constructor
      * @extends BaseEvent
      * @extends WidgetContentEventManager
      */
-    var LogingglEventManager = function LogingglEventManager() {
+    var LoginGoogleEventManager = function LoginGoogleEventManager() {
 
         this.updateEventList({});
     };
 
-    return LogingglEventManager.extend('LogingglEventManager', {
+    return LoginGoogleEventManager.extend('LoginGoogleEventManager', {
 
     }, WidgetContentEventManager.prototype);
 });

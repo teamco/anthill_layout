@@ -25,7 +25,7 @@ define([
             destroy: true
         });
 
-        this.addCSS('icefloe', {
+        this.addCSS('ice.floe', {
             resource: '/widgets'
         });
 

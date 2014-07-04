@@ -8,19 +8,19 @@
 define([
     'modules/Element',
     'plugins/rules/widget.base.rules'
-], function defineLogingglRulesElement(BaseElement, BaseWidgetRules) {
+], function defineLoginGoogleRulesElement(BaseElement, BaseWidgetRules) {
 
     /**
-     * Define Loginggl Rules Element
+     * Define LoginGoogle Rules Element
      * @param view
      * @param opts
-     * @returns {LogingglRulesElement}
+     * @returns {LoginGoogleRulesElement}
      * @constructor
-     * @class LogingglRulesElement
+     * @class LoginGoogleRulesElement
      * @extends BaseElement
      * @extends BaseWidgetRules
      */
-    var LogingglRulesElement = function LogingglRulesElement(view, opts) {
+    var LoginGoogleRulesElement = function LoginGoogleRulesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -36,7 +36,7 @@ define([
         return this;
     };
 
-    return LogingglRulesElement.extend('LogingglRulesElement', {
+    return LoginGoogleRulesElement.extend('LoginGoogleRulesElement', {
 
     }, BaseElement.prototype, BaseWidgetRules.prototype);
 

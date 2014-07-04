@@ -7,34 +7,34 @@
 
 define([
     'modules/Element'
-], function defineLogingglElement(BaseElement) {
+], function defineLoginGoogleElement(BaseElement) {
 
     /**
-     * Define Loginggl Element
+     * Define LoginGoogle Element
      * @param view
      * @param opts
-     * @returns {LogingglElement}
+     * @returns {LoginGoogleElement}
      * @constructor
-     * @class LogingglElement
+     * @class LoginGoogleElement
      * @extends BaseElement
      */
-    var LogingglElement = function LogingglElement(view, opts) {
+    var LoginGoogleElement = function LoginGoogleElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
 
-        this.addCSS('loginggl', {resource: '/widgets'});
+        this.addCSS('login.google', {resource: '/widgets'});
 
         return this;
     };
 
-    return LogingglElement.extend('LogingglElement', {
+    return LoginGoogleElement.extend('LoginGoogleElement', {
 
         /**
          * Render Embedded content
-         * @member LogingglElement
+         * @member LoginGoogleElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
              var $element = this;

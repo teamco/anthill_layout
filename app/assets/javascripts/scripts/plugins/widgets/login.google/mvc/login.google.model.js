@@ -8,20 +8,20 @@
 define([
     'modules/Model',
     'plugins/widgets/widget.content.model'
-], function defineLogingglModel(BaseModel, WidgetContentModel) {
+], function defineLoginGoogleModel(BaseModel, WidgetContentModel) {
 
     /**
-     * Define Loginggl model
+     * Define LoginGoogle model
      * @extends BaseModel
      * @extends WidgetContentModel
-     * @class LogingglModel
+     * @class LoginGoogleModel
      * @constructor
      */
-    var LogingglModel = function LogingglModel() {
+    var LoginGoogleModel = function LoginGoogleModel() {
 
         /**
          * Define preferences
-         * @member LogingglModel
+         * @member LoginGoogleModel
          * @type {{}}
          */
         this.preferences = {
@@ -29,13 +29,13 @@ define([
 
         /**
          * Define rules
-         * @member LogingglModel
+         * @member LoginGoogleModel
          * @type {{}}
          */
         this.rules = {};
     };
 
-    return LogingglModel.extend('LogingglModel', {
+    return LoginGoogleModel.extend('LoginGoogleModel', {
 
 
     }, BaseModel.prototype, WidgetContentModel.prototype);

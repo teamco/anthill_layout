@@ -8,19 +8,19 @@
 define([
     'modules/Element',
     'plugins/preferences/widget.preferences'
-], function defineLogingglPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineLoginGooglePreferencesElement(BaseElement, WidgetPreferences) {
 
     /**
-     * Define Loginggl Preferences Element
+     * Define LoginGoogle Preferences Element
      * @param view
      * @param opts
-     * @returns {LogingglPreferencesElement}
+     * @returns {LoginGooglePreferencesElement}
      * @constructor
-     * @class LogingglPreferencesElement
+     * @class LoginGooglePreferencesElement
      * @extends BaseElement
      * @extends WidgetPreferences
      */
-    var LogingglPreferencesElement = function LogingglPreferencesElement(view, opts) {
+    var LoginGooglePreferencesElement = function LoginGooglePreferencesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -32,7 +32,7 @@ define([
         return this;
     };
 
-    return LogingglPreferencesElement.extend('LogingglPreferencesElement', {
+    return LoginGooglePreferencesElement.extend('LoginGooglePreferencesElement', {
 
 
     }, BaseElement.prototype, WidgetPreferences.prototype);

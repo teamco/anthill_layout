@@ -8,19 +8,19 @@
 
 define([
     'modules/Permission'
-], function defineLogingglPermission(BasePermission) {
+], function defineLoginGooglePermission(BasePermission) {
 
     /**
      * Define Permissions
-     * @class LogingglPermission
+     * @class LoginGooglePermission
      * @constructor
      * @extends BasePermission
      */
-    var LogingglPermission = function LogingglPermission() {
+    var LoginGooglePermission = function LoginGooglePermission() {
 
     };
 
-    return LogingglPermission.extend('LogingglPermission', {
+    return LoginGooglePermission.extend('LoginGooglePermission', {
 
     }, BasePermission.prototype);
 });
