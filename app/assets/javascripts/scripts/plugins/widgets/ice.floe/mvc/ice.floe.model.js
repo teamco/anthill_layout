@@ -8,20 +8,20 @@
 define([
     'modules/Model',
     'plugins/widgets/widget.content.model'
-], function defineIcefloeModel(BaseModel, WidgetContentModel) {
+], function defineIceFloeModel(BaseModel, WidgetContentModel) {
 
     /**
-     * Define Icefloe model
+     * Define IceFloe model
      * @extends BaseModel
      * @extends WidgetContentModel
-     * @class IcefloeModel
+     * @class IceFloeModel
      * @constructor
      */
-    var IcefloeModel = function IcefloeModel() {
+    var IceFloeModel = function IceFloeModel() {
 
         /**
          * Define preferences
-         * @member IcefloeModel
+         * @member IceFloeModel
          * @type {{}}
          */
         this.preferences = {
@@ -29,13 +29,13 @@ define([
 
         /**
          * Define rules
-         * @member IcefloeModel
+         * @member IceFloeModel
          * @type {{}}
          */
         this.rules = {};
     };
 
-    return IcefloeModel.extend('IcefloeModel', {
+    return IceFloeModel.extend('IceFloeModel', {
 
 
     }, BaseModel.prototype, WidgetContentModel.prototype);

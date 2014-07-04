@@ -103,7 +103,7 @@ define([
                     height: 30
                 },
                 type: 'map',
-                resource: 'petradar'
+                resource: 'pet.radar'
             },
             {
                 name: 'Avatar',
@@ -136,7 +136,7 @@ define([
                     height: 5
                 },
                 type: 'General',
-                resource: 'posttool'
+                resource: 'post.tool'
             },
             {
                 name: 'Friends Online',
@@ -147,7 +147,7 @@ define([
                     height: 12
                 },
                 type: 'General',
-                resource: 'onlinefriends'
+                resource: 'online.friends'
             },
             {
                 name: 'JW Player',
@@ -334,10 +334,10 @@ define([
                     height: 20
                 },
                 type: 'General',
-                resource: 'icefloe'
+                resource: 'ice.floe'
             },
              {
-                name: 'Login',
+                name: 'Login Facebook',
                 description: 'Login with your Facebook account',
                 thumbnail: '',
                 dimensions: {
@@ -345,10 +345,10 @@ define([
                     height: 5
                 },
                 type: 'Login',
-                resource: 'loginfb'
+                resource: 'login.facebook'
             },
             {
-                name: 'Login',
+                name: 'Login Google',
                 description: 'Login with your Google account',
                 thumbnail: '',
                 dimensions: {
@@ -356,7 +356,7 @@ define([
                     height: 5
                 },
                 type: 'Login',
-                resource: 'loginggl'
+                resource: 'login.google'
             },
             {
                 name: 'Post Template',
@@ -367,7 +367,7 @@ define([
                     height: 10
                 },
                 type: 'Template',
-                resource: 'postTemplate'
+                resource: 'post.template'
             }
 
         ];

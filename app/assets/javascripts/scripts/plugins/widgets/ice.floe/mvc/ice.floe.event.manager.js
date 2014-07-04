@@ -8,21 +8,21 @@
 
 define([
     'plugins/widgets/widget.content.event.manager'
-], function defineIcefloeEventManager(WidgetContentEventManager) {
+], function defineIceFloeEventManager(WidgetContentEventManager) {
 
     /**
-     * Define Icefloe event manager
-     * @class IcefloeEventManager
+     * Define IceFloe event manager
+     * @class IceFloeEventManager
      * @constructor
      * @extends BaseEvent
      * @extends WidgetContentEventManager
      */
-    var IcefloeEventManager = function IcefloeEventManager() {
+    var IceFloeEventManager = function IceFloeEventManager() {
 
         this.updateEventList({});
     };
 
-    return IcefloeEventManager.extend('IcefloeEventManager', {
+    return IceFloeEventManager.extend('IceFloeEventManager', {
 
     }, WidgetContentEventManager.prototype);
 });

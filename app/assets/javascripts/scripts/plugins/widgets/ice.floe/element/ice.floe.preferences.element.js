@@ -8,19 +8,19 @@
 define([
     'modules/Element',
     'plugins/preferences/widget.preferences'
-], function defineIcefloePreferencesElement(BaseElement, WidgetPreferences) {
+], function defineIceFloePreferencesElement(BaseElement, WidgetPreferences) {
 
     /**
-     * Define Icefloe Preferences Element
+     * Define IceFloe Preferences Element
      * @param view
      * @param opts
-     * @returns {IcefloePreferencesElement}
+     * @returns {IceFloePreferencesElement}
      * @constructor
-     * @class IcefloePreferencesElement
+     * @class IceFloePreferencesElement
      * @extends BaseElement
      * @extends WidgetPreferences
      */
-    var IcefloePreferencesElement = function IcefloePreferencesElement(view, opts) {
+    var IceFloePreferencesElement = function IceFloePreferencesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -32,7 +32,7 @@ define([
         return this;
     };
 
-    return IcefloePreferencesElement.extend('IcefloePreferencesElement', {
+    return IceFloePreferencesElement.extend('IceFloePreferencesElement', {
 
 
     }, BaseElement.prototype, WidgetPreferences.prototype);

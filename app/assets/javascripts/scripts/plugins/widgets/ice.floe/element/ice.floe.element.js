@@ -7,18 +7,18 @@
 
 define([
     'modules/Element'
-], function defineIcefloeElement(BaseElement) {
+], function defineIceFloeElement(BaseElement) {
 
     /**
-     * Define Icefloe Element
+     * Define IceFloe Element
      * @param view
      * @param opts
-     * @returns {IcefloeElement}
+     * @returns {IceFloeElement}
      * @constructor
-     * @class IcefloeElement
+     * @class IceFloeElement
      * @extends BaseElement
      */
-    var IcefloeElement = function IcefloeElement(view, opts) {
+    var IceFloeElement = function IceFloeElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -32,11 +32,11 @@ define([
         return this;
     };
 
-    return IcefloeElement.extend('IcefloeElement', {
+    return IceFloeElement.extend('IceFloeElement', {
 
         /**
          * Render Embedded content
-         * @member IcefloeElement
+         * @member IceFloeElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
             var $element = this;

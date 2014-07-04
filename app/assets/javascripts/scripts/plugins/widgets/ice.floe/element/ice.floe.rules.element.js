@@ -8,19 +8,19 @@
 define([
     'modules/Element',
     'plugins/rules/widget.base.rules'
-], function defineIcefloeRulesElement(BaseElement, BaseWidgetRules) {
+], function defineIceFloeRulesElement(BaseElement, BaseWidgetRules) {
 
     /**
-     * Define Icefloe Rules Element
+     * Define IceFloe Rules Element
      * @param view
      * @param opts
-     * @returns {IcefloeRulesElement}
+     * @returns {IceFloeRulesElement}
      * @constructor
-     * @class IcefloeRulesElement
+     * @class IceFloeRulesElement
      * @extends BaseElement
      * @extends BaseWidgetRules
      */
-    var IcefloeRulesElement = function IcefloeRulesElement(view, opts) {
+    var IceFloeRulesElement = function IceFloeRulesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -36,7 +36,7 @@ define([
         return this;
     };
 
-    return IcefloeRulesElement.extend('IcefloeRulesElement', {
+    return IceFloeRulesElement.extend('IceFloeRulesElement', {
 
     }, BaseElement.prototype, BaseWidgetRules.prototype);
 

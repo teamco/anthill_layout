@@ -8,32 +8,32 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/icefloe/mvc/icefloe.controller',
-    'plugins/widgets/icefloe/mvc/icefloe.model',
-    'plugins/widgets/icefloe/mvc/icefloe.view',
-    'plugins/widgets/icefloe/mvc/icefloe.event.manager',
-    'plugins/widgets/icefloe/mvc/icefloe.permission'
-], function defineIcefloe(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/ice.floe/mvc/ice.floe.controller',
+    'plugins/widgets/ice.floe/mvc/ice.floe.model',
+    'plugins/widgets/ice.floe/mvc/ice.floe.view',
+    'plugins/widgets/ice.floe/mvc/ice.floe.event.manager',
+    'plugins/widgets/ice.floe/mvc/ice.floe.permission'
+], function defineIceFloe(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Icefloe
+     * Define IceFloe
      * @param containment
      * @param [opts]
      * @constructor
-     * @class Icefloe
+     * @class IceFloe
      * @extends AntHill
      */
-    var Icefloe = function Icefloe(containment, opts) {
+    var IceFloe = function IceFloe(containment, opts) {
 
         /**
          * Define containment
-         * @member Icefloe
+         * @member IceFloe
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Icefloe
+         * @member IceFloe
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,35 +73,35 @@ define([
 
         /**
          * Init observer
-         * @member Icefloe
+         * @member IceFloe
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
-         * @member Icefloe
+         * @member IceFloe
          * @type {EventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
-         * @member Icefloe
+         * @member IceFloe
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Init model
-         * @member Icefloe
+         * @member IceFloe
          * @type {*}
          */
         this.model = undefined;
 
         /**
          * Define MVC
-         * @member Icefloe
+         * @member IceFloe
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -131,7 +131,7 @@ define([
         );
     };
 
-    return Icefloe.extend('Icefloe', {
+    return IceFloe.extend('IceFloe', {
 
     }, AntHill.prototype);
 });

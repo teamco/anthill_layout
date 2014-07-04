@@ -8,23 +8,23 @@
 define([
     'plugins/plugin',
     'plugins/widgets/widget.content.controller'
-], function defineIcefloeController(PluginBase, WidgetContentController) {
+], function defineIceFloeController(PluginBase, WidgetContentController) {
 
     /**
-     * Define icefloe controller
-     * @class IcefloeController
+     * Define ice floe controller
+     * @class IceFloeController
      * @extends PluginController
      * @extends WidgetContentController
      * @constructor
      */
-    var IcefloeController = function IcefloeController() {
+    var IceFloeController = function IceFloeController() {
     };
 
-    return IcefloeController.extend('IcefloeController', {
+    return IceFloeController.extend('IceFloeController', {
 
         /**
          * Set embedded content
-         * @member IcefloeController
+         * @member IceFloeController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -32,11 +32,11 @@ define([
         },
 
         /**
-         * Add Icefloe rule
-         * @member IcefloeController
+         * Add IceFloe rule
+         * @member IceFloeController
          * @param e
          */
-        addIcefloeRule: function addIcefloeRule(e) {
+        addIceFloeRule: function addIceFloeRule(e) {
 
             /**
              * Define $button
