@@ -7,50 +7,56 @@
 
 define([
     'modules/Element'
-], function defineOnlinefriendsElement(BaseElement) {
+], function defineOnlineFriendsElement(BaseElement) {
 
     /**
-     * Define Onlinefriends Element
+     * Define OnlineFriends Element
      * @param view
      * @param opts
-     * @returns {OnlinefriendsElement}
+     * @returns {OnlineFriendsElement}
      * @constructor
-     * @class OnlinefriendsElement
+     * @class OnlineFriendsElement
      * @extends BaseElement
      */
-    var OnlinefriendsElement = function OnlinefriendsElement(view, opts) {
+    var OnlineFriendsElement = function OnlineFriendsElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
 
-        this.addCSS('onlinefriends', {
+        this.addCSS('online.friends', {
             resource: '/widgets'
         });
 
         return this;
     };
 
-    return OnlinefriendsElement.extend('OnlinefriendsElement', {
+    return OnlineFriendsElement.extend('OnlineFriendsElement', {
 
         /**
          * Render Embedded content
-         * @member OnlinefriendsElement
+         * @member OnlineFriendsElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
+
+            /**
+             * Define $element
+             * @type {OnlineFriendsElement}
+             */
             var $element = this;
+
             var $structure = [
-            '<div class="mainContainer"><h3>Friends Online</h3><i class="online_amount"></i>',
-        '<div class="scrollableContent"><ul class="friendsRowsContainer"></ul>',
-        '</div><div class="viewAllMenu">View All</div></div>'].join('');
-            
+                '<div class="mainContainer"><h3>Friends Online</h3><i class="online_amount"></i>',
+                '<div class="scrollableContent"><ul class="friendsRowsContainer"></ul>',
+                '</div><div class="viewAllMenu">View All</div></div>'
+            ].join('');
+
             $element.view.controller.clearParentThumbnail();
             $element.$.append($structure);
-            
+
             require([
-                'plugins/widgets/onlinefriends/mvc/onlinefriends.behavior',
-                
+                'plugins/widgets/online.friends/mvc/online.friends.behavior'
             ], function showFriendsOnline(OnlineFriendsBehavior) {
                 var showFriendsOnline = new OnlineFriendsBehavior();
             });

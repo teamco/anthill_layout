@@ -8,32 +8,32 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/onlinefriends/mvc/onlinefriends.controller',
-    'plugins/widgets/onlinefriends/mvc/onlinefriends.model',
-    'plugins/widgets/onlinefriends/mvc/onlinefriends.view',
-    'plugins/widgets/onlinefriends/mvc/onlinefriends.event.manager',
-    'plugins/widgets/onlinefriends/mvc/onlinefriends.permission'
-], function defineOnlinefriends(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/online.friends/mvc/online.friends.controller',
+    'plugins/widgets/online.friends/mvc/online.friends.model',
+    'plugins/widgets/online.friends/mvc/online.friends.view',
+    'plugins/widgets/online.friends/mvc/online.friends.event.manager',
+    'plugins/widgets/online.friends/mvc/online.friends.permission'
+], function defineOnlineFriends(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Onlinefriends
+     * Define OnlineFriends
      * @param containment
      * @param [opts]
      * @constructor
-     * @class Onlinefriends
+     * @class OnlineFriends
      * @extends AntHill
      */
-    var Onlinefriends = function Onlinefriends(containment, opts) {
+    var OnlineFriends = function OnlineFriends(containment, opts) {
 
         /**
          * Define containment
-         * @member Onlinefriends
+         * @member OnlineFriends
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Onlinefriends
+         * @member OnlineFriends
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,35 +73,35 @@ define([
 
         /**
          * Init observer
-         * @member Onlinefriends
+         * @member OnlineFriends
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
-         * @member Onlinefriends
-         * @type {EventManager}
+         * @member OnlineFriends
+         * @type {OnlineFriendsEventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
-         * @member Onlinefriends
+         * @member OnlineFriends
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Init model
-         * @member Onlinefriends
-         * @type {*}
+         * @member OnlineFriends
+         * @type {OnlineFriendsModel}
          */
         this.model = undefined;
 
         /**
          * Define MVC
-         * @member Onlinefriends
+         * @member OnlineFriends
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -131,7 +131,7 @@ define([
         );
     };
 
-    return Onlinefriends.extend('Onlinefriends', {
+    return OnlineFriends.extend('OnlineFriends', {
 
     }, AntHill.prototype);
 });

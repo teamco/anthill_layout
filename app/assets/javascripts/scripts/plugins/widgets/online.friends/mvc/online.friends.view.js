@@ -10,35 +10,35 @@ define([
     'modules/View',
     'element/header.element',
     'element/footer.element',
-    'plugins/widgets/onlinefriends/element/onlinefriends.element',
-    'plugins/widgets/onlinefriends/element/onlinefriends.preferences.element',
-    'plugins/widgets/onlinefriends/element/onlinefriends.rules.element'
-], function defineOnlinefriendsView(BaseView, Header, Footer, OnlinefriendsElement, OnlinefriendsPreferencesElement, OnlinefriendsRulesElement) {
+    'plugins/widgets/online.friends/element/online.friends.element',
+    'plugins/widgets/online.friends/element/online.friends.preferences.element',
+    'plugins/widgets/online.friends/element/online.friends.rules.element'
+], function defineOnlineFriendsView(BaseView, Header, Footer, OnlineFriendsElement, OnlineFriendsPreferencesElement, OnlineFriendsRulesElement) {
 
     /**
      * Define view
-     * @class OnlinefriendsView
+     * @class OnlineFriendsView
      * @extends BaseView
      * @constructor
      */
-    var OnlinefriendsView = function OnlinefriendsView() {
+    var OnlineFriendsView = function OnlineFriendsView() {
     };
 
-    return OnlinefriendsView.extend('OnlinefriendsView', {
+    return OnlineFriendsView.extend('OnlineFriendsView', {
 
         /**
-         * Render onlinefriends element
-         * @member OnlinefriendsView
+         * Render online friends element
+         * @member OnlineFriendsView
          */
-        renderOnlinefriends: function renderOnlinefriends() {
+        renderOnlineFriends: function renderOnlineFriends() {
 
             this.header(Header, this.elements.$container);
 
             /**
              * Define $onlinefriends
-             * @type {OnlinefriendsElement}
+             * @type {OnlineFriendsElement}
              */
-            this.elements.$onlinefriends = new OnlinefriendsElement(this, {
+            this.elements.$onlinefriends = new OnlineFriendsElement(this, {
                 $container: this.elements.$container.$,
                 id: this.createUUID()
             });
@@ -52,16 +52,16 @@ define([
 
         /**
          * Render Prefs
-         * @member OnlinefriendsView
-         * @returns {OnlinefriendsPreferencesElement}
+         * @member OnlineFriendsView
+         * @returns {OnlineFriendsPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
 
             /**
-             * Define Onlinefriends Preferences Element
-             * @type {OnlinefriendsPreferencesElement}
+             * Define OnlineFriends Preferences Element
+             * @type {OnlineFriendsPreferencesElement}
              */
-            this.elements.$preferences = new OnlinefriendsPreferencesElement(this, {
+            this.elements.$preferences = new OnlineFriendsPreferencesElement(this, {
                 data: this.controller.getPreferences()
             });
 
@@ -70,18 +70,18 @@ define([
 
         /**
          * Render Rules
-         * @member OnlinefriendsView
+         * @member OnlineFriendsView
          * @param widgetRules
          * @param contentRules
-         * @returns {OnlinefriendsRulesElement}
+         * @returns {OnlineFriendsRulesElement}
          */
         renderRules: function renderRules(widgetRules, contentRules) {
 
             /**
-             * Define Onlinefriends Rules Element
-             * @type {OnlinefriendsRulesElement}
+             * Define OnlineFriends Rules Element
+             * @type {OnlineFriendsRulesElement}
              */
-            this.elements.$rules = new OnlinefriendsRulesElement(this, {
+            this.elements.$rules = new OnlineFriendsRulesElement(this, {
                 data: this.controller.getRules(),
                 rules: {
                     widget: widgetRules,
@@ -93,14 +93,14 @@ define([
         },
 
         /**
-         * Render onlinefriends
-         * @member OnlinefriendsView
+         * Render online friends
+         * @member OnlineFriendsView
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderOnlinefriends.bind(this)
+                this.renderOnlineFriends.bind(this)
             );
         }
 

@@ -8,19 +8,19 @@
 define([
     'modules/Element',
     'plugins/rules/widget.base.rules'
-], function defineOnlinefriendsRulesElement(BaseElement, BaseWidgetRules) {
+], function defineOnlineFriendsRulesElement(BaseElement, BaseWidgetRules) {
 
     /**
-     * Define Onlinefriends Rules Element
+     * Define OnlineFriends Rules Element
      * @param view
      * @param opts
-     * @returns {OnlinefriendsRulesElement}
+     * @returns {OnlineFriendsRulesElement}
      * @constructor
-     * @class OnlinefriendsRulesElement
+     * @class OnlineFriendsRulesElement
      * @extends BaseElement
      * @extends BaseWidgetRules
      */
-    var OnlinefriendsRulesElement = function OnlinefriendsRulesElement(view, opts) {
+    var OnlineFriendsRulesElement = function OnlineFriendsRulesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -36,7 +36,7 @@ define([
         return this;
     };
 
-    return OnlinefriendsRulesElement.extend('OnlinefriendsRulesElement', {
+    return OnlineFriendsRulesElement.extend('OnlineFriendsRulesElement', {
 
     }, BaseElement.prototype, BaseWidgetRules.prototype);
 

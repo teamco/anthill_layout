@@ -9,23 +9,23 @@ define([
     'plugins/plugin',
     'plugins/widgets/widget.content.controller',
     'lib/jquery/jquery.nicescroll'
-], function defineOnlinefriendsController(PluginBase, WidgetContentController) {
+], function defineOnlineFriendsController(PluginBase, WidgetContentController) {
 
     /**
-     * Define onlinefriends controller
-     * @class OnlinefriendsController
+     * Define online friends controller
+     * @class OnlineFriendsController
      * @extends PluginController
      * @extends WidgetContentController
      * @constructor
      */
-    var OnlinefriendsController = function OnlinefriendsController() {
+    var OnlineFriendsController = function OnlineFriendsController() {
     };
 
-    return OnlinefriendsController.extend('OnlinefriendsController', {
+    return OnlineFriendsController.extend('OnlineFriendsController', {
 
         /**
          * Set embedded content
-         * @member OnlinefriendsController
+         * @member OnlineFriendsController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -33,11 +33,11 @@ define([
         },
 
         /**
-         * Add Onlinefriends rule
-         * @member OnlinefriendsController
+         * Add OnlineFriends rule
+         * @member OnlineFriendsController
          * @param e
          */
-        addOnlinefriendsRule: function addOnlinefriendsRule(e) {
+        addOnlineFriendsRule: function addOnlineFriendsRule(e) {
 
             /**
              * Define $button

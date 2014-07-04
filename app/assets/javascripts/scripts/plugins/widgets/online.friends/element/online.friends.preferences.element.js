@@ -8,19 +8,19 @@
 define([
     'modules/Element',
     'plugins/preferences/widget.preferences'
-], function defineOnlinefriendsPreferencesElement(BaseElement, WidgetPreferences) {
+], function defineOnlineFriendsPreferencesElement(BaseElement, WidgetPreferences) {
 
     /**
-     * Define Onlinefriends Preferences Element
+     * Define OnlineFriends Preferences Element
      * @param view
      * @param opts
-     * @returns {OnlinefriendsPreferencesElement}
+     * @returns {OnlineFriendsPreferencesElement}
      * @constructor
-     * @class OnlinefriendsPreferencesElement
+     * @class OnlineFriendsPreferencesElement
      * @extends BaseElement
      * @extends WidgetPreferences
      */
-    var OnlinefriendsPreferencesElement = function OnlinefriendsPreferencesElement(view, opts) {
+    var OnlineFriendsPreferencesElement = function OnlineFriendsPreferencesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -32,7 +32,7 @@ define([
         return this;
     };
 
-    return OnlinefriendsPreferencesElement.extend('OnlinefriendsPreferencesElement', {
+    return OnlineFriendsPreferencesElement.extend('OnlineFriendsPreferencesElement', {
 
 
     }, BaseElement.prototype, WidgetPreferences.prototype);

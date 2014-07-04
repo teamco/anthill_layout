@@ -8,21 +8,21 @@
 
 define([
     'plugins/widgets/widget.content.event.manager'
-], function defineOnlinefriendsEventManager(WidgetContentEventManager) {
+], function defineOnlineFriendsEventManager(WidgetContentEventManager) {
 
     /**
-     * Define Onlinefriends event manager
-     * @class OnlinefriendsEventManager
+     * Define OnlineFriends event manager
+     * @class OnlineFriendsEventManager
      * @constructor
      * @extends BaseEvent
      * @extends WidgetContentEventManager
      */
-    var OnlinefriendsEventManager = function OnlinefriendsEventManager() {
+    var OnlineFriendsEventManager = function OnlineFriendsEventManager() {
 
         this.updateEventList({});
     };
 
-    return OnlinefriendsEventManager.extend('OnlinefriendsEventManager', {
+    return OnlineFriendsEventManager.extend('OnlineFriendsEventManager', {
 
     }, WidgetContentEventManager.prototype);
 });

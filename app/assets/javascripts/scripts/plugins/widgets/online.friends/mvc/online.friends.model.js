@@ -8,19 +8,19 @@
 define([
     'modules/Model',
     'plugins/widgets/widget.content.model'
-], function defineOnlinefriendsModel(BaseModel, WidgetContentModel) {
+], function defineOnlineFriendsModel(BaseModel, WidgetContentModel) {
 
     /**
-     * Define Onlinefriends model
+     * Define OnlineFriends model
      * @extends BaseModel
-     * @class OnlinefriendsModel
+     * @class OnlineFriendsModel
      * @constructor
      */
-    var OnlinefriendsModel = function OnlinefriendsModel() {
+    var OnlineFriendsModel = function OnlineFriendsModel() {
 
         /**
          * Define preferences
-         * @member OnlinefriendsModel
+         * @member OnlineFriendsModel
          * @type {{}}
          */
         this.preferences = {
@@ -28,13 +28,13 @@ define([
 
         /**
          * Define rules
-         * @member OnlinefriendsModel
+         * @member OnlineFriendsModel
          * @type {{}}
          */
         this.rules = {};
     };
 
-    return OnlinefriendsModel.extend('OnlinefriendsModel', {
+    return OnlineFriendsModel.extend('OnlineFriendsModel', {
 
 
     }, BaseModel.prototype, WidgetContentModel.prototype);

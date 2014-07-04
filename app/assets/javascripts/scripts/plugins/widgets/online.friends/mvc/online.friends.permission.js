@@ -8,19 +8,19 @@
 
 define([
     'modules/Permission'
-], function defineOnlinefriendsPermission(BasePermission) {
+], function defineOnlineFriendsPermission(BasePermission) {
 
     /**
      * Define Permissions
-     * @class OnlinefriendsPermission
+     * @class OnlineFriendsPermission
      * @constructor
      * @extends BasePermission
      */
-    var OnlinefriendsPermission = function OnlinefriendsPermission() {
+    var OnlineFriendsPermission = function OnlineFriendsPermission() {
 
     };
 
-    return OnlinefriendsPermission.extend('OnlinefriendsPermission', {
+    return OnlineFriendsPermission.extend('OnlineFriendsPermission', {
 
     }, BasePermission.prototype);
 });
