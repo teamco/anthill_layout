@@ -53,7 +53,7 @@
     String.prototype.toDash = function toDash() {
         return this.replace(/([A-Z])/g, function ($1) {
             return "-" + $1.toLowerCase();
-        });
+        }).replace(/^-/, '');
     };
 
     /**

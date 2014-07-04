@@ -278,7 +278,10 @@ define([
                  * Define $item
                  * @type {PageDataContentElement}
                  */
-                var $item = this.view.elements.items[widget.model.getUUID() + '-pagedata'];
+                var $item = this.view.elements.items[[
+                    widget.model.getUUID(),
+                    'page-data'
+                ].join('-')];
 
                 $item.$.trigger('click.prefs');
             }
@@ -293,7 +296,7 @@ define([
              * Define widget rules
              * @type {PageData}
              */
-            var pageData = this.getModuleByName('pagedata');
+            var pageData = this.getModuleByName('page-data');
 
             /**
              * Define active content
@@ -309,7 +312,7 @@ define([
 
             panel.observer.publish(
                 panel.eventmanager.eventList.openPanel,
-                ['pagedata', event, _triggerPrefs.bind(pageData)]
+                ['page-data', event, _triggerPrefs.bind(pageData)]
             );
 
             this.scope.view.elements.$modal.selfDestroy();

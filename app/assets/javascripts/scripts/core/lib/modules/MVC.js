@@ -434,7 +434,7 @@ define([
 
             if (this.render) {
                 config.html = base.define(config.html, {}, true);
-                config.html.selector = '.' + scope.constructor.name.toLowerCase();
+                config.html.selector = scope.constructor.name.toDash();
             }
         },
 

@@ -1,8 +1,8 @@
-div.pagedata ul {
+div.page-data ul {
     list-style: none;
 }
 
-div.pagedata-header {
+div.page-data-header {
     height: 30px;
     line-height: 30px;
     padding: 0 10px;
@@ -14,7 +14,7 @@ div.pagedata-header {
     font-size: 14px;
 }
 
-ul.pagedata .content {
+ul.page-data .content {
     height: 70px;
     width: 70px;
     display: block;
@@ -23,12 +23,12 @@ ul.pagedata .content {
     background: transparent no-repeat center;
 }
 
-ul.pagedata > .content:hover {
+ul.page-data > .content:hover {
     box-shadow: 1px 15px 10px #999;
     border-radius: 10px;
 }
 
-div.pagedata-footer {
+div.page-data-footer {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -38,7 +38,7 @@ div.pagedata-footer {
     box-shadow: 1px 0 5px #333;
 }
 
-div.pagedata-footer > div {
+div.page-data-footer > div {
     height: 100%;
     border-top: 1px solid #fff;
     line-height: 30px;
@@ -49,7 +49,7 @@ div.pagedata-footer > div {
     text-shadow: 1px 1px #fff;
 }
 
-div.pagedata-content .scroll-cover {
+div.page-data-content .scroll-cover {
     top: 70px;
     bottom: 30px;
 }

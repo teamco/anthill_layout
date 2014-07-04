@@ -247,7 +247,6 @@ define([
             transferStatistics: function transferStatistics(uuid, $element) {
                 this.logger.debug('Transfer Stats', uuid, $element);
             }
-
         },
 
         PreferencesController.prototype,

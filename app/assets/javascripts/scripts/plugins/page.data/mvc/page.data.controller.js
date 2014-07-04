@@ -174,7 +174,7 @@ define([
              */
             var uuid = [
                 widget.model.getUUID(),
-                scope.constructor.name.toLowerCase()
+                scope.constructor.name.toDash()
             ].join('-');
 
             this.getView().elements.items[uuid].setAttributes(

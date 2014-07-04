@@ -1,8 +1,8 @@
-div.widgetrules ul {
+div.widget-rules ul {
     list-style: none;
 }
 
-div.widgetrules-header {
+div.widget-rules-header {
     height: 30px;
     line-height: 30px;
     padding: 0 10px;
@@ -14,7 +14,7 @@ div.widgetrules-header {
     font-size: 14px;
 }
 
-ul.widgetrules .content {
+ul.widget-rules .content {
     height: 70px;
     width: 70px;
     display: block;
@@ -23,12 +23,12 @@ ul.widgetrules .content {
     background: transparent no-repeat center;
 }
 
-ul.widgetrules > .content:hover {
+ul.widget-rules > .content:hover {
     box-shadow: 1px 15px 10px #999;
     border-radius: 10px;
 }
 
-div.widgetrules-footer {
+div.widget-rules-footer {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -38,7 +38,7 @@ div.widgetrules-footer {
     box-shadow: 1px 0 5px #333;
 }
 
-div.widgetrules-footer > div {
+div.widget-rules-footer > div {
     height: 100%;
     border-top: 1px solid #fff;
     line-height: 30px;
@@ -49,7 +49,7 @@ div.widgetrules-footer > div {
     text-shadow: 1px 1px #fff;
 }
 
-.panel div.widgetrules-content .scroll-cover {
+.panel div.widget-rules-content .scroll-cover {
     top: 70px;
     bottom: 30px;
 }

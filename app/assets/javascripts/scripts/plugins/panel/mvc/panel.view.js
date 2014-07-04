@@ -133,7 +133,7 @@ define([
              * @type {string}
              */
             var style = [
-                    module.constructor.name.toLowerCase(),
+                    module.constructor.name.toDash(),
                     'content'
                 ].join('-'),
                 sname = '$' + style;

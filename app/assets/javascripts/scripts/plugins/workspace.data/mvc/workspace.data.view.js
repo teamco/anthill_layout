@@ -102,7 +102,10 @@ define(
                          */
                         var $item = new WorkspaceDataContentElement(this, {
                             style: 'content',
-                            id: data[index].model.getConfig('uuid') + '-workspacedata-view',
+                            id: [
+                                data[index].model.getConfig('uuid'),
+                                'workspace-data-view'
+                            ].join('-'),
                             $container: this.elements.$workspacedata.$,
                             data: data[index],
                             counter: counter
@@ -163,7 +166,7 @@ define(
                 this.openPreferences({
                     config: config,
                     $html: this.controller.definePreferences(config.uuid).$,
-                    style: 'workspacedata-prefs preferences',
+                    style: 'workspace-data-prefs preferences',
                     title: 'Page preferences',
                     buttons: {
                         destroyPageWidgets: {

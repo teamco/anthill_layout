@@ -57,7 +57,9 @@ define([
             this.$.attr({
                 title: title
             }).addClass(
-                data.model.getConfig('preferences/resource').replace(/\./g, '')
+                this.view.controller.getResourceClassName(
+                    data.model.getConfig('preferences/resource')
+                )
             );
 
             /**

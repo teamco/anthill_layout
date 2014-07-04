@@ -88,7 +88,7 @@ define([
         /**
          * Init event manager
          * @member WidgetRules
-         * @type {EventManager}
+         * @type {WidgetRulesEventManager}
          */
         this.eventmanager = undefined;
 
@@ -102,28 +102,28 @@ define([
         /**
          * Define controller
          * @member WidgetRules
-         * @type {*}
+         * @type {WidgetRulesController}
          */
         this.controller = undefined;
 
         /**
          * Define model
          * @member WidgetRules
-         * @type {*}
+         * @type {WidgetRulesModel}
          */
         this.model = undefined;
 
         /**
          * Define view
          * @member WidgetRules
-         * @type {*}
+         * @type {WidgetRulesView}
          */
         this.view = undefined;
 
         /**
          * Define permissions
          * @member WidgetRules
-         * @type {*}
+         * @type {WidgetRulesPermission}
          */
         this.permission = undefined;
 

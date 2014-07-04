@@ -137,6 +137,15 @@ define([
                 content.eventmanager.eventList.defineReferrer,
                 this.scope
             );
+        },
+
+        /**
+         * Get resource class name
+         * @member PluginController
+         * @param {string} resource
+         */
+        getResourceClassName: function getResourceClassName(resource) {
+            return resource.replace(/\./g, '-');
         }
 
     }, AntHill.prototype, BaseController.prototype);

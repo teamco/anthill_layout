@@ -48,6 +48,7 @@ define([
 
             /**
              * Define panel instance
+             * @type {Panel}
              */
             var panel = this.view.scope.containment,
                 publish = panel.observer.publish.bind(panel.observer),

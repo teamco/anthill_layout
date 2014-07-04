@@ -125,7 +125,7 @@ define([
                     height: 16
                 },
                 type: 'General',
-                resource: 'passport'
+                resource: 'pet.passport'
             },
             {
                 name: 'Post Tool',

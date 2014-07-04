@@ -11,9 +11,9 @@ define([
     'modules/View',
     'element/header.element',
     'element/footer.element',
-    'element/widget/widget.element.content',
+    'element/widget/widget.content.element',
     'element/widget/widget.element'
-], function defineWidgetView(AntHill, BaseView, Header, Footer, Content, Widget) {
+], function defineWidgetView(AntHill, BaseView, Header, Footer, WidgetContentElement, WidgetElement) {
 
     /**
      * Define Widget View
@@ -37,7 +37,7 @@ define([
              * Define $widget
              * @type {WidgetElement}
              */
-            this.elements.$widget = new Widget(this, {
+            this.elements.$widget = new WidgetElement(this, {
                 id: this.createUUID(),
                 style: [
                     this.createStyle(),
@@ -63,7 +63,7 @@ define([
              * Define $content
              * @type {WidgetContentElement}
              */
-            this.elements.$content = new Content(this, {
+            this.elements.$content = new WidgetContentElement(this, {
                 style: 'content',
                 resource: this.controller.getResource(),
                 thumbnail: this.controller.getThumbnail(),

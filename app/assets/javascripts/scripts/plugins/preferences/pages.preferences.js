@@ -273,11 +273,15 @@ define([
                          * @type {*|jQuery}
                          */
                         var $li = $('<li />').
-                            addClass(widget.model.getConfig('preferences/resource').replace(/\./g, '')).
-                            attr({
+                            addClass(
+                            this.view.controller.getResourceClassName(
+                                widget.model.getConfig('preferences/resource')
+                            )
+                        ).attr({
                                 rel: uuid,
                                 title: title
                             }).css(css).
+
                             on('mouseenter.widgetPrefs mouseleave.widgetPrefs click.widgetPrefs',
                             this.showWidgetPrefs.bind(this));
 
@@ -334,7 +338,7 @@ define([
                  * Define $item
                  * @type {PageDataContentElement}
                  */
-                var $item = this.view.elements.items[uuid + '-pagedata'];
+                var $item = this.view.elements.items[uuid + '-page-data'];
 
                 $item.$.trigger('click.prefs');
             }
@@ -374,7 +378,7 @@ define([
              * Define page data
              * @type {*|PageData}
              */
-            var pageData = this.view.controller.getModuleByName('pagedata');
+            var pageData = this.view.controller.getModuleByName('page-data');
 
             if (e.type === 'click') {
 
@@ -382,7 +386,7 @@ define([
 
                 panel.observer.publish(
                     panel.eventmanager.eventList.openPanel,
-                    ['pagedata', e, _triggerPrefs.bind(pageData)]
+                    ['page-data', e, _triggerPrefs.bind(pageData)]
                 );
             }
 
@@ -390,7 +394,7 @@ define([
 
                 panel.observer.publish(
                     panel.eventmanager.eventList.openPanel,
-                    ['pagedata', e, _locateElement.bind(pageData)]
+                    ['page-data', e, _locateElement.bind(pageData)]
                 );
             }
         }

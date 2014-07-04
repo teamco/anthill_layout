@@ -82,7 +82,7 @@ define([
                      * Define module resource
                      * @type {string}
                      */
-                    var moduleResource = item.module.constructor.name.toLowerCase();
+                    var moduleResource = item.module.constructor.name.toDash();
 
                     /**
                      * Render item

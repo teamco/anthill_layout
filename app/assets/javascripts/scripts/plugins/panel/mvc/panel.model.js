@@ -80,7 +80,7 @@ define([
             var modules = this.modules;
 
             for (var i = 0, l = modules.length; i < l; i++) {
-                if (resource.toLowerCase() === modules[i].module.constructor.name.toLowerCase()) {
+                if (resource === modules[i].module.constructor.name.toDash()) {
                     return i;
                 }
             }

@@ -62,7 +62,9 @@ define([
             } else {
 
                 this.$.addClass(
-                    this.data.resource.replace(/\./g, '')
+                    this.view.controller.getResourceClassName(
+                        this.data.resource
+                    )
                 );
             }
         },

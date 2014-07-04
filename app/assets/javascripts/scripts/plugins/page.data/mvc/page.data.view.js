@@ -14,7 +14,7 @@ define([
     'element/footer.element',
     'plugins/page.data/element/page.data.content.element',
     'plugins/page.data/element/page.data.element'
-], function definePageDataView(AntHill, BaseView, BasePreferences, Header, Footer, PageDataContent, PageData) {
+], function definePageDataView(AntHill, BaseView, BasePreferences, Header, Footer, PageDataContentElement, PageDataElement) {
 
     /**
      * Define view
@@ -35,7 +35,7 @@ define([
          */
         renderPageData: function renderPageData() {
 
-            if (this.isCached('$pagedata', PageData)) {
+            if (this.isCached('$pagedata', PageDataElement)) {
                 return false;
             }
 
@@ -47,7 +47,7 @@ define([
              * Define PageData element
              * @type {PageDataElement}
              */
-            this.elements.$pagedata = new PageData(this, {
+            this.elements.$pagedata = new PageDataElement(this, {
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
@@ -78,13 +78,13 @@ define([
 
                     /**
                      * Render item
-                     * @type {*}
+                     * @type {PageDataContentElement}
                      */
-                    var $item = new PageDataContent(this, {
+                    var $item = new PageDataContentElement(this, {
                         style: 'content',
                         id: [
                             data[index].model.getConfig('uuid'),
-                            this.scope.constructor.name.toLowerCase()
+                            this.scope.constructor.name.toDash()
                         ].join('-'),
                         $container: this.elements.$pagedata.$,
                         data: data[index]

@@ -81,7 +81,7 @@ define([
         /**
          * Init event manager
          * @member IceFloe
-         * @type {EventManager}
+         * @type {IceFloeEventManager}
          */
         this.eventmanager = undefined;
 
@@ -95,7 +95,7 @@ define([
         /**
          * Init model
          * @member IceFloe
-         * @type {*}
+         * @type {IceFloeModel}
          */
         this.model = undefined;
 
@@ -111,7 +111,7 @@ define([
                     uuid: [
                         this.containment.model.getUUID(),
                         this.constructor.name.toDash()
-                    ].join('')
+                    ].join('-')
                 },
                 DEFAULTS
             ],

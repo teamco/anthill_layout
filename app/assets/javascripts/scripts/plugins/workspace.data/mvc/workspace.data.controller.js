@@ -124,7 +124,7 @@ define(
                  * Get element uuid
                  * @type {string}
                  */
-                var uuid = page.model.getUUID() + '-workspacedata-view';
+                var uuid = page.model.getUUID() + '-workspace-data-view';
 
                 this.getView().elements.items[uuid].updateCounter(
                     page
@@ -199,7 +199,7 @@ define(
                 var workspace = this.controller.getWorkspace(),
                     pages = workspace.model.getItems(),
                     index, page, $item, uuid,
-                    cname = '-workspacedata-view';
+                    cname = '-workspace-data-view';
 
                 for (index in pages) {
 

@@ -81,8 +81,10 @@ define([
          * @returns {*|string}
          */
         renderUUID: function renderUUID(id) {
-            return id || (this.base.lib.generator.UUID() +
-                this.constructor.name.toDash());
+            return id || [
+                this.base.lib.generator.UUID(),
+                this.constructor.name.toDash()
+            ].join('-');
         },
 
         /**
@@ -100,7 +102,7 @@ define([
          * @returns {string}
          */
         getContainerClassName: function getContainerClassName() {
-            return this.getConfigHTML().selector.replace(/\./, '');
+            return this.getConfigHTML().selector;
         },
 
         /**
@@ -164,7 +166,7 @@ define([
              */
             this.elements.$header = new HeaderElement(this, {
                 style: [
-                    this.scope.constructor.name.toLowerCase(),
+                    this.scope.constructor.name.toDash(),
                     'header'
                 ].join('-'),
                 $container: $container.$,
@@ -202,7 +204,7 @@ define([
              */
             this.elements.$footer = new FooterElement(this, {
                 style: [
-                    this.scope.constructor.name.toLowerCase(),
+                    this.scope.constructor.name.toDash(),
                     'footer'
                 ].join('-'),
                 $container: $container.$
