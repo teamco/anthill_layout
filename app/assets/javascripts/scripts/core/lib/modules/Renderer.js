@@ -155,7 +155,7 @@ define([
                 id: uuid,
                 title: opts.title
             }).text(opts.title).
-                addClass(opts.name.toLowerCase()).append(
+                addClass(opts.name.toDash()).append(
                 $('<input />').attr({
                     name: opts.group,
                     type: 'radio'

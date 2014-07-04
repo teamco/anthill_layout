@@ -106,14 +106,14 @@ define([
                 checked: false,
                 visible: true
             },
-            stickToLeft: {
+            stickToCenterLeft: {
                 type: 'event',
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
                 visible: true
             },
-            stickToTop: {
+            stickToCenterTop: {
                 type: 'event',
                 disabled: false,
                 group: 'stick',
@@ -127,14 +127,42 @@ define([
                 events: ['click'],
                 visible: true
             },
-            stickToBottom: {
+            stickToCenterBottom: {
                 type: 'event',
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
                 visible: true
             },
-            stickToRight: {
+            stickToCenterRight: {
+                type: 'event',
+                disabled: false,
+                group: 'stick',
+                events: ['click'],
+                visible: true
+            },
+            stickToTopLeft: {
+                type: 'event',
+                disabled: false,
+                group: 'stick',
+                events: ['click'],
+                visible: true
+            },
+            stickToBottomLeft: {
+                type: 'event',
+                disabled: false,
+                group: 'stick',
+                events: ['click'],
+                visible: true
+            },
+            stickToTopRight: {
+                type: 'event',
+                disabled: false,
+                group: 'stick',
+                events: ['click'],
+                visible: true
+            },
+            stickToBottomRight: {
                 type: 'event',
                 disabled: false,
                 group: 'stick',
