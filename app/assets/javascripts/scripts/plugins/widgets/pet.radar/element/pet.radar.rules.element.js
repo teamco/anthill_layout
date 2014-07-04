@@ -8,19 +8,19 @@
 define([
     'modules/Element',
     'plugins/rules/widget.base.rules'
-], function definePetradarRulesElement(BaseElement, BaseWidgetRules) {
+], function definePetRadarRulesElement(BaseElement, BaseWidgetRules) {
 
     /**
-     * Define Petradar Rules Element
+     * Define PetRadar Rules Element
      * @param view
      * @param opts
-     * @returns {PetradarRulesElement}
+     * @returns {PetRadarRulesElement}
      * @constructor
-     * @class PetradarRulesElement
+     * @class PetRadarRulesElement
      * @extends BaseElement
      * @extends BaseWidgetRules
      */
-    var PetradarRulesElement = function PetradarRulesElement(view, opts) {
+    var PetRadarRulesElement = function PetRadarRulesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -36,7 +36,7 @@ define([
         return this;
     };
 
-    return PetradarRulesElement.extend('PetradarRulesElement', {
+    return PetRadarRulesElement.extend('PetRadarRulesElement', {
 
     }, BaseElement.prototype, BaseWidgetRules.prototype);
 

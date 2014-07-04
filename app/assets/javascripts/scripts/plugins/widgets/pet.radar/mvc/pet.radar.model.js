@@ -8,19 +8,19 @@
 define([
     'modules/Model',
     'plugins/widgets/widget.content.model'
-], function definePetradarModel(BaseModel, WidgetContentModel) {
+], function definePetRadarModel(BaseModel, WidgetContentModel) {
 
     /**
-     * Define Petradar model
+     * Define PetRadar model
      * @extends BaseModel
-     * @class PetradarModel
+     * @class PetRadarModel
      * @constructor
      */
-    var PetradarModel = function PetradarModel() {
+    var PetRadarModel = function PetRadarModel() {
 
         /**
          * Define preferences
-         * @member PetradarModel
+         * @member PetRadarModel
          * @type {{}}
          */
         this.preferences = {
@@ -28,13 +28,13 @@ define([
 
         /**
          * Define rules
-         * @member PetradarModel
+         * @member PetRadarModel
          * @type {{}}
          */
         this.rules = {};
     };
 
-    return PetradarModel.extend('PetradarModel', {
+    return PetRadarModel.extend('PetRadarModel', {
 
 
     }, BaseModel.prototype, WidgetContentModel.prototype);

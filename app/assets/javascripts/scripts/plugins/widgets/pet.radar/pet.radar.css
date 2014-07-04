@@ -1,9 +1,9 @@
-.widget .content .petradar {
+.widget .content .pet-radar {
     height: 100%;
     width: 100%;
     overflow: auto;
 }
-.widget .content .petradar .public_content {
+.widget .content .pet-radar .public_content {
     min-width: 1024px;
     width: 90%;
     height: -moz-calc(100% - 65px);
@@ -18,7 +18,7 @@
     -moz-box-shadow: 1px 0px 5px 0px rgba(50, 50, 50, 0.4);
     box-shadow: 1px 0px 5px 0px rgba(50, 50, 50, 0.4);
 }
-.widget .content .petradar .close_friends_container {
+.widget .content .pet-radar .close_friends_container {
     width: 500px;
     height: 500px;
     position: relative;
@@ -32,7 +32,7 @@
     background: lightgray;
     overflow: visible;
 }
-.widget .content .petradar .main_title {
+.widget .content .pet-radar .main_title {
     font-size: 40px;
     color: #7abcff;
     font-family: hand;

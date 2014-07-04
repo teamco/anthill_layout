@@ -8,23 +8,23 @@
 define([
     'plugins/plugin',
     'plugins/widgets/widget.content.controller'
-], function definePetradarController(PluginBase, WidgetContentController) {
+], function definePetRadarController(PluginBase, WidgetContentController) {
 
     /**
-     * Define petradar controller
-     * @class PetradarController
+     * Define pet.radar controller
+     * @class PetRadarController
      * @extends PluginController
      * @extends WidgetContentController
      * @constructor
      */
-    var PetradarController = function PetradarController() {
+    var PetRadarController = function PetRadarController() {
     };
 
-    return PetradarController.extend('PetradarController', {
+    return PetRadarController.extend('PetRadarController', {
 
         /**
          * Set embedded content
-         * @member PetradarController
+         * @member PetRadarController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -32,11 +32,11 @@ define([
         },
 
         /**
-         * Add Petradar rule
-         * @member PetradarController
+         * Add PetRadar rule
+         * @member PetRadarController
          * @param e
          */
-        addPetradarRule: function addPetradarRule(e) {
+        addPetRadarRule: function addPetRadarRule(e) {
 
             /**
              * Define $button

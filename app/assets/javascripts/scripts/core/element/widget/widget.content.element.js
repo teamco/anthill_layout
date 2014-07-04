@@ -50,7 +50,7 @@ define([
             } else {
 
                 this.$.addClass(
-                    opts.resource.replace(/\./g, '')
+                    opts.resource.replace(/\./g, '-')
                 );
             }
         },

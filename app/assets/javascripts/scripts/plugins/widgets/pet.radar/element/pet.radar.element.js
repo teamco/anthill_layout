@@ -7,36 +7,36 @@
 
 define([
     'modules/Element'
-], function definePetradarElement(BaseElement) {
+], function definePetRadarElement(BaseElement) {
 
     /**
-     * Define Petradar Element
+     * Define PetRadar Element
      * @param view
      * @param opts
-     * @returns {PetradarElement}
+     * @returns {PetRadarElement}
      * @constructor
-     * @class PetradarElement
+     * @class PetRadarElement
      * @extends BaseElement
      */
-    var PetradarElement = function PetradarElement(view, opts) {
+    var PetRadarElement = function PetRadarElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
 
-        this.addCSS('petradar', {
+        this.addCSS('pet.radar', {
             resource: '/widgets'
         });
 
         return this;
     };
 
-    return PetradarElement.extend('PetradarElement', {
+    return PetRadarElement.extend('PetRadarElement', {
 
         /**
          * Render Embedded content
-         * @member PetradarElement
+         * @member PetRadarElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
             var $element = this;
@@ -46,7 +46,7 @@ define([
                 'async!https://maps.googleapis.com/maps/api/js'
             ], function getPetsAroundMe() {
 
-                require(['plugins/widgets/petradar/mvc/petradar.behavior'], function behavior(PetRadarBehavior) {
+                require(['plugins/widgets/pet.radar/mvc/pet.radar.behavior'], function behavior(PetRadarBehavior) {
 
                     var behavior = new PetRadarBehavior();
 

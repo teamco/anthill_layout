@@ -10,35 +10,35 @@ define([
     'modules/View',
     'element/header.element',
     'element/footer.element',
-    'plugins/widgets/petradar/element/petradar.element',
-    'plugins/widgets/petradar/element/petradar.preferences.element',
-    'plugins/widgets/petradar/element/petradar.rules.element'
-], function definePetradarView(BaseView, Header, Footer, PetradarElement, PetradarPreferencesElement, PetradarRulesElement) {
+    'plugins/widgets/pet.radar/element/pet.radar.element',
+    'plugins/widgets/pet.radar/element/pet.radar.preferences.element',
+    'plugins/widgets/pet.radar/element/pet.radar.rules.element'
+], function definePetRadarView(BaseView, Header, Footer, PetRadarElement, PetRadarPreferencesElement, PetRadarRulesElement) {
 
     /**
      * Define view
-     * @class PetradarView
+     * @class PetRadarView
      * @extends BaseView
      * @constructor
      */
-    var PetradarView = function PetradarView() {
+    var PetRadarView = function PetRadarView() {
     };
 
-    return PetradarView.extend('PetradarView', {
+    return PetRadarView.extend('PetRadarView', {
 
         /**
-         * Render petradar element
-         * @member PetradarView
+         * Render pet.radar element
+         * @member PetRadarView
          */
-        renderPetradar: function renderPetradar() {
+        renderPetRadar: function renderPetRadar() {
 
             this.header(Header, this.elements.$container);
 
             /**
-             * Define $petradar
-             * @type {PetradarElement}
+             * Define $pet.radar
+             * @type {PetRadarElement}
              */
-            this.elements.$petradar = new PetradarElement(this, {
+            this.elements.$petradar = new PetRadarElement(this, {
                 $container: this.elements.$container.$,
                 id: this.createUUID()
             });
@@ -52,16 +52,16 @@ define([
 
         /**
          * Render Prefs
-         * @member PetradarView
-         * @returns {PetradarPreferencesElement}
+         * @member PetRadarView
+         * @returns {PetRadarPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
 
             /**
-             * Define Petradar Preferences Element
-             * @type {PetradarPreferencesElement}
+             * Define PetRadar Preferences Element
+             * @type {PetRadarPreferencesElement}
              */
-            this.elements.$preferences = new PetradarPreferencesElement(this, {
+            this.elements.$preferences = new PetRadarPreferencesElement(this, {
                 data: this.controller.getPreferences()
             });
 
@@ -70,18 +70,18 @@ define([
 
         /**
          * Render Rules
-         * @member PetradarView
+         * @member PetRadarView
          * @param widgetRules
          * @param contentRules
-         * @returns {PetradarRulesElement}
+         * @returns {PetRadarRulesElement}
          */
         renderRules: function renderRules(widgetRules, contentRules) {
 
             /**
-             * Define Petradar Rules Element
-             * @type {PetradarRulesElement}
+             * Define PetRadar Rules Element
+             * @type {PetRadarRulesElement}
              */
-            this.elements.$rules = new PetradarRulesElement(this, {
+            this.elements.$rules = new PetRadarRulesElement(this, {
                 data: this.controller.getRules(),
                 rules: {
                     widget: widgetRules,
@@ -93,14 +93,14 @@ define([
         },
 
         /**
-         * Render petradar
-         * @member PetradarView
+         * Render pet.radar
+         * @member PetRadarView
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderPetradar.bind(this)
+                this.renderPetRadar.bind(this)
             );
         }
 

@@ -8,19 +8,19 @@
 define([
     'modules/Element',
     'plugins/preferences/widget.preferences'
-], function definePetradarPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePetRadarPreferencesElement(BaseElement, WidgetPreferences) {
 
     /**
-     * Define Petradar Preferences Element
+     * Define PetRadar Preferences Element
      * @param view
      * @param opts
-     * @returns {PetradarPreferencesElement}
+     * @returns {PetRadarPreferencesElement}
      * @constructor
-     * @class PetradarPreferencesElement
+     * @class PetRadarPreferencesElement
      * @extends BaseElement
      * @extends WidgetPreferences
      */
-    var PetradarPreferencesElement = function PetradarPreferencesElement(view, opts) {
+    var PetRadarPreferencesElement = function PetRadarPreferencesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -32,7 +32,7 @@ define([
         return this;
     };
 
-    return PetradarPreferencesElement.extend('PetradarPreferencesElement', {
+    return PetRadarPreferencesElement.extend('PetRadarPreferencesElement', {
 
 
     }, BaseElement.prototype, WidgetPreferences.prototype);

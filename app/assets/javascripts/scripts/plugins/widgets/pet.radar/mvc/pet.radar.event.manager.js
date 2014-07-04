@@ -8,21 +8,21 @@
 
 define([
     'plugins/widgets/widget.content.event.manager'
-], function definePetradarEventManager(WidgetContentEventManager) {
+], function definePetRadarEventManager(WidgetContentEventManager) {
 
     /**
-     * Define Petradar event manager
-     * @class PetradarEventManager
+     * Define PetRadar event manager
+     * @class PetRadarEventManager
      * @constructor
      * @extends BaseEvent
      * @extends WidgetContentEventManager
      */
-    var PetradarEventManager = function PetradarEventManager() {
+    var PetRadarEventManager = function PetRadarEventManager() {
 
         this.updateEventList({});
     };
 
-    return PetradarEventManager.extend('PetradarEventManager', {
+    return PetRadarEventManager.extend('PetRadarEventManager', {
 
     }, WidgetContentEventManager.prototype);
 });

@@ -8,19 +8,19 @@
 
 define([
     'modules/Permission'
-], function definePetradarPermission(BasePermission) {
+], function definePetRadarPermission(BasePermission) {
 
     /**
      * Define Permissions
-     * @class PetradarPermission
+     * @class PetRadarPermission
      * @constructor
      * @extends BasePermission
      */
-    var PetradarPermission = function PetradarPermission() {
+    var PetRadarPermission = function PetRadarPermission() {
 
     };
 
-    return PetradarPermission.extend('PetradarPermission', {
+    return PetRadarPermission.extend('PetRadarPermission', {
 
     }, BasePermission.prototype);
 });

@@ -70,7 +70,7 @@ define([
          */
         initialize: function initialize() {
 
-            this.controller.getPosition(
+            this.getPosition(
 
                 function _setLocation(position) {
 

@@ -8,32 +8,32 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/petradar/mvc/petradar.controller',
-    'plugins/widgets/petradar/mvc/petradar.model',
-    'plugins/widgets/petradar/mvc/petradar.view',
-    'plugins/widgets/petradar/mvc/petradar.event.manager',
-    'plugins/widgets/petradar/mvc/petradar.permission'
-], function definePetradar(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/pet.radar/mvc/pet.radar.controller',
+    'plugins/widgets/pet.radar/mvc/pet.radar.model',
+    'plugins/widgets/pet.radar/mvc/pet.radar.view',
+    'plugins/widgets/pet.radar/mvc/pet.radar.event.manager',
+    'plugins/widgets/pet.radar/mvc/pet.radar.permission'
+], function definePetRadar(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Petradar
+     * Define PetRadar
      * @param containment
      * @param [opts]
      * @constructor
-     * @class Petradar
+     * @class PetRadar
      * @extends AntHill
      */
-    var Petradar = function Petradar(containment, opts) {
+    var PetRadar = function PetRadar(containment, opts) {
 
         /**
          * Define containment
-         * @member Petradar
+         * @member PetRadar
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Petradar
+         * @member PetRadar
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,35 +73,35 @@ define([
 
         /**
          * Init observer
-         * @member Petradar
+         * @member PetRadar
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
-         * @member Petradar
-         * @type {EventManager}
+         * @member PetRadar
+         * @type {PetRadarEventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
-         * @member Petradar
+         * @member PetRadar
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Init model
-         * @member Petradar
-         * @type {*}
+         * @member PetRadar
+         * @type {PetRadarModel}
          */
         this.model = undefined;
 
         /**
          * Define MVC
-         * @member Petradar
+         * @member PetRadar
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -131,7 +131,7 @@ define([
         );
     };
 
-    return Petradar.extend('Petradar', {
+    return PetRadar.extend('PetRadar', {
 
     }, AntHill.prototype);
 });
