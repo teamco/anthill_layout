@@ -10,35 +10,35 @@ define([
     'modules/View',
     'element/header.element',
     'element/footer.element',
-    'plugins/widgets/passport/element/passport.element',
-    'plugins/widgets/passport/element/passport.preferences.element',
-    'plugins/widgets/passport/element/passport.rules.element'
-], function definePassportView(BaseView, Header, Footer, PassportElement, PassportPreferencesElement, PassportRulesElement) {
+    'plugins/widgets/pet.passport/element/pet.passport.element',
+    'plugins/widgets/pet.passport/element/pet.passport.preferences.element',
+    'plugins/widgets/pet.passport/element/pet.passport.rules.element'
+], function definePetPassportView(BaseView, Header, Footer, PetPassportElement, PetPassportPreferencesElement, PetPassportRulesElement) {
 
     /**
      * Define view
-     * @class PassportView
+     * @class PetPassportView
      * @extends BaseView
      * @constructor
      */
-    var PassportView = function PassportView() {
+    var PetPassportView = function PetPassportView() {
     };
 
-    return PassportView.extend('PassportView', {
+    return PetPassportView.extend('PetPassportView', {
 
         /**
-         * Render passport element
-         * @member PassportView
+         * Render pet.passport element
+         * @member PetPassportView
          */
-        renderPassport: function renderPassport() {
+        renderPetPassport: function renderPetPassport() {
 
             this.header(Header, this.elements.$container);
 
             /**
-             * Define $passport
-             * @type {PassportElement}
+             * Define $pet.passport
+             * @type {PetPassportElement}
              */
-            this.elements.$passport = new PassportElement(this, {
+            this.elements.$petpassport = new PetPassportElement(this, {
                 $container: this.elements.$container.$,
                 id: this.createUUID()
             });
@@ -52,16 +52,16 @@ define([
 
         /**
          * Render Prefs
-         * @member PassportView
-         * @returns {PassportPreferencesElement}
+         * @member PetPassportView
+         * @returns {PetPassportPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
 
             /**
-             * Define Passport Preferences Element
-             * @type {PassportPreferencesElement}
+             * Define PetPassport Preferences Element
+             * @type {PetPassportPreferencesElement}
              */
-            this.elements.$preferences = new PassportPreferencesElement(this, {
+            this.elements.$preferences = new PetPassportPreferencesElement(this, {
                 data: this.controller.getPreferences()
             });
 
@@ -70,18 +70,18 @@ define([
 
         /**
          * Render Rules
-         * @member PassportView
+         * @member PetPassportView
          * @param widgetRules
          * @param contentRules
-         * @returns {PassportRulesElement}
+         * @returns {PetPassportRulesElement}
          */
         renderRules: function renderRules(widgetRules, contentRules) {
 
             /**
-             * Define Passport Rules Element
-             * @type {PassportRulesElement}
+             * Define PetPassport Rules Element
+             * @type {PetPassportRulesElement}
              */
-            this.elements.$rules = new PassportRulesElement(this, {
+            this.elements.$rules = new PetPassportRulesElement(this, {
                 data: this.controller.getRules(),
                 rules: {
                     widget: widgetRules,
@@ -93,14 +93,14 @@ define([
         },
 
         /**
-         * Render passport
-         * @member PassportView
+         * Render pet.passport
+         * @member PetPassportView
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderPassport.bind(this)
+                this.renderPetPassport.bind(this)
             );
         }
 

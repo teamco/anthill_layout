@@ -8,19 +8,19 @@
 
 define([
     'modules/Permission'
-], function definePassportPermission(BasePermission) {
+], function definePetPassportPermission(BasePermission) {
 
     /**
      * Define Permissions
-     * @class PassportPermission
+     * @class PetPassportPermission
      * @constructor
      * @extends BasePermission
      */
-    var PassportPermission = function PassportPermission() {
+    var PetPassportPermission = function PetPassportPermission() {
 
     };
 
-    return PassportPermission.extend('PassportPermission', {
+    return PetPassportPermission.extend('PetPassportPermission', {
 
     }, BasePermission.prototype);
 });

@@ -8,35 +8,35 @@
 define([
     'plugins/plugin',
     'plugins/widgets/widget.content.controller'
-], function definePassportController(PluginBase, WidgetContentController) {
+], function definePetPassportController(PluginBase, WidgetContentController) {
 
     /**
-     * Define passport controller
-     * @class PassportController
+     * Define pet.passport controller
+     * @class PetPassportController
      * @extends PluginController
      * @extends WidgetContentController
      * @constructor
      */
-    var PassportController = function PassportController() {
+    var PetPassportController = function PetPassportController() {
     };
 
-    return PassportController.extend('PassportController', {
+    return PetPassportController.extend('PetPassportController', {
 
         /**
          * Set embedded content
-         * @member PassportController
+         * @member PetPassportController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
-            this.view.elements.$passport.renderEmbeddedContent();
+            this.view.elements.$petpassport.renderEmbeddedContent();
         },
 
         /**
-         * Add Passport rule
-         * @member PassportController
+         * Add PetPassport rule
+         * @member PetPassportController
          * @param e
          */
-        addPassportRule: function addPassportRule(e) {
+        addPetPassportRule: function addPetPassportRule(e) {
 
             /**
              * Define $button

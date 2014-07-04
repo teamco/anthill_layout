@@ -1,5 +1,5 @@
- define([], function definePassportBehavior() {
-     var PassportBehavior = function PassportBehavior() {
+ define([], function definePetPassportBehavior() {
+     var PetPassportBehavior = function PetPassportBehavior() {
          this.editMenu = $('.editModeMenu');
          this.mainContainer = $('#mainContainer');
          this.rowsContainer = $('.passportRows');
@@ -46,7 +46,7 @@
      }
 
 
-     return PassportBehavior.extend('PassportBehavior', {
+     return PetPassportBehavior.extend('PetPassportBehavior', {
 
          initialize: function initialize() {
 

@@ -8,19 +8,19 @@
 define([
     'modules/Model',
     'plugins/widgets/widget.content.model'
-], function definePassportModel(BaseModel, WidgetContentModel) {
+], function definePetPassportModel(BaseModel, WidgetContentModel) {
 
     /**
-     * Define Passport model
+     * Define PetPassport model
      * @extends BaseModel
-     * @class PassportModel
+     * @class PetPassportModel
      * @constructor
      */
-    var PassportModel = function PassportModel() {
+    var PetPassportModel = function PetPassportModel() {
 
         /**
          * Define preferences
-         * @member PassportModel
+         * @member PetPassportModel
          * @type {{}}
          */
         this.preferences = {
@@ -28,13 +28,13 @@ define([
 
         /**
          * Define rules
-         * @member PassportModel
+         * @member PetPassportModel
          * @type {{}}
          */
         this.rules = {};
     };
 
-    return PassportModel.extend('PassportModel', {
+    return PetPassportModel.extend('PetPassportModel', {
 
 
     }, BaseModel.prototype, WidgetContentModel.prototype);

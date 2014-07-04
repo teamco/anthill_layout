@@ -8,19 +8,19 @@
 define([
     'modules/Element',
     'plugins/rules/widget.base.rules'
-], function definePassportRulesElement(BaseElement, BaseWidgetRules) {
+], function definePetPassportRulesElement(BaseElement, BaseWidgetRules) {
 
     /**
-     * Define Passport Rules Element
+     * Define PetPassport Rules Element
      * @param view
      * @param opts
-     * @returns {PassportRulesElement}
+     * @returns {PetPassportRulesElement}
      * @constructor
-     * @class PassportRulesElement
+     * @class PetPassportRulesElement
      * @extends BaseElement
      * @extends BaseWidgetRules
      */
-    var PassportRulesElement = function PassportRulesElement(view, opts) {
+    var PetPassportRulesElement = function PetPassportRulesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -36,7 +36,7 @@ define([
         return this;
     };
 
-    return PassportRulesElement.extend('PassportRulesElement', {
+    return PetPassportRulesElement.extend('PetPassportRulesElement', {
 
     }, BaseElement.prototype, BaseWidgetRules.prototype);
 

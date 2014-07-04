@@ -8,32 +8,32 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/passport/mvc/passport.controller',
-    'plugins/widgets/passport/mvc/passport.model',
-    'plugins/widgets/passport/mvc/passport.view',
-    'plugins/widgets/passport/mvc/passport.event.manager',
-    'plugins/widgets/passport/mvc/passport.permission'
-], function definePassport(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/pet.passport/mvc/pet.passport.controller',
+    'plugins/widgets/pet.passport/mvc/pet.passport.model',
+    'plugins/widgets/pet.passport/mvc/pet.passport.view',
+    'plugins/widgets/pet.passport/mvc/pet.passport.event.manager',
+    'plugins/widgets/pet.passport/mvc/pet.passport.permission'
+], function definePetPassport(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Passport
+     * Define PetPassport
      * @param containment
      * @param [opts]
      * @constructor
-     * @class Passport
+     * @class PetPassport
      * @extends AntHill
      */
-    var Passport = function Passport(containment, opts) {
+    var PetPassport = function PetPassport(containment, opts) {
 
         /**
          * Define containment
-         * @member Passport
+         * @member PetPassport
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Passport
+         * @member PetPassport
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,35 +73,35 @@ define([
 
         /**
          * Init observer
-         * @member Passport
+         * @member PetPassport
          * @type {Observer}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
-         * @member Passport
-         * @type {EventManager}
+         * @member PetPassport
+         * @type {PetPassportEventManager}
          */
         this.eventmanager = undefined;
 
         /**
          * Init config
-         * @member Passport
+         * @member PetPassport
          * @type {*}
          */
         this.config = undefined;
 
         /**
          * Init model
-         * @member Passport
-         * @type {*}
+         * @member PetPassport
+         * @type {PetPassportModel}
          */
         this.model = undefined;
 
         /**
          * Define MVC
-         * @member Passport
+         * @member PetPassport
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -131,7 +131,7 @@ define([
         );
     };
 
-    return Passport.extend('Passport', {
+    return PetPassport.extend('PetPassport', {
 
     }, AntHill.prototype);
 });

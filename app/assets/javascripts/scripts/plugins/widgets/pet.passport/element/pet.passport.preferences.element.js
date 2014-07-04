@@ -8,19 +8,19 @@
 define([
     'modules/Element',
     'plugins/preferences/widget.preferences'
-], function definePassportPreferencesElement(BaseElement, WidgetPreferences) {
+], function definePetPassportPreferencesElement(BaseElement, WidgetPreferences) {
 
     /**
-     * Define Passport Preferences Element
+     * Define PetPassport Preferences Element
      * @param view
      * @param opts
-     * @returns {PassportPreferencesElement}
+     * @returns {PetPassportPreferencesElement}
      * @constructor
-     * @class PassportPreferencesElement
+     * @class PetPassportPreferencesElement
      * @extends BaseElement
      * @extends WidgetPreferences
      */
-    var PassportPreferencesElement = function PassportPreferencesElement(view, opts) {
+    var PetPassportPreferencesElement = function PetPassportPreferencesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
@@ -32,7 +32,7 @@ define([
         return this;
     };
 
-    return PassportPreferencesElement.extend('PassportPreferencesElement', {
+    return PetPassportPreferencesElement.extend('PetPassportPreferencesElement', {
 
 
     }, BaseElement.prototype, WidgetPreferences.prototype);

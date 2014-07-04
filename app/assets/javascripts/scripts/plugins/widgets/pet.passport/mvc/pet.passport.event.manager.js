@@ -8,21 +8,21 @@
 
 define([
     'plugins/widgets/widget.content.event.manager'
-], function definePassportEventManager(WidgetContentEventManager) {
+], function definePetPassportEventManager(WidgetContentEventManager) {
 
     /**
-     * Define Passport event manager
-     * @class PassportEventManager
+     * Define PetPassport event manager
+     * @class PetPassportEventManager
      * @constructor
      * @extends BaseEvent
      * @extends WidgetContentEventManager
      */
-    var PassportEventManager = function PassportEventManager() {
+    var PetPassportEventManager = function PetPassportEventManager() {
 
         this.updateEventList({});
     };
 
-    return PassportEventManager.extend('PassportEventManager', {
+    return PetPassportEventManager.extend('PetPassportEventManager', {
 
     }, WidgetContentEventManager.prototype);
 });
