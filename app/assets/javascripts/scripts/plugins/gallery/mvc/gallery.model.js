@@ -133,7 +133,7 @@ define([
                 thumbnail: '',
                 dimensions: {
                     width: 35,
-                    height: 6
+                    height: 5
                 },
                 type: 'General',
                 resource: 'posttool'

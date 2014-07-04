@@ -39,7 +39,6 @@ define([
          * @member PosttoolElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
-            debugger;
             var $element = this;
             var $postToolFrame = [
             '<div class="mainContainer"><input type="text" placeholder="Type your text here">',
