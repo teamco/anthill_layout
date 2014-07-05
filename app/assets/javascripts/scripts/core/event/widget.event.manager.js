@@ -67,7 +67,18 @@ define([
          *      afterReduce: string,
          *      beforeReduce: string,
          *      enlargeWidget: string,
-         *      reduceWidget: string
+         *      reduceWidget: string,
+         *      stretchHeight: string,
+         *      stretchWidth: string,
+         *      stickToCenterLeft: string,
+         *      stickToCenterTop: string,
+         *      stickToCenter: string,
+         *      stickToCenterBottom: string,
+         *      stickToCenterRight: string,
+         *      stickToTopLeft: string,
+         *      stickToBottomLeft: string,
+         *      stickToTopRight: string,
+         *      stickToBottomRight: string
          * }}
          */
         eventList: {
@@ -129,7 +140,17 @@ define([
             beforeReduce: 'before.reduce',
 
             stretchHeight: 'stretch.height',
-            stretchWidth: 'stretch.width'
+            stretchWidth: 'stretch.width',
+
+            stickToCenterLeft: 'stick.to.center.left',
+            stickToCenterTop: 'stick.to.center.left',
+            stickToCenter: 'stick.to.center.left',
+            stickToCenterBottom: 'stick.to.center.left',
+            stickToCenterRight: 'stick.to.center.left',
+            stickToTopLeft: 'stick.to.center.left',
+            stickToBottomLeft: 'stick.to.center.left',
+            stickToTopRight: 'stick.to.center.left',
+            stickToBottomRight: 'stick.to.center.left'
         }
 
     }, BaseEvent.prototype);

@@ -34,7 +34,16 @@ define([
          *      setLayerUp: {type: string, disabled: boolean, group: string, events: array},
          *      setLayerDown: {type: string, disabled: boolean, group: string, events: array},
          *      stretchWidth: {type: string, disabled: boolean, group: string, events: array},
-         *      stretchHeight: {type: string, disabled: boolean, group: string, events: array}
+         *      stretchHeight: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToCenterLeft: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToCenterTop: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToCenter: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToCenterBottom: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToCenterRight: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToTopLeft: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToBottomLeft: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToTopRight: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToBottomRight: {type: string, disabled: boolean, group: string, events: array},
          * }}
          */
         defaultPrefs: {

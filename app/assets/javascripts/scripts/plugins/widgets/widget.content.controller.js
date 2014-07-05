@@ -39,7 +39,7 @@ define([
 
                 /**
                  * Define event list
-                 * @type {*.eventList}
+                 * @type {{}}
                  */
                 var eventList = this.eventmanager.eventList;
 
