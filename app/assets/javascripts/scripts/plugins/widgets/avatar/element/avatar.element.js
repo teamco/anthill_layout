@@ -64,7 +64,7 @@ define([
 
             var $draggMenu = [
                 '<div class="dragMenu">',
-                '<span>unlock and drag image to relocate</span>',
+                '<span>change image position</span>',
                 '<a class="dragIt">Unlock</a>',
                 '</div>'
             ].join('');
