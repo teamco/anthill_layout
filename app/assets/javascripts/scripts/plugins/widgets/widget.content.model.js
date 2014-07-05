@@ -70,7 +70,8 @@ define([], function defineWidgetContentModel() {
 
         /**
          * Save widget layer
-         * @member WidgetContentModel
+         * @member WidgetContentModel,
+         * @param {string} eventName
          */
         setLayerUp: function setLayerUp(eventName) {
 
@@ -80,7 +81,30 @@ define([], function defineWidgetContentModel() {
              */
             var scope = this.scope.controller.getContainment();
 
-            if (!scope.controller.isWidgetContent()) {
+            if (scope.controller.isWidgetContent()) {
+                return false;
+            }
+
+            scope.observer.publish(
+                scope.eventmanager.eventList[eventName],
+                true
+            );
+        },
+
+        /**
+         * Save widget layer
+         * @member WidgetContentModel,
+         * @param {string} eventName
+         */
+        setLayerDown: function setLayerDown(eventName) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope.controller.getContainment();
+
+            if (scope.controller.isWidgetContent()) {
                 return false;
             }
 
@@ -154,6 +178,110 @@ define([], function defineWidgetContentModel() {
                 scope.eventmanager.eventList.stretchHeight,
                 stretch
             );
+        },
+
+        /**
+         * Set stick to
+         * @param {string} eventName
+         * @returns {boolean}
+         * @private
+         */
+        _setStickTo: function _setStickTo(eventName) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope.controller.getContainment();
+
+            if (scope.controller.isWidgetContent()) {
+                return false;
+            }
+
+            scope.observer.publish(
+                scope.eventmanager.eventList[eventName]
+            );
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToCenterLeft: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToCenterTop: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToCenter: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToCenterBottom: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToCenterRight: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToTopLeft: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToBottomLeft: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToTopRight: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToBottomRight: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
         }
     });
 });

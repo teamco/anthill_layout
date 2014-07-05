@@ -44,6 +44,7 @@ define([
          *      stickToBottomLeft: {type: string, disabled: boolean, group: string, events: array},
          *      stickToTopRight: {type: string, disabled: boolean, group: string, events: array},
          *      stickToBottomRight: {type: string, disabled: boolean, group: string, events: array},
+         *      stretchHeight: {type: string, disabled: boolean, group: string, events: array},
          * }}
          */
         defaultPrefs: {
@@ -115,63 +116,63 @@ define([
                 checked: false,
                 visible: true
             },
-            stickToCenterLeft: {
+            setStickToCenterLeft: {
                 type: 'event',
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
                 visible: true
             },
-            stickToCenterTop: {
+            setStickToCenterTop: {
                 type: 'event',
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
                 visible: true
             },
-            stickToCenter: {
+            setStickToCenter: {
                 type: 'event',
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
                 visible: true
             },
-            stickToCenterBottom: {
+            setStickToCenterBottom: {
                 type: 'event',
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
                 visible: true
             },
-            stickToCenterRight: {
+            setStickToCenterRight: {
                 type: 'event',
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
                 visible: true
             },
-            stickToTopLeft: {
+            setStickToTopLeft: {
                 type: 'event',
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
                 visible: true
             },
-            stickToBottomLeft: {
+            setStickToBottomLeft: {
                 type: 'event',
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
                 visible: true
             },
-            stickToTopRight: {
+            setStickToTopRight: {
                 type: 'event',
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
                 visible: true
             },
-            stickToBottomRight: {
+            setStickToBottomRight: {
                 type: 'event',
                 disabled: false,
                 group: 'stick',

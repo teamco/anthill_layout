@@ -154,7 +154,11 @@ define([
                         reject: {
                             text: 'Cancel',
                             events: {
-                                click: ['rejectModalEvent', 'restoreWidgetsLayerIndex']
+                                click: [
+                                    'rejectModalEvent',
+                                    'restoreWidgetsLayerIndex',
+                                    'restoreWidgetSticker'
+                                ]
                             }
                         }
                     }

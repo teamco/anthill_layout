@@ -70,15 +70,16 @@ define([
          *      reduceWidget: string,
          *      stretchHeight: string,
          *      stretchWidth: string,
-         *      stickToCenterLeft: string,
-         *      stickToCenterTop: string,
-         *      stickToCenter: string,
-         *      stickToCenterBottom: string,
-         *      stickToCenterRight: string,
-         *      stickToTopLeft: string,
-         *      stickToBottomLeft: string,
-         *      stickToTopRight: string,
-         *      stickToBottomRight: string
+         *      setStickToCenterLeft: string,
+         *      setStickToCenterTop: string,
+         *      setStickToCenter: string,
+         *      setStickToCenterBottom: string,
+         *      setStickToCenterRight: string,
+         *      setStickToTopLeft: string,
+         *      setStickToBottomLeft: string,
+         *      setStickToTopRight: string,
+         *      setStickToBottomRight: string,
+         *      restoreWidgetSticker: string
          * }}
          */
         eventList: {
@@ -142,15 +143,17 @@ define([
             stretchHeight: 'stretch.height',
             stretchWidth: 'stretch.width',
 
-            stickToCenterLeft: 'stick.to.center.left',
-            stickToCenterTop: 'stick.to.center.left',
-            stickToCenter: 'stick.to.center.left',
-            stickToCenterBottom: 'stick.to.center.left',
-            stickToCenterRight: 'stick.to.center.left',
-            stickToTopLeft: 'stick.to.center.left',
-            stickToBottomLeft: 'stick.to.center.left',
-            stickToTopRight: 'stick.to.center.left',
-            stickToBottomRight: 'stick.to.center.left'
+            setStickToCenterLeft: 'set.stick.to.center.left',
+            setStickToCenterTop: 'set.stick.to.center.top',
+            setStickToCenter: 'set.stick.to.center',
+            setStickToCenterBottom: 'set.stick.to.center.bottom',
+            setStickToCenterRight: 'set.stick.to.center.right',
+            setStickToTopLeft: 'set.stick.to.top.left',
+            setStickToBottomLeft: 'set.stick.to.bottom.left',
+            setStickToTopRight: 'set.stick.to.top.right',
+            setStickToBottomRight: 'set.stick.to.bottom.right',
+
+            restoreWidgetSticker: 'restore.widget.sticker'
         }
 
     }, BaseEvent.prototype);

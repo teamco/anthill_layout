@@ -14,6 +14,7 @@ define(
         'controller/widget/widget.interactions',
         'controller/widget/widget.maximize',
         'controller/widget/widget.stretch',
+        'controller/widget/widget.stick',
         'controller/widget/widget.content'
     ],
 
@@ -25,16 +26,22 @@ define(
      * @param {WidgetInteractions} WidgetInteractions
      * @param {WidgetContent} WidgetContent
      * @param {WidgetStretch} WidgetStretch
+     * @param {WidgetStick} WidgetStick
      * @param {WidgetMaximize} WidgetMaximize
      * @returns {*}
      */
-        function defineWidgetController(ui, AntHill, BaseController, WidgetInteractions, WidgetMaximize, WidgetStretch, WidgetContent) {
+        function defineWidgetController(ui, AntHill, BaseController, WidgetInteractions, WidgetMaximize, WidgetStretch, WidgetStick, WidgetContent) {
 
         /**
          * Define widget controller
          * @class WidgetController
          * @extends AntHill
          * @extends BaseController
+         * @extends WidgetInteractions
+         * @extends WidgetContent
+         * @extends WidgetStretch
+         * @extends WidgetStick
+         * @extends WidgetMaximize
          * @constructor
          */
         var WidgetController = function WidgetController() {
@@ -301,6 +308,7 @@ define(
             WidgetContent.prototype,
             WidgetMaximize.prototype,
             WidgetStretch.prototype,
+            WidgetStick.prototype,
             WidgetInteractions.prototype
         );
     }

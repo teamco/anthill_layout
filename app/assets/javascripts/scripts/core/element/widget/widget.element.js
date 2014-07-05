@@ -126,11 +126,17 @@ define([
         /**
          * Set widget position
          * @member WidgetElement
-         * @param {{animate: Boolean, callback: Function}} opts
+         * @param {{animate: Boolean, callback: Function}} [opts]
          * @private
          */
         _setPosition: function _setPosition(opts) {
 
+            opts = opts || {};
+
+            /**
+             * Define widget
+             * @type {Widget}
+             */
             var widget = this.view.scope,
                 dom = widget.dom,
                 position = widget.map.positionFor(
@@ -329,7 +335,117 @@ define([
                 height: scope.dom.height
 
             });
+        },
+
+        /**
+         * Stick to
+         * @member WidgetElement
+         * @param {string} side
+         * @param {Page} page
+         * @private
+         */
+        _stickTo: function _stickTo(side, page) {
+
+            this.restoreSticker();
+
+            this.setPosition({
+                $container: page.view.get$item().$,
+                $item: this.$,
+                position: side
+            });
+        },
+
+        /**
+         * Restore sticker
+         * @member WidgetElement
+         */
+        restoreSticker: function restoreSticker() {
+            this._setPosition();
+        },
+
+        /**
+         * Stick to center left
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToCenterLeft: function stickToCenterLeft(page) {
+            this._stickTo('cl', page);
+        },
+
+        /**
+         * Stick to center top
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToCenterTop: function stickToCenterTop(page) {
+            this._stickTo('tc', page);
+        },
+
+        /**
+         * Stick to center
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToCenter: function stickToCenter(page) {
+            this._stickTo('cc', page);
+        },
+
+        /**
+         * Stick to center bottom
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToCenterBottom: function stickToCenterBottom(page) {
+            this._stickTo('bc', page);
+        },
+
+        /**
+         * Stick to center right
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToCenterRight: function stickToCenterRight(page) {
+            this._stickTo('cr', page);
+        },
+
+        /**
+         * Stick to top left
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToTopLeft: function stickToTopLeft(page) {
+            this._stickTo('tl', page);
+        },
+
+        /**
+         * Stick to bottom left
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToBottomLeft: function stickToBottomLeft(page) {
+            this._stickTo('bl', page);
+        },
+
+        /**
+         * Stick to top right
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToTopRight: function stickToTopRight(page) {
+            this._stickTo('tr', page);
+        },
+
+        /**
+         * Stick to bottom right
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToBottomRight: function stickToBottomRight(page) {
+            this._stickTo('br', page);
         }
+
+
+
 
     }, BaseElement.prototype);
 });

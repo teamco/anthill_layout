@@ -236,7 +236,8 @@ define([
                  * Define $item
                  * @type {WidgetRulesContentElement}
                  */
-                var $item = this.view.elements.items[widget.model.getUUID() + '-widgetrules'];
+                var $item = this.view.elements.items[
+                    widget.model.getUUID() + '-widget-rules'];
 
                 $item.$.trigger('click.rules');
             }
@@ -267,7 +268,7 @@ define([
 
             panel.observer.publish(
                 panel.eventmanager.eventList.openPanel,
-                ['widgetrules', event, _triggerRules.bind(widgetRules)]
+                ['widget-rules', event, _triggerRules.bind(widgetRules)]
             );
 
             this.scope.view.elements.$modal.selfDestroy();
@@ -288,6 +289,24 @@ define([
             content.observer.publish(
                 content.eventmanager.eventList.executeOnWidgetEvent,
                 'restoreLayerIndex'
+            );
+        },
+
+        /**
+         * Restore widget sticker
+         * @member PageDataController
+         */
+        restoreWidgetSticker: function restoreWidgetSticker() {
+
+            /**
+             * Define active content
+             * @type {*}
+             */
+            var content = this.scope.activeContent;
+
+            content.observer.publish(
+                content.eventmanager.eventList.executeOnWidgetEvent,
+                'restoreWidgetSticker'
             );
         }
 

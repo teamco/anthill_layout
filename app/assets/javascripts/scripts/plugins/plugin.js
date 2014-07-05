@@ -64,7 +64,7 @@ define([
             var panel = this.getAuthorPanel();
 
             return panel.model.getModule(
-                panel.model.getIndex('widgetrules')
+                panel.model.getIndex('widget-rules')
             ).module;
         },
 
