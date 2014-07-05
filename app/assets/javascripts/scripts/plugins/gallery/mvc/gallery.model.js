@@ -110,8 +110,8 @@ define([
                 description: 'Pick a photo and put it as your Avatar',
                 thumbnail: '',
                 dimensions: {
-                    width: 7,
-                    height: 9
+                    width: 12,
+                    height: 11
                 },
                 type: 'image',
                 resource: 'avatar'
@@ -122,7 +122,7 @@ define([
                 thumbnail: '',
                 dimensions: {
                     width: 12,
-                    height: 16
+                    height: 13
                 },
                 type: 'General',
                 resource: 'pet.passport'
@@ -144,7 +144,7 @@ define([
                 thumbnail: '',
                 dimensions: {
                     width: 12,
-                    height: 12
+                    height: 11
                 },
                 type: 'General',
                 resource: 'online.friends'
