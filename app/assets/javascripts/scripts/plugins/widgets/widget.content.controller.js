@@ -113,6 +113,11 @@ define([
                  */
                 var widget = this.controller.getContainment();
 
+                if (!widget.eventmanager.eventList.hasOwnProperty(eventName)) {
+                    this.logger.warn('Undefined event', eventName);
+                    return false;
+                }
+
                 widget.observer.publish(
                     widget.eventmanager.eventList[eventName]
                 );
