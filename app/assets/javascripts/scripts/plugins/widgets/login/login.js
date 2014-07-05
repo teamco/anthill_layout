@@ -71,34 +71,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member Login
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member Login
-         * @type {LoginEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member Login
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Init model
-         * @member Login
-         * @type {*}
-         */
-        this.model = undefined;
-
-        /**
          * Define MVC
          * @member Login
          * @type {MVC}
@@ -106,12 +78,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {
-                    uuid: [
-                        this.containment.model.getUUID(),
-                        this.constructor.name.toDash()
-                    ].join('')
-                },
+                {uuid: this.containment.model.getContentUUID()},
                 DEFAULTS
             ],
             components: [

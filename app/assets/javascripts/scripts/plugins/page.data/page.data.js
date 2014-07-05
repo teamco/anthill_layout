@@ -79,55 +79,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member PageData
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member PageData
-         * @type {EventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member PageData
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Define controller
-         * @member PageData
-         * @type {*}
-         */
-        this.controller = undefined;
-
-        /**
-         * Define model
-         * @member PageData
-         * @type {*}
-         */
-        this.model = undefined;
-
-        /**
-         * Define view
-         * @member PageData
-         * @type {*}
-         */
-        this.view = undefined;
-
-        /**
-         * Define permissions
-         * @member PageData
-         * @type {*}
-         */
-        this.permission = undefined;
-
-        /**
          * Define MVC
          * @member PageData
          * @type {MVC}

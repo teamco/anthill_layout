@@ -79,55 +79,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member Maximize
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member Maximize
-         * @type {MaximizeEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member Maximize
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Define controller
-         * @member Maximize
-         * @type {*}
-         */
-        this.controller = undefined;
-
-        /**
-         * Define model
-         * @member Maximize
-         * @type {*}
-         */
-        this.model = undefined;
-
-        /**
-         * Define view
-         * @member Maximize
-         * @type {*}
-         */
-        this.view = undefined;
-
-        /**
-         * Define permissions
-         * @member Maximize
-         * @type {*}
-         */
-        this.permission = undefined;
-
-        /**
          * Define MVC
          * @member Maximize
          * @type {MVC}

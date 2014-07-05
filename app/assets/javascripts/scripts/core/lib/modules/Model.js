@@ -208,6 +208,17 @@ define([
         },
 
         /**
+         * Get content UUID
+         * @member BaseModel
+         */
+        getContentUUID: function getContentUUID() {
+            return [
+                this.getUUID(),
+                'content'
+            ].join('-');
+        },
+
+        /**
          * Get item from collector by UUID
          * @member BaseModel
          * @param {string} uuid

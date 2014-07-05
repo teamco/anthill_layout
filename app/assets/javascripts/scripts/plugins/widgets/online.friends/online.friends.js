@@ -72,34 +72,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member OnlineFriends
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member OnlineFriends
-         * @type {OnlineFriendsEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member OnlineFriends
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Init model
-         * @member OnlineFriends
-         * @type {OnlineFriendsModel}
-         */
-        this.model = undefined;
-
-        /**
          * Define MVC
          * @member OnlineFriends
          * @type {MVC}
@@ -107,12 +79,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {
-                    uuid: [
-                        this.containment.model.getUUID(),
-                        this.constructor.name.toDash()
-                    ].join('')
-                },
+                {uuid: this.containment.model.getContentUUID()},
                 DEFAULTS
             ],
             components: [

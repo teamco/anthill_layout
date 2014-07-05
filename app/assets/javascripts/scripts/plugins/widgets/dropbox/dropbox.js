@@ -71,34 +71,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member Dropbox
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member Dropbox
-         * @type {DropboxEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member Dropbox
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Init model
-         * @member Dropbox
-         * @type {*}
-         */
-        this.model = undefined;
-
-        /**
          * Define MVC
          * @member Dropbox
          * @type {MVC}
@@ -106,12 +78,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {
-                    uuid: [
-                        this.containment.model.getUUID(),
-                        this.constructor.name.toDash()
-                    ].join('')
-                },
+                {uuid: this.containment.model.getContentUUID()},
                 DEFAULTS
             ],
             components: [

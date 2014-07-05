@@ -16,19 +16,77 @@ define([
      * @constructor
      */
     var AntHill = function AntHill() {
+
+        /**
+         * Init API
+         * @member AntHill
+         * @type {BaseAPI}
+         */
+        this.api = undefined;
+
+        /**
+         * Init observer
+         * @member AntHill
+         * @type {Observer}
+         */
+        this.observer = undefined;
+
+        /**
+         * Init event manager
+         * @member AntHill
+         * @type {*}
+         */
+        this.eventmanager = undefined;
+
+        /**
+         * Define permissions
+         * @member AntHill
+         * @type {BasePermission}
+         */
+        this.permission = undefined;
+
+        /**
+         * Init config
+         * @member AntHill
+         * @type {Object}
+         */
+        this.config = {};
+
+        /**
+         * Init model
+         * @member AntHill
+         * @type {BaseModel}
+         */
+        this.model = undefined;
+
+        /**
+         * Init view
+         * @member AntHill
+         * @type {BaseView}
+         */
+        this.view = undefined;
+
+        /**
+         * Init controller
+         * @member AntHill
+         * @type {BaseController}
+         */
+        this.controller = undefined;
     };
 
-    /**
-     * Define base
-     * @type {modules.base}
-     */
-    AntHill.prototype.base = new Base();
+    return AntHill.extend('AntHill', {
 
-    /**
-     * Define translations
-     * @type {modules.i18n}
-     */
-    AntHill.prototype.i18n = new i18n('en-us');
+        /**
+         * Define base
+         * @member AntHill
+         * @type {Base}
+         */
+        base: new Base(),
 
-    return AntHill.extend('AntHill');
+        /**
+         * Define translations
+         * @type {i18n}
+         */
+        i18n: new i18n('en-us')
+    });
 });

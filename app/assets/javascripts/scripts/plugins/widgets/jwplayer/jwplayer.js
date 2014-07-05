@@ -73,34 +73,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member Jwplayer
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member Jwplayer
-         * @type {JwplayerEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member Jwplayer
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Init model
-         * @member Jwplayer
-         * @type {*}
-         */
-        this.model = undefined;
-
-        /**
          * Define MVC
          * @member Jwplayer
          * @type {MVC}
@@ -108,12 +80,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {
-                    uuid: [
-                        this.containment.model.getUUID(),
-                        this.constructor.name.toDash()
-                    ].join('')
-                },
+                {uuid: this.containment.model.getContentUUID()},
                 DEFAULTS
             ],
             components: [

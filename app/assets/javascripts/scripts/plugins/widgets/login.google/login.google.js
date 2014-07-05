@@ -72,34 +72,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member LoginGoogle
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member LoginGoogle
-         * @type {LoginGoogleEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member LoginGoogle
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Init model
-         * @member LoginGoogle
-         * @type {LoginGoogleModel}
-         */
-        this.model = undefined;
-
-        /**
          * Define MVC
          * @member LoginGoogle
          * @type {MVC}
@@ -107,12 +79,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {
-                    uuid: [
-                        this.containment.model.getUUID(),
-                        this.constructor.name.toDash()
-                    ].join('')
-                },
+                {uuid: this.containment.model.getContentUUID()},
                 DEFAULTS
             ],
             components: [

@@ -72,34 +72,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member IceFloe
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member IceFloe
-         * @type {IceFloeEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member IceFloe
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Init model
-         * @member IceFloe
-         * @type {IceFloeModel}
-         */
-        this.model = undefined;
-
-        /**
          * Define MVC
          * @member IceFloe
          * @type {MVC}
@@ -107,12 +79,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {
-                    uuid: [
-                        this.containment.model.getUUID(),
-                        this.constructor.name.toDash()
-                    ].join('-')
-                },
+                {uuid: this.containment.model.getContentUUID()},
                 DEFAULTS
             ],
             components: [

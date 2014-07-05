@@ -72,34 +72,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member PostTemplate
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member PostTemplate
-         * @type {PostTemplateEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member PostTemplate
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Init model
-         * @member PostTemplate
-         * @type {PostTemplateModel}
-         */
-        this.model = undefined;
-
-        /**
          * Define MVC
          * @member PostTemplate
          * @type {MVC}
@@ -107,12 +79,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {
-                    uuid: [
-                        this.containment.model.getUUID(),
-                        this.constructor.name.toDash()
-                    ].join('')
-                },
+                {uuid: this.containment.model.getContentUUID()},
                 DEFAULTS
             ],
             components: [

@@ -22,7 +22,7 @@ define([
      * Define Page
      * @class Page
      * @param opts
-     * 2extends AntHill
+     * @extends AntHill
      * @constructor
      */
     var Page = function Page(opts) {
@@ -173,62 +173,6 @@ define([
                 }
             }
         };
-
-        /**
-         * Init API
-         * @member Page
-         * @type {PageAPI}
-         */
-        this.api = undefined;
-
-        /**
-         * Init observer
-         * @member Page
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member Page
-         * @type {PageEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member Page
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Define controller
-         * @member Page
-         * @type {PageController}
-         */
-        this.controller = undefined;
-
-        /**
-         * Define model
-         * @member Page
-         * @type {PageModel}
-         */
-        this.model = undefined;
-
-        /**
-         * Define view
-         * @member Page
-         * @type {PageView}
-         */
-        this.view = undefined;
-
-        /**
-         * Define permissions
-         * @member Page
-         * @type {PagePermission}
-         */
-        this.permission = undefined;
 
         /**
          * Define MVC

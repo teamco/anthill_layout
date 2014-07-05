@@ -72,34 +72,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member PetPassport
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member PetPassport
-         * @type {PetPassportEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member PetPassport
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Init model
-         * @member PetPassport
-         * @type {PetPassportModel}
-         */
-        this.model = undefined;
-
-        /**
          * Define MVC
          * @member PetPassport
          * @type {MVC}
@@ -107,12 +79,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {
-                    uuid: [
-                        this.containment.model.getUUID(),
-                        this.constructor.name.toDash()
-                    ].join('')
-                },
+                {uuid: this.containment.model.getContentUUID()},
                 DEFAULTS
             ],
             components: [

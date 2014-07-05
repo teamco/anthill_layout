@@ -101,27 +101,6 @@ define([
         this.panels = {};
 
         /**
-         * Init observer
-         * @member App
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member App
-         * @type {AppEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member App
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
          * Define items
          * @member App
          * @type {*}
@@ -134,41 +113,6 @@ define([
          * @type {Workspace}
          */
         this.workspace = {};
-
-        /**
-         * Init observer
-         * @member App
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Define controller
-         * @member App
-         * @type {AppController}
-         */
-        this.controller = undefined;
-
-        /**
-         * Define model
-         * @member App
-         * @type {AppModel}
-         */
-        this.model = undefined;
-
-        /**
-         * Define view
-         * @member App
-         * @type {AppView}
-         */
-        this.view = undefined;
-
-        /**
-         * Define permissions
-         * @member App
-         * @type {AppPermission}
-         */
-        this.permission = undefined;
 
         /**
          * Define MVC

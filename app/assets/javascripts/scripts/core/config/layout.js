@@ -86,34 +86,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member Layout
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member Layout
-         * @type {EventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Define controller
-         * @member Layout
-         * @type {LayoutController}
-         */
-        this.controller = undefined;
-
-        /**
-         * Define permissions
-         * @member Layout
-         * @type {LayoutPermission}
-         */
-        this.permission = undefined;
-        
-        /**
          * Define MVC
          * @member Layout
          * @type {MVC}

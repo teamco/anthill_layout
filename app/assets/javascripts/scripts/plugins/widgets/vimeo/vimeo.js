@@ -75,34 +75,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member Vimeo
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member Vimeo
-         * @type {EventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member Vimeo
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Init model
-         * @member Vimeo
-         * @type {VimeoModel}
-         */
-        this.model = undefined;
-
-        /**
          * Define MVC
          * @member Vimeo
          * @type {MVC}
@@ -110,12 +82,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {
-                    uuid: [
-                        this.containment.model.getUUID(),
-                        this.constructor.name.toDash()
-                    ].join('')
-                },
+                {uuid: this.containment.model.getContentUUID()},
                 DEFAULTS
             ],
             components: [

@@ -72,34 +72,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member LoginFacebook
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member LoginFacebook
-         * @type {LoginFacebookEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member LoginFacebook
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Init model
-         * @member LoginFacebook
-         * @type {LoginFacebookModel}
-         */
-        this.model = undefined;
-
-        /**
          * Define MVC
          * @member LoginFacebook
          * @type {MVC}
@@ -107,12 +79,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {
-                    uuid: [
-                        this.containment.model.getUUID(),
-                        this.constructor.name.toDash()
-                    ].join('')
-                },
+                {uuid: this.containment.model.getContentUUID()},
                 DEFAULTS
             ],
             components: [

@@ -72,34 +72,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member TextEditor
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member TextEditor
-         * @type {EventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member TextEditor
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Init model
-         * @member TextEditor
-         * @type {*}
-         */
-        this.model = undefined;
-
-        /**
          * Define MVC
          * @member TextEditor
          * @type {MVC}
@@ -107,12 +79,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {
-                    uuid: [
-                        this.containment.model.getUUID(),
-                        this.constructor.name.toDash()
-                    ].join('')
-                },
+                {uuid: this.containment.model.getContentUUID()},
                 DEFAULTS
             ],
             components: [

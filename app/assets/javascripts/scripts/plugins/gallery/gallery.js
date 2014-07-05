@@ -65,27 +65,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member Gallery
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member Gallery
-         * @type {GalleryEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member Gallery
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
          * Define MVC
          * @member Gallery
          * @type {MVC}

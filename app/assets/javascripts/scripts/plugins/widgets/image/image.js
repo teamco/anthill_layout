@@ -73,48 +73,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member Image
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member Image
-         * @type {ImageEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member Image
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Init model
-         * @member Image
-         * @type {ImageModel}
-         */
-        this.model = undefined;
-
-        /**
-         * Init controller
-         * @member Image
-         * @type {ImageController}
-         */
-        this.controller = undefined;
-
-        /**
-         * Init view
-         * @member Image
-         * @type {ImageView}
-         */
-        this.view = undefined;
-
-        /**
          * Define MVC
          * @member Image
          * @type {MVC}
@@ -122,12 +80,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {
-                    uuid: [
-                        this.containment.model.getUUID(),
-                        this.constructor.name.toDash()
-                    ].join('')
-                },
+                {uuid: this.containment.model.getContentUUID()},
                 DEFAULTS
             ],
             components: [

@@ -79,55 +79,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member WidgetRules
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member WidgetRules
-         * @type {WidgetRulesEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member WidgetRules
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Define controller
-         * @member WidgetRules
-         * @type {WidgetRulesController}
-         */
-        this.controller = undefined;
-
-        /**
-         * Define model
-         * @member WidgetRules
-         * @type {WidgetRulesModel}
-         */
-        this.model = undefined;
-
-        /**
-         * Define view
-         * @member WidgetRules
-         * @type {WidgetRulesView}
-         */
-        this.view = undefined;
-
-        /**
-         * Define permissions
-         * @member WidgetRules
-         * @type {WidgetRulesPermission}
-         */
-        this.permission = undefined;
-
-        /**
          * Define MVC
          * @member WidgetRules
          * @type {MVC}

@@ -72,34 +72,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member PetRadar
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member PetRadar
-         * @type {PetRadarEventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member PetRadar
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Init model
-         * @member PetRadar
-         * @type {PetRadarModel}
-         */
-        this.model = undefined;
-
-        /**
          * Define MVC
          * @member PetRadar
          * @type {MVC}
@@ -107,12 +79,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {
-                    uuid: [
-                        this.containment.model.getUUID(),
-                        this.constructor.name.toDash()
-                    ].join('')
-                },
+                {uuid: this.containment.model.getContentUUID()},
                 DEFAULTS
             ],
             components: [

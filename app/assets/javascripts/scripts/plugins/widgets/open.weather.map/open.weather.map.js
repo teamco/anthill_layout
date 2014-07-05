@@ -71,34 +71,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member OpenWeatherMap
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member OpenWeatherMap
-         * @type {EventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member OpenWeatherMap
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Init model
-         * @member OpenWeatherMap
-         * @type {*}
-         */
-        this.model = undefined;
-
-        /**
          * Define MVC
          * @member OpenWeatherMap
          * @type {MVC}
@@ -106,12 +78,7 @@ define([
         this.mvc = new MVC({
             scope: this,
             config: [
-                {
-                    uuid: [
-                        this.containment.model.getUUID(),
-                        this.constructor.name.toDash()
-                    ].join('')
-                },
+                {uuid: this.containment.model.getContentUUID()},
                 DEFAULTS
             ],
             components: [

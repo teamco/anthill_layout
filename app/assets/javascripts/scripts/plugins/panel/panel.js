@@ -101,55 +101,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member Panel
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member Panel
-         * @type {EventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member Panel
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Define controller
-         * @member Panel
-         * @type {*}
-         */
-        this.controller = undefined;
-
-        /**
-         * Define model
-         * @member Panel
-         * @type {*}
-         */
-        this.model = undefined;
-
-        /**
-         * Define view
-         * @member Panel
-         * @type {*}
-         */
-        this.view = undefined;
-
-        /**
-         * Define permissions
-         * @member Panel
-         * @type {*}
-         */
-        this.permission = undefined;
-
-        /**
          * Define MVC
          * @member Panel
          * @type {MVC}

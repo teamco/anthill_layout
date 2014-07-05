@@ -79,55 +79,6 @@ define([
         };
 
         /**
-         * Init observer
-         * @member WorkspaceData
-         * @type {Observer}
-         */
-        this.observer = undefined;
-
-        /**
-         * Init event manager
-         * @member WorkspaceData
-         * @type {EventManager}
-         */
-        this.eventmanager = undefined;
-
-        /**
-         * Init config
-         * @member WorkspaceData
-         * @type {*}
-         */
-        this.config = undefined;
-
-        /**
-         * Define controller
-         * @member WorkspaceData
-         * @type {*}
-         */
-        this.controller = undefined;
-
-        /**
-         * Define model
-         * @member WorkspaceData
-         * @type {*}
-         */
-        this.model = undefined;
-
-        /**
-         * Define view
-         * @member WorkspaceData
-         * @type {*}
-         */
-        this.view = undefined;
-
-        /**
-         * Define permissions
-         * @member WorkspaceData
-         * @type {*}
-         */
-        this.permission = undefined;
-
-        /**
          * Define MVC
          * @member WorkspaceData
          * @type {MVC}
