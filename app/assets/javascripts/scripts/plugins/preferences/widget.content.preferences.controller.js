@@ -5,12 +5,12 @@
  * Time: 1:26 PM
  */
 
-define([], function defineWidgetContentPreferencesController(){
-   
+define([], function defineWidgetContentPreferencesController() {
+
     var WidgetContentPreferencesController = function WidgetContentPreferencesController() {
-        
+
     };
-    
+
     return WidgetContentPreferencesController.extend('WidgetContentPreferencesController', {
 
         /**
@@ -24,26 +24,33 @@ define([], function defineWidgetContentPreferencesController(){
              * @type {*}
              */
             var widget = this.controller.getContainment(),
-                prefs = widget.model.getConfig('preferences');
+                globalPrefs = widget.model.getConfig('preferences'),
+                localPrefs = this.model.preferences || {},
+                index, value;
 
-            $.each(prefs, function each(index, value) {
+            for (index in localPrefs) {
 
-                /**
-                 * Define method name
-                 * @type {string}
-                 */
-                var setter = 'set' + index.toCamel().capitalize();
+                if (localPrefs.hasOwnProperty(index) &&
+                    globalPrefs.hasOwnProperty(index)) {
 
-                if (typeof(this.model[setter]) === 'function') {
+                    value = globalPrefs[index];
 
-                    this.model[setter](value);
+                    /**
+                     * Define method name
+                     * @type {string}
+                     */
+                    var setter = 'set' + index.toCamel().capitalize();
 
-                } else {
+                    if (typeof(this.model[setter]) === 'function') {
 
-                    this.logger.debug('Skip', setter);
+                        this.model[setter](value);
+
+                    } else {
+
+                        this.logger.debug('Skip', setter);
+                    }
                 }
-
-            }.bind(this));
+            }
         },
 
         /**

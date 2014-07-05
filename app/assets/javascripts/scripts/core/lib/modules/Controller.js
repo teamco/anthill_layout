@@ -546,6 +546,11 @@ define([
              */
             var widget = this.scope.controller.getContainment();
 
+            if (!widget) {
+                this.scope.logger.info('Root is not widget content');
+                return false;
+            }
+
             return widget.controller.isWidget();
         },
 

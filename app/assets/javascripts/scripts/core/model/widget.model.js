@@ -123,6 +123,53 @@ define([
 
                 rules.subscribers[event].push(uuid);
             }
+        },
+
+        /**
+         * Set content preferences
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setContentPreferences: function setContentPreferences(eventName) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            /**
+             * Get content
+             * @type {WidgetContent}
+             */
+            var content = scope.content;
+
+            if (typeof(content.model[eventName]) === 'function') {
+
+                content.model[eventName](eventName);
+
+            } else {
+
+                scope.logger.warn('Skip', eventName);
+            }
+        },
+
+        /**
+         * Set layer
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setLayer: function setLayer(eventName) {
+            this.setContentPreferences(eventName);
+        },
+
+        /**
+         * Set stick
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setStick: function setStick(eventName) {
+            this.setContentPreferences(eventName);
         }
 
     }, BaseModel.prototype);

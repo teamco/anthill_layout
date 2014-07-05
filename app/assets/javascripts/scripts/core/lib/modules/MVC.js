@@ -404,7 +404,8 @@ define([
                 this.scope.view.elements = {};
             }
 
-            if (pattern === 'model') {
+            if (pattern === 'model' &&
+                this.scope.controller.isWidgetContent()) {
 
                 /**
                  * Define preferences

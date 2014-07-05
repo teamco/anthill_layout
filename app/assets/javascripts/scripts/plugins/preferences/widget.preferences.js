@@ -95,6 +95,7 @@ define([
                 disabled: false,
                 group: 'layer',
                 events: ['click'],
+                checked: false,
                 visible: true
             },
             setLayerDown: {
@@ -102,6 +103,7 @@ define([
                 disabled: false,
                 group: 'layer',
                 events: ['click'],
+                checked: false,
                 visible: true
             },
             stretchWidth: {
@@ -121,6 +123,7 @@ define([
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
+                checked: false,
                 visible: true
             },
             setStickToCenterTop: {
@@ -128,6 +131,7 @@ define([
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
+                checked: false,
                 visible: true
             },
             setStickToCenter: {
@@ -135,6 +139,7 @@ define([
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
+                checked: false,
                 visible: true
             },
             setStickToCenterBottom: {
@@ -142,6 +147,7 @@ define([
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
+                checked: false,
                 visible: true
             },
             setStickToCenterRight: {
@@ -149,6 +155,7 @@ define([
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
+                checked: false,
                 visible: true
             },
             setStickToTopLeft: {
@@ -156,6 +163,7 @@ define([
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
+                checked: false,
                 visible: true
             },
             setStickToBottomLeft: {
@@ -163,6 +171,7 @@ define([
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
+                checked: false,
                 visible: true
             },
             setStickToTopRight: {
@@ -170,6 +179,7 @@ define([
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
+                checked: false,
                 visible: true
             },
             setStickToBottomRight: {
@@ -177,6 +187,7 @@ define([
                 disabled: false,
                 group: 'stick',
                 events: ['click'],
+                checked: false,
                 visible: true
             }
         },

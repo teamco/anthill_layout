@@ -62,10 +62,8 @@ define([
             opts.$container.$.off('mouseenter.hover').on('mouseenter.hover', function on() {
 
                 opts.$container.$.append(
-
                     $tooltip.stop().
                         fadeTo('slow', 0.9)
-
                 ).attr({
                         title: ''
                     });
@@ -141,10 +139,23 @@ define([
         renderEventLink: function renderEventLink(opts) {
 
             /**
+             * Get widget
+             * @type {Widget}
+             */
+            var widget = this.view.scope.controller.getContainment();
+
+            /**
              * Create UUID
              * @type {String}
              */
-            var uuid = this.base.lib.generator.UUID() + '-event';
+            var uuid = this.base.lib.generator.UUID() + '-event',
+                checked = widget.model.getPrefs(opts.group) === opts.name;
+
+            var $input = $('<input />').attr({
+                name: opts.group,
+                type: 'radio',
+                checked: checked
+            });
 
             /**
              * Define $link
@@ -155,11 +166,12 @@ define([
                 id: uuid,
                 title: opts.title
             }).text(opts.title).
-                addClass(opts.name.toDash()).append(
-                $('<input />').attr({
-                    name: opts.group,
-                    type: 'radio'
-                })
+                addClass(opts.name.toDash()).
+                append($input);
+
+            $input.prop(
+                'checked',
+                checked
             );
 
             $link.on(

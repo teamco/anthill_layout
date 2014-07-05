@@ -507,7 +507,19 @@ define([
          * @param {string} title
          */
         setTitle: function setTitle(title) {
-            this.setPrefs('title', title);
+
+            /**
+             * Define scope
+             * @type {BaseModel}
+             */
+            var scope = this;
+
+            if (this.scope.controller.isWidget()) {
+
+                scope = this.scope.content.model;
+            }
+
+            scope.setPrefs.bind(scope)('title', title);
         },
 
         /**
@@ -516,7 +528,19 @@ define([
          * @param {string} description
          */
         setDescription: function setDescription(description) {
-            this.setPrefs('description', description);
+
+            /**
+             * Define scope
+             * @type {BaseModel}
+             */
+            var scope = this;
+
+            if (this.scope.controller.isWidget()) {
+
+                scope = this.scope.content.model;
+            }
+
+            scope.setPrefs.bind(scope)('description', description);
         },
 
         /**

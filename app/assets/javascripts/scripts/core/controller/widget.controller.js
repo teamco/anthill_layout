@@ -296,7 +296,7 @@ define(
 
                         } else {
 
-                            this.logger.debug('Skip', setter);
+                            this.logger.info('Skip content events', setter);
                         }
 
                     }.bind(this));
