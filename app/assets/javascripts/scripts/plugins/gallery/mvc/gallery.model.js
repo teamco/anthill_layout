@@ -122,7 +122,7 @@ define([
                 thumbnail: '',
                 dimensions: {
                     width: 12,
-                    height: 16
+                    height: 13
                 },
                 type: 'General',
                 resource: 'pet.passport'
