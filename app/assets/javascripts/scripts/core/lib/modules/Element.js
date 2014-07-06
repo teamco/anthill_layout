@@ -133,12 +133,20 @@ define([
                 eWidth = rectI.width,
                 eHeight = rectI.height;
 
+            var offsetLeft = 0,
+                offsetTop = 0;
+
+            if ($item.css('position') === 'fixed') {
+                offsetLeft = rectC.left;
+                offsetTop = rectC.top;
+            }
+
             var top = 'auto',
                 left = 'auto',
                 mw = cWidth - eWidth,
-                cw = rectC.left + (mw / 2),
+                cw = offsetLeft + (mw / 2),
                 mh = cHeight - eHeight,
-                ch = rectC.top + (mh / 2);
+                ch = offsetTop + (mh / 2);
 
             if (opts.position == 'tl') {
             } else if (opts.position == 'tc') {
