@@ -126,31 +126,19 @@ define([
         },
 
         /**
-         * Set content preferences
+         * Set widget preferences
          * @member WidgetModel
          * @param {string} eventName
          */
-        setContentPreferences: function setContentPreferences(eventName) {
+        setWidgetPreferences: function setWidgetPreferences(eventName) {
 
-            /**
-             * Define scope
-             * @type {Widget}
-             */
-            var scope = this.scope;
+            if (typeof(this[eventName]) === 'function') {
 
-            /**
-             * Get content
-             * @type {WidgetContent}
-             */
-            var content = scope.content;
-
-            if (typeof(content.model[eventName]) === 'function') {
-
-                content.model[eventName](eventName);
+                this[eventName](eventName);
 
             } else {
 
-                scope.logger.warn('Skip', eventName);
+                this.scope.logger.warn('Undefined event', eventName);
             }
         },
 
@@ -160,7 +148,7 @@ define([
          * @param {string} eventName
          */
         setLayer: function setLayer(eventName) {
-            this.setContentPreferences(eventName);
+            this.setWidgetPreferences(eventName);
         },
 
         /**
@@ -169,7 +157,217 @@ define([
          * @param {string} eventName
          */
         setStick: function setStick(eventName) {
-            this.setContentPreferences(eventName);
+            this.setWidgetPreferences(eventName);
+        },
+
+        /**
+         * Set stretch width
+         * Adopt to container width
+         * @param {boolean} stretch
+         */
+        setStretchWidth: function setStretchWidth(stretch) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.config.preferences.stretchWidth = stretch;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.stretchWidth,
+                stretch
+            );
+        },
+
+        /**
+         * Set stretch height
+         * Adopt to container height
+         * @param {boolean} stretch
+         */
+        setStretchHeight: function setStretchHeight(stretch) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope.controller.getContainment();
+
+            scope.config.preferences.stretchHeight = stretch;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.stretchHeight,
+                stretch
+            );
+        },
+
+        /**
+         * Set stick to
+         * @param {string} eventName
+         * @returns {boolean}
+         * @private
+         */
+        _setStickTo: function _setStickTo(eventName) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList[eventName]
+            );
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToCenterLeft: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToCenterTop: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToCenter: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToCenterBottom: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToCenterRight: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToTopLeft: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToBottomLeft: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToTopRight: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Save widget stick
+         * @member WidgetContentModel
+         * @param {string} eventName
+         */
+        setStickToBottomRight: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
+         * Set on top
+         * @member WidgetContentModel
+         * @param {boolean} ontop
+         */
+        setAlwaysOnTop: function setAlwaysOnTop(ontop) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            this.scope.config.preferences.alwaysOnTop = ontop;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.setAlwaysOnTop,
+                ontop
+            );
+        },
+
+        /**
+         * Save widget layer
+         * @member WidgetContentModel,
+         * @param {string} eventName
+         */
+        setLayerUp: function setLayerUp(eventName) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList[eventName],
+                true
+            );
+        },
+
+        /**
+         * Save widget layer
+         * @member WidgetContentModel,
+         * @param {string} eventName
+         */
+        setLayerDown: function setLayerDown(eventName) {
+
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList[eventName],
+                true
+            );
+        },
+
+        /**
+         * Set overlapping
+         * @member WidgetContentModel
+         * @param {boolean} overlapping
+         */
+        setOverlapping: function setOverlapping(overlapping) {
+            this.scope.config.preferences.overlapping = overlapping;
         }
 
     }, BaseModel.prototype);

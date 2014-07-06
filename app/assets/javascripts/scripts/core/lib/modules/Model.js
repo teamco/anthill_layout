@@ -507,19 +507,7 @@ define([
          * @param {string} title
          */
         setTitle: function setTitle(title) {
-
-            /**
-             * Define scope
-             * @type {BaseModel}
-             */
-            var scope = this;
-
-            if (this.scope.controller.isWidget()) {
-
-                scope = this.scope.content.model;
-            }
-
-            scope.setPrefs.bind(scope)('title', title);
+            this._setItemInfoPreferences('title', title);
         },
 
         /**
@@ -528,19 +516,32 @@ define([
          * @param {string} description
          */
         setDescription: function setDescription(description) {
+            this._setItemInfoPreferences('description', description);
+        },
+
+        /**
+         * Set item info preferences
+         * @member BaseModel
+         * @param {string} index
+         * @param value
+         * @private
+         */
+        _setItemInfoPreferences: function _setItemInfoPreferences(index, value) {
 
             /**
              * Define scope
              * @type {BaseModel}
              */
-            var scope = this;
+            var model = this,
+                scope = this.scope,
+                content = scope.content;
 
-            if (this.scope.controller.isWidget()) {
+            if (scope.controller.isWidget() && content) {
 
-                scope = this.scope.content.model;
+                model = scope.content.model;
             }
 
-            scope.setPrefs.bind(scope)('description', description);
+            model.setPrefs.bind(model)(index, value);
         },
 
         /**

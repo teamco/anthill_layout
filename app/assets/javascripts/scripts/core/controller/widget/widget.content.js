@@ -80,10 +80,6 @@ define([
             this.content = new Content(this, opts);
 
             this.logger.debug('Set content', this.content, opts);
-
-            this.observer.publish(
-                this.eventmanager.eventList.loadPreferences
-            );
         },
 
         /**
