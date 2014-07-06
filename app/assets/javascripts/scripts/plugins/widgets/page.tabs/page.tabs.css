@@ -1,15 +1,15 @@
-.widget .content.pagetabs {
+.widget .content.page-tabs {
     height: 100%;
     width: 100%;
     overflow: auto;
 }
 
-.widget .content.pagetabs ul.page-tabs-container {
+.widget .content.page-tabs ul.page-tabs-container {
     list-style: none;
     width: 100%;
 }
 
-.widget .content.pagetabs ul.page-tabs-container > li {
+.widget .content.page-tabs ul.page-tabs-container > li {
     float: left;
     display: inline-block;
     padding: 4px 10px;
@@ -27,16 +27,16 @@
     cursor: pointer;
 }
 
-.widget .content.pagetabs ul.page-tabs-container > li:first-child {
+.widget .content.page-tabs ul.page-tabs-container > li:first-child {
     margin-left: 10px;
     border-top-left-radius: 5px;
     border: none;
 }
 
-.widget .content.pagetabs ul.page-tabs-container > li:last-child {
+.widget .content.page-tabs ul.page-tabs-container > li:last-child {
     border-top-right-radius: 5px;
 }
 
-.widget .content.pagetabs ul.page-tabs-container .current {
+.widget .content.page-tabs ul.page-tabs-container .current {
     font-weight: bold;
 }
