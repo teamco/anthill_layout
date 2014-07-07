@@ -118,7 +118,7 @@ define([
             setContent: 'set.content',
 
 //            loadPreferences: 'load.preferences',
-//            transferPreferences: 'transfer.preferences',
+            transferPreferences: 'transfer.preferences',
 
             setLayerUp: 'set.layer.up',
             setLayerDown: 'set.layer.down',

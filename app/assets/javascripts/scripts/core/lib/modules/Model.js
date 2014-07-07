@@ -463,28 +463,28 @@ define([
             }
         },
 
-        /**
-         * Update prefs
-         * @member BaseModel
-         * @param data
-         */
-        updatePreferences: function updatePreferences(data) {
-
-            /**
-             * Get prefs
-             * @type {*}
-             */
-            var preferences = this.getConfig('preferences');
-
-            for (var index in data) {
-
-                if (data.hasOwnProperty(index)) {
-
-                    preferences[index] = data[index];
-                    this.setPrefs(index, data[index]);
-                }
-            }
-        },
+//        /**
+//         * Update prefs
+//         * @member BaseModel
+//         * @param data
+//         */
+//        updatePreferences: function updatePreferences(data) {
+//
+//            /**
+//             * Get prefs
+//             * @type {*}
+//             */
+//            var preferences = this.getConfig('preferences');
+//
+//            for (var index in data) {
+//
+//                if (data.hasOwnProperty(index)) {
+//
+//                    preferences[index] = data[index];
+//                    this.setPrefs(index, data[index]);
+//                }
+//            }
+//        },
 
         /**
          * Set rules on loading
@@ -533,14 +533,24 @@ define([
              * @type {BaseModel}
              */
             var model = this,
-                scope = this.scope,
-                content = scope.content;
+                scope = this.scope;
 
-            if (scope.controller.isWidget() && content) {
+            if (scope.controller.isWidget()) {
 
-                model = scope.content.model;
+                if (scope.content && scope.content.model) {
+
+                    // Reset scope
+                    model = scope.content.model;
+
+                } else {
+
+                    // Update config
+                    scope.config.preferences[index] = value;
+                    return false;
+                }
             }
 
+            // Update preferences
             model.setPrefs.bind(model)(index, value);
         },
 

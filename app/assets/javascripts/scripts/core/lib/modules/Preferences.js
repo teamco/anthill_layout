@@ -22,17 +22,16 @@ define([], function defineBasePreferences() {
         updatePreferences: function updatePreferences($modal, render) {
 
             var $inputs = $('input:not(:disabled), textarea, div.combo-box > input', $modal.$),
-                scope = this.scope;
-
-            /**
-             * Get event name
-             * @type {string|*}
-             */
-            var event = scope.controller.isWidgetContent() ?
-                scope.eventmanager.eventList.transferContentPreferences :
-                scope.eventmanager.eventList.transferPreferences;
+                isWidgetContent = this.scope.controller.isWidgetContent(),
+                event = isWidgetContent ?
+                    this.scope.eventmanager.eventList.transferContentPreferences :
+                    this.scope.eventmanager.eventList.transferPreferences;
 
             $inputs.each(function each(index, input) {
+
+                var isContentPrefs =
+                        $('legend', $(input).parents('fieldset')).text() ===
+                        this.scope.constructor.name.toLowerCase();
 
                 /**
                  * Transform input name
@@ -61,27 +60,34 @@ define([], function defineBasePreferences() {
                     setter = value;
                 }
 
-                if (typeof(this.model[setter]) === 'function') {
+                /**
+                 * Check if setter is function
+                 * @type {boolean}
+                 */
+                var isSetter = typeof(this.model[setter]) === 'function';
+
+                if (isContentPrefs && isSetter) {
 
                     this.model[setter](value);
 
-                    scope.observer.publish(
-                        event,
-                        [input.name, value]
-                    );
-
-                } else {
+                } else if (isContentPrefs && !isSetter) {
 
                     if (input.type !== 'radio' || (input.type === 'radio' && setter !== 'on')) {
 
-                        scope.logger.warn('Undefined setter', [name, setter]);
+                        this.scope.logger.warn('Undefined content model setter', [name, setter]);
+                        return false;
                     }
                 }
+
+                this.scope.observer.publish(
+                    event,
+                    [input.name, value]
+                );
 
             }.bind(this));
 
             if (render) {
-                scope.view['render' + scope.constructor.name]();
+                this.scope.view['render' + this.scope.constructor.name]();
             }
 
             $modal.selfDestroy();

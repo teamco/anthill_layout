@@ -392,14 +392,10 @@ define([
          */
         transferPreferences: function transferPreferences(index, value) {
 
-            /**
-             * Define prefs
-             * @type {{}}
-             */
-            var prefs = {};
-
-            prefs[index] = value;
-            this.model.updatePreferences(prefs);
+            if (this.controller.isWidget()) {
+                this.config.preferences[index] = value;
+                return false;
+            }
         },
 
         /**

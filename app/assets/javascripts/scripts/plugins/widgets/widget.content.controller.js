@@ -15,6 +15,7 @@ define([
      * Define Base Widget controller
      * @class WidgetContentController
      * @extends PreferencesController
+     * @extends WidgetContentPreferencesController
      * @extends WidgetContentControllerRules
      * @constructor
      */

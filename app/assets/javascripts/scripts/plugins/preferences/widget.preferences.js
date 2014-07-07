@@ -47,7 +47,7 @@ define([
          *      stretchHeight: {type: string, disabled: boolean, group: string, events: array},
          * }}
          */
-        defaultPrefs: {
+        widgetPrefs: {
             title: {
                 type: 'text',
                 disabled: false,
@@ -401,12 +401,12 @@ define([
                 this.renderInteractions([
                     _renderNode.bind(this)(
                         'default',
-                        _mergePrefs(this.defaultPrefs, data, true),
+                        _mergePrefs(this.widgetPrefs, data, true),
                         'Widget'
                     ),
                     _renderNode.bind(this)(
                         'content',
-                        _mergePrefs(this.defaultPrefs, data, false),
+                        _mergePrefs(this.widgetPrefs, data, false),
                         this.view.scope.constructor.name,
                         true
                     )
