@@ -31,7 +31,7 @@
     line-height: 16px;
 }
 .widget .content .online-friends .scrollableContent {
-    max-height: 170px;
+    max-height: 150px;
     overflow: auto;
 }
 .widget .content .online-friends .friendsRowsContainer {
