@@ -187,7 +187,7 @@ define([
                 return false;
             }
 
-            var title = item.model.getPrefs('title');
+            var title = item.model.getConfig('preferences').title;
 
             if (title) {
                 return title.toClassName();

@@ -326,7 +326,11 @@ define([
 
                         nodes.push(
                             $('<li />').
-                                addClass([node.type, node.visible ? '' : 'hidden'].join(' ')).
+                                addClass([
+                                        title.humanize().toClassName() + '-prefs',
+                                    node.type,
+                                    node.visible ? '' : 'hidden'
+                                ].join(' ')).
                                 append($element)
                         );
                     }

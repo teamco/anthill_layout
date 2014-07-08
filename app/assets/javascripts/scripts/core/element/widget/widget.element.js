@@ -48,6 +48,7 @@ define([
         this.maximize = 'maximize';
 
         this.bindHoverInteractions();
+        //this.bindStatsCollector();
 
         return this;
     };
@@ -442,10 +443,45 @@ define([
          */
         stickToBottomRight: function stickToBottomRight(page) {
             this._stickTo('br', page);
+        },
+
+        /**
+         * Bind click
+         * @member WidgetElement
+         * @param {string} url
+         */
+        bindOnClickOpenUrl: function bindOnClickOpenUrl(url) {
+
+            this.$.on('click.openUrl', function openUrl() {
+                window.open(url);
+            });
+        },
+
+        /**
+         * Bind stats
+         * @member ImageElement
+         */
+        bindStatsCollector: function bindStatsCollector() {
+
+            function _clickPrefs(e) {
+
+                /**
+                 * Define scope
+                 * @type {Image}
+                 */
+                var scope = this.scope;
+debugger
+//                scope.observer.publish(
+//                    scope.eventmanager.eventList.provideStats,
+//                    e
+//                );
+            }
+
+            this.$.on(
+                'click.statistics',
+                _clickPrefs.bind(this.view)
+            );
         }
-
-
-
 
     }, BaseElement.prototype);
 });

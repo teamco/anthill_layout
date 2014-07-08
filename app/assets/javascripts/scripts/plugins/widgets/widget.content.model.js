@@ -18,38 +18,114 @@ define([], function defineWidgetContentModel() {
 
     return WidgetContentModel.extend('WidgetContentModel', {
 
+
         /**
-         * Set on click Url
+         * Get prefs
          * @member WidgetContentModel
-         * @param {string} url
+         * @param {string} prefs
+         * @returns {boolean|string}
          */
-        setOnClickOpenUrl: function setOnClickOpenUrl(url) {
+        getContentPrefs: function getContentPrefs(prefs) {
 
-            this.setPrefs('onClickOpenUrl', url);
-
-            /**
-             * Define scope
-             * @type {Widget}
-             */
-            var scope = this.scope.controller.getContainment();
-
-            if (!scope.controller.isWidgetContent()) {
+            if (!this.preferences[prefs]) {
+                this.scope.logger.info('Undefined preference', prefs);
                 return false;
             }
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.setOnClickUrl,
-                url
-            );
+            return this.preferences[prefs].value;
         },
 
         /**
-         * Set statistics
+         * Get prefs
          * @member WidgetContentModel
-         * @param {boolean} statistics
+         * @param {string} prefs
+         * @returns {*}
          */
-        setStatistics: function setStatistics(statistics) {
-            this.setPrefs('statistics', statistics);
+        getPrefs: function getPrefs(prefs) {
+
+            if (this.base.isDefined(this.preferences)) {
+                return this.getContentPrefs(prefs);
+            }
+
+            /**
+             * Define prefs
+             * @type {{}}
+             */
+            var preferences = this.scope.config.preferences;
+
+            if (!preferences) {
+                this.scope.logger.warn('Unable to locate preference', prefs);
+                return false;
+            }
+
+            return preferences[prefs];
+        },
+
+        /**
+         * Set prefs
+         * @member WidgetContentModel
+         * @param {string} prefs
+         * @param {*} value
+         */
+        setPrefs: function setPrefs(prefs, value) {
+
+            /**
+             * Define preferences
+             * @member WidgetContentModel
+             * @type {*}
+             */
+            this.preferences = this.base.define(
+                this.preferences, {}, true
+            );
+
+            /**
+             * Define new prefs
+             * @type {*}
+             */
+            this.preferences[prefs] = this.base.define(
+                this.preferences[prefs], {}, true
+            );
+
+            /**
+             * Define prefs
+             * @type {string}
+             */
+            this.preferences[prefs].value = value;
+        },
+
+        /**
+         * Copy prefs
+         * @member WidgetContentModel
+         * @param source
+         * @returns {boolean}
+         */
+        copyPrefs: function copyPrefs(source) {
+
+            /**
+             * Define
+             * @type {string}
+             */
+            var cname = this.scope.constructor.name.toLowerCase(),
+                prefs = source.model.preferences;
+
+            if (source.constructor.name.toLowerCase() !== cname) {
+                this.scope.logger.warn('Unable to copy preferences', source);
+                return false;
+            }
+
+            for (var index in prefs) {
+
+                if (prefs.hasOwnProperty(index)) {
+
+                    if (index.match(new RegExp(cname))) {
+
+                        this.setPrefs(index, prefs[index].value);
+                        this.scope.logger.debug(
+                            'Copied prefs', source, index, prefs[index]
+                        );
+                    }
+                }
+            }
         }
     });
 });

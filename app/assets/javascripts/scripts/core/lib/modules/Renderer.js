@@ -149,7 +149,7 @@ define([
              * @type {String}
              */
             var uuid = this.base.lib.generator.UUID() + '-event',
-                checked = widget.model.getPrefs(opts.group) === opts.name;
+                checked = widget.model.getConfig('preferences')[opts.group] === opts.name;
 
             var $input = $('<input />').attr({
                 name: opts.group,

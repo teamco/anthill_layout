@@ -26,7 +26,6 @@ define([
         });
 
         this.addCSS('image', {resource: '/widgets'});
-        this.bindStatsCollector();
 
         /**
          * Define element
@@ -170,44 +169,6 @@ define([
             $image.setHtml($image.$img);
 
             return false;
-        },
-
-        /**
-         * Bind click
-         * @member ImageElement
-         * @param {string} url
-         */
-        bindOnClickOpenUrl: function bindOnClickOpenUrl(url) {
-
-            this.$.on('click.openUrl', function openUrl() {
-                window.open(url);
-            });
-        },
-
-        /**
-         * Bind stats
-         * @member ImageElement
-         */
-        bindStatsCollector: function bindStatsCollector() {
-
-            function _clickPrefs(e) {
-
-                /**
-                 * Define scope
-                 * @type {Image}
-                 */
-                var scope = this.scope;
-
-                scope.observer.publish(
-                    scope.eventmanager.eventList.provideStats,
-                    e
-                );
-            }
-
-            this.$.on(
-                'click.statistics',
-                _clickPrefs.bind(this.view)
-            );
         }
 
     }, BaseElement.prototype);

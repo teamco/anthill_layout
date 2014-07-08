@@ -8,7 +8,7 @@
 define([
     'controller/widget/widget.drag',
     'controller/widget/widget.resize'
-], function defineWidgetInteractions(Draggable, Resizable){
+], function defineWidgetInteractions(Draggable, Resizable) {
 
     /**
      * Define Widget Interactions
@@ -294,6 +294,23 @@ define([
          */
         isResizable: function isResizable() {
             return this.scope.view.get$item().$.is('.ui-resizable');
+        },
+
+        /**
+         * Transfer click to content
+         * @member WidgetController
+         * @param {string} url
+         */
+        setOnClickUrl: function setOnClickUrl(url) {
+
+            if (!this.base.isUrl(url) && url.length > 0) {
+                this.logger.warn('None valid url', url);
+                return false;
+            }
+
+            if (url.length > 0) {
+                this.view.get$item().bindOnClickOpenUrl(url);
+            }
         }
     });
 });

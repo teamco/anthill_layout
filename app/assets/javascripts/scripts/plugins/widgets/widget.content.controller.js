@@ -133,24 +133,6 @@ define([
             },
 
             /**
-             * Transfer event onClickOpenUrl
-             * @member WidgetContentController
-             * @param {string} url
-             * @returns {boolean}
-             */
-            onClickOpenUrl: function onClickOpenUrl(url) {
-
-                if (!this.base.isUrl(url) && url.length > 0) {
-                    this.logger.warn('None valid url', url);
-                    return false;
-                }
-
-                if (url.length > 0) {
-                    this.view.get$item().bindOnClickOpenUrl(url);
-                }
-            },
-
-            /**
              * Define referrer
              * @member WidgetContentController
              * @param referrer

@@ -22,16 +22,55 @@ define([], function defineBasePreferences() {
         updatePreferences: function updatePreferences($modal, render) {
 
             var $inputs = $('input:not(:disabled), textarea, div.combo-box > input', $modal.$),
-                isWidgetContent = this.scope.controller.isWidgetContent(),
-                event = isWidgetContent ?
-                    this.scope.eventmanager.eventList.transferContentPreferences :
-                    this.scope.eventmanager.eventList.transferPreferences;
+                scope = this.scope,
+                widget = this.getContainment(),
+                cname = scope.constructor.name.toLowerCase();
+
+            /**
+             * Validate setter
+             * @param {{model, setter, name, value, type}} opts
+             * @private
+             */
+            function _validateSetter(opts) {
+
+                /**
+                 * Define setter as a function
+                 * @type {function}
+                 */
+                var setter = opts.model[opts.setter];
+
+                if (typeof(setter) !== 'function') {
+
+                    if (opts.type !== 'radio' || (opts.type === 'radio' && opts.setter !== 'on')) {
+
+                        opts.model.scope.logger.warn('Undefined model setter', opts);
+                    }
+
+                } else {
+
+                    setter.bind(opts.model)(
+                        opts.value
+                    );
+
+                    scope.observer.publish(
+                        opts.event,
+                        [opts.name, opts.value]
+                    );
+
+                }
+            }
 
             $inputs.each(function each(index, input) {
 
-                var isContentPrefs =
-                        $('legend', $(input).parents('fieldset')).text() ===
-                        this.scope.constructor.name.toLowerCase();
+                /**
+                 * Check if prefs in content
+                 * @type {boolean}
+                 */
+                var isContentPrefs = input.parentNode.className.indexOf(cname) !== -1;
+
+                var event = isContentPrefs ?
+                    scope.eventmanager.eventList.transferContentPreferences :
+                    widget.eventmanager.eventList.transferPreferences;
 
                 /**
                  * Transform input name
@@ -60,34 +99,23 @@ define([], function defineBasePreferences() {
                     setter = value;
                 }
 
-                /**
-                 * Check if setter is function
-                 * @type {boolean}
-                 */
-                var isSetter = typeof(this.model[setter]) === 'function';
 
-                if (isContentPrefs && isSetter) {
+                console.log(isContentPrefs, $('legend', $(input).parents('fieldset')).text(), setter, event, value)
 
-                    this.model[setter](value);
-
-                } else if (isContentPrefs && !isSetter) {
-
-                    if (input.type !== 'radio' || (input.type === 'radio' && setter !== 'on')) {
-
-                        this.scope.logger.warn('Undefined content model setter', [name, setter]);
-                        return false;
-                    }
-                }
-
-                this.scope.observer.publish(
-                    event,
-                    [input.name, value]
-                );
+                _validateSetter({
+                    type: input.type,
+                    name: name,
+                    model: isContentPrefs ?
+                        this.model : widget.model,
+                    setter: setter,
+                    event: event,
+                    value: value
+                });
 
             }.bind(this));
 
             if (render) {
-                this.scope.view['render' + this.scope.constructor.name]();
+                scope.view['render' + this.scope.constructor.name]();
             }
 
             $modal.selfDestroy();

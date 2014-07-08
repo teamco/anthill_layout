@@ -48,8 +48,6 @@ define([
          *      registerRules: string,
          *      transferRules: string,
          *      transferEvents: string,
-         *      onClickOpenUrl: string,
-         *      transferStatistics: string,
          *      executeOnWidgetEvent: string,
          *      executeOnWidgetContentOnLoadEvent: string
          * }}
@@ -67,8 +65,6 @@ define([
             registerRules: 'register.rules',
             transferRules: 'transfer.rules',
             transferEvents: 'transfer.events',
-            onClickOpenUrl: 'on.click.open.url',
-            transferStatistics: 'transferStatistics',
             executeOnWidgetEvent: 'execute.on.widget.event',
             executeOnWidgetContentOnLoadEvent: 'execute.on.widget.content.on.load.event'
         },

@@ -261,9 +261,9 @@ define([
                      * Get item title
                      * @type {*|string}
                      */
-                    itemTitle = item.model.getPrefs('title');
+                    var itemTitle = item.model.getConfig('preferences').title;
 
-                    if (itemTitle) {
+                    if (itemTitle && $.trim(itemTitle).length > 0) {
                         if (itemTitle.toClassName() === title.toClassName()) {
                             return item;
                         }
@@ -354,115 +354,6 @@ define([
             return this.getConfig('order');
         },
 
-        /**
-         * Get prefs
-         * @member BaseModel
-         * @param {string} prefs
-         * @returns {boolean|string}
-         */
-        getContentPrefs: function getContentPrefs(prefs) {
-
-            if (!this.preferences[prefs]) {
-                this.scope.logger.info('Undefined preference', prefs);
-                return false;
-            }
-
-            return this.preferences[prefs].value;
-        },
-
-        /**
-         * Get prefs
-         * @member BaseModel
-         * @param {string} prefs
-         * @returns {*}
-         */
-        getPrefs: function getPrefs(prefs) {
-
-            if (this.base.isDefined(this.preferences)) {
-                return this.getContentPrefs(prefs);
-            }
-
-            /**
-             * Define prefs
-             * @type {{}}
-             */
-            var preferences = this.scope.config.preferences;
-
-            if (!preferences) {
-                this.scope.logger.warn('Unable to locate preference', prefs);
-                return false;
-            }
-
-            return preferences[prefs];
-        },
-
-        /**
-         * Set prefs
-         * @member BaseModel
-         * @param {string} prefs
-         * @param {*} value
-         */
-        setPrefs: function setPrefs(prefs, value) {
-
-            /**
-             * Define preferences
-             * @member BaseModel
-             * @type {*}
-             */
-            this.preferences = this.base.define(
-                this.preferences, {}, true
-            );
-
-            /**
-             * Define new prefs
-             * @type {*}
-             */
-            this.preferences[prefs] = this.base.define(
-                this.preferences[prefs], {}, true
-            );
-
-            /**
-             * Define prefs
-             * @type {string}
-             */
-            this.preferences[prefs].value = value;
-        },
-
-        /**
-         * Copy prefs
-         * @member BaseModel
-         * @param source
-         * @returns {boolean}
-         */
-        copyPrefs: function copyPrefs(source) {
-
-            /**
-             * Define
-             * @type {string}
-             */
-            var cname = this.scope.constructor.name.toLowerCase(),
-                prefs = source.model.preferences;
-
-            if (source.constructor.name.toLowerCase() !== cname) {
-                this.scope.logger.warn('Unable to copy preferences', source);
-                return false;
-            }
-
-            for (var index in prefs) {
-
-                if (prefs.hasOwnProperty(index)) {
-
-                    if (index.match(new RegExp(cname))) {
-
-                        this.setPrefs(index, prefs[index].value);
-                        this.scope.logger.debug(
-                            'Copied prefs', source, index, prefs[index]
-                        );
-                    }
-                }
-            }
-        },
-
 //        /**
 //         * Update prefs
 //         * @member BaseModel
@@ -528,30 +419,8 @@ define([
          */
         _setItemInfoPreferences: function _setItemInfoPreferences(index, value) {
 
-            /**
-             * Define scope
-             * @type {BaseModel}
-             */
-            var model = this,
-                scope = this.scope;
-
-            if (scope.controller.isWidget()) {
-
-                if (scope.content && scope.content.model) {
-
-                    // Reset scope
-                    model = scope.content.model;
-
-                } else {
-
-                    // Update config
-                    scope.config.preferences[index] = value;
-                    return false;
-                }
-            }
-
-            // Update preferences
-            model.setPrefs.bind(model)(index, value);
+            // Update config
+            this.scope.config.preferences[index] = value;
         },
 
         /**
