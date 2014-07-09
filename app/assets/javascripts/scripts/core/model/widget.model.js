@@ -125,40 +125,40 @@ define([
             }
         },
 
-//        /**
-//         * Set widget preferences
-//         * @member WidgetModel
-//         * @param {string} eventName
-//         */
-//        setWidgetPreferences: function setWidgetPreferences(eventName) {
-//
-//            if (typeof(this[eventName]) === 'function') {
-//
-//                this[eventName](eventName);
-//
-//            } else {
-//
-//                this.scope.logger.warn('Undefined event', eventName);
-//            }
-//        },
-//
-//        /**
-//         * Set layer
-//         * @member WidgetModel
-//         * @param {string} eventName
-//         */
-//        setLayer: function setLayer(eventName) {
-//            this.setWidgetPreferences(eventName);
-//        },
-//
-//        /**
-//         * Set stick
-//         * @member WidgetModel
-//         * @param {string} eventName
-//         */
-//        setStick: function setStick(eventName) {
-//            this.setWidgetPreferences(eventName);
-//        },
+        /**
+         * Set widget input-radio preferences
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setRadioPreferences: function setRadioPreferences(eventName) {
+
+            if (typeof(this[eventName]) === 'function') {
+
+                this[eventName](eventName);
+
+            } else {
+
+                this.scope.logger.warn('Undefined event', eventName);
+            }
+        },
+
+        /**
+         * Set layer (radio)
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setLayer: function setLayer(eventName) {
+            this.setRadioPreferences(eventName);
+        },
+
+        /**
+         * Set stick (radio)
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setStick: function setStick(eventName) {
+            this.setRadioPreferences(eventName);
+        },
 
         /**
          * Set stretch width
