@@ -259,14 +259,20 @@ define([
                          */
                         uuid = widget.model.getUUID();
 
-                        var thumbnail = widget.model.getConfig('preferences/thumbnail'),
+                        /**
+                         * Get widget preferences
+                         * @type {*}
+                         */
+                        var preferences = widget.model.getConfig('preferences');
+
+                        var thumbnail = preferences.thumbnail,
                             css = thumbnail.length > 0 ? {backgroundImage: 'url("' + thumbnail + '")'} : {};
 
                         /**
                          * Get title
                          * @type {*|String}
                          */
-                        title = widget.model.getConfig('preferences/title') || uuid;
+                        title = preferences.title || uuid;
 
                         /**
                          * Define widget element
@@ -275,7 +281,7 @@ define([
                         var $li = $('<li />').
                             addClass(
                             this.view.controller.getResourceClassName(
-                                widget.model.getConfig('preferences/resource')
+                                preferences.resource
                             )
                         ).attr({
                                 rel: uuid,
@@ -287,7 +293,7 @@ define([
 
                         this.renderTooltip({
                             title: title,
-                            description: widget.model.getConfig('preferences/description') || '',
+                            description: preferences.description || '',
                             $container: {$: $li}
                         });
 

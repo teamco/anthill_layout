@@ -28,7 +28,7 @@ define([], function defineBasePreferences() {
 
             /**
              * Validate setter
-             * @param {{model, setter, name, value, type}} opts
+             * @param {{scope, setter, name, value, type}} opts
              * @private
              */
             function _validateSetter(opts) {
@@ -37,26 +37,25 @@ define([], function defineBasePreferences() {
                  * Define setter as a function
                  * @type {function}
                  */
-                var setter = opts.model[opts.setter];
+                var setter = opts.scope.model[opts.setter];
 
                 if (typeof(setter) !== 'function') {
 
                     if (opts.type !== 'radio' || (opts.type === 'radio' && opts.setter !== 'on')) {
 
-                        opts.model.scope.logger.warn('Undefined model setter', opts);
+                        opts.scope.logger.warn('Undefined model setter', opts);
                     }
 
                 } else {
 
-                    setter.bind(opts.model)(
+                    setter.bind(opts.scope.model)(
                         opts.value
                     );
 
-                    scope.observer.publish(
+                    opts.scope.observer.publish(
                         opts.event,
                         [opts.name, opts.value]
                     );
-
                 }
             }
 
@@ -99,17 +98,14 @@ define([], function defineBasePreferences() {
                     setter = value;
                 }
 
-
-                console.log(isContentPrefs, $('legend', $(input).parents('fieldset')).text(), setter, event, value)
-
                 _validateSetter({
                     type: input.type,
                     name: input.name,
-                    model: isContentPrefs ?
-                        this.model : widget.model,
                     setter: setter,
                     event: event,
-                    value: value
+                    value: value,
+                    scope: isContentPrefs ?
+                        scope : widget
                 });
 
             }.bind(this));

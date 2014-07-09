@@ -139,17 +139,11 @@ define([
         renderEventLink: function renderEventLink(opts) {
 
             /**
-             * Get widget
-             * @type {Widget}
-             */
-            var widget = this.view.scope.controller.getContainment();
-
-            /**
              * Create UUID
              * @type {String}
              */
             var uuid = this.base.lib.generator.UUID() + '-event',
-                checked = widget.model.getConfig('preferences')[opts.group] === opts.name;
+                checked = !!this.defaultPrefs[opts.name].value;
 
             var $input = $('<input />').attr({
                 name: opts.group,

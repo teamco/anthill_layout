@@ -43,11 +43,10 @@ define([
          *      stickToTopLeft: {type: string, disabled: boolean, group: string, events: array},
          *      stickToBottomLeft: {type: string, disabled: boolean, group: string, events: array},
          *      stickToTopRight: {type: string, disabled: boolean, group: string, events: array},
-         *      stickToBottomRight: {type: string, disabled: boolean, group: string, events: array},
-         *      stretchHeight: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToBottomRight: {type: string, disabled: boolean, group: string, events: array}
          * }}
          */
-        widgetPrefs: {
+        defaultPrefs: {
             title: {
                 type: 'text',
                 disabled: false,
@@ -374,45 +373,43 @@ define([
              * Merge prefs
              * @param defaults
              * @param prefs
-             * @param {boolean} condition
              * @returns {{}}
              * @private
              */
-            function _mergePrefs(defaults, prefs, condition) {
+            function _mergePrefs(defaults, prefs) {
 
-                var merge = {}, hash = {}, partition;
+                for (var index in prefs) {
 
-                $.extend(true, hash, defaults, prefs);
+                    if (prefs.hasOwnProperty(index)) {
 
-                for (var index in hash) {
+                        if (defaults.hasOwnProperty(index)) {
 
-                    if (hash.hasOwnProperty(index)) {
+                            defaults[index].value = prefs[index];
 
-                        partition = condition ?
-                            defaults.hasOwnProperty(index) :
-                            !defaults.hasOwnProperty(index);
+                        } else if (defaults.hasOwnProperty(prefs[index])) {
 
-                        if (partition) {
-                            merge[index] = hash[index];
+                            // input-radio
+                            defaults[prefs[index]].value = true;
                         }
                     }
                 }
 
-                return merge;
+                return defaults;
             }
 
             this.$.append(
                 this.renderInteractions([
                     _renderNode.bind(this)(
                         'default',
-                        _mergePrefs(this.widgetPrefs, data, true),
+                        _mergePrefs(
+                            this.defaultPrefs,
+                            this.view.scope.controller.getContainment().config.preferences
+                        ),
                         'Widget'
                     ),
                     _renderNode.bind(this)(
-                        'content',
-                        _mergePrefs(this.widgetPrefs, data, false),
-                        this.view.scope.constructor.name,
-                        true
+                        'content', data,
+                        this.view.scope.constructor.name, true
                     )
                 ])
             );
