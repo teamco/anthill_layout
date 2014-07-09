@@ -193,6 +193,12 @@ define([
             render: true
         });
 
+        /**
+         * Define layout
+         * @type {Layout}
+         */
+        this.layout = {};
+
         this.observer.publish(
             this.eventmanager.eventList.createLayout,
             [Layout, this.config.layout]

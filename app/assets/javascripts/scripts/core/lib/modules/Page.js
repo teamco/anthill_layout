@@ -32,7 +32,7 @@ define([
 
             /**
              * Define layout
-             * @member BasePage
+             * @member Page
              * @type {Layout}
              */
             this.layout = new Layout(opts, this);
@@ -67,7 +67,7 @@ define([
 
             /**
              * Define scope
-             * @type {*}
+             * @type {Layout}
              */
             var layout = this.scope.layout;
 

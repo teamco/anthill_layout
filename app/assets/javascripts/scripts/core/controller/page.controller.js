@@ -124,6 +124,10 @@ define(
                  */
                 updateWidgetsConfig: function updateWidgetsConfig(item) {
 
+                    /**
+                     * Define scope
+                     * @type {Page}
+                     */
                     var scope = this.scope,
                         items = this.model.getItems(),
                         grid = scope.layout.controller.minCellWidth() +
@@ -145,7 +149,7 @@ define(
 
                                 /**
                                  * Define widget
-                                 * @type {*}
+                                 * @type {Widget}
                                  */
                                 var widget = items[index];
 
