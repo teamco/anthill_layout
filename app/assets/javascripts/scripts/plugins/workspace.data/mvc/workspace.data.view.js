@@ -76,10 +76,9 @@ define(
              * Render workspace.data content
              * @member WorkspaceDataView
              * @param data
-             * @param {Boolean} force
              * @returns {boolean}
              */
-            renderContent: function renderContent(data, force) {
+            renderContent: function renderContent(data) {
 
                 /**
                  * Define content
@@ -192,7 +191,7 @@ define(
                  * @type {WorkspaceDataPreferencesElement}
                  */
                 this.elements.$preferences = new WorkspaceDataPreferencesElement(this, {
-                    data: page.controller.getPreferences(),
+                    data: page.model.getConfig('preferences'),
                     page: page
                 });
 

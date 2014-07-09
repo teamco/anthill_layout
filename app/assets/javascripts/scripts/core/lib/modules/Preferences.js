@@ -23,7 +23,7 @@ define([], function defineBasePreferences() {
 
             var $inputs = $('input:not(:disabled), textarea, div.combo-box > input', $modal.$),
                 scope = this.scope,
-                widget = this.getContainment(),
+                containment = this.getContainment(),
                 cname = scope.constructor.name.toLowerCase();
 
             /**
@@ -69,7 +69,7 @@ define([], function defineBasePreferences() {
 
                 var event = isContentPrefs ?
                     scope.eventmanager.eventList.transferContentPreferences :
-                    widget.eventmanager.eventList.transferPreferences;
+                    containment.eventmanager.eventList.transferPreferences;
 
                 /**
                  * Transform input name
@@ -105,7 +105,7 @@ define([], function defineBasePreferences() {
                     event: event,
                     value: value,
                     scope: isContentPrefs ?
-                        scope : widget
+                        scope : containment
                 });
 
             }.bind(this));

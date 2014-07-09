@@ -16,6 +16,7 @@ define([
      * @returns {WorkspaceDataContentElement}
      * @constructor
      * @class WorkspaceDataContentElement
+     * @type {function}
      * @extends BaseElement
      */
     var WorkspaceDataContentElement = function WorkspaceDataContentElement(view, opts) {
@@ -78,8 +79,9 @@ define([
              * @type {Number}
              */
             var items = this.base.lib.hash.hashLength(
-                page.model.getItems()
-            );
+                    page.model.getItems()
+                ),
+                preferences = page.model.getConfig('preferences') || {};
 
             this.get$counter().
                 text(items).
@@ -88,9 +90,9 @@ define([
                 });
 
             this.renderTooltip({
-                title: page.model.getPrefs('title') || page.model.getUUID(),
+                title: preferences.title || page.model.getUUID(),
                 description: [
-                    page.model.getPrefs('description') || '', '<br />',
+                        preferences.description || '', '<br />',
                     '<span>uuid: </span>', page.model.getUUID(), '<br /><br />',
                     '<span>items: </span>', items, '<br />',
                     '<span>index: </span>', 0
@@ -119,11 +121,12 @@ define([
              * Get config
              * @type {*}
              */
-            var config = data.model.getConfig();
+            var config = data.model.getConfig(),
+                preferences = data.model.getConfig('preferences') || {};
 
             this.$.attr({
                 rel: config.uuid,
-                title: data.model.getPrefs('title') || config.uuid
+                title: preferences.title || config.uuid
             }).addClass(config.resource);
         },
 

@@ -33,6 +33,20 @@ define(
         return PageController.extend('PageController', {
 
                 /**
+                 * Transfer preferences
+                 * @member PageController
+                 * @param {string} index
+                 * @param value
+                 */
+                transferContentPreferences: function transferContentPreferences(index, value) {
+
+                    this.observer.publish(
+                        this.eventmanager.eventList.transferPreferences,
+                        [index, value]
+                    );
+                },
+
+                /**
                  * Load config preferences
                  * @member PageController
                  */

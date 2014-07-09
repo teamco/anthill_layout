@@ -66,11 +66,41 @@ define([
             var nodes = [];
 
             /**
+             * Merge prefs
+             * @param defaults
+             * @param prefs
+             * @returns {{}}
+             * @private
+             */
+            function _mergePrefs(defaults, prefs) {
+
+                for (var index in prefs) {
+
+                    if (prefs.hasOwnProperty(index)) {
+
+                        if (defaults.hasOwnProperty(index)) {
+
+                            defaults[index].value = prefs[index];
+
+                        } else if (defaults.hasOwnProperty(prefs[index])) {
+
+                            // input-radio
+                            defaults[prefs[index]].value = true;
+                        }
+                    }
+                }
+
+                return defaults;
+            }
+
+            /**
              * Merge prefs with default data
              * @type {{}}
              */
-            opts.data = $.extend(true, this.defaultPrefs, opts.data);
-
+            opts.data = _mergePrefs(
+                this.defaultPrefs,
+                $.extend(opts.data, {}, true)
+            );
 
             for (var index in opts.data) {
 
@@ -126,7 +156,7 @@ define([
                     }
 
                     nodes.push(
-                        $('<li />').append(textField)
+                        $('<li class="page-prefs" />').append(textField)
                     );
                 }
             }
@@ -177,7 +207,7 @@ define([
 
                         $ul.append([
 
-                            $('<li />').append(
+                            $('<li class="layout-prefs" />').append(
                                 this.renderTextField({
                                     name: 'cell',
                                     text: 'Cell size',
@@ -186,7 +216,7 @@ define([
                                 })
                             ).attr('rel', 'layout-cell'),
 
-                            $('<li />').append(
+                            $('<li class="layout-prefs" />').append(
                                 this.renderCombobox(
                                     [
                                         {
@@ -278,7 +308,7 @@ define([
                          * Define widget element
                          * @type {*|jQuery}
                          */
-                        var $li = $('<li />').
+                        var $li = $('<li class="widget-prefs" />').
                             addClass(
                             this.view.controller.getResourceClassName(
                                 preferences.resource

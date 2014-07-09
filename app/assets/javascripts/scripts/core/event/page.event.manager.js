@@ -47,7 +47,8 @@ define([
          *      disableItemInteractions: string,
          *      enableItemInteractions: string,
          *      loadPreferences: string,
-         *      transferPreferences: string
+         *      transferPreferences: string,
+         *      transferContentPreferences: string
          * }}
          */
         eventList: {
@@ -77,6 +78,7 @@ define([
             enableItemInteractions: 'enable.item.interactions',
 
             loadPreferences: 'load.preferences',
+            transferContentPreferences: 'transfer.content.preferences',
             transferPreferences: 'transfer.preferences'
         }
 
