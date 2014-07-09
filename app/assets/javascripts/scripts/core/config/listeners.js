@@ -218,7 +218,7 @@ define([
                  * Define silent
                  * @type {boolean}
                  */
-                silent = typeof(silent) === 'undefined' ? false : !!silent;
+                silent = this.base.defineBoolean(silent, false, true);
 
                 /**
                  * Define event
@@ -239,6 +239,10 @@ define([
 
                 this.observer.publish(
                     this.eventmanager.eventList.loadContent
+                );
+
+                this.observer.publish(
+                    this.eventmanager.eventList.loadPreferences
                 );
             }
         }

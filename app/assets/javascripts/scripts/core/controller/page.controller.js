@@ -12,9 +12,11 @@ define(
         'modules/Controller',
         'modules/Page',
         'modules/Preferences',
-        'modules/Router'
+        'modules/Router',
+        'controller/page/page.layer',
+        'controller/page/page.maximize'
     ],
-    function definePageController(AntHill, BaseController, BasePage, BasePreferences, Router) {
+    function definePageController(AntHill, BaseController, BasePage, BasePreferences, Router, PageLayer, PageMaximize) {
 
         /**
          * Define page controller
@@ -22,6 +24,7 @@ define(
          * @extends BaseController
          * @extends AntHill
          * @extends BasePage
+         * @extends PageLayer
          * @constructor
          */
         var PageController = function PageController() {
@@ -151,286 +154,15 @@ define(
                             }
                         }
                     }
-                },
-
-                /**
-                 * Set widget as maximized
-                 * @member {PageController}
-                 * @param {Widget} widget
-                 */
-                setMaximized: function setMaximized(widget) {
-
-                    /**
-                     * Set maximized
-                     * @type {Widget}
-                     */
-                    this.maximized = widget;
-
-                    this.logger.debug('Set maximized', this.maximized);
-                },
-
-                /**
-                 * Unset widget as maximized
-                 * @member {PageController}
-                 */
-                unsetMaximized: function unsetMaximized() {
-
-                    /**
-                     * Unset maximized
-                     * @type {{}}
-                     */
-                    this.maximized = {};
-
-                    this.logger.debug('Unset maximized', this.maximized);
-                },
-
-                /**
-                 * Get container target widgets
-                 * @member PageController
-                 * @param {Widget} source
-                 * @param {boolean} [up]
-                 * @returns {{}}
-                 */
-                getTargetWidgetsData: function getTargetWidgetsData(source, up) {
-
-                    var targets = {
-                            widgets: {},
-                            minLayer: 16777271,
-                            maxLayer: 0
-                        },
-                        widget, items = this.model.getItems(),
-                        index, layer, uuid;
-
-                    for (index in items) {
-
-                        if (items.hasOwnProperty(index)) {
-
-                            /**
-                             * Define widget
-                             * @type {Widget}
-                             */
-                            widget = items[index];
-
-                            /**
-                             * Get widget UUID
-                             * @type {String}
-                             */
-                            uuid = widget.model.getUUID();
-
-                            if (source.model.getUUID() !== uuid) {
-
-                                targets.widgets[uuid] = widget;
-
-                                layer = widget.dom.zIndex;
-
-                                if (!layer || layer === 'auto') {
-                                    layer = 0;
-                                }
-
-                                layer = up ? layer : layer + 1;
-
-                                if (targets.maxLayer < layer) {
-                                    targets.maxLayer = layer;
-                                }
-
-                                if (targets.minLayer > layer) {
-                                    targets.minLayer = layer;
-                                }
-
-                                this.scope.logger.debug('Adopt widget layer', widget, layer);
-
-                                widget.map.adoptLayer(layer, false);
-                            }
-                        }
-                    }
-
-                    this.scope.logger.debug('Get container target widgets', targets);
-
-                    return targets;
-                },
-
-                /**
-                 * Re-order layers before save
-                 * @member PageController
-                 */
-                reorderLayers: function reorderLayers() {
-
-                    /**
-                     * Get page items
-                     * @type {*}
-                     */
-                    var items = this.model.getItems(),
-                        minLayer = 16777271,
-                        maxLayer = 0,
-                        index, widget, layer,
-                        ontop;
-
-                    for (index in items) {
-
-                        if (items.hasOwnProperty(index)) {
-
-                            /**
-                             * Define widget
-                             * @type {Widget}
-                             */
-                            widget = items[index];
-
-                            layer = widget.view.elements.$widget.getZIndex();
-                            widget.dom.zIndex = layer;
-
-                            if (!layer || layer === 'auto') {
-                                layer = 0;
-                            }
-
-                            if (minLayer > layer) {
-                                minLayer = layer;
-                            }
-
-                            if (maxLayer < layer) {
-                                maxLayer = layer;
-                            }
-
-                            if (widget.view.get$item().isOnTop()) {
-
-                                ontop = widget;
-                                this.scope.logger.debug('Get always on top widget', ontop);
-                            }
-                        }
-                    }
-
-                    for (index in items) {
-
-                        if (items.hasOwnProperty(index)) {
-
-                            /**
-                             * Define widget
-                             * @type {Widget}
-                             */
-                            widget = items[index];
-
-                            widget.map.adoptLayer(widget.dom.zIndex - minLayer, true);
-                        }
-                    }
-
-                    if (ontop) {
-                        ontop.map.adoptLayer(maxLayer - minLayer + 2, true);
-                    }
-                },
-
-                /**
-                 * Revert layer
-                 * @member PageController
-                 */
-                revertLayer: function revertLayer() {
-
-                    /**
-                     * Get page items
-                     * @type {*}
-                     */
-                    var items = this.model.getItems(),
-                        index, widget;
-
-                    for (index in items) {
-
-                        if (items.hasOwnProperty(index)) {
-
-                            /**
-                             * Define widget
-                             * @type {Widget}
-                             */
-                            widget = items[index];
-
-                            widget.map.adoptLayer(widget.dom.zIndex || 'auto', false);
-                        }
-                    }
-                },
-
-                /**
-                 * Disable items interactions on enlarge
-                 * @member PageController
-                 * @param {Widget} widget
-                 */
-                disableItemInteractions: function disableItemInteractions(widget) {
-
-                    var items = this.model.getItems(),
-                        index, item;
-
-                    for (index in items) {
-
-                        if (items.hasOwnProperty(index)) {
-
-                            /**
-                             * Define item
-                             * @type {Widget}
-                             */
-                            item = items[index];
-
-                            item.observer.publish(
-                                item.eventmanager.eventList.disableDraggable
-                            );
-
-                            item.observer.publish(
-                                item.eventmanager.eventList.disableResizable
-                            );
-
-                            if (widget !== item) {
-                                item.view.get$item().hide();
-                            }
-                        }
-                    }
-
-                    this.controller.banAddWidget();
-
-                    this.observer.publish(
-                        this.eventmanager.eventList.setMaximized,
-                        widget
-                    );
-                },
-
-                /**
-                 * Enable item interaction on reduce
-                 * @member PageController
-                 */
-                enableItemInteractions: function enableItemInteractions() {
-
-                    var items = this.model.getItems(),
-                        index, item;
-
-                    for (index in items) {
-
-                        if (items.hasOwnProperty(index)) {
-
-                            /**
-                             * Define item
-                             * @type {Widget}
-                             */
-                            item = items[index];
-
-                            item.observer.publish(
-                                item.eventmanager.eventList.enableDraggable
-                            );
-
-                            item.observer.publish(
-                                item.eventmanager.eventList.enableResizable
-                            );
-
-                            item.view.get$item().show();
-                        }
-                    }
-
-                    this.controller.allowAddWidget();
-
-                    this.observer.publish(
-                        this.eventmanager.eventList.unsetMaximized
-                    );
                 }
-
             },
 
             AntHill.prototype,
             BaseController.prototype,
             BasePage.prototype,
             BasePreferences.prototype,
+            PageLayer.prototype,
+            PageMaximize.prototype,
             Router.prototype
         );
     }

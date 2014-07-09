@@ -192,11 +192,6 @@ define([
         this.observer.publish(
             this.eventmanager.eventList.successCreated
         );
-
-        this.observer.publish(
-            this.eventmanager.eventList.loadPreferences
-        );
-
     };
 
     return Widget.extend('Widget', {

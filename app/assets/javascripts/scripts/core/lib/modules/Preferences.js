@@ -104,7 +104,7 @@ define([], function defineBasePreferences() {
 
                 _validateSetter({
                     type: input.type,
-                    name: name,
+                    name: input.name,
                     model: isContentPrefs ?
                         this.model : widget.model,
                     setter: setter,

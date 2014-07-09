@@ -214,7 +214,7 @@ define([
 
             /**
              * Define controller
-             * @type {WidgetInteractions}
+             * @type {WidgetController}
              */
             var controller = this.controller;
 
