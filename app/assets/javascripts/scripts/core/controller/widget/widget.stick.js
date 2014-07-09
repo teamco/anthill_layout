@@ -7,6 +7,11 @@
 
 define([], function defineWidgetStick() {
 
+    /**
+     * Define widget stick
+     * @class WidgetStick
+     * @constructor
+     */
     var WidgetStick = function WidgetStick() {
 
     };
