@@ -143,13 +143,17 @@ define([
              * @type {String}
              */
             var uuid = this.base.lib.generator.UUID() + '-event',
-                checked = !!this.defaultPrefs[opts.name].value;
+                checked = !!this.defaultPrefs[opts.name].checked;
 
             var $input = $('<input />').attr({
                 name: opts.group,
                 type: 'radio',
                 checked: checked
             });
+
+            if (checked) {
+                $input.val(opts.name);
+            }
 
             /**
              * Define $link
@@ -187,7 +191,7 @@ define([
                     var content = this.view.scope;
 
                     // Reset to default value
-                    $('input:radio[name="' + e.target.name + '"]').val('on');
+                    $('input:radio[name="' + opts.group + '"]').val('on');
 
                     // Set new value
                     $('input', $(e.target)).prop({

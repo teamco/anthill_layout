@@ -394,10 +394,25 @@ define([
 
                             defaults[index].value = prefs[index];
 
-                        } else if (defaults.hasOwnProperty(prefs[index])) {
+                        } else {
 
-                            // input-radio
-                            defaults[prefs[index]].value = true;
+                            // Reset checked
+                            for (var key in defaults) {
+
+                                if (defaults.hasOwnProperty(key)) {
+
+                                    if (defaults[key].group === index) {
+
+                                        defaults[key].checked = false;
+                                    }
+                                }
+                            }
+
+                            if (defaults.hasOwnProperty(prefs[index])) {
+
+                                // check input-radio
+                                defaults[prefs[index]].checked = true;
+                            }
                         }
                     }
                 }
