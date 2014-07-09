@@ -408,24 +408,6 @@ define([
         },
 
         /**
-         * Get Preference
-         * @member BaseController
-         * @param {string} pref
-         * @returns {*}
-         */
-        getPreference: function getPreference(pref) {
-
-            var data = this.model.getPrefs(pref);
-
-            if (!data) {
-                this.scope.logger.debug('No Preference available', pref);
-                return false;
-            }
-
-            return data;
-        },
-
-        /**
          * Get rules
          * @member BaseController
          * @returns {{}}
