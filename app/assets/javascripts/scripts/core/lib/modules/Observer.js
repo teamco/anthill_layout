@@ -254,7 +254,7 @@ define([
                 scope = this.scope;
 
             if (!base.isDefined(eventName)) {
-                scope.logger.warn('Event', eventName);
+                scope.logger.warn('Undefined event', eventName);
             }
 
             scope.logger.timer(eventName, true);
@@ -264,7 +264,17 @@ define([
                 args = [args];
             }
 
-            this.fireEvent(this.listeners[eventName], args);
+            /**
+             * Get events
+             * @type {undefined|Array}
+             */
+            var events = this.listeners[eventName];
+
+            if (!base.isDefined(events)) {
+                scope.logger.warn('Undefined event', this.listeners, eventName);
+            }
+
+            this.fireEvent(this.base.define(events, [], true), args);
 
             scope.logger.timer(eventName, false);
         },
@@ -278,9 +288,8 @@ define([
          */
         fireEvent: function fireEvent(events, args) {
 
-            events = this.base.define(events, [], true);
-
             var i = 0, l = events.length;
+
             for (i; i < l; i += 1) {
                 if (this.base.isDefined(events[i])) {
                     if (false === this.executeEvent(this.scope, events[i], args)) {
