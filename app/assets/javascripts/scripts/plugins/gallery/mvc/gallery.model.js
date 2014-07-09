@@ -150,6 +150,17 @@ define([
                 resource: 'online.friends'
             },
             {
+                name: 'Multiple Icons',
+                description: 'Widget with multiple usable tools and features',
+                thumbnail: '',
+                dimensions: {
+                    width: 3,
+                    height: 30
+                },
+                type: 'General',
+                resource: 'multiple.icons'
+            },
+            {
                 name: 'JW Player',
                 description: 'JW Player powers online publishing, with clients ranging in size from Fortune 500 companies to individual bloggers',
                 thumbnail: '',
