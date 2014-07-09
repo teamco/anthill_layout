@@ -70,6 +70,7 @@ define([
          *      reduceWidget: string,
          *      stretchHeight: string,
          *      stretchWidth: string,
+         *      unsetStick: string,
          *      setStickToCenterLeft: string,
          *      setStickToCenterTop: string,
          *      setStickToCenter: string,
@@ -143,6 +144,7 @@ define([
             stretchHeight: 'stretch.height',
             stretchWidth: 'stretch.width',
 
+            unsetStick: 'unset.stick',
             setStickToCenterLeft: 'set.stick.to.center.left',
             setStickToCenterTop: 'set.stick.to.center.top',
             setStickToCenter: 'set.stick.to.center',

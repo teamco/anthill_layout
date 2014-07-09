@@ -22,6 +22,16 @@ define([
     return BaseEvent.extend('BaseEvent', {
 
         /**
+         * Check if event was available in event list
+         * @member BaseEvent
+         * @param {string} event
+         * @returns {boolean}
+         */
+        isEvent: function isEvent(event) {
+            return this.eventList.hasOwnProperty(event);
+        },
+
+        /**
          * Find event in a whole project
          * @member BaseEvent
          * @param {*} root

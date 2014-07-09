@@ -225,6 +225,15 @@ define([
         },
 
         /**
+         * Unset stick
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        unsetStick: function unsetStick(eventName) {
+            this._setStickTo(eventName);
+        },
+
+        /**
          * Save widget stick
          * @member WidgetModel
          * @param {string} eventName

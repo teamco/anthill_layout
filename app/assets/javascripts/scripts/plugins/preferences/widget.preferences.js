@@ -117,6 +117,14 @@ define([
                 checked: false,
                 visible: true
             },
+            unsetStick: {
+                type: 'event',
+                disabled: false,
+                group: 'stick',
+                events: ['click'],
+                checked: true,
+                visible: true
+            },
             setStickToCenterLeft: {
                 type: 'event',
                 disabled: false,

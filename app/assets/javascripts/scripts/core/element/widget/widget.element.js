@@ -347,8 +347,6 @@ define([
          */
         _stickTo: function _stickTo(side, page) {
 
-            this.restoreSticker();
-
             this.setPosition({
                 $container: page.view.get$item().$,
                 $item: this.$,
@@ -359,9 +357,32 @@ define([
         /**
          * Restore sticker
          * @member WidgetElement
+         * @param {boolean} [force]
          */
-        restoreSticker: function restoreSticker() {
-            this._setPosition();
+        restoreSticker: function restoreSticker(force) {
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.view.scope,
+                stick = scope.model.getConfig('preferences').stick;
+
+            if (force) {
+                return this._setPosition();
+            }
+
+            if (stick && scope.eventmanager.isEvent(stick)) {
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList[stick]
+                );
+
+            } else {
+
+                this._setPosition();
+            }
+
         },
 
         /**
@@ -470,7 +491,7 @@ define([
                  * @type {Image}
                  */
                 var scope = this.scope;
-debugger
+                debugger
 //                scope.observer.publish(
 //                    scope.eventmanager.eventList.provideStats,
 //                    e

@@ -14,6 +14,15 @@ define([], function defineWidgetStick() {
     return WidgetStick.extend('WidgetStick', {
 
         /**
+         * Unset stick
+         * @member WidgetStick
+         */
+        unsetStick: function unsetStick() {
+            this.logger.debug('unsetStick');
+            this.view.get$item().restoreSticker(true);
+        },
+
+        /**
          * Stick to center left
          * @member WidgetStick
          */
@@ -126,11 +135,9 @@ define([], function defineWidgetStick() {
          * @member WidgetStick
          */
         restoreWidgetSticker: function restoreWidgetSticker() {
-            this.logger.debug('setStickToBottomRight');
+            this.logger.debug('restoreWidgetSticker');
 
-            this.view.get$item().restoreSticker(
-                this.controller.getContainment()
-            );
+            this.view.get$item().restoreSticker();
         }
     });
 });
