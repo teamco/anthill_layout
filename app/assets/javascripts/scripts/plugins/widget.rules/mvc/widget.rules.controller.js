@@ -11,7 +11,7 @@ define([
 ], function defineWidgetRulesController(AntHill, PluginBase) {
 
     /**
-     * Define page.data controller
+     * Define WidgetRules controller
      * @class WidgetRulesController
      * @extends AntHill
      * @extends PluginController

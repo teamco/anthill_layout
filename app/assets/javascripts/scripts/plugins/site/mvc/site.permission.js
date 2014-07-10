@@ -8,19 +8,19 @@
 
 define([
     'modules/Permission'
-], function definePanelPermission(BasePermission) {
+], function defineSitePermission(BasePermission) {
 
     /**
      * Define Permissions
-     * @class PanelPermission
+     * @class SitePermission
      * @constructor
      * @extends BasePermission
      */
-    var PanelPermission = function PanelPermission() {
+    var SitePermission = function SitePermission() {
 
     };
 
-    return PanelPermission.extend('PanelPermission', {
+    return SitePermission.extend('SitePermission', {
 
     }, BasePermission.prototype);
 });

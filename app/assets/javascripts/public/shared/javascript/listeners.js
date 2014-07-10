@@ -86,8 +86,9 @@ define(
                         'plugins/gallery/gallery',
                         'plugins/page.data/page.data',
                         'plugins/workspace.data/workspace.data',
-                        'plugins/widget.rules/widget.rules'
-                    ], function definePanel(Panel, Bar, Gallery, PageData, WorkspaceData, WidgetRules) {
+                        'plugins/widget.rules/widget.rules',
+                        'plugins/site/site'
+                    ], function definePanel(Panel, Bar, Gallery, PageData, WorkspaceData, WidgetRules, Site) {
 
                         /**
                          * Init panel plugin
@@ -95,7 +96,7 @@ define(
                          */
                         app.panels.author = new Panel({
                             config: {renderAt: 'right'},
-                            modules: [Gallery, PageData, WorkspaceData, WidgetRules],
+                            modules: [Gallery, PageData, WorkspaceData, WidgetRules, Site],
                             packages: [Bar]
                         }, app);
 
