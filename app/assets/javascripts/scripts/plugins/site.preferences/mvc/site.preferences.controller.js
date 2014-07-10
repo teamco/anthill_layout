@@ -34,6 +34,14 @@ define([
                     this.model.getData()
                 );
             }
+        },
+
+        /**
+         * Load preferences
+         * @member SitePreferencesController
+         */
+        loadPreferences: function loadPreferences(e, data) {
+            this.view.showPreferences()
         }
 
     }, AntHill.prototype, PluginBase.prototype);

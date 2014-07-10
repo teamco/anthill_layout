@@ -99,6 +99,64 @@ define([
         },
 
         /**
+         * Show Preferences
+         * @member SitePreferencesView
+         * @param opts
+         */
+        showPreferences: function showPreferences(opts) {
+
+            /**
+             * Define $html
+             * @type {BaseElement}
+             */
+            var $html = this.elements.$site.getPreferencesHtml(opts);
+
+            /**
+             * Define buttons
+             * @type {*}
+             */
+            var buttons = {
+                approve: {
+                    text: 'OK',
+                    events: {
+                        click: 'approveUpdatePreferences'
+                    }
+                },
+                reject: {
+                    text: 'Cancel',
+                    events: {
+                        click: ['rejectModalEvent']
+                    }
+                }
+            };
+
+            /**
+             * Define page
+             * @type {Page}
+             */
+            var page = this.controller.getPage();
+
+            /**
+             * Get Workspace
+             * @type {Workspace}
+             */
+            var workspace = this.controller.getWorkspace();
+
+            this.modalDialog({
+                style: [
+                    opts.title.toDash(), 'preferences'
+                ].join(' '),
+                $container: page.view.get$item().$,
+                type: 'info',
+                title: opts.title,
+                text: workspace.model.getUUID(),
+                html: $html,
+                cover: true,
+                buttons: buttons
+            });
+        },
+
+        /**
          * Render site.preferences
          * @member SitePreferencesView
          */

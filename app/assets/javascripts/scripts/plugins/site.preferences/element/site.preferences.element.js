@@ -42,6 +42,15 @@ define([
                 this.base.lib.hash.hashLength({}),
                 'items'
             ].join(' '));
+        },
+
+        /**
+         * Get preferences HTML
+         * @member SitePreferencesElement
+         * @param opts
+         */
+        getPreferencesHtml: function getPreferencesHtml(opts) {
+
         }
 
     }, BaseElement.prototype);

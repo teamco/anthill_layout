@@ -29,11 +29,13 @@ define([
          * Define event list
          * @member SitePreferencesEventManager
          * @type {{
-         *      updateTranslations: string
+         *      updateTranslations: string,
+         *      loadPreferences: string
          * }}
          */
         this.eventList = {
-            updateTranslations: 'update.translations'
+            updateTranslations: 'update.translations',
+            loadPreferences: 'load.preferences'
         };
     };
 
