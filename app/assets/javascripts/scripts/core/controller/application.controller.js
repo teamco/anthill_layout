@@ -67,10 +67,12 @@ define([
          */
         resizeWindowPublisher: function resizeWindowPublisher(e) {
 
-            this.observer.publish(
-                this.eventmanager.eventList.resizeWindow,
-                e
-            );
+            if (e.target === window && this.model.getConfig('isResized')) {
+                this.observer.publish(
+                    this.eventmanager.eventList.resizeWindow,
+                    e
+                );
+            }
         },
 
         /**
@@ -80,7 +82,6 @@ define([
          */
         resizeWindow: function resizeWindow(e) {
             this.logger.debug('Start resize window', e);
-            this.model.setConfig('isResized', true);
 
             this.observer.publish(
                 this.eventmanager.eventList.resizeWindowHooks

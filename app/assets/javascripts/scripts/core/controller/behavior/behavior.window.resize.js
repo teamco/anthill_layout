@@ -71,7 +71,13 @@ define([
                  * Define local items
                  * @type {*}
                  */
-                var items = resize.items;
+                var items = resize.items,
+                    scope = this.scope;
+
+                if (!this.model.getConfig('isResized')) {
+                    scope.logger.debug('Skip resize items', items);
+                    return false;
+                }
 
                 for (var index in items) {
 
@@ -83,7 +89,7 @@ define([
                          */
                         var item = items[index];
 
-                        this.scope.observer.publish(
+                        scope.observer.publish(
                             resize.event,
                             item
                         );
@@ -98,7 +104,6 @@ define([
                     }
                 }
             }
-
         },
 
         /**
@@ -112,10 +117,6 @@ define([
                 this.model.getConfig('isResized')
             );
 
-            if (!this.model.getConfig('isResized')) {
-                return false;
-            }
-
             this.controller._resizeNestedEventTrigger(
                 this.controller._getResizeAttributes()
             );
@@ -128,7 +129,7 @@ define([
          */
         resizeItem: function resizeItem(item) {
 
-            this.controller._resizeNestedEventTrigger(
+            this.controller._resizeNestedEventTrigger.bind(item.controller)(
                 item.controller._getResizeAttributes()
             );
         }
