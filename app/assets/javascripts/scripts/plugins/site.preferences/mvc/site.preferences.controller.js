@@ -39,9 +39,14 @@ define([
         /**
          * Load preferences
          * @member SitePreferencesController
+         * @param data
          */
-        loadPreferences: function loadPreferences(e, data) {
-            this.view.showPreferences()
+        loadPreferences: function loadPreferences(data) {
+            this.view.showPreferences(data)
+        },
+
+        approveUpdatePreferences: function approveUpdatePreferences() {
+            debugger;
         }
 
     }, AntHill.prototype, PluginBase.prototype);

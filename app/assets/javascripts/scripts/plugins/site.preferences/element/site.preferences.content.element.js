@@ -26,7 +26,7 @@ define([
         });
 
         this.setAttributes(opts.data);
-        this.showPreferences(opts.data);
+        this.showContentPreferences(opts.data);
 
         return this;
     };
@@ -48,11 +48,11 @@ define([
         },
 
         /**
-         * Set item attributes
+         * Show content preferences
          * @member SitePreferencesContentElement
          * @param data
          */
-        showPreferences: function showPreferences(data) {
+        showContentPreferences: function showContentPreferences(data) {
 
             /**
              * Define scope
@@ -68,7 +68,7 @@ define([
             function _clickPreferences(e) {
                 scope.observer.publish(
                     scope.eventmanager.eventList.loadPreferences,
-                    [e, data]
+                    data
                 );
             }
 

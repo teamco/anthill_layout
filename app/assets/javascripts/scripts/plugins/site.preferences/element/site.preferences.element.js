@@ -48,9 +48,10 @@ define([
          * Get preferences HTML
          * @member SitePreferencesElement
          * @param opts
+         * @return string
          */
         getPreferencesHtml: function getPreferencesHtml(opts) {
-
+            return 'test';
         }
 
     }, BaseElement.prototype);

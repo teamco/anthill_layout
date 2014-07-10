@@ -107,7 +107,7 @@ define([
 
             /**
              * Define $html
-             * @type {BaseElement}
+             * @type {string}
              */
             var $html = this.elements.$site.getPreferencesHtml(opts);
 
