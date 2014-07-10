@@ -12,42 +12,38 @@ define([
     'plugins/rules/rules',
     'element/header.element',
     'element/footer.element',
-    'plugins/site/element/site.content.element',
-    'plugins/site/element/site.element'
-], function defineSiteView(AntHill, BaseView, BaseRules, Header, Footer, SiteContent, Site) {
+    'plugins/site.preferences/element/site.preferences.content.element',
+    'plugins/site.preferences/element/site.preferences.element'
+], function defineSitePreferencesView(AntHill, BaseView, BaseRules, Header, Footer, SitePreferencesContentElement, SitePreferencesElement) {
 
     /**
      * Define view
-     * @class SiteView
+     * @class SitePreferencesView
      * @constructor
      * @extends BaseView
      * @extends BaseRules
      */
-    var SiteView = function SiteView() {
+    var SitePreferencesView = function SitePreferencesView() {
     };
 
-    return SiteView.extend('SiteView', {
+    return SitePreferencesView.extend('SitePreferencesView', {
 
         /**
-         * Render Site
-         * @member SiteView
+         * Render SitePreferences
+         * @member SitePreferencesView
          * @returns {boolean}
          */
-        renderSite: function renderSite() {
-
-            if (this.isCached('$site', Site)) {
-                return false;
-            }
+        renderSitePreferences: function renderSitePreferences() {
 
             this.header(Header, this.elements.$container).setText(
                 'Site Preferences'
             );
 
             /**
-             * Define Site element
-             * @type {SiteElement}
+             * Define SitePreferences element
+             * @type {SitePreferencesElement}
              */
-            this.elements.$site = new Site(this, {
+            this.elements.$site = new SitePreferencesElement(this, {
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
@@ -58,8 +54,8 @@ define([
         },
 
         /**
-         * Render site content
-         * @member SiteView
+         * Render site.preferences content
+         * @member SitePreferencesView
          * @param data
          * @returns {boolean}
          */
@@ -78,24 +74,16 @@ define([
 
                     /**
                      * Render item
-                     * @type {*}
+                     * @type {SitePreferencesContentElement}
                      */
-                    var $item = new SiteContent(this, {
-                        style: 'content',
-                        id: [
-                            data[index].model.getConfig('uuid'),
-                            this.scope.constructor.name.toDash()
-                        ].join('-'),
+                    var $item = new SitePreferencesContentElement(this, {
+                        style: [
+                            'content',
+                            data[index].title.toDash()
+                        ].join(' '),
                         $container: this.elements.$site.$,
                         data: data[index]
                     });
-
-                    this.scope.observer.publish(
-                        this.scope.eventmanager.eventList.storeItem,
-                        data[index]
-                    );
-
-                    this.controller.defineContentReferrer(data[index]);
 
                     this.elements.items[$item.id] = $item;
                 }
@@ -111,14 +99,14 @@ define([
         },
 
         /**
-         * Render site
-         * @member SiteView
+         * Render site.preferences
+         * @member SitePreferencesView
          */
         render: function render() {
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderSite.bind(this)
+                this.renderSitePreferences.bind(this)
             );
         }
 

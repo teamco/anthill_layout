@@ -7,35 +7,34 @@
 
 define([
     'modules/Element'
-], function defineSiteElement(BaseElement) {
+], function defineSitePreferencesElement(BaseElement) {
 
     /**
-     * Define Site Element
+     * Define SitePreferences Element
      * @param view
      * @param opts
-     * @returns {SiteElement}
+     * @returns {SitePreferencesElement}
      * @constructor
-     * @class SiteElement
+     * @class SitePreferencesElement
      * @extends BaseElement
      */
-    var SiteElement = function SiteElement(view, opts) {
+    var SitePreferencesElement = function SitePreferencesElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
             destroy: false
         });
 
-        this.addCSS('widget.rules');
-        this.addCSS('rules');
+        this.addCSS('site.preferences');
 
         return this;
     };
 
-    return SiteElement.extend('SiteElement', {
+    return SitePreferencesElement.extend('SitePreferencesElement', {
 
         /**
          * Get footer html
-         * @member SiteElement
+         * @member SitePreferencesElement
          * @returns {*|jQuery}
          */
         getFooter: function getFooter() {

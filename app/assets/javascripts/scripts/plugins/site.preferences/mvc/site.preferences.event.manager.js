@@ -8,26 +8,26 @@
 
 define([
     'modules/Event'
-], function defineSiteEventManager(BaseEvent) {
+], function defineSitePreferencesEventManager(BaseEvent) {
 
     /**
      * Define site event manager
-     * @class SiteEventManager
+     * @class SitePreferencesEventManager
      * @constructor
      * @extends BaseEvent
      */
-    var SiteEventManager = function SiteEventManager() {
+    var SitePreferencesEventManager = function SitePreferencesEventManager() {
 
         /**
          * Define events
-         * @member SiteEventManager
+         * @member SitePreferencesEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
-         * @member SiteEventManager
+         * @member SitePreferencesEventManager
          * @type {{
          *      updateTranslations: string
          * }}
@@ -37,7 +37,7 @@ define([
         };
     };
 
-    return SiteEventManager.extend('SiteEventManager', {
+    return SitePreferencesEventManager.extend('SitePreferencesEventManager', {
 
     }, BaseEvent.prototype);
 });

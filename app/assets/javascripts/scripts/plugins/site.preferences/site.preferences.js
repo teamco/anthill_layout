@@ -8,25 +8,25 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/site/mvc/site.controller',
-    'plugins/site/mvc/site.model',
-    'plugins/site/mvc/site.view',
-    'plugins/site/mvc/site.event.manager',
-    'plugins/site/mvc/site.permission'
-], function defineSite(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/site.preferences/mvc/site.preferences.controller',
+    'plugins/site.preferences/mvc/site.preferences.model',
+    'plugins/site.preferences/mvc/site.preferences.view',
+    'plugins/site.preferences/mvc/site.preferences.event.manager',
+    'plugins/site.preferences/mvc/site.preferences.permission'
+], function defineSitePreferences(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Site
+     * Define SitePreferences
      * @constructor
      * @param containment
-     * @class Site
+     * @class SitePreferences
      * @extends AntHill
      */
-    var Site = function Site(containment) {
+    var SitePreferences = function SitePreferences(containment) {
 
         /**
          * Define containment
-         * @member Site
+         * @member SitePreferences
          */
         this.containment = containment;
 
@@ -66,7 +66,7 @@ define([
 
         /**
          * Define MVC
-         * @member Site
+         * @member SitePreferences
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -88,11 +88,11 @@ define([
 
         this.observer.publish(
             this.eventmanager.eventList.updateTranslations,
-            ['plugins/site/translations/en-us']
+            ['plugins/site.preferences/translations/en-us']
         );
     };
 
-    return Site.extend('Site', {
+    return SitePreferences.extend('SitePreferences', {
 
     }, AntHill.prototype);
 });

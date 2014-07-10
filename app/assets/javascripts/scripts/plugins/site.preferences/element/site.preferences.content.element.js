@@ -7,18 +7,18 @@
 
 define([
     'modules/Element'
-], function defineSiteContentElement(BaseElement) {
+], function defineSitePreferencesContentElement(BaseElement) {
 
     /**
-     * Define Site Content Element
+     * Define SitePreferences Content Element
      * @param view
      * @param opts
-     * @returns {SiteContentElement}
+     * @returns {SitePreferencesContentElement}
      * @constructor
-     * @class SiteContentElement
+     * @class SitePreferencesContentElement
      * @extends BaseElement
      */
-    var SiteContentElement = function SiteContentElement(view, opts) {
+    var SitePreferencesContentElement = function SitePreferencesContentElement(view, opts) {
 
         this._config(view, opts, $('<li />')).build({
             $container: opts.$container,
@@ -28,7 +28,7 @@ define([
         return this;
     };
 
-    return SiteContentElement.extend('SiteContentElement', {
+    return SitePreferencesContentElement.extend('SitePreferencesContentElement', {
 
 
 
