@@ -30,9 +30,11 @@ define([], function defineMultipleIconsBehavior() {
             }.bind(this));
             
             $(document).on('click', '.close-note', function () {
-                var index = $(this).parent().closest('li').index();
-                console.log(index);
-                //$(this).parent('div').remove();
+                var index = $(this).parent().index();
+//                for(var i = index; i > 0; i--){
+//                   console.log($('.note-container')[i]);
+//                }
+                $(this).parent('div').remove();
             });
 
             $(document).on('click', '.note-container .content', function () {
