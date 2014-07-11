@@ -45,14 +45,12 @@ define([
 
             $element.view.controller.clearParentThumbnail();
             $element.$.append($list);
-            
-            
-             require([
+
+            require([
                 'plugins/widgets/multiple.icons/mvc/multiple.icons.behavior'
-            ]);
-                     //function showFriendsOnline(OnlineFriendsBehavior) {
-               // var showFriendsOnline = new OnlineFriendsBehavior();
-           // });
+            ], function showMultipleIcons(MultipleIconsBehavior) {
+                var showMultipleIcons = new MultipleIconsBehavior();
+            });
         }
 
     }, BaseElement.prototype);
