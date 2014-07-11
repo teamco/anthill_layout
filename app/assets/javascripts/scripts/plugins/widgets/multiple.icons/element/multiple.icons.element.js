@@ -7,6 +7,7 @@
 
 define([
     'modules/Element'
+    // 'plugins/widgets/multiple.icons/mvc/multiple.icons.behavior'
 ], function defineMultipleIconsElement(BaseElement) {
 
     /**
@@ -25,7 +26,9 @@ define([
             destroy: true
         });
 
-        this.addCSS('multiple.icons', {resource: '/widgets'});
+        this.addCSS('multiple.icons', {
+            resource: '/widgets'
+        });
 
         return this;
     };
@@ -37,7 +40,19 @@ define([
          * @member MultipleIconsElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
-            // TODO
+            var $element = this;
+            var $list = '<ul class="icons-container"/>';
+
+            $element.view.controller.clearParentThumbnail();
+            $element.$.append($list);
+            
+            
+             require([
+                'plugins/widgets/multiple.icons/mvc/multiple.icons.behavior'
+            ]);
+                     //function showFriendsOnline(OnlineFriendsBehavior) {
+               // var showFriendsOnline = new OnlineFriendsBehavior();
+           // });
         }
 
     }, BaseElement.prototype);
