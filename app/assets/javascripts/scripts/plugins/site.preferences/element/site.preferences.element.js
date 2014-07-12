@@ -33,6 +33,28 @@ define([
     return SitePreferencesElement.extend('SitePreferencesElement', {
 
         /**
+         * Toggle fieldset
+         * @member SitePreferencesElement
+         * @param e
+         */
+        toggleFieldset: function toggleFieldset(e) {
+
+            /**
+             * Define $el
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $el = $(e.target);
+
+            $el.parents('div.html').
+                find('.open').
+                removeClass('open');
+
+            $el.addClass('open');
+
+            this.adoptModalDialogPosition();
+        },
+
+        /**
          * Get footer html
          * @member SitePreferencesElement
          * @returns {*|jQuery}
@@ -51,8 +73,55 @@ define([
          * @return string
          */
         getPreferencesHtml: function getPreferencesHtml(opts) {
-            return 'test';
+
+            var nodes = [];
+
+            nodes.push(this.siteWidthSlider());
+
+            return $('<ul />').append(nodes);
+        },
+
+        siteWidthSlider: function siteWidthSlider() {
+
+            /**
+             * Define title
+             * @type {string}
+             */
+            var cname = 'Global Preferences',
+                uuid = this.base.lib.generator.UUID() + '-slider',
+                $ul = $('<ul />').addClass('site-width-slider'),
+                $slider = $('<div />');
+
+            var $node = $('<li />').append(
+                $('<fieldset />').append(
+                    $('<legend />').text(cname).
+                        on('click.toggle', this.toggleFieldset.bind(this)).attr({
+                            title: cname
+                        }),
+
+                    $ul.append(
+                        $('<li />').append(
+                            this.renderLabel(uuid, 'Site Width', 'slider', true),
+                            $slider
+                        )
+                    )
+                )
+            );
+
+            this.renderSlider($slider, {
+                value:100,
+                min: 0,
+                max: 500,
+                step: 50,
+                slide: function( event, ui ) {
+
+                }
+            });
+
+            return $node;
         }
+
+
 
     }, BaseElement.prototype);
 

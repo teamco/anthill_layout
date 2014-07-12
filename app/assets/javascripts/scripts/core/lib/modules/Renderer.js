@@ -11,10 +11,11 @@ define([
     'modules/renderer/combo.box',
     'modules/renderer/event.link',
     'modules/renderer/label',
+    'modules/renderer/slider',
     'modules/renderer/text.area',
     'modules/renderer/text.field',
     'modules/renderer/tool.tip'
-], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Label, TextArea, TextField, ToolTip) {
+], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Label, Slider, TextArea, TextField, ToolTip) {
 
     /**
      * Define renderer
@@ -25,6 +26,7 @@ define([
      * @extends {ComboBoxRenderer} ComboBox
      * @extends {EventLinkRenderer} EventLink
      * @extends {LabelRenderer} Label
+     * @extends {SliderRenderer} Slider
      * @extends {TextAreaRenderer} TextArea
      * @extends {TextFieldRenderer} TextField
      * @extends {ToolTipRenderer} ToolTip
@@ -43,6 +45,7 @@ define([
         ComboBox.prototype,
         EventLink.prototype,
         Label.prototype,
+        Slider.prototype,
         TextArea.prototype,
         TextField.prototype,
         ToolTip.prototype
