@@ -28,7 +28,6 @@ define([], function defineMultipleIconsBehavior() {
                     var noteVisual = '<div class="note-container"><a class="close-note"></a><div class="content" onkeypress="return(this.innerText.length <= 130)"></div></div>';
                     this.appContainer.prepend(noteVisual);
                 }
-                console.log(notesAmount);
             }.bind(this));
 
             $(document).on('click', '.close-note', function () {
