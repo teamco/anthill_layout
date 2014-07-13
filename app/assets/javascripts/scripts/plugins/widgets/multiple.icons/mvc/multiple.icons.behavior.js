@@ -24,16 +24,15 @@ define([], function defineMultipleIconsBehavior() {
 
             $(document).on('click', '.note-icon', function () {
                 var notesAmount = $('.note-container').length;
-                var top = 100 * notesAmount;
-                var noteVisual = '<div class="note-container" style="top:' + top + 'px"><a class="close-note"></a><div class="content" onkeypress="return(this.innerText.length <= 130)"></div></div>';
-                this.appContainer.prepend(noteVisual);
+                if (notesAmount < 1) {
+                    var noteVisual = '<div class="note-container"><a class="close-note"></a><div class="content" onkeypress="return(this.innerText.length <= 130)"></div></div>';
+                    this.appContainer.prepend(noteVisual);
+                }
+                console.log(notesAmount);
             }.bind(this));
-            
+
             $(document).on('click', '.close-note', function () {
                 var index = $(this).parent().index();
-//                for(var i = index; i > 0; i--){
-//                   console.log($('.note-container')[i]);
-//                }
                 $(this).parent('div').remove();
             });
 
@@ -46,14 +45,6 @@ define([], function defineMultipleIconsBehavior() {
                     $(this).attr('contenteditable', 'false').removeClass('editable');
                 }
             });
-
-            $(document).on('click', '.note-container', function () {
-                $(this).css('z-index', '3');
-            });
-
-            $(document).on('mouseleave', '.note-container', function () {
-                $(this).css('z-index', '0');
-            })
 
         }
     });
