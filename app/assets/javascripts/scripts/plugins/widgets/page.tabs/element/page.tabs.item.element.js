@@ -52,12 +52,18 @@ define([
             var scope = this.view.scope;
 
             /**
+             * Get prefs
+             * @type {*}
+             */
+            var preferences = this.pageTab.model.getConfig('preferences');
+
+            /**
              * Define title
              * @member PageTabsItemElement
              * @type {*|string}
              */
             this.title = scope.base.define(
-                this.pageTab.model.getPrefs('title'),
+                preferences.title,
                 this.pageTab.model.getUUID(),
                 true
             );
@@ -67,14 +73,14 @@ define([
              * @member PageTabsItemElement
              * @type {*|string}
              */
-            this.description = this.pageTab.model.getPrefs('description');
+            this.description = preferences.description;
 
             /**
              * Define pageUrl
              * @member PageTabsItemElement
              * @type {*}
              */
-            this.pageUrl = this.pageTab.model.getPrefs('pageUrl');
+            this.pageUrl = preferences.pageUrl;
 
             this.$.append(
                 $('<div />').text(this.title)
