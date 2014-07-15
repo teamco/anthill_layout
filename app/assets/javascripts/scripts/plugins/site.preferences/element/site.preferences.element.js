@@ -26,6 +26,7 @@ define([
         });
 
         this.addCSS('site.preferences');
+        this.addCSS('preferences');
 
         return this;
     };
@@ -81,6 +82,45 @@ define([
             return $('<ul />').append(nodes);
         },
 
+        /**
+         * Render static width
+         * @member SitePreferencesElement
+         * @returns {*|jQuery}
+         */
+        siteStaticWidth: function siteStaticWidth() {
+
+            /**
+             * Define index
+             * @type {string}
+             */
+            var text = 'staticWidth';
+
+            /**
+             * Define checkbox
+             * @type {*[]}
+             */
+            var $element = this.renderCheckbox({
+                name: text,
+                text: text.humanize(),
+                checked: false,
+                value: false,
+                disabled: false,
+                visible: true
+            });
+
+            return $('<li />').
+                addClass([
+                        text.humanize().toClassName() + '-prefs',
+                    'checkbox'
+                ].join(' ')).
+                append($element);
+        },
+
+        /**
+         * Render width slider
+         * @member SitePreferencesElement
+         * @returns {*|jQuery}
+         */
         siteWidthSlider: function siteWidthSlider() {
 
             /**
@@ -92,6 +132,16 @@ define([
                 $ul = $('<ul />').addClass('site-width-slider'),
                 $slider = $('<div />');
 
+            /**
+             * Render slider input
+             * @type {*[]}
+             */
+            var $textfield = this.renderTextField({
+                name: 'siteWithSlider',
+                disabled: true,
+                visible: false
+            });
+
             var $node = $('<li />').append(
                 $('<fieldset />').append(
                     $('<legend />').text(cname).
@@ -100,21 +150,41 @@ define([
                         }),
 
                     $ul.append(
-                        $('<li />').append(
+                        this.siteStaticWidth()
+                    ),
+
+                    $ul.append(
+                        $('<li class="site-width-prefs slider" />').append(
                             this.renderLabel(uuid, 'Site Width', 'slider', true),
-                            $slider
+                            $slider,
+                            $textfield
                         )
                     )
                 )
             );
 
-            this.renderSlider($slider, {
-                value:100,
-                min: 0,
-                max: 500,
-                step: 50,
-                slide: function( event, ui ) {
+            /**
+             * Define site width values
+             * @type {number[]}
+             */
+            var map = [960, 1024, 1040, 1140, 1280, 1920];
 
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                $workspace = workspace.view.elements.$workspace;
+
+            this.renderSlider($slider, {
+                value: 1,
+                min: 0,
+                max: map.length - 1,
+                slide: function (event, ui) {
+                    $($textfield, 'input').val(ui.value);
+                    $workspace.$.attr('class', '').addClass(
+                        ['workspace', 'default', 'sw-' + map[ui.value]].join(' ')
+                    );
                 }
             });
 
