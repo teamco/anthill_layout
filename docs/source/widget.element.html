@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:12 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineWidgetElement(BaseElement) {
+
+<span id='WidgetElement-method-WidgetElement'><span id='WidgetElement'>    /**
+</span></span>     * Define widget element
+     * @param {{}} view
+     * @param {{$container}} opts
+     * @returns {*}
+     * @constructor
+     * @class WidgetElement
+     * @extends BaseElement
+     */
+    var WidgetElement = function WidgetElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;li /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: false
+        });
+
+<span id='WidgetElement-property-overlapped'>        /**
+</span>         * Define overlapped css class
+         * @member WidgetElement
+         * @type {string}
+         */
+        this.overlapped = &#39;overlapped&#39;;
+
+<span id='WidgetElement-property-content'>        /**
+</span>         * Define show content class
+         * @member WidgetElement
+         * @type {string}
+         */
+        this.content = &#39;disable-interactions&#39;;
+
+<span id='WidgetElement-property-maximize'>        /**
+</span>         * Define maximize class
+         * @member WidgetElement
+         * @type {string}
+         */
+        this.maximize = &#39;maximize&#39;;
+
+        this.bindHoverInteractions();
+        //this.bindStatsCollector();
+
+        return this;
+    };
+
+    return WidgetElement.extend(&#39;WidgetElement&#39;, {
+
+<span id='WidgetElement-method-bindHoverInteractions'>        /**
+</span>         * Bind interactions on hover
+         * @member WidgetElement
+         */
+        bindHoverInteractions: function bindHoverInteractions() {
+
+<span id='WidgetElement-property-S-widget'>            /**
+</span>             * Define scope
+             * @type {BaseElement}
+             */
+            var $widget = this.$;
+
+<span id='WidgetElement-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.view.scope;
+
+            this._bindDisableInteractions(scope, $widget, this.content);
+            this._bindEnableInteractions(scope, $widget, this.content);
+        },
+
+<span id='WidgetElement-method-_bindDisableInteractions'>        /**
+</span>         * Bind disable interactions
+         * @member WidgetElement
+         * @private
+         * @param {Widget} scope
+         * @param {BaseElement} $widget
+         * @param {string} content
+         */
+        _bindDisableInteractions: function _bindDisableInteractions(scope, $widget, content) {
+
+            $widget.on(&#39;mouseenter.widget&#39;, function mouseEnter() {
+
+                $widget.on(&#39;dblclick.widget&#39;, function dblClick() {
+
+                    $widget.addClass(content);
+
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.disableDraggable
+                    );
+                });
+            });
+        },
+
+<span id='WidgetElement-method-_bindEnableInteractions'>        /**
+</span>         * Bind enable interactions
+         * @member WidgetElement
+         * @private
+         * @param {Widget} scope
+         * @param {BaseElement} $widget
+         * @param {string} content
+         */
+        _bindEnableInteractions: function _bindEnableInteractions(scope, $widget, content) {
+
+            $widget.on(&#39;mouseleave.widget&#39;, function mouseLeave() {
+
+                if ($widget.hasClass(content)) {
+
+                    $widget.removeClass(content);
+                    $widget.off(&#39;dblclick.widget&#39;);
+
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.enableDraggable
+                    );
+                }
+            });
+        },
+
+<span id='WidgetElement-method-_setPosition'>        /**
+</span>         * Set widget position
+         * @member WidgetElement
+         * @param {{animate: Boolean, callback: Function}} [opts]
+         * @private
+         */
+        _setPosition: function _setPosition(opts) {
+
+            opts = opts || {};
+
+<span id='WidgetElement-property-widget'>            /**
+</span>             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.view.scope,
+                dom = widget.dom,
+                position = widget.map.positionFor(
+                    dom.column,
+                    dom.row
+                );
+
+            this.$.stop().animate({
+                    top: position.top,
+                    left: position.left
+                },
+                !!opts.animate ? 500 : 0,
+                opts.callback
+            );
+        },
+
+<span id='WidgetElement-method-getContent'>        /**
+</span>         * Get item content
+         * @member WidgetElement
+         * @returns {*}
+         */
+        getContent: function getContent() {
+            return $(&#39;.content&#39;, this.$);
+        },
+
+<span id='WidgetElement-method-clearBackground'>        /**
+</span>         * Clear thumbnail bg
+         * @member WidgetElement
+         */
+        clearBackground: function clearBackground() {
+            this.$.addClass(&#39;no-bg&#39;);
+        },
+
+<span id='WidgetElement-method-moveOnTopLayer'>        /**
+</span>         * Move on top layer
+         * @member WidgetElement
+         * @param {boolean} ontop
+         */
+        moveOnTopLayer: function moveOnTopLayer(ontop) {
+            ontop ? this.$.addClass(&#39;ontop&#39;) :
+                this.$.removeClass(&#39;ontop&#39;);
+        },
+
+<span id='WidgetElement-method-updateElementLayer'>        /**
+</span>         * Update layer of a widgets
+         * @member WidgetElement
+         * @param {number} layer
+         */
+        updateElementLayer: function updateElementLayer(layer) {
+            this.$.css({
+                zIndex: layer
+            });
+        },
+
+<span id='WidgetElement-method-isOnTop'>        /**
+</span>         * Check if widget on top
+         * @member WidgetElement
+         * @returns {boolean}
+         */
+        isOnTop: function isOnTop() {
+            return this.$.hasClass(&#39;ontop&#39;);
+        },
+
+<span id='WidgetElement-method-selectWidget'>        /**
+</span>         * Select overlapped widgets
+         * @member WidgetElement
+         * @param {boolean} select
+         */
+        selectWidget: function selectWidget(select) {
+
+            if (select) {
+
+                this.$.addClass(this.overlapped);
+
+            } else {
+
+                if (this.$.hasClass(this.overlapped)) {
+
+                    this.$.removeClass(this.overlapped);
+                }
+            }
+        },
+
+<span id='WidgetElement-method-enlarge'>        /**
+</span>         * Enlarge widget
+         * @member WidgetElement
+         */
+        enlarge: function enlarge() {
+
+<span id='WidgetElement-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.view.scope;
+
+            this.$.stop().animate({
+
+                width: &#39;100%&#39;,
+                height: &#39;100%&#39;,
+                left: 0,
+                top: 0
+
+            }, 500, function afterEnlarge() {
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.afterMaximize
+                );
+
+            }.bind(scope)).addClass(this.maximize);
+        },
+
+<span id='WidgetElement-method-reduce'>        /**
+</span>         * Reduce widget
+         * @member WidgetElement
+         */
+        reduce: function reduce() {
+
+<span id='WidgetElement-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.view.scope,
+                dom = scope.dom;
+
+            this.$.stop().animate({
+
+                width: dom.width,
+                height: dom.height,
+                left: dom.left,
+                top: dom.top
+
+            }, 500, function afterReduce() {
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.afterReduce
+                );
+
+            }.bind(scope)).removeClass(this.maximize);
+        },
+
+<span id='WidgetElement-method-stretchWidth'>        /**
+</span>         * Stretch element width
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stretchWidth: function stretchWidth(page) {
+
+            this.$.css({
+
+                left: 0,
+                width: page.view.get$item().getWidth()
+
+            });
+        },
+
+<span id='WidgetElement-method-restoreWidth'>        /**
+</span>         * Restore original width
+         * @member WidgetElement
+         */
+        restoreWidth: function restoreWidth() {
+
+            var scope = this.view.scope;
+
+            this.$.css({
+
+                left: scope.dom.left,
+                width: scope.dom.width
+
+            });
+        },
+
+<span id='WidgetElement-method-stretchHeight'>        /**
+</span>         * Stretch element height
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stretchHeight: function stretchHeight(page) {
+
+            this.$.css({
+                top: 0,
+                height: page.view.get$item().getHeight()
+            });
+        },
+
+<span id='WidgetElement-method-restoreHeight'>        /**
+</span>         * Restore original height
+         * @member WidgetElement
+         */
+        restoreHeight: function restoreHeight() {
+
+            var scope = this.view.scope;
+
+            this.$.css({
+
+                top: scope.dom.top,
+                height: scope.dom.height
+
+            });
+        },
+
+<span id='WidgetElement-method-_stickTo'>        /**
+</span>         * Stick to
+         * @member WidgetElement
+         * @param {string} side
+         * @param {Page} page
+         * @private
+         */
+        _stickTo: function _stickTo(side, page) {
+
+            this.setPosition({
+                $container: page.view.get$item().$,
+                $item: this.$,
+                position: side
+            });
+        },
+
+<span id='WidgetElement-method-restoreSticker'>        /**
+</span>         * Restore sticker
+         * @member WidgetElement
+         * @param {boolean} [force]
+         */
+        restoreSticker: function restoreSticker(force) {
+
+<span id='WidgetElement-property-scope'>            /**
+</span>             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.view.scope,
+                stick = scope.model.getConfig(&#39;preferences&#39;).stick;
+
+            if (force) {
+                return this._setPosition();
+            }
+
+            if (stick &amp;&amp; scope.eventmanager.isEvent(stick)) {
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList[stick]
+                );
+
+            } else {
+
+                this._setPosition();
+            }
+
+        },
+
+<span id='WidgetElement-method-stickToCenterLeft'>        /**
+</span>         * Stick to center left
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToCenterLeft: function stickToCenterLeft(page) {
+            this._stickTo(&#39;cl&#39;, page);
+        },
+
+<span id='WidgetElement-method-stickToCenterTop'>        /**
+</span>         * Stick to center top
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToCenterTop: function stickToCenterTop(page) {
+            this._stickTo(&#39;tc&#39;, page);
+        },
+
+<span id='WidgetElement-method-stickToCenter'>        /**
+</span>         * Stick to center
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToCenter: function stickToCenter(page) {
+            this._stickTo(&#39;cc&#39;, page);
+        },
+
+<span id='WidgetElement-method-stickToCenterBottom'>        /**
+</span>         * Stick to center bottom
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToCenterBottom: function stickToCenterBottom(page) {
+            this._stickTo(&#39;bc&#39;, page);
+        },
+
+<span id='WidgetElement-method-stickToCenterRight'>        /**
+</span>         * Stick to center right
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToCenterRight: function stickToCenterRight(page) {
+            this._stickTo(&#39;cr&#39;, page);
+        },
+
+<span id='WidgetElement-method-stickToTopLeft'>        /**
+</span>         * Stick to top left
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToTopLeft: function stickToTopLeft(page) {
+            this._stickTo(&#39;tl&#39;, page);
+        },
+
+<span id='WidgetElement-method-stickToBottomLeft'>        /**
+</span>         * Stick to bottom left
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToBottomLeft: function stickToBottomLeft(page) {
+            this._stickTo(&#39;bl&#39;, page);
+        },
+
+<span id='WidgetElement-method-stickToTopRight'>        /**
+</span>         * Stick to top right
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToTopRight: function stickToTopRight(page) {
+            this._stickTo(&#39;tr&#39;, page);
+        },
+
+<span id='WidgetElement-method-stickToBottomRight'>        /**
+</span>         * Stick to bottom right
+         * @member WidgetElement
+         * @param {Page} page
+         */
+        stickToBottomRight: function stickToBottomRight(page) {
+            this._stickTo(&#39;br&#39;, page);
+        },
+
+<span id='WidgetElement-method-bindOnClickOpenUrl'>        /**
+</span>         * Bind click
+         * @member WidgetElement
+         * @param {string} url
+         */
+        bindOnClickOpenUrl: function bindOnClickOpenUrl(url) {
+
+            this.$.on(&#39;click.openUrl&#39;, function openUrl() {
+                window.open(url);
+            });
+        },
+
+<span id='ImageElement-method-bindStatsCollector'>        /**
+</span>         * Bind stats
+         * @member ImageElement
+         */
+        bindStatsCollector: function bindStatsCollector() {
+
+            function _clickPrefs(e) {
+
+<span id='WidgetElement-property-scope'>                /**
+</span>                 * Define scope
+                 * @type {Image}
+                 */
+                var scope = this.scope;
+                debugger
+//                scope.observer.publish(
+//                    scope.eventmanager.eventList.provideStats,
+//                    e
+//                );
+            }
+
+            this.$.on(
+                &#39;click.statistics&#39;,
+                _clickPrefs.bind(this.view)
+            );
+        }
+
+    }, BaseElement.prototype);
+});</pre>
+</body>
+</html>

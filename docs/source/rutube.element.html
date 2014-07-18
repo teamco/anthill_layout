@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineRutubeElement(BaseElement) {
+
+<span id='RutubeElement-method-RutubeElement'><span id='RutubeElement'>    /**
+</span></span>     * Define Rutube Element
+     * @param view
+     * @param opts
+     * @returns {RutubeElement}
+     * @constructor
+     * @class RutubeElement
+     * @extends BaseElement
+     */
+    var RutubeElement = function RutubeElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;rutube&#39;, {resource: &#39;/widgets&#39;});
+
+        return this;
+    };
+
+    return RutubeElement.extend(&#39;RutubeElement&#39;, {
+
+<span id='RutubeElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member RutubeElement
+         * @param {string} embed
+         */
+        renderEmbeddedContent: function renderEmbeddedContent(embed) {
+
+<span id='RutubeElement-property-scope'>            /**
+</span>             * Get scope
+             * @type {Rutube}
+             */
+            var scope = this.view.scope;
+
+            if (!embed) {
+                scope.logger.debug(&#39;Add rutube content&#39;);
+                return false;
+            }
+
+<span id='RutubeElement-property-iframe'>            /**
+</span>             * Define embedded mask
+             * @type {string}
+             */
+            var iframe = &#39;&lt;iframe width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;no&quot; allowtransparency=&quot;true&quot; src=&quot;{{src}}&quot; frameborder=&quot;0&quot; webkitAllowFullScreen mozallowfullscreen allowfullscreen&gt;&#39;,
+                url = $(embed).attr(&#39;src&#39;);
+
+            if (!url) {
+                scope.logger.warn(&#39;Undefined url&#39;, embed, url);
+                return false;
+            }
+
+            this.$.append(
+                iframe.replace(/{{src}}/, url)
+            );
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

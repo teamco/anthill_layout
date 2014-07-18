@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:02 AM
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/MVC&#39;,
+    &#39;plugins/panel/mvc/panel.controller&#39;,
+    &#39;plugins/panel/mvc/panel.model&#39;,
+    &#39;plugins/panel/mvc/panel.view&#39;,
+    &#39;plugins/panel/mvc/panel.event.manager&#39;,
+    &#39;plugins/panel/mvc/panel.permission&#39;
+], function definePanel(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+
+<span id='Panel-method-Panel'><span id='Panel'>    /**
+</span></span>     * Define Panel
+     * @param opts
+     * @param containment
+     * @constructor
+     * @class Panel
+     * @extends AntHill
+     */
+    var Panel = function Panel(opts, containment) {
+
+<span id='Panel-property-containment'>        /**
+</span>         * Define containment
+         * @member Panel
+         */
+        this.containment = containment;
+
+<span id='Panel-property-opened'>        /**
+</span>         * Define opened
+         * @member Panel
+         * @type {boolean}
+         */
+        this.opened = false;
+
+<span id='Panel-property-active'>        /**
+</span>         * Define active module
+         * @type {string}
+         */
+        this.active = undefined;
+
+<span id='Panel-property-RENDER_AT'>        /**
+</span>         * Render side
+         * @type {{top: string, right: string, bottom: string, left: string}}
+         */
+        var RENDER_AT = {
+            top: &#39;top&#39;,
+            right: &#39;right&#39;,
+            bottom: &#39;bottom&#39;,
+            left: &#39;left&#39;
+        };
+
+<span id='Panel-property-DEFAULTS'>        /**
+</span>         * Define defaults
+         * @type {{
+         *      plugin: boolean,
+         *      html: {
+         *          width: {
+         *              min: number,
+         *              max: number
+         *          },
+         *          style: string,
+         *          resizable: boolean,
+         *          header: boolean,
+         *          footer: boolean,
+         *          floating: boolean,
+         *          padding: {
+         *              top: number,
+         *              right: number,
+         *              bottom: number,
+         *              left: number
+         *          }
+         *      }
+         * }}
+         */
+        var DEFAULTS = {
+            plugin: true,
+            renderAt: RENDER_AT.right,
+            html: {
+                width: {
+                    min: 5,
+                    max: 215
+                },
+                resizable: false,
+                style: &#39;default&#39;,
+                header: true,
+                footer: false,
+                floating: false,
+                padding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                }
+            }
+        };
+
+<span id='Panel-property-mvc'>        /**
+</span>         * Define MVC
+         * @member Panel
+         * @type {MVC}
+         */
+        this.mvc = new MVC({
+            scope: this,
+            config: [
+                this.base.define(opts, {}, true).config,
+                DEFAULTS
+            ],
+            components: [
+                Controller,
+                Model,
+                View,
+                EventManager,
+                Permission
+            ],
+            render: true
+        });
+
+        this.observer.publish(
+            this.eventmanager.eventList.successCreated
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.updateTranslations,
+            [&#39;plugins/panel/translations/en-us&#39;]
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.defineModules,
+            [opts.modules]
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.definePackages,
+            [opts.packages]
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.subscribeGenericEvent
+        );
+    };
+
+    return Panel.extend(&#39;Panel&#39;, {
+
+    }, AntHill.prototype);
+
+});</pre>
+</body>
+</html>

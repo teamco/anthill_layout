@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/** @license
+</span> * RequireJS plugin for loading JSON files
+ * - depends on Text plugin and it was HEAVILY &quot;inspired&quot; by it as well.
+ * Author: Miller Medeiros
+ * Version: 0.4.0 (2014/04/10)
+ * Released under the MIT license
+ */
+define([&#39;text&#39;], function(text){
+
+    var CACHE_BUST_QUERY_PARAM = &#39;bust&#39;,
+        CACHE_BUST_FLAG = &#39;!bust&#39;,
+        jsonParse = (typeof JSON !== &#39;undefined&#39; &amp;&amp; typeof JSON.parse === &#39;function&#39;)? JSON.parse : function(val){
+            return eval(&#39;(&#39;+ val +&#39;)&#39;); //quick and dirty
+        },
+        buildMap = {};
+
+    function cacheBust(url){
+        url = url.replace(CACHE_BUST_FLAG, &#39;&#39;);
+        url += (url.indexOf(&#39;?&#39;) &lt; 0)? &#39;?&#39; : &#39;&amp;&#39;;
+        return url + CACHE_BUST_QUERY_PARAM +&#39;=&#39;+ Math.round(2147483647 * Math.random());
+    }
+
+    //API
+    return {
+
+        load : function(name, req, onLoad, config) {
+            if (( config.isBuild &amp;&amp; (config.inlineJSON === false || name.indexOf(CACHE_BUST_QUERY_PARAM +&#39;=&#39;) !== -1)) || (req.toUrl(name).indexOf(&#39;empty:&#39;) === 0)) {
+                //avoid inlining cache busted JSON or if inlineJSON:false
+                //and don&#39;t inline files marked as empty!
+                onLoad(null);
+            } else {
+                text.get(req.toUrl(name), function(data){
+                    if (config.isBuild) {
+                        buildMap[name] = data;
+                        onLoad(data);
+                    } else {
+                        onLoad(jsonParse(data));
+                    }
+                },
+                    onLoad.error, {
+                        accept: &#39;application/json&#39;
+                    }
+                );
+            }
+        },
+
+        normalize : function (name, normalize) {
+            // used normalize to avoid caching references to a &quot;cache busted&quot; request
+            if (name.indexOf(CACHE_BUST_FLAG) !== -1) {
+                name = cacheBust(name);
+            }
+            // resolve any relative paths
+            return normalize(name);
+        },
+
+        //write method based on RequireJS official text plugin by James Burke
+        //https://github.com/jrburke/requirejs/blob/master/text.js
+        write : function(pluginName, moduleName, write){
+            if(moduleName in buildMap){
+                var content = buildMap[moduleName];
+                write(&#39;define(&quot;&#39;+ pluginName +&#39;!&#39;+ moduleName +&#39;&quot;, function(){ return &#39;+ content +&#39;;});\n&#39;);
+            }
+        }
+
+    };
+});
+</pre>
+</body>
+</html>

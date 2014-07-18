@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/17/12
+ * Time: 5:27 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/Event&#39;
+], function defineAppEventManager(BaseEvent) {
+
+<span id='AppEventManager-method-constructor'><span id='AppEventManager'>    /**
+</span></span>     * Define AppEvent Manager
+     * @class AppEventManager
+     * @extends BaseEvent
+     * @constructor
+     */
+    var AppEventManager = function AppEventManager() {
+
+<span id='AppEventManager-property-events'>        /**
+</span>         * Define events
+         * @member AppEventManager
+         * @type {{}}
+         */
+        this.events = {};
+    };
+
+    return AppEventManager.extend(&#39;AppEventManager&#39;, {
+
+<span id='AppEventManager-property-eventList'>        /**
+</span>         * Define event list
+         * @member AppEventManager
+         * @type {{
+         *      defineSetting: string,
+         *      initResizeWindow: string,
+         *      resizeWindow: {eventName: string, params: {buffer: number}},
+         *      resizeWindowHooks: string,
+         *      createWorkspace: string,
+         *      destroyWorkspace: string,
+         *      destroyWorkspaces: string,
+         *      resizeWorkspaces: string,
+         *      resizeWorkspace: string,
+         *      setAsLoaded: string,
+         *      afterLoadingItems: string,
+         *      createAuthorPanel: string,
+         *      createToolPanel: string
+         * }}
+         */
+        eventList: {
+            defineSetting: &#39;define.setting&#39;,
+            initResizeWindow: {
+                eventName: &#39;init.resize.window&#39;,
+                params: { single: true }
+            },
+            resizeWindow: &#39;resize.window&#39;,
+            resizeWindowHooks: &#39;resize.window.hooks&#39;,
+            createWorkspace: &#39;create.workspace&#39;,
+            destroyWorkspace: &#39;destroy.workspace&#39;,
+            destroyWorkspaces: &#39;destroy.workspaces&#39;,
+            resizeWorkspace: &#39;resize.workspace&#39;,
+            resizeWorkspaces: &#39;resize.workspaces&#39;,
+            setAsLoaded: &#39;set.as.loaded&#39;,
+            afterLoadingItems: &#39;after.loading.items&#39;,
+            createAuthorPanel: &#39;create.author.panel&#39;,
+            createToolPanel: &#39;create.tool.panel&#39;
+        }
+
+    }, BaseEvent.prototype);
+});</pre>
+</body>
+</html>

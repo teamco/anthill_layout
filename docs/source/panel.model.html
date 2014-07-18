@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 11:06 PM
+ * To change this template use File | Settings | File Templates.
+ */
+define([
+    &#39;modules/Model&#39;
+], function definePanelModel(BaseModel) {
+
+<span id='PanelModel-method-constructor'><span id='PanelModel'>    /**
+</span></span>     * Define Panel model
+     * @extends BaseModel
+     * @class PanelModel
+     * @constructor
+     */
+    var PanelModel = function PanelModel() {
+
+<span id='PanelModel-property-modules'>        /**
+</span>         * Init modules
+         * @member PanelModel
+         * @type {Array}
+         */
+        this.modules = [];
+
+<span id='PanelModel-property-packages'>        /**
+</span>         * Define packages
+         * @member PanelModel
+         * @type {Array}
+         */
+        this.packages = [];
+    };
+
+    return PanelModel.extend(&#39;PanelModel&#39;, {
+
+<span id='PanelModel-method-defineModule'>        /**
+</span>         * Init module
+         * @member PanelModel
+         * @param Module
+         */
+        defineModule: function defineModule(Module) {
+            this.modules.push({
+                activated: false,
+                module: new Module(this.scope)
+            });
+        },
+
+<span id='PanelModel-method-definePackage'>        /**
+</span>         * Init package
+         * @member PanelModel
+         * @param Package
+         */
+        definePackage: function definePackage(Package) {
+            this.packages.push(new Package(this.scope));
+        },
+
+<span id='PanelModel-method-getModule'>        /**
+</span>         * Get module by index
+         * @member PanelModel
+         * @param {number} [index]
+         * @returns {*}
+         */
+        getModule: function getModule(index) {
+            return this.modules[index] || this.modules;
+        },
+
+<span id='PanelModel-method-getIndex'>        /**
+</span>         * Get module index
+         * @member PanelModel
+         * @param resource
+         * @returns {number}
+         */
+        getIndex: function getIndex(resource) {
+
+<span id='PanelModel-property-modules'>            /**
+</span>             * Define local instance of modules
+             * @type {Array}
+             */
+            var modules = this.modules;
+
+            for (var i = 0, l = modules.length; i &lt; l; i++) {
+                if (resource === modules[i].module.constructor.name.toDash()) {
+                    return i;
+                }
+            }
+
+            this.scope.logger.error(&#39;Undefined index&#39;);
+        },
+
+<span id='PanelModel-method-getPackage'>        /**
+</span>         * Get package by index
+         * @member PanelModel
+         * @param {number} [index]
+         * @returns {*}
+         */
+        getPackage: function getPackage(index) {
+            return this.packages[index] || this.packages;
+        }
+
+    }, BaseModel.prototype);
+});</pre>
+</body>
+</html>

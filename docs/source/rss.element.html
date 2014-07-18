@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineRssElement(BaseElement) {
+
+<span id='RssElement-method-RssElement'><span id='RssElement'>    /**
+</span></span>     * Define Rss Element
+     * @param view
+     * @param opts
+     * @returns {RssElement}
+     * @constructor
+     * @class RssElement
+     * @extends BaseElement
+     */
+    var RssElement = function RssElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;rss&#39;, {resource: &#39;/widgets&#39;});
+
+        return this;
+    };
+
+    return RssElement.extend(&#39;RssElement&#39;, {
+
+<span id='RssElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member RssElement
+         * @param {string} url
+         */
+        renderEmbeddedContent: function renderEmbeddedContent(url) {
+
+<span id='RssElement-property-scope'>            /**
+</span>             * Define scope
+             * @type {Rss}
+             */
+            var scope = this.view.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.parseRSS,
+                [url, this.updateContent.bind(this)]
+            );
+        },
+
+<span id='RssElement-method-updateContent'>        /**
+</span>         * Update embedded content
+         * @member RssElement
+         * @param {{
+         *      responseData: {feed},
+         *      responseDetails: string,
+         *      responseStatus: number
+         * }} data
+         */
+        updateContent: function updateContent(data) {
+
+<span id='RssElement-property-scope'>            /**
+</span>             * Define scope
+             * @type {Rss}
+             */
+            var scope = this.view.scope;
+
+            if (!data.responseData) {
+                scope.logger.warn(data);
+                return false;
+            }
+
+            console.log(data.responseData.feed);
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

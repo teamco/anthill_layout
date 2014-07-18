@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"> define([], function definePetPassportBehavior() {
+     var PetPassportBehavior = function PetPassportBehavior() {
+         this.editMenu = $(&#39;.editModeMenu&#39;);
+         this.mainContainer = $(&#39;#mainContainer&#39;);
+         this.rowsContainer = $(&#39;.passportRows&#39;);
+         this.fieldsData = [
+             {
+                 &#39;id&#39;: &#39;Species&#39;,
+                 &#39;value&#39;: &#39;Dog&#39;
+        },
+             {
+                 &#39;id&#39;: &#39;Breed&#39;,
+                 &#39;value&#39;: &#39;German Shepherd&#39;
+        },
+             {
+                 &#39;id&#39;: &#39;Sex&#39;,
+                 &#39;value&#39;: &#39;Female&#39;
+        },
+             {
+                 &#39;id&#39;: &#39;Age&#39;,
+                 &#39;value&#39;: &#39;3&#39;
+        },
+             {
+                 &#39;id&#39;: &#39;Color&#39;,
+                 &#39;value&#39;: &#39;Black&#39;
+        },
+             {
+                 &#39;id&#39;: &#39;Weight&#39;,
+                 &#39;value&#39;: &#39;8kg&#39;
+        },
+             {
+                 &#39;id&#39;: &#39;Chip&#39;,
+                 &#39;value&#39;: &#39;42526658&#39;
+        },
+             {
+                 &#39;id&#39;: &#39;Address&#39;,
+                 &#39;value&#39;: &#39;London&#39;
+        },
+             {
+                 &#39;id&#39;: &#39;Owner&#39;,
+                 &#39;value&#39;: &#39;Bruce Wilis&#39;
+        }
+    ];
+         
+         this.initialize();
+     }
+
+
+     return PetPassportBehavior.extend(&#39;PetPassportBehavior&#39;, {
+
+         initialize: function initialize() {
+
+             for (var i = 0; i &lt; this.fieldsData.length; i++) {
+                 this.rowsContainer.append(&#39;&lt;li&gt;&lt;span&gt;&#39; + this.fieldsData[i].id + &#39;:&lt;/span&gt;&lt;label id=&quot;&#39; + this.fieldsData[i].id + &#39;&quot;&gt;&#39; + this.fieldsData[i].value + &#39;&lt;/label&gt;&lt;/li&gt;&#39;);
+             };
+
+             this.mainContainer.on(&#39;mouseenter&#39;, function () {
+                 this.editMenu.addClass(&#39;extended&#39;);
+             }.bind(this));
+
+             this.mainContainer.on(&#39;mouseleave&#39;, function () {
+                 this.editMenu.removeClass(&#39;extended&#39;);
+                 if ($(&#39;.passportRows label:eq(0)&#39;).hasClass(&#39;edit&#39;)) {
+                     $(&#39;.passportRows label&#39;).each(function () {
+                         var key = $(this).prop(&#39;id&#39;);
+                         var value = $(this).html();
+                         localStorage.setItem(key, value);
+                         $(this).attr(&#39;contenteditable&#39;, &#39;false&#39;).removeAttr(&#39;class&#39;);
+                     });
+                 }
+             }.bind(this));
+
+             this.editMenu.on(&#39;click&#39;, function () {
+                 $(&#39;.passportRows label&#39;).each(function () {
+                     $(this).attr(&#39;contenteditable&#39;, &#39;true&#39;).addClass(&#39;edit&#39;);
+                 });
+                 this.editMenu.removeClass(&#39;extended&#39;);
+             }.bind(this));
+
+         }
+
+     });
+ });</pre>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: teamco
+ * Date: 2/23/14
+ * Time: 10:28 PM
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/Controller&#39;
+], function definePluginControllerBase(AntHill, BaseController) {
+
+<span id='PluginController-method-constructor'><span id='PluginController'>    /**
+</span></span>     * Define Plugin controller
+     * @class PluginController
+     * @extends AntHill
+     * @extends BaseController
+     * @constructor
+     */
+    var PluginController = function PluginController() {
+
+    };
+
+    PluginController.extend(&#39;PluginController&#39;, {
+
+<span id='PluginController-method-getAuthorPanel'>        /**
+</span>         * Get page data
+         * @member PluginController
+         * @returns {Panel}
+         */
+        getAuthorPanel: function getAuthorPanel() {
+            return this.root().panels.author;
+        },
+
+<span id='PluginController-method-getModuleByName'>        /**
+</span>         * Get module by name
+         * @member PluginController
+         * @returns {*}
+         */
+        getModuleByName: function getModuleByName(name) {
+
+<span id='PluginController-property-panel'>            /**
+</span>             * Define panel
+             * @type {Panel}
+             */
+            var panel = this.getAuthorPanel();
+
+            return panel.model.getModule(
+                panel.model.getIndex(name)
+            ).module;
+        },
+
+<span id='PluginController-method-getWidgetRules'>        /**
+</span>         * Get widget rules
+         * @member PluginController
+         * @returns {WidgetRules}
+         */
+        getWidgetRules: function getWidgetRules() {
+
+<span id='PluginController-property-panel'>            /**
+</span>             * Define panel
+             * @type {Panel}
+             */
+            var panel = this.getAuthorPanel();
+
+            return panel.model.getModule(
+                panel.model.getIndex(&#39;widget-rules&#39;)
+            ).module;
+        },
+
+<span id='PluginController-method-isDataNotExist'>        /**
+</span>         * Check if data was existing
+         * @member PluginController
+         * @returns {boolean}
+         */
+        isDataNotExist: function isDataNotExist() {
+            return this.base.lib.hash.isHashEmpty(
+                this.scope.view.elements.items
+            );
+        },
+
+<span id='PluginController-method-updateTranslations'>        /**
+</span>         * Update translations
+         * @member PluginController
+         */
+        updateTranslations: function updateTranslations(data) {
+
+<span id='PluginController-property-plugin'>            /**
+</span>             * Define this reference
+             * @type {*}
+             */
+            var plugin = this;
+
+            require([data], function defineEnUs(EnUs) {
+                plugin.i18n.updateData(EnUs);
+            });
+        },
+
+<span id='PluginController-method-locateElement'>        /**
+</span>         * Locate element
+         * @param $element
+         * @param {*} e
+         * @returns {boolean}
+         */
+        locateElement: function locateElement($element, e) {
+
+<span id='PluginController-method-_hideBorder'>            /**
+</span>             * Hide border on locate element
+             * @private
+             */
+            function _hideBorder() {
+                $element.$.removeClass(&#39;select&#39;);
+            }
+
+            $element.$.parent().children().removeClass(&#39;select&#39;);
+            $element.$.addClass(&#39;select&#39;);
+
+            if (e.type === &#39;mouseleave&#39; || e.type === &#39;click&#39;) {
+                setTimeout(_hideBorder, 300);
+            }
+        },
+
+<span id='PluginController-method-defineContentReferrer'>        /**
+</span>         * Define content referrer
+         * @member PluginController
+         * @param {Widget} widget
+         */
+        defineContentReferrer: function defineContentReferrer(widget) {
+
+<span id='PluginController-property-content'>            /**
+</span>             * Define content
+             * @type {*}
+             */
+            var content = widget.controller.getContent();
+
+            content.observer.publish(
+                content.eventmanager.eventList.defineReferrer,
+                this.scope
+            );
+        },
+
+<span id='PluginController-method-getResourceClassName'>        /**
+</span>         * Get resource class name
+         * @member PluginController
+         * @param {string} resource
+         */
+        getResourceClassName: function getResourceClassName(resource) {
+            return resource.replace(/\./g, &#39;-&#39;);
+        }
+
+    }, AntHill.prototype, BaseController.prototype);
+
+<span id='PluginController-property-successRenderedSuper'>    /**
+</span>     * Copy successRendered
+     * @type {Function}
+     */
+    var successRenderedSuper = PluginController.prototype.successRendered.clone();
+
+<span id='PluginController-method-successRendered'>    /**
+</span>     * Overwrite success rendered
+     * @param {function} [callback]
+     */
+    PluginController.prototype.successRendered = function successRendered(callback) {
+
+        successRenderedSuper.bind(this)();
+
+        if (typeof(callback) === &#39;function&#39;) {
+
+            callback();
+
+        } else {
+
+            this.logger.warn(&#39;Undefined callback&#39;);
+        }
+    };
+
+    return PluginController;
+});</pre>
+</body>
+</html>

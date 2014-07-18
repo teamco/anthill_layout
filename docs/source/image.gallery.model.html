@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 11:06 PM
+ * To change this template use File | Settings | File Templates.
+ */
+define([
+    &#39;modules/Model&#39;,
+    &#39;plugins/widgets/widget.content.model&#39;
+], function defineImageGalleryModel(BaseModel, WidgetContentModel) {
+
+<span id='ImageGalleryModel-method-constructor'><span id='ImageGalleryModel'>    /**
+</span></span>     * Define ImageGallery model
+     * @extends BaseModel
+     * @extends WidgetContentModel
+     * @class ImageGalleryModel
+     * @constructor
+     */
+    var ImageGalleryModel = function ImageGalleryModel() {
+
+<span id='ImageGalleryModel-property-preferences'>        /**
+</span>         * Define preferences
+         * @member ImageGalleryModel
+         * @type {{
+         *      imageGalleryUrls: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      imageGalleryTexts: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      imageGalleryResponsive: {type: string, disabled: boolean, value: boolean, visible: boolean}
+         * }}
+         */
+        this.preferences = {
+            imageGalleryUrls: {
+                type: &#39;textarea&#39;,
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            imageGalleryTexts: {
+                type: &#39;textarea&#39;,
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            imageGalleryResponsive: {
+                type: &#39;checkbox&#39;,
+                disabled: false,
+                value: false,
+                visible: true
+            }
+        };
+
+<span id='ImageGalleryModel-property-rules'>        /**
+</span>         * Define rules
+         * @member ImageGalleryModel
+         * @type {{}}
+         */
+        this.rules = {};
+    };
+
+    return ImageGalleryModel.extend(&#39;ImageGalleryModel&#39;, {
+
+<span id='ImageGalleryModel-method-setImageGalleryUrls'>        /**
+</span>         * Set ImageGallery Url
+         * @member ImageGalleryModel
+         * @param {string} url
+         */
+        setImageGalleryUrls: function setImageGalleryUrls(url) {
+            this.setPrefs(&#39;imageGalleryUrls&#39;, url);
+        },
+
+<span id='ImageGalleryModel-method-setImageGalleryTexts'>        /**
+</span>         * Set ImageGallery Text
+         * @member ImageGalleryModel
+         * @param {string} text
+         */
+        setImageGalleryTexts: function setImageGalleryTexts(text) {
+            this.setPrefs(&#39;imageGalleryTexts&#39;, text);
+        }
+
+    }, BaseModel.prototype, WidgetContentModel.prototype);
+});</pre>
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: teamco
+ * Date: 3/7/14
+ * Time: 7:39 PM
+ */
+
+define([
+    &#39;plugins/preferences/preferences&#39;
+], function defineWidgetPreferences(BasePreferences) {
+
+<span id='WidgetPreferences-method-constructor'><span id='WidgetPreferences'>    /**
+</span></span>     * Define prefs
+     * @class WidgetPreferences
+     * @extends Renderer
+     * @extends BasePreferences
+     * @constructor
+     */
+    var WidgetPreferences = function WidgetPreferences() {
+
+    };
+
+    return WidgetPreferences.extend(&#39;WidgetPreferences&#39;, {
+
+<span id='WidgetPreferences-property-defaultPrefs'>        /**
+</span>         * @type {{
+         *      title: {type: string, disabled: boolean, value},
+         *      description: {type: string, disabled: boolean, value},
+         *      widgetUrl: {type: string, disabled: boolean, value},
+         *      onClickOpenUrl: {type: string, disabled: boolean, value},
+         *      overlapping: {type: string, disabled: boolean, checked: boolean},
+         *      alwaysOnTop: {type: string, disabled: boolean, checked: boolean},
+         *      statistics: {type: string, disabled: boolean, checked: boolean},
+         *      setLayerUp: {type: string, disabled: boolean, group: string, events: array},
+         *      setLayerDown: {type: string, disabled: boolean, group: string, events: array},
+         *      stretchWidth: {type: string, disabled: boolean, group: string, events: array},
+         *      stretchHeight: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToCenterLeft: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToCenterTop: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToCenter: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToCenterBottom: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToCenterRight: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToTopLeft: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToBottomLeft: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToTopRight: {type: string, disabled: boolean, group: string, events: array},
+         *      stickToBottomRight: {type: string, disabled: boolean, group: string, events: array}
+         * }}
+         */
+        defaultPrefs: {
+            title: {
+                type: &#39;text&#39;,
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            description: {
+                type: &#39;textarea&#39;,
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            widgetUrl: {
+                type: &#39;textarea&#39;,
+                disabled: true,
+                value: undefined,
+                visible: true
+            },
+            onClickOpenUrl: {
+                type: &#39;textarea&#39;,
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            overlapping: {
+                type: &#39;checkbox&#39;,
+                disabled: false,
+                checked: false,
+                visible: true
+            },
+            statistics: {
+                type: &#39;checkbox&#39;,
+                disabled: false,
+                checked: false,
+                visible: true
+            },
+            alwaysOnTop: {
+                type: &#39;checkbox&#39;,
+                disabled: false,
+                checked: false,
+                visible: true
+            },
+            setLayerUp: {
+                type: &#39;event&#39;,
+                disabled: false,
+                group: &#39;layer&#39;,
+                events: [&#39;click&#39;],
+                checked: false,
+                visible: true
+            },
+            setLayerDown: {
+                type: &#39;event&#39;,
+                disabled: false,
+                group: &#39;layer&#39;,
+                events: [&#39;click&#39;],
+                checked: false,
+                visible: true
+            },
+            stretchWidth: {
+                type: &#39;checkbox&#39;,
+                disabled: false,
+                checked: false,
+                visible: true
+            },
+            stretchHeight: {
+                type: &#39;checkbox&#39;,
+                disabled: false,
+                checked: false,
+                visible: true
+            },
+            unsetStick: {
+                type: &#39;event&#39;,
+                disabled: false,
+                group: &#39;stick&#39;,
+                events: [&#39;click&#39;],
+                checked: true,
+                visible: true
+            },
+            setStickToCenterLeft: {
+                type: &#39;event&#39;,
+                disabled: false,
+                group: &#39;stick&#39;,
+                events: [&#39;click&#39;],
+                checked: false,
+                visible: true
+            },
+            setStickToCenterTop: {
+                type: &#39;event&#39;,
+                disabled: false,
+                group: &#39;stick&#39;,
+                events: [&#39;click&#39;],
+                checked: false,
+                visible: true
+            },
+            setStickToCenter: {
+                type: &#39;event&#39;,
+                disabled: false,
+                group: &#39;stick&#39;,
+                events: [&#39;click&#39;],
+                checked: false,
+                visible: true
+            },
+            setStickToCenterBottom: {
+                type: &#39;event&#39;,
+                disabled: false,
+                group: &#39;stick&#39;,
+                events: [&#39;click&#39;],
+                checked: false,
+                visible: true
+            },
+            setStickToCenterRight: {
+                type: &#39;event&#39;,
+                disabled: false,
+                group: &#39;stick&#39;,
+                events: [&#39;click&#39;],
+                checked: false,
+                visible: true
+            },
+            setStickToTopLeft: {
+                type: &#39;event&#39;,
+                disabled: false,
+                group: &#39;stick&#39;,
+                events: [&#39;click&#39;],
+                checked: false,
+                visible: true
+            },
+            setStickToBottomLeft: {
+                type: &#39;event&#39;,
+                disabled: false,
+                group: &#39;stick&#39;,
+                events: [&#39;click&#39;],
+                checked: false,
+                visible: true
+            },
+            setStickToTopRight: {
+                type: &#39;event&#39;,
+                disabled: false,
+                group: &#39;stick&#39;,
+                events: [&#39;click&#39;],
+                checked: false,
+                visible: true
+            },
+            setStickToBottomRight: {
+                type: &#39;event&#39;,
+                disabled: false,
+                group: &#39;stick&#39;,
+                events: [&#39;click&#39;],
+                checked: false,
+                visible: true
+            }
+        },
+
+<span id='WidgetPreferences-method-renderBasePrefsData'>        /**
+</span>         * Render prefs data
+         * @member WidgetPreferences
+         * @param data
+         */
+        renderBasePrefsData: function renderBasePrefsData(data) {
+
+<span id='WidgetPreferences-method-_renderForm'>            /**
+</span>             * Render form element
+             * @param {{}} hash
+             * @param {string} title
+             * @private
+             * @return {Array}
+             */
+            function _renderForm(hash, title) {
+
+<span id='WidgetPreferences-property-nodes'>                /**
+</span>                 * Define dom nodes
+                 * @type {Array}
+                 */
+                var nodes = [];
+
+                for (var index in hash) {
+
+                    if (hash.hasOwnProperty(index)) {
+
+<span id='WidgetPreferences-property-text'>                        /**
+</span>                         * Define text
+                         * @type {string}
+                         */
+                        var text = index.replace(title.toLowerCase(), &#39;&#39;).
+                            toPoint().
+                            humanize();
+
+<span id='WidgetPreferences-property-node'>                        /**
+</span>                         * Define node
+                         */
+                        var node = hash[index];
+
+<span id='WidgetPreferences-property-placeholder'>                        /**
+</span>                         * Define placeholder text
+                         * @type {string}
+                         */
+                        var placeholder = &#39;Enter &#39; + text,
+                            $element;
+
+                        if (node.type === &#39;event&#39;) {
+
+<span id='WidgetPreferences-property-S-element'>                            /**
+</span>                             * Get text field
+                             * @type {*[]}
+                             */
+                            $element = this.renderEventLink({
+                                name: index,
+                                title: text.trim(),
+                                group: node.group || index,
+                                disabled: node.disabled,
+                                events: node.events,
+                                visible: node.visible
+                            });
+                        }
+
+                        if (node.type === &#39;text&#39;) {
+
+<span id='WidgetPreferences-property-S-element'>                            /**
+</span>                             * Get text field
+                             * @type {*[]}
+                             */
+                            $element = this.renderTextField({
+                                name: index,
+                                text: text.trim(),
+                                placeholder: placeholder,
+                                value: node.value,
+                                disabled: node.disabled,
+                                visible: node.visible
+                            });
+                        }
+
+                        if (node.type === &#39;checkbox&#39;) {
+
+<span id='WidgetPreferences-property-S-element'>                            /**
+</span>                             * Get checkbox
+                             * @type {*[]}
+                             */
+                            $element = this.renderCheckbox({
+                                name: index,
+                                text: text.trim(),
+                                checked: node.value,
+                                value: node.value,
+                                disabled: node.disabled,
+                                visible: node.visible
+                            });
+                        }
+
+                        if (node.type === &#39;textarea&#39;) {
+
+<span id='WidgetPreferences-property-S-element'>                            /**
+</span>                             * Get text field
+                             * @type {*[]}
+                             */
+                            $element = this.renderTextArea({
+                                name: index,
+                                text: text.trim(),
+                                placeholder: placeholder,
+                                value: node.value,
+                                disabled: node.disabled,
+                                visible: node.visible
+                            });
+                        }
+
+                        if (node.type === &#39;combobox&#39;) {
+
+<span id='WidgetPreferences-property-selected'>                            /**
+</span>                             * Define selected item
+                             * @type {string}
+                             */
+                            var selected = node.value;
+
+<span id='WidgetPreferences-property-S-element'>                            /**
+</span>                             * Get text field
+                             * @type {*[]}
+                             */
+                            $element = this.renderCombobox(
+                                node.list,
+                                (selected.length === 0 ? node.list[0].value : selected),
+                                text.trim(),
+                                index,
+                                undefined,
+                                node.visible
+                            );
+                        }
+
+                        nodes.push(
+                            $(&#39;&lt;li /&gt;&#39;).
+                                addClass([
+                                        title.humanize().toClassName() + &#39;-prefs&#39;,
+                                    node.type,
+                                    node.visible ? &#39;&#39; : &#39;hidden&#39;
+                                ].join(&#39; &#39;)).
+                                append($element)
+                        );
+                    }
+                }
+
+                return nodes;
+            }
+
+<span id='WidgetPreferences-method-_renderNode'>            /**
+</span>             * Render node
+             * @param type
+             * @param prefs
+             * @param {string} title
+             * @param {boolean} [isOpened]
+             * @returns {*|jQuery}
+             * @private
+             */
+            function _renderNode(type, prefs, title, isOpened) {
+
+<span id='WidgetPreferences-property-open'>                /**
+</span>                 * Define css class
+                 * @type {string}
+                 */
+                var open = isOpened ? &#39;open&#39; : undefined;
+
+                return $(&#39;&lt;li /&gt;&#39;).append(
+                    $(&#39;&lt;fieldset /&gt;&#39;).append(
+                        $(&#39;&lt;legend /&gt;&#39;).addClass(open).text(title).
+                            on(&#39;click.toggle&#39;, this.toggleFieldset.bind(this)).attr({
+                                title: title
+                            }),
+
+                        $(&#39;&lt;ul /&gt;&#39;).addClass(type).append(
+                            _renderForm.bind(this)(prefs, title)
+                        )
+                    )
+                ).addClass(&#39;auto&#39;);
+            }
+
+<span id='WidgetPreferences-method-_mergePrefs'>            /**
+</span>             * Merge prefs
+             * @param defaults
+             * @param prefs
+             * @returns {{}}
+             * @private
+             */
+            function _mergePrefs(defaults, prefs) {
+
+                for (var index in prefs) {
+
+                    if (prefs.hasOwnProperty(index)) {
+
+                        if (defaults.hasOwnProperty(index)) {
+
+                            defaults[index].value = prefs[index];
+
+                        } else {
+
+                            // Reset checked
+                            for (var key in defaults) {
+
+                                if (defaults.hasOwnProperty(key)) {
+
+                                    if (defaults[key].group === index) {
+
+                                        defaults[key].checked = false;
+                                    }
+                                }
+                            }
+
+                            if (defaults.hasOwnProperty(prefs[index])) {
+
+                                // check input-radio
+                                defaults[prefs[index]].checked = true;
+                            }
+                        }
+                    }
+                }
+
+                return defaults;
+            }
+
+            this.$.append(
+                this.renderInteractions([
+                    _renderNode.bind(this)(
+                        &#39;default&#39;,
+                        _mergePrefs(
+                            this.defaultPrefs,
+                            this.view.scope.controller.getContainment().config.preferences
+                        ),
+                        &#39;Widget&#39;
+                    ),
+                    _renderNode.bind(this)(
+                        &#39;content&#39;, data,
+                        this.view.scope.constructor.name, true
+                    )
+                ])
+            );
+        },
+
+<span id='WidgetPreferences-method-renderInteractions'>        /**
+</span>         * Render Interactions
+         * @member WidgetPreferences
+         * @param {Array} nodes
+         * @returns {*}
+         */
+        renderInteractions: function renderInteractions(nodes) {
+
+<span id='WidgetPreferences-property-controller'>            /**
+</span>             * Define controller
+             * @type {*}
+             */
+            var controller = this.view.controller;
+
+<span id='WidgetPreferences-property-S-ul'>            /**
+</span>             * Define interactions container
+             * @type {*|jQuery}
+             */
+            var $ul = $(&#39;&lt;ul /&gt;&#39;).addClass(&#39;interactions&#39;);
+
+<span id='WidgetPreferences-property-column'>            /**
+</span>             * Define dom prefs
+             */
+            var column = controller.getDOMPreferences(&#39;column&#39;),
+                row = controller.getDOMPreferences(&#39;row&#39;),
+                width = controller.getDOMPreferences(&#39;relWidth&#39;),
+                height = controller.getDOMPreferences(&#39;relHeight&#39;);
+
+            nodes.push(
+                $(&#39;&lt;li /&gt;&#39;).append(
+                    $(&#39;&lt;fieldset /&gt;&#39;).append(
+                        $(&#39;&lt;legend /&gt;&#39;).text(&#39;Interactions&#39;).
+                            on(&#39;click.toggle&#39;, this.toggleFieldset.bind(this)).attr({
+                                title: &#39;Interactions&#39;
+                            }),
+
+                        $ul.append([
+                            this.renderPrefs(&#39;Column&#39;, column),
+                            this.renderPrefs(&#39;Width&#39;, width),
+                            this.renderPrefs(&#39;Row&#39;, row),
+                            this.renderPrefs(&#39;Height&#39;, height)
+                        ])
+                    )
+                ).addClass(&#39;auto&#39;)
+            );
+
+            return nodes;
+        },
+
+<span id='WidgetPreferences-method-renderPrefs'>        /**
+</span>         * Render move
+         * @member WidgetPreferences
+         * @param {string} side
+         * @param value
+         * @returns {*|jQuery}
+         */
+        renderPrefs: function renderPrefs(side, value) {
+
+<span id='WidgetPreferences-property-S-move'>            /**
+</span>             * Define move
+             * @type {*[]}
+             */
+            var $move = this.renderTextField({
+                name: side.toLowerCase(),
+                text: side,
+                placeholder: side,
+                value: value,
+                disabled: true,
+                visible: true
+            });
+
+            return $(&#39;&lt;li /&gt;&#39;).append($move);
+        }
+
+    }, BasePreferences.prototype);
+});</pre>
+</body>
+</html>

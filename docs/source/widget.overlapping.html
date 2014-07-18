@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by teamco on 5/21/14.
+ */
+
+define([], function defineWidgetOverlapping() {
+
+<span id='WidgetOverlapping-method-constructor'><span id='WidgetOverlapping'>    /**
+</span></span>     * Define Widget Overlapping
+     * @class WidgetOverlapping
+     * @constructor
+     */
+    var WidgetOverlapping = function WidgetOverlapping() {
+
+    };
+
+    return WidgetOverlapping.extend(&#39;WidgetOverlapping&#39;, {
+
+<span id='WidgetOverlapping-method-adoptLayer'>        /**
+</span>         * Adopt layer of a widgets
+         * @member WidgetOverlapping
+         * @param {number} layer
+         * @param {boolean} [save]
+         */
+        adoptLayer: function adoptLayer(layer, save) {
+
+<span id='WidgetOverlapping-property-widget'>            /**
+</span>             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.widget;
+
+            if (save) {
+                widget.dom.zIndex = layer;
+            }
+
+            widget.view.get$item().updateElementLayer(layer);
+        },
+
+<span id='WidgetOverlapping-method-updateLayer'>        /**
+</span>         * Update widget z-index layer
+         * @member WidgetOverlapping
+         * @param {boolean} up
+         * @param {boolean} [save]
+         */
+        updateLayer: function updateLayer(up, save) {
+
+<span id='WidgetOverlapping-property-layout'>            /**
+</span>             * Define layout
+             * @type {Layout}
+             */
+            var layout = this.widget.controller.getPageLayout();
+<span id='WidgetOverlapping-property-containment'>            /**
+</span>             * Define page
+             * @type {Page|*}
+             */
+            var containment = this.widget.controller.getContainment();
+
+            var widget = this.widget,
+                controller = containment.controller,
+                targetWidgetsData = controller.getTargetWidgetsData(widget, up),
+                markedWidgets = layout.overlapping._intersectWidgets(this.widget, true);
+
+            if (widget.base.lib.hash.hashLength(markedWidgets) === 0) {
+                return false;
+            }
+
+            this.adoptLayer(
+                up ?
+                    targetWidgetsData.maxLayer + 1 :
+                    targetWidgetsData.minLayer
+            );
+
+            if (save) {
+
+                controller.reorderLayers();
+                controller.store(
+                    controller.root()
+                );
+            }
+        },
+
+<span id='WidgetOverlapping-method-selectOverlappedWidgets'>        /**
+</span>         * Select overlapped widgets
+         * @member WidgetOverlapping
+         * @returns {*}
+         */
+        selectOverlappedWidgets: function selectOverlappedWidgets() {
+
+<span id='WidgetOverlapping-property-layout'>            /**
+</span>             * Define layout
+             * @type {Layout}
+             */
+            var layout = this.widget.controller.getPageLayout();
+
+<span id='WidgetOverlapping-property-containment'>            /**
+</span>             * Define page
+             * @type {Page|*}
+             */
+            var containment = this.widget.controller.getContainment();
+
+            var markedWidgets = layout.overlapping._intersectWidgets(this.widget, true),
+                widgets = containment.model.getItems(),
+                widget;
+
+            // Clean overlapped styles
+            this.unSelectOverlappedWidgets();
+
+            for (widget in markedWidgets) {
+
+                if (markedWidgets.hasOwnProperty(widget) &amp;&amp; widgets.hasOwnProperty(widget)) {
+
+<span id='WidgetOverlapping-property-item'>                    /**
+</span>                     * Define widget
+                     * @type {Widget}
+                     */
+                    var item = widgets[widget];
+
+                    this.widget.logger.debug(&#39;Mark widget&#39;, item);
+
+                    item.view.get$item().selectWidget(true);
+                }
+            }
+
+            return markedWidgets;
+        },
+
+<span id='WidgetOverlapping-method-unSelectOverlappedWidgets'>        /**
+</span>         * unSelect overlapped widgets
+         * @member WidgetOverlapping
+         * @param source
+         * @returns {*}
+         */
+        unSelectOverlappedWidgets: function unSelectOverlappedWidgets() {
+
+<span id='WidgetOverlapping-property-containment'>            /**
+</span>             * Define page
+             * @type {Page|*}
+             */
+            var containment = this.widget.controller.getContainment();
+
+            var widgets = containment.model.getItems(),
+                widget;
+
+            for (widget in widgets) {
+
+                if (widgets.hasOwnProperty(widget)) {
+
+<span id='WidgetOverlapping-property-item'>                    /**
+</span>                     * Define widget
+                     * @type {Widget}
+                     */
+                    var item = widgets[widget];
+
+                    this.widget.logger.debug(&#39;Mark widget&#39;, item);
+
+                    item.view.get$item().selectWidget(false);
+                }
+            }
+        }
+    });
+
+});</pre>
+</body>
+</html>

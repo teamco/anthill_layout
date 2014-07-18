@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/pet.passport/element/pet.passport.element&#39;,
+    &#39;plugins/widgets/pet.passport/element/pet.passport.preferences.element&#39;,
+    &#39;plugins/widgets/pet.passport/element/pet.passport.rules.element&#39;
+], function definePetPassportView(BaseView, Header, Footer, PetPassportElement, PetPassportPreferencesElement, PetPassportRulesElement) {
+
+<span id='PetPassportView-method-constructor'><span id='PetPassportView'>    /**
+</span></span>     * Define view
+     * @class PetPassportView
+     * @extends BaseView
+     * @constructor
+     */
+    var PetPassportView = function PetPassportView() {
+    };
+
+    return PetPassportView.extend(&#39;PetPassportView&#39;, {
+
+<span id='PetPassportView-method-renderPetPassport'>        /**
+</span>         * Render pet.passport element
+         * @member PetPassportView
+         */
+        renderPetPassport: function renderPetPassport() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='PetPassportView-property-S-petpassport'>            /**
+</span>             * Define $pet.passport
+             * @type {PetPassportElement}
+             */
+            this.elements.$petpassport = new PetPassportElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='PetPassportView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member PetPassportView
+         * @returns {PetPassportPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='PetPassportView-property-S-preferences'>            /**
+</span>             * Define PetPassport Preferences Element
+             * @type {PetPassportPreferencesElement}
+             */
+            this.elements.$preferences = new PetPassportPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='PetPassportView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member PetPassportView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {PetPassportRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='PetPassportView-property-S-rules'>            /**
+</span>             * Define PetPassport Rules Element
+             * @type {PetPassportRulesElement}
+             */
+            this.elements.$rules = new PetPassportRulesElement(this, {
+                data: this.controller.getRules(),
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='PetPassportView-method-render'>        /**
+</span>         * Render pet.passport
+         * @member PetPassportView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderPetPassport.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});</pre>
+</body>
+</html>

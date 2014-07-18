@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+    // &#39;plugins/widgets/multiple.icons/mvc/multiple.icons.behavior&#39;
+], function defineMultipleIconsElement(BaseElement) {
+
+<span id='MultipleIconsElement-method-MultipleIconsElement'><span id='MultipleIconsElement'>    /**
+</span></span>     * Define MultipleIcons Element
+     * @param view
+     * @param opts
+     * @returns {MultipleIconsElement}
+     * @constructor
+     * @class MultipleIconsElement
+     * @extends BaseElement
+     */
+    var MultipleIconsElement = function MultipleIconsElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;multiple.icons&#39;, {
+            resource: &#39;/widgets&#39;
+        });
+
+        return this;
+    };
+
+    return MultipleIconsElement.extend(&#39;MultipleIconsElement&#39;, {
+
+<span id='MultipleIconsElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member MultipleIconsElement
+         */
+        renderEmbeddedContent: function renderEmbeddedContent() {
+            var $element = this;
+            var $list = &#39;&lt;ul class=&quot;icons-container&quot;/&gt;&#39;;
+
+            $element.view.controller.clearParentThumbnail();
+            $element.$.append($list);
+
+            require([
+                &#39;plugins/widgets/multiple.icons/mvc/multiple.icons.behavior&#39;
+            ], function showMultipleIcons(MultipleIconsBehavior) {
+                var showMultipleIcons = new MultipleIconsBehavior();
+            });
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

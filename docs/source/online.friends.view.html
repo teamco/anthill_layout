@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/online.friends/element/online.friends.element&#39;,
+    &#39;plugins/widgets/online.friends/element/online.friends.preferences.element&#39;,
+    &#39;plugins/widgets/online.friends/element/online.friends.rules.element&#39;
+], function defineOnlineFriendsView(BaseView, Header, Footer, OnlineFriendsElement, OnlineFriendsPreferencesElement, OnlineFriendsRulesElement) {
+
+<span id='OnlineFriendsView-method-constructor'><span id='OnlineFriendsView'>    /**
+</span></span>     * Define view
+     * @class OnlineFriendsView
+     * @extends BaseView
+     * @constructor
+     */
+    var OnlineFriendsView = function OnlineFriendsView() {
+    };
+
+    return OnlineFriendsView.extend(&#39;OnlineFriendsView&#39;, {
+
+<span id='OnlineFriendsView-method-renderOnlineFriends'>        /**
+</span>         * Render online friends element
+         * @member OnlineFriendsView
+         */
+        renderOnlineFriends: function renderOnlineFriends() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='OnlineFriendsView-property-S-onlinefriends'>            /**
+</span>             * Define $onlinefriends
+             * @type {OnlineFriendsElement}
+             */
+            this.elements.$onlinefriends = new OnlineFriendsElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='OnlineFriendsView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member OnlineFriendsView
+         * @returns {OnlineFriendsPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='OnlineFriendsView-property-S-preferences'>            /**
+</span>             * Define OnlineFriends Preferences Element
+             * @type {OnlineFriendsPreferencesElement}
+             */
+            this.elements.$preferences = new OnlineFriendsPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='OnlineFriendsView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member OnlineFriendsView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {OnlineFriendsRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='OnlineFriendsView-property-S-rules'>            /**
+</span>             * Define OnlineFriends Rules Element
+             * @type {OnlineFriendsRulesElement}
+             */
+            this.elements.$rules = new OnlineFriendsRulesElement(this, {
+                data: this.controller.getRules(),
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='OnlineFriendsView-method-render'>        /**
+</span>         * Render online friends
+         * @member OnlineFriendsView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderOnlineFriends.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});</pre>
+</body>
+</html>

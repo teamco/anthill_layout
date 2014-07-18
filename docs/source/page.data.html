@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:02 AM
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/MVC&#39;,
+    &#39;plugins/page.data/mvc/page.data.controller&#39;,
+    &#39;plugins/page.data/mvc/page.data.model&#39;,
+    &#39;plugins/page.data/mvc/page.data.view&#39;,
+    &#39;plugins/page.data/mvc/page.data.event.manager&#39;,
+    &#39;plugins/page.data/mvc/page.data.permission&#39;
+], function definePageData(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+
+<span id='PageData-method-PageData'><span id='PageData'>    /**
+</span></span>     * Define PageData
+     * @constructor
+     * @param containment
+     * @class PageData
+     * @extends AntHill
+     */
+    var PageData = function PageData(containment) {
+
+<span id='PageData-property-containment'>        /**
+</span>         * Define containment
+         * @member PageData
+         */
+        this.containment = containment;
+
+<span id='PageData-property-activeContent'>        /**
+</span>         * Define active content
+         * @member PageData
+         * @type {*}
+         */
+        this.activeContent = undefined;
+
+<span id='PageData-property-allowToLocate'>        /**
+</span>         * Allow to locate element
+         * @member PageData
+         * @type {boolean}
+         */
+        this.allowToLocate = true;
+
+<span id='PageData-property-DEFAULTS'>        /**
+</span>         * Define defaults
+         * @type {{
+         *      plugin: boolean,
+         *      html: {
+         *          style: string,
+         *          header: boolean,
+         *          footer: boolean,
+         *          floating: boolean,
+         *          padding: {
+         *              top: number,
+         *              right: number,
+         *              bottom: number,
+         *              left: number
+         *          }
+         *      }
+         * }}
+         */
+        var DEFAULTS = {
+            plugin: true,
+            html: {
+                style: &#39;default&#39;,
+                header: true,
+                footer: true,
+                floating: true,
+                padding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                }
+            }
+        };
+
+<span id='PageData-property-mvc'>        /**
+</span>         * Define MVC
+         * @member PageData
+         * @type {MVC}
+         */
+        this.mvc = new MVC({
+            scope: this,
+            config: [DEFAULTS],
+            components: [
+                Controller,
+                Model,
+                View,
+                EventManager,
+                Permission
+            ],
+            render: true
+        });
+
+        this.observer.publish(
+            this.eventmanager.eventList.successCreated
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.updateTranslations,
+            [&#39;plugins/page.data/translations/en-us&#39;]
+        );
+    };
+
+    return PageData.extend(&#39;PageData&#39;, {
+
+    }, AntHill.prototype);
+});</pre>
+</body>
+</html>

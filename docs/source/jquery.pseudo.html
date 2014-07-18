@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">(function($){
+
+	var patterns = {
+		text: /^[&#39;&quot;]?(.+?)[&quot;&#39;]?$/,
+		url: /^url\([&quot;&#39;]?(.+?)[&#39;&quot;]?\)$/
+	};
+
+	function clean(content) {
+		if(content &amp;&amp; content.length) {
+			var text = content.match(patterns.text)[1],
+				url = text.match(patterns.url);
+			return url ? &#39;&lt;img src=&quot;&#39; + url[1] + &#39;&quot; /&gt;&#39;: text;
+		}
+	}
+
+	function inject(prop, elem, content) {
+		if(prop != &#39;after&#39;) prop = &#39;before&#39;;
+		if(content = clean(elem.currentStyle[prop])) {
+			$(elem)[prop == &#39;before&#39; ? &#39;prepend&#39; : &#39;append&#39;](
+				$(document.createElement(&#39;span&#39;)).addClass(prop).html(content)
+			);
+		}
+	}
+
+	$.pseudo = function(elem) {
+		inject(&#39;before&#39;, elem);
+		inject(&#39;after&#39;, elem);
+		elem.runtimeStyle.behavior = null;
+	};
+	
+	if(document.createStyleSheet) {
+		var o = document.createStyleSheet(null, 0);
+		o.addRule(&#39;.dummy&#39;,&#39;display: static;&#39;);
+		o.cssText = &#39;html, head, head *, body, *.before, *.after, *.before *, *.after * { behavior: none; } * { behavior: expression($.pseudo(this)); }&#39;;
+	}
+
+})(jQuery);</pre>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/share/element/share.element&#39;,
+    &#39;plugins/widgets/share/element/share.preferences.element&#39;,
+    &#39;plugins/widgets/share/element/share.rules.element&#39;
+], function defineShareView(BaseView, Header, Footer, ShareElement, SharePreferencesElement, ShareRulesElement) {
+
+<span id='ShareView-method-constructor'><span id='ShareView'>    /**
+</span></span>     * Define view
+     * @class ShareView
+     * @extends BaseView
+     * @constructor
+     */
+    var ShareView = function ShareView() {
+    };
+
+    return ShareView.extend(&#39;ShareView&#39;, {
+
+<span id='ShareView-method-renderShare'>        /**
+</span>         * Render share element
+         * @member ShareView
+         */
+        renderShare: function renderShare() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='ShareView-property-S-share'>            /**
+</span>             * Define $share
+             * @type {ShareElement}
+             */
+            this.elements.$share = new ShareElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='ShareView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member ShareView
+         * @returns {SharePreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='ShareView-property-S-preferences'>            /**
+</span>             * Define Share Preferences Element
+             * @type {SharePreferencesElement}
+             */
+            this.elements.$preferences = new SharePreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='ShareView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member ShareView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {ShareRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='ShareView-property-S-rules'>            /**
+</span>             * Define Share Rules Element
+             * @type {ShareRulesElement}
+             */
+            this.elements.$rules = new ShareRulesElement(this, {
+                data: this.controller.getRules(),
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='ShareView-method-render'>        /**
+</span>         * Render share
+         * @member ShareView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderShare.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});</pre>
+</body>
+</html>

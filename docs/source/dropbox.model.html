@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 11:06 PM
+ * To change this template use File | Settings | File Templates.
+ */
+define([
+    &#39;modules/Model&#39;,
+    &#39;plugins/widgets/widget.content.model&#39;
+], function defineDropboxModel(BaseModel, WidgetContentModel) {
+
+<span id='DropboxModel-method-constructor'><span id='DropboxModel'>    /**
+</span></span>     * Define Dropbox model
+     * @extends BaseModel
+     * @extends WidgetContentModel
+     * @class DropboxModel
+     * @constructor
+     */
+    var DropboxModel = function DropboxModel() {
+
+<span id='DropboxModel-property-preferences'>        /**
+</span>         * Define preferences
+         * @member DropboxModel
+         * @type {{
+         *      dropboxUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      dropboxApiKey: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      dropboxBytes: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      dropboxIcon: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      dropboxFileName: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      dropboxDownload: {type: string, disabled: boolean, value: undefined, visible: boolean}
+         * }}
+         */
+        this.preferences = {
+            dropboxFileName: {
+                type: &#39;text&#39;,
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            dropboxUrl: {
+                type: &#39;text&#39;,
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            dropboxApiKey: {
+                type: &#39;text&#39;,
+                disabled: false,
+                value: &#39;0lk3aqexag169bf&#39;,
+                visible: true
+            },
+            dropboxBytes: {
+                type: &#39;text&#39;,
+                disabled: false,
+                value: undefined,
+                visible: false
+            },
+            dropboxIcon: {
+                type: &#39;text&#39;,
+                disabled: false,
+                value: undefined,
+                visible: false
+            },
+            dropboxThumbnail: {
+                type: &#39;text&#39;,
+                disabled: false,
+                value: undefined,
+                visible: false
+            },
+            dropboxDownload: {
+                type: &#39;checkbox&#39;,
+                disabled: false,
+                checked: true,
+                visible: true,
+                value: true
+            }
+        };
+
+<span id='DropboxModel-property-rules'>        /**
+</span>         * Define rules
+         * @member DropboxModel
+         * @type {{}}
+         */
+        this.rules = {};
+    };
+
+    return DropboxModel.extend(&#39;DropboxModel&#39;, {
+
+<span id='DropboxModel-method-setDropboxUrl'>        /**
+</span>         * Set Dropbox Url
+         * @member DropboxModel
+         * @param {string} url
+         */
+        setDropboxUrl: function setDropboxUrl(url) {
+            this.setPrefs(&#39;dropboxUrl&#39;, url);
+        },
+
+<span id='DropboxModel-method-setDropboxDownload'>        /**
+</span>         * Set Dropbox Url
+         * @member DropboxModel
+         * @param {boolean} download
+         */
+        setDropboxDownload: function setDropboxDownload(download) {
+            this.setPrefs(&#39;dropboxDownload&#39;, download);
+        },
+
+<span id='DropboxModel-method-setDropboxBytes'>        /**
+</span>         * Set Dropbox bytes
+         * @member DropboxModel
+         * @param {number} bytes
+         */
+        setDropboxBytes: function setDropboxBytes(bytes) {
+            this.setPrefs(&#39;dropboxBytes&#39;, bytes);
+        },
+
+<span id='DropboxModel-method-setDropboxIcon'>        /**
+</span>         * Set Dropbox icon
+         * @member DropboxModel
+         * @param {string} icon
+         */
+        setDropboxIcon: function setDropboxIcon(icon) {
+            this.setPrefs(&#39;dropboxIcon&#39;, icon);
+        },
+
+<span id='DropboxModel-method-setDropboxFileName'>        /**
+</span>         * Set Dropbox file name
+         * @member DropboxModel
+         * @param {string} name
+         */
+        setDropboxFileName: function setDropboxFileName(name) {
+            this.setPrefs(&#39;dropboxFileName&#39;, name);
+        },
+
+<span id='DropboxModel-method-setDropboxThumbnail'>        /**
+</span>         * Set Dropbox thumbnail
+         * @member DropboxModel
+         * @param {string} thumbnail
+         */
+        setDropboxThumbnail: function setDropboxThumbnail(thumbnail) {
+            this.setPrefs(&#39;dropboxThumbnail&#39;, thumbnail);
+        },
+
+<span id='DropboxModel-method-setDropboxApiKey'>        /**
+</span>         * Set Dropbox API Key
+         * @member DropboxModel
+         * @param {string} apiKey
+         */
+        setDropboxApiKey: function setDropboxApiKey(apiKey) {
+
+            this.setPrefs(&#39;dropboxApiKey&#39;, apiKey);
+
+            window.Dropbox = this.scope.base.define(window.Dropbox, {}, true);
+            window.Dropbox.appKey = apiKey;
+        }
+
+    }, BaseModel.prototype, WidgetContentModel.prototype);
+});</pre>
+</body>
+</html>

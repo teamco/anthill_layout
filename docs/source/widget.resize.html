@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/17/12
+ * Time: 4:10 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/Interactions&#39;
+], function defineWidgetResize(Interactions) {
+
+<span id='Resizable-method-constructor'><span id='Resizable'>    /**
+</span></span>     * Define Resize
+     * @class Resizable
+     * @extends Interactions
+     * @param {Widget} scope
+     * @member Widget.interactions
+     * @constructor
+     */
+    var Resizable = function Resizable(scope) {
+
+<span id='Resizable-property-scope'>        /**
+</span>         * Define scope
+         * @member Resizable
+         * @type {Widget}
+         */
+        this.scope = scope;
+
+<span id='Resizable-property-S-scope'>        /**
+</span>         * Define widget jquery element
+         * @member Resizable
+         * @type {jQuery}
+         */
+        this.$scope = scope.view.get$item().$;
+
+        this.checkPermission();
+    };
+
+    return Resizable.extend(&#39;Resizable&#39;, {
+
+<span id='Resizable-method-init'>        /**
+</span>         * Init resizable
+         * @member Resizable
+         */
+        init: function init() {
+
+<span id='Resizable-property-scope'>            /**
+</span>             * Define scope
+             */
+            var scope = this.scope;
+
+            if (scope.permission.authorizedFunctionCall(this.init)) {
+
+                this.$scope.resizable(
+                    $.extend({
+                        containment: scope.controller.get$page().$,
+                        create: this.create.bind(this),
+                        start: this.start.bind(this),
+                        stop: this.stop.bind(this),
+                        resize: this.resize.bind(this)
+                    }, scope.model.getConfig(&#39;events&#39;).resizable)
+                );
+            }
+        },
+
+<span id='Resizable-method-enable'>        /**
+</span>         * Enable resize
+         * @member Resizable
+         */
+        enable: function enable() {
+
+<span id='Resizable-property-scope'>            /**
+</span>             * Define scope
+             */
+            var scope = this.scope;
+
+            if (scope.permission.eventTunnelFunctionCall(this.enable) &amp;&amp;
+                scope.controller.isResizable()) {
+                this.$scope.resizable(&#39;enable&#39;);
+            }
+        },
+
+<span id='Resizable-method-disable'>        /**
+</span>         * Disable resize
+         * @member Resizable
+         */
+        disable: function disable() {
+
+<span id='Resizable-property-scope'>            /**
+</span>             * Define scope
+             */
+            var scope = this.scope;
+
+            if (scope.permission.eventTunnelFunctionCall(this.disable) &amp;&amp;
+                scope.controller.isResizable()) {
+                this.$scope.resizable(&#39;disable&#39;);
+            }
+        },
+
+<span id='Resizable-method-destroy'>        /**
+</span>         * Destroy resize
+         * @member Resizable
+         */
+        destroy: function destroy() {
+
+<span id='Resizable-property-scope'>            /**
+</span>             * Define scope
+             */
+            var scope = this.scope;
+
+            if (scope.permission.eventTunnelFunctionCall(this.destroy) &amp;&amp;
+                scope.controller.isResizable()) {
+                this.$scope.resizable(&#39;destroy&#39;);
+            }
+        },
+
+<span id='Resizable-method-create'>        /**
+</span>         * Create resize
+         * @member Resizable
+         * @param event
+         * @param ui
+         */
+        create: function create(event, ui) {
+
+<span id='Resizable-property-scope'>            /**
+</span>             * Define scope
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.createResizable,
+                [event.type, arguments]
+            );
+        },
+
+<span id='Resizable-method-start'>        /**
+</span>         * Start resize
+         * @member Resizable
+         * @param event
+         * @param ui
+         */
+        start: function start(event, ui) {
+
+<span id='Resizable-property-scope'>            /**
+</span>             * Define scope
+             */
+            var scope = this.scope;
+
+            this.debugUI(event, ui);
+
+            scope.controller.setAsCurrent();
+            scope.wireframe.resizeSticker();
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.startResizable,
+                [event.type, arguments]
+            );
+        },
+
+<span id='Resizable-method-stop'>        /**
+</span>         * Stop resize
+         * @member Resizable
+         * @param event
+         * @param ui
+         */
+        stop: function stop(event, ui) {
+
+<span id='Resizable-property-scope'>            /**
+</span>             * Define scope
+             */
+            var scope = this.scope;
+
+            this.debugUI(event, ui);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.stopResizable,
+                [event.type, arguments]
+            );
+            scope.wireframe.hide();
+        },
+
+<span id='Resizable-method-resize'>        /**
+</span>         * On resize event
+         * @member Resizable
+         * @param event
+         * @param ui
+         */
+        resize: function resize(event, ui) {
+
+<span id='Resizable-property-scope'>            /**
+</span>             * Define scope
+             */
+            var scope = this.scope;
+
+            this.debugUI(event, ui);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.resizeResizable,
+                [event.type, arguments]
+            );
+        }
+
+    }, Interactions.prototype);
+});</pre>
+</body>
+</html>

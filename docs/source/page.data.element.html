@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function definePageDataElement(BaseElement) {
+
+<span id='PageDataElement-method-PageDataElement'><span id='PageDataElement'>    /**
+</span></span>     * Define PageData Element
+     * @param view
+     * @param opts
+     * @returns {PageDataElement}
+     * @constructor
+     * @class PageDataElement
+     * @extends BaseElement
+     */
+    var PageDataElement = function PageDataElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;ul /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: false
+        });
+
+        this.addCSS(&#39;page.data&#39;);
+        this.addCSS(&#39;preferences&#39;);
+
+        return this;
+    };
+
+    return PageDataElement.extend(&#39;PageDataElement&#39;, {
+
+<span id='PageDataElement-method-getFooter'>        /**
+</span>         * Get footer html
+         * @member PageDataElement
+         * @returns {*|jQuery}
+         */
+        getFooter: function getFooter() {
+            return $(&#39;&lt;div /&gt;&#39;).text([
+                this.base.lib.hash.hashLength(
+                    this.view.scope.controller.getData()
+                ),
+                &#39;items&#39;
+            ].join(&#39; &#39;));
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

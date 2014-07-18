@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 7/3/14.
+ */
+
+define([], function defineWidgetStretch(){
+
+<span id='WidgetStretch-method-constructor'><span id='WidgetStretch'>    /**
+</span></span>     * Define widget stretch
+     * @class WidgetStretch
+     * @constructor
+     */
+    var WidgetStretch = function WidgetStretch() {
+
+    };
+
+    return WidgetStretch.extend(&#39;WidgetStretch&#39;, {
+
+<span id='WidgetStretch-method-stretchHeight'>        /**
+</span>         * Stretch height
+         * @member WidgetStretch
+         * @param {boolean} stretch
+         */
+        stretchHeight: function stretchHeight(stretch) {
+
+            if (stretch) {
+
+                this.view.get$item().stretchHeight(
+                    this.controller.getContainment()
+                );
+
+            } else {
+
+                this.view.get$item().restoreHeight();
+            }
+        },
+
+<span id='WidgetStretch-method-stretchWidth'>        /**
+</span>         * Stretch width
+         * @member WidgetStretch
+         * @param {boolean} stretch
+         */
+        stretchWidth: function stretchWidth(stretch) {
+
+            if (stretch) {
+
+                this.view.get$item().stretchWidth(
+                    this.controller.getContainment()
+                );
+
+            } else {
+
+                this.view.get$item().restoreWidth();
+            }
+        }
+    });
+});</pre>
+</body>
+</html>

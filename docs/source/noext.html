@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/** @license
+</span> * RequireJS plugin for loading files without adding the JS extension, useful for
+ * JSONP services and any other kind of resource that already contain a file
+ * extension or that shouldn&#39;t have one (like dynamic scripts).
+ * Author: Miller Medeiros
+ * Version: 0.3.1 (2011/12/07)
+ * Released under the MIT license
+ */
+define(function(){
+
+    var QUERY_PARAM = &#39;noext&#39;;
+
+    //API
+    return {
+        load : function(name, req, onLoad, config){
+            req([req.toUrl(name)], function(mod){
+                onLoad(mod);
+            });
+        },
+        normalize : function(name, norm){
+            //append query string to avoid adding .js extension
+            //needs to be on normalize otherwise it won&#39;t work after build
+            name += (name.indexOf(&#39;?&#39;) &lt; 0)? &#39;?&#39; : &#39;&amp;&#39;;
+            return name + QUERY_PARAM +&#39;=1&#39;;
+        }
+
+    };
+});
+</pre>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: teamco
+ * Date: 3/3/14
+ * Time: 12:14 AM
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/renderer/check.box&#39;,
+    &#39;modules/renderer/combo.box&#39;,
+    &#39;modules/renderer/event.link&#39;,
+    &#39;modules/renderer/label&#39;,
+    &#39;modules/renderer/slider&#39;,
+    &#39;modules/renderer/text.area&#39;,
+    &#39;modules/renderer/text.field&#39;,
+    &#39;modules/renderer/tool.tip&#39;
+], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Label, Slider, TextArea, TextField, ToolTip) {
+
+<span id='Renderer-method-constructor'><span id='Renderer'>    /**
+</span></span>     * Define renderer
+     * @class Renderer
+     * @extends AntHill
+     * @extends BaseElement
+     * @extends {CheckBoxRenderer} CheckBox
+     * @extends {ComboBoxRenderer} ComboBox
+     * @extends {EventLinkRenderer} EventLink
+     * @extends {LabelRenderer} Label
+     * @extends {SliderRenderer} Slider
+     * @extends {TextAreaRenderer} TextArea
+     * @extends {TextFieldRenderer} TextField
+     * @extends {ToolTipRenderer} ToolTip
+     * @constructor
+     */
+    var Renderer = function Renderer() {
+
+    };
+
+    return Renderer.extend(
+        &#39;Renderer&#39;, {
+
+        },
+        AntHill.prototype,
+        CheckBox.prototype,
+        ComboBox.prototype,
+        EventLink.prototype,
+        Label.prototype,
+        Slider.prototype,
+        TextArea.prototype,
+        TextField.prototype,
+        ToolTip.prototype
+    );
+});</pre>
+</body>
+</html>

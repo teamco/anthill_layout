@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: teamco
+ * Date: 6/29/14
+ * Time: 1:09 AM
+ */
+
+define([], function defineWidgetContentModel() {
+
+<span id='WidgetContentModel-method-constructor'><span id='WidgetContentModel'>    /**
+</span></span>     * Define Widget content model
+     * @class WidgetContentModel
+     * @constructor
+     */
+    var WidgetContentModel = function WidgetContentModel() {
+
+    };
+
+    return WidgetContentModel.extend(&#39;WidgetContentModel&#39;, {
+
+
+<span id='WidgetContentModel-method-getContentPrefs'>        /**
+</span>         * Get prefs
+         * @member WidgetContentModel
+         * @param {string} prefs
+         * @returns {boolean|string}
+         */
+        getContentPrefs: function getContentPrefs(prefs) {
+
+            if (!this.preferences[prefs]) {
+                this.scope.logger.info(&#39;Undefined preference&#39;, prefs);
+                return false;
+            }
+
+            return this.preferences[prefs].value;
+        },
+
+<span id='WidgetContentModel-method-getPrefs'>        /**
+</span>         * Get prefs
+         * @member WidgetContentModel
+         * @param {string} prefs
+         * @returns {*}
+         */
+        getPrefs: function getPrefs(prefs) {
+
+            if (this.base.isDefined(this.preferences)) {
+                return this.getContentPrefs(prefs);
+            }
+
+<span id='WidgetContentModel-property-preferences'>            /**
+</span>             * Define prefs
+             * @type {{}}
+             */
+            var preferences = this.scope.config.preferences;
+
+            if (!preferences) {
+                this.scope.logger.warn(&#39;Unable to locate preference&#39;, prefs);
+                return false;
+            }
+
+            return preferences[prefs];
+        },
+
+<span id='WidgetContentModel-method-setPrefs'>        /**
+</span>         * Set prefs
+         * @member WidgetContentModel
+         * @param {string} prefs
+         * @param {*} value
+         */
+        setPrefs: function setPrefs(prefs, value) {
+
+<span id='WidgetContentModel-property-preferences'>            /**
+</span>             * Define preferences
+             * @member WidgetContentModel
+             * @type {*}
+             */
+            this.preferences = this.base.define(
+                this.preferences, {}, true
+            );
+
+<span id='WidgetContentModel-property-preferences[prefs]'>            /**
+</span>             * Define new prefs
+             * @type {*}
+             */
+            this.preferences[prefs] = this.base.define(
+                this.preferences[prefs], {}, true
+            );
+
+<span id='WidgetContentModel-property-value'>            /**
+</span>             * Define prefs
+             * @type {string}
+             */
+            this.preferences[prefs].value = value;
+        },
+
+<span id='WidgetContentModel-method-copyPrefs'>        /**
+</span>         * Copy prefs
+         * @member WidgetContentModel
+         * @param source
+         * @returns {boolean}
+         */
+        copyPrefs: function copyPrefs(source) {
+
+<span id='WidgetContentModel-property-cname'>            /**
+</span>             * Define
+             * @type {string}
+             */
+            var cname = this.scope.constructor.name.toLowerCase(),
+                prefs = source.model.preferences;
+
+            if (source.constructor.name.toLowerCase() !== cname) {
+                this.scope.logger.warn(&#39;Unable to copy preferences&#39;, source);
+                return false;
+            }
+
+            for (var index in prefs) {
+
+                if (prefs.hasOwnProperty(index)) {
+
+                    if (index.match(new RegExp(cname))) {
+
+                        this.setPrefs(index, prefs[index].value);
+                        this.scope.logger.debug(
+                            &#39;Copied prefs&#39;, source, index, prefs[index]
+                        );
+                    }
+                }
+            }
+        }
+    });
+});</pre>
+</body>
+</html>

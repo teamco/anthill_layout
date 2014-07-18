@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/17/12
+ * Time: 5:28 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/Event&#39;
+], function defineLayoutEventManager(BaseEvent) {
+
+<span id='LayoutEventManager-method-constructor'><span id='LayoutEventManager'>    /**
+</span></span>     * Define layout event manager
+     * @class LayoutEventManager
+     * @extends BaseEvent
+     * @constructor
+     */
+    var LayoutEventManager = function LayoutEventManager() {
+
+<span id='LayoutEventManager-property-events'>        /**
+</span>         * Define events
+         * @member LayoutEventManager
+         * @type {{}}
+         */
+        this.events = {};
+    };
+
+    return LayoutEventManager.extend(&#39;LayoutEventManager&#39;, {
+
+<span id='LayoutEventManager-property-eventList'>        /**
+</span>         * Define event list
+         * @member LayoutEventManager
+         * @type {{
+         *      updateMinCellWidth: string,
+         *      beforeNestedOrganizer: string,
+         *      afterNestedOrganizer: string,
+         *      setOrganizeMode: string,
+         *      setBehaviorMode: string,
+         *      setEmptySpacesMode: string
+         * }}
+         */
+        eventList: {
+            updateMinCellWidth: &#39;update.min.cell.width&#39;,
+            beforeNestedOrganizer: &#39;before.nested.organizer&#39;,
+            afterNestedOrganizer: &#39;after.nested.organizer&#39;,
+            setOrganizeMode: &#39;set.organize.mode&#39;,
+            setBehaviorMode: &#39;set.behavior.mode&#39;,
+            setEmptySpacesMode: &#39;set.empty.spaces.mode&#39;
+        }
+
+    }, BaseEvent.prototype);
+});</pre>
+</body>
+</html>

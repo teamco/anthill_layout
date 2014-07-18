@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;,
+    &#39;plugins/rules/widget.base.rules&#39;
+], function defineJwplayerRulesElement(BaseElement, BaseWidgetRules) {
+
+<span id='JwplayerRulesElement-method-JwplayerRulesElement'><span id='JwplayerRulesElement'>    /**
+</span></span>     * Define Jwplayer Rules Element
+     * @param view
+     * @param opts
+     * @returns {JwplayerRulesElement}
+     * @constructor
+     * @class JwplayerRulesElement
+     * @extends BaseElement
+     * @extends BaseWidgetRules
+     */
+    var JwplayerRulesElement = function JwplayerRulesElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;ul /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.renderBaseRulesData(
+            opts.data,
+            opts.rules.widget,
+            opts.rules.content
+        );
+
+        return this;
+    };
+
+    return JwplayerRulesElement.extend(&#39;JwplayerRulesElement&#39;, {
+
+    }, BaseElement.prototype, BaseWidgetRules.prototype);
+
+});</pre>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: i061485
+ * Date: 2/13/13
+ * Time: 4:50 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;config/application&#39;,
+    &#39;config/workspace&#39;,
+    &#39;config/page&#39;,
+    &#39;config/layout&#39;,
+    &#39;config/widget&#39;
+], function defineListeners(Application, Workspace, Page, Layout, Widget) {
+
+<span id='global-property-localListeners'>    /**
+</span>     * Load listeners
+     */
+    Application.prototype.localListeners = Application.prototype.localListeners || {};
+    Workspace.prototype.localListeners = Workspace.prototype.localListeners || {};
+    Page.prototype.localListeners = Page.prototype.localListeners || {};
+    Layout.prototype.localListeners = Layout.prototype.localListeners || {};
+    Widget.prototype.localListeners = Widget.prototype.localListeners || {};
+
+<span id='App-property-'>    /**
+</span>     * Define Application Local listeners
+     * @member App
+     * @type {{
+     *      successRendered: {name: string, callback: Function},
+     *      resizeWindow: {name: string, params: *, callback: Function},
+     *      resizeWindowHooks: [],
+     *      resizeWorkspace: {name: string, callback: Function}
+     * }}
+     */
+    $.extend(Application.prototype.localListeners, {
+
+        successRendered: {
+            name: &#39;success.rendered&#39;,
+            callback: function successRenderedCallback() {
+                this.view.renderApplication();
+
+                if (this.controller.isDevelopmentMode()) {
+                    this.view.debug();
+                }
+            }
+        },
+
+        resizeWindow: {
+            name: &#39;resize.window&#39;,
+            callback: function resizeWindowCallback() {
+                this.observer.publish(
+                    this.eventmanager.eventList.resizeWorkspaces
+                );
+            }
+        },
+
+        resizeWindowHooks: [],
+
+        resizeWorkspace: {
+            name: &#39;resize.workspace&#39;,
+            callback: function resizeWorkspaceCallback(workspace) {
+                workspace.observer.publish(
+                    workspace.eventmanager.eventList.resizePages
+                );
+            }
+        }
+
+    });
+
+<span id='Workspace-property-'>    /**
+</span>     * Define Workspace Local listeners
+     * @member Workspace
+     * @type {{
+     *      successCreated: {name: string, callback: Function},
+     *      successRendered: {name: string, callback: Function},
+     *      createPage: {name: string, callback: Function},
+     *      afterLoadingItems: {name: string, callback: Function},
+     *      resizePage: {name: string, callback: Function}
+     * }}
+     */
+    $.extend(Workspace.prototype.localListeners, {
+
+        successCreated: {
+            name: &quot;success.created&quot;,
+            callback: function successCreatedCallback() {
+            }
+        },
+
+        successRendered: {
+            name: &quot;success.rendered&quot;,
+            callback: function successRenderedCallback() {
+                this.view.renderWorkspace();
+            }
+        },
+
+        createPage: {
+            name: &#39;create.page&#39;,
+            callback: function createPageCallback() {
+                this.observer.publish(
+                    this.eventmanager.eventList.setPageContainerDimensions
+                );
+            }
+        },
+
+        afterLoadingItems: {
+            name: &#39;after.loading.items&#39;,
+            callback: function afterLoadingItemsCallback() {
+                this.controller.switchPageOnHashChange.bind(this)
+            }
+        },
+
+        resizePage: {
+            name: &#39;resize.page&#39;,
+            callback: function resizePageCallback(page) {
+
+                page.controller.updateLayout();
+
+                page.observer.publish(
+                    page.eventmanager.eventList.resizeWidgets
+                );
+
+                page.controller.updateHeight();
+            }
+        }
+    });
+
+<span id='Page-property-'>    /**
+</span>     * Define Page Local listeners
+     * @member Page
+     * @type {{
+     *      successCreated: {name: string, callback: Function},
+     *      successRendered: {name: string, callback: Function},
+     *      createWidget: {name: string, callback: Function}
+     *      resizeWidget: {name: string, callback: Function}
+     * }}
+     */
+    $.extend(Page.prototype.localListeners, {
+
+        successCreated: {
+            name: &quot;success.created&quot;,
+            callback: function successCreatedCallback() {
+            }
+        },
+
+        successRendered: {
+            name: &quot;success.rendered&quot;,
+            callback: function successRenderedCallback() {
+                this.view.renderPage();
+                this.controller.updateLayout();
+            }
+        },
+
+        createWidget: {
+            name: &#39;create.widget&#39;,
+            callback: function createWidgetCallback() {
+
+                this.observer.publish(
+                    this.eventmanager.eventList.updateHeight
+                );
+            }
+        },
+
+        resizeWidget: {
+            name: &#39;resize.widget&#39;,
+            callback: function resizeWidgetCallback(widget) {
+
+                widget.observer.publish(
+                    widget.eventmanager.eventList.adoptDimensions,
+                    true
+                );
+
+                this.observer.publish(
+                    this.eventmanager.eventList.updateHeight
+                );
+            }
+        }
+    });
+
+<span id='Layout-property-'>    /**
+</span>     * Define Layout Local listeners
+     * @member Layout
+     * @type {{
+     *      afterNestedOrganizer: {name: string, callback: Function}
+     * }}
+     */
+    $.extend(Layout.prototype.localListeners, {
+
+        afterNestedOrganizer: {
+            name: &#39;after.nested.organizer&#39;,
+            callback: function afterNestedOrganizerCallback() {
+                // TODO
+            }
+        }
+    });
+
+<span id='Widget-property-'>    /**
+</span>     * Define Widget Local listeners
+     * @member Widget
+     * @type {{
+     *      successCreated: {name: string, callback: Function},
+     *      successRendered: {name: string, callback: Function}
+     * }}
+     */
+    $.extend(Widget.prototype.localListeners, {
+
+        successCreated: {
+            name: &quot;success.created&quot;,
+            callback: function successCreatedCallback() {
+            }
+        },
+
+        successRendered: {
+            name: &quot;success.rendered&quot;,
+            callback: function successRenderedCallback(silent) {
+
+<span id='global-property-silent'>                /**
+</span>                 * Define silent
+                 * @type {boolean}
+                 */
+                silent = this.base.defineBoolean(silent, false, true);
+
+<span id='global-property-event'>                /**
+</span>                 * Define event
+                 * @type {stopResizable|string}
+                 */
+                var event = this.eventmanager.eventList.stopResizable;
+
+                this.view.renderWidget();
+                this.controller.setupInteractions();
+
+                this.observer.publish(event, [
+                    event, {
+                        organize: !silent,
+                        animate: false
+                    },
+                    arguments
+                ]);
+
+                this.observer.publish(
+                    this.eventmanager.eventList.loadContent
+                );
+
+                this.observer.publish(
+                    this.eventmanager.eventList.loadPreferences
+                );
+            }
+        }
+
+    });
+
+});</pre>
+</body>
+</html>

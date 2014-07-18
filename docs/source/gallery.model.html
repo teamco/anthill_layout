@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 11:06 PM
+ * To change this template use File | Settings | File Templates.
+ */
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/Model&#39;
+], function defineGalleryModel(AntHill, BaseModel) {
+
+<span id='GalleryModel-method-constructor'><span id='GalleryModel'>    /**
+</span></span>     * Define Gallery model
+     * @extends AntHill
+     * @extends BaseModel
+     * @class GalleryModel
+     * @constructor
+     */
+    var GalleryModel = function GalleryModel() {
+
+<span id='GalleryModel-property-dataTypes'>        /**
+</span>         * Define provider types
+         * @type {{regular: string, text: string, video: string, map: string, files: string, image: string, social: string}}
+         */
+        this.dataTypes = {
+            regular: &#39;Regular widgets&#39;,
+            text: &#39;Text editor&#39;,
+            video: &#39;Video player&#39;,
+            map: &#39;Map widgets&#39;,
+            files: &#39;Show file&#39;,
+            image: &#39;Image gallery&#39;,
+            social: &#39;Social data&#39;
+        };
+
+<span id='GalleryModel-property-staticData'>        /**
+</span>         * Define static data
+         * @member GalleryModel
+         * @type {*[]}
+         */
+        this.staticData = [
+            {
+                name: &#39;Page Tabs&#39;,
+                description: &#39;Show page tabs&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 30,
+                    height: 5
+                },
+                type: &#39;regular&#39;,
+                resource: &#39;page.tabs&#39;
+            },
+            {
+                name: &#39;Empty&#39;,
+                description: &#39;Empty widget&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 5,
+                    height: 5
+                },
+                type: &#39;regular&#39;,
+                resource: &#39;empty&#39;
+            },
+            {
+                name: &#39;Text Editor&#39;,
+                description: &#39;Text Editor&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 10,
+                    height: 7
+                },
+                type: &#39;text&#39;,
+                resource: &#39;text.editor&#39;
+            },
+            {
+                name: &#39;Dropbox&#39;,
+                description: &#39;Dropbox is a free service that lets you bring your photos, docs, and videos anywhere and share them easily.&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 5,
+                    height: 5
+                },
+                type: &#39;files&#39;,
+                resource: &#39;dropbox&#39;
+            },
+            {
+                name: &#39;Map Locator&#39;,
+                description: &#39;Map locator&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 10,
+                    height: 10
+                },
+                type: &#39;map&#39;,
+                resource: &#39;map.locator&#39;
+            },
+            {
+                name: &#39;Pet Radar&#39;,
+                description: &#39;Shows online pets arround you&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 30,
+                    height: 30
+                },
+                type: &#39;map&#39;,
+                resource: &#39;pet.radar&#39;
+            },
+            {
+                name: &#39;Avatar&#39;,
+                description: &#39;Pick a photo and put it as your Avatar&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 12,
+                    height: 11
+                },
+                type: &#39;image&#39;,
+                resource: &#39;avatar&#39;
+            },
+            {
+                name: &#39;Pet Passport&#39;,
+                description: &#39;Shows all information about your pet&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 12,
+                    height: 13
+                },
+                type: &#39;General&#39;,
+                resource: &#39;pet.passport&#39;
+            },
+            {
+                name: &#39;Post Tool&#39;,
+                description: &#39;Post news, images, videos etc. on your wall&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 35,
+                    height: 5
+                },
+                type: &#39;General&#39;,
+                resource: &#39;post.tool&#39;
+            },
+            {
+                name: &#39;Friends Online&#39;,
+                description: &#39;Shows all your friends which are currently online&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 12,
+                    height: 11
+                },
+                type: &#39;General&#39;,
+                resource: &#39;online.friends&#39;
+            },
+            {
+                name: &#39;Multiple Icons&#39;,
+                description: &#39;Widget with multiple usable tools and features&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 3,
+                    height: 30
+                },
+                type: &#39;General&#39;,
+                resource: &#39;multiple.icons&#39;
+            },
+            {
+                name: &#39;JW Player&#39;,
+                description: &#39;JW Player powers online publishing, with clients ranging in size from Fortune 500 companies to individual bloggers&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 10,
+                    height: 10
+                },
+                type: &#39;video&#39;,
+                resource: &#39;jwplayer&#39;
+            },
+            {
+                name: &#39;Youtube&#39;,
+                description: &#39;YouTube provides a forum for people to connect, inform, and inspire others across the globe and acts as a distribution platform for original content creators and advertisers large and small&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 10,
+                    height: 10
+                },
+                type: &#39;video&#39;,
+                resource: &#39;youtube&#39;
+            },
+            {
+                name: &#39;Quicktime&#39;,
+                description: &#39;A powerful multimedia technology with a built-in media player, QuickTime lets you view internet video, HD movie trailers, and personal media in a wide range of file formats&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 10,
+                    height: 10
+                },
+                type: &#39;video&#39;,
+                resource: &#39;quicktime&#39;
+            },
+            {
+                name: &#39;Vimeo&#39;,
+                description: &#39;Vimeo is video + you. We put your videos first and give you the best ways to share, discover, and be inspired&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 10,
+                    height: 10
+                },
+                type: &#39;video&#39;,
+                resource: &#39;vimeo&#39;
+            },
+            {
+                name: &#39;Image&#39;,
+                description: &#39;A simple image widget that uses the native media manager to add image widgets to your site&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 10,
+                    height: 10
+                },
+                type: &#39;image&#39;,
+                resource: &#39;image&#39;
+            },
+            {
+                name: &#39;Image Gallery&#39;,
+                description: &#39;Image gallery provides an image viewer&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 10,
+                    height: 10
+                },
+                type: &#39;image&#39;,
+                resource: &#39;image.gallery&#39;
+            },
+            {
+                name: &#39;RSS&#39;,
+                description: &#39;Subscribing to a website RSS removes the need for the user to manually check the web site for new content&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 10,
+                    height: 5
+                },
+                type: &#39;social&#39;,
+                resource: &#39;rss&#39;
+            },
+            {
+                name: &#39;Twits&#39;,
+                description: &#39;Show unique twitter thread&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 10,
+                    height: 5
+                },
+                type: &#39;social&#39;,
+                resource: &#39;twits&#39;
+            },
+            {
+                name: &#39;Pdf&#39;,
+                description: &#39;Portable Document Format (PDF) is a file format used to present documents in a manner independent of application software, hardware, and operating systems&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 10,
+                    height: 10
+                },
+                type: &#39;files&#39;,
+                resource: &#39;pdf&#39;
+            },
+            {
+                name: &#39;Geolocation&#39;,
+                description: &#39;Geolocation is the identification of the real-world geographic location of an object, such as a radar, mobile phone or an Internet-connected computer terminal&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 10,
+                    height: 10
+                },
+                type: &#39;map&#39;,
+                resource: &#39;geolocation&#39;
+            },
+            {
+                name: &#39;Open Weather Map&#39;,
+                description: &#39;The OpenWeatherMap service provides free weather data and forecast API suitable for any cartographic services like web and smartphones applications&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 10,
+                    height: 10
+                },
+                type: &#39;map&#39;,
+                resource: &#39;open.weather.map&#39;
+            },
+            {
+                name: &#39;Login&#39;,
+                description: &#39;Login to your page&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 5,
+                    height: 5
+                },
+                type: &#39;social&#39;,
+                resource: &#39;login&#39;
+            },
+            {
+                name: &#39;Share&#39;,
+                description: &#39;Share your page with your friends&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 10,
+                    height: 3
+                },
+                type: &#39;social&#39;,
+                resource: &#39;share&#39;
+            },
+            {
+                name: &#39;Adobe Flash player&#39;,
+                description: &#39;Adobe Flash Player is the standard for delivering high-impact, rich Web content. Designs, animation, and application user interfaces are deployed immediately across all browsers and platforms, attracting and engaging users with a rich Web experience.&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 15,
+                    height: 15
+                },
+                type: &#39;video&#39;,
+                resource: &#39;swf&#39;
+            },
+            {
+                name: &#39;Rutube&#39;,
+                description: &#39;Rutube is a web video streaming service targeted at Russian speakers&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 15,
+                    height: 15
+                },
+                type: &#39;video&#39;,
+                resource: &#39;rutube&#39;
+            },
+             {
+                name: &#39;Header&#39;,
+                description: &#39;Header widget&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 33,
+                    height: 2
+                },
+                type: &#39;General&#39;,
+                resource: &#39;header&#39;
+            },
+            {
+                name: &#39;Ice Floe&#39;,
+                description: &#39;White base container for several widgets&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 8,
+                    height: 20
+                },
+                type: &#39;General&#39;,
+                resource: &#39;ice.floe&#39;
+            },
+             {
+                name: &#39;Login Facebook&#39;,
+                description: &#39;Login with your Facebook account&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 5,
+                    height: 5
+                },
+                type: &#39;Login&#39;,
+                resource: &#39;login.facebook&#39;
+            },
+            {
+                name: &#39;Login Google&#39;,
+                description: &#39;Login with your Google account&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 5,
+                    height: 5
+                },
+                type: &#39;Login&#39;,
+                resource: &#39;login.google&#39;
+            },
+            {
+                name: &#39;Post Template&#39;,
+                description: &#39;Visual layout of posted note on the wall&#39;,
+                thumbnail: &#39;&#39;,
+                dimensions: {
+                    width: 34,
+                    height: 10
+                },
+                type: &#39;Template&#39;,
+                resource: &#39;post.template&#39;
+            }
+
+        ];
+
+<span id='GalleryModel-property-providers'>        /**
+</span>         * Define providers
+         * @member GalleryModel
+         * @type {{indoor: {name: string, data: *[]}}}
+         */
+        this.providers = {
+            all: {
+                name: &#39;All widgets&#39;,
+                key: &#39;all&#39;,
+                data: this.staticData
+            }
+        };
+
+<span id='GalleryModel-property-defaultProvider'>        /**
+</span>         * Define default provider
+         * @member GalleryModel
+         * @type {{name: string, data: *[]}[]}
+         */
+        this.defaultProvider = this.getProvidersList().all;
+
+<span id='GalleryModel-property-currentProvider'>        /**
+</span>         * Define current provider
+         * @member GalleryModel
+         */
+        this.currentProvider = this.defaultProvider;
+    };
+
+    return GalleryModel.extend(&#39;GalleryModel&#39;, {
+
+<span id='GalleryModel-method-getDataProvider'>        /**
+</span>         * Get data provider
+         * @member GalleryModel
+         * @param provider
+         * @returns {*}
+         */
+        getDataProvider: function getDataProvider(provider) {
+            return provider.data;
+        },
+
+<span id='GalleryModel-method-getProvidersList'>        /**
+</span>         * Get providers list
+         * @member GalleryModel
+         * @returns {*}
+         */
+        getProvidersList: function getProvidersList() {
+            return this.providers;
+        },
+
+<span id='GalleryModel-method-setProviderAsCurrent'>        /**
+</span>         * Set provider as current
+         * @member GalleryModel
+         * @param {string} key
+         */
+        setProviderAsCurrent: function setProviderAsCurrent(key) {
+
+<span id='GalleryModel-property-provider'>            /**
+</span>             * Define provider
+             * @type {*}
+             */
+            var provider = this.providers[key];
+
+            if (!provider) {
+                provider = this.defaultProvider;
+                this.scope.logger.warn(&#39;Undefined provider, set default&#39;, provider);
+            }
+
+            this.currentProvider = provider;
+            this.scope.logger.debug(&#39;Current provider&#39;, provider);
+        },
+
+<span id='GalleryModel-method-setProvider'>        /**
+</span>         * Set widget to provider
+         * @member GalleryModel
+         * @param {{}} meta
+         */
+        setProvider: function setProvider(meta) {
+
+<span id='GalleryModel-property-providers'>            /**
+</span>             * Get providers list
+             * @type {*}
+             */
+            var providers = this.getProvidersList();
+
+<span id='GalleryModel-property-dataTypes'>            /**
+</span>             * Get data types
+             * @type {{regular: string, text: string, video: string, map: string, files: string, image: string, social: string}}
+             */
+            var dataTypes = this.dataTypes;
+
+            if (meta.type) {
+
+                providers[meta.type] = this.base.define(
+                    providers[meta.type], {
+                        name: dataTypes[meta.type] || meta.type,
+                        key: meta.type,
+                        data: []
+                    },
+                    true
+                );
+
+                providers[meta.type].data.push(meta);
+
+            } else {
+
+                providers.all.data.push(meta);
+            }
+        }
+
+    }, AntHill.prototype, BaseModel.prototype);
+});</pre>
+</body>
+</html>

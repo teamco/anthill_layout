@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: i061485
+ * Date: 2/21/13
+ * Time: 4:14 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+], function defineInteractions() {
+
+<span id='Interactions-method-constructor'><span id='Interactions'>    /**
+</span></span>     * Define interactions
+     * @class Interactions
+     * @constructor
+     */
+    var Interactions = function Interactions() {
+    };
+
+    return Interactions.extend(&#39;Interactions&#39;, {
+
+<span id='Interactions-method-checkPermission'>        /**
+</span>         * Check permission
+         * @member Interactions
+         */
+        checkPermission: function checkPermission() {
+            this.scope.permission.check({
+                capability: this.constructor.name.toLowerCase(),
+                callback: this.init.bind(this)
+            });
+        },
+
+<span id='Interactions-method-debugUI'>        /**
+</span>         * Debug UI
+         * @member Interactions
+         * @param event
+         * @param ui
+         */
+        debugUI: function debugUI(event, ui) {
+
+<span id='Interactions-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.debugInteractions,
+                [this.scope, event, ui]
+            );
+        },
+
+<span id='Interactions-method-isEnabled'>        /**
+</span>         * Check if enabled
+         * @member Interactions
+         * @returns {boolean}
+         */
+        isEnabled: function isEnabled() {
+            return true;
+        },
+
+<span id='Interactions-method-isDisabled'>        /**
+</span>         * Check if disabled
+         * @member Interactions
+         * @returns {boolean}
+         */
+        isDisabled: function isDisabled() {
+            return false;
+        },
+
+<span id='Interactions-method-getResizeDirection'>        /**
+</span>         * Get resize direction
+         * @param ui
+         * @returns {string}
+         */
+        getResizeDirection: function getResizeDirection(ui) {
+
+<span id='Interactions-method-_getSE'>            /**
+</span>             * Get South/East direction
+             * @param {number} side
+             * @param {number} dir
+             * @returns {boolean}
+             * @private
+             */
+            function _getSE(side, dir) {
+                return side === 0 &amp;&amp; (dir &gt; 0 || dir &lt; 0);
+            }
+
+<span id='Interactions-method-_getNW'>            /**
+</span>             * Get North/West direction
+             * @param {number} side
+             * @param {number} dir
+             * @returns {boolean}
+             * @private
+             */
+            function _getNW(side, dir) {
+                return (side &lt; 0 || side &gt; 0) &amp;&amp; (dir &gt; 0 || dir &lt; 0);
+            }
+
+            // determine resize deltas
+            var delta_x = ui.size.width - ui.originalSize.width;
+            var delta_y = ui.size.height - ui.originalSize.height;
+
+            var delta_top = ui.position.top - ui.originalPosition.top;
+            var delta_left = ui.position.left - ui.originalPosition.left;
+
+            // build direction string
+            var dir = &#39;&#39;;
+
+            if (_getSE(delta_top, delta_y)) {
+                dir += &#39;s&#39;;
+            }
+
+            if (_getNW(delta_top, delta_y)) {
+                dir += &#39;n&#39;;
+            }
+
+            if (_getSE(delta_left, delta_x)) {
+                dir += &#39;e&#39;;
+            }
+
+            if (_getNW(delta_left, delta_x)) {
+                dir += &#39;w&#39;;
+            }
+
+            return dir;
+        },
+
+<span id='Interactions-method-getDirectionW'>        /**
+</span>         * Get West
+         * @param ui
+         * @returns {{left: number, width: number}}
+         */
+        getDirectionW: function getDirectionW(ui) {
+
+<span id='Interactions-property-widget'>            /**
+</span>             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope;
+
+<span id='Interactions-property-deltaLeft'>            /**
+</span>             * Set delta left
+             * @type {number}
+             */
+            var deltaLeft = ui.position.left - ui.originalPosition.left;
+
+<span id='Interactions-property-deltaWidth'>            /**
+</span>             * Set delta width
+             * @type {number}
+             */
+            var deltaWidth = widget.dom.width - deltaLeft;
+
+            return {
+                left: widget.dom.left + deltaLeft,
+                width: deltaWidth
+            };
+        },
+
+<span id='Interactions-method-getDirectionE'>        /**
+</span>         * Get East
+         * @param ui
+         * @returns {{width: number}}
+         */
+        getDirectionE: function getDirectionE(ui) {
+
+<span id='Interactions-property-widget'>            /**
+</span>             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope;
+
+<span id='Interactions-property-deltaWidth'>            /**
+</span>             * Set delta width
+             * @type {number}
+             */
+            var deltaWidth = ui.size.width - ui.originalSize.width;
+
+            return {
+                width: widget.dom.width + deltaWidth
+            };
+        },
+
+<span id='Interactions-method-getDirectionN'>        /**
+</span>         * Get North
+         * @param ui
+         * @returns {{height: number, top: number}}
+         */
+        getDirectionN: function getDirectionN(ui) {
+
+<span id='Interactions-property-widget'>            /**
+</span>             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope;
+
+<span id='Interactions-property-deltaHeight'>            /**
+</span>             * Set delta width
+             * @type {number}
+             */
+            var deltaHeight = ui.size.height - ui.originalSize.height;
+
+<span id='Interactions-property-deltaTop'>            /**
+</span>             * Set delta top
+             * @type {number}
+             */
+            var deltaTop = ui.position.top - ui.originalPosition.top;
+
+            return {
+                height: widget.dom.height + deltaHeight,
+                top: widget.dom.top + deltaTop
+            };
+        },
+
+<span id='Interactions-method-getDirectionS'>        /**
+</span>         * Get South
+         * @param ui
+         * @returns {{height: number}}
+         */
+        getDirectionS: function getDirectionS(ui) {
+
+<span id='Interactions-property-widget'>            /**
+</span>             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.scope;
+
+<span id='Interactions-property-deltaHeight'>            /**
+</span>             * Set delta width
+             * @type {number}
+             */
+            var deltaHeight = ui.size.height - ui.originalSize.height;
+
+            return {
+                height: widget.dom.height + deltaHeight
+            };
+        }
+    });
+
+});</pre>
+</body>
+</html>

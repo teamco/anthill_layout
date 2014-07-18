@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 7/10/14.
+ */
+
+define([], function defineToolTipRenderer(){
+
+<span id='ToolTipRenderer-method-constructor'><span id='ToolTipRenderer'>    /**
+</span></span>     * Define ToolTipRenderer
+     * @class ToolTipRenderer
+     * @constructor
+     */
+    var ToolTipRenderer = function ToolTipRenderer(){
+
+    };
+
+    return ToolTipRenderer.extend(&#39;ToolTipRenderer&#39;, {
+
+<span id='ToolTipRenderer-method-renderTooltip'>        /**
+</span>         * Render tooltip
+         * @member ToolTipRenderer
+         * @param {{
+         *      $container: *|jQuery,
+         *      title: string,
+         *      [description]: string,
+         *      [imageUrl]: string,
+         *      [imageFloat]: string
+         * }} opts
+         * @returns {*|jQuery}
+         */
+        renderTooltip: function renderTooltip(opts) {
+
+            var $title = $(&#39;&lt;h2 /&gt;&#39;).text(opts.title),
+                $description = $(&#39;&lt;p /&gt;&#39;).html(opts.description),
+                $image;
+
+            if (opts.imageUrl) {
+
+                $image = $(&#39;&lt;img /&gt;&#39;).attr({
+                    src: opts.imageUrl,
+                    alt: opts.title
+                }).css({
+                    cssFloat: opts.imageFloat || &#39;none&#39;
+                });
+            }
+
+            var $tooltip = $(&#39;&lt;div /&gt;&#39;).append([
+                $title,
+                $image,
+                $description
+            ]).addClass(&#39;tooltip&#39;);
+
+            if (!opts.$container) {
+                return $tooltip;
+            }
+
+            opts.$container.$.off(&#39;mouseenter.hover&#39;).on(&#39;mouseenter.hover&#39;, function on() {
+
+                opts.$container.$.append(
+                    $tooltip.stop().
+                        fadeTo(&#39;slow&#39;, 0.9)
+                ).attr({
+                        title: &#39;&#39;
+                    });
+
+                opts.$container.$.on(&#39;mousemove.gallery&#39;, function (e) {
+
+<span id='ToolTipRenderer-property-topL'>                    /**
+</span>                     * Define top
+                     * @type {number}
+                     */
+                    var topL = e.pageY - $tooltip.height() - 20,
+                        topM = e.pageY + 20;
+
+<span id='ToolTipRenderer-property-leftL'>                    /**
+</span>                     * Define left
+                     * @type {number}
+                     */
+                    var leftL = e.pageX - 100,
+                        leftM = e.pageX;
+
+                    $tooltip.offset({
+                        top: topL &lt; 0 ? topM : topL,
+                        left: leftL &lt; 0 ? leftM : leftL
+                    });
+                });
+            });
+
+            opts.$container.$.off(&#39;mouseleave.hover&#39;).on(&#39;mouseleave.hover&#39;, function on() {
+
+                $tooltip.remove();
+
+                opts.$container.$.off(&#39;mousemove.gallery&#39;).attr({
+                    title: opts.title
+                });
+            });
+        }
+    });
+});</pre>
+</body>
+</html>

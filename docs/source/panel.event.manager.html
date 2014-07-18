@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/17/12
+ * Time: 5:28 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/Event&#39;
+], function definePanelEventManager(BaseEvent) {
+
+<span id='PanelEventManager-method-constructor'><span id='PanelEventManager'>    /**
+</span></span>     * Define layout event manager
+     * @class PanelEventManager
+     * @constructor
+     * @extends BaseEvent
+     */
+    var PanelEventManager = function PanelEventManager() {
+
+<span id='PanelEventManager-property-events'>        /**
+</span>         * Define events
+         * @member PanelEventManager
+         * @type {{}}
+         */
+        this.events = {};
+
+<span id='PanelEventManager-property-eventList'>        /**
+</span>         * Define event list
+         * @member PanelEventManager
+         * @type {{
+         *      updateTranslations: string,
+         *      showContent: string,
+         *      defineModules: string,
+         *      definePackages: string,
+         *      openPanel: string,
+         *      closePanel: string,
+         *      refreshModulesContent: string,
+         *      subscribeGenericEvent: string
+         * }}
+         */
+        this.eventList = {
+            updateTranslations: &#39;update.translations&#39;,
+            showContent: &#39;show.content&#39;,
+            defineModules: &#39;define.modules&#39;,
+            definePackages: &#39;define.packages&#39;,
+            openPanel: &#39;open.panel&#39;,
+            closePanel: &#39;close.panel&#39;,
+            refreshModulesContent: &#39;refresh.modules.content&#39;,
+            subscribeGenericEvent: &#39;subscribe.generic.event&#39;
+        };
+    };
+
+    return PanelEventManager.extend(&#39;PanelEventManager&#39;, {
+    }, BaseEvent.prototype);
+});</pre>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineGalleryContentElement(BaseElement) {
+
+<span id='GalleryContentElement-method-GalleryContentElement'><span id='GalleryContentElement'>    /**
+</span></span>     * Define Gallery Content Element
+     * @param view
+     * @param opts
+     * @returns {GalleryContentElement}
+     * @constructor
+     * @class GalleryContentElement
+     * @extends BaseElement
+     * @extends Renderer
+     */
+    var GalleryContentElement = function GalleryContentElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;li /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: false
+        });
+
+<span id='GalleryContentElement-property-data'>        /**
+</span>         * Define data
+         * @type {*}
+         */
+        this.data = opts.data;
+
+        this.setAttributes();
+        this.bindInstallWidget();
+        this.bindShowInfo();
+
+        return this;
+    };
+
+    return GalleryContentElement.extend(&#39;GalleryContentElement&#39;, {
+
+<span id='GalleryContentElement-method-setAttributes'>        /**
+</span>         * Set attributes
+         * @member GalleryContentElement
+         */
+        setAttributes: function setAttributes() {
+
+            this.$.attr({
+                title: this.data.name,
+                resource: this.data.resource
+            });
+
+
+            if (this.data.thumbnail.length &gt; 0) {
+
+                this.$.css({
+                    backgroundImage: &#39;url(&quot;&#39; + this.data.thumbnail + &#39;&quot;)&#39;
+                });
+
+            } else {
+
+                this.$.addClass(
+                    this.view.controller.getResourceClassName(
+                        this.data.resource
+                    )
+                );
+            }
+        },
+
+<span id='GalleryContentElement-method-bindInstallWidget'>        /**
+</span>         * Bind Install widget
+         * @member GalleryContentElement
+         */
+        bindInstallWidget: function bindInstallWidget() {
+
+<span id='GalleryContentElement-method-_clickInstall'>            /**
+</span>             * Click to install
+             * @private
+             */
+            function _clickInstall() {
+                this.view.controller.addWidget(this);
+            }
+
+            this.$.on(
+                &#39;click.install&#39;,
+                _clickInstall.bind(this)
+            );
+        },
+
+<span id='GalleryContentElement-method-bindShowInfo'>        /**
+</span>         * Show item info
+         * @member GalleryContentElement
+         */
+        bindShowInfo: function bindShowInfo() {
+
+<span id='GalleryContentElement-property-S-content'>            /**
+</span>             * Define content element
+             * @type {GalleryContentElement}
+             */
+            var $content = this;
+
+            $content.renderTooltip({
+                title: $content.data.name,
+                description: $content.data.description,
+                $container: $content
+            });
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

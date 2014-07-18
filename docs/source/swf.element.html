@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineSwfElement(BaseElement) {
+
+<span id='SwfElement-method-SwfElement'><span id='SwfElement'>    /**
+</span></span>     * Define Swf Element
+     * @param view
+     * @param opts
+     * @returns {SwfElement}
+     * @constructor
+     * @class SwfElement
+     * @extends BaseElement
+     */
+    var SwfElement = function SwfElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;swf&#39;, {resource: &#39;/widgets&#39;});
+
+        return this;
+    };
+
+    return SwfElement.extend(&#39;SwfElement&#39;, {
+
+<span id='SwfElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member SwfElement
+         * @param {{}} opts
+         */
+        renderEmbeddedContent: function renderEmbeddedContent(opts) {
+
+            if (typeof (url) !== &#39;string&#39; || (url &amp;&amp; !(url + &#39;&#39;).match(/\.swf/))) {
+                return false;
+            }
+
+            // clear html content
+            this.$.empty();
+
+<span id='SwfElement-property-S-flash'>            /**
+</span>             * Define flash player container
+             * @type {*|jQuery}
+             */
+            var $flash = $(&#39;&lt;div class=&quot;flash-player&quot; /&gt;&#39;).attr({
+                id: this.view.renderUUID()
+            });
+
+            this.$.append($flash);
+
+            require([
+                &#39;plugins/widgets/swf/lib/swfobject&#39;
+            ], function defineSwfObject(){
+
+                swfobject.embedSWF(
+                    url,
+                    $flash[0],
+                    &quot;100%&quot;,
+                    &quot;100%&quot;,
+                    10,
+                    &quot;expressInstall.swf&quot;,
+                    JSON.parse(opts.flashvars || &#39;{}&#39;),
+                    JSON.parse(opts.params || &#39;{}&#39;),
+                    JSON.parse(opts.attributes || &#39;{}&#39;)
+                );
+            });
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

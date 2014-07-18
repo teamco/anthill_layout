@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/View&#39;,
+    &#39;plugins/rules/rules&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/site.preferences/element/site.preferences.content.element&#39;,
+    &#39;plugins/site.preferences/element/site.preferences.element&#39;
+], function defineSitePreferencesView(AntHill, BaseView, BaseRules, Header, Footer, SitePreferencesContentElement, SitePreferencesElement) {
+
+<span id='SitePreferencesView-method-constructor'><span id='SitePreferencesView'>    /**
+</span></span>     * Define view
+     * @class SitePreferencesView
+     * @constructor
+     * @extends BaseView
+     * @extends BaseRules
+     */
+    var SitePreferencesView = function SitePreferencesView() {
+    };
+
+    return SitePreferencesView.extend(&#39;SitePreferencesView&#39;, {
+
+<span id='SitePreferencesView-method-renderSitePreferences'>        /**
+</span>         * Render SitePreferences
+         * @member SitePreferencesView
+         * @returns {boolean}
+         */
+        renderSitePreferences: function renderSitePreferences() {
+
+            this.header(Header, this.elements.$container).setText(
+                &#39;Site Preferences&#39;
+            );
+
+<span id='SitePreferencesView-property-S-site'>            /**
+</span>             * Define SitePreferences element
+             * @type {SitePreferencesElement}
+             */
+            this.elements.$site = new SitePreferencesElement(this, {
+                id: this.createUUID(),
+                $container: this.elements.$container.$
+            });
+
+            this.footer(Footer, this.elements.$container).setHtml(
+                this.elements.$site.getFooter()
+            );
+        },
+
+<span id='SitePreferencesView-method-renderContent'>        /**
+</span>         * Render site.preferences content
+         * @member SitePreferencesView
+         * @param data
+         * @returns {boolean}
+         */
+        renderContent: function renderContent(data) {
+
+<span id='SitePreferencesView-property-items'>            /**
+</span>             * Define content
+             * @type {{}}
+             */
+            this.elements.items = {};
+            this.elements.$site.empty();
+
+            for (var index in data) {
+
+                if (data.hasOwnProperty(index)) {
+
+<span id='SitePreferencesView-property-S-item'>                    /**
+</span>                     * Render item
+                     * @type {SitePreferencesContentElement}
+                     */
+                    var $item = new SitePreferencesContentElement(this, {
+                        style: [
+                            &#39;content&#39;,
+                            data[index].title.toDash()
+                        ].join(&#39; &#39;),
+                        $container: this.elements.$site.$,
+                        data: data[index]
+                    });
+
+                    this.elements.items[$item.id] = $item;
+                }
+            }
+
+            this.elements.$site.scrollCover(
+                this.elements.$container.$
+            );
+
+            this.footer(Footer, this.elements.$container).setHtml(
+                this.elements.$site.getFooter()
+            );
+        },
+
+<span id='SitePreferencesView-method-showPreferences'>        /**
+</span>         * Show Preferences
+         * @member SitePreferencesView
+         * @param opts
+         */
+        showPreferences: function showPreferences(opts) {
+
+<span id='SitePreferencesView-property-S-html'>            /**
+</span>             * Define $html
+             * @type {string}
+             */
+            var $html = this.elements.$site.getPreferencesHtml(opts);
+
+<span id='SitePreferencesView-property-buttons'>            /**
+</span>             * Define buttons
+             * @type {*}
+             */
+            var buttons = {
+                approve: {
+                    text: &#39;OK&#39;,
+                    events: {
+                        click: &#39;approveUpdatePreferences&#39;
+                    }
+                },
+                reject: {
+                    text: &#39;Cancel&#39;,
+                    events: {
+                        click: [&#39;rejectModalEvent&#39;]
+                    }
+                }
+            };
+
+<span id='SitePreferencesView-property-page'>            /**
+</span>             * Define page
+             * @type {Page}
+             */
+            var page = this.controller.getPage();
+
+<span id='SitePreferencesView-property-workspace'>            /**
+</span>             * Get Workspace
+             * @type {Workspace}
+             */
+            var workspace = this.controller.getWorkspace();
+
+            this.modalDialog({
+                style: [
+                    opts.title.toDash(), &#39;preferences&#39;
+                ].join(&#39; &#39;),
+                $container: page.view.get$item().$,
+                type: &#39;info&#39;,
+                title: opts.title,
+                text: workspace.model.getUUID(),
+                html: $html,
+                cover: true,
+                buttons: buttons
+            });
+        },
+
+<span id='SitePreferencesView-method-render'>        /**
+</span>         * Render site.preferences
+         * @member SitePreferencesView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderSitePreferences.bind(this)
+            );
+        }
+
+    }, AntHill.prototype, BaseView.prototype, BaseRules.prototype)
+
+});</pre>
+</body>
+</html>

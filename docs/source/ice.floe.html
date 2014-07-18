@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:02 AM
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/MVC&#39;,
+    &#39;plugins/widgets/ice.floe/mvc/ice.floe.controller&#39;,
+    &#39;plugins/widgets/ice.floe/mvc/ice.floe.model&#39;,
+    &#39;plugins/widgets/ice.floe/mvc/ice.floe.view&#39;,
+    &#39;plugins/widgets/ice.floe/mvc/ice.floe.event.manager&#39;,
+    &#39;plugins/widgets/ice.floe/mvc/ice.floe.permission&#39;
+], function defineIceFloe(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+
+<span id='IceFloe-method-IceFloe'><span id='IceFloe'>    /**
+</span></span>     * Define IceFloe
+     * @param containment
+     * @param [opts]
+     * @constructor
+     * @class IceFloe
+     * @extends AntHill
+     */
+    var IceFloe = function IceFloe(containment, opts) {
+
+<span id='IceFloe-property-containment'>        /**
+</span>         * Define containment
+         * @member IceFloe
+         */
+        this.containment = containment;
+
+<span id='IceFloe-property-referrer'>        /**
+</span>         * Define referrer
+         * @member IceFloe
+         * @type {*}
+         */
+        this.referrer = undefined;
+
+<span id='IceFloe-property-DEFAULTS'>        /**
+</span>         * Define defaults
+         * @type {{
+         *      plugin: boolean,
+         *      html: {
+         *          style: string,
+         *          header: boolean,
+         *          footer: boolean,
+         *          floating: boolean,
+         *          padding: {
+         *              top: number,
+         *              right: number,
+         *              bottom: number,
+         *              left: number
+         *          }
+         *      }
+         * }}
+         */
+        var DEFAULTS = {
+            plugin: true,
+            html: {
+                style: &#39;default&#39;,
+                header: false,
+                footer: false,
+                padding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                }
+            }
+        };
+
+<span id='IceFloe-property-mvc'>        /**
+</span>         * Define MVC
+         * @member IceFloe
+         * @type {MVC}
+         */
+        this.mvc = new MVC({
+            scope: this,
+            config: [
+                {uuid: this.containment.model.getContentUUID()},
+                DEFAULTS
+            ],
+            components: [
+                Controller,
+                Model,
+                View,
+                EventManager,
+                Permission
+            ],
+            render: true
+        });
+
+        this.observer.publish(
+            this.eventmanager.eventList.initWidget,
+            opts
+        );
+    };
+
+    return IceFloe.extend(&#39;IceFloe&#39;, {
+
+    }, AntHill.prototype);
+});</pre>
+</body>
+</html>

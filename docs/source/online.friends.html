@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:02 AM
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/MVC&#39;,
+    &#39;plugins/widgets/online.friends/mvc/online.friends.controller&#39;,
+    &#39;plugins/widgets/online.friends/mvc/online.friends.model&#39;,
+    &#39;plugins/widgets/online.friends/mvc/online.friends.view&#39;,
+    &#39;plugins/widgets/online.friends/mvc/online.friends.event.manager&#39;,
+    &#39;plugins/widgets/online.friends/mvc/online.friends.permission&#39;
+], function defineOnlineFriends(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+
+<span id='OnlineFriends-method-OnlineFriends'><span id='OnlineFriends'>    /**
+</span></span>     * Define OnlineFriends
+     * @param containment
+     * @param [opts]
+     * @constructor
+     * @class OnlineFriends
+     * @extends AntHill
+     */
+    var OnlineFriends = function OnlineFriends(containment, opts) {
+
+<span id='OnlineFriends-property-containment'>        /**
+</span>         * Define containment
+         * @member OnlineFriends
+         */
+        this.containment = containment;
+
+<span id='OnlineFriends-property-referrer'>        /**
+</span>         * Define referrer
+         * @member OnlineFriends
+         * @type {*}
+         */
+        this.referrer = undefined;
+
+<span id='OnlineFriends-property-DEFAULTS'>        /**
+</span>         * Define defaults
+         * @type {{
+         *      plugin: boolean,
+         *      html: {
+         *          style: string,
+         *          header: boolean,
+         *          footer: boolean,
+         *          floating: boolean,
+         *          padding: {
+         *              top: number,
+         *              right: number,
+         *              bottom: number,
+         *              left: number
+         *          }
+         *      }
+         * }}
+         */
+        var DEFAULTS = {
+            plugin: true,
+            html: {
+                style: &#39;default&#39;,
+                header: false,
+                footer: false,
+                padding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                }
+            }
+        };
+
+<span id='OnlineFriends-property-mvc'>        /**
+</span>         * Define MVC
+         * @member OnlineFriends
+         * @type {MVC}
+         */
+        this.mvc = new MVC({
+            scope: this,
+            config: [
+                {uuid: this.containment.model.getContentUUID()},
+                DEFAULTS
+            ],
+            components: [
+                Controller,
+                Model,
+                View,
+                EventManager,
+                Permission
+            ],
+            render: true
+        });
+
+        this.observer.publish(
+            this.eventmanager.eventList.initWidget,
+            opts
+        );
+    };
+
+    return OnlineFriends.extend(&#39;OnlineFriends&#39;, {
+
+    }, AntHill.prototype);
+});</pre>
+</body>
+</html>

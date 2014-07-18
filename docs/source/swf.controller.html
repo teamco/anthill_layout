@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define([
+    &#39;plugins/plugin&#39;,
+    &#39;plugins/widgets/widget.content.controller&#39;
+], function defineSwfController(PluginBase, WidgetContentController) {
+
+<span id='SwfController-method-constructor'><span id='SwfController'>    /**
+</span></span>     * Define swf controller
+     * @class SwfController
+     * @extends PluginController
+     * @extends WidgetContentController
+     * @constructor
+     */
+    var SwfController = function SwfController() {
+    };
+
+    return SwfController.extend(&#39;SwfController&#39;, {
+
+<span id='SwfController-method-setEmbeddedContent'>        /**
+</span>         * Set embedded content
+         * @member SwfController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
+
+            this.view.elements.$swf.renderEmbeddedContent({
+                url: this.model.getPrefs(&#39;swfUrl&#39;),
+                flashvars: this.model.getPrefs(&#39;swfFlashVars&#39;),
+                params: this.model.getPrefs(&#39;swfParams&#39;),
+                attributes: this.model.getPrefs(&#39;swfAttributes&#39;)
+            });
+        },
+
+<span id='SwfController-method-addSwfRule'>        /**
+</span>         * Add Swf rule
+         * @member SwfController
+         * @param e
+         */
+        addSwfRule: function addSwfRule(e) {
+
+<span id='SwfController-property-S-button'>            /**
+</span>             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target),
+                scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.publishRule,
+                [$button.attr(&#39;value&#39;), scope.constructor.name]
+            );
+        }
+
+    }, PluginBase.prototype, WidgetContentController.prototype);
+});</pre>
+</body>
+</html>

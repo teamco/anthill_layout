@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">define(
+    [
+        &#39;config/anthill&#39;,
+        &#39;modules/MVC&#39;,
+        &#39;api/workspace.api&#39;,
+        &#39;controller/workspace.controller&#39;,
+        &#39;model/workspace.model&#39;,
+        &#39;view/workspace.view&#39;,
+        &#39;event/workspace.event.manager&#39;,
+        &#39;permission/workspace.permission&#39;
+    ],
+
+<span id='global-method-defineWorkspace'>    /**
+</span>     * Define Workspace
+     * @param {AntHill} AntHill
+     * @param {MVC} MVC
+     * @param {WorkspaceAPI} API
+     * @param {WorkspaceController} Controller
+     * @param {WorkspaceModel} Model
+     * @param {WorkspaceView} View
+     * @param {WorkspaceEventManager} EventManager
+     * @param {WorkspacePermission} Permission
+     * @returns {Workspace}
+     */
+        function defineWorkspace(AntHill, MVC, API, Controller, Model, View, EventManager, Permission) {
+
+<span id='Workspace-method-constructor'><span id='Workspace'>        /**
+</span></span>         * Define Workspace
+         * @class Workspace
+         * @param opts
+         * @constructor
+         * @extends AntHill
+         */
+        var Workspace = function Workspace(opts) {
+
+<span id='Workspace-property-swipePage'>            /**
+</span>             * Define swipe page
+             * @member Workspace
+             * @type {boolean}
+             */
+            this.swipePage = false;
+
+<span id='Workspace-property-DEFAULTS'>            /**
+</span>             * Define default config
+             * @type {{
+             *      limit: boolean,
+             *      isResized: boolean,
+             *      type: string,
+             *      order: number,
+             *      page: {counter: number, limit: number, onDestroyShowPrevious: boolean},
+             *      html: {
+             *          style: string,
+             *          header: boolean,
+             *          footer: boolean,
+             *          stretch: boolean,
+             *          padding: {top: number, right: number, bottom: number, left: number}
+             *      }
+             * }}
+             */
+            var DEFAULTS = {
+                limit: false,
+                isResized: true,
+                type: &#39;default&#39;,
+                order: 1,
+                page: {
+                    plural: false,
+                    counter: 0,
+                    limit: 10,
+                    // Show previous page (false means Next)
+                    onDestroyShowPrevious: true
+                },
+                html: {
+                    style: &#39;default&#39;,
+                    header: false,
+                    footer: false,
+                    stretch: true,
+                    padding: {
+                        top: 0,
+                        right: 0,
+                        bottom: 0,
+                        left: 0
+                    }
+                }
+            };
+
+<span id='Workspace-property-mvc'>            /**
+</span>             * Define MVC
+             * @member Workspace
+             * @type {MVC}
+             */
+            this.mvc = new MVC({
+                scope: this,
+                config: [opts.config, DEFAULTS],
+                components: [
+                    API,
+                    Controller,
+                    Model,
+                    View,
+                    EventManager,
+                    Permission
+                ]
+            });
+
+<span id='Workspace-property-page'>            /**
+</span>             * Define page
+             * @member Workspace
+             * @type {*|Page}
+             */
+            this.page = {};
+
+<span id='Workspace-property-items'>            /**
+</span>             * Define itemsÒ
+             * @member Workspace
+             * @type {*}
+             */
+            this.items = {};
+
+            this.observer.publish(
+                this.eventmanager.eventList.successCreated
+            );
+
+            this.observer.publish(
+                this.eventmanager.eventList.bindHashChange
+            );
+        };
+
+        return Workspace.extend(&#39;Workspace&#39;, {
+
+        }, AntHill.prototype);
+    }
+);</pre>
+</body>
+</html>

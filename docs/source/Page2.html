@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/18/12
+ * Time: 8:22 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;config/anthill&#39;
+], function defineBasePage(AntHill) {
+
+<span id='BasePage-method-constructor'><span id='BasePage'>    /**
+</span></span>     * Define base page
+     * @class BasePage
+     * @extends AntHill
+     * @constructor
+     */
+    var BasePage = function BasePage() {
+
+    };
+
+    return BasePage.extend(&#39;BasePage&#39;, {
+
+<span id='BasePage-method-createLayout'>        /**
+</span>         * Create page layout
+         * @member BasePage
+         * @param {Function} Layout
+         * @param {{}} opts
+         */
+        createLayout: function createLayout(Layout, opts) {
+
+<span id='Page-property-layout'>            /**
+</span>             * Define layout
+             * @member Page
+             * @type {Layout}
+             */
+            this.layout = new Layout(opts, this);
+        },
+
+<span id='BasePage-method-destroyLayout'>        /**
+</span>         * Destroy layout
+         * @member BasePage
+         */
+        destroyLayout: function destroyLayout() {
+            this.logger.info(
+                &#39;Destroy Layout&#39;,
+                this.layout
+            );
+            delete this.layout;
+        },
+
+<span id='BasePage-method-getLayout'>        /**
+</span>         * Get Layout
+         * @member BasePage
+         * @returns {Layout}
+         */
+        getLayout: function getLayout() {
+            return this.scope.layout;
+        },
+
+<span id='BasePage-method-updateLayout'>        /**
+</span>         * Update layout config
+         * @member BasePage
+         */
+        updateLayout: function updateLayout() {
+
+<span id='BasePage-property-layout'>            /**
+</span>             * Define scope
+             * @type {Layout}
+             */
+            var layout = this.scope.layout;
+
+            layout.observer.publish(
+                layout.eventmanager.eventList.updateMinCellWidth
+            );
+
+            this.updateWidgetsConfig();
+        }
+
+    }, AntHill.prototype);
+});</pre>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 3/19/14.
+ */
+
+define([], function defineBaseRules() {
+
+<span id='BaseRules-method-constructor'><span id='BaseRules'>    /**
+</span></span>     * Define base prefs
+     * @class BaseRules
+     * @constructor
+     */
+    var BaseRules = function BaseRules() {
+
+    };
+
+    return BaseRules.extend({
+
+<span id='BaseRules-method-toggleFieldset'>        /**
+</span>         * Toggle fieldset
+         * @member BaseRules
+         * @param e
+         */
+        toggleFieldset: function toggleFieldset(e) {
+
+<span id='BaseRules-property-S-li'>            /**
+</span>             * Define $li
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $li = $(e.target);
+
+            $li.hasClass(&#39;open&#39;) ?
+                $li.removeClass(&#39;open&#39;) :
+                $li.addClass(&#39;open&#39;);
+
+            this.adoptModalDialogPosition();
+        },
+
+<span id='BaseRules-method-openRules'>        /**
+</span>         * Open preferences
+         * @member BaseRules
+         * @param opts
+         */
+        openRules: function openRules(opts) {
+
+<span id='BaseRules-property-buttons'>            /**
+</span>             * Define buttons
+             * @type {*}
+             */
+            var buttons = $.extend(true, {}, {
+                locate: {
+                    text: &#39;Locate&#39;,
+                    events: {
+                        click: &#39;locate&#39; + this.scope.constructor.name
+                    }
+                },
+                approve: {
+                    text: &#39;OK&#39;,
+                    events: {
+                        click: &#39;approveUpdateRules&#39;
+                    }
+                },
+                reject: {
+                    text: &#39;Cancel&#39;,
+                    events: {
+                        click: &#39;rejectModalEvent&#39;
+                    }
+                }
+            }, opts.buttons || {});
+
+<span id='BaseRules-property-page'>            /**
+</span>             * Define page
+             * @type {Page}
+             */
+            var page = this.controller.getPage();
+
+            this.modalDialog({
+                style: opts.style,
+                $container: page.view.get$item().$,
+                type: opts.type || &#39;info&#39;,
+                title: opts.title,
+                text: opts.config.uuid,
+                html: opts.$html,
+                cover: true,
+                buttons: buttons
+            });
+        }
+    });
+});</pre>
+</body>
+</html>

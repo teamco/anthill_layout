@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineQuicktimeElement(BaseElement) {
+
+<span id='QuicktimeElement-method-QuicktimeElement'><span id='QuicktimeElement'>    /**
+</span></span>     * Define Quicktime Element
+     * @param view
+     * @param opts
+     * @returns {QuicktimeElement}
+     * @constructor
+     * @class QuicktimeElement
+     * @extends BaseElement
+     */
+    var QuicktimeElement = function QuicktimeElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;quicktime&#39;, {resource: &#39;/widgets&#39;});
+
+        return this;
+    };
+
+    return QuicktimeElement.extend(&#39;QuicktimeElement&#39;, {
+
+<span id='QuicktimeElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member QuicktimeElement
+         * @param {string} url
+         */
+        renderEmbeddedContent: function renderEmbeddedContent(url) {
+
+<span id='QuicktimeElement-property-scope'>            /**
+</span>             * Define scope
+             * @type {QuicktimeElement}
+             */
+            var scope = this;
+
+            scope.$.append(
+                $(&#39;&lt;div /&gt;&#39;).text(url).hide()
+            );
+
+            require([
+
+                &#39;plugins/widgets/quicktime/lib/jquery.quicktime&#39;
+
+            ], function defineQuicktime() {
+
+                $(&#39;div&#39;, scope.$).quicktime(
+                    null,
+                    { version: 7, update: false },
+                    function (htmlOptions) {
+                        $this = $(this);
+                        htmlOptions.src = $this.text();
+                        $this.before($.fn.quicktime.transform(htmlOptions));
+                    }
+                );
+            });
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

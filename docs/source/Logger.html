@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/19/12
+ * Time: 10:29 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;config/anthill&#39;
+], function defineLog(AntHill) {
+
+<span id='Logger-method-constructor'><span id='Logger'>    /**
+</span></span>     * Define Logger
+     * @class Logger
+     * @extends AntHill
+     * @constructor Logger
+     */
+    var Logger = function Logger(scope) {
+
+<span id='Logger-property-scope'>        /**
+</span>         * Define scope
+         * @member Logger
+         * @type {*}
+         */
+        this.scope = scope;
+
+        this.setConfig(scope.config.logger);
+    };
+
+    return Logger.extend(&#39;Logger&#39;, {
+
+<span id='Logger-method-setConfig'>        /**
+</span>         * Set config
+         * @member Logger
+         * @param config
+         */
+        setConfig: function setConfig(config) {
+
+            if (this.base.isObject(config)) {
+
+<span id='Logger-property-config'>                /**
+</span>                 * Define config
+                 * @type {*}
+                 */
+                this.config = config;
+            }
+        },
+
+<span id='Logger-method-showLog'>        /**
+</span>         * Show Log
+         * @member Logger
+         * @returns {boolean}
+         */
+        showLog: function showLog() {
+            return this.config.show;
+        },
+
+<span id='Logger-method-isLoggable'>        /**
+</span>         * Check if log available
+         * @member Logger
+         * @return {Boolean}
+         */
+        isLoggable: function isLoggable() {
+            return this.base.isDefined(console) &amp;&amp;
+                this.showLog();
+        },
+
+<span id='Logger-method-puts'>        /**
+</span>         * Puts (internal function)
+         * @member Logger
+         * @param {string} type
+         * @returns {boolean}
+         */
+        puts: function puts(type) {
+
+            var console = window.console,
+                content = [],
+                hash = {},
+                base = this.base,
+                config = this.config,
+                scope = this.scope,
+                log = this.isLoggable();
+
+            if (log &amp;&amp; config.type[type]) {
+                try {
+                    if (!!config.namespaces) {
+
+<span id='Logger-property-instance'>                        /**
+</span>                         * Define constructor name instance
+                         * @type {Function.name|*}
+                         */
+                        var instance = scope.constructor.name;
+
+                        if (base.isDefined(instance)) {
+
+                            config.namespaces = base.define(
+                                config.namespaces,
+                                [config.namespaces],
+                                true
+                            );
+
+                            if ($.inArray(instance, config.namespaces) === -1) {
+                                return false;
+                            }
+                        }
+                    }
+                    var args = [], i = 1;
+                    for (i; i &lt; arguments.length; i += 1) {
+                        args.push(arguments[i]);
+                    }
+
+                    if (base.isDefined(console[type])) {
+                        hash[type] = args;
+                        content.push(hash);
+                    } else {
+                        content.push({log: args});
+                    }
+                    if (type === &#39;error&#39; &amp;&amp; base.isDefined(console.trace)) {
+                        content.push({trace: args});
+                    }
+                } catch (e) {
+                    if (base.isDefined(console.error)) {
+                        content.push({
+                            error: [e, arguments]
+                        });
+                    }
+                }
+            }
+
+            i = 0;
+            var l = content.length;
+
+            if (l === 0) {
+                return false;
+            }
+
+            console.groupCollapsed(scope);
+            for (i; i &lt; l; i += 1) {
+                hash = content[i];
+                var k = base.lib.hash.firstHashKey(hash);
+                hash[k][&#39;caller&#39;] = this.puts.caller;
+                hash[k][&#39;line&#39;] = this.stackIt(
+                    ((new Error).stack + &#39;&#39;).split(&quot;\n&quot;)
+                );
+                console[k](hash[k]);
+            }
+            console.info(&#39;timestamp&#39;, base.lib.datetime.timestamp());
+            console.groupEnd();
+
+            return true;
+        },
+
+<span id='Logger-method-stackIt'>        /**
+</span>         * Stack trace parser
+         * @member Logger
+         * @param {Array} stacks
+         * @returns {Array}
+         */
+        stackIt: function stackIt(stacks) {
+            var log = [];
+            for (var i = 1, l = stacks.length; i &lt; l; i++) {
+                log.push(stacks[i].replace(/^\s+at |\s+$/g, &#39;&#39;));
+            }
+
+            return log;
+        },
+
+<span id='Logger-method-timer'>        /**
+</span>         * Timer
+         * @member Logger
+         * @param {string} name
+         * @param {boolean} start
+         */
+        timer: function timer(name, start) {
+
+            var console = window.console,
+                base = this.base,
+                config = this.config,
+                log = this.isLoggable();
+
+            start = base.defineBoolean(start, false, true);
+
+            if (log &amp;&amp; config.type.debug) {
+                start ?
+                    console.time(name) :
+                    console.timeEnd(name);
+            }
+        },
+
+<span id='Logger-method-defineLogs'>        /**
+</span>         * Define available logs
+         * @member Logger
+         */
+        defineLogs: function defineLogs() {
+            var base = this.base,
+                availableLogs = base.lib.hash.hashKeys(
+                    this.config.type
+                ),
+                length = availableLogs.length,
+                i = 0;
+
+            for (i; i &lt; length; i += 1) {
+                var log = availableLogs[i];
+                if (base.isDefined(log)) {
+                    this[log] = this.puts.bind(this, log);
+                }
+            }
+        }
+
+    }, AntHill.prototype);
+});</pre>
+</body>
+</html>

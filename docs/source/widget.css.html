@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">.widget {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    cursor: move;
+    border: none;
+}
+
+.development .widget,
+.authoring .widget {
+    -webkit-box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
+    box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
+}
+
+.widget:hover {
+    z-index: 1000;
+}
+
+.ui-state-disabled {
+    opacity: 1;
+}
+
+.widget.maximize:hover {
+    z-index: 0;
+}
+
+.widget.overlapped:after {
+    content: &quot; &quot;;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px dashed lightcoral;
+}
+
+.widget.select:after,
+.development .widget:hover:after,
+.authoring .widget:hover:after,
+.widget.ui-draggable-dragging:after,
+.widget.ui-resizable-resizing:after {
+    content: &quot; &quot;;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 4px solid lightcoral;
+    z-index: 10;
+}
+
+.widget.ui-draggable:hover .content {
+    cursor: move;
+}
+
+.widget.ui-resizable-resizing .ui-resizable-handle,
+.widget:hover .ui-resizable-handle {
+    visibility: visible;
+}
+
+.widget .ui-resizable-handle {
+    background: #cd0a0a none;
+    width: 10px;
+    height: 10px;
+    visibility: hidden;
+}
+
+.widget.ui-draggable.disable-interactions:hover .content,
+.widget.maximize,
+.widget.maximize:hover .content {
+    cursor: default;
+}
+
+.widget.disable-interactions:after,
+.widget.disable-interactions .ui-resizable-handle,
+.widget.maximize .ui-resizable-handle {
+    display: none;
+}
+
+.widget .ui-resizable-n {
+    box-shadow: -1px 1px 1px #333;
+    left: 50%;
+    top: 0;
+}
+
+.widget .ui-resizable-e {
+    box-shadow: -1px 1px 1px #333;
+    top: 50%;
+    right: 0;
+}
+
+.widget .ui-resizable-s {
+    left: 50%;
+    bottom: 0;
+    box-shadow: -1px -1px 1px #333;
+}
+
+.widget .ui-resizable-w {
+    top: 50%;
+    left: 0;
+    box-shadow: 1px -1px 1px #333;
+}
+
+.widget .ui-resizable-se {
+    right: 0;
+    bottom: 0;
+    box-shadow: -1px -1px 1px #333;
+}
+
+.widget .ui-resizable-sw {
+    left: 0;
+    bottom: 0;
+    box-shadow: 1px -1px 1px #333;
+}
+
+.widget .ui-resizable-ne {
+    box-shadow: -1px 1px 1px #333;
+    right: 0;
+    top: 0;
+}
+
+.widget .ui-resizable-nw {
+    box-shadow: 1px 1px 1px #333;
+    left: 0;
+    top: 0;
+}
+
+.widget.ontop {
+}
+
+#next-widget-position {
+    position: absolute;
+    z-index: 51;
+    background: #000;
+    opacity: 0.05;
+}
+
+.widget .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    cursor: default;
+    background: transparent no-repeat center;
+    overflow: hidden;
+}
+
+.widget.no-bg .content {
+    background: transparent !important;
+}
+
+.widget.ui-resizable-resizing iframe,
+.widget.ui-draggable-dragging iframe {
+    display: none !important;
+}
+
+.widget.ui-draggable-dragging .ui-resizable-handle {
+    display: none;
+}
+
+.widget.ui-draggable-dragging,
+.widget.ui-resizable-resizing {
+    opacity: 0.6 !important;
+}</pre>
+</body>
+</html>

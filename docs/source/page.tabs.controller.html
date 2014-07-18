@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define([
+    &#39;plugins/plugin&#39;,
+    &#39;plugins/widgets/widget.content.controller&#39;
+], function definePageTabsController(PluginBase, WidgetContentController) {
+
+<span id='PageTabsController-method-constructor'><span id='PageTabsController'>    /**
+</span></span>     * Define PageTabs controller
+     * @class PageTabsController
+     * @extends PluginController
+     * @extends WidgetContentController
+     * @constructor
+     */
+    var PageTabsController = function PageTabsController() {
+
+    };
+
+    return PageTabsController.extend(&#39;PageTabsController&#39;, {
+
+<span id='PageTabsController-method-subscribeAfterSwitchPageEvent'>        /**
+</span>         * Subscribe to after switch page event
+         * @member PageTabsController
+         */
+        subscribeAfterSwitchPageEvent: function subscribeAfterSwitchPageEvent() {
+            this.controller._subscribePageEventCallback.bind(this)(
+                &#39;afterSwitchToPage&#39;
+            );
+        },
+
+<span id='PageTabsController-method-subscribeCreatePageEvent'>        /**
+</span>         * Subscribe to create page event
+         * @member PageTabsController
+         */
+        subscribeCreatePageEvent: function subscribeCreatePageEvent() {
+            this.controller._subscribePageEventCallback.bind(this)(
+                &#39;afterCreateItem&#39;
+            );
+        },
+
+<span id='PageTabsController-method-subscribeDestroyPageEvent'>        /**
+</span>         * Subscribe to destroy page event
+         * @member PageTabsController
+         */
+        subscribeDestroyPageEvent: function subscribeDestroyPageEvent() {
+
+            this.controller._subscribePageEventCallback.bind(this)(
+                &#39;afterDestroyItem&#39;
+            );
+
+            this.controller._subscribePageEventCallback.bind(this)(
+                &#39;afterDestroyItems&#39;
+            );
+        },
+
+<span id='PageTabsController-method-_subscribePageEventCallback'>        /**
+</span>         * Subscribe to create page event
+         * @member PageTabsController
+         * @private
+         * @param {string} eventName
+         */
+        _subscribePageEventCallback: function _subscribePageEventCallback(eventName) {
+
+<span id='PageTabsController-property-ws'>            /**
+</span>             * Get workspace
+             * @type {Workspace}
+             */
+            var ws = this.controller.getWorkspace();
+
+<span id='PageTabsController-property-wsEventManager'>            /**
+</span>             * Get workspace
+             * @type {WorkspaceEventManager}
+             */
+            var wsEventManager = ws.eventmanager;
+
+            wsEventManager.subscribe({
+
+                event: {
+                    eventName: wsEventManager.eventList[eventName]
+                },
+
+                callback: function onPageEventCallback() {
+
+                    this.observer.publish(
+                        this.eventmanager.eventList.setEmbeddedContent
+                    );
+
+                }.bind(this)
+
+            }, false);
+        },
+
+<span id='PageTabsController-method-setEmbeddedContent'>        /**
+</span>         * Set embedded content
+         * @member PageTabsController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
+
+<span id='PageTabsController-property-ws'>            /**
+</span>             * Get workspace
+             * @type {Workspace}
+             */
+            var ws = this.controller.getWorkspace();
+
+            this.view.elements.$pagetabs.renderEmbeddedContent(
+                ws.model.getItems(),
+                ws.controller.getCurrentItem()
+            );
+        },
+
+<span id='PageTabsController-method-switchToPage'>        /**
+</span>         * Switch to page
+         * @member PageTabsController
+         * @param {PageTabsItemElement} $page
+         * @param {Event} e
+         */
+        switchToPage: function switchToPage($page, e) {
+
+            if ($page.pageUrl) {
+
+                this.logger.debug(&#39;Open url&#39;, e);
+                window.open($page.pageUrl);
+
+            } else {
+
+<span id='PageTabsController-property-workspace'>                /**
+</span>                 * Get workspace
+                 * @type {Workspace}
+                 */
+                var workspace = this.controller.getWorkspace();
+
+                workspace.observer.publish(
+                    workspace.eventmanager.eventList.switchToPage,
+                    [$page.pageTab, true]
+                );
+            }
+        },
+
+<span id='PageTabsController-method-addPageTabsRule'>        /**
+</span>         * Add PageTabs rule
+         * @member PageTabsController
+         * @param e
+         */
+        addPageTabsRule: function addPageTabsRule(e) {
+
+<span id='PageTabsController-property-S-button'>            /**
+</span>             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target),
+                scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.publishRule,
+                [$button.attr(&#39;value&#39;), this.scope.constructor.name]
+            );
+        }
+
+    }, PluginBase.prototype, WidgetContentController.prototype);
+});</pre>
+</body>
+</html>

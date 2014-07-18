@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 2/2/13
+ * Time: 6:35 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([], function defineBaseString() {
+
+<span id='BaseUserAgent-method-BaseUserAgent'><span id='BaseUserAgent'>    /**
+</span></span>     * Define BaseUserAgent
+     * @constructor
+     * @class BaseUserAgent
+     */
+    var BaseUserAgent = function BaseUserAgent() {
+
+<span id='BaseUserAgent-property-ua'>        /**
+</span>         * Define user agent
+         * @type {string}
+         */
+        var ua = navigator.userAgent.toLowerCase();
+
+<span id='BaseUserAgent-property-browser'>        /**
+</span>         * Define browsers
+         * @member BaseUserAgent
+         * @type {{
+         *      mozilla: boolean,
+         *      webkit: boolean,
+         *      opera: boolean,
+         *      msie: boolean
+         * }}
+         */
+        this.browser = {
+            mozilla: /mozilla/.test(ua) &amp;&amp; !/webkit/.test(ua),
+            webkit: /webkit/.test(ua),
+            opera: /opera/.test(ua),
+            msie: /msie/.test(ua)
+        };
+    };
+
+    BaseUserAgent.extend(&#39;BaseUserAgent&#39;, {
+
+<span id='BaseUserAgent-method-version'>        /**
+</span>         * Get version
+         * @member BaseUserAgent
+         * @returns {*}
+         */
+        version: function version() {
+            return (navigator.userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [])[1];
+        },
+
+<span id='BaseUserAgent-method-msie'>        /**
+</span>         * Get MSIE
+         * @member BaseUserAgent
+         * @returns {*}
+         */
+        msie: function msie() {
+            if (this.browser.msie) {
+                return this.version();
+            }
+        },
+
+<span id='BaseUserAgent-method-opera'>        /**
+</span>         * Get Opera
+         * @member BaseUserAgent
+         * @returns {*}
+         */
+        opera: function opera() {
+            if (this.browser.opera) {
+                return this.version();
+            }
+        },
+
+<span id='BaseUserAgent-method-chrome'>        /**
+</span>         * Get Chrome
+         * @member BaseUserAgent
+         * @returns {*}
+         */
+        chrome: function chrome() {
+            if (this.browser.webkit) {
+                if (navigator.vendor.match(/Google/)) {
+                    return this.version();
+                }
+            }
+        },
+
+<span id='BaseUserAgent-method-safari'>        /**
+</span>         * Get Safari
+         * @member BaseUserAgent
+         * @returns {*}
+         */
+        safari: function safari() {
+            if (this.browser.webkit) {
+                if (navigator.vendor.match(/Apple/)) {
+                    return this.version();
+                }
+            }
+        }
+    });
+
+    return new BaseUserAgent();
+
+});</pre>
+</body>
+</html>

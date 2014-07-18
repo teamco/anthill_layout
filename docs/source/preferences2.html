@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 3/19/14.
+ */
+
+define([], function defineBasePreferences() {
+
+<span id='BasePreferences-method-constructor'><span id='BasePreferences'>    /**
+</span></span>     * Define base prefs
+     * @class BasePreferences
+     * @constructor
+     */
+    var BasePreferences = function BasePreferences() {
+
+    };
+
+    return BasePreferences.extend({
+
+<span id='BasePreferences-method-toggleFieldset'>        /**
+</span>         * Toggle fieldset
+         * @member BasePreferences
+         * @param e
+         */
+        toggleFieldset: function toggleFieldset(e) {
+
+<span id='BasePreferences-property-S-el'>            /**
+</span>             * Define $el
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $el = $(e.target);
+
+            $el.parents(&#39;div.html&#39;).
+                find(&#39;.open&#39;).
+                removeClass(&#39;open&#39;);
+
+            $el.addClass(&#39;open&#39;);
+
+            this.adoptModalDialogPosition();
+        },
+
+<span id='BasePreferences-method-openPreferences'>        /**
+</span>         * Open preferences
+         * @member BasePreferences
+         * @param opts
+         */
+        openPreferences: function openPreferences(opts) {
+
+<span id='BasePreferences-property-buttons'>            /**
+</span>             * Define buttons
+             * @type {*}
+             */
+            var buttons = $.extend(true, {}, {
+                locate: {
+                    text: &#39;Locate&#39;,
+                    events: {
+                        click: &#39;locate&#39; + this.scope.constructor.name
+                    }
+                },
+                approve: {
+                    text: &#39;OK&#39;,
+                    events: {
+                        click: &#39;approveUpdatePreferences&#39;
+                    }
+                },
+                reject: {
+                    text: &#39;Cancel&#39;,
+                    events: {
+                        click: [&#39;rejectModalEvent&#39;]
+                    }
+                }
+            }, opts.buttons || {});
+
+<span id='BasePreferences-property-page'>            /**
+</span>             * Define page
+             * @type {Page}
+             */
+            var page = this.scope.base.define(
+                this.controller.getPage(opts.config.uuid),
+                this.controller.getPage()
+            );
+
+            this.modalDialog({
+                style: opts.style,
+                $container: page.view.get$item().$,
+                type: opts.type || &#39;info&#39;,
+                title: opts.title,
+                text: opts.config.uuid,
+                html: opts.$html,
+                cover: true,
+                buttons: buttons
+            });
+        }
+    });
+
+});</pre>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function definePostToolElement(BaseElement) {
+
+<span id='PostToolElement-method-PostToolElement'><span id='PostToolElement'>    /**
+</span></span>     * Define PostTool Element
+     * @param view
+     * @param opts
+     * @returns {PostToolElement}
+     * @constructor
+     * @class PostToolElement
+     * @extends BaseElement
+     */
+    var PostToolElement = function PostToolElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;post.tool&#39;, {
+            resource: &#39;/widgets&#39;
+        });
+
+        return this;
+    };
+
+    return PostToolElement.extend(&#39;PostToolElement&#39;, {
+
+<span id='PostToolElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member PostToolElement
+         */
+        renderEmbeddedContent: function renderEmbeddedContent() {
+            var $element = this;
+            var $postToolFrame = [
+            &#39;&lt;div class=&quot;mainContainer&quot;&gt;&lt;input type=&quot;text&quot; placeholder=&quot;Type your text here&quot;&gt;&#39;,
+            &#39;&lt;div class=&quot;buttonsContainer&quot;&gt;&#39;,
+            &#39;&lt;a class=&quot;image&quot; title=&quot;Share Picture&quot;&gt;Picture&lt;/a&gt;&#39;,
+            &#39;&lt;a class=&quot;link&quot; title=&quot;Share Link&quot;&gt;Link&lt;/a&gt;&#39;,
+            &#39;&lt;a class=&quot;shareBtn&quot;&gt;SHARE&lt;/a&gt;&#39;,
+            &#39;&lt;/div&gt;&lt;/div&gt;&#39;].join(&#39;&#39;);
+            
+            $element.view.controller.clearParentThumbnail();
+            $element.$.append($postToolFrame);
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

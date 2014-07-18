@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">div.widget-rules ul {
+    list-style: none;
+}
+
+div.widget-rules-header {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    box-shadow: 1px 1px 5px #333;
+    border-bottom: 1px solid #fff;
+    text-shadow: 1px 1px #fff;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    font-size: 14px;
+}
+
+ul.widget-rules .content {
+    height: 70px;
+    width: 70px;
+    display: block;
+    cursor: pointer;
+    margin-top: 10px;
+    background: transparent no-repeat center;
+}
+
+ul.widget-rules &gt; .content:hover {
+    box-shadow: 1px 15px 10px #999;
+    border-radius: 10px;
+}
+
+div.widget-rules-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #333;
+    padding-right: 40px;
+    height: 30px;
+    box-shadow: 1px 0 5px #333;
+}
+
+div.widget-rules-footer &gt; div {
+    height: 100%;
+    border-top: 1px solid #fff;
+    line-height: 30px;
+    padding: 0 10px;
+    font-size: 12px;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    text-shadow: 1px 1px #fff;
+}
+
+.panel div.widget-rules-content .scroll-cover {
+    top: 70px;
+    bottom: 30px;
+}</pre>
+</body>
+</html>

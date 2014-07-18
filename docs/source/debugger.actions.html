@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/6/13
+ * Time: 9:03 PM
+ */
+
+define([
+    &#39;config/anthill&#39;
+], function defineDebuggerActions(AntHill) {
+
+<span id='DebuggerActions-method-constructor'><span id='DebuggerActions'>    /**
+</span></span>     * Define generic Actions
+     * @class DebuggerActions
+     * @constructor
+     */
+    var DebuggerActions = function DebuggerActions() {
+
+    };
+
+    return DebuggerActions.extend({
+
+<span id='DebuggerActions-method-init'>        /**
+</span>         * Init Actions
+         */
+        init: function init() {
+            this.configScope();
+        },
+
+<span id='DebuggerActions-method-configScope'>        /**
+</span>         * Config predefined scope
+         */
+        configScope: function configScope() {
+
+<span id='DebuggerActions-property-editMode'>            /**
+</span>             * Define edit mode
+             * @type {Boolean}
+             */
+            this.editMode = false;
+
+            this.actions = [
+                &#39;add-item&#39;,
+                &#39;remove-items&#39;,
+                &#39;remove-all-items&#39;,
+                &#39;locate-item&#39;
+            ];
+
+            this.extendSelectors({
+                edit: &#39;li.edit-mode&#39;,
+                actions: &#39;ul.actions&#39;,
+                items: &#39;ul.items-info&#39;,
+                count: &#39;li.items-count&#39;
+            });
+
+        },
+
+<span id='DebuggerActions-method-extendSelectors'>        /**
+</span>         * Extend debugger selectors
+         * @param {*} opts
+         */
+        extendSelectors: function extendSelectors(opts) {
+            this.selectors = {};
+            $.each(opts || {}, function each(i, selector) {
+
+                if (!this.base.isDefined(this.scope)) {
+                    this.bugger.scope.logger.info(&#39;Undefined scope&#39;, this, i);
+                    return false;
+                }
+
+                this.selectors[i] = [
+                    this.bugger.info,
+                    [
+                        &#39;fieldset.&#39;,
+                        this.scope.model.item.name.toLowerCase(),
+                        &#39;s-info&#39;
+                    ].join(&#39;&#39;),
+                    selector
+                ].join(&#39; &#39;);
+
+            }.bind(this));
+
+        },
+
+<span id='DebuggerActions-method-renderItemsActions'>        /**
+</span>         * Render page items actions
+         * @returns {string}
+         */
+        renderItemsActions: function renderItemsActions() {
+            return [
+                &#39;&lt;li class=&quot;extend&quot;&gt;&lt;ul class=&quot;actions&quot;&gt;&#39;,
+                this._renderActions(),
+                this._renderEnableEditMode(),
+                &#39;&lt;/ul&gt;&lt;/li&gt;&#39;
+            ].join(&#39;&#39;);
+        },
+
+<span id='DebuggerActions-method-_renderActions'>        /**
+</span>         * Render generic action
+         * @returns {string}
+         * @private
+         */
+        _renderActions: function _renderActions() {
+            var html = [];
+            $.each(this.actions, function each(i, action) {
+                var fn = this[&#39;_&#39; + action.toCamel() + &#39;Button&#39;];
+                if (this.base.isFunction(fn)) {
+                    html.push(fn.bind(this)());
+                }
+            }.bind(this));
+            return html.join(&#39;&#39;);
+        },
+
+<span id='DebuggerActions-method-_addItemButton'>        /**
+</span>         * Render add new item button
+         * @returns {string}
+         * @private
+         */
+        _addItemButton: function _addItemButton() {
+            return this.bugger.component.renderInlineAction({
+                rel: &#39;disabled&#39;,
+                style: &#39;disabled&#39;,
+                title: &#39;Add item&#39;
+            });
+        },
+
+<span id='DebuggerActions-method-_removeItemsButton'>        /**
+</span>         * Render remove item button
+         * @returns {string}
+         * @private
+         */
+        _removeItemsButton: function _removeItemsButton() {
+            return this.bugger.component.renderInlineAction({
+                rel: &#39;disabled&#39;,
+                style: &#39;disabled select&#39;,
+                title: &#39;Remove items&#39;
+            });
+        },
+
+<span id='DebuggerActions-method-_removeAllItemsButton'>        /**
+</span>         * Render remove items button
+         * @returns {string}
+         * @private
+         */
+        _removeAllItemsButton: function _removeAllItemsButton() {
+            return this.bugger.component.renderInlineAction({
+                rel: &#39;disabled&#39;,
+                style: &#39;disabled select&#39;,
+                title: &#39;Remove all items&#39;
+            });
+        },
+
+<span id='DebuggerActions-method-_locateItemButton'>        /**
+</span>         * Render locate item button
+         * @returns {string}
+         * @private
+         */
+        _locateItemButton: function _locateItemButton() {
+            return this.bugger.component.renderInlineAction({
+                rel: &#39;disabled&#39;,
+                style: &#39;disabled select&#39;,
+                title: &#39;Locate item&#39;
+            });
+        },
+
+<span id='DebuggerActions-method-_renderEnableEditMode'>        /**
+</span>         * Render enable edit mode
+         * @returns {string}
+         * @private
+         */
+        _renderEnableEditMode: function _renderEnableEditMode() {
+            return this.bugger.component.renderInlineAction({
+                rel: &#39;disabled&#39;,
+                title: &#39;Edit mode&#39;
+            });
+        },
+
+<span id='DebuggerActions-method-renderItemsInfo'>        /**
+</span>         * Render items info
+         * @param {*} scope
+         * @returns {string|boolean}
+         */
+        renderItemsInfo: function renderItemsInfo(scope) {
+
+            if (!scope.model) {
+                return &#39;&#39;;
+            }
+
+            return [
+                &#39;&lt;li class=&quot;extend&quot;&gt;&#39;,
+                this.bugger.component.renderBlock(scope.model.item.name + &#39;s&#39;, [
+                    this.renderItemsActions(),
+                    this._getItemsCount(scope),
+                    this.renderItemsList(scope)
+                ], true),
+                &#39;&lt;/li&gt;&#39;
+            ].join(&#39; &#39;);
+        },
+
+<span id='DebuggerActions-method-renderItemsList'>        /**
+</span>         * Render page items list
+         * @param scope
+         * @returns {string}
+         */
+        renderItemsList: function renderItemsList(scope) {
+            var html = [&#39;&lt;li class=&quot;extend&quot;&gt;&lt;ul class=&quot;items-info&quot;&gt;&#39;];
+            html.push(this.getItemsList(scope));
+            html.push(&#39;&lt;/ul&gt;&lt;/li&gt;&#39;);
+            return html.join(&#39;&#39;);
+        },
+
+<span id='DebuggerActions-method-getItemsList'>        /**
+</span>         * Get page item list
+         * @param scope
+         * @returns {string}
+         */
+        getItemsList: function getItemsList(scope) {
+            var html = [];
+            $.each(scope.items, function each(uuid, item) {
+                var type = item.model.getConfig(&#39;type&#39;);
+                html.push([
+                    &#39;&lt;li&#39;, type ? (&#39; class=&quot;&#39; + type + &#39;&quot;&#39;) : &#39;&#39;, &#39;&gt;&#39;, uuid , &#39;&lt;/li&gt;&#39;
+                ].join(&#39;&#39;));
+            });
+
+            return html.join(&#39;&#39;);
+        },
+
+<span id='DebuggerActions-method-updateItems'>        /**
+</span>         * Update page item list
+         * @param page
+         */
+        updateItems: function updateItems(page) {
+            $(this.selectors.items).html(
+                this.getItemsList(page)
+            );
+
+            var $count = $(this.selectors.count);
+
+            $count.before(
+                this._getItemsCount(page)
+            ).remove();
+
+            this._bindItemsList(page);
+            this.$select.addClass(&#39;select&#39;);
+        },
+
+<span id='DebuggerActions-method-_getItemsCount'>        /**
+</span>         * Get items count
+         * @param {*} page
+         * @returns {string}
+         * @private
+         */
+        _getItemsCount: function _getItemsCount(page) {
+            return this.bugger.component.renderInlineOf(&#39;Count&#39;, page);
+        },
+
+<span id='DebuggerActions-method-_getItemAction'>        /**
+</span>         * Get page item action button
+         * @param {String} action
+         * @returns {*|jQuery|HTMLElement}
+         * @private
+         */
+        _getItemAction: function _getItemAction(action) {
+            return $(&#39;li.&#39; + action, this.selectors.actions);
+        },
+
+<span id='DebuggerActions-method-bindEnableItemsEditMode'>        /**
+</span>         * Bind enable page item edit mode
+         * @param {*} scope
+         */
+        bindEnableItemsEditMode: function bindEnableItemsEditMode(scope) {
+            $(this.selectors.edit).on(&#39;click.edit&#39;, function enableItemsEditMode(e) {
+                this._enableItemsEditMode(e, scope);
+            }.bind(this));
+        },
+
+<span id='DebuggerActions-method-_bindItemsList'>        /**
+</span>         * Bind item list
+         * @param scope
+         * @private
+         */
+        _bindItemsList: function _bindItemsList(scope) {
+
+<span id='DebuggerActions-property-S-select'>            /**
+</span>             * Define selector
+             * @type {*}
+             */
+            this.$select = this.base.define(
+                this.$select,
+                $(&#39;.select&#39;, this.selectors.actions)
+            );
+
+            if (this.editMode) {
+                $(&#39;li&#39;, this.selectors.items).on(&#39;click.select&#39;, function select(e) {
+                    var $li = $(e.target),
+                        item = scope.items[$li.text()];
+
+                    if ($li.hasClass(&#39;select&#39;)) {
+                        scope.logger.debug(&#39;Unselect&#39;, item);
+                        $li.removeClass(&#39;select&#39;);
+                        this.$select.addClass(&#39;select&#39;);
+                    } else {
+                        scope.logger.debug(&#39;Select&#39;, item);
+                        $li.addClass(&#39;select&#39;);
+                        this.$select.removeClass(&#39;select&#39;);
+                    }
+
+                    var $select = $(&#39;li.select&#39;, this.selectors.items),
+                        $locate = this._getItemAction(&#39;locate-item&#39;);
+
+                    $select.length === 1 ?
+                        $locate.removeClass(&#39;disabled select&#39;) :
+                        $locate.addClass(&#39;disabled select&#39;);
+
+                }.bind(this));
+            }
+        },
+
+<span id='DebuggerActions-method-_unbindItemsList'>        /**
+</span>         * Unbind item list
+         * @private
+         */
+        _unbindItemsList: function _unbindItemsList() {
+            $(&#39;li&#39;, this.selectors.items).unbind(&#39;click.select&#39;);
+        },
+
+<span id='DebuggerActions-method-_enableItemsEditMode'>        /**
+</span>         * Enable item edit mode
+         * @param {*} e
+         * @param {*} scope
+         * @private
+         */
+        _enableItemsEditMode: function _enableItemsEditMode(e, scope) {
+            var $this = $(e.target),
+                $disabled = $(&#39;li[rel=&quot;disabled&quot;]&#39;, $this.parent(&#39;ul&#39;));
+            if ($disabled.hasClass(&#39;disabled&#39;)) {
+                scope.logger.debug(&#39;Activate edit mode&#39;);
+                $disabled.removeClass(&#39;disabled&#39;);
+                $this.addClass(&#39;active&#39;);
+                this.editMode = true;
+                this._bindItemsList(scope);
+                this._bindAddNewItem(scope);
+                this._bindRemoveItems(scope);
+                this._bindRemoveAllItems(scope);
+                this._bindLocateItem(scope);
+            } else {
+                this._disableItemsEditMode($this, scope);
+            }
+        },
+
+<span id='DebuggerActions-method-_disableItemsEditMode'>        /**
+</span>         * Disable page item edit mode
+         * @param {*} $this
+         * @param {*} scope
+         * @private
+         */
+        _disableItemsEditMode: function _disableItemsEditMode($this, scope) {
+            var $disabled = $(&#39;li[rel=&quot;disabled&quot;]&#39;, $this.parent(&#39;ul&#39;));
+
+            scope.logger.debug(&#39;Deactivate edit mode&#39;);
+            $disabled.addClass(&#39;disabled&#39;);
+            $this.removeClass(&#39;active&#39;);
+            this._unbindAddNewItem(scope);
+            this._unbindRemoveItems(scope);
+            this._unbindRemoveAllItems(scope);
+            this._unbindLocateItem(scope);
+            this._unbindItemsList();
+            this.editMode = false;
+        },
+
+<span id='DebuggerActions-method-_bindAddNewItem'>        /**
+</span>         * Bind add new item
+         * @param {*} scope
+         * @private
+         */
+        _bindAddNewItem: function _bindAddNewItem(scope) {
+            scope.logger.debug(&#39;Bind edit mode&#39;);
+            this._getItemAction(&#39;add-item&#39;).on(
+                &#39;click.add&#39;,
+
+<span id='DebuggerActions-property-'>                /**
+</span>                 * Add new item
+                 */
+                function addNewItem(e) {
+                    if (this.base.lib.hash.isHashEmpty(scope.model.getItems())) {
+
+<span id='DebuggerActions-property-'>                        /**
+</span>                         * Restart debugger
+                         */
+                        this.bugger.scope.controller.reactivateDebugger();
+                    }
+                    scope.api.createItem([], true);
+                    this._getItemAction(&#39;remove-items&#39;).removeClass(&#39;disabled&#39;);
+                }.bind(this)
+            );
+        },
+
+<span id='DebuggerActions-method-_unbindAddNewItem'>        /**
+</span>         * Unbind add new item
+         * @param {*} scope
+         * @private
+         */
+        _unbindAddNewItem: function _unbindAddNewItem(scope) {
+            scope.logger.debug(&#39;Unbind Add item&#39;);
+            this._getItemAction(&#39;add-item&#39;).unbind(&#39;click.add&#39;);
+        },
+
+<span id='DebuggerActions-method-_bindRemoveItems'>        /**
+</span>         * Bind remove items
+         * @param scope
+         * @private
+         */
+        _bindRemoveItems: function _bindRemoveItems(scope) {
+            scope.logger.debug(&#39;Bind remove items&#39;);
+            this._getItemAction(&#39;remove-items&#39;).on(
+                &#39;click.remove&#39;,
+<span id='DebuggerActions-property-'>                /**
+</span>                 * Remove items
+                 */
+                function removeItems(e) {
+                    if ($(&#39;li.select&#39;, this.selectors.items).length === 0) {
+                        scope.logger.warn(&#39;Select items before remove&#39;);
+                        return false;
+                    }
+                    this._removeItems(scope);
+                }.bind(this)
+            );
+        },
+
+<span id='DebuggerActions-method-_unbindRemoveItems'>        /**
+</span>         * Unbind remove items
+         * @param {*} scope
+         * @private
+         */
+        _unbindRemoveItems: function _unbindRemoveItems(scope) {
+            scope.logger.debug(&#39;Unbind remove items&#39;);
+            this._getItemAction(&#39;remove-items&#39;).unbind(&#39;click.remove&#39;);
+            $(&#39;li&#39;, this.selectors.items).removeClass(&#39;select&#39;);
+        },
+
+<span id='DebuggerActions-method-_bindRemoveAllItems'>        /**
+</span>         * Bind remove all items
+         * @param scope
+         * @private
+         */
+        _bindRemoveAllItems: function _bindRemoveAllItems(scope) {
+            var $lis = $(&#39;li&#39;, this.selectors.items),
+                $action = this._getItemAction(&#39;remove-all-items&#39;);
+            scope.logger.debug(&#39;Bind remove all items&#39;);
+
+            if ($lis.length === 0) {
+                $action.addClass(&#39;disabled&#39;);
+            }
+
+            $action.on(
+                &#39;click.remove&#39;,
+<span id='DebuggerActions-property-'>                /**
+</span>                 * Remove all items
+                 */
+                function removeAllItems(e) {
+                    if ($lis.length === 0) {
+                        scope.logger.warn(&#39;Add items before remove&#39;);
+                        return false;
+                    }
+                    this._removeAllItems(scope);
+                }.bind(this)
+            );
+        },
+
+<span id='DebuggerActions-method-_unbindRemoveAllItems'>        /**
+</span>         * Unbind remove all items
+         * @param {*} scope
+         * @private
+         */
+        _unbindRemoveAllItems: function _unbindRemoveAllItems(scope) {
+            scope.logger.debug(&#39;Unbind remove all items&#39;);
+            this._getItemAction(&#39;remove-items&#39;).unbind(&#39;click.remove&#39;);
+            $(&#39;li&#39;, this.selectors.items).removeClass(&#39;select&#39;);
+        },
+
+<span id='DebuggerActions-method-_bindLocateItem'>        /**
+</span>         * Bind locate item
+         * @param scope
+         * @private
+         */
+        _bindLocateItem: function _bindLocateItem(scope) {
+            scope.logger.debug(&#39;Bind locate item&#39;);
+
+            this._getItemAction(&#39;locate-item&#39;).on(&#39;click.locate&#39;, function locate(e) {
+                this._locateItem(scope);
+            }.bind(this));
+        },
+
+<span id='DebuggerActions-method-_unbindLocateItem'>        /**
+</span>         * Unbind remove all items
+         * @param {*} scope
+         * @private
+         */
+        _unbindLocateItem: function _unbindLocateItem(scope) {
+            scope.logger.debug(&#39;Unbind locate item&#39;);
+            this._getItemAction(&#39;locate-item&#39;).unbind(&#39;click.locate&#39;);
+        },
+
+<span id='DebuggerActions-method-_locateItem'>        /**
+</span>         * Locate item
+         * @param scope
+         * @returns {boolean}
+         * @private
+         */
+        _locateItem: function _locateItem(scope) {
+            var $li = $(&#39;li.select&#39;, this.selectors.items);
+
+            if ($li.length !== 1) {
+                scope.logger.warn(&#39;Select one item before locate&#39;);
+                return false;
+            }
+
+            var uuid = $li.text(),
+                item = this.bugger.config.setItem(
+                    scope.constructor.name.toLowerCase(),
+                    uuid
+                );
+
+            if (!this.base.isDefined(item)) {
+                scope.logger.warn(&#39;Undefined item&#39;, uuid);
+                return false;
+            }
+
+            scope.logger.debug(&#39;Locate&#39;, item);
+
+            item.view.elements[&#39;$&#39;+item.constructor.name.toLowerCase()].locate();
+
+        },
+
+<span id='DebuggerActions-method-_removeItems'>        /**
+</span>         * Remove items
+         * @param {*} scope
+         * @private
+         */
+        _removeItems: function _removeItems(scope) {
+            var items = {};
+            $.each($(&#39;li.select&#39;, this.selectors.items), function each(i, v) {
+                var uuid = $(v).text();
+                items[uuid] = scope.model.getItemByUUID(uuid);
+            });
+
+            scope.logger.debug(&#39;Start remove items&#39;, items);
+            scope.api.destroyItems(items);
+
+        },
+
+<span id='DebuggerActions-method-_removeAllItems'>        /**
+</span>         * Remove items
+         * @param {*} scope
+         * @private
+         */
+        _removeAllItems: function _removeAllItems(scope) {
+            $(&#39;li&#39;, this.selectors.items).addClass(&#39;select&#39;);
+            this._getItemAction(&#39;remove-all-items&#39;).addClass(&#39;disabled&#39;);
+            scope.logger.debug(&#39;Start remove all items&#39;);
+            this._removeItems(scope);
+        }
+
+    }, AntHill.prototype);
+});
+</pre>
+</body>
+</html>

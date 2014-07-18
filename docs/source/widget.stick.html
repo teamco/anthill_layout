@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: teamco
+ * Date: 7/5/14
+ * Time: 11:36 AM
+ */
+
+define([], function defineWidgetStick() {
+
+<span id='WidgetStick-method-constructor'><span id='WidgetStick'>    /**
+</span></span>     * Define widget stick
+     * @class WidgetStick
+     * @constructor
+     */
+    var WidgetStick = function WidgetStick() {
+
+    };
+
+    return WidgetStick.extend(&#39;WidgetStick&#39;, {
+
+<span id='WidgetStick-method-unsetStick'>        /**
+</span>         * Unset stick
+         * @member WidgetStick
+         */
+        unsetStick: function unsetStick() {
+            this.logger.debug(&#39;unsetStick&#39;);
+            this.view.get$item().restoreSticker(true);
+        },
+
+<span id='WidgetStick-method-setStickToCenterLeft'>        /**
+</span>         * Stick to center left
+         * @member WidgetStick
+         */
+        setStickToCenterLeft: function setStickToCenterLeft() {
+            this.logger.debug(&#39;setStickToCenterLeft&#39;);
+
+            this.view.get$item().stickToCenterLeft(
+                this.controller.getContainment()
+            );
+        },
+
+<span id='WidgetStick-method-setStickToCenterTop'>        /**
+</span>         * Stick to center top
+         * @member WidgetStick
+         */
+        setStickToCenterTop: function setStickToCenterTop() {
+            this.logger.debug(&#39;setStickToCenterTop&#39;);
+
+            this.view.get$item().stickToCenterTop(
+                this.controller.getContainment()
+            );
+        },
+
+<span id='WidgetStick-method-setStickToCenter'>        /**
+</span>         * Stick to center
+         * @member WidgetStick
+         */
+        setStickToCenter: function setStickToCenter() {
+            this.logger.debug(&#39;setStickToCenter&#39;);
+
+            this.view.get$item().stickToCenter(
+                this.controller.getContainment()
+            );
+        },
+
+<span id='WidgetStick-method-setStickToCenterBottom'>        /**
+</span>         * Stick to center bottom
+         * @member WidgetStick
+         */
+        setStickToCenterBottom: function setStickToCenterBottom() {
+            this.logger.debug(&#39;setStickToCenterBottom&#39;);
+
+            this.view.get$item().stickToCenterBottom(
+                this.controller.getContainment()
+            );
+        },
+
+<span id='WidgetStick-method-setStickToCenterRight'>        /**
+</span>         * Stick to center left
+         * @member WidgetStick
+         */
+        setStickToCenterRight: function setStickToCenterRight() {
+            this.logger.debug(&#39;setStickToCenterRight&#39;);
+
+            this.view.get$item().stickToCenterRight(
+                this.controller.getContainment()
+            );
+        },
+
+<span id='WidgetStick-method-setStickToTopLeft'>        /**
+</span>         * Stick to top left
+         * @member WidgetStick
+         */
+        setStickToTopLeft: function setStickToTopLeft() {
+            this.logger.debug(&#39;setStickToTopLeft&#39;);
+
+            this.view.get$item().stickToTopLeft(
+                this.controller.getContainment()
+            );
+        },
+
+<span id='WidgetStick-method-setStickToBottomLeft'>        /**
+</span>         * Stick to bottom left
+         * @member WidgetStick
+         */
+        setStickToBottomLeft: function setStickToBottomLeft() {
+            this.logger.debug(&#39;setStickToBottomLeft&#39;);
+
+            this.view.get$item().stickToBottomLeft(
+                this.controller.getContainment()
+            );
+        },
+
+<span id='WidgetStick-method-setStickToTopRight'>        /**
+</span>         * Stick to top right
+         * @member WidgetStick
+         */
+        setStickToTopRight: function setStickToTopRight() {
+            this.logger.debug(&#39;setStickToTopRight&#39;);
+
+            this.view.get$item().stickToTopRight(
+                this.controller.getContainment()
+            );
+        },
+
+<span id='WidgetStick-method-setStickToBottomRight'>        /**
+</span>         * Stick to bottom right
+         * @member WidgetStick
+         */
+        setStickToBottomRight: function setStickToBottomRight() {
+            this.logger.debug(&#39;setStickToBottomRight&#39;);
+
+            this.view.get$item().stickToBottomRight(
+                this.controller.getContainment()
+            );
+        },
+
+<span id='WidgetStick-method-restoreWidgetSticker'>        /**
+</span>         * Restore widget sticker
+         * @member WidgetStick
+         */
+        restoreWidgetSticker: function restoreWidgetSticker() {
+            this.logger.debug(&#39;restoreWidgetSticker&#39;);
+
+            this.view.get$item().restoreSticker();
+        }
+    });
+});</pre>
+</body>
+</html>

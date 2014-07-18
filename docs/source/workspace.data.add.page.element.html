@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define(
+    [&#39;modules/Element&#39;],
+
+<span id='global-method-defineWorkspaceDataAddPageElement'>    /**
+</span>     * Define WorkspaceDataAddPageElement
+     * @param {BaseElement} BaseElement
+     * @returns {*}
+     */
+        function defineWorkspaceDataAddPageElement(BaseElement) {
+
+<span id='WorkspaceDataAddPageElement-method-WorkspaceDataAddPageElement'><span id='WorkspaceDataAddPageElement'>        /**
+</span></span>         * Define WorkspaceData AddPage Element
+         * @constructor
+         * @class WorkspaceDataAddPageElement
+         * @extends BaseElement
+         * @param {WorkspaceDataView} view
+         * @param opts
+         * @returns {WorkspaceDataAddPageElement}
+         */
+        var WorkspaceDataAddPageElement = function WorkspaceDataAddPageElement(view, opts) {
+
+            this._config(view, opts, $(&#39;&lt;li /&gt;&#39;)).build({
+                $container: opts.$container,
+                destroy: false
+            });
+
+<span id='WorkspaceDataAddPageElement-property-title'>            /**
+</span>             * Define title
+             * @type {string}
+             */
+            this.title = &#39;Create new page&#39;;
+
+<span id='WorkspaceDataAddPageElement-property-description'>            /**
+</span>             * Define description
+             * @type {string}
+             */
+            this.description = &#39;Clicking a button will take you to the edit page for the new widgets&#39;;
+
+            return this.init();
+        };
+
+        return WorkspaceDataAddPageElement.extend(&#39;WorkspaceDataAddPageElement&#39;, {
+
+<span id='WorkspaceDataAddPageElement-method-init'>            /**
+</span>             * Define Init
+             * @member WorkspaceDataAddPageElement
+             * @returns {WorkspaceDataAddPageElement}
+             */
+            init: function init() {
+
+                this.setTitle(this.title);
+                this.renderTooltip({
+                    title: this.title,
+                    description: this.description,
+                    $container: this
+                });
+
+                return this;
+            }
+
+        }, BaseElement.prototype);
+    }
+);</pre>
+</body>
+</html>

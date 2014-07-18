@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define([
+    &#39;plugins/plugin&#39;,
+    &#39;plugins/widgets/widget.content.controller&#39;
+], function defineHeaderController(PluginBase, WidgetContentController) {
+
+<span id='HeaderController-method-constructor'><span id='HeaderController'>    /**
+</span></span>     * Define header controller
+     * @class HeaderController
+     * @extends PluginController
+     * @extends WidgetContentController
+     * @constructor
+     */
+    var HeaderController = function HeaderController() {
+    };
+
+    return HeaderController.extend(&#39;HeaderController&#39;, {
+
+<span id='HeaderController-method-setEmbeddedContent'>        /**
+</span>         * Set embedded content
+         * @member HeaderController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
+
+            this.view.elements.$header.renderEmbeddedContent();
+        },
+
+<span id='HeaderController-method-addHeaderRule'>        /**
+</span>         * Add Header rule
+         * @member HeaderController
+         * @param e
+         */
+        addHeaderRule: function addHeaderRule(e) {
+
+<span id='HeaderController-property-S-button'>            /**
+</span>             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target),
+                scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.publishRule,
+                [$button.attr(&#39;value&#39;), this.scope.constructor.name]
+            );
+        }
+
+    }, PluginBase.prototype, WidgetContentController.prototype);
+});</pre>
+</body>
+</html>

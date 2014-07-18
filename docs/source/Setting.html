@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">define([
+    &#39;config/anthill&#39;,
+    &#39;modules/Router&#39;
+], function defineSetting(AntHill, Router) {
+
+<span id='Setting-method-constructor'><span id='Setting'>    /**
+</span></span>     * Define Setting
+     * @class Setting
+     * @param {*} scope
+     * @param {String} name
+     * @constructor
+     * @extends AntHill
+     */
+    var Setting = function Setting(scope, name) {
+
+<span id='Setting-property-scope'>        /**
+</span>         * Define scope
+         * @member Setting
+         * @type {*}
+         */
+        this.scope = scope;
+
+<span id='Setting-property-mode'>        /**
+</span>         * Define setting mode
+         * @member Setting
+         * @type {String}
+         */
+        this.mode = this.scope.controller.getMode();
+
+<span id='Setting-property-STORAGE_MODES'>        /**
+</span>         * Define storage modes
+         * @member Setting
+         * @type {{localStorage: Storage, serverStorage: Storage}}
+         */
+        this.STORAGE_MODES = {
+            localStorage: window.localStorage,
+            serverStorage: &#39;rails&#39;
+        };
+<span id='Setting-property-storage'>        /**
+</span>         * Define setting storage
+         * @member Setting
+         * @type {{development: Storage}}
+         */
+        this.storage = {
+            development: this.STORAGE_MODES.localStorage,
+            authorize: this.STORAGE_MODES.serverStorage,
+            consumption: this.STORAGE_MODES.localStorage,
+            test: this.STORAGE_MODES.localStorage
+        };
+
+<span id='Setting-method-getNameSpace'>        /**
+</span>         * Get storage namespace
+         * @member Setting
+         * @returns {String}
+         */
+        this.getNameSpace = function getNameSpace() {
+            return name;
+        };
+
+        this.init();
+    };
+
+    return Setting.extend(&#39;Setting&#39;, {
+
+<span id='Setting-method-init'>        /**
+</span>         * Init storage
+         * @memberOf Setting
+         */
+        init: function init() {
+
+<span id='Setting-property-storage'>            /**
+</span>             * Load storage
+             * @type {*}
+             */
+            var storage = this.load();
+
+<span id='Setting-property-base'>            /**
+</span>             * Define base
+             * @type {*}
+             */
+            var base = this.base;
+
+            if (!base.isDefined(storage)) {
+
+                this.save();
+
+<span id='Setting-property-storage'>                /**
+</span>                 * Init storage
+                 * @type {*}
+                 */
+                storage = this.load();
+            }
+
+            if (!base.isDefined(storage.token)) {
+
+<span id='Setting-property-token'>                /**
+</span>                 * Define token
+                 * @member Setting
+                 * @type {String}
+                 */
+                this.token = base.lib.generator.UUID();
+
+                this.save(storage);
+            }
+        },
+
+<span id='Setting-method-clear'>        /**
+</span>         * Clear local storage
+         * @member Setting
+         */
+        clear: function clear() {
+            window.localStorage.clear();
+        },
+
+<span id='Setting-method-getStorage'>        /**
+</span>         * Get Storage
+         * @member Setting
+         * @returns {*}
+         */
+        getStorage: function getStorage() {
+            return this.storage[this.mode];
+        },
+
+<span id='Setting-method-importData'>        /**
+</span>         * Import data
+         * @param data
+         */
+        importData: function importData(data) {
+
+<span id='Setting-property-getNameSpace()]'>            /**
+</span>             * Set data
+             * @type {*}
+             */
+            this.getStorage()[this.getNameSpace()] = LZString.compress(
+                JSON.stringify(data)
+            );
+        },
+
+<span id='Setting-method-save'>        /**
+</span>         * Save
+         * @member Setting
+         * @param [opts]
+         */
+        save: function save(opts) {
+
+<span id='Setting-property-opts'>            /**
+</span>             * Init opts
+             * @type {*}
+             */
+            opts = this.base.define(opts, {}, true);
+
+            var data = this.load(),
+                _dt = this.base.lib.datetime;
+
+            if (this.base.isDefined(data)) {
+
+<span id='Setting-property-createdAt'>                /**
+</span>                 * Load created at
+                 * @type {*}
+                 */
+                opts.createdAt = data.createdAt;
+
+            } else {
+
+<span id='Setting-property-createdAt'>                /**
+</span>                 * Define created at
+                 * @type {*}
+                 */
+                opts.createdAt = _dt.timestamp();
+            }
+
+<span id='Setting-property-updatedAt'>            /**
+</span>             * Define updated at
+             * @type {*}
+             */
+            opts.updatedAt = _dt.timestamp();
+
+<span id='Setting-property-token'>            /**
+</span>             * Define token
+             * @type {*}
+             */
+            opts.token = this.token;
+
+            this.getStorage().setItem(
+                this.getNameSpace(),
+                LZString.compress(
+                    JSON.stringify(opts)
+                )
+            );
+
+            this.scope.logger.debug(&#39;Save&#39;, opts);
+        },
+
+<span id='Setting-method-load'>        /**
+</span>         * Load
+         * @member Setting
+         */
+        load: function load() {
+
+<span id='Setting-property-data'>            /**
+</span>             * Define data
+             * @type {*}
+             */
+            var data = JSON.parse(
+                LZString.decompress(
+                    this.getStorage().getItem(
+                        this.getNameSpace()
+                    )
+                ) || &#39;[]&#39;
+            );
+
+            this.scope.logger.debug(&#39;Load&#39;, data);
+
+            return data;
+        }
+
+    }, AntHill.prototype, Router);
+});</pre>
+</body>
+</html>

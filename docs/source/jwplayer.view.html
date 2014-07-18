@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/jwplayer/element/jwplayer.element&#39;,
+    &#39;plugins/widgets/jwplayer/element/jwplayer.preferences.element&#39;,
+    &#39;plugins/widgets/jwplayer/element/jwplayer.rules.element&#39;
+], function defineJwplayerView(BaseView, Header, Footer, JwplayerElement, JwplayerPreferencesElement, JwplayerRulesElement) {
+
+<span id='JwplayerView-method-constructor'><span id='JwplayerView'>    /**
+</span></span>     * Define view
+     * @class JwplayerView
+     * @extends BaseView
+     * @constructor
+     */
+    var JwplayerView = function JwplayerView() {
+    };
+
+    return JwplayerView.extend(&#39;JwplayerView&#39;, {
+
+<span id='JwplayerView-method-renderJwplayer'>        /**
+</span>         * Render jwplayer element
+         * @member JwplayerView
+         */
+        renderJwplayer: function renderJwplayer() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='JwplayerView-property-S-jwplayer'>            /**
+</span>             * Define $jwplayer
+             * @type {JwplayerElement}
+             */
+            this.elements.$jwplayer = new JwplayerElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='JwplayerView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member JwplayerView
+         * @returns {JwplayerPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='JwplayerView-property-S-preferences'>            /**
+</span>             * Define Jwplayer Preferences Element
+             * @type {JwplayerPreferencesElement}
+             */
+            this.elements.$preferences = new JwplayerPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='JwplayerView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member JwplayerView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {JwplayerRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='JwplayerView-property-data'>            /**
+</span>             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+<span id='JwplayerView-property-S-rules'>            /**
+</span>             * Define Jwplayer Rules Element
+             * @type {JwplayerRulesElement}
+             */
+            this.elements.$rules = new JwplayerRulesElement(this, {
+                data: data,
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='JwplayerView-method-render'>        /**
+</span>         * Render jwplayer
+         * @member JwplayerView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderJwplayer.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});</pre>
+</body>
+</html>

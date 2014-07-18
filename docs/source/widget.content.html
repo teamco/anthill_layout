@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/27/14
+ * Time: 5:40 PM
+ */
+
+define([
+    &#39;config/anthill&#39;
+], function defineWidgetContent(AntHill) {
+
+<span id='WidgetContent-method-constructor'><span id='WidgetContent'>    /**
+</span></span>     * Define WidgetContent
+     * @class WidgetContent
+     * @extends AntHill
+     * @constructor
+     */
+    var WidgetContent = function WidgetContent() {
+    };
+
+    return WidgetContent.extend(&#39;WidgetContent&#39;, {
+
+<span id='WidgetContent-method-loadContent'>        /**
+</span>         * Load widget content
+         * @member WidgetContent
+         */
+        loadContent: function loadContent() {
+
+<span id='WidgetContent-property-widget'>            /**
+</span>             * Define widget instance
+             * @type {*}
+             */
+            var widget = this;
+
+<span id='WidgetContent-property-resource'>            /**
+</span>             * Get resource
+             * @type {*}
+             */
+            var resource = widget.model.getConfig(&#39;preferences/resource&#39;);
+
+            if (!this.base.isString(resource)) {
+                widget.logger.error(&#39;Unable to load resource&#39;);
+                return false;
+            }
+
+<span id='WidgetContent-property-path'>            /**
+</span>             * Define resource path
+             * @type {string}
+             */
+            var path = [
+                &#39;../../scripts/plugins/widgets&#39; ,
+                (&#39;/&#39; + resource).repeat(2)
+            ].join(&#39;&#39;);
+
+            require([path], function getDependencies(Content) {
+
+                widget.observer.publish(
+                    widget.eventmanager.eventList.setContent,
+                    [Content, {
+                        events: widget.contentEvents || {},
+                        rules: widget.contentRules || {}
+                    }]
+                );
+            });
+        },
+
+<span id='WidgetContent-method-setContent'>        /**
+</span>         * Set content
+         * @member WidgetContent
+         * @param {Function} Content
+         * @param {{}} [opts]
+         */
+        setContent: function setContent(Content, opts) {
+
+<span id='WidgetContent-property-content'>            /**
+</span>             * Define content
+             * @member WidgetContent
+             * @type {*}
+             */
+            this.content = new Content(this, opts);
+
+            this.logger.debug(&#39;Set content&#39;, this.content, opts);
+        },
+
+<span id='WidgetContent-method-getContent'>        /**
+</span>         * Get content
+         * @member WidgetContent
+         * @returns {*}
+         */
+        getContent: function getContent() {
+            return this.scope.content;
+        },
+
+<span id='WidgetController-method-clearThumbnail'>        /**
+</span>         * Clear thumbnail bg
+         * @member WidgetController
+         */
+        clearThumbnail: function clearThumbnail() {
+            this.view.get$item().clearBackground();
+        },
+
+<span id='WidgetController-method-adoptDimensions'>        /**
+</span>         * Adopt widget dimension on resize page
+         * @member WidgetController
+         * @param {Boolean} animate
+         */
+        adoptDimensions: function adoptDimensions(animate) {
+            this.map.adoptTo(animate);
+        },
+
+<span id='WidgetController-method-getThumbnail'>        /**
+</span>         * Get widget thumbnail
+         * @member WidgetController
+         * @returns {*}
+         */
+        getThumbnail: function getThumbnail() {
+            return this.model.getConfig(&#39;preferences/thumbnail&#39;);
+        },
+
+<span id='WidgetController-method-getResource'>        /**
+</span>         * Get widget resource
+         * @member WidgetController
+         * @returns {*}
+         */
+        getResource: function getResource() {
+            return this.model.getConfig(&#39;preferences/resource&#39;);
+        }
+
+    }, AntHill.prototype);
+});</pre>
+</body>
+</html>

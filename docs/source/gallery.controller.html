@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define([
+    &#39;plugins/plugin&#39;
+], function defineGalleryController(PluginBase) {
+
+<span id='GalleryController-method-constructor'><span id='GalleryController'>    /**
+</span></span>     * Define gallery controller
+     * @class GalleryController
+     * @extends PluginController
+     * @constructor
+     */
+    var GalleryController = function GalleryController() {
+    };
+
+    return GalleryController.extend(&#39;GalleryController&#39;, {
+
+<span id='GalleryController-method-getData'>        /**
+</span>         * Get providers data
+         * @member GalleryController
+         */
+        getData: function getData() {
+            return this.model.getProvidersList();
+        },
+
+<span id='GalleryController-method-getCurrentProvider'>        /**
+</span>         * Get current provider
+         * @member GalleryController
+         * @returns {{name: string, data: *[]}[]}
+         */
+        getCurrentProvider: function getCurrentProvider() {
+            return this.model.currentProvider;
+        },
+
+<span id='GalleryController-method-setCurrentProvider'>        /**
+</span>         * Set current provider
+         * @member GalleryController
+         * @param name
+         */
+        setCurrentProvider: function setCurrentProvider(name) {
+            this.model.setProviderAsCurrent(name);
+        },
+
+<span id='GalleryController-method-setProviders'>        /**
+</span>         * Set providers
+         * @member GalleryController
+         */
+        setProviders: function setProviders() {
+
+            this.logger.debug(&#39;Set providers&#39;);
+
+<span id='GalleryController-property-data'>            /**
+</span>             * Get available providers
+             * @type {*}
+             */
+            var data = this.model.staticData,
+                index;
+
+            for (index in data) {
+
+                if (data.hasOwnProperty(index)) {
+                    this.model.setProvider(data[index]);
+                }
+            }
+        },
+
+        changeProvider: function changeProvider(provider) {
+
+            if (provider === this.getCurrentProvider().key) {
+                return false;
+            }
+
+            this.setCurrentProvider(provider);
+            this.loadContent(true, true);
+        },
+
+<span id='GalleryController-method-loadContent'>        /**
+</span>         * Load gallery content
+         * @member GalleryController
+         * @param {boolean} opened
+         * @param {boolean} [force]
+         */
+        loadContent: function loadContent(opened, force) {
+
+            if (opened) {
+                this.getView().renderContent(
+                    this.getCurrentProvider(),
+                    force
+                );
+            }
+        },
+
+<span id='GalleryController-method-filterResults'>        /**
+</span>         * Filter search results
+         * @member GalleryController
+         * @param e
+         */
+        filterResults: function filterResults(e) {
+
+            e.preventDefault();
+
+            if (e.which === 13) {
+                return false;
+            }
+
+            if (e.which === 27) {
+                e.target.value = &#39;&#39;;
+            }
+
+<span id='GalleryController-property-items'>            /**
+</span>             * Get item elements
+             * @type {{}}
+             */
+            var items = this.getView().elements.items,
+                index, $item,
+                value = e.target.value,
+                regex;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+<span id='GalleryController-property-S-item'>                    /**
+</span>                     * Define item
+                     * @type {GalleryContentElement}
+                     */
+                    $item = items[index];
+
+                    if (value.length === 0) {
+
+                        $item.$.removeAttr(&#39;style&#39;);
+
+                    } else {
+
+<span id='GalleryController-property-regex'>                        /**
+</span>                         * Define regex
+                         * @type {RegExp}
+                         */
+                        regex = new RegExp(value, &#39;ig&#39;);
+
+                        ($item.data.name.match(regex) || $item.data.resource.match(regex)) ?
+                            $item.$.removeAttr(&#39;style&#39;) :
+                            $item.hide();
+                    }
+                }
+            }
+
+            this.getView().renderFooter();
+        },
+
+<span id='GalleryController-method-addWidget'>        /**
+</span>         * Add widget
+         * @member GalleryController
+         * @param $element
+         */
+        addWidget: function addWidget($element) {
+
+            this.getPage().api.createItem({
+                config: {
+                    preferences: {
+                        resource: $element.$.attr(&#39;resource&#39;),
+                        thumbnail: $element.data.thumbnail,
+                        title: $element.data.name,
+                        description: $element.data.description
+                    },
+                    html: {
+                        dimensions: {
+                            width: $element.data.dimensions.width,
+                            height: $element.data.dimensions.height
+                        }
+                    }
+                }
+            }, true);
+        }
+
+    }, PluginBase.prototype);
+});</pre>
+</body>
+</html>

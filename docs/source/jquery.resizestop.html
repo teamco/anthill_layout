@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: teamco
+ * Date: 3/13/14
+ * Time: 12:01 PM
+ */
+
+<span id='global-property-'>/**
+</span> * jquery.resizestop (and resizestart)
+ * by: Fatih Kadir Akın
+ *
+ * License is CC0, published to the public domain.
+ */
+(function ($) {
+    // Slice shortcut
+    var slice = Array.prototype.slice;
+
+    // Special event definition
+    $.extend($.event.special, {
+        // resize stop special event.
+        resizestop: {
+            add: function add(handle) {
+                // shortcut to the event handler.
+                var handler = handle.handler;
+
+                // event modifying
+                $(this).resize(function (e) {
+
+                    if ($(e.target).hasClass(&#39;ui-resizable-resizing&#39;)) {
+                        return false;
+                    }
+
+                    // every resize event clears handler&#39;s timer.
+                    // and every handler must have a timer.
+                    clearTimeout(handler._timer);
+                    // change event type text.
+                    e.type = &#39;resizestop&#39;;
+                    // push the &quot;resize&quot; event to the handler.
+                    var _proxy = $.proxy(handler, this, e);
+                    // if no resize event fired for a time that we decide,
+                    // then it means its stopped.
+                    handler._timer = setTimeout(_proxy, handle.data || 200);
+                });
+            }
+        },
+        // resize start special event
+        resizestart: {
+            add: function add(handle) {
+                // shortcut to the event handler.
+                var handler = handle.handler;
+
+                // event modifying
+                $(this).on(&#39;resize&#39;, function (e) {
+
+                    if ($(e.target).hasClass(&#39;ui-resizable-resizing&#39;)) {
+                        return false;
+                    }
+
+                    // every resize event clears handler&#39;s timer.
+                    // and every handler must have a timer.
+                    clearTimeout(handler._timer);
+                    // we suddenly fire the event, then we can put
+                    // a flag with name _started knows if it&#39;s already fired.
+                    if (!handler._started) {
+                        e.type = &#39;resizestart&#39;;
+                        handler.apply(this, arguments);
+                        // after firing the handler, put the flag with the value &quot;true&quot;
+                        handler._started = true;
+                    }
+                    handler._timer = setTimeout($.proxy(function () {
+                        // after a while, it will make the flag false.
+                        handler._started = false;
+                    }, this), handle.data || 300);
+                });
+            }
+        }
+    });
+    // binding and currying the shortcuts.
+    $.extend($.fn, {
+        // $(window).resizestop instead of $(window).on(&#39;resizestop&#39;)
+        resizestop: function resizestop() {
+            // will push the &quot;resizestop&quot; argument at the beginning of arguments
+            $(this).on.apply(this, [&quot;resizestop&quot;].concat(slice.call(arguments)));
+        },
+        // $(window).resizestart instead of $(window).on(&#39;resizestart&#39;)
+        resizestart: function resizestart() {
+            // will push the &quot;resizestart&quot; argument at the beginning of arguments
+            $(this).on.apply(this, [&quot;resizestart&quot;].concat(slice.call(arguments)));
+        }
+    });
+})(jQuery);</pre>
+</body>
+</html>

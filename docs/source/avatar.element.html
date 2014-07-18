@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;,
+    &#39;plugins/widgets/avatar/lib/avatar.behavior&#39;
+], function defineAvatarElement(BaseElement, AvatarBehavior) {
+
+<span id='AvatarElement-method-AvatarElement'><span id='AvatarElement'>    /**
+</span></span>     * Define Avatar Element
+     * @param view
+     * @param opts
+     * @returns {AvatarElement}
+     * @constructor
+     * @class AvatarElement
+     * @extends BaseElement
+     */
+    var AvatarElement = function AvatarElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;avatar&#39;, {
+            resource: &#39;/widgets&#39;
+        });
+
+<span id='AvatarElement-property-defaultImage'>        /**
+</span>         * Define default image
+         * @member AvatarElement
+         * @type {string}
+         */
+        this.defaultImage = [
+            this.pluginPath,
+            &#39;/widgets/avatar/images/avatar_placeholder.jpg&#39;
+        ].join(&#39;&#39;);
+
+        return this;
+    };
+
+    return AvatarElement.extend(&#39;AvatarElement&#39;, {
+
+<span id='AvatarElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member AvatarElement
+         */
+        renderEmbeddedContent: function renderEmbeddedContent() {
+
+            var $element = this;
+
+            var $avatarMainFrame = [
+                &#39;&lt;div class=&quot;bord&quot;&gt;&#39;,
+                &#39;&lt;div class=&quot;imageFrame&quot;&gt;&#39;,
+                &#39;&lt;img src=&quot;&#39;, this.defaultImage, &#39;&quot;&gt;&#39;,
+                &#39;&lt;/div&gt;&#39;,
+                &#39;&lt;div class=&quot;under_layer&quot;&gt;&lt;div class=&quot;iconsContainer&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#39;,
+                &#39;&lt;/div&gt;&#39;
+            ].join(&#39;&#39;);
+
+            var $draggMenu = [
+                &#39;&lt;div class=&quot;dragMenu&quot;&gt;&#39;,
+                &#39;&lt;span&gt;change image position&lt;/span&gt;&#39;,
+                &#39;&lt;a class=&quot;dragIt&quot;&gt;Unlock&lt;/a&gt;&#39;,
+                &#39;&lt;/div&gt;&#39;
+            ].join(&#39;&#39;);
+
+            var $avatarIconsData = [
+                {
+                    &#39;class&#39;: &#39;changeAvatarButton&#39;,
+                    &#39;title&#39;: &#39;Change your avatar photo&#39;
+                },
+                {
+                    &#39;class&#39;: &#39;likeButton&#39;,
+                    &#39;title&#39;: &#39;Like this photo&#39;
+                },
+                {
+                    &#39;class&#39;: &#39;settingsButton&#39;,
+                    &#39;title&#39;: &#39;Profile Settings&#39;
+                }
+            ];
+
+            $element.view.controller.clearParentThumbnail();
+
+            $element.$.append(
+                $avatarMainFrame
+            );
+
+            $(&#39;.imageFrame&#39;, $element.$).append($draggMenu);
+
+            for (i = 0; i &lt; $avatarIconsData.length; i++) {
+                $(&#39;.iconsContainer&#39;, $element.$).
+                    append([
+                        &#39;&lt;a class=&quot;&#39;, $avatarIconsData[i].class,
+                        &#39;&quot; title=&quot;&#39;, $avatarIconsData[i].title,
+                        &#39;&quot;&gt;&#39;].join(&#39;&#39;));
+            }
+
+            this.initFunctionality();
+        },
+
+        initFunctionality: function initFunctionality() {
+            this.defineSelectors();
+            this.initAvatarPosition();
+            this.bindConfig();
+        }
+
+    }, BaseElement.prototype, AvatarBehavior.prototype);
+});</pre>
+</body>
+</html>

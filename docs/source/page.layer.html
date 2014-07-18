@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 7/9/14.
+ */
+
+define([], function definePageLayer(){
+
+<span id='PageLayer-method-constructor'><span id='PageLayer'>    /**
+</span></span>     * Define page layer
+     * @class PageLayer
+     * @constructor
+     */
+    var PageLayer = function PageLayer() {
+
+    };
+
+    return PageLayer.extend(&#39;PageLayer&#39;, {
+
+<span id='PageLayer-method-getTargetWidgetsData'>        /**
+</span>         * Get container target widgets
+         * @member PageLayer
+         * @param {Widget} source
+         * @param {boolean} [up]
+         * @returns {{}}
+         */
+        getTargetWidgetsData: function getTargetWidgetsData(source, up) {
+
+            var targets = {
+                    widgets: {},
+                    minLayer: 16777271,
+                    maxLayer: 0
+                },
+                widget, items = this.model.getItems(),
+                index, layer, uuid;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+<span id='PageLayer-property-widget'>                    /**
+</span>                     * Define widget
+                     * @type {Widget}
+                     */
+                    widget = items[index];
+
+<span id='PageLayer-property-uuid'>                    /**
+</span>                     * Get widget UUID
+                     * @type {String}
+                     */
+                    uuid = widget.model.getUUID();
+
+                    if (source.model.getUUID() !== uuid) {
+
+                        targets.widgets[uuid] = widget;
+
+                        layer = widget.dom.zIndex;
+
+                        if (!layer || layer === &#39;auto&#39;) {
+                            layer = 0;
+                        }
+
+                        layer = up ? layer : layer + 1;
+
+                        if (targets.maxLayer &lt; layer) {
+                            targets.maxLayer = layer;
+                        }
+
+                        if (targets.minLayer &gt; layer) {
+                            targets.minLayer = layer;
+                        }
+
+                        this.scope.logger.debug(&#39;Adopt widget layer&#39;, widget, layer);
+
+                        widget.map.adoptLayer(layer, false);
+                    }
+                }
+            }
+
+            this.scope.logger.debug(&#39;Get container target widgets&#39;, targets);
+
+            return targets;
+        },
+
+<span id='PageLayer-method-reorderLayers'>        /**
+</span>         * Re-order layers before save
+         * @member PageLayer
+         */
+        reorderLayers: function reorderLayers() {
+
+<span id='PageLayer-property-items'>            /**
+</span>             * Get page items
+             * @type {*}
+             */
+            var items = this.model.getItems(),
+                minLayer = 16777271,
+                maxLayer = 0,
+                index, widget, layer,
+                ontop;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+<span id='PageLayer-property-widget'>                    /**
+</span>                     * Define widget
+                     * @type {Widget}
+                     */
+                    widget = items[index];
+
+                    layer = widget.view.elements.$widget.getZIndex();
+                    widget.dom.zIndex = layer;
+
+                    if (!layer || layer === &#39;auto&#39;) {
+                        layer = 0;
+                    }
+
+                    if (minLayer &gt; layer) {
+                        minLayer = layer;
+                    }
+
+                    if (maxLayer &lt; layer) {
+                        maxLayer = layer;
+                    }
+
+                    if (widget.view.get$item().isOnTop()) {
+
+                        ontop = widget;
+                        this.scope.logger.debug(&#39;Get always on top widget&#39;, ontop);
+                    }
+                }
+            }
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+<span id='PageLayer-property-widget'>                    /**
+</span>                     * Define widget
+                     * @type {Widget}
+                     */
+                    widget = items[index];
+
+                    widget.map.adoptLayer(widget.dom.zIndex - minLayer, true);
+                }
+            }
+
+            if (ontop) {
+                ontop.map.adoptLayer(maxLayer - minLayer + 2, true);
+            }
+        },
+
+<span id='PageLayer-method-revertLayer'>        /**
+</span>         * Revert layer
+         * @member PageLayer
+         */
+        revertLayer: function revertLayer() {
+
+<span id='PageLayer-property-items'>            /**
+</span>             * Get page items
+             * @type {*}
+             */
+            var items = this.model.getItems(),
+                index, widget;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+<span id='PageLayer-property-widget'>                    /**
+</span>                     * Define widget
+                     * @type {Widget}
+                     */
+                    widget = items[index];
+
+                    widget.map.adoptLayer(widget.dom.zIndex || &#39;auto&#39;, false);
+                }
+            }
+        }
+    });
+});</pre>
+</body>
+</html>

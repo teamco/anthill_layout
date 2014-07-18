@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/17/12
+ * Time: 5:28 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/Event&#39;
+], function defineSitePreferencesEventManager(BaseEvent) {
+
+<span id='SitePreferencesEventManager-method-constructor'><span id='SitePreferencesEventManager'>    /**
+</span></span>     * Define site event manager
+     * @class SitePreferencesEventManager
+     * @constructor
+     * @extends BaseEvent
+     */
+    var SitePreferencesEventManager = function SitePreferencesEventManager() {
+
+<span id='SitePreferencesEventManager-property-events'>        /**
+</span>         * Define events
+         * @member SitePreferencesEventManager
+         * @type {{}}
+         */
+        this.events = {};
+
+<span id='SitePreferencesEventManager-property-eventList'>        /**
+</span>         * Define event list
+         * @member SitePreferencesEventManager
+         * @type {{
+         *      updateTranslations: string,
+         *      loadPreferences: string
+         * }}
+         */
+        this.eventList = {
+            updateTranslations: &#39;update.translations&#39;,
+            loadPreferences: &#39;load.preferences&#39;
+        };
+    };
+
+    return SitePreferencesEventManager.extend(&#39;SitePreferencesEventManager&#39;, {
+
+    }, BaseEvent.prototype);
+});</pre>
+</body>
+</html>

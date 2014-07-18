@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Basic parser for URL properties
+ * @author Miller Medeiros
+ * @version 0.1.0 (2011/12/06)
+ * MIT license
+ */
+define(function(){
+
+    var rProps = /([\w-]+)\s*:\s*(?:(\[[^\]]+\])|([^,]+)),?/g, //match &quot;foo:bar&quot; and &quot;lorem:[ipsum,dolor]&quot; capturing name as $1 and val as $2 or $3
+        rArr = /^\[([^\]]+)\]$/; //match &quot;[foo,bar]&quot; capturing &quot;foo,bar&quot;
+
+    function parseProperties(str){
+        var match, obj = {};
+        while (match = rProps.exec(str)) {
+            obj[ match[1] ] = typecastVal(match[2] || match[3]);
+        }
+        return obj;
+    }
+
+    function typecastVal(val){
+        if (rArr.test(val)){
+            val = val.replace(rArr, &#39;$1&#39;).split(&#39;,&#39;);
+        } else if (val === &#39;null&#39;){
+            val = null;
+        } else if (val === &#39;false&#39;){
+            val = false;
+        } else if (val === &#39;true&#39;){
+            val = true;
+        } else if (val === &#39;&#39; || val === &quot;&#39;&#39;&quot; || val === &#39;&quot;&quot;&#39;){
+            val = &#39;&#39;;
+        } else if (! isNaN(val)) {
+            //isNaN(&#39;&#39;) == false
+            val = +val;
+        }
+        return val;
+    }
+
+    //API
+    return {
+        parseProperties : parseProperties,
+        typecastVal : typecastVal
+    };
+});
+</pre>
+</body>
+</html>

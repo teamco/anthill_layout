@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function definePageTabsElement(BaseElement) {
+
+<span id='PageTabsElement-method-PageTabsElement'><span id='PageTabsElement'>    /**
+</span></span>     * Define PageTabs Element
+     * @param view
+     * @param opts
+     * @returns {PageTabsElement}
+     * @constructor
+     * @class PageTabsElement
+     * @extends BaseElement
+     */
+    var PageTabsElement = function PageTabsElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;ul /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+<span id='PageTabsElement-property-current'>        /**
+</span>         * Define current page class name
+         * @type {string}
+         */
+        this.current = &#39;current&#39;;
+
+        this.addCSS(&#39;page.tabs&#39;, {resource: &#39;/widgets&#39;});
+
+        return this;
+    };
+
+    return PageTabsElement.extend(&#39;PageTabsElement&#39;, {
+
+<span id='PageTabsElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member PageTabsElement
+         * @param {{}} pages
+         * @param {Page} page
+         */
+        renderEmbeddedContent: function renderEmbeddedContent(pages, page) {
+
+            this.empty();
+
+            for (var index in pages) {
+
+                if (pages.hasOwnProperty(index)) {
+
+                    this.$.append(
+                        this.view.renderPageTabsItem(
+                            pages[index],
+                            page === pages[index] ? this.current : &#39;&#39;
+                        )
+                    );
+                }
+            }
+
+            this.view.controller.clearParentThumbnail();
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

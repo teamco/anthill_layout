@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 11:06 PM
+ * To change this template use File | Settings | File Templates.
+ */
+define([
+    &#39;modules/Model&#39;,
+    &#39;plugins/widgets/widget.content.model&#39;
+], function defineLoginModel(BaseModel, WidgetContentModel) {
+
+<span id='LoginModel-method-constructor'><span id='LoginModel'>    /**
+</span></span>     * Define Login model
+     * @extends BaseModel
+     * @extends WidgetContentModel
+     * @class LoginModel
+     * @constructor
+     */
+    var LoginModel = function LoginModel() {
+
+<span id='LoginModel-property-preferences'>        /**
+</span>         * Define preferences
+         * @member LoginModel
+         * @type {{}}
+         */
+        this.preferences = {
+        };
+
+<span id='LoginModel-property-rules'>        /**
+</span>         * Define rules
+         * @member LoginModel
+         * @type {{}}
+         */
+        this.rules = {};
+    };
+
+    return LoginModel.extend(&#39;LoginModel&#39;, {
+
+
+    }, BaseModel.prototype, WidgetContentModel.prototype);
+});</pre>
+</body>
+</html>

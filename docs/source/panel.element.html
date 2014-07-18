@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function definePanelElement(BaseElement) {
+
+<span id='PanelElement-method-PanelElement'><span id='PanelElement'>    /**
+</span></span>     * Define Panel Element
+     * @param view
+     * @param opts
+     * @returns {PanelElement}
+     * @constructor
+     * @class PanelElement
+     * @extends BaseElement
+     */
+    var PanelElement = function PanelElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;ul /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: false
+        });
+
+<span id='PanelElement-property-maxWidth'>        /**
+</span>         * Define max width
+         * @member PanelElement
+         * @type {*|number}
+         */
+        this.maxWidth = opts.maxWidth || 100;
+
+<span id='PanelElement-property-minWidth'>        /**
+</span>         * Define min width
+         * @member PanelElement
+         * @type {*|number}
+         */
+        this.minWidth = opts.minWidth || 0;
+
+        this.addCSS(&#39;panel&#39;);
+
+        return this;
+    };
+
+    return PanelElement.extend(&#39;PanelElement&#39;, {
+
+<span id='PanelElement-method-toggle'>        /**
+</span>         * Toggle open/close
+         * @param {string} resource
+         * @param {boolean} opened
+         * @member PanelElement
+         * @returns {boolean}
+         */
+        toggle: function toggle(resource, opened) {
+
+<span id='PanelElement-method-_callbackToggle'>            /**
+</span>             * Toggle callback
+             * @private
+             */
+            function _callbackToggle() {
+                if (!opened) {
+                    $container.$.attr(&#39;style&#39;, &#39;&#39;);
+                }
+            }
+
+<span id='PanelElement-property-view'>            /**
+</span>             * Define locals
+             */
+            var view = this.view,
+                scope = view.scope,
+                controller = view.controller;
+
+            if (controller.isOpened() === opened &amp;&amp; scope.active === resource) {
+
+                scope.logger.debug(&#39;No change&#39;);
+                return false;
+            }
+
+            var $container = view.elements.$container;
+
+            $container.opened(opened);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.showContent,
+                [opened, resource]
+            );
+
+            $container.$.stop().animate({
+                width: opened ?
+                    this.maxWidth :
+                    this.minWidth
+            }, 200, _callbackToggle);
+
+            controller.setBehavior(resource, opened);
+        },
+
+<span id='PanelElement-method-hideActiveModule'>        /**
+</span>         * Hide Active module
+         * @member PanelElement
+         */
+        hideActiveModule: function hideActiveModule() {
+            this.view.elements.items[this.getContentItemIndex()].hide();
+        },
+
+<span id='PanelElement-method-showActiveModule'>        /**
+</span>         * Show Active module
+         * @member PanelElement
+         */
+        showActiveModule: function showActiveModule() {
+            this.view.elements.items[this.getContentItemIndex()].show();
+        },
+
+<span id='PanelElement-method-getContentItemIndex'>        /**
+</span>         * Get item index
+         * @member PanelElement
+         * @returns {string}
+         */
+        getContentItemIndex: function getContentItemIndex() {
+            return [&#39;$&#39;, this.view.scope.active, &#39;-content&#39;].join(&#39;&#39;);
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

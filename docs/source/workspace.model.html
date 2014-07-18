@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 11:06 PM
+ * To change this template use File | Settings | File Templates.
+ */
+define([
+    &#39;modules/Model&#39;,
+    &#39;config/page&#39;
+], function defineWorkspaceModel(BaseModel, Page) {
+
+<span id='WorkspaceModel-method-constructor'><span id='WorkspaceModel'>    /**
+</span></span>     * Define Workspace model
+     * @extends BaseModel
+     * @class WorkspaceModel
+     * @constructor
+     */
+    var WorkspaceModel = function WorkspaceModel() {
+
+<span id='WorkspaceModel-property-item'>        /**
+</span>         * Define Page item
+         * @member WorkspaceModel
+         * @type {Page}
+         */
+        this.item = Page;
+    };
+
+    return WorkspaceModel.extend(&#39;WorkspaceModel&#39;, {
+
+    }, BaseModel.prototype);
+
+});</pre>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 2/13/13
+ * Time: 11:34 PM
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/debugger/debugger.config&#39;,
+    &#39;modules/debugger/debugger.component&#39;,
+    &#39;modules/debugger/debugger.tabs&#39;,
+    &#39;modules/debugger/debugger.grid&#39;,
+    &#39;modules/debugger/debugger.application&#39;,
+    &#39;modules/debugger/debugger.workspace&#39;,
+    &#39;modules/debugger/debugger.page&#39;,
+    &#39;modules/debugger/debugger.layout&#39;,
+    &#39;modules/debugger/debugger.widget&#39;
+], function defineDebugger(AntHill, DebuggerConfig, DebuggerComponent, DebuggerTabs, DebuggerGrid, DebuggerApp, DebuggerWorkspace, DebuggerPage, DebuggerLayout, DebuggerWidget) {
+
+<span id='Debugger-method-constructor'><span id='Debugger'>    /**
+</span></span>     * Define Debugger
+     * @param scope
+     * @class Debugger
+     * @constructor
+     */
+    var Debugger = function Debugger(scope) {
+
+        this.scope = scope;
+
+        this.placeholders = &#39;#placeholders&#39;;
+        this.info = &#39;#debug-mode&#39;;
+
+        this.links = [
+            &#39;Logger&#39;,
+            &#39;Application&#39;,
+            &#39;Workspace&#39;,
+            &#39;Page&#39;,
+            &#39;Widget&#39;
+        ];
+
+        this.showTab = 5;
+        this.pinTabs = true;
+
+        this.opacityOff = 0.8;
+
+        this.rows = 25;
+        this.scopes = {};
+
+        this.init();
+
+    };
+
+    return Debugger.extend(&#39;Debugger&#39;, {
+
+<span id='Debugger-method-init'>        /**
+</span>         * Init debugger components
+         */
+        init: function init() {
+
+<span id='Debugger-property-noWidget'>            /**
+</span>             * Define no widget scope
+             * @type {Boolean}
+             */
+            this.noWidget = false;
+
+<span id='Debugger-property-config'>            /**
+</span>             * Define config
+             * @type {DebuggerConfig}
+             */
+            this.config = new DebuggerConfig(this);
+
+<span id='Debugger-property-component'>            /**
+</span>             * Define component
+             * @type {DebuggerComponent}
+             */
+            this.component = new DebuggerComponent(this);
+
+<span id='Debugger-property-tabs'>            /**
+</span>             * Define tabs
+             * @type {DebuggerTabs}
+             */
+            this.tabs = new DebuggerTabs(this, this.pinTabs, this.opacityOff);
+
+<span id='Debugger-property-app'>            /**
+</span>             * Define app
+             * @type {DebuggerApp}
+             */
+            this.app = new DebuggerApp(this, this.scope);
+
+<span id='Debugger-property-workspace'>            /**
+</span>             * Define workspace
+             * @type {DebuggerWorkspace}
+             */
+            this.workspace = new DebuggerWorkspace(this, this.scopes.workspace);
+
+<span id='Debugger-property-page'>            /**
+</span>             * Define page
+             * @type {DebuggerPage}
+             */
+            this.page = new DebuggerPage(this, this.scopes.page);
+
+<span id='Debugger-property-layout'>            /**
+</span>             * Define layout
+             * @type {DebuggerLayout}
+             */
+            this.layout = new DebuggerLayout(this);
+
+<span id='Debugger-property-grid'>            /**
+</span>             * Define grid
+             * @type {DebuggerGrid}
+             */
+            this.grid = new DebuggerGrid(this);
+
+<span id='Debugger-property-widget'>            /**
+</span>             * Define widget
+             * @type {DebuggerWidget}
+             */
+            this.widget = new DebuggerWidget(this);
+
+            this.renderDebugger();
+        },
+
+<span id='Debugger-method-destroy'>        /**
+</span>         * Destroy debugger
+         */
+        destroy: function destroy() {
+            this.grid.destroyGrid();
+            this.destroyDebuggerDOM();
+            this.scope.bugger = undefined;
+            delete this.scope.bugger;
+        },
+
+<span id='Debugger-method-destroyDebuggerDOM'>        /**
+</span>         * Destroy info window
+         */
+        destroyDebuggerDOM: function destroyDebuggerDOM() {
+            $(this.info).stop().fadeOut(300, function fadeOt() {
+                $(this).unbind().remove();
+            });
+        },
+
+<span id='Debugger-method-renderDebugger'>        /**
+</span>         * Render Info window
+         * @param {{type, timeStamp}} [event]
+         * @param {{originalPosition, offset, position, helper}} [ui]
+         */
+        renderDebugger: function renderDebugger(event, ui) {
+
+            var scope = this.scope,
+                scopes = this.scopes,
+                base = this.base,
+
+                $div = $(this.info),
+                opacityOff = this.opacityOff;
+
+            if ($div.length === 0) {
+                $div = $(&#39;&lt;div /&gt;&#39;);
+                $div.attr({
+                    id: this.info.replace(/#/, &#39;&#39;)
+                }).css({
+                        opacity: opacityOff
+                    }).draggable({
+                        handle: &#39;.handler&#39;,
+                        cancel: &#39;.plus, .minus, .pin, .debug-clear&#39;
+                    });
+                $(scope.config.html.container).append($div);
+            }
+
+            if (!(scopes.widget instanceof Object)) {
+                this.scope.logger.debug(&#39;Debugger undefined widget&#39;, scopes, this);
+                this.noWidget = true;
+            }
+
+            var workspace = scopes.workspace || {},
+                page = scopes.page || {},
+                layout = page.layout || {},
+                logger = scope.config.logger,
+                c = this.component;
+
+            event = base.define(event, {}, true);
+            ui = base.define(ui, {}, true);
+
+            $div.html(
+                [
+                    &#39;&lt;ul class=&quot;handler&quot;&gt;&#39;,
+                    c.renderInput(&#39;Show Grid&#39;, false),
+                    &#39;&lt;li class=&quot;debug-clear&quot;&gt;Clear data&lt;/li&gt;&#39;,
+                    &#39;&lt;/ul&gt;&#39;,
+                    &#39;&lt;div class=&quot;debug-container&quot;&gt;&#39;,
+
+                    c.renderBlock(&#39;Widget&#39;, [
+                        this.widget.renderWidgetInfo(event, ui)
+                    ], false),
+
+                    c.renderBlock(&#39;Page&#39;, [
+                        c.renderInline(&#39;UUID&#39;, (page.config || {}).uuid),
+                        this.layout.renderPageLayout(layout),
+                        this.page.renderItemsInfo(page)
+                    ], false),
+
+                    c.renderBlock(&#39;Workspace&#39;, [
+                        c.renderInline(&#39;UUID&#39;, (workspace.config || {}).uuid),
+                        this.workspace.renderItemsInfo(workspace)
+                    ], false),
+
+                    c.renderBlock(&#39;Application&#39;, [
+                        c.renderInline(&#39;UUID&#39;, scope.config.uuid),
+                        c.renderInline(&#39;Mode&#39;, scope.config.mode),
+                        this.app.renderItemsInfo(scope)
+                    ], false),
+
+                    c.renderBlock(&#39;Logger&#39;, [
+                        c.renderInline(&#39;Namespaces&#39;, logger.namespaces),
+                        c.renderInput(&#39;Show&#39;, logger.show),
+                        c.renderInput(&#39;console.debug&#39;, logger.type.debug),
+                        c.renderInput(&#39;console.log&#39;, logger.type.log),
+                        c.renderInput(&#39;console.info&#39;, logger.type.info),
+                        c.renderInput(&#39;console.error&#39;, logger.type.error),
+                        c.renderInput(&#39;console.warn&#39;, logger.type.warn)
+                    ], false),
+
+                    &#39;&lt;/div&gt;&lt;div class=&quot;debug-close&quot;&gt;Hide&lt;/div&gt;&#39;
+
+                ].join(&#39;&#39;)
+
+            ).show();
+
+            this.tabs.renderTabs($div);
+
+            c.bindCollapse();
+            c.bindDebugClose();
+            c.bindClearData();
+
+            this.grid.bindToggleGrid();
+
+            this.layout.bindAllowOverlapping();
+            this.layout.bindChangeOverlappingMode();
+            this.layout.bindChangeEmptySpacesMode();
+
+            this.page.bindEnableItemsEditMode(page);
+            this.workspace.bindEnableItemsEditMode(workspace);
+            this.app.bindEnableItemsEditMode(this.scope);
+
+            this.tabs.openTab({
+                target: $div.find(&#39;li[title=&quot;&#39; + this.links[this.showTab - 2] + &#39;&quot;]&#39;)
+            });
+        }
+
+    }, AntHill.prototype);
+});</pre>
+</body>
+</html>

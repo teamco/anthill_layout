@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 10:00 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([], function defineBaseNumber() {
+
+<span id='BaseNumber-method-constructor'><span id='BaseNumber'>    /**
+</span></span>     * Define BaseNumber
+     * @class BaseNumber
+     * @constructor
+     */
+    var BaseNumber = function BaseNumber() {
+    };
+
+    BaseNumber.extend(&#39;BaseNumber&#39;, {
+
+<span id='BaseNumber-property-defaultNumberType'>        /**
+</span>         * Default number type
+         * @member BaseNumber
+         */
+        defaultNumberType: 10,
+
+<span id='BaseNumber-method-str2int'>        /**
+</span>         * Convert String to Integer
+         * @member BaseNumber
+         * @param {string} s
+         * @param {number} t
+         * @returns {Number}
+         */
+        str2int: function str2int(s, t) {
+            var number = parseInt(s, t || this.defaultNumberType);
+            return typeof(number) === &#39;number&#39; ? number : 0;
+        },
+
+<span id='BaseNumber-method-str2float'>        /**
+</span>         * Convert String to Integer
+         * @member BaseNumber
+         * @param {string} s
+         * @returns {Number}
+         */
+        str2float: function str2float(s) {
+            var number = parseFloat(s);
+            return typeof(number) === &#39;number&#39; ? number : 0;
+        },
+
+<span id='BaseNumber-method-getRnd'>        /**
+</span>         * Get random number
+         * @member BaseNumber
+         * @param {number} min
+         * @param {number} max
+         * @returns {number}
+         */
+        getRnd: function getRnd(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        },
+
+<span id='BaseNumber-method-sortNumeric'>        /**
+</span>         * Numeric sort
+         * @member BaseNumber
+         * @param {Number} a
+         * @param {Number} b
+         * @returns {Number}
+         */
+        sortNumeric: function sortNumeric(a, b) {
+            return a - b;
+        }
+
+    });
+
+    return new BaseNumber();
+
+});</pre>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: i061485
+ * Date: 6/12/13
+ * Time: 3:22 PM
+ */
+
+define([
+    &#39;config/anthill&#39;
+], function defineLayoutEmptyRows(AntHill) {
+
+<span id='EmptyRows-method-constructor'><span id='EmptyRows'>    /**
+</span></span>     * Define EmptyRows
+     * @class EmptyRows
+     * @param {Layout} layout
+     * @constructor
+     */
+    var EmptyRows = function EmptyRows(layout) {
+
+<span id='EmptyRows-property-layout'>        /**
+</span>         * Define layout
+         * @type {Layout}
+         */
+        this.layout = layout;
+
+<span id='EmptyRows-property-page'>        /**
+</span>         * Define page
+         * @type {Page}
+         */
+        this.page = this.layout.controller.getContainment();
+
+    };
+
+    return EmptyRows.extend(&#39;EmptyRows&#39;, {
+
+<span id='EmptyRows-method-isAllowed'>        /**
+</span>         * Check if remove empty spaces is allowed
+         * @returns {boolean}
+         */
+        isAllowed: function isAllowed() {
+            return this.layout.controller._getLayoutMode(&#39;emptySpaces&#39;) ===
+                this.page.ORGANIZE_MODES.row;
+        },
+
+<span id='EmptyRows-method-findRows'>        /**
+</span>         * Find busy rows
+         * @returns {Array}
+         */
+        findRows: function findRows() {
+            var rows = [],
+                widget, index, i, l, dom,
+                widgets = this.page.model.getItems();
+
+            for (index in widgets) {
+                if (widgets.hasOwnProperty(index)) {
+                    widget = widgets[index];
+                    dom = widget.dom;
+                    l = dom.relHeight + dom.row - 1;
+
+                    for (i = dom.row; i &lt;= l; i += 1) {
+                        rows[i] = this.base.define(rows[i], [], true);
+                        rows[i].push(widget);
+                    }
+                }
+            }
+            return rows;
+        },
+
+<span id='EmptyRows-method-remove'>        /**
+</span>         * Remove empty rows
+         * @return {Boolean}
+         */
+        remove: function remove() {
+
+<span id='EmptyRows-property-layout'>            /**
+</span>             * Define layout
+             * @type {Layout}
+             */
+            var layout = this.layout;
+
+            if (!this.isAllowed()) {
+                layout.logger.warn(&#39;Remove empty spaces by row does not allowed&#39;);
+                return false;
+            }
+
+            var rows = this.findRows(),
+                moveIndex = 0,
+                alreadyFixed = [],
+                i = 0, rl = rows.length;
+
+            for (i; i &lt;= rl; i += 1) {
+
+                if (this.base.isDefined(rows[i])) {
+
+<span id='EmptyRows-property-alreadyFixed'>                    /**
+</span>                     * Define already fixed widgets
+                     * @type {*}
+                     */
+                    alreadyFixed = this._updateWidgetDOM(
+                        rows[i],
+                        alreadyFixed,
+                        moveIndex
+                    );
+
+                } else {
+                    moveIndex += 1;
+                    alreadyFixed = [];
+                }
+            }
+        },
+
+<span id='EmptyRows-method-_updateWidgetDOM'>        /**
+</span>         * Get widget to update dom
+         * @param {*} widgets
+         * @param {Array} alreadyFixed
+         * @param {Number} moveIndex
+         * @returns {*}
+         * @private
+         */
+        _updateWidgetDOM: function _updateWidgetDOM(widgets, alreadyFixed, moveIndex) {
+            var widget, uuid, y = 0,
+                wl = widgets.length,
+                row, top, dom;
+
+            for (y; y &lt;= wl; y += 1) {
+
+                if (widgets[y]) {
+
+<span id='EmptyRows-property-widget'>                    /**
+</span>                     * Define widget
+                     * @type {Widget}
+                     */
+                    widget = widgets[y];
+
+<span id='EmptyRows-property-uuid'>                    /**
+</span>                     * Define UUID
+                     * @type {String}
+                     */
+                    uuid = widget.model.getUUID();
+
+                    if ($.inArray(uuid, alreadyFixed) === -1) {
+                        alreadyFixed.push(uuid);
+
+                        dom = widget.map.getDOM();
+                        row = widget.dom.row - moveIndex;
+                        top = widget.map.widgetTop(row);
+
+                        widget.model.updateDOM({
+                            row: row,
+                            top: top,
+                            bottom: widget.map.widgetBottom(top, dom.height)
+                        });
+                    }
+                }
+            }
+
+            return alreadyFixed;
+        }
+
+    }, AntHill.prototype);
+
+});</pre>
+</body>
+</html>

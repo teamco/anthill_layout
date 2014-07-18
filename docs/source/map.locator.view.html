@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/map.locator/element/map.locator.element&#39;,
+    &#39;plugins/widgets/map.locator/element/map.locator.preferences.element&#39;,
+    &#39;plugins/widgets/map.locator/element/map.locator.rules.element&#39;
+], function defineMapLocatorView(BaseView, Header, Footer, MapLocatorElement, MapLocatorPreferencesElement, MapLocatorRulesElement) {
+
+<span id='MapLocatorView-method-constructor'><span id='MapLocatorView'>    /**
+</span></span>     * Define view
+     * @class MapLocatorView
+     * @extends BaseView
+     * @constructor
+     */
+    var MapLocatorView = function MapLocatorView() {
+    };
+
+    return MapLocatorView.extend(&#39;MapLocatorView&#39;, {
+
+<span id='MapLocatorView-method-renderMapLocator'>        /**
+</span>         * Render map.locator element
+         * @member MapLocatorView
+         */
+        renderMapLocator: function renderMapLocator() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='MapLocatorView-property-S-maplocator'>            /**
+</span>             * Define $geolocation
+             * @type {MapLocatorElement}
+             */
+            this.elements.$maplocator = new MapLocatorElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.showPosition();
+        },
+
+<span id='MapLocatorView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member MapLocatorView
+         * @returns {MapLocatorPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='MapLocatorView-property-S-preferences'>            /**
+</span>             * Define MapLocator Preferences Element
+             * @type {MapLocatorPreferencesElement}
+             */
+            this.elements.$preferences = new MapLocatorPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='MapLocatorView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member MapLocatorView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {MapLocatorRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='MapLocatorView-property-data'>            /**
+</span>             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+<span id='MapLocatorView-property-S-rules'>            /**
+</span>             * Define MapLocator Rules Element
+             * @type {MapLocatorRulesElement}
+             */
+            this.elements.$rules = new MapLocatorRulesElement(this, {
+                data: data,
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='MapLocatorView-method-showPosition'>        /**
+</span>         * Show position
+         * @member MapLocatorView
+         */
+        showPosition: function showPosition() {
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='MapLocatorView-method-render'>        /**
+</span>         * Render map.locator
+         * @member MapLocatorView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderMapLocator.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});</pre>
+</body>
+</html>

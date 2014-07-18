@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function definePetPassportElement(BaseElement) {
+
+<span id='PetPassportElement-method-PetPassportElement'><span id='PetPassportElement'>    /**
+</span></span>     * Define PetPassport Element
+     * @param view
+     * @param opts
+     * @returns {PetPassportElement}
+     * @constructor
+     * @class PetPassportElement
+     * @extends BaseElement
+     */
+    var PetPassportElement = function PetPassportElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;pet.passport&#39;, {
+            resource: &#39;/widgets&#39;
+        });
+
+        return this;
+    };
+
+    return PetPassportElement.extend(&#39;PetPassportElement&#39;, {
+
+<span id='PetPassportElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member PetPassportElement
+         */
+        renderEmbeddedContent: function renderEmbeddedContent() {
+            var $element = this;
+            var $mainContainer = [
+                &#39;&lt;div id=&quot;mainContainer&quot;&gt;&lt;label class=&quot;petname&quot;&gt;Spike&lt;/label&gt;&#39;,
+                &#39;&lt;div class=&quot;passportContainer&quot;&gt;&lt;ul class=&quot;passportRows&quot;&gt;&lt;/ul&gt;&lt;/div&gt;&#39;,
+                &#39;&lt;div class=&quot;passportFooter&quot;&gt;&lt;div class=&quot;editModeMenu&quot;&gt;Edit Fields&lt;/div&gt;&lt;/div&gt;&#39;,
+                &#39;&lt;/div&gt;&#39;
+            ].join(&#39;&#39;);
+
+            $element.view.controller.clearParentThumbnail();
+            $element.$.append($mainContainer);
+
+            require([
+                &#39;plugins/widgets/pet.passport/mvc/pet.passport.behavior&#39;
+            ], function showPetPassport(PetPassportBehavior) {
+                var showPetPassport = new PetPassportBehavior();
+            });
+
+
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

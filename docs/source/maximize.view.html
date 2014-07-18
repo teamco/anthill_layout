@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/View&#39;,
+    &#39;plugins/preferences/preferences&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/maximize/element/maximize.content.element&#39;,
+    &#39;plugins/maximize/element/maximize.element&#39;
+], function defineMaximizeView(AntHill, BaseView, BasePreferences, Header, Footer, MaximizeContentElement, MaximizeElement) {
+
+<span id='MaximizeView-method-constructor'><span id='MaximizeView'>    /**
+</span></span>     * Define view
+     * @class MaximizeView
+     * @constructor
+     * @extends BaseView
+     * @extends BasePreferences
+     */
+    var MaximizeView = function MaximizeView() {
+    };
+
+    return MaximizeView.extend(&#39;MaximizeView&#39;, {
+
+<span id='MaximizeView-method-renderMaximize'>        /**
+</span>         * Render Maximize
+         * @member MaximizeView
+         * @returns {boolean}
+         */
+        renderMaximize: function renderMaximize() {
+
+            if (this.isCached(&#39;$maximize&#39;, MaximizeElement)) {
+                return false;
+            }
+
+            this.header(Header, this.elements.$container).setText(
+                &#39;Page Widgets&#39;
+            );
+
+<span id='MaximizeView-property-S-maximize'>            /**
+</span>             * Define Maximize element
+             * @type {MaximizeElement}
+             */
+            this.elements.$maximize = new MaximizeElement(this, {
+                id: this.createUUID(),
+                $container: this.elements.$container.$
+            });
+
+            this.footer(Footer, this.elements.$container).setHtml(
+                this.elements.$maximize.getFooter()
+            );
+        },
+
+<span id='MaximizeView-method-renderContent'>        /**
+</span>         * Render maximize content
+         * @member MaximizeView
+         * @param data
+         * @returns {boolean}
+         */
+        renderContent: function renderContent(data) {
+
+<span id='MaximizeView-property-items'>            /**
+</span>             * Define content
+             * @type {{}}
+             */
+            this.elements.items = {};
+            this.elements.$maximize.empty();
+
+            for (var index in data) {
+
+                if (data.hasOwnProperty(index)) {
+
+<span id='MaximizeView-property-S-item'>                    /**
+</span>                     * Render item
+                     * @type {MaximizeContentElement}
+                     */
+                    var $item = new MaximizeContentElement(this, {
+                        style: &#39;content&#39;,
+                        id: [
+                            data[index].model.getConfig(&#39;uuid&#39;),
+                            this.scope.constructor.name.toDash()
+                        ].join(&#39;-&#39;),
+                        $container: this.elements.$maximize.$,
+                        data: data[index]
+                    });
+
+                    this.scope.observer.publish(
+                        this.scope.eventmanager.eventList.storeItem,
+                        data[index]
+                    );
+
+                    this.controller.defineContentReferrer(data[index]);
+
+                    this.elements.items[$item.id] = $item;
+                }
+            }
+
+            this.elements.$maximize.scrollCover(
+                this.elements.$container.$
+            );
+
+            this.footer(Footer, this.elements.$container).setHtml(
+                this.elements.$maximize.getFooter()
+            );
+        },
+
+<span id='MaximizeView-method-render'>        /**
+</span>         * Render maximize
+         * @member MaximizeView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderMaximize.bind(this)
+            );
+        }
+
+    }, AntHill.prototype, BaseView.prototype, BasePreferences.prototype)
+
+});</pre>
+</body>
+</html>

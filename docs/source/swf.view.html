@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/swf/element/swf.element&#39;,
+    &#39;plugins/widgets/swf/element/swf.preferences.element&#39;,
+    &#39;plugins/widgets/swf/element/swf.rules.element&#39;
+], function defineSwfView(BaseView, Header, Footer, SwfElement, SwfPreferencesElement, SwfRulesElement) {
+
+<span id='SwfView-method-constructor'><span id='SwfView'>    /**
+</span></span>     * Define view
+     * @class SwfView
+     * @extends BaseView
+     * @constructor
+     */
+    var SwfView = function SwfView() {
+    };
+
+    return SwfView.extend(&#39;SwfView&#39;, {
+
+<span id='SwfView-method-renderSwf'>        /**
+</span>         * Render swf element
+         * @member SwfView
+         */
+        renderSwf: function renderSwf() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='SwfView-property-S-swf'>            /**
+</span>             * Define $swf
+             * @type {SwfElement}
+             */
+            this.elements.$swf = new SwfElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='SwfView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member SwfView
+         * @returns {SwfPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='SwfView-property-S-preferences'>            /**
+</span>             * Define Swf Preferences Element
+             * @type {SwfPreferencesElement}
+             */
+            this.elements.$preferences = new SwfPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='SwfView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member SwfView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {SwfRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='SwfView-property-data'>            /**
+</span>             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+<span id='SwfView-property-S-rules'>            /**
+</span>             * Define Swf Rules Element
+             * @type {SwfRulesElement}
+             */
+            this.elements.$rules = new SwfRulesElement(this, {
+                data: data,
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='SwfView-method-render'>        /**
+</span>         * Render swf
+         * @member SwfView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderSwf.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});</pre>
+</body>
+</html>

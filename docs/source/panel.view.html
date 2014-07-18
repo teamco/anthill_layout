@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/panel/element/panel.container.element&#39;,
+    &#39;plugins/panel/element/panel.content.element&#39;,
+    &#39;plugins/panel/element/panel.content.container.element&#39;,
+    &#39;plugins/panel/element/panel.tab.element&#39;,
+    &#39;plugins/panel/element/panel.element&#39;
+], function definePanelView(BaseView, Header, Footer, PanelContainer, PanelContentElement, PanelContentContainer, PanelTab, Panel) {
+
+<span id='PanelView-method-constructor'><span id='PanelView'>    /**
+</span></span>     * Define view
+     * @class PanelView
+     * @constructor
+     * @extends BaseView
+     */
+    var PanelView = function PanelView() {
+    };
+
+    return PanelView.extend({
+
+<span id='PanelView-method-renderPanelContainer'>        /**
+</span>         * Render container
+         * @member PanelView
+         */
+        renderPanelContainer: function renderPanelContainer() {
+
+<span id='PanelView-property-S-container'>            /**
+</span>             * Define container
+             * @type {PanelContainerElement}
+             */
+            this.elements.$container = new PanelContainer(this, {
+                $container: &#39;body&#39;,
+                style: [
+                    &#39;panel-container&#39;,
+                    this.controller.getRenderAt()
+                ].join(&#39; &#39;)
+            });
+        },
+
+<span id='PanelView-method-renderTab'>        /**
+</span>         * Render tab to open/close panel
+         * @member PanelView
+         */
+        renderTab: function renderTab() {
+
+<span id='PanelView-property-S-tab'>            /**
+</span>             * Define container
+             * @type {PanelTabElement}
+             */
+            this.elements.$tab = new PanelTab(this, {
+                $container: this.elements.$container.$,
+                style: &#39;panel-tab&#39;
+            });
+        },
+
+<span id='PanelView-method-renderPanel'>        /**
+</span>         * Render Panel
+         * @member PanelView
+         */
+        renderPanel: function renderPanel() {
+
+            if (this.isCached(&#39;$panel&#39;, Panel)) {
+                return false;
+            }
+
+            this.renderPanelContainer();
+            this.renderTab();
+
+            this.header(Header, this.elements.$container).setText(
+                &#39;Configuration&#39;
+            );
+
+<span id='PanelView-property-width'>            /**
+</span>             * Define local width
+             */
+            var width = this.getConfigHTML().width;
+
+<span id='PanelView-property-S-panel'>            /**
+</span>             * Define Panel element
+             * @type {PanelElement}
+             */
+            this.elements.$panel = new Panel(this, {
+                id: this.createUUID(),
+                $container: this.elements.$container.$,
+                maxWidth: width.max,
+                minWidth: width.min
+            });
+
+            this.renderContentContainer();
+
+            this.footer(Footer, this.elements.$container);
+
+            this.controller.renderPackages();
+
+        },
+
+<span id='PanelView-method-renderContentContainer'>        /**
+</span>         * Render content container
+         * @member PanelView
+         */
+        renderContentContainer: function renderContentContainer() {
+<span id='PanelView-property-S-content'>            /**
+</span>             * Define Panel element
+             * @type {PanelContentContainerElement}
+             */
+            this.elements.$content = new PanelContentContainer(this, {
+                $container: this.elements.$panel.$,
+                style: &#39;panel-content&#39;
+            });
+        },
+
+<span id='PanelView-method-renderContent'>        /**
+</span>         * Render panel content
+         * @member PanelView
+         * @param module
+         * @param {Boolean} force
+         * @returns {boolean}
+         */
+        renderContent: function renderContent(module, force) {
+
+<span id='PanelView-property-style'>            /**
+</span>             * Define style
+             * @type {string}
+             */
+            var style = [
+                    module.constructor.name.toDash(),
+                    &#39;content&#39;
+                ].join(&#39;-&#39;),
+                sname = &#39;$&#39; + style;
+
+<span id='PanelView-property-items'>            /**
+</span>             * Define content
+             * @type {{}}
+             */
+            this.elements.items = this.elements.items || {};
+
+            if ((this.isCachedItems() &amp;&amp; !force) || this.elements.items.hasOwnProperty(sname)) {
+                return false;
+            }
+
+<span id='PanelView-property-S-item'>            /**
+</span>             * Render item
+             * @type {PanelContentElement}
+             */
+            var $item = new PanelContentElement(this, {
+                style: style,
+                $container: this.elements.$content.$
+            });
+
+            module.view.defineContainer($item);
+
+            this.elements.items[sname] = $item;
+        },
+
+<span id='PanelView-method-render'>        /**
+</span>         * Render panel
+         * @member PanelView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderPanel.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});</pre>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function definePageDataContentElement(BaseElement) {
+
+<span id='PageDataContentElement-method-PageDataContentElement'><span id='PageDataContentElement'>    /**
+</span></span>     * Define PageData Content Element
+     * @param view
+     * @param opts
+     * @returns {PageDataContentElement}
+     * @constructor
+     * @class PageDataContentElement
+     * @extends BaseElement
+     */
+    var PageDataContentElement = function PageDataContentElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;li /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: false
+        });
+
+        this.setAttributes(opts.data);
+        this.bindShowPrefs(opts.data);
+        this.bindLocate(opts.data);
+
+        return this;
+    };
+
+    return PageDataContentElement.extend(&#39;PageDataContentElement&#39;, {
+
+<span id='PageDataContentElement-method-setAttributes'>        /**
+</span>         * Define attributes
+         * @member PageDataContentElement
+         * @param data
+         */
+        setAttributes: function setAttributes(data) {
+
+<span id='PageDataContentElement-property-title'>            /**
+</span>             * Get title
+             * @type {boolean|string}
+             */
+            var title = data.model.getConfig(&#39;preferences/title&#39;) ||
+                data.model.getUUID();
+
+<span id='PageDataContentElement-property-description'>            /**
+</span>             * Get description
+             * @type {string}
+             */
+            var description = data.model.getConfig(&#39;preferences/description&#39;) || &#39;&#39;;
+
+            this.$.attr({
+                title: title
+            }).addClass(
+                this.view.controller.getResourceClassName(
+                    data.model.getConfig(&#39;preferences/resource&#39;)
+                )
+            );
+
+<span id='PageDataContentElement-property-thumbnail'>            /**
+</span>             * Get thumbnail
+             * @type {string|*}
+             */
+            var thumbnail = data.model.getConfig(&#39;preferences/thumbnail&#39;);
+
+            if (thumbnail.length &gt; 0) {
+
+                this.$.css({
+                    backgroundImage: &#39;url(&quot;&#39; + thumbnail + &#39;&quot;)&#39;
+                });
+            }
+
+            this.renderTooltip({
+                title: title,
+                description: description,
+                $container: this
+            });
+        },
+
+<span id='PageDataContentElement-method-bindLocate'>        /**
+</span>         * Locate widget before showing prefs
+         * @member PageDataContentElement
+         * @param data
+         */
+        bindLocate: function bindLocate(data) {
+
+<span id='PageDataContentElement-method-_locatePrefs'>            /**
+</span>             * Locate widget
+             * @param event
+             * @private
+             */
+            function _locatePrefs(event) {
+                scope.observer.publish(
+                    scope.eventmanager.eventList.loadPreferences, [
+                        {uuid: config.uuid},
+                        false,
+                        event,
+                        scope.controller.locatePageData.bind(
+                            scope.controller
+                        )
+                    ]
+                );
+            }
+
+<span id='PageDataContentElement-property-config'>            /**
+</span>             * Get config
+             * @type {*}
+             */
+            var config = data.model.getConfig();
+
+<span id='PageDataContentElement-property-scope'>            /**
+</span>             * Define scope
+             * @type {PageData}
+             */
+            var scope = this.view.scope;
+
+            this.$.off(&#39;mouseenter.prefs mouseleave.prefs&#39;).on(
+                &#39;mouseenter.prefs mouseleave.prefs&#39;,
+                _locatePrefs.bind(this)
+            );
+        },
+
+<span id='PageDataContentElement-method-bindShowPrefs'>        /**
+</span>         * Bind show prefs
+         * @member PageDataContentElement
+         * @param data
+         */
+        bindShowPrefs: function bindShowPrefs(data) {
+
+<span id='PageDataContentElement-method-_clickPrefs'>            /**
+</span>             * Click prefs
+             * @private
+             */
+            function _clickPrefs() {
+                scope.observer.publish(
+                    scope.eventmanager.eventList.loadPreferences,
+                    [config, true]
+                );
+            }
+
+<span id='PageDataContentElement-property-config'>            /**
+</span>             * Get config
+             * @type {*}
+             */
+            var config = data.model.getConfig();
+
+<span id='PageDataContentElement-property-scope'>            /**
+</span>             * Define scope
+             * @type {PageData}
+             */
+            var scope = this.view.scope;
+
+            this.$.off(&#39;click.prefs&#39;).on(
+                &#39;click.prefs&#39;,
+                _clickPrefs.bind(this)
+            );
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

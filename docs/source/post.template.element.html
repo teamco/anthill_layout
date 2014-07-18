@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function definePostTemplateElement(BaseElement) {
+
+<span id='PostTemplateElement-method-PostTemplateElement'><span id='PostTemplateElement'>    /**
+</span></span>     * Define PostTemplate Element
+     * @param view
+     * @param opts
+     * @returns {PostTemplateElement}
+     * @constructor
+     * @class PostTemplateElement
+     * @extends BaseElement
+     */
+    var PostTemplateElement = function PostTemplateElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;post.template&#39;, {
+            resource: &#39;/widgets&#39;
+        });
+
+        return this;
+    };
+
+    return PostTemplateElement.extend(&#39;PostTemplateElement&#39;, {
+
+<span id='PostTemplateElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member PostTemplateElement
+         */
+        renderEmbeddedContent: function renderEmbeddedContent() {
+            var $element = this;
+            var $construction = [
+                 &#39;&lt;div class = &quot;mainContainer&quot;&gt;&#39;,
+                 &#39;&lt;div class = &quot;authorContainer&quot;&gt;&lt;i class = &quot;authorImage&quot; id = &quot;&quot; &gt;&lt;/i&gt;&lt;/div&gt;&#39;,
+                 &#39;&lt;div class = &quot;postHead&quot;&gt;&lt;h4&gt; Gucci &lt;/h4&gt;&lt;/div&gt;&#39;,
+                 &#39;&lt;div class = &quot;postContent&quot;&gt;&lt;/div&gt;&#39;,
+                 &#39;&lt;/div&gt;&#39;
+            ].join(&#39;&#39;);
+            $element.view.controller.clearParentThumbnail();
+            $element.$.append($construction);
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

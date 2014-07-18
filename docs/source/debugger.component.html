@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/6/13
+ * Time: 9:38 PM
+ */
+define([
+    &#39;config/anthill&#39;
+], function defineDebuggerComponent(AntHill) {
+
+<span id='DebuggerComponent-method-constructor'><span id='DebuggerComponent'>    /**
+</span></span>     * Define Debugger Component
+     * @param {*} debug
+     * @class DebuggerComponent
+     * @constructor
+     */
+    var DebuggerComponent = function DebuggerComponent(debug) {
+
+<span id='DebuggerComponent-property-bugger'>        /**
+</span>         * Define debugger
+         * @type {Debugger}
+         */
+        this.bugger = debug;
+    };
+
+    return DebuggerComponent.extend({
+
+<span id='DebuggerComponent-method-renderBlock'>        /**
+</span>         * Render block of elements
+         * @param {String} text
+         * @param {Array} content
+         * @param {Boolean} show
+         * @returns {string}
+         */
+        renderBlock: function renderBlock(text, content, show) {
+            return [
+                this.renderHeader(text, show),
+                content.join(&#39;&#39;),
+                this.renderFooter()
+            ].join(&#39;&#39;);
+        },
+
+<span id='DebuggerComponent-method-renderCombo'>        /**
+</span>         * Render combo box
+         * @param {String} text
+         * @param {String} selected
+         * @param {Array} arr
+         * @returns {string}
+         */
+        renderCombo: function renderCombo(text, selected, arr) {
+
+            function _comboList() {
+                return $.map(arr,function map(n, i) {
+                    return [
+                        &#39;&lt;option&#39;, (n === selected ? &#39; selected&#39; : &#39;&#39;),
+                        &#39; value=&quot;&#39;, n, &#39;&quot;&gt;&#39;, n, &#39;&lt;/option&gt;&#39;
+                    ].join(&#39;&#39;);
+                }).join(&#39;&#39;);
+            }
+
+            return [
+                &#39;&lt;li&gt;&lt;span&gt;&#39;, text, &#39;: &lt;/span&gt;&lt;select id=&quot;&#39;,
+                text.replace(/ /gi, &#39;-&#39;).toLowerCase(), &#39;&quot;&gt;&#39;,
+                _comboList(), &#39;&lt;/select&gt;&lt;/li&gt;&#39;
+            ].join(&#39;&#39;);
+        },
+
+<span id='DebuggerComponent-method-renderHeader'>        /**
+</span>         * Render Header
+         * @param {String} text
+         * @param {Boolean} show
+         * @returns {string}
+         */
+        renderHeader: function renderHeader(text, show) {
+            return [
+                &#39;&lt;fieldset class=&quot;&#39;, (text.toLowerCase() + &#39;-info&#39;), &#39;&quot;&gt;&lt;legend&gt;&#39;,
+                text, &#39;&lt;/legend&gt;&lt;ul&#39;, (show ? &#39;&#39; : &#39; class=&quot;hide&quot;&#39;), &#39;&gt;&#39;
+            ].join(&#39;&#39;);
+        },
+
+<span id='DebuggerComponent-method-renderInline'>        /**
+</span>         * Render inline element
+         * @param {String} text
+         * @param {String} value
+         * @returns {string}
+         */
+        renderInline: function renderInline(text, value) {
+            return [&#39;&lt;li&gt;&lt;span&gt;&#39;, text, &#39;:&lt;/span&gt; &#39;, value, &#39;&lt;/li&gt;&#39;].join(&#39;&#39;);
+        },
+
+<span id='DebuggerComponent-method-renderInlineAction'>        /**
+</span>         * Render inline action element
+         * @param {{rel: String, [style]: String, title: String}} opts
+         * @returns {string}
+         */
+        renderInlineAction: function renderInlineAction(opts) {
+            return [
+                &#39;&lt;li rel=&quot;&#39;, opts.rel,
+                &#39;&quot; class=&quot;&#39;, [opts.title.toClassName(), opts.style || &#39;&#39;].join(&#39; &#39;),
+                &#39;&quot; title=&quot;&#39;, opts.title, &#39;&quot;&gt;&#39;, opts.title, &#39;&lt;/li&gt;&#39;
+            ].join(&#39;&#39;);
+        },
+<span id='DebuggerComponent-method-renderInlineOf'>        /**
+</span>         * Render inline element: count of elements
+         * @param {String} text
+         * @param {*} item
+         * @returns {string}
+         */
+        renderInlineOf: function renderInlineOf(text, item) {
+            var config = item.config[item.model.getItemNameSpace()];
+            return [
+                &#39;&lt;li class=&quot;items-count&quot;&gt;&lt;span&gt;&#39;, text, &#39;:&lt;/span&gt; &#39;,
+                this.base.lib.hash.hashLength(item.items), &#39; of &#39;,
+                (config ? config.limit : &#39;Undefined&#39;) ||
+                    &#39;Unlimited&#39;, &#39;&lt;/li&gt;&#39;
+            ].join(&#39;&#39;);
+        },
+
+<span id='DebuggerComponent-method-renderInput'>        /**
+</span>         * Render input element
+         * @param {String} text
+         * @param {Boolean} condition
+         * @returns {string}
+         */
+        renderInput: function renderInput(text, condition) {
+            var uuid = this.base.lib.generator.UUID();
+            return [
+                &#39;&lt;li&gt;&lt;input name=&quot;&#39;, (text.toLowerCase().replace(/ /g, &#39;-&#39;)),
+                &#39;&quot; id=&quot;&#39;, uuid, &#39;&quot; type=&quot;checkbox&quot;&#39;,
+                condition ? &#39; checked=&quot;checked&quot;&#39; : &#39;&#39;, &#39; /&gt;&#39;,
+                &#39;&lt;label for=&quot;&#39;, uuid, &#39;&quot;&gt;&#39;, text, &#39;&lt;/label&gt;&lt;/li&gt;&#39;
+            ].join(&#39;&#39;);
+        },
+
+<span id='DebuggerComponent-method-renderFooter'>        /**
+</span>         * Render footer
+         * @returns {string}
+         */
+        renderFooter: function renderFooter() {
+            return &#39;&lt;/ul&gt;&lt;/fieldset&gt;&#39;;
+        },
+
+<span id='DebuggerComponent-method-renderTableRow'>        /**
+</span>         * Render table row
+         * @param {String} text
+         * @param {String|Number} top
+         * @param {String|Number} left
+         * @param {Boolean} head
+         * @returns {string}
+         */
+        renderTableRow: function renderTableRow(text, top, left, head) {
+            var h = head ? &#39;h&#39; : &#39;d&#39;;
+            return [
+                &#39;&lt;tr&gt;&lt;t&#39;, h, &#39;&gt;&#39;, text, &#39;&lt;/t&#39;, h, &#39;&gt;&#39;,
+                &#39;&lt;t&#39;, h, &#39;&gt;&#39;, top, &#39;&lt;/t&#39;, h, &#39;&gt;&#39;,
+                &#39;&lt;t&#39;, h, &#39;&gt;&#39;, left, &#39;&lt;/t&#39;, h, &#39;&gt;&lt;/tr&gt;&#39;
+            ].join(&#39;&#39;);
+        },
+
+<span id='DebuggerComponent-method-bindCollapse'>        /**
+</span>         * Collapse/expand group
+         */
+        bindCollapse: function bindCollapse() {
+
+<span id='DebuggerComponent-method-_clickToggle'>            /**
+</span>             * Toggle legend
+             * @private
+             */
+            function _clickToggle() {
+
+                var $ul = $(this).parent().find(&#39;ul&#39;);
+                $ul[&#39;slide&#39; + ($ul.is(&#39;:visible&#39;) ? &#39;Up&#39; : &#39;Down&#39;)]();
+
+            }
+
+            $(&#39;legend&#39;, this.bugger.info).on(&#39;click.toggle&#39;, _clickToggle);
+        },
+
+<span id='DebuggerComponent-method-bindClearData'>        /**
+</span>         * Bind clear data
+         */
+        bindClearData: function bindClearData() {
+            var scope = this,
+                $clear = $(&#39;.debug-clear&#39;, scope.bugger.info);
+
+            $clear.on(&#39;click.clear&#39;, this.confirmClearData.bind(this));
+        },
+
+<span id='DebuggerComponent-method-confirmClearData'>        /**
+</span>         * Clear data
+         */
+        confirmClearData: function confirmClearData() {
+
+            this.bugger.scope.view.modalDialog({
+                style: this.bugger.constructor.name.toLowerCase() + &#39;-modal&#39;,
+                $container: this.bugger.page.scope.view.elements.$page.$,
+                type: &#39;warning&#39;,
+                title: &#39;Clear localStorage&#39;,
+                text: &#39;Are you sure want to clear localStorage?&#39;,
+                cover: true,
+                autoclose: true,
+                buttons: {
+                    approve: {
+                        text: &#39;OK&#39;,
+                        events: {
+                            click: &#39;approveClearData&#39;
+                        }
+                    },
+                    reject: {
+                        text: &#39;Cancel&#39;,
+                        events: {
+                            click: &#39;rejectModalEvent&#39;
+                        }
+                    }
+                }
+            });
+        },
+
+<span id='DebuggerComponent-method-bindDebugClose'>        /**
+</span>         * Hide/Show info window
+         */
+        bindDebugClose: function bindDebugClose() {
+
+            var scope = this,
+                $close = $(&#39;.debug-close&#39;, scope.bugger.info);
+
+<span id='DebuggerComponent-method-_hideDebug'>            /**
+</span>             * Toggle hide/show
+             * @private
+             */
+            function _hideDebug() {
+
+                var visible = $(&#39;fieldset:visible:first&#39;, scope.bugger.info);
+
+                if (visible.length &gt; 0) {
+
+                    visible.slideUp();
+                    $close.text($close.text().replace(/Hide/, &#39;Show&#39;));
+
+                    scope.visible = visible;
+
+                } else {
+
+                    scope.visible.slideDown();
+                    $close.text($close.text().replace(/Show/, &#39;Hide&#39;));
+                }
+            }
+
+            $close.on(&#39;click.hideDebug&#39;, _hideDebug);
+        }
+
+    }, AntHill.prototype);
+
+});
+</pre>
+</body>
+</html>

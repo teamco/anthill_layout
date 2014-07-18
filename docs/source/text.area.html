@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 7/10/14.
+ */
+
+define([], function defineTextAreaRenderer(){
+
+<span id='TextAreaRenderer-method-constructor'><span id='TextAreaRenderer'>    /**
+</span></span>     * Define TextAreaRenderer
+     * @class TextAreaRenderer
+     * @extends LabelRenderer
+     * @constructor
+     */
+    var TextAreaRenderer = function TextAreaRenderer() {
+
+    };
+
+    return TextAreaRenderer.extend(&#39;TextAreaRenderer&#39;, {
+
+<span id='TextAreaRenderer-method-renderTextArea'>        /**
+</span>         * Render text area
+         * @member TextAreaRenderer
+         * @param {{text: string, name: string, [placeholder]: string, value, [disabled]: boolean}} opts
+         * @returns {*[]}
+         */
+        renderTextArea: function renderTextArea(opts) {
+
+<span id='TextAreaRenderer-property-uuid'>            /**
+</span>             * Create UUID
+             * @type {String}
+             */
+            var uuid = this.base.lib.generator.UUID() + &#39;-textarea&#39;,
+                $input;
+
+            if (this.base.defineBoolean(opts.disabled, false, true)) {
+
+<span id='TextAreaRenderer-property-S-input'>                /**
+</span>                 * Define $input
+                 * @type {*|jQuery}
+                 */
+                $input = $(&#39;&lt;p /&gt;&#39;).attr({
+                    name: opts.name,
+                    id: uuid,
+                    title: opts.value
+                }).addClass(&#39;textarea&#39;).text(opts.value);
+
+            } else {
+
+<span id='TextAreaRenderer-property-S-input'>                /**
+</span>                 * Define $input
+                 * @type {*|jQuery}
+                 */
+                $input = $(&#39;&lt;textarea /&gt;&#39;).attr({
+                    name: opts.name,
+                    id: uuid,
+                    placeholder: opts.placeholder,
+                    title: opts.value
+                }).val(opts.value);
+            }
+
+            if (!opts.visible) {
+                $input.hide();
+            }
+
+            return [
+                this.renderLabel(uuid, opts.text, &#39;textarea&#39;, opts.visible),
+                $input
+            ];
+        }
+    });
+});</pre>
+</body>
+</html>

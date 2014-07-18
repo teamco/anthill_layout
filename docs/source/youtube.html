@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:02 AM
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/MVC&#39;,
+    &#39;plugins/widgets/youtube/mvc/youtube.controller&#39;,
+    &#39;plugins/widgets/youtube/mvc/youtube.model&#39;,
+    &#39;plugins/widgets/youtube/mvc/youtube.view&#39;,
+    &#39;plugins/widgets/youtube/mvc/youtube.event.manager&#39;,
+    &#39;plugins/widgets/youtube/mvc/youtube.permission&#39;
+], function defineYoutube(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+
+<span id='Youtube-method-Youtube'><span id='Youtube'>    /**
+</span></span>     * Define Youtube
+     * @param containment
+     * @param [opts]
+     * @constructor
+     * @class Youtube
+     * @extends AntHill
+     */
+    var Youtube = function Youtube(containment, opts) {
+
+<span id='Youtube-property-containment'>        /**
+</span>         * Define containment
+         * @member Youtube
+         */
+        this.containment = containment;
+
+<span id='Youtube-property-referrer'>        /**
+</span>         * Define referrer
+         * @member Youtube
+         * @type {*}
+         */
+        this.referrer = undefined;
+
+<span id='Youtube-property-DEFAULTS'>        /**
+</span>         * Define defaults
+         * @type {{
+         *      plugin: boolean,
+         *      html: {
+         *          style: string,
+         *          header: boolean,
+         *          footer: boolean,
+         *          padding: {
+         *              top: number,
+         *              right: number,
+         *              bottom: number,
+         *              left: number
+         *          }
+         *      },
+         *      regex: RegExp,
+         *      mask: string
+         * }}
+         */
+        var DEFAULTS = {
+            plugin: true,
+            html: {
+                style: &#39;default&#39;,
+                header: false,
+                footer: false,
+                padding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                }
+            },
+            regex: /^.*(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&amp;]v=)|youtu\.be\/)([^&quot;&amp;?\/ ]{11})/i,
+            mask: &#39;&lt;iframe id=&quot;ytplayer&quot; type=&quot;text/html&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;no&quot; allowtransparency=&quot;true&quot; src=&quot;https://www.youtube.com/embed/{{videoId}}&quot; frameborder=&quot;0&quot; webkitAllowFullScreen mozallowfullscreen allowfullscreen&gt;&#39;
+        };
+
+<span id='Youtube-property-mvc'>        /**
+</span>         * Define MVC
+         * @member Youtube
+         * @type {MVC}
+         */
+        this.mvc = new MVC({
+            scope: this,
+            config: [
+                {uuid: this.containment.model.getContentUUID()},
+                DEFAULTS
+            ],
+            components: [
+                Controller,
+                Model,
+                View,
+                EventManager,
+                Permission
+            ],
+            render: true
+        });
+
+        this.observer.publish(
+            this.eventmanager.eventList.initWidget,
+            opts
+        );
+    };
+
+    return Youtube.extend(&#39;Youtube&#39;, {
+
+    }, AntHill.prototype);
+});</pre>
+</body>
+</html>

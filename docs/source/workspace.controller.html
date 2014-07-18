@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 11:06 PM
+ * To change this template use File | Settings | File Templates.
+ */
+define(
+    [
+        &#39;modules/Controller&#39;,
+        &#39;modules/Router&#39;
+    ],
+
+<span id='global-method-defineWorkspaceController'>    /**
+</span>     * Define WorkspaceController
+     * @param BaseController
+     * @returns {*}
+     */
+        function defineWorkspaceController(BaseController, Router) {
+
+<span id='WorkspaceController-method-constructor'><span id='WorkspaceController'>        /**
+</span></span>         * Define workspace controller
+         * @class WorkspaceController
+         * @extends BaseController
+         * @extends Router
+         * @constructor
+         */
+        var WorkspaceController = function WorkspaceController() {
+
+        };
+
+        return WorkspaceController.extend(&#39;WorkspaceController&#39;, {
+
+<span id='WorkspaceController-method-bindHashChange'>            /**
+</span>             * Set page height
+             * @member WorkspaceController
+             */
+            bindHashChange: function bindHashChange() {
+
+                $(window).on(
+                    &#39;hashchange&#39;,
+                    this.controller.switchPageOnHashChange.bind(this)
+                );
+            },
+
+<span id='WorkspaceController-method-switchPageOnHashChange'>            /**
+</span>             * Switch page on hash change
+             * @member WorkspaceController
+             */
+            switchPageOnHashChange: function switchPageOnHashChange() {
+
+                this.observer.publish(
+                    this.eventmanager.eventList.switchToPage, [
+                        this.controller.getPageByHashLocation(),
+                        false
+                    ]
+                );
+            },
+
+<span id='WorkspaceController-method-setPageContainerDimensions'>            /**
+</span>             * Set page height
+             * @member WorkspaceController
+             */
+            setPageContainerDimensions: function setPageContainerDimensions() {
+
+<span id='WorkspaceController-property-S-pages'>                /**
+</span>                 * Get $pages
+                 * @type {WorkspaceContentElement}
+                 */
+                var $pages = this.view.elements.$pages,
+                    counter = this.model.getConfig(&#39;page/counter&#39;);
+
+                $pages.defineHeight();
+                $pages.defineWidth(counter);
+            },
+
+<span id='WorkspaceController-method-adoptContentWidth'>            /**
+</span>             * Adopt content width after adding new page
+             * @member WorkspaceController
+             */
+            adoptContentWidth: function adoptContentWidth() {
+
+                this.view.elements.$pages.adoptPagesWidth(
+                    this.model.getItems(),
+                    this.model.getConfig(&#39;page/counter&#39;)
+                );
+            },
+
+<span id='WorkspaceController-method-beforeSwitchToPage'>            /**
+</span>             * Before Switch to page
+             * @member WorkspaceController
+             * @param {Page} page
+             */
+            beforeSwitchToPage: function beforeSwitchToPage(page) {
+
+                this.logger.debug(&#39;Before switch to page&#39;, page);
+
+                this.switchPage = true;
+
+<span id='WorkspaceController-property-widget'>                /**
+</span>                 * Get widget
+                 * @type {Widget|*}
+                 */
+                var widget = this.controller.getWidgetByHashLocation(page);
+
+                var purl = page ?
+                        this.controller.getItemIdentity(page) : &#39;&#39;,
+
+                    wurl = widget ?
+                        &#39;/&#39; + page.controller.getItemIdentity(widget) : &#39;&#39;;
+
+                this.controller.setHashLocation(
+                    &#39;&#39;.concat(purl, wurl)
+                );
+            },
+
+<span id='WorkspaceController-method-switchToPage'>            /**
+</span>             * Switch to page
+             * @member WorkspaceController
+             * @param {Page} page
+             * @param {boolean} animate
+             * @returns {boolean|*}
+             */
+            switchToPage: function switchToPage(page, animate) {
+
+                if (!page.model) {
+                    window.location.hash = &#39;&#39;;
+                    return false;
+                }
+
+                if (this.switchPage) {
+                    return false;
+                }
+
+                this.observer.publish(
+                    this.eventmanager.eventList.beforeSwitchToPage,
+                    page
+                );
+
+                if (page === this.controller.getCurrentItem()) {
+                    this.logger.debug(&#39;Page already current&#39;, page);
+                    this.controller.swipeToCurrentPage(animate);
+                    return false;
+                }
+
+                if (page &amp;&amp; this.items.hasOwnProperty(page.model.getUUID())) {
+
+<span id='WorkspaceController-property-items'>                    /**
+</span>                     * Get all items
+                     * @type {*}
+                     */
+                    var items = this.model.getItems(),
+                        index;
+
+                    for (index in items) {
+
+                        if (items.hasOwnProperty(index)) {
+
+<span id='WorkspaceController-property-item'>                            /**
+</span>                             * Define item
+                             * @type {Page}
+                             */
+                            var item = items[index];
+
+                            if (item.model.getUUID() === page.model.getUUID()) {
+
+                                this.controller.setCurrentItem(page);
+                            }
+                        }
+                    }
+
+                    this.controller.swipeToCurrentPage(animate);
+
+                } else {
+
+                    this.logger.warn(&#39;Undefined page&#39;, page);
+                    return false;
+                }
+            },
+
+<span id='WorkspaceController-method-afterSwitchToPage'>            /**
+</span>             * After Switch to page
+             * @member WorkspaceController
+             * @param {Page} page
+             */
+            afterSwitchToPage: function afterSwitchToPage(page) {
+
+                this.logger.debug(&#39;After switch to page&#39;, page);
+
+                this.switchPage = false;
+
+                //this.getWidgetByHashLocation()
+                console.log(&#39;TODO add widget implementation&#39;);
+            },
+
+<span id='WorkspaceController-method-swipeToCurrentPage'>            /**
+</span>             * Swipe to current page
+             * @member WorkspaceController
+             * @param {boolean} animate
+             */
+            swipeToCurrentPage: function swipeToCurrentPage(animate) {
+
+<span id='WorkspaceController-property-page'>                /**
+</span>                 * Get current page
+                 * @type {Page}
+                 */
+                var page = this.getCurrentItem();
+
+                this.scope.view.elements.$pages.swipeTo(page, animate);
+            }
+
+
+        }, BaseController.prototype, Router.prototype);
+    }
+);</pre>
+</body>
+</html>

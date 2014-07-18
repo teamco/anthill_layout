@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineSitePreferencesElement(BaseElement) {
+
+<span id='SitePreferencesElement-method-SitePreferencesElement'><span id='SitePreferencesElement'>    /**
+</span></span>     * Define SitePreferences Element
+     * @param view
+     * @param opts
+     * @returns {SitePreferencesElement}
+     * @constructor
+     * @class SitePreferencesElement
+     * @extends BaseElement
+     */
+    var SitePreferencesElement = function SitePreferencesElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;ul /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: false
+        });
+
+        this.addCSS(&#39;site.preferences&#39;);
+        this.addCSS(&#39;preferences&#39;);
+
+        return this;
+    };
+
+    return SitePreferencesElement.extend(&#39;SitePreferencesElement&#39;, {
+
+<span id='SitePreferencesElement-method-toggleFieldset'>        /**
+</span>         * Toggle fieldset
+         * @member SitePreferencesElement
+         * @param e
+         */
+        toggleFieldset: function toggleFieldset(e) {
+
+<span id='SitePreferencesElement-property-S-el'>            /**
+</span>             * Define $el
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $el = $(e.target);
+
+            $el.parents(&#39;div.html&#39;).
+                find(&#39;.open&#39;).
+                removeClass(&#39;open&#39;);
+
+            $el.addClass(&#39;open&#39;);
+
+            this.adoptModalDialogPosition();
+        },
+
+<span id='SitePreferencesElement-method-getFooter'>        /**
+</span>         * Get footer html
+         * @member SitePreferencesElement
+         * @returns {*|jQuery}
+         */
+        getFooter: function getFooter() {
+            return $(&#39;&lt;div /&gt;&#39;).text([
+                this.base.lib.hash.hashLength({}),
+                &#39;items&#39;
+            ].join(&#39; &#39;));
+        },
+
+<span id='SitePreferencesElement-method-getPreferencesHtml'>        /**
+</span>         * Get preferences HTML
+         * @member SitePreferencesElement
+         * @param opts
+         * @return string
+         */
+        getPreferencesHtml: function getPreferencesHtml(opts) {
+
+            var nodes = [];
+
+            nodes.push(this.siteWidthSlider());
+
+            return $(&#39;&lt;ul /&gt;&#39;).append(nodes);
+        },
+
+<span id='SitePreferencesElement-method-siteStaticWidth'>        /**
+</span>         * Render static width
+         * @member SitePreferencesElement
+         * @returns {*|jQuery}
+         */
+        siteStaticWidth: function siteStaticWidth() {
+
+<span id='SitePreferencesElement-property-text'>            /**
+</span>             * Define index
+             * @type {string}
+             */
+            var text = &#39;staticWidth&#39;;
+
+<span id='SitePreferencesElement-property-S-element'>            /**
+</span>             * Define checkbox
+             * @type {*[]}
+             */
+            var $element = this.renderCheckbox({
+                name: text,
+                text: text.humanize(),
+                checked: false,
+                value: false,
+                disabled: false,
+                visible: true
+            });
+
+            return $(&#39;&lt;li /&gt;&#39;).
+                addClass([
+                        text.humanize().toClassName() + &#39;-prefs&#39;,
+                    &#39;checkbox&#39;
+                ].join(&#39; &#39;)).
+                append($element);
+        },
+
+<span id='SitePreferencesElement-method-siteWidthSlider'>        /**
+</span>         * Render width slider
+         * @member SitePreferencesElement
+         * @returns {*|jQuery}
+         */
+        siteWidthSlider: function siteWidthSlider() {
+
+<span id='SitePreferencesElement-property-cname'>            /**
+</span>             * Define title
+             * @type {string}
+             */
+            var cname = &#39;Global Preferences&#39;,
+                uuid = this.base.lib.generator.UUID() + &#39;-slider&#39;,
+                $ul = $(&#39;&lt;ul /&gt;&#39;).addClass(&#39;site-width-slider&#39;),
+                $slider = $(&#39;&lt;div /&gt;&#39;);
+
+<span id='SitePreferencesElement-property-S-textfield'>            /**
+</span>             * Render slider input
+             * @type {*[]}
+             */
+            var $textfield = this.renderTextField({
+                name: &#39;siteWithSlider&#39;,
+                disabled: true,
+                visible: false
+            });
+
+            var $node = $(&#39;&lt;li /&gt;&#39;).append(
+                $(&#39;&lt;fieldset /&gt;&#39;).append(
+                    $(&#39;&lt;legend /&gt;&#39;).text(cname).
+                        on(&#39;click.toggle&#39;, this.toggleFieldset.bind(this)).attr({
+                            title: cname
+                        }),
+
+                    $ul.append(
+                        this.siteStaticWidth()
+                    ),
+
+                    $ul.append(
+                        $(&#39;&lt;li class=&quot;site-width-prefs slider&quot; /&gt;&#39;).append(
+                            this.renderLabel(uuid, &#39;Site Width&#39;, &#39;slider&#39;, true),
+                            $slider,
+                            $textfield
+                        )
+                    )
+                )
+            );
+
+<span id='SitePreferencesElement-property-map'>            /**
+</span>             * Define site width values
+             * @type {number[]}
+             */
+            var map = [960, 1024, 1040, 1140, 1280, 1920];
+
+<span id='SitePreferencesElement-property-workspace'>            /**
+</span>             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                $workspace = workspace.view.elements.$workspace;
+
+            this.renderSlider($slider, {
+                value: 1,
+                min: 0,
+                max: map.length - 1,
+                slide: function (event, ui) {
+                    $($textfield, &#39;input&#39;).val(ui.value);
+                    $workspace.$.attr(&#39;class&#39;, &#39;&#39;).addClass(
+                        [&#39;workspace&#39;, &#39;default&#39;, &#39;sw-&#39; + map[ui.value]].join(&#39; &#39;)
+                    );
+                }
+            });
+
+            return $node;
+        }
+
+
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

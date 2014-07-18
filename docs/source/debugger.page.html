@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/6/13
+ * Time: 9:03 PM
+ */
+
+define([
+    &#39;modules/debugger/debugger.actions&#39;
+], function defineDebuggerPage(Actions) {
+
+<span id='DebuggerPage-method-constructor'><span id='DebuggerPage'>    /**
+</span></span>     * Define Debugger Page
+     * @param {*} debug
+     * @param {Page} scope
+     * @class DebuggerPage
+     * @constructor
+     */
+    var DebuggerPage = function DebuggerPage(debug, scope) {
+
+<span id='DebuggerPage-property-bugger'>        /**
+</span>         * Define debugger
+         * @type {Debugger}
+         */
+        this.bugger = debug;
+
+<span id='DebuggerPage-property-scope'>        /**
+</span>         * Define scope
+         * @type {Page}
+         */
+        this.scope = scope;
+
+        this.init();
+
+    };
+
+    return DebuggerPage.extend({
+
+    }, Actions.prototype);
+});
+</pre>
+</body>
+</html>

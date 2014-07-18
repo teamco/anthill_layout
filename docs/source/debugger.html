@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: i061485
+ * Date: 2/13/13
+ * Time: 4:50 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/Debugger&#39;,
+    &#39;config/application&#39;,
+    &#39;config/workspace&#39;,
+    &#39;config/page&#39;,
+    &#39;config/widget&#39;,
+    &#39;controller/application.controller&#39;,
+    &#39;controller/behavior/behavior.debugger&#39;,
+    &#39;event/application.event.manager&#39;,
+    &#39;event/widget.event.manager&#39;
+], function defineDebuggerBehaviors(Debugger, Application, Workspace, Page, Widget, ApplicationController, BehaviorDebugger, ApplicationEventMgr, WidgetEventMgr) {
+
+    ApplicationEventMgr.prototype.eventList.debugStart = &#39;debug.start&#39;;
+    ApplicationEventMgr.prototype.eventList.debugEnd = &#39;debug.end&#39;;
+
+    WidgetEventMgr.prototype.eventList.debugInteractions = {
+        eventName: &#39;debug.interactions&#39;,
+        params: { buffer: 1000 }
+    };
+
+<span id='global-property-'>    /**
+</span>     * Inject debugger functionality to application controller
+     */
+    for (var index in BehaviorDebugger.prototype) {
+
+        if (BehaviorDebugger.prototype.hasOwnProperty(index)) {
+            ApplicationController.prototype[index] = BehaviorDebugger.prototype[index];
+        }
+    }
+
+<span id='global-property-localListeners'>    /**
+</span>     * Load listeners
+     */
+    Application.prototype.localListeners = Application.prototype.localListeners || {};
+    Widget.prototype.localListeners = Widget.prototype.localListeners || {};
+
+    var appListeners = Application.prototype.localListeners,
+        widgetListeners = Widget.prototype.localListeners;
+<span id='global-property-debugStart'>    /**
+</span>     * Define debugStart
+     * @type {{name: string, callback: Function}}
+     */
+    appListeners.debugStart = {
+        name: &#39;debug.start&#39;,
+        callback: function debugStartCallback() {
+
+<span id='global-property-bugger'>            /**
+</span>             * Define Debugger
+             * @type {modules.bugger}
+             */
+            this.bugger = new Debugger(this);
+        }
+    };
+
+<span id='global-property-debugEnd'>    /**
+</span>     * Define debugEnd
+     * @type {{name: string, callback: Function}}
+     */
+    appListeners.debugEnd = {
+        name: &#39;debug.end&#39;,
+        callback: function debugEndCallback() {
+            this.bugger.destroy();
+        }
+    };
+
+<span id='global-property-resizeWindowHooks'>    /**
+</span>     * Define resizeWindowHooks
+     * @type {{name: string, callback: Function}}
+     */
+    appListeners.resizeWindowHooks =
+        appListeners.resizeWindowHooks || [];
+
+    appListeners.resizeWindowHooks.push({
+        name: &#39;resize.window.hooks&#39;,
+        callback: function resizeWindowHooksCallback() {
+
+<span id='global-property-debug'>            /**
+</span>             * Define local instance of a debugger
+             * @type {Debugger}
+             */
+            var debug = this.bugger;
+
+            if (debug &amp;&amp; debug.grid.visible) {
+                debug.grid.showGrid();
+            }
+        }
+    });
+
+
+<span id='global-property-debugInteractions'>    /**
+</span>     * Define Widget debugInteractions
+     * @type {{name: string, params: {buffer: number}, callback: Function}}
+     */
+    widgetListeners.debugInteractions = {
+        name: &quot;debug.interactions&quot;,
+        params: {
+            buffer: 50
+        },
+        callback: function debugInteractionsCallback() {
+
+<span id='global-property-debug'>            /**
+</span>             * Define local instance of Debugger
+             * @type {Debugger}
+             */
+            var debug = this.controller.root().bugger;
+
+            if (typeof(debug) !== &#39;undefined&#39;) {
+
+<span id='global-property-widget'>                /**
+</span>                 * Define debugger widget
+                 * @type {*}
+                 */
+                var widget = debug.widget;
+
+                widget.updateWidgetInfo.apply(widget, arguments);
+            }
+        }
+    };
+
+});</pre>
+</body>
+</html>

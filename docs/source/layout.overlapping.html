@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 3/1/13
+ * Time: 11:57 PM
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;controller/layout/layout.intersect&#39;
+], function defineLayoutOverlapping(AntHill, Intersect) {
+
+<span id='Overlapping-method-constructor'><span id='Overlapping'>    /**
+</span></span>     * Define Overlapping
+     * @class Overlapping
+     * @extends Intersect
+     * @extends AntHill
+     * @param {Layout} layout
+     * @constructor
+     */
+    var Overlapping = function Overlapping(layout) {
+
+<span id='Overlapping-property-layout'>        /**
+</span>         * Define layout
+         * @member Overlapping
+         * @type {Layout}
+         */
+        this.layout = layout;
+    };
+
+    return Overlapping.extend(&#39;Overlapping&#39;, {
+
+<span id='Overlapping-method-_exitPointOn'>        /**
+</span>         * Define exit point
+         * @member Overlapping
+         * @param opts
+         * @returns {*}
+         * @private
+         */
+        _exitPointOn: function _exitPointOn(opts) {
+
+            if (opts.condition) {
+                this.layout.logger.debug(opts.log);
+            }
+
+            return opts.condition;
+        },
+
+<span id='Overlapping-method-nestedOrganizer'>        /**
+</span>         * Nested organizer
+         * @member Overlapping
+         * @param {{targets: Object, callback: Function}} opts
+         * @returns {*}
+         */
+        nestedOrganizer: function nestedOrganizer(opts) {
+
+            if (this.layout.controller.isLoading()) {
+
+                this.layout.controller.readyToOrganize();
+                return false;
+            }
+
+<span id='Overlapping-property-layout'>            /**
+</span>             * Define layout
+             * @type {Layout}
+             */
+            var layout = this.layout;
+
+            opts = this.base.define(opts, {}, true);
+            opts.targets = this.base.define(opts.targets, {}, true);
+
+<span id='Overlapping-property-notOrganize'>            /**
+</span>             * Define not organize
+             */
+            var notOrganize = this._exitPointOn({
+                log: &#39;Do not organize&#39;,
+                condition: !opts.organize
+            });
+
+<span id='Overlapping-property-notOverlapping'>            /**
+</span>             * Define not overlapping
+             */
+            var notOverlapping = this._exitPointOn({
+                log: &#39;Overlapping is allowed&#39;,
+                condition: !layout.controller.isOverlappingAllowed()
+            });
+
+<span id='Overlapping-property-emptyTargets'>            /**
+</span>             * Define empty targets
+             */
+            var emptyTargets = this._exitPointOn({
+                log: &#39;Empty targets&#39;,
+                condition: this.base.lib.hash.isHashEmpty(opts.targets)
+            });
+
+            if (notOrganize || notOverlapping || emptyTargets) {
+                this._nestedOrganizerCallback(opts.callback);
+                return false;
+            }
+
+            layout.logger.debug(&#39;Starting nested organizer&#39;, opts);
+
+            this.nestedOrganizer({
+                targets: this._nestedOrganizerCore(opts.targets),
+                callback: opts.callback,
+                organize: opts.organize
+            });
+        },
+
+<span id='Overlapping-method-_nestedOrganizerCore'>        /**
+</span>         * Nested organizer core
+         * @member Overlapping
+         * @param {{}} widgets
+         * @private
+         * @returns {{}}
+         */
+        _nestedOrganizerCore: function _nestedOrganizerCore(widgets) {
+
+            var intersecting = {}, nestedMove = {},
+                index, moved, widget;
+
+            for (index in widgets) {
+
+                if (widgets.hasOwnProperty(index)) {
+
+<span id='Overlapping-property-src'>                    /**
+</span>                     * Define source widget
+                     * @type {Widget}
+                     */
+                    var src = widgets[index];
+
+<span id='Overlapping-property-intersecting'>                    /**
+</span>                     * Find intersections
+                     * @type {*}
+                     */
+                    intersecting = this._intersectWidgets(src, false);
+
+                    this._organizeCollector(
+                        src,
+                        intersecting
+                    );
+
+                    for (moved in intersecting) {
+
+                        if (intersecting.hasOwnProperty(moved)) {
+
+<span id='Overlapping-property-widget'>                            /**
+</span>                             * Define intersected widget
+                             * @type {Widget}
+                             */
+                            widget = intersecting[moved];
+
+<span id='Overlapping-property-getUUID()]'>                            /**
+</span>                             * Collect widgets are ready to change position
+                             */
+                            nestedMove[widget.model.getUUID()] = widget;
+                        }
+                    }
+                }
+            }
+
+            return nestedMove;
+        },
+
+<span id='Overlapping-method-_nestedOrganizerCallback'>        /**
+</span>         * Nested organizer callback
+         * @member Overlapping
+         * @param {Function} [callback]
+         * @private
+         */
+        _nestedOrganizerCallback: function _nestedOrganizerCallback(callback) {
+
+            var layout = this.layout,
+                emptySpaces = layout.controller.getBehavior().emptySpaces;
+
+            if (emptySpaces) {
+
+                layout.logger.debug(&#39;Remove empty spaces&#39;);
+
+                switch (emptySpaces) {
+                    case layout.containment.ORGANIZE_MODES.row:
+                        layout.logger.debug(&#39;Remove empty rows&#39;);
+                        layout.emptyRows.remove();
+                        break;
+                    case layout.containment.ORGANIZE_MODES.column:
+                        layout.logger.debug(&#39;Remove empty columns&#39;);
+                        layout.emptyColumns.remove();
+                        break;
+                    case layout.containment.ORGANIZE_MODES.none:
+                        break;
+                }
+            }
+
+            this._cssOrganizer(callback);
+
+            return true;
+        },
+
+<span id='Overlapping-method-_cssOrganizer'>        /**
+</span>         * Organize widget css
+         * @member Overlapping
+         * @private
+         */
+        _cssOrganizer: function _cssOrganizer(callback) {
+
+            var page = this.layout.controller.getContainment(),
+                widgets = page.model.getItems(),
+                index, widget, counter = 1,
+                length = this.base.lib.hash.hashLength(widgets);
+
+            for (index in widgets) {
+
+                if (widgets.hasOwnProperty(index)) {
+
+                    widget = page.model.getItemByUUID(
+                        widgets[index].model.getUUID()
+                    );
+
+                    widget.logger.debug(&#39;Start nested organizer animation&#39;);
+
+                    widget.view.get$item()._setPosition({
+                        animate: true,
+                        callback: this._cssOrganizeCallback.bind({
+                            scope: this,
+                            widget: widget,
+                            callback: callback,
+                            save: counter === length
+                        })
+                    });
+
+                    counter += 1;
+                }
+            }
+        },
+
+<span id='Overlapping-method-_cssOrganizeCallback'>        /**
+</span>         * Organize widget css callback
+         * @member Overlapping
+         * @private
+         */
+        _cssOrganizeCallback: function _cssOrganizeCallback() {
+
+            var layout = this.scope.layout,
+                callback = this.callback;
+
+            if (layout.base.isFunction(callback)) {
+                layout.logger.debug(&#39;Execute callback&#39;, callback);
+                callback();
+            }
+
+            this.widget.view.get$item().setOpacity(1.0);
+
+            if (this.save) {
+                layout.logger.debug(&#39;Finish nested organizer&#39;);
+                layout.observer.publish(
+                    layout.eventmanager.eventList.afterNestedOrganizer
+                );
+            }
+
+        },
+
+<span id='Overlapping-method-_organizeCollector'>        /**
+</span>         * Organize collector
+         * @member Overlapping
+         * @param {Widget} source
+         * @private
+         * @param {*} targets
+         */
+        _organizeCollector: function _organizeCollector(source, targets) {
+
+            var index,
+                layout = this.layout;
+
+            for (index in targets) {
+
+                if (targets.hasOwnProperty(index)) {
+
+                    if (layout.controller.isSnap2Grid() ||
+                        layout.controller.isUIGrid()) {
+
+                        this._snap2gridOrganizer(
+                            this.layout.controller.getBehavior(),
+                            source,
+                            targets[index],
+                            this.layout.controller.getGridWidth()
+                        );
+
+                    } else if (layout.controller.isFreeStyle()) {
+
+                        // TODO
+
+                    } else {
+
+                        this.layout.logger.warn(
+                            &#39;Undefined organize mode&#39;,
+                            layout.controller.getBehaviorMode()
+                        );
+
+<span id='Overlapping-property-targets'>                        /**
+</span>                         * Unset targets to prevent infinity loop
+                         * @type {{}}
+                         */
+                        targets = {};
+                    }
+                }
+            }
+        },
+
+<span id='Overlapping-method-_snap2gridOrganizer'>        /**
+</span>         * Snap to grid organizer
+         * @member Overlapping
+         * @param {{organize}} behavior
+         * @param {{dom}} source
+         * @param {{map, dom}} widget
+         * @param {Number} max
+         * @private
+         */
+        _snap2gridOrganizer: function _snap2gridOrganizer(behavior, source, widget, max) {
+
+<span id='Overlapping-property-cell'>            /**
+</span>             * Define local cell dims
+             * @type {Number}
+             */
+            var cell = this.layout.controller.minCellWidth() +
+                this.layout.config.grid.margin;
+
+<span id='Overlapping-method-_organizeByRow'>            /**
+</span>             * Organize by row
+             * @param {{top: Number, bottom: Number, height: Number, row: Number, relHeight: Number, relBottom: Number}} dom
+             * @param {{dom}} source
+             * @param {{map}} widget
+             * @private
+             */
+            function _organizeByRow(dom, source, widget) {
+                dom.row = this.bottom(source.dom) + 1;
+                dom.top = widget.map.widgetTop(dom.row);
+                dom.bottom = dom.top + dom.height;
+                dom.relHeight = widget.map.relHeight(dom.height, cell);
+                dom.relBottom = widget.map.relBottom(dom.row, dom.relHeight);
+            }
+
+            if (behavior.organize === &#39;column&#39;) {
+                var column = widget.dom.column,
+                    left = widget.dom.left,
+                    right = widget.dom.right;
+
+                widget.dom.column = this.right(source.dom) + 1;
+                widget.dom.left = widget.map.widgetLeft(widget.dom.column);
+
+                widget.dom.right = widget.map.widgetRight(
+                    widget.dom.left,
+                    widget.dom.width
+                );
+
+                widget.dom.relWidth = widget.map.relWidth(widget.dom.width, cell);
+                widget.dom.relRight = widget.map.relRight(widget.dom.column, widget.dom.relWidth);
+
+                if (widget.dom.right &gt;= max) {
+                    widget.dom.column = column;
+                    widget.dom.left = left;
+                    widget.dom.right = right;
+
+                    // Organize by row
+                    _organizeByRow.bind(this)(widget.dom, source, widget);
+
+                }
+            } else if (behavior.organize === &#39;row&#39;) {
+
+                // Organize by row
+                _organizeByRow.bind(this)(widget.dom, source, widget);
+
+            } else {
+
+                this.layout.logger.warn(&#39;Undefined behavior organize&#39;, behavior.organize);
+            }
+        },
+
+<span id='Overlapping-method-right'>        /**
+</span>         * Get right position
+         * @member Overlapping
+         * @param {{column: Number, relWidth: Number}} target
+         * @returns {number}
+         */
+        right: function right(target) {
+            return (target.column + target.relWidth - 1);
+        },
+
+<span id='Overlapping-method-bottom'>        /**
+</span>         * Get bottom position
+         * @member Overlapping
+         * @param {{row: Number, relHeight: Number}} target
+         * @returns {number}
+         */
+        bottom: function bottom(target) {
+            return (target.row + target.relHeight - 1);
+        }
+
+    }, AntHill.prototype, Intersect.prototype);
+});</pre>
+</body>
+</html>

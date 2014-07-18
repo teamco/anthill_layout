@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define(
+    [
+        &#39;plugins/plugin&#39;,
+        &#39;plugins/preferences/preferences.controller&#39;
+    ],
+
+<span id='global-method-defineWorkspaceDataController'>    /**
+</span>     * Define WorkspaceDataController
+     * @param {PluginController} PluginBase
+     * @returns {WorkspaceDataController}
+     */
+        function defineWorkspaceDataController(PluginBase, PreferencesController) {
+
+<span id='WorkspaceDataController-method-constructor'><span id='WorkspaceDataController'>        /**
+</span></span>         * Define pages controller
+         * @class WorkspaceDataController
+         * @extends PluginController
+         * @extends PreferencesController
+         * @constructor
+         */
+        var WorkspaceDataController = function WorkspaceDataController() {
+
+        };
+
+        return WorkspaceDataController.extend(&#39;WorkspaceDataController&#39;, {
+
+<span id='WorkspaceDataController-method-getData'>            /**
+</span>             * Get data
+             * @member WorkspaceDataController
+             * @returns {*}
+             */
+            getData: function getData() {
+                return this.model.getDataItems(
+                    this.getWorkspace()
+                );
+            },
+
+<span id='WorkspaceDataController-method-loadContent'>            /**
+</span>             * Load pages content
+             * @member WorkspaceDataController
+             * @param opened
+             */
+            loadContent: function loadContent(opened) {
+                if (opened) {
+                    this.getView().renderContent(
+                        this.getData()
+                    );
+                }
+            },
+
+<span id='WorkspaceDataController-method-getPreferences'>            /**
+</span>             * Get Prefs
+             * @member WorkspaceDataController
+             * @returns {WorkspaceDataModel.preferences}
+             */
+            getPreferences: function getPreferences() {
+                return this.model.preferences;
+            },
+
+<span id='WorkspaceDataController-method-definePreferences'>            /**
+</span>             * Define preferences
+             * @member WorkspaceDataController
+             * @param {string} uuid
+             * @returns {*}
+             */
+            definePreferences: function definePreferences(uuid) {
+
+                return this.scope.view.renderPreferences(
+                    this.getWorkspace().model.getItemByUUID(uuid)
+                );
+            },
+
+<span id='WorkspaceDataController-method-setActiveContent'>            /**
+</span>             * Set active content
+             * @member WorkspaceDataController
+             * @param uuid
+             */
+            setActiveContent: function setActiveContent(uuid) {
+
+<span id='WorkspaceDataController-property-workspace'>                /**
+</span>                 * Define workspace
+                 * @type {Workspace}
+                 */
+                var workspace = this.controller.getWorkspace();
+
+<span id='WorkspaceDataController-property-activeContent'>                /**
+</span>                 * Set active content
+                 * @type {Page}
+                 */
+                this.activeContent = workspace.model.getItemByUUID(uuid);
+            },
+
+<span id='WorkspaceDataController-method-approveUpdatePreferences'>            /**
+</span>             * Update prefs
+             * @member WorkspaceDataController
+             */
+            approveUpdatePreferences: function approveUpdatePreferences() {
+
+<span id='WorkspaceDataController-property-scope'>                /**
+</span>                 * Define scope
+                 * @type {WorkspaceData}
+                 */
+                var scope = this.scope;
+
+<span id='WorkspaceDataController-property-page'>                /**
+</span>                 * Get page
+                 * @type {Page}
+                 */
+                var page = scope.activeContent;
+
+                page.controller.updatePreferences(
+                    scope.view.elements.$modal,
+                    false
+                );
+
+<span id='WorkspaceDataController-property-uuid'>                /**
+</span>                 * Get element uuid
+                 * @type {string}
+                 */
+                var uuid = page.model.getUUID() + &#39;-workspace-data-view&#39;;
+
+                this.getView().elements.items[uuid].updateCounter(
+                    page
+                );
+
+<span id='WorkspaceDataController-property-workspace'>                /**
+</span>                 * Get workspace
+                 * @type {Workspace}
+                 */
+                var workspace = this.getWorkspace();
+
+                workspace.controller.setPageByHashLocation(page);
+            },
+
+<span id='WorkspaceDataController-method-definePublisher'>            /**
+</span>             * Define publisher
+             * @member WorkspaceDataController
+             * @param page
+             */
+            definePublisher: function definePublisher(page) {
+                this.scope.eventmanager.subscribePublishOn(
+                    page,
+                    this.updateCounter.bind(this.scope)
+                );
+            },
+
+<span id='WorkspaceDataController-method-locateWorkspaceData'>            /**
+</span>             * Locate page data element
+             * @member WorkspaceDataController
+             * @param e
+             */
+            locateWorkspaceData: function locateWorkspaceData(e) {
+
+<span id='WorkspaceDataController-property-S-item'>                /**
+</span>                 * Define $item
+                 * @type {PageElement}
+                 */
+                var $item = this.scope.activeContent.view.get$item();
+
+                this.locateElement($item, e);
+            },
+
+<span id='WorkspaceDataController-method-destroyPageWidgets'>            /**
+</span>             * Destroy page widgets
+             * @member WorkspaceDataController
+             */
+            destroyPageWidgets: function destroyPageWidgets() {
+
+<span id='WorkspaceDataController-property-page'>                /**
+</span>                 * Define page
+                 * @type {Page}
+                 */
+                var page = this.scope.activeContent;
+
+                page.api.destroyItems(
+                    page.model.getItems()
+                );
+
+                this.scope.view.elements.$modal.selfDestroy();
+            },
+
+<span id='WorkspaceDataController-method-updateCounter'>            /**
+</span>             * Update widgets counter
+             * @member WorkspaceDataController
+             */
+            updateCounter: function updateCounter() {
+
+<span id='WorkspaceDataController-property-workspace'>                /**
+</span>                 * Get workspace
+                 * @type {Workspace}
+                 */
+                var workspace = this.controller.getWorkspace(),
+                    pages = workspace.model.getItems(),
+                    index, page, $item, uuid,
+                    cname = &#39;-workspace-data-view&#39;;
+
+                for (index in pages) {
+
+                    if (pages.hasOwnProperty(index)) {
+
+<span id='WorkspaceDataController-property-page'>                        /**
+</span>                         * Define page
+                         * @type {Page}
+                         */
+                        page = pages[index];
+
+<span id='WorkspaceDataController-property-uuid'>                        /**
+</span>                         * Define uuid
+                         * @type {string}
+                         */
+                        uuid = page.model.getConfig(&#39;uuid&#39;);
+
+<span id='WorkspaceDataController-property-S-item'>                        /**
+</span>                         * Define pages content element
+                         * @type {WorkspaceDataContentElement}
+                         */
+                        $item = this.view.elements.items[uuid + cname];
+
+                        $item.updateCounter(page);
+                    }
+                }
+            },
+
+<span id='WorkspaceDataController-method-createPage'>            /**
+</span>             * Create new page
+             * @member WorkspaceDataController
+             */
+            createPage: function createPage() {
+
+<span id='WorkspaceDataController-property-workspace'>                /**
+</span>                 * Get workspace
+                 * @type {Workspace}
+                 */
+                var workspace = this.getWorkspace();
+
+<span id='WorkspaceDataController-property-page'>                /**
+</span>                 * Define page
+                 * @type {Page}
+                 */
+                var page = workspace.api.createPage([], true);
+
+                this.store(
+                    this.root()
+                );
+
+                workspace.observer.publish(
+                    workspace.eventmanager.eventList.switchToPage,
+                    [page, true]
+                );
+
+<span id='WorkspaceDataController-property-panel'>                /**
+</span>                 * Get panel
+                 * @type {Panel}
+                 */
+                var panel = this.getAuthorPanel();
+
+                panel.observer.publish(
+                    panel.eventmanager.eventList.showContent,
+                    [true, panel.active]
+                );
+
+            }
+
+        }, PluginBase.prototype, PreferencesController.prototype);
+    }
+);</pre>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 9:24 PM
+ * To change this template use File | Settings | File Templates.
+ */
+define([], function defineBaseHash() {
+
+<span id='BaseHash-method-constructor'><span id='BaseHash'>    /**
+</span></span>     * Define Hash lib
+     * @class BaseHash
+     * @constructor
+     */
+    var BaseHash = function BaseHash() {
+    };
+
+    BaseHash.extend(&#39;BaseHash&#39;, {
+
+<span id='BaseHash-method-extendHash'>        /**
+</span>         * Extend hash
+         * @member BaseHash
+         * @param {*} hash
+         * @param {*} defaults
+         * @returns {*}
+         */
+        extendHash: function extendHash(hash, defaults) {
+            defaults = defaults || {};
+            hash = hash || {};
+            $.extend(true, defaults, hash);
+            return defaults;
+        },
+
+<span id='BaseHash-method-isHashEmpty'>        /**
+</span>         * Check if hash empty
+         * @member BaseHash
+         * @param {*} o
+         * @returns {boolean}
+         */
+        isHashEmpty: function isHashEmpty(o) {
+            return this.hashLength(o) === 0;
+        },
+
+<span id='BaseHash-method-isHashKey'>        /**
+</span>         * Check if Hash(h) has Key(k)
+         * @member BaseHash
+         * @param {*} h
+         * @param {String} k
+         * @returns {boolean}
+         */
+        isHashKey: function isHashKey(h, k) {
+            if (typeof(h) === &#39;object&#39;) {
+                return h.hasOwnProperty(k);
+            }
+        },
+
+<span id='BaseHash-method-firstHashElement'>        /**
+</span>         * First hash element value
+         * @member BaseHash
+         * @param {*} h
+         * @returns {*}
+         */
+        firstHashElement: function firstHashElement(h) {
+            var k;
+            if (this.isHashEmpty(h)) {
+                return false;
+            }
+            for (k in h) {
+                if (h.hasOwnProperty(k)) {
+                    break;
+                }
+            }
+            return h[k];
+        },
+
+<span id='BaseHash-method-firstHashKey'>        /**
+</span>         * First hash element&#39;s key
+         * @member BaseHash
+         * @param {*} h
+         * @returns {Boolean|String}
+         */
+        firstHashKey: function firstHashKey(h) {
+            var k;
+            if (this.isHashEmpty(h)) {
+                return false;
+            }
+            for (k in h) {
+                if (h.hasOwnProperty(k)) {
+                    break;
+                }
+            }
+            return k;
+        },
+
+<span id='BaseHash-method-hashKeys'>        /**
+</span>         * Find all Hash keys
+         * @member BaseHash
+         * @param {*} h
+         * @returns {Array}
+         */
+        hashKeys: function hashKeys(h) {
+            var keys = [], k;
+            for (k in h) {
+                if (this.isHashKey(h, k)) {
+                    keys.push(k);
+                }
+            }
+            return keys;
+        },
+
+<span id='BaseHash-method-hashLength'>        /**
+</span>         * Get Hash length
+         * @member BaseHash
+         * @param {*} o
+         * @returns {Number}
+         */
+        hashLength: function hashLength(o) {
+            return this.hashKeys(o || {}).length;
+        },
+
+<span id='BaseHash-method-getKeyByValue'>        /**
+</span>         * Get hash key by value
+         * @member BaseHash
+         * @param {*} h
+         * @param {*} v
+         * @returns {string}
+         */
+        getKeyByValue: function getKeyByValue(h, v) {
+            for (var prop in v) {
+                if (this.hasOwnProperty(prop)) {
+                    if (this[prop] === v)
+                        return prop;
+                }
+            }
+        }
+
+    });
+
+    return new BaseHash();
+
+});</pre>
+</body>
+</html>

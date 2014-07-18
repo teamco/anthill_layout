@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">requirejs.config({
+
+    baseUrl: &#39;../../assets/scripts/core&#39;,
+
+    paths: {
+        // Define public application path
+        &#39;public&#39;: &#39;../../public&#39;,
+
+        config: &#39;config&#39;,
+
+        api: &#39;api&#39;,
+
+        controller: &#39;controller&#39;,
+        model: &#39;model&#39;,
+        view: &#39;view&#39;,
+
+        event: &#39;event&#39;,
+        permission: &#39;permission&#39;,
+
+        &#39;extends&#39;: &#39;lib/extends&#39;,
+
+        modules: &#39;lib/modules&#39;,
+        plugins: &#39;../plugins&#39;,
+
+        test: &#39;test&#39;,
+
+        modernizr: &#39;lib/modernizr&#39;,
+        &#39;lz-string&#39;: &#39;lib/lz-string&#39;,
+
+        jquery: &#39;lib/jquery/jquery-2.1.1&#39;,
+        &#39;jquery.ui&#39;: &#39;lib/jquery/jquery-ui.min&#39;,
+        &#39;jquery.resizestop&#39;: &#39;lib/jquery/jquery.resizestop&#39;,
+        &#39;jquery.pseudo&#39;: &#39;lib/jquery/jquery.pseudo&#39;,
+
+        // create alias to plugins (not needed if plugins are on the baseUrl)
+        // https://github.com/millermedeiros/requirejs-plugins
+        async: &#39;lib/require/async&#39;,
+        font: &#39;lib/require/font&#39;,
+        goog: &#39;lib/require/goog&#39;,
+        image: &#39;lib/require/image&#39;,
+        json: &#39;lib/require/json&#39;,
+        noext: &#39;lib/require/noext&#39;,
+        mdown: &#39;lib/require/mdown&#39;,
+        text: &#39;lib/require/text&#39;,
+        propertyParser: &#39;lib/require/propertyParser&#39;,
+        markdownConverter: &#39;lib/require/Markdown.Converter&#39;
+    },
+
+    shim: {
+        jquery: {
+            exports: &#39;$&#39;
+        },
+        &#39;jquery.ui&#39;: {deps: [&#39;jquery&#39;]},
+        &#39;jquery.resizestop&#39;: {deps: [&#39;jquery&#39;]},
+        &#39;jquery.pseudo&#39;: {deps: [&#39;jquery&#39;]},
+        &#39;extends/function&#39;: {deps: [&#39;jquery&#39;]},
+        &#39;extends/string&#39;: {deps: [&#39;jquery&#39;]},
+        &#39;extends/array&#39;: {deps: [&#39;jquery&#39;]},
+        &#39;lib/jquery/jquery.knob&#39;: {deps: [&#39;jquery&#39;]},
+        &#39;lib/jquery/jquery.nicescroll&#39;: {deps: [&#39;jquery&#39;]},
+
+        &#39;controller/layout/layout.empty.rows&#39;: {deps: [&#39;extends/function&#39;]},
+        &#39;controller/layout/layout.empty.columns&#39;: {deps: [&#39;extends/function&#39;]},
+        &#39;controller/layout/layout.intersect&#39;: {deps: [&#39;extends/function&#39;]},
+
+        &#39;controller/behavior/behavior.crud&#39;: {deps: [&#39;extends/function&#39;]},
+        &#39;controller/behavior/behavior.window.resize&#39;: {deps: [&#39;extends/function&#39;]},
+
+        &#39;controller/widget/widget.map&#39;: {deps: [&#39;extends/function&#39;]},
+        &#39;controller/widget/widget.wireframe&#39;: {deps: [&#39;extends/function&#39;]},
+
+        &#39;modules/API&#39;: {deps: [&#39;extends/function&#39;]},
+        &#39;modules/Observer&#39;: {deps: [&#39;extends/function&#39;]},
+        &#39;modules/Logger&#39;: {deps: [&#39;extends/function&#39;]},
+        &#39;modules/Setting&#39;: {deps: [&#39;extends/function&#39;, &#39;lz-string&#39;]},
+        &#39;modules/Event&#39;: {deps: [&#39;extends/function&#39;]},
+        &#39;modules/Permission&#39;: {deps: [&#39;extends/function&#39;]},
+        &#39;modules/Page&#39;: {deps: [&#39;extends/function&#39;]},
+        &#39;modules/CRUD&#39;: {deps: [&#39;extends/function&#39;]},
+        &#39;modules/Interactions&#39;: {deps: [&#39;extends/function&#39;]},
+        &#39;modules/Element&#39;: {deps: [&#39;extends/function&#39;]}
+    }
+
+});
+
+define([
+    &#39;modernizr&#39;,
+    &#39;lz-string&#39;,
+    &#39;jquery&#39;,
+    &#39;jquery.resizestop&#39;,
+    &#39;jquery.pseudo&#39;,
+    &#39;extends/function&#39;,
+    &#39;extends/json&#39;,
+    &#39;extends/event&#39;,
+    &#39;extends/string&#39;,
+    &#39;extends/array&#39;
+], function loadConfig() {
+
+    require([
+        &#39;config/listeners&#39;,
+        &#39;config/permission&#39;
+    ]);
+
+    return require([
+        &#39;config/anthill&#39;
+    ]);
+
+});</pre>
+</body>
+</html>

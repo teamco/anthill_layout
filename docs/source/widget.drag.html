@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/17/12
+ * Time: 4:10 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/Interactions&#39;
+], function defineWidgetDrag(Interactions) {
+
+<span id='Draggable-method-constructor'><span id='Draggable'>    /**
+</span></span>     * Define Widget Drag
+     * @class Draggable
+     * @extends Interactions
+     * @param {Widget} scope
+     * @member Widget.interactions
+     * @constructor
+     */
+    var Draggable = function Draggable(scope) {
+
+<span id='Draggable-property-scope'>        /**
+</span>         * Define scope
+         * @member Draggable
+         * @type {Widget}
+         */
+        this.scope = scope;
+
+<span id='Draggable-property-S-scope'>        /**
+</span>         * Define widget jquery element
+         * @member Draggable
+         * @type {jQuery}
+         */
+        this.$scope = scope.view.get$item().$;
+
+        this.checkPermission();
+    };
+
+    return Draggable.extend(&#39;Draggable&#39;, {
+
+<span id='Draggable-method-init'>        /**
+</span>         * Init interaction
+         * @member Draggable
+         */
+        init: function init() {
+
+            var scope = this.scope;
+
+            if (scope.permission.authorizedFunctionCall(this.init)) {
+                this.$scope.draggable(
+                    $.extend({
+                        containment: scope.controller.get$page().$,
+                        create: this.create.bind(this),
+                        start: this.start.bind(this),
+                        stop: this.stop.bind(this),
+                        drag: this.drag.bind(this)
+                    }, scope.model.getConfig(&#39;events&#39;).draggable)
+                );
+            }
+        },
+
+<span id='Draggable-method-enable'>        /**
+</span>         * Enable drag
+         * @member Draggable
+         */
+        enable: function enable() {
+            if (this.scope.permission.eventTunnelFunctionCall(this.enable) &amp;&amp;
+                this.scope.controller.isDraggable()) {
+                this.$scope.draggable(&#39;enable&#39;);
+            }
+        },
+
+<span id='Draggable-method-disable'>        /**
+</span>         * Disable drag
+         * @member Draggable
+         */
+        disable: function disable() {
+            if (this.scope.permission.eventTunnelFunctionCall(this.disable) &amp;&amp;
+                this.scope.controller.isDraggable()) {
+                this.$scope.draggable(&#39;disable&#39;);
+            }
+        },
+
+<span id='Draggable-method-destroy'>        /**
+</span>         * Destroy drag
+         * @member Draggable
+         */
+        destroy: function destroy() {
+            if (this.scope.permission.eventTunnelFunctionCall(this.destroy) &amp;&amp;
+                this.scope.controller.isDraggable()) {
+                this.$scope.draggable(&#39;destroy&#39;);
+            }
+        },
+
+<span id='Draggable-method-create'>        /**
+</span>         * Create drag
+         * @member Draggable
+         * @param event
+         * @param ui
+         */
+        create: function create(event, ui) {
+
+<span id='Draggable-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.createDraggable,
+                arguments
+            );
+        },
+
+<span id='Draggable-method-start'>        /**
+</span>         * Start drag
+         * @member Draggable
+         * @param event
+         * @param ui
+         */
+        start: function start(event, ui) {
+
+<span id='Draggable-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            this.debugUI(event, ui);
+
+            scope.controller.setAsCurrent();
+            scope.wireframe.dragSticker();
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.startDraggable,
+                arguments
+            );
+        },
+
+<span id='Draggable-method-stop'>        /**
+</span>         * Stop drag
+         * @member Draggable
+         * @param event
+         * @param ui
+         */
+        stop: function stop(event, ui) {
+
+<span id='Draggable-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            this.debugUI(event, ui);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.stopDraggable,
+                [event.type, arguments]
+            );
+
+            scope.wireframe.hide();
+        },
+
+<span id='Draggable-method-drag'>        /**
+</span>         * onDrag
+         * @member Draggable
+         * @param event
+         * @param ui
+         */
+        drag: function drag(event, ui) {
+
+<span id='Draggable-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            this.debugUI(event, ui);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.dragDraggable,
+                [event.type, arguments]
+            );
+        }
+
+    }, Interactions.prototype);
+});</pre>
+</body>
+</html>

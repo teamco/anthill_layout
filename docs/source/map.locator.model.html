@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 11:06 PM
+ * To change this template use File | Settings | File Templates.
+ */
+define([
+    &#39;modules/Model&#39;,
+    &#39;plugins/widgets/widget.content.model&#39;
+], function defineMapLocatorModel(BaseModel, WidgetContentModel) {
+
+<span id='MapLocatorModel-method-constructor'><span id='MapLocatorModel'>    /**
+</span></span>     * Define MapLocator model
+     * @extends BaseModel
+     * @extends WidgetContentModel
+     * @class MapLocatorModel
+     * @constructor
+     */
+    var MapLocatorModel = function MapLocatorModel() {
+
+<span id='MapLocatorModel-property-preferences'>        /**
+</span>         * Define preferences
+         * @member MapLocatorModel
+         * @type {{}}
+         */
+        this.preferences = {
+            maplocatorLatitude: {
+                type: &#39;text&#39;,
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            maplocatorLongitude: {
+                type: &#39;text&#39;,
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            maplocatorZoom: {
+                type: &#39;text&#39;,
+                disabled: false,
+                value: 13,
+                visible: true
+            },
+            maplocatorSearchRadius: {
+                type: &#39;text&#39;,
+                disabled: false,
+                value: 1000,
+                visible: true
+            },
+            maplocatorMapStyleWaterColor: {
+                type: &#39;text&#39;,
+                disabled: true,
+                value: &#39;#46bcec&#39;,
+                visible: false
+            },
+            maplocatorMapStyleWaterVisibility: {
+                type: &#39;text&#39;,
+                disabled: true,
+                value: &#39;on&#39;,
+                visible: false
+            },
+            maplocatorMapStyleLandscapeColor: {
+                type: &#39;text&#39;,
+                disabled: true,
+                value: &#39;#f2f2f2&#39;,
+                visible: false
+            },
+            maplocatorMapStyleRoadSaturation: {
+                type: &#39;text&#39;,
+                disabled: true,
+                value: -100,
+                visible: false
+            },
+            maplocatorMapStyleRoadLightness: {
+                type: &#39;text&#39;,
+                disabled: true,
+                value: 45,
+                visible: false
+            },
+            maplocatorMapStyleRoadHighwayVisibility: {
+                type: &#39;text&#39;,
+                disabled: true,
+                value: &#39;simplified&#39;,
+                visible: false
+            },
+            maplocatorMapStyleRoadArterialElementType: {
+                type: &#39;text&#39;,
+                disabled: true,
+                value: &#39;labels.icon&#39;,
+                visible: false
+            },
+            maplocatorMapStyleRoadArterialVisibility: {
+                type: &#39;text&#39;,
+                disabled: true,
+                value: &#39;off&#39;,
+                visible: false
+            },
+            maplocatorMapStyleAdministrativeElementType: {
+                type: &#39;text&#39;,
+                disabled: true,
+                value: &#39;labels.text.fill&#39;,
+                visible: false
+            },
+            maplocatorMapStyleAdministrativeColor: {
+                type: &#39;text&#39;,
+                disabled: true,
+                value: &#39;#444444&#39;,
+                visible: false
+            },
+            maplocatorMapStyleTransitVisibility: {
+                type: &#39;text&#39;,
+                disabled: true,
+                value: &#39;off&#39;,
+                visible: false
+            },
+            maplocatorMapStylePoiVisibility: {
+                type: &#39;text&#39;,
+                disabled: true,
+                value: &#39;off&#39;,
+                visible: false
+            }
+        };
+
+<span id='MapLocatorModel-property-rules'>        /**
+</span>         * Define rules
+         * @member MapLocatorModel
+         * @type {{}}
+         */
+        this.rules = {};
+    };
+
+    return MapLocatorModel.extend(&#39;MapLocatorModel&#39;, {
+
+<span id='MapLocatorModel-method-setMapLocatorLatitude'>        /**
+</span>         * Set MapLocator Latitude
+         * @member MapLocatorModel
+         * @param {number} latitude
+         */
+        setMapLocatorLatitude: function setMapLocatorLatitude(latitude) {
+            this.setPrefs(&#39;maplocatorLatitude&#39;, latitude);
+        },
+
+<span id='MapLocatorModel-method-setMapLocatorLongitude'>        /**
+</span>         * Set MapLocator Longitude
+         * @member MapLocatorModel
+         * @param {number} longitude
+         */
+        setMapLocatorLongitude: function setMapLocatorLongitude(longitude) {
+            this.setPrefs(&#39;maplocatorLongitude&#39;, longitude);
+        },
+
+<span id='MapLocatorModel-method-setMapLocatorZoom'>        /**
+</span>         * Set MapLocator zoom
+         * @member MapLocatorModel
+         * @param {number} zoom
+         */
+        setMapLocatorZoom: function setMapLocatorZoom(zoom) {
+            this.setPrefs(&#39;maplocatorZoom&#39;, zoom);
+        },
+
+<span id='MapLocatorModel-method-setMapLocatorSearchRadius'>        /**
+</span>         * Set MapLocator Search radius
+         * @member MapLocatorModel
+         * @param {string} radius
+         */
+        setMapLocatorSearchRadius: function setMapLocatorSearchRadius(radius) {
+            this.setPrefs(&#39;maplocatorSearchRadius&#39;, parseInt(radius, 10));
+        }
+
+    }, BaseModel.prototype, WidgetContentModel.prototype);
+});</pre>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/empty/element/empty.element&#39;,
+    &#39;plugins/widgets/empty/element/empty.preferences.element&#39;,
+    &#39;plugins/widgets/empty/element/empty.rules.element&#39;
+], function defineEmptyView(BaseView, Header, Footer, EmptyElement, EmptyPreferencesElement, EmptyRulesElement) {
+
+<span id='EmptyView-method-constructor'><span id='EmptyView'>    /**
+</span></span>     * Define view
+     * @class EmptyView
+     * @extends BaseView
+     * @constructor
+     */
+    var EmptyView = function EmptyView() {
+    };
+
+    return EmptyView.extend(&#39;EmptyView&#39;, {
+
+<span id='EmptyView-method-renderEmpty'>        /**
+</span>         * Render empty element
+         * @member EmptyView
+         */
+        renderEmpty: function renderEmpty() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='EmptyView-property-S-empty'>            /**
+</span>             * Define $empty
+             * @type {EmptyElement}
+             */
+            this.elements.$empty = new EmptyElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='EmptyView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member EmptyView
+         * @returns {EmptyPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='EmptyView-property-S-preferences'>            /**
+</span>             * Define Empty Preferences Element
+             * @type {EmptyPreferencesElement}
+             */
+            this.elements.$preferences = new EmptyPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='EmptyView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member EmptyView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {EmptyRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='EmptyView-property-S-rules'>            /**
+</span>             * Define Empty Rules Element
+             * @type {EmptyRulesElement}
+             */
+            this.elements.$rules = new EmptyRulesElement(this, {
+                data: this.controller.getRules(),
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='EmptyView-method-render'>        /**
+</span>         * Render empty
+         * @member EmptyView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderEmpty.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});</pre>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/6/13
+ * Time: 9:43 PM
+ */
+define([], function defineDebuggerTabs() {
+
+<span id='DebuggerTabs-method-constructor'><span id='DebuggerTabs'>    /**
+</span></span>     * Define Debugger Tabs
+     * @param {*} debug
+     * @param {Boolean} pin
+     * @param {Number} opacityOff
+     * @class DebuggerTabs
+     * @constructor
+     */
+    var DebuggerTabs = function DebuggerTabs(debug, pin, opacityOff) {
+
+<span id='DebuggerTabs-property-bugger'>        /**
+</span>         * Define debugger
+         * @type {Debugger}
+         */
+        this.bugger = debug;
+
+<span id='DebuggerTabs-property-pinTabs'>        /**
+</span>         * Define pin state
+         * @type {Boolean}
+         */
+        this.pinTabs = pin;
+
+<span id='DebuggerTabs-property-opacityOff'>        /**
+</span>         * Hover opacity off
+         * @type {Number}
+         */
+        this.opacityOff = opacityOff;
+    };
+
+    return DebuggerTabs.extend({
+
+<span id='DebuggerTabs-method-renderTabs'>        /**
+</span>         * Render Info tabs
+         * @param $div
+         */
+        renderTabs: function renderTabs($div) {
+            var $tabs = $(&#39;&lt;ul /&gt;&#39;).addClass(&#39;info-tabs&#39;);
+            $.each(this.bugger.links, function eachTabs(i, v) {
+                $tabs.append(
+                    $(&#39;&lt;li /&gt;&#39;).attr({
+                        title: v
+                    }).text(v).on(&#39;click.tab&#39;, this.openTab.bind(this))
+                )
+            }.bind(this));
+
+            $tabs.appendTo($div);
+
+            this.bindHover();
+            this.renderPin();
+
+            if (this.pinTabs) {
+                this.open();
+            }
+        },
+
+<span id='DebuggerTabs-method-renderPin'>        /**
+</span>         * Render pin
+         */
+        renderPin: function renderPin() {
+            var $pin = $(&#39;&lt;li /&gt;&#39;).
+                addClass(&#39;pin&#39;).
+                addClass(this.pinTabs ? &#39;active&#39; : &#39;&#39;).
+                attr({
+                    title: this.pinTabs ? &#39;Pin tabs&#39; : &#39;Unpin tabs&#39;
+                });
+
+            $pin.appendTo($(&#39;.handler&#39;, this.info));
+
+            this._bindPin($pin);
+        },
+
+<span id='DebuggerTabs-method-_bindPin'>        /**
+</span>         * Bind open/close
+         * @param $pin
+         * @private
+         */
+        _bindPin: function _bindPin($pin) {
+
+            var scope = this;
+
+<span id='DebuggerTabs-method-_clickPin'>            /**
+</span>             * Pin tabs
+             * @private
+             */
+            function _clickPin() {
+                scope.pinTabs ?
+                    _unpin($pin) :
+                    _pin($pin);
+            }
+
+<span id='DebuggerTabs-method-_pin'>            /**
+</span>             * Pin tabs
+             * @private
+             * @param $pin
+             */
+            function _pin($pin) {
+                scope.pinTabs = true;
+                $pin.removeClass(&#39;disabled&#39;).
+                    addClass(&#39;active&#39;);
+            }
+
+<span id='DebuggerTabs-method-_unpin'>            /**
+</span>             * Unpin tabs
+             * @private
+             * @param $pin
+             */
+            function _unpin($pin) {
+                scope.pinTabs = false;
+                $pin.removeClass(&#39;active disabled&#39;);
+            }
+
+            $pin.on(&#39;click.pin&#39;, _clickPin);
+        },
+
+<span id='DebuggerTabs-method-_unbindPin'>        /**
+</span>         * Unbind open/close
+         * @param $pin
+         * @private
+         */
+        _unbindPin: function _unbindPin($pin) {
+            $pin.unbind(&#39;click.pin&#39;).
+                removeClass(&#39;active&#39;).
+                addClass(&#39;disabled&#39;);
+        },
+
+<span id='DebuggerTabs-method-openTab'>        /**
+</span>         * Open selected tab
+         * @param {{target}} e
+         */
+        openTab: function openTab(e) {
+            var $div = $(this.bugger.info),
+                $tab = $(e.target),
+                $info = $div.find(&#39;fieldset[class^=&quot;&#39; +
+                    $tab.text().toLowerCase() + &#39;&quot;]&#39;);
+
+            this.bugger.scope.logger.debug([
+                &#39;Open&#39;, $tab.text(), &#39;tab&#39;
+            ].join(&#39; &#39;));
+
+            $div.find(&#39;div &gt; fieldset&#39;).hide();
+            $info.find(&#39;fieldset&#39;).show();
+            $info.show().children(&#39;ul&#39;).stop().slideDown(500);
+            $div.find(&#39;ul.info-tabs li&#39;).removeClass(&#39;this&#39;);
+            $tab.addClass(&#39;this&#39;);
+        },
+
+<span id='DebuggerTabs-method-bindHover'>        /**
+</span>         * Hover info window
+         */
+        bindHover: function bindHover() {
+            $(this.bugger.info).hover(
+                this.open.bind(this),
+                this.close.bind(this)
+            );
+        },
+
+<span id='DebuggerTabs-method-open'>        /**
+</span>         * Open tabs
+         */
+        open: function open() {
+            this._animateOpenTabs(0.9, -100);
+        },
+
+<span id='DebuggerTabs-method-close'>        /**
+</span>         * Close tabs
+         * @returns {boolean}
+         */
+        close: function close() {
+            if (this.pinTabs) {
+                return false;
+            }
+            this._animateOpenTabs(this.opacityOff, 0);
+        },
+
+<span id='DebuggerTabs-method-_animateOpenTabs'>        /**
+</span>         * Animate tabs
+         * @param {Number} opacity
+         * @param {Number} right
+         * @private
+         */
+        _animateOpenTabs: function _animateOpenTabs(opacity, right) {
+            $(&#39;.info-tabs&#39;, this.bugger.info).css({
+                opacity: opacity
+            }).stop().animate({
+                    right: right
+                });
+        }
+
+    });
+
+});</pre>
+</body>
+</html>

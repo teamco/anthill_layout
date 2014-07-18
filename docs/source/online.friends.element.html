@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineOnlineFriendsElement(BaseElement) {
+
+<span id='OnlineFriendsElement-method-OnlineFriendsElement'><span id='OnlineFriendsElement'>    /**
+</span></span>     * Define OnlineFriends Element
+     * @param view
+     * @param opts
+     * @returns {OnlineFriendsElement}
+     * @constructor
+     * @class OnlineFriendsElement
+     * @extends BaseElement
+     */
+    var OnlineFriendsElement = function OnlineFriendsElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;online.friends&#39;, {
+            resource: &#39;/widgets&#39;
+        });
+
+        return this;
+    };
+
+    return OnlineFriendsElement.extend(&#39;OnlineFriendsElement&#39;, {
+
+<span id='OnlineFriendsElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member OnlineFriendsElement
+         */
+        renderEmbeddedContent: function renderEmbeddedContent() {
+
+<span id='OnlineFriendsElement-property-S-element'>            /**
+</span>             * Define $element
+             * @type {OnlineFriendsElement}
+             */
+            var $element = this;
+
+            var $structure = [
+                &#39;&lt;div class=&quot;mainContainer&quot;&gt;&lt;h3&gt;Friends Online&lt;/h3&gt;&lt;i class=&quot;online_amount&quot;&gt;&lt;/i&gt;&#39;,
+                &#39;&lt;div class=&quot;scrollableContent&quot;&gt;&lt;ul class=&quot;friendsRowsContainer&quot;&gt;&lt;/ul&gt;&#39;,
+                &#39;&lt;/div&gt;&lt;div class=&quot;viewAllMenu&quot;&gt;View All&lt;/div&gt;&lt;/div&gt;&#39;
+            ].join(&#39;&#39;);
+
+            $element.view.controller.clearParentThumbnail();
+            $element.$.append($structure);
+
+            require([
+                &#39;plugins/widgets/online.friends/mvc/online.friends.behavior&#39;
+            ], function showFriendsOnline(OnlineFriendsBehavior) {
+                var showFriendsOnline = new OnlineFriendsBehavior();
+            });
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

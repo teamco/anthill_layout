@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:02 AM
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/MVC&#39;,
+    &#39;plugins/bar/mvc/bar.controller&#39;,
+    &#39;plugins/bar/mvc/bar.model&#39;,
+    &#39;plugins/bar/mvc/bar.view&#39;,
+    &#39;plugins/bar/mvc/bar.event.manager&#39;,
+    &#39;plugins/bar/mvc/bar.permission&#39;
+], function defineBar(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+
+<span id='Bar-method-Bar'><span id='Bar'>    /**
+</span></span>     * Define Bar
+     * @param containment
+     * @constructor
+     * @class Bar
+     * @extends AntHill
+     */
+    var Bar = function Bar(containment) {
+
+<span id='Bar-property-containment'>        /**
+</span>         * Define containment
+         * @member Bar
+         */
+        this.containment = containment;
+
+<span id='Bar-property-DEFAULTS'>        /**
+</span>         * Define defaults
+         * @type {{
+         *      plugin: boolean,
+         *      html: {
+         *          header: boolean,
+         *          footer: boolean,
+         *          floating: boolean,
+         *          padding: {
+         *              top: number,
+         *              right: number,
+         *              bottom: number,
+         *              left: number
+         *          }
+         *      }
+         * }}
+         */
+        var DEFAULTS = {
+            plugin: true,
+            html: {
+                header: false,
+                footer: false,
+                padding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                }
+            }
+        };
+
+<span id='Bar-property-mvc'>        /**
+</span>         * Define MVC
+         * @member Bar
+         * @type {MVC}
+         */
+        this.mvc = new MVC({
+            scope: this,
+            config: [DEFAULTS],
+            components: [
+                Controller,
+                Model,
+                View,
+                EventManager,
+                Permission
+            ],
+            render: true
+        });
+
+        this.observer.publish(
+            this.eventmanager.eventList.successCreated
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.defineModules
+        );
+
+        this.observer.publish(
+            this.eventmanager.eventList.updateTranslations,
+            [&#39;plugins/bar/translations/en-us&#39;]
+        );
+    };
+
+    return Bar.extend(&#39;Bar&#39;, {
+
+    }, AntHill.prototype);
+});</pre>
+</body>
+</html>

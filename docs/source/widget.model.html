@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 11:06 PM
+ * To change this template use File | Settings | File Templates.
+ */
+define([
+    &#39;modules/Model&#39;
+], function defineWidgetModel(BaseModel) {
+
+<span id='WidgetModel-method-constructor'><span id='WidgetModel'>    /**
+</span></span>     * Define Widget model
+     * @extends BaseModel
+     * @class WidgetModel
+     * @constructor
+     */
+    var WidgetModel = function WidgetModel() {
+    };
+
+    return WidgetModel.extend(&#39;WidgetModel&#39;, {
+
+<span id='WidgetModel-method-defineDOM'>        /**
+</span>         * Define DOM
+         * @member WidgetModel
+         */
+        defineDOM: function defineDOM() {
+
+<span id='WidgetModel-property-dom'>            /**
+</span>             * Update DOM
+             * @member WidgetModel
+             * @type {*}
+             */
+            this.scope.dom = this.scope.map.getDOM();
+        },
+
+<span id='WidgetModel-method-getDOM'>        /**
+</span>         * Get DOM
+         * @member WidgetModel
+         * @returns {*}
+         */
+        getDOM: function getDOM() {
+            return this.scope.dom;
+        },
+
+<span id='WidgetModel-method-updateDOM'>        /**
+</span>         * Update DOM
+         * @member WidgetModel
+         * @param {*} hash
+         * @returns {*}
+         */
+        updateDOM: function updateDOM(hash) {
+
+            var scope = this.scope;
+
+            scope.logger.debug(&#39;Update DOM&#39;, hash);
+            $.extend(true, scope.dom, hash);
+
+            return scope;
+        },
+
+<span id='WidgetModel-method-getAttributes'>        /**
+</span>         * Get attributes
+         * @member WidgetModel
+         * @returns {*}
+         */
+        getAttributes: function getAttributes() {
+            return this.getConfig(&#39;attributes&#39;);
+        },
+
+<span id='WidgetModel-method-setAttributes'>        /**
+</span>         * Set attributes
+         * @member WidgetModel
+         * @param key
+         * @param value
+         */
+        setAttributes: function setAttributes(key, value) {
+            this.scope.logger.debug(&#39;Set widget attributes&#39;, arguments);
+            this.getAttributes()[key] = value;
+        },
+
+<span id='WidgetModel-method-updateRules'>        /**
+</span>         * Update rules
+         * @member WidgetModel
+         * @param data
+         */
+        updateRules: function updateRules(data) {
+
+<span id='WidgetModel-property-rules'>            /**
+</span>             * Get rules
+             * @type {*}
+             */
+            var rules = this.getConfig(&#39;rules&#39;);
+
+            for (var index in data) {
+
+                if (data.hasOwnProperty(index)) {
+
+                    rules[index] = data[index];
+                }
+            }
+        },
+
+<span id='WidgetModel-method-setSubscriber'>        /**
+</span>         * Define subscribers
+         * @member WidgetModel
+         * @param {string} event
+         * @param {Widget} subscriber
+         */
+        setSubscriber: function setSubscriber(event, subscriber) {
+
+<span id='WidgetModel-property-rules'>            /**
+</span>             * Get rules
+             * @type {*}
+             */
+            var rules = this.getConfig(&#39;rules&#39;),
+                uuid = subscriber.model.getUUID();
+
+            rules.subscribers = this.base.define(rules.subscribers, {}, true);
+            rules.subscribers[event] = this.base.define(rules.subscribers[event], [], true);
+
+            if ($.inArray(uuid, rules.subscribers[event]) === -1) {
+
+                rules.subscribers[event].push(uuid);
+            }
+        },
+
+<span id='WidgetModel-method-setRadioPreferences'>        /**
+</span>         * Set widget input-radio preferences
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setRadioPreferences: function setRadioPreferences(eventName) {
+
+            if (typeof(this[eventName]) === &#39;function&#39;) {
+
+                this[eventName](eventName);
+
+            } else {
+
+                this.scope.logger.warn(&#39;Undefined event&#39;, eventName);
+            }
+        },
+
+<span id='WidgetModel-method-setLayer'>        /**
+</span>         * Set layer (radio)
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setLayer: function setLayer(eventName) {
+            this.setRadioPreferences(eventName);
+        },
+
+<span id='WidgetModel-method-setStick'>        /**
+</span>         * Set stick (radio)
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setStick: function setStick(eventName) {
+            this.setRadioPreferences(eventName);
+        },
+
+<span id='WidgetModel-method-setStretchWidth'>        /**
+</span>         * Set stretch width
+         * Adopt to container width
+         * @member WidgetModel
+         * @param {boolean} stretch
+         */
+        setStretchWidth: function setStretchWidth(stretch) {
+
+<span id='WidgetModel-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            this._setItemInfoPreferences(&#39;stretchWidth&#39;, stretch);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.stretchWidth,
+                stretch
+            );
+        },
+
+<span id='WidgetModel-method-setStretchHeight'>        /**
+</span>         * Set stretch height
+         * Adopt to container height
+         * @member WidgetModel
+         * @param {boolean} stretch
+         */
+        setStretchHeight: function setStretchHeight(stretch) {
+
+<span id='WidgetModel-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            this._setItemInfoPreferences(&#39;stretchHeight&#39;, stretch);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.stretchHeight,
+                stretch
+            );
+        },
+
+<span id='WidgetModel-method-_setStickTo'>        /**
+</span>         * Set stick to
+         * @param {string} eventName
+         * @member WidgetModel
+         * @returns {boolean}
+         * @private
+         */
+        _setStickTo: function _setStickTo(eventName) {
+
+<span id='WidgetModel-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList[eventName]
+            );
+        },
+
+<span id='WidgetModel-method-unsetStick'>        /**
+</span>         * Unset stick
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        unsetStick: function unsetStick(eventName) {
+            this._setStickTo(eventName);
+        },
+
+<span id='WidgetModel-method-setStickToCenterLeft'>        /**
+</span>         * Save widget stick
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setStickToCenterLeft: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+<span id='WidgetModel-method-setStickToCenterTop'>        /**
+</span>         * Save widget stick
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setStickToCenterTop: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+<span id='WidgetModel-method-setStickToCenter'>        /**
+</span>         * Save widget stick
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setStickToCenter: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+<span id='WidgetModel-method-setStickToCenterBottom'>        /**
+</span>         * Save widget stick
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setStickToCenterBottom: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+<span id='WidgetModel-method-setStickToCenterRight'>        /**
+</span>         * Save widget stick
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setStickToCenterRight: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+<span id='WidgetModel-method-setStickToTopLeft'>        /**
+</span>         * Save widget stick
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setStickToTopLeft: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+<span id='WidgetModel-method-setStickToBottomLeft'>        /**
+</span>         * Save widget stick
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setStickToBottomLeft: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+<span id='WidgetModel-method-setStickToTopRight'>        /**
+</span>         * Save widget stick
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setStickToTopRight: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+<span id='WidgetModel-method-setStickToBottomRight'>        /**
+</span>         * Save widget stick
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setStickToBottomRight: function setStickToCenterLeft(eventName) {
+            this._setStickTo(eventName);
+        },
+
+<span id='WidgetModel-method-setAlwaysOnTop'>        /**
+</span>         * Set on top
+         * @member WidgetModel
+         * @param {boolean} ontop
+         */
+        setAlwaysOnTop: function setAlwaysOnTop(ontop) {
+
+<span id='WidgetModel-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            this.scope.config.preferences.alwaysOnTop = ontop;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.setAlwaysOnTop,
+                ontop
+            );
+        },
+
+<span id='WidgetModel-method-setLayerUp'>        /**
+</span>         * Save widget layer
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setLayerUp: function setLayerUp(eventName) {
+
+<span id='WidgetModel-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList[eventName],
+                true
+            );
+        },
+
+<span id='WidgetModel-method-setLayerDown'>        /**
+</span>         * Save widget layer
+         * @member WidgetModel
+         * @param {string} eventName
+         */
+        setLayerDown: function setLayerDown(eventName) {
+
+<span id='WidgetModel-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList[eventName],
+                true
+            );
+        },
+
+<span id='WidgetModel-method-setOverlapping'>        /**
+</span>         * Set overlapping
+         * @member WidgetModel
+         * @param {boolean} overlapping
+         */
+        setOverlapping: function setOverlapping(overlapping) {
+            this.scope.config.preferences.overlapping = overlapping;
+        },
+
+<span id='WidgetModel-method-setOnClickOpenUrl'>        /**
+</span>         * Set on click Url
+         * @member WidgetModel
+         * @param {string} url
+         */
+        setOnClickOpenUrl: function setOnClickOpenUrl(url) {
+
+            this._setItemInfoPreferences(&#39;onClickOpenUrl&#39;, url);
+
+<span id='WidgetModel-property-scope'>            /**
+</span>             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.setOnClickUrl,
+                url
+            );
+        },
+
+<span id='WidgetModel-method-setStatistics'>        /**
+</span>         * Set statistics
+         * @member WidgetModel
+         * @param {boolean} statistics
+         */
+        setStatistics: function setStatistics(statistics) {
+            this._setItemInfoPreferences(&#39;statistics&#39;, statistics);
+        }
+
+    }, BaseModel.prototype);
+});</pre>
+</body>
+</html>

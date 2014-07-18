@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 2/13/13
+ * Time: 11:47 PM
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;controller/widget/widget.overlapping&#39;
+], function defineWidgetMap(AntHill, WidgetOverlapping) {
+
+<span id='WidgetMap-method-constructor'><span id='WidgetMap'>    /**
+</span></span>     * Define Widget Map
+     * @class WidgetMap
+     * @extends AntHill
+     * @extends WidgetOverlapping
+     * @param {*} widget
+     * @constructor
+     */
+    var WidgetMap = function WidgetMap(widget) {
+
+<span id='WidgetMap-property-widget'>        /**
+</span>         * Define widget instance
+         * @member WidgetMap
+         * @type {*}
+         */
+        this.widget = widget;
+
+<span id='WidgetMap-property-duration'>        /**
+</span>         * Define animation duration
+         * @member WidgetMap
+         * @type {number}
+         */
+        this.duration = 500;
+    };
+
+    return WidgetMap.extend(&#39;WidgetMap&#39;, {
+
+<span id='WidgetMap-method-relDims'>        /**
+</span>         * Define 0 as 1 relative dims (width|height)
+         * @member WidgetMap
+         * @param {Number} dim
+         * @returns {Number}
+         */
+        relDims: function relDims(dim) {
+
+            return dim ? dim : 1;
+        },
+
+<span id='WidgetMap-method-getDOM'>        /**
+</span>         * Get widget DOM info
+         * @member WidgetMap
+         * @returns {*}
+         */
+        getDOM: function getDOM() {
+
+            var widget = this.widget,
+                $widget = widget.view.get$item(),
+                position = $widget.getPosition(),
+                dom = {
+                    left: position.left,
+                    top: position.top,
+                    width: $widget.getWidth(),
+                    height: $widget.getHeight()
+                },
+                layout = widget.controller.getPageLayout(),
+                cell = layout.controller.minCellWidth() +
+                    layout.config.grid.margin;
+
+            dom.right = this.widgetRight(dom.left, dom.width);
+            dom.bottom = this.widgetBottom(dom.top, dom.height);
+
+            dom.column = this.column(dom.left, cell);
+            dom.row = this.row(dom.top, cell);
+
+            dom.relWidth = this.relWidth(dom.width, cell);
+            dom.relHeight = this.relHeight(dom.height, cell);
+
+            dom.relRight = this.relRight(dom.column, dom.relWidth);
+            dom.relBottom = this.relBottom(dom.row, dom.relHeight);
+
+            dom.zIndex = widget.dom.zIndex;
+
+            return dom;
+        },
+
+<span id='WidgetMap-method-relWidth'>        /**
+</span>         * Get relative width
+         * @member WidgetMap
+         * @param {Number} width
+         * @param {Number} cell
+         * @returns {Number}
+         */
+        relWidth: function relWidth(width, cell) {
+
+            return this.relDims(Math.round(width / cell));
+        },
+
+<span id='WidgetMap-method-relHeight'>        /**
+</span>         * Get relative height
+         * @member WidgetMap
+         * @param {Number} height
+         * @param {Number} cell
+         * @returns {Number}
+         */
+        relHeight: function relHeight(height, cell) {
+
+            return this.relDims(Math.round(height / cell));
+        },
+
+<span id='WidgetMap-method-relRight'>        /**
+</span>         * Get relative right
+         * @member WidgetMap
+         * @param {Number} column
+         * @param {Number} width
+         * @returns {Number}
+         */
+        relRight: function relRight(column, width) {
+
+            return column + width;
+        },
+
+<span id='WidgetMap-method-relBottom'>        /**
+</span>         * Get relative bottom
+         * @member WidgetMap
+         * @param {Number} row
+         * @param {Number} height
+         * @returns {Number}
+         */
+        relBottom: function relBottom(row, height) {
+
+            return row + height;
+        },
+
+<span id='WidgetMap-method-row'>        /**
+</span>         * Get row
+         * @member WidgetMap
+         * @param {Number} top
+         * @param {Number} cell
+         * @returns {Number}
+         */
+        row: function row(top, cell) {
+
+            return Math.round(top / cell);
+        },
+
+<span id='WidgetMap-method-column'>        /**
+</span>         * Get column
+         * @member WidgetMap
+         * @param {Number} left
+         * @param {Number} cell
+         * @returns {Number}
+         */
+        column: function column(left, cell) {
+
+            return Math.round(left / cell);
+        },
+
+<span id='WidgetMap-method-widgetTop'>        /**
+</span>         * Get widget top position via grid
+         * @member WidgetMap
+         * @param {Number} row
+         * @returns {Number}
+         */
+        widgetTop: function widgetTop(row) {
+
+            return this.getWidgetPosition(row);
+        },
+
+<span id='WidgetMap-method-widgetBottom'>        /**
+</span>         * Get widget bottom position via grid
+         * @member WidgetMap
+         * @param {Number} top
+         * @param {Number} height
+         * @returns {Number}
+         */
+        widgetBottom: function widgetBottom(top, height) {
+
+            return top + height;
+        },
+
+<span id='WidgetMap-method-widgetLeft'>        /**
+</span>         * Get widget left position via grid
+         * @member WidgetMap
+         * @param {Number} column
+         * @returns {Number}
+         */
+        widgetLeft: function widgetLeft(column) {
+
+            return this.getWidgetPosition(column);
+        },
+
+<span id='WidgetMap-method-widgetRight'>        /**
+</span>         * Get widget right position via grid
+         * @member WidgetMap
+         * @param {Number} left
+         * @param {Number} width
+         * @returns {Number}
+         */
+        widgetRight: function widgetRight(left, width) {
+
+            return left + width;
+        },
+
+<span id='WidgetMap-method-widgetHeight'>        /**
+</span>         * Get widget height via grid
+         * @member WidgetMap
+         * @param {Number} relHeight
+         * @returns {Number}
+         */
+        widgetHeight: function widgetHeight(relHeight) {
+
+            return this.getWidgetDims(relHeight);
+        },
+
+<span id='WidgetMap-method-widgetWidth'>        /**
+</span>         * Get widget width via grid
+         * @member WidgetMap
+         * @param {Number} relWidth
+         * @returns {Number}
+         */
+        widgetWidth: function widgetWidth(relWidth) {
+
+            return this.getWidgetDims(relWidth);
+        },
+
+<span id='WidgetMap-method-marginFor'>        /**
+</span>         * Get map margins delta in row/column
+         * @member WidgetMap
+         * @param column
+         * @param row
+         * @returns {{top: number, left: number}}
+         */
+        marginFor: function marginFor(column, row) {
+
+            var margin = this.widget.controller.getPageLayout().config.grid.margin;
+
+            return {
+                top: (row + 1) * margin,
+                left: (column + 1) * margin
+            };
+        },
+
+<span id='WidgetMap-method-positionFor'>        /**
+</span>         * Get map widget top/left
+         * @member WidgetMap
+         * @param column
+         * @param row
+         * @returns {{top: number, left: number}}
+         */
+        positionFor: function positionFor(column, row) {
+
+            var margins = this.marginFor(column, row),
+                layout = this.widget.controller.getPageLayout(),
+                cell = layout.controller.minCellWidth();
+
+            return {
+                top: row * cell + margins.top,
+                left: column * cell + margins.left
+            };
+        },
+
+<span id='WidgetMap-method-getWidgetPosition'>        /**
+</span>         * Get widget position (top|left) via grid
+         * @member WidgetMap
+         * @param {Number} pos
+         * @returns {Number}
+         */
+        getWidgetPosition: function getWidgetPosition(pos) {
+
+<span id='WidgetMap-property-layout'>            /**
+</span>             * Get layout
+             * @type {Layout}
+             */
+            var layout = this.widget.controller.getPageLayout();
+
+            return pos * layout.controller.minCellWidth() +
+                (pos + 1) * layout.config.grid.margin;
+        },
+
+<span id='WidgetMap-method-getWidgetDims'>        /**
+</span>         * Get widget position (width|height) via grid
+         * @member WidgetMap
+         * @param {Number} dim
+         * @returns {Number}
+         */
+        getWidgetDims: function getWidgetDims(dim) {
+
+<span id='WidgetMap-property-layout'>            /**
+</span>             * Get layout
+             * @type {Layout}
+             */
+            var layout = this.widget.controller.getPageLayout();
+
+            return dim * layout.controller.minCellWidth() +
+                (dim - 1) * layout.config.grid.margin;
+        },
+
+<span id='WidgetMap-method-checkWidgetPositionColumnLeft'>        /**
+</span>         * Check widget column position via grid: Left
+         * @member WidgetMap
+         * @param {Number} column
+         * @returns {Boolean}
+         */
+        checkWidgetPositionColumnLeft: function checkWidgetPositionColumnLeft(column) {
+
+            return column &gt;= 0;
+        },
+
+<span id='WidgetMap-method-checkWidgetPositionColumnRight'>        /**
+</span>         * Check widget column position via grid: Right
+         * @member WidgetMap
+         * @param {{column, relWidth}} dom
+         * @returns {Boolean}
+         */
+        checkWidgetPositionColumnRight: function checkWidgetPositionColumnRight(dom) {
+
+            return (dom.column + dom.relWidth) &lt;=
+                this.widget.controller.getPageLayout().config.grid.columns;
+        },
+
+<span id='WidgetMap-method-checkWidgetPositionColumn'>        /**
+</span>         * Check widget column position via grid: Left|Right
+         * @member WidgetMap
+         * @param {{column, relWidth}} dom
+         * @returns {Boolean}
+         */
+        checkWidgetPositionColumn: function checkWidgetPositionColumn(dom) {
+
+            return (
+                this.checkWidgetPositionColumnLeft(dom.column) &amp;&amp;
+                this.checkWidgetPositionColumnRight(dom)
+                );
+        },
+
+<span id='WidgetMap-method-checkWidgetPositionRowTop'>        /**
+</span>         * Check widget row position via grid: Top
+         * @member WidgetMap
+         * @param {{Number}} row
+         * @returns {Boolean}
+         */
+        checkWidgetPositionRowTop: function checkWidgetPositionRowTop(row) {
+
+            return row &gt;= 0;
+        },
+
+<span id='WidgetMap-method-checkWidgetPosition'>        /**
+</span>         * Check widget position
+         * @member WidgetMap
+         * @returns {Boolean|*}
+         */
+        checkWidgetPosition: function checkWidgetPosition() {
+
+            var dom = this.getDOM();
+
+            return (
+                this.checkWidgetPositionColumn(dom) &amp;&amp;
+                this.checkWidgetPositionRowTop(dom.row)
+                );
+        },
+
+<span id='WidgetMap-method-isResize'>        /**
+</span>         * Check if interaction is: resize
+         * @member WidgetMap
+         * @param {String} type
+         * @returns {*|Array|{index: number, input: string}}
+         */
+        isResize: function isResize(type) {
+            return type.match(/resize/ig);
+        },
+
+<span id='WidgetMap-method-isDrag'>        /**
+</span>         * Check if interaction is: drag
+         * @member WidgetMap
+         * @param {String} type
+         * @returns {*|Array|{index: number, input: string}}
+         */
+        isDrag: function isDrag(type) {
+            return type.match(/drag/ig);
+        },
+
+<span id='WidgetMap-method-isStop'>        /**
+</span>         * Check if interaction is: stop {drag|resize}
+         * @member WidgetMap
+         * @param {String} type
+         * @returns {*|Array|{index: number, input: string}}
+         */
+        isStop: function isStop(type) {
+            return type.match(/stop/ig);
+        },
+
+<span id='WidgetMap-method-animateOnStop'>        /**
+</span>         * Get animation behavior on stop interaction
+         * @member WidgetMap
+         * @param {Boolean} animateCfg
+         * @param {Boolean} animateOpts
+         * @param {String} type
+         * @returns {Boolean}
+         */
+        animateOnStop: function animateOnStop(type, animateCfg, animateOpts) {
+
+<span id='WidgetMap-property-animateCfg'>            /**
+</span>             * Define config animation
+             * @type {*}
+             */
+            animateCfg = this.base.defineBoolean(animateCfg, false, true);
+
+<span id='WidgetMap-property-animateOpts'>            /**
+</span>             * Define options animation
+             * @type {*}
+             */
+            animateOpts = this.base.defineBoolean(animateOpts, false, true);
+
+            return this.isStop(type) ? (animateCfg &amp;&amp; animateOpts) : false;
+        },
+
+<span id='WidgetMap-method-overlappingOnStop'>        /**
+</span>         * Get overlapping behavior on stop interaction
+         * @member WidgetMap
+         * @param {Boolean} overlapping
+         * @param {String} type
+         * @returns {Boolean}
+         */
+        overlappingOnStop: function overlappingOnStop(type, overlapping) {
+            return this.isStop(type) ? !!overlapping : false;
+        },
+
+<span id='WidgetMap-method-setDefaultSize'>        /**
+</span>         * Set widget default size defined in gallery model
+         * Run before saving dom
+         * @member WidgetMap
+         * @param {string} type
+         */
+        setDefaultSize: function setDefaultSize(type){
+
+<span id='WidgetMap-property-widget'>            /**
+</span>             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.widget,
+                size = type.toLowerCase();
+
+            if (!widget.dom[size]) {
+                widget.controller.getView().get$item()[&#39;set&#39; + type](
+                    this[&#39;widget&#39; + type](
+                        widget.model.getConfig(&#39;html/dimensions/&#39; + size)
+                    )
+                );
+            }
+        },
+
+<span id='WidgetMap-method-sticker'>        /**
+</span>         * Grid sticker on interaction (Drag/Resize)
+         * @member WidgetMap
+         * @param {{type, $source, callback: Function, organize: Boolean, animate: Boolean}} opts
+         * @param {String} mode
+         * @param {{animate: Boolean}} behavior
+         */
+        sticker: function sticker(opts, mode, behavior) {
+
+<span id='WidgetMap-property-widget'>            /**
+</span>             * Define widget
+             * @type {Widget}
+             */
+            var widget = this.widget;
+
+<span id='WidgetMap-property-layout'>            /**
+</span>             * Define layout
+             * @type {Layout}
+             */
+            var layout = this.widget.controller.getPageLayout();
+
+            this.setDefaultSize(&#39;Width&#39;);
+            this.setDefaultSize(&#39;Height&#39;);
+
+            widget.observer.publish(
+                widget.eventmanager.eventList.saveDom
+            );
+
+            opts = this.base.define(opts, {}, true);
+
+            var css = this.isDrag(opts.type) ?
+                this.dragTo() :
+                this.resizeTo();
+
+            if (css.top &gt;= 0 &amp;&amp; css.left &gt;= 0) {
+
+<span id='WidgetMap-property-duration'>                /**
+</span>                 * Define animate duration
+                 * @type {Number}
+                 */
+                var duration = this.animateOnStop(
+                        opts.type,
+                        behavior.animate,
+                        opts.animate
+                    ) ? this.duration : 0,
+
+<span id='WidgetMap-property-'>                    /**
+</span>                     * Define callback
+                     * @type {function(this:{map: AntHill, widget: *, layout: *, organize: (Boolean|*), callback: (Function|*), behavior: {animate: Boolean}, type: *})}
+                     */
+                    callback = this._mapStickerCallback.bind({
+                        map: this,
+                        widget: this.widget,
+                        layout: layout,
+                        organize: opts.organize,
+                        callback: opts.callback,
+                        behavior: behavior,
+                        type: opts.type
+                    });
+
+                if (duration === 0) {
+
+                    opts.$source.stop().css(css);
+                    callback();
+
+                } else {
+
+                    opts.$source.stop().animate(
+                        css,
+                        duration,
+                        callback
+                    );
+                }
+            }
+        },
+
+<span id='WidgetMap-method-_mapStickerCallback'>        /**
+</span>         * Map sticker callback
+         * @member WidgetMap
+         * @private
+         */
+        _mapStickerCallback: function _mapStickerCallback() {
+
+            var hash = {},
+                widget = this.widget,
+                layout = this.layout;
+
+            if (this.map.overlappingOnStop(
+                this.type,
+                widget.controller.getPageLayout().controller.
+                    isOverlappingAllowed()
+            )) {
+
+                widget.observer.publish(
+                    widget.eventmanager.eventList.saveDom
+                );
+
+                hash[widget.model.getUUID()] = widget;
+
+                layout.observer.publish(
+                    layout.eventmanager.eventList.beforeNestedOrganizer
+                );
+
+                layout.overlapping.nestedOrganizer({
+                    targets: hash,
+                    callback: this.callback,
+                    organize: this.organize
+                });
+            }
+        },
+
+<span id='WidgetMap-method-getNextDims'>        /**
+</span>         * Get next dimensions
+         * @member WidgetMap
+         * @param {Number} relDim
+         * @returns {Number}
+         */
+        getNextDims: function getNextDims(relDim) {
+<span id='WidgetMap-property-layout'>            /**
+</span>             * Get layout
+             * @type {Layout}
+             */
+            var layout = this.widget.controller.getPageLayout(),
+                cell = layout.controller.minCellWidth(),
+                margin = layout.config.grid.margin;
+            return cell * relDim + margin * (relDim - 1);
+        },
+
+<span id='WidgetMap-method-dragTo'>        /**
+</span>         * Drag to
+         * @member WidgetMap
+         * @returns {{left: Number, top: Number}}
+         */
+        dragTo: function dragTo() {
+
+<span id='WidgetMap-property-layout'>            /**
+</span>             * Get layout
+             * @type {Layout}
+             */
+            var layout = this.widget.controller.getPageLayout();
+
+            return layout.controller.getNextPosition(
+                this.getDOM()
+            );
+        },
+
+<span id='WidgetMap-method-resizeTo'>        /**
+</span>         * Resize to
+         * @member WidgetMap
+         * @returns {{width: Number, height: Number}}
+         */
+        resizeTo: function resizeTo() {
+
+<span id='WidgetMap-property-dom'>            /**
+</span>             * Get DOM
+             * @type {*}
+             */
+            var dom = this.getDOM();
+
+            return $.extend({
+                width: this.getNextDims(dom.relWidth),
+                height: this.getNextDims(dom.relHeight)
+            }, this.dragTo());
+        },
+
+<span id='WidgetMap-method-adoptTo'>        /**
+</span>         * Adopt to
+         * @member WidgetMap
+         * @param {boolean} animate
+         */
+        adoptTo: function adoptTo(animate) {
+
+            this.setPosition(
+                this.widget.dom,
+                this.base.defineBoolean(animate, false, true)
+            );
+        },
+
+<span id='WidgetMap-method-setPosition'>        /**
+</span>         * Set widget position
+         * @member WidgetMap
+         * @param {{
+         *      column: Number,
+         *      row: Number,
+         *      relHeight: Number,
+         *      relWidth: Number
+         * }} [dom]
+         * @param {Boolean} [animate]
+         */
+        setPosition: function setPosition(dom, animate) {
+
+<span id='WidgetMap-property-widget'>            /**
+</span>             * Init local scope
+             * @type {Widget}
+             */
+            var widget = this.widget;
+
+<span id='WidgetMap-property-dom'>            /**
+</span>             * Set DOM
+             * @type {*}
+             */
+            dom = this.base.define(dom, widget.dom, true);
+
+<span id='WidgetMap-property-animate'>            /**
+</span>             * Init animate
+             * @type {Boolean}
+             */
+            animate = this.base.defineBoolean(animate, false, true);
+
+<span id='WidgetMap-property-duration'>            /**
+</span>             * Init duration
+             * @type {number}
+             */
+            var duration = animate ? this.duration : 0;
+
+<span id='WidgetMap-property-css'>            /**
+</span>             * Define new CSS
+             * @type {{left: Number, top: Number, width: Number, height: Number}}
+             */
+            var css = {
+                left: this.widgetLeft(dom.column),
+                top: this.widgetTop(dom.row),
+                width: this.widgetWidth(dom.relWidth),
+                height: this.widgetHeight(dom.relHeight)
+            };
+
+            widget.logger.debug(&#39;Position&#39;, css);
+
+<span id='WidgetMap-property-S-widget'>            /**
+</span>             * Define $widget
+             * @type {$}
+             */
+            var $widget = widget.view.get$item().$.stop();
+
+            if (duration === 0) {
+
+                $widget.css(css);
+
+            } else {
+
+                $widget.animate(
+                    css,
+                    duration
+                );
+            }
+        },
+
+<span id='WidgetMap-method-occupiedAt'>        /**
+</span>         * Get occupied
+         * @member WidgetMap
+         * @returns {{top: Number, left: Number, width: *, height: *}}
+         */
+        occupiedAt: function occupiedAt() {
+            var lastOccupiedRow = this.getLastOccupiedRow(),
+                widgetDims = this.computeWidgetDims(
+                    this.config.newWidgetSpan[0],
+                    this.config.newWidgetSpan[1]
+                );
+            return {
+                // Add the widget to next empty slot - if rows are empty, add to it the first one
+                top: this.widgetTop({
+                    row: lastOccupiedRow &lt; 0 ?
+                        0 : lastOccupiedRow
+                }),
+                left: this.widgetLeft({
+                    column: 0
+                }),
+                width: widgetDims[0],
+                height: widgetDims[1]
+
+            }
+        },
+
+<span id='WidgetMap-method-getLastOccupiedRow'>        /**
+</span>         * Retrieve the last row number we are occupying by now
+         * @member WidgetMap
+         * @returns {number}
+         */
+        getLastOccupiedRow: function getLastOccupiedRow() {
+
+            var row = -1,
+                widgets = this.widget.model.getParentItems(),
+                index;
+
+            for (index in widgets) {
+
+                if (widgets.hasOwnProperty(index)) {
+
+<span id='WidgetMap-property-widget'>                    /**
+</span>                     * Define widget
+                     */
+                    var widget = widgets[index];
+
+                    if (widget.row + widget.relHeight &gt; row) {
+
+<span id='WidgetMap-property-row'>                        /**
+</span>                         * Row is current row + blocks it takes to the bottom
+                         */
+                        row = widget.row + widget.relHeight;
+                    }
+                }
+            }
+
+            return row;
+        }
+
+    }, AntHill.prototype, WidgetOverlapping.prototype);
+});</pre>
+</body>
+</html>

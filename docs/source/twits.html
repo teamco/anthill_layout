@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:02 AM
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/MVC&#39;,
+    &#39;plugins/widgets/twits/mvc/twits.controller&#39;,
+    &#39;plugins/widgets/twits/mvc/twits.model&#39;,
+    &#39;plugins/widgets/twits/mvc/twits.view&#39;,
+    &#39;plugins/widgets/twits/mvc/twits.event.manager&#39;,
+    &#39;plugins/widgets/twits/mvc/twits.permission&#39;
+], function defineTwits(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+
+<span id='Twits-method-Twits'><span id='Twits'>    /**
+</span></span>     * Define Twits
+     * @param containment
+     * @param [opts]
+     * @constructor
+     * @class Twits
+     * @extends AntHill
+     */
+    var Twits = function Twits(containment, opts) {
+
+<span id='Twits-property-containment'>        /**
+</span>         * Define containment
+         * @member Twits
+         */
+        this.containment = containment;
+
+<span id='Twits-property-referrer'>        /**
+</span>         * Define referrer
+         * @member Twits
+         * @type {*}
+         */
+        this.referrer = undefined;
+
+<span id='Twits-property-DEFAULTS'>        /**
+</span>         * Define defaults
+         * @type {{
+         *      plugin: boolean,
+         *      html: {
+         *          style: string,
+         *          header: boolean,
+         *          footer: boolean,
+         *          padding: {
+         *              top: number,
+         *              right: number,
+         *              bottom: number,
+         *              left: number
+         *          }
+         *      }
+         * }}
+         */
+        var DEFAULTS = {
+            plugin: true,
+            html: {
+                style: &#39;default&#39;,
+                header: false,
+                footer: false,
+                padding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                }
+            }
+        };
+
+<span id='Twits-property-mvc'>        /**
+</span>         * Define MVC
+         * @member Twits
+         * @type {MVC}
+         */
+        this.mvc = new MVC({
+            scope: this,
+            config: [
+                {uuid: this.containment.model.getContentUUID()},
+                DEFAULTS
+            ],
+            components: [
+                Controller,
+                Model,
+                View,
+                EventManager,
+                Permission
+            ],
+            render: true
+        });
+
+        this.observer.publish(
+            this.eventmanager.eventList.initWidget,
+            opts
+        );
+    };
+
+    return Twits.extend(&#39;Twits&#39;, {
+
+    }, AntHill.prototype);
+});</pre>
+</body>
+</html>

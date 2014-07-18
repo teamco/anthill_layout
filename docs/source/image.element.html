@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineImageElement(BaseElement) {
+
+<span id='ImageElement-method-ImageElement'><span id='ImageElement'>    /**
+</span></span>     * Define Image Element
+     * @param view
+     * @param opts
+     * @returns {ImageElement}
+     * @constructor
+     * @class ImageElement
+     * @extends BaseElement
+     */
+    var ImageElement = function ImageElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;image&#39;, {resource: &#39;/widgets&#39;});
+
+<span id='ImageElement-property-image'>        /**
+</span>         * Define element
+         * @type {boolean}
+         */
+        this.image = true;
+
+        return this;
+    };
+
+    return ImageElement.extend(&#39;ImageElement&#39;, {
+
+<span id='ImageElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member ImageElement
+         * @param {{}} opts
+         */
+        renderEmbeddedContent: function renderEmbeddedContent(opts) {
+
+            if (!opts.url) {
+                return false;
+            }
+
+<span id='ImageElement-property-repeat'>            /**
+</span>             * Define bg repeat
+             * @type {string}
+             */
+            var repeat = &#39;no-repeat&#39;;
+
+            if (opts.repeatX) {
+                repeat = &#39;repeat-x&#39;;
+                this.image = false;
+            }
+
+            if (opts.repeatY) {
+                repeat = &#39;repeat-y&#39;;
+                this.image = false;
+            }
+
+            if (opts.repeatX &amp;&amp; opts.repeatY) {
+                repeat = &#39;repeat&#39;;
+                this.image = false;
+            }
+
+            if (this.image) {
+
+<span id='ImageElement-property-S-img'>                /**
+</span>                 * Define $img
+                 * @type {*|jQuery}
+                 */
+                this.$img = $(&#39;&lt;img /&gt;&#39;).attr({
+                    src: opts.url,
+                    alt: opts.text,
+                    title: opts.text
+                });
+
+                if (opts.stretch) {
+                    this.$img.css({
+                        width: &#39;100%&#39;,
+                        height: &#39;100%&#39;
+                    });
+                }
+
+                this.setHtml(this.$img);
+
+            } else {
+
+                this.$.css({
+                    backgroundImage: &quot;url(&#39;&quot; + opts.url + &quot;&#39;)&quot;,
+                    backgroundRepeat: repeat,
+                    backgroundSize: opts.stretch ? &#39;cover&#39; : &#39;auto&#39;
+                });
+            }
+
+            this.view.controller.clearParentThumbnail();
+        },
+
+<span id='ImageElement-method-renderSplitEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member ImageElement
+         * @param {{}} opts
+         */
+        renderSplitEmbeddedContent: function renderSplitEmbeddedContent(opts) {
+
+            if (!opts.url) {
+                return false;
+            }
+
+<span id='ImageElement-property-S-image'>            /**
+</span>             * Define scope
+             * @type {ImageElement}
+             */
+            var $image = this;
+
+<span id='ImageElement-method-_setDimensions'>            /**
+</span>             * Set img dimensions
+             * @param e
+             * @private
+             */
+            function _setDimensions(e) {
+
+<span id='ImageElement-property-proportions'>                /**
+</span>                 * Calculate image proportions
+                 * @type {number}
+                 */
+                var proportions = ($image.$.height() * 100) / e.target.height,
+                    width = e.target.width * (proportions / 100);
+
+                $image.$img.css({
+                    height: &#39;100%&#39;,
+                    width: width,
+                    marginLeft: opts.simulate ? -(width / (opts.splitTo + 1)) : 0
+                });
+            }
+
+<span id='ImageElement-property-img'>            /**
+</span>             * Load image
+             * @type {Image}
+             */
+            var img = new Image();
+
+            img.src = opts.url;
+            img.onload = _setDimensions;
+            img.onerror = function () {
+                $image.view.scope.logger.warn(
+                    &#39;Unable to load image&#39;,
+                    img
+                );
+            };
+
+<span id='ImageElement-property-S-img'>            /**
+</span>             * Define $img
+             * @type {*|jQuery}
+             */
+            $image.$img = $(&#39;&lt;img /&gt;&#39;).attr({
+                src: img.src,
+                alt: opts.text,
+                title: opts.text
+            });
+
+            $image.setHtml($image.$img);
+
+            return false;
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 2/24/13
+ * Time: 12:24 AM
+ */
+
+define([
+    &#39;config/anthill&#39;
+], function defineWidgetWireframe(AntHill) {
+
+<span id='Wireframe-method-constructor'><span id='Wireframe'>    /**
+</span></span>     * Define Widget Wireframe
+     * @class Wireframe
+     * @extends AntHill
+     * @param {*} widget
+     * @constructor
+     */
+    var Wireframe = function Wireframe(widget) {
+
+<span id='Wireframe-property-widget'>        /**
+</span>         * Define widget
+         * @member Wireframe
+         * @type {*}
+         */
+        this.widget = widget;
+
+<span id='Wireframe-property-selector'>        /**
+</span>         * Define selector
+         * @member Wireframe
+         * @type {string}
+         */
+        this.selector = &#39;next-widget-position&#39;;
+    };
+
+    return Wireframe.extend(&#39;Wireframe&#39;, {
+
+<span id='Wireframe-method-dragSticker'>        /**
+</span>         * Move wireframe on widget drag
+         * @member Wireframe
+         */
+        dragSticker: function dragSticker() {
+
+<span id='Wireframe-property-dom'>            /**
+</span>             * Define DOM
+             * @type {*}
+             */
+            var dom = this.widget.map.getDOM();
+
+            this.init({
+                style: {
+                    left: dom.left,
+                    top: dom.top,
+                    width: dom.width,
+                    height: dom.height
+                },
+                animate: false
+            });
+        },
+
+<span id='Wireframe-method-resizeSticker'>        /**
+</span>         * Resize wireframe on widget resize
+         * @member Wireframe
+         */
+        resizeSticker: function resizeSticker() {
+
+<span id='Wireframe-property-css'>            /**
+</span>             * Define CSS
+             * @type {{width: Number, height: Number}}
+             */
+            var css = this.widget.map.resizeTo();
+
+            this.init({
+                style: {
+                    left: css.left,
+                    top: css.top,
+                    width: css.width,
+                    height: css.height
+                },
+                animate: false
+            });
+        },
+
+<span id='Wireframe-method-show'>        /**
+</span>         * Show wireframe
+         * @member Wireframe
+         */
+        show: function show() {
+            this.$.show();
+        },
+
+<span id='Wireframe-method-hide'>        /**
+</span>         * Hide wireframe
+         * @member Wireframe
+         */
+        hide: function hide() {
+            this.$.hide();
+        },
+
+<span id='Wireframe-method-getWireFrame'>        /**
+</span>         * Get wireframe jQuery element
+         * @member Wireframe
+         * @returns {*}
+         */
+        getWireFrame: function getWireFrame() {
+
+<span id='Wireframe-property-uuid'>            /**
+</span>             * Define uuid
+             * @type {string}
+             */
+            var uuid = &#39;#&#39; + this.selector;
+
+            return $(
+                uuid,
+                this.widget.controller.get$page().$
+            );
+        },
+
+<span id='Wireframe-method-moveToCurrentPage'>        /**
+</span>         * Move wireframe to current page
+         * @member Wireframe
+         */
+        moveToCurrentPage: function moveToCurrentPage() {
+            if (this.getWireFrame().length === 0) {
+                this.$.appendTo(
+                    this.widget.controller.get$page().$
+                );
+            }
+        },
+
+<span id='Wireframe-method-defineHolder'>        /**
+</span>         * Define wireframe jQuery element
+         * @member Wireframe
+         * @param {{style}} opts
+         * @returns {*}
+         */
+        defineHolder: function defineHolder(opts) {
+
+<span id='Wireframe-property-S-'>            /**
+</span>             * Define wireframe element
+             * @member Wireframe
+             * @type {*}
+             */
+            this.$ = this.getWireFrame();
+
+            if (this.$.length === 0) {
+                $(&#39;#&#39; + this.selector).remove();
+                this.$ = $(&#39;&lt;div /&gt;&#39;).css(opts.style).attr({
+                    id: this.selector
+                });
+            }
+
+            this.moveToCurrentPage();
+
+            return this;
+        },
+
+<span id='Wireframe-method-init'>        /**
+</span>         * Init wireframe
+         * @member Wireframe
+         * @param opts
+         */
+        init: function init(opts) {
+
+            opts = this.base.define(opts, {}, true);
+
+            this.defineHolder(opts).show();
+            this.$.css(opts.style);
+        }
+
+    }, AntHill.prototype);
+});</pre>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/gallery/element/gallery.providers.element&#39;,
+    &#39;plugins/gallery/element/gallery.search.element&#39;,
+    &#39;plugins/gallery/element/gallery.content.element&#39;,
+    &#39;plugins/gallery/element/gallery.element&#39;
+], function defineGalleryView(BaseView, Header, Footer, GalleryProviders, GallerySearch, GalleryContent, Gallery) {
+
+<span id='GalleryView-method-constructor'><span id='GalleryView'>    /**
+</span></span>     * Define view
+     * @class GalleryView
+     * @constructor
+     * @extends BaseView
+     */
+    var GalleryView = function GalleryView() {
+    };
+
+    return GalleryView.extend(&#39;GalleryView&#39;, {
+
+<span id='GalleryView-method-renderGallery'>        /**
+</span>         * Render Gallery
+         * @member GalleryView
+         * @returns {boolean}
+         */
+        renderGallery: function renderGallery() {
+
+            if (this.isCached(&#39;$gallery&#39;, Gallery)) {
+                return false;
+            }
+
+            this.header(Header, this.elements.$container).setText(
+                &#39;Gallery Widgets&#39;
+            );
+
+            this.renderSearch();
+
+            this.renderProviders(
+                this.controller.getData(),
+                this.controller.getCurrentProvider()
+            );
+
+<span id='GalleryView-property-S-gallery'>            /**
+</span>             * Define Gallery element
+             * @type {GalleryElement}
+             */
+            this.elements.$gallery = new Gallery(this, {
+                id: this.createUUID(),
+                $container: this.elements.$container.$
+            });
+        },
+
+<span id='GalleryView-method-renderFooter'>        /**
+</span>         * Render footer
+         * @member GalleryView
+         */
+        renderFooter: function renderFooter() {
+            this.footer(Footer, this.elements.$container).setHtml(
+                this.elements.$gallery.getFooter()
+            );
+        },
+
+<span id='GalleryView-method-renderProviders'>        /**
+</span>         * Render gallery providers
+         * @member GalleryView
+         * @param providers
+         * @param currentProvider
+         * @returns {boolean}
+         */
+        renderProviders: function renderProviders(providers, currentProvider) {
+
+<span id='GalleryView-property-S-providers'>            /**
+</span>             * Define Gallery element
+             * @type {GalleryProvidersElement}
+             */
+            this.elements.$providers = new GalleryProviders(this, {
+                $container: this.elements.$container.$,
+                style: &#39;gallery-providers&#39;,
+                data: providers,
+                current: currentProvider
+            });
+        },
+
+<span id='GalleryView-method-renderSearch'>        /**
+</span>         * Render gallery search
+         * @member GalleryView
+         * @returns {boolean}
+         */
+        renderSearch: function renderSearch() {
+
+            if (this.isCached(&#39;$search&#39;, GallerySearch)) {
+                return false;
+            }
+
+<span id='GalleryView-property-S-search'>            /**
+</span>             * Define Gallery element
+             * @type {GallerySearchElement}
+             */
+            this.elements.$search = new GallerySearch(this, {
+                $container: this.elements.$container.$,
+                style: &#39;gallery-search&#39;
+            });
+        },
+
+<span id='GalleryView-method-renderContent'>        /**
+</span>         * Render gallery content
+         * @member GalleryView
+         * @param provider
+         * @param {Boolean} force
+         * @returns {boolean}
+         */
+        renderContent: function renderContent(provider, force) {
+
+            if (this.isCachedItems() &amp;&amp; !force) {
+                return false;
+            }
+
+            // clean content
+            this.elements.$gallery.empty();
+
+<span id='GalleryView-property-items'>            /**
+</span>             * Define content
+             * @type {{}}
+             */
+            this.elements.items = {};
+
+<span id='GalleryView-property-data'>            /**
+</span>             * Define provider data
+             */
+            var data = provider.data;
+
+            for (var i = 0, l = data.length; i &lt; l; i++) {
+
+<span id='GalleryView-property-S-item'>                /**
+</span>                 * Render item
+                 * @type {GalleryContentElement}
+                 */
+                var $item = new GalleryContent(this, {
+                    style: &#39;content&#39;,
+                    $container: this.elements.$gallery.$,
+                    data: data[i]
+                });
+
+                this.elements.items[$item.id] = $item;
+            }
+
+            this.elements.$gallery.scrollCover(
+                this.elements.$container.$
+            );
+
+            this.renderFooter();
+        },
+
+<span id='GalleryView-method-render'>        /**
+</span>         * Render gallery
+         * @member GalleryView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderGallery.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});</pre>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">define([
+
+], function defineAvatarBehavior() {
+
+<span id='AvatarBehavior-method-constructor'><span id='AvatarBehavior'>    /**
+</span></span>     * Define Avatar Behavior
+     * @class AvatarBehavior
+     * @constructor
+     */
+    var AvatarBehavior = function AvatarBehavior() {
+
+    };
+
+    return AvatarBehavior.extend(&#39;AvatarBehavior&#39;, {
+
+<span id='AvatarBehavior-method-defineSelectors'>        /**
+</span>         * Define avatar config functionality selectors
+         * @member AvatarBehavior
+         */
+        defineSelectors: function defineSelectors() {
+            this.$avContainer = $(&#39;.bord&#39;, this.$);
+            this.$avatarImage = $(&#39;.imageFrame img&#39;, this.$);
+            this.$imageDraggMenu = $(&#39;.dragMenu&#39;, this.$);
+            this.$underLayerMenu = $(&#39;.under_layer&#39;, this.$);
+            this.$allowDraggingButton = $(&#39;.dragIt&#39;, this.$);
+            this.$changeAvatarButton = $(&#39;.changeAvatarButton&#39;, this.$);
+        },
+
+        initAvatarPosition: function initAvatarPosition() {
+
+            if (localStorage.getItem(&#39;avatarX&#39;)) {
+
+                var top = localStorage.getItem(&#39;avatarX&#39;),
+                    left = localStorage.getItem(&#39;avatarY&#39;);
+
+                avatarImage.offset({
+                    top: top,
+                    left: left
+                });
+            }
+        },
+
+        bindConfig: function bindConfig() {
+
+            this.$avContainer.mouseenter(
+                function mouseEnter() {
+
+                    this.$underLayerMenu.addClass(&#39;extend_menu&#39;);
+                    this.$imageDraggMenu.addClass(&#39;extend&#39;);
+
+                }.bind(this)
+            );
+
+            this.$avContainer.mouseleave(
+                function mouseLeave() {
+
+                    this.$underLayerMenu.removeClass(&#39;extend_menu&#39;);
+                    this.$imageDraggMenu.removeClass(&#39;extend&#39;);
+
+                    this.setDraggable(false);
+
+                }.bind(this)
+            );
+
+            this.$changeAvatarButton.on(
+                &#39;click.changeAvatar&#39;,
+                function changeAvatar() {
+                    this.$avatarImage.attr(&#39;src&#39;, &quot;images.jpg&quot;);
+                }.bind(this)
+            );
+
+            this.$allowDraggingButton.on(
+                &#39;click.allowDrag&#39;,
+                function allowDrag() {
+
+                    this.setDraggable(true);
+                    this.$imageDraggMenu.removeClass(&#39;extend&#39;);
+
+                }.bind(this)
+            );
+        },
+
+        setDraggable: function setDraggable(drag) {
+
+            if (drag) {
+
+                if (this.$avatarImage.data(&#39;ui-draggable&#39;)) {
+
+                    this.$avatarImage.draggable(&#39;enable&#39;);
+
+                } else {
+
+                    this.$avatarImage.draggable({
+                        stop: function (event, ui) {
+                            var top = $(this).offset().top;
+                            var left = $(this).offset().left;
+                            localStorage.setItem(&#39;avatarX&#39;, top);
+                            localStorage.setItem(&#39;avatarY&#39;, left);
+                        }
+                    });
+                }
+
+            } else {
+
+                this.$avatarImage.draggable(&#39;disable&#39;);
+            }
+        }
+    });
+});</pre>
+</body>
+</html>

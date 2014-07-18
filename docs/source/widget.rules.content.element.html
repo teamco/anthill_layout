@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineWidgetRulesContentElement(BaseElement) {
+
+<span id='WidgetRulesContentElement-method-WidgetRulesContentElement'><span id='WidgetRulesContentElement'>    /**
+</span></span>     * Define WidgetRules Content Element
+     * @param view
+     * @param opts
+     * @returns {WidgetRulesContentElement}
+     * @constructor
+     * @class WidgetRulesContentElement
+     * @extends BaseElement
+     */
+    var WidgetRulesContentElement = function WidgetRulesContentElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;li /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: false
+        });
+
+        this.setAttributes(opts.data);
+        this.bindShowRules(opts.data);
+        this.bindLocate(opts.data);
+
+        return this;
+    };
+
+    return WidgetRulesContentElement.extend(&#39;WidgetRulesContentElement&#39;, {
+
+<span id='WidgetRulesContentElement-method-setAttributes'>        /**
+</span>         * Define attributes
+         * @member WidgetRulesContentElement
+         * @param data
+         */
+        setAttributes: function setAttributes(data) {
+
+<span id='WidgetRulesContentElement-property-title'>            /**
+</span>             * Get title
+             * @type {boolean|string}
+             */
+            var title = data.model.getConfig(&#39;preferences/title&#39;) ||
+                data.model.getUUID();
+
+<span id='WidgetRulesContentElement-property-description'>            /**
+</span>             * Get description
+             * @type {string}
+             */
+            var description = data.model.getConfig(&#39;preferences/description&#39;) || &#39;&#39;;
+
+            this.$.attr({
+                title: title
+            }).addClass(
+                this.view.controller.getResourceClassName(
+                    data.model.getConfig(&#39;preferences/resource&#39;)
+                )
+            );
+
+<span id='WidgetRulesContentElement-property-thumbnail'>            /**
+</span>             * Get thumbnail
+             * @type {string|*}
+             */
+            var thumbnail = data.model.getConfig(&#39;preferences/thumbnail&#39;);
+
+            if (thumbnail.length &gt; 0) {
+
+                this.$.css({
+                    backgroundImage: &#39;url(&quot;&#39; + thumbnail + &#39;&quot;)&#39;
+                });
+            }
+
+            this.renderTooltip({
+                title: title,
+                description: description,
+                $container: this
+            });
+        },
+
+<span id='WidgetRulesContentElement-method-bindLocate'>        /**
+</span>         * Locate widget before showing rules
+         * @member WidgetRulesContentElement
+         * @param data
+         */
+        bindLocate: function bindLocate(data) {
+
+<span id='WidgetRulesContentElement-method-_locateRules'>            /**
+</span>             * Locate widget
+             * @param event
+             * @private
+             */
+            function _locateRules(event) {
+                scope.observer.publish(
+                    scope.eventmanager.eventList.loadRules, [
+                        {uuid: config.uuid},
+                        false,
+                        event,
+                        scope.controller.locateWidgetRules.bind(
+                            scope.controller
+                        )
+                    ]
+                );
+            }
+
+<span id='WidgetRulesContentElement-property-config'>            /**
+</span>             * Get config
+             * @type {*}
+             */
+            var config = data.model.getConfig();
+
+<span id='WidgetRulesContentElement-property-scope'>            /**
+</span>             * Define scope
+             * @type {WidgetRules}
+             */
+            var scope = this.view.scope;
+
+            this.$.off(&#39;mouseenter.rules mouseleave.rules&#39;).on(
+                &#39;mouseenter.rules mouseleave.rules&#39;,
+                _locateRules.bind(this)
+            );
+        },
+
+<span id='WidgetRulesContentElement-method-bindShowRules'>        /**
+</span>         * Bind show rules
+         * @member WidgetRulesContentElement
+         * @param data
+         */
+        bindShowRules: function bindShowRules(data) {
+
+<span id='WidgetRulesContentElement-method-_loadStoredRules'>            /**
+</span>             * Load stored rules
+             * @private
+             */
+            function _loadStoredRules() {
+                this.view.controller.loadStoredRules(config.rules);
+            }
+
+<span id='WidgetRulesContentElement-method-_clickRules'>            /**
+</span>             * Click prefs
+             * @private
+             * @param e
+             */
+            function _clickRules(e) {
+                scope.observer.publish(
+                    scope.eventmanager.eventList.loadRules,
+                    [config, true, e, _loadStoredRules.bind(this)]
+                );
+            }
+
+<span id='WidgetRulesContentElement-property-config'>            /**
+</span>             * Get config
+             * @type {*}
+             */
+            var config = data.model.getConfig();
+
+<span id='WidgetRulesContentElement-property-scope'>            /**
+</span>             * Define scope
+             * @type {WidgetRules}
+             */
+            var scope = this.view.scope;
+
+            this.$.off(&#39;click.rules&#39;).on(
+                &#39;click.rules&#39;,
+                _clickRules.bind(this)
+            );
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

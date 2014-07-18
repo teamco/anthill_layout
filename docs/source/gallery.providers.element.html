@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 3/25/14.
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineProviders(BaseElement) {
+
+<span id='GalleryProvidersElement-method-GalleryProvidersElement'><span id='GalleryProvidersElement'>    /**
+</span></span>     * Define Providers Element
+     * @param view
+     * @param opts
+     * @returns {GalleryProvidersElement}
+     * @constructor
+     * @class GalleryProvidersElement
+     * @extends BaseElement
+     */
+    var GalleryProvidersElement = function GalleryProvidersElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        return this.renderData(
+            opts.data,
+            opts.current
+        );
+    };
+
+    return GalleryProvidersElement.extend({
+
+<span id='GalleryProvidersElement-method-renderData'>        /**
+</span>         * Render data
+         * @member GalleryProvidersElement
+         * @param data
+         * @param currentProvider
+         * @returns {GalleryProvidersElement}
+         */
+        renderData: function renderData(data, currentProvider) {
+
+            var combo = [];
+
+            for (var index in data) {
+
+                if (data.hasOwnProperty(index)) {
+
+                    combo.push({
+                        type: &#39;text&#39;,
+                        key: data[index].key,
+                        value: data[index].name
+                    });
+                }
+            }
+
+            this.$.append(
+                this.renderCombobox(
+                    combo,
+                    currentProvider.name,
+                    &#39;&#39;,
+                    &#39;galleryProviders&#39;, {
+                        type: &#39;click.changeProvider&#39;,
+                        callback: this.view.controller.changeProvider.bind(
+                            this.view.controller
+                        )
+                    },
+                    true
+                )
+            );
+
+            return this;
+        }
+
+    }, BaseElement.prototype);
+
+});</pre>
+</body>
+</html>

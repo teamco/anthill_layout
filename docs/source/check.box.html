@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 7/10/14.
+ */
+
+define([], function defineCheckBoxRenderer(){
+
+<span id='CheckBoxRenderer-method-constructor'><span id='CheckBoxRenderer'>    /**
+</span></span>     * Define CheckBoxRenderer
+     * @class CheckBoxRenderer
+     * @extends LabelRenderer
+     * @constructor
+     */
+    var CheckBoxRenderer = function CheckBoxRenderer(){
+
+    };
+
+    return CheckBoxRenderer.extend(&#39;CheckBoxRenderer&#39;, {
+
+<span id='CheckBoxRenderer-method-renderCheckbox'>        /**
+</span>         * Render checkbox
+         * @member CheckBoxRenderer
+         * @param {{text: string, name: string, value, [checked]: boolean, [disabled]: boolean, [monitor]}} opts
+         * @returns {*[]}
+         */
+        renderCheckbox: function renderCheckbox(opts) {
+
+<span id='CheckBoxRenderer-property-uuid'>            /**
+</span>             * Create UUID
+             * @type {String}
+             */
+            var uuid = this.base.lib.generator.UUID() + &#39;-checkbox&#39;,
+                checked = this.base.defineBoolean(opts.checked, false, true);
+
+<span id='CheckBoxRenderer-property-S-input'>            /**
+</span>             * Define $input
+             * @type {*|jQuery}
+             */
+            var $input = $(&#39;&lt;input /&gt;&#39;).attr({
+                name: opts.name,
+                type: &#39;checkbox&#39;,
+                id: uuid,
+                title: opts.value,
+                checked: checked,
+                disabled: this.base.defineBoolean(opts.disabled, false, true)
+            }).val(opts.value);
+
+            $input.prop(
+                &#39;checked&#39;,
+                checked
+            );
+
+            if (opts.monitor) {
+
+                $input.on(
+                    opts.monitor.events.join(&#39;,&#39;),
+                    opts.monitor.callback
+                );
+            }
+
+            if (!opts.visible) {
+                $input.hide();
+            }
+
+            return [
+                $input,
+                this.renderLabel(uuid, opts.text, &#39;text&#39;, opts.visible)
+            ];
+        }
+    });
+});</pre>
+</body>
+</html>
