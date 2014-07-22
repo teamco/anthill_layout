@@ -45,6 +45,10 @@ define([
             this.view.showPreferences(data)
         },
 
+        /**
+         * Approve update preferences
+         * @member SitePreferencesController
+         */
         approveUpdatePreferences: function approveUpdatePreferences() {
 
             /**
