@@ -124,6 +124,10 @@ define(
             this.observer.publish(
                 this.eventmanager.eventList.bindHashChange
             );
+
+            this.observer.publish(
+                this.eventmanager.eventList.loadPreferences
+            );
         };
 
         return Workspace.extend('Workspace', {

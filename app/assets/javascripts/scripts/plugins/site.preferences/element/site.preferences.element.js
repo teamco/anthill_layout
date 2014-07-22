@@ -95,14 +95,21 @@ define([
             var text = 'staticWidth';
 
             /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                checked = workspace.model.getConfig('preferences/' + text);
+
+            /**
              * Define checkbox
              * @type {*[]}
              */
             var $element = this.renderCheckbox({
                 name: text,
                 text: text.humanize(),
-                checked: false,
-                value: false,
+                checked: checked,
+                value: checked,
                 disabled: false,
                 visible: true,
                 monitor: {

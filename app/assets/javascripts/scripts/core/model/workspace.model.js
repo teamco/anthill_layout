@@ -35,8 +35,8 @@ define([
          */
         setStaticWidth: function setStaticWidth(width) {
             this.scope.config.preferences.staticWidth = width;
+            this.scope.config.isResized = !width;
         }
 
     }, BaseModel.prototype);
-
 });
