@@ -137,7 +137,7 @@ define([
                 $slider = $('.ui-slider', $input.parents('ul')),
                 checked = $input.prop('checked');
 
-            $slider.slider('option', checked ? 'enabled' : 'disabled');
+            $slider.slider(checked ? 'enable' : 'disable');
         },
 
         /**
@@ -183,7 +183,7 @@ define([
                 value: 1,
                 min: 0,
                 max: map.length - 1,
-                disabled: true,
+                disabled: !workspace.model.getConfig('preferences/staticWidth'),
                 slide: function (event, ui) {
 
                     $($textfield, 'input').val(ui.value);
