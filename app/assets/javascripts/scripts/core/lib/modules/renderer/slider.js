@@ -5,7 +5,9 @@
  * Time: 5:51 PM
  */
 
-define([], function defineSliderRenderer(){
+define([
+    'lib/jquery/jquery.ui.labeledslider'
+], function defineSliderRenderer(){
 
     /**
      * Define Slider Renderer
@@ -32,7 +34,7 @@ define([], function defineSliderRenderer(){
                 return false;
             }
 
-            $container.slider(opts);
+            $container.labeledslider(opts);
         }
     });
 });

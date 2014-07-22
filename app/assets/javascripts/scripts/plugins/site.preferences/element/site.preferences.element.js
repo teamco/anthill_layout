@@ -183,6 +183,8 @@ define([
                 value: 1,
                 min: 0,
                 max: map.length - 1,
+                tickInterval: 1,
+                tickLabels: map,
                 disabled: !workspace.model.getConfig('preferences/staticWidth'),
                 slide: function (event, ui) {
 
