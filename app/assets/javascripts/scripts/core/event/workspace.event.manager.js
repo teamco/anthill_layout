@@ -49,7 +49,10 @@ define(
              *      switchToPage: string,
              *      afterSwitchToPage: string,
              *      adoptContentWidth: string,
-             *      afterLoadingItems: string
+             *      afterLoadingItems: string,
+             *      loadPreferences: string,
+             *      transferPreferences: string,
+             *      transferContentPreferences: string
              * }}
              */
             eventList: {
@@ -64,7 +67,11 @@ define(
                 switchToPage: 'switch.to.page',
                 afterSwitchToPage: 'after.switch.to.page',
                 adoptContentWidth: 'adopt.content.width',
-                afterLoadingItems: 'after.loading.items'
+                afterLoadingItems: 'after.loading.items',
+
+                loadPreferences: 'load.preferences',
+                transferPreferences: 'transfer.preferences',
+                transferContentPreferences: 'transfer.content.preferences'
             }
 
         }, BaseEvent.prototype);

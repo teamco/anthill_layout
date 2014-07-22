@@ -19,7 +19,7 @@ define([], function defineTextFieldRenderer() {
         /**
          * Render text field
          * @member TextFieldRenderer
-         * @param {{text: string, name: string, [placeholder]: string, value, [disabled]: boolean, [monitor]}} opts
+         * @param {{[text]: string, name: string, [placeholder]: string, value, [disabled]: boolean, [monitor]}} opts
          * @returns {*[]}
          */
         renderTextField: function renderTextField(opts) {

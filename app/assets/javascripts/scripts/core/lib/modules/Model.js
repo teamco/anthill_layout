@@ -354,29 +354,6 @@ define([
             return this.getConfig('order');
         },
 
-//        /**
-//         * Update prefs
-//         * @member BaseModel
-//         * @param data
-//         */
-//        updatePreferences: function updatePreferences(data) {
-//
-//            /**
-//             * Get prefs
-//             * @type {*}
-//             */
-//            var preferences = this.getConfig('preferences');
-//
-//            for (var index in data) {
-//
-//                if (data.hasOwnProperty(index)) {
-//
-//                    preferences[index] = data[index];
-//                    this.setPrefs(index, data[index]);
-//                }
-//            }
-//        },
-
         /**
          * Set rules on loading
          * @member BaseModel

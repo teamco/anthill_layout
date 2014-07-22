@@ -70,10 +70,9 @@ define([
         /**
          * Get preferences HTML
          * @member SitePreferencesElement
-         * @param opts
          * @return string
          */
-        getPreferencesHtml: function getPreferencesHtml(opts) {
+        getPreferencesHtml: function getPreferencesHtml() {
 
             var nodes = [];
 
@@ -105,15 +104,33 @@ define([
                 checked: false,
                 value: false,
                 disabled: false,
-                visible: true
+                visible: true,
+                monitor: {
+                    events: ['click.width'],
+                    callback: this.toggleSlider
+                }
             });
 
             return $('<li />').
                 addClass([
-                        text.humanize().toClassName() + '-prefs',
+                    ['workspace', text.humanize().toClassName(), 'prefs'].join('-'),
                     'checkbox'
                 ].join(' ')).
                 append($element);
+        },
+
+        /**
+         * Enable/Disable slider
+         * @member SitePreferencesElement
+         * @param e
+         */
+        toggleSlider: function toggleSlider(e) {
+
+            var $input = $(e.target),
+                $slider = $('.ui-slider', $input.parents('ul')),
+                checked = $input.prop('checked');
+
+            $slider.slider('option', checked ? 'enabled' : 'disabled');
         },
 
         /**
@@ -142,7 +159,41 @@ define([
                 visible: false
             });
 
-            var $node = $('<li />').append(
+            /**
+             * Define site width values
+             * @type {number[]}
+             */
+            var map = [960, 1024, 1040, 1140, 1280, 1920];
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                $workspace = workspace.view.elements.$workspace;
+
+            this.renderSlider($slider, {
+                value: 1,
+                min: 0,
+                max: map.length - 1,
+                disabled: true,
+                slide: function (event, ui) {
+
+                    $($textfield, 'input').val(ui.value);
+
+                    /**
+                     * Get class name
+                     * @type {string}
+                     */
+                    var style = $workspace.$.attr('class').replace(
+                        /sw-\d{3,4}/, 'sw-' + map[ui.value]
+                    );
+
+                    $workspace.$.attr('class', style);
+                }
+            });
+
+            return $('<li />').append(
                 $('<fieldset />').append(
                     $('<legend />').text(cname).
                         on('click.toggle', this.toggleFieldset.bind(this)).attr({
@@ -162,36 +213,7 @@ define([
                     )
                 )
             );
-
-            /**
-             * Define site width values
-             * @type {number[]}
-             */
-            var map = [960, 1024, 1040, 1140, 1280, 1920];
-
-            /**
-             * Get workspace
-             * @type {Workspace}
-             */
-            var workspace = this.view.controller.getWorkspace(),
-                $workspace = workspace.view.elements.$workspace;
-
-            this.renderSlider($slider, {
-                value: 1,
-                min: 0,
-                max: map.length - 1,
-                slide: function (event, ui) {
-                    $($textfield, 'input').val(ui.value);
-                    $workspace.$.attr('class', '').addClass(
-                        ['workspace', 'default', 'sw-' + map[ui.value]].join(' ')
-                    );
-                }
-            });
-
-            return $node;
         }
-
-
 
     }, BaseElement.prototype);
 

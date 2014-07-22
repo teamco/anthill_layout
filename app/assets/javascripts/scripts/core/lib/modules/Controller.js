@@ -392,7 +392,7 @@ define([
          */
         transferPreferences: function transferPreferences(index, value) {
 
-            if (this.controller.isWidget()) {
+            if (!this.controller.isWidgetContent()) {
                 this.config.preferences[index] = value;
                 return false;
             }

@@ -43,6 +43,7 @@ define(
             /**
              * Define default config
              * @type {{
+             *      preferences: {},
              *      limit: boolean,
              *      isResized: boolean,
              *      type: string,
@@ -58,6 +59,7 @@ define(
              * }}
              */
             var DEFAULTS = {
+                preferences: opts.preferences || {},
                 limit: false,
                 isResized: true,
                 type: 'default',

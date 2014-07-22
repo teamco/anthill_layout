@@ -28,6 +28,15 @@ define([
 
     return WorkspaceModel.extend('WorkspaceModel', {
 
+        /**
+         * Set static width
+         * @member WorkspaceModel
+         * @param {boolean} width
+         */
+        setStaticWidth: function setStaticWidth(width) {
+            this.scope.config.preferences.staticWidth = width;
+        }
+
     }, BaseModel.prototype);
 
 });

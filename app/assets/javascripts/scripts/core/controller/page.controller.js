@@ -24,6 +24,8 @@ define(
          * @extends BaseController
          * @extends AntHill
          * @extends BasePage
+         * @extends BasePreferences
+         * @extends Router
          * @extends PageLayer
          * @constructor
          */

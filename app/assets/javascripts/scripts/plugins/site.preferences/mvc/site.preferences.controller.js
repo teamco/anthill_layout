@@ -46,7 +46,18 @@ define([
         },
 
         approveUpdatePreferences: function approveUpdatePreferences() {
-            debugger;
+
+            /**
+             * Define scope
+             * @type {SitePreferences}
+             */
+            var scope = this.scope,
+                workspace = scope.controller.getWorkspace();
+
+            workspace.controller.updatePreferences(
+                scope.view.elements.$modal,
+                false
+            );
         }
 
     }, AntHill.prototype, PluginBase.prototype);
