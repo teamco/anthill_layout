@@ -14,8 +14,9 @@ define([
     'modules/renderer/slider',
     'modules/renderer/text.area',
     'modules/renderer/text.field',
-    'modules/renderer/tool.tip'
-], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Label, Slider, TextArea, TextField, ToolTip) {
+    'modules/renderer/tool.tip',
+    'modules/renderer/text.download'
+], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Label, Slider, TextArea, TextField, ToolTip, TextDownload) {
 
     /**
      * Define renderer
@@ -30,6 +31,7 @@ define([
      * @extends {TextAreaRenderer} TextArea
      * @extends {TextFieldRenderer} TextField
      * @extends {ToolTipRenderer} ToolTip
+     * @extends {TextDownloadRenderer} TextDownload
      * @constructor
      */
     var Renderer = function Renderer() {
@@ -48,6 +50,7 @@ define([
         Slider.prototype,
         TextArea.prototype,
         TextField.prototype,
+        TextDownload.prototype,
         ToolTip.prototype
     );
 });
