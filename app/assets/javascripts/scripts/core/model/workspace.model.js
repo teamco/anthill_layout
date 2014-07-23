@@ -36,6 +36,15 @@ define([
         setStaticWidth: function setStaticWidth(width) {
             this.scope.config.preferences.staticWidth = width;
             this.scope.config.isResized = !width;
+        },
+
+        /**
+         * Set Site Width Slider
+         * @member WorkspaceModel
+         * @param {number} width
+         */
+        setSiteWidthSlider: function setSiteWidthSlider(width) {
+            this.scope.config.preferences.siteWidthSlider = width;
         }
 
     }, BaseModel.prototype);

@@ -25,6 +25,13 @@ define([
             destroy: false
         });
 
+        /**
+         * Define site width values
+         * @member SitePreferencesElement
+         * @type {number[]}
+         */
+        this.map = [960, 1024, 1040, 1140, 1280, 1920];
+
         this.addCSS('site.preferences');
         this.addCSS('preferences');
 
@@ -99,7 +106,8 @@ define([
              * @type {Workspace}
              */
             var workspace = this.view.controller.getWorkspace(),
-                checked = workspace.model.getConfig('preferences/' + text);
+                preferences = workspace.model.getConfig('preferences'),
+                checked = preferences[text];
 
             /**
              * Define checkbox
@@ -114,7 +122,7 @@ define([
                 visible: true,
                 monitor: {
                     events: ['click.width'],
-                    callback: this.toggleSlider
+                    callback: this.toggleSlider.bind(this)
                 }
             });
 
@@ -133,12 +141,30 @@ define([
          */
         toggleSlider: function toggleSlider(e) {
 
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                $workspace = workspace.view.elements.$workspace;
+
             var $input = $(e.target),
                 $slider = $('.ui-slider', $input.parents('ul')),
+                width = $slider.slider('value'),
                 checked = $input.prop('checked');
 
-            $slider.slider(checked ? 'enable' : 'disable');
+            if (checked) {
+
+                $workspace.setWidth(this.map[width] || 0);
+                $slider.slider('enable');
+
+            } else {
+
+                $workspace.unsetWidth();
+                $slider.slider('disable');
+            }
         },
+
 
         /**
          * Render width slider
@@ -146,6 +172,14 @@ define([
          * @returns {*|jQuery}
          */
         siteWidthSlider: function siteWidthSlider() {
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                $workspace = workspace.view.elements.$workspace,
+                preferences = workspace.model.getConfig('preferences');
 
             /**
              * Define title
@@ -157,54 +191,41 @@ define([
                 $slider = $('<div />');
 
             /**
+             * Get site slider value
+             * @type {number}
+             */
+            var sliderValue = preferences.siteWidthSlider;
+
+            /**
              * Render slider input
              * @type {*[]}
              */
             var $textfield = this.renderTextField({
-                name: 'siteWithSlider',
-                disabled: true,
-                visible: false
+                name: 'siteWidthSlider',
+                disabled: false,
+                visible: false,
+                value: sliderValue
             });
 
-            /**
-             * Define site width values
-             * @type {number[]}
-             */
-            var map = [960, 1024, 1040, 1140, 1280, 1920];
-
-            /**
-             * Get workspace
-             * @type {Workspace}
-             */
-            var workspace = this.view.controller.getWorkspace(),
-                $workspace = workspace.view.elements.$workspace;
-
             this.renderSlider($slider, {
-                value: 1,
+
+                value: sliderValue || 1,
                 min: 0,
-                max: map.length - 1,
-                tickInterval: 1,
-                tickLabels: map,
-                disabled: !workspace.model.getConfig('preferences/staticWidth'),
+                max: this.map.length - 1,
+                labels: this.map,
+                disabled: !preferences.staticWidth,
+
                 slide: function (event, ui) {
 
-                    $($textfield, 'input').val(ui.value);
+                    $textfield[1].val(ui.value);
+                    $workspace.setWidth(this.map[ui.value]);
 
-                    /**
-                     * Get class name
-                     * @type {string}
-                     */
-                    var style = $workspace.$.attr('class').replace(
-                        /sw-\d{3,4}/, 'sw-' + map[ui.value]
-                    );
-
-                    $workspace.$.attr('class', style);
-                }
+                }.bind(this)
             });
 
             return $('<li />').append(
                 $('<fieldset />').append(
-                    $('<legend />').text(cname).
+                    $('<legend />').addClass('open').text(cname).
                         on('click.toggle', this.toggleFieldset.bind(this)).attr({
                             title: cname
                         }),
@@ -214,7 +235,7 @@ define([
                     ),
 
                     $ul.append(
-                        $('<li class="site-width-prefs slider" />').append(
+                        $('<li class="workspace-site-width-prefs slider" />').append(
                             this.renderLabel(uuid, 'Site Width', 'slider', true),
                             $slider,
                             $textfield

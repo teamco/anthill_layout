@@ -28,5 +28,33 @@ define([
 
     return WorkspaceElement.extend('WorkspaceElement', {
 
+        /**
+         * Set workspace width
+         * @member WorkspaceElement
+         * @param {number} width
+         */
+        setWidth: function setWidth(width) {
+
+            var style = this.$.attr('class'),
+                regex = /sw-\d{3,4}/;
+
+            style = style.match(regex) ?
+                style.replace(regex, 'sw-' + width) :
+                style + ' sw-' + width;
+
+            this.$.attr('class', style);
+        },
+
+        /**
+         * Unset workspace width
+         * @member WorkspaceElement
+         */
+        unsetWidth: function unserWidth() {
+            this.$.attr(
+                'class',
+                this.$.attr('class').replace(/sw-\d{3,4}/, '')
+            );
+        }
+
     }, BaseElement.prototype);
 });
