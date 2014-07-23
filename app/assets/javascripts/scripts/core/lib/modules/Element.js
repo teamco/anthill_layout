@@ -113,6 +113,57 @@ define([
         },
 
         /**
+         * Get text metrics
+         * @member BaseElement
+         * @param $element
+         * @return {Object}
+         */
+        textMetrics: function textMetrics($element) {
+
+            // Define new div
+            var $div = $('<div />').appendTo('body');
+
+            $div.css({
+                position: 'absolute',
+                left: -1000,
+                top: -1000,
+                display: 'none'
+            });
+
+            $div.html($element.html());
+
+            var styles = [
+                'font-size',
+                'font-style',
+                'font-weight',
+                'font-family',
+                'line-height',
+                'text-transform',
+                'letter-spacing'
+            ];
+
+            $(styles).each(function textMetricsLoop() {
+                var s = this.toString();
+                $div.css({
+                    s: $element.css(s)
+                });
+            });
+
+            /**
+             * Set metrics
+             * @type {{height: (*|jQuery), width: (*|jQuery)}}
+             */
+            var metrics = {
+                height: $div.outerHeight(true),
+                width: $div.outerWidth(true)
+            };
+
+            $div.remove();
+
+            return metrics;
+        },
+
+        /**
          * Centralize element into container
          * @member BaseElement
          * @param {{$container, $item, css, position: String}} opts
