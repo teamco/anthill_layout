@@ -5,9 +5,7 @@
  * Time: 5:51 PM
  */
 
-define([
-    'lib/jquery/jquery.ui.labeledslider'
-], function defineSliderRenderer(){
+define([], function defineSliderRenderer() {
 
     /**
      * Define Slider Renderer
@@ -34,7 +32,31 @@ define([
                 return false;
             }
 
-            $container.labeledslider(opts);
+            $container.slider(opts);
+
+            var labels = opts.labels || [],
+                i = opts.min || 0,
+                l = labels.length;
+
+            for (i; i < l; i += (opts.step || 1)) {
+
+                // Calculate left position
+                var left = ( i / opts.max * 100 ).toFixed(2) + "%";
+
+                var $separator = $("<div/>").addClass("ui-slider-tick separator").css({
+                    left: left
+                });
+
+                var $label = $("<div/>").addClass("ui-slider-tick label").css({
+                    left: left
+                }).text(labels[i]);
+
+                $container.append($separator, $label);
+
+                $label.css({
+                    marginLeft: -(this.textMetrics($label).width / 2)
+                });
+            }
         }
     });
 });
