@@ -5,27 +5,27 @@
     overflow: hidden;
 }
 
-.workspace.sw-960 {
+.workspace.sw-0 {
     width: 960px;
 }
 
-.workspace.sw-1024 {
+.workspace.sw-1 {
     width: 1024px;
 }
 
-.workspace.sw-1040 {
+.workspace.sw-2 {
     width: 1040px;
 }
 
-.workspace.sw-1140 {
+.workspace.sw-3 {
     width: 1140px;
 }
 
-.workspace.sw-1280 {
+.workspace.sw-4 {
     width: 1280px;
 }
 
-.workspace.sw-1920 {
+.workspace.sw-5 {
     width: 1920px;
 }
 

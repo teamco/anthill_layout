@@ -91,6 +91,9 @@ define([
             name: "success.rendered",
             callback: function successRenderedCallback() {
                 this.view.renderWorkspace();
+                this.observer.publish(
+                    this.eventmanager.eventList.updateSiteWidth
+                );
             }
         },
 

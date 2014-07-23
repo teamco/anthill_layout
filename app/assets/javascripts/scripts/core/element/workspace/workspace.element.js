@@ -33,10 +33,14 @@ define([
          * @member WorkspaceElement
          * @param {number} width
          */
-        setWidth: function setWidth(width) {
+        updateWidth: function updateWidth(width) {
+
+            if (!width) {
+                return false;
+            }
 
             var style = this.$.attr('class'),
-                regex = /sw-\d{3,4}/;
+                regex = /sw-\d{1,2}/;
 
             style = style.match(regex) ?
                 style.replace(regex, 'sw-' + width) :
@@ -52,7 +56,7 @@ define([
         unsetWidth: function unserWidth() {
             this.$.attr(
                 'class',
-                this.$.attr('class').replace(/sw-\d{3,4}/, '')
+                this.$.attr('class').replace(/sw-\d{1,2}/, '')
             );
         }
 

@@ -42,7 +42,7 @@ define([
          * @param data
          */
         loadPreferences: function loadPreferences(data) {
-            this.view.showPreferences(data)
+            this.view.showPreferences(data, this.model.map);
         },
 
         /**
@@ -61,6 +61,23 @@ define([
             workspace.controller.updatePreferences(
                 scope.view.elements.$modal,
                 false
+            );
+        },
+
+        /**
+         * Revert preferences on cancel
+         * @member SitePreferencesController
+         */
+        revertSitePreferences: function revertSitePreferences() {
+
+            /**
+             * Define workspace
+             * @type {Workspace}
+             */
+            var workspace = this.getWorkspace();
+
+            workspace.observer.publish(
+                workspace.eventmanager.eventList.updateSiteWidth
             );
         }
 

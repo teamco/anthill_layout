@@ -28,6 +28,13 @@ define([
                 description: 'Preferences are the user options for browsing, editing, searching, notifications, and more'
             }
         };
+
+        /**
+         * Define site width values
+         * @member SitePreferencesModel
+         * @type {number[]}
+         */
+        this.map = [960, 1024, 1040, 1140, 1280, 1920];
     };
 
     return SitePreferencesModel.extend('SitePreferencesModel', {

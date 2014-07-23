@@ -215,7 +215,7 @@ define(
 
                 /**
                  * Transfer preferences
-                 * @member PageController
+                 * @member WorkspaceController
                  * @param {string} index
                  * @param value
                  */
@@ -229,7 +229,7 @@ define(
 
                 /**
                  * Load config preferences
-                 * @member PageController
+                 * @member WorkspaceController
                  */
                 loadPreferences: function loadPreferences() {
 
@@ -257,6 +257,30 @@ define(
                         }
 
                     }.bind(this));
+                },
+
+                /**
+                 * Update site width
+                 * @member WorkspaceController
+                 */
+                updateSiteWidth: function updateSiteWidth() {
+
+                    /**
+                     * Define element
+                     * @type {WorkspaceElement}
+                     */
+                    var $workspace = this.view.elements.$workspace,
+                        preferences = this.model.getConfig('preferences');
+
+                    if (preferences.staticWidth) {
+
+                        $workspace.updateWidth(preferences.siteWidthSlider);
+
+                    } else {
+
+                        $workspace.unsetWidth();
+                    }
+
                 }
             },
 

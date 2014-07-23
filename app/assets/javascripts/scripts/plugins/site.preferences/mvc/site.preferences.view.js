@@ -102,14 +102,15 @@ define([
          * Show Preferences
          * @member SitePreferencesView
          * @param opts
+         * @param {Array} map
          */
-        showPreferences: function showPreferences(opts) {
+        showPreferences: function showPreferences(opts, map) {
 
             /**
              * Define $html
              * @type {string}
              */
-            var $html = this.elements.$site.getPreferencesHtml(opts);
+            var $html = this.elements.$site.getPreferencesHtml(map);
 
             /**
              * Define buttons
@@ -125,7 +126,7 @@ define([
                 reject: {
                     text: 'Cancel',
                     events: {
-                        click: ['rejectModalEvent']
+                        click: ['revertSitePreferences', 'rejectModalEvent']
                     }
                 }
             };

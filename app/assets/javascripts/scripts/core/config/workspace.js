@@ -34,13 +34,6 @@ define(
         var Workspace = function Workspace(opts) {
 
             /**
-             * Define swipe page
-             * @member Workspace
-             * @type {boolean}
-             */
-            this.swipePage = false;
-
-            /**
              * Define default config
              * @type {{
              *      preferences: {},
@@ -103,34 +96,50 @@ define(
                 ]
             });
 
-            /**
-             * Define page
-             * @member Workspace
-             * @type {*|Page}
-             */
-            this.page = {};
-
-            /**
-             * Define itemsÒ
-             * @member Workspace
-             * @type {*}
-             */
-            this.items = {};
-
-            this.observer.publish(
-                this.eventmanager.eventList.successCreated
-            );
-
-            this.observer.publish(
-                this.eventmanager.eventList.bindHashChange
-            );
-
-            this.observer.publish(
-                this.eventmanager.eventList.loadPreferences
-            );
+            this.init();
         };
 
         return Workspace.extend('Workspace', {
+
+            /**
+             * Define init
+             * @member Workspace
+             */
+            init: function init() {
+
+                /**
+                 * Define swipe page
+                 * @member Workspace
+                 * @type {boolean}
+                 */
+                this.swipePage = false;
+
+                /**
+                 * Define page
+                 * @member Workspace
+                 * @type {*|Page}
+                 */
+                this.page = {};
+
+                /**
+                 * Define itemsÒ
+                 * @member Workspace
+                 * @type {*}
+                 */
+                this.items = {};
+
+                this.observer.publish(
+                    this.eventmanager.eventList.successCreated
+                );
+
+                this.observer.publish(
+                    this.eventmanager.eventList.bindHashChange
+                );
+
+                this.observer.publish(
+                    this.eventmanager.eventList.loadPreferences
+                );
+            }
 
         }, AntHill.prototype);
     }

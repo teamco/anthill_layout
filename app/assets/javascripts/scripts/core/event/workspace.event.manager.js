@@ -50,6 +50,7 @@ define(
              *      afterSwitchToPage: string,
              *      adoptContentWidth: string,
              *      afterLoadingItems: string,
+             *      updateSiteWidth: string,
              *      loadPreferences: string,
              *      transferPreferences: string,
              *      transferContentPreferences: string
@@ -68,6 +69,8 @@ define(
                 afterSwitchToPage: 'after.switch.to.page',
                 adoptContentWidth: 'adopt.content.width',
                 afterLoadingItems: 'after.loading.items',
+
+                updateSiteWidth: 'update.site.width',
 
                 loadPreferences: 'load.preferences',
                 transferPreferences: 'transfer.preferences',

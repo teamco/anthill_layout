@@ -25,13 +25,6 @@ define([
             destroy: false
         });
 
-        /**
-         * Define site width values
-         * @member SitePreferencesElement
-         * @type {number[]}
-         */
-        this.map = [960, 1024, 1040, 1140, 1280, 1920];
-
         this.addCSS('site.preferences');
         this.addCSS('preferences');
 
@@ -77,13 +70,14 @@ define([
         /**
          * Get preferences HTML
          * @member SitePreferencesElement
+         * @param {Array} map
          * @return string
          */
-        getPreferencesHtml: function getPreferencesHtml() {
+        getPreferencesHtml: function getPreferencesHtml(map) {
 
             var nodes = [];
 
-            nodes.push(this.siteWidthSlider());
+            nodes.push(this.siteWidthSlider(map));
 
             return $('<ul />').append(nodes);
         },
@@ -155,7 +149,7 @@ define([
 
             if (checked) {
 
-                $workspace.setWidth(this.map[width] || 0);
+                $workspace.updateWidth(width || 0);
                 $slider.slider('enable');
 
             } else {
@@ -169,9 +163,10 @@ define([
         /**
          * Render width slider
          * @member SitePreferencesElement
+         * @param {Array} map
          * @returns {*|jQuery}
          */
-        siteWidthSlider: function siteWidthSlider() {
+        siteWidthSlider: function siteWidthSlider(map) {
 
             /**
              * Get workspace
@@ -211,14 +206,14 @@ define([
 
                 value: sliderValue || 1,
                 min: 0,
-                max: this.map.length - 1,
-                labels: this.map,
+                max: map.length - 1,
+                labels: map,
                 disabled: !preferences.staticWidth,
 
                 slide: function (event, ui) {
 
                     $textfield[1].val(ui.value);
-                    $workspace.setWidth(this.map[ui.value]);
+                    $workspace.updateWidth(ui.value);
 
                 }.bind(this)
             });
