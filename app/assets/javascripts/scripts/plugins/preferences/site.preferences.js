@@ -121,13 +121,14 @@ define([
 
             var $input = $(e.target),
                 $slider = $('.ui-slider', $input.parents('ul')),
-                width = $slider.slider('value'),
                 checked = $input.prop('checked');
 
             if (checked) {
 
-                $workspace.updateWidth(width || 0);
-                $('input[name="siteWidthSlider"]', $slider.parent()).val(width || 0)
+                var width = $slider.slider('value') || 0;
+
+                $workspace.updateWidth(width);
+                $('input[name="siteWidthSlider"]', $slider.parent()).val(width);
                 $slider.slider('enable');
 
             } else {

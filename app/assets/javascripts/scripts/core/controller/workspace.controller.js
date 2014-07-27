@@ -274,7 +274,9 @@ define(
 
                     if (preferences.staticWidth) {
 
-                        $workspace.updateWidth(preferences.siteWidthSlider);
+                        $workspace.updateWidth(
+                            parseInt(preferences.siteWidthSlider, 10) || 0
+                        );
 
                     } else {
 

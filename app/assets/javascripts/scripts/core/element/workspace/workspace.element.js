@@ -35,7 +35,7 @@ define([
          */
         updateWidth: function updateWidth(width) {
 
-            if (typeof(width) !== 'string') {
+            if (typeof(width) !== 'number') {
                 return false;
             }
 

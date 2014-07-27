@@ -257,23 +257,23 @@ define([
         renderWidgetsPrefs: function renderWidgetsPrefs(page, nodes) {
 
             /**
+             * Get page items
+             * @type {*}
+             */
+            var widgets = page.model.getItems();
+
+            /**
              * Render widgets
              * @returns {Array}
              * @private
              */
             function _renderWidgets() {
 
-                var list = [];
-
-                /**
-                 * Get page widgets
-                 * @type {*}
-                 */
-                var widgets = page.model.getItems(),
+                var list = [],
                     widget, uuid,
-                    title;
+                    title, index;
 
-                for (var index in widgets) {
+                for (index in widgets) {
 
                     if (widgets.hasOwnProperty(index)) {
 
@@ -331,7 +331,8 @@ define([
                     }
                 }
 
-                return list;
+                return list.length > 0 ? list :
+                    '<li class="no-content">No content available</li>';
             }
 
             /**
@@ -339,12 +340,17 @@ define([
              * @type {*|jQuery}
              */
             var $ul = $('<ul />').addClass('widgets-prefs'),
-                cname = 'Widgets';
+                cname = [
+                    'Widgets: ',
+                    '<span>',
+                    Object.keys(widgets).length,
+                    'items</span>'
+                ].join(' ');
 
             nodes.push(
                 $('<li />').append(
                     $('<fieldset />').append(
-                        $('<legend />').text(cname).
+                        $('<legend />').html(cname).
                             on('click.toggle', this.toggleFieldset.bind(this)).attr({
                                 title: cname
                             }),

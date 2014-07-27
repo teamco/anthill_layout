@@ -197,12 +197,10 @@
     border-radius: 3px;
     padding: 5px 10px;
     margin-top: 10px;
-    border-radius: 3px;
     background-color: #fff;
 }
 
 .modal-dialog.preferences fieldset legend {
-    padding: 0 3px;
     font-variant: small-caps;
     font-size: 14px;
     font-weight: bold;
@@ -213,6 +211,11 @@
     border-top: 1px solid #bbb;
     padding: 0 10px;
     margin-left: -10px;
+}
+
+.modal-dialog.preferences fieldset legend span {
+    font-size: 12px;
+    font-weight: normal;
 }
 
 .modal-dialog.preferences fieldset legend.open {
@@ -356,6 +359,11 @@
     background: transparent no-repeat center;
     width: 67px;
     height: 67px;
+}
+
+.modal-dialog.preferences .widgets-prefs li.no-content {
+    width: auto;
+    height: auto;
 }
 
 .modal-dialog ul.buttons li.rules {
