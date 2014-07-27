@@ -188,10 +188,10 @@ define([
                 labels: map,
                 disabled: !preferences.staticWidth,
 
-                slide: function (event, ui) {
+                slide: function slide(event, ui) {
 
                     $textfield[1].val(ui.value);
-                    $workspace.updateWidth(ui.value);
+                    $workspace.updateWidth(ui.value + '');
 
                 }.bind(this)
             });

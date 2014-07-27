@@ -31,11 +31,11 @@ define([
         /**
          * Set workspace width
          * @member WorkspaceElement
-         * @param {number} width
+         * @param {string} width
          */
         updateWidth: function updateWidth(width) {
 
-            if (typeof(width) !== 'number') {
+            if (typeof(width) !== 'string') {
                 return false;
             }
 
