@@ -14,7 +14,6 @@ define(
         'element/footer.element',
         'plugins/site.config/element/site.config.content.element',
         'plugins/site.config/element/site.config.preferences.element',
-        'plugins/site.config/element/site.config.add.page.element',
         'plugins/site.config/element/site.config.element'
     ],
 
@@ -24,13 +23,12 @@ define(
      * @param {BasePreferences} BasePreferences
      * @param {BaseView} Header
      * @param {BaseView} Footer
-     * @param {SiteConfigContentElement} SiteConfigContent
+     * @param {SiteConfigContentElement} SiteConfigContentElement
      * @param {SiteConfigPreferencesElement} SiteConfigPreferencesElement
-     * @param {SiteConfigAddPageElement} SiteConfigAddPageElement
      * @param {SiteConfigElement} SiteConfigElement
      * @returns {*}
      */
-        function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigAddPageElement, SiteConfigElement) {
+        function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigElement) {
 
         /**
          * Define view
@@ -55,7 +53,7 @@ define(
                 }
 
                 this.header(Header, this.elements.$container).setText(
-                    'Workspace Pages'
+                    'Site Config'
                 );
 
                 /**
@@ -85,9 +83,7 @@ define(
                  * @type {{}}
                  */
                 this.elements.items = {};
-
                 this.elements.$siteconfig.empty();
-                this.renderCreatePage();
 
                 var index, counter = 1;
 
@@ -100,14 +96,13 @@ define(
                          * @type {SiteConfigContentElement}
                          */
                         var $item = new SiteConfigContentElement(this, {
-                            style: 'content',
-                            id: [
-                                data[index].model.getConfig('uuid'),
-                                'site-config-view'
-                            ].join('-'),
+                            style: [
+                                'content',
+                                data[index].title.toDash()
+                            ].join(' '),
                             $container: this.elements.$siteconfig.$,
-                            data: data[index],
-                            counter: counter
+                            counter: counter,
+                            data: data[index]
                         });
 
                         counter += 1;
@@ -126,73 +121,78 @@ define(
             },
 
             /**
-             * Render create new page
-             * @member SiteConfigView
-             */
-            renderCreatePage: function renderCreatePage() {
-
-                /**
-                 * Render add new pages
-                 * @type {SiteConfigAddPageElement}
-                 */
-                this.$addPage = new SiteConfigAddPageElement(this, {
-                    style: 'add-page',
-                    $container: this.elements.$siteconfig.$,
-                    events: {
-                        click: ['createPage']
-                    }
-                });
-            },
-
-            /**
              * Show preferences
              * @member SiteConfigView
-             * @param config
+             * @param opts
+             * @param map
              */
-            showPreferences: function showPreferences(config) {
+            showPreferences: function showPreferences(opts, map) {
 
                 /**
-                 * Define scope
-                 * @type {SiteConfig}
+                 * Define $html
+                 * @type {SiteConfigPreferencesElement}
                  */
-                var scope = this.scope;
+                var $html = this.renderPreferences(map);
 
-                scope.observer.publish(
-                    scope.eventmanager.eventList.setActiveContent,
-                    config.uuid
-                );
-
-                this.openPreferences({
-                    config: config,
-                    $html: this.controller.definePreferences(config.uuid).$,
-                    style: 'site-config-prefs preferences',
-                    title: 'Page preferences',
-                    buttons: {
-                        destroyPageWidgets: {
-                            text: 'Destroy widgets',
-                            events: {
-                                click: 'destroyPageWidgets'
-                            }
+                /**
+                 * Define buttons
+                 * @type {*}
+                 */
+                var buttons = {
+                    approve: {
+                        text: 'OK',
+                        events: {
+                            click: 'approveUpdatePreferences'
+                        }
+                    },
+                    reject: {
+                        text: 'Cancel',
+                        events: {
+                            click: ['revertSitePreferences', 'rejectModalEvent']
                         }
                     }
+                };
+
+                /**
+                 * Define page
+                 * @type {Page}
+                 */
+                var page = this.controller.getPage();
+
+                /**
+                 * Get Workspace
+                 * @type {Workspace}
+                 */
+                var workspace = this.controller.getWorkspace();
+
+                this.modalDialog({
+                    style: [
+                        opts.title.toDash(), 'config'
+                    ].join(' '),
+                    $container: page.view.get$item().$,
+                    type: 'info',
+                    title: opts.title,
+                    text: workspace.model.getUUID(),
+                    html: $html.$,
+                    cover: true,
+                    buttons: buttons
                 });
             },
 
             /**
              * Render Prefs
              * @member SiteConfigView
-             * @param {Page} page
+             * @param map
              * @returns {SiteConfigPreferencesElement}
              */
-            renderPreferences: function renderPreferences(page) {
+            renderPreferences: function renderPreferences(map) {
 
                 /**
                  * Define SiteConfig Preferences Element
                  * @type {SiteConfigPreferencesElement}
                  */
                 this.elements.$preferences = new SiteConfigPreferencesElement(this, {
-                    data: page.model.getConfig('preferences'),
-                    page: page
+                    map: map
                 });
 
                 return this.elements.$preferences;

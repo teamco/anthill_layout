@@ -14,12 +14,13 @@ define(
     /**
      * Define SiteConfigController
      * @param {PluginController} PluginBase
+     * @param {PreferencesController} PreferencesController
      * @returns {SiteConfigController}
      */
         function defineSiteConfigController(PluginBase, PreferencesController) {
 
         /**
-         * Define pages controller
+         * Define site config controller
          * @class SiteConfigController
          * @extends PluginController
          * @extends PreferencesController
@@ -43,7 +44,7 @@ define(
             },
 
             /**
-             * Load pages content
+             * Load site content
              * @member SiteConfigController
              * @param opened
              */
@@ -56,6 +57,18 @@ define(
             },
 
             /**
+             * Load preferences
+             * @member SitePreferencesController
+             * @param data
+             */
+            loadSitePreferences: function loadSitePreferences(data) {
+                this.view.showPreferences(
+                    data,
+                    this.model.getSiteWidthRange()
+                );
+            },
+
+            /**
              * Get Prefs
              * @member SiteConfigController
              * @returns {SiteConfigModel.preferences}
@@ -65,207 +78,39 @@ define(
             },
 
             /**
-             * Define preferences
-             * @member SiteConfigController
-             * @param {string} uuid
-             * @returns {*}
-             */
-            definePreferences: function definePreferences(uuid) {
-
-                return this.scope.view.renderPreferences(
-                    this.getWorkspace().model.getItemByUUID(uuid)
-                );
-            },
-
-            /**
-             * Set active content
-             * @member SiteConfigController
-             * @param uuid
-             */
-            setActiveContent: function setActiveContent(uuid) {
-
-                /**
-                 * Define workspace
-                 * @type {Workspace}
-                 */
-                var workspace = this.controller.getWorkspace();
-
-                /**
-                 * Set active content
-                 * @type {Page}
-                 */
-                this.activeContent = workspace.model.getItemByUUID(uuid);
-            },
-
-            /**
-             * Update prefs
-             * @member SiteConfigController
+             * Approve update preferences
+             * @member SitePreferencesController
              */
             approveUpdatePreferences: function approveUpdatePreferences() {
 
                 /**
                  * Define scope
-                 * @type {SiteConfig}
+                 * @type {SitePreferences}
                  */
-                var scope = this.scope;
+                var scope = this.scope,
+                    workspace = scope.controller.getWorkspace();
 
-                /**
-                 * Get page
-                 * @type {Page}
-                 */
-                var page = scope.activeContent;
-
-                page.controller.updatePreferences(
+                workspace.controller.updatePreferences(
                     scope.view.elements.$modal,
                     false
                 );
+            },
+
+            /**
+             * Revert preferences on cancel
+             * @member SitePreferencesController
+             */
+            revertSitePreferences: function revertSitePreferences() {
 
                 /**
-                 * Get element uuid
-                 * @type {string}
-                 */
-                var uuid = page.model.getUUID() + '-site-config-view';
-
-                this.getView().elements.items[uuid].updateCounter(
-                    page
-                );
-
-                /**
-                 * Get workspace
+                 * Define workspace
                  * @type {Workspace}
                  */
                 var workspace = this.getWorkspace();
-
-                workspace.controller.setPageByHashLocation(page);
-            },
-
-            /**
-             * Define publisher
-             * @member SiteConfigController
-             * @param page
-             */
-            definePublisher: function definePublisher(page) {
-                this.scope.eventmanager.subscribePublishOn(
-                    page,
-                    this.updateCounter.bind(this.scope)
-                );
-            },
-
-            /**
-             * Locate page data element
-             * @member SiteConfigController
-             * @param e
-             */
-            locateSiteConfig: function locateSiteConfig(e) {
-
-                /**
-                 * Define $item
-                 * @type {PageElement}
-                 */
-                var $item = this.scope.activeContent.view.get$item();
-
-                this.locateElement($item, e);
-            },
-
-            /**
-             * Destroy page widgets
-             * @member SiteConfigController
-             */
-            destroyPageWidgets: function destroyPageWidgets() {
-
-                /**
-                 * Define page
-                 * @type {Page}
-                 */
-                var page = this.scope.activeContent;
-
-                page.api.destroyItems(
-                    page.model.getItems()
-                );
-
-                this.scope.view.elements.$modal.selfDestroy();
-            },
-
-            /**
-             * Update widgets counter
-             * @member SiteConfigController
-             */
-            updateCounter: function updateCounter() {
-
-                /**
-                 * Get workspace
-                 * @type {Workspace}
-                 */
-                var workspace = this.controller.getWorkspace(),
-                    pages = workspace.model.getItems(),
-                    index, page, $item, uuid,
-                    cname = '-site-config-view';
-
-                for (index in pages) {
-
-                    if (pages.hasOwnProperty(index)) {
-
-                        /**
-                         * Define page
-                         * @type {Page}
-                         */
-                        page = pages[index];
-
-                        /**
-                         * Define uuid
-                         * @type {string}
-                         */
-                        uuid = page.model.getConfig('uuid');
-
-                        /**
-                         * Define pages content element
-                         * @type {SiteConfigContentElement}
-                         */
-                        $item = this.view.elements.items[uuid + cname];
-
-                        $item.updateCounter(page);
-                    }
-                }
-            },
-
-            /**
-             * Create new page
-             * @member SiteConfigController
-             */
-            createPage: function createPage() {
-
-                /**
-                 * Get workspace
-                 * @type {Workspace}
-                 */
-                var workspace = this.getWorkspace();
-
-                /**
-                 * Define page
-                 * @type {Page}
-                 */
-                var page = workspace.api.createPage([], true);
-
-                this.store(
-                    this.root()
-                );
 
                 workspace.observer.publish(
-                    workspace.eventmanager.eventList.switchToPage,
-                    [page, true]
+                    workspace.eventmanager.eventList.updateSiteWidth
                 );
-
-                /**
-                 * Get panel
-                 * @type {Panel}
-                 */
-                var panel = this.getAuthorPanel();
-
-                panel.observer.publish(
-                    panel.eventmanager.eventList.showContent,
-                    [true, panel.active]
-                );
-
             }
 
         }, PluginBase.prototype, PreferencesController.prototype);

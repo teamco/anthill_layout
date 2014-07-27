@@ -40,65 +40,15 @@ define([
         /**
          * Define init
          * @memberOf SiteConfigContentElement
-         * @param page
+         * @param data
          * @returns {SiteConfigContentElement}
          */
-        init: function init(page) {
+        init: function init(data) {
 
-            this.setAttributes(page);
-            this.setPublishOn(page);
-            this.bindShowPrefs(page);
-
-            this.renderCounter(page);
+            this.setAttributes(data);
+            this.bindShowPrefs(data);
 
             return this;
-        },
-
-        /**
-         * Render page widgets counter
-         * @member SiteConfigContentElement
-         * @param {Page} page
-         */
-        renderCounter: function renderCounter(page) {
-            this.$.append(
-                $('<div />').addClass('counter')
-            );
-
-            this.updateCounter(page);
-        },
-
-        /**
-         * Update counter text
-         * @member SiteConfigContentElement
-         * @param {Page} page
-         */
-        updateCounter: function updateCounter(page) {
-
-            /**
-             * Get items length
-             * @type {Number}
-             */
-            var items = this.base.lib.hash.hashLength(
-                    page.model.getItems()
-                ),
-                preferences = page.model.getConfig('preferences') || {};
-
-            this.get$counter().
-                text(items).
-                attr({
-                    title: [items, 'items'].join(' ')
-                });
-
-            this.renderTooltip({
-                title: preferences.title || page.model.getUUID(),
-                description: [
-                        preferences.description || '', '<br />',
-                    '<span>uuid: </span>', page.model.getUUID(), '<br /><br />',
-                    '<span>items: </span>', items, '<br />',
-                    '<span>index: </span>', 0
-                ].join(''),
-                $container: this
-            });
         },
 
         /**
@@ -117,26 +67,11 @@ define([
          */
         setAttributes: function setAttributes(data) {
 
-            /**
-             * Get config
-             * @type {*}
-             */
-            var config = data.model.getConfig(),
-                preferences = data.model.getConfig('preferences') || {};
-
-            this.$.attr({
-                rel: config.uuid,
-                title: preferences.title || config.uuid
-            }).addClass(config.resource);
-        },
-
-        /**
-         * Set publish on events
-         * @member SiteConfigContentElement
-         * @param page
-         */
-        setPublishOn: function setPublishOn(page) {
-            this.view.scope.controller.definePublisher(page);
+            this.renderTooltip({
+                title: data.title,
+                description: data.description,
+                $container: this
+            });
         },
 
         /**
@@ -147,40 +82,32 @@ define([
         bindShowPrefs: function bindShowPrefs(data) {
 
             /**
-             * Click prefs
-             * @private
+             * Define scope
+             * @type {SiteConfig}
              */
-            function _clickPrefs() {
-
-                /**
-                 * Define view
-                 * @type {SiteConfigView}
-                 */
-                var view = this.view;
-
-                /**
-                 * Define Workspace
-                 * @type {Workspace}
-                 */
-                var workspace = view.controller.getWorkspace();
-
-                view.showPreferences(config);
-
-                workspace.observer.publish(
-                    workspace.eventmanager.eventList.switchToPage,
-                    view.scope.activeContent
-                );
-            }
+            var scope = this.view.scope;
 
             /**
-             * Get config
-             * @type {*}
+             * Click prefs
+             * @private
+             * @param e
              */
-            var config = data.model.getConfig();
+            function _clickPreferences(e) {
 
-            this.$.off('click.prefs').on(
-                'click.prefs',
-                _clickPrefs.bind(this)
+                /**
+                 * Get event name
+                 * @type {string}
+                 */
+                var event = scope.eventmanager.eventList[data.event];
+
+                event ?
+                    scope.observer.publish(event, data) :
+                    scope.logger.warn('Undefined preferences event', data.title)
+            }
+
+            this.$.off('click.config').on(
+                'click.config',
+                _clickPreferences.bind(this)
             );
         }
 

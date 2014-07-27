@@ -34,45 +34,13 @@ define([
          * @type {{
          *      updateTranslations: string,
          *      loadContent: string,
-         *      setActiveContent: string
+         *      loadSitePreferences: string
          * }}
          */
         eventList: {
             updateTranslations: 'update.translations',
             loadContent: 'load.content',
-            setActiveContent: 'set.active.content'
-        },
-
-        /**
-         * Subscribe publish on
-         * @member SiteConfigEventManager
-         * @param {Page} page
-         * @param {Function} [callback]
-         * @returns {{}}
-         */
-        subscribePublishOn: function subscribePublishOn(page, callback) {
-
-            /**
-             * Define event list
-             * @type {*}
-             */
-            var pageEventList = page.eventmanager.eventList;
-
-            /**
-             * Define events
-             * @type {{scope: Page, events: {eventName: string}[], callback: Function}}
-             */
-            var publish = {
-                scope: page,
-                events: [
-                    {eventName: pageEventList.afterCreateItem},
-                    {eventName: pageEventList.afterDestroyItem},
-                    {eventName: pageEventList.afterDestroyItems}
-                ],
-                callback: callback
-            };
-
-            this.publishOn(publish);
+            loadSitePreferences: 'load.site.preferences'
         }
 
     }, BaseEvent.prototype);

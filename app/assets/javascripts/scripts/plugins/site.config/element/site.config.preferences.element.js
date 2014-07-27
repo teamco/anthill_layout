@@ -7,18 +7,18 @@
 
 define([
     'modules/Element',
-    'plugins/preferences/pages.preferences'
-], function defineSiteConfigPreferencesElement(BaseElement, PagesPreferences) {
+    'plugins/preferences/site.preferences'
+], function defineSiteConfigPreferencesElement(BaseElement, SitePreferences) {
 
     /**
      * Define SiteConfig Preferences Element
-     * @param view
-     * @param opts
-     * @returns {SiteConfigPreferencesElement}
      * @constructor
      * @class SiteConfigPreferencesElement
      * @extends BaseElement
-     * @extends PagesPreferences
+     * @extends SitePreferences
+     * @param view
+     * @param opts
+     * @returns {SiteConfigPreferencesElement}
      */
     var SiteConfigPreferencesElement = function SiteConfigPreferencesElement(view, opts) {
 
@@ -27,7 +27,9 @@ define([
             destroy: true
         });
 
-        this.renderData(opts);
+        this.$.append(
+            this.getPreferencesHtml(opts.map)
+        );
 
         return this;
     };
@@ -35,6 +37,6 @@ define([
     return SiteConfigPreferencesElement.extend('SiteConfigPreferencesElement', {
 
 
-    }, BaseElement.prototype, PagesPreferences.prototype);
+    }, BaseElement.prototype, SitePreferences.prototype);
 
 });
