@@ -99,6 +99,9 @@ define([], function defineBaseHash() {
          * @returns {Array}
          */
         hashKeys: function hashKeys(h) {
+            if (Object.keys){
+                return Object.keys(h);
+            }
             var keys = [], k;
             for (k in h) {
                 if (this.isHashKey(h, k)) {
