@@ -42,30 +42,34 @@ define([
          */
         setAttributes: function setAttributes(data) {
 
+            var preferences = data.model.getConfig('preferences');
+
             /**
              * Get title
              * @type {boolean|string}
              */
-            var title = data.model.getConfig('preferences/title') ||
+            var title = preferences.title ||
                 data.model.getUUID();
 
             /**
              * Get description
              * @type {string}
              */
-            var description = data.model.getConfig('preferences/description') || '';
+            var description = preferences.description || '';
 
             this.$.attr({
                 title: title
             }).addClass(
-                data.model.getConfig('preferences/resource').replace(/\./g, '')
+                this.view.controller.getResourceClassName(
+                    preferences.resource
+                )
             );
 
             /**
              * Get thumbnail
              * @type {string|*}
              */
-            var thumbnail = data.model.getConfig('preferences/thumbnail');
+            var thumbnail = preferences.thumbnail;
 
             if (thumbnail.length > 0) {
 
