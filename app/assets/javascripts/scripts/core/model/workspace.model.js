@@ -34,8 +34,12 @@ define([
          * @param {boolean} width
          */
         setStaticWidth: function setStaticWidth(width) {
-            this.scope.config.preferences.staticWidth = width;
-            this.scope.config.isResized = !width;
+
+            // Define config
+            var config = this.scope.config;
+
+            config.preferences.staticWidth = width;
+            config.isResized = !width;
         },
 
         /**

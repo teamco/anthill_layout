@@ -127,6 +127,7 @@ define([
             if (checked) {
 
                 $workspace.updateWidth(width || 0);
+                $('input[name="siteWidthSlider"]', $slider.parent()).val(width || 0)
                 $slider.slider('enable');
 
             } else {
