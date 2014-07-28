@@ -34,13 +34,15 @@ define([
          * @type {{
          *      updateTranslations: string,
          *      loadContent: string,
-         *      setActiveContent: string
+         *      setActiveContent: string,
+         *      preparePreferences: string
          * }}
          */
         eventList: {
             updateTranslations: 'update.translations',
             loadContent: 'load.content',
-            setActiveContent: 'set.active.content'
+            setActiveContent: 'set.active.content',
+            preparePreferences: 'prepare.preferences'
         },
 
         /**

@@ -152,23 +152,9 @@ define([
              */
             function _clickPrefs() {
 
-                /**
-                 * Define view
-                 * @type {WorkspaceDataView}
-                 */
-                var view = this.view;
-
-                /**
-                 * Define Workspace
-                 * @type {Workspace}
-                 */
-                var workspace = view.controller.getWorkspace();
-
-                view.showPreferences(config);
-
-                workspace.observer.publish(
-                    workspace.eventmanager.eventList.switchToPage,
-                    view.scope.activeContent
+                this.view.scope.observer.publish(
+                    this.view.scope.eventmanager.eventList.preparePreferences,
+                    config
                 );
             }
 

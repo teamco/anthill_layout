@@ -98,6 +98,32 @@ define(
             },
 
             /**
+             * Prepare to show preferences
+             * @member WorkspaceDataController
+             * @param config
+             */
+            preparePreferences: function preparePreferences(config) {
+
+                this.observer.publish(
+                    this.eventmanager.eventList.setActiveContent,
+                    config.uuid
+                );
+
+                /**
+                 * Define Workspace
+                 * @type {Workspace}
+                 */
+                var workspace = this.view.controller.getWorkspace();
+
+                workspace.observer.publish(
+                    workspace.eventmanager.eventList.switchToPage,
+                    this.activeContent
+                );
+
+                this.view.showPreferences(config);
+            },
+
+            /**
              * Update prefs
              * @member WorkspaceDataController
              */
