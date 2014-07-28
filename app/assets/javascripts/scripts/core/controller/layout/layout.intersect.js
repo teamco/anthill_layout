@@ -160,9 +160,12 @@ define(function defineLayoutIntersect() {
          */
         _allowOverlapping: function _allowOverlapping(src, target) {
 
+            var targetPrefs = target.model.getConfig('preferences'),
+                srcPrefs = src.model.getConfig('preferences');
+
             // allow overlapping
-            return (target.model.getConfig('preferences/overlapping') ||
-                src.model.getConfig('preferences/overlapping'));
+            return (targetPrefs.overlapping ||
+                srcPrefs.overlapping);
         },
 
         /**

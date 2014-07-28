@@ -45,20 +45,20 @@ define([
              * Get title
              * @type {boolean|string}
              */
-            var title = data.model.getConfig('preferences/title') ||
+            var title = data.model.getConfig('preferences').title ||
                 data.model.getUUID();
 
             /**
              * Get description
              * @type {string}
              */
-            var description = data.model.getConfig('preferences/description') || '';
+            var description = data.model.getConfig('preferences').description || '';
 
             this.$.attr({
                 title: title
             }).addClass(
                 this.view.controller.getResourceClassName(
-                    data.model.getConfig('preferences/resource')
+                    data.model.getConfig('preferences').resource
                 )
             );
 
@@ -66,7 +66,7 @@ define([
              * Get thumbnail
              * @type {string|*}
              */
-            var thumbnail = data.model.getConfig('preferences/thumbnail');
+            var thumbnail = data.model.getConfig('preferences').thumbnail;
 
             if (thumbnail.length > 0) {
 

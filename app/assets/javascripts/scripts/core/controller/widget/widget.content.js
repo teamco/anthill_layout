@@ -36,7 +36,7 @@ define([
              * Get resource
              * @type {*}
              */
-            var resource = widget.model.getConfig('preferences/resource');
+            var resource = widget.model.getConfig('preferences').resource;
 
             if (!this.base.isString(resource)) {
                 widget.logger.error('Unable to load resource');
@@ -114,7 +114,7 @@ define([
          * @returns {*}
          */
         getThumbnail: function getThumbnail() {
-            return this.model.getConfig('preferences/thumbnail');
+            return this.model.getConfig('preferences').thumbnail;
         },
 
         /**
@@ -123,7 +123,7 @@ define([
          * @returns {*}
          */
         getResource: function getResource() {
-            return this.model.getConfig('preferences/resource');
+            return this.model.getConfig('preferences').resource;
         }
 
     }, AntHill.prototype);
