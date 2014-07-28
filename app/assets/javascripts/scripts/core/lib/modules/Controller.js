@@ -370,21 +370,6 @@ define([
         },
 
         /**
-         * Set Order
-         * @member BaseController
-         * @param collector
-         */
-        setOrder: function setOrder(collector) {
-            var scope = this.scope,
-                base = this.base;
-
-            scope.config.order = base.define(
-                scope.config.order,
-                base.lib.hash.hashLength(collector)
-            );
-        },
-
-        /**
          * Transfer preferences to containment
          * @member BaseController
          * @param index

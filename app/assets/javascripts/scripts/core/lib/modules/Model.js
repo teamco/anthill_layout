@@ -479,9 +479,9 @@ define([
                  */
                 scope.config[namespace].counter =
                     base.lib.hash.hashLength(this.getItems());
-
+console.log(1, node.constructor.name, node.model.getConfig('order'))
                 node.model.setConfig('order', scope.config[namespace].counter);
-
+                console.log(2, node.constructor.name, node.model.getConfig('order'))
                 /**
                  * Store item
                  * @type {*}
