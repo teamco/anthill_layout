@@ -192,7 +192,7 @@ define([
                 slide: function slide(event, ui) {
 
                     $textfield[1].val(ui.value);
-                    $workspace.updateWidth(ui.value + '');
+                    $workspace.updateWidth(ui.value);
 
                 }.bind(this)
             });
