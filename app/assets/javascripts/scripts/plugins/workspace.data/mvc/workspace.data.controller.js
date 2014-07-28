@@ -291,7 +291,37 @@ define(
                     panel.eventmanager.eventList.showContent,
                     [true, panel.active]
                 );
+            },
 
+            /**
+             * Update pages order
+             * @member WorkspaceDataController
+             * @param {Array} order
+             */
+            updatePagesOrder: function updatePagesOrder(order) {
+
+                var i = 0, l = order.length,
+                    $item, page;
+
+                for (i; i < l; i++) {
+
+                    /**
+                     * Get $item
+                     * @type {WorkspaceDataContentElement}
+                     */
+                    $item = this.view.elements.items[order[i]];
+
+                    /**
+                     * Get page
+                     * @type {Page}
+                     */
+                    page = $item.page;
+
+                    page.observer.publish(
+                        page.eventmanager.eventList.updateOrder,
+                        i
+                    );
+                }
             }
 
         }, PluginBase.prototype, PreferencesController.prototype);

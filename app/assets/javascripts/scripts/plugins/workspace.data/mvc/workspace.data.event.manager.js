@@ -35,6 +35,7 @@ define([
          *      updateTranslations: string,
          *      loadContent: string,
          *      setActiveContent: string,
+         *      updatePagesOrder: string,
          *      preparePreferences: string
          * }}
          */
@@ -42,7 +43,8 @@ define([
             updateTranslations: 'update.translations',
             loadContent: 'load.content',
             setActiveContent: 'set.active.content',
-            preparePreferences: 'prepare.preferences'
+            preparePreferences: 'prepare.preferences',
+            updatePagesOrder: 'update.pages.order'
         },
 
         /**

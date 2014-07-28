@@ -36,6 +36,10 @@ define([
 
     return WorkspaceDataElement.extend('WorkspaceDataElement', {
 
+        /**
+         * Init sortable
+         * @member WorkspaceDataElement
+         */
         initSortable: function initSortable() {
 
             this.$.sortable({
@@ -47,18 +51,49 @@ define([
                 opacity: 0.8,
                 tolerance: 'pointer',
 
-                start: function startSort(event, ui) {
-
-                    /**
-                     * Get $item
-                     * @type {WorkspaceDataContentElement}
-                     */
-                    var $item = this.view.elements.items[ui.helper.attr('id')];
-
-                    $item.hideTooltip();
-
-                }.bind(this)
+                start: this._startSortable.bind(this),
+                stop: this._stopSortable.bind(this)
             });
+        },
+
+        /**
+         * Start sortable
+         * @member WorkspaceDataElement
+         * @param event
+         * @param ui
+         * @private
+         */
+        _startSortable: function _startSortable(event, ui) {
+
+            /**
+             * Get $item
+             * @member WorkspaceDataElement
+             * @type {WorkspaceDataContentElement}
+             */
+            var $item = this.view.elements.items[ui.item.attr('id')];
+
+            $item.hideTooltip();
+        },
+
+        /**
+         * Stop sortable
+         * @member WorkspaceDataElement
+         * @param event
+         * @param ui
+         * @private
+         */
+        _stopSortable: function _stopSortable(event, ui) {
+
+            /**
+             * Get scope
+             * @type {WorkspaceData}
+             */
+            var scope = this.view.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updatePagesOrder,
+                [this.$.sortable('toArray')]
+            );
         },
 
         /**

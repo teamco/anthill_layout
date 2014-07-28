@@ -40,7 +40,7 @@ define([
         /**
          * Define init
          * @memberOf WorkspaceDataContentElement
-         * @param page
+         * @param {Page} page
          * @returns {WorkspaceDataContentElement}
          */
         init: function init(page) {
@@ -50,6 +50,12 @@ define([
             this.bindShowPrefs(page);
 
             this.renderCounter(page);
+
+            /**
+             * Define page reference
+             * @type {Page}
+             */
+            this.page = page;
 
             return this;
         },

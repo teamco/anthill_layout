@@ -28,27 +28,6 @@ define([
     var Page = function Page(opts) {
 
         /**
-         * Define items
-         * @member Page
-         * @type {*}
-         */
-        this.items = {};
-
-        /**
-         * Define widget
-         * @member Page
-         * @type {*|Widget}
-         */
-        this.widget = {};
-
-        /**
-         * Define maximized widget
-         * @member Page
-         * @type {*|Widget}
-         */
-        this.maximized = {};
-
-        /**
          * Define layout modes
          * @member Page
          * @type {{
@@ -193,28 +172,57 @@ define([
             render: true
         });
 
-        /**
-         * Define layout
-         * @type {Layout}
-         */
-        this.layout = {};
-
-        this.observer.publish(
-            this.eventmanager.eventList.createLayout,
-            [Layout, this.config.layout]
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.successCreated
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.loadPreferences
-        );
-
+        this.init();
     };
 
     return Page.extend('Page', {
+
+        /**
+         * Init page
+         * @member Page
+         */
+        init: function init() {
+
+            /**
+             * Define items
+             * @member Page
+             * @type {*}
+             */
+            this.items = {};
+
+            /**
+             * Define widget
+             * @member Page
+             * @type {*|Widget}
+             */
+            this.widget = {};
+
+            /**
+             * Define maximized widget
+             * @member Page
+             * @type {*|Widget}
+             */
+            this.maximized = {};
+
+            /**
+             * Define layout
+             * @type {Layout}
+             */
+            this.layout = {};
+
+            this.observer.publish(
+                this.eventmanager.eventList.createLayout,
+                [Layout, this.config.layout]
+            );
+
+            this.observer.publish(
+                this.eventmanager.eventList.successCreated
+            );
+
+            this.observer.publish(
+                this.eventmanager.eventList.loadPreferences
+            );
+        }
 
     }, AntHill.prototype);
 });

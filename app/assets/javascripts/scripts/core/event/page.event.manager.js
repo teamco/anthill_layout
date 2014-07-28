@@ -31,6 +31,7 @@ define([
          * Define event list
          * @member PageEventManager
          * @type {{
+         *      updateOrder: string,
          *      setMaximized: string,
          *      unsetMaximized: string,
          *      createWidget: string,
@@ -52,6 +53,8 @@ define([
          * }}
          */
         eventList: {
+
+            updateOrder: 'update.order',
 
             setMaximized: 'set.maximized',
             unsetMaximized: 'unset.maximized',
