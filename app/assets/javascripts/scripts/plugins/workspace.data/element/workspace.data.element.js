@@ -29,10 +29,37 @@ define([
         this.addCSS('workspace.data');
         this.addCSS('preferences');
 
+        this.initSortable();
+
         return this;
     };
 
     return WorkspaceDataElement.extend('WorkspaceDataElement', {
+
+        initSortable: function initSortable() {
+
+            this.$.sortable({
+
+                containment: this.$container.$,
+                cursor: 'move',
+                distance: 5,
+                items: '> li.content',
+                opacity: 0.8,
+                tolerance: 'pointer',
+
+                start: function startSort(event, ui) {
+
+                    /**
+                     * Get $item
+                     * @type {WorkspaceDataContentElement}
+                     */
+                    var $item = this.view.elements.items[ui.helper.attr('id')];
+
+                    $item.hideTooltip();
+
+                }.bind(this)
+            });
+        },
 
         /**
          * Get footer html

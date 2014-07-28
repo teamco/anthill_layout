@@ -11,13 +11,13 @@ define([
 
     /**
      * Define WorkspaceData Content Element
-     * @param view
-     * @param opts
-     * @returns {WorkspaceDataContentElement}
      * @constructor
      * @class WorkspaceDataContentElement
-     * @type {function}
+     * @param {WorkspaceDataView} view
+     * @param opts
      * @extends BaseElement
+     * @extends Renderer
+     * @returns {WorkspaceDataContentElement}
      */
     var WorkspaceDataContentElement = function WorkspaceDataContentElement(view, opts) {
 
