@@ -48,14 +48,37 @@ define([
 
             this.empty();
 
+            var order = 0, item,
+                event, current;
+
             for (var index in pages) {
 
                 if (pages.hasOwnProperty(index)) {
 
-                    this.$.append(
+                    /**
+                     * Get item
+                     * @type {Page}
+                     */
+                    item = pages[index];
+
+                    /**
+                     * Define event
+                     * @type {string}
+                     */
+                    event = item.model.getConfig('order') >= order ?
+                        'append' : 'prepend';
+
+                    order = item.model.getConfig('order');
+
+                    /**
+                     * Define current page class name
+                     * @type {string}
+                     */
+                    current = page === item ? this.current : '';
+
+                    this.$[event](
                         this.view.renderPageTabsItem(
-                            pages[index],
-                            page === pages[index] ? this.current : ''
+                            item, current
                         )
                     );
                 }
