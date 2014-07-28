@@ -96,7 +96,7 @@ define(
                          */
                         app.panels.author = new Panel({
                             config: {renderAt: 'right'},
-                            modules: [Gallery, PageData, WorkspaceData, WidgetRules, SiteConfig],
+                            modules: [Gallery, PageData, WidgetRules, WorkspaceData, SiteConfig],
                             packages: [Bar]
                         }, app);
 
