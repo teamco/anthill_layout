@@ -31,7 +31,7 @@ define([
         /**
          * Set workspace width
          * @member WorkspaceElement
-         * @param {string} width
+         * @param {number} width
          */
         updateWidth: function updateWidth(width) {
 
