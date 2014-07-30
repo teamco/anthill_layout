@@ -319,11 +319,12 @@ define(
 
                     page.observer.publish(
                         page.eventmanager.eventList.updateOrder,
-                        i
+                            i + 1
                     );
                 }
 
-
+                // Save on finish ordering
+                this.controller.store();
             }
 
         }, PluginBase.prototype, PreferencesController.prototype);
