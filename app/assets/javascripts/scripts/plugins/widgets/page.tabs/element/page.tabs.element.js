@@ -47,11 +47,13 @@ define([
         renderEmbeddedContent: function renderEmbeddedContent(pages, page) {
 
             this.empty();
+            this.view.controller.clearParentThumbnail();
 
             var order = 0, item,
-                event, current;
+                current, index,
+                tabs = [];
 
-            for (var index in pages) {
+            for (index in pages) {
 
                 if (pages.hasOwnProperty(index)) {
 
@@ -61,13 +63,6 @@ define([
                      */
                     item = pages[index];
 
-                    /**
-                     * Define event
-                     * @type {string}
-                     */
-                    event = item.model.getConfig('order') >= order ?
-                        'append' : 'prepend';
-
                     order = item.model.getConfig('order');
 
                     /**
@@ -76,15 +71,13 @@ define([
                      */
                     current = page === item ? this.current : '';
 
-                    this.$[event](
-                        this.view.renderPageTabsItem(
-                            item, current
-                        )
+                    tabs[order - 1] = this.view.renderPageTabsItem(
+                        item, current
                     );
                 }
             }
 
-            this.view.controller.clearParentThumbnail();
+            this.$.append(tabs);
         }
 
     }, BaseElement.prototype);
