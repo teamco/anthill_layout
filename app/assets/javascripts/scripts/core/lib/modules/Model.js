@@ -479,9 +479,9 @@ define([
                  */
                 scope.config[namespace].counter =
                     base.lib.hash.hashLength(this.getItems());
-console.log(1, node.constructor.name, node.model.getConfig('order'))
+//console.log(1, node.constructor.name, node.model.getConfig('order'))
                 node.model.setConfig('order', scope.config[namespace].counter);
-                console.log(2, node.constructor.name, node.model.getConfig('order'))
+  //              console.log(2, node.constructor.name, node.model.getConfig('order'))
                 /**
                  * Store item
                  * @type {*}
@@ -492,19 +492,6 @@ console.log(1, node.constructor.name, node.model.getConfig('order'))
             }
 
             return node;
-        },
-
-        /**
-         * Return loaded data
-         * @member BaseModel
-         * @param data
-         * @returns {*}
-         * @private
-         */
-        _returnLoadData: function _returnLoadData(data) {
-
-            this.scope.controller.setAsLoading(false);
-            return data;
         },
 
         /**
@@ -585,7 +572,7 @@ console.log(1, node.constructor.name, node.model.getConfig('order'))
                 }
             }
 
-            return this._returnLoadData(data.collector);
+            return data.collector;
         }
 
     }, AntHill.prototype, CRUD.prototype);

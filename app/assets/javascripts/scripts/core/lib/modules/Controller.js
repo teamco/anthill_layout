@@ -51,6 +51,7 @@ define([
                 'After loading items',
                 this.model.getItems()
             );
+            this.controller.setAsLoading(false);
         },
 
         /**
@@ -522,8 +523,9 @@ define([
          * @member BaseController
          * @param [node]
          * @param [data]
+         * @param {number} [counter]
          */
-        store: function store(node, data) {
+        store: function store(node, data, counter) {
 
             /**
              * Define root
@@ -562,12 +564,6 @@ define([
              */
             var cname = node.model.getItemNameSpace();
 
-            if (!items || !node[cname].model) {
-                node.logger.debug('Collector', data);
-                root.model.setting.save(data);
-                return false;
-            }
-
             /**
              * Define data
              * @type {*}
@@ -586,8 +582,17 @@ define([
 
                 if (items.hasOwnProperty(index)) {
 
-                    this.store.bind(node.controller)(items[index], data);
+                    var item = items[index];
+
+                    if (item.model && item.model.getItems()) {
+
+                        this.store.bind(node.controller)(item, data, Object.keys(items).length);
+                    }
                 }
+            }
+
+            if (!counter) {
+                root.model.setting.save(data);
             }
         },
 

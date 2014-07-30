@@ -45,17 +45,8 @@ define([
          */
         afterNestedOrganizer: function afterNestedOrganizer() {
 
-            /**
-             * Define controller instance
-             * @type {LayoutController}
-             */
-            var controller = this.controller;
-
-            controller.readyToOrganize();
-
-            controller.store(
-                controller.root()
-            );
+            this.controller.readyToOrganize();
+            this.controller.store();
 
             this.logger.debug(this.i18n.t('after.nested.organizer'));
         },
