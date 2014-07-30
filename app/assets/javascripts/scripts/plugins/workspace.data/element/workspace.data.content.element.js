@@ -101,7 +101,9 @@ define([
                         preferences.description || '', '<br />',
                     '<span>uuid: </span>', page.model.getUUID(), '<br /><br />',
                     '<span>items: </span>', items, '<br />',
-                    '<span>index: </span>', 0
+                    '<span>index: </span>', (
+                        page.model.getConfig('preferences').order ||
+                        page.model.getConfig('order'))
                 ].join(''),
                 $container: this
             });
