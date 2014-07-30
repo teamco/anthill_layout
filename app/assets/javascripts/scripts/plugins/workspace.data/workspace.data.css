@@ -22,7 +22,6 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
-    position: relative;
     background: transparent no-repeat center;
 }
 
@@ -58,8 +57,6 @@ ul.workspace-data > .add-page:hover {
     padding: 2px 5px;
     border-radius: 5px;
     border: 1px solid #777;
-    right: 0;
-    top: -5px;
     box-shadow: 1px 1px 5px #ccc;
 }
 

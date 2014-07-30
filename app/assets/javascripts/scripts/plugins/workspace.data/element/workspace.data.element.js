@@ -94,6 +94,12 @@ define([
                 scope.eventmanager.eventList.updatePagesOrder,
                 [this.$.sortable('toArray')]
             );
+
+            ui.item.attr(
+                'style',
+                ui.item.attr('style').
+                    replace(/position\: relative\;/, '')
+            );
         },
 
         /**
