@@ -92,15 +92,14 @@ define([
 
             /**
              * Define view
-             * @type {WorkspaceView}
+             * @type {Workspace}
              */
-            var view = this.view,
-                scope = view.scope,
+            var scope = this.view.scope,
                 duration = animate ? 500 : 0;
 
-            view.elements.$pages.$.stop().animate({
+            this.view.elements.$pages.$.stop().animate({
 
-                left: ((1 - page.model.getConfig('order')) * 100) + '%'
+                left: ((1 - page.model.getConfig('preferences').order) * 100) + '%'
 
             }, {
                 duration: duration,

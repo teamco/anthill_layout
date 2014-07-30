@@ -89,7 +89,10 @@ define(
                 this.elements.$workspacedata.empty();
                 this.renderCreatePage();
 
-                var index, counter = 1;
+                var index, counter = 1,
+                    res = [];
+
+
 
                 for (index in data) {
 
