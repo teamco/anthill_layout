@@ -103,7 +103,7 @@ define([
                     '<span>items: </span>', items, '<br />',
                     '<span>index: </span>', 0
                 ].join(''),
-                $container: this
+                $container: this.view.elements.$workspacedata
             });
         },
 
