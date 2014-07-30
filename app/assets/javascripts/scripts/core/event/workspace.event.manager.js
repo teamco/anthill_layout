@@ -70,6 +70,8 @@ define(
                 adoptContentWidth: 'adopt.content.width',
                 afterLoadingItems: 'after.loading.items',
 
+                afterPageOrder: 'after.page.order',
+
                 updateSiteWidth: 'update.site.width',
 
                 loadPreferences: 'load.preferences',

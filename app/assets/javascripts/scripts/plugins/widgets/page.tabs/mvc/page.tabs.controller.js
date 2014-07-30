@@ -24,6 +24,16 @@ define([
     return PageTabsController.extend('PageTabsController', {
 
         /**
+         * Subscribe to after page ordering event
+         * @member PageTabsController
+         */
+        subscribeOrderPagesEvent: function subscribeOrderPagesEvent() {
+            this.controller._subscribePageEventCallback.bind(this)(
+                'afterPageOrder'
+            );
+        },
+
+        /**
          * Subscribe to after switch page event
          * @member PageTabsController
          */

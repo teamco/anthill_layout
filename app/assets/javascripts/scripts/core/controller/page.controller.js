@@ -174,15 +174,6 @@ define(
                             }
                         }
                     }
-                },
-
-                /**
-                 * Update page order
-                 * @member PageController
-                 * @param {number} index
-                 */
-                updateOrder: function updateOrder(index) {
-                    this.model.setConfig('order', index);
                 }
             },
 

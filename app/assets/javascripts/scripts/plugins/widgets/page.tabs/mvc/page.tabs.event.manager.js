@@ -23,7 +23,8 @@ define([
             switchToPage: 'switch.to.page',
             subscribeAfterSwitchPageEvent: 'subscribe.after.switch.page.event',
             subscribeCreatePageEvent: 'subscribe.create.page.event',
-            subscribeDestroyPageEvent: 'subscribe.destroy.page.event'
+            subscribeDestroyPageEvent: 'subscribe.destroy.page.event',
+            subscribeOrderPagesEvent: 'subscribe.order.pages.event'
         });
 
         /**

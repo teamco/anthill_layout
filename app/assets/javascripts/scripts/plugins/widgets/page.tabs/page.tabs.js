@@ -96,20 +96,33 @@ define([
             opts
         );
 
-        this.observer.publish(
-            this.eventmanager.eventList.subscribeAfterSwitchPageEvent
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.subscribeCreatePageEvent
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.subscribeDestroyPageEvent
-        );
+        this.init();
     };
 
     return PageTabs.extend('PageTabs', {
+
+        /**
+         * Define init
+         * @member PageTabs
+         */
+        init: function init() {
+
+            this.observer.publish(
+                this.eventmanager.eventList.subscribeOrderPagesEvent
+            );
+
+            this.observer.publish(
+                this.eventmanager.eventList.subscribeAfterSwitchPageEvent
+            );
+
+            this.observer.publish(
+                this.eventmanager.eventList.subscribeCreatePageEvent
+            );
+
+            this.observer.publish(
+                this.eventmanager.eventList.subscribeDestroyPageEvent
+            );
+        }
 
     }, AntHill.prototype);
 });

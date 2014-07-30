@@ -447,6 +447,7 @@ define([
             var limit = this.getConfig(namespace).limit;
 
             if (this.checkLimit(Constructor, limit)) {
+
                 scope.logger.warn(
                         cname + ': Maximum limit reached',
                     limit
@@ -479,9 +480,14 @@ define([
                  */
                 scope.config[namespace].counter =
                     base.lib.hash.hashLength(this.getItems());
-//console.log(1, node.constructor.name, node.model.getConfig('order'))
-                node.model.setConfig('order', scope.config[namespace].counter);
-  //              console.log(2, node.constructor.name, node.model.getConfig('order'))
+
+                var prefs = node.model.getConfig('preferences') || {},
+                    order = prefs.order ?
+                        prefs.order :
+                        scope.config[namespace].counter;
+
+                node.model.setConfig('order', order);
+
                 /**
                  * Store item
                  * @type {*}
@@ -517,7 +523,7 @@ define([
                 data : this.setting.load();
 
             if (!data.hasOwnProperty('collector')) {
-                return this._returnLoadData(false);
+                return false;
             }
 
             if (base.isDefined(this.item)) {

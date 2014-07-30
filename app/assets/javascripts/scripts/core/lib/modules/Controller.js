@@ -564,19 +564,22 @@ define([
              */
             var cname = node.model.getItemNameSpace();
 
-            /**
-             * Define data
-             * @type {*}
-             */
-            data.collector[cname] = data.collector[cname] || {};
+            if (node[cname].model) {
 
-            $.extend(
-                true,
-                data.collector[cname],
-                node.controller.collectItemProperties(
-                    !node[cname].model.getItems()
-                )
-            );
+                /**
+                 * Define data
+                 * @type {*}
+                 */
+                data.collector[cname] = data.collector[cname] || {};
+
+                $.extend(
+                    true,
+                    data.collector[cname],
+                    node.controller.collectItemProperties(
+                        !node[cname].model.getItems()
+                    )
+                );
+            }
 
             for (index in items) {
 

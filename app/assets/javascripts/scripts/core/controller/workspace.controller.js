@@ -214,6 +214,16 @@ define(
                 },
 
                 /**
+                 * Save after page ordering
+                 * @member WorkspaceController
+                 * @param {Array} order
+                 */
+                afterPageOrder: function afterPageOrder(order) {
+                    this.logger.debug('Page order', order);
+                    this.controller.store();
+                },
+
+                /**
                  * Transfer preferences
                  * @member WorkspaceController
                  * @param {string} index

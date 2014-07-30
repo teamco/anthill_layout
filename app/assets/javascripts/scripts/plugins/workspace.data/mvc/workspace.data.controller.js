@@ -318,13 +318,21 @@ define(
                     page = $item.page;
 
                     page.observer.publish(
-                        page.eventmanager.eventList.updateOrder,
-                            i + 1
+                        page.eventmanager.eventList.transferPreferences,
+                        ['order', i + 1]
                     );
                 }
 
-                // Save on finish ordering
-                this.controller.store();
+                /**
+                 * Get workspace
+                 * @type {Workspace}
+                 */
+                var ws = page.controller.getContainment();
+
+                ws.observer.publish(
+                    ws.eventmanager.eventList.afterPageOrder,
+                    order
+                );
             }
 
         }, PluginBase.prototype, PreferencesController.prototype);
