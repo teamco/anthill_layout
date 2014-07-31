@@ -245,8 +245,8 @@ define(
                             item = items[index];
                             sort = item.model.getConfig('preferences').order;
 
-                            sort = sort ?
-                                sort : item.model.getConfig('order') - 1;
+                            sort = (sort ?
+                                sort : item.model.getConfig('order')) - 1;
 
                             if (sorted[sort]) {
                                 this.scope.logger.warn('Unable to sort pages', sort);

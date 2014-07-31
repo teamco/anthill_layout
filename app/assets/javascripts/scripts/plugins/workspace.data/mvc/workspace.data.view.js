@@ -93,6 +93,11 @@ define(
 
                 for (i; i < l; i++) {
 
+                    if (!data[i]) {
+                        this.scope.logger.warn('Undefined item', data, i);
+                        return false;
+                    }
+
                     /**
                      * Render item
                      * @type {WorkspaceDataContentElement}

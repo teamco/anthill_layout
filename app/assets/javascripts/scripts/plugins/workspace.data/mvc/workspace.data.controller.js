@@ -319,7 +319,7 @@ define(
 
                     page.observer.publish(
                         page.eventmanager.eventList.transferPreferences,
-                        ['order', i + 1]
+                        ['order', i]
                     );
                 }
 

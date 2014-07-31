@@ -16,18 +16,53 @@
     background: red;
 }
 
+.page:nth-child(1):after {
+    content: '1';
+    position: relative;
+    margin: 50%;
+    font-size: 100px;
+}
+
 .page:nth-child(2) {
     background: greenyellow;
+}
+
+.page:nth-child(2):after {
+    content: '2';
+    position: relative;
+    margin: 50%;
+    font-size: 100px;
 }
 
 .page:nth-child(3) {
     background: #00bfff;
 }
 
+.page:nth-child(3):after {
+    content: '3';
+    position: relative;
+    margin: 50%;
+    font-size: 100px;
+}
+
 .page:nth-child(4) {
     background: coral;
 }
 
+.page:nth-child(4):after {
+    content: '4';
+    position: relative;
+    margin: 50%;
+    font-size: 100px;
+}
+
 .page:nth-child(5) {
     background: magenta;
+}
+
+.page:nth-child(5):after {
+    content: '5';
+    position: relative;
+    margin: 50%;
+    font-size: 100px;
 }
