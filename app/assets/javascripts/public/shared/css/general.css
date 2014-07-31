@@ -11,3 +11,23 @@
     -moz-box-shadow: 1px 0 5px 0 rgba(50, 50, 50, 0.4);
     box-shadow: 1px 0 5px 0 rgba(50, 50, 50, 0.4);
 }
+
+.page:nth-child(1) {
+    background: red;
+}
+
+.page:nth-child(2) {
+    background: greenyellow;
+}
+
+.page:nth-child(3) {
+    background: #00bfff;
+}
+
+.page:nth-child(4) {
+    background: coral;
+}
+
+.page:nth-child(5) {
+    background: magenta;
+}
