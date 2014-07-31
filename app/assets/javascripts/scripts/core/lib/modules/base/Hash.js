@@ -99,7 +99,7 @@ define([], function defineBaseHash() {
          * @returns {Array}
          */
         hashKeys: function hashKeys(h) {
-            if (Object.keys){
+            if (Object.keys) {
                 return Object.keys(h);
             }
             var keys = [], k;
@@ -136,7 +136,6 @@ define([], function defineBaseHash() {
                 }
             }
         }
-
     });
 
     return new BaseHash();

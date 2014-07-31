@@ -33,7 +33,7 @@ define([
          * @member WorkspaceDataModel
          */
         getDataItems: function getDataItems(workspace) {
-            return workspace.model.getItems();
+            return workspace.controller.sortPages();
         }
 
     }, BaseModel.prototype);

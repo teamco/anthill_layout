@@ -14,6 +14,7 @@ define(
         'element/footer.element',
         'plugins/site.config/element/site.config.content.element',
         'plugins/site.config/element/site.config.preferences.element',
+        'plugins/site.config/element/site.config.cleanup.element',
         'plugins/site.config/element/site.config.element'
     ],
 
@@ -25,10 +26,11 @@ define(
      * @param {BaseView} Footer
      * @param {SiteConfigContentElement} SiteConfigContentElement
      * @param {SiteConfigPreferencesElement} SiteConfigPreferencesElement
+     * @param {SiteConfigCleanUpElement} SiteConfigCleanUpElement
      * @param {SiteConfigElement} SiteConfigElement
      * @returns {*}
      */
-        function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigElement) {
+        function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigElement) {
 
         /**
          * Define view
@@ -98,7 +100,7 @@ define(
                         var $item = new SiteConfigContentElement(this, {
                             style: [
                                 'content',
-                                data[index].title.toDash()
+                                data[index].title.toClassName()
                             ].join(' '),
                             $container: this.elements.$siteconfig.$,
                             counter: counter,
@@ -196,6 +198,53 @@ define(
                 });
 
                 return this.elements.$preferences;
+            },
+
+            /**
+             * Render cleanup element
+             * @member SiteConfigView
+             * @returns {SiteConfigCleanUpElement}
+             */
+            renderCleanUp: function renderCleanUp() {
+
+                /**
+                 * Define SiteConfig CleanUp Element
+                 * @type {SiteConfigCleanUpElement}
+                 */
+                this.elements.$cleanup = new SiteConfigCleanUpElement(this, {});
+
+                return this.elements.$cleanup;
+            },
+
+            /**
+             * Render cleanup confirmation modal dialog
+             * @member SiteConfigView
+             */
+            cleanUpConfirmation: function cleanUpConfirmation() {
+
+                this.modalDialog({
+                    $container: this.controller.getPage().view.elements.$page.$,
+                    type: 'warning',
+                    title: 'Clean up',
+                    text: 'Are you sure want to cleanup browser local storage?',
+                    html: this.renderCleanUp().$,
+                    cover: true,
+                    autoclose: true,
+                    buttons: {
+                        approve: {
+                            text: 'OK',
+                            events: {
+                                click: 'approveCleanUp'
+                            }
+                        },
+                        reject: {
+                            text: 'Cancel',
+                            events: {
+                                click: 'rejectModalEvent'
+                            }
+                        }
+                    }
+                });
             },
 
             /**

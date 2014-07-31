@@ -89,34 +89,26 @@ define(
                 this.elements.$workspacedata.empty();
                 this.renderCreatePage();
 
-                var index, counter = 1,
-                    res = [];
+                var i = 0, l = data.length;
 
+                for (i; i < l; i++) {
 
+                    /**
+                     * Render item
+                     * @type {WorkspaceDataContentElement}
+                     */
+                    var $item = new WorkspaceDataContentElement(this, {
+                        style: 'content',
+                        id: [
+                            data[i].model.getConfig('uuid'),
+                            'workspace-data-view'
+                        ].join('-'),
+                        $container: this.elements.$workspacedata.$,
+                        data: data[i],
+                        counter: i + 1
+                    });
 
-                for (index in data) {
-
-                    if (data.hasOwnProperty(index)) {
-
-                        /**
-                         * Render item
-                         * @type {WorkspaceDataContentElement}
-                         */
-                        var $item = new WorkspaceDataContentElement(this, {
-                            style: 'content',
-                            id: [
-                                data[index].model.getConfig('uuid'),
-                                'workspace-data-view'
-                            ].join('-'),
-                            $container: this.elements.$workspacedata.$,
-                            data: data[index],
-                            counter: counter
-                        });
-
-                        counter += 1;
-
-                        this.elements.items[$item.id] = $item;
-                    }
+                    this.elements.items[$item.id] = $item;
                 }
 
                 this.elements.$workspacedata.scrollCover(

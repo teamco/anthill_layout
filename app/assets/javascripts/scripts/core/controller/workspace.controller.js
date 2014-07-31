@@ -224,6 +224,43 @@ define(
                 },
 
                 /**
+                 * Sort pages
+                 * @member WorkspaceController
+                 * @return {boolean|Array}
+                 */
+                sortPages: function sortPages() {
+
+                    var items = this.model.getItems(),
+                        item, index, sorted = [],
+                        sort;
+
+                    for (index in items) {
+
+                        if (items.hasOwnProperty(index)) {
+
+                            /**
+                             * Get page
+                             * @type {Page}
+                             */
+                            item = items[index];
+                            sort = item.model.getConfig('preferences').order;
+
+                            sort = sort ?
+                                sort : item.model.getConfig('order') - 1;
+
+                            if (sorted[sort]) {
+                                this.scope.logger.warn('Unable to sort pages', sort);
+                                return false;
+                            }
+
+                            sorted[sort] = item;
+                        }
+                    }
+
+                    return sorted;
+                },
+
+                /**
                  * Transfer preferences
                  * @member WorkspaceController
                  * @param {string} index
@@ -285,7 +322,7 @@ define(
                     if (preferences.staticWidth) {
 
                         $workspace.updateWidth(
-                            parseInt(preferences.siteWidthSlider, 10) || 0
+                                parseInt(preferences.siteWidthSlider, 10) || 0
                         );
 
                     } else {

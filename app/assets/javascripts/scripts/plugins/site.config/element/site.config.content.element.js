@@ -102,7 +102,7 @@ define([
 
                 event ?
                     scope.observer.publish(event, data) :
-                    scope.logger.warn('Undefined preferences event', data.title)
+                    scope.logger.warn('Undefined preferences event', data.title, data.event)
             }
 
             this.$.off('click.config').on(

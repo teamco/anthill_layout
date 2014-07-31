@@ -58,7 +58,7 @@ define(
 
             /**
              * Load preferences
-             * @member SitePreferencesController
+             * @member SiteConfigController
              * @param data
              */
             loadSitePreferences: function loadSitePreferences(data) {
@@ -79,7 +79,7 @@ define(
 
             /**
              * Approve update preferences
-             * @member SitePreferencesController
+             * @member SiteConfigController
              */
             approveUpdatePreferences: function approveUpdatePreferences() {
 
@@ -98,7 +98,7 @@ define(
 
             /**
              * Revert preferences on cancel
-             * @member SitePreferencesController
+             * @member SiteConfigController
              */
             revertSitePreferences: function revertSitePreferences() {
 
@@ -111,6 +111,37 @@ define(
                 workspace.observer.publish(
                     workspace.eventmanager.eventList.updateSiteWidth
                 );
+            },
+
+            /**
+             * Clean up local storage
+             * @member SiteConfigController
+             */
+            cleanUpLocalStorage: function cleanUpLocalStorage() {
+                this.view.cleanUpConfirmation();
+            },
+
+            /**
+             * Approve clean up
+             * @member SiteConfigController
+             */
+            approveCleanUp: function approveCleanUp() {
+
+                /**
+                 * Define scope
+                 * @member SiteConfig
+                 */
+                var scope = this.scope,
+                    $modal = scope.view.elements.$modal;
+
+                if (scope.base.isDefined($modal)) {
+                    $modal.selfDestroy();
+                }
+
+                this.root().model.setting.clear();
+
+                // Reload without cache
+                document.location.reload(true);
             }
 
         }, PluginBase.prototype, PreferencesController.prototype);

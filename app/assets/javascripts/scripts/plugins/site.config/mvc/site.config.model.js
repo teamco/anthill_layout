@@ -39,6 +39,11 @@ define([
             publish: {
                 title: 'Publish',
                 description: 'Publishing involves the process of producing and distributing literature so that the public can have access to it'
+            },
+            cleanup: {
+                title: 'Clean Up',
+                description: 'Clean up local storage',
+                event:'cleanUpLocalStorage'
             }
         };
 

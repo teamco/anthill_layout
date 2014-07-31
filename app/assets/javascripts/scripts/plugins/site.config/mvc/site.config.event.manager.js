@@ -34,12 +34,14 @@ define([
          * @type {{
          *      updateTranslations: string,
          *      loadContent: string,
+         *      cleanUpLocalStorage: string,
          *      loadSitePreferences: string
          * }}
          */
         eventList: {
             updateTranslations: 'update.translations',
             loadContent: 'load.content',
+            cleanUpLocalStorage: 'clean.up.local.storage',
             loadSitePreferences: 'load.site.preferences'
         }
 

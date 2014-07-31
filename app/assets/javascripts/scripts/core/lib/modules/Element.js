@@ -31,8 +31,8 @@ define([
         /**
          * Element config before build
          * @member BaseElement
-         * @param {{createStyle: Function, renderUUID: Function}} view
-         * @param {{style: String, id: String, [css], [events], [opacity]}} opts
+         * @param {BaseView} view
+         * @param {{[style]: string, [id]: string, [css], [events], [opacity]}} opts
          * @param $html
          * @returns {*}
          * @private
@@ -42,7 +42,7 @@ define([
             /**
              * Define view
              * @memberOf BaseElement
-             * @type {{createStyle: Function, renderUUID: Function}}
+             * @type {BaseView}
              */
             this.view = view;
 
@@ -280,27 +280,27 @@ define([
          */
         build: function build(opts) {
 
-            /**
-             * Define base instance
-             * @type {Base}
-             */
-            var base = this.base;
-
-            opts = base.define(opts, {}, true);
+            opts = this.base.define(opts, {}, true);
 
             /**
              * Define append/prepend
              */
-            var append = base.defineBoolean(opts.append, true, true);
+            var append = this.base.defineBoolean(opts.append, true, true);
 
             if (this.$) {
 
+                /**
+                 * Define $container
+                 * @member BaseElement
+                 * @type {*|jQuery|HTMLElement}
+                 */
                 this.$container = $(opts.$container);
+
                 this.destroyB4Create(opts.destroy);
 
                 this.$[append ? 'appendTo' : 'prependTo'](opts.$container);
 
-                if (base.isFunction(opts.callback)) {
+                if (this.base.isFunction(opts.callback)) {
                     opts.callback();
                 }
             }
