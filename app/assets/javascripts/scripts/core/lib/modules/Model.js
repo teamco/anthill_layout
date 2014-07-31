@@ -508,9 +508,7 @@ define([
          */
         loadData: function loadData(data) {
 
-            /**
-             * Define local scope
-             */
+            // Define local scope
             var scope = this.scope,
                 base = this.base;
 
@@ -523,6 +521,7 @@ define([
                 data : this.setting.load();
 
             if (!data.hasOwnProperty('collector')) {
+                scope.controller.setAsLoading(false);
                 return false;
             }
 
@@ -576,6 +575,10 @@ define([
                         scope.eventmanager.eventList.afterLoadingItems
                     );
                 }
+
+            } else {
+
+                scope.controller.setAsLoading(true);
             }
 
             return data.collector;
