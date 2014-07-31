@@ -117,7 +117,7 @@ define(
 
                 workspace.observer.publish(
                     workspace.eventmanager.eventList.switchToPage,
-                    this.activeContent
+                    [this.activeContent, false]
                 );
 
                 this.view.showPreferences(config);
