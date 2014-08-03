@@ -87,17 +87,39 @@ define([
             );
 
             this.setTitle(this.title);
+            this.bindClick();
+        },
 
-            this.$.on('click.pageTab', function (e) {
+        /**
+         * Bind click to switch page
+         * @member PageTabsItemElement
+         */
+        bindClick: function bindClick() {
 
-                var scope = this.view.scope;
+            this.$.on(
+                'click.pageTab',
+                this.clickCallback.bind(this)
+            );
+        },
 
-                scope.observer.publish(
-                    scope.eventmanager.eventList.switchToPage,
-                    [this, e]
-                );
+        /**
+         * Click callback
+         * @member PageTabsItemElement
+         * @param e
+         * @private
+         */
+        clickCallback: function clickCallback(e) {
 
-            }.bind(this))
+            /**
+             * Get scope
+             * @type {PageTabs}
+             */
+            var scope = this.view.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.switchToPage,
+                [this, e]
+            );
         }
 
     }, BaseElement.prototype);

@@ -33,7 +33,39 @@ define([
          * @member WorkspaceDataModel
          */
         getDataItems: function getDataItems(workspace) {
-            return workspace.controller.sortPages();
+
+            var items = workspace.model.getItems(),
+                item, index, sorted = [],
+                sort;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    /**
+                     * Get page
+                     * @type {Page}
+                     */
+                    item = items[index];
+                    sort = item.model.getConfig('preferences').order;
+
+                    if (typeof(sort) === 'number') {
+
+                        if (sorted[sort]) {
+                            this.scope.logger.warn('Unable to sort pages', sort);
+                            return false;
+                        }
+
+                        sorted[sort] = item;
+
+                    } else {
+
+                        sorted.push(item);
+                    }
+                }
+            }
+
+            return sorted;
         }
 
     }, BaseModel.prototype);

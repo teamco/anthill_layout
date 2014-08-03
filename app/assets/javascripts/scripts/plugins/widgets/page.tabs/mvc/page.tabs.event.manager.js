@@ -21,6 +21,7 @@ define([
 
         this.updateEventList({
             switchToPage: 'switch.to.page',
+            setActivePageTab: 'set.active.page.tab',
             subscribeAfterSwitchPageEvent: 'subscribe.after.switch.page.event',
             subscribeCreatePageEvent: 'subscribe.create.page.event',
             subscribeDestroyPageEvent: 'subscribe.destroy.page.event',
@@ -28,7 +29,7 @@ define([
         });
 
         /**
-         * Define onload events
+         * Define on load events
          * @type {[string]}
          */
         this.onLoadEvents = [

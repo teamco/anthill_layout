@@ -26,7 +26,7 @@ define([
         events: {},
 
         /**
-         * Define onload events
+         * Define on load events
          * @member WidgetContentEventManager
          * @type {Array}
          */

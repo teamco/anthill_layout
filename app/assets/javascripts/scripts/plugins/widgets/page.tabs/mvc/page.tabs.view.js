@@ -48,13 +48,6 @@ define([
 
             this.footer(Footer, this.elements.$container);
 
-            /**
-             * Define page tab items
-             * @member PageTabsView
-             * @type {{}}
-             */
-            this.elements.items = {};
-
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.setEmbeddedContent
             );
@@ -64,24 +57,24 @@ define([
          * Render page tab element
          * @member PageTabsView
          * @param {Page} pageTab
-         * @param {string} current
          * @return {PageTabsItemElement}
          */
-        renderPageTabsItem: function renderPageTabsItem(pageTab, current) {
+        renderPageTabsItem: function renderPageTabsItem(pageTab) {
 
             /**
              * Define page tab item
              * @type {PageTabsItemElement}
+             * @return {jQuery}
              */
             var $pageTab = new PageTabsItemElement(this, {
                 $container: this.elements.$pagetabs.$,
                 pageTab: pageTab,
-                style: ['page-tabs-item', current].join(' ')
+                style: 'page-tabs-item'
             });
 
             this.elements.items[$pageTab.id] = $pageTab;
 
-            return $pageTab;
+            return $pageTab.$;
         },
 
         /**

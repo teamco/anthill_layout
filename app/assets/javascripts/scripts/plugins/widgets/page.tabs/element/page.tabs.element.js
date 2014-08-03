@@ -41,17 +41,24 @@ define([
         /**
          * Render Embedded content
          * @member PageTabsElement
-         * @param {{}} pages
-         * @param {Page} page
+         * @param {object} pages
          */
-        renderEmbeddedContent: function renderEmbeddedContent(pages, page) {
+        renderEmbeddedContent: function renderEmbeddedContent(pages) {
 
             this.empty();
+
+            /**
+             * Define page tab items
+             * @member PageTabsView
+             * @type {object}
+             */
+            this.view.elements.items = {};
+
             this.view.controller.clearParentThumbnail();
 
-            var order = 0, item,
-                current, index,
-                tabs = [];
+            var item, index,
+                tabs = [], $tab,
+                order;
 
             for (index in pages) {
 
@@ -63,21 +70,46 @@ define([
                      */
                     item = pages[index];
 
-                    order = item.model.getConfig('order');
+                    /**
+                     * Get order
+                     * @type {number}
+                     */
+                    order = item.model.getConfig('preferences').order;
 
                     /**
-                     * Define current page class name
-                     * @type {string}
+                     * Define tab
+                     * @type {jQuery}
                      */
-                    current = page === item ? this.current : '';
+                    $tab = this.view.renderPageTabsItem(item);
 
-                    tabs[order - 1] = this.view.renderPageTabsItem(
-                        item, current
-                    );
+                    typeof(order) === 'number' ?
+                        tabs[order] = $tab :
+                        tabs.push($tab);
                 }
             }
 
             this.$.append(tabs);
+        },
+
+        /**
+         * Set page tab as current
+         * @member PageTabsElement
+         * @param {Page} page
+         */
+        setPageTabAsCurrent: function setPageTabAsCurrent(page) {
+
+            // Reset current state
+            $('li', this.$).removeClass(this.current);
+
+            /**
+             * Get current page title
+             * @type {string}
+             */
+            var title = page.model.getConfig('preferences').title ||
+                page.model.getUUID();
+
+            $('li:contains("' + title + '")', this.$).
+                addClass(this.current);
         }
 
     }, BaseElement.prototype);

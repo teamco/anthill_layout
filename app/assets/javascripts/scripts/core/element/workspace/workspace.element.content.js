@@ -95,9 +95,13 @@ define([
              * @type {Workspace}
              */
             var scope = this.view.scope,
-                duration = animate ? 500 : 0,
-                order = page.model.getConfig('preferences').order ||
-                    page.model.getConfig('order') - 1;
+                duration = animate ? 500 : 0;
+
+            /**
+             * Get pages order
+             * @type {number}
+             */
+            var order = page.model.getConfig('order') - 1;
 
             this.view.elements.$pages.$.stop().animate({
 

@@ -224,43 +224,6 @@ define(
                 },
 
                 /**
-                 * Sort pages
-                 * @member WorkspaceController
-                 * @return {boolean|Array}
-                 */
-                sortPages: function sortPages() {
-
-                    var items = this.model.getItems(),
-                        item, index, sorted = [],
-                        sort;
-
-                    for (index in items) {
-
-                        if (items.hasOwnProperty(index)) {
-
-                            /**
-                             * Get page
-                             * @type {Page}
-                             */
-                            item = items[index];
-                            sort = item.model.getConfig('preferences').order;
-
-                            sort = (sort ?
-                                sort : item.model.getConfig('order')) - 1;
-
-                            if (sorted[sort]) {
-                                this.scope.logger.warn('Unable to sort pages', sort);
-                                return false;
-                            }
-
-                            sorted[sort] = item;
-                        }
-                    }
-
-                    return sorted;
-                },
-
-                /**
                  * Transfer preferences
                  * @member WorkspaceController
                  * @param {string} index
@@ -317,13 +280,15 @@ define(
                      * @type {WorkspaceElement}
                      */
                     var $workspace = this.view.elements.$workspace,
-                        preferences = this.model.getConfig('preferences');
+                        preferences = this.model.getConfig('preferences'),
+                        width = 0;
 
                     if (preferences.staticWidth) {
 
-                        $workspace.updateWidth(
-                                parseInt(preferences.siteWidthSlider, 10) || 0
-                        );
+                        // Get site widths
+                        width = parseInt(preferences.siteWidthSlider, 10) || width;
+
+                        $workspace.updateWidth(width);
 
                     } else {
 

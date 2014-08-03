@@ -29,7 +29,8 @@ define([
          */
         subscribeOrderPagesEvent: function subscribeOrderPagesEvent() {
             this.controller._subscribePageEventCallback.bind(this)(
-                'afterPageOrder'
+                'afterPageOrder',
+                this.eventmanager.eventList.setEmbeddedContent
             );
         },
 
@@ -39,7 +40,8 @@ define([
          */
         subscribeAfterSwitchPageEvent: function subscribeAfterSwitchPageEvent() {
             this.controller._subscribePageEventCallback.bind(this)(
-                'afterSwitchToPage'
+                'afterSwitchToPage',
+                this.eventmanager.eventList.setActivePageTab
             );
         },
 
@@ -49,7 +51,8 @@ define([
          */
         subscribeCreatePageEvent: function subscribeCreatePageEvent() {
             this.controller._subscribePageEventCallback.bind(this)(
-                'afterCreateItem'
+                'afterCreateItem',
+                this.eventmanager.eventList.setEmbeddedContent
             );
         },
 
@@ -60,11 +63,13 @@ define([
         subscribeDestroyPageEvent: function subscribeDestroyPageEvent() {
 
             this.controller._subscribePageEventCallback.bind(this)(
-                'afterDestroyItem'
+                'afterDestroyItem',
+                this.eventmanager.eventList.setEmbeddedContent
             );
 
             this.controller._subscribePageEventCallback.bind(this)(
-                'afterDestroyItems'
+                'afterDestroyItems',
+                this.eventmanager.eventList.setEmbeddedContent
             );
         },
 
@@ -73,8 +78,9 @@ define([
          * @member PageTabsController
          * @private
          * @param {string} eventName
+         * @param {string} callbackEvent
          */
-        _subscribePageEventCallback: function _subscribePageEventCallback(eventName) {
+        _subscribePageEventCallback: function _subscribePageEventCallback(eventName, callbackEvent) {
 
             /**
              * Get workspace
@@ -94,11 +100,9 @@ define([
                     eventName: wsEventManager.eventList[eventName]
                 },
 
-                callback: function onPageEventCallback() {
+                callback: function _callback() {
 
-                    this.observer.publish(
-                        this.eventmanager.eventList.setEmbeddedContent
-                    );
+                    this.observer.publish(callbackEvent);
 
                 }.bind(this)
 
@@ -118,8 +122,21 @@ define([
             var ws = this.controller.getWorkspace();
 
             this.view.elements.$pagetabs.renderEmbeddedContent(
-                ws.model.getItems(),
-                ws.controller.getCurrentItem()
+                ws.model.getItems()
+            );
+
+            this.observer.publish(
+                this.eventmanager.eventList.setActivePageTab
+            );
+        },
+
+        /**
+         * Set active tab
+         * @member PageTabsController
+         */
+        setActivePageTab: function setActivePageTab() {
+            this.view.elements.$pagetabs.setPageTabAsCurrent(
+                this.controller.getPage()
             );
         },
 
