@@ -110,17 +110,26 @@ define(
                 );
 
                 /**
-                 * Define Workspace
-                 * @type {Workspace}
+                 * Get swipe
+                 * @type {boolean}
                  */
-                var workspace = this.view.controller.getWorkspace();
+                var swipe = this.model.getConfig('switch');
 
-                workspace.observer.publish(
-                    workspace.eventmanager.eventList.switchToPage,
-                    [this.activeContent, false]
-                );
+                if (swipe) {
 
-                this.view.showPreferences(config);
+                    /**
+                     * Define Workspace
+                     * @type {Workspace}
+                     */
+                    var workspace = this.view.controller.getWorkspace();
+
+                    workspace.observer.publish(
+                        workspace.eventmanager.eventList.switchToPage,
+                        [this.activeContent, false]
+                    );
+                }
+
+                this.view.showPreferences(config, !swipe);
             },
 
             /**

@@ -70,12 +70,18 @@ define([], function defineBasePreferences() {
             }, opts.buttons || {});
 
             /**
+             * Define current page
+             * @type {Page}
+             */
+            var current = this.controller.getPage();
+
+            /**
              * Define page
              * @type {Page}
              */
-            var page = this.scope.base.define(
+            var page = opts.current ? current : this.scope.base.define(
                 this.controller.getPage(opts.config.uuid),
-                this.controller.getPage()
+                current
             );
 
             this.modalDialog({

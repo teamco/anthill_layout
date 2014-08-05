@@ -148,11 +148,13 @@ define(
              * Show preferences
              * @member WorkspaceDataView
              * @param config
+             * @param {boolean} current
              */
-            showPreferences: function showPreferences(config) {
+            showPreferences: function showPreferences(config, current) {
 
                 this.openPreferences({
                     config: config,
+                    current: current,
                     $html: this.controller.definePreferences(config.uuid).$,
                     style: 'workspace-data-prefs preferences',
                     title: 'Page preferences',

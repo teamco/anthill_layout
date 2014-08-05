@@ -48,6 +48,7 @@ define([
          * Define defaults
          * @type {{
          *      plugin: boolean,
+         *      switch: boolean,
          *      html: {
          *          style: string,
          *          header: boolean,
@@ -64,6 +65,7 @@ define([
          */
         var DEFAULTS = {
             plugin: true,
+            switch: false,
             html: {
                 style: 'default',
                 header: true,
