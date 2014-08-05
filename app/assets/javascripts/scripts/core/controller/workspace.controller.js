@@ -127,27 +127,24 @@ define(
                  */
                 switchToPage: function switchToPage(page, animate) {
 
-                    if (!page.model) {
-                        window.location.hash = '';
-                        return false;
-                    }
+                    if (page && page.model && this.items.hasOwnProperty(page.model.getUUID())) {
 
-                    if (this.switchPage) {
-                        return false;
-                    }
+                        if (this.switchPage) {
 
-                    this.observer.publish(
-                        this.eventmanager.eventList.beforeSwitchToPage,
-                        page
-                    );
+                            this.logger.debug('Page under swipe', page);
+                            return false;
+                        }
 
-                    if (page === this.controller.getCurrentItem()) {
-                        this.logger.debug('Page already current', page);
-                        this.controller.swipeToCurrentPage(animate);
-                        return false;
-                    }
+                        this.observer.publish(
+                            this.eventmanager.eventList.beforeSwitchToPage,
+                            page
+                        );
 
-                    if (page && this.items.hasOwnProperty(page.model.getUUID())) {
+                        if (page === this.controller.getCurrentItem()) {
+                            this.logger.debug('Page already current', page);
+                            this.controller.swipeToCurrentPage(animate);
+                            return false;
+                        }
 
                         /**
                          * Get all items
@@ -177,6 +174,7 @@ define(
 
                     } else {
 
+                        window.location.hash = '';
                         this.logger.warn('Undefined page', page);
                         return false;
                     }
@@ -194,7 +192,7 @@ define(
                     this.switchPage = false;
 
                     //this.getWidgetByHashLocation()
-                    console.log('TODO add widget implementation');
+                    //console.log('TODO add widget implementation');
                 },
 
                 /**

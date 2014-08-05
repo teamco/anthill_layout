@@ -481,12 +481,7 @@ define([
                 scope.config[namespace].counter =
                     base.lib.hash.hashLength(this.getItems());
 
-                var prefs = node.model.getConfig('preferences') || {},
-                    order = prefs.order ?
-                        prefs.order :
-                        scope.config[namespace].counter;
-
-                node.model.setConfig('order', order);
+                node.model.setConfig('order', scope.config[namespace].counter);
 
                 /**
                  * Store item

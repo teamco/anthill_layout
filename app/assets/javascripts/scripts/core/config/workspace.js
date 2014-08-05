@@ -112,7 +112,7 @@ define(
                  * @member Workspace
                  * @type {boolean}
                  */
-                this.swipePage = false;
+                this.switchPage = false;
 
                 /**
                  * Define page
