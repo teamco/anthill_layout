@@ -45,7 +45,7 @@
 }
 
 .modal-dialog div.content {
-    box-shadow: 0px 5px 2px #ccc;
+    box-shadow: 0 5px 2px #ccc;
     padding-bottom: 5px;
     margin-bottom: 10px;
 }
@@ -53,6 +53,13 @@
 .modal-dialog p.text,
 .modal-dialog div.html {
     margin: 10px;
+}
+
+.modal-dialog div.html {
+    max-height: 500px;
+    max-width: 700px;
+    overflow-x: auto;
+    overflow-y: auto;
 }
 
 .modal-dialog ul.actions {
