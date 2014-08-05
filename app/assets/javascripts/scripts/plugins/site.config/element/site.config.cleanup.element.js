@@ -17,7 +17,7 @@ define([
      */
     var SiteConfigCleanUpElement = function SiteConfigCleanUpElement(view, opts) {
 
-        this._config(view, opts, $('<pre />')).build({
+        this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: false
         });
@@ -37,18 +37,34 @@ define([
         prettifyJSON: function prettifyJSON() {
 
             /**
+             * Load pretty print functionality
+             * @private
+             */
+            function _loadPrettyPrint() {
+
+                $(prettyPrint(data)).appendTo(this.$);
+                this.adoptModalDialogPosition();
+            }
+
+            /**
              * Get scope
              * @type {SiteConfig}
              */
             var scope = this.view.scope,
                 data = scope.controller.root().model.setting.load();
 
-            require(['lib/packages/pretty.print'], function loadPrettyPrint() {
+            if (window.prettyPrint) {
 
-                $(prettyPrint(data)).appendTo(this.$);
-                this.adoptModalDialogPosition();
+                // Load cached version
+                _loadPrettyPrint.bind(this)();
 
-            }.bind(this));
+            } else {
+
+                require(
+                    ['lib/packages/pretty.print'],
+                    _loadPrettyPrint.bind(this)
+                );
+            }
         }
 
     }, BaseElement.prototype);
