@@ -37,7 +37,7 @@ define([
 
         /**
          * Define attributes
-         * @memberOf MaximizeContentElement
+         * @member MaximizeContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
@@ -87,7 +87,7 @@ define([
 
         /**
          * Locate widget before showing prefs
-         * @memberOf MaximizeContentElement
+         * @member MaximizeContentElement
          * @param data
          */
         bindLocate: function bindLocate(data) {
@@ -129,7 +129,7 @@ define([
 
         /**
          * Bind maximize
-         * @memberOf MaximizeContentElement
+         * @member MaximizeContentElement
          * @param data
          */
         bindMaximize: function bindMaximize(data) {

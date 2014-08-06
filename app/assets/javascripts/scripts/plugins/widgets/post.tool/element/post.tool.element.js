@@ -36,7 +36,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf PostToolElement
+         * @member PostToolElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
             var $element = this;

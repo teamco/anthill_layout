@@ -26,7 +26,7 @@ define([
 
         /**
          * Define containment
-         * @memberOf Gallery
+         * @member Gallery
          */
         this.containment = containment;
 
@@ -66,7 +66,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Gallery
+         * @member Gallery
          * @type {MVC}
          */
         this.mvc = new MVC({

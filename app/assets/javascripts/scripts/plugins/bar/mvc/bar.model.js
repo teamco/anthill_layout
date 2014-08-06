@@ -19,7 +19,7 @@ define([
 
         /**
          * Init modules
-         * @memberOf BarModel
+         * @member BarModel
          * @type {Array}
          */
         this.modules = [];
@@ -29,7 +29,7 @@ define([
 
         /**
          * Get list of modules
-         * @memberOf BarModel
+         * @member BarModel
          * @returns {*}
          */
         getModulesData: function getModulesData() {
@@ -38,7 +38,7 @@ define([
 
         /**
          * Store modules
-         * @memberOf BarModel
+         * @member BarModel
          */
         storeModules: function storeModules() {
             this.modules = this.getModulesData();
@@ -46,7 +46,7 @@ define([
 
         /**
          * Get modules
-         * @memberOf BarModel
+         * @member BarModel
          * @returns {Array}
          */
         getModules: function getModules() {

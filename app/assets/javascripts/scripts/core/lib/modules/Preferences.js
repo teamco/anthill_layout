@@ -15,7 +15,7 @@ define([], function defineBasePreferences() {
 
         /**
          * Update prefs
-         * @memberOf BasePreferences
+         * @member BasePreferences
          * @param {ModalElement} $modal
          * @param {boolean} render
          */

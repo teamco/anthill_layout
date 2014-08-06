@@ -28,7 +28,7 @@ define([
 
         /**
          * Render pet.radar element
-         * @memberOf PetRadarView
+         * @member PetRadarView
          */
         renderPetRadar: function renderPetRadar() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf PetRadarView
+         * @member PetRadarView
          * @returns {PetRadarPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf PetRadarView
+         * @member PetRadarView
          * @param widgetRules
          * @param contentRules
          * @returns {PetRadarRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render pet.radar
-         * @memberOf PetRadarView
+         * @member PetRadarView
          */
         render: function render() {
 

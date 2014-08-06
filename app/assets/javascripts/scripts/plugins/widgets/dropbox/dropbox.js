@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf Dropbox
+         * @member Dropbox
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Dropbox
+         * @member Dropbox
          * @type {*}
          */
         this.referrer = undefined;
@@ -72,7 +72,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Dropbox
+         * @member Dropbox
          * @type {MVC}
          */
         this.mvc = new MVC({

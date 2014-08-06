@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf VimeoController
+         * @member VimeoController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate vimeo
-         * @memberOf VimeoController
+         * @member VimeoController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -75,7 +75,7 @@ define([
 
         /**
          * Add Vimeo rule
-         * @memberOf VimeoController
+         * @member VimeoController
          * @param e
          */
         addVimeoRule: function addVimeoRule(e) {

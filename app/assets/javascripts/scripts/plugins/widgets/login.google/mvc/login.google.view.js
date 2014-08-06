@@ -28,7 +28,7 @@ define([
 
         /**
          * Render login.google element
-         * @memberOf LoginGoogleView
+         * @member LoginGoogleView
          */
         renderLoginGoogle: function renderLoginGoogle() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf LoginGoogleView
+         * @member LoginGoogleView
          * @returns {LoginGooglePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf LoginGoogleView
+         * @member LoginGoogleView
          * @param widgetRules
          * @param contentRules
          * @returns {LoginGoogleRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render login.google
-         * @memberOf LoginGoogleView
+         * @member LoginGoogleView
          */
         render: function render() {
 

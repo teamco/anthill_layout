@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf GeolocationModel
+         * @member GeolocationModel
          * @type {{
          *      geolocationLatitude: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      geolocationLongitude: {type: string, disabled: boolean, value: undefined, visible: boolean},
@@ -117,7 +117,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf GeolocationModel
+         * @member GeolocationModel
          * @type {{}}
          */
         this.rules = {};
@@ -127,7 +127,7 @@ define([
 
         /**
          * Set Geolocation Latitude
-         * @memberOf GeolocationModel
+         * @member GeolocationModel
          * @param {number} latitude
          */
         setGeolocationLatitude: function setGeolocationLatitude(latitude) {
@@ -136,7 +136,7 @@ define([
 
         /**
          * Set Geolocation Longitude
-         * @memberOf GeolocationModel
+         * @member GeolocationModel
          * @param {number} longitude
          */
         setGeolocationLongitude: function setGeolocationLongitude(longitude) {
@@ -145,7 +145,7 @@ define([
 
         /**
          * Set Geolocation Zoom
-         * @memberOf GeolocationModel
+         * @member GeolocationModel
          * @param {number} zoom
          */
         setGeolocationZoom: function setGeolocationZoom(zoom) {
@@ -154,7 +154,7 @@ define([
 
         /**
          * Set Geolocation Width
-         * @memberOf GeolocationModel
+         * @member GeolocationModel
          * @param {number} width
          */
         setGeolocationWidth: function setGeolocationWidth(width) {
@@ -163,7 +163,7 @@ define([
 
         /**
          * Set Geolocation Height
-         * @memberOf GeolocationModel
+         * @member GeolocationModel
          * @param {number} height
          */
         setGeolocationHeight: function setGeolocationHeight(height) {
@@ -172,7 +172,7 @@ define([
 
         /**
          * Set Geolocation Height
-         * @memberOf GeolocationModel
+         * @member GeolocationModel
          * @param {string} type
          */
         setGeolocationMapType: function setGeolocationMapType(type) {
@@ -181,7 +181,7 @@ define([
 
         /**
          * Set Geolocation Scale
-         * @memberOf GeolocationModel
+         * @member GeolocationModel
          * @param {boolean} scale
          */
         setGeolocationScale: function setGeolocationScale(scale) {
@@ -190,7 +190,7 @@ define([
 
         /**
          * Set Geolocation Sensor
-         * @memberOf GeolocationModel
+         * @member GeolocationModel
          * @param {boolean} sensor
          */
         setGeolocationGpsSensor: function setGeolocationGpsSensor(sensor) {
@@ -199,7 +199,7 @@ define([
 
         /**
          * Set Geolocation Stretch
-         * @memberOf GeolocationModel
+         * @member GeolocationModel
          * @param {boolean} stretch
          */
         setGeolocationStretch: function setGeolocationStretch(stretch) {

@@ -21,7 +21,7 @@ define([], function defineWidgetMaximize() {
 
         /**
          * Reduce widget
-         * @memberOf WidgetMaximize
+         * @member WidgetMaximize
          */
         reduceWidget: function reduceWidget() {
 
@@ -34,7 +34,7 @@ define([], function defineWidgetMaximize() {
 
         /**
          * Enlarge widget
-         * @memberOf WidgetMaximize
+         * @member WidgetMaximize
          */
         enlargeWidget: function enlargeWidget() {
 
@@ -47,7 +47,7 @@ define([], function defineWidgetMaximize() {
 
         /**
          * Before maximize callback
-         * @memberOf WidgetMaximize
+         * @member WidgetMaximize
          */
         beforeMaximize: function beforeMaximize() {
 
@@ -74,7 +74,7 @@ define([], function defineWidgetMaximize() {
 
         /**
          * After maximize callback
-         * @memberOf WidgetMaximize
+         * @member WidgetMaximize
          */
         afterMaximize: function afterMaximize() {
             this.logger.debug('After maximize');
@@ -82,7 +82,7 @@ define([], function defineWidgetMaximize() {
 
         /**
          * Before reduce callback
-         * @memberOf WidgetMaximize
+         * @member WidgetMaximize
          */
         beforeReduce: function beforeReduce() {
 
@@ -106,7 +106,7 @@ define([], function defineWidgetMaximize() {
 
         /**
          * After reduce callback
-         * @memberOf WidgetMaximize
+         * @member WidgetMaximize
          */
         afterReduce: function afterReduce() {
             this.logger.debug('After reduce');

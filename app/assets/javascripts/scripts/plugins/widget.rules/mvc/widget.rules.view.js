@@ -30,7 +30,7 @@ define([
 
         /**
          * Render WidgetRules
-         * @memberOf WidgetRulesView
+         * @member WidgetRulesView
          * @returns {boolean}
          */
         renderWidgetRules: function renderWidgetRules() {
@@ -59,7 +59,7 @@ define([
 
         /**
          * Render widget.rules content
-         * @memberOf WidgetRulesView
+         * @member WidgetRulesView
          * @param data
          * @returns {boolean}
          */
@@ -112,7 +112,7 @@ define([
 
         /**
          * Show rules
-         * @memberOf WidgetRulesView
+         * @member WidgetRulesView
          * @param config
          * @returns {boolean|*}
          */
@@ -159,7 +159,7 @@ define([
 
         /**
          * Render widget.rules
-         * @memberOf WidgetRulesView
+         * @member WidgetRulesView
          */
         render: function render() {
 

@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf GeolocationElement
+         * @member GeolocationElement
          * @param {{
          *      latitude: number,
          *      longitude: number,

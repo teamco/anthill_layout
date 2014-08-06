@@ -20,7 +20,7 @@ define([
 
         /**
          * Define scope
-         * @memberOf Logger
+         * @member Logger
          * @type {*}
          */
         this.scope = scope;
@@ -32,7 +32,7 @@ define([
 
         /**
          * Set config
-         * @memberOf Logger
+         * @member Logger
          * @param config
          */
         setConfig: function setConfig(config) {
@@ -49,7 +49,7 @@ define([
 
         /**
          * Show Log
-         * @memberOf Logger
+         * @member Logger
          * @returns {boolean}
          */
         showLog: function showLog() {
@@ -58,7 +58,7 @@ define([
 
         /**
          * Check if log available
-         * @memberOf Logger
+         * @member Logger
          * @return {Boolean}
          */
         isLoggable: function isLoggable() {
@@ -68,7 +68,7 @@ define([
 
         /**
          * Puts (internal function)
-         * @memberOf Logger
+         * @member Logger
          * @param {string} type
          * @returns {boolean}
          */
@@ -153,7 +153,7 @@ define([
 
         /**
          * Stack trace parser
-         * @memberOf Logger
+         * @member Logger
          * @param {Array} stacks
          * @returns {Array}
          */
@@ -168,7 +168,7 @@ define([
 
         /**
          * Timer
-         * @memberOf Logger
+         * @member Logger
          * @param {string} name
          * @param {boolean} start
          */
@@ -190,7 +190,7 @@ define([
 
         /**
          * Define available logs
-         * @memberOf Logger
+         * @member Logger
          */
         defineLogs: function defineLogs() {
             var base = this.base,

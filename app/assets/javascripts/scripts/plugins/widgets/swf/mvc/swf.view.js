@@ -28,7 +28,7 @@ define([
 
         /**
          * Render swf element
-         * @memberOf SwfView
+         * @member SwfView
          */
         renderSwf: function renderSwf() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf SwfView
+         * @member SwfView
          * @returns {SwfPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf SwfView
+         * @member SwfView
          * @param widgetRules
          * @param contentRules
          * @returns {SwfRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render swf
-         * @memberOf SwfView
+         * @member SwfView
          */
         render: function render() {
 

@@ -29,7 +29,7 @@ define([
 
         /**
          * Render search
-         * @memberOf GallerySearchElement
+         * @member GallerySearchElement
          * @returns {BaseElement}
          */
         renderData: function renderData() {

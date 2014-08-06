@@ -26,7 +26,7 @@ define(
 
             /**
              * Define events
-             * @memberOf WorkspaceEventManager
+             * @member WorkspaceEventManager
              * @type {{}}
              */
             this.events = {};
@@ -36,7 +36,7 @@ define(
 
             /**
              * Define event list
-             * @memberOf WorkspaceEventManager
+             * @member WorkspaceEventManager
              * @type {{
              *      bindHashChange: string,
              *      createPage: string,
@@ -51,6 +51,7 @@ define(
              *      adoptContentWidth: string,
              *      afterLoadingItems: string,
              *      updateSiteWidth: string,
+             *      loadTrackingSnippet: string,
              *      loadPreferences: string,
              *      transferPreferences: string,
              *      transferContentPreferences: string
@@ -73,6 +74,8 @@ define(
                 afterPageOrder: 'after.page.order',
 
                 updateSiteWidth: 'update.site.width',
+
+                loadTrackingSnippet: 'load.tracking.snippet',
 
                 loadPreferences: 'load.preferences',
                 transferPreferences: 'transfer.preferences',

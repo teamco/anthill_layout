@@ -30,7 +30,7 @@ define([
 
         /**
          * Render Maximize
-         * @memberOf MaximizeView
+         * @member MaximizeView
          * @returns {boolean}
          */
         renderMaximize: function renderMaximize() {
@@ -59,7 +59,7 @@ define([
 
         /**
          * Render maximize content
-         * @memberOf MaximizeView
+         * @member MaximizeView
          * @param data
          * @returns {boolean}
          */
@@ -112,7 +112,7 @@ define([
 
         /**
          * Render maximize
-         * @memberOf MaximizeView
+         * @member MaximizeView
          */
         render: function render() {
 

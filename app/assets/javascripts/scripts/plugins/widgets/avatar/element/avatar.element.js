@@ -32,7 +32,7 @@ define([
 
         /**
          * Define default image
-         * @memberOf AvatarElement
+         * @member AvatarElement
          * @type {string}
          */
         this.defaultImage = [
@@ -47,7 +47,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf AvatarElement
+         * @member AvatarElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
 

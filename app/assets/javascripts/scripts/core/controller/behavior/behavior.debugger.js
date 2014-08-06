@@ -23,7 +23,7 @@ define([
 
         /**
          * Start debugger
-         * @memberOf BaseDebugger
+         * @member BaseDebugger
          */
         debugStart: function debugStart() {
             this.logger.debug('Activate debugger');
@@ -31,7 +31,7 @@ define([
 
         /**
          * End debugger
-         * @memberOf BaseDebugger
+         * @member BaseDebugger
          */
         debugEnd: function debugEnd() {
             this.logger.debug('Destroy debugger');
@@ -39,7 +39,7 @@ define([
 
         /**
          * Activate debugger
-         * @memberOf BaseDebugger
+         * @member BaseDebugger
          * @returns {boolean}
          */
         activateDebugger: function activateDebugger() {
@@ -55,7 +55,7 @@ define([
 
         /**
          * Deactivate debugger
-         * @memberOf BaseDebugger
+         * @member BaseDebugger
          * @returns {boolean}
          */
         deactivateDebugger: function deactivateDebugger() {
@@ -71,7 +71,7 @@ define([
 
         /**
          * Reset debugger
-         * @memberOf BaseDebugger
+         * @member BaseDebugger
          */
         reactivateDebugger: function reactivateDebugger() {
             this.deactivateDebugger();
@@ -80,7 +80,7 @@ define([
 
         /**
          * Update debugger info
-         * @memberOf BaseDebugger
+         * @member BaseDebugger
          * @returns {boolean}
          */
         updateDebugger: function updateDebugger() {

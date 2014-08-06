@@ -36,7 +36,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf IceFloeElement
+         * @member IceFloeElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
             var $element = this;

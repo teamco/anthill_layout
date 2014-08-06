@@ -28,7 +28,7 @@ define([
 
         /**
          * Render avatar element
-         * @memberOf AvatarView
+         * @member AvatarView
          */
         renderAvatar: function renderAvatar() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf AvatarView
+         * @member AvatarView
          * @returns {AvatarPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf AvatarView
+         * @member AvatarView
          * @param widgetRules
          * @param contentRules
          * @returns {AvatarRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render avatar
-         * @memberOf AvatarView
+         * @member AvatarView
          */
         render: function render() {
 

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf DropboxController
+         * @member DropboxController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -36,7 +36,7 @@ define([
 
         /**
          * Set hidden preferences
-         * @memberOf DropboxController
+         * @member DropboxController
          * @param {string} preference
          * @param value
          */
@@ -51,7 +51,7 @@ define([
 
         /**
          * Add Dropbox rule
-         * @memberOf DropboxController
+         * @member DropboxController
          * @param e
          */
         addDropboxRule: function addDropboxRule(e) {

@@ -20,13 +20,13 @@ define([], function defineBaseNumber() {
 
         /**
          * Default number type
-         * @memberOf BaseNumber
+         * @member BaseNumber
          */
         defaultNumberType: 10,
 
         /**
          * Convert String to Integer
-         * @memberOf BaseNumber
+         * @member BaseNumber
          * @param {string} s
          * @param {number} t
          * @returns {Number}
@@ -38,7 +38,7 @@ define([], function defineBaseNumber() {
 
         /**
          * Convert String to Integer
-         * @memberOf BaseNumber
+         * @member BaseNumber
          * @param {string} s
          * @returns {Number}
          */
@@ -49,7 +49,7 @@ define([], function defineBaseNumber() {
 
         /**
          * Get random number
-         * @memberOf BaseNumber
+         * @member BaseNumber
          * @param {number} min
          * @param {number} max
          * @returns {number}
@@ -60,7 +60,7 @@ define([], function defineBaseNumber() {
 
         /**
          * Numeric sort
-         * @memberOf BaseNumber
+         * @member BaseNumber
          * @param {Number} a
          * @param {Number} b
          * @returns {Number}

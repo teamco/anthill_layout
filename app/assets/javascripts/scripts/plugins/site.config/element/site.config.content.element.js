@@ -39,7 +39,7 @@ define([
 
         /**
          * Define init
-         * @memberOf SiteConfigContentElement
+         * @member SiteConfigContentElement
          * @param data
          * @returns {SiteConfigContentElement}
          */
@@ -53,7 +53,7 @@ define([
 
         /**
          * Get page $counter
-         * @memberOf SiteConfigContentElement
+         * @member SiteConfigContentElement
          * @returns {*|jQuery|HTMLElement}
          */
         get$counter: function get$counter() {
@@ -62,7 +62,7 @@ define([
 
         /**
          * Define attributes
-         * @memberOf SiteConfigContentElement
+         * @member SiteConfigContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
@@ -76,7 +76,7 @@ define([
 
         /**
          * Bind show prefs
-         * @memberOf SiteConfigContentElement
+         * @member SiteConfigContentElement
          * @param data
          */
         bindShowPrefs: function bindShowPrefs(data) {

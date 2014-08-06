@@ -24,7 +24,7 @@ define([
 
         /**
          * Create page layout
-         * @memberOf BasePage
+         * @member BasePage
          * @param {Function} Layout
          * @param {{}} opts
          */
@@ -32,7 +32,7 @@ define([
 
             /**
              * Define layout
-             * @memberOf Page
+             * @member Page
              * @type {Layout}
              */
             this.layout = new Layout(opts, this);
@@ -40,7 +40,7 @@ define([
 
         /**
          * Destroy layout
-         * @memberOf BasePage
+         * @member BasePage
          */
         destroyLayout: function destroyLayout() {
             this.logger.info(
@@ -52,7 +52,7 @@ define([
 
         /**
          * Get Layout
-         * @memberOf BasePage
+         * @member BasePage
          * @returns {Layout}
          */
         getLayout: function getLayout() {
@@ -61,7 +61,7 @@ define([
 
         /**
          * Update layout config
-         * @memberOf BasePage
+         * @member BasePage
          */
         updateLayout: function updateLayout() {
 

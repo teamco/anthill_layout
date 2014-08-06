@@ -18,7 +18,7 @@ define([], function defineCheckBoxRenderer(){
 
         /**
          * Render checkbox
-         * @memberOf CheckBoxRenderer
+         * @member CheckBoxRenderer
          * @param {{text: string, name: string, value, [checked]: boolean, [disabled]: boolean, [monitor]}} opts
          * @returns {*[]}
          */

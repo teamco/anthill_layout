@@ -39,7 +39,7 @@ define([
 
         /**
          * Define init
-         * @memberOf WorkspaceDataContentElement
+         * @member WorkspaceDataContentElement
          * @param {Page} page
          * @returns {WorkspaceDataContentElement}
          */
@@ -62,7 +62,7 @@ define([
 
         /**
          * Render page widgets counter
-         * @memberOf WorkspaceDataContentElement
+         * @member WorkspaceDataContentElement
          * @param {Page} page
          */
         renderCounter: function renderCounter(page) {
@@ -75,7 +75,7 @@ define([
 
         /**
          * Update counter text
-         * @memberOf WorkspaceDataContentElement
+         * @member WorkspaceDataContentElement
          * @param {Page} page
          */
         updateCounter: function updateCounter(page) {
@@ -111,7 +111,7 @@ define([
 
         /**
          * Get page $counter
-         * @memberOf WorkspaceDataContentElement
+         * @member WorkspaceDataContentElement
          * @returns {*|jQuery|HTMLElement}
          */
         get$counter: function get$counter() {
@@ -120,7 +120,7 @@ define([
 
         /**
          * Define attributes
-         * @memberOf WorkspaceDataContentElement
+         * @member WorkspaceDataContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
@@ -140,7 +140,7 @@ define([
 
         /**
          * Set publish on events
-         * @memberOf WorkspaceDataContentElement
+         * @member WorkspaceDataContentElement
          * @param page
          */
         setPublishOn: function setPublishOn(page) {
@@ -149,7 +149,7 @@ define([
 
         /**
          * Bind show prefs
-         * @memberOf WorkspaceDataContentElement
+         * @member WorkspaceDataContentElement
          * @param data
          */
         bindShowPrefs: function bindShowPrefs(data) {

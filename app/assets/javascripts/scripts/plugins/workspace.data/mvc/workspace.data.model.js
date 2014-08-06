@@ -19,7 +19,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf WorkspaceDataModel
+         * @member WorkspaceDataModel
          * @type {{url: string}}
          */
         this.preferences = {
@@ -30,7 +30,7 @@ define([
 
         /**
          * Get data items
-         * @memberOf WorkspaceDataModel
+         * @member WorkspaceDataModel
          */
         getDataItems: function getDataItems(workspace) {
 

@@ -37,7 +37,7 @@ define([
 
         /**
          * Define setup
-         * @memberOf ButtonElement
+         * @member ButtonElement
          * @param opts
          */
         setup: function setup(opts) {
@@ -46,7 +46,7 @@ define([
 
         /**
          * Set content
-         * @memberOf ButtonElement
+         * @member ButtonElement
          */
         setContent: function setContent() {
             this.setText(this.text);

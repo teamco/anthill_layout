@@ -38,7 +38,7 @@ define(
 
                 /**
                  * Set embedded content
-                 * @memberOf MapLocatorController
+                 * @member MapLocatorController
                  */
                 setEmbeddedContent: function setEmbeddedContent() {
 
@@ -49,7 +49,7 @@ define(
 
                 /**
                  * Set embedded content
-                 * @memberOf MapLocatorController
+                 * @member MapLocatorController
                  * @private
                  */
                 _setEmbeddedContent: function _setEmbeddedContent() {
@@ -75,7 +75,7 @@ define(
 
                 /**
                  * Add MapLocator rule
-                 * @memberOf MapLocatorController
+                 * @member MapLocatorController
                  * @param e
                  */
                 addMapLocatorRule: function addMapLocatorRule(e) {
@@ -95,7 +95,7 @@ define(
 
                 /**
                  * Get location
-                 * @memberOf MapLocatorController
+                 * @member MapLocatorController
                  */
                 getLocation: function getLocation() {
                     this.controller.getPosition(
@@ -110,7 +110,7 @@ define(
                 /**
                  * Calculate direction between two places
                  * @param destination
-                 * @memberOf MapLocatorController
+                 * @member MapLocatorController
                  */
                 calculateRoute: function calculateRoute(destination) {
 

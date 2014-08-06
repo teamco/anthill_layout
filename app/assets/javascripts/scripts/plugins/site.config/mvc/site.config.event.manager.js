@@ -20,7 +20,7 @@ define([
 
         /**
          * Define events
-         * @memberOf SiteConfigEventManager
+         * @member SiteConfigEventManager
          * @type {{}}
          */
         this.events = {};
@@ -30,7 +30,7 @@ define([
 
         /**
          * Define event list
-         * @memberOf SiteConfigEventManager
+         * @member SiteConfigEventManager
          * @type {{
          *      updateTranslations: string,
          *      loadContent: string,

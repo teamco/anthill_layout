@@ -17,7 +17,7 @@ define([], function defineBaseRules() {
 
         /**
          * Toggle fieldset
-         * @memberOf BaseRules
+         * @member BaseRules
          * @param e
          */
         toggleFieldset: function toggleFieldset(e) {
@@ -37,7 +37,7 @@ define([], function defineBaseRules() {
 
         /**
          * Open preferences
-         * @memberOf BaseRules
+         * @member BaseRules
          * @param opts
          */
         openRules: function openRules(opts) {

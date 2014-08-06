@@ -35,7 +35,7 @@ define(
 
         /**
          * Define Application Global listeners
-         * @memberOf App
+         * @member App
          * @type {{successRendered: {name: string, callback: function}}}
          * @type {{createAuthorPanel: {name: string, callback: function}}}
          */
@@ -95,7 +95,7 @@ define(
 
         /**
          * Define Workspace Global listeners
-         * @memberOf Workspace
+         * @member Workspace
          * @type {{}}
          */
         Workspace.prototype.globalListeners = {
@@ -104,7 +104,7 @@ define(
 
         /**
          * Define Page Global listeners
-         * @memberOf Page
+         * @member Page
          * @type {{}}
          */
         Page.prototype.globalListeners = {
@@ -113,7 +113,7 @@ define(
 
         /**
          * Define Widget Global listeners
-         * @memberOf Widget
+         * @member Widget
          * @type {{}}
          */
         Widget.prototype.globalListeners = {

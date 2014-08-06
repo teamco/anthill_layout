@@ -18,7 +18,7 @@ define([], function defineComboBoxRenderer(){
 
         /**
          * Render combo box
-         * @memberOf ComboBoxRenderer
+         * @member ComboBoxRenderer
          * @param {Array} data
          * @param selected
          * @param {string} name

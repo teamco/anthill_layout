@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf DropboxModel
+         * @member DropboxModel
          * @type {{
          *      dropboxUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      dropboxApiKey: {type: string, disabled: boolean, value: undefined, visible: boolean},
@@ -79,7 +79,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf DropboxModel
+         * @member DropboxModel
          * @type {{}}
          */
         this.rules = {};
@@ -89,7 +89,7 @@ define([
 
         /**
          * Set Dropbox Url
-         * @memberOf DropboxModel
+         * @member DropboxModel
          * @param {string} url
          */
         setDropboxUrl: function setDropboxUrl(url) {
@@ -98,7 +98,7 @@ define([
 
         /**
          * Set Dropbox Url
-         * @memberOf DropboxModel
+         * @member DropboxModel
          * @param {boolean} download
          */
         setDropboxDownload: function setDropboxDownload(download) {
@@ -107,7 +107,7 @@ define([
 
         /**
          * Set Dropbox bytes
-         * @memberOf DropboxModel
+         * @member DropboxModel
          * @param {number} bytes
          */
         setDropboxBytes: function setDropboxBytes(bytes) {
@@ -116,7 +116,7 @@ define([
 
         /**
          * Set Dropbox icon
-         * @memberOf DropboxModel
+         * @member DropboxModel
          * @param {string} icon
          */
         setDropboxIcon: function setDropboxIcon(icon) {
@@ -125,7 +125,7 @@ define([
 
         /**
          * Set Dropbox file name
-         * @memberOf DropboxModel
+         * @member DropboxModel
          * @param {string} name
          */
         setDropboxFileName: function setDropboxFileName(name) {
@@ -134,7 +134,7 @@ define([
 
         /**
          * Set Dropbox thumbnail
-         * @memberOf DropboxModel
+         * @member DropboxModel
          * @param {string} thumbnail
          */
         setDropboxThumbnail: function setDropboxThumbnail(thumbnail) {
@@ -143,7 +143,7 @@ define([
 
         /**
          * Set Dropbox API Key
-         * @memberOf DropboxModel
+         * @member DropboxModel
          * @param {string} apiKey
          */
         setDropboxApiKey: function setDropboxApiKey(apiKey) {

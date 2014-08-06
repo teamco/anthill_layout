@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf PostTemplate
+         * @member PostTemplate
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf PostTemplate
+         * @member PostTemplate
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf PostTemplate
+         * @member PostTemplate
          * @type {MVC}
          */
         this.mvc = new MVC({

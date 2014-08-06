@@ -20,7 +20,7 @@ define([], function defineWidgetStick() {
 
         /**
          * Unset stick
-         * @memberOf WidgetStick
+         * @member WidgetStick
          */
         unsetStick: function unsetStick() {
             this.logger.debug('unsetStick');
@@ -29,7 +29,7 @@ define([], function defineWidgetStick() {
 
         /**
          * Stick to center left
-         * @memberOf WidgetStick
+         * @member WidgetStick
          */
         setStickToCenterLeft: function setStickToCenterLeft() {
             this.logger.debug('setStickToCenterLeft');
@@ -41,7 +41,7 @@ define([], function defineWidgetStick() {
 
         /**
          * Stick to center top
-         * @memberOf WidgetStick
+         * @member WidgetStick
          */
         setStickToCenterTop: function setStickToCenterTop() {
             this.logger.debug('setStickToCenterTop');
@@ -53,7 +53,7 @@ define([], function defineWidgetStick() {
 
         /**
          * Stick to center
-         * @memberOf WidgetStick
+         * @member WidgetStick
          */
         setStickToCenter: function setStickToCenter() {
             this.logger.debug('setStickToCenter');
@@ -65,7 +65,7 @@ define([], function defineWidgetStick() {
 
         /**
          * Stick to center bottom
-         * @memberOf WidgetStick
+         * @member WidgetStick
          */
         setStickToCenterBottom: function setStickToCenterBottom() {
             this.logger.debug('setStickToCenterBottom');
@@ -77,7 +77,7 @@ define([], function defineWidgetStick() {
 
         /**
          * Stick to center left
-         * @memberOf WidgetStick
+         * @member WidgetStick
          */
         setStickToCenterRight: function setStickToCenterRight() {
             this.logger.debug('setStickToCenterRight');
@@ -89,7 +89,7 @@ define([], function defineWidgetStick() {
 
         /**
          * Stick to top left
-         * @memberOf WidgetStick
+         * @member WidgetStick
          */
         setStickToTopLeft: function setStickToTopLeft() {
             this.logger.debug('setStickToTopLeft');
@@ -101,7 +101,7 @@ define([], function defineWidgetStick() {
 
         /**
          * Stick to bottom left
-         * @memberOf WidgetStick
+         * @member WidgetStick
          */
         setStickToBottomLeft: function setStickToBottomLeft() {
             this.logger.debug('setStickToBottomLeft');
@@ -113,7 +113,7 @@ define([], function defineWidgetStick() {
 
         /**
          * Stick to top right
-         * @memberOf WidgetStick
+         * @member WidgetStick
          */
         setStickToTopRight: function setStickToTopRight() {
             this.logger.debug('setStickToTopRight');
@@ -125,7 +125,7 @@ define([], function defineWidgetStick() {
 
         /**
          * Stick to bottom right
-         * @memberOf WidgetStick
+         * @member WidgetStick
          */
         setStickToBottomRight: function setStickToBottomRight() {
             this.logger.debug('setStickToBottomRight');
@@ -137,7 +137,7 @@ define([], function defineWidgetStick() {
 
         /**
          * Restore widget sticker
-         * @memberOf WidgetStick
+         * @member WidgetStick
          */
         restoreWidgetSticker: function restoreWidgetSticker() {
             this.logger.debug('restoreWidgetSticker');

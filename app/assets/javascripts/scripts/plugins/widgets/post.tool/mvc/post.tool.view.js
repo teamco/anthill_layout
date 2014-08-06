@@ -28,7 +28,7 @@ define([
 
         /**
          * Render post.tool element
-         * @memberOf PostToolView
+         * @member PostToolView
          */
         renderPostTool: function renderPostTool() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf PostToolView
+         * @member PostToolView
          * @returns {PostToolPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf PostToolView
+         * @member PostToolView
          * @param widgetRules
          * @param contentRules
          * @returns {PostToolRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render post.tool
-         * @memberOf PostToolView
+         * @member PostToolView
          */
         render: function render() {
 

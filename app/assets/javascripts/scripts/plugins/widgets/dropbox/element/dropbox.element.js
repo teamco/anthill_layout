@@ -29,7 +29,7 @@ define([
 
         /**
          * Download
-         * @memberOf DropboxElement
+         * @member DropboxElement
          * @type {string}
          */
         this.download = 'Download';
@@ -41,7 +41,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf DropboxElement
+         * @member DropboxElement
          * @param {{url: string|*, download: boolean}} opts
          */
         renderEmbeddedContent: function renderEmbeddedContent(opts) {

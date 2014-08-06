@@ -37,7 +37,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf MultipleIconsElement
+         * @member MultipleIconsElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
             var $element = this;

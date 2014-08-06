@@ -23,7 +23,7 @@ define([
 
         /**
          * Update prefs
-         * @memberOf WidgetContentControllerRules
+         * @member WidgetContentControllerRules
          * @param {ModalElement} $modal
          */
         updateRules: function updateRules($modal) {
@@ -82,7 +82,7 @@ define([
 
         /**
          * Update events are ready to subscribe
-         * @memberOf WidgetContentControllerRules
+         * @member WidgetContentControllerRules
          * @param events
          * @param {Array} event
          * @param {string} uuid
@@ -102,7 +102,7 @@ define([
 
         /**
          * Load rules
-         * @memberOf WidgetContentControllerRules
+         * @member WidgetContentControllerRules
          */
         loadRules: function loadRules() {
 
@@ -123,7 +123,7 @@ define([
 
         /**
          * Get Published rules
-         * @memberOf WidgetContentControllerRules
+         * @member WidgetContentControllerRules
          * @returns {{}}
          */
         getPublishedRules: function getPublishedRules() {
@@ -171,7 +171,7 @@ define([
 
         /**
          * Transfer rules to containment
-         * @memberOf WidgetContentControllerRules
+         * @member WidgetContentControllerRules
          * @param rules
          */
         transferRules: function transferRules(rules) {
@@ -191,7 +191,7 @@ define([
 
         /**
          * Unregister rules
-         * @memberOf WidgetContentControllerRules
+         * @member WidgetContentControllerRules
          * @return {boolean}
          */
         unregisterRules: function unregisterRules() {
@@ -265,7 +265,7 @@ define([
 
         /**
          * Register rules
-         * @memberOf WidgetContentControllerRules
+         * @member WidgetContentControllerRules
          */
         registerRules: function registerRules() {
 
@@ -415,7 +415,7 @@ define([
 
         /**
          * Get content scope via interval
-         * @memberOf WidgetContentControllerRules
+         * @member WidgetContentControllerRules
          * @param interval
          * @param opts
          * @returns {boolean}
@@ -460,7 +460,7 @@ define([
 
         /**
          * Register scope rule
-         * @memberOf WidgetContentControllerRules
+         * @member WidgetContentControllerRules
          * @param scope
          * @param opts
          * @returns {boolean}
@@ -484,7 +484,7 @@ define([
 
         /**
          * Register rule
-         * @memberOf WidgetContentControllerRules
+         * @member WidgetContentControllerRules
          * @param scope
          * @param subscribeEM
          * @param subscribersCounter
@@ -568,7 +568,7 @@ define([
 
         /**
          * Add widget rule
-         * @memberOf WidgetContentControllerRules
+         * @member WidgetContentControllerRules
          * @param e
          */
         addWidgetRule: function addWidgetRule(e) {
@@ -588,7 +588,7 @@ define([
 
         /**
          * Publish rule
-         * @memberOf WidgetContentControllerRules
+         * @member WidgetContentControllerRules
          * @param {string} rule
          * @param {string} type
          */

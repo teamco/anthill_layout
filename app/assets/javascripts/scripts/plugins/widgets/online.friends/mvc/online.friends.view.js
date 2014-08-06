@@ -28,7 +28,7 @@ define([
 
         /**
          * Render online friends element
-         * @memberOf OnlineFriendsView
+         * @member OnlineFriendsView
          */
         renderOnlineFriends: function renderOnlineFriends() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf OnlineFriendsView
+         * @member OnlineFriendsView
          * @returns {OnlineFriendsPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf OnlineFriendsView
+         * @member OnlineFriendsView
          * @param widgetRules
          * @param contentRules
          * @returns {OnlineFriendsRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render online friends
-         * @memberOf OnlineFriendsView
+         * @member OnlineFriendsView
          */
         render: function render() {
 

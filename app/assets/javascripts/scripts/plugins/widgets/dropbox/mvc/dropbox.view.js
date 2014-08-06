@@ -28,7 +28,7 @@ define([
 
         /**
          * Render youtube element
-         * @memberOf DropboxView
+         * @member DropboxView
          */
         renderDropbox: function renderDropbox() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf DropboxView
+         * @member DropboxView
          * @returns {DropboxPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf DropboxView
+         * @member DropboxView
          * @param widgetRules
          * @param contentRules
          * @returns {DropboxRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render youtube
-         * @memberOf DropboxView
+         * @member DropboxView
          */
         render: function render() {
 

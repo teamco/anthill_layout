@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf LoginFacebookController
+         * @member LoginFacebookController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -33,7 +33,7 @@ define([
 
         /**
          * Add LoginFacebook rule
-         * @memberOf LoginFacebookController
+         * @member LoginFacebookController
          * @param e
          */
         addLoginFacebookRule: function addLoginFacebookRule(e) {

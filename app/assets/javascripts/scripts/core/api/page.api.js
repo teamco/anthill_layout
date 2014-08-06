@@ -26,7 +26,7 @@ define([
 
         /**
          * Create Widget API
-         * @memberOf PageAPI
+         * @member PageAPI
          * @param {*} args
          * @param {Boolean} [render]
          * @param {Boolean} [silent]
@@ -64,7 +64,7 @@ define([
 
         /**
          * Destroy widget
-         * @memberOf PageAPI
+         * @member PageAPI
          * @param widget
          * @param {Boolean} [silent]
          */
@@ -78,7 +78,7 @@ define([
 
         /**
          * Destroy widgets
-         * @memberOf PageAPI
+         * @member PageAPI
          * @param {*} [items]
          * @param {Boolean} [silent]
          */

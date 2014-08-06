@@ -28,7 +28,7 @@ define([
 
         /**
          * Render jwplayer element
-         * @memberOf JwplayerView
+         * @member JwplayerView
          */
         renderJwplayer: function renderJwplayer() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf JwplayerView
+         * @member JwplayerView
          * @returns {JwplayerPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf JwplayerView
+         * @member JwplayerView
          * @param widgetRules
          * @param contentRules
          * @returns {JwplayerRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render jwplayer
-         * @memberOf JwplayerView
+         * @member JwplayerView
          */
         render: function render() {
 

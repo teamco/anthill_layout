@@ -80,7 +80,7 @@ define(
 
             /**
              * Define MVC
-             * @memberOf Workspace
+             * @member Workspace
              * @type {MVC}
              */
             this.mvc = new MVC({
@@ -103,27 +103,27 @@ define(
 
             /**
              * Define init
-             * @memberOf Workspace
+             * @member Workspace
              */
             init: function init() {
 
                 /**
                  * Define swipe page
-                 * @memberOf Workspace
+                 * @member Workspace
                  * @type {boolean}
                  */
                 this.switchPage = false;
 
                 /**
                  * Define page
-                 * @memberOf Workspace
+                 * @member Workspace
                  * @type {*|Page}
                  */
                 this.page = {};
 
                 /**
                  * Define itemsÒ
-                 * @memberOf Workspace
+                 * @member Workspace
                  * @type {*}
                  */
                 this.items = {};

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf PageTabsModel
+         * @member PageTabsModel
          * @type {{}}
          */
         this.preferences = {
@@ -29,7 +29,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf PageTabsModel
+         * @member PageTabsModel
          * @type {{}}
          */
         this.rules = {};

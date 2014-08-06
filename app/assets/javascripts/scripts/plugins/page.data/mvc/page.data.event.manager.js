@@ -20,14 +20,14 @@ define([
 
         /**
          * Define events
-         * @memberOf PageDataEventManager
+         * @member PageDataEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
-         * @memberOf PageDataEventManager
+         * @member PageDataEventManager
          * @type {{
          *      updateTranslations: string,
          *      loadContent: string,

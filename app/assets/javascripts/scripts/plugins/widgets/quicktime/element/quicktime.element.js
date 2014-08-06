@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf QuicktimeElement
+         * @member QuicktimeElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

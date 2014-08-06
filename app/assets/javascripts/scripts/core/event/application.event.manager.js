@@ -20,7 +20,7 @@ define([
 
         /**
          * Define events
-         * @memberOf AppEventManager
+         * @member AppEventManager
          * @type {{}}
          */
         this.events = {};
@@ -30,7 +30,7 @@ define([
 
         /**
          * Define event list
-         * @memberOf AppEventManager
+         * @member AppEventManager
          * @type {{
          *      defineSetting: string,
          *      initResizeWindow: string,

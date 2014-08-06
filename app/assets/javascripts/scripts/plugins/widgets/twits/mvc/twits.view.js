@@ -28,7 +28,7 @@ define([
 
         /**
          * Render twits element
-         * @memberOf TwitsView
+         * @member TwitsView
          */
         renderTwits: function renderTwits() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf TwitsView
+         * @member TwitsView
          * @returns {TwitsPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf TwitsView
+         * @member TwitsView
          * @param widgetRules
          * @param contentRules
          * @returns {TwitsRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render twits
-         * @memberOf TwitsView
+         * @member TwitsView
          */
         render: function render() {
 

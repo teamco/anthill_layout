@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf HeaderModel
+         * @member HeaderModel
          * @type {{}}
          */
         this.preferences = {
@@ -29,7 +29,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf HeaderModel
+         * @member HeaderModel
          * @type {{}}
          */
         this.rules = {};

@@ -23,7 +23,7 @@ define([
 
         /**
          * Check if event was available in event list
-         * @memberOf BaseEvent
+         * @member BaseEvent
          * @param {string} event
          * @returns {boolean}
          */
@@ -33,7 +33,7 @@ define([
 
         /**
          * Find event in a whole project
-         * @memberOf BaseEvent
+         * @member BaseEvent
          * @param {*} root
          * @param {string} uuid
          * @return {*}
@@ -89,7 +89,7 @@ define([
 
         /**
          * Get event list
-         * @memberOf BaseEvent
+         * @member BaseEvent
          * @returns {{}}
          */
         getEvents: function getEvents() {
@@ -98,7 +98,7 @@ define([
 
         /**
          * Add event listener
-         * @memberOf BaseEvent
+         * @member BaseEvent
          * @param {{eventName}} opts
          * @returns {*}
          */
@@ -120,7 +120,7 @@ define([
 
         /**
          * Subscribe event
-         * @memberOf BaseEvent
+         * @member BaseEvent
          * @param {{event, callback, [params], [eventName], [scope]}} opts
          * @param {Boolean} internal
          * @returns {Boolean|String}
@@ -169,7 +169,7 @@ define([
 
         /**
          * Bind element events
-         * @memberOf BaseEvent
+         * @member BaseEvent
          * @param {String|Array} events
          * @param {String} on
          * @returns {Boolean}
@@ -205,7 +205,7 @@ define([
 
         /**
          * Subscribe to external published events
-         * @memberOf BaseEvent
+         * @member BaseEvent
          * @param data
          * @return {Array}
          */
@@ -217,7 +217,7 @@ define([
 
                 /**
                  * Define event opts
-                 * @memberOf publishOn
+                 * @member publishOn
                  */
                 var event = data.events[i];
 

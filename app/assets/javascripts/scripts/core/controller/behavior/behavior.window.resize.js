@@ -22,7 +22,7 @@ define([
         /**
          * Get resize attributes
          * Get items are ready to be resized
-         * @memberOf BaseResize
+         * @member BaseResize
          * @returns {{event: string|*, items: *}}
          * @private
          */
@@ -59,7 +59,7 @@ define([
 
         /**
          * Nested resize
-         * @memberOf BaseResize
+         * @member BaseResize
          * @param resize
          * @private
          */
@@ -108,7 +108,7 @@ define([
 
         /**
          * Resize items on resize window
-         * @memberOf BaseResize
+         * @member BaseResize
          */
         resizeItems: function resizeItems() {
 
@@ -124,7 +124,7 @@ define([
 
         /**
          * Resize item on resize window
-         * @memberOf BaseResize
+         * @member BaseResize
          * @param item
          */
         resizeItem: function resizeItem(item) {

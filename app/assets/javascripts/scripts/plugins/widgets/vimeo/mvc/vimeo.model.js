@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf VimeoModel
+         * @member VimeoModel
          * @type {{
          *      vimeoUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf VimeoModel
+         * @member VimeoModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Vimeo Url
-         * @memberOf VimeoModel
+         * @member VimeoModel
          * @param {string} url
          */
         setVimeoUrl: function setVimeoUrl(url) {

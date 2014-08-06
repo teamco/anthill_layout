@@ -24,7 +24,7 @@ define([
 
         /**
          * Toggle fieldset
-         * @memberOf SitePreferences
+         * @member SitePreferences
          * @param e
          */
         toggleFieldset: function toggleFieldset(e) {
@@ -46,7 +46,7 @@ define([
 
         /**
          * Get preferences HTML
-         * @memberOf SitePreferences
+         * @member SitePreferences
          * @param {Array} map
          * @return Array
          */
@@ -60,7 +60,7 @@ define([
 
         /**
          * Render static width
-         * @memberOf SitePreferences
+         * @member SitePreferences
          * @returns {*|jQuery}
          */
         siteStaticWidth: function siteStaticWidth() {
@@ -106,7 +106,7 @@ define([
 
         /**
          * Enable/Disable slider
-         * @memberOf SitePreferences
+         * @member SitePreferences
          * @param e
          */
         toggleSlider: function toggleSlider(e) {
@@ -139,7 +139,7 @@ define([
 
         /**
          * Render width slider
-         * @memberOf SitePreferences
+         * @member SitePreferences
          * @param {Array} map
          * @returns {*|jQuery}
          */
@@ -220,7 +220,7 @@ define([
 
         /**
          * Render Google Analytics
-         * @memberOf SitePreferences
+         * @member SitePreferences
          * @returns {*|jQuery}
          */
         googleAnalytics: function googleAnalytics() {

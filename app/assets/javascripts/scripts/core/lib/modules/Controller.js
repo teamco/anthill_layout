@@ -28,7 +28,7 @@ define([
 
         /**
          * Before init config
-         * @memberOf BaseController
+         * @member BaseController
          */
         beforeInitConfig: function beforeInitConfig() {
             this.logger.debug('Before init config', arguments);
@@ -36,7 +36,7 @@ define([
 
         /**
          * After init config
-         * @memberOf BaseController
+         * @member BaseController
          */
         afterInitConfig: function afterInitConfig() {
             this.logger.debug('After init config', arguments);
@@ -44,7 +44,7 @@ define([
 
         /**
          * After loading items
-         * @memberOf BaseController
+         * @member BaseController
          */
         afterLoadingItems: function afterLoadingItems() {
             this.logger.debug(
@@ -56,7 +56,7 @@ define([
 
         /**
          * Set core loading attribute
-         * @memberOf BaseController
+         * @member BaseController
          * @param load
          */
         setAsLoading: function setAsLoading(load) {
@@ -79,7 +79,7 @@ define([
 
         /**
          * Set as loaded
-         * @memberOf BaseController
+         * @member BaseController
          */
         setAsLoaded: function setAsLoaded() {
 
@@ -105,7 +105,7 @@ define([
 
         /**
          * Check if core already loaded
-         * @memberOf @BaseController
+         * @member @BaseController
          * @returns {boolean}
          */
         isLoading: function isLoading() {
@@ -114,7 +114,7 @@ define([
 
         /**
          * Get Application mode
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {*|number}
          */
         getMode: function getMode() {
@@ -123,7 +123,7 @@ define([
 
         /**
          * Get parent node object
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {*}
          */
         getContainment: function getContainment() {
@@ -132,7 +132,7 @@ define([
 
         /**
          * Get Application Root
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {*|string}
          */
         root: function root() {
@@ -151,7 +151,7 @@ define([
 
         /**
          * Get Workspace
-         * @memberOf BaseController
+         * @member BaseController
          * @param {string} [uuid]
          * @returns {Workspace}
          */
@@ -176,7 +176,7 @@ define([
 
         /**
          * Get Page
-         * @memberOf BaseController
+         * @member BaseController
          * @param {string} [uuid]
          * @returns {Page}
          */
@@ -201,7 +201,7 @@ define([
 
         /**
          * Get Widget
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {*|Widget}
          */
         getWidget: function getWidget() {
@@ -210,7 +210,7 @@ define([
 
         /**
          * Get Config Logger
-         * @memberOf BaseController
+         * @member BaseController
          * @param {String} log
          * @param {Object} hash
          */
@@ -220,7 +220,7 @@ define([
 
         /**
          * Get scope view
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {view}
          */
         getView: function getView() {
@@ -229,7 +229,7 @@ define([
 
         /**
          * Get scope model
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {model}
          */
         getModel: function getModel() {
@@ -238,7 +238,7 @@ define([
 
         /**
          * Success Created
-         * @memberOf BaseController
+         * @member BaseController
          */
         successCreated: function successCreated() {
             this.logger.debug(
@@ -250,7 +250,7 @@ define([
 
         /**
          * Success Rendered
-         * @memberOf BaseController
+         * @member BaseController
          */
         successRendered: function successRendered() {
             this.logger.debug(
@@ -261,7 +261,7 @@ define([
 
         /**
          * Success Render Footer
-         * @memberOf BaseController
+         * @member BaseController
          * @param {HeaderElement} $header
          * @param {boolean} render
          */
@@ -271,7 +271,7 @@ define([
 
         /**
          * Success Render Footer
-         * @memberOf BaseController
+         * @member BaseController
          * @param {FooterElement} $footer
          * @param {boolean} render
          */
@@ -281,7 +281,7 @@ define([
 
         /**
          * Get current items
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {*}
          */
         getCurrentItem: function getCurrentItem() {
@@ -298,7 +298,7 @@ define([
 
         /**
          * Set item as current in parent node
-         * @memberOf BaseController
+         * @member BaseController
          */
         setAsCurrent: function setAsCurrent() {
             this.getContainment().controller.setCurrentItem(
@@ -308,7 +308,7 @@ define([
 
         /**
          * Set current item
-         * @memberOf BaseController
+         * @member BaseController
          * @param {{}} item
          * @returns {*}
          */
@@ -320,7 +320,7 @@ define([
 
         /**
          * Check condition
-         * @memberOf BaseController
+         * @member BaseController
          * @param {{condition, msg, [type], [args]}} opts
          * @returns {boolean}
          */
@@ -336,7 +336,7 @@ define([
 
         /**
          * Get Development Mode
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {Boolean}
          */
         isDevelopmentMode: function isDevelopmentMode() {
@@ -345,7 +345,7 @@ define([
 
         /**
          * Get Authorize Mode
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {Boolean}
          */
         isAuthorizeMode: function isAuthorizeMode() {
@@ -354,7 +354,7 @@ define([
 
         /**
          * Get Consumption Mode
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {boolean}
          */
         isConsumptionMode: function isConsumptionMode() {
@@ -363,7 +363,7 @@ define([
 
         /**
          * Get Custom Mode
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {boolean}
          */
         isCustomMode: function isCustomMode() {
@@ -372,7 +372,7 @@ define([
 
         /**
          * Transfer preferences to containment
-         * @memberOf BaseController
+         * @member BaseController
          * @param index
          * @param value
          */
@@ -386,7 +386,7 @@ define([
 
         /**
          * Get preferences
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {{}}
          */
         getPreferences: function getPreferences() {
@@ -395,7 +395,7 @@ define([
 
         /**
          * Get rules
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {{}}
          */
         getRules: function getRules() {
@@ -404,7 +404,7 @@ define([
 
         /**
          * Extend Config
-         * @memberOf BaseController
+         * @member BaseController
          * @param {{config, [dom]}} opts
          * @returns {*}
          */
@@ -429,7 +429,7 @@ define([
 
         /**
          * Set Interaction
-         * @memberOf BaseController
+         * @member BaseController
          * @param {Resizable|Draggable|Function} Event
          * @returns {*}
          */
@@ -452,7 +452,7 @@ define([
 
         /**
          * Get Interaction
-         * @memberOf BaseController
+         * @member BaseController
          * @param {String} event
          * @returns {*}
          */
@@ -462,7 +462,7 @@ define([
 
         /**
          * Check is root
-         * @memberOf BaseController
+         * @member BaseController
          * @param scope
          * @returns {boolean}
          */
@@ -472,7 +472,7 @@ define([
 
         /**
          * Check is workspace
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {boolean}
          */
         isWorkspace: function isWorkspace() {
@@ -481,7 +481,7 @@ define([
 
         /**
          * Check is page
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {boolean}
          */
         isPage: function isPage() {
@@ -490,7 +490,7 @@ define([
 
         /**
          * Check is widget
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {boolean}
          */
         isWidget: function isWidget() {
@@ -499,7 +499,7 @@ define([
 
         /**
          * Check is widget content
-         * @memberOf BaseController
+         * @member BaseController
          * @returns {boolean}
          */
         isWidgetContent: function isWidgetContent() {
@@ -520,7 +520,7 @@ define([
 
         /**
          * Store data after layout organize
-         * @memberOf BaseController
+         * @member BaseController
          * @param [node]
          * @param [data]
          * @param {number} [counter]
@@ -601,7 +601,7 @@ define([
 
         /**
          * Get subscribers list
-         * @memberOf BaseController
+         * @member BaseController
          * @param {string} event
          * @return {Array}
          */
@@ -619,7 +619,7 @@ define([
 
         /**
          * Collect items data
-         * @memberOf BaseController
+         * @member BaseController
          * @param {Boolean} collectDOM
          * @returns {{}}
          */

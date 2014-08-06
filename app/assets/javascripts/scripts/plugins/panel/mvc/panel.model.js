@@ -19,14 +19,14 @@ define([
 
         /**
          * Init modules
-         * @memberOf PanelModel
+         * @member PanelModel
          * @type {Array}
          */
         this.modules = [];
 
         /**
          * Define packages
-         * @memberOf PanelModel
+         * @member PanelModel
          * @type {Array}
          */
         this.packages = [];
@@ -36,7 +36,7 @@ define([
 
         /**
          * Init module
-         * @memberOf PanelModel
+         * @member PanelModel
          * @param Module
          */
         defineModule: function defineModule(Module) {
@@ -48,7 +48,7 @@ define([
 
         /**
          * Init package
-         * @memberOf PanelModel
+         * @member PanelModel
          * @param Package
          */
         definePackage: function definePackage(Package) {
@@ -57,7 +57,7 @@ define([
 
         /**
          * Get module by index
-         * @memberOf PanelModel
+         * @member PanelModel
          * @param {number} [index]
          * @returns {*}
          */
@@ -67,7 +67,7 @@ define([
 
         /**
          * Get module index
-         * @memberOf PanelModel
+         * @member PanelModel
          * @param resource
          * @returns {number}
          */
@@ -90,7 +90,7 @@ define([
 
         /**
          * Get package by index
-         * @memberOf PanelModel
+         * @member PanelModel
          * @param {number} [index]
          * @returns {*}
          */

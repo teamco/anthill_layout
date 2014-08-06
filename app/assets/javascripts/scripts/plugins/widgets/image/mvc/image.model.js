@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf ImageModel
+         * @member ImageModel
          * @type {{
          *      imageUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      imageText: {type: string, disabled: boolean, value: undefined, visible: boolean},
@@ -72,7 +72,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf ImageModel
+         * @member ImageModel
          * @type {{}}
          */
         this.rules = {};
@@ -82,7 +82,7 @@ define([
 
         /**
          * Set Image Url
-         * @memberOf ImageModel
+         * @member ImageModel
          * @param {string} url
          */
         setImageUrl: function setImageUrl(url) {
@@ -91,7 +91,7 @@ define([
 
         /**
          * Set Image Text
-         * @memberOf ImageModel
+         * @member ImageModel
          * @param {string} text
          */
         setImageText: function setImageText(text) {
@@ -100,7 +100,7 @@ define([
 
         /**
          * Set image repeat-x
-         * @memberOf ImageModel
+         * @member ImageModel
          * @param {boolean} repeatX
          */
         setImageRepeatX: function setImageRepeatX(repeatX) {
@@ -109,7 +109,7 @@ define([
 
         /**
          * Set image repeat-y
-         * @memberOf ImageModel
+         * @member ImageModel
          * @param {boolean} repeatY
          */
         setImageRepeatY: function setImageRepeatY(repeatY) {
@@ -118,7 +118,7 @@ define([
 
         /**
          * Set image stretch
-         * @memberOf ImageModel
+         * @member ImageModel
          * @param {boolean} stretch
          */
         setImageStretch: function setImageStretch(stretch) {
@@ -127,7 +127,7 @@ define([
 
         /**
          * Set image split content
-         * @memberOf ImageModel
+         * @member ImageModel
          * @param {boolean} split
          */
         setImageSplitContent: function setImageSplitContent(split) {

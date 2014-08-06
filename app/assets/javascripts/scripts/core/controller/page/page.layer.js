@@ -17,7 +17,7 @@ define([], function definePageLayer(){
 
         /**
          * Get container target widgets
-         * @memberOf PageLayer
+         * @member PageLayer
          * @param {Widget} source
          * @param {boolean} [up]
          * @returns {{}}
@@ -82,7 +82,7 @@ define([], function definePageLayer(){
 
         /**
          * Re-order layers before save
-         * @memberOf PageLayer
+         * @member PageLayer
          */
         reorderLayers: function reorderLayers() {
 
@@ -150,7 +150,7 @@ define([], function definePageLayer(){
 
         /**
          * Revert layer
-         * @memberOf PageLayer
+         * @member PageLayer
          */
         revertLayer: function revertLayer() {
 

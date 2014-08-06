@@ -19,7 +19,7 @@ define([
 
         /**
          * Define data
-         * @memberOf PageDataModel
+         * @member PageDataModel
          * @type {{}}
          */
         this.data = {};
@@ -29,7 +29,7 @@ define([
 
         /**
          * Get items
-         * @memberOf PageDataModel
+         * @member PageDataModel
          * @param page
          * @returns {*}
          */
@@ -39,7 +39,7 @@ define([
 
         /**
          * Collect items
-         * @memberOf PageDataModel
+         * @member PageDataModel
          * @param item
          */
         collectItems: function collectItems(item) {
@@ -48,7 +48,7 @@ define([
 
         /**
          * Get data
-         * @memberOf PageDataModel
+         * @member PageDataModel
          * @returns {{}}
          */
         getCollectedItems: function getCollectedItems() {

@@ -21,7 +21,7 @@ define([], function defineWidgetContentModel() {
 
         /**
          * Get prefs
-         * @memberOf WidgetContentModel
+         * @member WidgetContentModel
          * @param {string} prefs
          * @returns {boolean|string}
          */
@@ -37,7 +37,7 @@ define([], function defineWidgetContentModel() {
 
         /**
          * Get prefs
-         * @memberOf WidgetContentModel
+         * @member WidgetContentModel
          * @param {string} prefs
          * @returns {*}
          */
@@ -63,7 +63,7 @@ define([], function defineWidgetContentModel() {
 
         /**
          * Set prefs
-         * @memberOf WidgetContentModel
+         * @member WidgetContentModel
          * @param {string} prefs
          * @param {*} value
          */
@@ -71,7 +71,7 @@ define([], function defineWidgetContentModel() {
 
             /**
              * Define preferences
-             * @memberOf WidgetContentModel
+             * @member WidgetContentModel
              * @type {*}
              */
             this.preferences = this.base.define(
@@ -95,7 +95,7 @@ define([], function defineWidgetContentModel() {
 
         /**
          * Copy prefs
-         * @memberOf WidgetContentModel
+         * @member WidgetContentModel
          * @param source
          * @returns {boolean}
          */

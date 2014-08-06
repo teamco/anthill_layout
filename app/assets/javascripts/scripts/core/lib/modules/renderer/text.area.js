@@ -18,7 +18,7 @@ define([], function defineTextAreaRenderer(){
 
         /**
          * Render text area
-         * @memberOf TextAreaRenderer
+         * @member TextAreaRenderer
          * @param {{text: string, name: string, [placeholder]: string, value, [disabled]: boolean}} opts
          * @returns {*[]}
          */

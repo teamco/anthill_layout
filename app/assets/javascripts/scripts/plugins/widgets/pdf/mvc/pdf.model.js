@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf PdfModel
+         * @member PdfModel
          * @type {{
          *      pdfUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf PdfModel
+         * @member PdfModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Pdf Url
-         * @memberOf PdfModel
+         * @member PdfModel
          * @param {string} url
          */
         setPdfUrl: function setPdfUrl(url) {

@@ -17,7 +17,7 @@ define([], function defineBasePreferences() {
 
         /**
          * Toggle fieldset
-         * @memberOf BasePreferences
+         * @member BasePreferences
          * @param e
          */
         toggleFieldset: function toggleFieldset(e) {
@@ -39,7 +39,7 @@ define([], function defineBasePreferences() {
 
         /**
          * Open preferences
-         * @memberOf BasePreferences
+         * @member BasePreferences
          * @param opts
          */
         openPreferences: function openPreferences(opts) {

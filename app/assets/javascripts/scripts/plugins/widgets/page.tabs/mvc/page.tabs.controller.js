@@ -25,7 +25,7 @@ define([
 
         /**
          * Subscribe to after page ordering event
-         * @memberOf PageTabsController
+         * @member PageTabsController
          */
         subscribeOrderPagesEvent: function subscribeOrderPagesEvent() {
             this.controller._subscribePageEventCallback.bind(this)(
@@ -36,7 +36,7 @@ define([
 
         /**
          * Subscribe to after switch page event
-         * @memberOf PageTabsController
+         * @member PageTabsController
          */
         subscribeAfterSwitchPageEvent: function subscribeAfterSwitchPageEvent() {
             this.controller._subscribePageEventCallback.bind(this)(
@@ -47,7 +47,7 @@ define([
 
         /**
          * Subscribe to create page event
-         * @memberOf PageTabsController
+         * @member PageTabsController
          */
         subscribeCreatePageEvent: function subscribeCreatePageEvent() {
             this.controller._subscribePageEventCallback.bind(this)(
@@ -58,7 +58,7 @@ define([
 
         /**
          * Subscribe to destroy page event
-         * @memberOf PageTabsController
+         * @member PageTabsController
          */
         subscribeDestroyPageEvent: function subscribeDestroyPageEvent() {
 
@@ -75,7 +75,7 @@ define([
 
         /**
          * Subscribe to create page event
-         * @memberOf PageTabsController
+         * @member PageTabsController
          * @private
          * @param {string} eventName
          * @param {string} callbackEvent
@@ -111,7 +111,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf PageTabsController
+         * @member PageTabsController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -132,7 +132,7 @@ define([
 
         /**
          * Set active tab
-         * @memberOf PageTabsController
+         * @member PageTabsController
          */
         setActivePageTab: function setActivePageTab() {
             this.view.elements.$pagetabs.setPageTabAsCurrent(
@@ -142,7 +142,7 @@ define([
 
         /**
          * Switch to page
-         * @memberOf PageTabsController
+         * @member PageTabsController
          * @param {PageTabsItemElement} $page
          * @param {Event} e
          */
@@ -170,7 +170,7 @@ define([
 
         /**
          * Add PageTabs rule
-         * @memberOf PageTabsController
+         * @member PageTabsController
          * @param e
          */
         addPageTabsRule: function addPageTabsRule(e) {

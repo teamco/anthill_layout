@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf TextEditorController
+         * @member TextEditorController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -35,7 +35,7 @@ define([
 
         /**
          * Add TextEditor rule
-         * @memberOf TextEditorController
+         * @member TextEditorController
          * @param e
          */
         addTextEditorRule: function addTextEditorRule(e) {

@@ -26,7 +26,7 @@ define([
 
         /**
          * Define containment
-         * @memberOf Bar
+         * @member Bar
          */
         this.containment = containment;
 
@@ -63,7 +63,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Bar
+         * @member Bar
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -20,7 +20,7 @@ define([
 
         /**
          * Define events
-         * @memberOf LayoutEventManager
+         * @member LayoutEventManager
          * @type {{}}
          */
         this.events = {};
@@ -30,7 +30,7 @@ define([
 
         /**
          * Define event list
-         * @memberOf LayoutEventManager
+         * @member LayoutEventManager
          * @type {{
          *      updateMinCellWidth: string,
          *      beforeNestedOrganizer: string,

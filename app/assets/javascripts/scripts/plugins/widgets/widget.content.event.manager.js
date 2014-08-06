@@ -20,21 +20,21 @@ define([
 
         /**
          * Define events
-         * @memberOf WidgetContentEventManager
+         * @member WidgetContentEventManager
          * @type {{}}
          */
         events: {},
 
         /**
          * Define on load events
-         * @memberOf WidgetContentEventManager
+         * @member WidgetContentEventManager
          * @type {Array}
          */
         onLoadEvents: [],
 
         /**
          * Define event list
-         * @memberOf WidgetContentEventManager
+         * @member WidgetContentEventManager
          * @type {{
          *      initWidget: string,
          *      updateTranslations: string,
@@ -71,7 +71,7 @@ define([
 
         /**
          * Update event list
-         * @memberOf WidgetContentEventManager
+         * @member WidgetContentEventManager
          * @param events
          */
         updateEventList: function updateEventList(events) {
@@ -80,7 +80,7 @@ define([
 
         /**
          * Execute events on load
-         * @memberOf WidgetContentEventManager
+         * @member WidgetContentEventManager
          */
         executeEventsOnLoad: function executeEventsOnLoad() {
 

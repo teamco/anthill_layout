@@ -24,7 +24,7 @@ define([
 
         /**
          * Get draggable capabilities
-         * @memberOf WidgetPermission
+         * @member WidgetPermission
          * @returns {Array}
          */
         draggableCapabilities: function draggableCapabilities() {
@@ -33,7 +33,7 @@ define([
 
         /**
          * Get resizable capabilities
-         * @memberOf WidgetPermission
+         * @member WidgetPermission
          * @returns {Array}
          */
         resizableCapabilities: function resizableCapabilities() {
@@ -42,7 +42,7 @@ define([
 
         /**
          * Check widget capabilities
-         * @memberOf WidgetPermission
+         * @member WidgetPermission
          * @param {String} capability
          * @private
          * @returns {*|boolean}

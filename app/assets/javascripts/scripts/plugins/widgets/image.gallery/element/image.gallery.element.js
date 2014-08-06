@@ -38,7 +38,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf ImageGalleryElement
+         * @member ImageGalleryElement
          * @param {string} url
          * @param {string} text
          */
@@ -81,7 +81,7 @@ define([
 
         /**
          * Preload image
-         * @memberOf ImageGalleryElement
+         * @member ImageGalleryElement
          * @param {string} url
          * @param $ul
          * @param {string} url

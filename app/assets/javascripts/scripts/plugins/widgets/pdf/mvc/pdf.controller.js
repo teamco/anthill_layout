@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf PdfController
+         * @member PdfController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -35,7 +35,7 @@ define([
 
         /**
          * Add Pdf rule
-         * @memberOf PdfController
+         * @member PdfController
          * @param e
          */
         addPdfRule: function addPdfRule(e) {

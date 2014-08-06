@@ -12,7 +12,7 @@
 
         /**
          * Define bind
-         * @memberOf Function
+         * @member Function
          * @param oThis
          * @returns {fBound}
          */
@@ -72,7 +72,7 @@
 
     /**
      * Function add Method
-     * @memberOf Function
+     * @member Function
      * @param {string} name
      * @param {function} func
      * @returns {Function}
@@ -247,7 +247,7 @@
 
         /**
          * Define function debounce
-         * @memberOf Function
+         * @member Function
          * @param [threshold]
          * @param [execAsap]
          * @returns {debounced}

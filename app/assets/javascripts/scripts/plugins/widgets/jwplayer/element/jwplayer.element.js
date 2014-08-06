@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf JwplayerElement
+         * @member JwplayerElement
          * @param {{
          *      title: string,
          *      script: string,

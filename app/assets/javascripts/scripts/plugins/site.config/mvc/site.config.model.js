@@ -19,7 +19,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf SiteConfigModel
+         * @member SiteConfigModel
          * @type {{url: string}}
          */
         this.preferences = {
@@ -27,7 +27,7 @@ define([
 
         /**
          * Define site preferences data
-         * @memberOf SiteConfigModel
+         * @member SiteConfigModel
          * @type {{preferences: {title: string, description: string}}}
          */
         this.data = {
@@ -49,7 +49,7 @@ define([
 
         /**
          * Define site width values
-         * @memberOf SiteConfigModel
+         * @member SiteConfigModel
          * @type {number[]}
          */
         this.map = [960, 1024, 1040, 1140, 1280, 1920, '100%'];
@@ -59,7 +59,7 @@ define([
 
         /**
          * Get DataItems
-         * @memberOf SiteConfigModel
+         * @member SiteConfigModel
          * @returns {{preferences: {title: string, description: string}}}
          */
         getDataItems: function getDataItems() {
@@ -68,7 +68,7 @@ define([
 
         /**
          * Get site width range
-         * @memberOf SiteConfigModel
+         * @member SiteConfigModel
          * @returns {number[]}
          */
         getSiteWidthRange: function getSiteWidthRange() {

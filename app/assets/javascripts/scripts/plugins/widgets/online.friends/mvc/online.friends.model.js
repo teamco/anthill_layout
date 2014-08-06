@@ -20,7 +20,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf OnlineFriendsModel
+         * @member OnlineFriendsModel
          * @type {{}}
          */
         this.preferences = {
@@ -28,7 +28,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf OnlineFriendsModel
+         * @member OnlineFriendsModel
          * @type {{}}
          */
         this.rules = {};

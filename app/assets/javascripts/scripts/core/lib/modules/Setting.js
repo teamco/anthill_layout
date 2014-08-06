@@ -15,21 +15,21 @@ define([
 
         /**
          * Define scope
-         * @memberOf Setting
+         * @member Setting
          * @type {*}
          */
         this.scope = scope;
 
         /**
          * Define setting mode
-         * @memberOf Setting
+         * @member Setting
          * @type {String}
          */
         this.mode = this.scope.controller.getMode();
 
         /**
          * Define storage modes
-         * @memberOf Setting
+         * @member Setting
          * @type {{localStorage: Storage, serverStorage: Storage}}
          */
         this.STORAGE_MODES = {
@@ -38,7 +38,7 @@ define([
         };
         /**
          * Define setting storage
-         * @memberOf Setting
+         * @member Setting
          * @type {{development: Storage}}
          */
         this.storage = {
@@ -50,7 +50,7 @@ define([
 
         /**
          * Get storage namespace
-         * @memberOf Setting
+         * @member Setting
          * @returns {String}
          */
         this.getNameSpace = function getNameSpace() {
@@ -64,7 +64,7 @@ define([
 
         /**
          * Init storage
-         * @memberOf Setting
+         * @member Setting
          */
         init: function init() {
 
@@ -95,7 +95,7 @@ define([
 
                 /**
                  * Define token
-                 * @memberOf Setting
+                 * @member Setting
                  * @type {String}
                  */
                 this.token = base.lib.generator.UUID();
@@ -106,7 +106,7 @@ define([
 
         /**
          * Clear local storage
-         * @memberOf Setting
+         * @member Setting
          */
         clear: function clear() {
             window.localStorage.clear();
@@ -114,7 +114,7 @@ define([
 
         /**
          * Get Storage
-         * @memberOf Setting
+         * @member Setting
          * @returns {*}
          */
         getStorage: function getStorage() {
@@ -138,7 +138,7 @@ define([
 
         /**
          * Save
-         * @memberOf Setting
+         * @member Setting
          * @param [opts]
          */
         save: function save(opts) {
@@ -193,7 +193,7 @@ define([
 
         /**
          * Load
-         * @memberOf Setting
+         * @member Setting
          */
         load: function load() {
 

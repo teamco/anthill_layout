@@ -16,7 +16,7 @@ define([
 
     /**
      * Define Application Global permission
-     * @memberOf App
+     * @member App
      * @type {*}
      */
     Application.prototype.globalPermissions = {
@@ -36,7 +36,7 @@ define([
 
     /**
      * Define Workspace Global permission
-     * @memberOf Workspace
+     * @member Workspace
      * @type {{}}
      */
     Workspace.prototype.globalPermissions = {
@@ -52,7 +52,7 @@ define([
 
     /**
      * Define Page Global permission
-     * @memberOf Page
+     * @member Page
      * @type {{}}
      */
     Page.prototype.globalPermissions = {
@@ -68,7 +68,7 @@ define([
 
     /**
      * Define Layout Global permission
-     * @memberOf Layout
+     * @member Layout
      * @type {{}}
      */
     Layout.prototype.globalPermissions = {
@@ -84,7 +84,7 @@ define([
 
     /**
      * Define Widget Global permission
-     * @memberOf Widget
+     * @member Widget
      * @type {{}}
      */
     Widget.prototype.globalPermissions = {

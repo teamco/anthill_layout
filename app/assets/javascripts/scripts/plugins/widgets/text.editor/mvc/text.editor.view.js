@@ -28,7 +28,7 @@ define([
 
         /**
          * Render text editor element
-         * @memberOf TextEditorView
+         * @member TextEditorView
          */
         renderTextEditor: function renderTextEditor() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf TextEditorView
+         * @member TextEditorView
          * @returns {TextEditorPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf TextEditorView
+         * @member TextEditorView
          * @param widgetRules
          * @param contentRules
          * @returns {TextEditorRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render text.editor
-         * @memberOf TextEditorView
+         * @member TextEditorView
          */
         render: function render() {
 

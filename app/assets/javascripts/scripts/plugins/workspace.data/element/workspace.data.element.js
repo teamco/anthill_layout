@@ -38,7 +38,7 @@ define([
 
         /**
          * Init sortable
-         * @memberOf WorkspaceDataElement
+         * @member WorkspaceDataElement
          */
         initSortable: function initSortable() {
 
@@ -58,7 +58,7 @@ define([
 
         /**
          * Start sortable
-         * @memberOf WorkspaceDataElement
+         * @member WorkspaceDataElement
          * @param event
          * @param ui
          * @private
@@ -67,7 +67,7 @@ define([
 
             /**
              * Get $item
-             * @memberOf WorkspaceDataElement
+             * @member WorkspaceDataElement
              * @type {WorkspaceDataContentElement}
              */
             var $item = this.view.elements.items[ui.item.attr('id')];
@@ -77,7 +77,7 @@ define([
 
         /**
          * Stop sortable
-         * @memberOf WorkspaceDataElement
+         * @member WorkspaceDataElement
          * @param event
          * @param ui
          * @private
@@ -104,7 +104,7 @@ define([
 
         /**
          * Get footer html
-         * @memberOf WorkspaceDataElement
+         * @member WorkspaceDataElement
          * @returns {*|jQuery}
          */
         getFooter: function getFooter() {

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf JwplayerController
+         * @member JwplayerController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -41,7 +41,7 @@ define([
 
         /**
          * Validate jwplayer
-         * @memberOf JwplayerController
+         * @member JwplayerController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -75,7 +75,7 @@ define([
 
         /**
          * Add Jwplayer rule
-         * @memberOf JwplayerController
+         * @member JwplayerController
          * @param e
          */
         addJwplayerRule: function addJwplayerRule(e) {

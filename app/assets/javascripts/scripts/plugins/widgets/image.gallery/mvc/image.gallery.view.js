@@ -28,7 +28,7 @@ define([
 
         /**
          * Render image.gallery element
-         * @memberOf ImageGalleryView
+         * @member ImageGalleryView
          */
         renderImageGallery: function renderImageGallery() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf ImageGalleryView
+         * @member ImageGalleryView
          * @returns {ImageGalleryPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf ImageGalleryView
+         * @member ImageGalleryView
          * @param widgetRules
          * @param contentRules
          * @returns {ImageGalleryRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render image.gallery
-         * @memberOf ImageGalleryView
+         * @member ImageGalleryView
          */
         render: function render() {
 

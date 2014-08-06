@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf TwitsElement
+         * @member TwitsElement
          * @param {{
          *      twitsWidgetId: string,
          *      [maximumNumberOfTweets]: string,

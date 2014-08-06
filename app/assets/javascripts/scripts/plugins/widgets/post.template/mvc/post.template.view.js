@@ -28,7 +28,7 @@ define([
 
         /**
          * Render post.template element
-         * @memberOf PostTemplateView
+         * @member PostTemplateView
          */
         renderPostTemplate: function renderPostTemplate() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf PostTemplateView
+         * @member PostTemplateView
          * @returns {PostTemplatePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf PostTemplateView
+         * @member PostTemplateView
          * @param widgetRules
          * @param contentRules
          * @returns {PostTemplateRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render post.template
-         * @memberOf PostTemplateView
+         * @member PostTemplateView
          */
         render: function render() {
 

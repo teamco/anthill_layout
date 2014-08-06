@@ -28,7 +28,7 @@ define([
 
         /**
          * Render share element
-         * @memberOf ShareView
+         * @member ShareView
          */
         renderShare: function renderShare() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf ShareView
+         * @member ShareView
          * @returns {SharePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf ShareView
+         * @member ShareView
          * @param widgetRules
          * @param contentRules
          * @returns {ShareRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render share
-         * @memberOf ShareView
+         * @member ShareView
          */
         render: function render() {
 

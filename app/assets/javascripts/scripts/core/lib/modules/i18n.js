@@ -48,7 +48,7 @@ define([
 
         /**
          * Get data by key
-         * @memberOf i18n
+         * @member i18n
          * @param key
          * @returns {*}
          */
@@ -59,7 +59,7 @@ define([
 
         /**
          * Update data
-         * @memberOf i18n
+         * @member i18n
          * @param translation
          */
         this.updateData = function updateData(translation) {
@@ -79,7 +79,7 @@ define([
 
         /**
          * Translate function
-         * @memberOf i18n
+         * @member i18n
          * @param {string} key
          * @param {array} [params]
          * @returns {string}

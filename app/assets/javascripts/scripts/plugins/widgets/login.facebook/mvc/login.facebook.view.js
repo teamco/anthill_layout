@@ -28,7 +28,7 @@ define([
 
         /**
          * Render LoginFacebook element
-         * @memberOf LoginFacebookView
+         * @member LoginFacebookView
          */
         renderLoginFacebook: function renderLoginFacebook() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf LoginFacebookView
+         * @member LoginFacebookView
          * @returns {LoginFacebookPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf LoginFacebookView
+         * @member LoginFacebookView
          * @param widgetRules
          * @param contentRules
          * @returns {LoginFacebookRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render login.facebook
-         * @memberOf LoginFacebookView
+         * @member LoginFacebookView
          */
         render: function render() {
 

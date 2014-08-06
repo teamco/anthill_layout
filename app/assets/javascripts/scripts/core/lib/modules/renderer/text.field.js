@@ -18,7 +18,7 @@ define([], function defineTextFieldRenderer() {
 
         /**
          * Render text field
-         * @memberOf TextFieldRenderer
+         * @member TextFieldRenderer
          * @param {{
          *      [text]: string,
          *      name: string,

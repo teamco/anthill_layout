@@ -50,7 +50,7 @@ define(
 
             /**
              * Define Init
-             * @memberOf WorkspaceDataAddPageElement
+             * @member WorkspaceDataAddPageElement
              * @returns {WorkspaceDataAddPageElement}
              */
             init: function init() {

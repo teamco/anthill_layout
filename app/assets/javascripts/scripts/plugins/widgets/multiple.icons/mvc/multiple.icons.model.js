@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf MultipleIconsModel
+         * @member MultipleIconsModel
          * @type {{}}
          */
         this.preferences = {
@@ -29,7 +29,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf MultipleIconsModel
+         * @member MultipleIconsModel
          * @type {{}}
          */
         this.rules = {};

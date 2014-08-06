@@ -24,7 +24,7 @@ define([
 
         /**
          * Store item
-         * @memberOf PageDataController
+         * @member PageDataController
          * @param item
          */
         storeItem: function storeItem(item) {
@@ -34,7 +34,7 @@ define([
 
         /**
          * Get providers data
-         * @memberOf PageDataController
+         * @member PageDataController
          */
         getData: function getData() {
             return this.model.getPageData(
@@ -44,7 +44,7 @@ define([
 
         /**
          * Set active content
-         * @memberOf PageDataController
+         * @member PageDataController
          * @param {string} uuid
          * @returns {*|boolean}
          */
@@ -97,7 +97,7 @@ define([
 
         /**
          * Load prefs
-         * @memberOf PageDataController
+         * @member PageDataController
          * @param config
          * @param load
          * @param event
@@ -127,7 +127,7 @@ define([
 
         /**
          * Check if content was updated
-         * @memberOf PageDataController
+         * @member PageDataController
          * @param data
          * @param content
          * @returns {boolean}
@@ -146,7 +146,7 @@ define([
 
         /**
          * Update prefs
-         * @memberOf PageDataController
+         * @member PageDataController
          */
         approveUpdatePreferences: function approveUpdatePreferences() {
 
@@ -184,7 +184,7 @@ define([
 
         /**
          * Locate page data element
-         * @memberOf PageDataController
+         * @member PageDataController
          * @param e
          */
         locatePageData: function locatePageData(e) {
@@ -207,7 +207,7 @@ define([
 
         /**
          * Load page.data content
-         * @memberOf PageDataController
+         * @member PageDataController
          * @param opened
          */
         loadContent: function loadContent(opened) {
@@ -221,7 +221,7 @@ define([
 
         /**
          * Open rules from prefs dialog
-         * @memberOf PageDataController
+         * @member PageDataController
          * @param {*} event
          */
         rulesPageData: function rulesPageData(event) {
@@ -276,7 +276,7 @@ define([
 
         /**
          * Restore layer index
-         * @memberOf PageDataController
+         * @member PageDataController
          */
         restoreWidgetsLayerIndex: function restoreWidgetsLayerIndex() {
 
@@ -294,7 +294,7 @@ define([
 
         /**
          * Restore widget sticker
-         * @memberOf PageDataController
+         * @member PageDataController
          */
         restoreWidgetSticker: function restoreWidgetSticker() {
 

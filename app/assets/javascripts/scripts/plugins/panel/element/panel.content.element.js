@@ -32,7 +32,7 @@ define([
 
         /**
          * Select item
-         * @memberOf PanelContentElement
+         * @member PanelContentElement
          * @param {string} resource
          */
         selectItem: function selectItem(resource) {
@@ -41,7 +41,7 @@ define([
 
         /**
          * Remove items selection
-         * @memberOf PanelContentElement
+         * @member PanelContentElement
          */
         unselectItems: function unselectItems() {
             $('ul.panel-bar', this.$).children().removeClass('activated');

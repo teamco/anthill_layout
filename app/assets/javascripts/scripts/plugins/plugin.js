@@ -25,7 +25,7 @@ define([
 
         /**
          * Get page data
-         * @memberOf PluginController
+         * @member PluginController
          * @returns {Panel}
          */
         getAuthorPanel: function getAuthorPanel() {
@@ -34,7 +34,7 @@ define([
 
         /**
          * Get module by name
-         * @memberOf PluginController
+         * @member PluginController
          * @returns {*}
          */
         getModuleByName: function getModuleByName(name) {
@@ -52,7 +52,7 @@ define([
 
         /**
          * Get widget rules
-         * @memberOf PluginController
+         * @member PluginController
          * @returns {WidgetRules}
          */
         getWidgetRules: function getWidgetRules() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Check if data was existing
-         * @memberOf PluginController
+         * @member PluginController
          * @returns {boolean}
          */
         isDataNotExist: function isDataNotExist() {
@@ -81,7 +81,7 @@ define([
 
         /**
          * Update translations
-         * @memberOf PluginController
+         * @member PluginController
          */
         updateTranslations: function updateTranslations(data) {
 
@@ -122,7 +122,7 @@ define([
 
         /**
          * Define content referrer
-         * @memberOf PluginController
+         * @member PluginController
          * @param {Widget} widget
          */
         defineContentReferrer: function defineContentReferrer(widget) {
@@ -141,7 +141,7 @@ define([
 
         /**
          * Get resource class name
-         * @memberOf PluginController
+         * @member PluginController
          * @param {string} resource
          */
         getResourceClassName: function getResourceClassName(resource) {

@@ -28,7 +28,7 @@ define([
 
         /**
          * Render image element
-         * @memberOf ImageView
+         * @member ImageView
          */
         renderImage: function renderImage() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf ImageView
+         * @member ImageView
          * @returns {ImagePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf ImageView
+         * @member ImageView
          * @param widgetRules
          * @param contentRules
          * @returns {ImageRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render image
-         * @memberOf ImageView
+         * @member ImageView
          */
         render: function render() {
 

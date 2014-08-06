@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf HeaderController
+         * @member HeaderController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -33,7 +33,7 @@ define([
 
         /**
          * Add Header rule
-         * @memberOf HeaderController
+         * @member HeaderController
          * @param e
          */
         addHeaderRule: function addHeaderRule(e) {

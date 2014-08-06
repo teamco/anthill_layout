@@ -43,7 +43,7 @@ define([
 
         /**
          * Set attributes
-         * @memberOf GalleryContentElement
+         * @member GalleryContentElement
          */
         setAttributes: function setAttributes() {
 
@@ -71,7 +71,7 @@ define([
 
         /**
          * Bind Install widget
-         * @memberOf GalleryContentElement
+         * @member GalleryContentElement
          */
         bindInstallWidget: function bindInstallWidget() {
 
@@ -91,7 +91,7 @@ define([
 
         /**
          * Show item info
-         * @memberOf GalleryContentElement
+         * @member GalleryContentElement
          */
         bindShowInfo: function bindShowInfo() {
 

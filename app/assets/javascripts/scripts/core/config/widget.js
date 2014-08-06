@@ -30,7 +30,7 @@ define([
 
         /**
          * Define dom
-         * @memberOf Widget
+         * @member Widget
          * @type {*}
          */
         this.dom = this.base.define(opts.dom, {}, true);
@@ -103,7 +103,7 @@ define([
 
         /**
          * Define constants
-         * @memberOf Widget
+         * @member Widget
          * @type {{magnet: Array}}
          */
         this.CONSTANTS = {
@@ -112,21 +112,21 @@ define([
 
         /**
          * Transfer content events
-         * @memberOf Widget
+         * @member Widget
          * @type {{}}
          */
         this.contentEvents = {};
 
         /**
          * Transfer content rules
-         * @memberOf Widget
+         * @member Widget
          * @type {{}}
          */
         this.contentRules = {};
 
         /**
          * Define MVC
-         * @memberOf Widget
+         * @member Widget
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -145,21 +145,21 @@ define([
 
         /**
          * Define map
-         * @memberOf Widget
+         * @member Widget
          * @type {WidgetMap}
          */
         this.map = new WidgetMap(this);
 
         /**
          * Define wireframe
-         * @memberOf Widget
+         * @member Widget
          * @type {Wireframe}
          */
         this.wireframe = new Wireframe(this);
 
         /**
          * Define interactions: Drag/Resize/Drop
-         * @memberOf Widget
+         * @member Widget
          * @type {{
          *      draggable: Draggable,
          *      resizable: Resizable,
@@ -170,21 +170,21 @@ define([
 
         /**
          * Define draggable interaction
-         * @memberOf Widget.interactions
+         * @member Widget.interactions
          * @type {Draggable}
          */
         this.interactions.draggable = undefined;
 
         /**
          * Define resizable interaction
-         * @memberOf Widget.interactions
+         * @member Widget.interactions
          * @type {Resizable}
          */
         this.interactions.resizable = undefined;
 
         /**
          * Init content
-         * @memberOf Widget
+         * @member Widget
          * @type {undefined}
          */
         this.content = undefined;

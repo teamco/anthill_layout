@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf Jwplayer
+         * @member Jwplayer
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Jwplayer
+         * @member Jwplayer
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Jwplayer
+         * @member Jwplayer
          * @type {MVC}
          */
         this.mvc = new MVC({

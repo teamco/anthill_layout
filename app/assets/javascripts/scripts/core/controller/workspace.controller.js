@@ -37,7 +37,7 @@ define(
 
                 /**
                  * Set page height
-                 * @memberOf WorkspaceController
+                 * @member WorkspaceController
                  */
                 bindHashChange: function bindHashChange() {
 
@@ -49,7 +49,7 @@ define(
 
                 /**
                  * Switch page on hash change
-                 * @memberOf WorkspaceController
+                 * @member WorkspaceController
                  */
                 switchPageOnHashChange: function switchPageOnHashChange() {
 
@@ -63,7 +63,7 @@ define(
 
                 /**
                  * Set page height
-                 * @memberOf WorkspaceController
+                 * @member WorkspaceController
                  */
                 setPageContainerDimensions: function setPageContainerDimensions() {
 
@@ -80,7 +80,7 @@ define(
 
                 /**
                  * Adopt content width after adding new page
-                 * @memberOf WorkspaceController
+                 * @member WorkspaceController
                  */
                 adoptContentWidth: function adoptContentWidth() {
 
@@ -92,7 +92,7 @@ define(
 
                 /**
                  * Before Switch to page
-                 * @memberOf WorkspaceController
+                 * @member WorkspaceController
                  * @param {Page} page
                  */
                 beforeSwitchToPage: function beforeSwitchToPage(page) {
@@ -120,7 +120,7 @@ define(
 
                 /**
                  * Switch to page
-                 * @memberOf WorkspaceController
+                 * @member WorkspaceController
                  * @param {Page} page
                  * @param {boolean} animate
                  * @returns {boolean|*}
@@ -182,7 +182,7 @@ define(
 
                 /**
                  * After Switch to page
-                 * @memberOf WorkspaceController
+                 * @member WorkspaceController
                  * @param {Page} page
                  */
                 afterSwitchToPage: function afterSwitchToPage(page) {
@@ -197,7 +197,7 @@ define(
 
                 /**
                  * Swipe to current page
-                 * @memberOf WorkspaceController
+                 * @member WorkspaceController
                  * @param {boolean} animate
                  */
                 swipeToCurrentPage: function swipeToCurrentPage(animate) {
@@ -213,7 +213,7 @@ define(
 
                 /**
                  * Save after page ordering
-                 * @memberOf WorkspaceController
+                 * @member WorkspaceController
                  * @param {Array} order
                  */
                 afterPageOrder: function afterPageOrder(order) {
@@ -223,7 +223,7 @@ define(
 
                 /**
                  * Transfer preferences
-                 * @memberOf WorkspaceController
+                 * @member WorkspaceController
                  * @param {string} index
                  * @param value
                  */
@@ -237,7 +237,7 @@ define(
 
                 /**
                  * Load config preferences
-                 * @memberOf WorkspaceController
+                 * @member WorkspaceController
                  */
                 loadPreferences: function loadPreferences() {
 
@@ -269,7 +269,7 @@ define(
 
                 /**
                  * Update site width
-                 * @memberOf WorkspaceController
+                 * @member WorkspaceController
                  */
                 updateSiteWidth: function updateSiteWidth() {
 
@@ -292,7 +292,25 @@ define(
 
                         $workspace.unsetWidth();
                     }
+                },
 
+                /**
+                 * Load google analytics tracking snippet
+                 * @member WorkspaceController
+                 */
+                loadTrackingSnippet: function loadTrackingSnippet() {
+
+                    /**
+                     * Get tracking id
+                     * @type {string}
+                     */
+                    var trackingId = this.model.getConfig('preferences').trackingId;
+
+                    if (typeof(trackingId) === 'string' && trackingId.length > 0) {
+
+                        // Add tracking snippet
+                        // http://stackoverflow.com/questions/6818814/issue-using-google-analytics-with-require-js
+                    }
                 }
             },
 

@@ -27,14 +27,14 @@ define([
 
         /**
          * Define containment
-         * @memberOf Image
+         * @member Image
          * @type {Widget}
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Image
+         * @member Image
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Image
+         * @member Image
          * @type {MVC}
          */
         this.mvc = new MVC({

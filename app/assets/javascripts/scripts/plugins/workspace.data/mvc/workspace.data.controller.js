@@ -33,7 +33,7 @@ define(
 
             /**
              * Get data
-             * @memberOf WorkspaceDataController
+             * @member WorkspaceDataController
              * @returns {*}
              */
             getData: function getData() {
@@ -44,7 +44,7 @@ define(
 
             /**
              * Load pages content
-             * @memberOf WorkspaceDataController
+             * @member WorkspaceDataController
              * @param opened
              */
             loadContent: function loadContent(opened) {
@@ -57,7 +57,7 @@ define(
 
             /**
              * Get Prefs
-             * @memberOf WorkspaceDataController
+             * @member WorkspaceDataController
              * @returns {WorkspaceDataModel.preferences}
              */
             getPreferences: function getPreferences() {
@@ -66,7 +66,7 @@ define(
 
             /**
              * Define preferences
-             * @memberOf WorkspaceDataController
+             * @member WorkspaceDataController
              * @param {string} uuid
              * @returns {*}
              */
@@ -79,7 +79,7 @@ define(
 
             /**
              * Set active content
-             * @memberOf WorkspaceDataController
+             * @member WorkspaceDataController
              * @param uuid
              */
             setActiveContent: function setActiveContent(uuid) {
@@ -99,7 +99,7 @@ define(
 
             /**
              * Prepare to show preferences
-             * @memberOf WorkspaceDataController
+             * @member WorkspaceDataController
              * @param config
              */
             preparePreferences: function preparePreferences(config) {
@@ -134,7 +134,7 @@ define(
 
             /**
              * Update prefs
-             * @memberOf WorkspaceDataController
+             * @member WorkspaceDataController
              */
             approveUpdatePreferences: function approveUpdatePreferences() {
 
@@ -176,7 +176,7 @@ define(
 
             /**
              * Define publisher
-             * @memberOf WorkspaceDataController
+             * @member WorkspaceDataController
              * @param page
              */
             definePublisher: function definePublisher(page) {
@@ -188,7 +188,7 @@ define(
 
             /**
              * Locate page data element
-             * @memberOf WorkspaceDataController
+             * @member WorkspaceDataController
              * @param e
              */
             locateWorkspaceData: function locateWorkspaceData(e) {
@@ -204,7 +204,7 @@ define(
 
             /**
              * Destroy page widgets
-             * @memberOf WorkspaceDataController
+             * @member WorkspaceDataController
              */
             destroyPageWidgets: function destroyPageWidgets() {
 
@@ -223,7 +223,7 @@ define(
 
             /**
              * Update widgets counter
-             * @memberOf WorkspaceDataController
+             * @member WorkspaceDataController
              */
             updateCounter: function updateCounter() {
 
@@ -265,7 +265,7 @@ define(
 
             /**
              * Create new page
-             * @memberOf WorkspaceDataController
+             * @member WorkspaceDataController
              */
             createPage: function createPage() {
 
@@ -304,7 +304,7 @@ define(
 
             /**
              * Update pages order
-             * @memberOf WorkspaceDataController
+             * @member WorkspaceDataController
              * @param {Array} order
              */
             updatePagesOrder: function updatePagesOrder(order) {

@@ -26,7 +26,7 @@ define([
 
         /**
          * Get scope config
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {String} [key]
          * @returns {*}
          */
@@ -70,7 +70,7 @@ define([
 
         /**
          * Set scope config
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {String} [key]
          * @param {*} [value]
          * @returns {scope.config}
@@ -93,7 +93,7 @@ define([
 
         /**
          * Get scope namespace
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {*} node
          * @returns {string}
          */
@@ -109,7 +109,7 @@ define([
 
         /**
          * Find item in a whole project
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {*} root
          * @param {string} uuid
          * @return {*}
@@ -150,7 +150,7 @@ define([
 
         /**
          * Get parent items
-         * @memberOf BaseModel
+         * @member BaseModel
          * @returns {*}
          */
         getParentItems: function getParentItems() {
@@ -159,7 +159,7 @@ define([
 
         /**
          * Get items
-         * @memberOf BaseModel
+         * @member BaseModel
          * @returns {*}
          */
         getItems: function getItems() {
@@ -168,7 +168,7 @@ define([
 
         /**
          * Get all items apart of item
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {{model}} item
          * @returns {Array}
          */
@@ -195,7 +195,7 @@ define([
 
         /**
          * Get UUID
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {{model}} [node]
          * @returns {String}
          */
@@ -209,7 +209,7 @@ define([
 
         /**
          * Get content UUID
-         * @memberOf BaseModel
+         * @member BaseModel
          */
         getContentUUID: function getContentUUID() {
             return [
@@ -220,7 +220,7 @@ define([
 
         /**
          * Get item from collector by UUID
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {string} uuid
          * @returns {*}
          */
@@ -238,7 +238,7 @@ define([
 
         /**
          * Get item from collector by title
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {string} title
          * @returns {*}
          */
@@ -276,7 +276,7 @@ define([
 
         /**
          * Reset collector
-         * @memberOf BaseModel
+         * @member BaseModel
          * @returns {*}
          */
         resetItems: function resetItems() {
@@ -286,7 +286,7 @@ define([
 
         /**
          * Delete widget from collector
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param uuid
          * @returns {*}
          */
@@ -297,7 +297,7 @@ define([
 
         /**
          * Update collector
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {string} uuid
          * @param hash
          * returns {*}
@@ -310,7 +310,7 @@ define([
 
         /**
          * Add item to collector
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {{model}} node
          * @param {boolean} [force]
          * @returns {*}
@@ -333,7 +333,7 @@ define([
 
         /**
          * Get Item constructor name
-         * @memberOf BaseModel
+         * @member BaseModel
          * @returns {string}
          */
         getItemNameSpace: function getItemNameSpace() {
@@ -347,7 +347,7 @@ define([
 
         /**
          * Get items order
-         * @memberOf BaseModel
+         * @member BaseModel
          * @returns {*}
          */
         getOrder: function getOrder() {
@@ -356,14 +356,14 @@ define([
 
         /**
          * Set rules on loading
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param rules
          */
         setRules: function setRules(rules) {
 
             /**
              * Local rules storage
-             * @memberOf BaseModel
+             * @member BaseModel
              * @type {{}}
              */
             this.rules = rules;
@@ -371,7 +371,7 @@ define([
 
         /**
          * Set Title
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {string} title
          */
         setTitle: function setTitle(title) {
@@ -380,7 +380,7 @@ define([
 
         /**
          * Set Description
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {string} description
          */
         setDescription: function setDescription(description) {
@@ -389,7 +389,7 @@ define([
 
         /**
          * Set item info preferences
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {string} index
          * @param value
          * @private
@@ -402,7 +402,7 @@ define([
 
         /**
          * Check items limit
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {Function} constructor
          * @param {Number} limit
          * @returns {boolean}
@@ -425,7 +425,7 @@ define([
 
         /**
          * Update items collector
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param {function} Constructor
          * @param {{}} opts
          * @returns {*}
@@ -497,7 +497,7 @@ define([
 
         /**
          * Load data
-         * @memberOf BaseModel
+         * @member BaseModel
          * @param [data]
          * @returns {*}
          */

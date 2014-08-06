@@ -19,7 +19,7 @@ define([
 
         /**
          * Define data
-         * @memberOf WidgetRulesModel
+         * @member WidgetRulesModel
          * @type {{}}
          */
         this.data = {};
@@ -29,7 +29,7 @@ define([
 
         /**
          * Get items
-         * @memberOf WidgetRulesModel
+         * @member WidgetRulesModel
          * @param page
          * @returns {*}
          */
@@ -39,7 +39,7 @@ define([
 
         /**
          * Collect items
-         * @memberOf WidgetRulesModel
+         * @member WidgetRulesModel
          * @param item
          */
         collectItems: function collectItems(item) {
@@ -48,7 +48,7 @@ define([
 
         /**
          * Get data
-         * @memberOf WidgetRulesModel
+         * @member WidgetRulesModel
          * @returns {{}}
          */
         getCollectedItems: function getCollectedItems() {

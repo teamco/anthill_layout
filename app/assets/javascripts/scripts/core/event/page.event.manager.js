@@ -19,7 +19,7 @@ define([
 
         /**
          * Define events
-         * @memberOf PageEventManager
+         * @member PageEventManager
          * @type {{}}
          */
         this.events = {};
@@ -29,7 +29,7 @@ define([
 
         /**
          * Define event list
-         * @memberOf PageEventManager
+         * @member PageEventManager
          * @type {{
          *      setMaximized: string,
          *      unsetMaximized: string,

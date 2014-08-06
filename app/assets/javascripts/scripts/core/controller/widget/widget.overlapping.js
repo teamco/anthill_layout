@@ -17,7 +17,7 @@ define([], function defineWidgetOverlapping() {
 
         /**
          * Adopt layer of a widgets
-         * @memberOf WidgetOverlapping
+         * @member WidgetOverlapping
          * @param {number} layer
          * @param {boolean} [save]
          */
@@ -38,7 +38,7 @@ define([], function defineWidgetOverlapping() {
 
         /**
          * Update widget z-index layer
-         * @memberOf WidgetOverlapping
+         * @member WidgetOverlapping
          * @param {boolean} up
          * @param {boolean} [save]
          */
@@ -81,7 +81,7 @@ define([], function defineWidgetOverlapping() {
 
         /**
          * Select overlapped widgets
-         * @memberOf WidgetOverlapping
+         * @member WidgetOverlapping
          * @returns {*}
          */
         selectOverlappedWidgets: function selectOverlappedWidgets() {
@@ -126,7 +126,7 @@ define([], function defineWidgetOverlapping() {
 
         /**
          * unSelect overlapped widgets
-         * @memberOf WidgetOverlapping
+         * @member WidgetOverlapping
          * @param source
          * @returns {*}
          */

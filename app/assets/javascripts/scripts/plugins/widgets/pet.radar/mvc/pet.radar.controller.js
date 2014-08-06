@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf PetRadarController
+         * @member PetRadarController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -33,7 +33,7 @@ define([
 
         /**
          * Add PetRadar rule
-         * @memberOf PetRadarController
+         * @member PetRadarController
          * @param e
          */
         addPetRadarRule: function addPetRadarRule(e) {

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf OpenWeatherMapModel
+         * @member OpenWeatherMapModel
          */
         this.preferences = {
             openweathermapApiKey: {
@@ -106,7 +106,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf OpenWeatherMapModel
+         * @member OpenWeatherMapModel
          * @type {{}}
          */
         this.rules = {};
@@ -116,7 +116,7 @@ define([
 
         /**
          * Set OpenWeatherMap API Key
-         * @memberOf OpenWeatherMapModel
+         * @member OpenWeatherMapModel
          * @param {number} key
          */
         setOpenWeatherMapApiKey: function setOpenWeatherMapApiKey(key) {
@@ -125,7 +125,7 @@ define([
 
         /**
          * Set OpenWeatherMap Latitude
-         * @memberOf OpenWeatherMapModel
+         * @member OpenWeatherMapModel
          * @param {number} latitude
          */
         setOpenWeatherMapLatitude: function setOpenWeatherMapLatitude(latitude) {
@@ -134,7 +134,7 @@ define([
 
         /**
          * Set OpenWeatherMap Longitude
-         * @memberOf OpenWeatherMapModel
+         * @member OpenWeatherMapModel
          * @param {number} longitude
          */
         setOpenWeatherMapLongitude: function setOpenWeatherMapLongitude(longitude) {
@@ -143,7 +143,7 @@ define([
 
         /**
          * Set OpenWeatherMap Zoom
-         * @memberOf OpenWeatherMapModel
+         * @member OpenWeatherMapModel
          * @param {number} zoom
          */
         setOpenWeatherMapZoom: function setOpenWeatherMapZoom(zoom) {
@@ -152,7 +152,7 @@ define([
 
         /**
          * Set OpenWeatherMap Width
-         * @memberOf OpenWeatherMapModel
+         * @member OpenWeatherMapModel
          * @param {number} width
          */
         setOpenWeatherMapWidth: function setOpenWeatherMapWidth(width) {
@@ -161,7 +161,7 @@ define([
 
         /**
          * Set OpenWeatherMap Height
-         * @memberOf OpenWeatherMapModel
+         * @member OpenWeatherMapModel
          * @param {number} height
          */
         setOpenWeatherMapHeight: function setOpenWeatherMapHeight(height) {
@@ -170,7 +170,7 @@ define([
 
         /**
          * Set OpenWeatherMap Height
-         * @memberOf OpenWeatherMapModel
+         * @member OpenWeatherMapModel
          * @param {string} type
          */
         setOpenWeatherMapMapType: function setOpenWeatherMapMapType(type) {
@@ -179,7 +179,7 @@ define([
 
         /**
          * Set OpenWeatherMap Scale
-         * @memberOf OpenWeatherMapModel
+         * @member OpenWeatherMapModel
          * @param {boolean} scale
          */
         setOpenWeatherMapScale: function setOpenWeatherMapScale(scale) {
@@ -188,7 +188,7 @@ define([
 
         /**
          * Set OpenWeatherMap Sensor
-         * @memberOf OpenWeatherMapModel
+         * @member OpenWeatherMapModel
          * @param {boolean} sensor
          */
         setOpenWeatherMapGpsSensor: function setOpenWeatherMapGpsSensor(sensor) {
@@ -197,7 +197,7 @@ define([
 
         /**
          * Set OpenWeatherMap Stretch
-         * @memberOf OpenWeatherMapModel
+         * @member OpenWeatherMapModel
          * @param {boolean} stretch
          */
         setOpenWeatherMapStretch: function setOpenWeatherMapStretch(stretch) {

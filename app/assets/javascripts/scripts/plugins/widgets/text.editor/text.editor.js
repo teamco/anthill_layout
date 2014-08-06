@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf TextEditor
+         * @member TextEditor
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf TextEditor
+         * @member TextEditor
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf TextEditor
+         * @member TextEditor
          * @type {MVC}
          */
         this.mvc = new MVC({

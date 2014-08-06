@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf Youtube
+         * @member Youtube
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Youtube
+         * @member Youtube
          * @type {*}
          */
         this.referrer = undefined;
@@ -76,7 +76,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Youtube
+         * @member Youtube
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -30,7 +30,7 @@ define([
 
         /**
          * Render PageData
-         * @memberOf PageDataView
+         * @member PageDataView
          * @returns {boolean}
          */
         renderPageData: function renderPageData() {
@@ -59,7 +59,7 @@ define([
 
         /**
          * Render page.data content
-         * @memberOf PageDataView
+         * @member PageDataView
          * @param data
          * @returns {boolean}
          */
@@ -112,7 +112,7 @@ define([
 
         /**
          * Show preferences
-         * @memberOf PageDataView
+         * @member PageDataView
          * @param config
          */
         showPreferences: function showPreferences(config, load) {
@@ -168,7 +168,7 @@ define([
 
         /**
          * Render page.data
-         * @memberOf PageDataView
+         * @member PageDataView
          */
         render: function render() {
 

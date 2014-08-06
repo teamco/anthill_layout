@@ -95,28 +95,28 @@ define([
 
         /**
          * Define panels
-         * @memberOf App
+         * @member App
          * @type {{}}
          */
         this.panels = {};
 
         /**
          * Define items
-         * @memberOf App
+         * @member App
          * @type {*}
          */
         this.items = {};
 
         /**
          * Define workspace
-         * @memberOf App
+         * @member App
          * @type {Workspace}
          */
         this.workspace = {};
 
         /**
          * Define MVC
-         * @memberOf App
+         * @member App
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf LoginFacebookElement
+         * @member LoginFacebookElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
             var $element = this;

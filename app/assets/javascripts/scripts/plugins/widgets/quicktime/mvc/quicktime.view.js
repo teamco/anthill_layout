@@ -28,7 +28,7 @@ define([
 
         /**
          * Render quicktime element
-         * @memberOf QuicktimeView
+         * @member QuicktimeView
          */
         renderQuicktime: function renderQuicktime() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf QuicktimeView
+         * @member QuicktimeView
          * @returns {QuicktimePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf QuicktimeView
+         * @member QuicktimeView
          * @param widgetRules
          * @param contentRules
          * @returns {QuicktimeRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render quicktime
-         * @memberOf QuicktimeView
+         * @member QuicktimeView
          */
         render: function render() {
 

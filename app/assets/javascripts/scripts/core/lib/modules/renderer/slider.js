@@ -20,7 +20,7 @@ define([], function defineSliderRenderer() {
 
         /**
          * Render slider
-         * @memberOf SliderRenderer
+         * @member SliderRenderer
          * @param $container
          * @param opts
          */

@@ -20,14 +20,14 @@ define([
 
         /**
          * Define events
-         * @memberOf GalleryEventManager
+         * @member GalleryEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
-         * @memberOf GalleryEventManager
+         * @member GalleryEventManager
          * @type {{
          *      updateTranslations: string,
          *      setProviders: string,

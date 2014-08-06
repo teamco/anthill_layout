@@ -26,20 +26,20 @@ define([
 
         /**
          * Define containment
-         * @memberOf WidgetRules
+         * @member WidgetRules
          */
         this.containment = containment;
 
         /**
          * Define active content
-         * @memberOf WidgetRules
+         * @member WidgetRules
          * @type {*}
          */
         this.activeContent = undefined;
 
         /**
          * Allow to locate element
-         * @memberOf WidgetRules
+         * @member WidgetRules
          * @type {boolean}
          */
         this.allowToLocate = true;
@@ -80,7 +80,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf WidgetRules
+         * @member WidgetRules
          * @type {MVC}
          */
         this.mvc = new MVC({

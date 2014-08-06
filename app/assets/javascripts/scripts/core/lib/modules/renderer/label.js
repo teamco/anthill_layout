@@ -17,7 +17,7 @@ define([], function defineLabelRenderer(){
 
         /**
          * Render label
-         * @memberOf LabelRenderer
+         * @member LabelRenderer
          * @param {*|string} uuid
          * @param {string} text
          * @param {*|string} [type]

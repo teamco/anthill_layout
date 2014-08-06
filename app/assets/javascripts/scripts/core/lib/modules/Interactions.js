@@ -21,7 +21,7 @@ define([
 
         /**
          * Check permission
-         * @memberOf Interactions
+         * @member Interactions
          */
         checkPermission: function checkPermission() {
             this.scope.permission.check({
@@ -32,7 +32,7 @@ define([
 
         /**
          * Debug UI
-         * @memberOf Interactions
+         * @member Interactions
          * @param event
          * @param ui
          */
@@ -52,7 +52,7 @@ define([
 
         /**
          * Check if enabled
-         * @memberOf Interactions
+         * @member Interactions
          * @returns {boolean}
          */
         isEnabled: function isEnabled() {
@@ -61,7 +61,7 @@ define([
 
         /**
          * Check if disabled
-         * @memberOf Interactions
+         * @member Interactions
          * @returns {boolean}
          */
         isDisabled: function isDisabled() {

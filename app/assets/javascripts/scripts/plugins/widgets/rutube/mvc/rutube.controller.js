@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf RutubeController
+         * @member RutubeController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -35,7 +35,7 @@ define([
 
         /**
          * Add Rutube rule
-         * @memberOf RutubeController
+         * @member RutubeController
          * @param e
          */
         addRutubeRule: function addRutubeRule(e) {

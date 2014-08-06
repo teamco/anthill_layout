@@ -36,7 +36,7 @@ define(
 
                 /**
                  * Transfer preferences
-                 * @memberOf PageController
+                 * @member PageController
                  * @param {string} index
                  * @param value
                  */
@@ -50,7 +50,7 @@ define(
 
                 /**
                  * Load config preferences
-                 * @memberOf PageController
+                 * @member PageController
                  */
                 loadPreferences: function loadPreferences() {
 
@@ -82,7 +82,7 @@ define(
 
                 /**
                  * Check if allowed to add widget to page
-                 * @memberOf PageController
+                 * @member PageController
                  * @returns {boolean}
                  */
                 isAllowAddWidget: function isAllowAddWidget() {
@@ -99,7 +99,7 @@ define(
 
                 /**
                  * Allow to add widget to page
-                 * @memberOf PageController
+                 * @member PageController
                  */
                 allowAddWidget: function allowAddWidget() {
                     this.scope.logger.debug('Allow to add widget');
@@ -108,7 +108,7 @@ define(
 
                 /**
                  * Do not allow to add widget to page
-                 * @memberOf PageController
+                 * @member PageController
                  */
                 banAddWidget: function banAddWidget() {
                     this.scope.logger.debug('Do not allow to add widget');
@@ -117,7 +117,7 @@ define(
 
                 /**
                  * Update page height
-                 * @memberOf PageController
+                 * @member PageController
                  */
                 updateHeight: function updateHeight() {
                     console.log('TODO: Update height');
@@ -125,7 +125,7 @@ define(
 
                 /**
                  * Get widgets container
-                 * @memberOf PageController
+                 * @member PageController
                  * @returns {*}
                  */
                 getWidgetsContainer: function getWidgetsContainer() {
@@ -134,7 +134,7 @@ define(
 
                 /**
                  * Update widget properties
-                 * @memberOf PageController
+                 * @member PageController
                  * @param [item]
                  * @returns {boolean}
                  */

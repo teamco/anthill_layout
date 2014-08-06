@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf AvatarModel
+         * @member AvatarModel
          * @type {{}}
          */
         this.preferences = {
@@ -29,7 +29,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf AvatarModel
+         * @member AvatarModel
          * @type {{}}
          */
         this.rules = {};

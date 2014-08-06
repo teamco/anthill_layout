@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf RssElement
+         * @member RssElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {
@@ -53,7 +53,7 @@ define([
 
         /**
          * Update embedded content
-         * @memberOf RssElement
+         * @member RssElement
          * @param {{
          *      responseData: {feed},
          *      responseDetails: string,

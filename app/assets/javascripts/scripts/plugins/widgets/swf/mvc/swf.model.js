@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf SwfModel
+         * @member SwfModel
          * @type {{
          *      swfUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          *      swfFlashVars: {type: string, disabled: boolean, value: undefined, visible: boolean}
@@ -58,7 +58,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf SwfModel
+         * @member SwfModel
          * @type {{}}
          */
         this.rules = {};
@@ -68,7 +68,7 @@ define([
 
         /**
          * Set Swf Url
-         * @memberOf SwfModel
+         * @member SwfModel
          * @param {string} url
          */
         setSwfUrl: function setSwfUrl(url) {
@@ -77,7 +77,7 @@ define([
 
         /**
          * Set Swf params
-         * @memberOf SwfModel
+         * @member SwfModel
          * @param {string} params
          */
         setSwfParams: function setSwfParams(params) {
@@ -86,7 +86,7 @@ define([
 
         /**
          * Set Swf flashvars
-         * @memberOf SwfModel
+         * @member SwfModel
          * @param {string} flashvars
          */
         setSwfFlashVars: function setSwfFlashVars(flashvars) {
@@ -95,7 +95,7 @@ define([
 
         /**
          * Set Swf attributes
-         * @memberOf SwfModel
+         * @member SwfModel
          * @param {string} flashvars
          */
         setSwfAttributes: function setSwfAttributes(attributes) {

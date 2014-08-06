@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf Pdf
+         * @member Pdf
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Pdf
+         * @member Pdf
          * @type {*}
          */
         this.referrer = undefined;
@@ -72,7 +72,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Pdf
+         * @member Pdf
          * @type {MVC}
          */
         this.mvc = new MVC({

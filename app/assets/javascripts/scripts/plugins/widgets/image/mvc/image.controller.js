@@ -24,7 +24,7 @@ define([
 
         /**
          * Check rendering content
-         * @memberOf ImageController
+         * @member ImageController
          */
         checkEmbeddedContent: function checkEmbeddedContent() {
 
@@ -41,7 +41,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf ImageController
+         * @member ImageController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -57,7 +57,7 @@ define([
 
         /**
          * Split embedded content
-         * @memberOf ImageController
+         * @member ImageController
          * @param subscribers
          * @param {boolean|*} simulate
          */
@@ -84,7 +84,7 @@ define([
 
         /**
          * Add Image rule
-         * @memberOf ImageController
+         * @member ImageController
          * @param e
          */
         addImageRule: function addImageRule(e) {

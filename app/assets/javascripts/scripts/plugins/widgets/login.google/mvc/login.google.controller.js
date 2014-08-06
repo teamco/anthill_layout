@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf LoginGoogleController
+         * @member LoginGoogleController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -33,7 +33,7 @@ define([
 
         /**
          * Add LoginGoogle rule
-         * @memberOf LoginGoogleController
+         * @member LoginGoogleController
          * @param e
          */
         addLoginGoogleRule: function addLoginGoogleRule(e) {

@@ -36,7 +36,7 @@ define([
 
             /**
              * Render Embedded content
-             * @memberOf ShareElement
+             * @member ShareElement
              */
             renderEmbeddedContent: function renderEmbeddedContent() {
 

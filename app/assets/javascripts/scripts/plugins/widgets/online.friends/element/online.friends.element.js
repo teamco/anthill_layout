@@ -36,7 +36,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf OnlineFriendsElement
+         * @member OnlineFriendsElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
 

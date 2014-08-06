@@ -42,7 +42,7 @@ define([
 
         /**
          * DOM config
-         * @memberOf DebuggerElement
+         * @member DebuggerElement
          * @returns {*}
          */
         _extend$: function _extend$() {
@@ -59,7 +59,7 @@ define([
 
         /**
          * Hover debugger
-         * @memberOf DebuggerElement
+         * @member DebuggerElement
          */
         bindHover: function bindHover() {
             var opacity = this.opacity;
@@ -79,7 +79,7 @@ define([
 
         /**
          * Activate debugger
-         * @memberOf DebuggerElement
+         * @member DebuggerElement
          */
         activate: function activate() {
             var scope = this.view.scope,
@@ -94,7 +94,7 @@ define([
 
         /**
          * Deactivate debugger
-         * @memberOf DebuggerElement
+         * @member DebuggerElement
          */
         deactivate: function deactivate() {
             var scope = this.view.scope,

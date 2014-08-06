@@ -36,7 +36,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf HeaderElement
+         * @member HeaderElement
          */
 
 

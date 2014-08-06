@@ -29,14 +29,14 @@ define([
 
         /**
          * Define map style
-         * @memberOf MapLocatorElement
+         * @member MapLocatorElement
          * @type {Array}
          */
         this.mapStyle = [];
 
         /**
          * Define current type
-         * @memberOf MapLocatorElement
+         * @member MapLocatorElement
          * @type {string[]}
          */
         this.currentType = ['pet_store'];
@@ -48,7 +48,7 @@ define([
 
         /**
          * Define map style
-         * @memberOf MapLocatorElement
+         * @member MapLocatorElement
          * @param opts
          */
         defineMapStyle: function defineMapStyle(opts) {
@@ -116,7 +116,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf MapLocatorElement
+         * @member MapLocatorElement
          * @param {{}} opts
          */
         renderEmbeddedContent: function renderEmbeddedContent(opts) {
@@ -145,21 +145,21 @@ define([
 
                 /**
                  * Define direction service
-                 * @memberOf MapLocatorElement
+                 * @member MapLocatorElement
                  * @type {google.maps.DirectionsService}
                  */
                 scope.directionsService = new google.maps.DirectionsService();
 
                 /**
                  * Define directions display
-                 * @memberOf MapLocatorElement
+                 * @member MapLocatorElement
                  * @type {google.maps.DirectionsRenderer}
                  */
                 scope.directionsDisplay = new google.maps.DirectionsRenderer();
 
                 /**
                  * Define position
-                 * @memberOf MapLocatorElement
+                 * @member MapLocatorElement
                  * @type {google.maps.LatLng}
                  */
                 scope.position = new google.maps.LatLng(
@@ -169,7 +169,7 @@ define([
 
                 /**
                  * Define map
-                 * @memberOf MapLocatorElement
+                 * @member MapLocatorElement
                  * @type {google.maps.Map}
                  */
                 scope.map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -181,7 +181,7 @@ define([
 
                 /**
                  * Define info window
-                 * @memberOf MapLocatorElement
+                 * @member MapLocatorElement
                  * @type {google.maps.InfoWindow}
                  */
                 scope.infowindow = new google.maps.InfoWindow({
@@ -196,7 +196,7 @@ define([
 
                 /**
                  * Define service
-                 * @memberOf MapLocatorElement
+                 * @member MapLocatorElement
                  * @type {google.maps.places.PlacesService}
                  */
                 scope.service = new google.maps.places.PlacesService(
@@ -205,7 +205,7 @@ define([
 
                 /**
                  * Define search radius
-                 * @memberOf MapLocatorElement
+                 * @member MapLocatorElement
                  * @type {searchRadius|*}
                  */
                 scope.searchRadius = opts.searchRadius;
@@ -252,7 +252,7 @@ define([
 
             /**
              * Define search radius
-             * @memberOf MapLocatorElement
+             * @member MapLocatorElement
              * @type {*|jQuery|HTMLElement}
              */
             scope.$dial = $(".dial", scope.$);
@@ -271,7 +271,7 @@ define([
 
         /**
          * Render DOM template
-         * @memberOf MapLocatorElement
+         * @member MapLocatorElement
          * @returns {string}
          */
         renderDomTemplate: function renderDomTemplate() {
@@ -297,7 +297,7 @@ define([
 
         /**
          * Draw search radius visual guide
-         * @memberOf MapLocatorElement
+         * @member MapLocatorElement
          * @param marker
          */
         drawCircle: function drawCircle(marker) {
@@ -321,7 +321,7 @@ define([
 
         /**
          * Create markers
-         * @memberOf MapLocatorElement
+         * @member MapLocatorElement
          * @param place
          */
         createMarker: function createMarker(place) {
@@ -352,7 +352,7 @@ define([
 
         /**
          * Create markers
-         * @memberOf MapLocatorElement
+         * @member MapLocatorElement
          * @param results
          * @param status
          */
@@ -383,7 +383,7 @@ define([
 
         /**
          * Create my location marker
-         * @memberOf MapLocatorElement
+         * @member MapLocatorElement
          * @param place
          */
         createMyLocationMarker: function createMyLocationMarker(place) {

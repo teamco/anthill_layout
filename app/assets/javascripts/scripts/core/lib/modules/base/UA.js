@@ -23,7 +23,7 @@ define([], function defineBaseString() {
 
         /**
          * Define browsers
-         * @memberOf BaseUserAgent
+         * @member BaseUserAgent
          * @type {{
          *      mozilla: boolean,
          *      webkit: boolean,
@@ -43,7 +43,7 @@ define([], function defineBaseString() {
 
         /**
          * Get version
-         * @memberOf BaseUserAgent
+         * @member BaseUserAgent
          * @returns {*}
          */
         version: function version() {
@@ -52,7 +52,7 @@ define([], function defineBaseString() {
 
         /**
          * Get MSIE
-         * @memberOf BaseUserAgent
+         * @member BaseUserAgent
          * @returns {*}
          */
         msie: function msie() {
@@ -63,7 +63,7 @@ define([], function defineBaseString() {
 
         /**
          * Get Opera
-         * @memberOf BaseUserAgent
+         * @member BaseUserAgent
          * @returns {*}
          */
         opera: function opera() {
@@ -74,7 +74,7 @@ define([], function defineBaseString() {
 
         /**
          * Get Chrome
-         * @memberOf BaseUserAgent
+         * @member BaseUserAgent
          * @returns {*}
          */
         chrome: function chrome() {
@@ -87,7 +87,7 @@ define([], function defineBaseString() {
 
         /**
          * Get Safari
-         * @memberOf BaseUserAgent
+         * @member BaseUserAgent
          * @returns {*}
          */
         safari: function safari() {

@@ -23,7 +23,7 @@ define([
 
         /**
          * Create item
-         * @memberOf CRUD
+         * @member CRUD
          * @param opts
          * @returns {*}
          */
@@ -36,7 +36,7 @@ define([
 
         /**
          * Destroy items
-         * @memberOf CRUD
+         * @member CRUD
          * @param item
          * @returns {*}
          */
@@ -92,7 +92,7 @@ define([
 
         /**
          * Destroy items
-         * @memberOf CRUD
+         * @member CRUD
          * @returns {*}
          */
         destroyItems: function destroyItems() {
@@ -111,7 +111,7 @@ define([
 
         /**
          * Destroy item view
-         * @memberOf CRUD
+         * @member CRUD
          * @param item
          * @returns {*}
          */

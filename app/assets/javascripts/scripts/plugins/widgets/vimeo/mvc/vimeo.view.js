@@ -28,7 +28,7 @@ define([
 
         /**
          * Render vimeo element
-         * @memberOf VimeoView
+         * @member VimeoView
          */
         renderVimeo: function renderVimeo() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @memberOf VimeoView
+         * @member VimeoView
          * @returns {VimeoPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @memberOf VimeoView
+         * @member VimeoView
          * @param widgetRules
          * @param contentRules
          * @returns {VimeoRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render vimeo
-         * @memberOf VimeoView
+         * @member VimeoView
          */
         render: function render() {
 

@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf OpenWeatherMap
+         * @member OpenWeatherMap
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf OpenWeatherMap
+         * @member OpenWeatherMap
          * @type {*}
          */
         this.referrer = undefined;
@@ -72,7 +72,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf OpenWeatherMap
+         * @member OpenWeatherMap
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf OpenWeatherMapController
+         * @member OpenWeatherMapController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -45,7 +45,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf OpenWeatherMapController
+         * @member OpenWeatherMapController
          * @private
          */
         _setEmbeddedContent: function _setEmbeddedContent() {
@@ -65,7 +65,7 @@ define([
 
         /**
          * Add OpenWeatherMap rule
-         * @memberOf OpenWeatherMapController
+         * @member OpenWeatherMapController
          * @param e
          */
         addOpenWeatherMapRule: function addOpenWeatherMapRule(e) {
@@ -85,7 +85,7 @@ define([
 
         /**
          * Get location
-         * @memberOf OpenWeatherMapController
+         * @member OpenWeatherMapController
          */
         getLocation: function getLocation() {
 
@@ -113,7 +113,7 @@ define([
 
         /**
          * Error handler
-         * @memberOf OpenWeatherMapController
+         * @member OpenWeatherMapController
          * @param [error]
          */
         errorHandler: function errorHandler(error) {

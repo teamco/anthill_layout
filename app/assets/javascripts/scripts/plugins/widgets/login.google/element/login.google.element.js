@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @memberOf LoginGoogleElement
+         * @member LoginGoogleElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
              var $element = this;

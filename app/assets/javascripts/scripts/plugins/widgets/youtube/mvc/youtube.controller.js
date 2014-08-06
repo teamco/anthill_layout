@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @memberOf YoutubeController
+         * @member YoutubeController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate youtube
-         * @memberOf YoutubeController
+         * @member YoutubeController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -76,7 +76,7 @@ define([
 
         /**
          * Add Youtube rule
-         * @memberOf YoutubeController
+         * @member YoutubeController
          * @param e
          */
         addYoutubeRule: function addYoutubeRule(e) {

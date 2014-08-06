@@ -34,7 +34,7 @@ define(
 
             /**
              * Get data
-             * @memberOf SiteConfigController
+             * @member SiteConfigController
              * @returns {*}
              */
             getData: function getData() {
@@ -45,7 +45,7 @@ define(
 
             /**
              * Load site content
-             * @memberOf SiteConfigController
+             * @member SiteConfigController
              * @param opened
              */
             loadContent: function loadContent(opened) {
@@ -58,7 +58,7 @@ define(
 
             /**
              * Load preferences
-             * @memberOf SiteConfigController
+             * @member SiteConfigController
              * @param data
              */
             loadSitePreferences: function loadSitePreferences(data) {
@@ -70,7 +70,7 @@ define(
 
             /**
              * Get Prefs
-             * @memberOf SiteConfigController
+             * @member SiteConfigController
              * @returns {SiteConfigModel.preferences}
              */
             getPreferences: function getPreferences() {
@@ -79,7 +79,7 @@ define(
 
             /**
              * Approve update preferences
-             * @memberOf SiteConfigController
+             * @member SiteConfigController
              */
             approveUpdatePreferences: function approveUpdatePreferences() {
 
@@ -98,7 +98,7 @@ define(
 
             /**
              * Revert preferences on cancel
-             * @memberOf SiteConfigController
+             * @member SiteConfigController
              */
             revertSitePreferences: function revertSitePreferences() {
 
@@ -115,7 +115,7 @@ define(
 
             /**
              * Clean up local storage
-             * @memberOf SiteConfigController
+             * @member SiteConfigController
              */
             cleanUpLocalStorage: function cleanUpLocalStorage() {
                 this.view.cleanUpConfirmation();
@@ -123,13 +123,13 @@ define(
 
             /**
              * Approve clean up
-             * @memberOf SiteConfigController
+             * @member SiteConfigController
              */
             approveCleanUp: function approveCleanUp() {
 
                 /**
                  * Define scope
-                 * @memberOf SiteConfig
+                 * @member SiteConfig
                  */
                 var scope = this.scope,
                     $modal = scope.view.elements.$modal;

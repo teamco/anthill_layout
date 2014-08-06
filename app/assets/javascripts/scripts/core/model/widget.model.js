@@ -22,13 +22,13 @@ define([
 
         /**
          * Define DOM
-         * @memberOf WidgetModel
+         * @member WidgetModel
          */
         defineDOM: function defineDOM() {
 
             /**
              * Update DOM
-             * @memberOf WidgetModel
+             * @member WidgetModel
              * @type {*}
              */
             this.scope.dom = this.scope.map.getDOM();
@@ -36,7 +36,7 @@ define([
 
         /**
          * Get DOM
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @returns {*}
          */
         getDOM: function getDOM() {
@@ -45,7 +45,7 @@ define([
 
         /**
          * Update DOM
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {*} hash
          * @returns {*}
          */
@@ -61,7 +61,7 @@ define([
 
         /**
          * Get attributes
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @returns {*}
          */
         getAttributes: function getAttributes() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Set attributes
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param key
          * @param value
          */
@@ -81,7 +81,7 @@ define([
 
         /**
          * Update rules
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param data
          */
         updateRules: function updateRules(data) {
@@ -103,7 +103,7 @@ define([
 
         /**
          * Define subscribers
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} event
          * @param {Widget} subscriber
          */
@@ -127,7 +127,7 @@ define([
 
         /**
          * Set widget input-radio preferences
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         setRadioPreferences: function setRadioPreferences(eventName) {
@@ -144,7 +144,7 @@ define([
 
         /**
          * Set layer (radio)
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         setLayer: function setLayer(eventName) {
@@ -153,7 +153,7 @@ define([
 
         /**
          * Set stick (radio)
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         setStick: function setStick(eventName) {
@@ -163,7 +163,7 @@ define([
         /**
          * Set stretch width
          * Adopt to container width
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {boolean} stretch
          */
         setStretchWidth: function setStretchWidth(stretch) {
@@ -185,7 +185,7 @@ define([
         /**
          * Set stretch height
          * Adopt to container height
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {boolean} stretch
          */
         setStretchHeight: function setStretchHeight(stretch) {
@@ -207,7 +207,7 @@ define([
         /**
          * Set stick to
          * @param {string} eventName
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @returns {boolean}
          * @private
          */
@@ -226,7 +226,7 @@ define([
 
         /**
          * Unset stick
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         unsetStick: function unsetStick(eventName) {
@@ -235,7 +235,7 @@ define([
 
         /**
          * Save widget stick
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         setStickToCenterLeft: function setStickToCenterLeft(eventName) {
@@ -244,7 +244,7 @@ define([
 
         /**
          * Save widget stick
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         setStickToCenterTop: function setStickToCenterLeft(eventName) {
@@ -253,7 +253,7 @@ define([
 
         /**
          * Save widget stick
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         setStickToCenter: function setStickToCenterLeft(eventName) {
@@ -262,7 +262,7 @@ define([
 
         /**
          * Save widget stick
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         setStickToCenterBottom: function setStickToCenterLeft(eventName) {
@@ -271,7 +271,7 @@ define([
 
         /**
          * Save widget stick
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         setStickToCenterRight: function setStickToCenterLeft(eventName) {
@@ -280,7 +280,7 @@ define([
 
         /**
          * Save widget stick
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         setStickToTopLeft: function setStickToCenterLeft(eventName) {
@@ -289,7 +289,7 @@ define([
 
         /**
          * Save widget stick
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         setStickToBottomLeft: function setStickToCenterLeft(eventName) {
@@ -298,7 +298,7 @@ define([
 
         /**
          * Save widget stick
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         setStickToTopRight: function setStickToCenterLeft(eventName) {
@@ -307,7 +307,7 @@ define([
 
         /**
          * Save widget stick
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         setStickToBottomRight: function setStickToCenterLeft(eventName) {
@@ -316,7 +316,7 @@ define([
 
         /**
          * Set on top
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {boolean} ontop
          */
         setAlwaysOnTop: function setAlwaysOnTop(ontop) {
@@ -337,7 +337,7 @@ define([
 
         /**
          * Save widget layer
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         setLayerUp: function setLayerUp(eventName) {
@@ -356,7 +356,7 @@ define([
 
         /**
          * Save widget layer
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} eventName
          */
         setLayerDown: function setLayerDown(eventName) {
@@ -375,7 +375,7 @@ define([
 
         /**
          * Set overlapping
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {boolean} overlapping
          */
         setOverlapping: function setOverlapping(overlapping) {
@@ -384,7 +384,7 @@ define([
 
         /**
          * Set on click Url
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {string} url
          */
         setOnClickOpenUrl: function setOnClickOpenUrl(url) {
@@ -405,7 +405,7 @@ define([
 
         /**
          * Set statistics
-         * @memberOf WidgetModel
+         * @member WidgetModel
          * @param {boolean} statistics
          */
         setStatistics: function setStatistics(statistics) {

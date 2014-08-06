@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf YoutubeModel
+         * @member YoutubeModel
          * @type {{
          *      youtubeUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf YoutubeModel
+         * @member YoutubeModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Youtube Url
-         * @memberOf YoutubeModel
+         * @member YoutubeModel
          * @param {string} url
          */
         setYoutubeUrl: function setYoutubeUrl(url) {
