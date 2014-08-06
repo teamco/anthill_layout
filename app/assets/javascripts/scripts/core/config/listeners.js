@@ -90,10 +90,13 @@ define([
         successRendered: {
             name: "success.rendered",
             callback: function successRenderedCallback() {
+
                 this.view.renderWorkspace();
+
                 this.observer.publish(
                     this.eventmanager.eventList.loadPreferences
                 );
+
                 this.observer.publish(
                     this.eventmanager.eventList.updateSiteWidth
                 );
@@ -103,6 +106,7 @@ define([
         createPage: {
             name: 'create.page',
             callback: function createPageCallback() {
+
                 this.observer.publish(
                     this.eventmanager.eventList.setPageContainerDimensions
                 );
