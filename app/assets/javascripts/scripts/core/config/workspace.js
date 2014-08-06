@@ -135,10 +135,6 @@ define(
                 this.observer.publish(
                     this.eventmanager.eventList.bindHashChange
                 );
-
-                this.observer.publish(
-                    this.eventmanager.eventList.loadPreferences
-                );
             }
 
         }, AntHill.prototype);

@@ -308,8 +308,7 @@ define(
 
                     if (typeof(trackingId) === 'string' && trackingId.length > 0) {
 
-                        // Add tracking snippet
-                        // http://stackoverflow.com/questions/6818814/issue-using-google-analytics-with-require-js
+                        this.view.get$item().renderGoogleAnalytics(trackingId);
                     }
                 }
             },
