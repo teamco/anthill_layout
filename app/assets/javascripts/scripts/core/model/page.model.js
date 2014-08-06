@@ -20,14 +20,14 @@ define([
 
         /**
          * Define item
-         * @member PageModel
+         * @memberOf PageModel
          * @type {Widget}
          */
         this.item = Widget;
 
         /**
          * Define on destroy dependencies
-         * @member PageModel
+         * @memberOf PageModel
          * @type {Array}
          */
         this.onDestroy = [
@@ -39,7 +39,7 @@ define([
 
         /**
          * Get widget by content uuid
-         * @member PageModel
+         * @memberOf PageModel
          * @param {string} id
          * @returns {*}
          */
@@ -68,7 +68,7 @@ define([
 
         /**
          * Set layout mode
-         * @member PageModel
+         * @memberOf PageModel
          * @param {string} layout
          */
         setLayoutMode: function setLayoutMode(layout) {

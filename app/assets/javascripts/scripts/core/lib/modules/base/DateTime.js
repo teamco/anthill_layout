@@ -20,7 +20,7 @@ define([], function defineBaseDateTime() {
 
         /**
          * Get date
-         * @member BaseDateTime
+         * @memberOf BaseDateTime
          * @returns {Date}
          */
         getDate: function getDate() {
@@ -29,7 +29,7 @@ define([], function defineBaseDateTime() {
 
         /**
          * Get timestamp
-         * @member BaseDateTime
+         * @memberOf BaseDateTime
          * @param time
          * @returns {*}
          */
@@ -40,7 +40,7 @@ define([], function defineBaseDateTime() {
 
         /**
          * Get timestamp utc
-         * @member BaseDateTime
+         * @memberOf BaseDateTime
          * @returns {number}
          */
         timestampUTC: function timestampUTC() {

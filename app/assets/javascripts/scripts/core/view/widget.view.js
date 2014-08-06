@@ -29,7 +29,7 @@ define([
 
         /**
          * Render widget
-         * @member WidgetView
+         * @memberOf WidgetView
          */
         renderWidget: function renderWidget() {
 
@@ -55,7 +55,7 @@ define([
 
         /**
          * Render content
-         * @member WidgetView
+         * @memberOf WidgetView
          */
         content: function content() {
 
@@ -73,7 +73,7 @@ define([
 
         /**
          * Render widget
-         * @member WidgetView
+         * @memberOf WidgetView
          * @param {boolean} silent
          */
         render: function render(silent) {

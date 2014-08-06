@@ -25,7 +25,7 @@ define([
 
         /**
          * Get config HTML
-         * @member BaseView
+         * @memberOf BaseView
          * @param {string} [key]
          * @returns {*}
          */
@@ -43,7 +43,7 @@ define([
 
         /**
          * Get item.$
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {BaseElement}
          */
         get$item: function get$item() {
@@ -52,7 +52,7 @@ define([
 
         /**
          * Create style
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {string}
          */
         createStyle: function createStyle() {
@@ -64,7 +64,7 @@ define([
 
         /**
          * Create UUID
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {string}
          */
         createUUID: function createUUID() {
@@ -76,7 +76,7 @@ define([
 
         /**
          * Render UUID
-         * @member BaseView
+         * @memberOf BaseView
          * @param id
          * @returns {*|string}
          */
@@ -89,7 +89,7 @@ define([
 
         /**
          * Define $container
-         * @member BaseView
+         * @memberOf BaseView
          * @param $container
          */
         defineContainer: function defineContainer($container) {
@@ -98,7 +98,7 @@ define([
 
         /**
          * Get container class name
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {string}
          */
         getContainerClassName: function getContainerClassName() {
@@ -107,7 +107,7 @@ define([
 
         /**
          * Get container selector
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {*|jQuery}
          */
         getContainerSelector: function getContainerSelector() {
@@ -119,7 +119,7 @@ define([
 
         /**
          * Check if element cached
-         * @member BaseView
+         * @memberOf BaseView
          * @param $element
          * @param Constructor
          * @returns {boolean}
@@ -141,7 +141,7 @@ define([
 
         /**
          * Check if render force
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {boolean}
          */
         isCachedItems: function isCachedItems() {
@@ -153,7 +153,7 @@ define([
 
         /**
          * Render Header
-         * @member BaseView
+         * @memberOf BaseView
          * @param HeaderElement
          * @param $container
          * @returns {HeaderElement}
@@ -191,7 +191,7 @@ define([
 
         /**
          * Render Footer
-         * @member BaseView
+         * @memberOf BaseView
          * @param FooterElement
          * @param $container
          * @returns {FooterElement}
@@ -228,7 +228,7 @@ define([
 
         /**
          * Generic modal dialog window
-         * @member BaseView
+         * @memberOf BaseView
          * @param {{
          *      [style]: String,
          *      $container,
@@ -278,7 +278,7 @@ define([
 
         /**
          * Generic button
-         * @member BaseView
+         * @memberOf BaseView
          * @param {Function|ButtonElement} ButtonElement
          * @param {*} opts
          * @param {*} store
@@ -306,7 +306,7 @@ define([
 
         /**
          * Define cover
-         * @member BaseView
+         * @memberOf BaseView
          * @param CoverElement
          * @param opts
          * @returns {CoverElement}

@@ -22,7 +22,7 @@ define([
         /**
          * Generate UUID
          * @description RFC4122 Description "http://www.ietf.org/rfc/rfc4122.txt"
-         * @member BaseGenerator
+         * @memberOf BaseGenerator
          * @param {String} [uuid]
          * @returns {String}
          */
@@ -48,7 +48,7 @@ define([
 
         /**
          * Get timestamp
-         * @member BaseGenerator
+         * @memberOf BaseGenerator
          * @returns {*}
          */
         timestamp: function timestamp() {
@@ -57,7 +57,7 @@ define([
 
         /**
          * Generate random color HEX
-         * @member BaseGenerator
+         * @memberOf BaseGenerator
          * @returns {string}
          */
         randomColor: function randomColor() {
@@ -67,7 +67,7 @@ define([
 
         /**
          * Invert CSS color [color|background-color]
-         * @member BaseGenerator
+         * @memberOf BaseGenerator
          * @param {String} cssType
          */
         invertColor: function invertColor(cssType) {

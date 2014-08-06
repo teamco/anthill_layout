@@ -20,7 +20,7 @@ define([
 
         /**
          * Define preferences
-         * @member PetRadarModel
+         * @memberOf PetRadarModel
          * @type {{}}
          */
         this.preferences = {
@@ -28,7 +28,7 @@ define([
 
         /**
          * Define rules
-         * @member PetRadarModel
+         * @memberOf PetRadarModel
          * @type {{}}
          */
         this.rules = {};

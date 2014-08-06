@@ -30,7 +30,7 @@ define([
 
         /**
          * Render container
-         * @member PanelView
+         * @memberOf PanelView
          */
         renderPanelContainer: function renderPanelContainer() {
 
@@ -49,7 +49,7 @@ define([
 
         /**
          * Render tab to open/close panel
-         * @member PanelView
+         * @memberOf PanelView
          */
         renderTab: function renderTab() {
 
@@ -65,7 +65,7 @@ define([
 
         /**
          * Render Panel
-         * @member PanelView
+         * @memberOf PanelView
          */
         renderPanel: function renderPanel() {
 
@@ -106,7 +106,7 @@ define([
 
         /**
          * Render content container
-         * @member PanelView
+         * @memberOf PanelView
          */
         renderContentContainer: function renderContentContainer() {
             /**
@@ -121,7 +121,7 @@ define([
 
         /**
          * Render panel content
-         * @member PanelView
+         * @memberOf PanelView
          * @param module
          * @param {Boolean} force
          * @returns {boolean}
@@ -164,7 +164,7 @@ define([
 
         /**
          * Render panel
-         * @member PanelView
+         * @memberOf PanelView
          */
         render: function render() {
 

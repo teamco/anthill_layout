@@ -20,14 +20,14 @@ define([
 
         /**
          * Define layout
-         * @member EmptyColumns
+         * @memberOf EmptyColumns
          * @type {Layout}
          */
         this.layout = layout;
 
         /**
          * Define page
-         * @member EmptyColumns
+         * @memberOf EmptyColumns
          * @type {Page}
          */
         this.page = this.layout.controller.getContainment();
@@ -38,7 +38,7 @@ define([
 
         /**
          * Check if remove empty spaces is allowed
-         * @member EmptyColumns
+         * @memberOf EmptyColumns
          * @returns {boolean}
          */
         isAllowed: function isAllowed() {
@@ -48,7 +48,7 @@ define([
 
         /**
          * Remove empty spaces by column
-         * @member EmptyColumns
+         * @memberOf EmptyColumns
          * @returns {boolean}
          */
         remove: function remove() {
@@ -93,7 +93,7 @@ define([
 
         /**
          * Get widgets order
-         * @member EmptyColumns
+         * @memberOf EmptyColumns
          * @param widgets
          * @returns {Array}
          */
@@ -126,7 +126,7 @@ define([
 
         /**
          * Get widgets above
-         * @member EmptyColumns
+         * @memberOf EmptyColumns
          * @param {string} uuid
          * @param {{}} widgets
          * @param {Array} order

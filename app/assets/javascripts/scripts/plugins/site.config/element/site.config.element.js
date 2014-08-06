@@ -36,7 +36,7 @@ define([
 
         /**
          * Get footer html
-         * @member SiteConfigElement
+         * @memberOf SiteConfigElement
          * @returns {*|jQuery}
          */
         getFooter: function getFooter() {

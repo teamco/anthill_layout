@@ -19,7 +19,7 @@ define([], function defineBaseHash() {
 
         /**
          * Extend hash
-         * @member BaseHash
+         * @memberOf BaseHash
          * @param {*} hash
          * @param {*} defaults
          * @returns {*}
@@ -33,7 +33,7 @@ define([], function defineBaseHash() {
 
         /**
          * Check if hash empty
-         * @member BaseHash
+         * @memberOf BaseHash
          * @param {*} o
          * @returns {boolean}
          */
@@ -43,7 +43,7 @@ define([], function defineBaseHash() {
 
         /**
          * Check if Hash(h) has Key(k)
-         * @member BaseHash
+         * @memberOf BaseHash
          * @param {*} h
          * @param {String} k
          * @returns {boolean}
@@ -56,7 +56,7 @@ define([], function defineBaseHash() {
 
         /**
          * First hash element value
-         * @member BaseHash
+         * @memberOf BaseHash
          * @param {*} h
          * @returns {*}
          */
@@ -75,7 +75,7 @@ define([], function defineBaseHash() {
 
         /**
          * First hash element's key
-         * @member BaseHash
+         * @memberOf BaseHash
          * @param {*} h
          * @returns {Boolean|String}
          */
@@ -94,7 +94,7 @@ define([], function defineBaseHash() {
 
         /**
          * Find all Hash keys
-         * @member BaseHash
+         * @memberOf BaseHash
          * @param {*} h
          * @returns {Array}
          */
@@ -113,7 +113,7 @@ define([], function defineBaseHash() {
 
         /**
          * Get Hash length
-         * @member BaseHash
+         * @memberOf BaseHash
          * @param {*} o
          * @returns {Number}
          */
@@ -123,7 +123,7 @@ define([], function defineBaseHash() {
 
         /**
          * Get hash key by value
-         * @member BaseHash
+         * @memberOf BaseHash
          * @param {*} h
          * @param {*} v
          * @returns {string}

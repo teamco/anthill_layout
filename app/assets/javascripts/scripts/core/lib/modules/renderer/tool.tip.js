@@ -17,7 +17,7 @@ define([], function defineToolTipRenderer(){
 
         /**
          * Hide tooltip
-         * @member ToolTipRenderer
+         * @memberOf ToolTipRenderer
          */
         hideTooltip: function hideTooltip() {
             $('.tooltip').hide();
@@ -25,7 +25,7 @@ define([], function defineToolTipRenderer(){
 
         /**
          * Render tooltip
-         * @member ToolTipRenderer
+         * @memberOf ToolTipRenderer
          * @param {{
          *      $container: *|jQuery,
          *      title: string,

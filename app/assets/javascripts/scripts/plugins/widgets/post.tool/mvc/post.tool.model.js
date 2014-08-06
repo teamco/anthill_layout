@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member PostToolModel
+         * @memberOf PostToolModel
          * @type {{}}
          */
         this.preferences = {
@@ -29,7 +29,7 @@ define([
 
         /**
          * Define rules
-         * @member PostToolModel
+         * @memberOf PostToolModel
          * @type {{}}
          */
         this.rules = {};

@@ -24,13 +24,13 @@ define([
 
         /**
          * Define plugin path
-         * @member BaseElement
+         * @memberOf BaseElement
          */
         pluginPath: '../../assets/scripts/plugins',
 
         /**
          * Element config before build
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param {BaseView} view
          * @param {{[style]: string, [id]: string, [css], [events], [opacity]}} opts
          * @param $html
@@ -48,42 +48,42 @@ define([
 
             /**
              * Define style
-             * @member BaseElement
+             * @memberOf BaseElement
              * @type {String}
              */
             this.style = opts.style || view.createStyle();
 
             /**
              * Define id
-             * @member BaseElement
+             * @memberOf BaseElement
              * @type {String}
              */
             this.id = view.renderUUID(opts.id);
 
             /**
              * Define events
-             * @member BaseElement
+             * @memberOf BaseElement
              * @type {*}
              */
             this.events = opts.events;
 
             /**
              * Define opacity
-             * @member BaseElement
+             * @memberOf BaseElement
              * @type {*|number}
              */
             this.opacity = opts.opacity || 1.0;
 
             /**
              * Define CSS
-             * @member BaseElement
+             * @memberOf BaseElement
              * @type {*}
              */
             this.css = this.base.define(opts.css, {}, true);
 
             /**
              * Define jQuery element
-             * @member BaseElement
+             * @memberOf BaseElement
              */
             this.$ = $html.attr({
                 id: this.id
@@ -94,7 +94,7 @@ define([
 
         /**
          * Bind element events
-         * @member BaseElement
+         * @memberOf BaseElement
          */
         bindEvents: function bindEvents() {
 
@@ -114,7 +114,7 @@ define([
 
         /**
          * Get text metrics
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param $element
          * @return {Object}
          */
@@ -165,7 +165,7 @@ define([
 
         /**
          * Centralize element into container
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param {{$container, $item, css, position: String}} opts
          * Position options:
          *      ['tl' 'tc' 'tr']
@@ -235,7 +235,7 @@ define([
 
         /**
          * Destroy element before create
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param {Boolean} destroy
          */
         destroyB4Create: function destroyB4Create(destroy) {
@@ -274,7 +274,7 @@ define([
 
         /**
          * Build element
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param {{$container, [append], destroy, [callback]}} opts
          * @returns {*}
          */
@@ -291,7 +291,7 @@ define([
 
                 /**
                  * Define $container
-                 * @member BaseElement
+                 * @memberOf BaseElement
                  * @type {*|jQuery|HTMLElement}
                  */
                 this.$container = $(opts.$container);
@@ -312,7 +312,7 @@ define([
 
         /**
          * Dynamic CSS
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param {String} type
          * @param {{
          *      [type]: string,
@@ -354,7 +354,7 @@ define([
 
         /**
          * Create link css
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param opts
          */
         createLinkCss: function createLinkCss(opts) {
@@ -392,7 +392,7 @@ define([
 
         /**
          * Destroy element
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {*}
          */
         destroy: function destroy() {
@@ -411,7 +411,7 @@ define([
 
         /**
          * Hide element
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {*}
          */
         hide: function hide() {
@@ -421,7 +421,7 @@ define([
 
         /**
          * Clear element internal HTML
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {*|Boolean}
          */
         empty: function empty() {
@@ -431,7 +431,7 @@ define([
 
         /**
          * Fade in effect
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {*}
          */
         fadeIn: function fadeIn() {
@@ -440,7 +440,7 @@ define([
 
         /**
          * Fade out effect
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {*}
          */
         fadeOut: function fadeOut() {
@@ -449,7 +449,7 @@ define([
 
         /**
          * Show element
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {*}
          */
         show: function show() {
@@ -458,7 +458,7 @@ define([
 
         /**
          * Remove element inline style
-         * @member BaseElement
+         * @memberOf BaseElement
          */
         removeStyle: function removeStyle() {
             this.$.attr({
@@ -468,7 +468,7 @@ define([
 
         /**
          * Stretch element in parent container
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {*}
          */
         stretch: function stretch() {
@@ -511,7 +511,7 @@ define([
 
         /**
          * Get root container
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {*|HTMLElement}
          */
         getRootContainer: function getRootContainer() {
@@ -520,7 +520,7 @@ define([
 
         /**
          * Set element opacity
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param {Number} opacity
          */
         setOpacity: function setOpacity(opacity) {
@@ -531,7 +531,7 @@ define([
 
         /**
          * Get position
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {{top, left}}
          */
         getPosition: function getPosition() {
@@ -539,7 +539,7 @@ define([
         },
         /**
          * Get offset
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {{top, left}}
          */
         getOffset: function getOffset() {
@@ -548,7 +548,7 @@ define([
 
         /**
          * Get element width
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {*}
          */
         getWidth: function getWidth() {
@@ -557,7 +557,7 @@ define([
 
         /**
          * Set element width
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param {String|Number} width
          * @returns {Number}
          */
@@ -571,7 +571,7 @@ define([
 
         /**
          * Get element height
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {*}
          */
         getHeight: function getHeight() {
@@ -580,7 +580,7 @@ define([
 
         /**
          * Set element height
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param {String|Number} height
          * @returns {Number}
          */
@@ -594,7 +594,7 @@ define([
 
         /**
          * Get CSS attribute
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param {String} value
          * @returns {Number}
          */
@@ -606,7 +606,7 @@ define([
 
         /**
          * Get z-index
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {Number}
          */
         getZIndex: function getZIndex() {
@@ -615,7 +615,7 @@ define([
 
         /**
          * Get padding right
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {Number}
          */
         getPaddingRight: function getPaddingRight() {
@@ -624,7 +624,7 @@ define([
 
         /**
          * Get padding left
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {Number}
          */
         getPaddingLeft: function getPaddingLeft() {
@@ -633,7 +633,7 @@ define([
 
         /**
          * Get pudding top
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {Number}
          */
         getPaddingTop: function getPaddingTop() {
@@ -642,7 +642,7 @@ define([
 
         /**
          * Get padding bottom
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {Number}
          */
         getPaddingBottom: function getPaddingBottom() {
@@ -651,7 +651,7 @@ define([
 
         /**
          * Get margin right
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {Number}
          */
         getMarginRight: function getMarginRight() {
@@ -660,7 +660,7 @@ define([
 
         /**
          * Get margin left
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {Number}
          */
         getMarginLeft: function getMarginLeft() {
@@ -669,7 +669,7 @@ define([
 
         /**
          * Get margin top
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {Number}
          */
         getMarginTop: function getMarginTop() {
@@ -678,7 +678,7 @@ define([
 
         /**
          * Get margin bottom
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {Number}
          */
         getMarginBottom: function getMarginBottom() {
@@ -687,7 +687,7 @@ define([
 
         /**
          * Get left delta
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {Number}
          */
         getLeftDelta: function getLeftDelta() {
@@ -696,7 +696,7 @@ define([
 
         /**
          * Get top delta
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {Number}
          */
         getTopDelta: function getTopDelta() {
@@ -705,7 +705,7 @@ define([
 
         /**
          * Locate element
-         * @member BaseElement
+         * @memberOf BaseElement
          */
         locate: function locate() {
 
@@ -716,7 +716,7 @@ define([
 
         /**
          * Get $items
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {*|jQuery|HTMLElement}
          */
         get$items: function get$items() {
@@ -743,7 +743,7 @@ define([
 
         /**
          * Set html
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param html
          * @param [$container]
          * @returns {boolean}
@@ -759,7 +759,7 @@ define([
 
         /**
          * Set text
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param {string} text
          * @param [$container]
          * @returns {boolean}
@@ -775,7 +775,7 @@ define([
 
         /**
          * Set title
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param {string} title
          */
         setTitle: function setTitle(title) {
@@ -791,7 +791,7 @@ define([
 
         /**
          * Unbind element
-         * @member BaseElement
+         * @memberOf BaseElement
          * @returns {BaseElement}
          */
         unbindElement: function unbindElement() {
@@ -806,7 +806,7 @@ define([
 
         /**
          * Add scroll cover
-         * @member BaseElement
+         * @memberOf BaseElement
          * @param $container
          */
         scrollCover: function scrollCover($container) {
@@ -823,7 +823,7 @@ define([
 
         /**
          * Adopt modal dialog position on content config
-         * @member BaseElement
+         * @memberOf BaseElement
          */
         adoptModalDialogPosition: function adoptModalDialogPosition() {
 

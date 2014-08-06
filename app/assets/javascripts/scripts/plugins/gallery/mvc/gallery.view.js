@@ -29,7 +29,7 @@ define([
 
         /**
          * Render Gallery
-         * @member GalleryView
+         * @memberOf GalleryView
          * @returns {boolean}
          */
         renderGallery: function renderGallery() {
@@ -61,7 +61,7 @@ define([
 
         /**
          * Render footer
-         * @member GalleryView
+         * @memberOf GalleryView
          */
         renderFooter: function renderFooter() {
             this.footer(Footer, this.elements.$container).setHtml(
@@ -71,7 +71,7 @@ define([
 
         /**
          * Render gallery providers
-         * @member GalleryView
+         * @memberOf GalleryView
          * @param providers
          * @param currentProvider
          * @returns {boolean}
@@ -92,7 +92,7 @@ define([
 
         /**
          * Render gallery search
-         * @member GalleryView
+         * @memberOf GalleryView
          * @returns {boolean}
          */
         renderSearch: function renderSearch() {
@@ -113,7 +113,7 @@ define([
 
         /**
          * Render gallery content
-         * @member GalleryView
+         * @memberOf GalleryView
          * @param provider
          * @param {Boolean} force
          * @returns {boolean}
@@ -162,7 +162,7 @@ define([
 
         /**
          * Render gallery
-         * @member GalleryView
+         * @memberOf GalleryView
          */
         render: function render() {
 

@@ -32,7 +32,7 @@ define([
 
         /**
          * Render data
-         * @member GalleryProvidersElement
+         * @memberOf GalleryProvidersElement
          * @param data
          * @param currentProvider
          * @returns {GalleryProvidersElement}

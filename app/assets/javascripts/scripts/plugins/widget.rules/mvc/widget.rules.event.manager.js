@@ -20,14 +20,14 @@ define([
 
         /**
          * Define events
-         * @member WidgetRulesEventManager
+         * @memberOf WidgetRulesEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
-         * @member WidgetRulesEventManager
+         * @memberOf WidgetRulesEventManager
          * @type {{
          *      updateTranslations: string,
          *      loadContent: string,

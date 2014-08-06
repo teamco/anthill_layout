@@ -26,7 +26,7 @@ define([
 
         /**
          * Before nested organizer
-         * @member LayoutController
+         * @memberOf LayoutController
          * @param {boolean} silent
          */
         beforeNestedOrganizer: function beforeNestedOrganizer(silent) {
@@ -41,7 +41,7 @@ define([
 
         /**
          * After nested organizer
-         * @member LayoutController
+         * @memberOf LayoutController
          */
         afterNestedOrganizer: function afterNestedOrganizer() {
 
@@ -53,7 +53,7 @@ define([
 
         /**
          * Ready to organize
-         * @member LayoutController
+         * @memberOf LayoutController
          */
         readyToOrganize: function readyToOrganize() {
 
@@ -68,7 +68,7 @@ define([
 
         /**
          * Update cell size on resize container
-         * @member LayoutController
+         * @memberOf LayoutController
          * @returns {*}
          */
         updateMinCellWidth: function updateMinCellWidth() {
@@ -78,7 +78,7 @@ define([
 
         /**
          * Calculate cell size
-         * @member LayoutController
+         * @memberOf LayoutController
          * @returns {Number}
          */
         minCellWidth: function minCellWidth() {
@@ -110,7 +110,7 @@ define([
 
         /**
          * Get grid width
-         * @member LayoutController
+         * @memberOf LayoutController
          * @returns {number}
          */
         getGridWidth: function getGridWidth() {
@@ -122,7 +122,7 @@ define([
 
         /**
          * Get next position
-         * @member LayoutController
+         * @memberOf LayoutController
          * @param {{column: Number, row: Number}} dom
          * @returns {{left: Number, top: Number}}
          */
@@ -155,7 +155,7 @@ define([
 
         /**
          * Get layout Behavior mode
-         * @member LayoutController
+         * @memberOf LayoutController
          * @returns {String}
          */
         getBehaviorMode: function getBehaviorMode() {
@@ -164,7 +164,7 @@ define([
 
         /**
          * Set layout Behavior mode
-         * @member LayoutController
+         * @memberOf LayoutController
          * @param {string} mode
          * @returns {String}
          */
@@ -184,7 +184,7 @@ define([
 
         /**
          * Check if mode is Snap to Grid
-         * @member LayoutController
+         * @memberOf LayoutController
          * @returns {boolean}
          */
         isSnap2Grid: function isSnap2Grid() {
@@ -194,7 +194,7 @@ define([
 
         /**
          * Check if mode is Snap to Grid
-         * @member LayoutController
+         * @memberOf LayoutController
          * @returns {boolean}
          */
         isUIGrid: function isUIGrid() {
@@ -204,7 +204,7 @@ define([
 
         /**
          * Check if mode is Free Style
-         * @member LayoutController
+         * @memberOf LayoutController
          * @returns {boolean}
          */
         isFreeStyle: function isFreeStyle() {
@@ -214,7 +214,7 @@ define([
 
         /**
          * Check if overlapping allowed
-         * @member LayoutController
+         * @memberOf LayoutController
          * @returns {boolean}
          */
         isOverlappingAllowed: function isOverlappingAllowed() {
@@ -224,7 +224,7 @@ define([
 
         /**
          * Get layout behavior mode
-         * @member LayoutController
+         * @memberOf LayoutController
          * @returns {*}
          */
         getBehavior: function getBehavior() {
@@ -233,7 +233,7 @@ define([
 
         /**
          * Set behavior empty spaces mode
-         * @member LayoutController
+         * @memberOf LayoutController
          * @param {String} mode
          */
         setEmptySpacesMode: function setEmptySpacesMode(mode) {
@@ -242,7 +242,7 @@ define([
 
         /**
          * Set behavior organize mode
-         * @member LayoutController
+         * @memberOf LayoutController
          * @param {String} mode
          */
         setOrganizeMode: function setOrganizeMode(mode) {
@@ -251,7 +251,7 @@ define([
 
         /**
          * Set layout mode
-         * @member LayoutController
+         * @memberOf LayoutController
          * @param {string} type
          * @param {string|boolean} mode
          * @private
@@ -267,7 +267,7 @@ define([
 
         /**
          * Get layout mode
-         * @member LayoutController
+         * @memberOf LayoutController
          * @param {string} type
          * @returns {*|Overlapping}
          * @private
@@ -278,7 +278,7 @@ define([
 
         /**
          * Update layout mode
-         * @member LayoutController
+         * @memberOf LayoutController
          * @param mode
          * @param {string} type
          * @private

@@ -29,7 +29,7 @@ define([
 
         /**
          * Render Page
-         * @member PageView
+         * @memberOf PageView
          */
         renderPage: function renderPage() {
 
@@ -62,7 +62,7 @@ define([
 
         /**
          * Define delta scroll
-         * @member PageView
+         * @memberOf PageView
          */
         deltaScroll: function deltaScroll() {
 
@@ -78,7 +78,7 @@ define([
 
         /**
          * Define widgets container
-         * @member PageView
+         * @memberOf PageView
          */
         widgets: function widgets() {
 
@@ -94,7 +94,7 @@ define([
 
         /**
          * Show destroy widgets confirmation modal dialog
-         * @member PageView
+         * @memberOf PageView
          */
         destroyWidgetsModalDialog: function destroyWidgetsModalDialog(widgets) {
 
@@ -133,7 +133,7 @@ define([
 
         /**
          * Render page
-         * @member PageView
+         * @memberOf PageView
          * @param {boolean} silent
          */
         render: function render(silent) {

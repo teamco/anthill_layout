@@ -15,7 +15,7 @@ define([], function defineBasePreferences() {
 
         /**
          * Update prefs
-         * @member BasePreferences
+         * @memberOf BasePreferences
          * @param {ModalElement} $modal
          * @param {boolean} render
          */
@@ -25,6 +25,11 @@ define([], function defineBasePreferences() {
                 scope = this.scope,
                 containment = this.getContainment(),
                 cname = scope.constructor.name.toLowerCase();
+
+            if ($inputs.hasClass('validate')) {
+                this.scope.logger.warn('Fix incorrect data before submit');
+                return false;
+            }
 
             /**
              * Validate setter

@@ -36,7 +36,7 @@ define([
 
         /**
          * Define attributes
-         * @member WidgetRulesContentElement
+         * @memberOf WidgetRulesContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
@@ -84,7 +84,7 @@ define([
 
         /**
          * Locate widget before showing rules
-         * @member WidgetRulesContentElement
+         * @memberOf WidgetRulesContentElement
          * @param data
          */
         bindLocate: function bindLocate(data) {
@@ -127,7 +127,7 @@ define([
 
         /**
          * Bind show rules
-         * @member WidgetRulesContentElement
+         * @memberOf WidgetRulesContentElement
          * @param data
          */
         bindShowRules: function bindShowRules(data) {

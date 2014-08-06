@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PostTemplateController
+         * @memberOf PostTemplateController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -33,7 +33,7 @@ define([
 
         /**
          * Add PostTemplate rule
-         * @member PostTemplateController
+         * @memberOf PostTemplateController
          * @param e
          */
         addPostTemplateRule: function addPostTemplateRule(e) {

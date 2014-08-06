@@ -23,7 +23,7 @@ define([
 
         /**
          * Check if panel resizable
-         * @member PanelController
+         * @memberOf PanelController
          * @returns {boolean}
          */
         isResizable: function isResizable() {
@@ -40,7 +40,7 @@ define([
 
         /**
          * Define modules
-         * @member PanelController
+         * @memberOf PanelController
          * @param modules
          */
         defineModules: function defineModules(modules) {
@@ -52,7 +52,7 @@ define([
 
         /**
          * Define packages
-         * @member PanelController
+         * @memberOf PanelController
          * @param packages
          */
         definePackages: function definePackages(packages) {
@@ -64,7 +64,7 @@ define([
 
         /**
          * Check if opened
-         * @member PanelController
+         * @memberOf PanelController
          * @returns {boolean|*}
          */
         isOpened: function isOpened() {
@@ -74,7 +74,7 @@ define([
         /**
          * Check if panel active
          * @param {string} resource
-         * @member PanelController
+         * @memberOf PanelController
          * @returns {boolean}
          */
         isActive: function isActive(resource) {
@@ -83,7 +83,7 @@ define([
 
         /**
          * Refresh modules content
-         * @member PanelController
+         * @memberOf PanelController
          */
         refreshModulesContent: function refreshModulesContent() {
 
@@ -98,7 +98,7 @@ define([
 
         /**
          * Get active resource
-         * @member PanelController
+         * @memberOf PanelController
          * @returns {string}
          */
         getActiveResource: function getActiveResource() {
@@ -107,7 +107,7 @@ define([
 
         /**
          * Update opened
-         * @member PanelController
+         * @memberOf PanelController
          * @param {String} resource
          * @param {Boolean} opened
          */
@@ -139,7 +139,7 @@ define([
 
         /**
          * Close panel
-         * @member PanelController
+         * @memberOf PanelController
          * @param {string} resource
          */
         closePanel: function closePanel(resource) {
@@ -164,7 +164,7 @@ define([
 
         /**
          * Close panels [except this]
-         * @member PanelController
+         * @memberOf PanelController
          * @param {Panel} [except]
          */
         closePanels: function closePanels(except) {
@@ -195,7 +195,7 @@ define([
 
         /**
          * Open panel
-         * @member PanelController
+         * @memberOf PanelController
          * @param {string} resource
          * @param {*} [event]
          * @param {function} [callback]
@@ -222,7 +222,7 @@ define([
 
         /**
          * Show content
-         * @member PanelController
+         * @memberOf PanelController
          * @param {Boolean} opened
          * @param {string} [resource]
          */
@@ -251,7 +251,7 @@ define([
 
         /**
          * Get render at
-         * @member PanelController
+         * @memberOf PanelController
          * @returns {*}
          */
         getRenderAt: function getRenderAt() {
@@ -264,7 +264,7 @@ define([
 
         /**
          * Activate module
-         * @member PanelController
+         * @memberOf PanelController
          * @param {Boolean} opened
          * @param {Number} index
          * @returns {*}
@@ -297,7 +297,7 @@ define([
 
         /**
          * Render packages
-         * @member PanelController
+         * @memberOf PanelController
          */
         renderPackages: function renderPackages() {
 
@@ -324,7 +324,7 @@ define([
 
         /**
          * Execute generic event
-         * @member PanelController
+         * @memberOf PanelController
          */
         executeGenericEvent: function executeGenericEvent() {
             this.observer.publish(
@@ -335,7 +335,7 @@ define([
 
         /**
          * Subscribe to generic event
-         * @member PanelController
+         * @memberOf PanelController
          */
         subscribeGenericEvent: function subscribeGenericEvent() {
 

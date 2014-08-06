@@ -20,14 +20,14 @@ define([
 
         /**
          * Define events
-         * @member MaximizeEventManager
+         * @memberOf MaximizeEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
-         * @member MaximizeEventManager
+         * @memberOf MaximizeEventManager
          * @type {{
          *      updateTranslations: string,
          *      loadContent: string,

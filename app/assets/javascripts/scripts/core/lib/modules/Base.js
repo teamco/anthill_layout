@@ -45,7 +45,7 @@ define([
 
         /**
          * Get shim
-         * @member Base
+         * @memberOf Base
          * @param type
          * @returns {*}
          */
@@ -77,7 +77,7 @@ define([
 
         /**
          * Get object type
-         * @member Base
+         * @memberOf Base
          * @param obj
          * @returns {String}
          */
@@ -86,7 +86,7 @@ define([
         },
         /**
          * Check if object defined
-         * @member Base
+         * @memberOf Base
          * @param {*} o
          * @return {boolean}
          */
@@ -96,7 +96,7 @@ define([
 
         /**
          * Check if object is blank
-         * @member Base
+         * @memberOf Base
          * @param {String} o
          * @return {boolean}
          */
@@ -106,7 +106,7 @@ define([
 
         /**
          * Check if boolean
-         * @member Base
+         * @memberOf Base
          * @param o
          * @returns {boolean}
          */
@@ -116,7 +116,7 @@ define([
 
         /**
          * Check if object is empty
-         * @member Base
+         * @memberOf Base
          * @param {String|Array|jQuery} o
          * @returns {boolean}
          */
@@ -131,7 +131,7 @@ define([
 
         /**
          * Check if object string type
-         * @member Base
+         * @memberOf Base
          * @param {String} o
          * @returns {boolean}
          */
@@ -141,7 +141,7 @@ define([
 
         /**
          * Check if array
-         * @member Base
+         * @memberOf Base
          * @param a
          * @returns {boolean}
          */
@@ -151,7 +151,7 @@ define([
 
         /**
          * Check if object is instance of jQuery
-         * @member Base
+         * @memberOf Base
          * @param o
          * @returns {boolean}
          */
@@ -161,7 +161,7 @@ define([
 
         /**
          * Check if object
-         * @member Base
+         * @memberOf Base
          * @param o
          * @returns {boolean}
          */
@@ -171,7 +171,7 @@ define([
 
         /**
          * Check if function
-         * @member Base
+         * @memberOf Base
          * @param o
          * @returns {boolean}
          */
@@ -181,7 +181,7 @@ define([
 
         /**
          * Check if value is numeric
-         * @member Base
+         * @memberOf Base
          * @param n
          * @returns {boolean}
          */
@@ -192,7 +192,7 @@ define([
 
         /**
          * Check if uuid has uuid format
-         * @member Base
+         * @memberOf Base
          * @param {string} uuid
          * @returns {Array|{index: number, input: string}|*}
          */
@@ -202,7 +202,7 @@ define([
 
         /**
          * Check if url
-         * @member Base
+         * @memberOf Base
          * @param {string} url
          * @returns {Array|{index: number, input: string}|*}
          */
@@ -214,7 +214,7 @@ define([
 
         /**
          * Define object if undefined
-         * @member Base
+         * @memberOf Base
          * @param o
          * @param value
          * @param {Boolean} [force]
@@ -231,7 +231,7 @@ define([
 
         /**
          * Define boolean if undefined
-         * @member Base
+         * @memberOf Base
          * @param o
          * @param value
          * @param [force]

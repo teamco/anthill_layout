@@ -28,7 +28,7 @@ define([
 
         /**
          * Render map.locator element
-         * @member MapLocatorView
+         * @memberOf MapLocatorView
          */
         renderMapLocator: function renderMapLocator() {
 
@@ -50,7 +50,7 @@ define([
 
         /**
          * Render Prefs
-         * @member MapLocatorView
+         * @memberOf MapLocatorView
          * @returns {MapLocatorPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -68,7 +68,7 @@ define([
 
         /**
          * Render Rules
-         * @member MapLocatorView
+         * @memberOf MapLocatorView
          * @param widgetRules
          * @param contentRules
          * @returns {MapLocatorRulesElement}
@@ -98,7 +98,7 @@ define([
 
         /**
          * Show position
-         * @member MapLocatorView
+         * @memberOf MapLocatorView
          */
         showPosition: function showPosition() {
             this.scope.observer.publish(
@@ -108,7 +108,7 @@ define([
 
         /**
          * Render map.locator
-         * @member MapLocatorView
+         * @memberOf MapLocatorView
          */
         render: function render() {
 

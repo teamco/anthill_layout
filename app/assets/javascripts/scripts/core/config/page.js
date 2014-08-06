@@ -29,7 +29,7 @@ define([
 
         /**
          * Define layout modes
-         * @member Page
+         * @memberOf Page
          * @type {{
          *      snap2grid: string,
          *      jqUIGrid: string
@@ -44,7 +44,7 @@ define([
 
         /**
          * Define organize modes
-         * @member Page
+         * @memberOf Page
          * @type {{
          *      none: string,
          *      row: string,
@@ -155,7 +155,7 @@ define([
 
         /**
          * Define MVC
-         * @member Page
+         * @memberOf Page
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -179,27 +179,27 @@ define([
 
         /**
          * Init page
-         * @member Page
+         * @memberOf Page
          */
         init: function init() {
 
             /**
              * Define items
-             * @member Page
+             * @memberOf Page
              * @type {*}
              */
             this.items = {};
 
             /**
              * Define widget
-             * @member Page
+             * @memberOf Page
              * @type {*|Widget}
              */
             this.widget = {};
 
             /**
              * Define maximized widget
-             * @member Page
+             * @memberOf Page
              * @type {*|Widget}
              */
             this.maximized = {};

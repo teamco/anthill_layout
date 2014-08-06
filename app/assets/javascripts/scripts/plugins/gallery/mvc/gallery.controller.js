@@ -22,7 +22,7 @@ define([
 
         /**
          * Get providers data
-         * @member GalleryController
+         * @memberOf GalleryController
          */
         getData: function getData() {
             return this.model.getProvidersList();
@@ -30,7 +30,7 @@ define([
 
         /**
          * Get current provider
-         * @member GalleryController
+         * @memberOf GalleryController
          * @returns {{name: string, data: *[]}[]}
          */
         getCurrentProvider: function getCurrentProvider() {
@@ -39,7 +39,7 @@ define([
 
         /**
          * Set current provider
-         * @member GalleryController
+         * @memberOf GalleryController
          * @param name
          */
         setCurrentProvider: function setCurrentProvider(name) {
@@ -48,7 +48,7 @@ define([
 
         /**
          * Set providers
-         * @member GalleryController
+         * @memberOf GalleryController
          */
         setProviders: function setProviders() {
 
@@ -81,7 +81,7 @@ define([
 
         /**
          * Load gallery content
-         * @member GalleryController
+         * @memberOf GalleryController
          * @param {boolean} opened
          * @param {boolean} [force]
          */
@@ -97,7 +97,7 @@ define([
 
         /**
          * Filter search results
-         * @member GalleryController
+         * @memberOf GalleryController
          * @param e
          */
         filterResults: function filterResults(e) {
@@ -155,7 +155,7 @@ define([
 
         /**
          * Add widget
-         * @member GalleryController
+         * @memberOf GalleryController
          * @param $element
          */
         addWidget: function addWidget($element) {

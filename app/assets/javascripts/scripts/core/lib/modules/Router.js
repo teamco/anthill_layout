@@ -28,7 +28,7 @@ define([
 
         /**
          * Get Hash location
-         * @member Router
+         * @memberOf Router
          * @returns {string}
          */
         getHashLocation: function getHashLocation() {
@@ -37,7 +37,7 @@ define([
 
         /**
          * Set Hash location
-         * @member Router
+         * @memberOf Router
          */
         setHashLocation: function setHashLocation(hash) {
             window.location.hash = hash;
@@ -45,7 +45,7 @@ define([
 
         /**
          * Set page by hash location
-         * @member Router
+         * @memberOf Router
          * @param {Page} page
          */
         setPageByHashLocation: function setPageByHashLocation(page) {
@@ -61,7 +61,7 @@ define([
 
         /**
          * Get page by hash
-         * @member Router
+         * @memberOf Router
          * @returns {Page}
          */
         getPageByHashLocation: function getPageByHashLocation() {
@@ -98,7 +98,7 @@ define([
 
         /**
          * Get widget by hash
-         * @member Router
+         * @memberOf Router
          * @param {Page} page
          * @returns {Widget|*}
          */
@@ -130,7 +130,7 @@ define([
 
         /**
          * Update hash on widget maximize
-         * @member Router
+         * @memberOf Router
          * @param {Widget} widget
          */
         updateHashOnMaximize: function updateHashOnMaximize(widget) {
@@ -153,7 +153,7 @@ define([
 
         /**
          * Update hash on widget reduce
-         * @member Router
+         * @memberOf Router
          * @param {Widget} widget
          */
         updateHashOnReduce: function updateHashOnReduce(widget) {
@@ -171,7 +171,7 @@ define([
 
         /**
          * Get item identity
-         * @member BaseController
+         * @memberOf BaseController
          * @param {Page|Widget} item
          * @returns {*|String}
          */

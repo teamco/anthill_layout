@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member IceFloe
+         * @memberOf IceFloe
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member IceFloe
+         * @memberOf IceFloe
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @member IceFloe
+         * @memberOf IceFloe
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -24,7 +24,7 @@ define([
 
         /**
          * Define default widget prefs
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @type {{
          *      title: {type: string, disabled: boolean, value},
          *      pageUrl: {type: string, disabled: boolean, value},
@@ -54,7 +54,7 @@ define([
 
         /**
          * Render data
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @param opts
          */
         renderData: function renderData(opts) {
@@ -170,7 +170,7 @@ define([
 
         /**
          * Render Layout prefs
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @param {Page} page
          * @param {Array} nodes
          * @returns {*}
@@ -249,7 +249,7 @@ define([
 
         /**
          * Render widgets prefs
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @param {Page} page
          * @param nodes
          * @returns {*}
@@ -365,7 +365,7 @@ define([
 
         /**
          * Show Widget prefs
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @param e
          */
         showWidgetPrefs: function showWidgetPrefs(e) {

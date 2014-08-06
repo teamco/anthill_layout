@@ -36,7 +36,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member LoginElement
+         * @memberOf LoginElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
 

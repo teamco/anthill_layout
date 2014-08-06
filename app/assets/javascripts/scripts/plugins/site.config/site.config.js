@@ -26,20 +26,20 @@ define([
 
         /**
          * Define containment
-         * @member SiteConfig
+         * @memberOf SiteConfig
          */
         this.containment = containment;
 
         /**
          * Define active content
-         * @member SiteConfig
+         * @memberOf SiteConfig
          * @type {Page}
          */
         this.activeContent = undefined;
 
         /**
          * Allow to locate element
-         * @member SiteConfig
+         * @memberOf SiteConfig
          * @type {boolean}
          */
         this.allowToLocate = true;
@@ -80,7 +80,7 @@ define([
 
         /**
          * Define MVC
-         * @member SiteConfig
+         * @memberOf SiteConfig
          * @type {MVC}
          */
         this.mvc = new MVC({

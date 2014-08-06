@@ -20,7 +20,7 @@ define([
 
         /**
          * Define events
-         * @member WidgetEventManager
+         * @memberOf WidgetEventManager
          * @type {{}}
          */
         this.events = {};

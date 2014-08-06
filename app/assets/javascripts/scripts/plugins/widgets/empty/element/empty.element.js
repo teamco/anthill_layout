@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member EmptyElement
+         * @memberOf EmptyElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
             // TODO

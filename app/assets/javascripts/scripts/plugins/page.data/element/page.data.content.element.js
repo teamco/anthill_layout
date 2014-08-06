@@ -36,7 +36,7 @@ define([
 
         /**
          * Define attributes
-         * @member PageDataContentElement
+         * @memberOf PageDataContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
@@ -84,7 +84,7 @@ define([
 
         /**
          * Locate widget before showing prefs
-         * @member PageDataContentElement
+         * @memberOf PageDataContentElement
          * @param data
          */
         bindLocate: function bindLocate(data) {
@@ -127,7 +127,7 @@ define([
 
         /**
          * Bind show prefs
-         * @member PageDataContentElement
+         * @memberOf PageDataContentElement
          * @param data
          */
         bindShowPrefs: function bindShowPrefs(data) {

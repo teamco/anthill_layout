@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member SwfController
+         * @memberOf SwfController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -38,7 +38,7 @@ define([
 
         /**
          * Add Swf rule
-         * @member SwfController
+         * @memberOf SwfController
          * @param e
          */
         addSwfRule: function addSwfRule(e) {

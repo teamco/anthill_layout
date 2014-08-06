@@ -12,21 +12,21 @@ define([
 
         /**
          * Define user container
-         * @member PetRadarBehavior
+         * @memberOf PetRadarBehavior
          * @type {*|jQuery|HTMLElement}
          */
         this.usersContainer = $('.close_friends_container');
 
         /**
          * Define amount
-         * @member PetRadarBehavior\
+         * @memberOf PetRadarBehavior\
          * @type {number}
          */
         this.circlesAmount = 0;
 
         /**
          * Define images
-         * @member PetRadarBehavior
+         * @memberOf PetRadarBehavior
          * @type {string[]}
          */
         this.images = [
@@ -54,7 +54,7 @@ define([
 
         /**
          * Define container width
-         * @member PetRadarBehavior
+         * @memberOf PetRadarBehavior
          * @type {Number}
          */
         this.screenWidth = window.outerWidth;
@@ -66,7 +66,7 @@ define([
 
         /**
          * Define init
-         * @member PetRadarBehavior
+         * @memberOf PetRadarBehavior
          */
         initialize: function initialize() {
 

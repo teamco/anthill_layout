@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member LoginGoogle
+         * @memberOf LoginGoogle
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member LoginGoogle
+         * @memberOf LoginGoogle
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @member LoginGoogle
+         * @memberOf LoginGoogle
          * @type {MVC}
          */
         this.mvc = new MVC({

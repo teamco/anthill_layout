@@ -35,7 +35,7 @@ define([
 
         /**
          * Get footer html
-         * @member PageDataElement
+         * @memberOf PageDataElement
          * @returns {*|jQuery}
          */
         getFooter: function getFooter() {

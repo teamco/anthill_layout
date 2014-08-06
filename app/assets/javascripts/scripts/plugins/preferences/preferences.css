@@ -159,6 +159,19 @@
     width: 70%;
 }
 
+.modal-dialog.preferences div.html input[type="text"].validate {
+    border-color: #F08080;
+}
+
+.modal-dialog.preferences div.html input[type="text"] + span.validate {
+    float: right;
+    font-size: 11px;
+    padding: 5px;
+    font-style: italic;
+    color: #F08080;
+    text-shadow: 1px 1px 3px #fff;
+}
+
 .modal-dialog.preferences div.html input[type="checkbox"] {
     margin-right: 10px;
 }

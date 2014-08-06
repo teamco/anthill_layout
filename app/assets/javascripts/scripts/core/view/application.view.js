@@ -28,7 +28,7 @@ define([
 
         /**
          * Render Application
-         * @member AppView
+         * @memberOf AppView
          */
         renderApplication: function renderApplication() {
 
@@ -51,7 +51,7 @@ define([
 
         /**
          * Render Workspaces container
-         * @member AppView
+         * @memberOf AppView
          */
         workspaces: function workspaces() {
 
@@ -67,7 +67,7 @@ define([
 
         /**
          * Render Debugger window
-         * @member AppView
+         * @memberOf AppView
          */
         debug: function debug() {
 
@@ -87,7 +87,7 @@ define([
 
         /**
          * Start rendering
-         * @member AppView
+         * @memberOf AppView
          * @param {boolean} [silent]
          */
         render: function render(silent) {

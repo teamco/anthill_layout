@@ -15,21 +15,21 @@ define([
 
         /**
          * Define scope
-         * @member Setting
+         * @memberOf Setting
          * @type {*}
          */
         this.scope = scope;
 
         /**
          * Define setting mode
-         * @member Setting
+         * @memberOf Setting
          * @type {String}
          */
         this.mode = this.scope.controller.getMode();
 
         /**
          * Define storage modes
-         * @member Setting
+         * @memberOf Setting
          * @type {{localStorage: Storage, serverStorage: Storage}}
          */
         this.STORAGE_MODES = {
@@ -38,7 +38,7 @@ define([
         };
         /**
          * Define setting storage
-         * @member Setting
+         * @memberOf Setting
          * @type {{development: Storage}}
          */
         this.storage = {
@@ -50,7 +50,7 @@ define([
 
         /**
          * Get storage namespace
-         * @member Setting
+         * @memberOf Setting
          * @returns {String}
          */
         this.getNameSpace = function getNameSpace() {
@@ -95,7 +95,7 @@ define([
 
                 /**
                  * Define token
-                 * @member Setting
+                 * @memberOf Setting
                  * @type {String}
                  */
                 this.token = base.lib.generator.UUID();
@@ -106,7 +106,7 @@ define([
 
         /**
          * Clear local storage
-         * @member Setting
+         * @memberOf Setting
          */
         clear: function clear() {
             window.localStorage.clear();
@@ -114,7 +114,7 @@ define([
 
         /**
          * Get Storage
-         * @member Setting
+         * @memberOf Setting
          * @returns {*}
          */
         getStorage: function getStorage() {
@@ -138,7 +138,7 @@ define([
 
         /**
          * Save
-         * @member Setting
+         * @memberOf Setting
          * @param [opts]
          */
         save: function save(opts) {
@@ -193,7 +193,7 @@ define([
 
         /**
          * Load
-         * @member Setting
+         * @memberOf Setting
          */
         load: function load() {
 

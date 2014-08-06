@@ -35,7 +35,7 @@ define([
 
         /**
          * Update uuid after loading
-         * @member AppElement
+         * @memberOf AppElement
          */
         updateUUID: function updateUUID() {
             this.$.attr({

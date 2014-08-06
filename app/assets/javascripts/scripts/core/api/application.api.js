@@ -24,7 +24,7 @@ define([
 
         /**
          * Create Workspace API
-         * @member AppAPI
+         * @memberOf AppAPI
          * @param {*} args
          * @param {Boolean} [render]
          * @param {Boolean} [silent]

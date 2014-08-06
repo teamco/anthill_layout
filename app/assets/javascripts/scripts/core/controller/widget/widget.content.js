@@ -22,7 +22,7 @@ define([
 
         /**
          * Load widget content
-         * @member WidgetContent
+         * @memberOf WidgetContent
          */
         loadContent: function loadContent() {
 
@@ -66,7 +66,7 @@ define([
 
         /**
          * Set content
-         * @member WidgetContent
+         * @memberOf WidgetContent
          * @param {Function} Content
          * @param {{}} [opts]
          */
@@ -74,7 +74,7 @@ define([
 
             /**
              * Define content
-             * @member WidgetContent
+             * @memberOf WidgetContent
              * @type {*}
              */
             this.content = new Content(this, opts);
@@ -84,7 +84,7 @@ define([
 
         /**
          * Get content
-         * @member WidgetContent
+         * @memberOf WidgetContent
          * @returns {*}
          */
         getContent: function getContent() {
@@ -93,7 +93,7 @@ define([
 
         /**
          * Clear thumbnail bg
-         * @member WidgetController
+         * @memberOf WidgetController
          */
         clearThumbnail: function clearThumbnail() {
             this.view.get$item().clearBackground();
@@ -101,7 +101,7 @@ define([
 
         /**
          * Adopt widget dimension on resize page
-         * @member WidgetController
+         * @memberOf WidgetController
          * @param {Boolean} animate
          */
         adoptDimensions: function adoptDimensions(animate) {
@@ -110,7 +110,7 @@ define([
 
         /**
          * Get widget thumbnail
-         * @member WidgetController
+         * @memberOf WidgetController
          * @returns {*}
          */
         getThumbnail: function getThumbnail() {
@@ -119,7 +119,7 @@ define([
 
         /**
          * Get widget resource
-         * @member WidgetController
+         * @memberOf WidgetController
          * @returns {*}
          */
         getResource: function getResource() {

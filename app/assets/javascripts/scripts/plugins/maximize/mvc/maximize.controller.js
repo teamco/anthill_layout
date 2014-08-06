@@ -24,7 +24,7 @@ define([
 
         /**
          * Store item
-         * @member MaximizeController
+         * @memberOf MaximizeController
          * @param item
          */
         storeItem: function storeItem(item) {
@@ -34,7 +34,7 @@ define([
 
         /**
          * Get providers data
-         * @member MaximizeController
+         * @memberOf MaximizeController
          */
         getData: function getData() {
             return this.model.getMaximize(
@@ -44,7 +44,7 @@ define([
 
         /**
          * Set active content
-         * @member MaximizeController
+         * @memberOf MaximizeController
          * @param {string} uuid
          * @returns {*|boolean}
          */
@@ -97,7 +97,7 @@ define([
 
         /**
          * Load prefs
-         * @member MaximizeController
+         * @memberOf MaximizeController
          * @param config
          * @param event
          * @param {function} [callback]
@@ -129,7 +129,7 @@ define([
 
         /**
          * Locate page data element
-         * @member MaximizeController
+         * @memberOf MaximizeController
          * @param e
          */
         locateMaximize: function locateMaximize(e) {
@@ -152,7 +152,7 @@ define([
 
         /**
          * Load maximize content
-         * @member MaximizeController
+         * @memberOf MaximizeController
          * @param opened
          */
         loadContent: function loadContent(opened) {
@@ -166,7 +166,7 @@ define([
 
         /**
          * Define maximize interaction
-         * @member MaximizeController
+         * @memberOf MaximizeController
          * @param {Widget} widget
          */
         defineInteraction: function defineInteraction(widget) {

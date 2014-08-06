@@ -30,7 +30,7 @@ define([
 
         /**
          * Set workspace width
-         * @member WorkspaceElement
+         * @memberOf WorkspaceElement
          * @param {number} width
          */
         updateWidth: function updateWidth(width) {
@@ -51,7 +51,7 @@ define([
 
         /**
          * Unset workspace width
-         * @member WorkspaceElement
+         * @memberOf WorkspaceElement
          */
         unsetWidth: function unserWidth() {
             this.$.attr(

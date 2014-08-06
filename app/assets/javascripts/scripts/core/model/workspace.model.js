@@ -20,7 +20,7 @@ define([
 
         /**
          * Define Page item
-         * @member WorkspaceModel
+         * @memberOf WorkspaceModel
          * @type {Page}
          */
         this.item = Page;
@@ -30,7 +30,7 @@ define([
 
         /**
          * Set static width
-         * @member WorkspaceModel
+         * @memberOf WorkspaceModel
          * @param {boolean} width
          */
         setStaticWidth: function setStaticWidth(width) {
@@ -44,11 +44,29 @@ define([
 
         /**
          * Set Site Width Slider
-         * @member WorkspaceModel
+         * @memberOf WorkspaceModel
          * @param {number} width
          */
         setSiteWidthSlider: function setSiteWidthSlider(width) {
             this.scope.config.preferences.siteWidthSlider = width;
+        },
+
+        /**
+         * Set google analytics tracking id
+         * @memberOf WorkspaceModel
+         * @param {string} trackingId
+         */
+        setTrackingId: function setTrackingId(trackingId) {
+
+            /**
+             * Set local scope
+             * @type {Workspace}
+             */
+            var scope = this.scope;
+
+            this.scope.config.preferences.trackingId = trackingId;
+
+            this.scope
         }
 
     }, BaseModel.prototype);

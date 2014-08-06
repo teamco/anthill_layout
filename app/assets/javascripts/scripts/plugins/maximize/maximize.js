@@ -26,20 +26,20 @@ define([
 
         /**
          * Define containment
-         * @member Maximize
+         * @memberOf Maximize
          */
         this.containment = containment;
 
         /**
          * Define active content
-         * @member Maximize
+         * @memberOf Maximize
          * @type {*}
          */
         this.activeContent = undefined;
 
         /**
          * Allow to locate element
-         * @member Maximize
+         * @memberOf Maximize
          * @type {boolean}
          */
         this.allowToLocate = true;
@@ -80,7 +80,7 @@ define([
 
         /**
          * Define MVC
-         * @member Maximize
+         * @memberOf Maximize
          * @type {MVC}
          */
         this.mvc = new MVC({

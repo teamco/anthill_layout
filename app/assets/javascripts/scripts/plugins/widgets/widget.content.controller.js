@@ -27,7 +27,7 @@ define([
 
             /**
              * Init widget
-             * @member WidgetContentController
+             * @memberOf WidgetContentController
              * @param {*} opts
              */
             initWidget: function initWidget(opts) {
@@ -76,7 +76,7 @@ define([
 
             /**
              * Transfer containment events
-             * @member WidgetContentController
+             * @memberOf WidgetContentController
              * @param events
              */
             transferEvents: function transferEvents(events) {
@@ -103,7 +103,7 @@ define([
 
             /**
              * Execute on widget event
-             * @member WidgetContentController
+             * @memberOf WidgetContentController
              * @param {string} eventName
              */
             executeOnWidgetEvent: function executeOnWidgetEvent(eventName) {
@@ -126,7 +126,7 @@ define([
 
             /**
              * Execute widget content events onload
-             * @member WidgetContentController
+             * @memberOf WidgetContentController
              */
             executeOnWidgetContentOnLoadEvent: function executeOnWidgetContentOnLoadEvent() {
                 this.eventmanager.executeEventsOnLoad();
@@ -134,7 +134,7 @@ define([
 
             /**
              * Define referrer
-             * @member WidgetContentController
+             * @memberOf WidgetContentController
              * @param referrer
              */
             defineReferrer: function defineReferrer(referrer) {
@@ -143,7 +143,7 @@ define([
 
             /**
              * Define container
-             * @member WidgetContentController
+             * @memberOf WidgetContentController
              */
             defineContainer: function defineContainer() {
 
@@ -163,7 +163,7 @@ define([
 
             /**
              * Clear default thumbnail
-             * @member WidgetContentController
+             * @memberOf WidgetContentController
              */
             clearParentThumbnail: function clearParentThumbnail() {
 
@@ -180,7 +180,7 @@ define([
 
             /**
              * Get DOM
-             * @member WidgetContentController
+             * @memberOf WidgetContentController
              * @param type
              * @returns {*}
              */
@@ -197,7 +197,7 @@ define([
 
             /**
              * Provide statistics before transfer
-             * @member WidgetContentController
+             * @memberOf WidgetContentController
              * @param e
              */
             provideStats: function provideStats(e) {
@@ -228,7 +228,7 @@ define([
 
             /**
              * Transfer stats
-             * @member WidgetContentController
+             * @memberOf WidgetContentController
              * @param {string} uuid
              * @param $element
              */

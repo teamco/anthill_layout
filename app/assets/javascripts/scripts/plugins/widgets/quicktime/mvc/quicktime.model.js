@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member QuicktimeModel
+         * @memberOf QuicktimeModel
          * @type {{
          *      youtubeUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member QuicktimeModel
+         * @memberOf QuicktimeModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Quicktime Url
-         * @member QuicktimeModel
+         * @memberOf QuicktimeModel
          * @param {string} url
          */
         setQuicktimeUrl: function setQuicktimeUrl(url) {

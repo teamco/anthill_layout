@@ -20,7 +20,7 @@ define([
 
         /**
          * Define events
-         * @member WorkspaceDataEventManager
+         * @memberOf WorkspaceDataEventManager
          * @type {{}}
          */
         this.events = {};
@@ -30,7 +30,7 @@ define([
 
         /**
          * Define event list
-         * @member WorkspaceDataEventManager
+         * @memberOf WorkspaceDataEventManager
          * @type {{
          *      updateTranslations: string,
          *      loadContent: string,
@@ -49,7 +49,7 @@ define([
 
         /**
          * Subscribe publish on
-         * @member WorkspaceDataEventManager
+         * @memberOf WorkspaceDataEventManager
          * @param {Page} page
          * @param {Function} [callback]
          * @returns {{}}

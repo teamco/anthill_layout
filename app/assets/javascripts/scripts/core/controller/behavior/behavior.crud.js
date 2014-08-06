@@ -23,7 +23,7 @@ define([
 
         /**
          * Create Item
-         * @member BaseCrud
+         * @memberOf BaseCrud
          * @param {*} opts
          * @param {*|Boolean} silent
          */
@@ -56,7 +56,7 @@ define([
 
         /**
          * Reject to modal event
-         * @member BaseCrud
+         * @memberOf BaseCrud
          */
         rejectModalEvent: function rejectModalEvent() {
             var scope = this.scope,
@@ -72,7 +72,7 @@ define([
 
         /**
          * Approve to destroy items
-         * @member BaseCrud
+         * @memberOf BaseCrud
          * @param items
          */
         approveItemsDestroy: function approveItemsDestroy(items) {
@@ -106,7 +106,7 @@ define([
 
         /**
          * Approve to destroy item
-         * @member BaseCrud
+         * @memberOf BaseCrud
          * @param {*} item
          * @param {Number} [count]
          * @returns {boolean}
@@ -148,7 +148,7 @@ define([
 
         /**
          * Destroy Items
-         * @member BaseCrud
+         * @memberOf BaseCrud
          * @param {Object} [items]
          * @param {Boolean} [silent]
          */
@@ -164,7 +164,7 @@ define([
 
         /**
          * After create item event
-         * @member BaseCrud
+         * @memberOf BaseCrud
          */
         afterCreateItem: function afterCreateItem() {
             this.logger.debug('After create item');
@@ -173,7 +173,7 @@ define([
 
         /**
          * After destroy item event
-         * @member BaseCrud
+         * @memberOf BaseCrud
          */
         afterDestroyItem: function afterDestroyItem() {
             this.logger.debug('After destroy item');
@@ -182,7 +182,7 @@ define([
 
         /**
          * After destroy item event
-         * @member BaseCrud
+         * @memberOf BaseCrud
          */
         afterDestroyItems: function afterDestroyItems() {
             this.logger.debug('After destroy items');
@@ -191,7 +191,7 @@ define([
 
         /**
          * After CRUD
-         * @member BaseCrud
+         * @memberOf BaseCrud
          * @private
          */
         _afterCrud: function _afterCrud() {

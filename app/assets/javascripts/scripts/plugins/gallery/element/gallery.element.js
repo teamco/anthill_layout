@@ -34,7 +34,7 @@ define([
 
         /**
          * Get footer html
-         * @member GalleryElement
+         * @memberOf GalleryElement
          * @returns {*|jQuery}
          */
         getFooter: function getFooter() {

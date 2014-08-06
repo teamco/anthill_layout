@@ -28,7 +28,7 @@ define([
 
         /**
          * Render header element
-         * @member HeaderView
+         * @memberOf HeaderView
          */
         renderHeader: function renderHeader() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member HeaderView
+         * @memberOf HeaderView
          * @returns {HeaderPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member HeaderView
+         * @memberOf HeaderView
          * @param widgetRules
          * @param contentRules
          * @returns {HeaderRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render header
-         * @member HeaderView
+         * @memberOf HeaderView
          */
         render: function render() {
 

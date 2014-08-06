@@ -24,7 +24,7 @@ define([
 
         /**
          * Toggle fieldset
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @param e
          */
         toggleFieldset: function toggleFieldset(e) {
@@ -46,22 +46,21 @@ define([
 
         /**
          * Get preferences HTML
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @param {Array} map
-         * @return string
+         * @return Array
          */
         getPreferencesHtml: function getPreferencesHtml(map) {
 
-            var nodes = [];
-
-            nodes.push(this.siteWidthSlider(map));
-
-            return nodes;
+            return [
+                this.siteWidthSlider(map),
+                this.googleAnalytics()
+            ];
         },
 
         /**
          * Render static width
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @returns {*|jQuery}
          */
         siteStaticWidth: function siteStaticWidth() {
@@ -107,7 +106,7 @@ define([
 
         /**
          * Enable/Disable slider
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @param e
          */
         toggleSlider: function toggleSlider(e) {
@@ -138,10 +137,9 @@ define([
             }
         },
 
-
         /**
          * Render width slider
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @param {Array} map
          * @returns {*|jQuery}
          */
@@ -202,7 +200,8 @@ define([
                     $('<legend />').addClass('open').text(cname).
                         on('click.toggle', this.toggleFieldset.bind(this)).attr({
                             title: cname
-                        }),
+                        }
+                    ),
 
                     $ul.append(
                         this.siteStaticWidth()
@@ -212,6 +211,53 @@ define([
                         $('<li class="workspace-site-width-prefs slider" />').append(
                             this.renderLabel(uuid, 'Site Width', 'slider', true),
                             $slider,
+                            $textfield
+                        )
+                    )
+                )
+            );
+        },
+
+        /**
+         * Render Google Analytics
+         * @memberOf SitePreferences
+         * @returns {*|jQuery}
+         */
+        googleAnalytics: function googleAnalytics() {
+
+            /**
+             * Define title
+             * @type {string}
+             */
+            var cname = 'Google Analytics';
+
+            /**
+             * Render slider input
+             * @type {*[]}
+             */
+            var $textfield = this.renderTextField({
+                name: 'trackingId',
+                text: 'Tracking ID',
+                placeholder: 'Paste Tracking ID here',
+                disabled: false,
+                visible: true,
+                value: '',
+                validate: {
+                    mask: /^ua-\d{4,9}-\d{1,4}$/i,
+                    blank: true
+                }
+            });
+
+            return $('<li />').append(
+                $('<fieldset />').append(
+                    $('<legend />').text(cname).
+                        on('click.toggle', this.toggleFieldset.bind(this)).attr({
+                            title: cname
+                        }
+                    ),
+
+                    $('<ul />').append(
+                        $('<li class="workspace-google-analytics-prefs" />').append(
                             $textfield
                         )
                     )

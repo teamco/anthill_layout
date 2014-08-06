@@ -18,8 +18,16 @@ define([], function defineTextFieldRenderer() {
 
         /**
          * Render text field
-         * @member TextFieldRenderer
-         * @param {{[text]: string, name: string, [placeholder]: string, value, [disabled]: boolean, [monitor]}} opts
+         * @memberOf TextFieldRenderer
+         * @param {{
+         *      [text]: string,
+         *      name: string,
+         *      [placeholder]: string,
+         *      value,
+         *      [disabled]: boolean,
+         *      [monitor],
+         *      [validate]: {mask: RegExp, blank: boolean}
+         * }} opts
          * @returns {*[]}
          */
         renderTextField: function renderTextField(opts) {
@@ -28,7 +36,9 @@ define([], function defineTextFieldRenderer() {
              * Create UUID
              * @type {String}
              */
-            var uuid = this.base.lib.generator.UUID() + '-input';
+            var uuid = this.base.lib.generator.UUID() + '-input',
+                $span = $('<span class="validate" />').
+                    text('The text you entered is not valid');
 
             /**
              * Define $input
@@ -53,6 +63,36 @@ define([], function defineTextFieldRenderer() {
 
             if (!opts.visible) {
                 $input.hide();
+            }
+
+            if (typeof(opts.validate) === 'object') {
+
+                $input.focusout(function focusOut() {
+
+                    /**
+                     * Get value
+                     * @type {string}
+                     */
+                    var value = $input.val();
+
+                    if (value.match(opts.validate.mask)) {
+
+                        $input.removeClass('validate');
+                        $span.remove();
+
+                    } else {
+
+                        if (opts.validate.blank && value.length === 0) {
+
+                            $input.removeClass('validate');
+                            $span.remove();
+                            return false;
+                        }
+
+                        $input.addClass('validate');
+                        $input.after($span);
+                    }
+                });
             }
 
             return [

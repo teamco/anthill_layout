@@ -35,7 +35,7 @@ define([
 
         /**
          * Define static data
-         * @member GalleryModel
+         * @memberOf GalleryModel
          * @type {*[]}
          */
         this.staticData = [
@@ -385,7 +385,7 @@ define([
 
         /**
          * Define providers
-         * @member GalleryModel
+         * @memberOf GalleryModel
          * @type {{indoor: {name: string, data: *[]}}}
          */
         this.providers = {
@@ -398,14 +398,14 @@ define([
 
         /**
          * Define default provider
-         * @member GalleryModel
+         * @memberOf GalleryModel
          * @type {{name: string, data: *[]}[]}
          */
         this.defaultProvider = this.getProvidersList().all;
 
         /**
          * Define current provider
-         * @member GalleryModel
+         * @memberOf GalleryModel
          */
         this.currentProvider = this.defaultProvider;
     };
@@ -414,7 +414,7 @@ define([
 
         /**
          * Get data provider
-         * @member GalleryModel
+         * @memberOf GalleryModel
          * @param provider
          * @returns {*}
          */
@@ -424,7 +424,7 @@ define([
 
         /**
          * Get providers list
-         * @member GalleryModel
+         * @memberOf GalleryModel
          * @returns {*}
          */
         getProvidersList: function getProvidersList() {
@@ -433,7 +433,7 @@ define([
 
         /**
          * Set provider as current
-         * @member GalleryModel
+         * @memberOf GalleryModel
          * @param {string} key
          */
         setProviderAsCurrent: function setProviderAsCurrent(key) {
@@ -455,7 +455,7 @@ define([
 
         /**
          * Set widget to provider
-         * @member GalleryModel
+         * @memberOf GalleryModel
          * @param {{}} meta
          */
         setProvider: function setProvider(meta) {

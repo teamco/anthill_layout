@@ -201,7 +201,7 @@ define([
 
         /**
          * Render prefs data
-         * @member WidgetPreferences
+         * @memberOf WidgetPreferences
          * @param data
          */
         renderBasePrefsData: function renderBasePrefsData(data) {
@@ -440,7 +440,7 @@ define([
 
         /**
          * Render Interactions
-         * @member WidgetPreferences
+         * @memberOf WidgetPreferences
          * @param {Array} nodes
          * @returns {*}
          */
@@ -489,7 +489,7 @@ define([
 
         /**
          * Render move
-         * @member WidgetPreferences
+         * @memberOf WidgetPreferences
          * @param {string} side
          * @param value
          * @returns {*|jQuery}

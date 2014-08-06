@@ -87,7 +87,7 @@ define([
 
         /**
          * Locate widget before showing prefs
-         * @member MaximizeContentElement
+         * @memberOf MaximizeContentElement
          * @param data
          */
         bindLocate: function bindLocate(data) {

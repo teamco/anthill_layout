@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member TextEditorElement
+         * @memberOf TextEditorElement
          * @param {string} html
          */
         renderEmbeddedContent: function renderEmbeddedContent(html) {

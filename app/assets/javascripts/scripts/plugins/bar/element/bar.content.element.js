@@ -28,7 +28,7 @@ define([
 
         /**
          * Define resource
-         * @member BarContentElement
+         * @memberOf BarContentElement
          */
         this.resource = opts.resource;
 

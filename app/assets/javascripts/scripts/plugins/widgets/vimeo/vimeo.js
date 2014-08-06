@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Vimeo
+         * @memberOf Vimeo
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Vimeo
+         * @memberOf Vimeo
          * @type {*}
          */
         this.referrer = undefined;
@@ -76,7 +76,7 @@ define([
 
         /**
          * Define MVC
-         * @member Vimeo
+         * @memberOf Vimeo
          * @type {MVC}
          */
         this.mvc = new MVC({

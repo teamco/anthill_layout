@@ -19,7 +19,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Check overlapping
-         * @member Intersect
+         * @memberOf Intersect
          * @param {{column: number, relRight: number, row: number, relBottom: number}} src
          * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @returns {boolean}
@@ -37,7 +37,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Check if no overlapping
-         * @member Intersect
+         * @memberOf Intersect
          * @param {{column: number, relRight: number, row: number, relBottom: number}} src
          * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @returns {boolean}
@@ -66,7 +66,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Check Horizontal overlapping
-         * @member Intersect
+         * @memberOf Intersect
          * @param {{column: number, relRight: number, row: number, relBottom: number}} src
          * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @return {boolean}
@@ -86,7 +86,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Check Vertical overlapping
-         * @member Intersect
+         * @memberOf Intersect
          * @param {{column: number, relRight: number, row: number, relBottom: number}} src
          * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @return {boolean}
@@ -107,7 +107,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Overlapping core
-         * @member Intersect
+         * @memberOf Intersect
          * @param {{column: number, relRight: number, row: number, relBottom: number}} src
          * @param {{column: number, relRight: number, row: number, relBottom: number}} target
          * @param {string} from
@@ -130,7 +130,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Internal overlapping calc
-         * @member Intersect
+         * @memberOf Intersect
          * @param {number} arg1
          * @param {number} arg2
          * @param {string} condition
@@ -170,7 +170,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Widget intersections
-         * @member Intersect
+         * @memberOf Intersect
          * @param {Widget} source
          * @param {boolean} force
          * @private
@@ -224,7 +224,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Grid style overlapping
-         * @member Intersect
+         * @memberOf Intersect
          * @param source
          * @param target
          * @returns {*}
@@ -240,7 +240,7 @@ define(function defineLayoutIntersect() {
 
         /**
          * Check free style overlapped widgets
-         * @member Intersect
+         * @memberOf Intersect
          * @param source
          * @param target
          * @returns {*}

@@ -17,14 +17,14 @@ define([], function definePageMaximize() {
 
         /**
          * Set widget as maximized
-         * @member {PageMaximize}
+         * @memberOf  {PageMaximize}
          * @param {Widget} widget
          */
         setMaximized: function setMaximized(widget) {
 
             /**
              * Set maximized
-             * @member PageMaximize
+             * @memberOf PageMaximize
              * @type {Widget}
              */
             this.maximized = widget;
@@ -34,13 +34,13 @@ define([], function definePageMaximize() {
 
         /**
          * Unset widget as maximized
-         * @member {PageMaximize}
+         * @memberOf  {PageMaximize}
          */
         unsetMaximized: function unsetMaximized() {
 
             /**
              * Unset maximized
-             * @member PageMaximize
+             * @memberOf PageMaximize
              * @type {{}}
              */
             this.maximized = {};
@@ -50,7 +50,7 @@ define([], function definePageMaximize() {
 
         /**
          * Disable items interactions on enlarge
-         * @member PageMaximize
+         * @memberOf PageMaximize
          * @param {Widget} widget
          */
         disableItemInteractions: function disableItemInteractions(widget) {
@@ -92,7 +92,7 @@ define([], function definePageMaximize() {
 
         /**
          * Enable item interaction on reduce
-         * @member PageMaximize
+         * @memberOf PageMaximize
          */
         enableItemInteractions: function enableItemInteractions() {
 

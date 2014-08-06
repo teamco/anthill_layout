@@ -45,7 +45,7 @@ define(
 
             /**
              * Render SiteConfig
-             * @member SiteConfigView
+             * @memberOf SiteConfigView
              * @returns {boolean}
              */
             renderSiteConfig: function renderSiteConfig() {
@@ -74,7 +74,7 @@ define(
 
             /**
              * Render site.config content
-             * @member SiteConfigView
+             * @memberOf SiteConfigView
              * @param data
              * @returns {boolean}
              */
@@ -124,7 +124,7 @@ define(
 
             /**
              * Show preferences
-             * @member SiteConfigView
+             * @memberOf SiteConfigView
              * @param opts
              * @param map
              */
@@ -183,7 +183,7 @@ define(
 
             /**
              * Render Prefs
-             * @member SiteConfigView
+             * @memberOf SiteConfigView
              * @param map
              * @returns {SiteConfigPreferencesElement}
              */
@@ -202,7 +202,7 @@ define(
 
             /**
              * Render cleanup element
-             * @member SiteConfigView
+             * @memberOf SiteConfigView
              * @returns {SiteConfigCleanUpElement}
              */
             renderCleanUp: function renderCleanUp() {
@@ -218,7 +218,7 @@ define(
 
             /**
              * Render cleanup confirmation modal dialog
-             * @member SiteConfigView
+             * @memberOf SiteConfigView
              */
             cleanUpConfirmation: function cleanUpConfirmation() {
 
@@ -249,7 +249,7 @@ define(
 
             /**
              * Render site.config
-             * @member SiteConfigView
+             * @memberOf SiteConfigView
              */
             render: function render() {
 

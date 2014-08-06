@@ -21,13 +21,13 @@ define([
         /**
          * Define events
          * @type {{}}
-         * @member BarEventManager
+         * @memberOf BarEventManager
          */
         this.events = {};
 
         /**
          * Define event list
-         * @member BarEventManager
+         * @memberOf BarEventManager
          * @type {{
          *      updateTranslations: string,
          *      showContent: string,

@@ -27,14 +27,14 @@ define([
 
         /**
          * Define max width
-         * @member PanelElement
+         * @memberOf PanelElement
          * @type {*|number}
          */
         this.maxWidth = opts.maxWidth || 100;
 
         /**
          * Define min width
-         * @member PanelElement
+         * @memberOf PanelElement
          * @type {*|number}
          */
         this.minWidth = opts.minWidth || 0;
@@ -50,7 +50,7 @@ define([
          * Toggle open/close
          * @param {string} resource
          * @param {boolean} opened
-         * @member PanelElement
+         * @memberOf PanelElement
          * @returns {boolean}
          */
         toggle: function toggle(resource, opened) {
@@ -98,7 +98,7 @@ define([
 
         /**
          * Hide Active module
-         * @member PanelElement
+         * @memberOf PanelElement
          */
         hideActiveModule: function hideActiveModule() {
             this.view.elements.items[this.getContentItemIndex()].hide();
@@ -106,7 +106,7 @@ define([
 
         /**
          * Show Active module
-         * @member PanelElement
+         * @memberOf PanelElement
          */
         showActiveModule: function showActiveModule() {
             this.view.elements.items[this.getContentItemIndex()].show();
@@ -114,7 +114,7 @@ define([
 
         /**
          * Get item index
-         * @member PanelElement
+         * @memberOf PanelElement
          * @returns {string}
          */
         getContentItemIndex: function getContentItemIndex() {

@@ -20,7 +20,7 @@ define([], function defineBaseHTML() {
 
         /**
          * Escape HTML
-         * @member BaseHTML
+         * @memberOf BaseHTML
          * @param text
          * @param escape
          * @returns {*}
@@ -40,7 +40,7 @@ define([], function defineBaseHTML() {
 
         /**
          * Escape HTML Symbols
-         * @member BaseHTML
+         * @memberOf BaseHTML
          * @param text
          * @param source
          * @param target

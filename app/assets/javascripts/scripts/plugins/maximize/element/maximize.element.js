@@ -34,7 +34,7 @@ define([
 
         /**
          * Get footer html
-         * @member MaximizeElement
+         * @memberOf MaximizeElement
          * @returns {*|jQuery}
          */
         getFooter: function getFooter() {

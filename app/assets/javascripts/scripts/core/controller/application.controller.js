@@ -24,7 +24,7 @@ define([
 
         /**
          * Define setting
-         * @member AppController
+         * @memberOf AppController
          */
         defineSetting: function defineSetting() {
             this.model.defineSetting();
@@ -32,7 +32,7 @@ define([
 
         /**
          * Load updated uuid
-         * @member AppController
+         * @memberOf AppController
          * @param {string} uuid
          */
         loadConfig: function loadConfig(uuid) {
@@ -44,7 +44,7 @@ define([
 
         /**
          * Init window resize
-         * @member AppController
+         * @memberOf AppController
          */
         initResizeWindow: function initResizeWindow() {
 
@@ -62,7 +62,7 @@ define([
 
         /**
          * Resize window publisher
-         * @member AppController
+         * @memberOf AppController
          * @param e
          */
         resizeWindowPublisher: function resizeWindowPublisher(e) {
@@ -77,7 +77,7 @@ define([
 
         /**
          * Resize window callback
-         * @member AppController
+         * @memberOf AppController
          * @param e
          */
         resizeWindow: function resizeWindow(e) {
@@ -90,7 +90,7 @@ define([
 
         /**
          * Resize window hooks
-         * @member AppController
+         * @memberOf AppController
          */
         resizeWindowHooks: function resizeWindowHooks() {
             this.logger.debug('Start resize window hooks', arguments);
@@ -98,7 +98,7 @@ define([
 
         /**
          * Create authoring panel
-         * @member AppController
+         * @memberOf AppController
          */
         createAuthorPanel: function createAuthorPanel() {
             this.logger.debug('Create authoring panel', arguments);
@@ -106,7 +106,7 @@ define([
 
         /**
          * Create tool panel
-         * @member AppController
+         * @memberOf AppController
          */
         createToolPanel: function createToolPanel() {
             this.logger.debug('Create tool panel', arguments);
@@ -114,7 +114,7 @@ define([
 
         /**
          * Approve clear data
-         * @member AppController
+         * @memberOf AppController
          */
         approveClearData: function approveClearData() {
 

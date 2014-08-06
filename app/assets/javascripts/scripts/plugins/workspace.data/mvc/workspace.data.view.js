@@ -45,7 +45,7 @@ define(
 
             /**
              * Render WorkspaceData
-             * @member WorkspaceDataView
+             * @memberOf WorkspaceDataView
              * @returns {boolean}
              */
             renderWorkspaceData: function renderWorkspaceData() {
@@ -74,7 +74,7 @@ define(
 
             /**
              * Render workspace.data content
-             * @member WorkspaceDataView
+             * @memberOf WorkspaceDataView
              * @param data
              * @returns {boolean}
              */
@@ -127,7 +127,7 @@ define(
 
             /**
              * Render create new page
-             * @member WorkspaceDataView
+             * @memberOf WorkspaceDataView
              */
             renderCreatePage: function renderCreatePage() {
 
@@ -146,7 +146,7 @@ define(
 
             /**
              * Show preferences
-             * @member WorkspaceDataView
+             * @memberOf WorkspaceDataView
              * @param config
              * @param {boolean} current
              */
@@ -171,7 +171,7 @@ define(
 
             /**
              * Render Prefs
-             * @member WorkspaceDataView
+             * @memberOf WorkspaceDataView
              * @param {Page} page
              * @returns {WorkspaceDataPreferencesElement}
              */
@@ -191,7 +191,7 @@ define(
 
             /**
              * Render workspace.data
-             * @member WorkspaceDataView
+             * @memberOf WorkspaceDataView
              */
             render: function render() {
 

@@ -22,7 +22,7 @@ define([
 
         /**
          * Define layout
-         * @member Overlapping
+         * @memberOf Overlapping
          * @type {Layout}
          */
         this.layout = layout;
@@ -32,7 +32,7 @@ define([
 
         /**
          * Define exit point
-         * @member Overlapping
+         * @memberOf Overlapping
          * @param opts
          * @returns {*}
          * @private
@@ -48,7 +48,7 @@ define([
 
         /**
          * Nested organizer
-         * @member Overlapping
+         * @memberOf Overlapping
          * @param {{targets: Object, callback: Function}} opts
          * @returns {*}
          */
@@ -109,7 +109,7 @@ define([
 
         /**
          * Nested organizer core
-         * @member Overlapping
+         * @memberOf Overlapping
          * @param {{}} widgets
          * @private
          * @returns {{}}
@@ -164,7 +164,7 @@ define([
 
         /**
          * Nested organizer callback
-         * @member Overlapping
+         * @memberOf Overlapping
          * @param {Function} [callback]
          * @private
          */
@@ -198,7 +198,7 @@ define([
 
         /**
          * Organize widget css
-         * @member Overlapping
+         * @memberOf Overlapping
          * @private
          */
         _cssOrganizer: function _cssOrganizer(callback) {
@@ -235,7 +235,7 @@ define([
 
         /**
          * Organize widget css callback
-         * @member Overlapping
+         * @memberOf Overlapping
          * @private
          */
         _cssOrganizeCallback: function _cssOrganizeCallback() {
@@ -261,7 +261,7 @@ define([
 
         /**
          * Organize collector
-         * @member Overlapping
+         * @memberOf Overlapping
          * @param {Widget} source
          * @private
          * @param {*} targets
@@ -308,7 +308,7 @@ define([
 
         /**
          * Snap to grid organizer
-         * @member Overlapping
+         * @memberOf Overlapping
          * @param {{organize}} behavior
          * @param {{dom}} source
          * @param {{map, dom}} widget
@@ -377,7 +377,7 @@ define([
 
         /**
          * Get right position
-         * @member Overlapping
+         * @memberOf Overlapping
          * @param {{column: Number, relWidth: Number}} target
          * @returns {number}
          */
@@ -387,7 +387,7 @@ define([
 
         /**
          * Get bottom position
-         * @member Overlapping
+         * @memberOf Overlapping
          * @param {{row: Number, relHeight: Number}} target
          * @returns {number}
          */

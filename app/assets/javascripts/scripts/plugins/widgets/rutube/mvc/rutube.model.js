@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member RutubeModel
+         * @memberOf RutubeModel
          * @type {{
          *      rutubeEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member RutubeModel
+         * @memberOf RutubeModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Rutube embed code
-         * @member RutubeModel
+         * @memberOf RutubeModel
          * @param {string} embed
          */
         setRutubeEmbedCode: function setRutubeUrl(embed) {

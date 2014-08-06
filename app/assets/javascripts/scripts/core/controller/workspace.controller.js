@@ -37,7 +37,7 @@ define(
 
                 /**
                  * Set page height
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  */
                 bindHashChange: function bindHashChange() {
 
@@ -49,7 +49,7 @@ define(
 
                 /**
                  * Switch page on hash change
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  */
                 switchPageOnHashChange: function switchPageOnHashChange() {
 
@@ -63,7 +63,7 @@ define(
 
                 /**
                  * Set page height
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  */
                 setPageContainerDimensions: function setPageContainerDimensions() {
 
@@ -80,7 +80,7 @@ define(
 
                 /**
                  * Adopt content width after adding new page
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  */
                 adoptContentWidth: function adoptContentWidth() {
 
@@ -92,7 +92,7 @@ define(
 
                 /**
                  * Before Switch to page
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  * @param {Page} page
                  */
                 beforeSwitchToPage: function beforeSwitchToPage(page) {
@@ -120,7 +120,7 @@ define(
 
                 /**
                  * Switch to page
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  * @param {Page} page
                  * @param {boolean} animate
                  * @returns {boolean|*}
@@ -182,7 +182,7 @@ define(
 
                 /**
                  * After Switch to page
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  * @param {Page} page
                  */
                 afterSwitchToPage: function afterSwitchToPage(page) {
@@ -197,7 +197,7 @@ define(
 
                 /**
                  * Swipe to current page
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  * @param {boolean} animate
                  */
                 swipeToCurrentPage: function swipeToCurrentPage(animate) {
@@ -213,7 +213,7 @@ define(
 
                 /**
                  * Save after page ordering
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  * @param {Array} order
                  */
                 afterPageOrder: function afterPageOrder(order) {
@@ -223,7 +223,7 @@ define(
 
                 /**
                  * Transfer preferences
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  * @param {string} index
                  * @param value
                  */
@@ -237,7 +237,7 @@ define(
 
                 /**
                  * Load config preferences
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  */
                 loadPreferences: function loadPreferences() {
 
@@ -269,7 +269,7 @@ define(
 
                 /**
                  * Update site width
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  */
                 updateSiteWidth: function updateSiteWidth() {
 

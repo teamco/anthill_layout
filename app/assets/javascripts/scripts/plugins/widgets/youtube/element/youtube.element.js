@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member YoutubeElement
+         * @memberOf YoutubeElement
          * @param {string} iframe
          */
         renderEmbeddedContent: function renderEmbeddedContent(iframe) {

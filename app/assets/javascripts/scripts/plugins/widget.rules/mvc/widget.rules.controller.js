@@ -24,7 +24,7 @@ define([
 
         /**
          * Store item
-         * @member WidgetRulesController
+         * @memberOf WidgetRulesController
          * @param item
          */
         storeItem: function storeItem(item) {
@@ -34,7 +34,7 @@ define([
 
         /**
          * Get providers data
-         * @member WidgetRulesController
+         * @memberOf WidgetRulesController
          */
         getData: function getData() {
             return this.model.getWidgetRules(
@@ -44,7 +44,7 @@ define([
 
         /**
          * Get rules html
-         * @member WidgetRulesController
+         * @memberOf WidgetRulesController
          * @param {string} uuid
          * @param {boolean} load
          * @returns {*}
@@ -81,7 +81,7 @@ define([
 
         /**
          * Set active content
-         * @member WidgetRulesController
+         * @memberOf WidgetRulesController
          * @param {WidgetContent} content
          */
         setActiveContent: function setActiveContent(uuid) {
@@ -119,7 +119,7 @@ define([
 
         /**
          * Load rules
-         * @member WidgetRulesController
+         * @memberOf WidgetRulesController
          * @param config
          * @param load
          * @param [event]
@@ -154,7 +154,7 @@ define([
 
         /**
          * Load stored rules
-         * @member WidgetRulesController
+         * @memberOf WidgetRulesController
          * @param {{publish, subscribe}} rules
          */
         loadStoredRules: function loadStoredRules(rules) {
@@ -163,7 +163,7 @@ define([
 
         /**
          * Show published rules
-         * @member WidgetRulesController
+         * @memberOf WidgetRulesController
          * @param publish
          */
         showPublishedRules: function showPublishedRules(publish) {
@@ -197,7 +197,7 @@ define([
 
         /**
          * Check if content was updated
-         * @member WidgetRulesController
+         * @memberOf WidgetRulesController
          * @param data
          * @param content
          * @returns {boolean}
@@ -216,7 +216,7 @@ define([
 
         /**
          * Update rules
-         * @member WidgetRulesController
+         * @memberOf WidgetRulesController
          */
         approveUpdateRules: function approveUpdateRules() {
 
@@ -233,7 +233,7 @@ define([
 
         /**
          * Locate page data element
-         * @member WidgetRulesController
+         * @memberOf WidgetRulesController
          * @param e
          */
         locateWidgetRules: function locateWidgetRules(e) {
@@ -249,7 +249,7 @@ define([
 
         /**
          * Load page.data content
-         * @member WidgetRulesController
+         * @memberOf WidgetRulesController
          * @param opened
          */
         loadContent: function loadContent(opened) {
@@ -263,7 +263,7 @@ define([
 
         /**
          * Open prefs from rules dialog
-         * @member WidgetRulesController
+         * @memberOf WidgetRulesController
          * @param {*} event
          */
         preferencesWidgetRules: function preferencesWidgetRules(event) {

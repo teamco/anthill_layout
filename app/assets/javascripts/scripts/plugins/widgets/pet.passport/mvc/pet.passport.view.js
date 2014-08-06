@@ -28,7 +28,7 @@ define([
 
         /**
          * Render pet.passport element
-         * @member PetPassportView
+         * @memberOf PetPassportView
          */
         renderPetPassport: function renderPetPassport() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member PetPassportView
+         * @memberOf PetPassportView
          * @returns {PetPassportPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member PetPassportView
+         * @memberOf PetPassportView
          * @param widgetRules
          * @param contentRules
          * @returns {PetPassportRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render pet.passport
-         * @member PetPassportView
+         * @memberOf PetPassportView
          */
         render: function render() {
 

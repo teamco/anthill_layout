@@ -22,19 +22,19 @@ define([
      * @constructor
      * @class ImageGallery
      * @extends AntHill
-     * @member WidgetContent
+     * @memberOf WidgetContent
      */
     var ImageGallery = function ImageGallery(containment, opts) {
 
         /**
          * Define containment
-         * @member ImageGallery
+         * @memberOf ImageGallery
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member ImageGallery
+         * @memberOf ImageGallery
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member ImageGallery
+         * @memberOf ImageGallery
          * @type {MVC}
          */
         this.mvc = new MVC({

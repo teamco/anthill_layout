@@ -35,7 +35,7 @@ define([
 
         /**
          * Get footer html
-         * @member WidgetRulesElement
+         * @memberOf WidgetRulesElement
          * @returns {*|jQuery}
          */
         getFooter: function getFooter() {

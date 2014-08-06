@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PetPassportController
+         * @memberOf PetPassportController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -33,7 +33,7 @@ define([
 
         /**
          * Add PetPassport rule
-         * @member PetPassportController
+         * @memberOf PetPassportController
          * @param e
          */
         addPetPassportRule: function addPetPassportRule(e) {

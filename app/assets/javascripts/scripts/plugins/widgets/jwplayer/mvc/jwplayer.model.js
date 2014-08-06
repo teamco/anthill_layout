@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member JwplayerModel
+         * @memberOf JwplayerModel
          * @type {{
          *      jwplayerCloudHostedScriptUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -99,7 +99,7 @@ define([
 
         /**
          * Define rules
-         * @member JwplayerModel
+         * @memberOf JwplayerModel
          * @type {{}}
          */
         this.rules = {};
@@ -109,7 +109,7 @@ define([
 
         /**
          * Set Jwplayer video title
-         * @member JwplayerModel
+         * @memberOf JwplayerModel
          * @param {string} title
          */
         setJwplayerVideoTitle: function setJwplayerVideoTitle(title) {
@@ -117,7 +117,7 @@ define([
         },
         /**
          * Set Jwplayer cloud script url
-         * @member JwplayerModel
+         * @memberOf JwplayerModel
          * @param {string} url
          */
         setJwplayerScriptUrl: function setJwplayerScriptUrl(url) {
@@ -125,7 +125,7 @@ define([
         },
         /**
          * Set Jwplayer rtmp file url
-         * @member JwplayerModel
+         * @memberOf JwplayerModel
          * @param {string} url
          */
         setJwplayerRtmpUrl: function setJwplayerRtmpUrl(url) {
@@ -133,7 +133,7 @@ define([
         },
         /**
          * Set Jwplayer image url
-         * @member JwplayerModel
+         * @memberOf JwplayerModel
          * @param {string} url
          */
         setJwplayerImageUrl: function setJwplayerImageUrl(url) {
@@ -141,7 +141,7 @@ define([
         },
         /**
          * Set Jwplayer width
-         * @member JwplayerModel
+         * @memberOf JwplayerModel
          * @param {string} width
          */
         setJwplayerWidth: function setJwplayerWidth(width) {
@@ -149,7 +149,7 @@ define([
         },
         /**
          * Set Jwplayer aspect ratio
-         * @member JwplayerModel
+         * @memberOf JwplayerModel
          * @param {string} ratio
          */
         setJwplayerAspectRatio: function setJwplayerAspectRatio(ratio) {
@@ -157,7 +157,7 @@ define([
         },
         /**
          * Set Jwplayer auto start
-         * @member JwplayerModel
+         * @memberOf JwplayerModel
          * @param {boolean} autostart
          */
         setJwplayerAutoStart: function setJwplayerAutoStart(autostart) {

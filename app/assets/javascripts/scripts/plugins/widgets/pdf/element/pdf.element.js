@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member PdfElement
+         * @memberOf PdfElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {
