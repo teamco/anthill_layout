@@ -99,7 +99,7 @@ define([
 
             if (workspace.controller) {
 
-                workspace.controller.switchPageOnHashChange.bind(workspace)();
+                workspace.controller.switchPageOnHashChange.bind(workspace)(false);
             }
         },
 

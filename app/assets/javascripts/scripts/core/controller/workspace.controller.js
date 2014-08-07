@@ -50,13 +50,17 @@ define(
                 /**
                  * Switch page on hash change
                  * @member WorkspaceController
+                 * @param {boolean} animate
                  */
-                switchPageOnHashChange: function switchPageOnHashChange() {
+                switchPageOnHashChange: function switchPageOnHashChange(animate) {
+
+                    animate = typeof(animate) === 'undefined' ?
+                        this.model.getConfig('animate') : !!animate;
 
                     this.observer.publish(
                         this.eventmanager.eventList.switchToPage, [
                             this.controller.getPageByHashLocation(),
-                            false
+                            animate
                         ]
                     );
                 },

@@ -41,7 +41,12 @@ define(
              *      isResized: boolean,
              *      type: string,
              *      order: number,
-             *      page: {counter: number, limit: number, onDestroyShowPrevious: boolean},
+             *      page: {
+             *          counter: number,
+             *          limit: number,
+             *          animate: boolean,
+             *          onDestroyShowPrevious: boolean
+             *      },
              *      html: {
              *          style: string,
              *          header: boolean,
@@ -61,6 +66,8 @@ define(
                     plural: false,
                     counter: 0,
                     limit: 10,
+                    // Animate on switch page
+                    animate: true,
                     // Show previous page (false means Next)
                     onDestroyShowPrevious: true
                 },
