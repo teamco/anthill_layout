@@ -93,11 +93,8 @@ define([
 
                 this.view.renderWorkspace();
 
-                this.observer.publish(
-                    this.eventmanager.eventList.loadPreferences
-                );
-
-                this.observer.publish(
+                this.observer.batchPublish(
+                    this.eventmanager.eventList.loadPreferences,
                     this.eventmanager.eventList.updateSiteWidth
                 );
             }

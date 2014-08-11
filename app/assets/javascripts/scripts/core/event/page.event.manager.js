@@ -48,7 +48,8 @@ define([
          *      enableItemInteractions: string,
          *      loadPreferences: string,
          *      transferPreferences: string,
-         *      transferContentPreferences: string
+         *      transferContentPreferences: string,
+         *      afterUpdatePreferences: string
          * }}
          */
         eventList: {
@@ -79,7 +80,8 @@ define([
 
             loadPreferences: 'load.preferences',
             transferContentPreferences: 'transfer.content.preferences',
-            transferPreferences: 'transfer.preferences'
+            transferPreferences: 'transfer.preferences',
+            afterUpdatePreferences: 'after.update.preferences'
         }
 
     }, BaseEvent.prototype);

@@ -246,17 +246,14 @@ define([
         /**
          * Batch events publisher
          * @member Observer
-         * @param {Array} events
          */
-        batchPublish: function batchPublish(events) {
+        batchPublish: function batchPublish() {
 
-            events = this.base.isArray(events) ?
-                events : [];
-
-            for (var i = 0, l = events.length; i < l; i++) {
+            for (var i = 0, l = arguments.length; i < l; i++) {
                 this.publish.apply(
                     this,
-                    this.base.isString(events[i]) ? [events[i]] : events[i]
+                    this.base.isString(arguments[i]) ?
+                        [arguments[i]] : arguments[i]
                 );
             }
         },

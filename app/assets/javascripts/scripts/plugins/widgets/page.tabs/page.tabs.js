@@ -107,13 +107,13 @@ define([
          */
         init: function init() {
 
-            this.observer.batchPublish([
+            this.observer.batchPublish(
                 this.eventmanager.eventList.subscribeOrderPagesEvent,
                 this.eventmanager.eventList.subscribeAfterSwitchPageEvent,
                 this.eventmanager.eventList.subscribeCreatePageEvent,
                 this.eventmanager.eventList.subscribeDestroyPageEvent,
                 this.eventmanager.eventList.subscribeChangePageTitleEvent
-            ]);
+            );
         }
 
     }, AntHill.prototype);

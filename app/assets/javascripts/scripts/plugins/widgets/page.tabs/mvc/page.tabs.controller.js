@@ -28,10 +28,32 @@ define([
          * @member PageTabsController
          */
         subscribeChangePageTitleEvent: function subscribeChangePageTitleEvent() {
-            this.controller._subscribePageEventCallback.bind(this)(
-                'updatePageTitle',
-                this.eventmanager.eventList.updatePageTabTitle
-            );
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var ws = this.controller.getWorkspace(),
+                pages = ws.model.getItems(),
+                index, page;
+console.log(this.containment.config.uuid)
+            for (index in pages) {
+
+                if (pages.hasOwnProperty(index)) {
+
+                    /**
+                     * Get page
+                     * @type {Page}
+                     */
+                    page = pages[index];
+
+                    this.controller._subscribePageEventCallback.bind(this)(
+                        'afterUpdatePreferences',
+                        this.eventmanager.eventList.updatePageTabTitle,
+                        page
+                    );
+                }
+            }
         },
 
         /**
@@ -41,7 +63,8 @@ define([
         subscribeOrderPagesEvent: function subscribeOrderPagesEvent() {
             this.controller._subscribePageEventCallback.bind(this)(
                 'afterPageOrder',
-                this.eventmanager.eventList.setEmbeddedContent
+                this.eventmanager.eventList.setEmbeddedContent,
+                this.controller.getWorkspace()
             );
         },
 
@@ -52,7 +75,8 @@ define([
         subscribeAfterSwitchPageEvent: function subscribeAfterSwitchPageEvent() {
             this.controller._subscribePageEventCallback.bind(this)(
                 'afterSwitchToPage',
-                this.eventmanager.eventList.setActivePageTab
+                this.eventmanager.eventList.setActivePageTab,
+                this.controller.getWorkspace()
             );
         },
 
@@ -63,7 +87,8 @@ define([
         subscribeCreatePageEvent: function subscribeCreatePageEvent() {
             this.controller._subscribePageEventCallback.bind(this)(
                 'afterCreateItem',
-                this.eventmanager.eventList.setEmbeddedContent
+                this.eventmanager.eventList.setEmbeddedContent,
+                this.controller.getWorkspace()
             );
         },
 
@@ -75,12 +100,14 @@ define([
 
             this.controller._subscribePageEventCallback.bind(this)(
                 'afterDestroyItem',
-                this.eventmanager.eventList.setEmbeddedContent
+                this.eventmanager.eventList.setEmbeddedContent,
+                this.controller.getWorkspace()
             );
 
             this.controller._subscribePageEventCallback.bind(this)(
                 'afterDestroyItems',
-                this.eventmanager.eventList.setEmbeddedContent
+                this.eventmanager.eventList.setEmbeddedContent,
+                this.controller.getWorkspace()
             );
         },
 
@@ -90,25 +117,20 @@ define([
          * @private
          * @param {string} eventName
          * @param {string} callbackEvent
+         * @param {Workspace|Page} scope
          */
-        _subscribePageEventCallback: function _subscribePageEventCallback(eventName, callbackEvent) {
+        _subscribePageEventCallback: function _subscribePageEventCallback(eventName, callbackEvent, scope) {
 
             /**
              * Get workspace
-             * @type {Workspace}
+             * @type {WorkspaceEventManager|PageEventManager}
              */
-            var ws = this.controller.getWorkspace();
+            var eventManager = scope.eventmanager;
 
-            /**
-             * Get workspace
-             * @type {WorkspaceEventManager}
-             */
-            var wsEventManager = ws.eventmanager;
-
-            wsEventManager.subscribe({
+            eventManager.subscribe({
 
                 event: {
-                    eventName: wsEventManager.eventList[eventName]
+                    eventName: eventManager.eventList[eventName]
                 },
 
                 callback: function _callback() {

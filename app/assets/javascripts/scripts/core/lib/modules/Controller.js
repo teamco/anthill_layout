@@ -67,7 +67,7 @@ define([
              */
             var root = this.root();
 
-            root.loading = load;
+            root.model.setConfig('loading', load);
 
             if (this.scope === root) {
 
@@ -109,7 +109,7 @@ define([
          * @returns {boolean}
          */
         isLoading: function isLoading() {
-            return this.root().loading;
+            return this.root().model.getConfig('loading');
         },
 
         /**
@@ -368,6 +368,14 @@ define([
          */
         isCustomMode: function isCustomMode() {
             return this.getMode() === 'custom';
+        },
+
+        /**
+         * After update preferences
+         * @member BaseController
+         */
+        afterUpdatePreferences: function afterUpdatePreferences() {
+            this.logger.debug('After update preferences', arguments);
         },
 
         /**

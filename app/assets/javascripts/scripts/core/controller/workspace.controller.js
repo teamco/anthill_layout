@@ -200,15 +200,6 @@ define(
                 },
 
                 /**
-                 * Update page title
-                 * @member WorkspaceController
-                 * @param {Page} page
-                 */
-                updatePageTitle: function updatePageTitle(page) {
-                    this.logger.debug('Update page title', page);debugger
-                },
-
-                /**
                  * Swipe to current page
                  * @member WorkspaceController
                  * @param {boolean} animate

@@ -54,7 +54,8 @@ define(
              *      loadTrackingSnippet: string,
              *      loadPreferences: string,
              *      transferPreferences: string,
-             *      transferContentPreferences: string
+             *      transferContentPreferences: string,
+             *      afterUpdatePreferences: string
              * }}
              */
             eventList: {
@@ -65,14 +66,15 @@ define(
                 resizePage: 'resize.page',
                 resizePages: 'resize.pages',
                 setPageContainerDimensions: 'set.page.container.dimensions',
+
                 beforeSwitchToPage: 'before.switch.to.page',
                 switchToPage: 'switch.to.page',
                 afterSwitchToPage: 'after.switch.to.page',
-                adoptContentWidth: 'adopt.content.width',
-                afterLoadingItems: 'after.loading.items',
-
                 afterPageOrder: 'after.page.order',
-                updatePageTitle: 'update.page.title',
+
+                adoptContentWidth: 'adopt.content.width',
+
+                afterLoadingItems: 'after.loading.items',
 
                 updateSiteWidth: 'update.site.width',
 
@@ -80,7 +82,8 @@ define(
 
                 loadPreferences: 'load.preferences',
                 transferPreferences: 'transfer.preferences',
-                transferContentPreferences: 'transfer.content.preferences'
+                transferContentPreferences: 'transfer.content.preferences',
+                afterUpdatePreferences: 'after.update.preferences'
             }
 
         }, BaseEvent.prototype);

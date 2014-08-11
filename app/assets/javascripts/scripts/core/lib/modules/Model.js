@@ -398,6 +398,11 @@ define([
 
             // Update config
             this.scope.config.preferences[index] = value;
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.afterUpdatePreferences,
+                arguments
+            );
         },
 
         /**
