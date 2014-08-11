@@ -24,6 +24,17 @@ define([
     return PageTabsController.extend('PageTabsController', {
 
         /**
+         * Subscribe to change page title
+         * @member PageTabsController
+         */
+        subscribeChangePageTitleEvent: function subscribeChangePageTitleEvent() {
+            this.controller._subscribePageEventCallback.bind(this)(
+                'updatePageTitle',
+                this.eventmanager.eventList.updatePageTabTitle
+            );
+        },
+
+        /**
          * Subscribe to after page ordering event
          * @member PageTabsController
          */
@@ -138,6 +149,10 @@ define([
             this.view.elements.$pagetabs.setPageTabAsCurrent(
                 this.controller.getPage()
             );
+        },
+
+        updatePageTabTitle: function updatePageTabTitle() {
+            debugger
         },
 
         /**
