@@ -22,7 +22,6 @@ define([
         this.updateEventList({
             switchToPage: 'switch.to.page',
             setActivePageTab: 'set.active.page.tab',
-            updatePageTabTitle: 'update.page.tab.title',
             subscribeChangePageTitleEvent: 'subscribe.change.page.title.event',
             subscribeAfterSwitchPageEvent: 'subscribe.after.switch.page.event',
             subscribeCreatePageEvent: 'subscribe.create.page.event',

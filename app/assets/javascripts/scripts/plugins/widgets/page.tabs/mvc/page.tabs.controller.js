@@ -36,7 +36,7 @@ define([
             var ws = this.controller.getWorkspace(),
                 pages = ws.model.getItems(),
                 index, page;
-console.log(this.containment.config.uuid)
+
             for (index in pages) {
 
                 if (pages.hasOwnProperty(index)) {
@@ -49,7 +49,7 @@ console.log(this.containment.config.uuid)
 
                     this.controller._subscribePageEventCallback.bind(this)(
                         'afterUpdatePreferences',
-                        this.eventmanager.eventList.updatePageTabTitle,
+                        this.eventmanager.eventList.setEmbeddedContent,
                         page
                     );
                 }
@@ -171,10 +171,6 @@ console.log(this.containment.config.uuid)
             this.view.elements.$pagetabs.setPageTabAsCurrent(
                 this.controller.getPage()
             );
-        },
-
-        updatePageTabTitle: function updatePageTabTitle() {
-            debugger
         },
 
         /**
