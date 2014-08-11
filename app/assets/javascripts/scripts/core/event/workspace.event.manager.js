@@ -72,6 +72,7 @@ define(
                 afterLoadingItems: 'after.loading.items',
 
                 afterPageOrder: 'after.page.order',
+                updatePageTitle: 'update.page.title',
 
                 updateSiteWidth: 'update.site.width',
 
