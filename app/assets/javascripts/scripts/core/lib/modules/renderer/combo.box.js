@@ -2,7 +2,7 @@
  * Created by i061485 on 7/10/14.
  */
 
-define([], function defineComboBoxRenderer(){
+define([], function defineComboBoxRenderer() {
 
     /**
      * Define ComboBoxRenderer
@@ -29,6 +29,36 @@ define([], function defineComboBoxRenderer(){
         renderCombobox: function renderCombobox(data, selected, name, index, event, visible) {
 
             /**
+             * Get wrapper
+             * @returns {BaseElement.$}
+             * @private
+             */
+            function _getWrapper() {
+
+                /**
+                 * Get referrer
+                 * @type {*}
+                 */
+                var referrer = this.view.scope.referrer,
+                    $modal, $wrapper = this.$;
+
+                if (referrer) {
+
+                    /**
+                     * Get $modal dialog
+                     * @type {ModalElement}
+                     */
+                    $modal = referrer.view.elements.$modal;
+
+                    if ($modal) {
+                        $wrapper = $modal.$;
+                    }
+                }
+
+                return $wrapper;
+            }
+
+            /**
              * Define container
              * @type {*|jQuery}
              */
@@ -48,9 +78,14 @@ define([], function defineComboBoxRenderer(){
              * @private
              */
             function _open() {
+
+                // Get wrapper
+                var $wrapper = _getWrapper.bind(this)();
+
                 // close all como-boxes
-                $('.combo-box').removeClass('open');
+                $('.combo-box', $wrapper).removeClass('open');
                 $div.addClass('open');
+                $('div.html', $wrapper).addClass('visible');
             }
 
             /**
@@ -58,7 +93,12 @@ define([], function defineComboBoxRenderer(){
              * @private
              */
             function _hide() {
+
+                // Get wrapper
+                var $wrapper = _getWrapper.bind(this)();
+
                 $div.removeClass('open');
+                $('div.html', $wrapper).removeClass('visible');
             }
 
             /**
@@ -127,8 +167,8 @@ define([], function defineComboBoxRenderer(){
                      */
                     function comboBoxInternalEvent(e) {
 
-                        $div.hasClass('open') ?
-                            _hide() : _open();
+                        ($div.hasClass('open') ?
+                            _hide : _open).bind(this)();
 
                         /**
                          * Define selected $li
@@ -150,7 +190,7 @@ define([], function defineComboBoxRenderer(){
                 );
 
                 // hide on mouse leave
-                $ul.on('mouseleave.comboBoxInternal', _hide);
+                $ul.on('mouseleave.comboBoxInternal', _hide.bind(this));
 
                 if (this.base.isDefined(event)) {
                     if (this.base.isFunction(event.callback)) {
