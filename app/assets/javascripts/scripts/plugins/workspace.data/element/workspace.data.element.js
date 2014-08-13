@@ -98,7 +98,7 @@ define([
             ui.item.attr(
                 'style',
                 ui.item.attr('style').
-                    replace(/position\: relative\;/, '')
+                    replace(/position: relative;/, '')
             );
         },
 

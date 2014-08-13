@@ -60,6 +60,12 @@ ul.workspace-data > .add-page:hover {
     box-shadow: 1px 1px 5px #ccc;
 }
 
+.panel ul.workspace-data .content.current .counter {
+    border-color: white;
+    background-color: darkcyan;
+    color: white;
+}
+
 .panel div.workspace-data-footer {
     position: absolute;
     bottom: 0;

@@ -89,6 +89,12 @@ define(
                 this.elements.$workspacedata.empty();
                 this.renderCreatePage();
 
+                /**
+                 * Get current page
+                 * @type {Page}
+                 */
+                var page = this.controller.getPage();
+
                 var i = 0, l = data.length;
 
                 for (i; i < l; i++) {
@@ -103,7 +109,7 @@ define(
                      * @type {WorkspaceDataContentElement}
                      */
                     var $item = new WorkspaceDataContentElement(this, {
-                        style: 'content',
+                        style: 'content' + (page === data[i] ? ' current' : ''),
                         id: [
                             data[i].model.getConfig('uuid'),
                             'workspace-data-view'
