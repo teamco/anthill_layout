@@ -55,22 +55,14 @@ define([
              * Get prefs
              * @type {*}
              */
-            var preferences = this.pageTab.model.getConfig('preferences'),
-                uuid = this.pageTab.model.getUUID();
+            var preferences = this.pageTab.model.getConfig('preferences');
 
             /**
              * Define title
              * @member PageTabsItemElement
              * @type {*|string}
              */
-            this.title = scope.base.define(
-                preferences.title,
-                uuid,
-                true
-            );
-
-            this.title = $.trim(this.title).length > 0 ?
-                this.title : uuid;
+            this.title = this.pageTab.model.getItemTitle();
 
             /**
              * Define description

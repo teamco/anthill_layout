@@ -118,7 +118,7 @@ define(
                             '/' + page.controller.getItemIdentity(widget) : '';
 
                     this.controller.setHashLocation(
-                        ''.concat(purl, wurl)
+                        ''.concat('/', purl, wurl)
                     );
                 },
 

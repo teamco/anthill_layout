@@ -96,7 +96,7 @@ define([
                 });
 
             this.renderTooltip({
-                title: preferences.title || page.model.getUUID(),
+                title: page.model.getItemTitle(),
                 description: [
                         preferences.description || '', '<br />',
                     '<span>uuid: </span>', page.model.getUUID(), '<br /><br />',
@@ -129,12 +129,11 @@ define([
              * Get config
              * @type {*}
              */
-            var config = data.model.getConfig(),
-                preferences = data.model.getConfig('preferences') || {};
+            var config = data.model.getConfig();
 
             this.$.attr({
                 rel: config.uuid,
-                title: preferences.title || config.uuid
+                title: data.model.getItemTitle()
             }).addClass(config.resource);
         },
 

@@ -302,7 +302,7 @@ define([
                          * Get title
                          * @type {*|String}
                          */
-                        title = preferences.title || uuid;
+                        title = widget.model.getItemTitle();
 
                         /**
                          * Define widget element

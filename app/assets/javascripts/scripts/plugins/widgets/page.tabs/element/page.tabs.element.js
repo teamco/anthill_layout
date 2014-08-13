@@ -105,8 +105,7 @@ define([
              * Get current page title
              * @type {string}
              */
-            var title = page.model.getConfig('preferences').title ||
-                page.model.getUUID();
+            var title = page.model.getItemTitle();
 
             $('li:contains("' + title + '")', this.$).
                 addClass(this.current);

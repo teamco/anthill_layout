@@ -261,17 +261,43 @@ define([
                      * Get item title
                      * @type {*|string}
                      */
-                    var itemTitle = item.model.getConfig('preferences').title;
+                    var itemTitle = this.getItemTitle(item);
 
-                    if (itemTitle && $.trim(itemTitle).length > 0) {
-                        if (itemTitle.toClassName() === title.toClassName()) {
-                            return item;
-                        }
+                    if (itemTitle && (itemTitle.toClassName() === title.toClassName())) {
+                        return item;
                     }
                 }
             }
 
             this.scope.logger.debug('Unable locate item by title', items, title);
+        },
+
+        /**
+         * Get item title
+         * @member BaseModel
+         * @param {Page|Widget} [node]
+         * @returns {string}
+         */
+        getItemTitle: function getItemTitle(node) {
+
+            // Reset node
+            node = node || this.scope;
+
+            /**
+             * Get prefs
+             * @type {*}
+             */
+            var preferences = node.model.getConfig('preferences') || {},
+                uuid = node.model.getUUID();
+
+            var title = this.base.define(
+                preferences.title,
+                uuid,
+                true
+            );
+
+            return $.trim(title).length > 0 ?
+                title : uuid;
         },
 
         /**

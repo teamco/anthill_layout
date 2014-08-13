@@ -76,7 +76,7 @@ define([
              * Match regex
              * @type {Array|{index: number, input: string}|*}
              */
-            var pageMatch = hash.match(/#([\w\d\-]*):?/i);
+            var pageMatch = hash.match(/#\/([\w\d\-]*):?/i);
 
             /**
              * Get current page
@@ -187,13 +187,7 @@ define([
                 return false;
             }
 
-            var title = item.model.getConfig('preferences').title;
-
-            if (title) {
-                return title.toClassName();
-            }
-
-            return item.model.getUUID();
+            return item.model.getItemTitle().toClassName();
         }
     });
 });

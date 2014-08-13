@@ -45,8 +45,7 @@ define([
              * Get title
              * @type {boolean|string}
              */
-            var title = data.model.getConfig('preferences').title ||
-                data.model.getUUID();
+            var title = data.model.getItemTitle();
 
             /**
              * Get description
