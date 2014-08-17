@@ -126,18 +126,25 @@ define(
              * @member SiteConfigController
              */
             importSiteData: function importSiteData() {
-
                 this.view.showImportData();
+            },
 
-//                /**
-//                 * Get root
-//                 * @type {App}
-//                 */
-//                var root = this.controller.root();
-//
-//                root.model.setting.importData(JSON.parse(json));
-//
-//                document.location.reload(true);
+            /**
+             * Approve import site data
+             * @member SiteConfigController
+             * @param {object} json
+             */
+            approveImportSiteData: function approveImportSiteData(json) {
+
+                /**
+                 * Get root
+                 * @type {App}
+                 */
+                var root = this.controller.root();
+
+                root.model.setting.importData(json);
+
+                document.location.reload(true);
             },
 
             /**

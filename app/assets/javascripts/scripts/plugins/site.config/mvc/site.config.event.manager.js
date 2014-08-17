@@ -35,6 +35,9 @@ define([
          *      updateTranslations: string,
          *      loadContent: string,
          *      cleanUpLocalStorage: string,
+         *      importSiteData: string,
+         *      approveImportSiteData: string,
+         *      exportSiteData: string,
          *      loadSitePreferences: string
          * }}
          */
@@ -43,6 +46,7 @@ define([
             loadContent: 'load.content',
             cleanUpLocalStorage: 'clean.up.local.storage',
             importSiteData: 'import.site.data',
+            approveImportSiteData: 'approve.import.site.data',
             exportSiteData: 'export.site.data',
             loadSitePreferences: 'load.site.preferences'
         }

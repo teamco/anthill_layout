@@ -141,18 +141,6 @@ define(
                  * @type {*}
                  */
                 var buttons = {
-                    reload: {
-                        text: 'Reload',
-                        events: {
-                            click: 'reloadBrowser'
-                        }
-                    },
-                    approve: {
-                        text: 'OK',
-                        events: {
-                            click: 'approveImportData'
-                        }
-                    },
                     reject: {
                         text: 'Cancel',
                         events: {

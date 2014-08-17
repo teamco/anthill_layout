@@ -37,6 +37,12 @@ define([
          */
         init: function init() {
 
+            /**
+             * Get scope
+             * @type {SiteConfig}
+             */
+            var scope = this.view.scope;
+
             if (this.checkFileApi()) {
 
                 var $dropZone = $('<div class="site-config-drop-zone" />').text('Drop JSON here'),
@@ -47,44 +53,84 @@ define([
                     $output
                 ]);
 
-                function handleFileSelect(evt) {
+                /**
+                 * Handle file select
+                 * @param {{dataTransfer}} evt
+                 * @private
+                 */
+                function _handleFileSelect(evt) {
 
                     evt.stopPropagation();
                     evt.preventDefault();
 
                     // FileList object
-                    var files = evt.dataTransfer.files;
+                    var files = evt.dataTransfer.files,
+                        file = files[0];
 
-                    // files is a FileList of File objects. List some properties
-                    var output = [];
+                    /**
+                     * Define reader
+                     * @type {FileReader}
+                     */
+                    var reader = new FileReader();
 
-                    for (var i = 0, f; f = files[i]; i++) {
+                    /**
+                     * If we use onloadend, we need to check the readyState.
+                     * @param evt
+                     */
+                    reader.onloadend = function (evt) {
 
-                        /**
-                         * Define reader
-                         * @type {FileReader}
-                         */
-                        var reader = new FileReader();
+                        // DONE == 2
+                        if (evt.target.readyState === FileReader.DONE) {
 
-                        // Closure to capture the file information.
-                        reader.onload = (function(theFile) {
-                            return function(e) {debugger
-                                return e.target.result;
-                            };
-                        })(f);
+                            /**
+                             * Get file content
+                             * @type {string}
+                             */
+                            var content = evt.target.result;
 
-                        debugger
+                            try {
 
-                        output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-                            f.size, ' bytes, last modified: ',
-                            f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-                            '</li>');
-                    }
+                                // Remove back slashes from json
+                                content = content.replace(/\\/g, "").
+                                    replace(/"/, '');
+
+                                scope.observer.publish(
+                                    scope.eventmanager.eventList.approveImportSiteData,
+                                    JSON.parse(content)
+                                );
+
+                                scope.logger.debug(content);
+
+                            } catch (e) {
+
+                                scope.logger.error('Unable to parse JSON', e, content);
+                            }
+                        }
+                    };
+
+                    reader.readAsBinaryString(
+                        file.slice(0, file.size - 1)
+                    );
+
+                    // List some properties
+                    var output = [
+                        '<li><strong>', encodeURIComponent(file.name), '</strong> (',
+                        file.type || 'n/a', ') - ',
+                        file.size, ' bytes<br /> Last modified: ',
+                        file.lastModifiedDate ?
+                            file.lastModifiedDate.toLocaleDateString() : 'n/a',
+                        '</li>'
+                    ];
 
                     $output.html('<ul>' + output.join('') + '</ul>');
                 }
 
-                function handleDragOver(evt) {
+                /**
+                 * Define handle Drag/Over
+                 * @param evt
+                 * @private
+                 */
+                function _handleDragOver(evt) {
 
                     evt.stopPropagation();
                     evt.preventDefault();
@@ -94,8 +140,8 @@ define([
                 }
 
                 // Setup the dnd listeners.
-                $dropZone[0].addEventListener('dragover', handleDragOver, false);
-                $dropZone[0].addEventListener('drop', handleFileSelect, false);
+                $dropZone[0].addEventListener('dragover', _handleDragOver, false);
+                $dropZone[0].addEventListener('drop', _handleFileSelect, false);
             }
 
             return this;
