@@ -15,6 +15,7 @@ define(
         'plugins/site.config/element/site.config.content.element',
         'plugins/site.config/element/site.config.preferences.element',
         'plugins/site.config/element/site.config.cleanup.element',
+        'plugins/site.config/element/site.config.import.file.element',
         'plugins/site.config/element/site.config.element'
     ],
 
@@ -27,10 +28,11 @@ define(
      * @param {SiteConfigContentElement} SiteConfigContentElement
      * @param {SiteConfigPreferencesElement} SiteConfigPreferencesElement
      * @param {SiteConfigCleanUpElement} SiteConfigCleanUpElement
+     * @param {SiteConfigImportFileElement} SiteConfigImportFileElement
      * @param {SiteConfigElement} SiteConfigElement
      * @returns {*}
      */
-        function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigElement) {
+        function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigImportFileElement, SiteConfigElement) {
 
         /**
          * Define view
@@ -123,6 +125,67 @@ define(
             },
 
             /**
+             * Show import data
+             * @member SiteConfigView
+             */
+            showImportData: function showImportData() {
+
+                /**
+                 * Define $html
+                 * @type {SiteConfigImportFileElement}
+                 */
+                var $html = this.renderImportData();
+
+                /**
+                 * Define buttons
+                 * @type {*}
+                 */
+                var buttons = {
+                    reload: {
+                        text: 'Reload',
+                        events: {
+                            click: 'reloadBrowser'
+                        }
+                    },
+                    approve: {
+                        text: 'OK',
+                        events: {
+                            click: 'approveImportData'
+                        }
+                    },
+                    reject: {
+                        text: 'Cancel',
+                        events: {
+                            click: 'rejectModalEvent'
+                        }
+                    }
+                };
+
+                /**
+                 * Define page
+                 * @type {Page}
+                 */
+                var page = this.controller.getPage();
+
+                /**
+                 * Get Workspace
+                 * @type {Workspace}
+                 */
+                var workspace = this.controller.getWorkspace();
+
+                this.modalDialog({
+                    style: 'import-site-data',
+                    $container: page.view.get$item().$,
+                    type: 'info',
+                    title: 'Import site data',
+                    text: workspace.model.getUUID(),
+                    html: $html.$,
+                    cover: true,
+                    buttons: buttons
+                });
+            },
+
+            /**
              * Show preferences
              * @member SiteConfigView
              * @param opts
@@ -179,6 +242,22 @@ define(
                     cover: true,
                     buttons: buttons
                 });
+            },
+
+            /**
+             * Render import file element
+             * @member SiteConfigView
+             * @returns {SiteConfigImportFileElement}
+             */
+            renderImportData: function renderImportData() {
+
+                /**
+                 * Define SiteConfig ImportFile Element
+                 * @type {SiteConfigImportFileElement}
+                 */
+                this.elements.$import = new SiteConfigImportFileElement(this, {});
+
+                return this.elements.$import;
             },
 
             /**

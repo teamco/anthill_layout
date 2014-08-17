@@ -39,6 +39,8 @@ define([
          */
         _config: function _config(view, opts, $html) {
 
+            opts = opts || {};
+
             /**
              * Define view
              * @member BaseElement

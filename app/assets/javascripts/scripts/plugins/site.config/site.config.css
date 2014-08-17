@@ -79,3 +79,24 @@ ul.site-config > .content:hover {
 .modal-dialog.site-config {
     width: auto;
 }
+
+.modal-dialog.import-site-data .site-config {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.modal-dialog.import-site-data .site-config .site-config-drop-zone {
+    border: 2px dashed #bbb;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 25px;
+    text-align: center;
+    font-size: 20px;
+    color: #bbb;
+    margin-bottom: 10px;
+}
+
+.modal-dialog.import-site-data .site-config ul {
+    list-style: none;
+}

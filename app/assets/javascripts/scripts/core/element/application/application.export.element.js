@@ -33,7 +33,8 @@ define([
 
         /**
          * Init export element
-         * @param {{type: string, [fileName]: string, [title]: string, [autoload]: boolean}} data
+         * @member AppExportElement
+         * @param {{type: string, [fileName]: string, [title]: string, content, [autoload]: boolean}} data
          * @returns {AppExportElement}
          */
         init: function init(data) {
@@ -45,7 +46,7 @@ define([
             var url = [
                 data.type,
                 encodeURIComponent(
-                    JSON.stringify(data.json)
+                    JSON.stringify(data.content)
                 )
             ].join(',');
 
