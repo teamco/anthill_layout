@@ -11,9 +11,10 @@ define([
     'element/application/application.element',
     'element/header.element',
     'element/footer.element',
-    'element/application/application.element.content',
-    'element/application/application.element.debug'
-], function defineApplicationView(BaseView, AppHTML, Header, Footer, AppContent, DebuggerElement) {
+    'element/application/application.content.element',
+    'element/application/application.export.element',
+    'element/application/application.debug.element'
+], function defineApplicationView(BaseView, AppHTML, Header, Footer, AppContentElement, AppExportElement, DebuggerElement) {
 
     /**
      * View
@@ -57,11 +58,28 @@ define([
 
             /**
              * Define $workspaces
-             * @type {AppContent}
+             * @type {AppContentElement}
              */
-            this.elements.$workspaces = new AppContent(this, {
+            this.elements.$workspaces = new AppContentElement(this, {
                 $container: this.elements.$app.$,
                 style: 'workspaces'
+            });
+        },
+
+        /**
+         * Render export link
+         * @member AppView
+         */
+        renderExportLink: function renderExportLink(data) {
+
+            /**
+             * Define export element
+             * @type {AppExportElement}
+             */
+            this.elements.$export = new AppExportElement(this, {
+                $container: this.elements.$app.$,
+                id: 'export-url',
+                data: data
             });
         },
 

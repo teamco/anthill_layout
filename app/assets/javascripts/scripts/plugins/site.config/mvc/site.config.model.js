@@ -40,6 +40,16 @@ define([
                 title: 'Publish',
                 description: 'Publishing involves the process of producing and distributing literature so that the public can have access to it'
             },
+            import: {
+                title: 'Import',
+                description: 'Import site data JSON',
+                event:'importSiteData'
+            },
+            export: {
+                title: 'Export',
+                description: 'Export site data as a JSON',
+                event:'exportSiteData'
+            },
             cleanup: {
                 title: 'Clean Up',
                 description: 'Clean up local storage',

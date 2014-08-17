@@ -42,6 +42,8 @@ define([
             updateTranslations: 'update.translations',
             loadContent: 'load.content',
             cleanUpLocalStorage: 'clean.up.local.storage',
+            importSiteData: 'import.site.data',
+            exportSiteData: 'export.site.data',
             loadSitePreferences: 'load.site.preferences'
         }
 

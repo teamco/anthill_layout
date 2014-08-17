@@ -8,10 +8,10 @@
 
 define([
     'modules/Element'
-], function defineAppContent(BaseElement) {
+], function defineAppContentElement(BaseElement) {
 
     /**
-     * Define App content
+     * Define App content element
      * @param view
      * @param opts
      * @returns {*}
@@ -19,14 +19,14 @@ define([
      * @class AppContent
      * @extends BaseElement
      */
-    var AppContent = function AppContent(view, opts) {
+    var AppContentElement = function AppContentElement(view, opts) {
         return this._config(view, opts, $('<ul />')).build({
             $container: opts.$container,
             destroy: true
         });
     };
 
-    return AppContent.extend('AppContent', {
+    return AppContentElement.extend('AppContentElement', {
 
     }, BaseElement.prototype);
 });

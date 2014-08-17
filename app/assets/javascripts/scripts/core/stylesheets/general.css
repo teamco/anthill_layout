@@ -64,3 +64,7 @@ html, body, .app,
 .mr10 {
     margin-right: 10px;
 }
+
+#export-url {
+    display: none;
+}

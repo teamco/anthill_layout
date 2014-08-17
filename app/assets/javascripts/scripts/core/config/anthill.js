@@ -72,6 +72,12 @@ define([
          * @type {BaseController}
          */
         this.controller = undefined;
+
+        /**
+         * Init logger
+         * @type {Logger}
+         */
+        this.logger = undefined;
     };
 
     return AntHill.extend('AntHill', {

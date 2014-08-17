@@ -122,6 +122,45 @@ define(
             },
 
             /**
+             * Import site data
+             * @member SiteConfigController
+             */
+            importSiteData: function importSiteData(json) {
+
+                /**
+                 * Get root
+                 * @type {App}
+                 */
+                var root = this.controller.root();
+
+                root.model.setting.importData(JSON.parse(json));
+
+                document.location.reload(true);
+            },
+
+            /**
+             * Export site data
+             * @member SiteConfigController
+             */
+            exportSiteData: function exportSiteData() {
+
+                /**
+                 * Get root
+                 * @type {App}
+                 */
+                var root = this.controller.root(),
+                    ns = root.model.setting.getNameSpace();
+
+                root.view.renderExportLink({
+                    type: 'text/json;charset=utf-8',
+                    fileName: 'data.json',
+                    json: LZString.decompress(localStorage[ns]),
+                    title: 'Export JSON',
+                    autoload: true
+                });
+            },
+
+            /**
              * Approve clean up
              * @member SiteConfigController
              */
