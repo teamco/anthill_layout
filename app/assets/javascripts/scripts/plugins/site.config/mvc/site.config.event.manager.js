@@ -37,6 +37,7 @@ define([
          *      cleanUpLocalStorage: string,
          *      importSiteData: string,
          *      approveImportSiteData: string,
+         *      readyToImportSiteData: string,
          *      exportSiteData: string,
          *      loadSitePreferences: string
          * }}
@@ -47,6 +48,7 @@ define([
             cleanUpLocalStorage: 'clean.up.local.storage',
             importSiteData: 'import.site.data',
             approveImportSiteData: 'approve.import.site.data',
+            readyToImportSiteData: 'ready.to.import.site.data',
             exportSiteData: 'export.site.data',
             loadSitePreferences: 'load.site.preferences'
         }

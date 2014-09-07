@@ -7,9 +7,10 @@
  */
 
 define([
+    'jquery',
     'config/anthill',
     'element/modal.element'
-], function defineBaseView(AntHill, ModalElement) {
+], function defineBaseView($, AntHill, ModalElement) {
 
     /**
      * Define base view
@@ -297,6 +298,7 @@ define([
                         $container: button.$container,
                         style: i.toDash(),
                         text: button.text,
+                        disabled: button.disabled,
                         events: button.events
                     });
 

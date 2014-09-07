@@ -113,6 +113,10 @@
     cursor: pointer;
 }
 
+.modal-dialog ul.buttons li.disabled {
+    color: #999;
+}
+
 .modal-dialog ul.buttons li:last-child {
     margin-right: 10px;
 }

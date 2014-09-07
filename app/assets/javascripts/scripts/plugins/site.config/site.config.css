@@ -80,11 +80,6 @@ ul.site-config > .content:hover {
     width: auto;
 }
 
-.modal-dialog.import-site-data .site-config {
-    padding: 10px;
-    border: 1px solid #ccc;
-}
-
 .modal-dialog.import-site-data .site-config .site-config-drop-zone {
     border: 2px dashed #bbb;
     -moz-border-radius: 5px;

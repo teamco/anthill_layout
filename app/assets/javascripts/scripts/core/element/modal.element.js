@@ -7,11 +7,12 @@
  */
 
 define([
+    'jquery',
     'config/anthill',
     'modules/Element',
     'element/button.element',
     'element/cover.element'
-], function defineModalElement(AntHill, BaseElement, Button, Cover) {
+], function defineModalElement($, AntHill, BaseElement, Button, Cover) {
 
     /**
      * Define Modal Element

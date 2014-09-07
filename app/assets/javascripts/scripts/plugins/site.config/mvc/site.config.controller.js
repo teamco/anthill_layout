@@ -137,12 +137,51 @@ define(
             approveImportSiteData: function approveImportSiteData(json) {
 
                 /**
+                 * Get $modal
+                 * @type {ModalElement}
+                 */
+                var $modal = this.scope.view.elements.$modal;
+
+                if ($modal.$buttons.confirm.disabled) {
+                    return false;
+                }
+
+                /**
                  * Get root
                  * @type {App}
                  */
-                var root = this.controller.root();
+                var root = this.root();
 
                 root.model.setting.importData(json);
+
+                $modal.$buttons.reload.enable();
+                $modal.$buttons.confirm.disable();
+            },
+
+            /**
+             * Ready to import site data
+             * @member SiteConfigController
+             * @param {object} json
+             */
+            readyToImportSiteData: function readyToImportSiteData(json) {
+                this.view.showApproveImportData(json);
+            },
+
+            /**
+             * Reload site data
+             * @member SiteConfigController
+             */
+            reloadSiteData: function reloadSiteData() {
+
+                /**
+                 * Get $modal
+                 * @type {ModalElement}
+                 */
+                var $modal = this.scope.view.elements.$modal;
+
+                if ($modal.$buttons.reload.disabled) {
+                    return false;
+                }
 
                 document.location.reload(true);
             },

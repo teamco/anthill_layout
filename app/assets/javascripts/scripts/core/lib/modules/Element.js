@@ -7,9 +7,10 @@
  */
 
 define([
+    'jquery',
     'config/anthill',
     'modules/Renderer'
-], function defineBaseElement(AntHill, Renderer) {
+], function defineBaseElement($, AntHill, Renderer) {
 
     /**
      * Define Base element
@@ -35,7 +36,7 @@ define([
          * @param {{[style]: string, [id]: string, [css], [events], [opacity]}} opts
          * @param $html
          * @returns {*}
-         * @private
+         * @protected
          */
         _config: function _config(view, opts, $html) {
 
@@ -61,6 +62,15 @@ define([
              * @type {String}
              */
             this.id = view.renderUUID(opts.id);
+
+            /**
+             * Define disabled
+             * @member BaseElement
+             * @type {boolean}
+             */
+            this.disabled = this.base.defineBoolean(
+                opts.disabled, false, true
+            );
 
             /**
              * Define events

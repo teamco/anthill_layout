@@ -16,6 +16,7 @@ define(
         'plugins/site.config/element/site.config.preferences.element',
         'plugins/site.config/element/site.config.cleanup.element',
         'plugins/site.config/element/site.config.import.file.element',
+        'plugins/site.config/element/site.config.approve.import.element',
         'plugins/site.config/element/site.config.element'
     ],
 
@@ -29,10 +30,11 @@ define(
      * @param {SiteConfigPreferencesElement} SiteConfigPreferencesElement
      * @param {SiteConfigCleanUpElement} SiteConfigCleanUpElement
      * @param {SiteConfigImportFileElement} SiteConfigImportFileElement
+     * @param {SiteConfigApproveImportElement} SiteConfigApproveImportElement
      * @param {SiteConfigElement} SiteConfigElement
      * @returns {*}
      */
-        function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigImportFileElement, SiteConfigElement) {
+        function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigImportFileElement, SiteConfigApproveImportElement, SiteConfigElement) {
 
         /**
          * Define view
@@ -174,6 +176,71 @@ define(
             },
 
             /**
+             * Show approve import data
+             * @member SiteConfigView
+             * @param {object} json
+             */
+            showApproveImportData: function showApproveImportData(json) {
+
+                /**
+                 * Define $html
+                 * @type {SiteConfigApproveImportElement}
+                 */
+                var $html = this.renderApproveImportData(json);
+
+                /**
+                 * Define buttons
+                 * @type {*}
+                 */
+                var buttons = {
+                    reload: {
+                        text: 'Reload',
+                        disabled: true,
+                        events: {
+                            click: 'reloadSiteData'
+                        }
+                    },
+                    confirm: {
+                        text: 'Confirm',
+                        events: {
+                            click: 'approveImportSiteData'
+                        }
+                    },
+                    reject: {
+                        text: 'Cancel',
+                        events: {
+                            click: 'rejectModalEvent'
+                        }
+                    }
+                };
+
+                /**
+                 * Define page
+                 * @type {Page}
+                 */
+                var page = this.controller.getPage();
+
+                /**
+                 * Get Workspace
+                 * @type {Workspace}
+                 */
+                var workspace = this.controller.getWorkspace();
+
+                this.elements.$modal.selfDestroy();
+
+                this.modalDialog({
+                    style: 'import-site-data approve',
+                    $container: page.view.get$item().$,
+                    type: 'warning',
+                    title: 'Confirm to Import site data',
+                    text: workspace.model.getUUID(),
+                    html: $html.$,
+                    cover: true,
+                    buttons: buttons
+                });
+            },
+
+            /**
              * Show preferences
              * @member SiteConfigView
              * @param opts
@@ -241,9 +308,27 @@ define(
 
                 /**
                  * Define SiteConfig ImportFile Element
-                 * @type {SiteConfigImportFileElement}
+                 * @type {SiteConfigImportFileElement|SiteConfigApproveImportElement}
                  */
                 this.elements.$import = new SiteConfigImportFileElement(this, {});
+
+                return this.elements.$import;
+            },
+
+            /**
+             * Render approve import file element
+             * @member SiteConfigView
+             * @returns {SiteConfigApproveImportElement}
+             */
+            renderApproveImportData: function renderApproveImportData(json) {
+
+                /**
+                 * Define SiteConfig Approve Import Element
+                 * @type {SiteConfigApproveImportElement}
+                 */
+                this.elements.$import = new SiteConfigApproveImportElement(this, {
+                    data: json
+                });
 
                 return this.elements.$import;
             },
