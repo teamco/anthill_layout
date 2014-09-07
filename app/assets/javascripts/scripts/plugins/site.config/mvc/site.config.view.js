@@ -221,12 +221,6 @@ define(
                  */
                 var page = this.controller.getPage();
 
-                /**
-                 * Get Workspace
-                 * @type {Workspace}
-                 */
-                var workspace = this.controller.getWorkspace();
-
                 this.elements.$modal.selfDestroy();
 
                 this.modalDialog({
