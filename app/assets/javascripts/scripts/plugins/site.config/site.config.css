@@ -92,6 +92,10 @@ ul.site-config > .content:hover {
     margin-bottom: 10px;
 }
 
+.modal-dialog.import-site-data .site-config {
+    height: 100%;
+}
+
 .modal-dialog.import-site-data .site-config ul {
     list-style: none;
 }

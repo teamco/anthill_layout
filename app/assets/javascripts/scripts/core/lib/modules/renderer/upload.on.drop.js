@@ -28,7 +28,7 @@ define([], function defineUploadOnDrop() {
                     cname = scope.constructor.name.toDash(),
                     $dropZone = $('<div class="' + cname + '-drop-zone" />').
                         text('Drop JSON here'),
-                    $output = $('<output class="' + cname + '-file-info"></output>');
+                    $output = $('<ul class="' + cname + '-file-info"></ul>');
 
                 this.$.append([
                     $dropZone,
@@ -45,7 +45,10 @@ define([], function defineUploadOnDrop() {
                     evt.stopPropagation();
                     evt.preventDefault();
 
-                    // FileList object
+                    /**
+                     * FileList object
+                     * @type {FileList}
+                     */
                     var files = evt.dataTransfer.files,
                         file = files[0];
 
@@ -78,7 +81,7 @@ define([], function defineUploadOnDrop() {
 
                                 scope.observer.publish(
                                     opts.eventName,
-                                    JSON.parse(content)
+                                    [JSON.parse(content), file]
                                 );
 
                                 scope.logger.debug(content);
@@ -100,13 +103,14 @@ define([], function defineUploadOnDrop() {
                         var output = [
                             '<li><strong>', encodeURIComponent(file.name), '</strong> (',
                             file.type || 'n/a', ') - ',
-                            file.size, ' bytes<br /> Last modified: ',
+                            file.size, ' bytes</li>',
+                            '<li> Last modified: ',
                             file.lastModifiedDate ?
                                 file.lastModifiedDate.toLocaleDateString() : 'n/a',
                             '</li>'
                         ];
 
-                        $output.html('<ul>' + output.join('') + '</ul>');
+                        $output.html(output.join(''));
                     }
                 }
 

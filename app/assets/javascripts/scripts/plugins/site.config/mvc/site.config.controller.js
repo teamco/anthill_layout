@@ -132,15 +132,20 @@ define(
             /**
              * Approve import site data
              * @member SiteConfigController
-             * @param {object} json
              */
-            approveImportSiteData: function approveImportSiteData(json) {
+            approveImportSiteData: function approveImportSiteData() {
+
+                /**
+                 * Get view elements
+                 * @type {SiteConfigView.elements}
+                 */
+                var elements = this.scope.view.elements;
 
                 /**
                  * Get $modal
                  * @type {ModalElement}
                  */
-                var $modal = this.scope.view.elements.$modal;
+                var $modal = elements.$modal;
 
                 if ($modal.$buttons.confirm.disabled) {
                     return false;
@@ -152,19 +157,22 @@ define(
                  */
                 var root = this.root();
 
-                root.model.setting.importData(json);
+                root.model.setting.importData(elements.$import.data);
 
                 $modal.$buttons.reload.enable();
                 $modal.$buttons.confirm.disable();
+                $modal.$buttons.reject.destroy();
+                $modal.$buttons.closeX.destroy();
             },
 
             /**
              * Ready to import site data
              * @member SiteConfigController
              * @param {object} json
+             * @param {FileList} file
              */
-            readyToImportSiteData: function readyToImportSiteData(json) {
-                this.view.showApproveImportData(json);
+            readyToImportSiteData: function readyToImportSiteData(json, file) {
+                this.view.showApproveImportData(json, file);
             },
 
             /**

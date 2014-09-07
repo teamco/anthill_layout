@@ -179,8 +179,9 @@ define(
              * Show approve import data
              * @member SiteConfigView
              * @param {object} json
+             * @param {File} file
              */
-            showApproveImportData: function showApproveImportData(json) {
+            showApproveImportData: function showApproveImportData(json, file) {
 
                 /**
                  * Define $html
@@ -233,7 +234,11 @@ define(
                     $container: page.view.get$item().$,
                     type: 'warning',
                     title: 'Confirm to Import site data',
-                    text: workspace.model.getUUID(),
+                    text: [
+                        encodeURIComponent(file.name), ' (', file.type || 'n/a', ') - ', file.size, ' bytes',
+                        ' (', file.lastModifiedDate ?
+                            file.lastModifiedDate.toLocaleDateString() : 'n/a', ')'
+                    ].join(''),
                     html: $html.$,
                     cover: true,
                     buttons: buttons

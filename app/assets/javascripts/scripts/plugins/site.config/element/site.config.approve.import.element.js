@@ -23,7 +23,14 @@ define([
             destroy: false
         });
 
-        this.prettifyJSON(opts.data);
+        /**
+         * Define local data
+         * @member SiteConfigApproveImportElement
+         * @type {object}
+         */
+        this.data = opts.data;
+
+        this.prettifyJSON(this.data);
 
         return this;
     };

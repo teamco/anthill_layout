@@ -62,7 +62,7 @@ define([
          */
         disable: function disable() {
             this.$.addClass('disabled');
-            this.$.disabled = true;
+            this.disabled = true;
         },
 
         /**
@@ -71,7 +71,7 @@ define([
          */
         enable: function enable() {
             this.$.removeClass('disabled');
-            this.$.disabled = false;
+            this.disabled = false;
         }
 
     }, BaseElement.prototype);
