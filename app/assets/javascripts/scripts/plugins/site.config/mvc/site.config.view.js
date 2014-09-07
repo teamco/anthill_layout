@@ -229,9 +229,9 @@ define(
                     type: 'warning',
                     title: 'Confirm to Import site data',
                     text: [
-                        encodeURIComponent(file.name), ' (', file.type || 'n/a', ') - ', file.size, ' bytes',
-                        ' (', file.lastModifiedDate ?
-                            file.lastModifiedDate.toLocaleDateString() : 'n/a', ')'
+                        encodeURIComponent(file.name),
+                        ' (', file.type || 'n/a', '), ',
+                        this.scope.base.lib.number.bytes2Size(file.size)
                     ].join(''),
                     html: $html.$,
                     cover: true,

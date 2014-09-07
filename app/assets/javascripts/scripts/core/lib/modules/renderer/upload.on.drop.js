@@ -2,7 +2,7 @@
  * Created by teamco on 8/18/14.
  */
 
-define([], function defineUploadOnDrop() {
+define(['jquery'], function defineUploadOnDrop($) {
 
     /**
      * Define upload on drop
@@ -100,17 +100,17 @@ define([], function defineUploadOnDrop() {
                     if (opts.info) {
 
                         // List some properties
-                        var output = [
+                        var info = [
                             '<li><strong>', encodeURIComponent(file.name), '</strong> (',
                             file.type || 'n/a', ') - ',
-                            file.size, ' bytes</li>',
+                            this.view.scope.base.lib.number.bytes2Size(file.size), '</li>',
                             '<li> Last modified: ',
                             file.lastModifiedDate ?
                                 file.lastModifiedDate.toLocaleDateString() : 'n/a',
                             '</li>'
                         ];
 
-                        $output.html(output.join(''));
+                        $output.html(info.join(''));
                     }
                 }
 
@@ -130,7 +130,7 @@ define([], function defineUploadOnDrop() {
 
                 // Setup the dnd listeners.
                 $dropZone[0].addEventListener('dragover', _handleDragOver, false);
-                $dropZone[0].addEventListener('drop', _handleFileSelect, false);
+                $dropZone[0].addEventListener('drop', _handleFileSelect.bind(this), false);
             }
         }
     });
