@@ -4,7 +4,6 @@
     overflow: auto;
 }
 .widget .content .online-friends .mainContainer {
-    width: 200px;
     text-align: center;
     font-family: Arial;
     position: relative;
@@ -31,7 +30,7 @@
     line-height: 16px;
 }
 .widget .content .online-friends .scrollableContent {
-    max-height: 150px;
+/*    max-height: 150px;*/
     overflow: auto;
 }
 .widget .content .online-friends .friendsRowsContainer {

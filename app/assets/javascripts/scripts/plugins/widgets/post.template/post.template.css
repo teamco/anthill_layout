@@ -2,9 +2,10 @@
     height: 100%;
     width: 100%;
     overflow: auto;
+    padding:10px;
 }
 .widget .content .post-template .mainContainer {
-    height: 250px;
+    height: 150px;
     border-bottom: solid 1px lightgray;
     position: relative;
 }

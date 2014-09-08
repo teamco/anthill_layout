@@ -2,6 +2,7 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
+    padding: 2px 7px 0px 7px;
 }
 .widget .content .post-tool .mainContainer {
     height: 70px;

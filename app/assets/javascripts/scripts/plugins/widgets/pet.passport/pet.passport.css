@@ -2,7 +2,7 @@
     height: 100%;
     width: 100%;
     position: relative;
-    overflow: auto;
+    overflow: hidden;
 }
 .widget .content .pet-passport .passportContainer {
     width: 100%;

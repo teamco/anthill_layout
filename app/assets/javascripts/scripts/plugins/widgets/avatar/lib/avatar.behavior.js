@@ -33,10 +33,10 @@ define([
                 var top = localStorage.getItem('avatarX'),
                     left = localStorage.getItem('avatarY');
 
-                avatarImage.offset({
-                    top: top,
-                    left: left
-                });
+//                avatarImage.offset({
+//                    top: top,
+//                    left: left
+//                });
             }
         },
 

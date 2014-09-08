@@ -110,8 +110,8 @@ define([
                 description: 'Pick a photo and put it as your Avatar',
                 thumbnail: '',
                 dimensions: {
-                    width: 12,
-                    height: 11
+                    width: 6,
+                    height: 8
                 },
                 type: 'image',
                 resource: 'avatar'
