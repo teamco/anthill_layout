@@ -95,7 +95,7 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList['create' + cname],
-                [args, silent]
+                [args, scope.silent]
             );
 
             if (scope.controller.checkCondition({

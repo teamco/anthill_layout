@@ -6,8 +6,9 @@
  */
 
 define([
+    'jquery',
     'plugins/preferences/preferences'
-], function defineSitePreferences(BasePreferences) {
+], function defineSitePreferences($, BasePreferences) {
 
     /**
      * Define prefs
@@ -179,6 +180,19 @@ define([
                 value: sliderValue
             });
 
+            /**
+             * Define on slide
+             * @param event
+             * @param ui
+             * @private
+             */
+            function _slide(event, ui) {
+                $textfield[1].val(ui.value);
+                $workspace.updateWidth(ui.value);
+
+                this.view.scope.logger.debug('On slide', event, ui);
+            }
+
             this.renderSlider($slider, {
 
                 value: sliderValue || 1,
@@ -186,13 +200,7 @@ define([
                 max: map.length - 1,
                 labels: map,
                 disabled: !preferences.staticWidth,
-
-                slide: function slide(event, ui) {
-
-                    $textfield[1].val(ui.value);
-                    $workspace.updateWidth(ui.value);
-
-                }.bind(this)
+                slide: _slide.bind(this)
             });
 
             return $('<li />').append(

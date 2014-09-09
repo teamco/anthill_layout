@@ -6,9 +6,10 @@
  */
 
 define([
+    'jquery',
     'modules/Element',
     'plugins/preferences/site.preferences'
-], function defineSiteConfigPreferencesElement(BaseElement, SitePreferences) {
+], function defineSiteConfigPreferencesElement($, BaseElement, SitePreferences) {
 
     /**
      * Define SiteConfig Preferences Element

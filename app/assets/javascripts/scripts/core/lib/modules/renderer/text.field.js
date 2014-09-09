@@ -2,7 +2,9 @@
  * Created by i061485 on 7/10/14.
  */
 
-define([], function defineTextFieldRenderer() {
+define([
+    'jquery'
+], function defineTextFieldRenderer($) {
 
     /**
      * Define TextFieldRenderer
@@ -38,11 +40,11 @@ define([], function defineTextFieldRenderer() {
              */
             var uuid = this.base.lib.generator.UUID() + '-input',
                 $span = $('<span class="validate" />').
-                    text('The text you entered is not valid');
+                    text('The «' + opts.text + '» you entered is not valid');
 
             /**
              * Define $input
-             * @type {*|jQuery}
+             * @type {jQuery}
              */
             var $input = $('<input />').attr({
                 name: opts.name,

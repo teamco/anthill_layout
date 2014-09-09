@@ -7,12 +7,13 @@
  */
 
 define([
+    'jquery',
     'config/application',
     'config/workspace',
     'config/page',
     'config/layout',
     'config/widget'
-], function defineListeners(Application, Workspace, Page, Layout, Widget) {
+], function defineListeners($, Application, Workspace, Page, Layout, Widget) {
 
     /**
      * Load listeners
@@ -161,6 +162,20 @@ define([
         createWidget: {
             name: 'create.widget',
             callback: function createWidgetCallback() {
+
+                if (this.controller.root().model.getConfig('loading')) {
+                    return false;
+                }
+
+                /**
+                 * Get current widget
+                 * @type {Widget}
+                 */
+                var widget = this.controller.getCurrentItem();
+
+                widget.model.setOverlapping(
+                    this.model.getConfig('widget/overlapping')
+                );
 
                 this.observer.publish(
                     this.eventmanager.eventList.updateHeight

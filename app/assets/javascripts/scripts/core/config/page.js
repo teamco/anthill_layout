@@ -136,6 +136,7 @@ define([
                     height: 3
                 },
                 counter: 0,
+                overlapping: true,
                 allowToAdd: true,
                 addNewTo: this.ORGANIZE_MODES.row
             },
