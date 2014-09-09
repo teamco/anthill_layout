@@ -131,7 +131,7 @@ define([
              * Set data
              * @type {*}
              */
-            this.getStorage()[this.getNameSpace()] = LZString.compress(
+            this.getStorage()[this.getNameSpace()] = this.compress(
                 JSON.stringify(data)
             );
         },
@@ -183,7 +183,7 @@ define([
 
             this.getStorage().setItem(
                 this.getNameSpace(),
-                LZString.compress(
+                this.compress(
                     JSON.stringify(opts)
                 )
             );
@@ -202,16 +202,35 @@ define([
              * @type {*}
              */
             var data = JSON.parse(
-                LZString.decompress(
-                    this.getStorage().getItem(
-                        this.getNameSpace()
-                    )
-                ) || '[]'
+                    this.decompress(
+                        this.getStorage().getItem(
+                            this.getNameSpace()
+                        )
+                    ) || '[]'
             );
 
             this.scope.logger.debug('Load', data);
 
             return data;
+        },
+
+        /**
+         * Compress json
+         * @member Setting
+         * @param {string} json
+         * @returns {string}
+         */
+        compress: function compress(json) {
+            return LZString.compress(json);
+        },
+
+        /**
+         * Decompress json
+         * @param {string} compress
+         * @returns {string}
+         */
+        decompress: function decompress(compress) {
+            return LZString.decompress(compress)
         }
 
     }, AntHill.prototype, Router);

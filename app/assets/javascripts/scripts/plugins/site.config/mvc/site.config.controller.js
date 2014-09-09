@@ -136,28 +136,28 @@ define(
             approveImportSiteData: function approveImportSiteData() {
 
                 /**
+                 * Get scope
+                 * @type {SiteConfig}
+                 */
+                var scope = this.scope;
+
+                /**
                  * Get view elements
                  * @type {SiteConfigView.elements}
                  */
-                var elements = this.scope.view.elements;
+                var elements = scope.view.elements;
 
                 /**
                  * Get $modal
                  * @type {ModalElement}
                  */
-                var $modal = elements.$modal;
+                var $modal = scope.view.get$modal();
 
-                if ($modal.$buttons.confirm.disabled) {
+                if (!$modal || $modal.$buttons.confirm.disabled) {
                     return false;
                 }
 
-                /**
-                 * Get root
-                 * @type {App}
-                 */
-                var root = this.root();
-
-                root.model.setting.importData(elements.$import.data);
+                this.root().model.setting.importData(elements.$import.data);
 
                 $modal.$buttons.reload.enable();
                 $modal.$buttons.confirm.disable();
@@ -185,9 +185,9 @@ define(
                  * Get $modal
                  * @type {ModalElement}
                  */
-                var $modal = this.scope.view.elements.$modal;
+                var $modal = this.scope.view.get$modal();
 
-                if ($modal.$buttons.reload.disabled) {
+                if (!$modal || $modal.$buttons.reload.disabled) {
                     return false;
                 }
 
@@ -205,12 +205,15 @@ define(
                  * @type {App}
                  */
                 var root = this.controller.root(),
-                    ns = root.model.setting.getNameSpace();
+                    setting = root.model.setting,
+                    ns = setting.getNameSpace();
 
                 root.view.renderExportLink({
                     type: 'text/json;charset=utf-8',
                     fileName: 'data.json',
-                    content: LZString.decompress(localStorage[ns]),
+                    content: setting.decompress(
+                        setting.getStorage()[ns]
+                    ),
                     title: 'Export JSON',
                     autoload: true
                 });

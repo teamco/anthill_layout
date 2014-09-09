@@ -278,9 +278,18 @@ define([
         },
 
         /**
+         * Get $modal element
+         * @member BaseView
+         * @returns {ModalElement}
+         */
+        get$modal: function get$modal() {
+           return this.elements.$modal;
+        },
+
+        /**
          * Generic button
          * @member BaseView
-         * @param {Function|ButtonElement} ButtonElement
+         * @param {ButtonElement} ButtonElement
          * @param {*} opts
          * @param {*} store
          */

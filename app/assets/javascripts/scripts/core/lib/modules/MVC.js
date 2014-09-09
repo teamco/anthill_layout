@@ -401,7 +401,7 @@ define([
 
                 /**
                  * Define elements
-                 * @type {{}}
+                 * @type {object}
                  */
                 this.scope.view.elements = {};
             }
