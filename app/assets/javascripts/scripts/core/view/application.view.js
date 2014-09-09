@@ -12,9 +12,9 @@ define([
     'element/header.element',
     'element/footer.element',
     'element/application/application.content.element',
-    'element/application/application.export.element',
+    'element/export.element',
     'element/application/application.debug.element'
-], function defineApplicationView(BaseView, AppHTML, Header, Footer, AppContentElement, AppExportElement, DebuggerElement) {
+], function defineApplicationView(BaseView, AppHTML, Header, Footer, AppContentElement, ExportElement, DebuggerElement) {
 
     /**
      * View
@@ -74,9 +74,9 @@ define([
 
             /**
              * Define export element
-             * @type {AppExportElement}
+             * @type {ExportElement}
              */
-            this.elements.$export = new AppExportElement(this, {
+            this.elements.$export = new ExportElement(this, {
                 $container: this.elements.$app.$,
                 id: 'export-url',
                 data: data

@@ -209,10 +209,12 @@ define(
                     ns = setting.getNameSpace();
 
                 root.view.renderExportLink({
-                    type: 'text/json;charset=utf-8',
+                    type: 'text/json',
                     fileName: 'data.json',
-                    content: setting.decompress(
-                        setting.getStorage()[ns]
+                    content: JSON.stringify(
+                        setting.decompress(
+                            setting.getStorage()[ns]
+                        )
                     ),
                     title: 'Export JSON',
                     autoload: true

@@ -7,8 +7,9 @@
  */
 
 define([
+    'jquery',
     'modules/Element'
-], function defineAppContent(BaseElement) {
+], function defineExportElement($, BaseElement) {
 
     /**
      * Define App export element
@@ -16,10 +17,10 @@ define([
      * @param opts
      * @returns {*}
      * @constructor
-     * @class AppContent
+     * @class ExportElement
      * @extends BaseElement
      */
-    var AppExportElement = function AppExportElement(view, opts) {
+    var ExportElement = function ExportElement(view, opts) {
 
         this._config(view, opts, $('<a />')).build({
             $container: opts.$container,
@@ -29,13 +30,19 @@ define([
         return this.init(opts.data || {});
     };
 
-    return AppExportElement.extend('AppExportElement', {
+    return ExportElement.extend('ExportElement', {
 
         /**
          * Init export element
-         * @member AppExportElement
-         * @param {{type: string, [fileName]: string, [title]: string, content, [autoload]: boolean}} data
-         * @returns {AppExportElement}
+         * @member ExportElement
+         * @param {{
+         *      type: string,
+         *      [fileName]: string,
+         *      [title]: string,
+         *      content,
+         *      [autoload]: boolean
+         * }} data
+         * @returns {ExportElement}
          */
         init: function init(data) {
 
@@ -44,15 +51,15 @@ define([
              * @type {string}
              */
             var url = [
+                'data:',
                 data.type,
-                encodeURIComponent(
-                    JSON.stringify(data.content)
-                )
-            ].join(',');
+                ';charset=utf-8;base64,',
+                btoa(data.content)
+            ].join('');
 
             this.$.attr({
 
-                href: 'data: ' + url,
+                href: url,
                 download: data.fileName || 'file.txt',
                 title: data.title || 'Download'
 

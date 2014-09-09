@@ -16,7 +16,7 @@ define([
      * @param opts
      * @returns {*}
      * @constructor
-     * @class AppContent
+     * @class AppContentElement
      * @extends BaseElement
      */
     var AppContentElement = function AppContentElement(view, opts) {
