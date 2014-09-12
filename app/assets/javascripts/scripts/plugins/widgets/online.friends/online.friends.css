@@ -1,7 +1,8 @@
 .widget .content .online-friends {
     height: 100%;
     width: 100%;
-    overflow: auto;
+    overflow: hidden;
+    min-width:135px;
 }
 .widget .content .online-friends .mainContainer {
     text-align: center;
@@ -22,7 +23,7 @@
     display: inline-block;
     position: absolute;
     top: 2px;
-    right: 40px;
+    left: 10px;
     border-radius: 50%;
     font-size: 10px;
     color: white;
@@ -30,8 +31,7 @@
     line-height: 16px;
 }
 .widget .content .online-friends .scrollableContent {
-/*    max-height: 150px;*/
-    overflow: auto;
+    max-height: 170px;
 }
 .widget .content .online-friends .friendsRowsContainer {
     list-style: none;

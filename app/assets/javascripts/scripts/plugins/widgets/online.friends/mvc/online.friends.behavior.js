@@ -97,9 +97,7 @@ define([], function defineOnlineFriendsBehavior() {
 
             this.scrollContent.niceScroll({
                 cursorcolor: "rgba(136, 136, 136, 0.3)"
-            });
-            
-            
+            }); 
         }
 
     });
