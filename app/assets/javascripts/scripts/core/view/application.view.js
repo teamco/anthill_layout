@@ -64,6 +64,15 @@ define([
                 $container: this.elements.$app.$,
                 style: 'workspaces'
             });
+            
+             /**
+             * Define $headstrip
+             * @type {AppContentElement}
+             */
+            this.elements.$workspaces = new AppContentElement(this, {
+                $container: this.elements.$workspaces.$,
+                style: 'headstrip'
+            });
         },
 
         /**
