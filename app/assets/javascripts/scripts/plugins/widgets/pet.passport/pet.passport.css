@@ -5,7 +5,7 @@
      overflow: hidden;
  }
  .widget .content .pet-passport #mainContainer {
-     padding: 0px 10px 0px 5px;
+     padding: 0px 10px 0px 10px;
  }
  .widget .content .pet-passport .passportContainer {
      width: 100%;
@@ -35,7 +35,7 @@
  .widget .content .pet-passport .passportRows {
      list-style: none;
      margin: 0px 0px 0px 0px;
-     padding: 5px;
+     padding: 5px 5px 5px 0px;
      font-family: Arial;
      overflow: auto;
  }
