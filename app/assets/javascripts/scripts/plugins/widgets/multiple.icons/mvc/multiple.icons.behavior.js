@@ -4,6 +4,25 @@ define([], function defineMultipleIconsBehavior() {
             {
                 "class": "note-icon",
                 "title": "Make a Note"
+            },
+            {
+                "class": "note-icon",
+                "title": "Make a Note"
+            },{
+                "class": "note-icon",
+                "title": "Make a Note"
+            },{
+                "class": "note-icon",
+                "title": "Make a Note"
+            },{
+                "class": "note-icon",
+                "title": "Make a Note"
+            },{
+                "class": "note-icon",
+                "title": "Make a Note"
+            },{
+                "class": "note-icon",
+                "title": "Make a Note"
             }
                 ];
 
