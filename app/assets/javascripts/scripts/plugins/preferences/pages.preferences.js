@@ -6,8 +6,9 @@
  */
 
 define([
+    'jquery',
     'plugins/preferences/preferences'
-], function definePagesPreferences(BasePreferences) {
+], function definePagesPreferences($, BasePreferences) {
 
     /**
      * Define prefs
