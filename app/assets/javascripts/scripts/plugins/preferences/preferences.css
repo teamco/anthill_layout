@@ -379,6 +379,7 @@
 .modal-dialog.preferences .widgets-prefs li.no-content {
     width: auto;
     height: auto;
+    padding: 0 3px;
 }
 
 .modal-dialog.preferences .widgets-prefs li.clear {
