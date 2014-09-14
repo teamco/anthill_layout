@@ -365,11 +365,13 @@
     margin: 0;
 }
 
-.modal-dialog.preferences .widgets-prefs li {
+.modal-dialog.preferences .widgets-prefs li.widget-prefs {
     padding: 3px 5px;
     display: inline-block;
     cursor: pointer;
-    background: transparent no-repeat center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
     width: 67px;
     height: 67px;
 }
@@ -377,6 +379,14 @@
 .modal-dialog.preferences .widgets-prefs li.no-content {
     width: auto;
     height: auto;
+}
+
+.modal-dialog.preferences .widgets-prefs li.clear {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    clear: both;
 }
 
 .modal-dialog ul.buttons li.rules {

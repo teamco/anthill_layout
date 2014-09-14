@@ -73,6 +73,16 @@ define([
          */
         setLayoutMode: function setLayoutMode(layout) {
             this.setPrefs('layoutMode', layout);
+        },
+
+        /**
+         * Set global widgets overlapping
+         * @member PageModel
+         * @param {boolean} overlapping
+         */
+        setOverlapping: function setOverlapping(overlapping) {
+            this._setItemInfoPreferences('overlapping', overlapping);
+            this.getConfig('widget').overlapping = overlapping;
         }
 
     }, BaseModel.prototype);

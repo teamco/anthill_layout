@@ -356,10 +356,90 @@ define([
                                 title: cname
                             }),
 
-                        $ul.append(_renderWidgets.bind(this)())
+                        $ul.append(
+                            this.renderPageWidgetsGlobalPrefs(),
+                            $('<li class="clear" />'),
+                            _renderWidgets.bind(this)()
+                        )
                     )
                 )
             );
+
+            return nodes;
+        },
+
+        /**
+         * Render page widgets global preferences
+         * @member PagesPreferences
+         * @returns {Array}
+         */
+        renderPageWidgetsGlobalPrefs: function renderPageWidgetsGlobalPrefs() {
+
+            /**
+             * Get active page
+             * @type {Page}
+             */
+            var page = this.view.scope.activeContent;
+
+            /**
+             * Define page widgets global prefs
+             * @type {{overlapping: {type: string, disabled: boolean, checked: boolean, visible: boolean}}}
+             */
+            var globalPrefs = {
+                overlapping: {
+                    type: 'checkbox',
+                    disabled: false,
+                    checked: page.model.getConfig('widget/overlapping'),
+                    visible: true
+                }
+            };
+
+            /**
+             * Define List node
+             * @type {Array}
+             */
+            var nodes = [];
+
+            for (var index in globalPrefs) {
+
+                if (globalPrefs.hasOwnProperty(index)) {
+
+                    var node = globalPrefs[index],
+                        $element;
+
+                    /**
+                     * Define text
+                     * @type {string}
+                     */
+                    var text = index.toPoint().humanize();
+
+                    if (node.type === 'checkbox') {
+
+                        /**
+                         * Get checkbox
+                         * @type {*[]}
+                         */
+                        $element = this.renderCheckbox({
+                            name: index,
+                            text: text.trim(),
+                            checked: node.checked,
+                            value: node.checked,
+                            disabled: node.disabled,
+                            visible: node.visible
+                        });
+                    }
+
+                    nodes.push(
+                        $('<li />').
+                            addClass([
+                                [page.constructor.name.toClassName(), index].join('-'),
+                                node.type,
+                                node.visible ? '' : 'hidden'
+                            ].join(' ')).
+                            append($element)
+                    );
+                }
+            }
 
             return nodes;
         },
