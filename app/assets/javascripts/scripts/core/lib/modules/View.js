@@ -228,6 +228,28 @@ define([
         },
 
         /**
+         * Render Header
+         * @member BaseView
+         * @param {HeaderElement} Header
+         * @param {string} title
+         */
+        renderHeader: function renderHeader(Header, title) {
+            this.header(Header, this.elements.$container).setText(title);
+        },
+
+        /**
+         * Render Footer
+         * @member BaseView
+         * @param {FooterElement} Footer
+         * @param {object} $element
+         */
+        renderFooter: function renderFooter(Footer, $element) {
+            this.footer(Footer, this.elements.$container).setHtml(
+                $element.getFooter()
+            );
+        },
+
+        /**
          * Generic modal dialog window
          * @member BaseView
          * @param {{

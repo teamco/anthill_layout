@@ -503,7 +503,17 @@ define([
              */
             var pageData = this.view.controller.getModuleByName('page-data');
 
+            /**
+             * Get scope
+             * @type {WorkspaceData}
+             */
+            var scope = this.view.scope;
+
             if (e.type === 'click') {
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.switchToActivePage
+                );
 
                 this.view.elements.$modal.selfDestroy();
 
@@ -514,6 +524,10 @@ define([
             }
 
             if (e.type === 'mouseenter' || e.type === 'mouseleave') {
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.switchToActivePage
+                );
 
                 panel.observer.publish(
                     panel.eventmanager.eventList.openPanel,

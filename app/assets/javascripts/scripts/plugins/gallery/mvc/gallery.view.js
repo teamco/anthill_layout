@@ -38,9 +38,7 @@ define([
                 return false;
             }
 
-            this.header(Header, this.elements.$container).setText(
-                'Gallery Widgets'
-            );
+            this.renderHeader(Header, 'Gallery Widgets');
 
             this.renderSearch();
 
@@ -57,16 +55,6 @@ define([
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
-        },
-
-        /**
-         * Render footer
-         * @member GalleryView
-         */
-        renderFooter: function renderFooter() {
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$gallery.getFooter()
-            );
         },
 
         /**
@@ -157,7 +145,7 @@ define([
                 this.elements.$container.$
             );
 
-            this.renderFooter();
+            this.renderFooter(Footer, this.elements.$gallery);
         },
 
         /**

@@ -54,9 +54,7 @@ define(
                     return false;
                 }
 
-                this.header(Header, this.elements.$container).setText(
-                    'Workspace Pages'
-                );
+                this.renderHeader(Header, 'Workspace Pages');
 
                 /**
                  * Define WorkspaceData element
@@ -67,9 +65,7 @@ define(
                     $container: this.elements.$container.$
                 });
 
-                this.footer(Footer, this.elements.$container).setHtml(
-                    this.elements.$workspacedata.getFooter()
-                );
+                this.renderFooter(Footer, this.elements.$workspacedata);
             },
 
             /**
@@ -88,6 +84,8 @@ define(
 
                 this.elements.$workspacedata.empty();
                 this.renderCreatePage();
+
+                this.renderHeader(Header, 'Workspace Pages');
 
                 /**
                  * Get current page
@@ -126,9 +124,7 @@ define(
                     this.elements.$container.$
                 );
 
-                this.footer(Footer, this.elements.$container).setHtml(
-                    this.elements.$workspacedata.getFooter()
-                );
+                this.renderFooter(Footer, this.elements.$workspacedata);
             },
 
             /**

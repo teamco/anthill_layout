@@ -39,9 +39,7 @@ define([
                 return false;
             }
 
-            this.header(Header, this.elements.$container).setText(
-                'Page Widgets'
-            );
+            this.renderHeader(Header, 'Page Widgets');
 
             /**
              * Define PageData element
@@ -52,9 +50,7 @@ define([
                 $container: this.elements.$container.$
             });
 
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$pagedata.getFooter()
-            );
+            this.renderFooter(Footer, this.elements.$pagedata);
         },
 
         /**
@@ -71,6 +67,8 @@ define([
              */
             this.elements.items = {};
             this.elements.$pagedata.empty();
+
+            this.renderHeader(Header, 'Page Widgets');
 
             for (var index in data) {
 
@@ -105,9 +103,7 @@ define([
                 this.elements.$container.$
             );
 
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$pagedata.getFooter()
-            );
+            this.renderFooter(Footer, this.elements.$pagedata);
         },
 
         /**

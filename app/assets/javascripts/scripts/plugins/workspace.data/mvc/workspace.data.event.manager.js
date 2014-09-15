@@ -36,7 +36,8 @@ define([
          *      loadContent: string,
          *      setActiveContent: string,
          *      updatePagesOrder: string,
-         *      preparePreferences: string
+         *      preparePreferences: string,
+         *      switchToActivePage: string
          * }}
          */
         eventList: {
@@ -44,7 +45,8 @@ define([
             loadContent: 'load.content',
             setActiveContent: 'set.active.content',
             preparePreferences: 'prepare.preferences',
-            updatePagesOrder: 'update.pages.order'
+            updatePagesOrder: 'update.pages.order',
+            switchToActivePage: 'switch.to.active.page'
         },
 
         /**

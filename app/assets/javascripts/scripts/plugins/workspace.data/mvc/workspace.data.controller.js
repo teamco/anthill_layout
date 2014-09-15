@@ -342,7 +342,44 @@ define(
                     ws.eventmanager.eventList.afterPageOrder,
                     order
                 );
-            }
+            },
+
+            /**
+             * Switch to active page before rendering widget preferences
+             * @member WorkspaceDataController
+             * @returns {boolean}
+             */
+            switchToActivePage: function switchToActivePage() {
+
+                /**
+                 * Get page
+                 * @type {Page}
+                 */
+                var page = this.activeContent;
+
+                if (!page) {
+                    this.logger.warn('Undefined page');
+                    return false;
+                }
+
+                if (page === this.controller.getPage()) {
+                    this.logger.debug('Page already current');
+                    return false;
+                }
+
+                /**
+                 * Get workspace
+                 * @type {Workspace}
+                 */
+                var ws = page.controller.getContainment();
+
+                ws.observer.publish(
+                    ws.eventmanager.eventList.switchToPage, [
+                        page,
+                        false
+                    ]
+                );
+             }
 
         }, PluginBase.prototype, PreferencesController.prototype);
     }
