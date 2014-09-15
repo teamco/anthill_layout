@@ -147,7 +147,7 @@ define([
             var hash = this.base.lib.hash;
 
             return hash.hashLength(data || {}) !==
-            hash.hashLength(content || {})
+                hash.hashLength(content || {})
         },
 
         /**
@@ -243,7 +243,7 @@ define([
                  * @type {WidgetRulesContentElement}
                  */
                 var $item = this.view.elements.items[
-                widget.model.getUUID() + '-widget-rules'];
+                    widget.model.getUUID() + '-widget-rules'];
 
                 $item.$.trigger('click.rules');
             }

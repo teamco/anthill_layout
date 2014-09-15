@@ -144,7 +144,7 @@ define([
              */
             this.elements.items = this.elements.items || {};
 
-            if ((this.isCachedItems() && !force) || this.elements.items.hasOwnProperty(sname)) {
+            if ((this.isCachedItems() || this.elements.items.hasOwnProperty(sname)) && !force) {
                 return false;
             }
 
@@ -157,7 +157,7 @@ define([
                 $container: this.elements.$content.$
             });
 
-            module.view.defineContainer($item);
+            module.view.defineContainer.bind(module.view)($item);
 
             this.elements.items[sname] = $item;
         },

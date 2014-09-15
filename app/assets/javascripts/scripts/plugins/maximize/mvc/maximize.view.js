@@ -40,7 +40,7 @@ define([
             }
 
             this.header(Header, this.elements.$container).setText(
-                'Page Widgets'
+                'Maximize Widgets'
             );
 
             /**
