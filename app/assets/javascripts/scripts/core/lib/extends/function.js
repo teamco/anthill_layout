@@ -96,7 +96,6 @@
     // explicitly setting this and passing an array of parameters. The parameters (if any)
     // are obtained from the arguments array. Unfortunately, the arguments array is not a
     // true array, so we have to use apply again to invoke the array slice method.
-
     Function.method('inherits', function inherits(Parent) {
         var d = {},
             p = (this.prototype[Parent.name.toLowerCase()] = new Parent());
@@ -138,6 +137,7 @@
 
     /**
      * Get Function name
+     * @member Function
      */
     if (Function.prototype.name === undefined && Object.defineProperty !== undefined) {
 
@@ -163,6 +163,7 @@
 
     /**
      * Get Function Caller name
+     * @member Function
      */
     Function.method('getCallerName', function getCallerName() {
         var cfn = this.caller;
@@ -171,21 +172,27 @@
 
     /**
      * Extend Function prototype
+     * @member Function
      */
     Function.method('extend', function extend() {
 
         var i = 0, l = arguments.length;
 
-        function extendMethod(node) {
+        function _extendMethod(node) {
+
+            // Extend constructor as named instance
             if (typeof(node) === 'function') {
 
-                var self = {};
+                var _proto = {};
 
-                $.extend(true, self, this.prototype);
+                $.extend(true, _proto, this.prototype);
                 this.inherits(node);
-                $.extend(true, this.prototype, self);
+                $.extend(true, this.prototype, _proto);
 
-            } else if (typeof(node) === 'string') {
+            } else
+
+            // Set function name
+            if (typeof(node) === 'string') {
 
                 if (this.name.length === 0) {
                     this.prototype.name = this.name.set(node);
@@ -193,12 +200,13 @@
 
             } else {
 
+                // Extend constructor prototype
                 $.extend(true, this.prototype, node);
             }
         }
 
         for (i; i < l; i += 1) {
-            extendMethod.bind(this)(arguments[i]);
+            _extendMethod.bind(this)(arguments[i]);
         }
 
         return this;
@@ -206,6 +214,7 @@
 
     /**
      * Clone function
+     * @member Function
      */
     Function.method('clone', function clone() {
 

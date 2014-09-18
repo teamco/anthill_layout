@@ -109,6 +109,7 @@ define([
          * @member PanelView
          */
         renderContentContainer: function renderContentContainer() {
+
             /**
              * Define Panel element
              * @type {PanelContentContainerElement}
@@ -157,7 +158,7 @@ define([
                 $container: this.elements.$content.$
             });
 
-            module.view.defineContainer.bind(module.view)($item);
+            module.view.defineContainer($item);
 
             this.elements.items[sname] = $item;
         },

@@ -22,7 +22,7 @@ define([
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
-            destroy: false
+            destroy: true
         });
 
         return this;
