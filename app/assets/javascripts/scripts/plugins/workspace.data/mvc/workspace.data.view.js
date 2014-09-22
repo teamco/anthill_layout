@@ -84,7 +84,7 @@ define(
 
                 this.elements.$workspacedata.empty();
                 this.renderCreatePage();
-debugger
+
                 this.renderHeader(Header, 'Workspace Pages');
 
                 /**
