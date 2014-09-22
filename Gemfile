@@ -10,7 +10,13 @@ gem 'jsduck'
 
 #gem 'mysql2'
 
-gem 'puma'
+case RUBY_PLATFORM
+  when /darwin/
+    gem 'puma'
+  when /win32/
+    gem 'thin'
+end
+
 gem 'tzinfo-data'
 gem 'tzinfo'
 # Use SCSS for stylesheets
