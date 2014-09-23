@@ -11,10 +11,17 @@ gem 'sqlite3'
 # Use puma/thin/unicorn as the app server
 case RUBY_PLATFORM
   when /darwin/
+
     gem 'puma'
+
+    # Use debugger
+    gem 'byebug', group: [:development, :test]
+
   when /win32/
+
     gem 'thin'
   else
+
     gem 'unicorn'
 end
 
@@ -46,9 +53,6 @@ gem 'jsduck', group: :development
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
