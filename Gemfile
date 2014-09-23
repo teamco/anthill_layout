@@ -10,7 +10,7 @@ gem 'jsduck'
 
 #gem 'mysql2'
 
-gem 'puma'
+#gem 'puma'
 gem 'tzinfo-data'
 gem 'tzinfo'
 # Use SCSS for stylesheets

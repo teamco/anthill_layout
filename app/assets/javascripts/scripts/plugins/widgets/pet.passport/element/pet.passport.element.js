@@ -43,7 +43,7 @@ define([
             var $mainContainer = [
                 '<div id="mainContainer"><label class="petname">Spike</label>',
                 '<div class="passportContainer"><ul class="passportRows"></ul></div>',
-                '<div class="passportFooter"><div class="editModeMenu">Edit Fields</div></div>',
+                '<div class="passportFooter"><div class="editModeMenu">Edit Details</div></div>',
                 '</div>'
             ].join('');
 

@@ -111,7 +111,7 @@ define([
                 thumbnail: '',
                 dimensions: {
                     width: 6,
-                    height: 8
+                    height: 7
                 },
                 type: 'image',
                 resource: 'avatar'
@@ -379,6 +379,17 @@ define([
                 },
                 type: 'Template',
                 resource: 'post.template'
+            },
+            {
+                name: 'Events Diary',
+                description: 'Events reminder tool',
+                thumbnail: '',
+                dimensions: {
+                    width: 7,
+                    height: 10
+                },
+                type: 'Events',
+                resource: 'events'
             }
 
         ];
