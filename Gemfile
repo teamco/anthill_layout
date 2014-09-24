@@ -53,9 +53,3 @@ gem 'jsduck', group: :development
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
