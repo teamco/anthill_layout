@@ -8,12 +8,6 @@ gem 'sqlite3'
 
 #gem 'mysql2'
 
-<<<<<<< HEAD
-
-gem 'puma'
-
-=======
->>>>>>> origin/master
 # Use puma/thin/unicorn as the app server
 case RUBY_PLATFORM
   when /darwin/
@@ -31,10 +25,6 @@ case RUBY_PLATFORM
     gem 'unicorn'
 end
 
-<<<<<<< HEAD
-#>>>>>>> origin/master
-=======
->>>>>>> origin/master
 gem 'tzinfo-data'
 gem 'tzinfo'
 
