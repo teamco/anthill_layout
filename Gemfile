@@ -19,7 +19,7 @@ case RUBY_PLATFORM
 
   when /win32/
 
-    gem 'thin'
+    #gem 'thin'
   else
 
     gem 'unicorn'
