@@ -8,20 +8,33 @@ gem 'sqlite3'
 
 #gem 'mysql2'
 
-#<<<<<<< HEAD
+<<<<<<< HEAD
+
 gem 'puma'
-#=======
+
+=======
+>>>>>>> origin/master
 # Use puma/thin/unicorn as the app server
 case RUBY_PLATFORM
   when /darwin/
+
     gem 'puma'
+
+    # Use debugger
+    gem 'byebug', group: [:development, :test]
+
   when /win32/
+
     gem 'thin'
   else
+
     gem 'unicorn'
 end
 
+<<<<<<< HEAD
 #>>>>>>> origin/master
+=======
+>>>>>>> origin/master
 gem 'tzinfo-data'
 gem 'tzinfo'
 
@@ -49,10 +62,7 @@ gem 'spring', group: :development
 gem 'jsduck', group: :development
 
 # Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
-
-# Use debugger
-gem 'debugger', group: [:development, :test]
+# gem 'capistrano-rails', group: :development
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
