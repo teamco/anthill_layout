@@ -17,6 +17,9 @@ case RUBY_PLATFORM
     # Use debugger
     gem 'byebug', group: [:development, :test]
 
+    # Use Capistrano for deployment
+    gem 'capistrano-rails', group: :development
+    
   when /win32/
 
     #gem 'thin'
@@ -50,6 +53,3 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'spring', group: :development
 
 gem 'jsduck', group: :development
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
