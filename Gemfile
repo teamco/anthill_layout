@@ -22,7 +22,7 @@ case RUBY_PLATFORM
     #gem 'thin'
   else
 
-    #gem 'unicorn'
+    gem 'thin'
 end
 
 gem 'tzinfo-data'
