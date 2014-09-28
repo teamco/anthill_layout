@@ -40,13 +40,20 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
             var $element = this;
-
-
+            var $container = '<div id="calendarik"></div>';
 
             $element.view.controller.clearParentThumbnail();
             $element.$.append(
-                $avatarMainFrame
+                $container
             );
+
+            require([
+                'plugins/widgets/events/libraries/jquery.eventCalendar'
+            ], function showCalendar() {
+                $('#calendarik').eventCalendar({
+                    eventsjson: '/assets/javascripts/scripts/plugins/widgets/events/libraries/file.json'
+                });
+            });
         }
 
     }, BaseElement.prototype);
