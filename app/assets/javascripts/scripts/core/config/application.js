@@ -81,7 +81,7 @@ define([
             },
             html: {
                 style: 'default',
-                header: true,
+                header: false,
                 footer: false,
                 stretch: true,
                 padding: {

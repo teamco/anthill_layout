@@ -21,7 +21,8 @@ require([
             window.shared = new Application({
                 config: {
                     html: {
-                        container: 'body'
+                        container: 'body',
+                        header: true
                     },
                     appName: 'shared',
                     mode: 'development'
@@ -31,9 +32,8 @@ require([
             window.shared.view.render();
 
             if (!window.shared.model.loadData()) {
-
-                var workspace1 = window.shared.api.createWorkspace([], true),
-                    page1 = workspace1.api.createPage([], true);
+                window.shared.api.createWorkspace([], true).
+                    api.createPage([], true);
             }
         });
     });
