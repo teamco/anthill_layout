@@ -325,7 +325,7 @@ li.eventsCalendar-day.current a:hover {
     margin-top: 15px;
     font-family: Arial;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 13px;
 }
 .widget .content .events .eventsCalendar-list li a.eventTitle:hover {
     text-decoration: underline;

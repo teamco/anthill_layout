@@ -385,8 +385,8 @@ define([
                 description: 'Events reminder tool',
                 thumbnail: '',
                 dimensions: {
-                    width: 7,
-                    height: 10
+                    width: 9,
+                    height: 12
                 },
                 type: 'Events',
                 resource: 'events'
