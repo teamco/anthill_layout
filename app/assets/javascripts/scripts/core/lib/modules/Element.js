@@ -859,6 +859,14 @@ define([
                     position: $modal.position
                 });
             }
+        },
+
+        /**
+         * Remove loading class after loading items
+         * @member BaseElement
+         */
+        hideLoader: function hideLoader() {
+            this.$container.removeClass('loading');
         }
 
     }, AntHill.prototype, Renderer.prototype);

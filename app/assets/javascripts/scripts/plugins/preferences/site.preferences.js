@@ -54,9 +54,41 @@ define([
         getPreferencesHtml: function getPreferencesHtml(map) {
 
             return [
+                this.setSiteTitle(),
                 this.siteWidthSlider(map),
                 this.googleAnalytics()
             ];
+        },
+
+        /**
+         * Set site title preference
+         * @member SitePreferences
+         * @returns {*|jQuery}
+         */
+        setSiteTitle: function setSiteTitle() {
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                preferences = workspace.model.getConfig('preferences');
+
+            /**
+             * Render slider input
+             * @type {*[]}
+             */
+            var $textfield = this.renderTextField({
+                name: 'siteTitle',
+                text: 'Site Title',
+                disabled: false,
+                visible: true,
+                value: preferences['siteTitle'] || $('title').text()
+            });
+
+            return $('<li />').
+                addClass('workspace-title-prefs').
+                append($textfield);
         },
 
         /**

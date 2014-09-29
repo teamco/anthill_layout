@@ -418,7 +418,7 @@ define([
          * @member BaseModel
          * @param {string} index
          * @param value
-         * @private
+         * @protected
          */
         _setItemInfoPreferences: function _setItemInfoPreferences(index, value) {
 

@@ -19,7 +19,7 @@ define(
      * @param {Router} Router
      * @returns {*}
      */
-        function defineWorkspaceController(BaseController, BasePreferences, Router) {
+    function defineWorkspaceController(BaseController, BasePreferences, Router) {
 
         /**
          * Define workspace controller
@@ -115,7 +115,7 @@ define(
                             this.controller.getItemIdentity(page) : '',
 
                         wurl = widget ?
-                            '/' + page.controller.getItemIdentity(widget) : '';
+                        '/' + page.controller.getItemIdentity(widget) : '';
 
                     this.controller.setHashLocation(
                         ''.concat('/', purl, wurl)
@@ -296,6 +296,16 @@ define(
 
                         $workspace.unsetWidth();
                     }
+                },
+
+                /**
+                 * Update site title
+                 * @member WorkspaceController
+                 */
+                updateSiteTitle: function updateSiteTitle() {
+                    this.view.get$item().updateTitle(
+                        this.model.getConfig('preferences')['siteTitle']
+                    );
                 },
 
                 /**

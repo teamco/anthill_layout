@@ -52,6 +52,26 @@ define([
         },
 
         /**
+         * Set site title
+         * @param {string} title
+         */
+        setSiteTitle: function setSiteTitle(title) {
+
+            /**
+             * Set local scope
+             * @type {Workspace}
+             */
+            var scope = this.scope;
+
+            this._setItemInfoPreferences('siteTitle', title);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateSiteTitle
+            );
+
+        },
+
+        /**
          * Set google analytics tracking id
          * @member WorkspaceModel
          * @param {string} trackingId

@@ -41,14 +41,6 @@ define([
             this.$.attr({
                 id: this.view.createUUID()
             })
-        },
-
-        /**
-         * Remove loading class after loading items
-         * @member AppElement
-         */
-        hideLoader: function hideLoader() {
-            this.$container.removeClass('loading');
         }
 
     }, BaseElement.prototype);

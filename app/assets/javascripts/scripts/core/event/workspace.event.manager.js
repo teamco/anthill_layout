@@ -50,6 +50,7 @@ define(
              *      afterSwitchToPage: string,
              *      adoptContentWidth: string,
              *      afterLoadingItems: string,
+             *      updateSiteTitle: string,
              *      updateSiteWidth: string,
              *      loadTrackingSnippet: string,
              *      loadPreferences: string,
@@ -77,6 +78,8 @@ define(
                 afterLoadingItems: 'after.loading.items',
 
                 updateSiteWidth: 'update.site.width',
+
+                updateSiteTitle: 'update.site.title',
 
                 loadTrackingSnippet: 'load.tracking.snippet',
 

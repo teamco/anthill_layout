@@ -29,6 +29,15 @@ define([
     return WorkspaceElement.extend('WorkspaceElement', {
 
         /**
+         * Set site title
+         * @member WorkspaceElement
+         * @param {string} title
+         */
+        updateTitle: function updateTitle(title) {
+            $('title').text(title);
+        },
+
+        /**
          * Set workspace width
          * @member WorkspaceElement
          * @param {number} width
