@@ -14,7 +14,7 @@ define([
     'element/application/application.content.element',
     'element/export.element',
     'element/application/application.debug.element'
-], function defineApplicationView(BaseView, AppHTML, Header, Footer, AppContentElement, ExportElement, DebuggerElement) {
+], function defineApplicationView(BaseView, AppElement, Header, Footer, AppContentElement, ExportElement, DebuggerElement) {
 
     /**
      * View
@@ -37,7 +37,7 @@ define([
              * Define $application
              * @type {AppElement}
              */
-            this.elements.$app = new AppHTML(this, {
+            this.elements.$app = new AppElement(this, {
                 $container: this.getConfigHTML().container,
                 id: this.createUUID(),
                 mode: this.controller.getMode()
@@ -63,15 +63,6 @@ define([
             this.elements.$workspaces = new AppContentElement(this, {
                 $container: this.elements.$app.$,
                 style: 'workspaces'
-            });
-            
-             /**
-             * Define $headstrip
-             * @type {AppContentElement}
-             */
-            this.elements.$workspaces = new AppContentElement(this, {
-                $container: this.elements.$workspaces.$,
-                style: 'headstrip'
             });
         },
 

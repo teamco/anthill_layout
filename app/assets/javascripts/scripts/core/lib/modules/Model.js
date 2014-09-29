@@ -542,12 +542,17 @@ define([
 
             /**
              * Set data
+             * @type {object}
              */
             data = base.isDefined(data) ?
                 data : this.setting.load();
 
             if (!data.hasOwnProperty('collector')) {
-                scope.controller.setAsLoading(false);
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.afterLoadingItems
+                );
+
                 return false;
             }
 

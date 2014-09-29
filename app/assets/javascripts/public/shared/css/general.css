@@ -13,7 +13,7 @@
     box-shadow: 1px 0 5px 0 rgba(50, 50, 50, 0.4);
 }
 */
-.headstrip {
+.app-header {
     width:100%;
     height: 50px;
     position: absolute;
