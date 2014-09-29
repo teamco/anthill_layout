@@ -95,3 +95,18 @@ ul.workspace-data > .add-page:hover {
 .modal-dialog ul.buttons li.destroy-page-widgets {
     margin-left: 30px;
 }
+
+.modal-dialog.preferences div.html ul.layout-prefs > li {
+    width: 49%;
+    height: 30px;
+    float: left;
+    background-color: #fff;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
+    border: 1px solid #ccc;
+    padding: 2px 4px;
+    margin-right: 1%;
+    clear: none;
+    overflow: hidden;
+}

@@ -208,16 +208,17 @@ define([
 
                         $ul.append([
 
-                            $('<li class="layout-prefs" />').append(
+                            $('<li />').append(
                                 this.renderTextField({
-                                    name: 'cell',
+                                    name: 'layout-cell',
                                     text: 'Cell size',
-                                    value: cellWidth,
+                                    value: cellWidth.toFixed(3),
+                                    visible: true,
                                     disabled: true
                                 })
                             ).attr('rel', 'layout-cell'),
 
-                            $('<li class="layout-prefs" />').append(
+                            $('<li />').append(
                                 this.renderCombobox(
                                     [
                                         {
@@ -239,7 +240,19 @@ define([
                                     undefined,
                                     true
                                 )
-                            ).attr('rel', 'layout-behavior')
+                            ).attr('rel', 'layout-behavior').
+                                addClass('page-layout-behavior'),
+
+                            $('<li />').append(
+                                this.renderTextField({
+                                    name: 'layout-columns',
+                                    text: 'Columns',
+                                    value: layout.config.grid.columns,
+                                    visible: true,
+                                    disabled: false
+                                })
+                            ).attr('rel', 'layout-columns').
+                                addClass('page-layout-columns')
                         ])
                     )
                 ).addClass('auto')
