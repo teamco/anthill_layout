@@ -72,7 +72,16 @@ define([
          * @param {string} layout
          */
         setLayoutMode: function setLayoutMode(layout) {
-            this.setPrefs('layoutMode', layout);
+            this._setItemInfoPreferences('layoutMode', layout);
+        },
+
+        /**
+         * Set layout columns
+         * @member PageModel
+         * @param {number} columns
+         */
+        setLayoutColumns: function setLayoutColumns(columns) {
+            this._setItemInfoPreferences('layoutColumns', columns);
         },
 
         /**

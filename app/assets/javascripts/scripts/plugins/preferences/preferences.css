@@ -134,6 +134,10 @@
     width: 100%;
 }
 
+.modal-dialog.preferences div.html div.combo-box {
+    display: none;
+}
+
 .modal-dialog.preferences div.html input[type="text"],
 .modal-dialog.preferences div.html div.combo-box > ul {
     border: 1px solid #ccc;

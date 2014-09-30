@@ -59,12 +59,20 @@ define([], function defineComboBoxRenderer() {
             }
 
             /**
+             * Define active content
+             * @type {*|Page|WidgetContent}
+             */
+            var activeContent = this.view.scope.activeContent;
+
+            /**
              * Define container
              * @type {*|jQuery}
              */
-            var $div = $('<div style="display: none;" />').addClass('combo-box').attr({
-                id: this.base.lib.generator.UUID() + '-combobox'
-            }).append(
+            var $div = $('<div class="combo-box" />').
+                addClass(activeContent ? [index, activeContent.constructor.name].join('').toDash() : '').
+                attr({
+                    id: this.base.lib.generator.UUID() + '-combobox'
+                }).append(
                 $('<input class="hidden" />').attr({
                     name: index,
                     disabled: true,
@@ -127,9 +135,10 @@ define([], function defineComboBoxRenderer() {
              * Define $ul
              * @type {*|jQuery}
              */
-            var $ul = $('<ul />');
+            var $ul = $('<ul />'),
+                i = 0, l = data.length;
 
-            for (var i = 0, l = data.length; i < l; i++) {
+            for (; i < l; i++) {
 
                 var field = data[i],
                     $li = $('<li />');

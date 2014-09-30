@@ -240,8 +240,7 @@ define([
                                     undefined,
                                     true
                                 )
-                            ).attr('rel', 'layout-behavior').
-                                addClass('page-layout-behavior'),
+                            ).attr('rel', 'layout-behavior'),
 
                             $('<li />').append(
                                 this.renderTextField({
