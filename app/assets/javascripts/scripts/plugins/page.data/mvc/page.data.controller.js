@@ -69,7 +69,7 @@ define([
             var widget = page.model.getItemByUUID(uuid);
 
             if (!widget) {
-
+debugger
                 this.logger.warn('Invalid data', page, uuid);
 
                 /**

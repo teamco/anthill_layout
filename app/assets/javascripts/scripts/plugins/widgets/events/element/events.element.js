@@ -53,7 +53,7 @@ define([
                 require([
                 'plugins/widgets/events/mvc/events.behavior'
             ], function showCalendar(EventsBehavior) {
-                    var showCalendar = new EventsBehavior();
+                    var showCalendar = new EventsBehavior($('#calendarik'));
                 });
             });
         }
