@@ -62,6 +62,22 @@ define([
              */
             var page = workspacesData.activeContent;
 
+            if (!page) {
+
+                /**
+                 * Get current page
+                 * @type {Page}
+                 */
+                page = this.controller.getPage();
+
+                workspacesData.observer.publish(
+                    workspacesData.eventmanager.eventList.setActiveContent,
+                    page.model.getUUID()
+                );
+
+                this.logger.debug('Define workspaces data active content', page);
+            }
+
             /**
              * Get widget
              * @type {Widget}
@@ -243,7 +259,7 @@ define([
                  * @type {WidgetRulesContentElement}
                  */
                 var $item = this.view.elements.items[
-                    widget.model.getUUID() + '-widget-rules'];
+                widget.model.getUUID() + '-widget-rules'];
 
                 $item.$.trigger('click.rules');
             }
