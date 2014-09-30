@@ -6,8 +6,9 @@
  */
 
 define([
+    'jquery',
     'modules/Element'
-], function defineEventsElement(BaseElement) {
+], function defineEventsElement($, BaseElement) {
 
     /**
      * Define Events Element
@@ -40,32 +41,50 @@ define([
          * @member EventsElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
+
+            /**
+             * Get this
+             * @type {EventsElement}
+             */
             var $element = this;
+
+            /**
+             * Get scope
+             * @type {Events}
+             */
             var scope = $element.view.scope;
+
+            /**
+             * Create $container
+             * @type {string}
+             */
             var $container = '<div id="calendarik"></div>';
 
             $element.view.controller.clearParentThumbnail();
+            
             $element.$.append(
                 $container
             );
 
             require([
+                'plugins/widgets/events/mvc/events.behavior',
                 'plugins/widgets/events/libraries/jquery.eventCalendar'
-            ], function showEvents() {
-                require([
-                    'plugins/widgets/events/mvc/events.behavior'
-                ], function showCalendar(EventsBehavior) {
-                    var showCalendar = new EventsBehavior($('#calendarik'));
+            ], function showEvents(EventsBehavior) {
 
-                    $element.$.append(
-                        $('<div />').on('click', function() {
-                            scope.observer.publish(
-                                scope.eventmanager.eventList.getEventData,
-                                [1412013690000, $element]
-                            )
-                        }).text('Click me')
-                    );
-                });
+                /**
+                 * Create calendar instance
+                 * @type {EventsBehavior}
+                 */
+                var showCalendar = new EventsBehavior($('#calendarik'));
+
+                $element.$.append(
+                    $('<div />').on('click', function () {
+                        scope.observer.publish(
+                            scope.eventmanager.eventList.getEventData,
+                            [1412013690000, $element]
+                        )
+                    }).text('Click me')
+                );
             });
         },
 
@@ -95,12 +114,33 @@ define([
                 })
             );
 
-
             this.$.append(
                 $form.append([
                     $title,
                     $description
                 ])
+            );
+        },
+
+        /**
+         * Collect Event data
+         * @member EventsElement
+         */
+        collectEventData: function collectEventData() {
+
+            // TODO
+
+            var event = {};
+
+            /**
+             * Get scope
+             * @type {Events}
+             */
+            var scope = this.view.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateEventsData,
+                event
             );
         }
 

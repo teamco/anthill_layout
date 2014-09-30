@@ -59,12 +59,15 @@ define([
          */
         getEventData: function getEventData(timestamp, $element) {
 
-            var events = JSON.parse(
-                this.model.getPrefs('eventsJson') || '{}'
-            );
+            /**
+             * Get events list
+             * @type {Object}
+             */
+            var events = this.controller.getEventsList();
 
             if (events.hasOwnProperty(timestamp)) {
 
+                // Update
                 this.observer.publish(
                     this.eventmanager.eventList.setActiveEvent,
                     events[timestamp]
@@ -73,7 +76,35 @@ define([
                 $element.renderFormData(
                     this.controller.getAciveEvent()
                 );
+
+            } else {
+
+                // Create new
+                $element.renderFormData({});
             }
+        },
+
+        /**
+         * Get events list
+         * @member EventsController
+         * @returns {Object}
+         */
+        getEventsList: function getEventsList() {
+
+            var events = '{}';
+
+            try {
+
+                events = JSON.parse(
+                    this.model.getPrefs('eventsJson') || events
+                );
+
+            } catch (e) {
+
+                this.scope.logger.warn('Unable to parse events list', e);
+            }
+
+            return events;
         },
 
         /**
@@ -92,6 +123,34 @@ define([
          */
         getAciveEvent: function getActiveEvent() {
             return this.scope.activeEvent || {};
+        },
+
+        /**
+         * Update events data JSON
+         * @member EventsController
+         * @param event
+         */
+        updateEventsData: function updateEventsData(event) {
+
+            /**
+             * Get events list
+             * @type {Object}
+             */
+            var events = this.controller.getEventsList(),
+                createMsg = 'Create',
+                updateMsg = 'Update';
+
+            this.logger.debug([
+                (events.hasOwnProperty(event.date) ?
+                    updateMsg : createMsg),
+                'event'
+            ].join(' '), event);
+
+            events[event.date] = event;
+
+            this.model.setEventsJson(
+                JSON.stringify(events)
+            );
         }
 
     }, PluginBase.prototype, WidgetContentController.prototype);
