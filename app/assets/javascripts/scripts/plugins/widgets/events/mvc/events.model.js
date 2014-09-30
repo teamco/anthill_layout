@@ -25,6 +25,12 @@ define([
          * @type {{}}
          */
         this.preferences = {
+            eventsJson: {
+                type: 'textarea',
+                disabled: false,
+                value: undefined,
+                visible: true
+            }
         };
 
         /**
@@ -37,6 +43,14 @@ define([
 
     return EventsModel.extend('EventsModel', {
 
+        /**
+         * Set events json
+         * @member EventsModel
+         * @param {string} json
+         */
+        setEventsJson: function setEventsJson(json) {
+            this.setPrefs('eventsJson', json);
+        }
 
     }, BaseModel.prototype, WidgetContentModel.prototype);
 });

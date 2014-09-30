@@ -32,6 +32,13 @@ define([
         this.containment = containment;
 
         /**
+         * Define active event
+         * @member Events
+         * @type {undefined}
+         */
+        this.activeEvent = undefined;
+
+        /**
          * Define referrer
          * @member Events
          * @type {*}
@@ -98,7 +105,5 @@ define([
         );
     };
 
-    return Events.extend('Events', {
-
-    }, AntHill.prototype);
+    return Events.extend('Events', {}, AntHill.prototype);
 });

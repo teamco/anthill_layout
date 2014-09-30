@@ -19,7 +19,10 @@ define([
      */
     var EventsEventManager = function EventsEventManager() {
 
-        this.updateEventList({});
+        this.updateEventList({
+            getEventData: 'get.event.data',
+            setActiveEvent: 'set.active.event'
+        });
     };
 
     return EventsEventManager.extend('EventsEventManager', {

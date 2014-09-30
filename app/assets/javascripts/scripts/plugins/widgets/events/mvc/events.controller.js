@@ -49,6 +49,49 @@ define([
                 scope.eventmanager.eventList.publishRule,
                 [$button.attr('value'), this.scope.constructor.name]
             );
+        },
+
+        /**
+         * Get Event Data
+         * @member EventsController
+         * @param {number} timestamp
+         * @param {EventsElement} $element
+         */
+        getEventData: function getEventData(timestamp, $element) {
+
+            var events = JSON.parse(
+                this.model.getPrefs('eventsJson') || '{}'
+            );
+
+            if (events.hasOwnProperty(timestamp)) {
+
+                this.observer.publish(
+                    this.eventmanager.eventList.setActiveEvent,
+                    events[timestamp]
+                );
+
+                $element.renderFormData(
+                    this.controller.getAciveEvent()
+                );
+            }
+        },
+
+        /**
+         * Set active event
+         * @member EventsController
+         * @param event
+         */
+        setActiveEvent: function setActiveEvent(event) {
+            this.activeEvent = event;
+        },
+
+        /**
+         * Get active event
+         * @member EventsController
+         * @return {object}
+         */
+        getAciveEvent: function getActiveEvent() {
+            return this.scope.activeEvent || {};
         }
 
     }, PluginBase.prototype, WidgetContentController.prototype);
