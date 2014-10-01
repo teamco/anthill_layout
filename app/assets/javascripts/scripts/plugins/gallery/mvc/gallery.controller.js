@@ -24,7 +24,7 @@ define([
          * Get providers data
          * @member GalleryController
          */
-        getData: function getData() {
+        getProvidersData: function getProvidersData() {
             return this.model.getProvidersList();
         },
 
@@ -58,17 +58,30 @@ define([
              * Get available providers
              * @type {*}
              */
-            var data = this.model.staticData,
-                index;
+            var data = this.model.providers,
+                index, i = 0, pl;
 
             for (index in data) {
 
                 if (data.hasOwnProperty(index)) {
-                    this.model.setProvider(data[index]);
+
+                    pl = data[index].data.length;
+
+                    for (; i < pl; i++) {
+
+                        // Categorize providers data list
+                        this.model.setProvider(data[index].data[i]);
+                    }
                 }
             }
         },
 
+        /**
+         * Change current provider
+         * @member GalleryController
+         * @param provider
+         * @returns {boolean}
+         */
         changeProvider: function changeProvider(provider) {
 
             if (provider === this.getCurrentProvider().key) {
@@ -150,7 +163,7 @@ define([
                 }
             }
 
-            this.getView().renderFooter();
+            this.getView().updateFooterContent();
         },
 
         /**

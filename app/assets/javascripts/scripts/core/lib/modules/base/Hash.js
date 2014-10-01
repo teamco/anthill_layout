@@ -129,9 +129,9 @@ define([], function defineBaseHash() {
          * @returns {string}
          */
         getKeyByValue: function getKeyByValue(h, v) {
-            for (var prop in v) {
-                if (this.hasOwnProperty(prop)) {
-                    if (this[prop] === v)
+            for (var prop in h) {
+                if (h.hasOwnProperty(prop)) {
+                    if (h[prop] === v)
                         return prop;
                 }
             }

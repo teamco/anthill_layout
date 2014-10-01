@@ -55,7 +55,7 @@ define([
 
             this.$.append(
                 this.renderCombobox(
-                    combo,
+                    combo.sortByValue('value', 'string'),
                     currentProvider.name,
                     '',
                     'galleryProviders', {

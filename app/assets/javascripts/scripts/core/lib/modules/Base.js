@@ -44,6 +44,12 @@ define([
         };
 
         /**
+         * Define lib
+         * @member Base
+         */
+        this.lib = {};
+
+        /**
          * Get shim
          * @member Base
          * @param type
@@ -68,12 +74,6 @@ define([
     };
 
     Base.extend({
-
-        /**
-         * Define lib
-         * @member Base
-         */
-        lib: {},
 
         /**
          * Get object type

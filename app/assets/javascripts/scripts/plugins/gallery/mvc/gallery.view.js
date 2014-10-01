@@ -14,7 +14,7 @@ define([
     'plugins/gallery/element/gallery.search.element',
     'plugins/gallery/element/gallery.content.element',
     'plugins/gallery/element/gallery.element'
-], function defineGalleryView(BaseView, Header, Footer, GalleryProviders, GallerySearch, GalleryContent, Gallery) {
+], function defineGalleryView(BaseView, Header, Footer, GalleryProvidersElement, GallerySearchElement, GalleryContentElement, GalleryElement) {
 
     /**
      * Define view
@@ -34,7 +34,7 @@ define([
          */
         renderGallery: function renderGallery() {
 
-            if (this.isCached('$gallery', Gallery)) {
+            if (this.isCached('$gallery', GalleryElement)) {
                 return false;
             }
 
@@ -43,7 +43,7 @@ define([
             this.renderSearch();
 
             this.renderProviders(
-                this.controller.getData(),
+                this.controller.getProvidersData(),
                 this.controller.getCurrentProvider()
             );
 
@@ -51,7 +51,7 @@ define([
              * Define Gallery element
              * @type {GalleryElement}
              */
-            this.elements.$gallery = new Gallery(this, {
+            this.elements.$gallery = new GalleryElement(this, {
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
@@ -70,7 +70,7 @@ define([
              * Define Gallery element
              * @type {GalleryProvidersElement}
              */
-            this.elements.$providers = new GalleryProviders(this, {
+            this.elements.$providers = new GalleryProvidersElement(this, {
                 $container: this.elements.$container.$,
                 style: 'gallery-providers',
                 data: providers,
@@ -85,7 +85,7 @@ define([
          */
         renderSearch: function renderSearch() {
 
-            if (this.isCached('$search', GallerySearch)) {
+            if (this.isCached('$search', GallerySearchElement)) {
                 return false;
             }
 
@@ -93,7 +93,7 @@ define([
              * Define Gallery element
              * @type {GallerySearchElement}
              */
-            this.elements.$search = new GallerySearch(this, {
+            this.elements.$search = new GallerySearchElement(this, {
                 $container: this.elements.$container.$,
                 style: 'gallery-search'
             });
@@ -132,7 +132,7 @@ define([
                  * Render item
                  * @type {GalleryContentElement}
                  */
-                var $item = new GalleryContent(this, {
+                var $item = new GalleryContentElement(this, {
                     style: 'content',
                     $container: this.elements.$gallery.$,
                     data: data[i]
@@ -145,6 +145,14 @@ define([
                 this.elements.$container.$
             );
 
+            this.updateFooterContent();
+        },
+
+        /**
+         * Update footer content
+         * @member GalleryView
+         */
+        updateFooterContent: function updateFooterContent() {
             this.renderFooter(Footer, this.elements.$gallery);
         },
 

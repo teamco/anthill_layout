@@ -17,6 +17,7 @@ define([], function defineBaseArray() {
 
     BaseArray.extend('BaseArray', {
 
+
     });
 
     return new BaseArray();
