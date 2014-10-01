@@ -2,7 +2,7 @@
  * Created by i061485 on 3/19/14.
  */
 
-define([], function defineBasePreferences() {
+define(['jquery'], function defineBasePreferences($) {
 
     /**
      * Define base prefs

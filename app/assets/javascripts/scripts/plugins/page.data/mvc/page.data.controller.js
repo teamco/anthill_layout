@@ -259,7 +259,7 @@ define([
                  * @type {WidgetRulesContentElement}
                  */
                 var $item = this.view.elements.items[
-                widget.model.getUUID() + '-widget-rules'];
+                    widget.model.getUUID() + '-widget-rules'];
 
                 $item.$.trigger('click.rules');
             }
