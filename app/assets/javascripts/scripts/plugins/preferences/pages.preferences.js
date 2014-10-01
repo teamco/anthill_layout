@@ -183,6 +183,7 @@ define([
              * @type {Layout}
              */
             var layout = page.controller.getLayout(),
+                workspace = page.controller.getContainment(),
                 modes = page.LAYOUT_MODES,
                 cname = layout.constructor.name;
 
@@ -197,6 +198,19 @@ define([
              * @type {Number}
              */
             var cellWidth = layout.controller.minCellWidth();
+
+            /**
+             * Get static width value
+             * @type {boolean|*}
+             */
+            var staticWidth = workspace.model.getConfig('preferences').staticWidth;
+
+            /**
+             * Get page width
+             * @type {number|string}
+             */
+            var width = staticWidth ?
+                page.view.get$item().getWidth() : 'Flexible';
 
             nodes.push(
                 $('<li />').append(
@@ -241,6 +255,17 @@ define([
                                     true
                                 )
                             ).attr('rel', 'layout-behavior'),
+
+                            $('<li />').append(
+                                this.renderTextField({
+                                    name: 'page-width',
+                                    text: 'Page width',
+                                    value: width,
+                                    visible: true,
+                                    disabled: true
+                                })
+                            ).attr('rel', 'page-width').
+                                addClass('page-width'),
 
                             $('<li />').append(
                                 this.renderTextField({
