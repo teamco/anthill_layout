@@ -90,12 +90,12 @@ define([
 
         renderFormData: function renderFormData(event) {
 
-            var $form = $('<ul />');
+            var $form = $('<ul/>');
 
             var $title = $('<li />').append(
                 this.renderTextField({
                     name: 'eventTitle',
-                    text: 'Title',
+                    text: '',
                     placeholder: 'Enter Title',
                     value: event.title,
                     disabled: false,
@@ -106,20 +106,36 @@ define([
             var $description = $('<li />').append(
                 this.renderTextArea({
                     name: 'eventDescription',
-                    text: 'Title',
+                    text: '',
                     placeholder: 'Enter Description',
                     value: event.description,
                     disabled: false,
                     visible: true
                 })
             );
+            
+            var $date = $('<li />').append(
+                this.renderTextField({
+                    name: 'eventDate',
+                    text: '',
+                    placeholder: '',
+                    value: event.date,
+                    disabled: false,
+                    visible: true,
+                    type: 'date'
+                })
+            );
 
             this.$.append(
                 $form.append([
                     $title,
-                    $description
-                ])
+                    $description,
+                    $date.datepicker()
+                ]).attr('class','eventEditorContaier animated flipInX')
+                
+
             );
+
         },
 
         /**
