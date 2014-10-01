@@ -90,6 +90,8 @@ define([
 
         renderFormData: function renderFormData(event) {
 
+            $('.eventEditorContainer').remove();
+            
             var $form = $('<ul/>');
 
             var $title = $('<li />').append(
