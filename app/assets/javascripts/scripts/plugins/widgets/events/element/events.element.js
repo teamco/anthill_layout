@@ -131,7 +131,7 @@ define([
                     $title,
                     $description,
                     $date.datepicker()
-                ]).attr('class','eventEditorContaier animated flipInX')
+                ]).attr('class','eventEditorContainer animated flipInX')
                 
 
             );
