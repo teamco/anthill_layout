@@ -11,7 +11,7 @@ define([
 ], function defineEmptyController(PluginBase, WidgetContentController) {
 
     /**
-     * Define empty controller
+     * Define Empty controller
      * @class EmptyController
      * @extends PluginController
      * @extends WidgetContentController

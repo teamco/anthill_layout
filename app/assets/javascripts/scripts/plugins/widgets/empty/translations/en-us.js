@@ -9,7 +9,5 @@
 define([], function defineEnUs() {
 
     return {
-        'gallery.providers.all': 'All',
-        'gallery.providers.favorites': 'Favorites'
     };
 });

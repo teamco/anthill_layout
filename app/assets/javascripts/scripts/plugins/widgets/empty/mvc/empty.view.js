@@ -27,7 +27,7 @@ define([
     return EmptyView.extend('EmptyView', {
 
         /**
-         * Render empty element
+         * Render Empty element
          * @member EmptyView
          */
         renderEmpty: function renderEmpty() {
@@ -93,7 +93,7 @@ define([
         },
 
         /**
-         * Render empty
+         * Render Empty
          * @member EmptyView
          */
         render: function render() {
