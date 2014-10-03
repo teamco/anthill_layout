@@ -70,7 +70,7 @@ define([], function defineBasePreferences() {
                  * Check if prefs in content
                  * @type {boolean}
                  */
-                var isContentPrefs = input.parentNode.className.indexOf(cname) !== -1;
+                var isContentPrefs = input.parentNode.className.replace(/-/g, '').indexOf(cname) !== -1;
 
                 var event = isContentPrefs ?
                     scope.eventmanager.eventList.transferContentPreferences :

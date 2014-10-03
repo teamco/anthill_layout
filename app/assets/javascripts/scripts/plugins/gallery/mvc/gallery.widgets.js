@@ -367,6 +367,17 @@ define([], function defineGalleryWidgets() {
                 },
                 type: 'social',
                 resource: 'events'
+            },
+            {
+                name: 'FilmOn',
+                description: 'LiveTV HDi. Anytime. Anywhere',
+                thumbnail: '',
+                dimensions: {
+                    width: 9,
+                    height: 12
+                },
+                type: 'video',
+                resource: 'film.on'
             }
         ];
     };
