@@ -48,7 +48,7 @@ def do_it
     write_file "/#{src_pattern}/", "/#{@file_name}/"
     puts "... Adopt CSS to: .#{@class_name.downcase}"
     write_file ".#{src_pattern}", ".#{@class_name.downcase}"
-    write_file "#{src_pattern}", "#{@class_name.downcase}"
+    write_file "#{src_pattern}", "#{@file_name}"
   end
 end
 
