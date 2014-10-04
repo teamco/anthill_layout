@@ -25,6 +25,7 @@ define([
          * @type {{}}
          */
         this.preferences = {
+            // Preferences
         };
 
         /**
@@ -37,6 +38,7 @@ define([
 
     return EmptyModel.extend('EmptyModel', {
 
+        // Setter
 
     }, BaseModel.prototype, WidgetContentModel.prototype);
 });

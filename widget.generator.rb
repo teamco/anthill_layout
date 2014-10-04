@@ -13,6 +13,25 @@ def write_file from, to
   end
 end
 
+def model_setters src
+  puts '>>> Define Setter? [y/n]'
+  puts '... Pattern: name: string, type: text|textarea, value'
+  
+  setter = gets.chomp.strip
+  setter = setter.split(',')
+
+  prefs = '// Preferences'
+  key = "#{@class_name.downcase}#{setter[0]}: {"
+  type = "type: '#{setter[1]}'"
+  disabled = 'disabled: false'
+  visible = 'visible: true'
+  value = "value: #{setter[2]||'undefined'}"
+  eop = '}'
+
+  write_file prefs, "#{key}#{type},#{disabled},#{visible},#{value}#{eop},\n#{prefs}"
+
+end
+
 def do_it
 
   path = './app/assets/javascripts/scripts/plugins/widgets/'
@@ -49,7 +68,10 @@ def do_it
     puts "... Adopt CSS to: .#{@class_name.downcase}"
     write_file ".#{src_pattern}", ".#{@file_name.split('.').join('-')}"
     write_file "'#{src_pattern}',", "'#{@file_name}',"
+
+    model_setters src_pattern if f.match(/model/)
   end
+  
 end
 
 @class_name = camel_case ''
