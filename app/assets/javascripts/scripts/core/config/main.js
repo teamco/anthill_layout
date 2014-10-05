@@ -34,6 +34,7 @@ requirejs.config({
 
         // create alias to plugins (not needed if plugins are on the baseUrl)
         // https://github.com/millermedeiros/requirejs-plugins
+        defer: 'lib/require/defer',
         async: 'lib/require/async',
         font: 'lib/require/font',
         goog: 'lib/require/goog',

@@ -44,7 +44,7 @@ define([
 
             var $element = this;
 
-            require(['async!' + api], function defineGooglePlusApi() {
+            require([api, 'https://apis.google.com/js/client:plusone.js'], function defineGooglePlusApi() {
                 $element.$.append('<div class="g-post" data-href="' + url + '"></div>');
             });
         }
