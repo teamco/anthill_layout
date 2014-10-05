@@ -4,7 +4,11 @@
     overflow: hidden;
 }
 
-.widget .content .jwplayer iframe {
+.widget .content .jwplayer > div {
+    height: 100% !important;
+}
+
+.widget .content .jwplayer object {
     height: 100%;
     width: 100%;
     border: none;
