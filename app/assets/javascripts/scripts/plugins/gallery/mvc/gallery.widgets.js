@@ -378,6 +378,17 @@ define([], function defineGalleryWidgets() {
                 },
                 type: 'video',
                 resource: 'film.on'
+            },
+            {
+                name: 'Google+',
+                description: 'One Google Account for everything Google',
+                thumbnail: '',
+                dimensions: {
+                    width: 9,
+                    height: 12
+                },
+                type: 'social',
+                resource: 'google.plus'
             }
         ];
     };
