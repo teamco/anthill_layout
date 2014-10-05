@@ -16,7 +16,7 @@ end
 def model_setters src
   puts '>>> Define Setter? [y/n]'
   puts '... Pattern: name: string, type: text|textarea, value'
-  
+
   setter = gets.chomp.strip
   setter = setter.split(',')
 
@@ -69,7 +69,7 @@ def do_it
     write_file ".#{src_pattern}", ".#{@file_name.split('.').join('-')}"
     write_file "'#{src_pattern}',", "'#{@file_name}',"
 
-    model_setters src_pattern if f.match(/model/)
+    # model_setters src_pattern if f.match(/model/)
   end
   
 end
