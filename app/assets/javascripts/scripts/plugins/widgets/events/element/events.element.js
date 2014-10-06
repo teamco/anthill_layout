@@ -61,7 +61,7 @@ define([
             var $container = '<div id="calendarik"></div>';
 
             $element.view.controller.clearParentThumbnail();
-            
+
             $element.$.append(
                 $container
             );
@@ -80,8 +80,7 @@ define([
                 $element.$.append(
                     $('<div />').on('click', function () {
                         scope.observer.publish(
-                            scope.eventmanager.eventList.getEventData,
-                            [1412013690000, $element]
+                            scope.eventmanager.eventList.getEventData, [1412013690000, $element]
                         )
                     }).text('Click me')
                 );
@@ -91,9 +90,8 @@ define([
         renderFormData: function renderFormData(event) {
 
             $('.eventEditorContainer').remove();
-            
-            var $form = $('<ul/>');
 
+            var $form = $('<ul/>');
             var $title = $('<li />').append(
                 this.renderTextField({
                     name: 'eventTitle',
@@ -104,7 +102,6 @@ define([
                     visible: true
                 })
             );
-
             var $description = $('<li />').append(
                 this.renderTextArea({
                     name: 'eventDescription',
@@ -115,7 +112,6 @@ define([
                     visible: true
                 })
             );
-            
             var $date = $('<li />').append(
                 this.renderTextField({
                     name: 'eventDate',
@@ -127,15 +123,15 @@ define([
                     type: 'date'
                 })
             );
+            var $buttons = $('<li />').append('<a class="cancel_button">Cancel</a><a class="save_button">Save</a>');
 
             this.$.append(
                 $form.append([
                     $title,
                     $description,
-                    $date.datepicker()
-                ]).attr('class','eventEditorContainer animated flipInX')
-                
-
+                    $date.find('input').datepicker(),
+                    $buttons
+                ]).attr('class', 'eventEditorContainer animated flipInX')
             );
 
         },
