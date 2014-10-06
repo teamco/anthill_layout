@@ -41,6 +41,22 @@
     resize: none;
     margin-top: 5px;
 }
+.widget .content .events .create_new_event {
+    position: absolute;
+    top: 207px;
+    z-index: 1;
+    right: 10px;
+    background: #29BF00;
+    padding: 5px 5px 4px 5px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 1px;
+    font-family: Arial;
+    line-height: 12px;
+    cursor: pointer;
+}
 .widget .content .events .eventEditorContainer .cancel_button {
     background: #f6f8f9;
     background: -moz-linear-gradient(top, #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%);
@@ -172,7 +188,7 @@
     color: #fff;
     padding: 0 5px;
     line-height: 28px;
-    top: 9px;
+    top: 0px;
     padding: 8px 10px;
 }
 .widget .content .events .eventCalendar-wrap .arrow.prev {} .widget .content .events .eventCalendar-wrap .arrow:hover {
@@ -198,11 +214,11 @@
 }
 .widget .content .events .eventsCalendar-monthWrap {
     border-radius: 5px;
-    top: 10px;
+    top: 0px;
     left: 0px;
 }
 .widget .content .events .eventsCalendar-currentTitle {
-    line-height: 25px;
+    line-height: 30px;
     background: #7abcff;
     background: -moz-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7abcff), color-stop(44%, #60abf8), color-stop(100%, #4096ee));
@@ -343,6 +359,7 @@ li.eventsCalendar-day.current a:hover {
     font-family: Arial;
     font-weight: normal;
     color: black;
+    padding: 3px 0px 5px 10px;
 }
 .widget .content .events .eventsCalendar-list-wrap {
     min-height: 100px;

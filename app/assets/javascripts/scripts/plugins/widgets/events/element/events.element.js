@@ -78,11 +78,11 @@ define([
                 var showCalendar = new EventsBehavior($('#calendarik'));
 
                 $element.$.append(
-                    $('<div />').on('click', function () {
+                    $('<a class="create_new_event" />').on('click', function () {
                         scope.observer.publish(
                             scope.eventmanager.eventList.getEventData, [1412013690000, $element]
                         )
-                    }).text('Click me')
+                    }).text('ADD EVENT')
                 );
             });
         },
@@ -96,7 +96,7 @@ define([
                 this.renderTextField({
                     name: 'eventTitle',
                     text: '',
-                    placeholder: 'Enter Title',
+                    placeholder: 'Title',
                     value: event.title,
                     disabled: false,
                     visible: true
@@ -106,7 +106,7 @@ define([
                 this.renderTextArea({
                     name: 'eventDescription',
                     text: '',
-                    placeholder: 'Enter Description',
+                    placeholder: 'Description',
                     value: event.description,
                     disabled: false,
                     visible: true
@@ -116,7 +116,7 @@ define([
                 this.renderTextField({
                     name: 'eventDate',
                     text: '',
-                    placeholder: '',
+                    placeholder: 'Date',
                     value: event.date,
                     disabled: false,
                     visible: true,
@@ -129,7 +129,7 @@ define([
                 $form.append([
                     $title,
                     $description,
-                    $date.find('input').datepicker(),
+                    $date.find('input').datepicker({minDate: new Date()}),
                     $buttons
                 ]).attr('class', 'eventEditorContainer animated flipInX')
             );

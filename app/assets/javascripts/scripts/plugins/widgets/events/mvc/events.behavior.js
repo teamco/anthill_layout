@@ -3,7 +3,6 @@ define([], function defineEventsBehavior() {
     var EventsBehavior = function EventsBehavior($mainContainer) {
 
         this.$mainContainer = $mainContainer;
-        this.cancelButton = $mainContainer.find('.cancel_button');
 
         this.mocData = [{
             date: "1412013690000",
@@ -53,12 +52,15 @@ define([], function defineEventsBehavior() {
             this.$mainContainer.eventCalendar({
                 jsonData: this.mocData
             });
-            
-            console.log(this.cancelButton);
-            
-//            this.cancelButton.on('click', function(){
-//                $mainContainer.remove();
-//            });
+
+            $(document).on('click', '.eventEditorContainer .cancel_button', function () {
+                $('.eventEditorContainer').remove();
+            });
+
+            $(document).on('click', '.eventEditorContainer .save_button', function () {
+                console.log($(this));
+            });
+
         }
     });
 });
