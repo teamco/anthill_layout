@@ -164,7 +164,7 @@ define(
                 var workspace = this.controller.getWorkspace();
 
                 this.modalDialog({
-                    style: 'import-site-data',
+                    style: 'import-site-data upload-json',
                     $container: page.view.get$item().$,
                     type: 'info',
                     title: 'Import site data',

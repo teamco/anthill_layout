@@ -77,7 +77,8 @@ define(['jquery'], function defineUploadOnDrop($) {
 
                                 // Remove back slashes from json
                                 // http://json.parser.online.fr/beta/
-                                content = content.replace(/\\/g, "").
+                                content = content.replace(/\\"/g, '"').
+                                    replace(/\\"/g, '"').
                                     replace(/"/, '');
 
                                 scope.observer.publish(
@@ -90,6 +91,8 @@ define(['jquery'], function defineUploadOnDrop($) {
                             } catch (e) {
 
                                 scope.logger.error('Unable to parse JSON', e, content);
+                                $dropZone.addClass('error').
+                                    text('Unable to parse JSON');
                             }
                         }
                     };

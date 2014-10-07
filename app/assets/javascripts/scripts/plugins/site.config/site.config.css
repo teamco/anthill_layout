@@ -80,6 +80,10 @@ ul.site-config > .content:hover {
     width: auto;
 }
 
+.modal-dialog.import-site-data.upload-json .site-config {
+    overflow: hidden;
+}
+
 .modal-dialog.import-site-data .site-config .site-config-drop-zone {
     border: 2px dashed #bbb;
     -moz-border-radius: 5px;
@@ -90,6 +94,12 @@ ul.site-config > .content:hover {
     font-size: 20px;
     color: #bbb;
     margin-bottom: 10px;
+    text-shadow: 1px 1px 1px #aaa;
+}
+
+.modal-dialog.import-site-data .site-config .site-config-drop-zone.error {
+    color: #ff0000;
+    border-color: #ff0000;
 }
 
 .modal-dialog.import-site-data .site-config {
