@@ -411,6 +411,17 @@ define([], function defineGalleryWidgets() {
                 },
                 type: 'social',
                 resource: 'slide.share'
+            },
+            {
+                name: 'Coub',
+                description: 'A coub is a looped video up to 10 seconds long. Turn your favorite videos into coubs online. Share them with friends and enjoy what others create.',
+                thumbnail: '',
+                dimensions: {
+                    width: 12,
+                    height: 12
+                },
+                type: 'social',
+                resource: 'coub'
             }
         ];
     };

@@ -56,9 +56,9 @@ define([
                     marginwidth: 0,
                     marginheight: 0,
                     scrolling: "no",
-                    allowFullScreen: ''
+                    allowFullScreen: true
                 })
-            )
+            );
         }
 
     }, BaseElement.prototype);

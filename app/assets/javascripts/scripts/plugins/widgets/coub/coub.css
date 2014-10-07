@@ -1,0 +1,13 @@
+.widget .content .coub {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.widget .content .coub iframe {
+    border: none;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
