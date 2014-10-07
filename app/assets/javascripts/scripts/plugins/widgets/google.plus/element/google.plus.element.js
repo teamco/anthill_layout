@@ -44,8 +44,11 @@ define([
 
             var $element = this;
 
-            require([api, 'https://apis.google.com/js/client:plusone.js'], function defineGooglePlusApi() {
-                $element.$.append('<div class="g-post" data-href="' + url + '"></div>');
+            require([api], function defineGooglePlusApi() {
+
+                // Render embedded post
+                // https://developers.google.com/+/web/embedded-post/
+                gapi.post.render($element.id, {href: url});
             });
         }
 

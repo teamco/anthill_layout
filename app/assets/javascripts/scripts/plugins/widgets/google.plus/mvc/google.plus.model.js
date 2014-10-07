@@ -31,7 +31,7 @@ define([
             googlePlusApi: {
                 type: 'text',
                 disabled: true,
-                value: 'https://apis.google.com/js/plusone.js',
+                value: 'https://apis.google.com/js/platform.js',
                 visible: true
             },
             googlePlusUrl: {
