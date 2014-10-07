@@ -76,6 +76,7 @@ define(['jquery'], function defineUploadOnDrop($) {
                             try {
 
                                 // Remove back slashes from json
+                                // http://json.parser.online.fr/beta/
                                 content = content.replace(/\\/g, "").
                                     replace(/"/, '');
 
