@@ -46,16 +46,23 @@ define([
          */
         init: function init(data) {
 
-            /**
-             * Define url
-             * @type {string}
-             */
-            var url = [
-                'data:',
-                data.type,
-                ';charset=utf-8;base64,',
-                btoa(data.content)
-            ].join('');
+            try {
+
+                /**
+                 * Define url
+                 * @type {string}
+                 */
+                var url = [
+                    'data:',
+                    data.type,
+                    ';charset=utf-8;base64,',
+                    this.view.scope.base.lib.string.base64.encode(data.content)
+                ].join('');
+
+            } catch (e) {
+
+
+            }
 
             this.$.attr({
 

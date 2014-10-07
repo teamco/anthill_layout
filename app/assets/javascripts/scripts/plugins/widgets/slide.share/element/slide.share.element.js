@@ -39,12 +39,16 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
+            /**
+             * Get embed code
+             * @type {*|jQuery|HTMLElement}
+             */
             var $embed = $(embed);
 
             if (!$embed[0]) {
                 return false;
             }
-            
+
             this.$.append(
                 $('<iframe />').attr({
                     src: $embed[0].src,

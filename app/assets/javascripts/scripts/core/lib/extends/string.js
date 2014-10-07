@@ -90,4 +90,22 @@
             capitalize();
     };
 
+    /**
+     * String utf8 to base64
+     * @member String
+     * @returns {string}
+     */
+    String.prototype.utf82base64 = function utf82base64() {
+        return window.btoa(encodeURIComponent(encodeURI(this)));
+    };
+
+    /**
+     * String base64 to utf8
+     * @member String
+     * @returns {string}
+     */
+    String.prototype.base642utf8 = function base642utf8() {
+        return decodeURI(decodeURIComponent(window.atob(this)));
+    };
+
 }());
