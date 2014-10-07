@@ -69,7 +69,7 @@ define([], function defineComboBoxRenderer() {
              * @type {*|jQuery}
              */
             var $div = $('<div class="combo-box" />').
-                addClass(activeContent ? [index, activeContent.constructor.name].join('').toDash() : '').
+                addClass((activeContent ? [index, activeContent.constructor.name].join('') : index).toDash()).
                 attr({
                     id: this.base.lib.generator.UUID() + '-combobox'
                 }).append(

@@ -37,7 +37,7 @@ define([
                 value: undefined,
                 visible: true
             },
-            vinecoPostcard: {
+            vinecoType: {
                 type: 'combobox',
                 disabled: false,
                 list: [
@@ -89,10 +89,10 @@ define([
         /**
          * Set postcard type
          * @member VineCoModel
-         * @param {string} postcard
+         * @param {string} type
          */
-        setVinecoPostcard: function setVinecoPostcard(postcard) {
-            this.setPrefs('vinecoPostcard', postcard);
+        setVinecoType: function setVinecoType(type) {
+            this.setPrefs('vinecoType', type);
         },
 
         /**
