@@ -389,6 +389,17 @@ define([], function defineGalleryWidgets() {
                 },
                 type: 'social',
                 resource: 'google.plus'
+            },
+            {
+                name: 'Vine',
+                description: 'Explore a world of beautiful, looping videos',
+                thumbnail: '',
+                dimensions: {
+                    width: 12,
+                    height: 12
+                },
+                type: 'video',
+                resource: 'vine.co'
             }
         ];
     };

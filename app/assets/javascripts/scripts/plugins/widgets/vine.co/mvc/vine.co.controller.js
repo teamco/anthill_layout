@@ -28,12 +28,13 @@ define([
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
-            this.view.elements.$vineco.renderEmbeddedContent(
-                this.model.getPrefs('vinecoLink'),
-                this.model.getPrefs('vinecoPostcard'),
-                this.model.getPrefs('vinecoAutoplayAudio'),
-                this.model.getPrefs('vinecoRelatedVideos')
-            );
+            this.view.elements.$vineco.renderEmbeddedContent({
+                api: this.model.getPrefs('vinecoApi'),
+                link: this.model.getPrefs('vinecoLink'),
+                postcard: this.model.getPrefs('vinecoPostcard'),
+                audio: this.model.getPrefs('vinecoAutoplayAudio'),
+                video: this.model.getPrefs('vinecoRelatedVideos')
+            });
         },
 
         /**

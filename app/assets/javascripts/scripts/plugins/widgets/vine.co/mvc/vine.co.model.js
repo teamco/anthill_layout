@@ -82,7 +82,7 @@ define([
          * @member VineCoModel
          * @param {string} link
          */
-        setLink: function setLink(link) {
+        setVinecoLink: function setVinecoLink(link) {
             this.setPrefs('vinecoLink', link);
         },
 
@@ -91,7 +91,7 @@ define([
          * @member VineCoModel
          * @param {string} postcard
          */
-        setPostcard: function setPostcard(postcard) {
+        setVinecoPostcard: function setVinecoPostcard(postcard) {
             this.setPrefs('vinecoPostcard', postcard);
         },
 
@@ -100,7 +100,7 @@ define([
          * @member VineCoModel
          * @param {boolean} audio
          */
-        setAutoplayAudio: function setAutoplayAudio(audio) {
+        setVinecoAutoplayAudio: function setVinecoAutoplayAudio(audio) {
             this.setPrefs('vinecoAutoplayAudio', audio);
         },
 
@@ -109,7 +109,7 @@ define([
          * @member VineCoModel
          * @param {boolean} video
          */
-        setRelatedVideos: function setRelatedVideos(video) {
+        setVinecoRelatedVideos: function setVinecoRelatedVideos(video) {
             this.setPrefs('vinecoRelatedVideos', video);
         }
 

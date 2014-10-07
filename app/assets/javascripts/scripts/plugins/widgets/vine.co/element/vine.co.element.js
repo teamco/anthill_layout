@@ -35,8 +35,15 @@ define([
         /**
          * Render Embedded content
          * @member VineCoElement
+         * @param {{
+         *      api: string,
+         *      link: string,
+         *      postcard: string,
+         *      audio: boolean,
+         *      video: boolean
+         * }} opts
          */
-        renderEmbeddedContent: function renderEmbeddedContent(link, postcard, audio, video) {
+        renderEmbeddedContent: function renderEmbeddedContent(opts) {
 
             /**
              * Define $element
@@ -44,13 +51,36 @@ define([
              */
             var $element = this;
 
+            var audio = opts.audio ? 'audio=1' : '',
+                video = opts.video ? '' : 'related=0';
 
+            var params = [];
 
-            this.$.append(
+            if (audio.length > 0) {
+                params.push(audio);
+            }
 
-            );
-            //<iframe class="vine-embed" src="https://vine.co/v/Mipm1LMKVqJ/embed/simple?audio=1&related=0" width="600" height="600" frameborder="0"></iframe><script async src="//platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>
-            //<iframe class="vine-embed" src="https://vine.co/v/Mipm1LMKVqJ/embed/simple?audio=1" width="600" height="600" frameborder="0"></iframe><script async src="//platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>
+            if (video.length > 0) {
+                params.push(video);
+            }
+
+            if (!opts.link) {
+                return false;
+            }
+
+            require([opts.api], function defineVineCo() {
+                $element.$.append(
+                    $('<iframe />').attr({
+                        src: [
+                            opts.link, '/embed',
+                            opts.postcard,
+                                params.length > 0 ? ('?' + params.join('&')) : ''
+                        ].join(''),
+                        frameborder: 0,
+                        scrolling: 'no'
+                    }).addClass('vine-embed')
+                );
+            });
         }
 
     }, BaseElement.prototype);
