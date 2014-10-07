@@ -400,6 +400,17 @@ define([], function defineGalleryWidgets() {
                 },
                 type: 'video',
                 resource: 'vine.co'
+            },
+            {
+                name: 'SlideShare',
+                description: 'Share what you know and love through presentations, infographics, documents and more',
+                thumbnail: '',
+                dimensions: {
+                    width: 12,
+                    height: 12
+                },
+                type: 'social',
+                resource: 'slide.share'
             }
         ];
     };

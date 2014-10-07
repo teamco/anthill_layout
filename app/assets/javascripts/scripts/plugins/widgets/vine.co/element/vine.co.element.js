@@ -72,8 +72,8 @@ define([
                 $element.$.append(
                     $('<iframe />').attr({
                         src: [
-                            opts.link, '/embed',
-                            opts.postcard,
+                            opts.link, '/embed/',
+                            opts.postcard.toLowerCase(),
                                 params.length > 0 ? ('?' + params.join('&')) : ''
                         ].join(''),
                         frameborder: 0,
