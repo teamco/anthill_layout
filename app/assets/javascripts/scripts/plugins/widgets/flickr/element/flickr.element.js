@@ -7,35 +7,35 @@
 
 define([
     'modules/Element'
-], function defineGooglePresentationElement(BaseElement) {
+], function defineFlickrElement(BaseElement) {
 
     /**
-     * Define GooglePresentation Element
+     * Define Flickr Element
      * @param view
      * @param opts
-     * @returns {GooglePresentationElement}
+     * @returns {FlickrElement}
      * @constructor
-     * @class GooglePresentationElement
+     * @class FlickrElement
      * @extends BaseElement
      */
-    var GooglePresentationElement = function GooglePresentationElement(view, opts) {
+    var FlickrElement = function FlickrElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
 
-        this.addCSS('google.presentation', {resource: '/widgets'});
+        this.addCSS('flickr', {resource: '/widgets'});
 
         return this;
     };
 
-    return GooglePresentationElement.extend('GooglePresentationElement', {
+    return FlickrElement.extend('FlickrElement', {
 
         /**
          * Render Embedded content
-         * @member GooglePresentationElement
-         * @param {string} embed
+         * @member FlickrElement
+         * @param {string}
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
@@ -51,7 +51,9 @@ define([
 
             this.$.append(
                 $('<iframe />').attr({
-                    src: $embed[0].src
+                    src: $embed[0].src,
+                    frameborder: 0,
+                    allowfullscreen: ''
                 })
             );
         }

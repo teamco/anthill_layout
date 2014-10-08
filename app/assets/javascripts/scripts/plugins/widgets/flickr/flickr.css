@@ -1,0 +1,10 @@
+.widget .content .flickr {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.widget .content .flickr iframe {
+    height: 100%;
+    width: 100%;
+}

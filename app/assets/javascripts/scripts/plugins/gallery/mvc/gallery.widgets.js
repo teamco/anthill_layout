@@ -433,6 +433,17 @@ define([], function defineGalleryWidgets() {
                 },
                 type: 'files',
                 resource: 'google.presentation'
+            },
+            {
+                name: 'Flickr',
+                description: 'Become obsessed with our social feed of daily inspiration from the photographers you follow. Explore Flickr to easily find everything you\'re interested in',
+                thumbnail: '',
+                dimensions: {
+                    width: 12,
+                    height: 12
+                },
+                type: 'social',
+                resource: 'flickr'
             }
         ];
     };
