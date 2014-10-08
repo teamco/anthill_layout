@@ -229,9 +229,9 @@ define([
                          * Define text
                          * @type {string}
                          */
-                        var text = index.replace(title.toLowerCase(), '').
-                            toPoint().
-                            humanize();
+                        var text = index.replace(
+                            title.replace(/ /g, '').toLowerCase(), ''
+                        ).toPoint().humanize();
 
                         /**
                          * Define node
@@ -334,7 +334,7 @@ define([
                         nodes.push(
                             $('<li />').
                                 addClass([
-                                        title.humanize().toClassName() + '-prefs',
+                                    title.humanize().toClassName() + '-prefs',
                                     node.type,
                                     node.visible ? '' : 'hidden'
                                 ].join(' ')).
@@ -432,7 +432,7 @@ define([
                     ),
                     _renderNode.bind(this)(
                         'content', data,
-                        this.view.scope.constructor.name, true
+                        this.view.scope.constructor.name.humanize(), true
                     )
                 ])
             );

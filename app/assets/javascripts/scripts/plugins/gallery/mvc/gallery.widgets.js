@@ -422,6 +422,17 @@ define([], function defineGalleryWidgets() {
                 },
                 type: 'social',
                 resource: 'coub'
+            },
+            {
+                name: 'Google Presentation',
+                description: 'Create a new presentation and edit with others at the same time',
+                thumbnail: '',
+                dimensions: {
+                    width: 12,
+                    height: 12
+                },
+                type: 'files',
+                resource: 'google.presentation'
             }
         ];
     };
