@@ -35,7 +35,7 @@ define([
         /**
          * Render Embedded content
          * @member FlickrElement
-         * @param {string}
+         * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
