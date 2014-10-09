@@ -121,6 +121,12 @@ define([
                     disabled: false,
                     visible: true,
                     type: 'date'
+                }),
+                this.renderCombobox({
+                    data: ['Honda', 'Lexus', 'Mercedes'],
+                    selected: 'Lexus',
+                    name: 'timePicker',
+                    visible: true
                 })
             );
             var $buttons = $('<li />').append('<a class="cancel_button">Cancel</a><a class="save_button">Save</a>');
@@ -129,7 +135,9 @@ define([
                 $form.append([
                     $title,
                     $description,
-                    $date.find('input').datepicker({minDate: new Date()}),
+                    $date.find('input').datepicker({
+                        minDate: new Date()
+                    }),
                     $buttons
                 ]).attr('class', 'eventEditorContainer animated flipInX')
             );
