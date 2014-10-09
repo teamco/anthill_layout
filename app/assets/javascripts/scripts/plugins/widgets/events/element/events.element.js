@@ -129,19 +129,103 @@ define([
                 this.renderCombobox([
                         {
                             type: 'text',
-                            value: 'Honda'
+                            value: '00:00'
                         },
                         {
                             type: 'text',
-                            value: 'Lexus'
+                            value: '01:00'
                         },
                         {
                             type: 'text',
-                            value: 'Mercedes'
+                            value: '02:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '03:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '04:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '05:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '06:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '07:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '08:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '09:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '10:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '11:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '12:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '13:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '14:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '15:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '16:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '17:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '18:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '19:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '20:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '21:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '22:00'
+                        },
+                        {
+                            type: 'text',
+                            value: '23:00'
                         }
                     ],
-                    'Lexus',
-                    'timePicker',
+                    '00:00',
+                    '',
                     'timePicker',
                     undefined,
                     true

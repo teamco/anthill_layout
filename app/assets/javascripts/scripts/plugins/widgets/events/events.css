@@ -3,7 +3,6 @@
     width: 100%;
     overflow: auto;
 }
-
 .widget .content .events .eventEditorContainer {
     background: white;
     width: 90%;
@@ -21,12 +20,10 @@
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.4);
     text-align: center;
 }
-
 .widget .content .events .eventEditorContainer li:last-child {
     line-height: 25px;
     margin-top: 5px;
 }
-
 .widget .content .events .eventEditorContainer input {
     width: 90%;
     height: 27px;
@@ -35,7 +32,6 @@
     padding: 0px 0px 0px 5px;
     margin-top: 5px;
 }
-
 .widget .content .events .eventEditorContainer textarea {
     width: 90%;
     border-radius: 4px;
@@ -45,7 +41,6 @@
     resize: none;
     margin-top: 5px;
 }
-
 .widget .content .events .create_new_event {
     position: absolute;
     top: 207px;
@@ -54,7 +49,7 @@
     background: #89B814;
     padding: 5px 5px 4px 5px;
     border-radius: 5px;
-    font-size: 10px;
+    font-size: 8px;
     font-weight: bold;
     color: white;
     letter-spacing: 1px;
@@ -62,7 +57,6 @@
     line-height: 12px;
     cursor: pointer;
 }
-
 .widget .content .events .recicle_button,
 .widget .content .events .pencil_button {
     width: 13px;
@@ -79,7 +73,6 @@
     -o-transition: opacity 400ms ease-out;
     transition: opacity 400ms ease-out;
 }
-
 .widget .content .events .eventsCalendar-list li:hover .recicle_button,
 .widget .content .events .eventsCalendar-list li:hover .pencil_button {
     opacity: .7;
@@ -88,15 +81,12 @@
     -o-transition: opacity 400ms ease-out;
     transition: opacity 400ms ease-out;
 }
-
 .widget .content .events .recicle_button {
     background-image: url('data:image/png;base64,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');
 }
-
 .widget .content .events .pencil_button {
     background-image: url('data:image/png;base64,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');
 }
-
 .widget .content .events .eventEditorContainer .cancel_button {
     background: #f6f8f9;
     background: -moz-linear-gradient(top, #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%);
@@ -105,9 +95,8 @@
     background: -o-linear-gradient(top, #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%);
     background: -ms-linear-gradient(top, #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%);
     background: linear-gradient(to bottom, #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f8f9', endColorstr='#f5f7f9', GradientType=0);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#f6f8f9', endColorstr='#f5f7f9', GradientType=0);
 }
-
 .widget .content .events .eventEditorContainer .save_button {
     background: #7abcff;
     background: -moz-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
@@ -116,9 +105,8 @@
     background: -o-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
     background: -ms-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
     background: linear-gradient(to bottom, #7abcff 0%, #60abf8 44%, #4096ee 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7abcff', endColorstr='#4096ee', GradientType=0);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#7abcff', endColorstr='#4096ee', GradientType=0);
 }
-
 .widget .content .events .eventEditorContainer .save_button,
 .widget .content .events .eventEditorContainer .cancel_button {
     padding: 0px 10px;
@@ -128,74 +116,59 @@
     margin-left: 10px;
     cursor: pointer;
 }
-
 .widget .content .events .hidden {
     display: none;
 }
-
 .widget .content .events .eventCalendar-wrap {
     position: relative;
     overflow: hidden;
 }
-
 .widget .content .events .eventCalendar-wrap .arrow {
     position: absolute;
     z-index: 5;
     top: 3px;
 }
-
 .widget .content .events .eventCalendar-wrap .prev {
     left: 3px;
 }
-
 .widget .content .events .eventCalendar-wrap .next {
     right: 3px;
 }
-
 .widget .content .events .eventsCalendar-currentTitle .monthTitle {
     display: block;
     text-align: center;
 }
-
 .widget .content .events .eventsCalendar-monthWrap {
     position: absolute;
     top: 0;
     left: 0;
     z-index: 2;
 }
-
 .widget .content .events .eventsCalendar-monthWrap.currentMonth {
     z-index: 1;
 }
-
 .widget .content .events .eventsCalendar-daysList {
     display: table;
     width: 100%;
 }
-
 .widget .content .events .eventsCalendar-daysList.showAsWeek {
     display: block;
 }
-
 .widget .content .events .eventsCalendar-daysList li {
     display: table-cell;
 }
-
 .widget .content .events .eventsCalendar-daysList li.dayWithEvents {
     background: rgba(0, 0, 0, 0.15);
 }
-
 .widget .content .events .eventsCalendar-daysList li.current {
     background: rgba(0, 0, 0, 0.35);
 }
-
 .widget .content .events .eventsCalendar-daysList.showAsWeek li {
     display: block;
     float: left;
     width: 14.28%;
     height: 20px;
 }
-
 .widget .content .events .eventsCalendar-daysList li a {
     padding: 0;
     display: block;
@@ -203,33 +176,27 @@
     font-size: 8px;
     min-width: 7px;
 }
-
 .widget .content .events .eventsCalendar-loading {
     display: block;
     min-width: 100px;
     height: 40px;
     line-height: 40px;
 }
-
 .widget .content .events .eventsCalendar-list {
     position: relative;
     z-index: 1;
 }
-
 .widget .content .events .eventsCalendar-list.oldEventList {
     z-index: 2;
 }
-
 .widget .content .events .eventsCalendar-subtitle {
     padding-left: 5px;
     font-weight: bold;
     font-size: 120%;
 }
-
 .widget .content .events html {
     background-color: #eee;
 }
-
 .widget .content .events body {
     font-family: Arial, "Lucida Grande", sans-serif;
     font-size: 13px;
@@ -237,7 +204,6 @@
     color: #555;
     background-color: #fff;
 }
-
 .widget .content .events .eventCalendar-wrap {
     border: solid 1px #d3d3d3;
     box-shadow: 0 0 15px #999;
@@ -247,7 +213,6 @@
     color: #807E7E;
     max-height: 500px;
 }
-
 .widget .content .events .eventCalendar-wrap .arrow {
     text-decoration: none;
     color: #fff;
@@ -256,14 +221,9 @@
     top: 0px;
     padding: 8px 10px;
 }
-
-.widget .content .events .eventCalendar-wrap .arrow.prev {
-}
-
-.widget .content .events .eventCalendar-wrap .arrow:hover {
+.widget .content .events .eventCalendar-wrap .arrow.prev {} .widget .content .events .eventCalendar-wrap .arrow:hover {
     opacity: 0.7;
 }
-
 .widget .content .events .eventCalendar-wrap .arrow span {
     height: 0;
     width: 0;
@@ -275,22 +235,18 @@
     float: left;
     text-indent: -5000px;
 }
-
 .widget .content .events .eventCalendar-wrap .arrow.prev span {
     border-left-width: 0;
     border-right: 6px solid #fff;
 }
-
 .widget .content .events .eventsCalendar-slider {
     height: 80px;
 }
-
 .widget .content .events .eventsCalendar-monthWrap {
     border-radius: 5px;
     top: 0px;
     left: 0px;
 }
-
 .widget .content .events .eventsCalendar-currentTitle {
     line-height: 30px;
     background: #7abcff;
@@ -300,22 +256,19 @@
     background: -o-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
     background: -ms-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
     background: linear-gradient(to bottom, #7abcff 0%, #60abf8 44%, #4096ee 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7abcff', endColorstr='#4096ee', GradientType=0);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#7abcff', endColorstr='#4096ee', GradientType=0);
 }
-
 .widget .content .events .eventsCalendar-currentTitle .monthTitle {
     font-size: 110%;
     text-decoration: none;
     font-weight: bold;
     color: #fff;
 }
-
 .widget .content .events .eventsCalendar-daysList {
     zoom: 1;
     padding: 0;
     width: 100%;
 }
-
 .widget .content .events .eventsCalendar-daysList.showAsWeek {
     margin: 10px 5px;
     width: auto;
@@ -330,108 +283,89 @@
     background-image: -ms-linear-gradient(top, #EEEEEE 42%, #CCCCCC 71%);
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.42, #EEEEEE), color-stop(0.71, #CCCCCC));
 }
-
 .widget .content .events .eventsCalendar-daysList.showDayNames.showAsWeek {
     border-radius: 5px 5px 0 0;
 }
-
 .widget .content .events .eventsCalendar-daysList:before,
 .eventsCalendar-daysList:after {
     content: "";
     display: table;
 }
-
 .widget .content .events .eventsCalendar-daysList:after {
     clear: both;
 }
-
 .widget .content .events .eventsCalendar-day-header {
     text-transform: lowercase;
     text-align: center;
     font-size: 10px;
     border-bottom: solid 1px #BCBCBC;
 }
-
 .widget .content .events .eventsCalendar-daysList.showAsWeek li {
     height: auto;
     margin: 0;
 }
-
 .widget .content .events .eventsCalendar-daysList.showAsWeek li.empty {
     background-color: #ccc;
     min-height: 29px;
 }
-
 .widget .content .events .eventsCalendar-day a {
     text-decoration: none;
     font-size: 10px;
     color: #424242;
 }
-
 .widget .content .events .eventsCalendar-day {
     border-left: solid 1px #BCBCBC;
 }
-
 .widget .content .events .eventsCalendar-day a {
     border: solid 1px #BCBCBC;
     border-width: 0 1px 1px 0;
 }
-
 .widget .content .events .showAsWeek .eventsCalendar-day {
     border-left-width: 0;
 }
-
 .widget .content .events .showAsWeek .eventsCalendar-day a {
     border: solid 1px red;
     border-color: #fff #BCBCBC #BCBCBC #eee;
     line-height: 27px;
     font-size: 11px;
 }
-
 .widget .content .events .eventsCalendar-day a:hover {
     background-color: #E4E4E4;
     /*	box-shadow:inset 5px 5px 10px #C1C1C1;
 					text-shadow: 2px 2px 2px #C1C1C1;*/
 }
-
 .widget .content .events .eventsCalendar-daysList li.today a {
     color: #fff;
     background: #aaa;
     /*	box-shadow:inset 5px 5px 10px #777;
 				text-shadow: 2px 2px 2px #777;*/
 }
-
 li.eventsCalendar-day.today a:hover {
     background-color: #ccc;
     /*box-shadow:inset 5px 5px 10px #999;*/
 }
-
 .widget .content .events .eventsCalendar-daysList li.dayWithEvents a {
     background: #89B814;
     /*box-shadow:inset 5px 5px 10px #698B10;
 				text-shadow: 2px 2px 2px #698B10;*/
     color: #fff;
 }
-
 li.eventsCalendar-day.dayWithEvents a:hover {
     background-color: #C2D374;
     /*box-shadow:inset 5px 5px 10px #89B814;
 					text-shadow: 2px 2px 2px #89B814;*/
 }
-
 .widget .content .events .eventsCalendar-daysList li.current a {
     color: #fff;
     background: #449FB2;
     box-shadow: inset 5px 5px 10px #216B7A;
     text-shadow: 2px 2px 2px #216B7A;
 }
-
 li.eventsCalendar-day.current a:hover {
     background-color: #79BDCC;
     box-shadow: inset 5px 5px 10px #449FB2;
     text-shadow: 2px 2px 2px #449FB2;
 }
-
 .widget .content .events .eventsCalendar-loading {
     border-radius: 4px;
     margin: 5px auto;
@@ -447,36 +381,31 @@ li.eventsCalendar-day.current a:hover {
     top: 25px;
     left: 5px;
 }
-
 .widget .content .events .eventsCalendar-loading.error {
     background-color: red;
 }
-
 .widget .content .events .eventsCalendar-subtitle {
     padding-top: 10px;
     font-family: Arial;
     font-weight: normal;
     color: black;
+    font-size: 12px;
     padding: 3px 0px 5px 10px;
 }
-
 .widget .content .events .eventsCalendar-list-wrap {
     min-height: 100px;
     position: relative;
 }
-
 .widget .content .events .eventsCalendar-list-content.scrollable {
     height: 100px;
     overflow-y: auto;
     margin: 0 5px 5px 0;
 }
-
 .widget .content .events .eventsCalendar-list {
     margin: 0;
     padding: 0;
     list-style-type: none;
 }
-
 .widget .content .events .eventsCalendar-list li {
     padding: 4px 5px 5px;
     clear: both;
@@ -484,17 +413,14 @@ li.eventsCalendar-day.current a:hover {
     margin: 5px;
     border-radius: 5px;
 }
-
 .widget .content .events .eventsCalendar-list li time {
     font-size: 10px;
     line-height: 13px;
 }
-
 .widget .content .events .eventsCalendar-list li time em {
     float: left;
     font-style: normal;
 }
-
 .widget .content .events .eventsCalendar-list li time small {
     font-size: 10px;
     float: left;
@@ -503,33 +429,28 @@ li.eventsCalendar-day.current a:hover {
     padding: 0 5px 0 4px;
     margin: 0 0 0 3px;
 }
-
 .widget .content .events .eventsCalendar-list li .eventTitle {
     display: block;
     clear: both;
     font-weight: bold;
     text-decoration: none;
 }
-
 .widget .content .events .eventsCalendar-list li a.eventTitle {
     color: #4096ee;
-    margin-top: 15px;
+    margin-top: 17px;
     font-family: Arial;
     font-weight: normal;
-    font-size: 13px;
+    font-size: 12px;
 }
-
 .widget .content .events .eventsCalendar-list li a.eventTitle:hover {
     text-decoration: underline;
 }
-
 .widget .content .events .eventsCalendar-list li .eventDesc {
     clear: both;
     margin: 5px 0 5px 0;
     font-size: 80%;
     line-height: 1.2em;
 }
-
 .widget .content .events .eventsCalendar-list .eventsCalendar-noEvents {
     font-size: 120%;
     border-radius: 4px;
@@ -542,7 +463,6 @@ li.eventsCalendar-day.current a:hover {
     box-shadow: 0 0 10px #ccc;
     text-shadow: 0 0 3px #aaa;
 }
-
 .widget .content .events .bt {
     font-size: 12px;
     display: block;
@@ -563,7 +483,7 @@ li.eventsCalendar-day.current a:hover {
     background-image: -webkit-linear-gradient(top, #89B814, #698B10);
     background-image: -o-linear-gradient(top, #89B814, #698B10);
     background-image: linear-gradient(top, #89B814, #698B10);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#89B814', endColorstr='#698B10', GradientType=0);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#89B814', endColorstr='#698B10', GradientType=0);
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     border: 1px solid #698B10;
     border-color: #698B10 #698B10 #465F05;
@@ -575,12 +495,10 @@ li.eventsCalendar-day.current a:hover {
     -o-transition: 0.1s linear all;
     transition: 0.1s linear all;
 }
-
 .widget .content .events .bt:hover {
     background-position: 0 -15px;
     text-decoration: none;
 }
-
 /*
 .eventCalendar-wrap {
 	width:265px;
@@ -590,24 +508,19 @@ li.eventsCalendar-day.current a:hover {
 .widget .content .events .features li {
     margin-bottom: 3px;
 }
-
 #thanksPanel li {
     margin-bottom: 0;
 }
-
 #introPanel {
     padding-top: 20px;
 }
-
 .widget .content .events .poweredBy img {
     float: left;
     margin-right: 3px;
 }
-
 .widget .content .events .poweredBy .data {
     float: left;
 }
-
 .widget .content .events .poweredBy .name {
     font-weight: bold;
     color: #555;
@@ -615,22 +528,18 @@ li.eventsCalendar-day.current a:hover {
     display: block;
     margin-top: 28px;
 }
-
 .widget .content .events .poweredBy .twitter {
     text-decoration: none;
     display: block;
     float: left;
 }
-
 .widget .content .events .features {
     padding-left: 20px;
     float: left;
 }
-
 .widget .content .events #appLogo {
     margin-right: 30px;
 }
-
 .widget .content .events pre {
     clear: both;
     background-color: #FFFFCC;
@@ -638,7 +547,6 @@ li.eventsCalendar-day.current a:hover {
     border: solid 1px #FED17E;
     overflow: auto;
 }
-
 .widget .content .events #license {
     width: 300px;
     float: right;
@@ -646,7 +554,6 @@ li.eventsCalendar-day.current a:hover {
     line-height: 12px;
     text-align: center;
 }
-
 @-webkit-keyframes flipInX {
     0% {
         -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
@@ -675,7 +582,6 @@ li.eventsCalendar-day.current a:hover {
         transform: perspective(400px);
     }
 }
-
 @keyframes flipInX {
     0% {
         -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
@@ -704,85 +610,67 @@ li.eventsCalendar-day.current a:hover {
         transform: perspective(400px);
     }
 }
-
 .flipInX {
     -webkit-backface-visibility: visible !important;
     backface-visibility: visible !important;
     -webkit-animation-name: flipInX;
     animation-name: flipInX;
 }
-
 .animated {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
-
 .animated.infinite {
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
 }
-
 .animated.hinge {
     -webkit-animation-duration: 2s;
     animation-duration: 2s;
 }
-
 .widget .content .events div.combo-box {
     position: relative;
 }
-
 .widget .content .events div.combo-box > ul {
     border: 1px solid #ccc;
-    border-radius: 2px;
+    border-radius: 4px;
     background-color: #fff;
-    margin: 0 0 0 10px;
-    width: 100%;
-    height: 24px;
+    margin: 5px 0 0 0px;
+    width: 90%;
+    height: 26px;
     line-height: 22px;
-    float: right;
     overflow: hidden;
-    -webkit-transition: width 0s;
-    -moz-box-shadow: inset 0 0 5px #ccc;
-    -webkit-box-shadow: inset 0 0 5px #ccc;
-    box-shadow: inset 0 0 5px #ccc;
     transition: width 0s;
+    display: inline-block;
 }
-
 .widget .content .events div.combo-box-arrow {
     position: absolute;
-    top: 1px;
-    right: 0px;
+    top: 8px;
+    right: 13px;
     width: 12px;
     height: 20px;
     cursor: pointer;
     background: transparent url('../../../core/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png') no-repeat -69px 2px;
 }
-
 .widget .content .events div.combo-box-arrow:hover {
     background-image: url('../../../core/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png');
 }
-
 .widget .content .events div.combo-box.open div.combo-box-arrow {
     background-position: -4px 2px;
 }
-
 .widget .content .events div.combo-box li {
     background-color: transparent;
     display: none;
-    width: 100%;
+    width: 25%;
     padding: 0 3px;
     cursor: pointer;
-    border-bottom: 1px solid #ccc;
-    line-height: 20px;
 }
-
 .widget .content .events div.combo-box li.selected {
     display: inline-block;
     border-bottom: none;
 }
-
 .widget .content .events div.combo-box.open ul {
     overflow: auto;
     max-height: 200px;
@@ -791,26 +679,22 @@ li.eventsCalendar-day.current a:hover {
     border: 1px solid #999;
     box-shadow: 3px 3px 5px #999;
     z-index: 10;
+    left: 5%;
 }
-
 .widget .content .events div.combo-box.open li {
     display: inline-block;
     margin-bottom: 0;
 }
-
 .widget .content .events div.combo-box.open li:hover {
     background-color: #ffff99;
 }
-
 .widget .content .events div.combo-box.open li:last-child,
 .widget .content .events div.combo-box.open li:last-child:hover {
     border: none;
 }
-
 .widget .content .events .hidden {
     display: none;
 }
-
 .widget .content .events div.combo-box.open li.selected,
 .widget .content .events div.combo-box.open li.selected:hover {
     background-color: #fbcb09;
