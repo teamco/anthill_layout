@@ -112,6 +112,7 @@ define([
                     visible: true
                 })
             );
+
             var $date = $('<li />').append(
                 this.renderTextField({
                     name: 'eventDate',
@@ -121,14 +122,32 @@ define([
                     disabled: false,
                     visible: true,
                     type: 'date'
-                }),
-                this.renderCombobox({
-                    data: ['Honda', 'Lexus', 'Mercedes'],
-                    selected: 'Lexus',
-                    name: 'timePicker',
-                    visible: true
                 })
             );
+
+            var $time = $('<li />').append(
+                this.renderCombobox([
+                        {
+                            type: 'text',
+                            value: 'Honda'
+                        },
+                        {
+                            type: 'text',
+                            value: 'Lexus'
+                        },
+                        {
+                            type: 'text',
+                            value: 'Mercedes'
+                        }
+                    ],
+                    'Lexus',
+                    'timePicker',
+                    'timePicker',
+                    undefined,
+                    true
+                )
+            );
+
             var $buttons = $('<li />').append('<a class="cancel_button">Cancel</a><a class="save_button">Save</a>');
 
             this.$.append(
@@ -138,6 +157,7 @@ define([
                     $date.find('input').datepicker({
                         minDate: new Date()
                     }),
+                    $time,
                     $buttons
                 ]).attr('class', 'eventEditorContainer animated flipInX')
             );
