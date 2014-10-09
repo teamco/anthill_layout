@@ -84,10 +84,6 @@ define([
                         )
                     }).text('ADD EVENT')
                 );
-
-                //$('.pencil_button', this.$).each(function onEdit(k, v) {
-                //    console.log(k, v)
-                //});
             });
         },
 

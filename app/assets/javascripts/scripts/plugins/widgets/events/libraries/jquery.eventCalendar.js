@@ -18,7 +18,7 @@ $.fn.eventCalendar = function (options) {
         wrap: "",
         directionLeftMove: "300",
         eventsJson: {}
-    }
+    };
 
     // each eventCalendar will execute this function
     this.each(function () {
@@ -93,14 +93,14 @@ $.fn.eventCalendar = function (options) {
 
     function sortJson(a, b) {
         return a.date.toLowerCase() > b.date.toLowerCase() ? 1 : -1;
-    };
+    }
 
     function dateSlider(show, year, month) {
         var $eventsCalendarSlider = $("<div class='eventsCalendar-slider'></div>"),
             $eventsCalendarMonthWrap = $("<div class='eventsCalendar-monthWrap'></div>"),
             $eventsCalendarTitle = $("<div class='eventsCalendar-currentTitle'><a href='#' class='monthTitle'></a></div>"),
-            $eventsCalendarArrows = $("<a href='#' class='arrow prev'><span>" + eventsOpts.txt_prev + "</span></a><a href='#' class='arrow next'><span>" + eventsOpts.txt_next + "</span></a>");
-        $eventsCalendarDaysList = $("<ul class='eventsCalendar-daysList'></ul>"),
+            $eventsCalendarArrows = $("<a href='#' class='arrow prev'><span>" + eventsOpts.txt_prev + "</span></a><a href='#' class='arrow next'><span>" + eventsOpts.txt_next + "</span></a>"),
+            $eventsCalendarDaysList = $("<ul class='eventsCalendar-daysList'></ul>"),
             date = new Date();
 
         if (!flags.wrap.find('.eventsCalendar-slider').size()) {
@@ -113,6 +113,8 @@ $.fn.eventCalendar = function (options) {
         flags.wrap.find('.eventsCalendar-monthWrap.currentMonth').removeClass('currentMonth').addClass('oldMonth');
         $eventsCalendarMonthWrap.addClass('currentMonth').append($eventsCalendarTitle, $eventsCalendarDaysList);
 
+        var day, moveOfMonth, dt,
+            dayCount;
 
         // if current show current month & day
         if (show === "current") {
@@ -267,10 +269,10 @@ $.fn.eventCalendar = function (options) {
     }
 
     function getEventsData(data, limit, year, month, day, direction) {
-        directionLeftMove = "-=" + flags.directionLeftMove;
-        eventContentHeight = "auto";
+        var directionLeftMove = "-=" + flags.directionLeftMove,
+            eventContentHeight = "auto";
 
-        subtitle = flags.wrap.find('.eventsCalendar-list-wrap .eventsCalendar-subtitle')
+        var subtitle = flags.wrap.find('.eventsCalendar-list-wrap .eventsCalendar-subtitle')
         if (!direction) {
             // first load
             subtitle.html(eventsOpts.txt_NextEvents);
@@ -358,7 +360,7 @@ $.fn.eventCalendar = function (options) {
                             if (month === false && eventDate < new Date()) {
 
                             } else {
-                                eventStringDate = eventDay + "/" + eventMonthToShow + "/" + eventYear;
+                                var eventStringDate = eventDay + "/" + eventMonthToShow + "/" + eventYear;
                                 if (event.url) {
                                     var eventTitle = '<a href="' + event.url + '" target="' + eventLinkTarget + '" class="eventTitle">' + event.title + '</a>';
                                 } else {
@@ -400,19 +402,29 @@ $.fn.eventCalendar = function (options) {
 
         });
         setCalendarWidth();
+
+        _bindEdit();
+    }
+
+    function _bindEdit() {console.log('bind', $('.pencil_button'))
+        $('.pencil_button').on('click', function(e) {
+            console.log(e)
+        });
     }
 
     function changeMonth() {
         flags.wrap.find('.arrow').click(function (e) {
             e.preventDefault();
 
+            var lastMonthMove;
+
             if ($(this).hasClass('next')) {
                 dateSlider("next");
-                var lastMonthMove = '-=' + flags.directionLeftMove;
+                lastMonthMove = '-=' + flags.directionLeftMove;
 
             } else {
                 dateSlider("prev");
-                var lastMonthMove = '+=' + flags.directionLeftMove;
+                lastMonthMove = '+=' + flags.directionLeftMove;
             }
 
             flags.wrap.find('.eventsCalendar-monthWrap.oldMonth').animate({
@@ -467,6 +479,6 @@ $.fn.eventCalendar.defaults = {
     moveOpacity: 0.15, // month and events fadeOut to this opacity
     jsonData: "", 	// to load and inline json (not ajax calls)
     cacheJson: true	// if true plugin get a json only first time and after plugin filter events
-                       // if false plugin get a new json on each date change
+    // if false plugin get a new json on each date change
 };
 
