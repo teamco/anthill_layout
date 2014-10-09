@@ -444,6 +444,17 @@ define([], function defineGalleryWidgets() {
                 },
                 type: 'social',
                 resource: 'flickr'
+            },
+            {
+                name: 'Instagram',
+                description: 'Capture and Share the World\'s Moments. Instagram is a fast, beautiful and fun way to share your life with friends and family',
+                thumbnail: '',
+                dimensions: {
+                    width: 12,
+                    height: 12
+                },
+                type: 'social',
+                resource: 'instagram'
             }
         ];
     };
