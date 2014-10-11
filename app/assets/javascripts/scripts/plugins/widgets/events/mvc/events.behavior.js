@@ -72,7 +72,7 @@ define([], function defineEventsBehavior() {
                             'time': evTime
                         };
                 
-                console.log(sendData);
+                console.log(timestamp + ' ' + sendData);
                 //$('.eventEditorContainer').remove();
             });
 
