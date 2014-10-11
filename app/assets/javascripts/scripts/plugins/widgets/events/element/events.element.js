@@ -125,105 +125,16 @@ define([
                 })
             );
 
+            var hourList = [];
+
+            for (var i = 0; i < 24; i++) {
+                hourList.push({'type': 'text', 'value': i > 9 ? i + ':00' : '0' + i + ':00'});
+            }
+            console.log(hourList);
+
             var $time = $('<li />').append(
-                this.renderCombobox([
-                        {
-                            type: 'text',
-                            value: '00:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '01:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '02:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '03:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '04:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '05:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '06:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '07:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '08:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '09:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '10:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '11:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '12:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '13:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '14:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '15:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '16:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '17:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '18:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '19:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '20:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '21:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '22:00'
-                        },
-                        {
-                            type: 'text',
-                            value: '23:00'
-                        }
-                    ],
+                this.renderCombobox(
+                    hourList,
                     '00:00',
                     '',
                     'timePicker',
