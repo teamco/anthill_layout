@@ -58,7 +58,22 @@ define([], function defineEventsBehavior() {
             });
 
             $(document).on('click', '.eventEditorContainer .save_button', function () {
-                console.log($(this));
+                var evTitle = $('[name="eventTitle"]')[0].value,
+                    evDescription = $('[name="eventDescription"]')[0].value,
+                    evDate = $('[name="eventDate"]')[0].value,
+                    evTime = $('[name="timePicker"]')[0].value,
+                    pretimestamp = evDate + ' ' + evTime,
+                    dArr = pretimestamp.split('/'),
+                    timestamp = new Date(dArr[1] + '-' + dArr[0] + '-' + dArr[2]).getTime(),
+                    sendData =  {
+                            'title': evTitle,
+                            'description': evDescription,
+                            'date': evDate,
+                            'time': evTime
+                        };
+                
+                console.log(sendData);
+                //$('.eventEditorContainer').remove();
             });
 
         }
