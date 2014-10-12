@@ -242,7 +242,7 @@ define([
                          * Define placeholder text
                          * @type {string}
                          */
-                        var placeholder = 'Enter ' + text,
+                        var placeholder = node.placeholder || 'Enter ' + text,
                             $element;
 
                         if (node.type === 'event') {
@@ -273,7 +273,8 @@ define([
                                 placeholder: placeholder,
                                 value: node.value,
                                 disabled: node.disabled,
-                                visible: node.visible
+                                visible: node.visible,
+                                validate: node.validate
                             });
                         }
 

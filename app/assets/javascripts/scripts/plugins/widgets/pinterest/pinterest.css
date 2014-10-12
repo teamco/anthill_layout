@@ -1,0 +1,12 @@
+.widget .content .pinterest {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.widget .content .pinterest a.follow-pinterest {
+    font-size: 12px;
+    text-decoration: none;
+    color: #333;
+    margin: 10px;
+}

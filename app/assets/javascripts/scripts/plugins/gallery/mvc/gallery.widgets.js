@@ -455,6 +455,17 @@ define([], function defineGalleryWidgets() {
                 },
                 type: 'social',
                 resource: 'instagram'
+            },
+            {
+                name: 'Pinterest',
+                description: 'Pinterest is a visual discovery tool that you can use to find ideas for all your projects and interests.',
+                thumbnail: '',
+                dimensions: {
+                    width: 12,
+                    height: 12
+                },
+                type: 'social',
+                resource: 'pinterest'
             }
         ];
     };

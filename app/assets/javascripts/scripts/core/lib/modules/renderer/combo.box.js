@@ -118,6 +118,8 @@ define([], function defineComboBoxRenderer() {
              */
             function _store($selected, selected) {
 
+                $('.tooltip', $selected).remove();
+
                 /**
                  * Define value
                  * @type {String}
@@ -209,7 +211,28 @@ define([], function defineComboBoxRenderer() {
                     }
                 }
 
-                $li.attr({rel: field.key || field.value}).appendTo($ul);
+                $li.attr({
+                    rel: field.key || field.value,
+                    title: data[i].title || field.value
+                }).appendTo($ul);
+
+                /**
+                 * Get tooltip
+                 * @type {string|*}
+                 */
+                var tooltip = data[i].tooltip;
+
+                if (tooltip) {
+
+                    // Set reference
+                    $li.$ = $li;
+
+                    this.renderTooltip({
+                        title: field.value,
+                        description: tooltip,
+                        $container: $li
+                    });
+                }
             }
 
             // fix to define modal dialog height

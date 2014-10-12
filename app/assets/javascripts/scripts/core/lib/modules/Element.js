@@ -335,6 +335,9 @@ define([
          */
         addCSS: function addCSS(type, opts) {
 
+            opts = this.base.define(opts, {}, true);
+            opts.resource = this.base.define(opts.resource, '', true);
+
             /**
              * Create url
              * @type {string}
@@ -345,12 +348,13 @@ define([
              * Generate uuid
              * @type {string}
              */
-            var uuid = this.$.attr('id') + '-css';
+            var uuid = this.$.attr('id') + url.replace(/\//g, '.');
 
-            opts = this.base.define(opts, {}, true);
+            // Prevent duplicates
+            $('#' + uuid).remove();
 
             this.createLinkCss({
-                href: this.pluginPath + (opts.resource || '') + url,
+                href: this.pluginPath + opts.resource + url,
                 type: opts.type,
                 rel: opts.rel,
                 media: opts.media,
