@@ -118,6 +118,7 @@ define([], function defineComboBoxRenderer() {
              */
             function _store($selected, selected) {
 
+                // Remove tooltip text before store selected value
                 $('.tooltip', $selected).remove();
 
                 /**
