@@ -86,6 +86,7 @@ div.gallery-content div.combo-box {
     margin-top: -1px;
     height: 22px;
     overflow: hidden;
+    width: 100%;
 }
 
 div.gallery-content div.combo-box-arrow {
