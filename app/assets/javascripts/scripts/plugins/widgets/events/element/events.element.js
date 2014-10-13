@@ -90,6 +90,12 @@ define([
         renderFormData: function renderFormData(event) {
 
             $('.eventEditorContainer').remove();
+            
+            var hourList = [];
+
+            for (var i = 0; i < 24; i++) {
+                hourList.push({'type': 'text', 'value': i > 9 ? i + ':00' : '0' + i + ':00'});
+            }
 
             var $form = $('<ul/>');
             var $title = $('<li />').append(
@@ -125,12 +131,7 @@ define([
                 })
             );
 
-            var hourList = [];
-
-            for (var i = 0; i < 24; i++) {
-                hourList.push({'type': 'text', 'value': i > 9 ? i + ':00' : '0' + i + ':00'});
-            }
-            console.log(hourList);
+            
 
             var $time = $('<li />').append(
                 this.renderCombobox(
