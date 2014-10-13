@@ -224,13 +224,13 @@ define([
 
                             $('<li />').append(
                                 this.renderTextField({
-                                    name: 'layout-cell',
+                                    name: 'layout-cell-width',
                                     text: 'Cell size',
                                     value: cellWidth.toFixed(3),
                                     visible: true,
                                     disabled: true
                                 })
-                            ).attr('rel', 'layout-cell'),
+                            ).attr('rel', 'layout-cell-width'),
 
                             $('<li />').append(
                                 this.renderCombobox(
@@ -269,7 +269,7 @@ define([
 
                             $('<li />').append(
                                 this.renderTextField({
-                                    name: 'layout-columns',
+                                    name: 'layoutColumns',
                                     text: 'Columns',
                                     value: layout.config.grid.columns,
                                     visible: true,

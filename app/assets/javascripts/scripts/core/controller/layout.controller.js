@@ -67,6 +67,29 @@ define([
         },
 
         /**
+         * Update grid columns
+         * @member LayoutController
+         * @param {number} columns
+         */
+        updateColumns: function updateColumns(columns) {
+
+            this.logger.debug('Start update columns', columns);
+
+            if (!columns) {
+
+                this.logger.warn(
+                    'Undefined number of columns set default',
+                    columns,
+                    this.config.grid.columns
+                );
+
+                return false;
+            }
+
+            this.config.grid.columns = columns;
+        },
+
+        /**
          * Update cell size on resize container
          * @member LayoutController
          * @returns {*}
@@ -82,11 +105,18 @@ define([
          * @returns {Number}
          */
         minCellWidth: function minCellWidth() {
+
+            /**
+             * Get scope
+             * @type {Layout}
+             */
             var scope = this.scope,
                 config = scope.config.grid;
+
             if (this.base.isDefined(config.minCellWidth)) {
                 return config.minCellWidth;
             }
+
             var columns = config.columns,
                 margin = config.margin;
 

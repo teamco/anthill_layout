@@ -81,7 +81,18 @@ define([
          * @param {number} columns
          */
         setLayoutColumns: function setLayoutColumns(columns) {
+
             this._setItemInfoPreferences('layoutColumns', columns);
+
+            /**
+             * Get scope
+             * @type {Page}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateLayoutConfig
+            );
         },
 
         /**

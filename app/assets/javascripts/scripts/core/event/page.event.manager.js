@@ -38,6 +38,7 @@ define([
          *      destroyWidgets: string,
          *      createLayout: string,
          *      destroyLayout: string,
+         *      updateLayoutConfig: string,
          *      resizeWidgets: string,
          *      resizeWidget: string,
          *      updateHashOnMaximize: string,
@@ -64,18 +65,20 @@ define([
 
             createLayout: 'create.layout',
             destroyLayout: 'destroy.layout',
+            updateLayoutConfig: 'update.layout.config',
 
             resizeWidget: 'resize.widget',
-            resizeWidgets: 'resize.widgets',
 
+            resizeWidgets: 'resize.widgets',
             updateHashOnMaximize: 'update.hash.on.maximize',
+
             updateHashOnReduce: 'update.hash.on.reduce',
 
             updateHeight: 'update.height',
 
             afterLoadingItems: 'after.loading.items',
-
             disableItemInteractions: 'disable.item.interactions',
+
             enableItemInteractions: 'enable.item.interactions',
 
             loadPreferences: 'load.preferences',

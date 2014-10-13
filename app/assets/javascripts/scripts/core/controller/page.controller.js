@@ -41,11 +41,7 @@ define(
                  * @param value
                  */
                 transferContentPreferences: function transferContentPreferences(index, value) {
-
-                    this.observer.publish(
-                        this.eventmanager.eventList.transferPreferences,
-                        [index, value]
-                    );
+                    this.logger.debug('Preferences successfully transferred', index, value);
                 },
 
                 /**
@@ -113,6 +109,34 @@ define(
                 banAddWidget: function banAddWidget() {
                     this.scope.logger.debug('Do not allow to add widget');
                     this.model.getConfig('widget').allowToAdd = false;
+                },
+
+                /**
+                 * Update layout config
+                 * @member PageController
+                 */
+                updateLayoutConfig: function updateLayoutConfig() {
+
+                    this.logger.debug('Update layout config');
+
+                    /**
+                     * Get page preferences
+                     * @type {{
+                     *      layoutColumns: number
+                     * }}
+                     */
+                    var preferences = this.model.getConfig('preferences') || {};
+
+                    /**
+                     * Get layout
+                     * @type {Layout}
+                     */
+                    var layout = this.layout;
+
+                    layout.observer.publish(
+                        layout.eventmanager.eventList.updateColumns,
+                        preferences.layoutColumns
+                    );
                 },
 
                 /**

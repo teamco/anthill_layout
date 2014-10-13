@@ -32,6 +32,7 @@ define([
          * Define event list
          * @member LayoutEventManager
          * @type {{
+         *      updateColumns: string,
          *      updateMinCellWidth: string,
          *      beforeNestedOrganizer: string,
          *      afterNestedOrganizer: string,
@@ -41,6 +42,7 @@ define([
          * }}
          */
         eventList: {
+            updateColumns: 'update.columns',
             updateMinCellWidth: 'update.min.cell.width',
             beforeNestedOrganizer: 'before.nested.organizer',
             afterNestedOrganizer: 'after.nested.organizer',
