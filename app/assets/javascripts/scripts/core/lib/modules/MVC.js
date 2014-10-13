@@ -300,30 +300,27 @@ define([
                  */
                 scope[name] = new mvcPattern();
 
-            } else {
+            } else if (force) {
 
-                if (force) {
+                /**
+                 * Define scope name
+                 * @type {string}
+                 */
+                var scopeName = scope.constructor.name.toLowerCase();
 
-                    /**
-                     * Define scope name
-                     * @type {string}
-                     */
-                    var scopeName = scope.constructor.name.toLowerCase();
+                /**
+                 * Define function
+                 * @type {Function}
+                 */
+                var fn = new Function(
+                    scopeName,
+                    [
+                        'return function ', mvcPattern,
+                        '(', scopeName, ') { this.scope = ', scopeName, '; };'
+                    ].join('')
+                );
 
-                    /**
-                     * Define function
-                     * @type {Function}
-                     */
-                    var fn = new Function(
-                        scopeName,
-                        [
-                            'return function ', mvcPattern,
-                            '(', scopeName, ') { this.scope = ', scopeName, '; };'
-                        ].join('')
-                    );
-
-                    scope[name.toLowerCase()] = new (new fn(scope))(scope);
-                }
+                scope[name.toLowerCase()] = new (new fn(scope))(scope);
             }
 
             return name;
@@ -490,7 +487,7 @@ define([
                                     this.scope.logger.warn(
                                         'Undefined Event Callback', [
                                             scope.controller,
-                                                key + method
+                                            key + method
                                         ]
                                     );
                                 }
@@ -600,10 +597,10 @@ define([
                 permission = scope.permission;
 
             if (scope.controller.checkCondition({
-                condition: !this.base.isDefined(permission),
-                type: 'warn',
-                msg: 'Undefined permission'
-            })) {
+                    condition: !this.base.isDefined(permission),
+                    type: 'warn',
+                    msg: 'Undefined permission'
+                })) {
                 return false;
             }
 
@@ -629,18 +626,18 @@ define([
                 permission = type + 'Permissions';
 
             if (scope.controller.checkCondition({
-                condition: !base.isDefined(mode),
-                type: 'warn',
-                msg: 'Undefined ' + type + ' mode'
-            })) {
+                    condition: !base.isDefined(mode),
+                    type: 'warn',
+                    msg: 'Undefined ' + type + ' mode'
+                })) {
                 return false;
             }
 
             if (scope.controller.checkCondition({
-                condition: !base.isDefined(scope[permission]),
-                type: 'warn',
-                msg: 'Undefined ' + type + ' permission'
-            })) {
+                    condition: !base.isDefined(scope[permission]),
+                    type: 'warn',
+                    msg: 'Undefined ' + type + ' permission'
+                })) {
                 return false;
             }
 
@@ -650,11 +647,11 @@ define([
             var capabilities = scope[permission][mode];
 
             if (scope.controller.checkCondition({
-                condition: !base.isDefined(capabilities),
-                type: 'warn',
-                msg: 'Undefined ' + type + ' capabilities',
-                args: mode
-            })) {
+                    condition: !base.isDefined(capabilities),
+                    type: 'warn',
+                    msg: 'Undefined ' + type + ' capabilities',
+                    args: mode
+                })) {
                 return false;
             }
 
