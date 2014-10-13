@@ -67,11 +67,11 @@ define([
         },
 
         /**
-         * Update grid columns
+         * Update grid number of columns
          * @member LayoutController
          * @param {number} columns
          */
-        updateColumns: function updateColumns(columns) {
+        updateNumberOfColumns: function updateNumberOfColumns(columns) {
 
             this.logger.debug('Start update columns', columns);
 

@@ -134,7 +134,7 @@ define(
                     var layout = this.layout;
 
                     layout.observer.publish(
-                        layout.eventmanager.eventList.updateColumns,
+                        layout.eventmanager.eventList.updateNumberOfColumns,
                         preferences.layoutColumns
                     );
                 },
