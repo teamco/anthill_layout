@@ -7,14 +7,16 @@
 
 define([
     'plugins/plugin',
-    'plugins/widgets/widget.content.controller'
-], function defineEventsController(PluginBase, WidgetContentController) {
+    'plugins/widgets/widget.content.controller',
+    'plugins/preferences/widget.content.preferences.controller'
+], function defineEventsController(PluginBase, WidgetContentController, WidgetContentPreferencesController) {
 
     /**
      * Define events controller
      * @class EventsController
      * @extends PluginController
      * @extends WidgetContentController
+     * @extends WidgetContentPreferencesController
      * @constructor
      */
     var EventsController = function EventsController() {
@@ -29,6 +31,10 @@ define([
         setEmbeddedContent: function setEmbeddedContent() {
 
             this.view.elements.$events.renderEmbeddedContent();
+        },
+        
+        getStoredData: function getStoredData() {
+            return this.model.getPrefs('eventsJson');
         },
 
         /**
@@ -130,7 +136,7 @@ define([
          * @member EventsController
          * @param event
          */
-        updateEventsData: function updateEventsData(event) {
+        updateEventsData: function updateEventsData(event, timestamp) {
 
             /**
              * Get events list
@@ -141,17 +147,27 @@ define([
                 updateMsg = 'Update';
 
             this.logger.debug([
-                (events.hasOwnProperty(event.date) ?
+                (events.hasOwnProperty(timestamp) ?
                     updateMsg : createMsg),
                 'event'
             ].join(' '), event);
 
-            events[event.date] = event;
+            events[timestamp] = event;
 
+            var json = JSON.stringify(events);
+            
             this.model.setEventsJson(
-                JSON.stringify(events)
+                json
             );
+            
+            this.observer.publish(
+                this.eventmanager.eventList.transferContentPreferences,
+                ['eventsJson', json]
+            );
+            
+            this.controller.store();
+            
         }
 
-    }, PluginBase.prototype, WidgetContentController.prototype);
+    }, PluginBase.prototype, WidgetContentController.prototype, WidgetContentPreferencesController.prototype);
 });

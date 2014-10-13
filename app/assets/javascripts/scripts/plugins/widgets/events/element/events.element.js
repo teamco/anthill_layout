@@ -75,7 +75,9 @@ define([
                  * Create calendar instance
                  * @type {EventsBehavior}
                  */
-                var showCalendar = new EventsBehavior($('#calendarik'));
+                var showCalendar = new EventsBehavior($('#calendarik', $element.$), $element);
+                
+                showCalendar.initialize();                
 
                 $element.$.append(
                     $('<a class="create_new_event" />').on('click', function () {
@@ -164,11 +166,7 @@ define([
          * Collect Event data
          * @member EventsElement
          */
-        collectEventData: function collectEventData() {
-
-            // TODO
-
-            var event = {};
+        collectEventData: function collectEventData(event, timestamp) {
 
             /**
              * Get scope
@@ -178,7 +176,7 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList.updateEventsData,
-                event
+                [event, timestamp]
             );
         }
 
