@@ -1,8 +1,10 @@
 define([], function defineEventsBehavior() {
 
-    var EventsBehavior = function EventsBehavior($mainContainer) {
+    var EventsBehavior = function EventsBehavior($mainContainer, scope) {
 
         this.$mainContainer = $mainContainer;
+        
+        this.scope = scope;
 
         this.mocData = [{
             date: "1412013690000",
@@ -42,15 +44,29 @@ define([], function defineEventsBehavior() {
             url: "events_details.php?page=body&ID=9"
         }];
 
-        this.initialize();
+        
     };
 
     return EventsBehavior.extend('EventsBehavior', {
 
 
         initialize: function initialize() {
+            
+            var json = [];
+            
+            try {
+            
+                json = JSON.parse(this.scope.view.controller.getStoredData());
+                
+                
+            
+            }  catch(e) {
+            
+                // TODO
+            }
+            
             this.$mainContainer.eventCalendar({
-                jsonData: this.mocData
+                jsonData: json
             });
 
             $(document).on('click', '.eventEditorContainer .cancel_button', function () {
@@ -63,18 +79,20 @@ define([], function defineEventsBehavior() {
                     evDate = $('[name="eventDate"]')[0].value,
                     evTime = $('[name="timePicker"]')[0].value,
                     pretimestamp = evDate + ' ' + evTime,
-                    dArr = pretimestamp.split('/'),
-                    timestamp = new Date(dArr[1] + '-' + dArr[0] + '-' + dArr[2]).getTime(),
+                    //dArr = pretimestamp.split('/'),
+                    timestamp = (new Date(pretimestamp)).getTime(),
                     sendData =  {
-                            'title': evTitle,
-                            'description': evDescription,
-                            'date': evDate,
-                            'time': evTime
+                            title: evTitle,
+                            description: evDescription,
+                            date: evDate,
+                            time: evTime
                         };
+                
+                this.scope.collectEventData(sendData, timestamp);
                 
                 console.log(timestamp + ' ' + sendData);
                 //$('.eventEditorContainer').remove();
-            });
+            }.bind(this));
 
         }
     });

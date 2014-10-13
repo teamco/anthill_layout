@@ -50,6 +50,9 @@ define([
          */
         setEventsJson: function setEventsJson(json) {
             this.setPrefs('eventsJson', json);
+            
+            
+
         }
 
     }, BaseModel.prototype, WidgetContentModel.prototype);

@@ -75,7 +75,9 @@ define([
                  * Create calendar instance
                  * @type {EventsBehavior}
                  */
-                var showCalendar = new EventsBehavior($('#calendarik'));
+                var showCalendar = new EventsBehavior($('#calendarik', $element.$), $element);
+                
+                showCalendar.initialize();                
 
                 $element.$.append(
                     $('<a class="create_new_event" />').on('click', function () {
@@ -90,6 +92,12 @@ define([
         renderFormData: function renderFormData(event) {
 
             $('.eventEditorContainer').remove();
+            
+            var hourList = [];
+
+            for (var i = 0; i < 24; i++) {
+                hourList.push({'type': 'text', 'value': i > 9 ? i + ':00' : '0' + i + ':00'});
+            }
 
             var $form = $('<ul/>');
             var $title = $('<li />').append(
@@ -125,12 +133,7 @@ define([
                 })
             );
 
-            var hourList = [];
-
-            for (var i = 0; i < 24; i++) {
-                hourList.push({'type': 'text', 'value': i > 9 ? i + ':00' : '0' + i + ':00'});
-            }
-            console.log(hourList);
+            
 
             var $time = $('<li />').append(
                 this.renderCombobox(
@@ -163,11 +166,7 @@ define([
          * Collect Event data
          * @member EventsElement
          */
-        collectEventData: function collectEventData() {
-
-            // TODO
-
-            var event = {};
+        collectEventData: function collectEventData(event, timestamp) {
 
             /**
              * Get scope
@@ -177,7 +176,7 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList.updateEventsData,
-                event
+                [event, timestamp]
             );
         }
 
