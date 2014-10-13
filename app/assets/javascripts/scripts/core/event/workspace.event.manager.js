@@ -45,6 +45,7 @@ define(
              *      resizePages: string,
              *      resizePage: string,
              *      setPageContainerDimensions: string,
+             *      updatePagesWidth: string,
              *      beforeSwitchToPage: string,
              *      switchToPage: string,
              *      afterSwitchToPage: string,
@@ -67,6 +68,7 @@ define(
                 resizePage: 'resize.page',
                 resizePages: 'resize.pages',
                 setPageContainerDimensions: 'set.page.container.dimensions',
+                updatePagesWidth: 'update.pages.width',
 
                 beforeSwitchToPage: 'before.switch.to.page',
                 switchToPage: 'switch.to.page',

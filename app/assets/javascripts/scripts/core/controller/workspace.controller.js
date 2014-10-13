@@ -19,7 +19,7 @@ define(
      * @param {Router} Router
      * @returns {*}
      */
-    function defineWorkspaceController(BaseController, BasePreferences, Router) {
+        function defineWorkspaceController(BaseController, BasePreferences, Router) {
 
         /**
          * Define workspace controller
@@ -95,6 +95,35 @@ define(
                 },
 
                 /**
+                 * Update pages width
+                 * @member WorkspaceController
+                 */
+                updatePagesWidth: function updatePagesWidth() {
+
+                    /**
+                     * Get all pages
+                     * @type {object}
+                     */
+                    var pages = this.model.getItems(),
+                        index, page;
+
+                    for (index in pages) {
+                        if (pages.hasOwnProperty(index)) {
+
+                            /**
+                             * Get page
+                             * @type {Page}
+                             */
+                            page = pages[index];
+
+                            page.layout.observer.publish(
+                                page.layout.eventmanager.eventList.updateMinCellWidth
+                            );
+                        }
+                    }
+                },
+
+                /**
                  * Before Switch to page
                  * @member WorkspaceController
                  * @param {Page} page
@@ -115,7 +144,7 @@ define(
                             this.controller.getItemIdentity(page) : '',
 
                         wurl = widget ?
-                        '/' + page.controller.getItemIdentity(widget) : '';
+                            '/' + page.controller.getItemIdentity(widget) : '';
 
                     this.controller.setHashLocation(
                         ''.concat('/', purl, wurl)

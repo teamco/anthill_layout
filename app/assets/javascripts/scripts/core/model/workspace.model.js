@@ -48,7 +48,18 @@ define([
          * @param {number} width
          */
         setSiteWidthSlider: function setSiteWidthSlider(width) {
-            this.scope.config.preferences.siteWidthSlider = width;
+
+            this._setItemInfoPreferences('siteWidthSlider', width);
+
+            /**
+             * Set local scope
+             * @type {Workspace}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updatePagesWidth
+            );
         },
 
         /**
@@ -68,7 +79,6 @@ define([
             scope.observer.publish(
                 scope.eventmanager.eventList.updateSiteTitle
             );
-
         },
 
         /**
