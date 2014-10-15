@@ -57,8 +57,7 @@ define([], function defineEventsBehavior() {
             try {
             
                 json = JSON.parse(this.scope.view.controller.getStoredData());
-                
-                
+                console.log(json);                
             
             }  catch(e) {
             
