@@ -15,7 +15,6 @@ define([], function defineEventsBehavior() {
 			var calendarReadyData = [];
 
 			try {
-
 				json = JSON.parse(this.scope.view.controller.getStoredData());
 				var count = Object.keys(json).length;
 
@@ -33,8 +32,8 @@ define([], function defineEventsBehavior() {
 						'url': ''
 					});
 				}
-
-				//console.log(calendarReadyData);
+                debugger;
+				console.log(calendarReadyData);
 
 			} catch (e) {
 
@@ -67,13 +66,13 @@ define([], function defineEventsBehavior() {
 				this.scope.collectEventData(sendData, timestamp);
 				$('.eventEditorContainer').remove();
 				
-				console.log(this.$mainContainer);
+				//console.log(this.$mainContainer);
 				
-				this.$mainContainer.remove();
+				//this.$mainContainer.empty();
 
-				this.$mainContainer.eventCalendar({
-					jsonData: calendarReadyData
-				});
+//				this.$mainContainer.eventCalendar({
+//					jsonData: calendarReadyData
+//				});
 			}.bind(this));
 
 		}
