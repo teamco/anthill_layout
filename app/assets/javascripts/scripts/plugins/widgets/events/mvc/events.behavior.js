@@ -26,13 +26,13 @@ define([], function defineEventsBehavior() {
 
 					calendarReadyData.push({
 						'date': date.toString(),
-						'type': '',
+						'type': date.toString(),
 						'title': title,
 						'description': description,
 						'url': ''
 					});
 				}
-                debugger;
+
 				console.log(calendarReadyData);
 
 			} catch (e) {
@@ -65,16 +65,27 @@ define([], function defineEventsBehavior() {
 
 				this.scope.collectEventData(sendData, timestamp);
 				$('.eventEditorContainer').remove();
-				
-				//console.log(this.$mainContainer);
-				
-				//this.$mainContainer.empty();
 
-//				this.$mainContainer.eventCalendar({
-//					jsonData: calendarReadyData
-//				});
+				//console.log(this.$mainContainer);
+
+				this.$mainContainer.empty();
+
+				this.$mainContainer.eventCalendar({
+					jsonData: calendarReadyData
+				});
+			}.bind(this));
+
+
+			$(document).on('click', '.pencil_button', function (event) {
+//				this.scope.observer.publish(
+//					this.scope.eventmanager.eventList.getEventData, [1412013690000, $element]
+//				)
+				console.log(event);
+				console.log($(this).parent());
+				
 			}.bind(this));
 
 		}
+
 	});
 });
