@@ -33,7 +33,7 @@ define([], function defineEventsBehavior() {
 					});
 				}
 
-				console.log(calendarReadyData);
+				//console.log(calendarReadyData);
 
 			} catch (e) {
 
@@ -66,23 +66,24 @@ define([], function defineEventsBehavior() {
 				this.scope.collectEventData(sendData, timestamp);
 				$('.eventEditorContainer').remove();
 
-				//console.log(this.$mainContainer);
-
-				this.$mainContainer.empty();
-
-				this.$mainContainer.eventCalendar({
-					jsonData: calendarReadyData
-				});
+				$('#calendarik').append('<div class="eventSavedNotice animated flipInX">Event Saved Successfully</div>');
+				setTimeout(function () {
+					var notice = $('.eventSavedNotice');
+					notice.removeClass('flipInX').addClass('flipOutX');
+					setTimeout(function () {
+						notice.remove();
+					}, 1000);
+				}, 2000);
 			}.bind(this));
 
 
-			$(document).on('click', '.pencil_button', function (event) {
-//				this.scope.observer.publish(
-//					this.scope.eventmanager.eventList.getEventData, [1412013690000, $element]
-//				)
-				console.log(event);
-				console.log($(this).parent());
-				
+			$(document).on('click', '.recicle_button', function (event) {
+				var eventTimestemp = $(event.target).parent()[0].className;
+				//				this.scope.observer.publish(
+				//					this.scope.eventmanager.eventList.getEventData, [eventTimestemp, $element]
+				//				)
+				console.log(eventTimestemp);
+
 			}.bind(this));
 
 		}
