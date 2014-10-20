@@ -1,9 +1,9 @@
 define([], function defineEventsBehavior() {
 
-	var EventsBehavior = function EventsBehavior($mainContainer, scope) {
+	var EventsBehavior = function EventsBehavior($mainContainer, $element) {
 
 		this.$mainContainer = $mainContainer;
-		this.scope = scope;
+		this.$element = $element;
 	};
 
 	return EventsBehavior.extend('EventsBehavior', {
@@ -63,7 +63,7 @@ define([], function defineEventsBehavior() {
 						timest: timestamp
 					};
 
-				this.scope.collectEventData(sendData, timestamp);
+				this.$element.collectEventData(sendData, timestamp);
 				$('.eventEditorContainer').remove();
 
 				$('#calendarik').append('<div class="eventSavedNotice animated flipInX">Event Saved Successfully</div>');
@@ -77,11 +77,15 @@ define([], function defineEventsBehavior() {
 			}.bind(this));
 
 
-			$(document).on('click', '.recicle_button', function (event) {
-				var eventTimestemp = $(event.target).parent()[0].className;
+			$(document).on('click.recicle', '.recicle_button', this.$element.$, function (event) {
+
+                var eventTimestemp = $(event.target).parent()[0].className;
+
+
 				//				this.scope.observer.publish(
 				//					this.scope.eventmanager.eventList.getEventData, [eventTimestemp, $element]
 				//				)
+
 				console.log(eventTimestemp);
 
 			}.bind(this));

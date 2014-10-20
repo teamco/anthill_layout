@@ -32,7 +32,12 @@ define([
 
             this.view.elements.$events.renderEmbeddedContent();
         },
-        
+
+        /**
+         * Get stored data
+         * @member EventsController
+         * @returns {*}
+         */
         getStoredData: function getStoredData() {
             return this.model.getPrefs('eventsJson');
         },
