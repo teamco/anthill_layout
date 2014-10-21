@@ -1,0 +1,45 @@
+<%= form_for(@author_widget) do |f| %>
+  <% if @author_widget.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@author_widget.errors.count, "error") %> prohibited this author_widget from being saved:</h2>
+
+      <ul>
+      <% @author_widget.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :thumbnail %><br>
+    <%= f.text_area :thumbnail %>
+  </div>
+  <div class="field">
+    <%= f.label :width %><br>
+    <%= f.number_field :width %>
+  </div>
+  <div class="field">
+    <%= f.label :height %><br>
+    <%= f.number_field :height %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :resource %><br>
+    <%= f.text_field :resource %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

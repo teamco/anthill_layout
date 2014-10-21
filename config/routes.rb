@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :author do
+    resources :widgets
+  end
+
   resources :sites
 
   namespace :author do

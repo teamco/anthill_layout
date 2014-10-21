@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @author_widget.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @author_widget.description %>
+</p>
+
+<p>
+  <strong>Thumbnail:</strong>
+  <%= @author_widget.thumbnail %>
+</p>
+
+<p>
+  <strong>Width:</strong>
+  <%= @author_widget.width %>
+</p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @author_widget.height %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @author_widget.type %>
+</p>
+
+<p>
+  <strong>Resource:</strong>
+  <%= @author_widget.resource %>
+</p>
+
+<%= link_to 'Edit', edit_author_widget_path(@author_widget) %> |
+<%= link_to 'Back', author_widgets_path %>
