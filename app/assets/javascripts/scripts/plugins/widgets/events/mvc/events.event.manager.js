@@ -22,7 +22,8 @@ define([
         this.updateEventList({
             getEventData: 'get.event.data',
             setActiveEvent: 'set.active.event',
-            updateEventsData: 'update.events.data'
+            updateEventsData: 'update.events.data',
+            removeEvent: 'remove.event'
         });
     };
 

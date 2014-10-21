@@ -133,6 +133,24 @@ define([
             },
 
             /**
+             * Alternative save in consumption mode
+             * @member WidgetContentController
+             * @param {string} key
+             * @param value
+             */
+            alternativeSavePreferences: function alternativeSavePreferences(key, value) {
+
+                // Transfer prefs to widget
+                this.observer.publish(
+                    this.eventmanager.eventList.transferContentPreferences,
+                    [key, value]
+                );
+
+                // Save
+                this.controller.store();
+            },
+
+            /**
              * Define referrer
              * @member WidgetContentController
              * @param referrer

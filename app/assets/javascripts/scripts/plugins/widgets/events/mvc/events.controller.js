@@ -22,157 +22,222 @@ define([
     var EventsController = function EventsController() {
     };
 
-    return EventsController.extend('EventsController', {
-
-        /**
-         * Set embedded content
-         * @member EventsController
-         */
-        setEmbeddedContent: function setEmbeddedContent() {
-
-            this.view.elements.$events.renderEmbeddedContent();
-        },
-
-        /**
-         * Get stored data
-         * @member EventsController
-         * @returns {*}
-         */
-        getStoredData: function getStoredData() {
-            return this.model.getPrefs('eventsJson');
-        },
-
-        /**
-         * Add Events rule
-         * @member EventsController
-         * @param e
-         */
-        addEventsRule: function addEventsRule(e) {
+    return EventsController.extend(
+        'EventsController', {
 
             /**
-             * Define $button
-             * @type {*|jQuery|HTMLElement}
+             * Set embedded content
+             * @member EventsController
              */
-            var $button = $(e.target),
-                scope = this.scope;
+            setEmbeddedContent: function setEmbeddedContent() {
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.constructor.name]
-            );
-        },
-
-        /**
-         * Get Event Data
-         * @member EventsController
-         * @param {number} timestamp
-         * @param {EventsElement} $element
-         */
-        getEventData: function getEventData(timestamp, $element) {
+                this.view.elements.$events.renderEmbeddedContent();
+            },
 
             /**
-             * Get events list
-             * @type {Object}
+             * Get stored data
+             * @member EventsController
+             * @returns {*}
              */
-            var events = this.controller.getEventsList();
+            getStoredData: function getStoredData() {
+                return this.model.getPrefs('eventsJson');
+            },
 
-            if (events.hasOwnProperty(timestamp)) {
+            /**
+             * Parse data
+             * @member EventsController
+             * @returns {*}
+             */
+            parseData: function parseData() {
 
-                // Update
-                this.observer.publish(
-                    this.eventmanager.eventList.setActiveEvent,
-                    events[timestamp]
+                try {
+
+                    return JSON.parse(this.getStoredData());
+
+                } catch (e) {
+
+                    this.scope.logger.warn('Unable to parse JSON', e);
+                }
+            },
+
+            /**
+             * Add Events rule
+             * @member EventsController
+             * @param e
+             */
+            addEventsRule: function addEventsRule(e) {
+
+                /**
+                 * Define $button
+                 * @type {*|jQuery|HTMLElement}
+                 */
+                var $button = $(e.target),
+                    scope = this.scope;
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.publishRule,
+                    [$button.attr('value'), this.scope.constructor.name]
                 );
+            },
 
-                $element.renderFormData(
-                    this.controller.getAciveEvent()
-                );
+            /**
+             * Get Event Data
+             * @member EventsController
+             * @param {number} timestamp
+             * @param {EventsElement} $element
+             */
+            getEventData: function getEventData(timestamp, $element) {
 
-            } else {
+                /**
+                 * Get events list
+                 * @type {Object}
+                 */
+                var events = this.controller.getEventsList();
 
-                // Create new
-                $element.renderFormData({});
-            }
-        },
+                if (events.hasOwnProperty(timestamp)) {
 
-        /**
-         * Get events list
-         * @member EventsController
-         * @returns {Object}
-         */
-        getEventsList: function getEventsList() {
+                    // Update
+                    this.observer.publish(
+                        this.eventmanager.eventList.setActiveEvent,
+                        events[timestamp]
+                    );
 
-            var events = '{}';
+                    $element.renderFormData(
+                        this.controller.getAciveEvent()
+                    );
 
-            try {
+                } else {
 
-                events = JSON.parse(
-                    this.model.getPrefs('eventsJson') || events
-                );
-
-            } catch (e) {
-
-                this.scope.logger.warn('Unable to parse events list', e);
-            }
-
-            return events;
-        },
-
-        /**
-         * Set active event
-         * @member EventsController
-         * @param event
-         */
-        setActiveEvent: function setActiveEvent(event) {
-            this.activeEvent = event;
-        },
-
-        /**
-         * Get active event
-         * @member EventsController
-         * @return {object}
-         */
-        getAciveEvent: function getActiveEvent() {
-            return this.scope.activeEvent || {};
-        },
-
-        /**
-         * Update events data JSON
-         * @member EventsController
-         * @param event
-         */
-        updateEventsData: function updateEventsData(event, timestamp) {
+                    // Create new
+                    $element.renderFormData({});
+                }
+            },
 
             /**
              * Get events list
-             * @type {Object}
+             * @member EventsController
+             * @returns {Object}
              */
-            var events = this.controller.getEventsList(),
-                createMsg = 'Create',
-                updateMsg = 'Update';
+            getEventsList: function getEventsList() {
 
-            this.logger.debug([
-                (events.hasOwnProperty(timestamp) ?
-                    updateMsg : createMsg),
-                'event'
-            ].join(' '), event);
+                var events = '{}';
 
-            events[timestamp] = event;
+                try {
 
-            var json = JSON.stringify(events);
-            
-            this.model.setEventsJson(
-                json
-            );
-            
-            this.observer.publish(
-                this.eventmanager.eventList.transferContentPreferences,
-                ['eventsJson', json]
-            );
-            
-            this.controller.store();
-            
-        }
+                    events = JSON.parse(
+                            this.model.getPrefs('eventsJson') || events
+                    );
 
-    }, PluginBase.prototype, WidgetContentController.prototype, WidgetContentPreferencesController.prototype);
+                } catch (e) {
+
+                    this.scope.logger.warn('Unable to parse events list', e);
+                }
+
+                return events;
+            },
+
+            /**
+             * Set active event
+             * @member EventsController
+             * @param event
+             */
+            setActiveEvent: function setActiveEvent(event) {
+                this.activeEvent = event;
+            },
+
+            /**
+             * Get active event
+             * @member EventsController
+             * @return {object}
+             */
+            getAciveEvent: function getActiveEvent() {
+                return this.scope.activeEvent || {};
+            },
+
+            /**
+             * Update events data JSON
+             * @member EventsController
+             * @param event
+             */
+            updateEventsData: function updateEventsData(event, timestamp) {
+
+                /**
+                 * Get events list
+                 * @type {Object}
+                 */
+                var events = this.controller.getEventsList(),
+                    createMsg = 'Create',
+                    updateMsg = 'Update';
+
+                this.logger.debug([
+                    (events.hasOwnProperty(timestamp) ?
+                        updateMsg : createMsg),
+                    'event'
+                ].join(' '), event);
+
+                events[timestamp] = event;
+
+                this.controller.updateEventsModel(events);
+            },
+
+            /**
+             * Update events data in model
+             * @member EventsController
+             * @param events
+             */
+            updateEventsModel: function updateEventsModel(events) {
+
+                /**
+                 * Get scope
+                 * @type {Events}
+                 */
+                var scope = this.scope;
+
+                // Stringify json
+                var json = JSON.stringify(events);
+
+                // Update prefs
+                this.model.setEventsJson(
+                    json
+                );
+
+                // Save prefs in containment
+                scope.observer.publish(
+                    scope.eventmanager.eventList.alternativeSavePreferences,
+                    ['eventsJson', json]
+                );
+            },
+
+            /**
+             * Remove event
+             * @member EventsController
+             * @param timestamp
+             */
+            removeEvent: function removeEvent(timestamp) {
+
+                var events = this.controller.parseData() || [];
+
+                if (events.length === 0) {
+                    return false;
+                }
+
+                if (!events.hasOwnProperty(timestamp)) {
+
+                    this.logger.warn('Unable to locate event', events, timestamp);
+                    return false;
+                }
+
+                // Delete event
+                delete events[timestamp];
+
+                // Update events
+                this.controller.updateEventsModel(events);
+            }
+
+        },
+        
+        PluginBase.prototype,
+        WidgetContentController.prototype,
+        WidgetContentPreferencesController.prototype
+    );
 });
