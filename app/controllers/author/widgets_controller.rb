@@ -69,6 +69,6 @@ class Author::WidgetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def author_widget_params
-      params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :type, :resource)
+      params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :category, :resource)
     end
 end

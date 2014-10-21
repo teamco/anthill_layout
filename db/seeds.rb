@@ -460,7 +460,11 @@ widgets = [
     }
 ]
 
-widgets.each do |w|
+puts '--- Start Add widgets'
+
+widgets.each_with_index do |w, index|
+
+  puts "#{index}: #{w[:name]}"
 
   Author::Widget.create(
       {
@@ -469,9 +473,11 @@ widgets.each do |w|
           thumbnail: w[:thumbnail],
           width: w[:dimensions][:width],
           height: w[:dimensions][:height],
-          type: w[:type],
+          category: w[:type],
           resource: w[:resource]
       }
   )
 
 end
+
+puts '--- Finish Add widgets'

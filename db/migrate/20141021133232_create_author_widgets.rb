@@ -6,7 +6,7 @@ class CreateAuthorWidgets < ActiveRecord::Migration
       t.text :thumbnail
       t.integer :width
       t.integer :height
-      t.string :type
+      t.string :category
       t.string :resource
 
       t.timestamps
