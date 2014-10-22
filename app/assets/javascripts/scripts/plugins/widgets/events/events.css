@@ -43,7 +43,7 @@
 }
 .widget .content .events .create_new_event {
 	position: absolute;
-	top: 207px;
+	top: 215px;
 	z-index: 1;
 	right: 10px;
 	background: #89B814;
@@ -261,7 +261,6 @@
 .widget .content .events .eventsCalendar-currentTitle .monthTitle {
 	font-size: 110%;
 	text-decoration: none;
-	font-weight: bold;
 	color: #fff;
 }
 .widget .content .events .eventsCalendar-daysList {
@@ -275,13 +274,13 @@
 	border: solid 1px #BCBCBC;
 	border-bottom-width: 0;
 	border-radius: 0;
-	background-color: #CCCCCC;
-	background-image: linear-gradient(top, #EEEEEE 42%, #CCCCCC 71%);
-	background-image: -o-linear-gradient(top, #EEEEEE 42%, #CCCCCC 71%);
-	background-image: -moz-linear-gradient(top, #EEEEEE 42%, #CCCCCC 71%);
-	background-image: -webkit-linear-gradient(top, #EEEEEE 42%, #CCCCCC 71%);
-	background-image: -ms-linear-gradient(top, #EEEEEE 42%, #CCCCCC 71%);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.42, #EEEEEE), color-stop(0.71, #CCCCCC));
+	background-color: #E0E0E0;
+	background-image: linear-gradient(top, #EEEEEE 42%, #E0E0E0 71%);
+	background-image: -o-linear-gradient(top, #EEEEEE 42%, #E0E0E0 71%);
+	background-image: -moz-linear-gradient(top, #EEEEEE 42%, #E0E0E0 71%);
+	background-image: -webkit-linear-gradient(top, #EEEEEE 42%, #E0E0E0 71%);
+	background-image: -ms-linear-gradient(top, #EEEEEE 42%, #E0E0E0 71%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.42, #EEEEEE), color-stop(0.71, #E0E0E0));
 }
 .widget .content .events .eventsCalendar-daysList.showDayNames.showAsWeek {
 	border-radius: 5px 5px 0 0;
@@ -361,11 +360,13 @@ li.eventsCalendar-day.dayWithEvents a:hover {
 	box-shadow: inset 5px 5px 10px #216B7A;
 	text-shadow: 2px 2px 2px #216B7A;
 }
+/*
 li.eventsCalendar-day.current a:hover {
 	background-color: #79BDCC;
 	box-shadow: inset 5px 5px 10px #449FB2;
 	text-shadow: 2px 2px 2px #449FB2;
 }
+*/
 .widget .content .events .eventsCalendar-loading {
 	border-radius: 4px;
 	margin: 5px auto;
@@ -420,19 +421,21 @@ li.eventsCalendar-day.current a:hover {
 .widget .content .events .eventsCalendar-list li time em {
 	float: left;
 	font-style: normal;
+	font-size:9px;
 }
 .widget .content .events .eventsCalendar-list li time small {
-	font-size: 10px;
+	font-size: 9px;
 	float: left;
-	background-color: #807E7E;
+	background-color: #2292FF;
 	color: #fff;
 	padding: 0 5px 0 4px;
 	margin: 0 0 0 3px;
+	border-radius: 5px;
 }
 .widget .content .events .eventsCalendar-list li .eventTitle {
 	display: block;
 	clear: both;
-	font-weight: bold;
+	color:#4096ee;
 	text-decoration: none;
 }
 .widget .content .events .eventsCalendar-list li a.eventTitle {
@@ -471,7 +474,6 @@ li.eventsCalendar-day.current a:hover {
 	margin-top: 10px;
 	padding: 2px 4px 5px;
 	text-decoration: none;
-	font-weight: bold;
 	line-height: 1;
 	color: #ffffff;
 	background-color: #698B10;
@@ -707,66 +709,59 @@ li.eventsCalendar-day.current a:hover {
 }
 .widget .content .events .eventSavedNotice {
 	position: absolute;
-	display:inline-block;
+	display: inline-block;
 	width: 70%;
 	height: 30px;
-	color: red;
+	color: white;
 	top: 110px;
 	text-align: center;
-	background: yellow;
+	background: rgb(81, 169, 255);
 	left: 50%;
 	margin-left: -35%;
 	line-height: 27px;
 	border-radius: 10px;
-	font-size: 13px;
+	font-size: 80%;
 	z-index: 3;
-	border: solid 2px red;
+	border: solid 2px white;
 	opacity: 1;
 }
-
 @-webkit-keyframes flipOutX {
-  0% {
-    -webkit-transform: perspective(400px);
-            transform: perspective(400px);
-  }
-
-  30% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-    opacity: 1;
-  }
-
-  100% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-    opacity: 0;
-  }
+	0% {
+		-webkit-transform: perspective(400px);
+		transform: perspective(400px);
+	}
+	30% {
+		-webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+		transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+		transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+		opacity: 0;
+	}
 }
-
 @keyframes flipOutX {
-  0% {
-    -webkit-transform: perspective(400px);
-            transform: perspective(400px);
-  }
-
-  30% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-    opacity: 1;
-  }
-
-  100% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-    opacity: 0;
-  }
+	0% {
+		-webkit-transform: perspective(400px);
+		transform: perspective(400px);
+	}
+	30% {
+		-webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+		transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+		transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+		opacity: 0;
+	}
 }
-
 .flipOutX {
-  -webkit-animation-name: flipOutX;
-          animation-name: flipOutX;
-  -webkit-animation-duration: .75s;
-          animation-duration: .75s;
-  -webkit-backface-visibility: visible !important;
-          backface-visibility: visible !important;
+	-webkit-animation-name: flipOutX;
+	animation-name: flipOutX;
+	-webkit-animation-duration: .75s;
+	animation-duration: .75s;
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
 }

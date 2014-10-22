@@ -103,6 +103,8 @@ define([], function defineEventsBehavior() {
                         scope.eventmanager.eventList.removeEvent,
                         $(event.target).parent()[0].className
                     );
+					
+					this.$element.renderEmbeddedContent();
 
                 }.bind(this)
             );
@@ -139,20 +141,17 @@ define([], function defineEventsBehavior() {
                     this.removeContainer.bind(this)();
 
                     $('#calendarik').append('<div class="eventSavedNotice animated flipInX">Event Saved Successfully</div>');
-
+					
+					
                     setTimeout(function () {
-
                         var notice = $('.eventSavedNotice');
-
                         notice.removeClass('flipInX').addClass('flipOutX');
-
+						
                         setTimeout(function () {
-
                             notice.remove();
-
-                        }, 1000);
-
-                    }, 2000);
+							this.$element.renderEmbeddedContent();
+                        }.bind(this), 1000);
+                    }.bind(this), 2000);
 
                 }.bind(this)
             );

@@ -819,7 +819,8 @@ body .ui-tooltip {
     background: #f6f6f6 url("images/ui-bg_glass_100_f6f6f6_1x400.png") 50% 50% repeat-x;
     font-weight: bold;
     color: gray;
-    font-size: 16px;
+    font-size: 11px;
+	text-align: center;
     border-radius: 5px;
 }
 .ui-state-default a,
