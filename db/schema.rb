@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141021133232) do
+ActiveRecord::Schema.define(version: 20141022072152) do
 
   create_table "author_histories", force: true do |t|
     t.integer  "site_id"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 20141021133232) do
     t.integer  "height"
     t.string   "category"
     t.string   "resource"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "demos", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

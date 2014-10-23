@@ -31,6 +31,25 @@ define([
         },
 
         /**
+         * Define ajax setup
+         * @member AppController
+         */
+        ajaxSetup: function ajaxSetup() {
+            $.ajaxSetup({
+                timeout: 1000,
+                error: this.handleError.bind(this)
+            });
+        },
+
+        /**
+         * Define error handler
+         * @member AppController
+         */
+        handleError: function handleError() {
+            this.scope.logger.warn('Ajax error', arguments);
+        },
+
+        /**
          * Load updated uuid
          * @member AppController
          * @param {string} uuid

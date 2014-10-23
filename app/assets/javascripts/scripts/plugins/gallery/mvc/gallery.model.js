@@ -22,7 +22,15 @@ define([
 
         /**
          * Define provider types
-         * @type {{regular: string, text: string, video: string, map: string, files: string, image: string, social: string}}
+         * @type {{
+         *      regular: string,
+         *      text: string,
+         *      video: string,
+         *      map: string,
+         *      files: string,
+         *      image: string,
+         *      social: string
+         * }}
          */
         this.dataTypes = {
             regular: 'Regular widgets',
@@ -34,43 +42,60 @@ define([
             social: 'Social data',
             template: 'Template content'
         };
-
-        /**
-         * Define static data
-         * @member GalleryModel
-         * @type {GalleryWidgets}
-         */
-        this.staticData = new GalleryWidgets();
-
-        /**
-         * Define providers
-         * @member GalleryModel
-         * @type {{indoor: {name: string, data: *[]}}}
-         */
-        this.providers = {
-            all: {
-                name: 'All widgets',
-                key: 'all',
-                data: this.staticData.getDefaultData('name', 'string')
-            }
-        };
-
-        /**
-         * Define default provider
-         * @member GalleryModel
-         * @type {{name: string, data: *[]}[]}
-         */
-        this.defaultProvider = this.getProvidersList().all;
-
-        /**
-         * Define current provider
-         * @member GalleryModel
-         * @type {{name: string, data: *[]}[]}
-         */
-        this.currentProvider = this.defaultProvider;
     };
 
     return GalleryModel.extend('GalleryModel', {
+
+        /**
+         * Define load static data
+         * @member GalleryModel
+         */
+        loadStaticData: function loadStaticData(){
+
+            /**
+             * Define static data
+             * @member GalleryModel
+             * @type {GalleryWidgets}
+             */
+            this.staticData = new GalleryWidgets(this);
+
+            // Load data
+            this.staticData.loadDefaultData('name', 'string');
+        },
+
+        /**
+         * Define init
+         * @member GalleryModel
+         */
+        init: function init() {
+
+            /**
+             * Define providers
+             * @member GalleryModel
+             * @type {{indoor: {name: string, data: *[]}}}
+             */
+            this.providers = {
+                all: {
+                    name: 'All widgets',
+                    key: 'all',
+                    data: this.staticData.getDefaultData()
+                }
+            };
+
+            /**
+             * Define default provider
+             * @member GalleryModel
+             * @type {{name: string, data: *[]}[]}
+             */
+            this.defaultProvider = this.getProvidersList().all;
+
+            /**
+             * Define current provider
+             * @member GalleryModel
+             * @type {{name: string, data: *[]}[]}
+             */
+            this.currentProvider = this.defaultProvider;
+        },
 
         /**
          * Get data provider
