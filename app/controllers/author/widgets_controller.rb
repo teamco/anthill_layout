@@ -5,6 +5,25 @@ class Author::WidgetsController < ApplicationController
   # GET /author/widgets.json
   def index
     @author_widgets = Author::Widget.all
+    @adopt_widgets ||= []
+
+    @author_widgets.map do |w|
+
+      @adopt_widgets << {
+          id: w[:id],
+          name: w[:name],
+          description: w[:description],
+          thumbnail: w[:thumbnail],
+          dimensions: {
+              width: w[:width],
+              height: w[:height]
+          },
+          type: w[:category],
+          resource: w[:resource]
+      }
+
+    end
+
   end
 
   # GET /author/widgets/1
@@ -62,13 +81,13 @@ class Author::WidgetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_author_widget
-      @author_widget = Author::Widget.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_author_widget
+    @author_widget = Author::Widget.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def author_widget_params
-      params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :category, :resource)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def author_widget_params
+    params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :category, :resource)
+  end
 end
