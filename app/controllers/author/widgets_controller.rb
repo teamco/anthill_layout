@@ -5,11 +5,11 @@ class Author::WidgetsController < ApplicationController
   # GET /author/widgets.json
   def index
     @author_widgets = Author::Widget.all
-    @adopt_widgets ||= []
+    @json_widgets ||= []
 
     @author_widgets.map do |w|
 
-      @adopt_widgets << {
+      @json_widgets << {
           id: w[:id],
           name: w[:name],
           description: w[:description],
