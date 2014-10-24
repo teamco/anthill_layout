@@ -17,6 +17,7 @@ define(
         'plugins/site.config/element/site.config.cleanup.element',
         'plugins/site.config/element/site.config.import.file.element',
         'plugins/site.config/element/site.config.approve.import.element',
+        'plugins/site.config/element/site.config.widgets.list.element',
         'plugins/site.config/element/site.config.element'
     ],
 
@@ -31,10 +32,11 @@ define(
      * @param {SiteConfigCleanUpElement} SiteConfigCleanUpElement
      * @param {SiteConfigImportFileElement} SiteConfigImportFileElement
      * @param {SiteConfigApproveImportElement} SiteConfigApproveImportElement
+     * @param {SiteConfigWidgetsListElement} SiteConfigWidgetsListElement
      * @param {SiteConfigElement} SiteConfigElement
      * @returns {*}
      */
-        function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigImportFileElement, SiteConfigApproveImportElement, SiteConfigElement) {
+        function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigImportFileElement, SiteConfigApproveImportElement, SiteConfigWidgetsListElement, SiteConfigElement) {
 
         /**
          * Define view
@@ -396,6 +398,55 @@ define(
                         }
                     }
                 });
+            },
+
+            /**
+             * Define show widget generator
+             * @member SiteConfigView
+             * @param {Array} widgets
+             */
+            showWidgetGenerator: function showWidgetGenerator(widgets) {
+
+                this.modalDialog({
+                    $container: this.controller.getPage().view.elements.$page.$,
+                    type: 'info',
+                    title: 'Widgets Manager',
+                    html: this.renderWidgetsList(widgets).$,
+                    cover: true,
+                    autoclose: true,
+                    buttons: {
+                        approve: {
+                            text: 'Generate',
+                            events: {
+                                click: 'nextWidgetGenerator'
+                            }
+                        },
+                        reject: {
+                            text: 'Cancel',
+                            events: {
+                                click: 'rejectModalEvent'
+                            }
+                        }
+                    }
+                });
+            },
+
+            /**
+             * Render widgets list
+             * @member SiteConfigView
+             * @param {Array} widgets
+             */
+            renderWidgetsList: function renderWidgetsList(widgets) {
+
+                /**
+                 * Define SiteConfig Widgets list Element
+                 * @type {SiteConfigWidgetsListElement}
+                 */
+                this.elements.$widgetslist = new SiteConfigWidgetsListElement(this, {
+                    data: widgets
+                });
+
+                return this.elements.$widgetslist;
             },
 
             /**

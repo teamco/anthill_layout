@@ -46,7 +46,7 @@ define([
             var panel = this.getAuthorPanel();
 
             return panel.model.getModule(
-                panel.model.getIndex(name)
+                panel.model.getModuleIndex(name)
             ).module;
         },
 
@@ -64,7 +64,7 @@ define([
             var panel = this.getAuthorPanel();
 
             return panel.model.getModule(
-                panel.model.getIndex('widget-rules')
+                panel.model.getModuleIndex('widget-rules')
             ).module;
         },
 

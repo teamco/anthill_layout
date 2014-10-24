@@ -28,7 +28,14 @@ define([
         /**
          * Define site preferences data
          * @member SiteConfigModel
-         * @type {{preferences: {title: string, description: string}}}
+         * @type {{
+         *      preferences: {title: string, description: string, event: string},
+         *      publish: {title: string, description: string},
+         *      import: {title: string, description: string, event: string},
+         *      export: {title: string, description: string, event: string},
+         *      cleanup: {title: string, description: string, event: string},
+         *      widgetGenerator: {title: string, description: string, event: string}
+         * }}
          */
         this.data = {
             preferences: {
@@ -54,6 +61,11 @@ define([
                 title: 'Clean Up',
                 description: 'Clean up local storage',
                 event:'cleanUpLocalStorage'
+            },
+            widgetGenerator: {
+                title: 'Widget Generator',
+                description: 'Generate new widget',
+                event:'widgetGenerator'
             }
         };
 

@@ -242,6 +242,36 @@ define(
 
                 // Reload without cache
                 document.location.reload(true);
+            },
+
+            /**
+             * Define widget generator
+             * @member SiteConfigController
+             */
+            widgetGenerator: function widgetGenerator() {
+
+                /**
+                 * Get panel
+                 * @type {Panel}
+                 */
+                var panel = this.controller.getContainment();
+
+                /**
+                 * Get gallery
+                 * @type {Gallery}
+                 */
+                var gallery = (panel.model.getModule(
+                    panel.model.getModuleIndex('gallery')
+                ) || {}).module;
+
+                if (!gallery) {
+                    this.logger.warn('Unable to locate gallery module');
+                    return false;
+                }
+
+                this.view.showWidgetGenerator(
+                    gallery.model.staticData.getDefaultData()
+                );
             }
 
         }, PluginBase.prototype, PreferencesController.prototype);
