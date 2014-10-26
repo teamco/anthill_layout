@@ -19,6 +19,7 @@ case RUBY_PLATFORM
 
     # Use Capistrano for deployment
     gem 'capistrano-rails', group: :development
+    gem 'debase', group: :development
     
   when /win32/
 

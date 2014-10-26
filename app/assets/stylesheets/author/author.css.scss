@@ -1,3 +1,64 @@
 // Place all the styles related to the Author::Author controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body.admin {
+  background-color: #ccc;
+}
+
+body.admin .fetcher {
+  width: 80%;
+  border: 1px solid #333;
+  box-shadow: 3px 3px 10px #333;
+  padding: 2px;
+  border-radius: 5px;
+  margin: 20px auto 0;
+  background-color: #fff;
+}
+
+body.admin .fetcher .content {
+  max-height: 700px;
+  overflow: auto;
+  padding: 0 2% 20px;
+}
+
+body.admin table {
+  width: 96%;
+  margin-top: 20px;
+}
+
+body.admin h1 {
+  font-size: 24px;
+  background-color: #dedede;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
+
+body.admin th {
+  padding: 5px 10px;
+  background-color: #dedede;
+  white-space: nowrap;
+  border: 1px solid #ccc;
+}
+
+body.admin td {
+  border: 1px solid #ccc;
+  padding: 1px 5px;
+  background-color: transparent;
+}
+
+body.admin tr:hover td {
+  background-color: #C2D374;
+  border: 1px solid #999;
+}
+
+body.admin td img {
+  width: 16px;
+  height: 16px;
+}

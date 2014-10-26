@@ -1,4 +1,4 @@
-class Author::WidgetsController < ApplicationController
+class Author::WidgetsController < Author::AuthorController
   before_action :set_author_widget, only: [:show, :edit, :update, :destroy]
 
   # GET /author/widgets
