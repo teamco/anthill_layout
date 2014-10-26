@@ -474,7 +474,8 @@ widgets.each_with_index do |w, index|
           width: w[:dimensions][:width],
           height: w[:dimensions][:height],
           category: w[:type],
-          resource: w[:resource]
+          resource: w[:resource],
+          visible: w[:visible].nil? ? true : w[:visible]
       }
   )
 

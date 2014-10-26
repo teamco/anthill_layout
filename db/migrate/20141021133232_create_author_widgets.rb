@@ -8,6 +8,7 @@ class CreateAuthorWidgets < ActiveRecord::Migration
       t.integer :height
       t.string :category
       t.string :resource
+      t.boolean :visible
 
       t.timestamps
     end

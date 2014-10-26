@@ -4,7 +4,7 @@ class Author::WidgetsController < ApplicationController
   # GET /author/widgets
   # GET /author/widgets.json
   def index
-    @author_widgets = Author::Widget.all
+    @author_widgets = Author::Widget.all.where(visible: true)
     @json_widgets ||= []
 
     @author_widgets.map do |w|
