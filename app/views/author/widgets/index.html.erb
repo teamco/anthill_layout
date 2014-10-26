@@ -7,7 +7,7 @@
   <table>
     <thead>
     <tr>
-      <th>Name</th>
+      <th><%= link_to 'Name', order: @order %></th>
       <th>Description</th>
       <th>Icon</th>
       <th>Size</th>
@@ -21,7 +21,7 @@
     <% @author_widgets.each do |author_widget| %>
         <tr>
           <td><%= author_widget.name %></td>
-          <td><%= truncate(author_widget.description, length: 150, separator: ' ') %></td>
+          <td title="<%= author_widget.description %>"><%= truncate(author_widget.description, length: 150, separator: ' ') %></td>
           <td><%= image_tag author_widget.thumbnail %></td>
           <td><%= author_widget.width %> x <%= author_widget.height %></td>
           <td><%= author_widget.category %></td>
