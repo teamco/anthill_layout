@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
+require 'fileutils'
 puts "\n--- Start Clean models"
 Dir['app/models/**/*.rb'].each do |model|
   model = model.camelize.gsub(/App::Models::/, '').gsub(/\.rb/, '')
@@ -490,6 +490,27 @@ widgets.each_with_index do |w, index|
       }
   )
 
-end
+  path = "./app/assets/javascripts/scripts/core/stylesheets/#{w[:resource]}.css"
+  exist_file = File.exist?(path)
 
+  if exist_file
+    puts ">>> Delete previous: #{path}"
+    File.delete("#{path}")
+  end
+
+  puts "--- Create CSS file: #{w[:resource]}.css"
+
+  File.open("#{path}", 'w') do |f|
+    pattern = w[:resource].gsub(/\./, '-')
+    f.write([
+                "ul.gallery .content.#{pattern}",
+                "ul.page-data .content.#{pattern}",
+                "ul.maximize .content.#{pattern}",
+                "ul.widget-rules .content.#{pattern}",
+                ".modal-dialog.preferences .widgets-prefs li.#{pattern}",
+                ".widget .content.#{pattern}{background-image:url('#{w[:thumbnail]}');}"
+            ].join(','))
+  end
+
+end
 puts '--- Finish Add widgets'
