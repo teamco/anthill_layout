@@ -401,17 +401,19 @@ define(
             },
 
             /**
-             * Define show widget generator
+             * Define show widgets list
              * @member SiteConfigView
              * @param {Array} widgets
+             * @param {Array} show
              */
-            showWidgetGenerator: function showWidgetGenerator(widgets) {
+            showWidgetsList: function showWidgetsList(widgets, show) {
 
                 this.modalDialog({
                     $container: this.controller.getPage().view.elements.$page.$,
+                    style: 'widget-generator',
                     type: 'info',
                     title: 'Widgets Manager',
-                    html: this.renderWidgetsList(widgets).$,
+                    html: this.renderWidgetsList(widgets, show).$,
                     cover: true,
                     autoclose: true,
                     buttons: {
@@ -435,18 +437,58 @@ define(
              * Render widgets list
              * @member SiteConfigView
              * @param {Array} widgets
+             * @param {Array} show
              */
-            renderWidgetsList: function renderWidgetsList(widgets) {
+            renderWidgetsList: function renderWidgetsList(widgets, show) {
 
                 /**
                  * Define SiteConfig Widgets list Element
                  * @type {SiteConfigWidgetsListElement}
                  */
-                this.elements.$widgetslist = new SiteConfigWidgetsListElement(this, {
-                    data: widgets
+                this.elements.$widgetgenerator = new SiteConfigWidgetsListElement(this, {
+                    data: widgets,
+                    show: show
                 });
 
-                return this.elements.$widgetslist;
+                return this.elements.$widgetgenerator;
+            },
+
+            /**
+             * Define show widgets generator
+             * @member SiteConfigView
+             */
+            showWidgetGenerator: function showWidgetGenerator() {
+
+                // Clear modal
+                this.elements.$modal.selfDestroy();
+
+                this.modalDialog({
+                    $container: this.controller.getPage().view.elements.$page.$,
+                    style: 'widget-generator',
+                    type: 'info',
+                    title: 'Widgets Manager',
+                    html: this.renderWidgetsGenerator().$,
+                    cover: true,
+                    autoclose: true,
+                    buttons: {
+                        approve: {
+                            text: 'Save',
+                            events: {
+                                click: 'createWidget'
+                            }
+                        },
+                        reject: {
+                            text: 'Cancel',
+                            events: {
+                                click: 'rejectModalEvent'
+                            }
+                        }
+                    }
+                });
+            },
+
+            renderWidgetsGenerator: function renderWidgetsGenerator() {
+                return this.elements.$widgetgenerator.renderWidgetGeneratorForm();
             },
 
             /**

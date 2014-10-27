@@ -113,3 +113,57 @@ ul.site-config > .content:hover {
 .modal-dialog.import-site-data .site-config ul {
     list-style: none;
 }
+
+.modal-dialog.widget-generator div.html ul,
+.modal-dialog.widget-generator div.html li.header,
+.modal-dialog.widget-generator div.html li.row {
+    list-style: none;
+    width: 100%;
+}
+
+.modal-dialog.widget-generator div.html li {
+    float: left;
+    display: inline-block;
+}
+
+.modal-dialog.widget-generator div.html li li {
+    padding: 2px 5px;
+    font-size: 12px;
+    box-sizing: border-box;
+    box-shadow: -1px 1px 0 #ccc;
+    height: 24px;
+    overflow: hidden;
+}
+
+.modal-dialog.widget-generator div.html li.header li {
+    font-size: 14px;
+    font-variant: small-caps;
+    font-weight: bold;
+    background-color: #dedede;
+}
+
+.modal-dialog.widget-generator div.html li.id,
+.modal-dialog.widget-generator div.html li.description,
+.modal-dialog.widget-generator div.html li.dimensions,
+.modal-dialog.widget-generator div.html li.type,
+.modal-dialog.widget-generator div.html li.url {
+    display: none;
+}
+
+.modal-dialog.widget-generator div.html li.name {
+    width: 50%;
+}
+
+.modal-dialog.widget-generator div.html li.thumbnail {
+    text-align: center;
+    width: 9%;
+}
+
+.modal-dialog.widget-generator div.html li.resource {
+    width: 40%;
+}
+
+.modal-dialog.widget-generator div.html li.row img {
+    width: 20px;
+    height: 20px;
+}

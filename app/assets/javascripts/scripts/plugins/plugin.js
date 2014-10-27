@@ -69,6 +69,34 @@ define([
         },
 
         /**
+         * Get gallery module
+         * @member PluginController
+         * @return {Gallery}
+         */
+        getGalleryModule: function getGalleryModule() {
+
+            /**
+             * Get panel
+             * @type {Panel}
+             */
+            var panel = this.getAuthorPanel();
+
+            /**
+             * Get gallery
+             * @type {Gallery}
+             */
+            var gallery = (panel.model.getModule(
+                panel.model.getModuleIndex('gallery')
+            ) || {}).module;
+
+            if (!gallery) {
+                this.logger.warn('Unable to locate gallery module');
+            }
+
+            return gallery;
+        },
+
+        /**
          * Check if data was existing
          * @member PluginController
          * @returns {boolean}

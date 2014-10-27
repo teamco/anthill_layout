@@ -22,37 +22,57 @@ define([
             destroy: false
         });
 
-        this.renderList(opts.data);
+        this.renderList(opts.data, opts.show);
 
         return this;
     };
 
     return SiteConfigWidgetsListElement.extend('SiteConfigWidgetsListElement', {
 
-        renderList: function renderList(data) {
+        /**
+         * Render list
+         * @member SiteConfigWidgetsListElement
+         * @param data
+         * @param show
+         */
+        renderList: function renderList(data, show) {
 
-            function _renderHeader(header) {
+            /**
+             * Render row
+             * @param row
+             * @param style
+             * @returns {string[]}
+             * @private
+             */
+            function _renderRow(row, style) {
 
                 var html = [],
                     index;
 
-                for (index in header) {
+                for (index in row) {
 
-                    if (header.hasOwnProperty(index)) {
+                    if (row.hasOwnProperty(index)) {
 
-                        html.push([
-                            '<li class="', index.toDash(), '">',
-                            index,
-                            '</li>'
-                        ].join(''));
+                        if (show.indexOf(index) > -1) {
+
+                            html.push([
+                                '<li class="', index.toDash(), '">',
+                                style === 'header' ?
+                                    index === 'thumbnail' ? 'icon' : index :
+                                    index === 'thumbnail' && style === 'row' ?
+                                    '<img alt="' + index + '" src="' + row[index] + '"/>' :
+                                        row[index],
+                                '</li>'
+                            ].join(''));
+                        }
                     }
                 }
 
                 return [
-                    '<li class="header"><ul>',
+                    '<li class="', style, '"><ul>',
                     html.join(''),
                     '</ul></li>'
-                ];
+                ].join('');
             }
 
             var i = 0,
@@ -61,14 +81,25 @@ define([
             var $ul = $('<ul />');
 
             // Append header
-            $ul.append(_renderHeader(data[0]));
+            $ul.append(
+                _renderRow(data[0], 'header')
+            );
 
             for (; i < l; i++) {
 
-                var widget = data[i];
-
-
+                $ul.append(
+                    _renderRow(data[i], 'row')
+                );
             }
+
+            this.$.append($ul);
+        },
+
+        renderWidgetGeneratorForm: function renderWidgetGeneratorForm() {
+
+            this.empty();
+
+            return this.$;
         }
 
     }, BaseElement.prototype);
