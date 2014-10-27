@@ -110,23 +110,24 @@ ul.site-config > .content:hover {
     height: 100%;
 }
 
-.modal-dialog.import-site-data .site-config ul {
+.modal-dialog.import-site-data .site-config ul,
+.modal-dialog.widget-generator div.html ul {
     list-style: none;
 }
 
-.modal-dialog.widget-generator div.html ul,
-.modal-dialog.widget-generator div.html li.header,
-.modal-dialog.widget-generator div.html li.row {
+.modal-dialog.widget-list div.html ul,
+.modal-dialog.widget-list div.html li.header,
+.modal-dialog.widget-list div.html li.row {
     list-style: none;
     width: 100%;
 }
 
-.modal-dialog.widget-generator div.html li {
+.modal-dialog.widget-list div.html li {
     float: left;
     display: inline-block;
 }
 
-.modal-dialog.widget-generator div.html li li {
+.modal-dialog.widget-list div.html li li {
     padding: 2px 5px;
     font-size: 12px;
     box-sizing: border-box;
@@ -135,35 +136,74 @@ ul.site-config > .content:hover {
     overflow: hidden;
 }
 
-.modal-dialog.widget-generator div.html li.header li {
+.modal-dialog.widget-list div.html li.header li {
     font-size: 14px;
     font-variant: small-caps;
     font-weight: bold;
     background-color: #dedede;
 }
 
-.modal-dialog.widget-generator div.html li.id,
-.modal-dialog.widget-generator div.html li.description,
-.modal-dialog.widget-generator div.html li.dimensions,
-.modal-dialog.widget-generator div.html li.type,
-.modal-dialog.widget-generator div.html li.url {
+.modal-dialog.widget-list div.html li.id,
+.modal-dialog.widget-list div.html li.description,
+.modal-dialog.widget-list div.html li.dimensions,
+.modal-dialog.widget-list div.html li.type,
+.modal-dialog.widget-list div.html li.url {
     display: none;
 }
 
-.modal-dialog.widget-generator div.html li.name {
+.modal-dialog.widget-list div.html li.name {
     width: 50%;
 }
 
-.modal-dialog.widget-generator div.html li.thumbnail {
+.modal-dialog.widget-list div.html li.thumbnail {
     text-align: center;
     width: 9%;
 }
 
-.modal-dialog.widget-generator div.html li.resource {
+.modal-dialog.widget-list div.html li.resource {
     width: 40%;
 }
 
-.modal-dialog.widget-generator div.html li.row img {
+.modal-dialog.widget-list div.html li.row img {
     width: 20px;
     height: 20px;
+}
+
+.modal-dialog.widget-generator div.html input[type="text"] {
+    position: relative;
+    right: 0;
+}
+
+.modal-dialog.widget-generator div.html li {
+    height: 24px;
+    margin-bottom: 3px;
+}
+
+.modal-dialog.widget-generator div.html li.description,
+.modal-dialog.widget-generator div.html li.thumbnail {
+    height: auto;
+}
+
+.modal-dialog.widget-generator div.html li.width,
+.modal-dialog.widget-generator div.html li.type {
+    float: left;
+}
+
+.modal-dialog.widget-generator div.html li.height,
+.modal-dialog.widget-generator div.html li.resource {
+    float: right;
+}
+
+.modal-dialog.widget-generator div.html li.width,
+.modal-dialog.widget-generator div.html li.height,
+.modal-dialog.widget-generator div.html li.type,
+.modal-dialog.widget-generator div.html li.resource {
+    width: 45%;
+}
+
+.modal-dialog.widget-generator div.html li.width input[type="text"]:focus,
+.modal-dialog.widget-generator div.html li.height input[type="text"]:focus,
+.modal-dialog.widget-generator div.html li.type input[type="text"]:focus,
+.modal-dialog.widget-generator div.html li.resource input[type="text"]:focus {
+    width: 65%;
 }
