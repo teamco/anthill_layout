@@ -4,12 +4,7 @@ class Author::WidgetsController < Author::AuthorController
   # GET /author/widgets
   # GET /author/widgets.json
   def index
-    @order = params[:order] || 'name desc'
-    @order.include? 'desc' ?
-      @order.gsub!(/desc/, 'asc') :
-      @order.gsub!(/asc/, 'desc')
-    @order = @order + ' asc' unless @order.include? 'desc' or @order.include? 'asc'
-    @author_widgets = Author::Widget.all.where(visible: true).order(@order)
+    @author_widgets = Author::Widget.all.where(visible: true).order(name: :asc)
     @json_widgets ||= []
 
     @author_widgets.map do |w|
@@ -26,9 +21,7 @@ class Author::WidgetsController < Author::AuthorController
           type: w[:category],
           resource: w[:resource]
       }
-
     end
-
   end
 
   # GET /author/widgets/1
