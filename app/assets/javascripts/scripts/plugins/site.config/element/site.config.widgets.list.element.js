@@ -22,26 +22,25 @@ define([
             destroy: false
         });
 
-        this.renderList(opts.data, opts.show);
-
         return this;
     };
 
     return SiteConfigWidgetsListElement.extend('SiteConfigWidgetsListElement', {
 
         /**
-         * Render list
+         * Render widgets list
          * @member SiteConfigWidgetsListElement
          * @param data
          * @param show
+         * @return {SiteConfigWidgetsListElement}
          */
-        renderList: function renderList(data, show) {
+        renderWidgetsList: function renderWidgetsList(data, show) {
 
             /**
              * Render row
              * @param row
              * @param style
-             * @returns {string[]}
+             * @returns {string}
              * @private
              */
             function _renderRow(row, style) {
@@ -57,11 +56,11 @@ define([
 
                             html.push([
                                 '<li class="', index.toDash(), '">',
-                                style === 'header' ?
-                                    index === 'thumbnail' ? 'icon' : index :
-                                    index === 'thumbnail' && style === 'row' ?
+                                    style === 'header' ?
+                                        index === 'thumbnail' ? 'icon' : index :
+                                        index === 'thumbnail' && style === 'row' ?
                                     '<img alt="' + index + '" src="' + row[index] + '"/>' :
-                                        row[index],
+                                    row[index],
                                 '</li>'
                             ].join(''));
                         }
@@ -93,13 +92,74 @@ define([
             }
 
             this.$.append($ul);
+
+            return this;
         },
 
-        renderWidgetGeneratorForm: function renderWidgetGeneratorForm() {
+        /**
+         * Render widget generator form
+         * @member SiteConfigWidgetsListElement
+         * @param {object} widget
+         * @returns {SiteConfigWidgetsListElement}
+         */
+        renderWidgetGeneratorForm: function renderWidgetGeneratorForm(widget) {
 
-            this.empty();
+            var index, $li, $field,
+                $ul = $('<ul />');
 
-            return this.$;
+            /**
+             * Get renderer
+             * @param renderer
+             * @param {string} index
+             * @returns {*}
+             * @private
+             */
+            function _getRenderer(renderer, index) {
+
+                return renderer({
+                    name: index,
+                    text: index,
+                    placeholder: 'Enter ' + index,
+                    disabled: false,
+                    visible: true,
+                    validate: false
+                });
+            }
+
+            for (index in widget) {
+
+                if (widget.hasOwnProperty(index)) {
+
+                    $li = $('<li />');
+
+                    switch (index) {
+                        case 'name':
+                        case 'type':
+                        case 'resource':
+                            $field = _getRenderer(this.renderTextField.bind(this), index);
+                            break;
+                        case 'dimensions':
+                            $field = [
+                                _getRenderer(this.renderTextField.bind(this), 'width'),
+                                _getRenderer(this.renderTextField.bind(this), 'height')
+                            ];
+                            break;
+                        case 'description':
+                        case 'thumbnail':
+                            $field = _getRenderer(this.renderTextArea.bind(this), index);
+                            break;
+                        default:
+                            continue;
+                            break;
+                    }
+
+                    $ul.append($field);
+                }
+            }
+
+            this.$.append($ul);
+
+            return this;
         }
 
     }, BaseElement.prototype);

@@ -413,9 +413,9 @@ define(
                     style: 'widget-generator',
                     type: 'info',
                     title: 'Widgets Manager',
-                    html: this.renderWidgetsList(widgets, show).$,
+                    html: this.renderWidgetsManager().renderWidgetsList(widgets, show).$,
                     cover: true,
-                    autoclose: true,
+                    autoclose: false,
                     buttons: {
                         approve: {
                             text: 'Generate',
@@ -434,21 +434,16 @@ define(
             },
 
             /**
-             * Render widgets list
+             * Render widgets manager
              * @member SiteConfigView
-             * @param {Array} widgets
-             * @param {Array} show
              */
-            renderWidgetsList: function renderWidgetsList(widgets, show) {
+            renderWidgetsManager: function renderWidgetsManager() {
 
                 /**
                  * Define SiteConfig Widgets list Element
                  * @type {SiteConfigWidgetsListElement}
                  */
-                this.elements.$widgetgenerator = new SiteConfigWidgetsListElement(this, {
-                    data: widgets,
-                    show: show
-                });
+                this.elements.$widgetgenerator = new SiteConfigWidgetsListElement(this, {});
 
                 return this.elements.$widgetgenerator;
             },
@@ -456,8 +451,9 @@ define(
             /**
              * Define show widgets generator
              * @member SiteConfigView
+             * @param {Array} widgets
              */
-            showWidgetGenerator: function showWidgetGenerator() {
+            showWidgetGenerator: function showWidgetGenerator(widgets) {
 
                 // Clear modal
                 this.elements.$modal.selfDestroy();
@@ -467,9 +463,9 @@ define(
                     style: 'widget-generator',
                     type: 'info',
                     title: 'Widgets Manager',
-                    html: this.renderWidgetsGenerator().$,
+                    html: this.renderWidgetsManager().renderWidgetGeneratorForm(widgets[0]).$,
                     cover: true,
-                    autoclose: true,
+                    autoclose: false,
                     buttons: {
                         approve: {
                             text: 'Save',
@@ -485,10 +481,6 @@ define(
                         }
                     }
                 });
-            },
-
-            renderWidgetsGenerator: function renderWidgetsGenerator() {
-                return this.elements.$widgetgenerator.renderWidgetGeneratorForm();
             },
 
             /**
