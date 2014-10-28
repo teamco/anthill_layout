@@ -410,7 +410,7 @@ define(
 
                 this.modalDialog({
                     $container: this.controller.getPage().view.elements.$page.$,
-                    style: 'widget-generator',
+                    style: 'widget-list',
                     type: 'info',
                     title: 'Widgets Manager',
                     html: this.renderWidgetsManager().renderWidgetsList(widgets, show).$,
@@ -453,7 +453,7 @@ define(
              * @member SiteConfigView
              * @param {Array} widgets
              */
-            showWidgetGenerator: function showWidgetGenerator(widgets) {
+            showWidgetGenerator: function showWidgetGenerator(widgets, types) {
 
                 // Clear modal
                 this.elements.$modal.selfDestroy();
@@ -463,7 +463,7 @@ define(
                     style: 'widget-generator',
                     type: 'info',
                     title: 'Widgets Manager',
-                    html: this.renderWidgetsManager().renderWidgetGeneratorForm(widgets[0]).$,
+                    html: this.renderWidgetsManager().renderWidgetGeneratorForm(widgets[0], types).$,
                     cover: true,
                     autoclose: false,
                     buttons: {

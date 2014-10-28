@@ -3,8 +3,9 @@
  */
 
 define([
-    'modules/Element'
-], function defineSiteConfigWidgetsListElement(BaseElement) {
+    'modules/Element',
+    'plugins/gallery/element/gallery.providers.element'
+], function defineSiteConfigWidgetsListElement(BaseElement, GalleryProvidersElement) {
 
     /**
      * Define SiteConfigWidgetsListElement
@@ -13,6 +14,7 @@ define([
      * @param {SiteConfigView} view
      * @param opts
      * @extends BaseElement
+     * @extends GalleryProvidersElement
      * @returns {SiteConfigWidgetsListElement}
      */
     var SiteConfigWidgetsListElement = function SiteConfigWidgetsListElement(view, opts) {
@@ -56,11 +58,11 @@ define([
 
                             html.push([
                                 '<li class="', index.toDash(), '">',
-                                    style === 'header' ?
-                                        index === 'thumbnail' ? 'icon' : index :
-                                        index === 'thumbnail' && style === 'row' ?
+                                style === 'header' ?
+                                    index === 'thumbnail' ? 'icon' : index :
+                                    index === 'thumbnail' && style === 'row' ?
                                     '<img alt="' + index + '" src="' + row[index] + '"/>' :
-                                    row[index],
+                                        row[index],
                                 '</li>'
                             ].join(''));
                         }
@@ -100,41 +102,41 @@ define([
          * Render widget generator form
          * @member SiteConfigWidgetsListElement
          * @param {object} widget
+         * @param {Array} types
          * @returns {SiteConfigWidgetsListElement}
          */
-        renderWidgetGeneratorForm: function renderWidgetGeneratorForm(widget) {
+        renderWidgetGeneratorForm: function renderWidgetGeneratorForm(widget, types) {
 
-            var index, $li, $field,
+            var index, $field,
                 $ul = $('<ul />');
 
             /**
              * Get renderer
-             * @param renderer
+             * @param {function} renderer
              * @param {string} index
              * @returns {*}
              * @private
              */
             function _getRenderer(renderer, index) {
 
-                return renderer({
-                    name: index,
-                    text: index,
-                    placeholder: 'Enter ' + index,
-                    disabled: false,
-                    visible: true,
-                    validate: false
-                });
+                return $('<li />').addClass(index).append(
+                    renderer({
+                        name: index,
+                        text: index,
+                        placeholder: 'Enter ' + index,
+                        disabled: false,
+                        visible: true,
+                        validate: false
+                    })
+                );
             }
 
             for (index in widget) {
 
                 if (widget.hasOwnProperty(index)) {
 
-                    $li = $('<li />');
-
                     switch (index) {
                         case 'name':
-                        case 'type':
                         case 'resource':
                             $field = _getRenderer(this.renderTextField.bind(this), index);
                             break;
@@ -147,6 +149,19 @@ define([
                         case 'description':
                         case 'thumbnail':
                             $field = _getRenderer(this.renderTextArea.bind(this), index);
+                            break;
+                        case 'type':
+                            $field = $('<li />').append(
+                                var data = 
+                                this.renderCombobox(
+                                    this.sortComboBoxData(types),
+                                    undefined,
+                                    index,
+                                    'widgetsCategory',
+                                    undefined,
+                                    true
+                                )
+                            );
                             break;
                         default:
                             continue;
@@ -162,5 +177,5 @@ define([
             return this;
         }
 
-    }, BaseElement.prototype);
+    }, BaseElement.prototype, GalleryProvidersElement.prototype);
 });

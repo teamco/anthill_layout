@@ -281,7 +281,8 @@ define(
 
                     if (gallery) {
                         this.scope.view.showWidgetGenerator(
-                            gallery.model.staticData.getDefaultData()
+                            gallery.model.staticData.getDefaultData(),
+                            gallery.model.dataTypes
                         );
                     }
                 }
