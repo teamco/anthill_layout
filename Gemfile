@@ -16,11 +16,12 @@ case RUBY_PLATFORM
 
     # Use debugger
     gem 'byebug', group: [:development, :test]
+    gem 'ruby-debug-ide', group: :development
 
     # Use Capistrano for deployment
     gem 'capistrano-rails', group: :development
     gem 'debase', group: :development
-    
+
   when /win32/
 
     #gem 'thin'
