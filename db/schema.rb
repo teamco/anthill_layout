@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20141028144128) do
     t.text     "thumbnail"
     t.integer  "width"
     t.integer  "height"
-    t.string   "category"
     t.string   "resource"
     t.boolean  "visible"
     t.datetime "created_at"

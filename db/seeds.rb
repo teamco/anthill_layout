@@ -494,7 +494,9 @@ puts "\n--- Start Add widgets"
 
 widgets.each_with_index do |w, index|
 
-  puts "#{index}: #{w[:name]}"
+  category = Author::WidgetCategory.find_by_name_index(w[:type])
+
+  puts "#{index}: #{w[:name]} (#{category.name_value})"
 
   Author::Widget.create(
       {
@@ -503,7 +505,7 @@ widgets.each_with_index do |w, index|
           thumbnail: w[:thumbnail],
           width: w[:dimensions][:width],
           height: w[:dimensions][:height],
-          category: Author::WidgetCategory.find_by_name_index(w[:type]).id,
+          widget_category_id: category.id,
           resource: w[:resource],
           visible: w[:visible].nil? ? true : w[:visible]
       }

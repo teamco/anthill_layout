@@ -26,7 +26,7 @@
           <td title="<%= author_widget.description %>"><%= truncate(author_widget.description, length: 150, separator: ' ') %></td>
           <td><%= image_tag author_widget.thumbnail %></td>
           <td><%= author_widget.width %> x <%= author_widget.height %></td>
-          <td><%= author_widget.category %></td>
+          <td><%= author_widget.author_widget_category.name_value %></td>
           <td><%= author_widget.resource %></td>
           <td><%= link_to 'Show', author_widget %></td>
           <td><%= link_to 'Edit', edit_author_widget_path(author_widget) %></td>

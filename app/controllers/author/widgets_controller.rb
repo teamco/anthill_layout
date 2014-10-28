@@ -5,11 +5,14 @@ class Author::WidgetsController < Author::AuthorController
   # GET /author/widgets.json
   def index
     @author_widgets = Author::Widget.all.where(visible: true).order(name: :asc)
-    @json_widgets ||= []
+    @json_data ||= {
+        categories: Author::WidgetCategory.all,
+        widgets: []
+    }
 
     @author_widgets.map do |w|
 
-      @json_widgets << {
+      @json_data[:widgets] << {
           id: w[:id],
           name: w[:name],
           description: w[:description],
@@ -18,7 +21,7 @@ class Author::WidgetsController < Author::AuthorController
               width: w[:width],
               height: w[:height]
           },
-          type: w[:category],
+          type: w.author_widget_category[:name_key],
           resource: w[:resource]
       }
     end

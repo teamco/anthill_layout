@@ -1,3 +1,3 @@
 class Author::Widget < ActiveRecord::Base
-  has_one :author_widget_category, :class_name => 'Author::WidgetCategory'
+  belongs_to :author_widget_category, :class_name => 'Author::WidgetCategory', :foreign_key => :widget_category_id
 end
