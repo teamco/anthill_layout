@@ -80,8 +80,9 @@ ul.site-config > .content:hover {
     bottom: 30px;
 }
 
-.modal-dialog.site-config {
-    width: auto;
+.modal-dialog.site-config .workspace-static-width-prefs {
+    float: none;
+    margin: 0;
 }
 
 .modal-dialog.import-site-data.upload-json .site-config {

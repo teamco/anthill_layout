@@ -154,12 +154,6 @@ define(
                 };
 
                 /**
-                 * Define page
-                 * @type {Page}
-                 */
-                var page = this.controller.getPage();
-
-                /**
                  * Get Workspace
                  * @type {Workspace}
                  */
@@ -167,7 +161,6 @@ define(
 
                 this.modalDialog({
                     style: 'import-site-data upload-json',
-                    $container: page.view.get$item().$,
                     type: 'info',
                     title: 'Import site data',
                     text: workspace.model.getUUID(),
@@ -217,17 +210,10 @@ define(
                     }
                 };
 
-                /**
-                 * Define page
-                 * @type {Page}
-                 */
-                var page = this.controller.getPage();
-
                 this.elements.$modal.selfDestroy();
 
                 this.modalDialog({
                     style: 'import-site-data approve',
-                    $container: page.view.get$item().$,
                     type: 'warning',
                     title: 'Confirm to Import site data',
                     text: [
@@ -275,12 +261,6 @@ define(
                 };
 
                 /**
-                 * Define page
-                 * @type {Page}
-                 */
-                var page = this.controller.getPage();
-
-                /**
                  * Get Workspace
                  * @type {Workspace}
                  */
@@ -288,9 +268,8 @@ define(
 
                 this.modalDialog({
                     style: [
-                        opts.title.toDash(), 'config'
+                        opts.title.toDash(), 'site-config'
                     ].join(' '),
-                    $container: page.view.get$item().$,
                     type: 'info',
                     title: opts.title,
                     text: workspace.model.getUUID(),
@@ -376,7 +355,6 @@ define(
             cleanUpConfirmation: function cleanUpConfirmation() {
 
                 this.modalDialog({
-                    $container: this.controller.getPage().view.elements.$page.$,
                     type: 'warning',
                     title: 'Clean up',
                     text: 'Are you sure want to cleanup browser local storage?',
@@ -409,7 +387,6 @@ define(
             showWidgetsList: function showWidgetsList(widgets, show) {
 
                 this.modalDialog({
-                    $container: this.controller.getPage().view.elements.$page.$,
                     style: 'widget-list',
                     type: 'info',
                     title: 'Widgets Manager',
@@ -459,7 +436,6 @@ define(
                 this.elements.$modal.selfDestroy();
 
                 this.modalDialog({
-                    $container: this.controller.getPage().view.elements.$page.$,
                     style: 'widget-generator',
                     type: 'info',
                     title: 'Widgets Manager',

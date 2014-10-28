@@ -36,7 +36,7 @@ define([
         this.setup(opts);
 
         this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
+            $container: opts.$container || $('body'),
             destroy: true
         }).$.addClass('modal-dialog');
 
