@@ -44,7 +44,8 @@ class Author::WidgetsController < Author::AuthorController
   # POST /author/widgets
   # POST /author/widgets.json
   def create
-    @author_widget = Author::Widget.new(author_widget_params)
+    category = Author::WidgetCategory.find_by_name_index(params[:author_widget_category][:name_index])
+    @author_widget = category.author_widgets.build(author_widget_params)
 
     respond_to do |format|
       if @author_widget.save
@@ -101,6 +102,6 @@ class Author::WidgetsController < Author::AuthorController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_widget_params
-    params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :category, :resource, :visible)
+    params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :resource, :visible)
   end
 end

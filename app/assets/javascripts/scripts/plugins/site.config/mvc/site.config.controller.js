@@ -19,7 +19,7 @@ define(
      * @param {Routes} Routes
      * @returns {SiteConfigController}
      */
-        function defineSiteConfigController(PluginBase, Routes, PreferencesController) {
+    function defineSiteConfigController(PluginBase, Routes, PreferencesController) {
 
         /**
          * Define site config controller
@@ -314,14 +314,25 @@ define(
                     var gallery = this.getGalleryModule();
 
                     if (gallery) {
-                        //gallery.model.dataTypes
+
+                        // Store category key
+                        var category = this.base.lib.hash.getKeyByValue(
+                            gallery.model.dataTypes,
+                            collector.category
+                        );
                     }
+
+                    // Remove unpermitted attribute
+                    delete collector.category;
 
                     $.ajax({
                         url: this.resources.createNewWidget,
                         method: 'post',
                         data: this.prepareXhrData({
-                            author_widget: collector
+                            author_widget: collector,
+                            author_widget_category: {
+                                name_index: category
+                            }
                         })
                     }).done(
                         function done() {
