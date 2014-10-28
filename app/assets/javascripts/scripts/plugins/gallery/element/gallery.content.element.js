@@ -48,25 +48,16 @@ define([
         setAttributes: function setAttributes() {
 
             this.$.attr({
+
                 title: this.data.name,
                 resource: this.data.resource
-            });
 
+            }).addClass(
 
-            if (this.data.thumbnail.length > 0) {
-
-                this.$.css({
-                    backgroundImage: 'url("' + this.data.thumbnail + '")'
-                });
-
-            } else {
-
-                this.$.addClass(
-                    this.view.controller.getResourceClassName(
-                        this.data.resource
-                    )
-                );
-            }
+                this.view.controller.getResourceClassName(
+                    this.data.resource
+                )
+            );
         },
 
         /**

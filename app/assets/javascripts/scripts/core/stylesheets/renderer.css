@@ -45,7 +45,8 @@ div.combo-box li {
     margin: 0 !important;
     cursor: pointer;
     border-bottom: 1px solid #ccc;
-    line-height: 20px;
+    line-height: 23px;
+    font-size: 12px;
 }
 
 div.combo-box li.selected {
@@ -80,4 +81,114 @@ div.combo-box.open li:last-child:hover {
 div.combo-box.open li.selected,
 div.combo-box.open li.selected:hover {
     background-color: #fbcb09;
+}
+
+div.combo-box input.hidden {
+    display: none;
+}
+
+input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #fff;
+    margin: 0 0 0 10px;
+    width: 60%;
+    height: 24px;
+    line-height: 22px;
+    float: right;
+    overflow: hidden;
+    -webkit-transition: width 0s;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
+    transition: width 0s;
+    padding: 3px;
+}
+
+input[type="text"]:focus {
+    width: 80%;
+    position: absolute;
+    transition: width 0.5s;
+    right: 4px;
+}
+
+input[type="text"].validate {
+    border-color: #F08080;
+}
+
+input[type="text"] + span.validate {
+    float: right;
+    font-size: 11px;
+    padding: 5px;
+    font-style: italic;
+    color: #F08080;
+    text-shadow: 1px 1px 3px #fff;
+}
+
+input[disabled="disabled"] {
+    background-color: #f1f1f1;;
+}
+
+li.checkbox {
+    width: 49%;
+    margin-left: 1%;
+    float: left;
+    background-color: #fff;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin-top: 3px;
+    clear: none;
+}
+
+li.checkbox label {
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    display: inline-block;
+    height: 22px;
+    line-height: 20px;
+    padding-left: 0;
+}
+
+label.textarea {
+    width: 100%;
+}
+
+textarea,
+p.textarea {
+    resize: none;
+    transition: height 0.5s;
+    -webkit-transition: height 0.5s;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #fff;
+    width: 100%;
+    height: 24px;
+    display: inline-block;
+    padding: 3px;
+}
+
+p.textarea {
+    background-color: #f1f1f1;;
+    padding: 2px 5px;
+}
+
+textarea:focus {
+    height: 50px;
 }

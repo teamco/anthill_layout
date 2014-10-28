@@ -52,7 +52,9 @@ define([
          * @param Package
          */
         definePackage: function definePackage(Package) {
-            this.packages.push(new Package(this.scope));
+            this.packages.push(
+                new Package(this.scope)
+            );
         },
 
         /**
@@ -71,7 +73,7 @@ define([
          * @param resource
          * @returns {number}
          */
-        getIndex: function getIndex(resource) {
+        getModuleIndex: function getModuleIndex(resource) {
 
             /**
              * Define local instance of modules
@@ -85,7 +87,11 @@ define([
                 }
             }
 
-            this.scope.logger.error('Undefined index');
+            this.scope.logger.error(
+                'Undefined module index',
+                resource,
+                modules
+            );
         },
 
         /**

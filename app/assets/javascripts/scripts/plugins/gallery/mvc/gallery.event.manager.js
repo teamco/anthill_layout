@@ -37,6 +37,7 @@ define([
         this.eventList = {
             updateTranslations: 'update.translations',
             loadContent: 'load.content',
+            initModel: 'init.model',
             setProviders: 'set.providers',
             setCurrentProvider: 'set.current.provider'
         };

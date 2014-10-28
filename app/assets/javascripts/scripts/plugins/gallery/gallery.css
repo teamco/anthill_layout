@@ -54,6 +54,14 @@ div.gallery-footer > div {
     text-shadow: 1px 1px #fff;
 }
 
+div.gallery-content .gallery-search {
+    height: 22px;
+}
+
+div.gallery-content .gallery-search label {
+    display: none;
+}
+
 div.gallery-content input[type="text"] {
     padding: 0 3px;
 }
@@ -72,6 +80,12 @@ div.gallery-content div.combo-box > ul {
     -moz-box-shadow: inset 0 0 5px #ccc;
     -webkit-box-shadow: inset 0 0 5px #ccc;
     box-shadow: inset 0 0 5px #ccc;
+    border-radius: 0;
+    float: none;
+}
+
+div.gallery-content input[type="text"]:focus {
+    position: static;
 }
 
 div.gallery-content div.combo-box > ul {
@@ -81,7 +95,6 @@ div.gallery-content div.combo-box > ul {
 }
 
 div.gallery-content div.combo-box {
-    position: relative;
     background-color: #fff;
     margin-top: -1px;
     height: 22px;
@@ -108,29 +121,13 @@ div.gallery-content div.combo-box.open div.combo-box-arrow {
     background-position: -4px 2px;
 }
 
-div.gallery-content div.combo-box li {
-    background-color: transparent;
-    display: none;
-    width: 100%;
-    padding: 0 3px;
-    cursor: pointer;
-    border-bottom: 1px solid #ccc;
-    line-height: 20px;
-}
-
-div.gallery-content div.combo-box li.selected {
-    display: inline-block;
-}
-
 div.gallery-content div.combo-box.open {
     overflow: visible;
 }
 
 div.gallery-content div.combo-box.open ul {
     overflow: auto;
-    max-height: 200px;
     height: auto;
-    position: absolute;
     border: 1px solid #999;
     box-shadow: 3px 3px 5px #999;
 }

@@ -46,7 +46,7 @@ define([
             var panel = this.getAuthorPanel();
 
             return panel.model.getModule(
-                panel.model.getIndex(name)
+                panel.model.getModuleIndex(name)
             ).module;
         },
 
@@ -64,8 +64,36 @@ define([
             var panel = this.getAuthorPanel();
 
             return panel.model.getModule(
-                panel.model.getIndex('widget-rules')
+                panel.model.getModuleIndex('widget-rules')
             ).module;
+        },
+
+        /**
+         * Get gallery module
+         * @member PluginController
+         * @return {Gallery}
+         */
+        getGalleryModule: function getGalleryModule() {
+
+            /**
+             * Get panel
+             * @type {Panel}
+             */
+            var panel = this.getAuthorPanel();
+
+            /**
+             * Get gallery
+             * @type {Gallery}
+             */
+            var gallery = (panel.model.getModule(
+                panel.model.getModuleIndex('gallery')
+            ) || {}).module;
+
+            if (!gallery) {
+                this.logger.warn('Unable to locate gallery module');
+            }
+
+            return gallery;
         },
 
         /**

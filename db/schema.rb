@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141021133232) do
+ActiveRecord::Schema.define(version: 20141028144128) do
 
   create_table "author_histories", force: true do |t|
     t.integer  "site_id"
@@ -27,14 +27,28 @@ ActiveRecord::Schema.define(version: 20141021133232) do
     t.datetime "updated_at"
   end
 
+  create_table "author_widget_categories", force: true do |t|
+    t.string   "name_index"
+    t.string   "name_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "author_widgets", force: true do |t|
+    t.integer  "widget_category_id"
     t.string   "name"
     t.string   "description"
     t.text     "thumbnail"
     t.integer  "width"
     t.integer  "height"
-    t.string   "category"
     t.string   "resource"
+    t.boolean  "visible"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "demos", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

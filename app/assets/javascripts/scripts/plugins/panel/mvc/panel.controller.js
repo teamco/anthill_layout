@@ -232,7 +232,7 @@ define([
              * Define module index
              * @type {number}
              */
-            var index = this.model.getIndex(resource);
+            var index = this.model.getModuleIndex(resource);
 
             if (opened) {
 

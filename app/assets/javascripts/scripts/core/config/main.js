@@ -4,6 +4,8 @@ requirejs.config({
 	
 	waitSeconds: 200,
 
+    waitSeconds: 200,
+
     paths: {
         // Define public application path
         'public': '../../public',
@@ -30,6 +32,7 @@ requirejs.config({
         'lz-string': 'lib/lz-string',
 
         jquery: 'lib/jquery/jquery-2.1.1',
+        'jquery.ujs': 'lib/jquery/jquery_ujs',
         'jquery.ui': 'lib/jquery/jquery-ui.min',
         'jquery.resizestop': 'lib/jquery/jquery.resizestop',
         'jquery.pseudo': 'lib/jquery/jquery.pseudo',
@@ -53,6 +56,7 @@ requirejs.config({
         jquery: {
             exports: '$'
         },
+        'jquery.ujs': {deps: ['jquery']},
         'jquery.ui': {deps: ['jquery']},
         'jquery.resizestop': {deps: ['jquery']},
         'jquery.pseudo': {deps: ['jquery']},
@@ -90,6 +94,7 @@ define([
     'modernizr',
     'lz-string',
     'jquery',
+    'jquery.ujs',
     'jquery.resizestop',
     'jquery.pseudo',
     'extends/function',

@@ -21,6 +21,16 @@ define([
     return GalleryController.extend('GalleryController', {
 
         /**
+         * Define init model
+         * @member GalleryController
+         */
+        initModel: function initModel() {
+
+            this.logger.debug('Init model');
+            this.model.loadStaticData();
+        },
+
+        /**
          * Get providers data
          * @member GalleryController
          */

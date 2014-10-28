@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :author do
+    resources :widget_categories
+  end
+
+  namespace :author do
     resources :widgets
   end
 

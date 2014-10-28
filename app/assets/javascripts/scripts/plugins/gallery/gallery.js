@@ -82,17 +82,9 @@ define([
             render: true
         });
 
-        this.observer.publish(
-            this.eventmanager.eventList.successCreated
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.setProviders
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.setCurrentProvider,
-            this.model.currentProvider.key
+        this.observer.batchPublish(
+            this.eventmanager.eventList.successCreated,
+            this.eventmanager.eventList.initModel
         );
 
         this.observer.publish(

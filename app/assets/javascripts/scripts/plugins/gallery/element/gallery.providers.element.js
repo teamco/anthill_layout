@@ -31,13 +31,12 @@ define([
     return GalleryProvidersElement.extend({
 
         /**
-         * Render data
+         * Prepare data for combo box
          * @member GalleryProvidersElement
          * @param data
-         * @param currentProvider
-         * @returns {GalleryProvidersElement}
+         * @returns {*}
          */
-        renderData: function renderData(data, currentProvider) {
+        sortComboBoxData: function sortComboBoxData(data) {
 
             var combo = [];
 
@@ -53,9 +52,21 @@ define([
                 }
             }
 
+            return combo.sortByValue('value', 'string');
+        },
+
+        /**
+         * Render data
+         * @member GalleryProvidersElement
+         * @param data
+         * @param currentProvider
+         * @returns {GalleryProvidersElement}
+         */
+        renderData: function renderData(data, currentProvider) {
+
             this.$.append(
                 this.renderCombobox(
-                    combo.sortByValue('value', 'string'),
+                    this.sortComboBoxData(data),
                     currentProvider.name,
                     '',
                     'galleryProviders', {

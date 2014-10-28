@@ -21,7 +21,7 @@ define([], function defineBasePreferences() {
          */
         updatePreferences: function updatePreferences($modal, render) {
 
-            var $inputs = $('input:not(:disabled), textarea, div.combo-box > input', $modal.$),
+            var $inputs = $modal.collectInputFields(),
                 scope = this.scope,
                 containment = this.getContainment(),
                 cname = scope.constructor.name.toLowerCase();

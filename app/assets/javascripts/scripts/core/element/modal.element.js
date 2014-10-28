@@ -442,6 +442,15 @@ define([
             this.unsetButtons();
             this.unsetCover();
             this.destroy();
+        },
+
+        /**
+         * Collect input fields (input/textarea)
+         * @member ModalElement
+         * @returns {*|jQuery|HTMLElement}
+         */
+        collectInputFields: function collectInputFields() {
+            return $('input:not(:disabled), textarea, div.combo-box > input', this.$);
         }
 
     }, AntHill.prototype, BaseElement.prototype);
