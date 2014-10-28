@@ -7,10 +7,13 @@
     margin: 0;
 }
 
+.modal-dialog.preferences div.html > ul > li {
+    clear: both;
+}
+
 .modal-dialog.preferences div.html > ul li {
     margin-bottom: 3px;
     padding-top: 3px;
-    clear: both;
     position: relative;
 }
 

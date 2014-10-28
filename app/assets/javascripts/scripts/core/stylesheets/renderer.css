@@ -82,6 +82,10 @@ div.combo-box.open li.selected:hover {
     background-color: #fbcb09;
 }
 
+div.combo-box input.hidden {
+    display: none;
+}
+
 input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 2px;
