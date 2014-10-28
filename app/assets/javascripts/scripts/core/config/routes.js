@@ -5,7 +5,7 @@
  * Time: 11:23 PM
  */
 
-define([], function defineRoutes(){
+define([], function defineRoutes() {
 
     /**
      * Define Routes
@@ -22,7 +22,37 @@ define([], function defineRoutes(){
          * @member Routes
          */
         resources: {
-            showWidgetsList: '/author/widgets.json'
+            showWidgetsList: '/author/widgets.json',
+            createNewWidget: '/author/widgets'
+        },
+
+        /**
+         * Prepare XHR data before send
+         * @member Routes
+         * @param {object} collector
+         * @returns {{authenticity_token: (*|jQuery)}}
+         */
+        prepareXhrData: function prepareXhrData(collector) {
+
+            /**
+             * Define token
+             * @type {{authenticity_token: (*|jQuery)}}
+             */
+            var data = {
+                authenticity_token: $('meta[name="csrf-token"]').attr('content')
+            }, index;
+
+            for (index in collector) {
+                if (collector.hasOwnProperty(index)) {
+                    if (data.hasOwnProperty(index)) {
+                        throw new Error('Duplicate params', index);
+                    } else {
+                        data[index] = collector[index];
+                    }
+                }
+            }
+
+            return data;
         }
     });
 });

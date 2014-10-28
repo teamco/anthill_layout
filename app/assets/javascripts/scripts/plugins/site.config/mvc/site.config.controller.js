@@ -8,6 +8,7 @@
 define(
     [
         'plugins/plugin',
+        'config/routes',
         'plugins/preferences/preferences.controller'
     ],
 
@@ -15,14 +16,16 @@ define(
      * Define SiteConfigController
      * @param {PluginController} PluginBase
      * @param {PreferencesController} PreferencesController
+     * @param {Routes} Routes
      * @returns {SiteConfigController}
      */
-        function defineSiteConfigController(PluginBase, PreferencesController) {
+        function defineSiteConfigController(PluginBase, Routes, PreferencesController) {
 
         /**
          * Define site config controller
          * @class SiteConfigController
          * @extends PluginController
+         * @extends Routes
          * @extends PreferencesController
          * @constructor
          */
@@ -301,11 +304,26 @@ define(
                         data = inputs[i];
                         collector[data.name] = data.value;
                     }
-                    debugger
+
+                    collector.visible = true;
+
+                    $.ajax({
+
+                        url: this.resources.createNewWidget,
+                        method: 'post',
+                        data: this.prepareXhrData({
+                            author_widget: collector
+                        })
+                    }).done(
+                        function done() {
+
+                        }
+                    );
                 }
             },
 
             PluginBase.prototype,
+            Routes.prototype,
             PreferencesController.prototype
         );
     }

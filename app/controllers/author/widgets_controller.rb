@@ -45,11 +45,23 @@ class Author::WidgetsController < Author::AuthorController
 
     respond_to do |format|
       if @author_widget.save
-        format.html { redirect_to @author_widget, notice: 'Widget was successfully created.' }
-        format.json { render :show, status: :created, location: @author_widget }
+        if request.xhr?
+          format.json {
+            render json: @author_widget, status: 200
+          }
+        else
+          format.html { redirect_to @author_widget, notice: 'Widget was successfully created.' }
+          format.json { render :show, status: :created, location: @author_widget }
+        end
       else
-        format.html { render :new }
-        format.json { render json: @author_widget.errors, status: :unprocessable_entity }
+        if request.xhr?
+          format.json {
+            render json: @author_widget.errors, status: 400
+          }
+        else
+          format.html { render :new }
+          format.json { render json: @author_widget.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -86,6 +98,6 @@ class Author::WidgetsController < Author::AuthorController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_widget_params
-    params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :category, :resource)
+    params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :category, :resource, :visible)
   end
 end
