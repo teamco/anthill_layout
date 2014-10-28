@@ -58,11 +58,11 @@ define([
 
                             html.push([
                                 '<li class="', index.toDash(), '">',
-                                style === 'header' ?
-                                    index === 'thumbnail' ? 'icon' : index :
-                                    index === 'thumbnail' && style === 'row' ?
+                                    style === 'header' ?
+                                        index === 'thumbnail' ? 'icon' : index :
+                                        index === 'thumbnail' && style === 'row' ?
                                     '<img alt="' + index + '" src="' + row[index] + '"/>' :
-                                        row[index],
+                                    row[index],
                                 '</li>'
                             ].join(''));
                         }
@@ -136,26 +136,48 @@ define([
                 if (widget.hasOwnProperty(index)) {
 
                     switch (index) {
+
                         case 'name':
                         case 'resource':
                             $field = _getRenderer(this.renderTextField.bind(this), index);
                             break;
+
                         case 'dimensions':
                             $field = [
                                 _getRenderer(this.renderTextField.bind(this), 'width'),
                                 _getRenderer(this.renderTextField.bind(this), 'height')
                             ];
                             break;
+
                         case 'description':
                         case 'thumbnail':
                             $field = _getRenderer(this.renderTextArea.bind(this), index);
                             break;
+
                         case 'type':
-                            $field = $('<li />').append(
-                                var data = 
+
+                            // Define data
+                            var data = {}, type;
+
+                            for (type in types) {
+                                if (types.hasOwnProperty(type)) {
+                                    data[type] = {
+                                        key: type,
+                                        name: types[type]
+                                    }
+                                }
+                            }
+
+                            /**
+                             * Define sorted data
+                             * @type {Array}
+                             */
+                            var sorted = this.sortComboBoxData(data);
+
+                            $field = $('<li />').addClass(index).append(
                                 this.renderCombobox(
-                                    this.sortComboBoxData(types),
-                                    undefined,
+                                    sorted,
+                                    sorted[0].value,
                                     index,
                                     'widgetsCategory',
                                     undefined,
@@ -163,6 +185,7 @@ define([
                                 )
                             );
                             break;
+
                         default:
                             continue;
                             break;

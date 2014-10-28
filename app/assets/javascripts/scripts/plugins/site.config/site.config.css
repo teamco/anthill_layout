@@ -169,6 +169,10 @@ ul.site-config > .content:hover {
     height: 20px;
 }
 
+.modal-dialog.widget-generator div.html {
+    background-color: #e1e1e1;
+}
+
 .modal-dialog.widget-generator div.html input[type="text"] {
     position: relative;
     right: 0;
@@ -176,7 +180,7 @@ ul.site-config > .content:hover {
 
 .modal-dialog.widget-generator div.html li {
     height: 24px;
-    margin-bottom: 3px;
+    margin: 5px;
 }
 
 .modal-dialog.widget-generator div.html li.description,
@@ -199,6 +203,7 @@ ul.site-config > .content:hover {
 .modal-dialog.widget-generator div.html li.type,
 .modal-dialog.widget-generator div.html li.resource {
     width: 45%;
+    margin-top: 0;
 }
 
 .modal-dialog.widget-generator div.html li.width input[type="text"]:focus,
@@ -206,4 +211,18 @@ ul.site-config > .content:hover {
 .modal-dialog.widget-generator div.html li.type input[type="text"]:focus,
 .modal-dialog.widget-generator div.html li.resource input[type="text"]:focus {
     width: 65%;
+}
+
+.modal-dialog.widget-generator div.html li.type {
+    position: absolute;
+    margin-top: 28px;
+    padding-right: 10px;
+}
+
+.modal-dialog.widget-generator div.html div.combo-box {
+    width: 60%;
+}
+
+.modal-dialog.widget-generator div.html div.combo-box li {
+    height: 22px;
 }
