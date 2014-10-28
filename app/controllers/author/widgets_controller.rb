@@ -10,6 +10,7 @@ class Author::WidgetsController < Author::AuthorController
         widgets: []
     }
 
+
     @author_widgets.map do |w|
 
       @json_data[:widgets] << {
