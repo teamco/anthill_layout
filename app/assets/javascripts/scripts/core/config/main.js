@@ -1,6 +1,8 @@
 requirejs.config({
 
     baseUrl: '../../assets/scripts/core',
+	
+	waitSeconds: 200,
 
     paths: {
         // Define public application path

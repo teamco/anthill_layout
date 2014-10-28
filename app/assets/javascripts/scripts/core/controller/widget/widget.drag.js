@@ -7,8 +7,9 @@
  */
 
 define([
+	'jquery.ui',
     'modules/Interactions'
-], function defineWidgetDrag(Interactions) {
+], function defineWidgetDrag(ui, Interactions) {
 
     /**
      * Define Widget Drag

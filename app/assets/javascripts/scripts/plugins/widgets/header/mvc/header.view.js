@@ -30,7 +30,7 @@ define([
          * Render header element
          * @member HeaderView
          */
-        renderHeader: function renderHeader() {
+        renderHeaderContainer: function renderHeaderContainer() {
 
             this.header(Header, this.elements.$container);
 
@@ -100,7 +100,7 @@ define([
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.successRendered,
-                this.renderHeader.bind(this)
+                this.renderHeaderContainer.bind(this)
             );
         }
 

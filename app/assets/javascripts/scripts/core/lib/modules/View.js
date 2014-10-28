@@ -9,8 +9,10 @@
 define([
     'jquery',
     'config/anthill',
-    'element/modal.element'
-], function defineBaseView($, AntHill, ModalElement) {
+    'element/modal.element',
+    'element/header.element',
+    'element/footer.element',
+], function defineBaseView($, AntHill, ModalElement, Header, Footer) {
 
     /**
      * Define base view
@@ -155,7 +157,7 @@ define([
         /**
          * Render Header
          * @member BaseView
-         * @param HeaderElement
+         * @param {HeaderElement} HeaderElement
          * @param $container
          * @returns {HeaderElement}
          */
@@ -193,7 +195,7 @@ define([
         /**
          * Render Footer
          * @member BaseView
-         * @param FooterElement
+         * @param {FooterElement} FooterElement
          * @param $container
          * @returns {FooterElement}
          */

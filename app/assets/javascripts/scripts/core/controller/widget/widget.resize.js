@@ -7,8 +7,9 @@
  */
 
 define([
+	'jquery.ui',
     'modules/Interactions'
-], function defineWidgetResize(Interactions) {
+], function defineWidgetResize(ui, Interactions) {
 
     /**
      * Define Resize

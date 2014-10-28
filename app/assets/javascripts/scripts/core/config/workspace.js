@@ -57,7 +57,10 @@ define(
              * }}
              */
             var DEFAULTS = {
-                preferences: opts.preferences || {},
+                preferences: opts.preferences || {
+					staticWidth: true, 
+					siteWidthSlider: "1"
+				},
                 limit: false,
                 isResized: true,
                 type: 'default',
