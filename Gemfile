@@ -16,7 +16,7 @@ case RUBY_PLATFORM
 
     # Use debugger
     gem 'byebug', group: [:development, :test]
-    gem 'ruby-debug-ide', group: :development
+    gem 'ruby-debug-ide', '>= 0.4.23.beta10', group: :development
 
     # Use Capistrano for deployment
     gem 'capistrano-rails', group: :development
