@@ -70,7 +70,10 @@ define(['config/routes'], function defineGalleryWidgets(Routes) {
                     galleryWidgets.defaultData.sortByValue(key, type, reverse) :
                     galleryWidgets.defaultData;
 
-                galleryWidgets.setDefaultData(data);
+                galleryWidgets.setDefaultData({
+                    widgets: data
+                });
+
                 galleryWidgets.galleryModel.init();
 
                 scope.observer.publish(
@@ -117,11 +120,29 @@ define(['config/routes'], function defineGalleryWidgets(Routes) {
          */
         setDefaultData: function setDefaultData(json) {
 
+            if (typeof(this.galleryModel.dataTypes) === 'undefined') {
+
+                /**
+                 * Define provider types
+                 * @member GalleryModel
+                 * @type {object}
+                 */
+                this.galleryModel.dataTypes = {};
+
+                var category,
+                    i = 0, l = json.categories.length;
+
+                for (; i < l; i++) {
+                    category = json.categories[i];
+                    this.galleryModel.dataTypes[category.name_index] = category.name_value;
+                }
+            }
+
             /**
              * Set default data
              * @member GalleryWidgets
              */
-            this.defaultData = json;
+            this.defaultData = json.widgets;
         },
 
         /**

@@ -296,7 +296,7 @@ define(
                  */
                 generateNewWidget: function generateNewWidget() {
 
-                    var inputs = this.scope.view.elements.$modal.collectInputFields(),
+                    var inputs = this.scope.view.get$modal().collectInputFields(),
                         i = 0, l = inputs.length,
                         collector = {}, data;
 
@@ -314,7 +314,7 @@ define(
                     var gallery = this.getGalleryModule();
 
                     if (gallery) {
-                        gallery.model.dataTypes
+                        //gallery.model.dataTypes
                     }
 
                     $.ajax({

@@ -10,7 +10,6 @@ class Author::WidgetsController < Author::AuthorController
         widgets: []
     }
 
-
     @author_widgets.map do |w|
 
       @json_data[:widgets] << {
@@ -22,7 +21,7 @@ class Author::WidgetsController < Author::AuthorController
               width: w[:width],
               height: w[:height]
           },
-          type: w.author_widget_category[:name_key],
+          type: w.author_widget_category[:name_index],
           resource: w[:resource]
       }
     end

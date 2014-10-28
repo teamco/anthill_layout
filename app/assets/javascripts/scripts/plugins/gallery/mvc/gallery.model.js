@@ -20,28 +20,6 @@ define([
      */
     var GalleryModel = function GalleryModel() {
 
-        /**
-         * Define provider types
-         * @type {{
-         *      regular: string,
-         *      text: string,
-         *      video: string,
-         *      map: string,
-         *      files: string,
-         *      image: string,
-         *      social: string
-         * }}
-         */
-        this.dataTypes = {
-            regular: 'Regular widgets',
-            text: 'Text editor',
-            video: 'Video player',
-            map: 'Map widgets',
-            files: 'Show file',
-            image: 'Image gallery',
-            social: 'Social data',
-            template: 'Template content'
-        };
     };
 
     return GalleryModel.extend('GalleryModel', {
