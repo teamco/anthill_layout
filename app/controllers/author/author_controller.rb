@@ -1,5 +1,5 @@
 class Author::AuthorController < ApplicationController
 
-  layout 'admin'
+  layout 'author'
 
 end

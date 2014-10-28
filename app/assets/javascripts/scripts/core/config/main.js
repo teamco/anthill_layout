@@ -51,6 +51,7 @@ requirejs.config({
         jquery: {
             exports: '$'
         },
+        'jquery.ujs': {deps: ['jquery']},
         'jquery.ui': {deps: ['jquery']},
         'jquery.resizestop': {deps: ['jquery']},
         'jquery.pseudo': {deps: ['jquery']},
@@ -88,6 +89,7 @@ define([
     'modernizr',
     'lz-string',
     'jquery',
+    'jquery.ujs',
     'jquery.resizestop',
     'jquery.pseudo',
     'extends/function',
