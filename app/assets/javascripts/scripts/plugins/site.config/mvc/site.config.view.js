@@ -470,7 +470,7 @@ define(
                         approve: {
                             text: 'Save',
                             events: {
-                                click: 'createWidget'
+                                click: 'generateNewWidget'
                             }
                         },
                         reject: {

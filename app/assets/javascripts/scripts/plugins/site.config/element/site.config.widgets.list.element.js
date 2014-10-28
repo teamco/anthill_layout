@@ -179,7 +179,7 @@ define([
                                     sorted,
                                     sorted[0].value,
                                     index,
-                                    'widgetsCategory',
+                                    'category',
                                     undefined,
                                     true
                                 )

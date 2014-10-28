@@ -22,7 +22,7 @@ define([], function defineRoutes(){
          * @member Routes
          */
         resources: {
-            galleryWidgets: '/author/widgets.json'
+            showWidgetsList: '/author/widgets.json'
         }
     });
 });

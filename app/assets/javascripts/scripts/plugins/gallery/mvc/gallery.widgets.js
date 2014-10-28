@@ -87,7 +87,7 @@ define(['config/routes'], function defineGalleryWidgets(Routes) {
 
                 $.ajax({
 
-                    url: galleryWidgets.resources.galleryWidgets,
+                    url: galleryWidgets.resources.showWidgetsList,
                     dataType: 'json'
 
                 }).done(

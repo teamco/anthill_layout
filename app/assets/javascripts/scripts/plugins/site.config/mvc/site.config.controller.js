@@ -17,7 +17,7 @@ define(
      * @param {PreferencesController} PreferencesController
      * @returns {SiteConfigController}
      */
-    function defineSiteConfigController(PluginBase, PreferencesController) {
+        function defineSiteConfigController(PluginBase, PreferencesController) {
 
         /**
          * Define site config controller
@@ -285,8 +285,24 @@ define(
                             gallery.model.dataTypes
                         );
                     }
-                }
+                },
 
+                /**
+                 * Generate new widget
+                 * @member SiteConfigController
+                 */
+                generateNewWidget: function generateNewWidget() {
+
+                    var inputs = this.scope.view.elements.$modal.collectInputFields(),
+                        i = 0, l = inputs.length,
+                        collector = {}, data;
+
+                    for (; i < l; i++) {
+                        data = inputs[i];
+                        collector[data.name] = data.value;
+                    }
+                    debugger
+                }
             },
 
             PluginBase.prototype,
