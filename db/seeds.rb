@@ -17,6 +17,16 @@ Dir['app/models/**/*.rb'].each do |model|
   end
 end
 puts '--- Finish Clean models'
+categories = {
+    regular: 'Regular widgets',
+    text: 'Text editor',
+    video: 'Video player',
+    map: 'Map widgets',
+    files: 'Show file',
+    image: 'Image gallery',
+    social: 'Social data',
+    template: 'Template content'
+}
 widgets = [
     {
         name: 'Page Tabs',
@@ -471,6 +481,15 @@ widgets = [
     }
 ]
 
+puts "\n--- Start Add categories"
+
+categories.each_with_index do |c, index|
+  puts "#{index}: #{c[0]} >> #{c[1]}"
+  Author::WidgetCategory.create({name_index: c[0], name_value: c[1]})
+end
+
+puts '--- Finish Add categories'
+
 puts "\n--- Start Add widgets"
 
 widgets.each_with_index do |w, index|
@@ -484,7 +503,7 @@ widgets.each_with_index do |w, index|
           thumbnail: w[:thumbnail],
           width: w[:dimensions][:width],
           height: w[:dimensions][:height],
-          category: w[:type],
+          category: Author::WidgetCategory.find_by_name_index(w[:type]).id,
           resource: w[:resource],
           visible: w[:visible].nil? ? true : w[:visible]
       }

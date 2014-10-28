@@ -307,8 +307,17 @@ define(
 
                     collector.visible = true;
 
-                    $.ajax({
+                    /**
+                     * Get gallery
+                     * @type {Gallery}
+                     */
+                    var gallery = this.getGalleryModule();
 
+                    if (gallery) {
+                        gallery.model.dataTypes
+                    }
+
+                    $.ajax({
                         url: this.resources.createNewWidget,
                         method: 'post',
                         data: this.prepareXhrData({
