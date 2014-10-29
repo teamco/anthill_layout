@@ -370,7 +370,11 @@ define(
                             $.ajaxSettings.error.call(this, arguments);
 
                             $modal.handleNotification(description, 'error');
-                        }
+
+                            // Allow to create another one
+                            this.stopSendingEventOnApprove(false);
+
+                        }.bind(this)
 
                     }).done(
                         this.generateNewWidgetCallback.bind(this)
