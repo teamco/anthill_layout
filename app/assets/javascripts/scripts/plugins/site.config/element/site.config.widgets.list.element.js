@@ -93,9 +93,7 @@ define([
                 );
             }
 
-            this.$.append($ul);
-
-            return this;
+            return $ul;
         },
 
         /**
@@ -195,9 +193,7 @@ define([
                 }
             }
 
-            this.$.append($ul);
-
-            return this;
+            return $ul;
         }
 
     }, BaseElement.prototype, GalleryProvidersElement.prototype);

@@ -9,7 +9,17 @@
 define([], function defineEnUs() {
 
     return {
-        'gallery.providers.all': 'All',
-        'gallery.providers.favorites': 'Favorites'
+        'import.site.data': 'Import site data',
+        'import.site.data.confirm': 'Confirm to Import site data',
+        'import.site.data.confirm.reload': 'Reload',
+        'site.data.cancel': 'Cancel',
+        'site.data.confirm': 'Confirm',
+        'site.data.save': 'Save',
+        'site.config': 'Site Config',
+        'widget.manager.generate': 'Generate',
+        'widget.generated.ok': 'Widget {1} was generated successfully',
+        'widget.generation.ajax.drop': 'Unable to send ajax request before completing the previous one',
+        'widget.manager.list': 'Widgets Manager: ({1} items)',
+        'widget.manager.generate.new': 'Generate new widget'
     };
 });

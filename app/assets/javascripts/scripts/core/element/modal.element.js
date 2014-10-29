@@ -203,6 +203,7 @@ define([
                     '<h2 class="header"></h2>',
                     '<ul class="actions"></ul>',
                     '<div class="content">',
+                    '<p class="notification"></p>',
                     '<p class="text"></p>',
                     '<div class="html"></div>',
                     '</div>',
@@ -383,10 +384,20 @@ define([
          * Get text container
          * @member ModalElement
          * @returns {*}
-         * @private
+         * @public
          */
         _get$Text: function _get$Text() {
             return this.$.find('p.text');
+        },
+
+        /**
+         * Get notification container
+         * @member ModalElement
+         * @returns {*}
+         * @public
+         */
+        _get$Notification: function _get$Notification() {
+            return this.$.find('p.notification');
         },
 
         /**
@@ -451,6 +462,28 @@ define([
          */
         collectInputFields: function collectInputFields() {
             return $('input:not(:disabled), textarea, div.combo-box > input', this.$);
+        },
+
+        /**
+         * Define handle notifications
+         * @member ModalElement
+         * @param {string} msg
+         * @param {string} type
+         */
+        handleNotification: function handleNotification(msg, type) {
+
+            // Add successful message
+            this.setText(msg, this._get$Notification().stop().show());
+
+            // Handle modal type
+            this.$.removeClass(this.type);
+            this.$.addClass(type);
+
+            setTimeout(function () {
+                this._get$Notification().stop().slideUp();
+                this.$.removeClass(type);
+                this.$.addClass(this.type);
+            }.bind(this), 4000);
         }
 
     }, AntHill.prototype, BaseElement.prototype);

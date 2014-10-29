@@ -45,7 +45,7 @@ class Author::WidgetsController < Author::AuthorController
   # POST /author/widgets.json
   def create
     category = Author::WidgetCategory.find_by_name_index(params[:author_widget_category][:name_index])
-    @author_widget = category.author_widgets.build(author_widget_params)
+    @author_widget = category.author_widgets.build(author_widget_params) unless category.nil?
 
     respond_to do |format|
       if @author_widget.save

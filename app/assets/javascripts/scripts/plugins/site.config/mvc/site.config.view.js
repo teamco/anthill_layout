@@ -61,7 +61,7 @@ define(
                 }
 
                 this.header(Header, this.elements.$container).setText(
-                    'Site Config'
+                    this.i18n.t('site.config')
                 );
 
                 /**
@@ -146,7 +146,7 @@ define(
                  */
                 var buttons = {
                     reject: {
-                        text: 'Cancel',
+                        text: this.i18n.t('site.data.cancel'),
                         events: {
                             click: 'rejectModalEvent'
                         }
@@ -162,7 +162,7 @@ define(
                 this.modalDialog({
                     style: 'import-site-data upload-json',
                     type: 'info',
-                    title: 'Import site data',
+                    title: this.i18n.t('import.site.data'),
                     text: workspace.model.getUUID(),
                     html: $html.$,
                     cover: true,
@@ -190,20 +190,20 @@ define(
                  */
                 var buttons = {
                     reload: {
-                        text: 'Reload',
+                        text: this.i18n.t('import.site.data.confirm.reload'),
                         disabled: true,
                         events: {
                             click: 'reloadSiteData'
                         }
                     },
                     confirm: {
-                        text: 'Confirm',
+                        text: this.i18n.t('site.data.confirm'),
                         events: {
                             click: 'approveImportSiteData'
                         }
                     },
                     reject: {
-                        text: 'Cancel',
+                        text: this.i18n.t('site.data.cancel'),
                         events: {
                             click: 'rejectModalEvent'
                         }
@@ -215,7 +215,7 @@ define(
                 this.modalDialog({
                     style: 'import-site-data approve',
                     type: 'warning',
-                    title: 'Confirm to Import site data',
+                    title: this.i18n.t('import.site.data.confirm'),
                     text: [
                         encodeURIComponent(file.name),
                         ' (', file.type || 'n/a', '), ',
@@ -247,13 +247,13 @@ define(
                  */
                 var buttons = {
                     approve: {
-                        text: 'OK',
+                        text: this.i18n.t('site.data.save'),
                         events: {
                             click: 'approveUpdatePreferences'
                         }
                     },
                     reject: {
-                        text: 'Cancel',
+                        text: this.i18n.t('site.data.cancel'),
                         events: {
                             click: ['revertSitePreferences', 'rejectModalEvent']
                         }
@@ -363,45 +363,13 @@ define(
                     autoclose: true,
                     buttons: {
                         approve: {
-                            text: 'OK',
+                            text: this.i18n.t('site.data.confirm'),
                             events: {
                                 click: 'approveCleanUp'
                             }
                         },
                         reject: {
-                            text: 'Cancel',
-                            events: {
-                                click: 'rejectModalEvent'
-                            }
-                        }
-                    }
-                });
-            },
-
-            /**
-             * Define show widgets list
-             * @member SiteConfigView
-             * @param {Array} widgets
-             * @param {Array} show
-             */
-            showWidgetsList: function showWidgetsList(widgets, show) {
-
-                this.modalDialog({
-                    style: 'widget-list',
-                    type: 'info',
-                    title: 'Widgets Manager',
-                    html: this.renderWidgetsManager().renderWidgetsList(widgets, show).$,
-                    cover: true,
-                    autoclose: false,
-                    buttons: {
-                        approve: {
-                            text: 'Generate',
-                            events: {
-                                click: 'nextWidgetGenerator'
-                            }
-                        },
-                        reject: {
-                            text: 'Cancel',
+                            text: this.i18n.t('site.data.cancel'),
                             events: {
                                 click: 'rejectModalEvent'
                             }
@@ -426,9 +394,42 @@ define(
             },
 
             /**
+             * Define show widgets list
+             * @member SiteConfigView
+             * @param {Array} widgets
+             * @param {Array} show
+             */
+            showWidgetsList: function showWidgetsList(widgets, show) {
+
+                this.modalDialog({
+                    style: 'widget-list',
+                    type: 'info',
+                    title: this.i18n.t('widget.manager.list').replace(/\{1\}/, widgets.length + ''),
+                    html: this.renderWidgetsManager().renderWidgetsList(widgets, show),
+                    cover: true,
+                    autoclose: false,
+                    buttons: {
+                        approve: {
+                            text: this.i18n.t('widget.manager.generate'),
+                            events: {
+                                click: 'nextWidgetGenerator'
+                            }
+                        },
+                        reject: {
+                            text: this.i18n.t('site.data.cancel'),
+                            events: {
+                                click: 'rejectModalEvent'
+                            }
+                        }
+                    }
+                });
+            },
+
+            /**
              * Define show widgets generator
              * @member SiteConfigView
              * @param {Array} widgets
+             * @param {Array} types
              */
             showWidgetGenerator: function showWidgetGenerator(widgets, types) {
 
@@ -436,21 +437,21 @@ define(
                 this.elements.$modal.selfDestroy();
 
                 this.modalDialog({
-                    style: 'widget-generator',
+                    style: 'widget-generator-new',
                     type: 'info',
-                    title: 'Widgets Manager',
-                    html: this.renderWidgetsManager().renderWidgetGeneratorForm(widgets[0], types).$,
+                    title: this.i18n.t('widget.manager.generate.new'),
+                    html: this.elements.$widgetgenerator.renderWidgetGeneratorForm(widgets[0], types),
                     cover: true,
                     autoclose: false,
                     buttons: {
                         approve: {
-                            text: 'Save',
+                            text: this.i18n.t('site.data.save'),
                             events: {
                                 click: 'generateNewWidget'
                             }
                         },
                         reject: {
-                            text: 'Cancel',
+                            text: this.i18n.t('site.data.cancel'),
                             events: {
                                 click: 'rejectModalEvent'
                             }

@@ -27,7 +27,8 @@ define([
          * @member AppController
          */
         defineSetting: function defineSetting() {
-            this.model.defineSetting();
+            this.model.initGlobalSetting();
+            this.controller.ajaxSetup();
         },
 
         /**
@@ -35,8 +36,8 @@ define([
          * @member AppController
          */
         ajaxSetup: function ajaxSetup() {
+
             $.ajaxSetup({
-                timeout: 1000,
                 error: this.handleError.bind(this)
             });
         },
@@ -45,7 +46,7 @@ define([
          * Define error handler
          * @member AppController
          */
-        handleError: function handleError() {
+        handleError: function handleError(xhr, status, description) {
             this.scope.logger.warn('Ajax error', arguments);
         },
 

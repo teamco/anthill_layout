@@ -19,7 +19,7 @@ define(
      * @param {Routes} Routes
      * @returns {SiteConfigController}
      */
-    function defineSiteConfigController(PluginBase, Routes, PreferencesController) {
+        function defineSiteConfigController(PluginBase, Routes, PreferencesController) {
 
         /**
          * Define site config controller
@@ -325,20 +325,113 @@ define(
                     // Remove unpermitted attribute
                     delete collector.category;
 
+                    /**
+                     * Get $modal
+                     * @type {ModalElement}
+                     */
+                    var $modal = this.scope.view.get$modal();
+
                     $.ajax({
+
                         url: this.resources.createNewWidget,
                         method: 'post',
+
                         data: this.prepareXhrData({
                             author_widget: collector,
                             author_widget_category: {
                                 name_index: category
                             }
-                        })
-                    }).done(
-                        function done() {
+                        }),
 
+                        beforeSend: function (xhr, opts) {
+
+                            if (this.stopSendingEventOnApprove(true)) {
+
+                                $modal.handleNotification(
+                                    this.i18n.t('widget.generation.ajax.drop'),
+                                    'warning'
+                                );
+
+                                this.scope.logger.warn(
+                                    this.i18n.t('widget.generation.ajax.drop'),
+                                    xhr, opts
+                                );
+
+                                xhr.abort();
+
+                                return false;
+                            }
+
+                        }.bind(this),
+
+                        error: function (xhr, status, description) {
+
+                            // Call super
+                            $.ajaxSettings.error.call(this, arguments);
+
+                            $modal.handleNotification(description, 'error');
                         }
+
+                    }).done(
+                        this.generateNewWidgetCallback.bind(this)
                     );
+                },
+
+                /**
+                 * Define Stop Sending Event On Approve
+                 * @member SiteConfigController
+                 * @param {boolean} disable
+                 * @returns {*|boolean}
+                 */
+                stopSendingEventOnApprove: function stopSendingEventOnApprove(disable) {
+
+                    /**
+                     * Get $modal
+                     * @type {ModalElement}
+                     */
+                    var $modal = this.scope.view.get$modal(),
+                        $approve = $modal.$buttons.approve;
+
+                    if ($approve.disabled && disable) {
+                        return $approve.disabled;
+                    }
+
+                    // Disable approve button
+                    $approve.disabled = disable;
+                },
+
+                /**
+                 * Define callback for generate new widget
+                 * @member SiteConfigController
+                 * @param data
+                 * @param status
+                 * @param xhr
+                 */
+                generateNewWidgetCallback: function generateNewWidgetCallback(data, status, xhr) {
+
+                    /**
+                     * Get scope
+                     * @type {SiteConfig}
+                     */
+                    var scope = this.scope,
+                        msg = this.i18n.t('widget.generated.ok').replace(/\{1\}/, data.name);
+
+                    scope.logger.debug(msg, arguments);
+
+                    // Allow to create another one
+                    this.stopSendingEventOnApprove(false);
+
+                    /**
+                     * Get $modal
+                     * @type {ModalElement}
+                     */
+                    var $modal = scope.view.get$modal();
+
+                    // Show message
+                    $modal.handleNotification(msg, 'success');
+
+                    // Clear form
+                    $modal.collectInputFields().val('');
                 }
             },
 

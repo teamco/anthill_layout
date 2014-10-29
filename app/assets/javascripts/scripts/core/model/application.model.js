@@ -34,7 +34,7 @@ define([
          * Define global setting
          * @member AppModel
          */
-        defineSetting: function defineSetting() {
+        initGlobalSetting: function initGlobalSetting() {
 
             /**
              * Define setting

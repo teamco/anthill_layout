@@ -51,8 +51,10 @@
 }
 
 .modal-dialog p.text,
+.modal-dialog p.notification,
 .modal-dialog div.html {
     margin: 10px;
+    font-size: 12px;
 }
 
 .modal-dialog div.html {
