@@ -58,11 +58,13 @@ define([
 
                             html.push([
                                 '<li class="', index.toDash(), '">',
-                                    style === 'header' ?
-                                        index === 'thumbnail' ? 'icon' : index :
-                                        index === 'thumbnail' && style === 'row' ?
+                                style === 'header' ?
+                                    index === 'thumbnail' ? 'icon' : index :
+                                    index === 'thumbnail' && style === 'row' ?
                                     '<img alt="' + index + '" src="' + row[index] + '"/>' :
-                                    row[index],
+                                        index === 'name' ?
+                                        '<span>' + row[index] + '</span>' :
+                                            row[index],
                                 '</li>'
                             ].join(''));
                         }
@@ -87,11 +89,30 @@ define([
             );
 
             for (; i < l; i++) {
-
                 $ul.append(
                     _renderRow(data[i], 'row')
                 );
             }
+
+            return this.bindWidgetEdit($ul);
+        },
+
+        bindWidgetEdit: function bindWidgetEdit($ul) {
+
+            /**
+             * Get scope
+             * @type {SiteConfig}
+             */
+            var scope = this.view.scope;
+
+            $('li.name', $ul).on('click.edit', function clickEdit(){
+
+
+                //scope.observer.publish(
+                //    scope.eventmanager.eventList.editWidget,
+                //
+                //);
+            });
 
             return $ul;
         },

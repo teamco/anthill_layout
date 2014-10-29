@@ -154,6 +154,12 @@ ul.site-config > .content:hover {
 
 .modal-dialog.widget-list div.html li.name {
     width: 50%;
+    cursor: pointer;
+}
+
+.modal-dialog.widget-list div.html li.row:hover li.name {
+    color: #0000cc;
+    text-decoration: underline;
 }
 
 .modal-dialog.widget-list div.html li.thumbnail {
@@ -168,6 +174,10 @@ ul.site-config > .content:hover {
 .modal-dialog.widget-list div.html li.row img {
     width: 20px;
     height: 20px;
+}
+
+.modal-dialog.widget-list div.html li.row:hover li {
+    background-color: cornsilk;
 }
 
 .modal-dialog.widget-generator-new div.html {
