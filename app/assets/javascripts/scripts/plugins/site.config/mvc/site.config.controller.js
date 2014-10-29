@@ -255,14 +255,24 @@ define(
                  */
                 widgetGenerator: function widgetGenerator() {
 
+                    // Workaround for back button
+                    this.controller.loadWidgetsList();
+                },
+
+                /**
+                 * Define widgets list
+                 * @member SiteConfigController
+                 */
+                loadWidgetsList: function loadWidgetsList() {
+
                     /**
                      * Get gallery
                      * @type {Gallery}
                      */
-                    var gallery = this.controller.getGalleryModule();
+                    var gallery = this.getGalleryModule();
 
                     if (gallery) {
-                        this.view.showWidgetsList(
+                        this.scope.view.showWidgetsList(
                             gallery.model.staticData.getDefaultData(), [
                                 'name', 'thumbnail', 'resource'
                             ]

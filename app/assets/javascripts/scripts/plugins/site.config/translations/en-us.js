@@ -9,13 +9,14 @@
 define([], function defineEnUs() {
 
     return {
+        'site.data.confirm': 'Confirm',
+        'site.data.back': 'Back',
+        'site.data.save': 'Save',
+        'site.data.config': 'Site Config',
         'import.site.data': 'Import site data',
         'import.site.data.confirm': 'Confirm to Import site data',
         'import.site.data.confirm.reload': 'Reload',
         'site.data.cancel': 'Cancel',
-        'site.data.confirm': 'Confirm',
-        'site.data.save': 'Save',
-        'site.config': 'Site Config',
         'widget.manager.generate': 'Generate',
         'widget.generated.ok': 'Widget {1} was generated successfully',
         'widget.generation.ajax.abort': 'Unable to send ajax request before completing the previous one',

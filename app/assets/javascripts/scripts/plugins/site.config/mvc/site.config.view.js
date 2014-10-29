@@ -61,7 +61,7 @@ define(
                 }
 
                 this.header(Header, this.elements.$container).setText(
-                    this.i18n.t('site.config')
+                    this.i18n.t('site.data.config')
                 );
 
                 /**
@@ -401,6 +401,12 @@ define(
              */
             showWidgetsList: function showWidgetsList(widgets, show) {
 
+                if (this.elements.$modal) {
+
+                    // Clear modal
+                    this.elements.$modal.selfDestroy();
+                }
+
                 this.modalDialog({
                     style: 'widget-list',
                     type: 'info',
@@ -433,8 +439,11 @@ define(
              */
             showWidgetGenerator: function showWidgetGenerator(widgets, types) {
 
-                // Clear modal
-                this.elements.$modal.selfDestroy();
+                if (this.elements.$modal) {
+
+                    // Clear modal
+                    this.elements.$modal.selfDestroy();
+                }
 
                 this.modalDialog({
                     style: 'widget-generator-new',
@@ -442,6 +451,7 @@ define(
                     title: this.i18n.t('widget.manager.generate.new'),
                     html: this.elements.$widgetgenerator.renderWidgetGeneratorForm(widgets[0], types),
                     cover: true,
+                    closeX: false,
                     autoclose: false,
                     buttons: {
                         approve: {
@@ -451,9 +461,9 @@ define(
                             }
                         },
                         reject: {
-                            text: this.i18n.t('site.data.cancel'),
+                            text: this.i18n.t('site.data.back'),
                             events: {
-                                click: 'rejectModalEvent'
+                                click: 'loadWidgetsList'
                             }
                         }
                     }
