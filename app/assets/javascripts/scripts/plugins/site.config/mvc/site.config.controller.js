@@ -19,7 +19,7 @@ define(
      * @param {Routes} Routes
      * @returns {SiteConfigController}
      */
-        function defineSiteConfigController(PluginBase, Routes, PreferencesController) {
+    function defineSiteConfigController(PluginBase, Routes, PreferencesController) {
 
         /**
          * Define site config controller
@@ -469,6 +469,24 @@ define(
                         method: 'not',
                         value: '[name="category"]'
                     }).val('');
+                },
+
+                /**
+                 * Define widget editor
+                 * @member SiteConfigController
+                 * @param {string} resource
+                 */
+                widgetEditor: function widgetEditor(resource) {
+
+                    /**
+                     * Get gallery
+                     * @type {Gallery}
+                     */
+                    var gallery = this.controller.getGalleryModule();
+
+                    if (gallery) {
+
+                    }
                 }
             },
 

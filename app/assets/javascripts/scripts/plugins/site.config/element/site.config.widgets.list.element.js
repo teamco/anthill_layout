@@ -105,13 +105,12 @@ define([
              */
             var scope = this.view.scope;
 
-            $('li.name', $ul).on('click.edit', function clickEdit(){
+            $('li.name', $ul).on('click.edit', function clickEdit() {
 
-
-                //scope.observer.publish(
-                //    scope.eventmanager.eventList.editWidget,
-                //
-                //);
+                scope.observer.publish(
+                    scope.eventmanager.eventList.widgetEditor,
+                    $('.resource', $(this).parent()).text()
+                );
             });
 
             return $ul;

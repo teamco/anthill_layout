@@ -40,7 +40,8 @@ define([
          *      readyToImportSiteData: string,
          *      exportSiteData: string,
          *      loadSitePreferences: string,
-         *      widgetGenerator: string
+         *      widgetGenerator: string,
+         *      widgetEditor: string
          * }}
          */
         eventList: {
@@ -52,7 +53,8 @@ define([
             readyToImportSiteData: 'ready.to.import.site.data',
             exportSiteData: 'export.site.data',
             loadSitePreferences: 'load.site.preferences',
-            widgetGenerator: 'widget.generator'
+            widgetGenerator: 'widget.generator',
+            widgetEditor: 'widget.editor'
         }
 
     }, BaseEvent.prototype);
