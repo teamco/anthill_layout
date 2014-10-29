@@ -458,10 +458,22 @@ define([
         /**
          * Collect input fields (input/textarea)
          * @member ModalElement
+         * @param {{method: string, value: string}} [filter]
          * @returns {*|jQuery|HTMLElement}
          */
-        collectInputFields: function collectInputFields() {
-            return $('input:not(:disabled), textarea, div.combo-box > input', this.$);
+        collectInputFields: function collectInputFields(filter) {
+
+            /**
+             * Get inputs
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $inputs = $('input:not(:disabled), textarea, div.combo-box > input', this.$);
+
+            if (filter) {
+                return $inputs[filter.method](filter.value);
+            }
+
+            return $inputs;
         },
 
         /**

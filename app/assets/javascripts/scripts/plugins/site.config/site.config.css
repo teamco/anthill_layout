@@ -179,6 +179,10 @@ ul.site-config > .content:hover {
     right: 0;
 }
 
+.modal-dialog.widget-generator-new div.html span.validate {
+    display: none;
+}
+
 .modal-dialog.widget-generator-new div.html li {
     height: 24px;
     margin: 5px;

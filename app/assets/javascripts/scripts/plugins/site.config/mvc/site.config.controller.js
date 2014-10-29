@@ -297,12 +297,16 @@ define(
                 generateNewWidget: function generateNewWidget() {
 
                     var inputs = this.scope.view.get$modal().collectInputFields(),
+                        validate = inputs.hasClass('validate'),
+                        empty = 0,
                         i = 0, l = inputs.length,
                         collector = {}, data;
 
                     for (; i < l; i++) {
                         data = inputs[i];
                         collector[data.name] = data.value;
+                        $(data).blur();
+                        if (data.value.length === 0) empty++;
                     }
 
                     collector.visible = true;
@@ -345,21 +349,37 @@ define(
 
                         beforeSend: function (xhr, opts) {
 
-                            if (this.stopSendingEventOnApprove(true)) {
+                            if (validate || empty) {
 
                                 $modal.handleNotification(
-                                    this.i18n.t('widget.generation.ajax.drop'),
+                                    this.i18n.t('widget.generation.inputs.validate'),
                                     'warning'
                                 );
 
                                 this.scope.logger.warn(
-                                    this.i18n.t('widget.generation.ajax.drop'),
+                                    this.i18n.t('widget.generation.inputs.validate'),
                                     xhr, opts
                                 );
 
                                 xhr.abort();
 
-                                return false;
+                                // Allow to create another one
+                                this.stopSendingEventOnApprove(false);
+                            }
+
+                            if (this.stopSendingEventOnApprove(true)) {
+
+                                $modal.handleNotification(
+                                    this.i18n.t('widget.generation.ajax.abort'),
+                                    'warning'
+                                );
+
+                                this.scope.logger.warn(
+                                    this.i18n.t('widget.generation.ajax.abort'),
+                                    xhr, opts
+                                );
+
+                                xhr.abort();
                             }
 
                         }.bind(this),
@@ -435,7 +455,10 @@ define(
                     $modal.handleNotification(msg, 'success');
 
                     // Clear form
-                    $modal.collectInputFields().val('');
+                    $modal.collectInputFields({
+                        method: 'not',
+                        value: '[name="category"]'
+                    }).val('');
                 }
             },
 

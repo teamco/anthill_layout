@@ -112,21 +112,31 @@ define([
              * Get renderer
              * @param {function} renderer
              * @param {string} index
+             * @param {RegExp} [mask]
              * @returns {*}
              * @private
              */
-            function _getRenderer(renderer, index) {
+            function _getRenderer(renderer, index, mask) {
 
-                return $('<li />').addClass(index).append(
-                    renderer({
-                        name: index,
-                        text: index,
-                        placeholder: 'Enter ' + index,
-                        disabled: false,
-                        visible: true,
-                        validate: false
-                    })
-                );
+                // Define opts
+                var opts = {
+                    name: index,
+                    text: index,
+                    placeholder: 'Enter ' + index,
+                    disabled: false,
+                    visible: true,
+                    validate: false
+                };
+
+                if (mask) {
+                    opts.validate = {
+                        mask: mask,
+                        blank: false
+                    };
+                }
+
+                return $('<li />').addClass(index).
+                    append(renderer(opts));
             }
 
             for (index in widget) {
@@ -137,13 +147,13 @@ define([
 
                         case 'name':
                         case 'resource':
-                            $field = _getRenderer(this.renderTextField.bind(this), index);
+                            $field = _getRenderer(this.renderTextField.bind(this), index, /\w+$/);
                             break;
 
                         case 'dimensions':
                             $field = [
-                                _getRenderer(this.renderTextField.bind(this), 'width'),
-                                _getRenderer(this.renderTextField.bind(this), 'height')
+                                _getRenderer(this.renderTextField.bind(this), 'width', /^\d+$/),
+                                _getRenderer(this.renderTextField.bind(this), 'height', /^\d+$/)
                             ];
                             break;
 
