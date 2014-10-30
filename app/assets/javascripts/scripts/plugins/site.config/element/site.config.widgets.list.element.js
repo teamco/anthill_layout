@@ -58,13 +58,13 @@ define([
 
                             html.push([
                                 '<li class="', index.toDash(), '">',
-                                style === 'header' ?
-                                    index === 'thumbnail' ? 'icon' : index :
-                                    index === 'thumbnail' && style === 'row' ?
+                                    style === 'header' ?
+                                        index === 'thumbnail' ? 'icon' : index :
+                                        index === 'thumbnail' && style === 'row' ?
                                     '<img alt="' + index + '" src="' + row[index] + '"/>' :
                                         index === 'name' ?
-                                        '<span>' + row[index] + '</span>' :
-                                            row[index],
+                                    '<span>' + row[index] + '</span>' :
+                                    row[index],
                                 '</li>'
                             ].join(''));
                         }
@@ -136,7 +136,7 @@ define([
              * @returns {*}
              * @private
              */
-            function _getRenderer(renderer, index, mask) {
+            function _getRenderer(renderer, index, validaton) {
 
                 // Define opts
                 var opts = {
@@ -148,9 +148,9 @@ define([
                     validate: false
                 };
 
-                if (mask) {
+                if (validaton) {
                     opts.validate = {
-                        mask: mask,
+                        mask: validaton.mask,
                         blank: false
                     };
                 }
@@ -167,19 +167,19 @@ define([
 
                         case 'name':
                         case 'resource':
-                            $field = _getRenderer(this.renderTextField.bind(this), index, /\w+$/);
+                            $field = _getRenderer(this.renderTextField.bind(this), index, {mask: /\w+$/});
                             break;
 
                         case 'dimensions':
                             $field = [
-                                _getRenderer(this.renderTextField.bind(this), 'width', /^\d+$/),
-                                _getRenderer(this.renderTextField.bind(this), 'height', /^\d+$/)
+                                _getRenderer(this.renderTextField.bind(this), 'width', {mask: /^\d+$/}),
+                                _getRenderer(this.renderTextField.bind(this), 'height', {mask: /^\d+$/})
                             ];
                             break;
 
                         case 'description':
                         case 'thumbnail':
-                            $field = _getRenderer(this.renderTextArea.bind(this), index);
+                            $field = _getRenderer(this.renderTextArea.bind(this), index, {});
                             break;
 
                         case 'type':

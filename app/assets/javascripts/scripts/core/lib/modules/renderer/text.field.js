@@ -38,9 +38,7 @@ define([
              * Create UUID
              * @type {String}
              */
-            var uuid = this.base.lib.generator.UUID() + '-input',
-                $span = $('<span class="validate" />').
-                    text('The «' + opts.text + '» you entered is not valid');
+            var uuid = this.base.lib.generator.UUID() + '-input';
 
             /**
              * Define $input
@@ -67,35 +65,7 @@ define([
                 $input.hide();
             }
 
-            if (typeof(opts.validate) === 'object') {
-
-                $input.focusout(function focusOut() {
-
-                    /**
-                     * Get value
-                     * @type {string}
-                     */
-                    var value = $input.val();
-
-                    if (value.match(opts.validate.mask)) {
-
-                        $input.removeClass('validate');
-                        $span.remove();
-
-                    } else {
-
-                        if (opts.validate.blank && value.length === 0) {
-
-                            $input.removeClass('validate');
-                            $span.remove();
-                            return false;
-                        }
-
-                        $input.addClass('validate');
-                        $input.after($span);
-                    }
-                });
-            }
+            this.validateByMask($input, opts);
 
             return [
                 this.renderLabel(uuid, opts.text, 'text', opts.visible),

@@ -19,7 +19,14 @@ define([], function defineTextAreaRenderer(){
         /**
          * Render text area
          * @member TextAreaRenderer
-         * @param {{text: string, name: string, [placeholder]: string, value, [disabled]: boolean}} opts
+         * @param {{
+         *      text: string,
+         *      name: string,
+         *      [placeholder]: string,
+         *      value,
+         *      [disabled]: boolean,
+         *      [validate]: {mask: RegExp, blank: boolean}
+         * }} opts
          * @returns {*[]}
          */
         renderTextArea: function renderTextArea(opts) {
@@ -60,6 +67,8 @@ define([], function defineTextAreaRenderer(){
             if (!opts.visible) {
                 $input.hide();
             }
+
+            this.validateByMask($input, opts);
 
             return [
                 this.renderLabel(uuid, opts.text, 'textarea', opts.visible),

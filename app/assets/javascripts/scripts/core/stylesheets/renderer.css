@@ -112,10 +112,12 @@ input[type="text"]:focus {
     right: 4px;
 }
 
+textarea.validate,
 input[type="text"].validate {
     border-color: #F08080;
 }
 
+textarea + span.validate,
 input[type="text"] + span.validate {
     float: right;
     font-size: 11px;
