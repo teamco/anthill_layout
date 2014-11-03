@@ -505,6 +505,10 @@ define(
                             gallery.model.dataTypes
                         );
                     }
+                },
+
+                updateWidget: function updateWidget() {
+                    debugger
                 }
             },
 

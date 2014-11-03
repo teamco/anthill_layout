@@ -17,7 +17,7 @@ define([], function defineEnUs() {
         'import.site.data.confirm': 'Confirm to Import site data',
         'import.site.data.confirm.reload': 'Reload',
         'site.data.cancel': 'Cancel',
-        'widget.manager.generate': 'Generate',
+        'widget.manager.generate': 'New',
         'widget.generated.ok': 'Widget {1} was generated successfully',
         'widget.generation.ajax.abort': 'Unable to send ajax request before completing the previous one',
         'widget.generation.inputs.validate': 'All Fields are mandatory',

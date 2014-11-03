@@ -174,7 +174,7 @@ define([
 
                     opts.monitor = {
                         events: ['change.' + index],
-                        callback: function () {
+                        callback: function onChange() {
                             $('img', $(this).parent()).attr({
                                 src: this.value
                             });
