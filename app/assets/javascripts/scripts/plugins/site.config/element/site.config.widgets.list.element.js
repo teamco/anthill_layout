@@ -120,23 +120,28 @@ define([
          * Render widget generator form
          * @member SiteConfigWidgetsListElement
          * @param {object} widget
+         * @param {object} [widgetData]
          * @param {Array} types
          * @returns {SiteConfigWidgetsListElement}
          */
-        renderWidgetGeneratorForm: function renderWidgetGeneratorForm(widget, types) {
+        renderWidgetGeneratorForm: function renderWidgetGeneratorForm(widget, types, widgetData) {
 
             var index, $field,
                 $ul = $('<ul />');
+
+            widgetData = widgetData || {};
+            widgetData.dimensions = widgetData.dimensions || {};
 
             /**
              * Get renderer
              * @param {function} renderer
              * @param {string} index
+             * @param {string} value
              * @param {{[mask]: RegExp}} [validation]
              * @returns {*}
              * @private
              */
-            function _getRenderer(renderer, index, validation) {
+            function _getRenderer(renderer, index, value, validation) {
 
                 // Define opts
                 var opts = {
@@ -145,6 +150,7 @@ define([
                     placeholder: 'Enter ' + index,
                     disabled: false,
                     visible: true,
+                    value: value,
                     validate: false
                 };
 
@@ -155,8 +161,26 @@ define([
                     };
                 }
 
-                return $('<li />').addClass(index).
-                    append(renderer(opts));
+                var $li = $('<li />').addClass(index);
+
+                if (index === 'thumbnail') {
+                    $li.append(
+                        $('<img />').attr({
+                            src: value,
+                            alt: index
+                        })
+                    );
+                }
+
+                $li.append(renderer(opts));
+
+                if (index === 'thumbnail') {
+                    $li.append(
+                        $('<div />').addClass('clear')
+                    );
+                }
+
+                return $li;
             }
 
             for (index in widget) {
@@ -167,19 +191,19 @@ define([
 
                         case 'name':
                         case 'resource':
-                            $field = _getRenderer(this.renderTextField.bind(this), index, {mask: /\w+$/});
+                            $field = _getRenderer(this.renderTextField.bind(this), index, widgetData[index], {mask: /\w+$/});
                             break;
 
                         case 'dimensions':
                             $field = [
-                                _getRenderer(this.renderTextField.bind(this), 'width', {mask: /^\d+$/}),
-                                _getRenderer(this.renderTextField.bind(this), 'height', {mask: /^\d+$/})
+                                _getRenderer(this.renderTextField.bind(this), 'width', widgetData[index].width, {mask: /^\d+$/}),
+                                _getRenderer(this.renderTextField.bind(this), 'height', widgetData[index].height, {mask: /^\d+$/})
                             ];
                             break;
 
                         case 'description':
                         case 'thumbnail':
-                            $field = _getRenderer(this.renderTextArea.bind(this), index, {});
+                            $field = _getRenderer(this.renderTextArea.bind(this), index, widgetData[index], {});
                             break;
 
                         case 'type':
@@ -205,7 +229,7 @@ define([
                             $field = $('<li />').addClass(index).append(
                                 this.renderCombobox(
                                     sorted,
-                                    sorted[0].value,
+                                    (types[widgetData[index]] || sorted[0].value),
                                     index,
                                     'category',
                                     undefined,

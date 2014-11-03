@@ -22,6 +22,7 @@ define([], function defineEnUs() {
         'widget.generation.ajax.abort': 'Unable to send ajax request before completing the previous one',
         'widget.generation.inputs.validate': 'All Fields are mandatory',
         'widget.manager.list': 'Widgets Manager: ({1} items)',
-        'widget.manager.generate.new': 'Generate new widget'
+        'widget.manager.generate.new': 'Generate new widget',
+        'widget.manager.generate.update': 'Update widget generator'
     };
 });

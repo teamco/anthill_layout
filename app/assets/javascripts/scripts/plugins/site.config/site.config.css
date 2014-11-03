@@ -241,3 +241,27 @@ ul.site-config > .content:hover {
 .modal-dialog.widget-generator-new div.html div.combo-box li {
     height: 22px;
 }
+
+.modal-dialog.widget-generator-new div.html li.thumbnail img,
+.modal-dialog.widget-generator-new div.html li.thumbnail label {
+    float: left;
+}
+
+.modal-dialog.widget-generator-new div.html li.thumbnail img {
+    width: 32px;
+    position: absolute;
+}
+
+.modal-dialog.widget-generator-new div.html li.thumbnail label {
+    width: auto;
+    margin-left: 10%;
+}
+
+.modal-dialog.widget-generator-new div.html li.thumbnail textarea {
+    width: 90%;
+    float: right;
+}
+
+.modal-dialog.widget-generator-new div.html li.thumbnail .clear {
+    clear: both;
+}

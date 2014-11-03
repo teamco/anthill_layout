@@ -471,6 +471,45 @@ define(
             },
 
             /**
+             * Define update widget generator
+             * @member SiteConfigView
+             * @param {object} widget
+             * @param {Array} types
+             */
+            updateWidgetGenerator: function updateWidgetGenerator(widget, types) {
+
+                if (this.elements.$modal) {
+
+                    // Clear modal
+                    this.elements.$modal.selfDestroy();
+                }
+
+                this.modalDialog({
+                    style: 'widget-generator-new',
+                    type: 'info',
+                    title: this.i18n.t('widget.manager.generate.update'),
+                    html: this.elements.$widgetgenerator.renderWidgetGeneratorForm(widget, types, widget),
+                    cover: true,
+                    closeX: false,
+                    autoclose: false,
+                    buttons: {
+                        approve: {
+                            text: this.i18n.t('site.data.save'),
+                            events: {
+                                click: 'updateWidget'
+                            }
+                        },
+                        reject: {
+                            text: this.i18n.t('site.data.back'),
+                            events: {
+                                click: 'loadWidgetsList'
+                            }
+                        }
+                    }
+                });
+            },
+
+            /**
              * Render site.config
              * @member SiteConfigView
              */

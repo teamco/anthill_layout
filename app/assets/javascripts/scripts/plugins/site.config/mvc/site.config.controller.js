@@ -482,10 +482,28 @@ define(
                      * Get gallery
                      * @type {Gallery}
                      */
-                    var gallery = this.controller.getGalleryModule();
+                    var gallery = this.controller.getGalleryModule(),
+                        widget;
 
                     if (gallery) {
 
+                        /**
+                         * Get widget data
+                         * @type {{
+                         *      name: string,
+                         *      description: string,
+                         *      thumbnail: string,
+                         *      dimensions: {width: number, height: number},
+                         *      type: string,
+                         *      resource: string
+                         * }}
+                         */
+                        widget = gallery.model.staticData.getWidgetData(resource);
+
+                        this.view.updateWidgetGenerator(
+                            widget,
+                            gallery.model.dataTypes
+                        );
                     }
                 }
             },

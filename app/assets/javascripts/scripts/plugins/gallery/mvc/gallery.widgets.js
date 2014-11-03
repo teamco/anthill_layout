@@ -100,7 +100,7 @@ define(['config/routes'], function defineGalleryWidgets(Routes) {
                      * @param {Array} json
                      * @return {Array}
                      */
-                    function _done(json) {
+                        function _done(json) {
 
                         galleryWidgets.setDefaultData(json);
                         _sortData();
@@ -116,7 +116,7 @@ define(['config/routes'], function defineGalleryWidgets(Routes) {
         /**
          * Define default data setter
          * @member GalleryWidgets
-         * @param {Array} json
+         * @param {{categories: Array, widgets: Array}} json
          */
         setDefaultData: function setDefaultData(json) {
 
@@ -133,6 +133,11 @@ define(['config/routes'], function defineGalleryWidgets(Routes) {
                     i = 0, l = json.categories.length;
 
                 for (; i < l; i++) {
+
+                    /**
+                     * Define category instance
+                     * @type {{name_index, name_value}}
+                     */
                     category = json.categories[i];
                     this.galleryModel.dataTypes[category.name_index] = category.name_value;
                 }
@@ -159,6 +164,54 @@ define(['config/routes'], function defineGalleryWidgets(Routes) {
          */
         getDefaultData: function getDefaultData() {
             return this.defaultData;
+        },
+
+        /**
+         * Define widget data getter
+         * @member GalleryWidgets
+         * @param {string} resource
+         * @returns {{
+         *      name: string,
+         *      description: string,
+         *      thumbnail: string,
+         *      dimensions: {width: number, height: number},
+         *      type: string,
+         *      resource: string
+         * }}
+         */
+        getWidgetData: function getWidgetData(resource) {
+
+            /**
+             * Get default data
+             * @type {{
+             *      name: string,
+             *      description: string,
+             *      thumbnail: string,
+             *      dimensions: {width: number, height: number},
+             *      type: string,
+             *      resource: string
+             * }[]}
+             */
+            var data = this.defaultData,
+                i = 0,
+                l = data.length;
+
+            /**
+             * Get scope
+             * @type {Gallery}
+             */
+            var scope = this.galleryModel.scope;
+
+            for (; i < l; i++) {
+
+                if (data[i].resource === resource) {
+
+                    scope.logger.debug('Get widget data', data[i]);
+                    return data[i];
+                }
+            }
+
+            scope.logger.debug('Undefined widget data', resource);
         }
 
     }, Routes.prototype);
