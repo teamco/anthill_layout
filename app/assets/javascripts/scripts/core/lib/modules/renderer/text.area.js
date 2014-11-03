@@ -24,6 +24,7 @@ define([], function defineTextAreaRenderer(){
          *      name: string,
          *      [placeholder]: string,
          *      value,
+         *      [monitor],
          *      [disabled]: boolean,
          *      [validate]: {mask: RegExp, blank: boolean}
          * }} opts
@@ -62,6 +63,14 @@ define([], function defineTextAreaRenderer(){
                     placeholder: opts.placeholder,
                     title: opts.value
                 }).val(opts.value);
+            }
+
+            if (opts.monitor) {
+
+                $input.on(
+                    opts.monitor.events.join(','),
+                    opts.monitor.callback
+                );
             }
 
             if (!opts.visible) {

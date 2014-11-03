@@ -164,12 +164,22 @@ define([
                 var $li = $('<li />').addClass(index);
 
                 if (index === 'thumbnail') {
+
                     $li.append(
                         $('<img />').attr({
                             src: value,
                             alt: index
                         })
                     );
+
+                    opts.monitor = {
+                        events: ['change.' + index],
+                        callback: function () {
+                            $('img', $(this).parent()).attr({
+                                src: this.value
+                            });
+                        }
+                    };
                 }
 
                 $li.append(renderer(opts));
