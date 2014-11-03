@@ -132,11 +132,11 @@ define([
              * Get renderer
              * @param {function} renderer
              * @param {string} index
-             * @param {RegExp} [mask]
+             * @param {{[mask]: RegExp}} [validation]
              * @returns {*}
              * @private
              */
-            function _getRenderer(renderer, index, validaton) {
+            function _getRenderer(renderer, index, validation) {
 
                 // Define opts
                 var opts = {
@@ -148,9 +148,9 @@ define([
                     validate: false
                 };
 
-                if (validaton) {
+                if (validation) {
                     opts.validate = {
-                        mask: validaton.mask,
+                        mask: validation.mask,
                         blank: false
                     };
                 }
