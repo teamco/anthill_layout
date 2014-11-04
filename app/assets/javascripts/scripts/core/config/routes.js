@@ -23,7 +23,8 @@ define([], function defineRoutes() {
          */
         resources: {
             showWidgetsList: '/author/widgets.json',
-            createNewWidget: '/author/widgets'
+            createNewWidget: '/author/widgets',
+            updateExistingWidget: '/author/widgets/{id}'
         },
 
         /**

@@ -36,3 +36,28 @@ body.admin td img {
 body.admin td.name {
   background-color: antiquewhite;
 }
+
+body.admin ul {
+  list-style: none;
+  margin: 20px;
+  padding: 10px;
+  background: #dedede;
+  border: 1px solid #ccc;
+}
+
+body.admin ul > li {
+  margin: 2px;
+}
+
+body.admin ul > li label {
+  min-width: 200px;
+}
+
+body.admin ul input[type="text"]:focus {
+  position: static;
+  right: auto;
+}
+
+body.admin ul textarea:focus {
+  height: 100px;
+}

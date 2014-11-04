@@ -492,6 +492,7 @@ define(
                     cover: true,
                     closeX: false,
                     autoclose: false,
+                    items: widget,
                     buttons: {
                         approve: {
                             text: this.i18n.t('site.data.save'),

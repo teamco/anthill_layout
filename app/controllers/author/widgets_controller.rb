@@ -14,6 +14,7 @@ class Author::WidgetsController < Author::AuthorController
 
       @json_data[:widgets] << {
           id: w[:id],
+          uuid: w[:uuid],
           name: w[:name],
           description: w[:description],
           thumbnail: w[:thumbnail],

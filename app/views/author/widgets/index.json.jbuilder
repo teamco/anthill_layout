@@ -7,7 +7,7 @@ end
 
 json.widgets do
   json.array!(@json_data[:widgets]) do |widget|
-    json.extract! widget, :id, :name, :description, :thumbnail, :dimensions, :type, :resource
+    json.extract! widget, :id, :uuid, :name, :description, :thumbnail, :dimensions, :type, :resource
     json.url author_widget_url(@author_widgets.find(widget[:id]), format: :json)
   end
 end

@@ -31,6 +31,7 @@ case RUBY_PLATFORM
     gem 'thin'
 end
 
+gem 'uuid'
 gem 'tzinfo-data'
 gem 'tzinfo'
 

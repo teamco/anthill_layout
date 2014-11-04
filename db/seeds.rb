@@ -1,11 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'fileutils'
+require 'uuid'
+
 puts "\n--- Start Clean models"
 Dir['app/models/**/*.rb'].each do |model|
   model = model.camelize.gsub(/App::Models::/, '').gsub(/\.rb/, '')
@@ -492,15 +487,19 @@ puts '--- Finish Add categories'
 
 puts "\n--- Start Add widgets"
 
+uuid = UUID.new
+
 widgets.each_with_index do |w, index|
 
   category = Author::WidgetCategory.find_by_name_index(w[:type])
 
   puts "#{index}: #{w[:name]} (#{category.name_value})"
 
+
   Author::Widget.create(
       {
           name: w[:name],
+          uuid: uuid.generate,
           description: w[:description],
           thumbnail: w[:thumbnail],
           width: w[:dimensions][:width],
