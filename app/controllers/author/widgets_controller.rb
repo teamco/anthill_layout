@@ -1,4 +1,5 @@
 class Author::WidgetsController < Author::AuthorController
+  before_action :set_author_widget_category, only: [:create, :update, :destroy]
   before_action :set_author_widget, only: [:show, :edit, :update, :destroy]
 
   # GET /author/widgets
@@ -45,8 +46,8 @@ class Author::WidgetsController < Author::AuthorController
   # POST /author/widgets
   # POST /author/widgets.json
   def create
-    category = Author::WidgetCategory.find_by_name_index(params[:author_widget_category][:name_index])
-    @author_widget = category.author_widgets.build(author_widget_params) unless category.nil?
+
+    @author_widget = @category.author_widgets.build(author_widget_params) unless @category.nil?
 
     respond_to do |format|
       if @author_widget.save
@@ -74,15 +75,24 @@ class Author::WidgetsController < Author::AuthorController
   # PATCH/PUT /author/widgets/1
   # PATCH/PUT /author/widgets/1.json
   def update
+
     respond_to do |format|
-      if @author_widget.update(author_widget_params)
-        format.html { redirect_to @author_widget, notice: 'Widget was successfully updated.' }
-        format.json { render :show, status: :ok, location: @author_widget }
-      else
-        format.html { render :edit }
-        format.json { render json: @author_widget.errors, status: :unprocessable_entity }
+
+      if request.xhr?
+        format.json {
+          render json: @author_widget, status: 200
+        }
+        
       end
     end
+    #   if @author_widget.update(author_widget_params)
+    #     format.html { redirect_to @author_widget, notice: 'Widget was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @author_widget }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @author_widget.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /author/widgets/1
@@ -96,6 +106,11 @@ class Author::WidgetsController < Author::AuthorController
   end
 
   private
+
+  def set_author_widget_category
+    @category = Author::WidgetCategory.find_by_name_index(params[:author_widget_category][:name_index])
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_author_widget
     @author_widget = Author::Widget.find(params[:id])
@@ -104,5 +119,6 @@ class Author::WidgetsController < Author::AuthorController
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_widget_params
     params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :resource, :visible)
+    params.require(:author_widget_category).permit(:name_index)
   end
 end

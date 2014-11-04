@@ -13,17 +13,19 @@ body.admin {
 }
 
 body.admin .fetcher {
-  width: 80%;
+  width: 90%;
+  height: 90%;
   border: 1px solid #333;
   box-shadow: 3px 3px 10px #333;
   padding: 2px;
   border-radius: 5px;
   margin: 20px auto 0;
   background-color: #fff;
+  overflow: hidden;
 }
 
 body.admin .fetcher .content {
-  max-height: 700px;
+  height: 90%;
   overflow: auto;
   padding: 0 2% 20px;
 }

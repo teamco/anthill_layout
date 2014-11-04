@@ -351,6 +351,11 @@ define(function defineSiteConfigWidgetGenerator() {
             }
         },
 
+        /**
+         * Define update widget data
+         * @member SiteConfigWidgetGenerator
+         * @returns {boolean}
+         */
         updateWidget: function updateWidget() {
 
             /**
@@ -439,6 +444,13 @@ define(function defineSiteConfigWidgetGenerator() {
             );
         },
 
+        /**
+         * Define update widget's data callback
+         * @member SiteConfigWidgetGenerator
+         * @param data
+         * @param status
+         * @param xhr
+         */
         updateWidgetCallback: function updateWidgetCallback(data, status, xhr) {
 
             this._handleSuccessSendWidgetData(data, status, xhr);
