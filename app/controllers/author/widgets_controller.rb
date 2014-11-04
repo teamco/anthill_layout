@@ -27,6 +27,7 @@ class Author::WidgetsController < Author::AuthorController
           resource: w[:resource]
       }
     end
+
   end
 
   # GET /author/widgets/1
@@ -76,23 +77,22 @@ class Author::WidgetsController < Author::AuthorController
   # PATCH/PUT /author/widgets/1.json
   def update
 
+    author_widget_params[:widget_category_id] = @category.id
+
     respond_to do |format|
 
-      if request.xhr?
-        format.json {
-          render json: @author_widget, status: 200
-        }
-        
+      if @author_widget.update(author_widget_params)
+        if request.xhr?
+          format.json { render :show, status: :ok, location: @author_widget }
+        else
+          format.html { redirect_to @author_widget, notice: 'Widget was successfully updated.' }
+          format.json { render :show, status: :ok, location: @author_widget }
+        end
+      else
+        format.html { render :edit }
+        format.json { render json: @author_widget.errors, status: :unprocessable_entity }
       end
     end
-    #   if @author_widget.update(author_widget_params)
-    #     format.html { redirect_to @author_widget, notice: 'Widget was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @author_widget }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @author_widget.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # DELETE /author/widgets/1
@@ -119,6 +119,5 @@ class Author::WidgetsController < Author::AuthorController
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_widget_params
     params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :resource, :visible)
-    params.require(:author_widget_category).permit(:name_index)
   end
 end

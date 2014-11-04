@@ -100,7 +100,7 @@ define(['config/routes'], function defineGalleryWidgets(Routes) {
                      * @param {Array} json
                      * @return {Array}
                      */
-                        function _done(json) {
+                    function _done(json) {
 
                         galleryWidgets.setDefaultData(json);
                         _sortData();
@@ -164,6 +164,67 @@ define(['config/routes'], function defineGalleryWidgets(Routes) {
          */
         getDefaultData: function getDefaultData() {
             return this.defaultData;
+        },
+
+        /**
+         * Update widget's data
+         * @member GalleryWidgets
+         * @param {{widget, category}} json
+         */
+        updateDefaultData: function updateDefaultData(json) {
+
+            /**
+             * Get default data
+             * @type {{
+             *      name: string,
+             *      description: string,
+             *      thumbnail: string,
+             *      dimensions: {width: number, height: number},
+             *      type: string,
+             *      resource: string
+             * }[]}
+             */
+            var data = this.getDefaultData(),
+                i = 0, l = data.length;
+
+            for (; i < l; i++) {
+
+                if (data[i].id === json.widget.id) {
+
+                    /**
+                     * Define widget instance
+                     * @type {{
+                     *      name: string,
+                     *      description: string,
+                     *      thumbnail: string,
+                     *      dimensions: {width: number, height: number},
+                     *      type: string,
+                     *      resource: string
+                     * }}
+                     */
+                    var widget = {
+                        id: data[i].id,
+                        uuid: data[i].uuid,
+                        url: data[i].url,
+                        name: json.widget.name,
+                        description: json.widget.description,
+                        thumbnail: json.widget.thumbnail,
+                        dimensions: {
+                            width: json.widget.width,
+                            height: json.widget.height
+                        },
+                        type: json.category.name_index,
+                        resource: json.widget.resource
+                    };
+
+                    // Update data
+                    data[i] = widget;
+
+                    this.galleryModel.scope.logger.debug('Update gallery model', widget);
+
+                    break;
+                }
+            }
         },
 
         /**

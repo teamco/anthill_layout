@@ -8,7 +8,7 @@
 define([
     'config/anthill',
     'modules/Model',
-    'plugins/gallery/mvc/gallery.widgets'
+    'plugins/gallery/mvc/model/gallery.widgets'
 ], function defineGalleryModel(AntHill, BaseModel, GalleryWidgets) {
 
     /**

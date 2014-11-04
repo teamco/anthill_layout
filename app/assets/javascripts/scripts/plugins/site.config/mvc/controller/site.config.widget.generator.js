@@ -165,12 +165,12 @@ define(function defineSiteConfigWidgetGenerator() {
             if (this.controller.stopSendingEventOnApprove(true)) {
 
                 data.$modal.handleNotification(
-                    this.i18n.t('widget.generation.ajax.abort'),
+                    this.controller.i18n.t('widget.generation.ajax.abort'),
                     'warning'
                 );
 
                 scope.logger.warn(
-                    this.i18n.t('widget.generation.ajax.abort'),
+                    this.controller.i18n.t('widget.generation.ajax.abort'),
                     xhr, opts
                 );
 
@@ -454,6 +454,18 @@ define(function defineSiteConfigWidgetGenerator() {
         updateWidgetCallback: function updateWidgetCallback(data, status, xhr) {
 
             this._handleSuccessSendWidgetData(data, status, xhr);
+
+            /**
+             * Get gallery
+             * @type {Gallery}
+             */
+            var gallery = this.getGalleryModule();
+
+            if (gallery) {
+
+                gallery.model.staticData.updateDefaultData(data);
+            }
+
             this.loadWidgetsList();
         }
     });
