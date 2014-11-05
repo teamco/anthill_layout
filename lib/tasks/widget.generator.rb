@@ -3,7 +3,9 @@ require 'fileutils'
 class WidgetGenerate
 
   def initialize
+  end
 
+  def do_create
     puts 'Enter widget name separated by dots or underscore:'
     @cname = STDIN.gets.chomp.strip
 
@@ -17,7 +19,6 @@ class WidgetGenerate
     confirm = STDIN.gets.chomp.strip
 
     do_it if confirm == 'y'
-
   end
 
   def get_cname
