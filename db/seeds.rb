@@ -12,6 +12,7 @@ Dir['app/models/**/*.rb'].each do |model|
   end
 end
 puts '--- Finish Clean models'
+
 categories = {
     regular: 'Regular widgets',
     text: 'Text editor',
@@ -22,6 +23,7 @@ categories = {
     social: 'Social data',
     template: 'Template content'
 }
+
 widgets = [
     {
         name: 'Page Tabs',

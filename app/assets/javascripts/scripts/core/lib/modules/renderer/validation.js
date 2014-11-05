@@ -64,7 +64,7 @@ define([
                     $input.addClass('validate');
                     $input.after($span);
 
-                    if (_checkMask(value) || _checkEmpty(value)) {
+                    if (_checkMask(value) && _checkEmpty(value)) {
 
                         $input.removeClass('validate');
                         $span.remove();

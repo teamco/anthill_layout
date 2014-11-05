@@ -234,6 +234,39 @@ define(function defineGalleryWidgets() {
         },
 
         /**
+         * Check if resource already exist
+         * @member GalleryWidgets
+         * @param {string} resource
+         * @returns {boolean}
+         */
+        isExistResource: function isExistResource(resource) {
+
+            if (!resource) {
+                return false;
+            }
+
+            /**
+             * Get gallery widgets
+             * @type {{
+                 *      name: string,
+                 *      description: string,
+                 *      thumbnail: string,
+                 *      dimensions: {width: number, height: number},
+                 *      type: string,
+                 *      resource: string
+                 * }[]}
+             */
+            var widgets = this.getDefaultData(),
+                i = 0, l = widgets.length;
+
+            for (; i < l; i++) {
+                if (widgets[i].resource === resource) {
+                    return true;
+                }
+            }
+        },
+
+        /**
          * Define widget data getter
          * @member GalleryWidgets
          * @param {string} resource

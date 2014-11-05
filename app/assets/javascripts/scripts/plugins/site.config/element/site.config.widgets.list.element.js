@@ -169,6 +169,8 @@ define([
 
                 if (index === 'thumbnail') {
 
+                    opts.text += ' data-uri';
+
                     $li.append(
                         $('<img />').attr({
                             src: value,
@@ -216,8 +218,14 @@ define([
                             break;
 
                         case 'description':
-                        case 'thumbnail':
                             $field = _getRenderer(this.renderTextArea.bind(this), index, widgetData[index], {});
+                            break;
+
+                        case 'thumbnail':
+                            this.view.scope.base.isDataURL();
+                            $field = _getRenderer(this.renderTextArea.bind(this), index, widgetData[index], {
+                                mask: this.view.scope.base.isDataURL.regex
+                            });
                             break;
 
                         case 'type':

@@ -163,6 +163,30 @@ define(function defineSiteConfigWidgetGenerator() {
                 controller.stopSendingEventOnApprove(false);
             }
 
+            /**
+             * Get gallery
+             * @type {Gallery}
+             */
+            var gallery = controller.getGalleryModule();
+
+            if (gallery && gallery.model.staticData.isExistResource(data.collector.resource)) {
+
+                data.$modal.handleNotification(
+                    controller.i18n.t('widget.generation.resource.exist'),
+                    'warning'
+                );
+
+                scope.logger.warn(
+                    controller.i18n.t('widget.generation.resource.exist'),
+                    xhr, opts
+                );
+
+                xhr.abort();
+
+                // Allow to create another one
+                controller.stopSendingEventOnApprove(false);
+            }
+
             if (controller.stopSendingEventOnApprove(true)) {
 
                 data.$modal.handleNotification(

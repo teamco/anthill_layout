@@ -207,9 +207,48 @@ define([
          * @returns {Array|{index: number, input: string}|*}
          */
         isUrl: function isUrl(url) {
-            return url.match(
-                /^(http(?:s)?\:\/\/[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)*\.[a-zA-Z]{2,6}(?:\/?|(?:\/[\w\-]+)*)(?:\/?|\/\w+\.[a-zA-Z]{2,4}(?:\?[\w]+\=[\w\-]+)?)?(?:\&[\w]+\=[\w\-]+)*)$/
-            );
+
+            /**
+             * Define regex
+             * @type {RegExp}
+             */
+            this.isUrl.regex = /^(http(?:s)?:\/\/[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)*\.[a-zA-Z]{2,6}(?:\/?|(?:\/[\w\-]+)*)(?:\/?|\/\w+\.[a-zA-Z]{2,4}(?:\?[\w]+=[\w\-]+)?)?(?:&[\w]+=[\w\-]+)*)$/;
+            return url ? url.match(this.isUrl.regex) : url;
+        },
+
+        /**
+         * Define isBase64 matcher
+         * @member Base
+         * @param {string} s
+         * @returns {boolean}
+         */
+        isBase64: function isBase64(s) {
+
+            /**
+             * Define Base64 matcher
+             * @type {RegExp}
+             */
+            this.isBase64.regex = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/;
+            return s ? !!this.isBase64.regex.test(s) : s;
+        },
+
+        /**
+         * Detecting data URLs
+         * data URI - MDN https://developer.mozilla.org/en-US/docs/data_URIs
+         * The "data" URL scheme: http://tools.ietf.org/html/rfc2397
+         * Valid URL Characters: http://tools.ietf.org/html/rfc2396#section2
+         * @member Base
+         * @param {string} [s]
+         * @returns {boolean}
+         */
+        isDataURL: function isDataURL(s) {
+
+            /**
+             * Define regex
+             * @type {RegExp}
+             */
+            this.isDataURL.regex = /^\s*data:([a-z]+\/[a-z]+(;[a-z\-]+=[a-z\-]+)?)?(;base64)?,[a-z0-9!\$&',\(\)\*\+,;=\-\._~:@\/\?%\s]*\s*$/i;
+            return s ? !!s.match(this.isDataURL.regex) : s;
         },
 
         /**
@@ -248,5 +287,4 @@ define([
     });
 
     return Base.extend('Base');
-
 });
