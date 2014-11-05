@@ -61,6 +61,9 @@ define([
                     bottom: 0,
                     left: 0
                 }
+            },
+            routes: {
+                showWidgetsList: ['/author/widgets.json', 'get']
             }
         };
 
@@ -84,6 +87,7 @@ define([
 
         this.observer.batchPublish(
             this.eventmanager.eventList.successCreated,
+            this.eventmanager.eventList.setRoutes,
             this.eventmanager.eventList.initModel
         );
 

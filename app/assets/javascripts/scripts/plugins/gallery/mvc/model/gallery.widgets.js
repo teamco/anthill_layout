@@ -2,13 +2,12 @@
  * Created by i061485 on 10/1/14.
  */
 
-define(['config/routes'], function defineGalleryWidgets(Routes) {
+define(function defineGalleryWidgets() {
 
     /**
      * Define gallery widgets
      * @class GalleryWidgets
      * @constructor
-     * @extends Routes
      * @param {GalleryModel} galleryModel
      */
     var GalleryWidgets = function GalleryWidgets(galleryModel) {
@@ -88,9 +87,16 @@ define(['config/routes'], function defineGalleryWidgets(Routes) {
 
             if (galleryWidgets.defaultData.length === 0) {
 
+                /**
+                 * Get show widgets list route
+                 * @type {Routes.resources.showWidgetsList}
+                 */
+                var route = scope.controller.resources.showWidgetsList;
+
                 $.ajax({
 
-                    url: galleryWidgets.resources.showWidgetsList,
+                    url: route[0],
+                    method: route[1],
                     dataType: 'json'
 
                 }).done(
@@ -275,5 +281,5 @@ define(['config/routes'], function defineGalleryWidgets(Routes) {
             scope.logger.debug('Undefined widget data', resource);
         }
 
-    }, Routes.prototype);
+    });
 });

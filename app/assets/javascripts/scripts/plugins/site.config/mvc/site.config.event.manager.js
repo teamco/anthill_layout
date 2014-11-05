@@ -41,7 +41,8 @@ define([
          *      exportSiteData: string,
          *      loadSitePreferences: string,
          *      widgetGenerator: string,
-         *      widgetEditor: string
+         *      widgetEditor: string,
+         *      setRoutes: string
          * }}
          */
         eventList: {
@@ -54,7 +55,8 @@ define([
             exportSiteData: 'export.site.data',
             loadSitePreferences: 'load.site.preferences',
             widgetGenerator: 'widget.generator',
-            widgetEditor: 'widget.editor'
+            widgetEditor: 'widget.editor',
+            setRoutes: 'set.routes'
         }
 
     }, BaseEvent.prototype);

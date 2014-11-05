@@ -20,11 +20,24 @@ define([], function defineRoutes() {
         /**
          * Define route resources
          * @member Routes
+         * @type {object}
          */
-        resources: {
-            showWidgetsList: '/author/widgets.json',
-            createNewWidget: '/author/widgets',
-            updateExistingWidget: '/author/widgets/{id}'
+        resources: {},
+
+        /**
+         * Define route setter
+         * @member Routes
+         * @param {string} route
+         * @param {[string, string]} data
+         */
+        setRoute: function setRoute(route, data) {
+
+            /**
+             * Define route
+             * @member Routes
+             * @type {string|string[]}
+             */
+            this.resources[route] = data;
         },
 
         /**

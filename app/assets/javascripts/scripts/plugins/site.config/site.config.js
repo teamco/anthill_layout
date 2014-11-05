@@ -75,6 +75,10 @@ define([
                     bottom: 0,
                     left: 0
                 }
+            },
+            routes: {
+                createNewWidget: ['/author/widgets', 'post'],
+                updateExistingWidget: ['/author/widgets/{id}', 'put']
             }
         };
 
@@ -96,8 +100,9 @@ define([
             render: true
         });
 
-        this.observer.publish(
-            this.eventmanager.eventList.successCreated
+        this.observer.batchPublish(
+            this.eventmanager.eventList.successCreated,
+            this.eventmanager.eventList.setRoutes
         );
 
         this.observer.publish(

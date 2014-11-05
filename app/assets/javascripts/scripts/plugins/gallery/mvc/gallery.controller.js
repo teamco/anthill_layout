@@ -6,8 +6,9 @@
  */
 
 define([
-    'plugins/plugin'
-], function defineGalleryController(PluginBase) {
+    'plugins/plugin',
+    'config/routes'
+], function defineGalleryController(PluginBase, Routes) {
 
     /**
      * Define gallery controller
@@ -201,5 +202,5 @@ define([
             }, true);
         }
 
-    }, PluginBase.prototype);
+    }, PluginBase.prototype, Routes.prototype);
 });

@@ -142,35 +142,36 @@ define(function defineSiteConfigWidgetGenerator() {
              * @type {SiteConfig}
              */
             var scope = this.controller.scope,
+                controller = this.controller,
                 data = this.data;
 
             if (data.validate || data.empty) {
 
                 data.$modal.handleNotification(
-                    this.i18n.t('widget.generation.inputs.validate'),
+                    controller.i18n.t('widget.generation.inputs.validate'),
                     'warning'
                 );
 
                 scope.logger.warn(
-                    this.i18n.t('widget.generation.inputs.validate'),
+                    controller.i18n.t('widget.generation.inputs.validate'),
                     xhr, opts
                 );
 
                 xhr.abort();
 
                 // Allow to create another one
-                this.controller.stopSendingEventOnApprove(false);
+                controller.stopSendingEventOnApprove(false);
             }
 
-            if (this.controller.stopSendingEventOnApprove(true)) {
+            if (controller.stopSendingEventOnApprove(true)) {
 
                 data.$modal.handleNotification(
-                    this.controller.i18n.t('widget.generation.ajax.abort'),
+                    controller.i18n.t('widget.generation.ajax.abort'),
                     'warning'
                 );
 
                 scope.logger.warn(
-                    this.controller.i18n.t('widget.generation.ajax.abort'),
+                    controller.i18n.t('widget.generation.ajax.abort'),
                     xhr, opts
                 );
 
@@ -215,10 +216,16 @@ define(function defineSiteConfigWidgetGenerator() {
              */
             var data = this._collectFormWidgetData();
 
+            /**
+             * Get create new widget route
+             * @type {Routes.resources.createNewWidget|*}
+             */
+            var route = this.resources.createNewWidget;
+
             $.ajax({
 
-                url: this.resources.createNewWidget,
-                method: 'post',
+                url: route[0],
+                method: route[1],
 
                 data: this.prepareXhrData({
                     author_widget: data.collector,
@@ -417,10 +424,16 @@ define(function defineSiteConfigWidgetGenerator() {
                 return false;
             }
 
+            /**
+             * Get update existing widget route
+             * @type {Routes.resources.updateExistingWidget|*}
+             */
+            var route = this.resources.updateExistingWidget;
+
             $.ajax({
 
-                url: this.resources.updateExistingWidget.replace(/\{id}/, widgetData.id),
-                method: 'put',
+                url: route[0].replace(/\{id}/, widgetData.id),
+                method: route[1],
 
                 data: this.prepareXhrData({
                     author_widget: data.collector,
