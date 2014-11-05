@@ -58,13 +58,13 @@ define([
 
                             html.push([
                                 '<li class="', index.toDash(), '">',
-                                    style === 'header' ?
-                                        index === 'thumbnail' ? 'icon' : index :
-                                        index === 'thumbnail' && style === 'row' ?
+                                style === 'header' ?
+                                    index === 'thumbnail' ? 'icon' : index :
+                                    index === 'thumbnail' && style === 'row' ?
                                     '<img alt="' + index + '" src="' + row[index] + '"/>' :
                                         index === 'name' ?
-                                    '<span>' + row[index] + '</span>' :
-                                    row[index],
+                                        '<span>' + row[index] + '</span>' :
+                                            row[index],
                                 '</li>'
                             ].join(''));
                         }
@@ -159,6 +159,10 @@ define([
                         mask: validation.mask,
                         blank: false
                     };
+                }
+
+                if (widgetData.name && index === 'resource') {
+                    opts.disabled = true;
                 }
 
                 var $li = $('<li />').addClass(index);
