@@ -62,6 +62,7 @@
     max-width: 700px;
     overflow-x: auto;
     overflow-y: auto;
+    box-shadow: inset -10px -5px 10px #ccc, inset -10px 5px 10px #ccc;
 }
 
 .modal-dialog div.html.visible {

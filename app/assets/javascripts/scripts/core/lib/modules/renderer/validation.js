@@ -31,7 +31,8 @@ define([
              * @private
              */
             function _checkMask(value) {
-                return opts.validate.mask && value.match(opts.validate.mask);
+                if (typeof (opts.validate.mask) === 'undefined') return true;
+                return value.match(opts.validate.mask);
             }
 
             /**
@@ -41,7 +42,8 @@ define([
              * @private
              */
             function _checkEmpty(value) {
-                return !opts.validate.blank && value.length > 0;
+                if (typeof(opts.validate.blank) === 'undefined') return true;
+                return $.trim(value.length) > 0;
             }
 
             if (typeof(opts.validate) === 'object') {

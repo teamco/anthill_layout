@@ -144,6 +144,10 @@ ul.site-config > .content:hover {
     background-color: #dedede;
 }
 
+.modal-dialog.widget-list div.html li.header li:last-child {
+    padding-right: 0;
+}
+
 .modal-dialog.widget-list div.html li.id,
 .modal-dialog.widget-list div.html li.description,
 .modal-dialog.widget-list div.html li.dimensions,
@@ -164,7 +168,7 @@ ul.site-config > .content:hover {
 
 .modal-dialog.widget-list div.html li.thumbnail {
     text-align: center;
-    width: 9%;
+    width: 10%;
 }
 
 .modal-dialog.widget-list div.html li.resource {
