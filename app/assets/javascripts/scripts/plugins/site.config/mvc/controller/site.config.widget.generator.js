@@ -334,7 +334,7 @@ define(function defineSiteConfigWidgetGenerator() {
              * Get $modal
              * @type {ModalElement}
              */
-            var $modal = scope.view.get$modal();
+            var $modal = this.scope.view.get$modal();
 
             // Show message
             $modal.handleNotification(msg, 'success');

@@ -1,4 +1,9 @@
 class Author::WidgetsController < Author::AuthorController
+
+  require "#{Rails.root}/lib/tasks/widget.generator.rb"
+  require 'open-uri'
+  include Base64
+  
   before_action :set_author_widget_category, only: [:create, :update, :destroy]
   before_action :set_author_widget, only: [:show, :edit, :update, :destroy]
 
@@ -52,6 +57,7 @@ class Author::WidgetsController < Author::AuthorController
 
     respond_to do |format|
       if @author_widget.save
+        generate_widget
         if request.xhr?
           format.json {
             render json: @author_widget, status: 200
@@ -106,6 +112,12 @@ class Author::WidgetsController < Author::AuthorController
   end
 
   private
+
+  def generate_widget
+    widget = WidgetLib::Generate.new
+    widget.init_params(@author_widget.resource)
+    widget.do_it
+  end
 
   def set_author_widget_category
     @category = Author::WidgetCategory.find_by_name_index(params[:author_widget_category][:name_index])

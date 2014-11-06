@@ -5,7 +5,7 @@ namespace :widget do
 
     require "#{Rails.root}/lib/tasks/widget.generator.rb"
 
-    widget = WidgetGenerate.new
+    widget = WidgetLib::Generate.new
     widget.do_create
 
     puts widget.get_cname
