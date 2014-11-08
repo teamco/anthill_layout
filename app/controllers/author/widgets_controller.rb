@@ -4,6 +4,7 @@ class Author::WidgetsController < Author::AuthorController
   require "#{Rails.root}/lib/base.lib.rb"
   require 'open-uri'
   require 'uri'
+  require 'uuid'
   include Base64
 
   before_action :set_author_widget_category, only: [:create, :update, :destroy]
@@ -56,6 +57,9 @@ class Author::WidgetsController < Author::AuthorController
   def create
 
     @author_widget = @category.author_widgets.build(author_widget_params) unless @category.nil?
+
+    uuid = UUID.new
+    @author_widget.uuid = uuid.generate
 
     respond_to do |format|
       if generate_widget and @author_widget.save

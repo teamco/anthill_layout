@@ -344,6 +344,7 @@ define(function defineSiteConfigWidgetGenerator() {
                 value: '[name="category"]'
             }).val('');
 
+            // Clear image preview
             $modal.$.find('img').attr('src', '');
         },
 
