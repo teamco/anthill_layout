@@ -2,18 +2,28 @@
 class BaseImage
 
   TYPES = %w(bmp gif png jpg)
+  @allowed = false
 
-  def initialize
-    TYPES.each do |t|
-      define_singleton_method "#{t}?(file)" do |file|
-        image_type(file) == t
-      end
-      puts "#{t}?(file)"
+  TYPES.each do |t|
+    self.class.send(:define_method, "#{t}?") do |file|
+      image_type(file) == t
     end
   end
 
-  def image_type(file)
-    case IO.read(file, 10)
+  def allowed?(file)
+    TYPES.each do |t|
+      check = self.class.send("#{t}?", file)
+      @allowed = t if check
+    end
+    @allowed
+  end
+
+  def data_uri(allowed)
+    "data:image/#{allowed};base64,"
+  end
+
+  def self.image_type(file)
+    case file
       when /^BM/
         'bmp'
       when /^GIF8/

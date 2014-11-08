@@ -306,14 +306,11 @@ define(function defineSiteConfigWidgetGenerator() {
          */
         _handleSuccessSendWidgetData: function _handleSuccessSendWidgetData(data, status, xhr) {
 
-            /**
-             * Get scope
-             * @type {SiteConfig}
-             */
-            var scope = this.scope,
-                msg = this.i18n.t('widget.generated.ok').replace(/\{1}/, data.name);
-
-            scope.logger.debug(msg, arguments);
+            this.scope.logger.debug(
+                this.i18n.t('widget.generated.ok').
+                    replace(/\{1}/, data.name),
+                arguments
+            );
 
             // Allow to create another one
             this.stopSendingEventOnApprove(false);
@@ -334,7 +331,9 @@ define(function defineSiteConfigWidgetGenerator() {
              * Get $modal
              * @type {ModalElement}
              */
-            var $modal = this.scope.view.get$modal();
+            var $modal = this.scope.view.get$modal(),
+                msg = this.i18n.t('widget.generated.ok').
+                    replace(/\{1}/, data.name);
 
             // Show message
             $modal.handleNotification(msg, 'success');
@@ -344,6 +343,8 @@ define(function defineSiteConfigWidgetGenerator() {
                 method: 'not',
                 value: '[name="category"]'
             }).val('');
+
+            $modal.$.find('img').attr('src', '');
         },
 
         /**

@@ -58,8 +58,8 @@ class Author::WidgetsController < Author::AuthorController
     @author_widget = @category.author_widgets.build(author_widget_params) unless @category.nil?
 
     respond_to do |format|
-      if @author_widget.save
-        generate_widget
+      if generate_widget and @author_widget.save
+
         if request.xhr?
           format.json {
             render json: @author_widget, status: 200
@@ -118,8 +118,19 @@ class Author::WidgetsController < Author::AuthorController
   def generate_widget
     widget = WidgetLib::Generate.new
     widget.init_params(@author_widget.resource)
-    widget.do_it
-    widget.generate_css(uri? ? to_base64 : @author_widget.thumbnail)
+    generate = false
+    begin
+      logger.info '>>>>> Do it'
+      widget.do_it
+      logger.info '>>>>> Generate Css'
+      widget.generate_css(uri? ? to_base64 : @author_widget.thumbnail)
+      generate = true
+    rescue
+      logger.info '>>>>> Remove widget'
+      widget.remove_widget_dir
+      generate = false
+    end
+    generate
   end
 
   def uri?
@@ -134,13 +145,26 @@ class Author::WidgetsController < Author::AuthorController
   def live?
     uri = URI(@author_widget.thumbnail)
     request = Net::HTTP.new uri.host
-    response= request.request_head uri.path
+    response = request.request_head uri.path
+    logger.info ">>>>> Live: #{response.inspect}"
     response.code.to_i == 200
   end
 
   def to_base64
-    img = open(@author_widget.thumbnail) { |io| io.read }
-    BaseLib.img.png?(img) ? Base64.encode64(img) : @author_widget.thumbnail
+    logger.info '>>>>> Start base64'
+    img = (open(@author_widget.thumbnail) { |io| io.read }).gsub(/\0/, '')
+    logger.info ">>>>> Img: #{img[0, 10].inspect}"
+    allowed = BaseLib.img.allowed?(img[0, 10])
+    logger.info ">>>>> Allowed: #{allowed}"
+    if allowed
+      data_uri = "#{BaseLib.img.data_uri(allowed)}#{Base64.encode64(img)}"
+      logger.info ">>>>> Data-Uri: #{data_uri}"
+      @author_widget.thumbnail = data_uri
+      data_uri
+    else
+      logger.info ">>>>> Data-Uri: #{@author_widget.thumbnail}"
+      @author_widget.thumbnail
+    end
   end
 
   def set_author_widget_category
