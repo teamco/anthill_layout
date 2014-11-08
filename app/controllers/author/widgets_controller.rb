@@ -1,9 +1,11 @@
 class Author::WidgetsController < Author::AuthorController
 
   require "#{Rails.root}/lib/tasks/widget.generator.rb"
+  require "#{Rails.root}/lib/base.lib.rb"
   require 'open-uri'
+  require 'uri'
   include Base64
-  
+
   before_action :set_author_widget_category, only: [:create, :update, :destroy]
   before_action :set_author_widget, only: [:show, :edit, :update, :destroy]
 
@@ -117,6 +119,28 @@ class Author::WidgetsController < Author::AuthorController
     widget = WidgetLib::Generate.new
     widget.init_params(@author_widget.resource)
     widget.do_it
+    widget.generate_css(uri? ? to_base64 : @author_widget.thumbnail)
+  end
+
+  def uri?
+    uri = URI.parse(@author_widget.thumbnail)
+    %w( http https ).include?(uri.scheme) && live?
+  rescue URI::BadURIError
+    false
+  rescue URI::InvalidURIError
+    false
+  end
+
+  def live?
+    uri = URI(@author_widget.thumbnail)
+    request = Net::HTTP.new uri.host
+    response= request.request_head uri.path
+    response.code.to_i == 200
+  end
+
+  def to_base64
+    img = open(@author_widget.thumbnail) { |io| io.read }
+    BaseLib.img.png?(img) ? Base64.encode64(img) : @author_widget.thumbnail
   end
 
   def set_author_widget_category

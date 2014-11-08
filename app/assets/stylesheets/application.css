@@ -13,5 +13,6 @@
  *= require_tree .
  *= require_self
  *= require_directory '../javascripts/scripts/core/stylesheets/ui-lightness'
+ *= require_directory '../javascripts/scripts/core/stylesheets/widgets'
  *= require_directory '../javascripts/scripts/core/stylesheets'
  */

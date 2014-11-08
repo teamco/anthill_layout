@@ -199,6 +199,12 @@ define([
                 return $li;
             }
 
+            /**
+             * Get scope
+             * @type {SiteConfig}
+             */
+            var scope = this.view.scope;
+
             for (index in widget) {
 
                 if (widget.hasOwnProperty(index)) {
@@ -207,25 +213,53 @@ define([
 
                         case 'name':
                         case 'resource':
-                            $field = _getRenderer(this.renderTextField.bind(this), index, widgetData[index], {mask: /\w+$/});
+                            $field = _getRenderer(
+                                this.renderTextField.bind(this),
+                                index,
+                                widgetData[index],
+                                {mask: /\w+$/}
+                            );
                             break;
 
                         case 'dimensions':
                             $field = [
-                                _getRenderer(this.renderTextField.bind(this), 'width', widgetData[index].width, {mask: /^\d+$/}),
-                                _getRenderer(this.renderTextField.bind(this), 'height', widgetData[index].height, {mask: /^\d+$/})
+                                _getRenderer(
+                                    this.renderTextField.bind(this),
+                                    'width',
+                                    widgetData[index].width,
+                                    {mask: /^\d+$/}
+                                ),
+                                _getRenderer(
+                                    this.renderTextField.bind(this),
+                                    'height',
+                                    widgetData[index].height,
+                                    {mask: /^\d+$/}
+                                )
                             ];
                             break;
 
                         case 'description':
-                            $field = _getRenderer(this.renderTextArea.bind(this), index, widgetData[index], {});
+                            $field = _getRenderer(
+                                this.renderTextArea.bind(this),
+                                index,
+                                widgetData[index],
+                                {}
+                            );
                             break;
 
                         case 'thumbnail':
-                            this.view.scope.base.isDataURL();
-                            $field = _getRenderer(this.renderTextArea.bind(this), index, widgetData[index], {
-                                mask: this.view.scope.base.isDataURL.regex
-                            });
+                            scope.base.isDataURL();
+                            scope.base.isUrl();
+                            $field = _getRenderer(
+                                this.renderTextArea.bind(this),
+                                index,
+                                widgetData[index], {
+                                    mask: [
+                                        scope.base.isDataURL.regex,
+                                        scope.base.isUrl.regex
+                                    ]
+                                }
+                            );
                             break;
 
                         case 'type':

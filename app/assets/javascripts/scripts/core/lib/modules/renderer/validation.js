@@ -31,8 +31,29 @@ define([
              * @private
              */
             function _checkMask(value) {
-                if (typeof (opts.validate.mask) === 'undefined') return true;
-                return value.match(opts.validate.mask);
+
+                /**
+                 * Get mask
+                 * @type {Array|RegExp}
+                 */
+                var mask = opts.validate.mask,
+                    i = 0, match = [];
+
+                if (typeof (mask) === 'undefined') return true;
+
+                if (Object.prototype.toString.call(mask) !== '[object Array]') {
+                    mask = [mask];
+                }
+
+                for (i = 0; i < mask.length; i++) {
+                    match.push(!!value.match(mask[i]))
+                }
+
+                return (new Function([
+                    'return ',
+                    match.join('||'),
+                    ';'
+                ].join('')))();
             }
 
             /**

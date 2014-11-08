@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'uuid'
+require "#{Rails.root}/lib/tasks/widget.generator.rb"
 
 puts "\n--- Start Clean models"
 Dir['app/models/**/*.rb'].each do |model|
@@ -21,7 +22,8 @@ categories = {
     files: 'Show file',
     image: 'Image gallery',
     social: 'Social data',
-    template: 'Template content'
+    template: 'Template content',
+    tv: 'Live TV'
 }
 
 widgets = [
@@ -490,6 +492,7 @@ puts '--- Finish Add categories'
 puts "\n--- Start Add widgets"
 
 uuid = UUID.new
+widget = WidgetLib::Generate.new
 
 widgets.each_with_index do |w, index|
 
@@ -512,27 +515,8 @@ widgets.each_with_index do |w, index|
       }
   )
 
-  path = "./app/assets/javascripts/scripts/core/stylesheets/#{w[:resource]}.css"
-  exist_file = File.exist?(path)
-
-  if exist_file
-    puts ">>> Delete previous: #{path}"
-    File.delete("#{path}")
-  end
-
-  puts "--- Create CSS file: #{w[:resource]}.css"
-
-  File.open("#{path}", 'w') do |f|
-    pattern = w[:resource].gsub(/\./, '-')
-    f.write([
-                "ul.gallery .content.#{pattern}",
-                "ul.page-data .content.#{pattern}",
-                "ul.maximize .content.#{pattern}",
-                "ul.widget-rules .content.#{pattern}",
-                ".modal-dialog.preferences .widgets-prefs li.#{pattern}",
-                ".widget .content.#{pattern}{background-image:url('#{w[:thumbnail]}');}"
-            ].join(','))
-  end
+  widget.init_params(w[:resource])
+  widget.generate_css(w[:thumbnail])
 
 end
 puts '--- Finish Add widgets'

@@ -88,5 +88,34 @@ module WidgetLib
 
     end
 
+    def generate_css thumbnail
+
+      dir = "./app/assets/javascripts/scripts/core/stylesheets"
+      Dir.mkdir "#{dir}/widgets" unless File.exists? "#{dir}/widgets"
+
+      path = "#{dir}/widgets/#{@file_name}.css"
+      exist_file = File.exist?(path)
+
+      if exist_file
+        puts ">>> Delete previous: #{path}"
+        File.delete("#{path}")
+      end
+
+      puts "--- Create CSS file: #{@file_name}.css"
+
+      File.open("#{path}", 'w') do |f|
+        pattern = @file_name.gsub(/\./, '-')
+        f.write([
+                    "ul.gallery .content.#{pattern}",
+                    "ul.page-data .content.#{pattern}",
+                    "ul.maximize .content.#{pattern}",
+                    "ul.widget-rules .content.#{pattern}",
+                    ".modal-dialog.preferences .widgets-prefs li.#{pattern}",
+                    ".widget .content.#{pattern}{background-image:url('#{thumbnail}');}"
+                ].join(','))
+      end
+
+    end
+
   end
 end
