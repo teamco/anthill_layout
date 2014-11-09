@@ -1,0 +1,12 @@
+.widget .content .x-hamster {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.widget .content .x-hamster iframe {
+    height: 100%;
+    width: 100%;
+    border: none;
+    overflow: hidden;
+}
