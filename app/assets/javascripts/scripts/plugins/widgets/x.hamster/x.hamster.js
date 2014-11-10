@@ -70,7 +70,7 @@ define([
                 }
             },
             regex: /\d+/,
-            mask: '<iframe src="http://xhamster.com/xembed.php?video={id}" frameborder="0" width="100%" height="100%" scrolling="no" allowtransparency="true" webkitAllowFullScreen mozallowfullscreen allowfullscreen>'
+            mask: 'http://xhamster.com/xembed.php?video={id}'
         };
 
         /**

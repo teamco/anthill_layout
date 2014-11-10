@@ -71,7 +71,7 @@ define([
                 }
             },
             regex: /\d+/,
-            mask: '<iframe src="http://flashservice.xvideos.com/embedframe/{id}" frameborder="0" width="100%" height="100%" scrolling="no" allowtransparency="true" webkitAllowFullScreen mozallowfullscreen allowfullscreen>'
+            mask: 'http://flashservice.xvideos.com/embedframe/{id}'
         };
 
         /**

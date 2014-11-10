@@ -35,10 +35,12 @@ define([
         /**
          * Render Embedded content
          * @member XVideosElement
-         * @param {string} iframe
+         * @param {string} url
          */
-        renderEmbeddedContent: function renderEmbeddedContent(iframe) {
-            this.$.append(iframe);
+        renderEmbeddedContent: function renderEmbeddedContent(url) {
+            this.$.append(
+                this.renderIframe(url)
+            );
         }
 
     }, BaseElement.prototype);

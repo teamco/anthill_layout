@@ -1,4 +1,4 @@
-require "#{Rails.root}/lib/base/base.image.rb"
+require "#{Rails.root}/lib/base/base_image.rb"
 
 class BaseLib
 

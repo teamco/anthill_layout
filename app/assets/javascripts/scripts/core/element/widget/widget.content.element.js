@@ -40,19 +40,9 @@ define([
          * @param {{url: string|*}} opts
          */
         setBackgroundImage: function setBackgroundImage(opts) {
-
-            if (opts.thumbnail.length > 0) {
-
-                this.$.css({
-                    backgroundImage: 'url("' + opts.thumbnail + '")'
-                });
-
-            } else {
-
-                this.$.addClass(
-                    opts.resource.replace(/\./g, '-')
-                );
-            }
+            this.$.addClass(
+                opts.resource.replace(/\./g, '-')
+            );
         },
 
         /**

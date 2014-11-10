@@ -8,32 +8,32 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/youtube/mvc/youtube.controller',
-    'plugins/widgets/youtube/mvc/youtube.model',
-    'plugins/widgets/youtube/mvc/youtube.view',
-    'plugins/widgets/youtube/mvc/youtube.event.manager',
-    'plugins/widgets/youtube/mvc/youtube.permission'
-], function defineYoutube(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/pornhub/mvc/pornhub.controller',
+    'plugins/widgets/pornhub/mvc/pornhub.model',
+    'plugins/widgets/pornhub/mvc/pornhub.view',
+    'plugins/widgets/pornhub/mvc/pornhub.event.manager',
+    'plugins/widgets/pornhub/mvc/pornhub.permission'
+], function definePornhub(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Youtube
+     * Define Pornhub
      * @param containment
      * @param [opts]
      * @constructor
-     * @class Youtube
+     * @class Pornhub
      * @extends AntHill
      */
-    var Youtube = function Youtube(containment, opts) {
+    var Pornhub = function Pornhub(containment, opts) {
 
         /**
          * Define containment
-         * @member Youtube
+         * @member Pornhub
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Youtube
+         * @member Pornhub
          * @type {*}
          */
         this.referrer = undefined;
@@ -46,15 +46,14 @@ define([
          *          style: string,
          *          header: boolean,
          *          footer: boolean,
+         *          floating: boolean,
          *          padding: {
          *              top: number,
          *              right: number,
          *              bottom: number,
          *              left: number
          *          }
-         *      },
-         *      regex: RegExp,
-         *      mask: string
+         *      }
          * }}
          */
         var DEFAULTS = {
@@ -70,13 +69,13 @@ define([
                     left: 0
                 }
             },
-            regex: /^.*(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i,
-            mask: 'https://www.youtube.com/embed/{videoId}'
+            regex: /\d+/,
+            mask: 'http://www.pornhub.com/embed/{id}'
         };
 
         /**
          * Define MVC
-         * @member Youtube
+         * @member Pornhub
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -101,7 +100,7 @@ define([
         );
     };
 
-    return Youtube.extend('Youtube', {
+    return Pornhub.extend('Pornhub', {
 
     }, AntHill.prototype);
 });

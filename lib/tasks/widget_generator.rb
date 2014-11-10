@@ -18,7 +18,8 @@ module WidgetLib
       @cname = init_params(STDIN.gets.chomp.strip)
 
       puts 'Enter clone widget resource (default "empty"):'
-      @clone = STDIN.gets.chomp.strip || 'empty'
+      @clone = STDIN.gets.chomp.strip
+      @clone = @clone.empty? ? 'empty' : @clone
 
       puts ">>> Expected class name: #{@class_name}"
       puts ">>> Expected directory name: #{@file_name}"

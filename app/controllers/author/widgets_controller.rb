@@ -1,7 +1,7 @@
 class Author::WidgetsController < Author::AuthorController
 
-  require "#{Rails.root}/lib/tasks/widget.generator.rb"
-  require "#{Rails.root}/lib/base.lib.rb"
+  require "#{Rails.root}/lib/tasks/widget_generator.rb"
+  require "#{Rails.root}/lib/base_lib.rb"
   require 'open-uri'
   require 'uri'
   require 'uuid'

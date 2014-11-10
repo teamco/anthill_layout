@@ -7,42 +7,39 @@
 
 define([
     'modules/Element'
-], function defineYoutubeElement(BaseElement) {
+], function definePornhubElement(BaseElement) {
 
     /**
-     * Define Youtube Element
+     * Define Pornhub Element
      * @param view
      * @param opts
-     * @returns {YoutubeElement}
+     * @returns {PornhubElement}
      * @constructor
-     * @class YoutubeElement
+     * @class PornhubElement
      * @extends BaseElement
      */
-    var YoutubeElement = function YoutubeElement(view, opts) {
+    var PornhubElement = function PornhubElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
 
-        this.addCSS('youtube', {resource: '/widgets'});
+        this.addCSS('pornhub', {resource: '/widgets'});
 
         return this;
     };
 
-    return YoutubeElement.extend('YoutubeElement', {
+    return PornhubElement.extend('PornhubElement', {
 
         /**
          * Render Embedded content
-         * @member YoutubeElement
+         * @member PornhubElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {
             this.$.append(
-                this.renderIframe(url, {
-                    id: "ytplayer",
-                    type: "text/html"
-                })
+                this.renderIframe(url)
             );
         }
 
