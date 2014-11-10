@@ -1,0 +1,12 @@
+.widget .content .red-tube {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.widget .content .red-tube iframe {
+    height: 100%;
+    width: 100%;
+    border: none;
+    overflow: hidden;
+}
