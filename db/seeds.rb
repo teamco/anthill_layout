@@ -3,7 +3,7 @@ require 'uuid'
 require "#{Rails.root}/lib/tasks/widget_generator.rb"
 require "#{Rails.root}/lib/tasks/widgets_list.rb"
 
-puts "\n--- Start Clean models"
+puts "\n>>> Start Clean models"
 Dir['app/models/**/*.rb'].each do |model|
   model = model.camelize.gsub(/App::Models::/, '').gsub(/\.rb/, '')
   model_object = model.constantize
@@ -13,7 +13,7 @@ Dir['app/models/**/*.rb'].each do |model|
     model_object.delete_all
   end
 end
-puts '--- Finish Clean models'
+puts '>>> Finish Clean models'
 
 categories = {
     regular: 'Regular widgets',
@@ -28,16 +28,16 @@ categories = {
     xxx: 'Adult'
 }
 
-puts "\n--- Start Add categories"
+puts "\n>>> Start Add categories"
 
 categories.each_with_index do |c, index|
   puts "#{index}: #{c[0]} >> #{c[1]}"
   Author::WidgetCategory.create({name_index: c[0], name_value: c[1]})
 end
 
-puts '--- Finish Add categories'
+puts '>>> Finish Add categories'
 
-puts "\n--- Start Add widgets"
+puts "\n>>> Start Add widgets"
 
 uuid = UUID.new
 widget = WidgetLib::Generate.new
@@ -65,6 +65,17 @@ widget = WidgetLib::Generate.new
 
   widget.init_params(w[:resource])
   widget.generate_css(w[:thumbnail])
+  widget.update_json({
+                         name: w[:name],
+                         description: w[:description],
+                         thumbnail: w[:thumbnail],
+                         dimensions: {
+                             width: w[:dimensions][:width],
+                             height: w[:dimensions][:height]
+                         },
+                         type: w[:type],
+                         resource: w[:resource]
+                     })
 
 end
-puts '--- Finish Add widgets'
+puts '>>> Finish Add widgets'

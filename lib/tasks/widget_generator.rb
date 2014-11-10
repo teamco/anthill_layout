@@ -100,8 +100,20 @@ module WidgetLib
           puts "... Adopt CSS to: .#{@class_name.downcase}"
           write_file ".#{src_pattern}", ".#{@file_name.split('.').join('-')}"
           write_file "'#{src_pattern}',", "'#{@file_name}',"
-
         end
+
+      end
+
+    end
+
+    def update_json(hash)
+      path = "#{Rails.root}/lib/tasks/widgets_list.json"
+      widgets_list = JSON.parse(File.read(path)) rescue []
+      puts "--- Store: #{hash[:name]}"
+      widgets_list << hash
+      File.open(path, 'a') do |f|
+        f.truncate(0)
+        f.write(widgets_list.to_json)
       end
     end
 
@@ -114,8 +126,8 @@ module WidgetLib
       exist_file = File.exist?(path)
 
       if exist_file
-        puts ">>> Delete previous: #{path}"
-        File.delete("#{path}")
+        puts "--- Delete previous: #{path}"
+        File.delete(path)
       end
 
       puts "--- Create CSS file: #{@file_name}.css"
