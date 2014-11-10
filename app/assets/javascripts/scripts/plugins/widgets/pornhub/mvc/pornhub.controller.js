@@ -41,8 +41,8 @@ define([
         },
 
         /**
-         * Validate xvideos
-         * @member XVideosController
+         * Validate PornHub
+         * @member PornhubController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -66,7 +66,7 @@ define([
                 );
 
             if (!regex) {
-                this.scope.logger.warn('Invalid XVideos url');
+                this.scope.logger.warn('Invalid PornHub url');
                 return false;
             }
 
