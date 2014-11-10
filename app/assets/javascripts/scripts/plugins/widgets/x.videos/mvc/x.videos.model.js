@@ -8,26 +8,26 @@
 define([
     'modules/Model',
     'plugins/widgets/widget.content.model'
-], function defineXHamsterModel(BaseModel, WidgetContentModel) {
+], function defineXVideosModel(BaseModel, WidgetContentModel) {
 
     /**
-     * Define XHamster model
+     * Define XVideos model
      * @extends BaseModel
      * @extends WidgetContentModel
-     * @class XHamsterModel
+     * @class XVideosModel
      * @constructor
      */
-    var XHamsterModel = function XHamsterModel() {
+    var XVideosModel = function XVideosModel() {
 
         /**
          * Define preferences
-         * @member XHamsterModel
+         * @member XVideosModel
          * @type {{
-         *      xhamsterUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
+         *      xvideosUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
          */
         this.preferences = {
-            xhamsterUrl: {
+            xvideosUrl: {
                 type: 'text',
                 disabled: false,
                 value: undefined,
@@ -37,21 +37,21 @@ define([
 
         /**
          * Define rules
-         * @member XHamsterModel
+         * @member XVideosModel
          * @type {{}}
          */
         this.rules = {};
     };
 
-    return XHamsterModel.extend('XHamsterModel', {
+    return XVideosModel.extend('XVideosModel', {
 
         /**
-         * Set XHamster Url
-         * @member XHamsterModel
+         * Set XVideos Url
+         * @member XVideosModel
          * @param {string} url
          */
-        setXhamsterUrl: function setXhamsterUrl(url) {
-            this.setPrefs('xhamsterUrl', url);
+        setXvideosUrl: function setXvideosUrl(url) {
+            this.setPrefs('xvideosUrl', url);
         }
 
     }, BaseModel.prototype, WidgetContentModel.prototype);

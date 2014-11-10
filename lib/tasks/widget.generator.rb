@@ -17,8 +17,12 @@ module WidgetLib
       puts 'Enter widget name separated by dots or underscore:'
       @cname = init_params(STDIN.gets.chomp.strip)
 
+      puts 'Enter clone widget resource (default "empty"):'
+      @clone = STDIN.gets.chomp.strip || 'empty'
+
       puts ">>> Expected class name: #{@class_name}"
       puts ">>> Expected directory name: #{@file_name}"
+      puts ">>> Clone from: #{@clone}"
 
       puts 'To continue press [y/n]:'
       confirm = STDIN.gets.chomp.strip
@@ -69,7 +73,7 @@ module WidgetLib
 
       unless check_exist
 
-        src_pattern = 'empty'
+        src_pattern = @clone
         puts ">>> Start copy [#{path}#{src_pattern}] to [#{path}#{@file_name}]"
 
         FileUtils.cp_r(
@@ -100,7 +104,7 @@ module WidgetLib
       end
     end
 
-    def generate_css thumbnail
+    def generate_css(thumbnail)
 
       dir = "./app/assets/javascripts/scripts/core/stylesheets"
       Dir.mkdir "#{dir}/widgets" unless File.exists? "#{dir}/widgets"

@@ -8,23 +8,23 @@
 define([
     'plugins/plugin',
     'plugins/widgets/widget.content.controller'
-], function defineXHamsterController(PluginBase, WidgetContentController) {
+], function defineXVideosController(PluginBase, WidgetContentController) {
 
     /**
-     * Define XHamster controller
-     * @class XHamsterController
+     * Define xVideos controller
+     * @class XVideosController
      * @extends PluginController
      * @extends WidgetContentController
      * @constructor
      */
-    var XHamsterController = function XHamsterController() {
+    var XVideosController = function XVideosController() {
     };
 
-    return XHamsterController.extend('XHamsterController', {
+    return XVideosController.extend('XVideosController', {
 
         /**
          * Set embedded content
-         * @member XHamsterController
+         * @member XVideosController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -32,17 +32,17 @@ define([
              * Get url
              * @type {string|*}
              */
-            var url = this.model.getPrefs('xhamsterUrl'),
+            var url = this.model.getPrefs('xvideosUrl'),
                 embed = this.controller.getEmbedCode(url);
 
             if (embed) {
-                this.view.elements.$xhamster.renderEmbeddedContent(embed);
+                this.view.elements.$xvideos.renderEmbeddedContent(embed);
             }
         },
 
         /**
-         * Validate xHamster
-         * @member XHamsterController
+         * Validate xvideos
+         * @member XVideosController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -65,8 +65,8 @@ define([
                     this.model.getConfig('regex')
                 );
 
-            if (!regex) {
-                this.scope.logger.warn('Invalid xHamster url');
+            if (!regex || url.match(/^\[/)) {
+                this.scope.logger.warn('Invalid XVideos url');
                 return false;
             }
 
@@ -74,11 +74,11 @@ define([
         },
 
         /**
-         * Add XHamster rule
-         * @member XHamsterController
+         * Add XVideos rule
+         * @member XVideosController
          * @param e
          */
-        addXHamsterRule: function addXHamsterRule(e) {
+        addXVideosRule: function addXVideosRule(e) {
 
             /**
              * Define $button
@@ -89,7 +89,7 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList.publishRule,
-                [$button.attr('value'), this.scope.constructor.name]
+                [$button.attr('value'), scope.constructor.name]
             );
         }
 

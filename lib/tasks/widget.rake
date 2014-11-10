@@ -7,11 +7,6 @@ namespace :widget do
 
     widget = WidgetLib::Generate.new
     widget.do_create
-
-    puts widget.get_cname
-    puts widget.get_class_name
-    puts widget.get_file_name
-
   end
 
 end
