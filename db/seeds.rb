@@ -1,7 +1,8 @@
 require 'fileutils'
 require 'uuid'
+require 'json'
 require "#{Rails.root}/lib/tasks/widget_generator.rb"
-require "#{Rails.root}/lib/tasks/widgets_list.rb"
+# require "#{Rails.root}/lib/tasks/widgets_list.rb"
 
 puts "\n>>> Start Clean models"
 Dir['app/models/**/*.rb'].each do |model|
@@ -42,40 +43,42 @@ puts "\n>>> Start Add widgets"
 uuid = UUID.new
 widget = WidgetLib::Generate.new
 
-@widgets.each_with_index do |w, index|
+path = "#{Rails.root}/lib/tasks/widgets_list.json"
+@widgets = JSON.parse(File.read(path)) rescue []
 
-  category = Author::WidgetCategory.find_by_name_index(w[:type])
+JSON.parse(@widgets.to_json).each_with_index do |w, index|
 
-  puts "#{index}: #{w[:name]} (#{category.name_value})"
+  category = Author::WidgetCategory.find_by_name_index(w['type'])
 
+  puts "#{index}: #{w['name']} (#{category.name_value})" unless category.nil?
 
   Author::Widget.create(
       {
-          name: w[:name],
+          name: w['name'],
           uuid: uuid.generate,
-          description: w[:description],
-          thumbnail: w[:thumbnail],
-          width: w[:dimensions][:width],
-          height: w[:dimensions][:height],
+          description: w['description'],
+          thumbnail: w['thumbnail'],
+          width: w['dimensions']['width'],
+          height: w['dimensions']['height'],
           widget_category_id: category.id,
-          resource: w[:resource],
-          visible: w[:visible].nil? ? true : w[:visible]
+          resource: w['resource'],
+          visible: w['visible'].nil? ? true : w['visible']
       }
   )
 
-  widget.init_params(w[:resource])
-  widget.generate_css(w[:thumbnail])
-  widget.update_json({
-                         name: w[:name],
-                         description: w[:description],
-                         thumbnail: w[:thumbnail],
-                         dimensions: {
-                             width: w[:dimensions][:width],
-                             height: w[:dimensions][:height]
-                         },
-                         type: w[:type],
-                         resource: w[:resource]
-                     })
+  widget.init_params(w['resource'])
+  widget.generate_css(w['thumbnail'])
+  # widget.update_json({
+  #                        name: w['name'],
+  #                        description: w['description'],
+  #                        thumbnail: w['thumbnail'],
+  #                        dimensions: {
+  #                            width: w['dimensions']['width'],
+  #                            height: w['dimensions']['height']
+  #                        },
+  #                        type: w['type'],
+  #                        resource: w['resource']
+  #                    })
 
 end
 puts '>>> Finish Add widgets'
