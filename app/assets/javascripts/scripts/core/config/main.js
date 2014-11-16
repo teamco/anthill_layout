@@ -2,8 +2,6 @@ requirejs.config({
 
     baseUrl: '../../assets/scripts/core',
 	
-	waitSeconds: 200,
-
     waitSeconds: 200,
 
     paths: {

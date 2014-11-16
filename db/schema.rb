@@ -13,6 +13,17 @@
 
 ActiveRecord::Schema.define(version: 20141028144128) do
 
+  create_table "author_galleries", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.text     "thumbnail"
+    t.string   "dimensions"
+    t.string   "type"
+    t.string   "resource"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "author_histories", force: true do |t|
     t.integer  "site_id"
     t.text     "data"
@@ -44,12 +55,6 @@ ActiveRecord::Schema.define(version: 20141028144128) do
     t.integer  "height"
     t.string   "resource"
     t.boolean  "visible"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "demos", force: true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
