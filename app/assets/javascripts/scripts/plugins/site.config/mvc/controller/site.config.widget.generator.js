@@ -404,16 +404,26 @@ define(function defineSiteConfigWidgetGenerator() {
             var data = this._collectFormWidgetData();
 
             var update = false,
-                widgetData = data.$modal.items,
-                collector = data.collector,
-                index;
+                index, isDimensions;
+
+            /**
+             * Define collector
+             * @type {data.collector|*}
+             */
+            var collector = data.collector;
+
+            /**
+             * Define widgetData
+             * @type {ModalElement.items|{dimensions}}
+             */
+            var widgetData = data.$modal.items;
 
             for (index in collector) {
 
-                // Check if data available
-                var isData = collector.hasOwnProperty(index);
+                // Define isDimensions
+                isDimensions = index === 'width' || index === 'height';
 
-                if (isData && widgetData.hasOwnProperty(index)) {
+                if (collector.hasOwnProperty(index) && widgetData.hasOwnProperty(index)) {
 
                     if (widgetData[index] !== collector[index]) {
 
@@ -421,7 +431,7 @@ define(function defineSiteConfigWidgetGenerator() {
                         break;
                     }
 
-                } else if (isData && (index === 'width' || index === 'height')) {
+                } else if (collector.hasOwnProperty(index) && isDimensions) {
 
                     if ((widgetData.dimensions[index] + '') !== collector[index]) {
 

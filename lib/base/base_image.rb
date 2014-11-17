@@ -30,6 +30,8 @@ class BaseImage
         'gif'
       when /^\x89PNG/
         'png'
+      when /JFIF/
+        'jpg'
       when /^\xff\xd8\xff\xe0\x00\x10JFIF/
         'jpg'
       when /^\xff\xd8\xff\xe1(.*){2}Exif/

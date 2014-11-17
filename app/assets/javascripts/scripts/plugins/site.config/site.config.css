@@ -252,6 +252,7 @@ ul.site-config > .content:hover {
 
 .modal-dialog.widget-generator-new div.html li.thumbnail img {
     width: 32px;
+    max-height: 50px;
     position: absolute;
 }
 

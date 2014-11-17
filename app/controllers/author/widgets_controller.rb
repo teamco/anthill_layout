@@ -125,12 +125,13 @@ class Author::WidgetsController < Author::AuthorController
     generate = false
     begin
       logger.info '>>>>> Do it'
+      widget.set_clone('empty')
       widget.do_it
       logger.info '>>>>> Generate Css'
       widget.generate_css(uri? ? to_base64 : @author_widget.thumbnail)
       generate = true
     rescue
-      logger.info '>>>>> Remove widget'
+      logger.info '>>>>> Rescue: Remove widget'
       widget.remove_widget_dir
       generate = false
     end
@@ -159,7 +160,7 @@ class Author::WidgetsController < Author::AuthorController
     img = (open(@author_widget.thumbnail) { |io| io.read }).gsub(/\0/, '')
     logger.info ">>>>> Img: #{img[0, 10].inspect}"
     allowed = BaseLib.img.allowed?(img[0, 10])
-    logger.info ">>>>> Allowed: #{allowed}"
+    logger.info ">>>>> Allowed: #{allowed.nil? ? false : allowed}"
     if allowed
       data_uri = "#{BaseLib.img.data_uri(allowed)}#{Base64.encode64(img)}"
       logger.info ">>>>> Data-Uri: #{data_uri}"
