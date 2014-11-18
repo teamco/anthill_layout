@@ -159,7 +159,7 @@ class Author::WidgetsController < Author::AuthorController
     logger.info '>>>>> Start base64'
     img = (open(@author_widget.thumbnail) { |io| io.read }).gsub(/\0/, '')
     logger.info ">>>>> Img: #{img[0, 10].inspect}"
-    allowed = BaseLib.img.allowed?(img[0, 10])
+    allowed = BaseLib.img.allowed?(img)
     logger.info ">>>>> Allowed: #{allowed.nil? ? false : allowed}"
     if allowed
       data_uri = "#{BaseLib.img.data_uri(allowed)}#{Base64.encode64(img)}"
@@ -167,7 +167,7 @@ class Author::WidgetsController < Author::AuthorController
       @author_widget.thumbnail = data_uri
       data_uri
     else
-      logger.info ">>>>> Data-Uri: #{@author_widget.thumbnail}"
+      logger.info ">>>>> Rescue Data-Uri: #{@author_widget.thumbnail}"
       @author_widget.thumbnail
     end
   end
