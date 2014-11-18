@@ -65,8 +65,12 @@ class Author::WidgetsController < Author::AuthorController
       if generate_widget and @author_widget.save
 
         if request.xhr?
+          data = {
+              widget: @author_widget,
+              category: @category
+          }
           format.json {
-            render json: @author_widget, status: 200
+            render json: data, status: 200
           }
         else
           format.html { redirect_to @author_widget, notice: 'Widget was successfully created.' }

@@ -338,14 +338,19 @@ define(function defineSiteConfigWidgetGenerator() {
             // Show message
             $modal.handleNotification(msg, 'success');
 
-            // Clear form
-            $modal.collectInputFields({
-                method: 'not',
-                value: '[name="category"]'
-            }).val('');
+            /**
+             * Get gallery
+             * @type {Gallery}
+             */
+            var gallery = this.getGalleryModule();
 
-            // Clear image preview
-            $modal.$.find('img').attr('src', '');
+            if (gallery) {
+
+                gallery.model.staticData.addDefaultData(data);
+            }
+
+            this._clearWidgetForm();
+            this.loadWidgetsList();
         },
 
         /**
@@ -515,7 +520,31 @@ define(function defineSiteConfigWidgetGenerator() {
                 gallery.model.staticData.updateDefaultData(data);
             }
 
+            this._clearWidgetForm();
             this.loadWidgetsList();
+        },
+
+        /**
+         * Clear widget generate form
+         * @member SiteConfigWidgetGenerator
+         * @private
+         */
+        _clearWidgetForm: function _clearWidgetForm() {
+
+            /**
+             * Get $modal
+             * @type {ModalElement}
+             */
+            var $modal = this.scope.view.get$modal();
+
+            // Clear form
+            $modal.collectInputFields({
+                method: 'not',
+                value: '[name="category"]'
+            }).val('');
+
+            // Clear image preview
+            $modal.$.find('img').attr('src', '');
         }
     });
 });

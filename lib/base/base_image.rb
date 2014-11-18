@@ -10,14 +10,7 @@ class BaseImage
         jpg: Regexp.new("\xff\xd8\xff\xe1(.*){2}Exif".force_encoding('binary'))
     }
 
-    @types.each do |r|
-      self.class.send(:define_method, "#{r[0]}?") do |file|
-        case file
-          when /^#{r[1]}/
-            r[0]
-        end
-      end
-    end
+    @types.each { |r| self.class.send(:define_method, "#{r[0]}?") { |file| file.match(/^#{r[1]}/) } }
   end
 
   def allowed?(file)
@@ -32,10 +25,4 @@ class BaseImage
   def data_uri(allowed)
     "data:image/#{allowed};base64,"
   end
-
-  private
-  def regex_pattern(pattern)
-    Regexp.new(pattern.encode('UTF-8'), Regexp::IGNORECASE | Regexp::MULTILINE, 'n')
-  end
-
 end

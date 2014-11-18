@@ -234,6 +234,45 @@ define(function defineGalleryWidgets() {
         },
 
         /**
+         * Define add default data
+         * @member GalleryWidgets
+         * @param data
+         */
+        addDefaultData: function addDefaultData(data) {
+
+            /**
+             * Define widget instance
+             * @type {{
+             *      name: string,
+             *      description: string,
+             *      thumbnail: string,
+             *      dimensions: {width: number, height: number},
+             *      type: string,
+             *      resource: string
+             * }}
+             */
+            var widget = {
+                id: data.widget.id,
+                uuid: data.widget.uuid,
+                url: data.widget.url,
+                name: data.widget.name,
+                description: data.widget.description,
+                thumbnail: data.widget.thumbnail,
+                dimensions: {
+                    width: data.widget.width,
+                    height: data.widget.height
+                },
+                type: data.category.name_index,
+                resource: data.widget.resource
+            };
+
+            // Update data
+            this.defaultData.push(widget);
+
+            this.galleryModel.scope.logger.debug('Update gallery model', widget);
+        },
+
+        /**
          * Check if resource already exist
          * @member GalleryWidgets
          * @param {string} resource
@@ -313,6 +352,5 @@ define(function defineGalleryWidgets() {
 
             scope.logger.debug('Undefined widget data', resource);
         }
-
     });
 });
