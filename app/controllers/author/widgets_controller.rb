@@ -5,7 +5,6 @@ class Author::WidgetsController < Author::AuthorController
   require 'open-uri'
   require 'uri'
   require 'uuid'
-  include Base64
 
   before_action :set_author_widget_category, only: [:create, :update, :destroy]
   before_action :set_author_widget, only: [:show, :edit, :update, :destroy]
@@ -166,7 +165,7 @@ class Author::WidgetsController < Author::AuthorController
     allowed = BaseLib.img.allowed?(img)
     logger.info ">>>>> Allowed: #{allowed.nil? ? false : allowed}"
     if allowed
-      data_uri = "#{BaseLib.img.data_uri(allowed)}#{Base64.encode64(img)}"
+      data_uri = BaseLib.img.data_uri(allowed, img)
       logger.info ">>>>> Data-Uri: #{data_uri}"
       @author_widget.thumbnail = data_uri
       data_uri

@@ -143,20 +143,13 @@ define(function defineSiteConfigWidgetGenerator() {
              */
             var scope = this.controller.scope,
                 controller = this.controller,
-                data = this.data;
+                data = this.data,
+                validate = controller.i18n.t('widget.generation.inputs.validate');
 
             if (data.validate || data.empty) {
 
-                data.$modal.handleNotification(
-                    controller.i18n.t('widget.generation.inputs.validate'),
-                    'warning'
-                );
-
-                scope.logger.warn(
-                    controller.i18n.t('widget.generation.inputs.validate'),
-                    xhr, opts
-                );
-
+                data.$modal.handleNotification(validate, 'warning');
+                scope.logger.warn(validate, xhr, opts);
                 xhr.abort();
 
                 // Allow to create another one
@@ -167,20 +160,14 @@ define(function defineSiteConfigWidgetGenerator() {
              * Get gallery
              * @type {Gallery}
              */
-            var gallery = controller.getGalleryModule();
+            var gallery = controller.getGalleryModule(),
+                exist = controller.i18n.t('widget.generation.resource.exist'),
+                abort = controller.i18n.t('widget.generation.ajax.abort');
 
             if (gallery && gallery.model.staticData.isExistResource(data.collector.resource)) {
 
-                data.$modal.handleNotification(
-                    controller.i18n.t('widget.generation.resource.exist'),
-                    'warning'
-                );
-
-                scope.logger.warn(
-                    controller.i18n.t('widget.generation.resource.exist'),
-                    xhr, opts
-                );
-
+                data.$modal.handleNotification(exist, 'warning');
+                scope.logger.warn(exist, xhr, opts);
                 xhr.abort();
 
                 // Allow to create another one
@@ -189,16 +176,8 @@ define(function defineSiteConfigWidgetGenerator() {
 
             if (controller.stopSendingEventOnApprove(true)) {
 
-                data.$modal.handleNotification(
-                    controller.i18n.t('widget.generation.ajax.abort'),
-                    'warning'
-                );
-
-                scope.logger.warn(
-                    controller.i18n.t('widget.generation.ajax.abort'),
-                    xhr, opts
-                );
-
+                data.$modal.handleNotification(abort, 'warning');
+                scope.logger.warn(abort, xhr, opts);
                 xhr.abort();
             }
         },
@@ -419,9 +398,10 @@ define(function defineSiteConfigWidgetGenerator() {
 
             /**
              * Define widgetData
-             * @type {ModalElement.items|{dimensions}}
+             * @type {ModalElement.items|{dimensions, type}}
              */
-            var widgetData = data.$modal.items;
+            var widgetData = data.$modal.items,
+                unmodified = this.i18n.t('widget.manager.unmodified');
 
             for (index in collector) {
 
@@ -431,7 +411,6 @@ define(function defineSiteConfigWidgetGenerator() {
                 if (collector.hasOwnProperty(index) && widgetData.hasOwnProperty(index)) {
 
                     if (widgetData[index] !== collector[index]) {
-
                         update = true;
                         break;
                     }
@@ -439,7 +418,6 @@ define(function defineSiteConfigWidgetGenerator() {
                 } else if (collector.hasOwnProperty(index) && isDimensions) {
 
                     if ((widgetData.dimensions[index] + '') !== collector[index]) {
-
                         update = true;
                         break;
                     }
@@ -452,16 +430,9 @@ define(function defineSiteConfigWidgetGenerator() {
 
             if (!update) {
 
-                this.scope.logger.debug(
-                    this.i18n.t('widget.manager.unmodified')
-                );
-
                 // Show message
-                data.$modal.handleNotification(
-                    this.i18n.t('widget.manager.unmodified'),
-                    'info'
-                );
-
+                data.$modal.handleNotification(unmodified, 'info');
+                this.scope.logger.debug(unmodified);
                 return false;
             }
 

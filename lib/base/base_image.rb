@@ -1,3 +1,5 @@
+require 'base64'
+
 class BaseImage
 
   def initialize
@@ -22,7 +24,8 @@ class BaseImage
     nil
   end
 
-  def data_uri(allowed)
-    "data:image/#{allowed};base64,"
+  def data_uri(allowed, img)
+    "data:image/#{allowed};base64,#{Base64.strict_encode64(img)}"
   end
+
 end
