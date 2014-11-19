@@ -434,10 +434,11 @@ define(
             /**
              * Define show widgets generator
              * @member SiteConfigView
-             * @param {Array} widgets
+             * @param {object} widget
              * @param {Array} types
+             * @param {object} defaults
              */
-            showWidgetGenerator: function showWidgetGenerator(widgets, types) {
+            showWidgetGenerator: function showWidgetGenerator(widget, types, defaults) {
 
                 if (this.elements.$modal) {
 
@@ -449,7 +450,11 @@ define(
                     style: 'widget-generator-new',
                     type: 'info',
                     title: this.i18n.t('widget.manager.generate.new'),
-                    html: this.elements.$widgetgenerator.renderWidgetGeneratorForm(widgets[0], types),
+                    html: this.elements.$widgetgenerator.renderWidgetGeneratorForm(
+                        widget,
+                        types,
+                        defaults
+                    ),
                     cover: true,
                     closeX: false,
                     autoclose: false,
