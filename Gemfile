@@ -34,6 +34,7 @@ end
 gem 'uuid'
 gem 'tzinfo-data'
 gem 'tzinfo'
+gem 'data_uri'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 4.0.3'

@@ -1,4 +1,5 @@
 require 'base64'
+require 'data_uri'
 
 class BaseImage
 
@@ -26,6 +27,13 @@ class BaseImage
 
   def data_uri(allowed, img)
     "data:image/#{allowed};base64,#{Base64.strict_encode64(img)}"
+  end
+
+  def to_img(data_uri)
+    uri = URI::Data.new(data_uri)
+    f_name = Time.now.to_i
+    File.write("#{Rails.root}/app/assets/images/#{f_name}", uri.data)
+    f_name
   end
 
 end
