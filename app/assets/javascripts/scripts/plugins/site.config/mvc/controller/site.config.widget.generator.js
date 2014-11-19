@@ -151,10 +151,10 @@ define(function defineSiteConfigWidgetGenerator() {
 
                 data.$modal.handleNotification(validate, 'warning');
                 scope.logger.warn(validate, xhr, opts);
-                xhr.abort();
 
                 // Allow to create another one
                 controller.stopSendingEventOnApprove(false);
+                xhr.abort();
             }
 
             /**
@@ -169,10 +169,10 @@ define(function defineSiteConfigWidgetGenerator() {
 
                 data.$modal.handleNotification(exist, 'warning');
                 scope.logger.warn(exist, xhr, opts);
-                xhr.abort();
 
                 // Allow to create another one
                 controller.stopSendingEventOnApprove(false);
+                xhr.abort();
             }
 
             if (controller.stopSendingEventOnApprove(true)) {
@@ -268,12 +268,15 @@ define(function defineSiteConfigWidgetGenerator() {
             var $modal = this.scope.view.get$modal(),
                 $approve = $modal.$buttons.approve;
 
-            if ($approve.disabled && disable) {
-                return $approve.disabled;
-            }
+            if (disable) {
 
-            // Disable approve button
-            $approve.disabled = disable;
+                return $approve.disabled;
+
+            } else {
+
+                // Disable approve button
+                $approve.disabled = disable;
+            }
         },
 
         /**
