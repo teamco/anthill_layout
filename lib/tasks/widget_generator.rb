@@ -9,19 +9,21 @@ module WidgetLib
 
     def init_params(cname)
       puts 'Enter widget name separated by dots or underscore:'
-      @cname = cname
+      @cname = cname || STDIN.gets.chomp.strip
       @class_name = camel_case ''
       @file_name = (camel_case '.').downcase
     end
 
+
     def set_clone(clone)
       puts 'Enter clone widget resource (default "empty"):'
+      clone ||= STDIN.gets.chomp.strip
       @clone = clone.empty? ? 'empty' : clone
     end
 
     def do_create
-      init_params(STDIN.gets.chomp.strip)
-      set_clone(STDIN.gets.chomp.strip)
+      init_params(nil)
+      set_clone(nil)
 
       puts ">>> Expected class name: #{@class_name}"
       puts ">>> Expected directory name: #{@file_name}"

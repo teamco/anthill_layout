@@ -2,7 +2,7 @@ require 'fileutils'
 require 'uuid'
 require 'json'
 require "#{Rails.root}/lib/tasks/widget_generator.rb"
-# require "#{Rails.root}/lib/tasks/widgets_list.rb"
+require "#{Rails.root}/lib/tasks/widgets_list.rb"
 
 puts "\n>>> Start Clean models"
 Dir['app/models/**/*.rb'].each do |model|
@@ -43,8 +43,8 @@ puts "\n>>> Start Add widgets"
 uuid = UUID.new
 widget = WidgetLib::Generate.new
 
-path = "#{Rails.root}/lib/tasks/widgets_list.json"
-@widgets = JSON.parse(File.read(path)) rescue []
+# path = "#{Rails.root}/lib/tasks/widgets_list.json"
+# @widgets = JSON.parse(File.read(path)) rescue []
 
 JSON.parse(@widgets.to_json).each_with_index do |w, index|
 
@@ -68,17 +68,17 @@ JSON.parse(@widgets.to_json).each_with_index do |w, index|
 
   widget.init_params(w['resource'])
   widget.generate_css(w['thumbnail'])
-  # widget.update_json({
-  #                        name: w['name'],
-  #                        description: w['description'],
-  #                        thumbnail: w['thumbnail'],
-  #                        dimensions: {
-  #                            width: w['dimensions']['width'],
-  #                            height: w['dimensions']['height']
-  #                        },
-  #                        type: w['type'],
-  #                        resource: w['resource']
-  #                    })
+  widget.update_json({
+                         name: w['name'],
+                         description: w['description'],
+                         thumbnail: w['thumbnail'],
+                         dimensions: {
+                             width: w['dimensions']['width'],
+                             height: w['dimensions']['height']
+                         },
+                         type: w['type'],
+                         resource: w['resource']
+                     })
 
 end
 puts '>>> Finish Add widgets'
