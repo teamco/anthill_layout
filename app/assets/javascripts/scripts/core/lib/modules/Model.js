@@ -25,6 +25,33 @@ define([
     return BaseModel.extend('BaseModel', {
 
         /**
+         * Create a two way data-binding between model and controller
+         * @member BaseModel
+         * @param {object} obj
+         * @param {string} property
+         * @param {function} fnCallback
+         * Example:
+         *      user = {};
+         *      inputElem = document.getElementById("foo");
+         *      bindModelInput(user,'name',inputElem);
+         *      user.name = "Joe";
+         *      alert("input value is now "+inputElem.value) //input is now 'Joe';
+         *      inputElem.value = 'Bob';
+         *      alert("user.name is now "+user.name) //model is now 'Bob';
+         */
+        bindModelObserver: function bindModelObserver(obj, property, fnCallback) {
+            Object.defineProperty(obj, property, {
+                get: function get() {
+                    return fnCallback();
+                },
+                set: function set(newValue) {
+                    fnCallback(newValue);
+                },
+                configurable: true
+            });
+        },
+
+        /**
          * Get scope config
          * @member BaseModel
          * @param {String} [key]
@@ -203,7 +230,7 @@ define([
             return this.base.isDefined(node) ?
                 node.model ?
                     node.model.getUUID() :
-                    'Undefined ' + node.constructor.name :
+                'Undefined ' + node.constructor.name :
                 this.getConfig('uuid');
         },
 
@@ -480,7 +507,7 @@ define([
             if (this.checkLimit(Constructor, limit)) {
 
                 scope.logger.warn(
-                        cname + ': Maximum limit reached',
+                    cname + ': Maximum limit reached',
                     limit
                 );
                 node.model.setConfig('limit', true);
@@ -500,7 +527,7 @@ define([
                 } else {
 
                     scope.logger.warn(
-                            cname + ' was created with some errors',
+                        cname + ' was created with some errors',
                         node
                     );
                 }

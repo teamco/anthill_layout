@@ -43,6 +43,17 @@ define([
         },
 
         /**
+         * Bind model observer
+         * @member BaseController
+         */
+        bindModelObserver: function bindModelObserver() {
+            this.logger.warn('Bind model observer', arguments);
+            if (this.model) {
+                this.model.bindModelObserver.apply(this, arguments);
+            }
+        },
+
+        /**
          * After loading items
          * @member BaseController
          */
@@ -243,8 +254,8 @@ define([
          */
         successCreated: function successCreated() {
             this.logger.debug(
-                    this.constructor.name +
-                    ' was successfully created',
+                this.constructor.name +
+                ' was successfully created',
                 this
             );
         },

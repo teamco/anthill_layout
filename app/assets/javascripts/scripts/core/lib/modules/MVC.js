@@ -88,7 +88,8 @@ define([
          *      afterDestroyItems: string,
          *      afterResizeWindow: string,
          *      successRenderHeader: string,
-         *      successRenderFooter: string
+         *      successRenderFooter: string,
+         *      bindModelObserver: string
          * }}
          */
         this.defaultListeners = {
@@ -101,7 +102,8 @@ define([
             afterDestroyItems: 'after.destroy.items',
             afterResizeWindow: 'after.resize.window',
             successRenderHeader: 'success.render.header',
-            successRenderFooter: 'success.render.footer'
+            successRenderFooter: 'success.render.footer',
+            bindModelObserver: 'bind.model.observer'
         };
 
         /**
