@@ -83,14 +83,23 @@ define([
 
             var $ul = $('<ul />');
 
-            // Append header
-            $ul.append(
-                _renderRow(data[0], 'header')
-            );
+            if (l > 0) {
 
-            for (; i < l; i++) {
+                // Append header
                 $ul.append(
-                    _renderRow(data[i], 'row')
+                    _renderRow(data[0], 'header')
+                );
+
+                for (; i < l; i++) {
+                    $ul.append(
+                        _renderRow(data[i], 'row')
+                    );
+                }
+
+            } else {
+
+                $ul.append(
+                    $('<li class="no-data" />').text('No data')
                 );
             }
 

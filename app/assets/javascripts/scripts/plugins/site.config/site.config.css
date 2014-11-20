@@ -128,6 +128,10 @@ ul.site-config > .content:hover {
     display: inline-block;
 }
 
+.modal-dialog.widget-list div.html li.no-data {
+    padding: 10px;
+}
+
 .modal-dialog.widget-list div.html li li {
     padding: 2px 5px;
     font-size: 12px;
