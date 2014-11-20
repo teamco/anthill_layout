@@ -47,7 +47,7 @@ define([
          * @member BaseController
          */
         bindModelObserver: function bindModelObserver() {
-            this.logger.warn('Bind model observer', arguments);
+            this.logger.debug('Bind model observer', arguments);
             if (this.model) {
                 this.model.bindModelObserver.apply(this, arguments);
             }
