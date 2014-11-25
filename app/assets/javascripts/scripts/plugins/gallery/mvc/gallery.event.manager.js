@@ -31,13 +31,13 @@ define([
          * @type {{
          *      updateTranslations: string,
          *      setProviders: string,
-         *      loadContent: string,
+         *      loadModuleContent: string,
          *      setRoutes: string
          * }}
          */
         this.eventList = {
             updateTranslations: 'update.translations',
-            loadContent: 'load.content',
+            loadModuleContent: 'load.module.content',
             initModel: 'init.model',
             setProviders: 'set.providers',
             setCurrentProvider: 'set.current.provider',

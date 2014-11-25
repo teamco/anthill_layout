@@ -124,7 +124,7 @@ define([
          * Render panel content
          * @member PanelView
          * @param module
-         * @param {Boolean} force
+         * @param {Boolean} [force]
          * @returns {boolean}
          */
         renderContent: function renderContent(module, force) {

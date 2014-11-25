@@ -36,7 +36,7 @@ define(
      * @param {SiteConfigElement} SiteConfigElement
      * @returns {*}
      */
-        function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigImportFileElement, SiteConfigApproveImportElement, SiteConfigWidgetsListElement, SiteConfigElement) {
+    function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigImportFileElement, SiteConfigApproveImportElement, SiteConfigWidgetsListElement, SiteConfigElement) {
 
         /**
          * Define view
@@ -56,22 +56,21 @@ define(
              */
             renderSiteConfig: function renderSiteConfig() {
 
-                if (this.isCached('$siteconfig', SiteConfigElement)) {
-                    return false;
-                }
-
                 this.header(Header, this.elements.$container).setText(
                     this.i18n.t('site.data.config')
                 );
 
-                /**
-                 * Define SiteConfig element
-                 * @type {SiteConfigElement}
-                 */
-                this.elements.$siteconfig = new SiteConfigElement(this, {
-                    id: this.createUUID(),
-                    $container: this.elements.$container.$
-                });
+                if (!this.isCached('$siteconfig', SiteConfigElement)) {
+
+                    /**
+                     * Define SiteConfig element
+                     * @type {SiteConfigElement}
+                     */
+                    this.elements.$siteconfig = new SiteConfigElement(this, {
+                        id: this.createUUID(),
+                        $container: this.elements.$container.$
+                    });
+                }
 
                 this.footer(Footer, this.elements.$container).setHtml(
                     this.elements.$siteconfig.getFooter()

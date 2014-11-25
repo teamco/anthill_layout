@@ -245,7 +245,11 @@ define([
                 this.view.renderContent(module, true);
 
                 module.view.render();
-                module.controller.loadContent(opened);
+
+                module.observer.publish(
+                    module.eventmanager.eventList.loadModuleContent,
+                    opened
+                );
             }
         },
 

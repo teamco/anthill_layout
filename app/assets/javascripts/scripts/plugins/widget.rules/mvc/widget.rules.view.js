@@ -35,22 +35,21 @@ define([
          */
         renderWidgetRules: function renderWidgetRules() {
 
-            if (this.isCached('$widgetrules', WidgetRules)) {
-                return false;
-            }
-
             this.header(Header, this.elements.$container).setText(
                 'Widget Rules'
             );
 
-            /**
-             * Define WidgetRules element
-             * @type {WidgetRulesElement}
-             */
-            this.elements.$widgetrules = new WidgetRules(this, {
-                id: this.createUUID(),
-                $container: this.elements.$container.$
-            });
+            if (!this.isCached('$widgetrules', WidgetRules)) {
+
+                /**
+                 * Define WidgetRules element
+                 * @type {WidgetRulesElement}
+                 */
+                this.elements.$widgetrules = new WidgetRules(this, {
+                    id: this.createUUID(),
+                    $container: this.elements.$container.$
+                });
+            }
 
             this.footer(Footer, this.elements.$container).setHtml(
                 this.elements.$widgetrules.getFooter()

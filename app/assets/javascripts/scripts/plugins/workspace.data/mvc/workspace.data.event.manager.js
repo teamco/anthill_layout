@@ -33,7 +33,7 @@ define([
          * @member WorkspaceDataEventManager
          * @type {{
          *      updateTranslations: string,
-         *      loadContent: string,
+         *      loadModuleContent: string,
          *      setActiveContent: string,
          *      updatePagesOrder: string,
          *      preparePreferences: string,
@@ -42,7 +42,7 @@ define([
          */
         eventList: {
             updateTranslations: 'update.translations',
-            loadContent: 'load.content',
+            loadModuleContent: 'load.module.content',
             setActiveContent: 'set.active.content',
             preparePreferences: 'prepare.preferences',
             updatePagesOrder: 'update.pages.order',

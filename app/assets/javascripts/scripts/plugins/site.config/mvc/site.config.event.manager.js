@@ -33,7 +33,7 @@ define([
          * @member SiteConfigEventManager
          * @type {{
          *      updateTranslations: string,
-         *      loadContent: string,
+         *      loadModuleContent: string,
          *      cleanUpLocalStorage: string,
          *      importSiteData: string,
          *      approveImportSiteData: string,
@@ -47,7 +47,7 @@ define([
          */
         eventList: {
             updateTranslations: 'update.translations',
-            loadContent: 'load.content',
+            loadModuleContent: 'load.module.content',
             cleanUpLocalStorage: 'clean.up.local.storage',
             importSiteData: 'import.site.data',
             approveImportSiteData: 'approve.import.site.data',

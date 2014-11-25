@@ -34,18 +34,31 @@ define([
          */
         renderGallery: function renderGallery() {
 
-            if (this.isCached('$gallery', GalleryElement)) {
-                return false;
-            }
-
             this.renderHeader(Header, 'Gallery Widgets');
 
             this.renderSearch();
 
             this.renderProviders(
                 this.controller.getProvidersData(),
-                this.controller.getCurrentProvider()
+                this.controller.getModuleData()
             );
+
+            if (this.isCached('$gallery', GalleryElement)) {
+
+                /**
+                 * Get scope
+                 * @type {Gallery}
+                 */
+                var scope = this.scope;
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.loadModuleContent, [
+                        true, true
+                    ]
+                );
+
+                return false;
+            }
 
             /**
              * Define Gallery element
@@ -84,10 +97,6 @@ define([
          * @returns {boolean}
          */
         renderSearch: function renderSearch() {
-
-            if (this.isCached('$search', GallerySearchElement)) {
-                return false;
-            }
 
             /**
              * Define Gallery element

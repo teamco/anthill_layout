@@ -33,10 +33,10 @@ define([
         },
 
         /**
-         * Get providers data
+         * Get module data
          * @member PageDataController
          */
-        getData: function getData() {
+        getModuleData: function getModuleData() {
             return this.model.getPageData(
                 this.getPage()
             );
@@ -225,20 +225,6 @@ define([
             var $item = active.controller.getContainment().view.get$item();
 
             this.locateElement($item, e);
-        },
-
-        /**
-         * Load page.data content
-         * @member PageDataController
-         * @param opened
-         */
-        loadContent: function loadContent(opened) {
-
-            if (opened) {
-                this.getView().renderContent(
-                    this.getData()
-                );
-            }
         },
 
         /**

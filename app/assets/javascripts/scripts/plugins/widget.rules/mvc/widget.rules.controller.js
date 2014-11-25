@@ -33,10 +33,10 @@ define([
         },
 
         /**
-         * Get providers data
+         * Get module data
          * @member WidgetRulesController
          */
-        getData: function getData() {
+        getModuleData: function getModuleData() {
             return this.model.getWidgetRules(
                 this.getPage()
             );
@@ -82,7 +82,7 @@ define([
         /**
          * Set active content
          * @member WidgetRulesController
-         * @param {WidgetContent} content
+         * @param {string} uuid
          */
         setActiveContent: function setActiveContent(uuid) {
 
@@ -245,20 +245,6 @@ define([
             var $item = this.scope.activeContent.containment.view.get$item();
 
             this.locateElement($item, e);
-        },
-
-        /**
-         * Load page.data content
-         * @member WidgetRulesController
-         * @param opened
-         */
-        loadContent: function loadContent(opened) {
-
-            if (opened) {
-                this.getView().renderContent(
-                    this.getData()
-                );
-            }
         },
 
         /**

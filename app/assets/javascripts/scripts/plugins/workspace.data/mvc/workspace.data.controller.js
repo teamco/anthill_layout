@@ -14,6 +14,7 @@ define(
     /**
      * Define WorkspaceDataController
      * @param {PluginController} PluginBase
+     * @param {PreferencesController} PreferencesController
      * @returns {WorkspaceDataController}
      */
         function defineWorkspaceDataController(PluginBase, PreferencesController) {
@@ -32,11 +33,11 @@ define(
         return WorkspaceDataController.extend('WorkspaceDataController', {
 
             /**
-             * Get data
+             * Get module data
              * @member WorkspaceDataController
              * @returns {*}
              */
-            getData: function getData() {
+            getModuleData: function getModuleData() {
                 return this.model.getDataItems(
                     this.getWorkspace()
                 );

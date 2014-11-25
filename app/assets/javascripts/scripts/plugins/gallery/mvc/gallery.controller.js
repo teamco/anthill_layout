@@ -40,11 +40,11 @@ define([
         },
 
         /**
-         * Get current provider
+         * Get current provider data
          * @member GalleryController
          * @returns {{name: string, data: *[]}[]}
          */
-        getCurrentProvider: function getCurrentProvider() {
+        getModuleData: function getModuleData() {
             return this.model.currentProvider;
         },
 
@@ -95,28 +95,23 @@ define([
          */
         changeProvider: function changeProvider(provider) {
 
-            if (provider === this.getCurrentProvider().key) {
+            if (provider === this.getData().key) {
                 return false;
             }
 
             this.setCurrentProvider(provider);
-            this.loadContent(true, true);
-        },
 
-        /**
-         * Load gallery content
-         * @member GalleryController
-         * @param {boolean} opened
-         * @param {boolean} [force]
-         */
-        loadContent: function loadContent(opened, force) {
+            /**
+             * Get scope
+             * @type {Gallery}
+             */
+            var scope = this.scope;
 
-            if (opened) {
-                this.getView().renderContent(
-                    this.getCurrentProvider(),
-                    force
-                );
-            }
+            scope.observer.publish(
+                scope.eventmanager.eventList.loadContent, [
+                    true, true
+                ]
+            );
         },
 
         /**

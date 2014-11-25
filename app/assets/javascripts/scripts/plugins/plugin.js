@@ -125,6 +125,22 @@ define([
         },
 
         /**
+         * Load module content
+         * @member PluginController
+         * @param {boolean} opened
+         * @param {boolean} [force]
+         */
+        loadModuleContent: function loadModuleContent(opened, force) {
+
+            if (opened) {
+                this.view.renderContent(
+                    this.controller.getModuleData(),
+                    force
+                );
+            }
+        },
+
+        /**
          * Locate element
          * @param $element
          * @param {*} e

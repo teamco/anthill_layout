@@ -47,11 +47,11 @@ define(
         return SiteConfigController.extend('SiteConfigController', {
 
                 /**
-                 * Get data
+                 * Get module data
                  * @member SiteConfigController
                  * @returns {*}
                  */
-                getData: function getData() {
+                getModuleData: function getModuleData() {
                     return this.model.getDataItems(
                         this.getWorkspace()
                     );
@@ -62,7 +62,7 @@ define(
                  * @member SiteConfigController
                  * @param opened
                  */
-                loadContent: function loadContent(opened) {
+                loadModuleContent: function loadModuleContent(opened) {
                     if (opened) {
                         this.getView().renderContent(
                             this.getData()

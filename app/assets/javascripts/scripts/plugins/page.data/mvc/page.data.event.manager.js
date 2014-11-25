@@ -30,7 +30,7 @@ define([
          * @member PageDataEventManager
          * @type {{
          *      updateTranslations: string,
-         *      loadContent: string,
+         *      loadModuleContent: string,
          *      loadPreferences: string,
          *      storeItem: string,
          *      setActiveContent: string
@@ -38,7 +38,7 @@ define([
          */
         this.eventList = {
             updateTranslations: 'update.translations',
-            loadContent: 'load.content',
+            loadModuleContent: 'load.module.content',
             loadPreferences: 'load.preferences',
             storeItem: 'store.item',
             setActiveContent: 'set.active.content'
