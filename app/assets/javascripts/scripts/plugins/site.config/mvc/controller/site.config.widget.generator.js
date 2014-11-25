@@ -60,7 +60,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
             if (gallery) {
                 this.scope.view.showWidgetGenerator(
-                    gallery.model.staticData.getDefaultData()[0],
+                    gallery.model.staticData.getDefaultData(),
                     gallery.model.dataTypes,
                     this.model.getConfig('widget')
                 );

@@ -128,14 +128,15 @@ define([
         /**
          * Render widget generator form
          * @member SiteConfigWidgetsListElement
-         * @param {object} widget
+         * @param {Array} widgets
          * @param {object} [widgetData]
          * @param {Array} types
          * @returns {SiteConfigWidgetsListElement}
          */
-        renderWidgetGeneratorForm: function renderWidgetGeneratorForm(widget, types, widgetData) {
+        renderWidgetGeneratorForm: function renderWidgetGeneratorForm(widgets, types, widgetData) {
 
             var index, $field,
+                widget = widgets[0],
                 $ul = $('<ul />');
 
             widgetData = widgetData || {};
@@ -213,6 +214,10 @@ define([
              * @type {SiteConfig}
              */
             var scope = this.view.scope;
+
+            $ul.append(
+                this.cloneFromField(widgets)
+            );
 
             for (index in widget) {
 
@@ -313,6 +318,45 @@ define([
             }
 
             return $ul;
+        },
+
+        cloneFromField: function cloneFromField(widgets) {
+
+            // Define data
+            var data = {
+                    0: {
+                        key: 'new',
+                        name: 'New'
+                    }
+                },
+                i = 0, l = widgets.length,
+                widget;
+
+            for (; i < l; i++) {
+                widget = widgets[i];
+                data[i + 1] = {
+                    key: widget.resource,
+                    name: widget.name
+                }
+            }
+
+            /**
+             * Define sorted data
+             * @type {Array}
+             */
+            var sorted = this.sortComboBoxData(data);
+
+            return $('<li />').addClass('clone-template').append(
+                this.renderCombobox(
+                    sorted,
+                    data[0].key,
+                    'clone',
+                    'clone',
+                    undefined,
+                    true
+                )
+            );
+
         }
 
     }, BaseElement.prototype, GalleryProvidersElement.prototype);
