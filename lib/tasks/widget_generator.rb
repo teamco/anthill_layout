@@ -47,30 +47,8 @@ module WidgetLib
       @file_name
     end
 
-    def camel_case(separator)
-      @cname.scan(/\w+/).join('_').gsub(/\d+/, '').split('_').map { |e| e.capitalize }.join(separator)
-    end
-
-    def write_file(from, to)
-      content = File.read(@path).gsub(from, to)
-      File.open(@path, 'w') do |file|
-        file.puts content
-      end
-    end
-
-    def check_exist
-      path = widgets_path
-      exist_dir = File.exist?("#{path}#{@file_name}")
-      puts "Widget exist: #{path}#{@file_name}" if exist_dir
-      exist_dir
-    end
-
     def remove_widget_dir
       FileUtils.rm_rf "#{widgets_path}#{@file_name}" if check_exist
-    end
-
-    def widgets_path
-      './app/assets/javascripts/scripts/plugins/widgets/'
     end
 
     def do_it
@@ -123,10 +101,9 @@ module WidgetLib
 
     def generate_css(thumbnail)
 
-      dir = "./app/assets/javascripts/scripts/core/stylesheets"
-      Dir.mkdir "#{dir}/widgets" unless File.exists? "#{dir}/widgets"
+      Dir.mkdir "#{css_path}/widgets" unless File.exists? "#{css_path}/widgets"
 
-      path = "#{dir}/widgets/#{@file_name}.css"
+      path = "#{css_path}/widgets/#{@file_name}.css"
       exist_file = File.exist?(path)
 
       if exist_file
@@ -148,6 +125,34 @@ module WidgetLib
                 ].join(','))
       end
 
+    end
+
+    private
+
+    def camel_case(separator)
+      @cname.scan(/\w+/).join('_').gsub(/\d+/, '').split('_').map { |e| e.capitalize }.join(separator)
+    end
+
+    def widgets_path
+      './app/assets/javascripts/scripts/plugins/widgets/'
+    end
+
+    def css_path
+      './app/assets/javascripts/scripts/core/stylesheets'
+    end
+
+    def check_exist
+      path = widgets_path
+      exist_dir = File.exist?("#{path}#{@file_name}")
+      puts "Widget exist: #{path}#{@file_name}" if exist_dir
+      exist_dir
+    end
+
+    def write_file(from, to)
+      content = File.read(@path).gsub(from, to)
+      File.open(@path, 'w') do |file|
+        file.puts content
+      end
     end
 
   end
