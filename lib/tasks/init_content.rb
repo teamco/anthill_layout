@@ -79,7 +79,7 @@ module WidgetLib
 
         category = Author::WidgetCategory.find_by_name_index(w['type'])
 
-        puts "#{index}: #{w['name']} (#{category.name_value})" unless category.nil?
+        puts "#{index + 1}: #{w['name']} (#{category.name_value})" unless category.nil?
 
         Author::Widget.create(
             {

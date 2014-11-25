@@ -8,7 +8,7 @@ module WidgetLib
     end
 
     def init_params(cname)
-      puts 'Enter widget name separated by dots or underscore:'
+      puts "Enter widget name separated by dots or underscore: #{cname}"
       @cname = cname || STDIN.gets.chomp.strip
       @class_name = camel_case ''
       @file_name = (camel_case '.').downcase
