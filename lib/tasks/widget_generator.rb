@@ -9,6 +9,7 @@ module WidgetLib
 
     def init_params(cname)
       puts "Enter widget name separated by dots or underscore: #{cname}"
+      raise ScriptError.new("Wrong widget name: #{cname}") if cname.match(/^\d/)
       @cname = cname || STDIN.gets.chomp.strip
       @class_name = camel_case ''
       set_file_name((camel_case '.').downcase)
