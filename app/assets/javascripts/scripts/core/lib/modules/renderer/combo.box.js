@@ -25,12 +25,12 @@ define([], function defineComboBoxRenderer() {
          * @param {string} index
          * @param {{type: string, callback: function}} [event]
          * @param {boolean} [visible]
-         * @param {boolean} [enabled]
+         * @param {boolean} [placeholder]
          */
-        renderCombobox: function renderCombobox(data, selected, name, index, event, visible, enabled) {
+        renderCombobox: function renderCombobox(data, selected, name, index, event, visible, placeholder) {
 
-            // Init enabled
-            enabled = typeof(enabled) === 'undefined' ? true : !!enabled;
+            // Init placeholder
+            placeholder = typeof (placeholder) === 'undefined' ? false : !!placeholder;
 
             /**
              * Get wrapper
@@ -91,7 +91,7 @@ define([], function defineComboBoxRenderer() {
              */
             function _open() {
 
-                if (!enabled) {
+                if (this.isDisabledComboBox($div.parent())) {
                     return false;
                 }
 
@@ -242,6 +242,32 @@ define([], function defineComboBoxRenderer() {
                         $container: $li
                     });
                 }
+            }
+
+            if (typeof(selected) === 'undefined') {
+
+                if (placeholder) {
+
+                    $ul.prepend(
+                        $('<li />').text(
+                            'Select ' + name
+                        ).on(
+                            'click.placeholder',
+                            function clickOn(e) {
+
+                                if (this.isDisabledComboBox($div.parent())) {
+                                    return false;
+                                }
+
+                                $(e.target).remove();
+                                $('li:first', $ul).trigger('click.comboBoxInternal');
+
+                            }.bind(this)
+                        )
+                    );
+                }
+
+                $('li:first', $ul).show();
             }
 
             // fix to define modal dialog height

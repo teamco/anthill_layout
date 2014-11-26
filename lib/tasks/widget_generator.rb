@@ -11,7 +11,7 @@ module WidgetLib
       puts "Enter widget name separated by dots or underscore: #{cname}"
       @cname = cname || STDIN.gets.chomp.strip
       @class_name = camel_case ''
-      @file_name = (camel_case '.').downcase
+      set_file_name((camel_case '.').downcase)
     end
 
 
@@ -45,6 +45,10 @@ module WidgetLib
 
     def get_file_name
       @file_name
+    end
+
+    def set_file_name(name)
+      @file_name = name
     end
 
     def remove_widget_dir
@@ -99,18 +103,22 @@ module WidgetLib
       end
     end
 
+    def delete_css
+      path = "#{css_path}/widgets/#{@file_name}.css"
+      exist_file = File.exist?(path)
+
+      if exist_file
+        puts "--- Delete css: #{path}"
+        File.delete(path)
+      end
+    end
+
     def generate_css(thumbnail)
 
       Dir.mkdir "#{css_path}/widgets" unless File.exists? "#{css_path}/widgets"
 
       path = "#{css_path}/widgets/#{@file_name}.css"
-      exist_file = File.exist?(path)
-
-      if exist_file
-        puts "--- Delete previous: #{path}"
-        File.delete(path)
-      end
-
+      delete_css
       puts "--- Create CSS file: #{@file_name}.css"
 
       File.open("#{path}", 'w') do |f|
@@ -138,7 +146,7 @@ module WidgetLib
     end
 
     def css_path
-      './app/assets/javascripts/scripts/core/stylesheets'
+      './app/assets/javascripts/scripts/plugins/stylesheets'
     end
 
     def check_exist

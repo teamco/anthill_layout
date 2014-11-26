@@ -274,9 +274,9 @@ ul.site-config > .content:hover {
     clear: both;
 }
 
-.modal-dialog.widget-generator-new div.html li.site-config-new-template-prefs {
+.modal-dialog.widget-generator-new div.html li.site-config-scratch-prefs {
     height: 26px;
-    width: 30%;
+    width: 35%;
     float: left;
 }
 
@@ -287,5 +287,7 @@ ul.site-config > .content:hover {
 
 .modal-dialog.widget-generator-new div.html li.name {
     clear: both;
-    padding-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #fff;
+    box-shadow: 0px -1px 0px #999;
 }

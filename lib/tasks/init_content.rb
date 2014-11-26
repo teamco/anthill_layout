@@ -6,6 +6,9 @@ module WidgetLib
   class InitContent
 
     def initialize
+    end
+
+    def init
       clean_db
       add_categories
       @json_path = "#{Rails.root}/lib/tasks/widgets_list.json"
@@ -117,5 +120,22 @@ module WidgetLib
       end
       puts '>>> Finish Add widgets'
     end
+
+    def destroy_data
+      puts "\n>>> Start Destroy widget:"
+      resource = STDIN.gets.chomp.strip
+      widget = Author::Widget.find_by_resource(resource)
+      raise ScriptError.new("Undefined widget: #{resource}") if widget.nil?
+      puts "Are you sure want to delete \"#{widget.name}\" [y/n]:"
+      if STDIN.gets.chomp.strip == 'y'
+        widget_lib = WidgetLib::Generate.new
+        widget_lib.set_file_name(resource)
+        widget_lib.remove_widget_dir
+        widget_lib.delete_css
+      end
+
+      puts '>>> Finish Destroy widget'
+    end
+
   end
 end

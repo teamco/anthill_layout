@@ -352,7 +352,7 @@ define([
             }
 
             // Define name
-            var name = 'new.template';
+            var name = 'scratch';
 
             /**
              * Define checkbox
@@ -365,7 +365,7 @@ define([
                 ].join(' ')).
                 append(this.renderCheckbox({
                     name: name,
-                    text: name.humanize(),
+                    text: 'Make from ' + name,
                     checked: true,
                     value: true,
                     disabled: false,
@@ -390,13 +390,16 @@ define([
             var $combo = $('<li />').addClass('clone-template').append(
                 this.renderCombobox(
                     sorted,
-                    data[0].name,
-                    'clone from',
-                    'template',
                     undefined,
+                    'clone',
+                    'clone',
+                    undefined,
+                    true,
                     true
                 )
             );
+
+            this.disableComboBox($combo);
 
             return [$checkbox, $combo];
         }

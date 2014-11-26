@@ -100,6 +100,10 @@ define(function defineSiteConfigWidgetGenerator() {
                 if (data.value.length === 0) empty++;
             }
 
+            if (collector['clone'].length === 0 && collector['scratch'] === 'true') {
+                empty--;
+            }
+
             collector.visible = true;
 
             /**
@@ -117,10 +121,11 @@ define(function defineSiteConfigWidgetGenerator() {
                 );
             }
 
-            // Remove unpermitted attribute
+            // Remove none permitted attribute
             delete collector.category;
 
             return {
+                clone: false,
                 category: category,
                 collector: collector,
                 $modal: $modal,

@@ -30,4 +30,4 @@ pickle-email-*.html
 .rvmrc
 
 Gemfile.lock
-app/assets/javascripts/scripts/core/stylesheets/widgets
+app/assets/javascripts/scripts/plugins/stylesheets/widgets

@@ -14,6 +14,7 @@ namespace :widget do
     require "#{Rails.root}/lib/tasks/init_content.rb"
 
     content = WidgetLib::InitContent.new
+    content.init
     content.load_initial_data
     content.add_data(true)
 
@@ -25,10 +26,20 @@ namespace :widget do
     require "#{Rails.root}/lib/tasks/init_content.rb"
 
     content = WidgetLib::InitContent.new
+    content.init
     content.load_json
     content.add_data(false)
 
   end
 
+  desc 'Destroy widget'
+  task destroy: :environment do
+
+    require "#{Rails.root}/lib/tasks/init_content.rb"
+
+    content = WidgetLib::InitContent.new
+    content.destroy_data
+
+  end
 
 end
