@@ -25,8 +25,12 @@ define([], function defineComboBoxRenderer() {
          * @param {string} index
          * @param {{type: string, callback: function}} [event]
          * @param {boolean} [visible]
+         * @param {boolean} [enabled]
          */
-        renderCombobox: function renderCombobox(data, selected, name, index, event, visible) {
+        renderCombobox: function renderCombobox(data, selected, name, index, event, visible, enabled) {
+
+            // Init enabled
+            enabled = typeof(enabled) === 'undefined' ? true : !!enabled;
 
             /**
              * Get wrapper
@@ -86,6 +90,10 @@ define([], function defineComboBoxRenderer() {
              * @private
              */
             function _open() {
+
+                if (!enabled) {
+                    return false;
+                }
 
                 // Get wrapper
                 var $wrapper = _getWrapper.bind(this)();
@@ -248,6 +256,31 @@ define([], function defineComboBoxRenderer() {
                     $('<div />').addClass('combo-box-arrow')
                 ])
             ];
+        },
+
+        /**
+         * Check if combo box disabled
+         * @param $combo
+         * @returns {boolean}
+         */
+        isDisabledComboBox: function isDisabledComboBox($combo) {
+            return $combo.find('div.combo-box.disabled').length === 1;
+        },
+
+        /**
+         * Define enable combo box
+         * @param $combo
+         */
+        enableComboBox: function enableComboBox($combo) {
+            $combo.find('div.combo-box').removeClass('disabled');
+        },
+
+        /**
+         * Define disable combo box
+         * @param $combo
+         */
+        disableComboBox: function disableComboBox($combo) {
+            $combo.find('div.combo-box').addClass('disabled');
         }
     });
 });

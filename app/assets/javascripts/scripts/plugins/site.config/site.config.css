@@ -273,3 +273,19 @@ ul.site-config > .content:hover {
 .modal-dialog.widget-generator-new div.html li.thumbnail .clear {
     clear: both;
 }
+
+.modal-dialog.widget-generator-new div.html li.site-config-new-template-prefs {
+    height: 26px;
+    width: 30%;
+    float: left;
+}
+
+.modal-dialog.widget-generator-new div.html li.clone-template {
+    width: 58%;
+    float: right;
+}
+
+.modal-dialog.widget-generator-new div.html li.name {
+    clear: both;
+    padding-top: 20px;
+}

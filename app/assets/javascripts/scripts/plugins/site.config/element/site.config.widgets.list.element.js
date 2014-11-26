@@ -320,25 +320,62 @@ define([
             return $ul;
         },
 
+        /**
+         * Render clone from field
+         * @member SiteConfigWidgetsListElement
+         * @param widgets
+         * @returns {*[]}
+         */
         cloneFromField: function cloneFromField(widgets) {
 
+            /**
+             * Define toggle
+             * @private
+             */
+            function _toggleClone() {
+                this.isDisabledComboBox($combo) ?
+                    this.enableComboBox($combo) :
+                    this.disableComboBox($combo);
+            }
+
             // Define data
-            var data = {
-                    0: {
-                        key: 'new',
-                        name: 'New'
-                    }
-                },
+            var data = {},
                 i = 0, l = widgets.length,
                 widget;
 
             for (; i < l; i++) {
                 widget = widgets[i];
-                data[i + 1] = {
+                data[i] = {
                     key: widget.resource,
                     name: widget.name
                 }
             }
+
+            // Define name
+            var name = 'new.template';
+
+            /**
+             * Define checkbox
+             * @type {*|jQuery}
+             */
+            var $checkbox = $('<li />').
+                addClass([
+                    ['site-config', name.humanize().toClassName(), 'prefs'].join('-'),
+                    'checkbox'
+                ].join(' ')).
+                append(this.renderCheckbox({
+                    name: name,
+                    text: name.humanize(),
+                    checked: true,
+                    value: true,
+                    disabled: false,
+                    visible: true,
+                    monitor: {
+                        events: ['click.combo'],
+                        callback: _toggleClone.bind(this)
+                    }
+                })
+            );
 
             /**
              * Define sorted data
@@ -346,17 +383,22 @@ define([
              */
             var sorted = this.sortComboBoxData(data);
 
-            return $('<li />').addClass('clone-template').append(
+            /**
+             * Define combo
+             * @type {*|jQuery}
+             */
+            var $combo = $('<li />').addClass('clone-template').append(
                 this.renderCombobox(
                     sorted,
-                    data[0].key,
-                    'clone',
-                    'clone',
+                    data[0].name,
+                    'clone from',
+                    'template',
                     undefined,
                     true
                 )
             );
 
+            return [$checkbox, $combo];
         }
 
     }, BaseElement.prototype, GalleryProvidersElement.prototype);
