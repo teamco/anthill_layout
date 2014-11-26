@@ -367,7 +367,6 @@ define([
                     name: name,
                     text: 'Make from ' + name,
                     checked: true,
-                    value: true,
                     disabled: false,
                     visible: true,
                     monitor: {

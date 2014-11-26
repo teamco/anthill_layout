@@ -121,17 +121,23 @@ define(function defineSiteConfigWidgetGenerator() {
                 );
             }
 
-            // Remove none permitted attribute
-            delete collector.category;
-
-            return {
-                clone: false,
+            // Define hash
+            var hash = {
+                clone: collector['scratch'] !== 'true' ?
+                    collector['clone'] : 'empty',
                 category: category,
                 collector: collector,
                 $modal: $modal,
                 validate: validate,
                 empty: empty
             };
+
+            // Remove none permitted attribute
+            delete collector.category;
+            delete collector.clone;
+            delete collector.scratch;
+
+            return hash;
         },
 
         /**
@@ -238,6 +244,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
                 data: this.prepareXhrData({
                     author_widget: data.collector,
+                    author_widget_clone: data.clone,
                     author_widget_category: {
                         name_index: data.category
                     }

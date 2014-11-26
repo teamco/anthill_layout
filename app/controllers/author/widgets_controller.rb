@@ -8,6 +8,7 @@ class Author::WidgetsController < Author::AuthorController
 
   before_action :set_author_widget_category, only: [:create, :update, :destroy]
   before_action :set_author_widget, only: [:show, :edit, :update, :destroy]
+  before_action :set_clone_from, only: [:create]
 
   # GET /author/widgets
   # GET /author/widgets.json
@@ -182,6 +183,10 @@ class Author::WidgetsController < Author::AuthorController
   # Use callbacks to share common setup or constraints between actions.
   def set_author_widget
     @author_widget = Author::Widget.find(params[:id])
+  end
+
+  def set_clone_from
+    @clone_from = params[:author_widget_clone]
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
