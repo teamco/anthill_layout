@@ -91,7 +91,17 @@ define(function defineSiteConfigWidgetGenerator() {
                 validate = inputs.hasClass('validate'),
                 empty = 0,
                 i = 0, l = inputs.length,
-                collector = {}, data;
+                data;
+
+            /**
+             * Define collector
+             * @type {{clone: string, scratch: string, visible: boolean}}
+             */
+            var collector = {
+                clone: '',
+                scratch: '',
+                visible: true
+            };
 
             for (; i < l; i++) {
                 data = inputs[i];
@@ -104,13 +114,12 @@ define(function defineSiteConfigWidgetGenerator() {
                 empty--;
             }
 
-            collector.visible = true;
-
             /**
              * Get gallery
              * @type {Gallery}
              */
-            var gallery = this.getGalleryModule();
+            var gallery = this.getGalleryModule(),
+                clone;
 
             if (gallery) {
 
@@ -119,12 +128,28 @@ define(function defineSiteConfigWidgetGenerator() {
                     gallery.model.dataTypes,
                     collector.category
                 );
+
+                /**
+                 * Get clone data
+                 * @type {{
+                 *      name: string,
+                 *      description: string,
+                 *      thumbnail: string,
+                 *      dimensions: {width: number, height: number},
+                 *      type: string,
+                 *      resource: string
+                 * }}
+                 */
+                clone = gallery.model.staticData.getWidgetData(
+                    'name',
+                    collector.scratch !== 'true' ?
+                        collector.clone : 'empty'
+                )
             }
 
             // Define hash
             var hash = {
-                clone: collector['scratch'] !== 'true' ?
-                    collector['clone'] : 'empty',
+                clone: clone.resource,
                 category: category,
                 collector: collector,
                 $modal: $modal,
@@ -375,7 +400,10 @@ define(function defineSiteConfigWidgetGenerator() {
                  *      resource: string
                  * }}
                  */
-                widget = gallery.model.staticData.getWidgetData(resource);
+                widget = gallery.model.staticData.getWidgetData(
+                    'resource',
+                    resource
+                );
 
                 this.view.updateWidgetGenerator(
                     widget,

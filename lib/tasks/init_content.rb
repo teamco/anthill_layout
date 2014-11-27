@@ -125,15 +125,11 @@ module WidgetLib
       puts "\n>>> Start Destroy widget:"
       resource = STDIN.gets.chomp.strip
       widget = Author::Widget.find_by_resource(resource)
-      raise ScriptError.new("Undefined widget: #{resource}") if widget.nil?
-      puts "Are you sure want to delete \"#{widget.name}\" [y/n]:"
-      if STDIN.gets.chomp.strip == 'y'
-        widget_lib = WidgetLib::Generate.new
-        widget_lib.set_file_name(resource)
-        widget_lib.remove_widget_dir
-        widget_lib.delete_css
-      end
-
+      puts "Widget not in model: #{resource}" if widget.nil?
+      widget_lib = WidgetLib::Generate.new
+      widget_lib.set_file_name(resource)
+      widget_lib.remove_widget_dir
+      widget_lib.delete_css
       puts '>>> Finish Destroy widget'
     end
 

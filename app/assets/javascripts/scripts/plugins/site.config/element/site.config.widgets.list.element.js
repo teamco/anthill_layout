@@ -106,6 +106,12 @@ define([
             return this.bindWidgetEdit($ul);
         },
 
+        /**
+         * Bind widget edit
+         * @member SiteConfigWidgetsListElement
+         * @param $ul
+         * @returns {*}
+         */
         bindWidgetEdit: function bindWidgetEdit($ul) {
 
             /**
@@ -332,10 +338,15 @@ define([
              * Define toggle
              * @private
              */
-            function _toggleClone() {
-                this.isDisabledComboBox($combo) ?
-                    this.enableComboBox($combo) :
+            function _toggleClone(e) {
+                if (this.isDisabledComboBox($combo)) {
+                    this.enableComboBox($combo);
+                    e.target.value = false;
+
+                } else {
                     this.disableComboBox($combo);
+                    e.target.value = true;
+                }
             }
 
             // Define data
@@ -367,6 +378,7 @@ define([
                     name: name,
                     text: 'Make from ' + name,
                     checked: true,
+                    value: true,
                     disabled: false,
                     visible: true,
                     monitor: {

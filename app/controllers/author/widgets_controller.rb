@@ -129,7 +129,7 @@ class Author::WidgetsController < Author::AuthorController
     generate = false
     begin
       logger.info '>>>>> Do it'
-      widget.set_clone('empty')
+      widget.set_clone(@clone_from)
       widget.do_it
       logger.info '>>>>> Generate Css'
       widget.generate_css(uri? ? to_base64 : @author_widget.thumbnail)
@@ -186,7 +186,7 @@ class Author::WidgetsController < Author::AuthorController
   end
 
   def set_clone_from
-    @clone_from = params[:author_widget_clone]
+    @clone_from = Author::Widget.find_by_resource(params[:author_widget_clone]) || 'empty'
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

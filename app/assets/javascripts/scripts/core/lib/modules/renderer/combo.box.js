@@ -249,7 +249,7 @@ define([], function defineComboBoxRenderer() {
                 if (placeholder) {
 
                     $ul.prepend(
-                        $('<li />').text(
+                        $('<li class="placeholder" />').text(
                             'Select ' + name
                         ).on(
                             'click.placeholder',
@@ -286,6 +286,7 @@ define([], function defineComboBoxRenderer() {
 
         /**
          * Check if combo box disabled
+         * @member ComboBoxRenderer
          * @param $combo
          * @returns {boolean}
          */
@@ -295,6 +296,7 @@ define([], function defineComboBoxRenderer() {
 
         /**
          * Define enable combo box
+         * @member ComboBoxRenderer
          * @param $combo
          */
         enableComboBox: function enableComboBox($combo) {
@@ -303,10 +305,22 @@ define([], function defineComboBoxRenderer() {
 
         /**
          * Define disable combo box
+         * @member ComboBoxRenderer
          * @param $combo
          */
         disableComboBox: function disableComboBox($combo) {
             $combo.find('div.combo-box').addClass('disabled');
+        },
+
+        /**
+         * Clear placeholder
+         * @member ComboBoxRenderer
+         * @param $combo
+         */
+        clearPlaceholder: function clearPlaceholder($combo) {
+            $combo.find('div.combo-box > ul li.placeholder').
+                trigger('click.placeholder').
+                remove();
         }
     });
 });

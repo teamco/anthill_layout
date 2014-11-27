@@ -308,7 +308,8 @@ define(function defineGalleryWidgets() {
         /**
          * Define widget data getter
          * @member GalleryWidgets
-         * @param {string} resource
+         * @param {string} type
+         * @param {string} source
          * @returns {{
          *      name: string,
          *      description: string,
@@ -318,7 +319,7 @@ define(function defineGalleryWidgets() {
          *      resource: string
          * }}
          */
-        getWidgetData: function getWidgetData(resource) {
+        getWidgetData: function getWidgetData(type, source) {
 
             /**
              * Get default data
@@ -343,14 +344,14 @@ define(function defineGalleryWidgets() {
 
             for (; i < l; i++) {
 
-                if (data[i].resource === resource) {
+                if (data[i][type] === source) {
 
                     scope.logger.debug('Get widget data', data[i]);
                     return data[i];
                 }
             }
 
-            scope.logger.debug('Undefined widget data', resource);
+            scope.logger.warn('Undefined widget data', source);
         }
     });
 });
