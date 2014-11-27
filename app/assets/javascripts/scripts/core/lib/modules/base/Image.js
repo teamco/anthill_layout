@@ -80,6 +80,11 @@ define([], function defineBaseImage() {
             // When the event "onload" is triggered we can resize the image.
             img.onload = function () {
 
+                if (this.width === width && this.height === height) {
+                    callback(null, data);
+                    return false;
+                }
+
                 // We create a canvas and get its context.
                 var canvas = document.createElement('canvas'),
                     ctx = canvas.getContext('2d'),
@@ -89,11 +94,9 @@ define([], function defineBaseImage() {
                 canvas.width = width;
                 canvas.height = height;
 
-                // We resize the image with the canvas method drawImage();
-                ctx.drawImage(this, 0, 0, width, height);
-
                 try {
-                    ctx.drawImage(img, 0, 0);
+                    // We resize the image with the canvas method drawImage();
+                    ctx.drawImage(this, 0, 0, width, height);
                     dataURL = canvas.toDataURL();
                     callback(null, dataURL);
                 } catch (e) {

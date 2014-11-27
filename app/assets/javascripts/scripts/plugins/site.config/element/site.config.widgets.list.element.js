@@ -200,20 +200,43 @@ define([
                         callback: function onChange() {
 
                             /**
+                             * Convert to Base64
+                             * @private
+                             */
+                            function _toBase64() {
+                                scope.base.lib.image.toDataURL(
+                                    value,
+                                    function (err, base64Img) {
+                                        _resize(base64Img);
+                                    }
+                                );
+                            }
+
+                            /**
+                             * Resize Data-Uri
+                             * @param {string} data
+                             * @private
+                             */
+                            function _resize(data) {
+                                scope.base.lib.image.resizeDataURL(
+                                    data,
+                                    64, 64,
+                                    function (err, base64Img) {
+                                        $input.val(base64Img);
+                                    }
+                                );
+                            }
+
+                            /**
                              * Define $input
                              * @type {*|jQuery}
                              */
                             var $input = $(this),
                                 value = this.value;
 
-                            if (scope.base.isUrl(value)) {
-                                scope.base.lib.image.toDataURL(
-                                    value,
-                                    function(err, base64Img){
-                                        $input.val(base64Img);
-                                    }
-                                );
-                            }
+                            scope.base.isUrl(value) ?
+                                _toBase64() :
+                                _resize(value);
 
                             $('img', $input.parent()).attr({
                                 src: value
