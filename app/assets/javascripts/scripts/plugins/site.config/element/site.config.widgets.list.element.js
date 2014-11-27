@@ -137,12 +137,13 @@ define([
          * @param {Array} widgets
          * @param {object} [widgetData]
          * @param {Array} types
+         * @param {boolean} clone
          * @returns {SiteConfigWidgetsListElement}
          */
-        renderWidgetGeneratorForm: function renderWidgetGeneratorForm(widgets, types, widgetData) {
+        renderWidgetGeneratorForm: function renderWidgetGeneratorForm(widgets, types, widgetData, clone) {
 
             var index, $field,
-                widget = widgets[0],
+                widget = widgets[0] ? widgets[0] : widgets,
                 $ul = $('<ul />');
 
             widgetData = widgetData || {};
@@ -197,8 +198,25 @@ define([
                     opts.monitor = {
                         events: ['change.' + index],
                         callback: function onChange() {
-                            $('img', $(this).parent()).attr({
-                                src: this.value
+
+                            /**
+                             * Define $input
+                             * @type {*|jQuery}
+                             */
+                            var $input = $(this),
+                                value = this.value;
+
+                            if (scope.base.isUrl(value)) {
+                                scope.base.lib.image.toDataURL(
+                                    value,
+                                    function(err, base64Img){
+                                        $input.val(base64Img);
+                                    }
+                                );
+                            }
+
+                            $('img', $input.parent()).attr({
+                                src: value
                             });
                         }
                     };
@@ -221,9 +239,11 @@ define([
              */
             var scope = this.view.scope;
 
-            $ul.append(
-                this.cloneFromField(widgets)
-            );
+            if (clone) {
+                $ul.append(
+                    this.cloneFromField(widgets)
+                );
+            }
 
             for (index in widget) {
 

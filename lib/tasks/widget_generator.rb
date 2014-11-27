@@ -16,7 +16,6 @@ module WidgetLib
       set_file_name((camel_case '.').downcase)
     end
 
-
     def set_clone(clone)
       puts 'Enter clone widget resource (default "empty"):'
       clone ||= STDIN.gets.chomp.strip

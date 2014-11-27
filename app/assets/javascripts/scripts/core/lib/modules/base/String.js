@@ -240,5 +240,4 @@ define([], function defineBaseString() {
     });
 
     return new BaseString();
-
 });

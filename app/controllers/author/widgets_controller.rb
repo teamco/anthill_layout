@@ -99,6 +99,9 @@ class Author::WidgetsController < Author::AuthorController
 
       if @author_widget.update(author_widget_params)
         if request.xhr?
+          widget = WidgetLib::Generate.new
+          widget.init_params(@author_widget.resource)
+          widget.generate_css(@author_widget.thumbnail)
           format.json { render :show, status: :ok, location: @author_widget }
         else
           format.html { redirect_to @author_widget, notice: 'Widget was successfully updated.' }

@@ -409,7 +409,7 @@ define(
                 this.modalDialog({
                     style: 'widget-list',
                     type: 'info',
-                    title: this.i18n.t('widget.manager.list').replace(/\{1\}/, widgets.length + ''),
+                    title: this.i18n.t('widget.manager.list').replace(/\{1}/, widgets.length + ''),
                     html: this.renderWidgetsManager().renderWidgetsList(widgets, show),
                     cover: true,
                     autoclose: false,
@@ -452,7 +452,8 @@ define(
                     html: this.elements.$widgetgenerator.renderWidgetGeneratorForm(
                         widgets,
                         types,
-                        defaults
+                        defaults,
+                        true
                     ),
                     cover: true,
                     closeX: false,
@@ -492,7 +493,12 @@ define(
                     style: 'widget-generator-new',
                     type: 'info',
                     title: this.i18n.t('widget.manager.generate.update'),
-                    html: this.elements.$widgetgenerator.renderWidgetGeneratorForm(widget, types, widget),
+                    html: this.elements.$widgetgenerator.renderWidgetGeneratorForm(
+                        widget,
+                        types,
+                        widget,
+                        false
+                    ),
                     cover: true,
                     closeX: false,
                     autoclose: false,

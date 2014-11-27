@@ -144,7 +144,7 @@ define(function defineSiteConfigWidgetGenerator() {
                     'name',
                     collector.scratch !== 'true' ?
                         collector.clone : 'empty'
-                )
+                ) || {}
             }
 
             // Define hash

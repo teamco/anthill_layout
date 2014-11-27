@@ -7,8 +7,9 @@ define([
     'modules/base/Number',
     'modules/base/DateTime',
     'modules/base/String',
+    'modules/base/Image',
     'modules/base/UA'
-], function defineBase(arr, fn, gen, hash, html, num, dt, str, ua) {
+], function defineBase(arr, fn, gen, hash, html, num, dt, str, img, ua) {
 
     /**
      * Define base utils
@@ -28,6 +29,7 @@ define([
          *      number: *,
          *      datetime: *,
          *      string: *,
+         *      image: *,
          *      ua: *
          * }}
          */
@@ -40,6 +42,7 @@ define([
             'number': num,
             'datetime': dt,
             'string': str,
+            'image': img,
             'ua': ua
         };
 
