@@ -65,12 +65,7 @@ define([
                     this.model.getConfig('regex')
                 );
 
-            if (!regex || url.match(/^\[/)) {
-                this.scope.logger.warn('Invalid FunnyOrDie url');
-                return false;
-            }
-
-            return mask.replace(/\{id}/g, regex[0]);
+            return mask.replace(/\{id}/g, regex[1]);
         },
 
         /**

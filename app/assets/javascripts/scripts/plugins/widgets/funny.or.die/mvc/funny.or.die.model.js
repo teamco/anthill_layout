@@ -50,7 +50,7 @@ define([
          * @member FunnyOrDieModel
          * @param {string} url
          */
-        setFunnyOrDieUrl: function setFunnyOrDieUrl(url) {
+        setFunnyordieUrl: function setFunnyordieUrl(url) {
             this.setPrefs('funnyordieUrl', url);
         }
 

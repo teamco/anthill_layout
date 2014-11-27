@@ -70,8 +70,8 @@ define([
                     left: 0
                 }
             },
-            regex: /\d+/,
-            mask: 'http://funny.or.die.com/tools/config_video.php?id={id}'
+            regex: /embed\/?(\w+)/,
+            mask: 'http://www.funnyordie.com/embed/{id}'
         };
 
         /**
