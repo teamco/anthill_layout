@@ -95,7 +95,7 @@ define([
          */
         changeProvider: function changeProvider(provider) {
 
-            if (provider === this.getData().key) {
+            if (provider === this.getModuleData().key) {
                 return false;
             }
 
