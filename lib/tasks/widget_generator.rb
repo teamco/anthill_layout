@@ -88,6 +88,8 @@ module WidgetLib
           puts "... Adopt CSS to: .#{@class_name.downcase}"
           write_file ".#{src_pattern}", ".#{@file_name.split('.').join('-')}"
           write_file "'#{src_pattern}',", "'#{@file_name}',"
+          puts "... Adopt Model name to: #{@class_name}"
+          write_file src_pattern, @class_name.downcase
         end
 
       end
