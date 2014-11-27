@@ -7,34 +7,34 @@
 
 define([
     'modules/Element'
-], function defineTrubaElement(BaseElement) {
+], function defineMetaUaElement(BaseElement) {
 
     /**
-     * Define Truba Element
+     * Define MetaUa Element
      * @param view
      * @param opts
-     * @returns {TrubaElement}
+     * @returns {MetaUaElement}
      * @constructor
-     * @class TrubaElement
+     * @class MetaUaElement
      * @extends BaseElement
      */
-    var TrubaElement = function TrubaElement(view, opts) {
+    var MetaUaElement = function MetaUaElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
 
-        this.addCSS('truba', {resource: '/widgets'});
+        this.addCSS('meta.ua', {resource: '/widgets'});
 
         return this;
     };
 
-    return TrubaElement.extend('TrubaElement', {
+    return MetaUaElement.extend('MetaUaElement', {
 
         /**
          * Render Embedded content
-         * @member TrubaElement
+         * @member MetaUaElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {
