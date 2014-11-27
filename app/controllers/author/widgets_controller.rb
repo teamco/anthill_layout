@@ -186,7 +186,8 @@ class Author::WidgetsController < Author::AuthorController
   end
 
   def set_clone_from
-    @clone_from = Author::Widget.find_by_resource(params[:author_widget_clone]) || 'empty'
+    clone_from = Author::Widget.find_by_resource(params[:author_widget_clone])
+    @clone_from = clone_from.resource rescue 'empty'
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

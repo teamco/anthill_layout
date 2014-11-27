@@ -11,6 +11,10 @@ module WidgetLib
     def init
       clean_db
       add_categories
+      set_routes
+    end
+
+    def set_routes
       @json_path = "#{Rails.root}/lib/tasks/widgets_list.json"
       @default_path = "#{Rails.root}/lib/tasks/widgets_init_list.rb"
     end
@@ -119,6 +123,37 @@ module WidgetLib
 
       end
       puts '>>> Finish Add widgets'
+    end
+
+    def update_data
+      puts "\n>>> Start update data"
+      set_routes
+      hash = []
+
+      Author::Widget.all.each_with_index do |w, index|
+
+        puts "#{index + 1}: #{w[:name]}"
+
+        hash << {
+            name: w[:name],
+            description: w[:description],
+            thumbnail: w[:thumbnail],
+            dimensions: {
+                width: w[:width],
+                height: w[:height]
+            },
+            type: w[:type],
+            resource: w[:resource]
+        }
+
+      end
+
+      File.open(json_path, 'a') do |f|
+        f.truncate(0)
+        f.write(hash.to_json)
+      end
+
+      puts '>>> End update data'
     end
 
     def destroy_data

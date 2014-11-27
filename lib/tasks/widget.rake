@@ -42,4 +42,13 @@ namespace :widget do
 
   end
 
+  desc 'Update JSON'
+  task update: :environment do
+
+    require "#{Rails.root}/lib/tasks/init_content.rb"
+
+    content = WidgetLib::InitContent.new
+    content.update_data
+
+  end
 end
