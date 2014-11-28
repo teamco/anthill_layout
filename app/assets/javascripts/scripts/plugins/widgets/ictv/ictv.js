@@ -8,32 +8,32 @@
 define([
     'config/anthill',
     'modules/MVC',
-    'plugins/widgets/livestream/mvc/livestream.controller',
-    'plugins/widgets/livestream/mvc/livestream.model',
-    'plugins/widgets/livestream/mvc/livestream.view',
-    'plugins/widgets/livestream/mvc/livestream.event.manager',
-    'plugins/widgets/livestream/mvc/livestream.permission'
-], function defineLivestream(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    'plugins/widgets/ictv/mvc/ictv.controller',
+    'plugins/widgets/ictv/mvc/ictv.model',
+    'plugins/widgets/ictv/mvc/ictv.view',
+    'plugins/widgets/ictv/mvc/ictv.event.manager',
+    'plugins/widgets/ictv/mvc/ictv.permission'
+], function defineIctv(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define Livestream
+     * Define Ictv
      * @param containment
      * @param [opts]
      * @constructor
-     * @class Livestream
+     * @class Ictv
      * @extends AntHill
      */
-    var Livestream = function Livestream(containment, opts) {
+    var Ictv = function Ictv(containment, opts) {
 
         /**
          * Define containment
-         * @member Livestream
+         * @member Ictv
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Livestream
+         * @member Ictv
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Livestream
+         * @member Ictv
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -99,7 +99,7 @@ define([
         );
     };
 
-    return Livestream.extend('Livestream', {
+    return Ictv.extend('Ictv', {
 
     }, AntHill.prototype);
 });

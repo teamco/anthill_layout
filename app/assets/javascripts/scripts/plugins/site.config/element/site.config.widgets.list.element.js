@@ -222,7 +222,11 @@ define([
                                     data,
                                     64, 64,
                                     function (err, base64Img) {
-                                        $input.val(base64Img);
+                                        $input.val(
+                                            base64Img ?
+                                                base64Img :
+                                                value
+                                        );
                                     }
                                 );
                             }
