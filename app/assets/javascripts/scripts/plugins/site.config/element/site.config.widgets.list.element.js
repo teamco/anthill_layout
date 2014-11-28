@@ -284,7 +284,7 @@ define([
                                 this.renderTextField.bind(this),
                                 index,
                                 widgetData[index],
-                                {mask: /\w+$/}
+                                {}
                             );
                             break;
 
