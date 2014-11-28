@@ -66,8 +66,11 @@ div.gallery-content input[type="text"] {
     padding: 0 3px;
 }
 
-div.gallery-content input[type="text"],
-div.gallery-content div.combo-box > ul {
+div.gallery-content div.combo-box {
+    width: 100%;
+}
+
+div.gallery-content input[type="text"] {
     border: 1px solid #ccc;
     background-color: #fff;
     margin: 0;
@@ -86,69 +89,6 @@ div.gallery-content div.combo-box > ul {
 
 div.gallery-content input[type="text"]:focus {
     position: static;
-}
-
-div.gallery-content div.combo-box > ul {
-    position: absolute;
-    top: 0;
-    z-index: 1;
-}
-
-div.gallery-content div.combo-box {
-    background-color: #fff;
-    margin-top: -1px;
-    height: 22px;
-    overflow: hidden;
-    width: 100%;
-}
-
-div.gallery-content div.combo-box-arrow {
-    position: absolute;
-    z-index: 2;
-    top: 1px;
-    right: 0;
-    width: 12px;
-    height: 20px;
-    cursor: pointer;
-    background: transparent url('../../core/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png') no-repeat -69px 2px;
-}
-
-div.gallery-content div.combo-box-arrow:hover {
-    background-image: url('../../core/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png');
-}
-
-div.gallery-content div.combo-box.open div.combo-box-arrow {
-    background-position: -4px 2px;
-}
-
-div.gallery-content div.combo-box.open {
-    overflow: visible;
-}
-
-div.gallery-content div.combo-box.open ul {
-    overflow: auto;
-    height: auto;
-    border: 1px solid #999;
-    box-shadow: 3px 3px 5px #999;
-}
-
-div.gallery-content div.combo-box.open li {
-    display: inline-block;
-    margin-bottom: 0;
-}
-
-div.gallery-content div.combo-box.open li:hover {
-    background-color: #ffff99;
-}
-
-div.gallery-content div.combo-box.open li:last-child,
-div.gallery-content div.combo-box.open li:last-child:hover {
-    border: none;
-}
-
-div.gallery-content div.combo-box.open li.selected,
-div.gallery-content div.combo-box.open li.selected:hover {
-    background-color: #fbcb09;
 }
 
 div.gallery-content .scroll-cover {

@@ -51,10 +51,13 @@ div.combo-box li {
     border-bottom: 1px solid #ccc;
     line-height: 23px;
     font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 div.combo-box li.selected {
-    display: inline-block;
+    display: block;
     border-bottom: none;
 }
 
@@ -69,7 +72,7 @@ div.combo-box.open ul {
 }
 
 div.combo-box.open li {
-    display: inline-block;
+    display: block;
     margin-bottom: 0;
 }
 
