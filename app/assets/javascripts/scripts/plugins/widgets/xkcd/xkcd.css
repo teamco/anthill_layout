@@ -1,0 +1,13 @@
+.widget .content .xkcd {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.widget .content .xkcd img {
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    overflow: hidden;
+}
