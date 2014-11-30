@@ -117,13 +117,18 @@ define([
              * Define scope
              * @type {PageData}
              */
-            var scope = this.scope,
-                content = this.scope.activeContent;
+            var scope = this.scope;
 
             scope.observer.publish(
                 scope.eventmanager.eventList.setActiveContent,
                 config.uuid
             );
+
+            /**
+             * Get content
+             * @type {WidgetContent}
+             */
+            var content = this.scope.activeContent;
 
             if (!content) {
                 scope.logger.warn('Undefined content');
