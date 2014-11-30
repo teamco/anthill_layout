@@ -177,6 +177,11 @@ define([
              */
             var content = widget.controller.getContent();
 
+            if (!content) {
+                widget.logger.warn('Undefined content');
+                return false;
+            }
+
             content.observer.publish(
                 content.eventmanager.eventList.defineReferrer,
                 this.scope

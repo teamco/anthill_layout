@@ -117,12 +117,18 @@ define([
              * Define scope
              * @type {PageData}
              */
-            var scope = this.scope;
+            var scope = this.scope,
+                content = this.scope.activeContent;
 
             scope.observer.publish(
                 scope.eventmanager.eventList.setActiveContent,
                 config.uuid
             );
+
+            if (!content) {
+                scope.logger.warn('Undefined content');
+                return false;
+            }
 
             if (load) {
 
@@ -130,7 +136,7 @@ define([
                  * Define $html
                  * @type {BaseElement}
                  */
-                var $html = this.scope.activeContent.view.renderPreferences();
+                var $html = content.view.renderPreferences();
 
                 this.openPreferences({
                     config: config,

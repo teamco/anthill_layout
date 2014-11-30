@@ -108,6 +108,11 @@ define([
              */
             this.activeContent = widget.controller.getContent();
 
+            if (!this.activeContent) {
+                this.logger.warn('Undefined content');
+                return false;
+            }
+
             /**
              * Define referrer
              * @type {PageData}
