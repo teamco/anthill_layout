@@ -35,10 +35,32 @@ define([
         /**
          * Render Embedded content
          * @member PolldaddyElement
-         * @param {string} embed
+         * @param {{type, id}} data
          */
-        renderEmbeddedContent: function renderEmbeddedContent(embed) {
-            this.$.append(embed);
+        renderEmbeddedContent: function renderEmbeddedContent(data) {
+
+            if (data.type === 'inline') {
+
+                require([
+                    '//static.polldaddy.com/p/' + data.id + '.js'
+                ]);
+
+            } else if (data.type === 'popup') {
+
+                // TODO: unsupported
+                require(
+                    ['//i0.poll.fm/survey.js'],
+                    function definePollDaddy() {
+                        polldaddy.add({
+                            type: 'slider',
+                            embed: 'poll',
+                            delay: 100,
+                            visit: 'single',
+                            id: data.id
+                        });
+                    }
+                );
+            }
         }
 
     }, BaseElement.prototype);

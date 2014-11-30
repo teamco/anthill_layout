@@ -28,8 +28,40 @@ define([
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$polldaddy.renderEmbeddedContent(
-                this.model.getPrefs('polldaddyEmbedCode')
+                this.controller.getEmbeddedId(
+                    this.model.getPrefs('polldaddyEmbedCode')
+                )
             );
+        },
+
+        /**
+         * Parse embedded content to extract id
+         * @member PolldaddyController
+         * @param {string} embed
+         * @returns {*}
+         */
+        getEmbeddedId: function getEmbeddedId(embed) {
+
+            if (!embed) {
+                this.scope.logger.debug('Initial state');
+                return false;
+            }
+
+            // Match inline embed code
+            var regex = embed.match(/poll\/(\d+)/);
+
+            if (regex) {
+
+                return data = {
+                    type: 'inline',
+                    id: regex[1]
+                };
+
+            } else {
+
+                this.scope.logger.warn('Invalid embed code');
+                return false;
+            }
         },
 
         /**
