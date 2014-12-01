@@ -17,7 +17,7 @@ define([], function defineIframeRenderer() {
     return IframeRenderer.extend('IframeRenderer', {
 
         /**
-         * Render checkbox
+         * Render iframe
          * @member IframeRenderer
          * @param {string} src
          * @param {object} [opts]

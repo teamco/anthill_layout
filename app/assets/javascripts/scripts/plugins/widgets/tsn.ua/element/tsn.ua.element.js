@@ -7,34 +7,34 @@
 
 define([
     'modules/Element'
-], function defineWordcampTvElement(BaseElement) {
+], function defineTsnUaElement(BaseElement) {
 
     /**
-     * Define WordcampTv Element
+     * Define TsnUa Element
      * @param view
      * @param opts
-     * @returns {WordcampTvElement}
+     * @returns {TsnUaElement}
      * @constructor
-     * @class WordcampTvElement
+     * @class TsnUaElement
      * @extends BaseElement
      */
-    var WordcampTvElement = function WordcampTvElement(view, opts) {
+    var TsnUaElement = function TsnUaElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
 
-        this.addCSS('wordcamp.tv', {resource: '/widgets'});
+        this.addCSS('tsn.ua', {resource: '/widgets'});
 
         return this;
     };
 
-    return WordcampTvElement.extend('WordcampTvElement', {
+    return TsnUaElement.extend('TsnUaElement', {
 
         /**
          * Render Embedded content
-         * @member WordcampTvElement
+         * @member TsnUaElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {
