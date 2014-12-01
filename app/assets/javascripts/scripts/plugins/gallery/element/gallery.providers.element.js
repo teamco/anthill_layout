@@ -64,6 +64,13 @@ define([
          */
         renderData: function renderData(data, currentProvider) {
 
+            if (!currentProvider) {
+                this.view.scope.logger.warn(
+                    'Undefined current provider'
+                );
+                return false;
+            }
+
             this.$.append(
                 this.renderCombobox(
                     this.sortComboBoxData(data),
