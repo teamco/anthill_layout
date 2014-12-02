@@ -1,8 +1,5 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 4.1.1'
-
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
@@ -11,6 +8,9 @@ gem 'sqlite3'
 # Use puma/thin/unicorn as the app server
 case RUBY_PLATFORM
   when /darwin/
+
+    # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+    gem 'rails', '>= 4.2.0.rc1'
 
     gem 'puma'
 
@@ -23,14 +23,20 @@ case RUBY_PLATFORM
     gem 'debase', group: :development
     gem 'rack-attack', group: :development
 
+    # Use jquery as the JavaScript library
+    gem 'jquery-rails', '>= 4.0.0'
+
   when /win32/
 
     #gem 'thin'
   else
 
+    gem 'rails', '>= 4.1.1'
+    gem 'jquery-rails'
     gem 'thin'
 end
 
+gem 'i18n', '>= 0.7.0.beta1'
 gem 'uuid'
 gem 'tzinfo-data'
 gem 'tzinfo'
@@ -44,9 +50,6 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '>= 4.0.0'
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
