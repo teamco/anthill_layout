@@ -27,7 +27,7 @@ define([
          * }}
          */
         this.preferences = {
-            twentythreeHtmlCode: {
+            twentythreeEmbedCode: {
                 type: 'textarea',
                 disabled: false,
                 value: undefined,
@@ -50,7 +50,7 @@ define([
          * @member TwentyThreeModel
          * @param {string} embed
          */
-        setTwentythreeHtmlCode: function setTwentythreeHtmlCode(embed) {
+        setTwentythreeEmbedCode: function setTwentythreeEmbedCode(embed) {
             this.setPrefs('twentythreeEmbedCode', embed);
         }
 

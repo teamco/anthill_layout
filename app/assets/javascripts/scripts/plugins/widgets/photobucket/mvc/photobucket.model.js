@@ -27,7 +27,7 @@ define([
          * }}
          */
         this.preferences = {
-            photobucketHtmlCode: {
+            photobucketEmbedCode: {
                 type: 'textarea',
                 disabled: false,
                 value: undefined,
@@ -50,7 +50,7 @@ define([
          * @member PhotobucketModel
          * @param {string} embed
          */
-        setPhotobucketHtmlCode: function setPhotobucketHtmlCode(embed) {
+        setPhotobucketEmbedCode: function setPhotobucketEmbedCode(embed) {
             this.setPrefs('photobucketEmbedCode', embed);
         }
 

@@ -27,7 +27,7 @@ define([
          * }}
          */
         this.preferences = {
-            mobypictureHtmlCode: {
+            mobypictureEmbedCode: {
                 type: 'textarea',
                 disabled: false,
                 value: undefined,
@@ -50,7 +50,7 @@ define([
          * @member MobypictureModel
          * @param {string} embed
          */
-        setMobypictureHtmlCode: function setMobypictureHtmlCode(embed) {
+        setMobypictureEmbedCode: function setMobypictureEmbedCode(embed) {
             this.setPrefs('mobypictureEmbedCode', embed);
         }
 

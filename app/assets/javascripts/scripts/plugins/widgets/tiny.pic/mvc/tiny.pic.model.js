@@ -27,7 +27,7 @@ define([
          * }}
          */
         this.preferences = {
-            tinypicHtmlCode: {
+            tinypicEmbedCode: {
                 type: 'textarea',
                 disabled: false,
                 value: undefined,
@@ -50,7 +50,7 @@ define([
          * @member TinyPicModel
          * @param {string} embed
          */
-        setTinypicHtmlCode: function setTinypicHtmlCode(embed) {
+        setTinypicEmbedCode: function setTinypicEmbedCode(embed) {
             this.setPrefs('tinypicEmbedCode', embed);
         }
 

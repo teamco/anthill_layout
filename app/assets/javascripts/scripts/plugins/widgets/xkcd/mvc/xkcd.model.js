@@ -27,7 +27,7 @@ define([
          * }}
          */
         this.preferences = {
-            xkcdHtmlCode: {
+            xkcdEmbedCode: {
                 type: 'textarea',
                 disabled: false,
                 value: undefined,
@@ -50,7 +50,7 @@ define([
          * @member XkcdModel
          * @param {string} embed
          */
-        setXkcdHtmlCode: function setXkcdHtmlCode(embed) {
+        setXkcdEmbedCode: function setXkcdEmbedCode(embed) {
             this.setPrefs('xkcdEmbedCode', embed);
         }
 
