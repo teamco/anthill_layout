@@ -58,7 +58,7 @@
 }
 
 .modal-dialog div.html {
-    max-height: 500px;
+    max-height: 480px;
     max-width: 700px;
     overflow-x: auto;
     overflow-y: auto;
