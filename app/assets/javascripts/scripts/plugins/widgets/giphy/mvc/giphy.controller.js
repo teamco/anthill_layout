@@ -1,0 +1,107 @@
+/**
+ * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define([
+    'plugins/plugin',
+    'plugins/widgets/widget.content.controller'
+], function defineGiphyController(PluginBase, WidgetContentController) {
+
+    /**
+     * Define giphy controller
+     * @class GiphyController
+     * @extends PluginController
+     * @extends WidgetContentController
+     * @constructor
+     */
+    var GiphyController = function GiphyController() {
+    };
+
+    return GiphyController.extend('GiphyController', {
+
+        /**
+         * Set embedded content
+         * @member GiphyController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
+
+            /**
+             * Get url
+             * @type {string|*}
+             */
+            var url = this.model.getPrefs('giphyEmbedCode'),
+                embed = this.controller.getEmbedCode(url);
+
+            if (embed) {
+                this.view.elements.$giphy.renderEmbeddedContent(embed);
+            }
+        },
+
+        /**
+         * Validate giphy
+         * @member GiphyController
+         * @param {string} embed
+         * @return {string|boolean}
+         */
+        getEmbedCode: function getEmbedCode(embed) {
+
+            if (!embed) {
+                this.scope.logger.debug('Initial state');
+                return false;
+            }
+
+            // Convert to string
+            embed += '';
+
+            if (embed.match(/^<iframe/)) {
+
+                return {
+                    type: 'iframe',
+                    src: $(embed).attr('src')
+                };
+            }
+
+            if (embed.match(/^<div/)) {
+
+                var $embed = $(embed),
+                    id = $embed[0].id.replace(/_giphy_/, ''),
+                    width = $embed[1].outerHTML.match(/w\:(| )(\d+)/),
+                    height = $embed[1].outerHTML.match(/h\:(| )(\d+)/);
+
+                return {
+                    type: 'js',
+                    src: $($embed[0]).attr('style', ''),
+                    id: id,
+                    width: width ? width[2] : 0,
+                    height: height ? height[2] : 0
+                };
+            }
+
+            this.scope.logger.warn('Invalid Giphy embed code');
+        },
+
+        /**
+         * Add Giphy rule
+         * @member GiphyController
+         * @param e
+         */
+        addGiphyRule: function addGiphyRule(e) {
+
+            /**
+             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target),
+                scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.publishRule,
+                [$button.attr('value'), scope.constructor.name]
+            );
+        }
+
+    }, PluginBase.prototype, WidgetContentController.prototype);
+});
