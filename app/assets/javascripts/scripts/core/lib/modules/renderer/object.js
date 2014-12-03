@@ -51,6 +51,35 @@ define([], function defineObjectRenderer() {
                 return $params;
             }
 
+            /**
+             * Export objects attributes
+             * @param attrs
+             * @returns {string}
+             * @private
+             */
+            function _exportAttributes(attrs) {
+
+                var index,
+                    $attrs = [
+                        '<object width="', data.width,
+                        '" height="', data.height, '"'
+                    ];
+
+                for (index in attrs) {
+
+                    if (attrs.hasOwnProperty(index)) {
+
+                        $attrs.push(
+                            index + '="' + attrs[index] + '"'
+                        );
+                    }
+                }
+
+                $attrs.push('>');
+
+                return $attrs.join('');
+            }
+
             // Get $object
             var $object = $(object),
                 data = {
@@ -61,16 +90,33 @@ define([], function defineObjectRenderer() {
 
             var attrs = $object.find('param'),
                 i = 0, l = attrs.length,
-                params = {};
+                params = {},
+                attributes = {};
 
             for (; i < l; i++) {
                 params[attrs[i].name] = attrs[i].value;
             }
 
+            attrs = object.attributes;
+            i = 0;
+            l = attrs.length;
+
+            for (; i < l; i++) {
+
+                // Define accessor
+                var item = attrs[i],
+                    name = item.name,
+                    accessor = name.toLowerCase();
+
+                if (accessor !== 'width' && accessor !== 'height') {
+                    attributes[name] = item.value;
+                }
+            }
+
             $.extend(params, opts);
 
             return $([
-                '<object width="', data.width, '" height="', data.height, '">',
+                _exportAttributes(attributes),
                 _exportParams(params),
                 data.embed.prop('outerHTML'),
                 '</object>'
