@@ -12,6 +12,7 @@ define([
     'modules/renderer/event.link',
     'modules/renderer/iframe',
     'modules/renderer/embed',
+    'modules/renderer/object',
     'modules/renderer/label',
     'modules/renderer/slider',
     'modules/renderer/text.area',
@@ -20,7 +21,7 @@ define([
     'modules/renderer/upload.on.drop',
     'modules/renderer/text.download',
     'modules/renderer/validation'
-], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, Label, Slider, TextArea, TextField, ToolTip, UploadOnDrop, TextDownload, Validation) {
+], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Label, Slider, TextArea, TextField, ToolTip, UploadOnDrop, TextDownload, Validation) {
 
     /**
      * Define renderer
@@ -32,6 +33,7 @@ define([
      * @extends {EventLinkRenderer} EventLink
      * @extends {IframeRenderer} Iframe
      * @extends {EmbedRenderer} Embed
+     * @extends {ObjectRenderer} ObjectEmbed
      * @extends {LabelRenderer} Label
      * @extends {SliderRenderer} Slider
      * @extends {TextAreaRenderer} TextArea
@@ -56,6 +58,7 @@ define([
         EventLink.prototype,
         Iframe.prototype,
         Embed.prototype,
+        ObjectEmbed.prototype,
         Label.prototype,
         Slider.prototype,
         TextArea.prototype,
