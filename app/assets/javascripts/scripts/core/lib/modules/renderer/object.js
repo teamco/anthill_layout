@@ -20,7 +20,7 @@ define([], function defineObjectRenderer() {
          * Render Object
          * @member ObjectRenderer
          * @param {string} object
-         * @param {object} opts
+         * @param {object} [opts]
          * @returns {*|jQuery}
          */
         renderObject: function renderObject(object, opts) {
