@@ -41,7 +41,8 @@ define([], function defineEmbedRenderer() {
                     id: $embed.attr('id'),
                     src: $embed.attr('src'),
                     type: $embed.attr('type'),
-                    flashvars: $embed.attr('flashvars')
+                    flashvars: $embed.attr('flashvars'),
+                    pluginspage: $embed.attr('pluginspage')
                 };
 
             $.extend(params, opts);

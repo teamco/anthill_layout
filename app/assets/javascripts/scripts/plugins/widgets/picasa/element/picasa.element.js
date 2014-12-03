@@ -38,8 +38,22 @@ define([
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {
+
             this.empty();
-            this.$.append(embed);
+
+            if (!embed) {
+                return false;
+            }
+
+            if (embed.match(/^<table/)) {
+                this.$.append(embed);
+            }
+
+            if (embed.match(/^<embed/)) {
+                this.$.append(
+                    this.renderEmbed(embed)
+                );
+            }
         }
 
     }, BaseElement.prototype);
