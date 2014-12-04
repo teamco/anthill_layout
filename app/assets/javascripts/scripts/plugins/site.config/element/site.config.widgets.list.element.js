@@ -204,12 +204,19 @@ define([
                              * @private
                              */
                             function _toBase64() {
-                                scope.base.lib.image.toDataURL(
-                                    value,
-                                    function (err, base64Img) {
-                                        _resize(base64Img);
-                                    }
-                                );
+                                if (scope.base.isUrl(value)) {
+                                    scope.base.lib.image.toDataURL(
+                                        value,
+                                        function (err, base64Img) {
+                                            //_resize(base64Img);
+                                            $input.val(
+                                                base64Img ?
+                                                    base64Img :
+                                                    value
+                                            )
+                                        }
+                                    );
+                                }
                             }
 
                             /**
@@ -238,9 +245,11 @@ define([
                             var $input = $(this),
                                 value = this.value;
 
-                            scope.base.isUrl(value) ?
-                                _toBase64() :
-                                _resize(value);
+                            //scope.base.isUrl(value) ?
+                            //    _toBase64() :
+                            //    _resize(value);
+
+                            _toBase64();
 
                             $('img', $input.parent()).attr({
                                 src: value

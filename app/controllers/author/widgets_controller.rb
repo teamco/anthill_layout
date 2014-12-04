@@ -1,4 +1,8 @@
+require 'rmagick'
+
 class Author::WidgetsController < Author::AuthorController
+
+  include Magick
 
   require "#{Rails.root}/lib/tasks/widget_generator.rb"
   require "#{Rails.root}/lib/base_lib.rb"
@@ -135,7 +139,7 @@ class Author::WidgetsController < Author::AuthorController
       widget.set_clone(@clone_from)
       widget.do_it
       logger.info '>>>>> Generate Css'
-      widget.generate_css(uri? ? to_base64 : @author_widget.thumbnail)
+      widget.generate_css(uri? ? to_base64 : to_image)
       generate = true
     rescue
       logger.info '>>>>> Rescue: Remove widget'
@@ -163,20 +167,22 @@ class Author::WidgetsController < Author::AuthorController
   end
 
   def to_base64
-    logger.info '>>>>> Start base64'
-    img = (open(@author_widget.thumbnail) { |io| io.read }).gsub(/\0/, '')
-    logger.info ">>>>> Img: #{img[0, 10].inspect}"
-    allowed = BaseLib.img.allowed?(img)
-    logger.info ">>>>> Allowed: #{allowed.nil? ? false : allowed}"
-    if allowed
-      data_uri = BaseLib.img.data_uri(allowed, img)
-      logger.info ">>>>> Data-Uri: #{data_uri}"
+    logger.info '>>>>> Start to->base64'
+    img = BaseLib.img.allowed?(@author_widget.thumbnail)
+    logger.info ">>>>> Allowed: #{img.inspect}"
+    if img
+      data_uri = BaseLib.img.data_uri(img)
       @author_widget.thumbnail = data_uri
       data_uri
     else
       logger.info ">>>>> Rescue Data-Uri: #{@author_widget.thumbnail}"
       @author_widget.thumbnail
     end
+  end
+
+  def to_image
+    logger.info 'Start to->image'
+    BaseLib.img.to_img(@author_widget.thumbnail)
   end
 
   def set_author_widget_category

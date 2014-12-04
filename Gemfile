@@ -25,6 +25,7 @@ case RUBY_PLATFORM
 
     # Use jquery as the JavaScript library
     gem 'jquery-rails', '>= 4.0.0'
+    gem 'rmagick'
 
   when /win32/
 

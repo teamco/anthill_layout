@@ -10,9 +10,9 @@ require([
     ], function loadCustomConfig() {
 
         require([
-            'config/debugger',
             'config/application'
-        ], function initDemo(Debugger, Application) {
+            //,'config/debugger'
+        ], function initDemo(Application, Debugger) {
 
             /**
              * Define shared application

@@ -134,7 +134,7 @@ define([
              * Define provider data
              * @type {Array}
              */
-            var data = (provider || []).data;
+            var data = (provider || {}).data || [];
 
             for (var i = 0, l = data.length; i < l; i++) {
 
