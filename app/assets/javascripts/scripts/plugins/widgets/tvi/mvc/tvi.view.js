@@ -1,0 +1,115 @@
+/**
+ * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    'modules/View',
+    'element/header.element',
+    'element/footer.element',
+    'plugins/widgets/tvi/element/tvi.element',
+    'plugins/widgets/tvi/element/tvi.preferences.element',
+    'plugins/widgets/tvi/element/tvi.rules.element'
+], function defineTviView(BaseView, Header, Footer, TviElement, TviPreferencesElement, TviRulesElement) {
+
+    /**
+     * Define view
+     * @class TviView
+     * @extends BaseView
+     * @constructor
+     */
+    var TviView = function TviView() {
+    };
+
+    return TviView.extend('TviView', {
+
+        /**
+         * Render tvi element
+         * @member TviView
+         */
+        renderTvi: function renderTvi() {
+
+            this.header(Header, this.elements.$container);
+
+            /**
+             * Define $tvi
+             * @type {TviElement}
+             */
+            this.elements.$tvi = new TviElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+        /**
+         * Render Prefs
+         * @member TviView
+         * @returns {TviPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+            /**
+             * Define Tvi Preferences Element
+             * @type {TviPreferencesElement}
+             */
+            this.elements.$preferences = new TviPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+        /**
+         * Render Rules
+         * @member TviView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {TviRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+            /**
+             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+            /**
+             * Define Tvi Rules Element
+             * @type {TviRulesElement}
+             */
+            this.elements.$rules = new TviRulesElement(this, {
+                data: data,
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+        /**
+         * Render tvi
+         * @member TviView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderTvi.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});

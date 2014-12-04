@@ -1,0 +1,115 @@
+/**
+ * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    'modules/View',
+    'element/header.element',
+    'element/footer.element',
+    'plugins/widgets/ubr/element/ubr.element',
+    'plugins/widgets/ubr/element/ubr.preferences.element',
+    'plugins/widgets/ubr/element/ubr.rules.element'
+], function defineUbrView(BaseView, Header, Footer, UbrElement, UbrPreferencesElement, UbrRulesElement) {
+
+    /**
+     * Define view
+     * @class UbrView
+     * @extends BaseView
+     * @constructor
+     */
+    var UbrView = function UbrView() {
+    };
+
+    return UbrView.extend('UbrView', {
+
+        /**
+         * Render ubr element
+         * @member UbrView
+         */
+        renderUbr: function renderUbr() {
+
+            this.header(Header, this.elements.$container);
+
+            /**
+             * Define $ubr
+             * @type {UbrElement}
+             */
+            this.elements.$ubr = new UbrElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+        /**
+         * Render Prefs
+         * @member UbrView
+         * @returns {UbrPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+            /**
+             * Define Ubr Preferences Element
+             * @type {UbrPreferencesElement}
+             */
+            this.elements.$preferences = new UbrPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+        /**
+         * Render Rules
+         * @member UbrView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {UbrRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+            /**
+             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+            /**
+             * Define Ubr Rules Element
+             * @type {UbrRulesElement}
+             */
+            this.elements.$rules = new UbrRulesElement(this, {
+                data: data,
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+        /**
+         * Render ubr
+         * @member UbrView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderUbr.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});
