@@ -15,8 +15,8 @@ class BaseImage
     Net::HTTP.start(uri.host, uri.port) do |http|
       response = http.request_head(URI.escape(uri.path))
       file_size = response['content-length'].to_i
-      puts ">>>>> File size: #{file_size}, #{file_size > 64000}"
-      raise '--- File too big' if file_size > 64000
+      puts ">>>>> File size: #{file_size}, #{file_size > 164000}"
+      raise '--- File too big' if file_size > 164000
     end
 
     tmp_file = open(url) { |io| io.read }

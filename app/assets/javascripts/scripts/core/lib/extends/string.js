@@ -108,4 +108,15 @@
         return decodeURI(decodeURIComponent(window.atob(this)));
     };
 
+    /**
+     * String to DOM element
+     * @member String
+     * @returns {*}
+     */
+    String.prototype.toHtml = function toHtml() {
+        var tempDiv = document.createElement('div');
+        tempDiv.innerHTML = this;
+        return tempDiv.firstChild;
+    };
+
 }());

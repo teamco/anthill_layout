@@ -85,9 +85,9 @@ define([
          */
         renderUUID: function renderUUID(id) {
             return id || [
-                this.base.lib.generator.UUID(),
-                this.constructor.name.toDash()
-            ].join('-');
+                    this.base.lib.generator.UUID(),
+                    this.constructor.name.toDash()
+                ].join('-');
         },
 
         /**
@@ -151,7 +151,7 @@ define([
 
             return this.base.lib.hash.hashLength(
                     this.elements.items || {}
-            ) > 0;
+                ) > 0;
         },
 
         /**
@@ -307,7 +307,7 @@ define([
          * @returns {ModalElement}
          */
         get$modal: function get$modal() {
-           return this.elements.$modal;
+            return this.elements.$modal;
         },
 
         /**
@@ -353,6 +353,22 @@ define([
                 opacity: opts.opacity,
                 events: opts.events
             });
+        },
+
+        /**
+         * Locate DOM element in array
+         * @member BaseView
+         * @param {Array} source
+         * @param {string} type
+         * @returns {*}
+         */
+        locateElement: function locateElement(source, type) {
+            for (var i = 0, l = source.length; i < l; i++) {
+                if ((source[i].tagName + '').toLowerCase() === type) {
+                    return source[i];
+                }
+            }
+            return {};
         }
 
     }, AntHill.prototype);

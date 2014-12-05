@@ -195,7 +195,9 @@ p.textarea {
 
 p.textarea {
     background-color: #f1f1f1;;
+    color: #777;
     padding: 2px 5px;
+    overflow: hidden;
 }
 
 textarea:focus {

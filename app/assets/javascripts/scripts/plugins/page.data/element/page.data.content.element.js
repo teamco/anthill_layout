@@ -60,7 +60,7 @@ define([
                     data.model.getConfig('preferences').resource
                 )
             );
-            
+
             this.renderTooltip({
                 title: title,
                 description: description,
