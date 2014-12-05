@@ -1,0 +1,12 @@
+.widget .content .keez-movies {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.widget .content .keez-movies iframe {
+    height: 100%;
+    width: 100%;
+    border: none;
+    overflow: hidden;
+}
