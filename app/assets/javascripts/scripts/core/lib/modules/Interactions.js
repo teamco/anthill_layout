@@ -42,12 +42,16 @@ define([
              * Define scope
              * @type {Widget}
              */
-            var scope = this.scope;
+            var scope = this.scope,
+                eventName = scope.eventmanager.eventList.debugInteractions;
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.debugInteractions,
-                [this.scope, event, ui]
-            );
+            if (eventName) {
+
+                scope.observer.publish(
+                    eventName,
+                    [this.scope, event, ui]
+                );
+            }
         },
 
         /**
