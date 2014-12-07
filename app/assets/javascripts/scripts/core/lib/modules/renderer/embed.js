@@ -32,6 +32,7 @@ define([], function defineEmbedRenderer() {
                 params = {
                     width: '100%',
                     height: '100%',
+                    quality: $embed.attr('quality'),
                     wmode: $embed.attr('wmode'),
                     movie: $embed.attr('movie'),
                     seamlesstabbing: $embed.attr('seamlesstabbing'),
