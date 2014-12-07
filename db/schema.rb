@@ -13,6 +13,17 @@
 
 ActiveRecord::Schema.define(version: 20141028144128) do
 
+  create_table "author_galleries", force: true do |t|
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
+    t.text     "thumbnail"
+    t.string   "dimensions",  limit: 255
+    t.string   "type",        limit: 255
+    t.string   "resource",    limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "author_histories", force: true do |t|
     t.integer  "site_id"
     t.text     "data"

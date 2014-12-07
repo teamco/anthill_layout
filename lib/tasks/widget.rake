@@ -11,12 +11,14 @@ namespace :widget do
   desc 'Define initial content'
   task init: :environment do
 
-    require "#{Rails.root}/lib/tasks/init_content.rb"
+    # require "#{Rails.root}/lib/tasks/init_content.rb"
+    #
+    # content = WidgetLib::InitContent.new
+    # content.init
+    # content.load_initial_data
+    # content.add_data(true)
 
-    content = WidgetLib::InitContent.new
-    content.init
-    content.load_initial_data
-    content.add_data(true)
+    puts 'Deprecated: Use "widget:load" instead'
 
   end
 
