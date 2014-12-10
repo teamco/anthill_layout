@@ -5,160 +5,188 @@
  * Time: 9:17 PM
  * To change this template use File | Settings | File Templates.
  */
-define([
-    'config/anthill',
-    'modules/Controller'
-], function defineApplicationController(AntHill, BaseController) {
-
+define(
+    [
+        'config/anthill',
+        'modules/Controller',
+        'config/routes'
+    ],
     /**
-     * Define application controller
-     * @class AppController
-     * @extends AntHill
-     * @extends BaseController
-     * @constructor
+     * Define Application controller
+     * @param {AntHill} AntHill
+     * @param {BaseController} BaseController
+     * @param {Routes} Routes
+     * @returns {AppController}
      */
-    var AppController = function AppController() {
-    };
-
-    return AppController.extend('AppController', {
+    function defineApplicationController(AntHill, BaseController, Routes) {
 
         /**
-         * Define setting
-         * @member AppController
+         * Define application controller
+         * @class AppController
+         * @extends AntHill
+         * @extends BaseController
+         * @extends Routes
+         * @constructor
          */
-        defineSetting: function defineSetting() {
-            this.model.initGlobalSetting();
-            this.controller.ajaxSetup();
-        },
+        var AppController = function AppController() {
+        };
 
-        /**
-         * Define ajax setup
-         * @member AppController
-         */
-        ajaxSetup: function ajaxSetup() {
+        return AppController.extend(
+            'AppController', {
 
-            $.ajaxSetup({
-                error: this.handleError.bind(this)
-            });
-        },
+                /**
+                 * Define setting
+                 * @member AppController
+                 */
+                defineSetting: function defineSetting() {
+                    this.model.initGlobalSetting();
+                    this.controller.ajaxSetup();
+                },
 
-        /**
-         * Define error handler
-         * @member AppController
-         */
-        handleError: function handleError(xhr, status, description) {
-            this.scope.logger.warn('Ajax error', arguments);
-        },
+                /**
+                 * Define ajax setup
+                 * @member AppController
+                 */
+                ajaxSetup: function ajaxSetup() {
 
-        /**
-         * Load updated uuid
-         * @member AppController
-         * @param {string} uuid
-         */
-        loadConfig: function loadConfig(uuid) {
-            this.model.setConfig('uuid', uuid);
-            this.scope.view.get$item().updateUUID();
+                    $.ajaxSetup({
+                        beforeSend: function beforeSend(xhr, settings) {
+                            if (typeof(settings.dataType) === 'undefined') {
+                                xhr.setRequestHeader(
+                                    'accept',
+                                    '*/*;q=0.5, ' + settings.accepts.script
+                                );
+                            }
+                            xhr.setRequestHeader(
+                                'X-CSRF-Token',
+                                this.getXCsrfToken()
+                            );
+                        },
+                        error: this.handleError.bind(this)
+                    });
+                },
 
-            this.scope.logger.debug('Update uuid after loading', uuid);
-        },
+                /**
+                 * Define error handler
+                 * @member AppController
+                 */
+                handleError: function handleError(xhr, status, description) {
+                    this.scope.logger.warn('Ajax error', arguments);
+                },
 
-        /**
-         * Init window resize
-         * @member AppController
-         */
-        initResizeWindow: function initResizeWindow() {
+                /**
+                 * Load updated uuid
+                 * @member AppController
+                 * @param {string} uuid
+                 */
+                loadConfig: function loadConfig(uuid) {
+                    this.model.setConfig('uuid', uuid);
+                    this.scope.view.get$item().updateUUID();
 
-            this.logger.debug('Init window resize');
+                    this.scope.logger.debug('Update uuid after loading', uuid);
+                },
 
-            /**
-             * Define resize callback
-             * @type {function(this:Controller)}
-             */
-            var callback = this.controller.resizeWindowPublisher.
-                bind(this);
+                /**
+                 * Init window resize
+                 * @member AppController
+                 */
+                initResizeWindow: function initResizeWindow() {
 
-            $(window).on('resizestop', callback);
-        },
+                    this.logger.debug('Init window resize');
 
-        /**
-         * Resize window publisher
-         * @member AppController
-         * @param e
-         */
-        resizeWindowPublisher: function resizeWindowPublisher(e) {
+                    /**
+                     * Define resize callback
+                     * @type {function(this:Controller)}
+                     */
+                    var callback = this.controller.resizeWindowPublisher.
+                        bind(this);
 
-            if (e.target === window && this.model.getConfig('isResized')) {
-                this.observer.publish(
-                    this.eventmanager.eventList.resizeWindow,
-                    e
-                );
-            }
-        },
+                    $(window).on('resizestop', callback);
+                },
 
-        /**
-         * Resize window callback
-         * @member AppController
-         * @param e
-         */
-        resizeWindow: function resizeWindow(e) {
-            this.logger.debug('Start resize window', e);
+                /**
+                 * Resize window publisher
+                 * @member AppController
+                 * @param e
+                 */
+                resizeWindowPublisher: function resizeWindowPublisher(e) {
 
-            this.observer.publish(
-                this.eventmanager.eventList.resizeWindowHooks
-            );
-        },
+                    if (e.target === window && this.model.getConfig('isResized')) {
+                        this.observer.publish(
+                            this.eventmanager.eventList.resizeWindow,
+                            e
+                        );
+                    }
+                },
 
-        /**
-         * Resize window hooks
-         * @member AppController
-         */
-        resizeWindowHooks: function resizeWindowHooks() {
-            this.logger.debug('Start resize window hooks', arguments);
-        },
+                /**
+                 * Resize window callback
+                 * @member AppController
+                 * @param e
+                 */
+                resizeWindow: function resizeWindow(e) {
+                    this.logger.debug('Start resize window', e);
 
-        /**
-         * Create authoring panel
-         * @member AppController
-         */
-        createAuthorPanel: function createAuthorPanel() {
-            this.logger.debug('Create authoring panel', arguments);
-        },
+                    this.observer.publish(
+                        this.eventmanager.eventList.resizeWindowHooks
+                    );
+                },
 
-        /**
-         * Create tool panel
-         * @member AppController
-         */
-        createToolPanel: function createToolPanel() {
-            this.logger.debug('Create tool panel', arguments);
-        },
+                /**
+                 * Resize window hooks
+                 * @member AppController
+                 */
+                resizeWindowHooks: function resizeWindowHooks() {
+                    this.logger.debug('Start resize window hooks', arguments);
+                },
 
-        /**
-         * Approve clear data
-         * @member AppController
-         */
-        approveClearData: function approveClearData() {
+                /**
+                 * Create authoring panel
+                 * @member AppController
+                 */
+                createAuthorPanel: function createAuthorPanel() {
+                    this.logger.debug('Create authoring panel', arguments);
+                },
 
-            /**
-             * Define local scope
-             */
-            var scope = this.scope;
+                /**
+                 * Create tool panel
+                 * @member AppController
+                 */
+                createToolPanel: function createToolPanel() {
+                    this.logger.debug('Create tool panel', arguments);
+                },
 
-            /**
-             * Define setting
-             * @type {Setting}
-             */
-            var setting = scope.model.setting,
-                $modal = scope.view.elements.$modal;
+                /**
+                 * Approve clear data
+                 * @member AppController
+                 */
+                approveClearData: function approveClearData() {
 
-            setting.clear();
+                    /**
+                     * Define local scope
+                     */
+                    var scope = this.scope;
 
-            scope.logger.warn('localStorage', setting.getStorage());
+                    /**
+                     * Define setting
+                     * @type {Setting}
+                     */
+                    var setting = scope.model.setting,
+                        $modal = scope.view.elements.$modal;
 
-            if (this.base.isDefined($modal)) {
-                $modal.selfDestroy();
-            }
-        }
+                    setting.clear();
 
-    }, AntHill.prototype, BaseController.prototype);
+                    scope.logger.warn('localStorage', setting.getStorage());
 
-});
+                    if (this.base.isDefined($modal)) {
+                        $modal.selfDestroy();
+                    }
+                }
+
+            },
+            AntHill.prototype,
+            BaseController.prototype,
+            Routes.prototype
+        );
+    }
+);

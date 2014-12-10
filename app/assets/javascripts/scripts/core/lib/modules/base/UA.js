@@ -16,48 +16,37 @@ define([], function defineBaseString() {
     var BaseUserAgent = function BaseUserAgent() {
 
         /**
-         * Define user agent
-         * @type {string}
-         */
-        var ua = navigator.userAgent.toLowerCase();
-
-        /**
-         * Define browsers
+         * Define browser info
          * @member BaseUserAgent
-         * @type {{
-         *      mozilla: boolean,
-         *      webkit: boolean,
-         *      opera: boolean,
-         *      msie: boolean
-         * }}
          */
-        this.browser = {
-            mozilla: /mozilla/.test(ua) && !/webkit/.test(ua),
-            webkit: /webkit/.test(ua),
-            opera: /opera/.test(ua),
-            msie: /msie/.test(ua)
-        };
+        this.browser = (function () {
+            var ua = navigator.userAgent, tem,
+                M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+            if (/trident/i.test(M[1])) {
+                tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+                return ['IE', (tem[1] || '')];
+            }
+            if (M[1] === 'Chrome') {
+                tem = ua.match(/\bOPR\/(\d+)/)
+                if (tem != null) return ['Opera', tem[1]];
+            }
+            M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+            if ((tem = ua.match(/version\/(\d+)/i)) != null) M.splice(1, 1, tem[1]);
+            return M;
+        })();
     };
 
     BaseUserAgent.extend('BaseUserAgent', {
 
         /**
-         * Get version
-         * @member BaseUserAgent
+         * Get browser version
+         * @param {RegExp} regexp
          * @returns {*}
+         * @private
          */
-        version: function version() {
-            return (navigator.userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [])[1];
-        },
-
-        /**
-         * Get MSIE
-         * @member BaseUserAgent
-         * @returns {*}
-         */
-        msie: function msie() {
-            if (this.browser.msie) {
-                return this.version();
+        _getBrowserInfo: function _getBrowserInfo(regexp) {
+            if (this.browser[0].match(regexp)) {
+                return this.browser[1];
             }
         },
 
@@ -67,9 +56,7 @@ define([], function defineBaseString() {
          * @returns {*}
          */
         opera: function opera() {
-            if (this.browser.opera) {
-                return this.version();
-            }
+            this._getBrowserInfo(/opera/i);
         },
 
         /**
@@ -78,11 +65,7 @@ define([], function defineBaseString() {
          * @returns {*}
          */
         chrome: function chrome() {
-            if (this.browser.webkit) {
-                if (navigator.vendor.match(/Google/)) {
-                    return this.version();
-                }
-            }
+            this._getBrowserInfo(/chrome/i);
         },
 
         /**
@@ -91,11 +74,52 @@ define([], function defineBaseString() {
          * @returns {*}
          */
         safari: function safari() {
-            if (this.browser.webkit) {
-                if (navigator.vendor.match(/Apple/)) {
-                    return this.version();
-                }
+            this._getBrowserInfo(/safari/i);
+        },
+
+        /**
+         * Get Firefox
+         * @member BaseUserAgent
+         * @returns {*}
+         */
+        firefox: function firefox() {
+            this._getBrowserInfo(/firefox/i);
+        },
+
+        /**
+         * Get MS Internet explorer
+         * @member BaseUserAgent
+         * @returns {*}
+         */
+        msie: function msie() {
+            this._getBrowserInfo(/ie/i);
+        },
+
+        /**
+         * Get browser zoom
+         * @member BaseUserAgent
+         * @returns {number}
+         */
+        getBrowserZoom: function getBrowserZoom() {
+
+            var zoom = 1;
+
+            // Get Chrome/Safari zoome
+            if (this.chrome() || this.safari()) {
+                zoom = 1 / (screen.width / $(window).width());
             }
+
+            // Get Firefox zoom
+            if (this.firefox() && !isNaN(window.devicePixelRatio)) {
+                zoom = 1 / (window.devicePixelRatio);
+            }
+
+            // Get IE zoom
+            if (this.msie() && !isNaN(screen.logicalXDPI) && !isNaN(screen.systemXDPI)) {
+                zoom = 1 / (Math.round((screen.deviceXDPI / screen.logicalXDPI) * 100) / 100);
+            }
+
+            return zoom;
         }
     });
 

@@ -53,7 +53,7 @@ define([], function defineRoutes() {
              * @type {{authenticity_token: (*|jQuery)}}
              */
             var data = {
-                authenticity_token: $('meta[name="csrf-token"]').attr('content')
+                authenticity_token: this.getXCsrfToken()
             }, index;
 
             for (index in collector) {
@@ -67,6 +67,14 @@ define([], function defineRoutes() {
             }
 
             return data;
+        },
+
+        /**
+         * Get X-Csrf-Token
+         * @returns {string}
+         */
+        getXCsrfToken: function getXCsrfToken() {
+            return $('meta[name="csrf-token"]').attr('content');
         }
     });
 });
