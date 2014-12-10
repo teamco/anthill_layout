@@ -61,7 +61,7 @@ define(
                                 'X-CSRF-Token',
                                 this.getXCsrfToken()
                             );
-                        },
+                        }.bind(this),
                         error: this.handleError.bind(this)
                     });
                 },
