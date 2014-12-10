@@ -65,7 +65,7 @@ define([
         /**
          * Destroy widget
          * @member PageAPI
-         * @param widget
+         * @param {Widget} widget
          * @param {Boolean} [silent]
          */
         destroyWidget: function destroyWidget(widget, silent) {
@@ -79,7 +79,7 @@ define([
         /**
          * Destroy widgets
          * @member PageAPI
-         * @param {*} [items]
+         * @param {[Widget]} [items]
          * @param {Boolean} [silent]
          */
         destroyWidgets: function destroyWidgets(items, silent) {

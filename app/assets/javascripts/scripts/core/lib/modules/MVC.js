@@ -480,10 +480,12 @@ define([
 
                                     eventManager.abstract[key + 'Item'] = index;
                                     callback = scope.controller[key + 'Item'];
+
                                 } else if ($.inArray(method, this.RESERVED[key].plural) > -1) {
 
                                     eventManager.abstract[key + 'Items'] = index;
                                     callback = scope.controller[key + 'Items'];
+
                                 } else {
 
                                     this.scope.logger.warn(

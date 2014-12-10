@@ -80,7 +80,7 @@ define([
          * @param {Boolean} [silent]
          * @param {*} [where]
          * @returns {*}
-         * @private
+         * @protected
          */
         _createItem: function _createItem(item, args, render, silent, where) {
 

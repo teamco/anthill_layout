@@ -147,6 +147,16 @@ define([
         },
 
         /**
+         * Destroy item
+         * @member BaseCrud
+         * @param item
+         * @param {boolean} silent
+         */
+        destroyItem: function destroyItem(item, silent) {
+            this.api.destroyItems([item], silent);
+        },
+
+        /**
          * Destroy Items
          * @member BaseCrud
          * @param {Object} [items]

@@ -250,7 +250,7 @@ define([
                  * @type {WidgetRulesContentElement}
                  */
                 var $item = this.view.elements.items[
-                    widget.model.getUUID() + '-widget-rules'];
+                widget.model.getUUID() + '-widget-rules'];
 
                 $item.$.trigger('click.rules');
             }
@@ -320,6 +320,42 @@ define([
             content.observer.publish(
                 content.eventmanager.eventList.executeOnWidgetEvent,
                 'restoreWidgetSticker'
+            );
+        },
+
+        /**
+         * Remove widget from page
+         * @member PageDataController
+         * @param e
+         */
+        removeWidget: function removeWidget(e) {
+
+            /**
+             * Get scope
+             * @type {PageData}
+             */
+            var scope = this.scope;
+
+            /**
+             * Get active content
+             * @type {WidgetContent}
+             */
+            var content = scope.activeContent;
+
+            if (!content) {
+
+                scope.logger.warn('Undefined active content');
+                return false;
+            }
+
+            /**
+             * Get page
+             * @type {Page}
+             */
+            var page = this.getPage();
+
+            page.api.destroyWidget(
+                content.controller.getContainment()
             );
         }
 

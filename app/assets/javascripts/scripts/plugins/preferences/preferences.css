@@ -222,6 +222,7 @@
     clear: both;
 }
 
+.modal-dialog ul.buttons li.remove,
 .modal-dialog ul.buttons li.rules {
     margin-left: 30px;
 }

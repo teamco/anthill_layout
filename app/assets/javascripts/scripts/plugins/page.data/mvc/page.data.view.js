@@ -110,6 +110,7 @@ define([
          * Show preferences
          * @member PageDataView
          * @param config
+         * @param {boolean} load
          */
         showPreferences: function showPreferences(config, load) {
 
@@ -152,6 +153,12 @@ define([
                     ].join(' '),
                     title: 'Widget preferences',
                     buttons: {
+                        remove: {
+                            text: 'Remove',
+                            events: {
+                                click: 'removeWidget'
+                            }
+                        },
                         rules: {
                             text: 'Rules',
                             events: {
