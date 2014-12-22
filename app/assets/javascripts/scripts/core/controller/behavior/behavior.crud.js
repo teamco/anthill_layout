@@ -208,6 +208,8 @@ define([
             if (this.base.isFunction(this.updateDebugger)) {
                 this.updateDebugger();
             }
+
+            this.store();
         }
 
     }, AntHill.prototype);
