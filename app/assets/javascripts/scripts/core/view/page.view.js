@@ -105,7 +105,7 @@ define([
                 type: 'warning',
                 title: 'Remove widgets',
                 html: [
-                    'Are you sure want to destroy widgets:',
+                    'Are you sure want to destroy:',
                     this.elements.$page.getItemsList(widgets)
                 ].join(''),
                 cover: true,
