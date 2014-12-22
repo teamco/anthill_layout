@@ -101,7 +101,6 @@ define([
             scope.observer.publish(
                 scope.eventmanager.eventList.afterDestroyItems
             );
-
         },
 
         /**

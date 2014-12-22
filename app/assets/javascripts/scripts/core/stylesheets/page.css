@@ -39,3 +39,11 @@
     overflow-x: hidden;
     overflow-y: auto;
 }
+
+.page .page-modal.modal-dialog div.html {
+    box-shadow: none;
+}
+
+.page .page-modal.modal-dialog div.html li {
+    list-style-type: decimal;
+}

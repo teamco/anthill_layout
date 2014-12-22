@@ -510,7 +510,7 @@ define([
                     $item = item.view.get$item();
 
                     stretch = containment &&
-                        item.model.getConfig('html/stretch');
+                    item.model.getConfig('html/stretch');
 
                     if (stretch) {
                         $item.$.css({
@@ -871,6 +871,61 @@ define([
          */
         hideLoader: function hideLoader() {
             this.$container.removeClass('loading');
+        },
+
+        /**
+         * Get item title
+         * @member BaseElement
+         * @return {string|boolean}
+         */
+        getItemTitle: function getItemTitle() {
+
+            /**
+             * Get item
+             * @type {App|Workspace|Page|Widget}
+             */
+            var item = this.view.scope;
+
+            if (typeof (item) === 'undefined') {
+                item.logger.warn('Undefined item');
+                return false;
+            }
+
+            if (typeof (item.model) === 'undefined') {
+                item.logger.warn('Undefined item\'s model', item);
+                return false;
+            }
+
+            /**
+             * Get prefs
+             * @type {*}
+             */
+            var preferences = item.model.getConfig('preferences') || {},
+                title = preferences.title + '';
+
+            return preferences.title && title.length > 0 ?
+                title : item.model.getUUID();
+        },
+
+        /**
+         * Render items list
+         * @member BaseElement
+         * @param {Array} items
+         * @returns {string}
+         */
+        getItemsList: function getItemsList(items) {
+
+            return [
+                '<ul class="remove">',
+                $.map(items, function map(item, i) {
+                    return [
+                        '<li rel="', item.model.getUUID(), '">',
+                        item.view.elements.$widget.getItemTitle(),
+                        '</li>'
+                    ].join('');
+                }).join(''),
+                '</ul>'
+            ].join('');
         }
 
     }, AntHill.prototype, Renderer.prototype);

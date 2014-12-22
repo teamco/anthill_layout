@@ -16,12 +16,14 @@ case RUBY_PLATFORM
 
     # Use debugger
     gem 'byebug', group: [:development, :test]
-    gem 'ruby-debug-ide', '>= 0.4.23.beta10', group: :development
-
-    # Use Capistrano for deployment
-    gem 'capistrano-rails', group: :development
-    gem 'debase', group: :development
-    gem 'rack-attack', group: :development
+    group :development do
+      gem 'web-console', '~> 2.0'
+      gem 'ruby-debug-ide', '>= 0.4.23.beta10'
+      # Use Capistrano for deployment
+      gem 'capistrano-rails'
+      gem 'debase'
+      gem 'rack-attack'
+    end
 
     # Use jquery as the JavaScript library
     gem 'jquery-rails', '>= 4.0.0'

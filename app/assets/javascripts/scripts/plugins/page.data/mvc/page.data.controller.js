@@ -344,7 +344,7 @@ define([
 
             if (!content) {
 
-                scope.logger.warn('Undefined active content');
+                scope.logger.warn('Undefined active content', e);
                 return false;
             }
 
@@ -353,6 +353,9 @@ define([
              * @type {Page}
              */
             var page = this.getPage();
+
+            // Destroy properties dialog
+            scope.view.elements.$modal.selfDestroy();
 
             page.api.destroyWidget(
                 content.controller.getContainment()

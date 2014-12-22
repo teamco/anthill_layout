@@ -106,11 +106,7 @@ define([
                 title: 'Remove widgets',
                 html: [
                     'Are you sure want to destroy widgets:',
-                    '<ul>',
-                    $.map(widgets, function map(i, uuid) {
-                        return '<li>' + uuid + '</li>';
-                    }).join(''),
-                    '</ul>'
+                    this.elements.$page.getItemsList(widgets)
                 ].join(''),
                 cover: true,
                 autoclose: true,
