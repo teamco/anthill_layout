@@ -105,11 +105,6 @@ define(
              */
             preparePreferences: function preparePreferences(config) {
 
-                this.observer.publish(
-                    this.eventmanager.eventList.setActiveContent,
-                    config.uuid
-                );
-
                 /**
                  * Get swipe
                  * @type {boolean}
@@ -117,6 +112,11 @@ define(
                 var swipe = this.model.getConfig('switch');
 
                 if (swipe) {
+
+                    this.observer.publish(
+                        this.eventmanager.eventList.setActiveContent,
+                        config.uuid
+                    );
 
                     /**
                      * Define Workspace
@@ -127,6 +127,19 @@ define(
                     workspace.observer.publish(
                         workspace.eventmanager.eventList.switchToPage,
                         [this.activeContent, false]
+                    );
+
+                } else {
+
+                    /**
+                     * Get current page
+                     * @type {Page}
+                     */
+                    var page = this.controller.getPage();
+
+                    this.observer.publish(
+                        this.eventmanager.eventList.setActiveContent,
+                        page.model.getUUID()
                     );
                 }
 

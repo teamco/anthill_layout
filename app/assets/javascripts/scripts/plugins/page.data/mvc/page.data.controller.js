@@ -57,26 +57,15 @@ define([
             var workspacesData = this.controller.getModuleByName('workspace-data');
 
             /**
-             * Get active page
+             * Get current page
              * @type {Page}
              */
-            var page = workspacesData.activeContent;
+            var page = this.controller.getPage();
 
-            if (!page) {
-
-                /**
-                 * Get current page
-                 * @type {Page}
-                 */
-                page = this.controller.getPage();
-
-                workspacesData.observer.publish(
-                    workspacesData.eventmanager.eventList.setActiveContent,
-                    page.model.getUUID()
-                );
-
-                this.logger.debug('Define workspaces data active content', page);
-            }
+            workspacesData.observer.publish(
+                workspacesData.eventmanager.eventList.setActiveContent,
+                page.model.getUUID()
+            );
 
             /**
              * Get widget
