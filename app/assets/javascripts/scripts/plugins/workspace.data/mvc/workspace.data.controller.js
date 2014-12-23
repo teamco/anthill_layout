@@ -17,7 +17,7 @@ define(
      * @param {PreferencesController} PreferencesController
      * @returns {WorkspaceDataController}
      */
-        function defineWorkspaceDataController(PluginBase, PreferencesController) {
+    function defineWorkspaceDataController(PluginBase, PreferencesController) {
 
         /**
          * Define pages controller
@@ -137,10 +137,14 @@ define(
                      */
                     var page = this.controller.getPage();
 
-                    this.observer.publish(
-                        this.eventmanager.eventList.setActiveContent,
-                        page.model.getUUID()
-                    );
+                    if (config.uuid !== page.model.getUUID()) {
+
+                        // Set active content if page is not current
+                        this.observer.publish(
+                            this.eventmanager.eventList.setActiveContent,
+                            page.model.getUUID()
+                        );
+                    }
                 }
 
                 this.view.showPreferences(config, !swipe);
@@ -393,7 +397,7 @@ define(
                         false
                     ]
                 );
-             }
+            }
 
         }, PluginBase.prototype, PreferencesController.prototype);
     }
