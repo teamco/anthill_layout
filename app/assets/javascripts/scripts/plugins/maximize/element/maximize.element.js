@@ -40,7 +40,7 @@ define([
         getFooter: function getFooter() {
             return $('<div />').text([
                 this.base.lib.hash.hashLength(
-                    this.view.scope.controller.getData()
+                    this.view.scope.controller.getModuleData()
                 ),
                 'items'
             ].join(' '));

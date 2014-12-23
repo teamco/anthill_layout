@@ -352,7 +352,11 @@ define([
              * Get page
              * @type {Page}
              */
-            var page = this.getPage();
+            var page = this.getPage(),
+                panel = this.getAuthorPanel();
+
+            // Close author panel
+            panel.controller.closePanels();
 
             // Destroy properties dialog
             scope.view.elements.$modal.selfDestroy();

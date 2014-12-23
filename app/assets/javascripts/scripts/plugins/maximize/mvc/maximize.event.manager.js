@@ -39,7 +39,7 @@ define([
          */
         this.eventList = {
             updateTranslations: 'update.translations',
-            loadContent: 'load.content',
+            loadModuleContent: 'load.module.content',
             defineInteraction: 'define.interaction',
             loadPreferences: 'load.preferences',
             storeItem: 'store.item',

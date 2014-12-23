@@ -36,7 +36,7 @@ define([
          * Get providers data
          * @member MaximizeController
          */
-        getData: function getData() {
+        getModuleData: function getModuleData() {
             return this.model.getMaximize(
                 this.getPage()
             );
