@@ -350,12 +350,12 @@ define([
                         /**
                          * Define opts
                          * @type {{
-                                 *      widgetPublisher: Widget,
-                                 *      type: string,
-                                 *      event: *,
-                                 *      subscribeEM: *,
-                                 *      subscribersCounter: Number
-                                 * }}
+                         *      widgetPublisher: Widget,
+                         *      type: string,
+                         *      event: *,
+                         *      subscribeEM: *,
+                         *      subscribersCounter: Number
+                         * }}
                          */
                         var opts = {
                             widgetPublisher: widgetPublisher,
