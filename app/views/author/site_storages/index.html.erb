@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Author Site Storages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @author_site_storages.each do |author_site_storage| %>
+      <tr>
+        <td><%= link_to 'Show', author_site_storage %></td>
+        <td><%= link_to 'Edit', edit_author_site_storage_path(author_site_storage) %></td>
+        <td><%= link_to 'Destroy', author_site_storage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Site storage', new_author_site_storage_path %>

@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028144128) do
+ActiveRecord::Schema.define(version: 20141224134814) do
 
-  create_table "author_galleries", force: true do |t|
+  create_table "author_galleries", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "description", limit: 255
     t.text     "thumbnail"
@@ -24,28 +24,46 @@ ActiveRecord::Schema.define(version: 20141028144128) do
     t.datetime "updated_at"
   end
 
-  create_table "author_histories", force: true do |t|
+  create_table "author_histories", force: :cascade do |t|
     t.integer  "site_id"
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "author_sites", force: true do |t|
+  create_table "author_site_storages", force: :cascade do |t|
+    t.string   "uud"
+    t.string   "key"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "author_site_versions", force: :cascade do |t|
+    t.integer  "version"
+    t.integer  "author_site_storage_id"
+    t.boolean  "activated",              default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "author_site_versions", ["author_site_storage_id"], name: "index_author_site_versions_on_author_site_storage_id"
+
+  create_table "author_sites", force: :cascade do |t|
     t.string   "name"
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "author_widget_categories", force: true do |t|
+  create_table "author_widget_categories", force: :cascade do |t|
     t.string   "name_index"
     t.string   "name_value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "author_widgets", force: true do |t|
+  create_table "author_widgets", force: :cascade do |t|
     t.integer  "widget_category_id"
     t.string   "uuid"
     t.string   "name"
@@ -59,7 +77,7 @@ ActiveRecord::Schema.define(version: 20141028144128) do
     t.datetime "updated_at"
   end
 
-  create_table "sites", force: true do |t|
+  create_table "sites", force: :cascade do |t|
     t.string   "type"
     t.text     "data"
     t.datetime "created_at"

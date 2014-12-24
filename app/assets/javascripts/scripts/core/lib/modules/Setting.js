@@ -34,7 +34,7 @@ define([
          */
         this.STORAGE_MODES = {
             localStorage: window.localStorage,
-            serverStorage: 'rails'
+            serverStorage: this.serverStorage
         };
         /**
          * Define setting storage
@@ -202,11 +202,11 @@ define([
              * @type {*}
              */
             var data = JSON.parse(
-                    this.decompress(
-                        this.getStorage().getItem(
-                            this.getNameSpace()
-                        )
-                    ) || '[]'
+                this.decompress(
+                    this.getStorage().getItem(
+                        this.getNameSpace()
+                    )
+                ) || '[]'
             );
 
             this.scope.logger.debug('Load', data);
@@ -226,11 +226,28 @@ define([
 
         /**
          * Decompress json
+         * @member Setting
          * @param {string} compress
          * @returns {string}
          */
         decompress: function decompress(compress) {
             return LZString.decompress(compress)
+        },
+
+        /**
+         * Define server side storage
+         * @member Setting
+         * @returns {{setItem: Function, getItem: Function}}
+         */
+        serverStorage: function serverStorage() {
+            return {
+                setItem: function setItem(key) {
+                    debugger;
+                },
+                getItem: function getItem(key) {
+                    debugger;
+                }
+            }
         }
 
     }, AntHill.prototype, Router);
