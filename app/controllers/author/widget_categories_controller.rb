@@ -1,10 +1,16 @@
-class Author::WidgetCategoriesController < ApplicationController
+class Author::WidgetCategoriesController < Author::AuthorController
   before_action :set_author_widget_category, only: [:show, :edit, :update, :destroy]
 
   # GET /author/widget_categories
   # GET /author/widget_categories.json
   def index
-    @author_widget_categories = Author::WidgetCategory.all
+    @author_widget_categories = Author::WidgetCategory.all.order(:name_value)
+
+    @resource = {
+        items: @author_widget_categories.size,
+        path: new_author_widget_category_path
+    }
+
   end
 
   # GET /author/widget_categories/1

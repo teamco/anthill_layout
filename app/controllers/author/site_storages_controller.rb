@@ -5,6 +5,12 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages.json
   def index
     @author_site_storages = Author::SiteStorage.all
+
+    @resource = {
+        items: @author_site_storages.size,
+        path: new_author_site_storage_path
+    }
+
   end
 
   # GET /author/site_storages/1

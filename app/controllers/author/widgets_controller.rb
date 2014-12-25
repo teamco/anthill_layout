@@ -23,6 +23,11 @@ class Author::WidgetsController < Author::AuthorController
         widgets: []
     }
 
+    @resource = {
+        items: @author_widgets.size,
+        path: new_author_widget_path
+    }
+
     @author_widgets.map do |w|
 
       @json_data[:widgets] << {

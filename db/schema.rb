@@ -41,13 +41,13 @@ ActiveRecord::Schema.define(version: 20141224134814) do
 
   create_table "author_site_versions", force: :cascade do |t|
     t.integer  "version"
-    t.integer  "author_site_storage_id"
-    t.boolean  "activated",              default: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.integer  "site_storage_id"
+    t.boolean  "activated",       default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
-  add_index "author_site_versions", ["author_site_storage_id"], name: "index_author_site_versions_on_author_site_storage_id"
+  add_index "author_site_versions", ["site_storage_id"], name: "index_author_site_versions_on_site_storage_id"
 
   create_table "author_sites", force: :cascade do |t|
     t.string   "name"

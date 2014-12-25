@@ -1,25 +1,21 @@
-<h1>Listing author_widget_categories</h1>
-
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Name</th>
-      <th colspan="3"></th>
+      <th>Index</th>
+      <th>Destroy</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @author_widget_categories.each do |author_widget_category| %>
+    <% @author_widget_categories.each_with_index do |author_widget_category, index| %>
       <tr>
-        <td><%= author_widget_category.name %></td>
-        <td><%= link_to 'Show', author_widget_category %></td>
-        <td><%= link_to 'Edit', edit_author_widget_category_path(author_widget_category) %></td>
-        <td><%= link_to 'Destroy', author_widget_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= index + 1 %></td>
+        <td class="name"><%= link_to author_widget_category.name_value, edit_author_widget_category_path(author_widget_category)  %></td>
+        <td><%= author_widget_category.name_index %></td>
+        <td><%= link_to 'Destroy',  author_widget_category, method: :delete, data: {confirm: 'Are you sure?'} %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Widget category', new_author_widget_category_path %>

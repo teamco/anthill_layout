@@ -1,37 +1,29 @@
-<h1>Listing <%= controller_name.humanize %> (<%= @author_widgets.size %>)</h1>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Icon</th>
+    <th>Size</th>
+    <th>Category</th>
+    <th>Resource</th>
+    <th>Destroy</th>
+  </tr>
+  </thead>
 
-<div class="content">
-
-  <%= link_to 'New Widget', new_author_widget_path %>
-
-  <table>
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Icon</th>
-      <th>Size</th>
-      <th>Category</th>
-      <th>Resource</th>
-      <th>Destroy</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @author_widgets.each_with_index do |author_widget, index| %>
-        <tr>
-          <td><%= index + 1 %></td>
-          <td class="name"><%= link_to author_widget.name, edit_author_widget_path(author_widget) %></td>
-          <td title="<%= author_widget.description %>"><%= truncate(author_widget.description, length: 150, separator: ' ') %></td>
-          <td><%= image_tag author_widget.thumbnail %></td>
-          <td><%= author_widget.width %> x <%= author_widget.height %></td>
-          <td><%= author_widget.author_widget_category.name_value %></td>
-          <td><%= author_widget.resource %></td>
-          <td><%= link_to 'Destroy', author_widget, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
-
-</div>
+  <tbody>
+  <% @author_widgets.each_with_index do |author_widget, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td class="name"><%= link_to author_widget.name, edit_author_widget_path(author_widget) %></td>
+        <td title="<%= author_widget.description %>"><%= truncate(author_widget.description, length: 150, separator: ' ') %></td>
+        <td><%= image_tag author_widget.thumbnail %></td>
+        <td><%= author_widget.width %> x <%= author_widget.height %></td>
+        <td><%= author_widget.author_widget_category.name_value %></td>
+        <td><%= author_widget.resource %></td>
+        <td><%= link_to 'Destroy', author_widget, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

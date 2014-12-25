@@ -7,6 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="admin">
-<div class="fetcher"><%= yield %></div>
+<div class="fetcher">
+  <div class="admin-content">
+    <ul class="admin-navigation">
+      <li><%= link_to 'Widgets', author_widgets_path %></li>
+      <li><%= link_to 'Widget Categories', author_widget_categories_path %></li>
+      <li><%= link_to 'Site storage', author_site_storages_path %></li>
+    </ul>
+    <div>
+      <div class="content">
+        <div class="title">
+            <h1>Listing <%= controller_name.humanize %> (<%= @resource[:items] %>)</h1>
+            <%= link_to "New #{controller_name.humanize.singularize}", @resource[:path] %>
+            <p id="notice"><%= notice %></p>
+        </div>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

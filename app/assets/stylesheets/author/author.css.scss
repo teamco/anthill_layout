@@ -25,7 +25,96 @@ body.admin .fetcher {
 }
 
 body.admin .fetcher .content {
-  height: 90%;
+  height: 95%;
   overflow: auto;
-  padding: 0 2% 20px;
+  padding: 0;
+}
+
+body.admin .fetcher div.admin-content {
+  height: 100%;
+}
+
+body.admin .fetcher div.admin-content > ul {
+  float: left;
+  width: 200px;
+  margin: 0 20px;
+}
+
+body.admin .fetcher div.admin-content > div {
+  margin-left: 240px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  padding-right: 240px;
+}
+
+body.admin .fetcher .title {
+  position: fixed;
+  background: #fff;
+  width: 80%;
+  padding-bottom: 20px;
+  box-shadow: 0px 20px 15px -10px rgba(255,255,255,0.75);
+}
+
+body.admin table {
+  width: 96%;
+  margin-top: 80px;
+}
+
+body.admin h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+body.admin th {
+  padding: 5px 10px;
+  background-color: #dedede;
+  white-space: nowrap;
+  border: 1px solid #ccc;
+}
+
+body.admin td {
+  border: 1px solid #ccc;
+  padding: 1px 5px;
+  background-color: transparent;
+}
+
+body.admin tr:hover td {
+  background-color: #C2D374;
+  border: 1px solid #999;
+}
+
+body.admin td img {
+  width: 16px;
+  height: 16px;
+}
+
+body.admin td.name {
+  background-color: antiquewhite;
+}
+
+body.admin ul {
+  list-style: none;
+  margin: 20px;
+  padding: 10px;
+  background: #dedede;
+  border: 1px solid #ccc;
+}
+
+body.admin ul > li {
+  margin: 2px;
+}
+
+body.admin ul > li label {
+  min-width: 200px;
+}
+
+body.admin ul input[type="text"]:focus {
+  position: static;
+  right: auto;
+}
+
+body.admin ul textarea:focus {
+  height: 100px;
 }
