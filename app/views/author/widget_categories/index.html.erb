@@ -14,7 +14,7 @@
         <td><%= index + 1 %></td>
         <td class="name"><%= link_to author_widget_category.name_value, edit_author_widget_category_path(author_widget_category)  %></td>
         <td><%= author_widget_category.name_index %></td>
-        <td><%= link_to 'Destroy',  author_widget_category, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td><%= link_to_destroy(author_widget_category, author_widget_category.name_value) %></td>
       </tr>
     <% end %>
   </tbody>

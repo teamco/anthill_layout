@@ -14,7 +14,7 @@
         <td><%= index + 1 %></td>
         <td><%= author_site_storage.uuid %></td>
         <td class="name"><%= link_to author_site_storage.key, edit_author_site_storage_path(author_site_storage) %></td>
-        <td><%= link_to 'Destroy', author_site_storage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to_destroy(author_site_storage, author_site_storage.key) %></td>
       </tr>
     <% end %>
   </tbody>

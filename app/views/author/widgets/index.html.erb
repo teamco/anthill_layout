@@ -22,7 +22,7 @@
         <td><%= author_widget.width %> x <%= author_widget.height %></td>
         <td><%= author_widget.author_widget_category.name_value %></td>
         <td><%= author_widget.resource %></td>
-        <td><%= link_to 'Destroy', author_widget, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td><%= link_to_destroy(author_widget, author_widget.name) %></td>
       </tr>
   <% end %>
   </tbody>
