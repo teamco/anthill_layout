@@ -10,8 +10,7 @@
 <div class="fetcher">
   <div class="admin-content">
     <div class="title">
-      <h1><%= controller_name.humanize %> (<%= @resource[:items] %>)</h1>
-      <%= link_to "Add #{controller_name.humanize.singularize}", @resource[:path] %>
+      <%= items_list %>
       <p id="notice"><%= notice %></p>
     </div>
     <ul class="admin-navigation">

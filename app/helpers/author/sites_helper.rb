@@ -1,2 +1,0 @@
-module Author::SitesHelper
-end

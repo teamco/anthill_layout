@@ -1,30 +1,13 @@
 Rails.application.routes.draw do
 
   namespace :author do
-    resources :site_versions
-  end
-
-  namespace :author do
+    resources :widgets
     resources :site_storages
-  end
-
-  namespace :author do
+    resources :site_versions
     resources :widget_categories
   end
 
-  namespace :author do
-    resources :widgets
-  end
-
   resources :sites
-
-  namespace :author do
-    resources :histories
-  end
-
-  namespace :author do
-    resources :sites
-  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

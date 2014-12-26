@@ -1,10 +1,13 @@
+require 'fileutils'
+require 'uuid'
+
 class Author::SiteStoragesController < Author::AuthorController
   before_action :set_author_site_storage, only: [:show, :edit, :update, :destroy]
 
   # GET /author/site_storages
   # GET /author/site_storages.json
   def index
-    @author_site_storages = Author::SiteStorage.all
+    @author_site_storages = Author::SiteStorage.all.order(:key)
 
     @resource = {
         items: @author_site_storages.size,
@@ -30,6 +33,10 @@ class Author::SiteStoragesController < Author::AuthorController
   # POST /author/site_storages
   # POST /author/site_storages.json
   def create
+
+    uuid = UUID.new
+    author_site_storage_params[:uuid] = uuid.generate
+
     @author_site_storage = Author::SiteStorage.new(author_site_storage_params)
 
     respond_to do |format|
@@ -75,6 +82,6 @@ class Author::SiteStoragesController < Author::AuthorController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def author_site_storage_params
-      params[:author_site_storage]
+      params.require(:author_site_storage).permit(:key, :content)
     end
 end

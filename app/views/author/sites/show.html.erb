@@ -1,6 +1,0 @@
-<%= stylesheet_link_tag(stylesheet_path("public/#{@route}/css/general")) %>
-<%= javascript_tag "window.route = '#{@route}'", defer: 'defer' %>
-<%= javascript_include_tag(
-            'scripts/core/lib/require',
-            'data-main' => javascript_path("public/#{@route}/javascript/init")
-    ) %>
