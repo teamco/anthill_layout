@@ -136,3 +136,16 @@ body.admin ul input[type="text"]:focus {
 body.admin ul textarea:focus {
   height: 100px;
 }
+
+body.admin form {
+  margin-right: 20px;
+}
+
+body.admin form .field textarea {
+  height: 50px;
+}
+
+body.admin form .field textarea:focus {
+  height: 150px;
+  right: 20px;
+}

@@ -1,21 +1,7 @@
 <%= form_for(@author_site_type) do |f| %>
-  <% if @author_site_type.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@author_site_type.errors.count, "error") %> prohibited this author_site_type from being saved:</h2>
 
-      <ul>
-      <% @author_site_type.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= render_notification(@author_site_type) %>
+    <%= render_text_field(f, :name) %>
+    <%= render_submit(f) %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

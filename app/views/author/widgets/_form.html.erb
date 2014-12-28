@@ -1,44 +1,11 @@
 <%= form_for(@author_widget) do |f| %>
-    <% if @author_widget.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@author_widget.errors.count, 'error') %> prohibited this author_widget from being
-            saved:</h2>
-
-          <ul>
-            <% @author_widget.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
-    <ul>
-      <li>
-        <%= f.label :resource %>
-        <%= f.text_field :resource %>
-      </li>
-      <li>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-      </li>
-      <li>
-        <%= f.label :description %>
-        <%= f.text_area :description %>
-      </li>
-      <li>
-        <%= f.label :thumbnail %>
-        <%= f.text_area :thumbnail %>
-      </li>
-      <li>
-        <%= f.label :width %>
-        <%= f.number_field :width %>
-      </li>
-      <li>
-        <%= f.label :height %>
-        <%= f.number_field :height %>
-      </li>
-    </ul>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+    <%= render_notification(@author_widget) %>
+    <%= render_text_field(f, :resource) %>
+    <%= render_text_field(f, :name) %>
+    <%= render_text_field(f, :name) %>
+    <%= render_text_area(f, :description) %>
+    <%= render_text_area(f, :thumbnail) %>
+    <%= render_number_field(f, :width) %>
+    <%= render_number_field(f, :height) %>
+    <%= render_submit(f) %>
 <% end %>

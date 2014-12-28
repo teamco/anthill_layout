@@ -1,21 +1,7 @@
 <%= form_for(@author_widget_category) do |f| %>
-  <% if @author_widget_category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@author_widget_category.errors.count, "error") %> prohibited this author_widget_category from being saved:</h2>
 
-      <ul>
-      <% @author_widget_category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= render_notification(@author_widget_category) %>
+    <%= render_text_field(f, :name) %>
+    <%= render_submit(f) %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
