@@ -5,5 +5,8 @@ class CreateAuthorSiteTypes < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_column :author_site_storages, :site_type_id, :integer, index: true
+
+    Author::SiteType.create({name: 'development'})
+    Author::SiteType.create({name: 'consumption'})
   end
 end

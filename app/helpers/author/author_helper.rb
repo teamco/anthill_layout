@@ -6,7 +6,7 @@ module Author::AuthorHelper
 
   def render_title
     content_tag(:div, class: 'title') do
-      concat content_tag(:h1, "#{controller_name.humanize}: #{action_name} (#{@resource[:items]})")
+      concat content_tag(:h1, "#{controller_name.humanize}: #{action_name} (#{@resource[:items]})") if action_name === 'index'
       concat link_to("Add #{controller_name.humanize.singularize}", @resource[:path]) if action_name === 'index'
       concat content_tag(:p, notice, id: 'notice')
     end
