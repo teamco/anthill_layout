@@ -27,6 +27,8 @@ define([
             createToolPanel: true
         },
         authorize: {
+            createAuthorPanel: true,
+            createToolPanel: true
         },
         consumption: {
             createAuthorPanel: false

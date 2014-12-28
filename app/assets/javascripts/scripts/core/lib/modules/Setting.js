@@ -36,10 +36,16 @@ define([
             localStorage: window.localStorage,
             serverStorage: this.serverStorage
         };
+
         /**
          * Define setting storage
          * @member Setting
-         * @type {{development: Storage}}
+         * @type {{
+         *      development: Storage,
+         *      authorize: Storage,
+         *      consumption: Storage,
+         *      test: Storage
+         * }}
          */
         this.storage = {
             development: this.STORAGE_MODES.localStorage,
