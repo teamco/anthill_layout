@@ -9,14 +9,13 @@
 <body class="admin">
 <div class="fetcher">
   <div class="admin-content">
-    <div class="title">
-      <%= items_list %>
-      <p id="notice"><%= notice %></p>
-    </div>
+    <%= render_title %>
     <ul class="admin-navigation">
       <li><%= link_to 'Widgets', author_widgets_path %></li>
       <li><%= link_to 'Widget Categories', author_widget_categories_path %></li>
       <li><%= link_to 'Site storage', author_site_storages_path %></li>
+      <li><%= link_to 'Site version', author_site_versions_path %></li>
+      <li><%= link_to 'Site types', author_site_types_path %></li>
     </ul>
     <div>
       <div class="content">

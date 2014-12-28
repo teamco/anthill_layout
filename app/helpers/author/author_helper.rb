@@ -4,11 +4,11 @@ module Author::AuthorHelper
     link_to 'Destroy', item, method: :delete, data: {confirm: "Are you sure want to delete: #{name}?"}
   end
 
-  def items_list
-    [
-        '<h1>', controller_name.humanize, '(', @resource[:items], ')</h1>',
-        link_to("Add #{controller_name.humanize.singularize}", @resource[:path])
-    ].join unless controller_name != 'new'
+  def render_title
+    content_tag(:div, class: 'title') do
+      concat content_tag(:h1, "#{controller_name.humanize}: #{action_name} (#{@resource[:items]})")
+      concat link_to("Add #{controller_name.humanize.singularize}", @resource[:path]) if action_name === 'index'
+      concat content_tag(:p, notice, id: 'notice')
+    end
   end
-
 end

@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Destroy</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @author_site_types.each_with_index do |author_site_type, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= author_site_type.name %></td>
+        <td><%= link_to_destroy(author_site_type, author_site_type.name) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

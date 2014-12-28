@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :author do
+    resources :site_types
+  end
+
+  namespace :author do
     resources :widgets
     resources :site_storages
     resources :site_versions

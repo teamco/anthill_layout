@@ -1,10 +1,17 @@
-class Author::SiteVersionsController < ApplicationController
+class Author::SiteVersionsController < Author::AuthorController
+
   before_action :set_author_site_version, only: [:show, :edit, :update, :destroy]
 
   # GET /author/site_versions
   # GET /author/site_versions.json
   def index
-    @author_site_versions = Author::SiteVersion.all
+    @author_site_versions = Author::SiteVersion.all.order(:updated_at)
+
+    @resource = {
+        items: @author_site_versions.size,
+        path: new_author_site_version_path
+    }
+
   end
 
   # GET /author/site_versions/1

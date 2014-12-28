@@ -1,25 +1,22 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Author Site Versions</h1>
-
 <table>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th>Site</th>
+      <th>Version</th>
+      <th>Activated?</th>
+      <th>Destroy</th>
     </tr>
   </thead>
-
   <tbody>
-    <% @author_site_versions.each do |author_site_version| %>
+    <% @author_site_versions.each_with_index do |author_site_version, index| %>
       <tr>
-        <td><%= link_to 'Show', author_site_version %></td>
-        <td><%= link_to 'Edit', edit_author_site_version_path(author_site_version) %></td>
-        <td><%= link_to 'Destroy', author_site_version, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= index + 1 %></td>
+        <td><%= author_site_version.author_site_storage.key %></td>
+        <td class="name"><%= link_to author_site_version.version, edit_author_site_version_path(author_site_version) %></td>
+        <td><%= author_site_version.activated %></td>
+        <td><%= link_to_destroy(author_site_version, author_site_version.version) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Site version', new_author_site_version_path %>
