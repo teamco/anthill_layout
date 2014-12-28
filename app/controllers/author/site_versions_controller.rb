@@ -22,10 +22,12 @@ class Author::SiteVersionsController < Author::AuthorController
   # GET /author/site_versions/new
   def new
     @author_site_version = Author::SiteVersion.new
+    render action: :form
   end
 
   # GET /author/site_versions/1/edit
   def edit
+    render action: :form
   end
 
   # POST /author/site_versions

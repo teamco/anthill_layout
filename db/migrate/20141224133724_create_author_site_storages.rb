@@ -1,7 +1,7 @@
 class CreateAuthorSiteStorages < ActiveRecord::Migration
   def change
     create_table :author_site_storages do |t|
-      t.string :uud
+      t.string :uuid
       t.string :key
       t.text :content
       t.timestamps null: false

@@ -13,17 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20141228132352) do
 
-  create_table "author_galleries", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.string   "description", limit: 255
-    t.text     "thumbnail"
-    t.string   "dimensions",  limit: 255
-    t.string   "type",        limit: 255
-    t.string   "resource",    limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "author_histories", force: :cascade do |t|
     t.integer  "site_id"
     t.text     "data"
@@ -32,7 +21,7 @@ ActiveRecord::Schema.define(version: 20141228132352) do
   end
 
   create_table "author_site_storages", force: :cascade do |t|
-    t.string   "uud"
+    t.string   "uuid"
     t.string   "key"
     t.text     "content"
     t.datetime "created_at",   null: false
@@ -57,7 +46,7 @@ ActiveRecord::Schema.define(version: 20141228132352) do
   add_index "author_site_versions", ["site_storage_id"], name: "index_author_site_versions_on_site_storage_id"
 
   create_table "author_sites", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"

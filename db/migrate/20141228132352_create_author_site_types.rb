@@ -7,6 +7,8 @@ class CreateAuthorSiteTypes < ActiveRecord::Migration
     add_column :author_site_storages, :site_type_id, :integer, index: true
 
     Author::SiteType.create({name: 'development'})
+    Author::SiteType.create({name: 'authorize'})
     Author::SiteType.create({name: 'consumption'})
+    Author::SiteType.create({name: 'test'})
   end
 end

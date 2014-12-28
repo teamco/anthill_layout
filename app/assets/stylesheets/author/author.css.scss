@@ -29,6 +29,7 @@ body.admin .fetcher .content {
   width: 100%;
   overflow: auto;
   margin: 1% 0;
+  padding-top: 15px;
 }
 
 body.admin .fetcher div.admin-content {
@@ -138,7 +139,17 @@ body.admin ul textarea:focus {
 }
 
 body.admin form {
-  margin-right: 20px;
+  position: relative;
+  width: 100%;
+  padding-right: 20px;
+}
+
+body.admin form .field input {
+
+}
+
+body.admin form .field input:focus {
+  right: 20px;
 }
 
 body.admin form .field textarea {

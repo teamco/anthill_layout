@@ -21,10 +21,12 @@ class Author::WidgetCategoriesController < Author::AuthorController
   # GET /author/widget_categories/new
   def new
     @author_widget_category = Author::WidgetCategory.new
+    render action: :form
   end
 
   # GET /author/widget_categories/1/edit
   def edit
+    render action: :form
   end
 
   # POST /author/widget_categories
