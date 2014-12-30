@@ -57,7 +57,7 @@ class Author::SiteStoragesController < Author::AuthorController
   def update
     respond_to do |format|
       if @author_site_storage.update(author_site_storage_params)
-        format.html { redirect_to @author_site_storage, notice: 'Site storage was successfully updated.' }
+        format.html { redirect_to author_site_storages_path, notice: 'Site storage was successfully updated.' }
         format.json { render :index, status: :ok, location: @author_site_storage }
       else
         format.html { render :form }

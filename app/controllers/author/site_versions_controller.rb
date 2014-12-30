@@ -40,7 +40,7 @@ class Author::SiteVersionsController < Author::AuthorController
         format.html { redirect_to @author_site_version, notice: 'Site version was successfully created.' }
         format.json { render :show, status: :created, location: @author_site_version }
       else
-        format.html { render :new }
+        format.html { render :form }
         format.json { render json: @author_site_version.errors, status: :unprocessable_entity }
       end
     end
