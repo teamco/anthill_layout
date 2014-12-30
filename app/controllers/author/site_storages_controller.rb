@@ -43,10 +43,10 @@ class Author::SiteStoragesController < Author::AuthorController
 
     respond_to do |format|
       if @author_site_storage.save
-        format.html { redirect_to @author_site_storage, notice: 'Site storage was successfully created.' }
-        format.json { render :show, status: :created, location: @author_site_storage }
+        format.html { redirect_to author_site_storages_path, notice: 'Site storage was successfully created.' }
+        format.json { render :index, status: :created, location: @author_site_storage }
       else
-        format.html { render :new }
+        format.html { render :form }
         format.json { render json: @author_site_storage.errors, status: :unprocessable_entity }
       end
     end
@@ -58,9 +58,9 @@ class Author::SiteStoragesController < Author::AuthorController
     respond_to do |format|
       if @author_site_storage.update(author_site_storage_params)
         format.html { redirect_to @author_site_storage, notice: 'Site storage was successfully updated.' }
-        format.json { render :show, status: :ok, location: @author_site_storage }
+        format.json { render :index, status: :ok, location: @author_site_storage }
       else
-        format.html { render :edit }
+        format.html { render :form }
         format.json { render json: @author_site_storage.errors, status: :unprocessable_entity }
       end
     end

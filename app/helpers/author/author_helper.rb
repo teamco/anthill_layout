@@ -33,13 +33,9 @@ module Author::AuthorHelper
   end
 
   def render_notification(item)
-    content_tag(:div, id: 'error_explanation') do
+    content_tag(:div, class: 'error_explanation') do
       concat content_tag(:h2, "#{pluralize(item.errors.count, 'error')}: prohibited this item from being saved:")
-      concat content_tag(:ul) do
-        item.errors.full_messages.each do |message|
-          concat content_tag(:li, message)
-        end
-      end
+      concat content_tag(:ul, item.errors.full_messages.collect { |message| "<li>#{message}</li>" }.join.html_safe)
     end if item.errors.any?
   end
 

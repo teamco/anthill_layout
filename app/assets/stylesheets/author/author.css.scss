@@ -10,6 +10,16 @@
 
 body.admin {
   background-color: #ccc;
+  font-size: 12px;
+}
+
+body.admin a {
+  text-decoration: none;
+  color: #3b5a82;
+}
+
+body.admin a:hover {
+  color: #0000cc;
 }
 
 body.admin .fetcher {
@@ -28,7 +38,7 @@ body.admin .fetcher .content {
   height: 96%;
   width: 100%;
   overflow: auto;
-  margin: 1% 0;
+  margin: 20px 0 0;
 }
 
 body.admin .fetcher div.admin-content {
@@ -65,6 +75,14 @@ body.admin .fetcher div.admin-content > div.title {
   box-shadow: 0 20px 15px -10px rgba(255, 255, 255, 0.75);
 }
 
+body.admin .fetcher div.admin-content > div.title p {
+  padding: 5px 0;
+}
+
+body.admin .fetcher div.admin-content > div.title p.notice {
+  color: #228B22;
+}
+
 body.admin .fetcher div.admin-content > div:last-child {
   position: absolute;
   top: 0;
@@ -94,7 +112,7 @@ body.admin th {
 
 body.admin td {
   border: 1px solid #ccc;
-  padding: 1px 5px;
+  padding: 5px;
   background-color: transparent;
 }
 
@@ -178,9 +196,17 @@ body.admin a.back:hover {
   color: #3961b9;
 }
 
+body.admin .field {
+  clear: both;
+}
+
+body.admin .actions {
+  margin-top: 10px;
+}
+
 body.admin input[type="submit"] {
   float: right;
-  padding: 8px;
+  padding: 9px;
   font-size: 20px;
   border: 1px solid;
   border-radius: 5px;
@@ -193,8 +219,44 @@ body.admin input[type="submit"] {
 body.admin input[type="submit"]:hover {
   background: #49A4FF;
   padding: 10px;
+  margin-top: -1px;
+  margin-right: -1px;
 }
 
 body.admin input[type="submit"]:active {
   box-shadow: none;
 }
+
+body.admin .error_explanation {
+  border: 1px solid #a1311f;
+  margin-bottom: 10px;
+}
+
+body.admin .error_explanation h2 {
+  color: #fff;
+  font-weight: normal;
+  font-size: 14px;
+  padding: 3px 5px;
+  background-color: #cd0a0a;
+}
+
+body.admin .error_explanation ul {
+  margin: 5px;
+  padding: 5px;
+  background-color: #dedede;
+}
+
+body.admin .field .field_with_errors:first-child {
+  float: left;
+}
+
+body.admin .field .field_with_errors label {
+  color: #cd0a0a;
+}
+
+body.admin .field .field_with_errors input[type="text"],
+body.admin .field .field_with_errors input[type="number"],
+body.admin .field .field_with_errors textarea {
+  border-color: #cd0a0a;
+}
+
