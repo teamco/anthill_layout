@@ -94,12 +94,12 @@ div.combo-box input.hidden {
     display: none;
 }
 
+input[type="number"],
 input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 2px;
     background-color: #fff;
     margin: 0 0 0 10px;
-    width: 60%;
     height: 24px;
     line-height: 22px;
     float: right;
@@ -112,11 +112,31 @@ input[type="text"] {
     padding: 3px;
 }
 
+input[type="number"] {
+    width: 150px;
+    float: none;
+    left: 100px;
+    position: absolute;
+    line-height: 18px;
+}
+
+input[type="text"] {
+    width: 60%;
+}
+
+input[type="number"]:focus,
 input[type="text"]:focus {
-    width: 80%;
     position: absolute;
     transition: width 0.5s;
     right: 4px;
+}
+
+input[type="number"]:focus {
+    width: 200px;
+}
+
+input[type="text"]:focus {
+    width: 80%;
 }
 
 textarea.validate,

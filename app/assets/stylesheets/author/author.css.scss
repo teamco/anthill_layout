@@ -29,7 +29,6 @@ body.admin .fetcher .content {
   width: 100%;
   overflow: auto;
   margin: 1% 0;
-  padding-top: 15px;
 }
 
 body.admin .fetcher div.admin-content {
@@ -159,4 +158,43 @@ body.admin form .field textarea {
 body.admin form .field textarea:focus {
   height: 150px;
   right: 20px;
+}
+
+body.admin a.back {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  text-decoration: none;
+  font-size: 30px;
+  float: left;
+  margin-right: 10px;
+  color: #333;
+}
+
+body.admin a.back:hover {
+  background: none;
+  color: #3961b9;
+}
+
+body.admin input[type="submit"] {
+  float: right;
+  padding: 8px;
+  font-size: 20px;
+  border: 1px solid;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #333;
+  background: #3961b9;
+  color: #fff;
+  cursor: pointer;
+}
+
+body.admin input[type="submit"]:hover {
+  background: #49A4FF;
+  padding: 10px;
+}
+
+body.admin input[type="submit"]:active {
+  box-shadow: none;
 }
