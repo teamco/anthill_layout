@@ -56,7 +56,7 @@ module Author::AuthorHelper
   def render_field(type, f, name)
     content_tag(:div, class: 'field') do
       concat f.label name
-      concat f.send(type, name, {placeholder: "Enter #{name}"})
+      concat f.send(type, name, {placeholder: "Enter #{name.to_s.humanize}"})
     end
   end
 

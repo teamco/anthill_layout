@@ -1,7 +1,8 @@
 <%= form_for(@author_widget_category) do |f| %>
 
     <%= render_notification(@author_widget_category) %>
-    <%= render_text_field(f, :name) %>
+    <%= render_text_field(f, :name_index) %>
+    <%= render_text_field(f, :name_value) %>
     <%= render_submit(f) %>
 
 <% end %>
