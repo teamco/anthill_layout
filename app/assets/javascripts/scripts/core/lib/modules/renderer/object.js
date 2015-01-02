@@ -97,7 +97,7 @@ define([], function defineObjectRenderer() {
                 params[attrs[i].name] = attrs[i].value;
             }
 
-            attrs = object.attributes;
+            attrs = $object[0].attributes;
             i = 0;
             l = attrs.length;
 
