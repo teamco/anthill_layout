@@ -69,32 +69,30 @@ class Author::WidgetsController < Author::AuthorController
 
     @author_widget = @category.author_widgets.build(author_widget_params) unless @category.nil?
 
-    uuid = UUID.new
-    @author_widget.uuid = uuid.generate
+    if @author_widget.nil?
+      error_handler_on_create
+    else
 
-    respond_to do |format|
-      if generate_widget and @author_widget.save
+      uuid = UUID.new
+      @author_widget.uuid = uuid.generate
 
-        if request.xhr?
-          data = {
-              widget: @author_widget,
-              category: @category
-          }
-          format.json {
-            render json: data, status: 200
-          }
+      respond_to do |format|
+        if generate_widget and @author_widget.save
+
+          if request.xhr?
+            data = {
+                widget: @author_widget,
+                category: @category
+            }
+            format.json {
+              render json: data, status: 200
+            }
+          else
+            format.html { redirect_to @author_widget, notice: 'Widget was successfully created.' }
+            format.json { render :show, status: :created, location: @author_widget }
+          end
         else
-          format.html { redirect_to @author_widget, notice: 'Widget was successfully created.' }
-          format.json { render :show, status: :created, location: @author_widget }
-        end
-      else
-        if request.xhr?
-          format.json {
-            render json: @author_widget.errors, status: 400
-          }
-        else
-          format.html { render :new }
-          format.json { render json: @author_widget.errors, status: :unprocessable_entity }
+          error_handler_on_create
         end
       end
     end
@@ -209,5 +207,16 @@ class Author::WidgetsController < Author::AuthorController
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_widget_params
     params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :resource, :visible)
+  end
+
+  def error_handler_on_create
+    if request.xhr?
+      format.json {
+        render json: @author_widget.errors, status: 400
+      }
+    else
+      format.html { render :new }
+      format.json { render json: @author_widget.errors, status: :unprocessable_entity }
+    end
   end
 end
