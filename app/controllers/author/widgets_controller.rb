@@ -28,9 +28,8 @@ class Author::WidgetsController < Author::AuthorController
         path: new_author_widget_path
     }
 
-    @author_widgets.map do |w|
-
-      @json_data[:widgets] << {
+    @json_data[:widgets] = @author_widgets.map do |w|
+      {
           id: w[:id],
           uuid: w[:uuid],
           name: w[:name],

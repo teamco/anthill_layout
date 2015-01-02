@@ -88,19 +88,22 @@ module WidgetLib
 
         puts "#{index + 1}: #{w['name']} (#{category.name_value})" unless category.nil?
 
-        Author::Widget.create(
-            {
-                name: w['name'],
-                uuid: uuid.generate,
-                description: w['description'],
-                thumbnail: w['thumbnail'],
-                width: w['dimensions']['width'],
-                height: w['dimensions']['height'],
-                widget_category_id: category.id,
-                resource: w['resource'],
-                visible: w['visible'].nil? ? true : w['visible']
-            }
-        )
+        hash = {
+            name: w['name'],
+            uuid: uuid.generate,
+            description: w['description'],
+            thumbnail: w['thumbnail'],
+            width: w['dimensions']['width'],
+            height: w['dimensions']['height'],
+            widget_category_id: category.id,
+            resource: w['resource'],
+            visible: w['visible'].nil? ? true : w['visible']
+        }
+
+        item = Author::Widget.new(hash)
+        item.save!
+
+        puts "Model item: #{Author::Widget.last.name} >>> #{Author::Widget.all.size}"
 
         widget.init_params(w['resource'])
         widget.generate_css(w['thumbnail'])
@@ -122,7 +125,7 @@ module WidgetLib
         end
 
       end
-      puts '>>> Finish Add widgets'
+      puts ">>> Finish Add widgets: #{Author::Widget.all.size}"
     end
 
     def update_data
