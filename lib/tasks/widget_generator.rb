@@ -106,6 +106,35 @@ module WidgetLib
       end
     end
 
+    def update_seed
+      seed = false
+      begin
+        path = "#{Rails.root}/lib/tasks/widgets_list.json"
+        hash = Author::Widget.all.map do |w|
+          {
+              name: w[:name],
+              description: w[:description],
+              thumbnail: w[:thumbnail],
+              dimensions: {
+                  width: w[:width],
+                  height: w[:height]
+              },
+              type: w.author_widget_category[:name_index],
+              resource: w[:resource]
+          }
+        end
+        puts "--- Store: #{hash.size} widgets"
+        File.open(path, 'a') do |f|
+          f.truncate(0)
+          f.write(hash.to_json)
+        end
+        seed = true
+      rescue
+        puts '>>>>> Unable to update seeds'
+      end
+      seed
+    end
+
     def delete_css
       path = "#{css_path}/widgets/#{@file_name}.css"
       exist_file = File.exist?(path)

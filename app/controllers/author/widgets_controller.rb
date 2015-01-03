@@ -1,4 +1,5 @@
 require 'rmagick'
+require 'fileutils'
 
 class Author::WidgetsController < Author::AuthorController
 
@@ -144,7 +145,7 @@ class Author::WidgetsController < Author::AuthorController
       widget.do_it
       logger.info '>>>>> Generate Css'
       widget.generate_css(uri? ? to_base64 : to_image)
-      generate = true
+      generate = widget.update_seed
     rescue
       logger.info '>>>>> Rescue: Remove widget'
       widget.remove_widget_dir

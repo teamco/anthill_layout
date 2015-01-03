@@ -163,16 +163,17 @@ module WidgetLib
       puts "\n>>> Start Destroy widget:"
       resource = STDIN.gets.chomp.strip
       widget = Author::Widget.find_by_resource(resource)
-      unless widget.nil?
+      if widget.nil?
+        puts "Widget not in model: #{resource}"
+      else
         puts "Delete from model: #{resource}"
         widget.destroy
-      else
-        puts "Widget not in model: #{resource}" if widget.nil?
       end
       widget_lib = WidgetLib::Generate.new
       widget_lib.set_file_name(resource)
       widget_lib.remove_widget_dir
       widget_lib.delete_css
+      widget_lib.update_seed
       puts '>>> Finish Destroy widget'
     end
 
