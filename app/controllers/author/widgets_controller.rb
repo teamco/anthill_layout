@@ -79,6 +79,8 @@ class Author::WidgetsController < Author::AuthorController
       respond_to do |format|
         if generate_widget and @author_widget.save
 
+          @widget_lib.update_seed
+
           if request.xhr?
             data = {
                 widget: @author_widget,
@@ -136,19 +138,19 @@ class Author::WidgetsController < Author::AuthorController
   private
 
   def generate_widget
-    widget = WidgetLib::Generate.new
-    widget.init_params(@author_widget.resource)
+    @widget_lib = WidgetLib::Generate.new
+    @widget_lib.init_params(@author_widget.resource)
     generate = false
     begin
       logger.info '>>>>> Do it'
-      widget.set_clone(@clone_from)
-      widget.do_it
+      @widget_lib.set_clone(@clone_from)
+      @widget_lib.do_it
       logger.info '>>>>> Generate Css'
-      widget.generate_css(uri? ? to_base64 : to_image)
-      generate = widget.update_seed
+      @widget_lib.generate_css(uri? ? to_base64 : to_image)
+      generate = true
     rescue
       logger.info '>>>>> Rescue: Remove widget'
-      widget.remove_widget_dir
+      @widget_lib.remove_widget_dir
       generate = false
     end
     generate
