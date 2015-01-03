@@ -37,11 +37,19 @@ class Author::SiteStoragesController < Author::AuthorController
   def create
 
     uuid = UUID.new
-    author_site_storage_params[:uuid] = uuid.generate
 
     @author_site_storage = Author::SiteStorage.new(author_site_storage_params)
+    @author_site_storage[:uuid] = uuid.generate
+
+    versions = @author_site_storage.author_site_versions
+    versions.build({
+                       version: versions.length + 1,
+                       activated: false
+                   })
 
     respond_to do |format|
+
+
       if @author_site_storage.save
         format.html { redirect_to author_site_storages_path, notice: 'Site storage was successfully created.' }
         format.json { render :index, status: :created, location: @author_site_storage }
@@ -77,13 +85,13 @@ class Author::SiteStoragesController < Author::AuthorController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_author_site_storage
-      @author_site_storage = Author::SiteStorage.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_author_site_storage
+    @author_site_storage = Author::SiteStorage.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def author_site_storage_params
-      params.require(:author_site_storage).permit(:key, :content)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def author_site_storage_params
+    params.require(:author_site_storage).permit(:key, :content)
+  end
 end

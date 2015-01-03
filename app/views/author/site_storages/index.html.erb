@@ -4,6 +4,8 @@
       <th>ID</th>
       <th>UUID</th>
       <th>Key</th>
+      <th>Preview</th>
+      <th>Version</th>
       <th>Destroy</th>
     </tr>
   </thead>
@@ -13,6 +15,8 @@
         <td><%= index + 1 %></td>
         <td><%= author_site_storage.uuid %></td>
         <td class="name"><%= link_to author_site_storage.key, edit_author_site_storage_path(author_site_storage) %></td>
+        <td><%= link_to "Show #{author_site_storage.key}", author_site_storage_url(author_site_storage) %></td>
+        <td><%= link_to "Activated #{author_site_storage.key}", author_site_storage_url(author_site_storage) %></td>
         <td><%= link_to_destroy(author_site_storage, author_site_storage.key) %></td>
       </tr>
     <% end %>
