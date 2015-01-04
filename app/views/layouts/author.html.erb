@@ -9,7 +9,7 @@
 <body class="admin">
 <div class="fetcher">
   <div class="admin-content">
-    <%= render_title %>
+    <%= render_title if action_name == 'index' %>
     <ul class="admin-navigation">
       <li><%= link_to 'Widgets', author_widgets_path %></li>
       <li><%= link_to 'Widget Categories', author_widget_categories_path %></li>
