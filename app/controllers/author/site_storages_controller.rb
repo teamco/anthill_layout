@@ -24,11 +24,13 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages/new
   def new
     @author_site_storage = Author::SiteStorage.new
+    @author_site_types = Author::SiteType.all
     render action: :form
   end
 
   # GET /author/site_storages/1/edit
   def edit
+    @author_site_types = Author::SiteType.all
     render action: :form
   end
 

@@ -12,7 +12,7 @@
       <tr>
         <td><%= index + 1 %></td>
         <td class="name"><%= link_to author_site_type.name, edit_author_site_type_path(author_site_type) %></td>
-        <td><%= link_to_destroy(author_site_type, author_site_type.name) %></td>
+        <td class="c"><%= link_to_destroy(author_site_type, author_site_type.name) %></td>
       </tr>
     <% end %>
   </tbody>

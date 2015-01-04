@@ -26,6 +26,13 @@ module Author::AuthorHelper
     render_field(:number_field, f, name)
   end
 
+  def render_collection(f, name, opts)
+    content_tag(:div, class: 'field') do
+      concat f.label name
+      concat f.collection_select(opts[:id], opts[:collection], opts[:index], opts[:value])
+    end
+  end
+
   def render_submit(f)
     content_tag(:div, class: 'actions') do
       f.submit

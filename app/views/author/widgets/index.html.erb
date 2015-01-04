@@ -17,12 +17,12 @@
       <tr>
         <td><%= index + 1 %></td>
         <td class="name"><%= link_to author_widget.name, edit_author_widget_path(author_widget) %></td>
-        <td title="<%= author_widget.description %>"><%= truncate(author_widget.description, length: 150, separator: ' ') %></td>
-        <td><%= image_tag author_widget.thumbnail %></td>
-        <td><%= author_widget.width %> x <%= author_widget.height %></td>
         <td><%= author_widget.author_widget_category.name_value %></td>
-        <td><%= author_widget.resource %></td>
-        <td><%= link_to_destroy(author_widget, author_widget.name) %></td>
+        <td title="<%= author_widget.description %>"><%= truncate(author_widget.description, length: 150, separator: ' ') %></td>
+        <td class="c"><%= image_tag author_widget.thumbnail %></td>
+        <td class="c"><%= author_widget.width %> x <%= author_widget.height %></td>
+        <td class="c"><%= author_widget.resource %></td>
+        <td class="c"><%= link_to_destroy(author_widget, author_widget.name) %></td>
       </tr>
   <% end %>
   </tbody>
