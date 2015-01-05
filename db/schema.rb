@@ -38,13 +38,6 @@ ActiveRecord::Schema.define(version: 20141228132352) do
 
   add_index "author_site_versions", ["site_storage_id"], name: "index_author_site_versions_on_site_storage_id"
 
-  create_table "author_sites", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "author_widget_categories", force: :cascade do |t|
     t.string   "name_index"
     t.string   "name_value"

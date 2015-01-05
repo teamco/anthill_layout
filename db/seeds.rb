@@ -1,7 +1,7 @@
 require 'uuid'
 
 if Author::Widget.all.length > 0
-  puts '>>> 1. Start types'
+  puts "\n>>> 1. Start types"
   Author::SiteType.destroy_all
   puts '-- Clean: Author::SiteType'
   types = %w(authorize consumption development test)
@@ -26,5 +26,4 @@ if Author::Widget.all.length > 0
   puts '>>> End storage'
 else
   puts '>>> Run: rake widget:load before seed'
-  Rake::Task['widget:load'].invoke
 end
