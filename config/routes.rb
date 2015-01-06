@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   namespace :author do
     resources :site_types
     resources :widgets
-    resources :site_storages
+    resources :site_storages do
+      get ':controller/:action/:id/:user_id'
+    end
     resources :site_versions
     resources :widget_categories
   end

@@ -4,6 +4,8 @@ require 'uuid'
 class Author::SiteStoragesController < Author::AuthorController
   before_action :set_author_site_storage, only: [:show, :edit, :update, :destroy]
 
+  layout 'application', only: :show
+
   # GET /author/site_storages
   # GET /author/site_storages.json
   def index

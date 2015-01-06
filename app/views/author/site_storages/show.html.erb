@@ -1,4 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_author_site_storage_path(@author_site_storage) %> |
-<%= link_to 'Back', author_site_storages_path %>
+<% key = @author_site_storage.try(:key) %>
+<% if key.nil? %>
+    <p>Undefined site key</p>
+<% else %>
+    <%= stylesheet_link_tag(
+                stylesheet_path("../../assets/public/#{@author_site_storage.try(:key)}/css/general")
+        ) %>
+    <%= javascript_include_tag(
+                'scripts/core/lib/require',
+                'data-main' => javascript_path("public/shared/javascript/init")
+        ) %>
+<% end %>
