@@ -12,7 +12,7 @@
     <ul>
       <%= f.fields_for :author_site_versions do |fv| %>
           <li>
-            <%= render_number_field(fv, :version, true) %>
+            <%= fv.collection_select(:id, @author_site_storage.author_site_versions, :id, :version) %>
             <%= render_checkbox(fv, :activated) %>
           </li>
       <% end %>
