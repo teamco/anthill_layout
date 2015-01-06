@@ -14,16 +14,30 @@ module Author::AuthorHelper
     end
   end
 
-  def render_text_field(f, name)
-    render_field(:text_field, f, name)
+  def render_text_field(f, name, disabled=false)
+    render_field(:text_field, f, name, disabled)
   end
 
-  def render_text_area(f, name)
-    render_field(:text_area, f, name)
+  def render_text(name, value)
+    content_tag(:div, class: 'field') do
+      concat label_tag name
+      concat text_field_tag(name, value, {disabled: true})
+    end
   end
 
-  def render_number_field(f, name)
-    render_field(:number_field, f, name)
+  def render_text_area(f, name, disabled=false)
+    render_field(:text_area, f, name, disabled)
+  end
+
+  def render_checkbox(f, name, disabled=false)
+    content_tag(:div, class: 'field') do
+      concat f.check_box(name, {disabled: disabled})
+      concat f.label name
+    end
+  end
+
+  def render_number_field(f, name, disabled=false)
+    render_field(:number_field, f, name, disabled)
   end
 
   def render_collection(f, name, opts)
@@ -56,10 +70,10 @@ module Author::AuthorHelper
 
   private
 
-  def render_field(type, f, name)
+  def render_field(type, f, name, disabled)
     content_tag(:div, class: 'field') do
       concat f.label name
-      concat f.send(type, name, {placeholder: "Enter #{name.to_s.humanize}"})
+      concat f.send(type, name, {disabled: disabled, placeholder: "Enter #{name.to_s.humanize}"})
     end
   end
 
