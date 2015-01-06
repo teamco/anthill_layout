@@ -9,6 +9,15 @@
                                    index: :id,
                                    value: :name
                            }) %>
+    <ul>
+      <%= f.fields_for :author_site_versions do |fv| %>
+          <li>
+            <%= render_number_field(fv, :version, true) %>
+            <%= render_checkbox(fv, :activated) %>
+          </li>
+      <% end %>
+    </ul>
+
     <%= render_submit(f) %>
 
 <% end %>
