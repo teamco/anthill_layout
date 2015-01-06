@@ -3,6 +3,7 @@
   <tr>
     <th>ID</th>
     <th>UUID</th>
+    <th>Type</th>
     <th>Key</th>
     <th>Preview</th>
     <th>Version</th>
@@ -17,6 +18,7 @@
       <tr>
         <td><%= index + 1 %></td>
         <td><%= author_site_storage.uuid %></td>
+        <td><%= author_site_storage.author_site_type.try(:name) %></td>
         <td class="name"><%= link_to author_site_storage.key, edit_author_site_storage_path(author_site_storage) %></td>
         <td class="c"><%= link_to "Show #{author_site_storage.key}", author_site_storage_url(author_site_storage) %></td>
         <td class="c"><%= link_to "#{activated_version.try(:version) rescue 'Activate'} (#{versions.length})", activate_version_url %></td>
