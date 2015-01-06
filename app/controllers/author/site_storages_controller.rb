@@ -94,6 +94,6 @@ class Author::SiteStoragesController < Author::AuthorController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_site_storage_params
-    params.require(:author_site_storage).permit(:key, :content)
+    params.require(:author_site_storage).permit(:key, :content, :site_type_id)
   end
 end
