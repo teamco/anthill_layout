@@ -50,8 +50,6 @@ class Author::SiteStoragesController < Author::AuthorController
                    })
 
     respond_to do |format|
-
-
       if @author_site_storage.save
         format.html { redirect_to author_site_storages_path, notice: 'Site storage was successfully created.' }
         format.json { render :index, status: :created, location: @author_site_storage }
