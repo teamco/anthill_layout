@@ -3,14 +3,12 @@ Rails.application.routes.draw do
   namespace :author do
     resources :site_types
     resources :widgets
-    resources :site_storages do
-      get ':controller/:action/:id/:user_id'
-    end
+    resources :site_storages
     resources :site_versions
     resources :widget_categories
   end
 
-  resources :sites
+  get '/sites/:key', to: 'author/site_storages#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

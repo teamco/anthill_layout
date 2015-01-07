@@ -10,6 +10,13 @@ class Author::SiteStorage < ActiveRecord::Base
              :class_name => 'Author::SiteType',
              :foreign_key => :site_type_id
 
-  validates :key, presence: true, format: {with: /\A[a-z]+\z/}
+  validates :key,
+            presence: true,
+            uniqueness: true,
+            format: {with: /\A[a-z]+\z/}
+
+  def to_param
+    [id, key.parameterize].join('-')
+  end
 
 end

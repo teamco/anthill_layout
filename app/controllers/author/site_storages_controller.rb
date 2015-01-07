@@ -2,9 +2,9 @@ require 'fileutils'
 require 'uuid'
 
 class Author::SiteStoragesController < Author::AuthorController
-  before_action :set_author_site_storage, only: [:show, :edit, :update, :destroy]
 
-  layout 'application', only: :show
+  before_action :set_author_site_storage, only: [:edit, :update, :destroy]
+  layout :resolve_layout
 
   # GET /author/site_storages
   # GET /author/site_storages.json
@@ -21,6 +21,7 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages/1
   # GET /author/site_storages/1.json
   def show
+    @author_site_storage = Author::SiteStorage.find_by_key(params[:key])
   end
 
   # GET /author/site_storages/new
@@ -87,6 +88,16 @@ class Author::SiteStoragesController < Author::AuthorController
   end
 
   private
+
+  def resolve_layout
+    case action_name
+      when 'show'
+        'application'
+      else
+        'author'
+    end
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_storage
     @author_site_storage = Author::SiteStorage.find(params[:id])
