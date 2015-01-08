@@ -133,21 +133,24 @@ define([
             render: true
         });
 
-        this.observer.publish(
-            this.eventmanager.eventList.defineSetting
-        );
+        /**
+         * Update routes
+         * @type {{updateSiteContent: string[]}}
+         */
+        this.config.routes = {
+            updateSiteContent: [
+                '/sites/',
+                'put'
+            ]
+        };
 
-        this.observer.publish(
-            this.eventmanager.eventList.initResizeWindow
-        );
-
-        this.observer.publish(
+        this.observer.batchPublish(
+            this.eventmanager.eventList.defineSetting,
+            this.eventmanager.eventList.setRoutes,
+            this.eventmanager.eventList.initResizeWindow,
             this.eventmanager.eventList.successCreated
         );
     };
 
-    return App.extend('App', {
-
-    }, AntHill.prototype);
-
+    return App.extend('App', {}, AntHill.prototype);
 });

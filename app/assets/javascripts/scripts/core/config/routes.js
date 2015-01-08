@@ -71,6 +71,7 @@ define([], function defineRoutes() {
 
         /**
          * Get X-Csrf-Token
+         * @member Routes
          * @returns {string}
          */
         getXCsrfToken: function getXCsrfToken() {

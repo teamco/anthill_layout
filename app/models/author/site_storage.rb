@@ -4,7 +4,8 @@ class Author::SiteStorage < ActiveRecord::Base
            :class_name => 'Author::SiteVersion',
            dependent: :destroy
 
-  accepts_nested_attributes_for :author_site_versions, allow_destroy: true
+  accepts_nested_attributes_for :author_site_versions,
+                                allow_destroy: true
 
   belongs_to :author_site_type,
              :class_name => 'Author::SiteType',
@@ -16,7 +17,7 @@ class Author::SiteStorage < ActiveRecord::Base
             format: {with: /\A[a-z]+\z/}
 
   def to_param
-    [id, key.parameterize].join('-')
+    key.parameterize
   end
 
 end

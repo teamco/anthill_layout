@@ -43,6 +43,22 @@ define([
         },
 
         /**
+         * Define routes setter
+         * @member BaseController
+         */
+        setRoutes: function setRoutes() {
+
+            var routes = this.model.getConfig('routes') || {},
+                index;
+
+            for (index in routes) {
+                if (routes.hasOwnProperty(index)) {
+                    this.controller.setRoute(index, routes[index]);
+                }
+            }
+        },
+
+        /**
          * Bind model observer
          * @member BaseController
          */

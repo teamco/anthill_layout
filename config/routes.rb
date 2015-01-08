@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   get '/sites/:key', to: 'author/site_storages#show'
+  put '/sites/:key', to: 'author/site_storages#update'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

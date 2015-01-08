@@ -33,6 +33,7 @@ define([
          * @member AppEventManager
          * @type {{
          *      defineSetting: string,
+         *      setRoutes: string,
          *      initResizeWindow: string,
          *      resizeWindow: {eventName: string, params: {buffer: number}},
          *      resizeWindowHooks: string,
@@ -49,6 +50,7 @@ define([
          */
         eventList: {
             defineSetting: 'define.setting',
+            setRoutes: 'set.routes',
             initResizeWindow: {
                 eventName: 'init.resize.window',
                 params: { single: true }

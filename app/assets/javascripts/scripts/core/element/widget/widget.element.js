@@ -491,7 +491,7 @@ define([
                  * @type {Image}
                  */
                 var scope = this.scope;
-                debugger
+
 //                scope.observer.publish(
 //                    scope.eventmanager.eventList.provideStats,
 //                    e

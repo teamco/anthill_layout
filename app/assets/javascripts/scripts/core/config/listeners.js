@@ -40,10 +40,6 @@ define([
             name: 'success.rendered',
             callback: function successRenderedCallback() {
                 this.view.renderApplication();
-
-                if (this.controller.isDevelopmentMode()) {
-                    this.view.debug();
-                }
             }
         },
 

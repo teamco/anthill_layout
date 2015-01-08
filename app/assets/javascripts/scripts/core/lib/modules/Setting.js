@@ -34,13 +34,14 @@ define([
          */
         this.STORAGE_MODES = {
             localStorage: window.localStorage,
-            serverStorage: this.serverStorage
+            serverStorage: this.serverStorage()
         };
 
         /**
          * Define setting storage
          * @member Setting
          * @type {{
+         *      cache: Storage,
          *      development: Storage,
          *      authorize: Storage,
          *      consumption: Storage,
@@ -48,7 +49,8 @@ define([
          * }}
          */
         this.storage = {
-            development: this.STORAGE_MODES.localStorage,
+            cache: this.STORAGE_MODES.localStorage,
+            development: this.STORAGE_MODES.serverStorage,
             authorize: this.STORAGE_MODES.serverStorage,
             consumption: this.STORAGE_MODES.localStorage,
             test: this.STORAGE_MODES.localStorage
@@ -243,15 +245,58 @@ define([
         /**
          * Define server side storage
          * @member Setting
-         * @returns {{setItem: Function, getItem: Function}}
+         * @returns {{
+         *      setting: Setting,
+         *      setItem: Function,
+         *      getItem: Function
+         * }}
          */
         serverStorage: function serverStorage() {
+
             return {
-                setItem: function setItem(key) {
-                    debugger;
+
+                setting: this,
+
+                setItem: function setItem(key, value) {
+
+                    /**
+                     * Get scope
+                     * @type {App}
+                     */
+                    var scope = this.setting.scope;
+
+                    /**
+                     * Get create update site route
+                     * @type {{string[]}}
+                     */
+                    var route = scope.config.routes.updateSiteContent,
+                        opts = {
+
+                            dataType: 'json',
+
+                            url: route[0] + key,
+                            method: route[1],
+
+                            data: scope.controller.prepareXhrData({
+                                author_site_storage: {
+                                    content: value
+                                }
+                            })
+                        };
+
+                    $.ajax(opts).done(function onDone() {
+
+                        scope.logger.debug(
+                            'Save successfully',
+                            [key, value]
+                        );
+
+                        this.setting.storage.cache.setItem(key, value);
+
+                    }.bind(this));
                 },
                 getItem: function getItem(key) {
-                    debugger;
+                    return this.setting.storage.cache.getItem(key);
                 }
             }
         }

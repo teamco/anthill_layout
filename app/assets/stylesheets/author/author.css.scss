@@ -235,6 +235,7 @@ body.admin input[type="submit"] {
   background: #3961b9;
   color: #fff;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 body.admin input[type="submit"]:hover {
@@ -279,4 +280,23 @@ body.admin .field .field_with_errors input[type="text"],
 body.admin .field .field_with_errors input[type="number"],
 body.admin .field .field_with_errors textarea {
   border-color: #cd0a0a;
+}
+
+body.admin form ul {
+  margin: 0;
+  border-radius: 5px;
+}
+
+body.admin form li {
+  display: inline-block;
+}
+
+body.admin form ul > li label {
+  min-width: inherit;
+}
+
+body.admin form ul div.field {
+  float: left;
+  clear: none;
+  margin-right: 20px;
 }

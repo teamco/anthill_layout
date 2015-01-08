@@ -12,9 +12,8 @@ define([
     'element/header.element',
     'element/footer.element',
     'element/application/application.content.element',
-    'element/export.element',
-    'element/application/application.debug.element'
-], function defineApplicationView(BaseView, AppElement, Header, Footer, AppContentElement, ExportElement, DebuggerElement) {
+    'element/export.element'
+], function defineApplicationView(BaseView, AppElement, Header, Footer, AppContentElement, ExportElement) {
 
     /**
      * View
@@ -80,26 +79,6 @@ define([
                 $container: this.elements.$app.$,
                 id: 'export-url',
                 data: data
-            });
-        },
-
-        /**
-         * Render Debugger window
-         * @member AppView
-         */
-        debug: function debug() {
-
-            /**
-             * Define $debugger
-             * @type {DebuggerElement}
-             */
-            this.elements.$debugger = new DebuggerElement(this, {
-                $container: this.elements.$app.$,
-                style: 'debugger',
-                opacity: 0.6,
-                events: {
-                    click: 'activateDebugger'
-                }
             });
         },
 

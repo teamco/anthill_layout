@@ -195,22 +195,6 @@ define([
          */
         getResourceClassName: function getResourceClassName(resource) {
             return resource.replace(/\./g, '-');
-        },
-
-        /**
-         * Define routes setter
-         * @member PluginController
-         */
-        setRoutes: function setRoutes() {
-
-            var routes = this.model.getConfig('routes') || {},
-                index;
-
-            for (index in routes) {
-                if (routes.hasOwnProperty(index)) {
-                    this.controller.setRoute(index, routes[index]);
-                }
-            }
         }
 
     }, AntHill.prototype, BaseController.prototype);

@@ -15,7 +15,10 @@
         <ul>
           <%= f.fields_for :author_site_versions do |fv| %>
               <li>
-                <%= fv.collection_select(:id, @author_site_storage.author_site_versions, :id, :version) %>
+                <div class="field">
+                  <%= fv.label :version %>
+                  <%= fv.collection_select(:id, @author_site_storage.author_site_versions, :id, :version) %>
+                </div>
                 <%= render_checkbox(fv, :activated) %>
               </li>
           <% end %>

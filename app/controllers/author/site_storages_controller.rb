@@ -3,7 +3,7 @@ require 'uuid'
 
 class Author::SiteStoragesController < Author::AuthorController
 
-  before_action :set_author_site_storage, only: [:edit, :update, :destroy]
+  before_action :set_author_site_storage, only: [:show, :edit, :update, :destroy]
   layout :resolve_layout
 
   # GET /author/site_storages
@@ -21,7 +21,6 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages/1
   # GET /author/site_storages/1.json
   def show
-    @author_site_storage = Author::SiteStorage.find_by_key(params[:key])
   end
 
   # GET /author/site_storages/new
@@ -100,7 +99,8 @@ class Author::SiteStoragesController < Author::AuthorController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_storage
-    @author_site_storage = Author::SiteStorage.find(params[:id])
+    @author_site_storage = Author::SiteStorage.find_by_key(params[:key]) ||
+        Author::SiteStorage.find_by_key(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
