@@ -229,7 +229,7 @@ define([
          * @returns {string}
          */
         compress: function compress(json) {
-            return LZString.compress(json);
+            return LZString.compressToBase64(json);
         },
 
         /**
@@ -239,7 +239,7 @@ define([
          * @returns {string}
          */
         decompress: function decompress(compress) {
-            return LZString.decompress(compress)
+            return LZString.decompressFromBase64(compress)
         },
 
         /**

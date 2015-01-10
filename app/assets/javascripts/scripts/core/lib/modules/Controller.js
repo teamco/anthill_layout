@@ -44,7 +44,7 @@ define([
 
         /**
          * Define routes setter
-         * @member BaseController
+         * @member PluginController
          */
         setRoutes: function setRoutes() {
 
