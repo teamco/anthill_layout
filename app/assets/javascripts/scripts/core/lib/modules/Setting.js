@@ -287,14 +287,23 @@ define([
          *      setting: Setting,
          *      setItem: Function,
          *      getItem: Function
+         *      clear: Function
          * }}
          */
         serverStorage: function serverStorage() {
 
             return {
 
+                /**
+                 * Define scope
+                 * @type {Setting}
+                 */
                 setting: this,
 
+                /**
+                 * Set storage item
+                 * @member {STORAGE_MODES}
+                 */
                 setItem: function setItem(key, value) {
 
                     /**
@@ -333,9 +342,20 @@ define([
 
                     }.bind(this));
                 },
+
+                /**
+                 * Get storage item
+                 * @member {STORAGE_MODES}
+                 * @return {string}
+                 */
                 getItem: function getItem(key) {
                     return this.setting.storage.cache.getItem(key);
                 },
+
+                /**
+                 * Clear storage
+                 * @member {STORAGE_MODES}
+                 */
                 clear: function clear() {
                     this.setting.save();
                 }
