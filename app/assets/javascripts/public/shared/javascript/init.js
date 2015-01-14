@@ -11,13 +11,13 @@ require([
 
         require([
             'config/application'
-        ], function initDemo(Application) {
+        ], function initDemo(App) {
 
             /**
              * Define shared application
              * @type {App}
              */
-            window.shared = new Application({
+            var app = new App({
                 config: {
                     html: {
                         container: 'body',
@@ -28,11 +28,16 @@ require([
                 }
             });
 
-            window.shared.view.render();
+            app.view.render();
 
-            if (!window.shared.model.loadData()) {
-                window.shared.api.createWorkspace([], true).
+            if (!app.model.loadData()) {
+
+                app.model.setConfig('loading', true);
+
+                app.api.createWorkspace([], true).
                     api.createPage([], true);
+
+                app.model.setConfig('loading', false);
             }
         });
     });

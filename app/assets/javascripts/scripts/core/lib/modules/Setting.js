@@ -71,10 +71,44 @@ define([
     return Setting.extend('Setting', {
 
         /**
+         * Set initial state
+         * @member Setting
+         * @param {boolean} state
+         */
+        setInititalState: function setInititalState(state) {
+
+            /**
+             * Change state
+             * @type {boolean}
+             */
+            this.initial = state;
+        },
+
+        /**
+         * Get initial state
+         * @member Setting
+         * @returns {boolean}
+         */
+        getInititalState: function getInititalState() {
+            return this.initial;
+        },
+
+        /**
+         * Get token
+         * @member Setting
+         * @returns {String}
+         */
+        getToken: function getToken() {
+            return this.token;
+        },
+
+        /**
          * Init storage
          * @member Setting
          */
         init: function init() {
+
+            this.setInititalState(true);
 
             /**
              * Load storage
@@ -88,17 +122,6 @@ define([
              */
             var base = this.base;
 
-            if (!base.isDefined(storage)) {
-
-                this.save();
-
-                /**
-                 * Init storage
-                 * @type {*}
-                 */
-                storage = this.load();
-            }
-
             if (!base.isDefined(storage.token)) {
 
                 /**
@@ -110,6 +133,8 @@ define([
 
                 this.save(storage);
             }
+
+            this.setInititalState(false);
         },
 
         /**
@@ -117,7 +142,7 @@ define([
          * @member Setting
          */
         clear: function clear() {
-            window.localStorage.clear();
+            this.getStorage().clear();
         },
 
         /**
@@ -126,7 +151,18 @@ define([
          * @returns {*}
          */
         getStorage: function getStorage() {
-            return this.storage[this.mode];
+
+            /**
+             * Define storage
+             * @type {*}
+             */
+            var storage = this.storage[this.mode];
+
+            if (this.getInititalState() || this.scope.model.getConfig('loading')) {
+                storage = this.storage.cache;
+            }
+
+            return storage;
         },
 
         /**
@@ -160,7 +196,7 @@ define([
             var data = this.load(),
                 _dt = this.base.lib.datetime;
 
-            if (this.base.isDefined(data)) {
+            if (this.base.isDefined(data.createdAt)) {
 
                 /**
                  * Load created at
@@ -214,7 +250,7 @@ define([
                     this.getStorage().getItem(
                         this.getNameSpace()
                     )
-                ) || '[]'
+                ) || '{}'
             );
 
             this.scope.logger.debug('Load', data);
@@ -229,6 +265,7 @@ define([
          * @returns {string}
          */
         compress: function compress(json) {
+            this.scope.logger.debug('compress', json);
             return LZString.compressToBase64(json);
         },
 
@@ -239,6 +276,7 @@ define([
          * @returns {string}
          */
         decompress: function decompress(compress) {
+            this.scope.logger.debug('decompress', compress);
             return LZString.decompressFromBase64(compress)
         },
 
@@ -284,7 +322,7 @@ define([
                             })
                         };
 
-                    $.ajax(opts).done(function onDone() {
+                    $.ajax(opts).done(function () {
 
                         scope.logger.debug(
                             'Save successfully',
@@ -297,6 +335,9 @@ define([
                 },
                 getItem: function getItem(key) {
                     return this.setting.storage.cache.getItem(key);
+                },
+                clear: function clear() {
+                    this.setting.save();
                 }
             }
         }
