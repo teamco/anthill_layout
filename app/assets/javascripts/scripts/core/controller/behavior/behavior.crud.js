@@ -87,10 +87,10 @@ define([
             var count = this.base.lib.hash.hashLength(items || {});
 
             if (this.checkCondition({
-                condition: count === 0,
-                type: 'warn',
-                msg: 'Undefined items'
-            })) {
+                    condition: count === 0,
+                    type: 'warn',
+                    msg: 'Undefined items'
+                })) {
                 return false;
             }
 
@@ -116,19 +116,19 @@ define([
             count = this.base.define(count, 1, true);
 
             if (this.checkCondition({
-                condition: !this.base.isDefined(item),
-                type: 'warn',
-                msg: 'Undefined item'
-            })) {
+                    condition: !this.base.isDefined(item),
+                    type: 'warn',
+                    msg: 'Undefined item'
+                })) {
                 return false;
             }
 
             if (this.checkCondition({
-                condition: item.constructor.name !== this.model.item.name,
-                type: 'warn',
-                msg: 'Untrusted item',
-                args: [item, item.constructor.name, this.model.item.name]
-            })) {
+                    condition: item.constructor.name !== this.model.item.name,
+                    type: 'warn',
+                    msg: 'Untrusted item',
+                    args: [item, item.constructor.name, this.model.item.name]
+                })) {
                 return false;
             }
 
@@ -205,11 +205,10 @@ define([
          */
         _afterCrud: function _afterCrud() {
 
-            if (this.base.isFunction(this.updateDebugger)) {
-                this.updateDebugger();
+            // Save if not widget
+            if (this.scope.model.getItemNameSpace() !== 'widget') {
+                this.store();
             }
-
-            this.store();
         }
 
     }, AntHill.prototype);

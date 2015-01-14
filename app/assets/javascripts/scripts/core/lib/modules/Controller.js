@@ -625,7 +625,11 @@ define([
 
                     if (item.model && item.model.getItems()) {
 
-                        this.store.bind(node.controller)(item, data, Object.keys(items).length);
+                        this.store.bind(node.controller)(
+                            item,
+                            data,
+                            Object.keys(items).length
+                        );
                     }
                 }
             }
