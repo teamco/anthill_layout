@@ -1,4 +1,5 @@
 .idea
+.keep
 .gitignore
 .DS_Store
 .settings/
@@ -30,3 +31,4 @@ pickle-email-*.html
 
 Gemfile.lock
 app/assets/javascripts/scripts/plugins/stylesheets/widgets
+db/*.sqlite3

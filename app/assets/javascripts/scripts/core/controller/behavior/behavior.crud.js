@@ -202,11 +202,25 @@ define([
          * After CRUD
          * @member BaseCrud
          * @private
+         * @returns {*|boolean}
          */
         _afterCrud: function _afterCrud() {
 
-            // Save if not widget
-            if (this.scope.model.getItemNameSpace() !== 'widget') {
+            /**
+             * Get root
+             * @type {App}
+             */
+            var root = this.root(),
+                isWidget = this.scope.model.getItemNameSpace() === 'widget',
+                isLoading = root.model.getConfig('loading');
+
+            if (isWidget || isLoading) {
+
+                return false;
+
+            } else {
+
+                // Save if not (widget|loading)
                 this.store();
             }
         }
