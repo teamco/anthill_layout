@@ -148,7 +148,8 @@ define([
             this.eventmanager.eventList.defineSetting,
             this.eventmanager.eventList.setRoutes,
             this.eventmanager.eventList.initResizeWindow,
-            this.eventmanager.eventList.successCreated
+            this.eventmanager.eventList.successCreated,
+            this.eventmanager.eventList.loadApplication
         );
     };
 

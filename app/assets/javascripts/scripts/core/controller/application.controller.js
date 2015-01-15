@@ -35,6 +35,27 @@ define(
             'AppController', {
 
                 /**
+                 * Define Load Application
+                 * @member AppController
+                 */
+                loadApplication: function loadApplication() {
+
+                    // Render app
+                    this.view.render();
+
+                    // Load initial
+                    if (!this.model.loadData()) {
+
+                        this.model.setConfig('loading', true);
+
+                        this.api.createWorkspace([], true).
+                            api.createPage([], true);
+
+                        this.model.setConfig('loading', false);
+                    }
+                },
+
+                /**
                  * Define setting
                  * @member AppController
                  */
