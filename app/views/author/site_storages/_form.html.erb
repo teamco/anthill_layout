@@ -12,17 +12,15 @@
 
     <% versions = @author_site_storage.author_site_versions %>
     <% if versions.length > 0 %>
+        <%#= f.fields_for :author_site_versions do |fv| %>
         <ul>
-          <%= f.fields_for :author_site_versions do |fv| %>
+          <% versions.each do |v| %>
               <li>
-                <div class="field">
-                  <%= fv.label :version %>
-                  <%= fv.collection_select(:id, @author_site_storage.author_site_versions, :id, :version) %>
-                </div>
-                <%= render_checkbox(fv, :activated) %>
+                <%= render_radio_button(f, v.id, v.version, v.activated) %>
               </li>
           <% end %>
         </ul>
+        <%# end %>
     <% end %>
 
     <%= render_submit(f) %>

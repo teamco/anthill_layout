@@ -70,7 +70,7 @@ class Author::SiteStoragesController < Author::AuthorController
     versions = @author_site_storage.author_site_versions
     versions.build({
                        version: versions.length + 1,
-                       content: params[:content],
+                       content: params[:author_site_storage][:content],
                        activated: false
                    })
 

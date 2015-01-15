@@ -36,6 +36,13 @@ module Author::AuthorHelper
     end
   end
 
+  def render_radio_button(f, name, value, checked=false, disabled=false)
+    content_tag(:div, class: 'field') do
+      concat f.radio_button(name, value, {disabled: disabled, checked: checked})
+      concat f.label name
+    end
+  end
+
   def render_number_field(f, name, disabled=false)
     render_field(:number_field, f, name, disabled)
   end
