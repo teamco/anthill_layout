@@ -14,6 +14,11 @@ define([
     'config/widget'
 ], function definePermissions(Application, Workspace, Page, Layout, Widget) {
 
+    // Define global permissions
+    for (var i = 0, l = arguments.length; i < l; i++) {
+        arguments[i].prototype.globalPermissions = arguments[i].prototype.globalPermissions || {};
+    }
+
     /**
      * Define Application Global permission
      * @member App
@@ -33,8 +38,7 @@ define([
         consumption: {
             createAuthorPanel: false
         },
-        test: {
-        }
+        test: {}
     };
 
     /**
@@ -43,14 +47,10 @@ define([
      * @type {{}}
      */
     Workspace.prototype.globalPermissions = {
-        development: {
-        },
-        authorize: {
-        },
-        consumption: {
-        },
-        test: {
-        }
+        development: {},
+        authorize: {},
+        consumption: {},
+        test: {}
     };
 
     /**
@@ -59,14 +59,10 @@ define([
      * @type {{}}
      */
     Page.prototype.globalPermissions = {
-        development: {
-        },
-        authorize: {
-        },
-        consumption: {
-        },
-        test: {
-        }
+        development: {},
+        authorize: {},
+        consumption: {},
+        test: {}
     };
 
     /**
@@ -75,14 +71,10 @@ define([
      * @type {{}}
      */
     Layout.prototype.globalPermissions = {
-        development: {
-        },
-        authorize: {
-        },
-        consumption: {
-        },
-        test: {
-        }
+        development: {},
+        authorize: {},
+        consumption: {},
+        test: {}
     };
 
     /**
@@ -91,15 +83,10 @@ define([
      * @type {{}}
      */
     Widget.prototype.globalPermissions = {
-        development: {
-        },
-        authorize: {
-        },
-        consumption: {
-        },
-        test: {
-        }
+        development: {},
+        authorize: {},
+        consumption: {},
+        test: {}
 
     };
-
 });

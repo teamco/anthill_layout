@@ -22,16 +22,12 @@ define(
      * @param {Layout} Layout
      * @param {Widget} Widget
      */
-        function defineListeners(Application, Workspace, Page, Layout, Widget) {
+    function defineListeners(Application, Workspace, Page, Layout, Widget) {
 
-        /**
-         * Load listeners
-         */
-        Application.prototype.globalListeners = Application.prototype.globalListeners || {};
-        Workspace.prototype.globalListeners = Workspace.prototype.globalListeners || {};
-        Page.prototype.globalListeners = Page.prototype.globalListeners || {};
-        Layout.prototype.globalListeners = Layout.prototype.globalListeners || {};
-        Widget.prototype.globalListeners = Widget.prototype.globalListeners || {};
+        // Define global listeners
+        for (var i = 0, l = arguments.length; i < l; i++) {
+            arguments[i].prototype.globalListeners = arguments[i].prototype.globalListeners || {};
+        }
 
         /**
          * Define Application Global listeners
@@ -142,27 +138,20 @@ define(
          * @member Workspace
          * @type {{}}
          */
-        Workspace.prototype.globalListeners = {
-
-        };
+        Workspace.prototype.globalListeners = {};
 
         /**
          * Define Page Global listeners
          * @member Page
          * @type {{}}
          */
-        Page.prototype.globalListeners = {
-
-        };
+        Page.prototype.globalListeners = {};
 
         /**
          * Define Widget Global listeners
          * @member Widget
          * @type {{}}
          */
-        Widget.prototype.globalListeners = {
-
-        };
-
+        Widget.prototype.globalListeners = {};
     }
 );
