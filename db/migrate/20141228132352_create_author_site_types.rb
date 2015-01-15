@@ -5,5 +5,6 @@ class CreateAuthorSiteTypes < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_column :author_site_storages, :site_type_id, :integer, index: true
+    add_column :author_site_versions, :content, :text
   end
 end

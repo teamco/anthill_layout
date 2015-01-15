@@ -48,6 +48,7 @@ class Author::SiteStoragesController < Author::AuthorController
     versions = @author_site_storage.author_site_versions
     versions.build({
                        version: versions.length + 1,
+                       content: @author_site_storage[:content],
                        activated: false
                    })
 
@@ -65,6 +66,14 @@ class Author::SiteStoragesController < Author::AuthorController
   # PATCH/PUT /author/site_storages/1
   # PATCH/PUT /author/site_storages/1.json
   def update
+
+    versions = @author_site_storage.author_site_versions
+    versions.build({
+                       version: versions.length + 1,
+                       content: params[:content],
+                       activated: false
+                   })
+
     respond_to do |format|
       if @author_site_storage.update(author_site_storage_params)
         format.html { redirect_to author_site_storages_path, notice: 'Site storage was successfully updated.' }

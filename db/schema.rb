@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20141228132352) do
     t.boolean  "activated",       default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.text     "content"
   end
 
   add_index "author_site_versions", ["site_storage_id"], name: "index_author_site_versions_on_site_storage_id"

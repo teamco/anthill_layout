@@ -2,6 +2,7 @@
 
     <%= render_notification(@author_site_version) %>
     <%= render_text(:site_storage, @author_site_version.author_site_storage.try(:key)) %>
+    <%= render_text_area(f, :content, true) %>
     <%= render_number_field(f, :version) %>
     <%= render_checkbox(f, :activated) %>
     <%= render_submit(f) %>

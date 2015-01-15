@@ -37,7 +37,7 @@
 
 .widget.select:after,
 .development .widget:hover:after,
-.authoring .widget:hover:after,
+.authorize .widget:hover:after,
 .widget.ui-draggable-dragging:after,
 .widget.ui-resizable-resizing:after {
     content: " ";
