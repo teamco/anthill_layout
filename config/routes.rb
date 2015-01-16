@@ -3,8 +3,12 @@ Rails.application.routes.draw do
   namespace :author do
     resources :site_types
     resources :widgets
-    resources :site_storages
-    resources :site_versions
+    resources :site_storages do
+      resources :site_versions
+    end
+    resources :site_versions do
+      resources :site_storages
+    end
     resources :widget_categories
   end
 

@@ -1,22 +1,22 @@
 <table>
   <thead>
-    <tr>
-      <th>ID</th>
-      <th>Site</th>
-      <th>Version</th>
-      <th>Activated?</th>
-      <th>Destroy</th>
-    </tr>
+  <tr>
+    <th>ID</th>
+    <th>Site</th>
+    <th>Version</th>
+    <th>Activated?</th>
+    <th>Destroy</th>
+  </tr>
   </thead>
   <tbody>
-    <% @author_site_versions.each_with_index do |author_site_version, index| %>
-      <tr>
+  <% @author_site_versions.each_with_index do |author_site_version, index| %>
+      <tr <%= author_site_version.activated ? "class=activated" : '' %>>
         <td><%= index + 1 %></td>
         <td><%= author_site_version.author_site_storage.try(:key) %></td>
         <td class="name c"><%= link_to author_site_version.version, edit_author_site_version_path(author_site_version) %></td>
         <td class="c"><%= author_site_version.activated %></td>
         <td class="c"><%= link_to_destroy(author_site_version, author_site_version.version) %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>

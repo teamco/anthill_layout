@@ -21,7 +21,7 @@
         <td><%= author_site_storage.author_site_type.try(:name) %></td>
         <td class="name"><%= link_to author_site_storage.key, edit_author_site_storage_path(author_site_storage) %></td>
         <td class="c"><%= link_to "Show #{author_site_storage.key}", {}, {target: '_blank', href: "/sites/#{author_site_storage.key}"} %></td>
-        <td class="c"><%= link_to "#{activated_version.try(:version) || '?'} (#{versions.length})", activate_version_url %></td>
+        <td class="c"><%= link_to "#{activated_version.try(:version) || '?'} (#{versions.length})", author_site_storage_site_versions_path(author_site_storage) %></td>
         <td class="c"><%= link_to_destroy(author_site_storage, author_site_storage.key) %></td>
       </tr>
   <% end %>

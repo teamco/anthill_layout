@@ -8,7 +8,10 @@ module Author::AuthorHelper
     content_tag(:div, class: 'title') do
       if action_name === 'index'
         concat content_tag(:h1, "#{controller_name.humanize}: #{action_name} (#{@resource[:items]})")
-        concat link_to("Add #{controller_name.humanize.singularize}", @resource[:path])
+        concat link_to(
+                   "Add #{controller_name.humanize.singularize}",
+                   @resource[:path]
+               ) unless add_new_black_list.include? controller_name
       end
       concat content_tag(:p, notice, id: 'notice')
     end
@@ -82,6 +85,10 @@ module Author::AuthorHelper
       concat f.label name
       concat f.send(type, name, {disabled: disabled, placeholder: "Enter #{name.to_s.humanize}"})
     end
+  end
+
+  def add_new_black_list
+    %w(site_versions)
   end
 
 end
