@@ -333,11 +333,6 @@ define([
 
                     $.ajax(opts).done(function (data, type, xhr) {
 
-                        scope.logger.debug(
-                            'Save successfully',
-                            [key, value]
-                        );
-
                         this.setting.storage.cache.setItem(key, value);
 
                         scope.logger.debug(data.notice, arguments);

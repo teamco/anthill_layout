@@ -44,9 +44,9 @@ define([
                 event:'loadSitePreferences'
             },
             publish: {
-                title: 'Publish',
-                description: 'Publishing involves the process of producing and distributing literature so that the public can have access to it',
-                event:'publishStorage'
+                title: 'Activate version',
+                description: 'Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later',
+                event:'activateStorage'
             },
             import: {
                 title: 'Import',

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get '/sites/:key', to: 'author/site_storages#show'
   put '/sites/:key', to: 'author/site_storages#update'
+  put '/sites/activate/:key', to: 'author/site_storages#activate'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

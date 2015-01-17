@@ -77,7 +77,7 @@ define([
                 }
             },
             routes: {
-                publishSiteStorage: ['/publish', 'put'],
+                activateSiteStorage: ['/sites/activate/', 'put'],
                 createNewWidget: ['/author/widgets', 'post'],
                 updateExistingWidget: ['/author/widgets/{id}', 'put']
             },

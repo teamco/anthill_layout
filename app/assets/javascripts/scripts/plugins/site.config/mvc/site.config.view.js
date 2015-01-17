@@ -15,7 +15,7 @@ define(
         'plugins/site.config/element/site.config.content.element',
         'plugins/site.config/element/site.config.preferences.element',
         'plugins/site.config/element/site.config.cleanup.element',
-        'plugins/site.config/element/site.config.publish.element',
+        'plugins/site.config/element/site.config.activate.element',
         'plugins/site.config/element/site.config.import.file.element',
         'plugins/site.config/element/site.config.approve.import.element',
         'plugins/site.config/element/site.config.widgets.list.element',
@@ -31,14 +31,14 @@ define(
      * @param {SiteConfigContentElement} SiteConfigContentElement
      * @param {SiteConfigPreferencesElement} SiteConfigPreferencesElement
      * @param {SiteConfigCleanUpElement} SiteConfigCleanUpElement
-     * @param {SiteConfigPublishElement} SiteConfigPublishElement
+     * @param {SiteConfigActivateElement} SiteConfigActivateElement
      * @param {SiteConfigImportFileElement} SiteConfigImportFileElement
      * @param {SiteConfigApproveImportElement} SiteConfigApproveImportElement
      * @param {SiteConfigWidgetsListElement} SiteConfigWidgetsListElement
      * @param {SiteConfigElement} SiteConfigElement
      * @returns {*}
      */
-    function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigPublishElement, SiteConfigImportFileElement, SiteConfigApproveImportElement, SiteConfigWidgetsListElement, SiteConfigElement) {
+    function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigActivateElement, SiteConfigImportFileElement, SiteConfigApproveImportElement, SiteConfigWidgetsListElement, SiteConfigElement) {
 
         /**
          * Define view
@@ -350,19 +350,19 @@ define(
             },
 
             /**
-             * Render publish element
+             * Render activate element
              * @member SiteConfigView
-             * @returns {SiteConfigPublishElement}
+             * @returns {SiteConfigActivateElement}
              */
-            renderPublish: function renderPublish() {
+            renderActivate: function renderActivate() {
 
                 /**
-                 * Define SiteConfig Publish Element
-                 * @type {SiteConfigPublishElement}
+                 * Define SiteConfig Activate Element
+                 * @type {SiteConfigActivateElement}
                  */
-                this.elements.$publish = new SiteConfigPublishElement(this, {});
+                this.elements.$activate = new SiteConfigActivateElement(this, {});
 
-                return this.elements.$publish;
+                return this.elements.$activate;
             },
 
             /**
@@ -396,10 +396,10 @@ define(
             },
 
             /**
-             * Render publish confirmation modal dialog
+             * Render activate confirmation modal dialog
              * @member SiteConfigView
              */
-            publishConfirmation: function publishConfirmation() {
+            activateConfirmation: function activateConfirmation() {
 
                 /**
                  * Get root
@@ -409,19 +409,19 @@ define(
 
                 this.modalDialog({
                     type: 'warning',
-                    title: 'Publish',
+                    title: 'Activate',
                     text: [
-                        'Are you sure want to publish current version: ',
+                        'Are you sure want to activate current version: ',
                         root.model.getConfig('version'), '?'
                     ].join(''),
-                    html: this.renderPublish().$,
+                    html: this.renderActivate().$,
                     cover: true,
                     autoclose: true,
                     buttons: {
                         approve: {
                             text: this.i18n.t('site.data.confirm'),
                             events: {
-                                click: 'approvePublish'
+                                click: 'approveActivate'
                             }
                         },
                         reject: {

@@ -4,18 +4,18 @@
 
 define([
     'modules/Element'
-], function defineSiteConfigPublishElement(BaseElement) {
+], function defineSiteConfigActivateElement(BaseElement) {
 
     /**
-     * Define SiteConfigPublishElement
-     * @class SiteConfigPublishElement
+     * Define SiteConfigActivateElement
+     * @class SiteConfigActivateElement
      * @constructor
      * @param {SiteConfigView} view
      * @param opts
      * @extends BaseElement
-     * @returns {SiteConfigPublishElement}
+     * @returns {SiteConfigActivateElement}
      */
-    var SiteConfigPublishElement = function SiteConfigPublishElement(view, opts) {
+    var SiteConfigActivateElement = function SiteConfigActivateElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -27,7 +27,7 @@ define([
         return this;
     };
 
-    return SiteConfigPublishElement.extend('SiteConfigPublishElement', {
+    return SiteConfigActivateElement.extend('SiteConfigActivateElement', {
 
         renderContent: function renderContent() {
         }

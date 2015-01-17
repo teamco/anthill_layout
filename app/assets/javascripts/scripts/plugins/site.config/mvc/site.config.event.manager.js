@@ -43,7 +43,7 @@ define([
          *      widgetGenerator: string,
          *      widgetEditor: string,
          *      setRoutes: string,
-         *      publishStorage: string
+         *      activateStorage: string
          * }}
          */
         eventList: {
@@ -58,7 +58,7 @@ define([
             widgetGenerator: 'widget.generator',
             widgetEditor: 'widget.editor',
             setRoutes: 'set.routes',
-            publishStorage: 'publish.storage'
+            activateStorage: 'activate.storage'
         }
 
     }, BaseEvent.prototype);
