@@ -1,6 +1,6 @@
 (function () {
 
-    var script = document.body.getElementsByTagName('script')[0],
+    var script = document.getElementById('require-init'),
         site = script.getAttribute('data-resource'),
         global = script.getAttribute('data-global'),
         mode = script.getAttribute('data-mode');
