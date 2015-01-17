@@ -29,7 +29,7 @@ requirejs.config({
         modernizr: 'lib/modernizr',
         'lz-string': 'lib/lz-string',
 
-        jquery: 'lib/jquery/jquery-2.1.1',
+        jquery: 'lib/jquery/jquery-2.1.3.min',
         'jquery.ujs': 'lib/jquery/jquery_ujs',
         'jquery.ui': 'lib/jquery/jquery-ui.min',
         'jquery.resizestop': 'lib/jquery/jquery.resizestop',
