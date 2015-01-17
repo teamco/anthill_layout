@@ -30,6 +30,47 @@ define([
     return SiteConfigActivateElement.extend('SiteConfigActivateElement', {
 
         renderContent: function renderContent() {
+
+            /**
+             * Get scope
+             * @type {SiteConfig}
+             */
+            var scope = this.view.scope,
+                root = scope.controller.root(),
+                storage = root.model.setting.storage,
+                modes = [];
+
+            for (var index in storage) {
+                if (storage.hasOwnProperty(index)) {
+                    modes.push({
+                        type: 'text',
+                        key: index,
+                        value: index
+                    });
+                }
+            }
+
+            var $ul = $('<ul />');
+
+            /**
+             * Define combo
+             * @type {*|jQuery}
+             */
+            var $combo = $('<li />').addClass('site-mode').append(
+                this.renderCombobox(
+                    modes,
+                    root.model.getConfig('mode'),
+                    'Mode',
+                    'author_site_types[name]',
+                    undefined,
+                    true,
+                    true
+                )
+            );
+
+            this.$.append(
+                $ul.append($combo)
+            );
         }
 
     }, BaseElement.prototype);

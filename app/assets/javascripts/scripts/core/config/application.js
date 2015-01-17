@@ -31,6 +31,7 @@ define([
          *      version: number,
          *      mode: string,
          *      type: string,
+         *      activate: boolean,
          *      isResized: boolean,
          *      loading: boolean,
          *      logger: {
@@ -68,6 +69,7 @@ define([
             version: 1,
             mode: 'development',
             type: 'default',
+            activate: false,
             isResized: true,
             loading: false,
             limit: true,

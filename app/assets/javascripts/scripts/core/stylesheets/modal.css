@@ -140,3 +140,7 @@
 .modal-dialog div.html ul {
     list-style: circle inside;
 }
+
+.modal-dialog div.html ul li {
+    min-height: 24px;
+}

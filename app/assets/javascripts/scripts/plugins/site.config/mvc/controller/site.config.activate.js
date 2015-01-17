@@ -37,16 +37,57 @@ define(function defineSiteConfigActivate() {
 
             /**
              * Get root
-             * @type {App}
+             * @type {{activate: boolean, mode: string}}
              */
-            var root = this.root();
+            var config = this.root().model.getConfig();
+
+            /**
+             * Define $modal
+             * @type {ModalElement}
+             */
+            var $modal = scope.view.elements.$modal;
+
+            if (!scope.base.isDefined($modal)) {
+                scope.logger.warn('Undefined $modal');
+                return false;
+            }
+
+            /**
+             * Get modal inputs
+             * @type {string|*}
+             */
+            var inputs = $modal.collectInputFields(),
+                data = {};
+
+            for (var i = 0, l = inputs.length; i < l; i++) {
+
+                var input = inputs[i],
+                    name = input.name,
+                    value = input.value;
+
+                var regex = name.match(/(\w+)\[(\w+)]/);
+
+                if (regex[1] && regex[2]) {
+                    data[regex[1]] = data[regex[1]] || {};
+                    data[regex[1]][regex[2]] = value;
+                }
+            }
+
+            $.extend(
+                true, data,
+                this.prepareXhrData({
+                    author_site_version: {
+                        version: config.version
+                    }
+                })
+            );
 
             /**
              * Get create update site route
              * @type {{string[]}}
              */
             var route = scope.config.routes.activateSiteStorage,
-                key = this.root().model.getConfig('appName'),
+                key = config.appName,
                 opts = {
 
                     dataType: 'json',
@@ -54,26 +95,14 @@ define(function defineSiteConfigActivate() {
                     url: route[0] + key,
                     method: route[1],
 
-                    data: this.prepareXhrData({
-                        author_site_version: {
-                            version: root.model.getConfig('version')
-                        }
-                    })
+                    data: data
                 };
 
             $.ajax(opts).done(function (data, type, xhr) {
 
                 scope.logger.debug(data.notice, arguments);
 
-                /**
-                 * Define $modal
-                 * @type {ModalElement}
-                 */
-                var $modal = scope.view.elements.$modal;
-
-                if (scope.base.isDefined($modal)) {
-                    $modal.selfDestroy();
-                }
+                $modal.selfDestroy();
 
             }.bind(this));
         }

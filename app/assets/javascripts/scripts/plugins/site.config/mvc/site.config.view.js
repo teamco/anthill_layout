@@ -372,6 +372,7 @@ define(
             cleanUpConfirmation: function cleanUpConfirmation() {
 
                 this.modalDialog({
+                    style: 'clean-up',
                     type: 'warning',
                     title: 'Clean up',
                     text: 'Are you sure want to cleanup browser local storage?',
@@ -408,6 +409,7 @@ define(
                 var root = this.controller.root();
 
                 this.modalDialog({
+                    style: 'activate',
                     type: 'warning',
                     title: 'Activate',
                     text: [

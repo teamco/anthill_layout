@@ -83,6 +83,7 @@ define(
                 updateStorageVersion: function updateStorageVersion(version) {
                     this.logger.debug('Update storage version', version);
                     this.model.setConfig('version', version);
+                    this.model.setConfig('activate', true);
                 },
 
                 /**

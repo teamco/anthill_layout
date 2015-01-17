@@ -31,6 +31,12 @@ define([
         this.containment = containment;
 
         /**
+         * Define referrer
+         * @type {SiteConfig}
+         */
+        this.referrer = this;
+
+        /**
          * Define active content
          * @member SiteConfig
          * @type {Page}

@@ -41,7 +41,6 @@ define([
          * Define setting storage
          * @member Setting
          * @type {{
-         *      cache: Storage,
          *      development: Storage,
          *      authorize: Storage,
          *      consumption: Storage,
@@ -49,12 +48,17 @@ define([
          * }}
          */
         this.storage = {
-            cache: this.STORAGE_MODES.localStorage,
             development: this.STORAGE_MODES.serverStorage,
             authorize: this.STORAGE_MODES.serverStorage,
-            consumption: this.STORAGE_MODES.localStorage,
+            consumption: this.STORAGE_MODES.serverStorage,
             test: this.STORAGE_MODES.localStorage
         };
+
+        /**
+         * Define cache
+         * @type {Storage}
+         */
+        this.cache = this.STORAGE_MODES.localStorage;
 
         /**
          * Get storage namespace
@@ -159,7 +163,7 @@ define([
             var storage = this.storage[this.mode];
 
             if (this.getInititalState() || this.scope.model.getConfig('loading')) {
-                storage = this.storage.cache;
+                storage = this.cache;
             }
 
             return storage;
@@ -333,7 +337,7 @@ define([
 
                     $.ajax(opts).done(function (data, type, xhr) {
 
-                        this.setting.storage.cache.setItem(key, value);
+                        this.setting.cache.setItem(key, value);
 
                         scope.logger.debug(data.notice, arguments);
                         scope.observer.publish(
@@ -350,7 +354,7 @@ define([
                  * @return {string}
                  */
                 getItem: function getItem(key) {
-                    return this.setting.storage.cache.getItem(key);
+                    return this.setting.cache.getItem(key);
                 },
 
                 /**
