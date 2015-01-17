@@ -76,8 +76,26 @@ class Author::SiteStoragesController < Author::AuthorController
 
     respond_to do |format|
       if @author_site_storage.update(author_site_storage_params)
-        format.html { redirect_to author_site_storages_path, notice: 'Site storage was successfully updated.' }
-        format.json { render :index, status: :ok, location: @author_site_storage }
+        notice = 'Site storage was successfully updated'
+        if request.xhr?
+          version = versions.last
+          data = {
+              storage: {
+                  key: @author_site_storage.key,
+                  content: @author_site_storage.content
+              },
+              version: version.version,
+              activated: version.activated,
+              mode: @author_site_storage.author_site_type.name,
+              notice: notice
+          }
+          format.json {
+            render json: data, status: :ok
+          }
+        else
+          format.html { redirect_to author_site_storages_path, notice: notice }
+          format.json { render :index, status: :ok, location: @author_site_storage }
+        end
       else
         format.html { render :form }
         format.json { render json: @author_site_storage.errors, status: :unprocessable_entity }

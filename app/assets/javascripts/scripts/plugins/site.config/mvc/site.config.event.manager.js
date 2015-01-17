@@ -42,7 +42,8 @@ define([
          *      loadSitePreferences: string,
          *      widgetGenerator: string,
          *      widgetEditor: string,
-         *      setRoutes: string
+         *      setRoutes: string,
+         *      publishStorage: string
          * }}
          */
         eventList: {
@@ -56,7 +57,8 @@ define([
             loadSitePreferences: 'load.site.preferences',
             widgetGenerator: 'widget.generator',
             widgetEditor: 'widget.editor',
-            setRoutes: 'set.routes'
+            setRoutes: 'set.routes',
+            publishStorage: 'publish.storage'
         }
 
     }, BaseEvent.prototype);

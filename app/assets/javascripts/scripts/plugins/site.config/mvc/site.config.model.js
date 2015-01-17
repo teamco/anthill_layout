@@ -45,7 +45,8 @@ define([
             },
             publish: {
                 title: 'Publish',
-                description: 'Publishing involves the process of producing and distributing literature so that the public can have access to it'
+                description: 'Publishing involves the process of producing and distributing literature so that the public can have access to it',
+                event:'publishStorage'
             },
             import: {
                 title: 'Import',
