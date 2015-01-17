@@ -57,7 +57,11 @@ define(function defineSiteConfigActivate() {
              * @type {string|*}
              */
             var inputs = $modal.collectInputFields(),
-                data = {};
+                data = this.prepareXhrData({
+                    author_site_version: {
+                        version: config.version
+                    }
+                });
 
             for (var i = 0, l = inputs.length; i < l; i++) {
 
@@ -73,15 +77,6 @@ define(function defineSiteConfigActivate() {
                 }
             }
 
-            $.extend(
-                true, data,
-                this.prepareXhrData({
-                    author_site_version: {
-                        version: config.version
-                    }
-                })
-            );
-
             /**
              * Get create update site route
              * @type {{string[]}}
@@ -89,19 +84,15 @@ define(function defineSiteConfigActivate() {
             var route = scope.config.routes.activateSiteStorage,
                 key = config.appName,
                 opts = {
-
                     dataType: 'json',
-
                     url: route[0] + key,
                     method: route[1],
-
                     data: data
                 };
 
             $.ajax(opts).done(function (data, type, xhr) {
 
                 scope.logger.debug(data.notice, arguments);
-
                 $modal.selfDestroy();
 
             }.bind(this));
