@@ -56,6 +56,14 @@ define(
                 },
 
                 /**
+                 * Define global instance
+                 * @member AppController
+                 */
+                defineGlobalInstance: function defineGlobalInstance() {
+                    this.logger.debug('Define global instance');
+                },
+
+                /**
                  * Define setting
                  * @member AppController
                  */

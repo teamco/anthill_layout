@@ -33,6 +33,7 @@ define([
          * @member AppEventManager
          * @type {{
          *      loadApplication: string,
+         *      defineGlobalInstance: string,
          *      defineSetting: string,
          *      setRoutes: string,
          *      initResizeWindow: string,
@@ -51,6 +52,7 @@ define([
          */
         eventList: {
             loadApplication: 'load.application',
+            defineGlobalInstance: 'define.global.instance',
             defineSetting: 'define.setting',
             setRoutes: 'set.routes',
             initResizeWindow: {

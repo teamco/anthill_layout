@@ -2,7 +2,6 @@
 
     var script = document.getElementById('require-init'),
         site = script.getAttribute('data-resource'),
-        global = script.getAttribute('data-global'),
         mode = script.getAttribute('data-mode');
 
     require(['../scripts/core/config/main'], function loadConfig() {
@@ -20,7 +19,7 @@
                  * Define application
                  * @type {App}
                  */
-                var app = new App({
+                return new App({
                     config: {
                         html: {
                             container: 'body',
@@ -30,10 +29,6 @@
                         mode: mode
                     }
                 });
-
-                if (global === 'true') {
-                    window[site] = app;
-                }
             });
         });
     });

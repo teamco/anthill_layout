@@ -149,7 +149,8 @@ define([
             this.eventmanager.eventList.setRoutes,
             this.eventmanager.eventList.initResizeWindow,
             this.eventmanager.eventList.successCreated,
-            this.eventmanager.eventList.loadApplication
+            this.eventmanager.eventList.loadApplication,
+            this.eventmanager.eventList.defineGlobalInstance
         );
     };
 

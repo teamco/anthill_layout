@@ -8,7 +8,6 @@
     <%= javascript_include_tag(
                 'scripts/core/lib/require',
                 'data-resource' => key,
-                'data-global' => true,
                 'data-mode' => @author_site_storage.author_site_type.try(:name),
                 'data-main' => javascript_path('public/init'),
                 'id' => 'require-init'
