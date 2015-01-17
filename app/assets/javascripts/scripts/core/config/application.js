@@ -27,6 +27,8 @@ define([
          *          limit: number,
          *          counter: number
          *      },
+         *      appName: string,
+         *      version: number,
          *      mode: string,
          *      type: string,
          *      isResized: boolean,
@@ -63,6 +65,7 @@ define([
                 counter: 0
             },
             appName: 'anthill',
+            version: 1,
             mode: 'development',
             type: 'default',
             isResized: true,

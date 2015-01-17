@@ -13,6 +13,7 @@ define(
         'plugins/site.config/mvc/controller/site.config.export',
         'plugins/site.config/mvc/controller/site.config.cleanup',
         'plugins/site.config/mvc/controller/site.config.preferences',
+        'plugins/site.config/mvc/controller/site.config.publish',
         'plugins/site.config/mvc/controller/site.config.widget.generator',
         'plugins/preferences/preferences.controller'
     ],
@@ -25,11 +26,12 @@ define(
      * @param {SiteConfigExport} SiteConfigExport
      * @param {SiteConfigCleanup} SiteConfigCleanup
      * @param {SiteConfigPreferences} SiteConfigPreferences
+     * @param {SiteConfigPublish} SiteConfigPublish
      * @param {SiteConfigWidgetGenerator} SiteConfigWidgetGenerator
      * @param {PreferencesController} PreferencesController
      * @returns {SiteConfigController}
      */
-    function defineSiteConfigController(PluginBase, Routes, SiteConfigImport, SiteConfigExport, SiteConfigCleanup, SiteConfigPreferences, SiteConfigWidgetGenerator, PreferencesController) {
+    function defineSiteConfigController(PluginBase, Routes, SiteConfigImport, SiteConfigExport, SiteConfigCleanup, SiteConfigPreferences, SiteConfigPublish, SiteConfigWidgetGenerator, PreferencesController) {
 
         /**
          * Define site config controller
@@ -77,6 +79,7 @@ define(
             SiteConfigExport.prototype,
             SiteConfigCleanup.prototype,
             SiteConfigPreferences.prototype,
+            SiteConfigPublish.prototype,
             SiteConfigWidgetGenerator.prototype,
             PreferencesController.prototype
         );

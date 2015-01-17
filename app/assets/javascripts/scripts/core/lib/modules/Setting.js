@@ -331,7 +331,7 @@ define([
                             })
                         };
 
-                    $.ajax(opts).done(function () {
+                    $.ajax(opts).done(function (data, type, xhr) {
 
                         scope.logger.debug(
                             'Save successfully',
@@ -339,6 +339,12 @@ define([
                         );
 
                         this.setting.storage.cache.setItem(key, value);
+
+                        scope.logger.debug(data.notice, arguments);
+                        scope.observer.publish(
+                            scope.eventmanager.eventList.updateStorageVersion,
+                            data.version
+                        );
 
                     }.bind(this));
                 },

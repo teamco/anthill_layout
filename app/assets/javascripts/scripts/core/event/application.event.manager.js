@@ -35,6 +35,7 @@ define([
          *      loadApplication: string,
          *      defineGlobalInstance: string,
          *      defineSetting: string,
+         *      updateStorageVersion: string,
          *      setRoutes: string,
          *      initResizeWindow: string,
          *      resizeWindow: {eventName: string, params: {buffer: number}},
@@ -54,6 +55,7 @@ define([
             loadApplication: 'load.application',
             defineGlobalInstance: 'define.global.instance',
             defineSetting: 'define.setting',
+            updateStorageVersion: 'update.storage.version',
             setRoutes: 'set.routes',
             initResizeWindow: {
                 eventName: 'init.resize.window',

@@ -15,6 +15,7 @@ define(
         'plugins/site.config/element/site.config.content.element',
         'plugins/site.config/element/site.config.preferences.element',
         'plugins/site.config/element/site.config.cleanup.element',
+        'plugins/site.config/element/site.config.publish.element',
         'plugins/site.config/element/site.config.import.file.element',
         'plugins/site.config/element/site.config.approve.import.element',
         'plugins/site.config/element/site.config.widgets.list.element',
@@ -30,13 +31,14 @@ define(
      * @param {SiteConfigContentElement} SiteConfigContentElement
      * @param {SiteConfigPreferencesElement} SiteConfigPreferencesElement
      * @param {SiteConfigCleanUpElement} SiteConfigCleanUpElement
+     * @param {SiteConfigPublishElement} SiteConfigPublishElement
      * @param {SiteConfigImportFileElement} SiteConfigImportFileElement
      * @param {SiteConfigApproveImportElement} SiteConfigApproveImportElement
      * @param {SiteConfigWidgetsListElement} SiteConfigWidgetsListElement
      * @param {SiteConfigElement} SiteConfigElement
      * @returns {*}
      */
-    function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigImportFileElement, SiteConfigApproveImportElement, SiteConfigWidgetsListElement, SiteConfigElement) {
+    function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigPublishElement, SiteConfigImportFileElement, SiteConfigApproveImportElement, SiteConfigWidgetsListElement, SiteConfigElement) {
 
         /**
          * Define view
@@ -348,6 +350,22 @@ define(
             },
 
             /**
+             * Render publish element
+             * @member SiteConfigView
+             * @returns {SiteConfigPublishElement}
+             */
+            renderPublish: function renderPublish() {
+
+                /**
+                 * Define SiteConfig Publish Element
+                 * @type {SiteConfigPublishElement}
+                 */
+                this.elements.$publish = new SiteConfigPublishElement(this, {});
+
+                return this.elements.$publish;
+            },
+
+            /**
              * Render cleanup confirmation modal dialog
              * @member SiteConfigView
              */
@@ -365,6 +383,45 @@ define(
                             text: this.i18n.t('site.data.confirm'),
                             events: {
                                 click: 'approveCleanUp'
+                            }
+                        },
+                        reject: {
+                            text: this.i18n.t('site.data.cancel'),
+                            events: {
+                                click: 'rejectModalEvent'
+                            }
+                        }
+                    }
+                });
+            },
+
+            /**
+             * Render publish confirmation modal dialog
+             * @member SiteConfigView
+             */
+            publishConfirmation: function publishConfirmation() {
+
+                /**
+                 * Get root
+                 * @type {App}
+                 */
+                var root = this.controller.root();
+
+                this.modalDialog({
+                    type: 'warning',
+                    title: 'Publish',
+                    text: [
+                        'Are you sure want to publish current version: ',
+                        root.model.getConfig('version'), '?'
+                    ].join(''),
+                    html: this.renderPublish().$,
+                    cover: true,
+                    autoclose: true,
+                    buttons: {
+                        approve: {
+                            text: this.i18n.t('site.data.confirm'),
+                            events: {
+                                click: 'approvePublish'
                             }
                         },
                         reject: {

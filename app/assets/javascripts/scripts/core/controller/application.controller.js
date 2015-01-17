@@ -76,6 +76,16 @@ define(
                 },
 
                 /**
+                 * Update storage version
+                 * @member AppController
+                 * @param {number} version
+                 */
+                updateStorageVersion: function updateStorageVersion(version) {
+                    this.logger.debug('Update storage version', version);
+                    this.model.setConfig('version', version);
+                },
+
+                /**
                  * Define ajax setup
                  * @member AppController
                  */
