@@ -17,7 +17,7 @@
             ], function init(App) {
 
                 /**
-                 * Define shared application
+                 * Define application
                  * @type {App}
                  */
                 var app = new App({
