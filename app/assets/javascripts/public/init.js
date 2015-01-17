@@ -5,37 +5,36 @@
         global = script.getAttribute('data-global'),
         mode = script.getAttribute('data-mode');
 
-    require([
-
-        '../scripts/core/config/main',
-        site + '/javascript/listeners',
-        site + '/javascript/permission'
-
-    ], function loadConfig() {
+    require(['../scripts/core/config/main'], function loadConfig() {
 
         require([
-            'config/application'
-        ], function init(App) {
+            'public/' + site + '/javascript/listeners',
+            'public/' + site + '/javascript/permission'
+        ], function loadGlobals() {
 
-            /**
-             * Define shared application
-             * @type {App}
-             */
-            var app = new App({
-                config: {
-                    html: {
-                        container: 'body',
-                        header: true
-                    },
-                    appName: site,
-                    mode: mode
+            require([
+                'config/application'
+            ], function init(App) {
+
+                /**
+                 * Define shared application
+                 * @type {App}
+                 */
+                var app = new App({
+                    config: {
+                        html: {
+                            container: 'body',
+                            header: true
+                        },
+                        appName: site,
+                        mode: mode
+                    }
+                });
+
+                if (global === 'true') {
+                    window[site] = app;
                 }
             });
-
-            if (global === 'true') {
-                window[site] = app;
-            }
         });
     });
-
 })();
