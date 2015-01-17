@@ -63,13 +63,17 @@ define(function defineSiteConfigActivate() {
 
             $.ajax(opts).done(function (data, type, xhr) {
 
-                //this.setting.storage.cache.setItem(key, value);
+                scope.logger.debug(data.notice, arguments);
 
-                //scope.logger.debug(data.notice, arguments);
-                //scope.observer.publish(
-                //    scope.eventmanager.eventList.updateStorageVersion,
-                //    data.version
-                //);
+                /**
+                 * Define $modal
+                 * @type {ModalElement}
+                 */
+                var $modal = scope.view.elements.$modal;
+
+                if (scope.base.isDefined($modal)) {
+                    $modal.selfDestroy();
+                }
 
             }.bind(this));
         }

@@ -3,7 +3,7 @@ require 'uuid'
 
 class Author::SiteStoragesController < Author::AuthorController
 
-  before_action :set_author_site_storage, only: [:show, :edit, :update, :destroy]
+  before_action :set_author_site_storage, only: [:show, :edit, :update, :activate, :destroy]
   layout :resolve_layout
 
   # GET /author/site_storages
@@ -103,6 +103,40 @@ class Author::SiteStoragesController < Author::AuthorController
     end
   end
 
+  def activate
+
+    respond_to do |format|
+
+      if update_activation
+
+        notice = 'Site storage version was successfully activated'
+        if request.xhr?
+          data = {
+              storage: {
+                  key: @author_site_storage.key,
+                  content: @author_site_storage.content
+              },
+              version: @version.version,
+              activated: @version.activated,
+              mode: @author_site_storage.author_site_type.name,
+              notice: notice
+          }
+          format.json {
+            render json: data, status: :ok
+          }
+        else
+          format.html { redirect_to author_site_storages_path, notice: notice }
+          format.json { render :index, status: :ok, location: @author_site_storage }
+        end
+      else
+        format.html { render :form }
+        format.json { render json: @author_site_storage.errors, status: :unprocessable_entity }
+      end
+
+    end
+
+  end
+
   # DELETE /author/site_storages/1
   # DELETE /author/site_storages/1.json
   def destroy
@@ -122,6 +156,34 @@ class Author::SiteStoragesController < Author::AuthorController
       else
         'author'
     end
+  end
+
+  def update_activation
+
+    @version = @author_site_storage.author_site_versions.where(
+        version: params[:author_site_version][:version]
+    ).first
+
+    activated = @author_site_storage.author_site_versions.where(
+        activated: true
+    ).first
+
+    activated_update = true
+    version_update = false
+
+    if activated.nil?
+      puts 'Undefined activated storage'
+    else
+      activated_update = activated.update({activated: false})
+    end
+
+    if @version.nil?
+      puts 'Undefined storage version'
+    else
+      version_update = @version.update({activated: true})
+    end
+
+    activated_update and version_update
   end
 
   # Use callbacks to share common setup or constraints between actions.
