@@ -1,4 +1,4 @@
-<% key = @author_site_storage.try(:key) %>
+<% key = @storage[:key] %>
 <% if key.nil? %>
     <p>Undefined site key</p>
 <% else %>
@@ -8,8 +8,16 @@
     <%= javascript_include_tag(
                 'scripts/core/lib/require',
                 'data-resource' => key,
-                'data-mode' => @author_site_storage.author_site_type.try(:name),
+                'data-version' => @storage[:version],
+                'data-mode' => @storage[:mode],
                 'data-main' => javascript_path('public/init'),
                 'id' => 'require-init'
         ) %>
+
+    <%= javascript_tag defer: 'defer', id: 'set-local-storage' do -%>
+        window.localStorage['<%= key %>'] = '<%= @storage[:content] %>';
+        var script = document.getElementById('set-local-storage');
+        script.parentNode.removeChild(script);
+    <% end -%>
+
 <% end %>

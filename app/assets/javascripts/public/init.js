@@ -2,6 +2,7 @@
 
     var script = document.getElementById('require-init'),
         site = script.getAttribute('data-resource'),
+        version = parseInt(script.getAttribute('data-version'), 10) || 1,
         mode = script.getAttribute('data-mode');
 
     require(['../scripts/core/config/main'], function loadConfig() {
@@ -25,6 +26,7 @@
                             container: 'body',
                             header: true
                         },
+                        version: version,
                         appName: site,
                         mode: mode
                     }

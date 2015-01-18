@@ -14,7 +14,6 @@
   <% @author_site_storages.each_with_index do |author_site_storage, index| %>
       <% versions = author_site_storage.author_site_versions %>
       <% activated_version = versions.where(activated: true).first %>
-      <% activate_version_url = activated_version.nil? ? author_site_versions_url : edit_author_site_version_path(activated_version) %>
       <tr>
         <td><%= index + 1 %></td>
         <td><%= author_site_storage.uuid %></td>

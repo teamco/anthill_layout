@@ -21,6 +21,13 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages/1
   # GET /author/site_storages/1.json
   def show
+    activated = @author_site_storage.author_site_versions.where(activated: true).first
+    @storage = {
+        key: @author_site_storage.key,
+        version: activated.version,
+        content: activated.content,
+        mode: @author_site_storage.author_site_type.name
+    }
   end
 
   # GET /author/site_storages/new
@@ -67,12 +74,14 @@ class Author::SiteStoragesController < Author::AuthorController
   # PATCH/PUT /author/site_storages/1.json
   def update
 
-    versions = @author_site_storage.author_site_versions
-    versions.build({
-                       version: versions.length + 1,
-                       content: params[:author_site_storage][:content],
-                       activated: false
-                   })
+    if request.xhr?
+      versions = @author_site_storage.author_site_versions
+      versions.build({
+                         version: versions.length + 1,
+                         content: params[:author_site_storage][:content],
+                         activated: false
+                     })
+    end
 
     respond_to do |format|
       if @author_site_storage.update(author_site_storage_params)
@@ -202,6 +211,9 @@ class Author::SiteStoragesController < Author::AuthorController
             :id,
             :version,
             :activated
+        ],
+        author_site_types_attributes: [
+            :name
         ]
     )
   end

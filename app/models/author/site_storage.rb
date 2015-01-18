@@ -11,6 +11,8 @@ class Author::SiteStorage < ActiveRecord::Base
              :class_name => 'Author::SiteType',
              :foreign_key => :site_type_id
 
+  accepts_nested_attributes_for :author_site_type
+
   validates :key,
             presence: true,
             uniqueness: true,

@@ -56,6 +56,7 @@ define([
 
         /**
          * Define cache
+         * @member Setting
          * @type {Storage}
          */
         this.cache = this.STORAGE_MODES.localStorage;
@@ -116,7 +117,8 @@ define([
 
             /**
              * Load storage
-             * @type {*}
+             * @member Setting
+             * @type {{}}
              */
             var storage = this.load();
 
@@ -246,16 +248,28 @@ define([
         load: function load() {
 
             /**
-             * Define data
-             * @type {*}
+             * Define compressed data
+             * @type {string|*}
              */
-            var data = JSON.parse(
-                this.decompress(
-                    this.getStorage().getItem(
-                        this.getNameSpace()
-                    )
-                ) || '{}'
-            );
+            var compressed = this.getStorage().getItem(
+                this.getNameSpace()
+            ), data;
+
+            try {
+
+                /**
+                 * Define data
+                 * @type {*}
+                 */
+                data = JSON.parse(
+                    this.decompress(compressed) || '{}'
+                );
+
+            } catch (e) {
+
+                this.scope.logger.warn('Unable to parse JSON', e);
+                data = {};
+            }
 
             this.scope.logger.debug('Load', data);
 
@@ -354,6 +368,11 @@ define([
                  * @return {string}
                  */
                 getItem: function getItem(key) {
+
+                    /**
+                     * Get cached data
+                     * @type {string}
+                     */
                     return this.setting.cache.getItem(key);
                 },
 
