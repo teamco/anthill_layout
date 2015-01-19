@@ -93,6 +93,7 @@ define(
                 ajaxSetup: function ajaxSetup() {
 
                     $.ajaxSetup({
+                        ifModified: true,
                         beforeSend: function beforeSend(xhr, settings) {
                             if (typeof(settings.dataType) === 'undefined') {
                                 xhr.setRequestHeader(
@@ -105,7 +106,9 @@ define(
                                 this.getXCsrfToken()
                             );
                         }.bind(this),
-                        error: this.handleError.bind(this)
+                        success: this._handleXhrLog.bind(this),
+                        complete: this._handleXhrLog.bind(this),
+                        error: this._handleXhrLog.bind(this)
                     });
                 },
 
@@ -113,8 +116,10 @@ define(
                  * Define error handler
                  * @member AppController
                  */
-                handleError: function handleError(xhr, status, description) {
-                    this.scope.logger.warn('Ajax error', arguments);
+                _handleXhrLog: function _handleXhrLog(xhr, status, description) {
+                    this.scope.logger[status === 'error' ? 'warn' : 'debug'](
+                        status, description, arguments
+                    );
                 },
 
                 /**
