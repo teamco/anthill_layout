@@ -15,7 +15,7 @@ class Author::SiteStorage < ActiveRecord::Base
 
   belongs_to :user,
              :foreign_key => :user_id
-  
+
   validates :key,
             presence: true,
             uniqueness: true,

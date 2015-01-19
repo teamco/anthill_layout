@@ -10,7 +10,7 @@
 <body class="admin">
 <div class="fetcher">
   <div class="admin-content <%= controller_name %>">
-    <% unless controller_name == 'sessions' %>
+    <% unless %w(sessions, passwords).include? controller_name %>
         <%= render_title if action_name == 'index' %>
         <ul class="admin-navigation">
           <li><%= link_to 'Widgets', author_widgets_path %></li>
@@ -20,7 +20,7 @@
           <li><%= link_to 'Site types', author_site_types_path %></li>
           <% if user_signed_in? %>
               <li class="logout"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
-              <li>Logged in as <%= link_to current_user.email, edit_user_registration_path, :class => 'navbar-link' %></li>
+              <li>Logged in as <%= link_to current_user.email, edit_user_registration_path %></li>
           <% end %>
         </ul>
     <% end %>

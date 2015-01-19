@@ -8,12 +8,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable,
          :omniauth_providers => [
-             :digitalocean,
-             :twitter,
-             :facebook,
-             :google,
-             :amazon,
-             :github
+             # :digitalocean,
+             # :twitter,
+             # :facebook,
+             # :google,
+             # :amazon,
+             # :github
          ]
 
   has_many :author_site_storages,
