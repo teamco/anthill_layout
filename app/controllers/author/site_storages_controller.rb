@@ -74,8 +74,9 @@ class Author::SiteStoragesController < Author::AuthorController
   # PATCH/PUT /author/site_storages/1.json
   def update
 
+    versions = @author_site_storage.author_site_versions
+
     if request.xhr?
-      versions = @author_site_storage.author_site_versions
       versions.build({
                          version: versions.length + 1,
                          content: params[:author_site_storage][:content],
