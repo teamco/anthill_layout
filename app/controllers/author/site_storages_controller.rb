@@ -82,10 +82,12 @@ class Author::SiteStoragesController < Author::AuthorController
                          content: params[:author_site_storage][:content],
                          activated: false
                      })
+    else
+      @activated = versions.where(version: params[:author_site_storage][:activated_version]).first
     end
 
     respond_to do |format|
-      if @author_site_storage.update(author_site_storage_params)
+      if update_handler
         notice = 'Site storage was successfully updated'
         if request.xhr?
           version = versions.last
@@ -168,51 +170,67 @@ class Author::SiteStoragesController < Author::AuthorController
     end
   end
 
-  def update_activation
+  def update_handler
+    updated = false
+    if @author_site_storage.update(author_site_storage_params)
+      if @activated.nil?
+        updated = true
+      else
+        updated = update_version_activation(@activated.version)
+      end
+    end
+    updated
+  end
+
+  def update_version_activation(version)
 
     activated = @author_site_storage.author_site_versions.where(
         activated: true
     ).first
 
     @version = @author_site_storage.author_site_versions.where(
-        version: params[:author_site_version][:version]
+        version: version
     ).first
+
+    if activated.nil?
+      puts 'Undefined activated storage'
+      updated = false
+    else
+      if activated == @version
+        updated = true
+      else
+        if activated.update({activated: false})
+          updated = true
+          if @version.nil?
+            puts 'Undefined storage version'
+            updated = false
+          else
+            updated = @version.update({activated: true}) unless activated == @version
+          end
+        else
+          updated = false
+        end
+      end
+    end
+    updated
+  end
+
+  def update_activation
 
     mode = Author::SiteType.where(
         name: params[:author_site_type][:name]
     ).first
 
-    update = false
-
-    if activated.nil?
-      puts 'Undefined activated storage'
-      update = false
-    else
-      if activated == @version
-        update = true
-      else
-        if activated.update({activated: false})
-          update = true
-          if @version.nil?
-            puts 'Undefined storage version'
-            update = false
-          else
-            update = @version.update({activated: true}) unless activated == @version
-          end
-        else
-          update = false
-        end
-      end
-    end
+    updated = update_version_activation(params[:author_site_version][:version])
 
     if mode.nil?
       puts 'Undefined storage mode'
-      update = false
+      updated = false
     else
-      update = @author_site_storage.update({site_type_id: mode.id}) unless @author_site_storage.author_site_type == mode if update
+      updated = @author_site_storage.update({site_type_id: mode.id}) unless @author_site_storage.author_site_type == mode if updated
     end
 
-    update
+    updated
   end
 
   # Use callbacks to share common setup or constraints between actions.

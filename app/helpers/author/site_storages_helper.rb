@@ -7,13 +7,12 @@ module Author::SiteStoragesHelper
     content_tag(:div, class: 'field') do
       concat f.label :activated_version
       concat f.collection_select(
-                 :id,
+                 :activated_version,
                  versions,
                  :id,
-                 :version, {
-                     selected: activated_version,
-                     disabled: 'disabled'
-                 }
+                 :version,
+                 {selected: activated_version}
+             #,{disabled: 'disabled'}
              )
     end if versions.length > 0
 
