@@ -27,7 +27,7 @@ class Author::SiteStoragesController < Author::AuthorController
         version: activated.version,
         content: activated.content,
         mode: @author_site_storage.author_site_type.name
-    }
+    } unless activated.nil?
   end
 
   # GET /author/site_storages/new
@@ -178,8 +178,13 @@ class Author::SiteStoragesController < Author::AuthorController
         activated: true
     ).first
 
+    mode = Author::SiteType.where(
+        name: params[:author_site_type][:name]
+    ).first
+
     activated_update = true
     version_update = false
+    mode_update = false
 
     if activated.nil?
       puts 'Undefined activated storage'
@@ -193,7 +198,13 @@ class Author::SiteStoragesController < Author::AuthorController
       version_update = @version.update({activated: true})
     end
 
-    activated_update and version_update
+    if mode.nil?
+      puts 'Undefined storage mode'
+    else
+      mode_update = @author_site_storage.update({site_type_id: mode.id})
+    end
+
+    activated_update and version_update and mode_update
   end
 
   # Use callbacks to share common setup or constraints between actions.

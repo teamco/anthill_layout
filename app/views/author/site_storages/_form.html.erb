@@ -1,17 +1,17 @@
-<%= form_for(@author_site_storage) do |f| %>
+<%= form_for(@author_site_storage) do |f| -%>
 
-    <%= render_notification(@author_site_storage) %>
-    <%= render_text_field(f, :key, !@author_site_storage.key.nil?) %>
-    <%= render_text_area(f, :content) %>
+    <%= render_notification(@author_site_storage) -%>
+    <%= render_text_field(f, :key, !@author_site_storage.key.nil?) -%>
+    <%= render_text_area(f, :content) -%>
     <%= render_collection(f, 'Type', {
                                    id: :site_type_id,
                                    collection: @author_site_types,
                                    index: :id,
                                    value: :name
-                           }) %>
+                           }) -%>
 
-    <%= render_activated_version(f) %>
+    <%= render_activated_version(f) -%>
 
-    <%= render_submit(f) %>
+    <%= render_submit(f) -%>
 
-<% end %>
+<% end -%>

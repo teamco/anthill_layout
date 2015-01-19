@@ -61,7 +61,7 @@ define([
                     modes,
                     root.model.getConfig('mode'),
                     'Mode',
-                    'author_site_types[name]',
+                    'author_site_type[name]',
                     undefined,
                     true,
                     true
