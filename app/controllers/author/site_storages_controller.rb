@@ -170,41 +170,49 @@ class Author::SiteStoragesController < Author::AuthorController
 
   def update_activation
 
-    @version = @author_site_storage.author_site_versions.where(
-        version: params[:author_site_version][:version]
-    ).first
-
     activated = @author_site_storage.author_site_versions.where(
         activated: true
+    ).first
+
+    @version = @author_site_storage.author_site_versions.where(
+        version: params[:author_site_version][:version]
     ).first
 
     mode = Author::SiteType.where(
         name: params[:author_site_type][:name]
     ).first
 
-    activated_update = true
-    version_update = false
-    mode_update = false
+    update = false
 
     if activated.nil?
       puts 'Undefined activated storage'
+      update = false
     else
-      activated_update = activated.update({activated: false})
-    end
-
-    if @version.nil?
-      puts 'Undefined storage version'
-    else
-      version_update = @version.update({activated: true})
+      if activated == @version
+        update = true
+      else
+        if activated.update({activated: false})
+          update = true
+          if @version.nil?
+            puts 'Undefined storage version'
+            update = false
+          else
+            update = @version.update({activated: true}) unless activated == @version
+          end
+        else
+          update = false
+        end
+      end
     end
 
     if mode.nil?
       puts 'Undefined storage mode'
+      update = false
     else
-      mode_update = @author_site_storage.update({site_type_id: mode.id})
+      update = @author_site_storage.update({site_type_id: mode.id}) unless @author_site_storage.author_site_type == mode if update
     end
 
-    activated_update and version_update and mode_update
+    update
   end
 
   # Use callbacks to share common setup or constraints between actions.
