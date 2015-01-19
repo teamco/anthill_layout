@@ -4,19 +4,22 @@
   <title>Anthill</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'author' %>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <%= csrf_meta_tags %>
 </head>
 <body class="admin">
 <div class="fetcher">
-  <div class="admin-content">
-    <%= render_title if action_name == 'index' %>
-    <ul class="admin-navigation">
-      <li><%= link_to 'Widgets', author_widgets_path %></li>
-      <li><%= link_to 'Widget Categories', author_widget_categories_path %></li>
-      <li><%= link_to 'Site storage', author_site_storages_path %></li>
-      <li><%= link_to 'Site version', author_site_versions_path %></li>
-      <li><%= link_to 'Site types', author_site_types_path %></li>
-    </ul>
+  <div class="admin-content <%= controller_name %>">
+    <% unless controller_name == 'sessions' %>
+        <%= render_title if action_name == 'index' %>
+        <ul class="admin-navigation">
+          <li><%= link_to 'Widgets', author_widgets_path %></li>
+          <li><%= link_to 'Widget Categories', author_widget_categories_path %></li>
+          <li><%= link_to 'Site storage', author_site_storages_path %></li>
+          <li><%= link_to 'Site version', author_site_versions_path %></li>
+          <li><%= link_to 'Site types', author_site_types_path %></li>
+        </ul>
+    <% end %>
     <div>
       <div class="content">
         <%= yield %>

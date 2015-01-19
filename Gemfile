@@ -68,3 +68,13 @@ gem 'spring', group: :development
 gem 'awesome_print', group: :development
 gem 'wirble', group: :development
 gem 'jsduck', group: :development
+
+gem 'therubyracer'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-digitalocean'
+gem 'omniauth-twitter'
+gem 'omniauth-amazon'
+gem 'omniauth-facebook'
+gem 'omniauth-google'
+gem 'omniauth-github'

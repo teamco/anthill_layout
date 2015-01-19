@@ -12,7 +12,6 @@ module Author::SiteStoragesHelper
                  :id,
                  :version,
                  {selected: activated_version}
-             #,{disabled: 'disabled'}
              )
     end if versions.length > 0
 
