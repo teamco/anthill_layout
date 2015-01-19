@@ -236,8 +236,8 @@ class Author::SiteStoragesController < Author::AuthorController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_storage
-    @author_site_storage = Author::SiteStorage.find_by_key(params[:key]) ||
-        Author::SiteStorage.find_by_key(params[:id])
+    @author_site_storage = Author::SiteStorage.where(key: params[:key]) ||
+        Author::SiteStorage.where(key: params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
