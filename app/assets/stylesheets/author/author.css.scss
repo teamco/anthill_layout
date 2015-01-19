@@ -225,7 +225,9 @@ body.admin .actions {
   margin-top: 10px;
 }
 
-body.admin input[type="submit"] {
+body.admin input[type="submit"],
+body.admin li.logout a {
+  display: inline-block;
   float: right;
   padding: 9px;
   font-size: 20px;
@@ -238,14 +240,25 @@ body.admin input[type="submit"] {
   margin-bottom: 20px;
 }
 
-body.admin input[type="submit"]:hover {
+body.admin li.logout a {
+  margin-top: 20px;
+  float: none;
+}
+
+body.admin input[type="submit"]:hover,
+body.admin li.logout a:hover {
   background: #49A4FF;
   padding: 10px;
   margin-top: -1px;
   margin-right: -1px;
 }
 
-body.admin input[type="submit"]:active {
+body.admin li.logout a:hover {
+  margin-top: 19px;
+}
+
+body.admin input[type="submit"]:active,
+body.admin li.logout a:active {
   box-shadow: none;
 }
 

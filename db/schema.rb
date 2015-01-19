@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119171733) do
+ActiveRecord::Schema.define(version: 20150119223815) do
 
   create_table "author_site_storages", force: :cascade do |t|
     t.string   "uuid"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150119171733) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "site_type_id"
+    t.integer  "user_id"
   end
 
   create_table "author_site_types", force: :cascade do |t|

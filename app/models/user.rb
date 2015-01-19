@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
              :github
          ]
 
+  has_many :author_site_storages,
+           :class_name => 'Author::SiteStorage',
+           dependent: :destroy
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
