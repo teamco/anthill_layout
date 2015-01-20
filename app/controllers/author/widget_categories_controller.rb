@@ -1,5 +1,8 @@
 class Author::WidgetCategoriesController < Author::AuthorController
+
   before_action :set_author_widget_category, only: [:show, :edit, :update, :destroy]
+
+  layout 'author'
 
   # GET /author/widget_categories
   # GET /author/widget_categories.json

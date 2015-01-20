@@ -2,6 +2,8 @@ class Author::SiteVersionsController < Author::AuthorController
 
   before_action :set_author_site_version, only: [:show, :edit, :update, :destroy]
 
+  layout 'author'
+
   # GET /author/site_versions
   # GET /author/site_versions.json
   def index

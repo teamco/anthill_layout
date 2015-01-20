@@ -2,6 +2,8 @@ class Author::SiteTypesController < Author::AuthorController
 
   before_action :set_author_site_type, only: [:show, :edit, :update, :destroy]
 
+  layout 'author'
+
   # GET /author/site_types
   # GET /author/site_types.json
   def index

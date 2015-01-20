@@ -15,6 +15,8 @@ class Author::WidgetsController < Author::AuthorController
   before_action :set_author_widget, only: [:show, :edit, :update, :destroy]
   before_action :set_clone_from, only: [:create]
 
+  layout 'author'
+
   # GET /author/widgets
   # GET /author/widgets.json
   def index
