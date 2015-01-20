@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119223815) do
+ActiveRecord::Schema.define(version: 20150120112851) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
+  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
   create_table "author_site_storages", force: :cascade do |t|
     t.string   "uuid"
@@ -27,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150119223815) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "author_site_versions", force: :cascade do |t|
@@ -36,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150119223815) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.text     "content"
+    t.integer  "user_id"
   end
 
   add_index "author_site_versions", ["site_storage_id"], name: "index_author_site_versions_on_site_storage_id"
@@ -45,6 +65,7 @@ ActiveRecord::Schema.define(version: 20150119223815) do
     t.string   "name_value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "author_widgets", force: :cascade do |t|
@@ -59,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150119223815) do
     t.boolean  "visible"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "sites", force: :cascade do |t|
@@ -83,6 +105,7 @@ ActiveRecord::Schema.define(version: 20150119223815) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

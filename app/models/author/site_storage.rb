@@ -1,5 +1,7 @@
 class Author::SiteStorage < ActiveRecord::Base
 
+  devise :database_authenticatable, :trackable, :timeoutable, :lockable
+
   has_many :author_site_versions,
            :class_name => 'Author::SiteVersion',
            dependent: :destroy
