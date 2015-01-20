@@ -10,15 +10,17 @@ case RUBY_PLATFORM
   when /darwin/
 
     # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-    gem 'rails', '>= 4.2.0.rc1'
+    gem 'rails', '>= 4.2.0'
 
     gem 'puma'
 
     # Use debugger
     gem 'byebug', group: [:development, :test]
     group :development do
+
       gem 'web-console', '~> 2.0'
-      gem 'ruby-debug-ide', '>= 0.4.23.beta10'
+      gem 'ruby-debug-ide', '>= 0.4.25'
+
       # Use Capistrano for deployment
       gem 'capistrano-rails'
       gem 'debase'
@@ -31,7 +33,6 @@ case RUBY_PLATFORM
 
   when /win32/
 
-    #gem 'thin'
   else
 
     gem 'rails', '>= 4.1.1'
