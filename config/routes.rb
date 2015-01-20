@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   devise_for :admins
-  devise_for :users, controllers: {omniauth_callbacks: 'callbacks'}
+  devise_for :users, controllers: {
+                       omniauth_callbacks: 'callbacks',
+                       registrations: 'users/registrations'
+                   }
 
   namespace :author do
     resources :site_types

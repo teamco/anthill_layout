@@ -17,7 +17,8 @@ if Author::Widget.all.length > 0
   admin = User.create({
                           email: 'teamco@gmail.com',
                           password: '09051972',
-                          admin: true
+                          admin: true,
+                          role: :super_admin
                       })
   puts "--- Admin: #{admin.email}"
   Author::SiteType.all.each { |x| x.update({user_id: admin.id}) }
