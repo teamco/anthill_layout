@@ -10,7 +10,7 @@
 <body class="admin">
 <div class="fetcher">
   <div class="admin-content <%= controller_name %>">
-    <% unless %w(sessions passwords).include? controller_name %>
+    <% unless %w[sessions passwords registrations].include? controller_name %>
         <%= render_title if action_name == 'index' %>
         <ul class="admin-navigation">
           <li><%= link_to 'Widgets', author_widgets_path %></li>

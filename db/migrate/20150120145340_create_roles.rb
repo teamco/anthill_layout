@@ -6,6 +6,6 @@ class CreateRoles < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_column :users, :role, :string
+    add_column :users, :role_id, :integer, index: true
   end
 end

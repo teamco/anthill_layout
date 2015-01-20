@@ -1,10 +1,4 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  # devise :database_authenticatable, :registerable,
-  #        :recoverable, :rememberable, :trackable, :validatable
-
-  ROLES = %w[admin moderator author consumer banned]
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -22,7 +16,9 @@ class User < ActiveRecord::Base
            :class_name => 'Author::SiteStorage',
            dependent: :destroy
 
-  has_and_belongs_to_many :roles
+  belongs_to :role
+
+  before_create :set_default_role
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -33,8 +29,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  def role?(role)
-    !roles.find_by_name(role.to_s.camelize).nil?
+  private
+
+  def set_default_role
+    self.role ||= Role.find_by_name('registered')
   end
 
 end

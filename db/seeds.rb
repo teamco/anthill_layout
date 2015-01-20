@@ -14,11 +14,13 @@ if Author::Widget.all.length > 0
   puts "\n>>> 2. Add user authentication"
   User.destroy_all
   puts '-- Clean: User'
+  %w(registered banned moderator admin guest).each do |role|
+    Role.find_or_create_by({name: role})
+  end
   admin = User.create({
                           email: 'teamco@gmail.com',
                           password: '09051972',
-                          admin: true,
-                          role: :super_admin
+                          role_id: Role.find_by_name(:admin).id
                       })
   puts "--- Admin: #{admin.email}"
   Author::SiteType.all.each { |x| x.update({user_id: admin.id}) }

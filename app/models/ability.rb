@@ -30,10 +30,11 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     user ||= User.new # guest user (not logged in)
-    if user.admin?
+    if user.is? :admin
       can :manage, :all
     else
       can :read, :all
     end
+
   end
 end
