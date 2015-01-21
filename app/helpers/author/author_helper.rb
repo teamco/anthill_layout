@@ -91,4 +91,10 @@ module Author::AuthorHelper
     %w(site_versions)
   end
 
+  def edit_user(item)
+    email = item.user.email
+    email = link_to(email, edit_user_registration_path) if email == current_user.email
+    "#{email} (#{item.user.role.name.humanize})".html_safe
+  end
+
 end
