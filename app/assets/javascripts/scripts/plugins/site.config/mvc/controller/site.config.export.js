@@ -34,7 +34,7 @@ define(function defineSiteConfigExport() {
                 fileName: 'data.json',
                 content: JSON.stringify(
                     setting.decompress(
-                        setting.getStorage()[ns]
+                        setting.getStorage().getItem([ns])
                     )
                 ),
                 title: 'Export JSON',

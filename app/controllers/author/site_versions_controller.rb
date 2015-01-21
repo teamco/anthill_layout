@@ -53,7 +53,7 @@ class Author::SiteVersionsController < Author::AuthorController
   def update
     respond_to do |format|
       if @author_site_version.update(author_site_version_params)
-        format.html { redirect_to @author_site_version, notice: 'Site version was successfully updated.' }
+        format.html { redirect_to author_site_versions_path, notice: 'Site version was successfully updated.' }
         format.json { render :index, status: :ok, location: @author_site_version }
       else
         format.html { render :edit }

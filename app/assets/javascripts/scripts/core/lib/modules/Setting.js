@@ -173,6 +173,7 @@ define([
 
         /**
          * Import data
+         * @member Setting
          * @param data
          */
         importData: function importData(data) {

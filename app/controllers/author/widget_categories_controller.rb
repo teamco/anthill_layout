@@ -39,7 +39,7 @@ class Author::WidgetCategoriesController < Author::AuthorController
 
     respond_to do |format|
       if @author_widget_category.save
-        format.html { redirect_to @author_widget_category, notice: 'Widget category was successfully created.' }
+        format.html { redirect_to author_widget_categories_path, notice: 'Widget category was successfully created.' }
         format.json { render :show, status: :created, location: @author_widget_category }
       else
         format.html { render :new }
@@ -53,7 +53,7 @@ class Author::WidgetCategoriesController < Author::AuthorController
   def update
     respond_to do |format|
       if @author_widget_category.update(author_widget_category_params)
-        format.html { redirect_to @author_widget_category, notice: 'Widget category was successfully updated.' }
+        format.html { redirect_to author_widget_categories_path, notice: 'Widget category was successfully updated.' }
         format.json { render :show, status: :ok, location: @author_widget_category }
       else
         format.html { render :edit }

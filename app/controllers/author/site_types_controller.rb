@@ -39,7 +39,7 @@ class Author::SiteTypesController < Author::AuthorController
 
     respond_to do |format|
       if @author_site_type.save
-        format.html { redirect_to @author_site_type, notice: 'Site type was successfully created.' }
+        format.html { redirect_to author_site_types_path, notice: 'Site type was successfully created.' }
         format.json { render :show, status: :created, location: @author_site_type }
       else
         format.html { render :new }
@@ -53,7 +53,7 @@ class Author::SiteTypesController < Author::AuthorController
   def update
     respond_to do |format|
       if @author_site_type.update(author_site_type_params)
-        format.html { redirect_to @author_site_type, notice: 'Site type was successfully updated.' }
+        format.html { redirect_to author_site_types_path, notice: 'Site type was successfully updated.' }
         format.json { render :show, status: :ok, location: @author_site_type }
       else
         format.html { render :edit }
