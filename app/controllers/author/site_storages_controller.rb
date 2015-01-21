@@ -22,13 +22,17 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages/1
   # GET /author/site_storages/1.json
   def show
-    activated = @author_site_storage.author_site_versions.where(activated: true).first
     @storage = {
         key: @author_site_storage.key,
-        version: activated.version,
-        content: activated.content,
         mode: @author_site_storage.author_site_type.name
-    } unless activated.nil?
+    }
+
+    activated = @author_site_storage.author_site_versions.where(activated: true).first
+
+    unless activated.nil?
+      @storage[:version] = activated.version
+      @storage[:content] = activated.content
+    end
   end
 
   # GET /author/site_storages/new
@@ -50,7 +54,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
     uuid = UUID.new
 
-    @author_site_storage = Author::SiteStorage.new(author_site_storage_params)
+    @author_site_storage = current_user.author_site_storages.build(author_site_storage_params)
     @author_site_storage[:uuid] = uuid.generate
 
     versions = @author_site_storage.author_site_versions
@@ -60,13 +64,22 @@ class Author::SiteStoragesController < Author::AuthorController
                        activated: false
                    })
 
+    target = "#{Rails.root}/app/assets/javascripts/public/#{@author_site_storage.key}"
+    FileUtils.cp_r "#{Rails.root}/lib/tasks/site/default", target
+
     respond_to do |format|
-      if @author_site_storage.save
-        format.html { redirect_to author_site_storages_path, notice: 'Site storage was successfully created.' }
-        format.json { render :index, status: :created, location: @author_site_storage }
+      if File.exist?(target)
+        if @author_site_storage.save
+          format.html { redirect_to author_site_storages_path, notice: 'Site storage was successfully created.' }
+          format.json { render :index, status: :created, location: @author_site_storage }
+        else
+          FileUtils.rm_r(target)
+          format.html { render :form }
+          format.json { render json: @author_site_storage.errors, status: :unprocessable_entity }
+        end
       else
         format.html { render :form }
-        format.json { render json: @author_site_storage.errors, status: :unprocessable_entity }
+        format.json { render json: @author_site_storage.errors, status: :not_found }
       end
     end
   end
@@ -81,14 +94,14 @@ class Author::SiteStoragesController < Author::AuthorController
       versions.build({
                          version: versions.length + 1,
                          content: params[:author_site_storage][:content],
-                         activated: false
+                         activated: params[:activate] == 'true'
                      })
     else
       @activated = versions.where(version: params[:author_site_storage][:activated_version]).first
     end
 
     respond_to do |format|
-      if update_handler
+      if update_handler(versions)
         notice = 'Site storage was successfully updated'
         if request.xhr?
           version = versions.last
@@ -153,6 +166,9 @@ class Author::SiteStoragesController < Author::AuthorController
   # DELETE /author/site_storages/1
   # DELETE /author/site_storages/1.json
   def destroy
+    target = "#{Rails.root}/app/assets/javascripts/public/#{@author_site_storage.key}"
+    FileUtils.rm_r(target) if File.exist?(target)
+
     @author_site_storage.destroy
     respond_to do |format|
       format.html { redirect_to author_site_storages_url, notice: 'Site storage was successfully destroyed.' }
@@ -171,11 +187,13 @@ class Author::SiteStoragesController < Author::AuthorController
     end
   end
 
-  def update_handler
+  def update_handler(versions)
     updated = false
     if @author_site_storage.update(author_site_storage_params)
       if @activated.nil?
-        updated = true
+        updated = update_version_activation(
+            versions.where({activated: true}).last.version
+        )
       else
         updated = update_version_activation(@activated.version)
       end

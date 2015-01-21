@@ -97,9 +97,13 @@ ul.site-config > .content:hover {
     padding: 25px;
     text-align: center;
     font-size: 20px;
-    color: #bbb;
+    color: #fff;
     margin-bottom: 10px;
-    text-shadow: 1px 1px 1px #aaa;
+    text-shadow: 1px 1px 1px #000;
+}
+
+.modal-dialog.import-site-data div.html {
+    box-shadow: none;
 }
 
 .modal-dialog.import-site-data .site-config .site-config-drop-zone.error {

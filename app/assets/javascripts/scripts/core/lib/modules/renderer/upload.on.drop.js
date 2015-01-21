@@ -79,7 +79,8 @@ define(['jquery'], function defineUploadOnDrop($) {
                                 // http://json.parser.online.fr/beta/
                                 content = content.replace(/\\"/g, '"').
                                     replace(/\\"/g, '"').
-                                    replace(/"/, '');
+                                    replace(/"/, '').
+                                    replace(/"$/, "");
 
                                 scope.observer.publish(
                                     opts.eventName,

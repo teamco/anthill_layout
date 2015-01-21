@@ -61,6 +61,8 @@ define([
          */
         this.cache = this.STORAGE_MODES.localStorage;
 
+        this.activateOnSave(false);
+
         /**
          * Get storage namespace
          * @member Setting
@@ -74,6 +76,21 @@ define([
     };
 
     return Setting.extend('Setting', {
+
+        /**
+         * Activate on save
+         * @member Setting
+         * @param {boolean} activate
+         */
+        activateOnSave: function activateOnSave(activate) {
+
+            /**
+             * Define activate
+             * @member Setting
+             * @type {boolean}
+             */
+            this.activate = activate;
+        },
 
         /**
          * Set initial state
@@ -178,12 +195,26 @@ define([
          */
         importData: function importData(data) {
 
+            this.activateOnSave(true);
+            this.updateData(data);
+        },
+
+        /**
+         * Update data
+         * @member Setting
+         * @param data
+         */
+        updateData: function updateData(data) {
+
             /**
              * Set data
              * @type {*}
              */
-            this.getStorage()[this.getNameSpace()] = this.compress(
-                JSON.stringify(data)
+            this.getStorage().setItem(
+                this.getNameSpace(),
+                this.compress(
+                    JSON.stringify(data)
+                )
             );
         },
 
@@ -232,12 +263,7 @@ define([
              */
             opts.token = this.token;
 
-            this.getStorage().setItem(
-                this.getNameSpace(),
-                this.compress(
-                    JSON.stringify(opts)
-                )
-            );
+            this.importData(opts);
 
             this.scope.logger.debug('Save', opts);
         },
@@ -346,13 +372,15 @@ define([
                             data: scope.controller.prepareXhrData({
                                 author_site_storage: {
                                     content: value
-                                }
+                                },
+                                activate: this.setting.activate
                             })
                         };
 
                     $.ajax(opts).done(function (data, type, xhr) {
 
                         this.setting.cache.setItem(key, value);
+                        this.setting.activateOnSave(false);
 
                         scope.logger.debug(data.notice, arguments);
                         scope.observer.publish(

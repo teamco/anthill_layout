@@ -51,7 +51,9 @@ define(function defineSiteConfigImport() {
                 return false;
             }
 
-            this.root().model.setting.importData(elements.$import.data);
+            this.root().model.setting.importData(
+                elements.$import.data
+            );
 
             $modal.$buttons.reload.enable();
             $modal.$buttons.confirm.disable();
