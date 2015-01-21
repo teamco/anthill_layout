@@ -16,3 +16,15 @@
  *= require_directory '../javascripts/scripts/plugins/stylesheets/widgets'
  *= require_directory '../javascripts/scripts/core/stylesheets'
  */
+
+p.undefined-site {
+    width: 500px;
+    font-size: 40px;
+    border: 2px solid #ccc;
+    padding: 50px;
+    border-radius: 20px;
+    margin: 200px auto auto;
+    box-shadow: 1px 1px 10px #999;
+    text-shadow: 1px 1px 1px #000;
+    color: lightcoral;
+}

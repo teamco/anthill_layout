@@ -22,16 +22,19 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages/1
   # GET /author/site_storages/1.json
   def show
-    @storage = {
-        key: @author_site_storage.key,
-        mode: @author_site_storage.author_site_type.name
-    }
+    @storage = {}
+    unless @author_site_storage.nil?
+      @storage = {
+          key: @author_site_storage.key,
+          mode: @author_site_storage.author_site_type.name
+      }
 
-    activated = @author_site_storage.author_site_versions.where(activated: true).first
+      activated = @author_site_storage.author_site_versions.where(activated: true).first
 
-    unless activated.nil?
-      @storage[:version] = activated.version
-      @storage[:content] = activated.content
+      unless activated.nil?
+        @storage[:version] = activated.version
+        @storage[:content] = activated.content
+      end
     end
   end
 

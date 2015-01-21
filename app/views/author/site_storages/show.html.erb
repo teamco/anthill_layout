@@ -1,6 +1,6 @@
 <% key = @storage[:key] %>
 <% if @storage[:version].nil? %>
-    <p>Undefined site version</p>
+    <p class="undefined-site">Undefined site version</p>
 <% else %>
     <%= stylesheet_link_tag(
                 stylesheet_path("../../assets/public/#{key}/css/general")
