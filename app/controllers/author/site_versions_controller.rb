@@ -7,7 +7,10 @@ class Author::SiteVersionsController < Author::AuthorController
   # GET /author/site_versions
   # GET /author/site_versions.json
   def index
-    @author_site_versions = Author::SiteVersion.all.order(:updated_at).reverse_order
+    site_storage = Author::SiteStorage.where(key: params[:site_storage_id]).first
+    @author_site_versions = site_storage.nil? ?
+        Author::SiteVersion.all.order(:updated_at).reverse_order :
+        site_storage.author_site_versions.order(:updated_at).reverse_order
 
     @resource = {
         items: @author_site_versions.size,

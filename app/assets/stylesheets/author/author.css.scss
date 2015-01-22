@@ -317,3 +317,9 @@ body.admin form ul div.field {
 body.admin tr.activated td {
   background-color: #c2daf9;
 }
+
+body.admin tr.activated td.strong {
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  background-color: #3961b9;
+}
