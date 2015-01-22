@@ -13,7 +13,9 @@
   <% @author_site_versions.each do |author_site_version| %>
       <tr<%= author_site_version.activated ? ' class=activated' : '' %>>
         <td><%= author_site_version.id %></td>
-        <td<%= author_site_version.activated ? ' class=strong' : '' %>><%= author_site_version.author_site_storage.try(:key) %></td>
+        <td<%= author_site_version.activated ? ' class=strong' : '' %>>
+          <%= link_to author_site_version.author_site_storage.try(:key), edit_author_site_storage_path(author_site_version.author_site_storage) %>
+        </td>
         <td class="name c"><%= link_to author_site_version.version, edit_author_site_version_path(author_site_version) %></td>
         <td class="c"><%= localize(author_site_version.updated_at, format: :long) %></td>
         <td class="c"><%= localize(author_site_version.created_at, format: :long) %></td>
