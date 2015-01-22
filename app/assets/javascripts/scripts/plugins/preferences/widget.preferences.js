@@ -233,113 +233,15 @@ define([
                             title.replace(/ /g, '').toLowerCase(), ''
                         ).toPoint().humanize();
 
-                        /**
-                         * Define node
-                         */
-                        var node = hash[index];
-
-                        /**
-                         * Define placeholder text
-                         * @type {string}
-                         */
-                        var placeholder = node.placeholder || 'Enter ' + text,
-                            $element;
-
-                        if (node.type === 'event') {
-
-                            /**
-                             * Get text field
-                             * @type {*[]}
-                             */
-                            $element = this.renderEventLink({
-                                name: index,
-                                title: text.trim(),
-                                group: node.group || index,
-                                disabled: node.disabled,
-                                events: node.events,
-                                visible: node.visible
-                            });
-                        }
-
-                        if (node.type === 'text') {
-
-                            /**
-                             * Get text field
-                             * @type {*[]}
-                             */
-                            $element = this.renderTextField({
-                                name: index,
-                                text: text.trim(),
-                                placeholder: placeholder,
-                                value: node.value,
-                                disabled: node.disabled,
-                                visible: node.visible,
-                                validate: node.validate
-                            });
-                        }
-
-                        if (node.type === 'checkbox') {
-
-                            /**
-                             * Get checkbox
-                             * @type {*[]}
-                             */
-                            $element = this.renderCheckbox({
-                                name: index,
-                                text: text.trim(),
-                                checked: node.value,
-                                value: node.value,
-                                disabled: node.disabled,
-                                visible: node.visible
-                            });
-                        }
-
-                        if (node.type === 'textarea') {
-
-                            /**
-                             * Get text field
-                             * @type {*[]}
-                             */
-                            $element = this.renderTextArea({
-                                name: index,
-                                text: text.trim(),
-                                placeholder: placeholder,
-                                value: node.value,
-                                disabled: node.disabled,
-                                visible: node.visible
-                            });
-                        }
-
-                        if (node.type === 'combobox') {
-
-                            /**
-                             * Define selected item
-                             * @type {string}
-                             */
-                            var selected = node.value;
-
-                            /**
-                             * Get text field
-                             * @type {*[]}
-                             */
-                            $element = this.renderCombobox(
-                                node.list,
-                                (selected.length === 0 ? node.list[0].value : selected),
-                                text.trim(),
-                                index,
-                                undefined,
-                                node.visible
-                            );
-                        }
-
                         nodes.push(
                             $('<li />').
                                 addClass([
                                     title.humanize().toClassName() + '-prefs',
                                     node.type,
                                     node.visible ? '' : 'hidden'
-                                ].join(' ')).
-                                append($element)
+                                ].join(' ')).append(
+                                this.getNodeRenderer(hash[index], text, index)
+                            )
                         );
                     }
                 }

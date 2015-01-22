@@ -50,6 +50,12 @@ define([
                 disabled: true,
                 value: undefined,
                 visible: true
+            },
+            showInTabs: {
+                type: 'checkbox',
+                disabled: false,
+                value: true,
+                visible: true
             }
         },
 
@@ -107,57 +113,14 @@ define([
 
                 if (opts.data.hasOwnProperty(index)) {
 
-                    /**
-                     * Define text
-                     * @type {string}
-                     */
-                    var text = index.toPoint().humanize();
-
-                    /**
-                     * Define node
-                     */
-                    var node = opts.data[index];
-
-                    /**
-                     * Define placeholder text
-                     * @type {string}
-                     */
-                    var placeholder = 'Enter ' + text,
-                        textField;
-
-                    if (node.type === 'text') {
-                        /**
-                         * Get text field
-                         * @type {*[]}
-                         */
-                        textField = this.renderTextField({
-                            name: index,
-                            text: text,
-                            placeholder: placeholder,
-                            value: node.value,
-                            disabled: node.disabled,
-                            visible: node.visible
-                        });
-                    }
-
-                    if (node.type === 'textarea') {
-
-                        /**
-                         * Get text field
-                         * @type {*[]}
-                         */
-                        textField = this.renderTextArea({
-                            name: index,
-                            text: text,
-                            placeholder: placeholder,
-                            value: node.value,
-                            disabled: node.disabled,
-                            visible: node.visible
-                        });
-                    }
-
                     nodes.push(
-                        $('<li class="page-prefs" />').append(textField)
+                        $('<li class="page-prefs" />').append(
+                            this.getNodeRenderer(
+                                opts.data[index],
+                                index.toPoint().humanize(),
+                                index
+                            )
+                        )
                     );
                 }
             }

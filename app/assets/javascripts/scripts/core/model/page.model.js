@@ -61,7 +61,6 @@ define([
 
                 if (this.scope.base.isUUID(uuid)) {
                     return this.getItemByUUID(uuid);
-                    break;
                 }
             }
         },
@@ -103,6 +102,15 @@ define([
         setOverlapping: function setOverlapping(overlapping) {
             this._setItemInfoPreferences('overlapping', overlapping);
             this.getConfig('widget').overlapping = overlapping;
+        },
+
+        /**
+         * Set show in tabs
+         * @member PageModel
+         * @param {boolean} show
+         */
+        setShowInTabs: function setShowInTabs(show) {
+            this._setItemInfoPreferences('showInTabs', show);
         }
 
     }, BaseModel.prototype);

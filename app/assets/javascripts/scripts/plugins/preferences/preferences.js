@@ -94,7 +94,113 @@ define(['jquery'], function defineBasePreferences($) {
                 cover: true,
                 buttons: buttons
             });
+        },
+
+        /**
+         * Get node renderer
+         * @member BasePreferences
+         * @param node
+         * @param {string} text
+         * @param {string} index
+         * @returns {*}
+         */
+        getNodeRenderer: function getNodeRenderer(node, text, index) {
+
+            /**
+             * Define placeholder text
+             * @type {string}
+             */
+            var placeholder = node.placeholder || 'Enter ' + text,
+                $element;
+
+            if (node.type === 'event') {
+
+                /**
+                 * Get text field
+                 * @type {*[]}
+                 */
+                $element = this.renderEventLink({
+                    name: index,
+                    title: text.trim(),
+                    group: node.group || index,
+                    disabled: node.disabled,
+                    events: node.events,
+                    visible: node.visible
+                });
+            }
+
+            if (node.type === 'text') {
+
+                /**
+                 * Get text field
+                 * @type {*[]}
+                 */
+                $element = this.renderTextField({
+                    name: index,
+                    text: text.trim(),
+                    placeholder: placeholder,
+                    value: node.value,
+                    disabled: node.disabled,
+                    visible: node.visible,
+                    validate: node.validate
+                });
+            }
+
+            if (node.type === 'checkbox') {
+
+                /**
+                 * Get checkbox
+                 * @type {*[]}
+                 */
+                $element = this.renderCheckbox({
+                    name: index,
+                    text: text.trim(),
+                    checked: node.value,
+                    value: node.value,
+                    disabled: node.disabled,
+                    visible: node.visible
+                });
+            }
+
+            if (node.type === 'textarea') {
+
+                /**
+                 * Get text field
+                 * @type {*[]}
+                 */
+                $element = this.renderTextArea({
+                    name: index,
+                    text: text.trim(),
+                    placeholder: placeholder,
+                    value: node.value,
+                    disabled: node.disabled,
+                    visible: node.visible
+                });
+            }
+
+            if (node.type === 'combobox') {
+
+                /**
+                 * Define selected item
+                 * @type {string}
+                 */
+                var selected = node.value;
+
+                /**
+                 * Get text field
+                 * @type {*[]}
+                 */
+                $element = this.renderCombobox(
+                    node.list,
+                    (selected.length === 0 ? node.list[0].value : selected),
+                    text.trim(),
+                    index,
+                    undefined,
+                    node.visible
+                );
+            }
+
+            return $element;
         }
     });
-
 });
