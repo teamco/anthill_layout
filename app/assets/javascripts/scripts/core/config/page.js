@@ -132,8 +132,8 @@ define([
                 },
                 // default widget relWidth/relHeight
                 defaults: {
-                    width: 3,
-                    height: 3
+                    width: 30,
+                    height: 30
                 },
                 counter: 0,
                 overlapping: true,
