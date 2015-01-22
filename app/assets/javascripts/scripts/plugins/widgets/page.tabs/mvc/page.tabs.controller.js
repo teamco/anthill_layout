@@ -195,8 +195,10 @@ define([
                 var workspace = this.controller.getWorkspace();
 
                 workspace.observer.publish(
-                    workspace.eventmanager.eventList.switchToPage,
-                    [$page.pageTab, true]
+                    workspace.eventmanager.eventList.switchToPage, [
+                        $page.pageTab,
+                        this.model.getPrefs('pagetabsSwipe')
+                    ]
                 );
             }
         },
