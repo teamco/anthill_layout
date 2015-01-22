@@ -196,7 +196,7 @@ define(
 
                 /**
                  * Define $item
-                 * @type {PageElement}
+                 * @type {BaseElement}
                  */
                 var $item = this.scope.activeContent.view.get$item();
 

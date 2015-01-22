@@ -29,7 +29,8 @@ define([
          * @type {{
          *      title: {type: string, disabled: boolean, value},
          *      pageUrl: {type: string, disabled: boolean, value},
-         *      description: {type: string, disabled: boolean, value}
+         *      description: {type: string, disabled: boolean, value},
+         *      showInTabs: {type: string, disabled: boolean, value}
          * }}
          */
         defaultPrefs: {

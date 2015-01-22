@@ -30,7 +30,7 @@ define(
      * @param {WorkspaceDataElement} WorkspaceDataElement
      * @returns {*}
      */
-        function defineWorkspaceDataView(BaseView, BasePreferences, Header, Footer, WorkspaceDataContentElement, WorkspaceDataPreferencesElement, WorkspaceDataAddPageElement, WorkspaceDataElement) {
+    function defineWorkspaceDataView(BaseView, BasePreferences, Header, Footer, WorkspaceDataContentElement, WorkspaceDataPreferencesElement, WorkspaceDataAddPageElement, WorkspaceDataElement) {
 
         /**
          * Define view
@@ -93,7 +93,8 @@ define(
                  */
                 var page = this.controller.getPage();
 
-                var i = 0, l = data.length;
+                var i = 0, l = data.length,
+                    show, current, tab;
 
                 for (i; i < l; i++) {
 
@@ -103,11 +104,25 @@ define(
                     }
 
                     /**
+                     * Show in tabs
+                     * @type {string}
+                     */
+                    show = !(this.scope.base.defineBoolean(
+                        data[i].model.getConfig('preferences').showInTabs, true, true
+                    )) ? ' hide' : '';
+
+                    /**
+                     * Define current page style
+                     * @type {string}
+                     */
+                    current = page === data[i] ? ' current' : '';
+
+                    /**
                      * Render item
                      * @type {WorkspaceDataContentElement}
                      */
                     var $item = new WorkspaceDataContentElement(this, {
-                        style: 'content' + (page === data[i] ? ' current' : ''),
+                        style: 'content' + current + show,
                         id: [
                             data[i].model.getConfig('uuid'),
                             'workspace-data-view'
