@@ -111,12 +111,12 @@ define(
                  */
                 var swipe = this.model.getConfig('switch');
 
-                if (swipe) {
+                this.observer.publish(
+                    this.eventmanager.eventList.setActiveContent,
+                    config.uuid
+                );
 
-                    this.observer.publish(
-                        this.eventmanager.eventList.setActiveContent,
-                        config.uuid
-                    );
+                if (swipe) {
 
                     /**
                      * Define Workspace
@@ -128,23 +128,6 @@ define(
                         workspace.eventmanager.eventList.switchToPage,
                         [this.activeContent, false]
                     );
-
-                } else {
-
-                    /**
-                     * Get current page
-                     * @type {Page}
-                     */
-                    var page = this.controller.getPage();
-
-                    if (config.uuid !== page.model.getUUID()) {
-
-                        // Set active content if page is not current
-                        this.observer.publish(
-                            this.eventmanager.eventList.setActiveContent,
-                            page.model.getUUID()
-                        );
-                    }
                 }
 
                 this.view.showPreferences(config, !swipe);
@@ -298,10 +281,6 @@ define(
                  * @type {Page}
                  */
                 var page = workspace.api.createPage([], true);
-
-                this.store(
-                    this.root()
-                );
 
                 workspace.observer.publish(
                     workspace.eventmanager.eventList.switchToPage,

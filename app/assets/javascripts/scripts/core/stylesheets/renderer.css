@@ -54,6 +54,7 @@ div.combo-box li {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    min-height: 20px !important;
 }
 
 div.combo-box li.selected {
