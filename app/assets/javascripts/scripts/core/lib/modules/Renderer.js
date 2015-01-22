@@ -17,11 +17,12 @@ define([
     'modules/renderer/slider',
     'modules/renderer/text.area',
     'modules/renderer/text.field',
+    'modules/renderer/number.field',
     'modules/renderer/tool.tip',
     'modules/renderer/upload.on.drop',
     'modules/renderer/text.download',
     'modules/renderer/validation'
-], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Label, Slider, TextArea, TextField, ToolTip, UploadOnDrop, TextDownload, Validation) {
+], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Label, Slider, TextArea, TextField, NumberField, ToolTip, UploadOnDrop, TextDownload, Validation) {
 
     /**
      * Define renderer
@@ -38,6 +39,7 @@ define([
      * @extends {SliderRenderer} Slider
      * @extends {TextAreaRenderer} TextArea
      * @extends {TextFieldRenderer} TextField
+     * @extends {NumberFieldRenderer} NumberField
      * @extends {ToolTipRenderer} ToolTip
      * @extends {UploadOnDropRenderer} UploadOnDrop
      * @extends {TextDownloadRenderer} TextDownload
@@ -63,6 +65,7 @@ define([
         Slider.prototype,
         TextArea.prototype,
         TextField.prototype,
+        NumberField.prototype,
         TextDownload.prototype,
         UploadOnDrop.prototype,
         ToolTip.prototype,

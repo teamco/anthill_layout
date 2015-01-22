@@ -146,6 +146,23 @@ define(['jquery'], function defineBasePreferences($) {
                 });
             }
 
+            if (node.type === 'number') {
+
+                /**
+                 * Get number field
+                 * @type {*[]}
+                 */
+                $element = this.renderNumberField({
+                    name: index,
+                    text: text.trim(),
+                    placeholder: placeholder,
+                    value: node.value,
+                    disabled: node.disabled,
+                    visible: node.visible,
+                    validate: node.validate
+                });
+            }
+
             if (node.type === 'checkbox') {
 
                 /**

@@ -110,6 +110,15 @@ define([
         },
 
         /**
+         * Define update $item if show in tabs
+         * @member WorkspaceDataContentElement
+         * @param {boolean} show
+         */
+        updateShowInTabs: function updateShowInTabs(show) {
+            this.$[(show ? 'remove' : 'add') + 'Class']('hide');
+        },
+
+        /**
          * Get page $counter
          * @member WorkspaceDataContentElement
          * @returns {*|jQuery|HTMLElement}

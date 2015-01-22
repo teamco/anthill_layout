@@ -94,7 +94,7 @@ define(
                 var page = this.controller.getPage();
 
                 var i = 0, l = data.length,
-                    show, current, tab;
+                    show, current;
 
                 for (i; i < l; i++) {
 
@@ -107,9 +107,7 @@ define(
                      * Show in tabs
                      * @type {string}
                      */
-                    show = !(this.scope.base.defineBoolean(
-                        data[i].model.getConfig('preferences').showInTabs, true, true
-                    )) ? ' hide' : '';
+                    show = this.controller.checkShowInTabs(data[i]) ? '' : ' hide';
 
                     /**
                      * Define current page style

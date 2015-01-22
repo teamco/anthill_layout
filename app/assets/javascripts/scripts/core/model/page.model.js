@@ -111,6 +111,26 @@ define([
          */
         setShowInTabs: function setShowInTabs(show) {
             this._setItemInfoPreferences('showInTabs', show);
+        },
+
+        /**
+         * Set page header
+         * @member PageModel
+         * @param {boolean} header
+         */
+        setPageHeader: function setPageHeader(header) {
+            this._setItemInfoPreferences('pageHeader', header);
+            this.getConfig('html').header = header;
+        },
+
+        /**
+         * Set page footer
+         * @member PageModel
+         * @param {boolean} footer
+         */
+        setPageFooter: function setPageFooter(footer) {
+            this._setItemInfoPreferences('pageFooter', footer);
+            this.getConfig('html').footer = footer;
         }
 
     }, BaseModel.prototype);

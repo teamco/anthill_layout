@@ -52,6 +52,18 @@ define([
                 value: undefined,
                 visible: true
             },
+            pageHeader: {
+                type: 'checkbox',
+                disabled: false,
+                value: false,
+                visible: true
+            },
+            pageFooter: {
+                type: 'checkbox',
+                disabled: false,
+                value: false,
+                visible: true
+            },
             showInTabs: {
                 type: 'checkbox',
                 disabled: false,

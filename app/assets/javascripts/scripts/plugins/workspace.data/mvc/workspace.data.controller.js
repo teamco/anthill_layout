@@ -160,10 +160,12 @@ define(
                  * Get element uuid
                  * @type {string}
                  */
-                var uuid = page.model.getUUID() + '-workspace-data-view';
+                var uuid = page.model.getUUID() + '-workspace-data-view',
+                    $item = this.getView().elements.items[uuid];
 
-                this.getView().elements.items[uuid].updateCounter(
-                    page
+                $item.updateCounter(page);
+                $item.updateShowInTabs(
+                    this.checkShowInTabs(page)
                 );
 
                 /**
@@ -173,6 +175,19 @@ define(
                 var workspace = this.getWorkspace();
 
                 workspace.controller.setPageByHashLocation(page);
+            },
+
+            /**
+             * Check show in tabs
+             * @member WorkspaceDataController
+             * @param {Page} page
+             * @returns {boolean}
+             */
+            checkShowInTabs: function checkShowInTabs(page) {
+
+                return this.scope.base.defineBoolean(
+                    page.model.getConfig('preferences').showInTabs, true, true
+                );
             },
 
             /**
