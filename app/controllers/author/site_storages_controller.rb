@@ -23,7 +23,7 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages/1.json
   def show
     @storage = {}
-    unless @author_site_storage.nil?
+    if File.exist?(@target_path)
       @storage = {
           key: @author_site_storage.key,
           mode: @author_site_storage.author_site_type.name
@@ -35,7 +35,7 @@ class Author::SiteStoragesController < Author::AuthorController
         @storage[:version] = activated.version
         @storage[:content] = activated.content
       end
-    end
+    end unless @author_site_storage.nil?
   end
 
   # GET /author/site_storages/new
@@ -67,7 +67,7 @@ class Author::SiteStoragesController < Author::AuthorController
                        activated: false
                    })
 
-    target = "#{Rails.root}/app/assets/javascripts/public/#{@author_site_storage.key}"
+    target = get_target_url(@author_site_storage.key)
     FileUtils.cp_r "#{Rails.root}/lib/tasks/site/default", target
 
     respond_to do |format|
@@ -169,8 +169,7 @@ class Author::SiteStoragesController < Author::AuthorController
   # DELETE /author/site_storages/1
   # DELETE /author/site_storages/1.json
   def destroy
-    target = "#{Rails.root}/app/assets/javascripts/public/#{@author_site_storage.key}"
-    FileUtils.rm_r(target) if File.exist?(target)
+    FileUtils.rm_r(@target_path) if File.exist?(@target_path)
 
     @author_site_storage.destroy
     respond_to do |format|
@@ -255,10 +254,15 @@ class Author::SiteStoragesController < Author::AuthorController
     updated
   end
 
+  def get_target_url(key)
+    "#{Rails.root}/app/assets/javascripts/public/#{key}"
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_storage
     @author_site_storage = Author::SiteStorage.where(key: params[:key]).first ||
         Author::SiteStorage.where(key: params[:id]).first
+    @target_path = get_target_url(@author_site_storage.key) unless @author_site_storage.nil?
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
