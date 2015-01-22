@@ -58,7 +58,7 @@ define([
 
             var item, index,
                 tabs = [], $tab,
-                order;
+                order, show;
 
             for (index in pages) {
 
@@ -71,20 +71,29 @@ define([
                     item = pages[index];
 
                     /**
-                     * Get order
-                     * @type {number}
+                     * Show page in tabs
+                     * @type {PagesPreferences.defaultPrefs.showInTabs|*}
                      */
-                    order = item.model.getConfig('preferences').order;
+                    show = item.model.getConfig('preferences').showInTabs;
 
-                    /**
-                     * Define tab
-                     * @type {jQuery}
-                     */
-                    $tab = this.view.renderPageTabsItem(item);
+                    if (show) {
 
-                    typeof(order) === 'number' ?
-                        tabs[order] = $tab :
-                        tabs.push($tab);
+                        /**
+                         * Get order
+                         * @type {number}
+                         */
+                        order = item.model.getConfig('preferences').order;
+
+                        /**
+                         * Define tab
+                         * @type {jQuery}
+                         */
+                        $tab = this.view.renderPageTabsItem(item);
+
+                        typeof(order) === 'number' ?
+                            tabs[order] = $tab :
+                            tabs.push($tab);
+                    }
                 }
             }
 
