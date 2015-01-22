@@ -107,8 +107,8 @@ define([
         loadRules: function loadRules() {
 
             /**
-             * Load prefs
-             * @type {*}
+             * Load rules
+             * @type {Widget}
              */
             var widget = this.controller.getContainment(),
                 rules = widget.model.getConfig('rules');
@@ -286,10 +286,16 @@ define([
             );
 
             /**
-             * Simplify instance name
+             * Copy subscribers
              * @type {*}
              */
-            var subscribeEM = this.eventmanager.subscribers;
+            var subscribeEM = {};
+
+            $.extend(
+                true,
+                subscribeEM,
+                this.eventmanager.subscribers
+            );
 
             if (!this.controller.unregisterRules()) {
                 return false;
@@ -367,13 +373,7 @@ define([
 
                         if (type === 'widget') {
 
-                            /**
-                             * Define widget scope
-                             * @type {Widget}
-                             */
-                            scope = widgetPublisher;
-
-                            this.controller._registerScopeRule(scope, opts);
+                            this.controller._registerScopeRule(widgetPublisher, opts);
 
                         } else {
 
