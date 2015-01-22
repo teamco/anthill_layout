@@ -34,6 +34,7 @@ requirejs.config({
         'jquery.ui': 'lib/jquery/jquery-ui.min',
         'jquery.resizestop': 'lib/jquery/jquery.resizestop',
         'jquery.pseudo': 'lib/jquery/jquery.pseudo',
+        'jquery.zoomooz': 'lib/jquery/jquery.zoomooz.min',
 
         // create alias to plugins (not needed if plugins are on the baseUrl)
         // https://github.com/millermedeiros/requirejs-plugins
@@ -95,6 +96,7 @@ define([
     'jquery.ujs',
     'jquery.resizestop',
     'jquery.pseudo',
+    'jquery.zoomooz',
     'extends/function',
     'extends/json',
     'extends/event',
