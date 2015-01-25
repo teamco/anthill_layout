@@ -225,6 +225,9 @@ define([
 
                     if (hash.hasOwnProperty(index)) {
 
+                        // Define node
+                        var node = hash[index];
+
                         /**
                          * Define text
                          * @type {string}
@@ -240,7 +243,7 @@ define([
                                     node.type,
                                     node.visible ? '' : 'hidden'
                                 ].join(' ')).append(
-                                this.getNodeRenderer(hash[index], text, index)
+                                this.getNodeRenderer(node, text, index)
                             )
                         );
                     }

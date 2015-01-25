@@ -4,7 +4,6 @@
  * Date: 3/3/14
  * Time: 12:14 AM
  */
-
 define([
     'config/anthill',
     'modules/renderer/check.box',
@@ -15,6 +14,7 @@ define([
     'modules/renderer/object',
     'modules/renderer/label',
     'modules/renderer/slider',
+    'modules/renderer/text.editor',
     'modules/renderer/text.area',
     'modules/renderer/text.field',
     'modules/renderer/number.field',
@@ -22,7 +22,7 @@ define([
     'modules/renderer/upload.on.drop',
     'modules/renderer/text.download',
     'modules/renderer/validation'
-], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Label, Slider, TextArea, TextField, NumberField, ToolTip, UploadOnDrop, TextDownload, Validation) {
+], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Label, Slider, TextEditor, TextArea, TextField, NumberField, ToolTip, UploadOnDrop, TextDownload, Validation) {
 
     /**
      * Define renderer
@@ -37,6 +37,7 @@ define([
      * @extends {ObjectRenderer} ObjectEmbed
      * @extends {LabelRenderer} Label
      * @extends {SliderRenderer} Slider
+     * @extends {TextEditorRenderer} TextEditor
      * @extends {TextAreaRenderer} TextArea
      * @extends {TextFieldRenderer} TextField
      * @extends {NumberFieldRenderer} NumberField
@@ -51,9 +52,7 @@ define([
     };
 
     return Renderer.extend(
-        'Renderer', {
-
-        },
+        'Renderer', {},
         AntHill.prototype,
         CheckBox.prototype,
         ComboBox.prototype,
@@ -63,6 +62,7 @@ define([
         ObjectEmbed.prototype,
         Label.prototype,
         Slider.prototype,
+        TextEditor.prototype,
         TextArea.prototype,
         TextField.prototype,
         NumberField.prototype,

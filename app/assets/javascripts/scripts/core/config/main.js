@@ -24,11 +24,11 @@ requirejs.config({
         modules: 'lib/modules',
         plugins: '../plugins',
 
-        test: 'test',
+        tinyMCE: 'lib/packages/tinymce/tinymce.min',
 
         modernizr: 'lib/modernizr',
-        'lz-string': 'lib/lz-string',
 
+        'lz-string': 'lib/lz-string',
         jquery: 'lib/jquery/jquery-2.1.3.min',
         'jquery.ujs': 'lib/jquery/jquery_ujs',
         'jquery.ui': 'lib/jquery/jquery-ui.min',
@@ -52,6 +52,13 @@ requirejs.config({
     },
 
     shim: {
+        tinyMCE: {
+            exports: 'tinyMCE',
+            init: function () {
+                this.tinyMCE.DOM.events.domLoaded = true;
+                return this.tinyMCE;
+            }
+        },
         jquery: {
             exports: '$'
         },
@@ -59,11 +66,12 @@ requirejs.config({
         'jquery.ui': {deps: ['jquery']},
         'jquery.resizestop': {deps: ['jquery']},
         'jquery.pseudo': {deps: ['jquery']},
+        'jquery.zoomooz': {deps: ['jquery']},
         'extends/function': {deps: ['jquery']},
         'extends/string': {deps: ['jquery']},
         'extends/array': {deps: ['jquery']},
         'lib/jquery/jquery.knob': {deps: ['jquery']},
-        'jquery.zoomooz': {deps: ['jquery']},
+
         'lib/jquery/jquery.nicescroll': {deps: ['jquery']},
 
         'controller/layout/layout.empty.rows': {deps: ['extends/function']},

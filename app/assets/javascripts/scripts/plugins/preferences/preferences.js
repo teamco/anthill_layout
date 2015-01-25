@@ -129,6 +129,23 @@ define(['jquery'], function defineBasePreferences($) {
                 });
             }
 
+            if (node.type === 'texteditor') {
+
+                /**
+                 * Get text field
+                 * @type {*[]}
+                 */
+                $element = this.renderTextEditor({
+                    name: index,
+                    text: text.trim(),
+                    placeholder: placeholder,
+                    value: node.value,
+                    disabled: node.disabled,
+                    visible: node.visible,
+                    validate: node.validate
+                });
+            }
+
             if (node.type === 'text') {
 
                 /**

@@ -117,9 +117,14 @@ define(
                  * @member AppController
                  */
                 _handleXhrLog: function _handleXhrLog(xhr, status, description) {
-                    this.scope.logger[status === 'error' ? 'warn' : 'debug'](
-                        status, description, arguments
-                    );
+
+                    if (status === 'error' || status === 'warning') {
+                        this.scope.view.handleNotificationsRenderer(
+                            xhr, status
+                        );
+                    }
+
+                    this.scope.logger[status === 'error' ? 'warn' : 'debug'](arguments);
                 },
 
                 /**

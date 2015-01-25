@@ -28,7 +28,7 @@ define([
          */
         this.preferences = {
             bodyHtml: {
-                type: 'textarea',
+                type: 'texteditor',
                 disabled: false,
                 value: undefined,
                 visible: true

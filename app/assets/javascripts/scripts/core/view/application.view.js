@@ -83,6 +83,38 @@ define([
         },
 
         /**
+         * Handle notification renderer
+         * @member AppView
+         * @param xhr
+         * @param {string} status
+         */
+        handleNotificationsRenderer: function handleNotificationsRenderer(xhr, status) {
+
+            /**
+             * Define buttons
+             * @type {*}
+             */
+            var buttons = {
+                reject: {
+                    text: this.i18n.t('cancel'),
+                    events: {
+                        click: 'rejectModalEvent'
+                    }
+                }
+            };
+
+            this.modalDialog({
+                style: 'handle-' + status,
+                type: status,
+                title: [xhr.status, xhr.statusText, status].join(' '),
+                text: xhr.responseJSON.error,
+                html: '',
+                cover: true,
+                buttons: buttons
+            });
+        },
+
+        /**
          * Start rendering
          * @member AppView
          * @param {boolean} [silent]
