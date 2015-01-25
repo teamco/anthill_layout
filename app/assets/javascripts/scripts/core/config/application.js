@@ -99,6 +99,13 @@ define([
         };
 
         /**
+         * Define loading data counter
+         * @member App
+         * @type {number|*}
+         */
+        this.loadingDataCounter = undefined;
+
+        /**
          * Define panels
          * @member App
          * @type {{}}

@@ -516,7 +516,7 @@ define([
 
                 /**
                  * Init node
-                 * @type {Constructor}
+                 * @type {Function}
                  */
                 node = new Constructor(base.define(opts, {}, true));
 
@@ -585,10 +585,23 @@ define([
 
             if (base.isDefined(this.item)) {
 
-                var isRoot = scope.controller.isRoot(scope),
+                var root = scope.controller.root(),
+                    isRoot = scope.controller.isRoot(scope),
                     cname = this.item.name,
                     lname = cname.toLowerCase(),
                     collector = base.define(data.collector, {}, true);
+
+                /**
+                 * Define counter
+                 * @member App
+                 * @type {number}
+                 */
+                root.loadingDataCounter = base.isDefined(root.loadingDataCounter) ?
+                    root.loadingDataCounter : $.map(collector, function (k) {
+                    return $.map(k, function (i) {
+                        return i;
+                    });
+                }).length;
 
                 if (collector.hasOwnProperty(lname)) {
 
@@ -605,9 +618,7 @@ define([
 
                                 // Create item
                                 scope.api['create' + cname](
-                                    node,
-                                    true,
-                                    true
+                                    node, true, true
                                 );
 
                                 /**
@@ -623,15 +634,26 @@ define([
                                         scope.controller.loadConfig(node.containment);
                                     }
 
+                                    /**
+                                     * Reduce counter
+                                     * @member App
+                                     * @type {number}
+                                     */
+                                    root.loadingDataCounter -= 1;
+
+                                    // Continue loading data
                                     this.loadData.bind(item.model)(data);
                                 }
                             }
                         }
+
                     }
 
-                    scope.observer.publish(
-                        scope.eventmanager.eventList.afterLoadingItems
-                    );
+                    if (!root.loadingDataCounter) {
+                        scope.observer.publish(
+                            scope.eventmanager.eventList.afterLoadingItems
+                        );
+                    }
                 }
 
             } else {
