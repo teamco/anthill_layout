@@ -62,10 +62,6 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
                     placeholder: opts.placeholder,
                     title: opts.value
                 }).val(opts.value);
-
-                tinyMCE.init({
-                    selector: 'textarea#' + uuid
-                });
             }
 
             if (opts.monitor) {
@@ -75,6 +71,12 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
                     opts.monitor.callback
                 );
             }
+
+            $input.on('focus.tinymce', function init() {
+                tinyMCE.init({
+                    selector: 'textarea#' + uuid
+                });
+            });
 
             if (!opts.visible) {
                 $input.hide();
