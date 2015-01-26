@@ -61,7 +61,7 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
                     id: uuid,
                     placeholder: opts.placeholder,
                     title: opts.value
-                }).val(opts.value);
+                }).addClass('editor').val(opts.value);
             }
 
             if (opts.monitor) {

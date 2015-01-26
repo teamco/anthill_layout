@@ -430,7 +430,7 @@ define([
                     $container: this.$container,
                     opacity: this.coverOpacity,
                     style: 'cover-' + this.style,
-                    events: this.autoclose ? { click: 'rejectModalEvent' } : {}
+                    events: this.autoclose ? {click: 'rejectModalEvent'} : {}
                 });
             }
         },
@@ -468,6 +468,25 @@ define([
              * @type {*|jQuery|HTMLElement}
              */
             var $inputs = $('input:not(:disabled), textarea, div.combo-box > input', this.$);
+
+            var $textEditors = $inputs.filter('.editor'),
+                editorInstance = window.tinymce,
+                editor;
+
+            if (editorInstance) {
+                $textEditors.each(function () {
+
+                    /**
+                     * Get tinyMCE instance
+                     * @type {tinyMCE}
+                     */
+                    editor = editorInstance.get(this.id);
+
+                    if (editor) {
+                        $(this).val(editor.getContent());
+                    }
+                });
+            }
 
             if (filter) {
                 return $inputs[filter.method](filter.value);
