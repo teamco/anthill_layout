@@ -469,18 +469,21 @@ define([
              */
             var $inputs = $('input:not(:disabled), textarea, div.combo-box > input', this.$);
 
-            var $textEditors = $inputs.filter('.editor'),
-                editorInstance = window.tinymce,
-                editor;
+            /**
+             * Get tinyMCE instance
+             * @type {Window.tinymce|*}
+             */
+            var editorInstance = window.tinymce;
 
             if (editorInstance) {
-                $textEditors.each(function () {
+
+                $inputs.filter('.editor').each(function () {
 
                     /**
-                     * Get tinyMCE instance
-                     * @type {tinyMCE}
+                     * Get tinyMCE object data
+                     * @type {*}
                      */
-                    editor = editorInstance.get(this.id);
+                    var editor = editorInstance.get(this.id);
 
                     if (editor) {
                         $(this).val(editor.getContent());
