@@ -1,3 +1,7 @@
+.modal-dialog.preferences {
+    width: 700px;
+}
+
 .modal-dialog.preferences div.html ul {
     list-style: none;
     padding: 5px;

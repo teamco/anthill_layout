@@ -148,7 +148,7 @@ define([
                     config: config,
                     $html: $html.$,
                     style: [
-                        config.preferences.resource,
+                        config.preferences.resource.toClassName(),
                         'widget-prefs preferences'
                     ].join(' '),
                     title: 'Widget preferences',
