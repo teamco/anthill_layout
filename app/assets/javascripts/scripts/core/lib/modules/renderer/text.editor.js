@@ -98,7 +98,7 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
          * Define after init tinyMce callback
          * @member TextEditorRenderer
          */
-        afterInitTinyMce: function afterInitTinyMce() {
+        afterInitTinyMce: function afterInitTinyMce(editor) {
 
             this.view.scope.logger.debug('TinyMCE initialized', arguments);
 
