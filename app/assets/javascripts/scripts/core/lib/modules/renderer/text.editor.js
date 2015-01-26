@@ -64,19 +64,23 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
                 }).addClass('editor').val(opts.value);
             }
 
-            if (opts.monitor) {
-
-                $input.on(
-                    opts.monitor.events.join(','),
-                    opts.monitor.callback
-                );
-            }
-
             $input.on('focus.tinymce', function init() {
+
                 tinyMCE.init({
-                    selector: 'textarea#' + uuid
+                    selector: 'textarea#' + uuid,
+                    init_instance_callback: this.afterInitTinyMce.bind(this),
+                    setup: function (editor) {
+
+                        if (opts.monitor) {
+                            editor.on(
+                                opts.monitor.events.join(','),
+                                opts.monitor.callback
+                            );
+                        }
+                    }
                 });
-            });
+
+            }.bind(this));
 
             if (!opts.visible) {
                 $input.hide();
@@ -88,6 +92,35 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
                 this.renderLabel(uuid, opts.text, 'textarea', opts.visible),
                 $input
             ];
+        },
+
+        /**
+         * Define after init tinyMce callback
+         * @member TextEditorRenderer
+         */
+        afterInitTinyMce: function afterInitTinyMce() {
+
+            this.view.scope.logger.debug('TinyMCE initialized', arguments);
+
+            /**
+             * Get referrer (opener)
+             * @type {*}
+             */
+            var referrer = this.view.scope.referrer;
+
+            /**
+             * Get $modal
+             * @type {ModalElement}
+             */
+            var $modal = referrer.view.elements.$modal;
+
+            if ($modal) {
+                this.setPosition({
+                    $container: $modal.$container,
+                    $item: $modal.$,
+                    position: $modal.position
+                });
+            }
         }
     });
 });
