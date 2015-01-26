@@ -26,7 +26,6 @@
     border-radius: 50%;
     border: solid 4px white;
     display: inline-block;
-    background: url('bird.jpg') center no-repeat;
     background-size: 150%;
     -webkit-box-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.5);
     -moz-box-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.5);

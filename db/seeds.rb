@@ -18,8 +18,8 @@ if Author::Widget.all.length > 0
     Role.find_or_create_by({name: role})
   end
   admin = User.create({
-                          email: 'teamco@gmail.com',
-                          password: '09051972',
+                          email: 'email@gmail.com',
+                          password: '1234567890',
                           role_id: Role.find_by_name(:admin).id
                       })
   puts "--- Admin: #{admin.email}"

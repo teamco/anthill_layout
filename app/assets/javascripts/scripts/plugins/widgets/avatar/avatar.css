@@ -5,6 +5,9 @@
     padding: 4px 0px 0px 4px;
     padding-left:10px;
 }
+.widget .content .avatar .bord{
+    position: relative;
+}
 .widget .content .avatar .imageFrame,
 .widget .content .avatar .under_layer {
     border: solid 5px #ffffff;
@@ -26,19 +29,20 @@
     width: auto;
     height: 102%;
     text-align: center;
+    position: absolute;
 }
 .widget .content .avatar .dragMenu {
     width: 170px;
-    height: 80px;
+    height: 70px;
     display: inline-block;
     border-top-left-radius: 60%;
     border-top-right-radius: 60%;
-    background: lightgray;
+    background: rgba(255, 255, 255, 0.6);
     position: relative;
     top: 0px;
     left:-4px;
     transition: top .6s;
-    border: solid 5px white;
+    border: solid 1px white;
 }
 .widget .content .avatar .dragMenu.extend {
     top: -65px;
@@ -66,7 +70,7 @@
     padding: 3px;
 }
 .widget .content .avatar .under_layer {
-    background: lightgrey;
+    background: rgba(255, 255, 255, 0.7);
     top: 7px;
     opacity: 0;
     transition: all .6s ease;

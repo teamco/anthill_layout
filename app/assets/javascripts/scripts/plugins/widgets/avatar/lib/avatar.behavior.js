@@ -33,10 +33,12 @@ define([
                 var top = localStorage.getItem('avatarX'),
                     left = localStorage.getItem('avatarY');
 
-//                avatarImage.offset({
-//                    top: top,
-//                    left: left
-//                });
+                this.$avatarImage.offset({
+                    top: top - 10,
+                    left: left - 15
+                });
+
+                console.log(this.$avatarImage.offset());
             }
         },
 
@@ -56,8 +58,9 @@ define([
 
                     this.$underLayerMenu.removeClass('extend_menu');
                     this.$imageDraggMenu.removeClass('extend');
-
-                    this.setDraggable(false);
+                    if(this.setDraggable(true)) {
+                        this.setDraggable(false);
+                    }
 
                 }.bind(this)
             );
@@ -81,7 +84,6 @@ define([
         },
 
         setDraggable: function setDraggable(drag) {
-
             if (drag) {
 
                 if (this.$avatarImage.data('ui-draggable')) {
@@ -96,6 +98,7 @@ define([
                             var left = $(this).offset().left;
                             localStorage.setItem('avatarX', top);
                             localStorage.setItem('avatarY', left);
+                            //console.log(localStorage.getItem("avatarX"), localStorage.getItem("avatarY"));
                         }
                     });
                 }
