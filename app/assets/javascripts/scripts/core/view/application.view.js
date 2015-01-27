@@ -103,11 +103,17 @@ define([
                 }
             };
 
+            /**
+             * Define responseJSON
+             * @type {Ajax.Response.responseJSON|*}
+             */
+            var responseJSON = xhr.responseJSON;
+
             this.modalDialog({
                 style: 'handle-' + status,
                 type: status,
                 title: [xhr.status, xhr.statusText, status].join(' '),
-                text: xhr.responseJSON ? xhr.responseJSON.error : xhr.statusText,
+                text: responseJSON ? responseJSON.error : xhr.statusText,
                 html: '',
                 cover: true,
                 buttons: buttons
