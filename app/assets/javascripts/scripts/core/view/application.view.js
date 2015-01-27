@@ -107,7 +107,7 @@ define([
                 style: 'handle-' + status,
                 type: status,
                 title: [xhr.status, xhr.statusText, status].join(' '),
-                text: xhr.responseJSON.error,
+                text: xhr.responseJSON ? xhr.responseJSON.error : xhr.statusText,
                 html: '',
                 cover: true,
                 buttons: buttons
