@@ -275,6 +275,8 @@ Devise.setup do |config|
   config.reset_password_within = 6.hours
   config.sign_out_via = :delete
 
+  config.secret_key = 'd75ea36b070d78663a9f82f9170f78c0901b942788b46e0976f9d49b7405723e78af190abc4bb14cc1edada13cb60deb0d11898cb18dc8a55ccb10f76e01ad75'
+
   #Add your ID and secret here
   #ID first, secret second
   # config.omniauth :digitalocean, ENV['DIGITALOCEAN_KEY'], ENV['DIGITALOCEAN_SECRET']

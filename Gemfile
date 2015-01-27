@@ -24,8 +24,9 @@ case RUBY_PLATFORM
       # Use Capistrano for deployment
       gem 'capistrano-rails'
       gem 'debase'
-      gem 'rack-attack'
     end
+
+    gem 'rack-attack'
 
     # Use jquery as the JavaScript library
     gem 'jquery-rails', '>= 4.0.0'
