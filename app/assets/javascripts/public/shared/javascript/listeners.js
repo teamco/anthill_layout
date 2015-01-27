@@ -16,13 +16,13 @@ define(
     ],
 
     /**
-     * @param {App} Application
+     * @param {App} App
      * @param {Workspace} Workspace
      * @param {Page} Page
      * @param {Layout} Layout
      * @param {Widget} Widget
      */
-    function defineListeners(Application, Workspace, Page, Layout, Widget) {
+    function defineListeners(App, Workspace, Page, Layout, Widget) {
 
         // Define global listeners
         for (var i = 0, l = arguments.length; i < l; i++) {
@@ -39,7 +39,7 @@ define(
          *      defineGlobalInstance: {name: string, callback: function}
          * }}
          */
-        Application.prototype.globalListeners = {
+        App.prototype.globalListeners = {
 
             successRendered: {
                 name: "success.rendered",

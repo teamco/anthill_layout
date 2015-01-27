@@ -62,7 +62,7 @@ define([
             );
 
             this.renderTooltip({
-                title: this.resource.module.constructor.name.humanize(),
+                title: this.resource.module.constructor.prototype.name.humanize(),
                 $container: this
             })
         }

@@ -12,39 +12,41 @@ define([
     'config/page',
     'config/layout',
     'config/widget'
-], function definePermissions(Application, Workspace, Page, Layout, Widget) {
+], function definePermissions(App, Workspace, Page, Layout, Widget) {
+
+    // Load permissions
+    for (var i = 0, l = arguments.length; i < l; i++) {
+        arguments[i].prototype.localPermissions = arguments[i].prototype.localPermissions || {};
+    }
 
     /**
-     * Define Application Global permission
+     * Define Application Local permission
      * @type {{
-     *      development: {activateDebugger: boolean, destroyDebugger: boolean},
-     *      authorize: {activateDebugger: boolean, destroyDebugger: boolean},
-     *      consumption: {activateDebugger: boolean, destroyDebugger: boolean},
-     *      test: {activateDebugger: boolean, destroyDebugger: boolean}
+     *      development: {},
+     *      authorize: {},
+     *      consumption: {},
+     *      test: {}
      * }}
      */
-    Application.prototype.localPermissions = {
+    App.prototype.localPermissions = {
         development: {
-            activateDebugger: false,
-            destroyDebugger: false
         },
         authorize: {
-            activateDebugger: false,
-            destroyDebugger: false
         },
         consumption: {
-            activateDebugger: false,
-            destroyDebugger: false
         },
         test: {
-            activateDebugger: false,
-            destroyDebugger: false
         }
     };
 
     /**
-     * Define Workspace Global permission
-     * @type {{}}
+     * Define Workspace Local permission
+     * @type {{
+     *      development: {},
+     *      authorize: {},
+     *      consumption: {},
+     *      test: {}
+     * }}
      */
     Workspace.prototype.localPermissions = {
         development: {
@@ -58,8 +60,13 @@ define([
     };
 
     /**
-     * Define Page Global permission
-     * @type {{}}
+     * Define Page Local permission
+     * @type {{
+     *      development: {},
+     *      authorize: {},
+     *      consumption: {},
+     *      test: {}
+     * }}
      */
     Page.prototype.localPermissions = {
         development: {
@@ -73,8 +80,13 @@ define([
     };
 
     /**
-     * Define Layout Global permission
-     * @type {{}}
+     * Define Layout Local permission
+     * @type {{
+     *      development: {},
+     *      authorize: {},
+     *      consumption: {},
+     *      test: {}
+     * }}
      */
     Layout.prototype.localPermissions = {
         development: {
@@ -88,7 +100,7 @@ define([
     };
 
     /**
-     * Define Widget Global permission
+     * Define Widget Local permission
      * @type {{
      *      development: {draggable: boolean, resizable: boolean},
      *      authorize: {draggable: boolean, resizable: boolean},

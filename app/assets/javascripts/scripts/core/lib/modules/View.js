@@ -50,7 +50,7 @@ define([
          * @returns {BaseElement}
          */
         get$item: function get$item() {
-            return this.elements['$' + this.scope.constructor.name.toLowerCase()];
+            return this.elements['$' + this.scope.constructor.prototype.name.toLowerCase()];
         },
 
         /**
@@ -86,7 +86,7 @@ define([
         renderUUID: function renderUUID(id) {
             return id || [
                     this.base.lib.generator.UUID(),
-                    this.constructor.name.toDash()
+                    this.constructor.prototype.name.toDash()
                 ].join('-');
         },
 
@@ -169,7 +169,7 @@ define([
              */
             this.elements.$header = new HeaderElement(this, {
                 style: [
-                    this.scope.constructor.name.toDash(),
+                    this.scope.constructor.prototype.name.toDash(),
                     'header'
                 ].join('-'),
                 $container: $container.$,
@@ -207,7 +207,7 @@ define([
              */
             this.elements.$footer = new FooterElement(this, {
                 style: [
-                    this.scope.constructor.name.toDash(),
+                    this.scope.constructor.prototype.name.toDash(),
                     'footer'
                 ].join('-'),
                 $container: $container.$

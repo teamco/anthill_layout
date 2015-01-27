@@ -338,7 +338,7 @@ define([
                     ),
                     _renderNode.bind(this)(
                         'content', data,
-                        this.view.scope.constructor.name.humanize(), true
+                        this.view.scope.constructor.prototype.name.humanize(), true
                     )
                 ])
             );

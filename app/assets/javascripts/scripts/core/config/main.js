@@ -1,7 +1,7 @@
 requirejs.config({
 
     baseUrl: '../../assets/scripts/core',
-	
+
     waitSeconds: 200,
 
     paths: {
@@ -74,6 +74,10 @@ requirejs.config({
 
         'lib/jquery/jquery.nicescroll': {deps: ['jquery']},
 
+        'config/listeners': {deps: ['extends/function']},
+        'config/permission': {deps: ['extends/function']},
+        'config/anthill': {deps: ['extends/function']},
+
         'controller/layout/layout.empty.rows': {deps: ['extends/function']},
         'controller/layout/layout.empty.columns': {deps: ['extends/function']},
         'controller/layout/layout.intersect': {deps: ['extends/function']},
@@ -110,16 +114,10 @@ define([
     'extends/json',
     'extends/event',
     'extends/string',
-    'extends/array'
+    'extends/array',
+    'config/listeners',
+    'config/permission',
+    'config/anthill'
 ], function loadConfig() {
-
-    require([
-        'config/listeners',
-        'config/permission'
-    ]);
-
-    return require([
-        'config/anthill'
-    ]);
 
 });

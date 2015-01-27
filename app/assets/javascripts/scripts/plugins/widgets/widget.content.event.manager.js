@@ -104,7 +104,7 @@ define([
                 rules = widget.model.getConfig('rules'),
                 publish = rules.publish || {},
                 subscribe = rules.subscribe || {},
-                lname = scope.constructor.name.toLowerCase(),
+                lname = scope.constructor.prototype.name.toLowerCase(),
                 event;
 
             publish[lname] = scope.base.define(publish[lname], [], true);

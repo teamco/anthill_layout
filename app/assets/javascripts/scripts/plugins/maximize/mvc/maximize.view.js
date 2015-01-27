@@ -84,7 +84,7 @@ define([
                         style: 'content',
                         id: [
                             data[index].model.getConfig('uuid'),
-                            this.scope.constructor.name.toDash()
+                            this.scope.constructor.prototype.name.toDash()
                         ].join('-'),
                         $container: this.elements.$maximize.$,
                         data: data[index]

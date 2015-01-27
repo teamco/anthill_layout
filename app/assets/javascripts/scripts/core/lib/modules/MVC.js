@@ -290,8 +290,8 @@ define([
                 scope = this.scope,
                 name = base.isString(mvcPattern) ?
                     mvcPattern :
-                    mvcPattern.name.
-                        replace(this.scope.constructor.name, '').
+                    mvcPattern.prototype.name.
+                        replace(this.scope.name, '').
                         toLowerCase();
 
             if (base.isFunction(mvcPattern)) {
@@ -308,7 +308,7 @@ define([
                  * Define scope name
                  * @type {string}
                  */
-                var scopeName = scope.constructor.name.toLowerCase();
+                var scopeName = scope.name.toLowerCase();
 
                 /**
                  * Define function
@@ -436,7 +436,7 @@ define([
 
             if (this.render) {
                 config.html = base.define(config.html, {}, true);
-                config.html.selector = scope.constructor.name.toDash();
+                config.html.selector = scope.constructor.prototype.name.toDash();
             }
         },
 

@@ -24,7 +24,7 @@ define([], function defineBasePreferences() {
             var $inputs = $modal.collectInputFields(),
                 scope = this.scope,
                 containment = this.getContainment(),
-                cname = scope.constructor.name.toLowerCase();
+                cname = scope.constructor.prototype.name.toLowerCase();
 
             if ($inputs.hasClass('validate')) {
                 this.scope.logger.warn('Fix incorrect data before submit');
@@ -116,7 +116,7 @@ define([], function defineBasePreferences() {
             }.bind(this));
 
             if (render) {
-                scope.view['render' + this.scope.constructor.name]();
+                scope.view['render' + this.scope.constructor.prototype.name]();
             }
 
             $modal.selfDestroy();

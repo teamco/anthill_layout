@@ -131,7 +131,7 @@ define([
                 constructor = base.isFunction(scope) ?
                     scope : scope.constructor;
 
-            return constructor.name.toLowerCase();
+            return constructor.constructor.prototype.name.toLowerCase();
         },
 
         /**
@@ -230,7 +230,7 @@ define([
             return this.base.isDefined(node) ?
                 node.model ?
                     node.model.getUUID() :
-                'Undefined ' + node.constructor.name :
+                'Undefined ' + node.constructor.prototype.name :
                 this.getConfig('uuid');
         },
 

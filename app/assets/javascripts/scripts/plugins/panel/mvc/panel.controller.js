@@ -261,7 +261,7 @@ define([
         getRenderAt: function getRenderAt() {
 
             return [
-                this.scope.constructor.name.toLowerCase(),
+                this.scope.constructor.prototype.name.toLowerCase(),
                 this.model.getConfig('renderAt')
             ].join('-');
         },

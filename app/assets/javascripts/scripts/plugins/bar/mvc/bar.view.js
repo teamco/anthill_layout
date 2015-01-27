@@ -82,7 +82,7 @@ define([
                      * Define module resource
                      * @type {string}
                      */
-                    var moduleResource = item.module.constructor.name.toDash();
+                    var moduleResource = item.module.constructor.prototype.name.toDash();
 
                     /**
                      * Render item

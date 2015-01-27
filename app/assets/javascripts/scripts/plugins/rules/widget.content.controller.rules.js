@@ -161,7 +161,7 @@ define([
                     this.scope.model.getUUID() !== uuid) {
                     published[uuid] = {
                         rules: rules.publish,
-                        type: item.controller.getContent().constructor.name
+                        type: item.controller.getContent().constructor.prototype.name
                     };
                 }
             }

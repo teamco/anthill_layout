@@ -83,7 +83,7 @@ define([
                         style: 'content',
                         id: [
                             data[index].model.getConfig('uuid'),
-                            this.scope.constructor.name.toDash()
+                            this.scope.constructor.prototype.name.toDash()
                         ].join('-'),
                         $container: this.elements.$widgetrules.$,
                         data: data[index]
@@ -148,7 +148,7 @@ define([
                         preferences: {
                             text: 'Preferences',
                             events: {
-                                click: 'preferences' + this.scope.constructor.name
+                                click: 'preferences' + this.scope.constructor.prototype.name
                             }
                         }
                     }

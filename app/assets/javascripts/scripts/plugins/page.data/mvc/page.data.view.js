@@ -82,7 +82,7 @@ define([
                         style: 'content',
                         id: [
                             data[index].model.getConfig('uuid'),
-                            this.scope.constructor.name.toDash()
+                            this.scope.constructor.prototype.name.toDash()
                         ].join('-'),
                         $container: this.elements.$pagedata.$,
                         data: data[index]
@@ -162,7 +162,7 @@ define([
                         rules: {
                             text: 'Rules',
                             events: {
-                                click: 'rules' + this.scope.constructor.name
+                                click: 'rules' + this.scope.constructor.prototype.name
                             }
                         },
                         reject: {

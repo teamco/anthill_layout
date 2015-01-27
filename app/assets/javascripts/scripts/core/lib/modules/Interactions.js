@@ -25,7 +25,7 @@ define([
          */
         checkPermission: function checkPermission() {
             this.scope.permission.check({
-                capability: this.constructor.name.toLowerCase(),
+                capability: this.constructor.prototype.name.toLowerCase(),
                 callback: this.init.bind(this)
             });
         },
