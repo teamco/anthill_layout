@@ -288,13 +288,17 @@ define([
 
             var base = this.base,
                 scope = this.scope,
-                name = base.isString(mvcPattern) ?
-                    mvcPattern :
-                    mvcPattern.prototype.name.
-                        replace(this.scope.name, '').
-                        toLowerCase();
+                name = mvcPattern;
 
             if (base.isFunction(mvcPattern)) {
+
+                /**
+                 * Define name space
+                 * @type {string}
+                 */
+                name = mvcPattern.prototype.name.
+                    replace(scope.name, '').
+                    toLowerCase();
 
                 /**
                  * Define pattern
