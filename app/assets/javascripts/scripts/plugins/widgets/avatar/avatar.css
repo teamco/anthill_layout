@@ -7,6 +7,7 @@
 }
 .widget .content .avatar .bord{
     position: relative;
+    height: 100%;
 }
 .widget .content .avatar .imageFrame,
 .widget .content .avatar .under_layer {
@@ -38,15 +39,15 @@
     border-top-left-radius: 60%;
     border-top-right-radius: 60%;
     background: rgba(255, 255, 255, 0.6);
-    position: relative;
-    top: 0px;
+    position: absolute;
+    bottom: -75px;
     left:-4px;
-    transition: top .6s;
+    transition: bottom .6s;
     border: solid 1px white;
 }
 .widget .content .avatar .dragMenu.extend {
-    top: -65px;
-    transition: top .6s;
+    bottom: -10px;
+    transition: bottom .6s;
 }
 .widget .content .avatar .dragMenu span {
     margin-top: 15px;

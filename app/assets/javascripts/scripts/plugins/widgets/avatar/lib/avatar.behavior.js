@@ -24,21 +24,20 @@ define([
             this.$underLayerMenu = $('.under_layer', this.$);
             this.$allowDraggingButton = $('.dragIt', this.$);
             this.$changeAvatarButton = $('.changeAvatarButton', this.$);
+            this.draggableInit = false;
         },
 
         initAvatarPosition: function initAvatarPosition() {
 
             if (localStorage.getItem('avatarX')) {
+                var left = localStorage.getItem('avatarX'),
+                    top = localStorage.getItem('avatarY');
 
-                var top = localStorage.getItem('avatarX'),
-                    left = localStorage.getItem('avatarY');
-
-                this.$avatarImage.offset({
-                    top: top - 10,
-                    left: left - 15
+                this.$avatarImage.css({
+                    top: top + 'px',
+                    left: left + 'px'
                 });
 
-                console.log(this.$avatarImage.offset());
             }
         },
 
@@ -55,10 +54,9 @@ define([
 
             this.$avContainer.mouseleave(
                 function mouseLeave() {
-
                     this.$underLayerMenu.removeClass('extend_menu');
                     this.$imageDraggMenu.removeClass('extend');
-                    if(this.setDraggable(true)) {
+                    if(this.draggableInit) {
                         this.setDraggable(false);
                     }
 
@@ -85,26 +83,23 @@ define([
 
         setDraggable: function setDraggable(drag) {
             if (drag) {
-
                 if (this.$avatarImage.data('ui-draggable')) {
-
                     this.$avatarImage.draggable('enable');
-
                 } else {
-
+                    this.draggableInit = true;
                     this.$avatarImage.draggable({
                         stop: function (event, ui) {
                             var top = $(this).offset().top;
                             var left = $(this).offset().left;
-                            localStorage.setItem('avatarX', top);
-                            localStorage.setItem('avatarY', left);
-                            //console.log(localStorage.getItem("avatarX"), localStorage.getItem("avatarY"));
+                            var parentTop = $('.bord').offset().top; //TODO replace .bord with existing object
+                            var parentLeft = $('.bord').offset().left; //TODO replace .bord with existing object
+                            localStorage.setItem('avatarX', left - parentLeft - 5);
+                            localStorage.setItem('avatarY', top - parentTop - 5);
                         }
                     });
                 }
 
             } else {
-
                 this.$avatarImage.draggable('disable');
             }
         }
