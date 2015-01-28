@@ -68,6 +68,8 @@ define([
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
+
+            this.elements.$search.focus();
         },
 
         /**
