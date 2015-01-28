@@ -13,7 +13,7 @@ define([], function defineBaseRules() {
 
     };
 
-    return BaseRules.extend({
+    return BaseRules.extend('BaseRules', {
 
         /**
          * Toggle fieldset

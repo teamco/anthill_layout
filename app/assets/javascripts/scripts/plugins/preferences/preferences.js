@@ -13,7 +13,7 @@ define(['jquery'], function defineBasePreferences($) {
 
     };
 
-    return BasePreferences.extend({
+    return BasePreferences.extend('BasePreferences', {
 
         /**
          * Toggle fieldset

@@ -13,7 +13,7 @@ define([], function defineWidgetSubscribe() {
 
     };
 
-    return WidgetSubscribe.extend({
+    return WidgetSubscribe.extend('WidgetSubscribe', {
 
         /**
          * On drag event simulate

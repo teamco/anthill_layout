@@ -76,7 +76,7 @@ define([
 
     };
 
-    Base.extend({
+    return Base.extend('Base', {
 
         /**
          * Get object type
@@ -326,6 +326,4 @@ define([
             return o;
         }
     });
-
-    return Base.extend('Base');
 });

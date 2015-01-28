@@ -25,7 +25,7 @@ define([
         return this.renderData();
     };
 
-    return GallerySearchElement.extend({
+    return GallerySearchElement.extend('GallerySearchElement', {
 
         /**
          * Render search
