@@ -345,9 +345,21 @@ define([
 
             /**
              * Get workspace
+             * @type {Workspace}
+             */
+            var ws = this.controller.getWorkspace();
+
+            /**
+             * Get workspace
              * @type {WorkspaceEventManager}
              */
-            var wsEventManager = this.controller.getWorkspace().eventmanager;
+            var wsEventManager = ws.eventmanager;
+
+            if (!wsEventManager) {
+
+                this.logger.warn('Workspace not initialized', ws);
+                return false;
+            }
 
             wsEventManager.subscribe({
                 event: {

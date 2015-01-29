@@ -649,9 +649,7 @@ define([
                 return false;
             }
 
-            /**
-             * Define capability
-             */
+            // Define capability
             var capabilities = scope[permission][mode];
 
             if (scope.controller.checkCondition({

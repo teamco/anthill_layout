@@ -99,7 +99,6 @@ requirejs.config({
         'modules/Interactions': {deps: ['extends/function']},
         'modules/Element': {deps: ['extends/function']}
     }
-
 });
 
 define([
@@ -114,10 +113,12 @@ define([
     'extends/json',
     'extends/event',
     'extends/string',
-    'extends/array',
-    'config/listeners',
-    'config/permission',
-    'config/anthill'
+    'extends/array'
 ], function loadConfig() {
 
+    require([
+        'config/listeners',
+        'config/permission',
+        'config/anthill'
+    ]);
 });

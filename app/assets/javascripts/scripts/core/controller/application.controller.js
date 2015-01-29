@@ -194,22 +194,6 @@ define(
                 },
 
                 /**
-                 * Create authoring panel
-                 * @member AppController
-                 */
-                createAuthorPanel: function createAuthorPanel() {
-                    this.logger.debug('Create authoring panel', arguments);
-                },
-
-                /**
-                 * Create tool panel
-                 * @member AppController
-                 */
-                createToolPanel: function createToolPanel() {
-                    this.logger.debug('Create tool panel', arguments);
-                },
-
-                /**
                  * Approve clear data
                  * @member AppController
                  */
