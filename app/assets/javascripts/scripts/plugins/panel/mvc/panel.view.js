@@ -26,7 +26,7 @@ define([
     var PanelView = function PanelView() {
     };
 
-    return PanelView.extend({
+    return PanelView.extend('PanelView', {
 
         /**
          * Render container

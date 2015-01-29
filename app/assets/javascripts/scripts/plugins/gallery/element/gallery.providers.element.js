@@ -28,7 +28,7 @@ define([
         );
     };
 
-    return GalleryProvidersElement.extend({
+    return GalleryProvidersElement.extend('GalleryProvidersElement', {
 
         /**
          * Prepare data for combo box
