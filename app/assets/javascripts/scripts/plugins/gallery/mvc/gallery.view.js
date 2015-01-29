@@ -68,7 +68,13 @@ define([
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
+        },
 
+        /**
+         * Set search on focus
+         * @member GalleryView
+         */
+        setOnFocus: function setOnFocus() {
             this.elements.$search.focus();
         },
 
@@ -158,6 +164,7 @@ define([
             );
 
             this.updateFooterContent();
+            this.setOnFocus();
         },
 
         /**
