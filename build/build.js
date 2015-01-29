@@ -1,6 +1,7 @@
 ({
 
     paths: {
+        
         // Define public application path
         'public': '../../public',
 
@@ -101,5 +102,4 @@
     optimizeCss: "standard",
     removeCombined: true,
     findNestedDependencies: true
-
 })
