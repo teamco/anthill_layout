@@ -56,9 +56,7 @@ define([
                 return false;
             }
 
-            this.header(Header, this.elements.$container).setText(
-                &#39;Page Widgets&#39;
-            );
+            this.renderHeader(Header, &#39;Page Widgets&#39;);
 
 <span id='PageDataView-property-S-pagedata'>            /**
 </span>             * Define PageData element
@@ -69,9 +67,7 @@ define([
                 $container: this.elements.$container.$
             });
 
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$pagedata.getFooter()
-            );
+            this.renderFooter(Footer, this.elements.$pagedata);
         },
 
 <span id='PageDataView-method-renderContent'>        /**
@@ -89,6 +85,8 @@ define([
             this.elements.items = {};
             this.elements.$pagedata.empty();
 
+            this.renderHeader(Header, &#39;Page Widgets&#39;);
+
             for (var index in data) {
 
                 if (data.hasOwnProperty(index)) {
@@ -101,7 +99,7 @@ define([
                         style: &#39;content&#39;,
                         id: [
                             data[index].model.getConfig(&#39;uuid&#39;),
-                            this.scope.constructor.name.toDash()
+                            this.scope.constructor.prototype.name.toDash()
                         ].join(&#39;-&#39;),
                         $container: this.elements.$pagedata.$,
                         data: data[index]
@@ -122,15 +120,14 @@ define([
                 this.elements.$container.$
             );
 
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$pagedata.getFooter()
-            );
+            this.renderFooter(Footer, this.elements.$pagedata);
         },
 
 <span id='PageDataView-method-showPreferences'>        /**
 </span>         * Show preferences
          * @member PageDataView
          * @param config
+         * @param {boolean} load
          */
         showPreferences: function showPreferences(config, load) {
 
@@ -145,27 +142,44 @@ define([
                 config.uuid
             );
 
+<span id='PageDataView-property-content'>            /**
+</span>             * Get content
+             * @type {WidgetContent}
+             */
+            var content = this.scope.activeContent;
+
+            if (!content) {
+                scope.logger.warn(&#39;Undefined content&#39;);
+                return false;
+            }
+
             if (load) {
 
 <span id='PageDataView-property-S-html'>                /**
 </span>                 * Define $html
                  * @type {BaseElement}
                  */
-                var $html = this.scope.activeContent.view.renderPreferences();
+                var $html = content.view.renderPreferences();
 
                 this.openPreferences({
                     config: config,
                     $html: $html.$,
                     style: [
-                        config.preferences.resource,
+                        config.preferences.resource.toClassName(),
                         &#39;widget-prefs preferences&#39;
                     ].join(&#39; &#39;),
                     title: &#39;Widget preferences&#39;,
                     buttons: {
+                        remove: {
+                            text: &#39;Remove&#39;,
+                            events: {
+                                click: &#39;removeWidget&#39;
+                            }
+                        },
                         rules: {
                             text: &#39;Rules&#39;,
                             events: {
-                                click: &#39;rules&#39; + this.scope.constructor.name
+                                click: &#39;rules&#39; + this.scope.constructor.prototype.name
                             }
                         },
                         reject: {

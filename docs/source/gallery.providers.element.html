@@ -45,16 +45,15 @@ define([
         );
     };
 
-    return GalleryProvidersElement.extend({
+    return GalleryProvidersElement.extend(&#39;GalleryProvidersElement&#39;, {
 
-<span id='GalleryProvidersElement-method-renderData'>        /**
-</span>         * Render data
+<span id='GalleryProvidersElement-method-sortComboBoxData'>        /**
+</span>         * Prepare data for combo box
          * @member GalleryProvidersElement
          * @param data
-         * @param currentProvider
-         * @returns {GalleryProvidersElement}
+         * @returns {*}
          */
-        renderData: function renderData(data, currentProvider) {
+        sortComboBoxData: function sortComboBoxData(data) {
 
             var combo = [];
 
@@ -70,9 +69,28 @@ define([
                 }
             }
 
+            return combo.sortByValue(&#39;value&#39;, &#39;string&#39;);
+        },
+
+<span id='GalleryProvidersElement-method-renderData'>        /**
+</span>         * Render data
+         * @member GalleryProvidersElement
+         * @param data
+         * @param currentProvider
+         * @returns {GalleryProvidersElement}
+         */
+        renderData: function renderData(data, currentProvider) {
+
+            if (!currentProvider) {
+                this.view.scope.logger.warn(
+                    &#39;Undefined current provider&#39;
+                );
+                return false;
+            }
+
             this.$.append(
                 this.renderCombobox(
-                    combo,
+                    this.sortComboBoxData(data),
                     currentProvider.name,
                     &#39;&#39;,
                     &#39;galleryProviders&#39;, {

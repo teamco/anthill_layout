@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 10/30/14.
+ */
+
+define([
+    &#39;jquery&#39;
+], function defineTextFieldRenderer($) {
+
+<span id='ValidationRenderer-method-constructor'><span id='ValidationRenderer'>    /**
+</span></span>     * Define ValidationRenderer
+     * @class ValidationRenderer
+     * @constructor
+     */
+    var ValidationRenderer = function ValidationRenderer() {
+
+    };
+
+    return ValidationRenderer.extend(&#39;ValidationRenderer&#39;, {
+
+<span id='ValidationRenderer-method-validateByMask'>        /**
+</span>         * Define validation
+         * @param $input
+         * @param opts
+         */
+        validateByMask: function validateByMask($input, opts) {
+
+<span id='ValidationRenderer-method-_checkMask'>            /**
+</span>             * Validate mask
+             * @param value
+             * @returns {opts.validate.mask|*|Array|{index: number, input: string}}
+             * @private
+             */
+            function _checkMask(value) {
+
+<span id='ValidationRenderer-property-mask'>                /**
+</span>                 * Get mask
+                 * @type {Array|RegExp}
+                 */
+                var mask = opts.validate.mask,
+                    i = 0, match = [];
+
+                if (typeof (mask) === &#39;undefined&#39;) return true;
+
+                if (Object.prototype.toString.call(mask) !== &#39;[object Array]&#39;) {
+                    mask = [mask];
+                }
+
+                for (i = 0; i &lt; mask.length; i++) {
+                    match.push(!!value.match(mask[i]))
+                }
+
+                return (new Function([
+                    &#39;return &#39;,
+                    match.join(&#39;||&#39;),
+                    &#39;;&#39;
+                ].join(&#39;&#39;)))();
+            }
+
+<span id='ValidationRenderer-method-_checkEmpty'>            /**
+</span>             * Validate empty
+             * @param value
+             * @returns {boolean}
+             * @private
+             */
+            function _checkEmpty(value) {
+                if (typeof(opts.validate.blank) === &#39;undefined&#39;) return true;
+                return $.trim(value.length) &gt; 0;
+            }
+
+            if (typeof(opts.validate) === &#39;object&#39;) {
+
+<span id='ValidationRenderer-property-S-span'>                /**
+</span>                 * Add message container
+                 * @type {*|jQuery}
+                 */
+                var $span = $(&#39;&lt;span class=&quot;validate&quot; /&gt;&#39;).
+                    text(&#39;The «&#39; + opts.text + &#39;» you entered is not valid&#39;);
+
+                $input.focusout(function focusOut() {
+
+<span id='ValidationRenderer-property-value'>                    /**
+</span>                     * Get value
+                     * @type {string}
+                     */
+                    var value = $input.val();
+
+                    $input.addClass(&#39;validate&#39;);
+                    $input.after($span);
+
+                    if (_checkMask(value) &amp;&amp; _checkEmpty(value)) {
+
+                        $input.removeClass(&#39;validate&#39;);
+                        $span.remove();
+                    }
+                });
+            }
+        }
+    });
+});
+</pre>
+</body>
+</html>

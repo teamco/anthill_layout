@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 11/4/14.
+ */
+
+define(function defineSiteConfigActivate() {
+
+<span id='SiteConfigActivate-method-constructor'><span id='SiteConfigActivate'>    /**
+</span></span>     * Define SiteConfig Activate
+     * @class SiteConfigActivate
+     * @constructor
+     */
+    var SiteConfigActivate = function SiteConfigActivate() {
+
+    };
+
+    return SiteConfigActivate.extend(&#39;SiteConfigActivate&#39;, {
+
+<span id='SiteConfigActivate-method-activateStorage'>        /**
+</span>         * Define activate storage
+         * @member SiteConfigActivate
+         */
+        activateStorage: function activateStorage() {
+            this.view.activateConfirmation();
+        },
+
+<span id='SiteConfigActivate-method-approveActivate'>        /**
+</span>         * Define approve activate storage
+         * @member SiteConfigActivate
+         */
+        approveActivate: function approveActivate() {
+
+<span id='SiteConfigActivate-property-scope'>            /**
+</span>             * Get scope
+             * @type {SiteConfig}
+             */
+            var scope = this.scope;
+
+<span id='SiteConfigActivate-property-config'>            /**
+</span>             * Get root
+             * @type {{activate: boolean, mode: string}}
+             */
+            var config = this.root().model.getConfig();
+
+<span id='SiteConfigActivate-property-S-modal'>            /**
+</span>             * Define $modal
+             * @type {ModalElement}
+             */
+            var $modal = scope.view.elements.$modal;
+
+            if (!scope.base.isDefined($modal)) {
+                scope.logger.warn(&#39;Undefined $modal&#39;);
+                return false;
+            }
+
+<span id='SiteConfigActivate-property-inputs'>            /**
+</span>             * Get modal inputs
+             * @type {string|*}
+             */
+            var inputs = $modal.collectInputFields(),
+                data = this.prepareXhrData({
+                    author_site_version: {
+                        version: config.version
+                    }
+                });
+
+            for (var i = 0, l = inputs.length; i &lt; l; i++) {
+
+                var input = inputs[i],
+                    name = input.name,
+                    value = input.value;
+
+                var regex = name.match(/(\w+)\[(\w+)]/);
+
+                if (regex[1] &amp;&amp; regex[2]) {
+                    data[regex[1]] = data[regex[1]] || {};
+                    data[regex[1]][regex[2]] = value;
+                }
+            }
+
+<span id='SiteConfigActivate-property-route'>            /**
+</span>             * Get create update site route
+             * @type {{string[]}}
+             */
+            var route = scope.config.routes.activateSiteStorage,
+                key = config.appName,
+                opts = {
+                    dataType: &#39;json&#39;,
+                    url: route[0] + key,
+                    method: route[1],
+                    data: data
+                };
+
+            $.ajax(opts).done(function (data, type, xhr) {
+
+                scope.logger.debug(data.notice, arguments);
+                $modal.selfDestroy();
+
+            }.bind(this));
+        }
+    });
+});</pre>
+</body>
+</html>

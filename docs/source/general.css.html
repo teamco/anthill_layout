@@ -48,6 +48,18 @@ html, body, .app,
     user-select: none;
 }
 
+body.loading .fetcher:after {
+    content: &quot; &quot;;
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.5) url(&quot;../../../ajax-loader2.gif&quot;) center no-repeat;
+}
+
 .workspaces, .pages, .widgets {
     list-style: none;
 }
@@ -80,6 +92,10 @@ html, body, .app,
 
 .mr10 {
     margin-right: 10px;
+}
+
+#export-url {
+    display: none;
 }</pre>
 </body>
 </html>

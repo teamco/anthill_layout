@@ -28,9 +28,9 @@ define([
     &#39;element/application/application.element&#39;,
     &#39;element/header.element&#39;,
     &#39;element/footer.element&#39;,
-    &#39;element/application/application.element.content&#39;,
-    &#39;element/application/application.element.debug&#39;
-], function defineApplicationView(BaseView, AppHTML, Header, Footer, AppContent, DebuggerElement) {
+    &#39;element/application/application.content.element&#39;,
+    &#39;element/export.element&#39;
+], function defineApplicationView(BaseView, AppElement, Header, Footer, AppContentElement, ExportElement) {
 
 <span id='AppView-method-AppView'><span id='AppView'>    /**
 </span></span>     * View
@@ -53,7 +53,7 @@ define([
 </span>             * Define $application
              * @type {AppElement}
              */
-            this.elements.$app = new AppHTML(this, {
+            this.elements.$app = new AppElement(this, {
                 $container: this.getConfigHTML().container,
                 id: this.createUUID(),
                 mode: this.controller.getMode()
@@ -74,31 +74,66 @@ define([
 
 <span id='AppView-property-S-workspaces'>            /**
 </span>             * Define $workspaces
-             * @type {AppContent}
+             * @type {AppContentElement}
              */
-            this.elements.$workspaces = new AppContent(this, {
+            this.elements.$workspaces = new AppContentElement(this, {
                 $container: this.elements.$app.$,
                 style: &#39;workspaces&#39;
             });
         },
 
-<span id='AppView-method-debug'>        /**
-</span>         * Render Debugger window
+<span id='AppView-method-renderExportLink'>        /**
+</span>         * Render export link
          * @member AppView
          */
-        debug: function debug() {
+        renderExportLink: function renderExportLink(data) {
 
-<span id='AppView-property-S-debugger'>            /**
-</span>             * Define $debugger
-             * @type {DebuggerElement}
+<span id='AppView-property-S-export'>            /**
+</span>             * Define export element
+             * @type {ExportElement}
              */
-            this.elements.$debugger = new DebuggerElement(this, {
+            this.elements.$export = new ExportElement(this, {
                 $container: this.elements.$app.$,
-                style: &#39;debugger&#39;,
-                opacity: 0.6,
-                events: {
-                    click: &#39;activateDebugger&#39;
+                id: &#39;export-url&#39;,
+                data: data
+            });
+        },
+
+<span id='AppView-method-handleNotificationsRenderer'>        /**
+</span>         * Handle notification renderer
+         * @member AppView
+         * @param xhr
+         * @param {string} status
+         */
+        handleNotificationsRenderer: function handleNotificationsRenderer(xhr, status) {
+
+<span id='AppView-property-buttons'>            /**
+</span>             * Define buttons
+             * @type {*}
+             */
+            var buttons = {
+                reject: {
+                    text: this.i18n.t(&#39;cancel&#39;),
+                    events: {
+                        click: &#39;rejectModalEvent&#39;
+                    }
                 }
+            };
+
+<span id='AppView-property-responseJSON'>            /**
+</span>             * Define responseJSON
+             * @type {Ajax.Response.responseJSON|*}
+             */
+            var responseJSON = xhr.responseJSON;
+
+            this.modalDialog({
+                style: &#39;handle-&#39; + status,
+                type: status,
+                title: [xhr.status, xhr.statusText, status].join(&#39; &#39;),
+                text: responseJSON ? responseJSON.error : xhr.statusText,
+                html: &#39;&#39;,
+                cover: true,
+                buttons: buttons
             });
         },
 

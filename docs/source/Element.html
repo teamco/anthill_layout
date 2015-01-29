@@ -24,9 +24,10 @@
  */
 
 define([
+    &#39;jquery&#39;,
     &#39;config/anthill&#39;,
     &#39;modules/Renderer&#39;
-], function defineBaseElement(AntHill, Renderer) {
+], function defineBaseElement($, AntHill, Renderer) {
 
 <span id='BaseElement-method-constructor'><span id='BaseElement'>    /**
 </span></span>     * Define Base element
@@ -48,18 +49,20 @@ define([
 <span id='BaseElement-method-_config'>        /**
 </span>         * Element config before build
          * @member BaseElement
-         * @param {{createStyle: Function, renderUUID: Function}} view
-         * @param {{style: String, id: String, [css], [events], [opacity]}} opts
+         * @param {BaseView} view
+         * @param {{[style]: string, [id]: string, [css], [events], [opacity]}} opts
          * @param $html
          * @returns {*}
-         * @private
+         * @protected
          */
         _config: function _config(view, opts, $html) {
 
+            opts = opts || {};
+
 <span id='BaseElement-property-view'>            /**
 </span>             * Define view
-             * @memberOf BaseElement
-             * @type {{createStyle: Function, renderUUID: Function}}
+             * @member BaseElement
+             * @type {BaseView}
              */
             this.view = view;
 
@@ -76,6 +79,15 @@ define([
              * @type {String}
              */
             this.id = view.renderUUID(opts.id);
+
+<span id='BaseElement-property-disabled'>            /**
+</span>             * Define disabled
+             * @member BaseElement
+             * @type {boolean}
+             */
+            this.disabled = this.base.defineBoolean(
+                opts.disabled, false, true
+            );
 
 <span id='BaseElement-property-events'>            /**
 </span>             * Define events
@@ -127,6 +139,57 @@ define([
                     })(event, index);
                 }
             );
+        },
+
+<span id='BaseElement-method-textMetrics'>        /**
+</span>         * Get text metrics
+         * @member BaseElement
+         * @param $element
+         * @return {Object}
+         */
+        textMetrics: function textMetrics($element) {
+
+            // Define new div
+            var $div = $(&#39;&lt;div /&gt;&#39;).appendTo(&#39;body&#39;);
+
+            $div.css({
+                position: &#39;absolute&#39;,
+                left: -1000,
+                top: -1000,
+                display: &#39;none&#39;
+            });
+
+            $div.html($element.html());
+
+            var styles = [
+                &#39;font-size&#39;,
+                &#39;font-style&#39;,
+                &#39;font-weight&#39;,
+                &#39;font-family&#39;,
+                &#39;line-height&#39;,
+                &#39;text-transform&#39;,
+                &#39;letter-spacing&#39;
+            ];
+
+            $(styles).each(function textMetricsLoop() {
+                var s = this.toString();
+                $div.css({
+                    s: $element.css(s)
+                });
+            });
+
+<span id='BaseElement-property-metrics'>            /**
+</span>             * Set metrics
+             * @type {{height: (*|jQuery), width: (*|jQuery)}}
+             */
+            var metrics = {
+                height: $div.outerHeight(true),
+                width: $div.outerWidth(true)
+            };
+
+            $div.remove();
+
+            return metrics;
         },
 
 <span id='BaseElement-method-setPosition'>        /**
@@ -220,7 +283,7 @@ define([
                 if ($element.length &gt; 0) {
                     this.view.scope.logger.debug(
                         this.i18n.t(&#39;element.overwritten&#39;).
-                            replace(/\{0\}/, this.constructor.name)
+                            replace(/\{0\}/, this.constructor.prototype.name)
                     );
                     $element.remove();
                 }
@@ -246,27 +309,27 @@ define([
          */
         build: function build(opts) {
 
-<span id='BaseElement-property-base'>            /**
-</span>             * Define base instance
-             * @type {Base}
-             */
-            var base = this.base;
-
-            opts = base.define(opts, {}, true);
+            opts = this.base.define(opts, {}, true);
 
 <span id='BaseElement-property-append'>            /**
 </span>             * Define append/prepend
              */
-            var append = base.defineBoolean(opts.append, true, true);
+            var append = this.base.defineBoolean(opts.append, true, true);
 
             if (this.$) {
 
+<span id='BaseElement-property-S-container'>                /**
+</span>                 * Define $container
+                 * @member BaseElement
+                 * @type {*|jQuery|HTMLElement}
+                 */
                 this.$container = $(opts.$container);
+
                 this.destroyB4Create(opts.destroy);
 
                 this.$[append ? &#39;appendTo&#39; : &#39;prependTo&#39;](opts.$container);
 
-                if (base.isFunction(opts.callback)) {
+                if (this.base.isFunction(opts.callback)) {
                     opts.callback();
                 }
             }
@@ -289,6 +352,9 @@ define([
          */
         addCSS: function addCSS(type, opts) {
 
+            opts = this.base.define(opts, {}, true);
+            opts.resource = this.base.define(opts.resource, &#39;&#39;, true);
+
 <span id='BaseElement-property-url'>            /**
 </span>             * Create url
              * @type {string}
@@ -299,12 +365,13 @@ define([
 </span>             * Generate uuid
              * @type {string}
              */
-            var uuid = this.$.attr(&#39;id&#39;) + &#39;-css&#39;;
+            var uuid = this.$.attr(&#39;id&#39;) + url.replace(/\//g, &#39;.&#39;);
 
-            opts = this.base.define(opts, {}, true);
+            // Prevent duplicates
+            $(&#39;#&#39; + uuid).remove();
 
             this.createLinkCss({
-                href: this.pluginPath + (opts.resource || &#39;&#39;) + url,
+                href: this.pluginPath + opts.resource + url,
                 type: opts.type,
                 rel: opts.rel,
                 media: opts.media,
@@ -460,7 +527,7 @@ define([
                     $item = item.view.get$item();
 
                     stretch = containment &amp;&amp;
-                        item.model.getConfig(&#39;html/stretch&#39;);
+                    item.model.getConfig(&#39;html/stretch&#39;);
 
                     if (stretch) {
                         $item.$.css({
@@ -702,7 +769,7 @@ define([
 </span>             * Get item constructor name
              * @type {string}
              */
-            var cname = item.constructor.name.toLowerCase();
+            var cname = item.constructor.prototype.name.toLowerCase();
 
             return $(&#39;.&#39; + cname, this.$);
         },
@@ -813,6 +880,69 @@ define([
                     position: $modal.position
                 });
             }
+        },
+
+<span id='BaseElement-method-hideLoader'>        /**
+</span>         * Remove loading class after loading items
+         * @member BaseElement
+         */
+        hideLoader: function hideLoader() {
+            this.$container.removeClass(&#39;loading&#39;);
+        },
+
+<span id='BaseElement-method-getItemTitle'>        /**
+</span>         * Get item title
+         * @member BaseElement
+         * @return {string|boolean}
+         */
+        getItemTitle: function getItemTitle() {
+
+<span id='BaseElement-property-item'>            /**
+</span>             * Get item
+             * @type {App|Workspace|Page|Widget}
+             */
+            var item = this.view.scope;
+
+            if (typeof (item) === &#39;undefined&#39;) {
+                item.logger.warn(&#39;Undefined item&#39;);
+                return false;
+            }
+
+            if (typeof (item.model) === &#39;undefined&#39;) {
+                item.logger.warn(&#39;Undefined item\&#39;s model&#39;, item);
+                return false;
+            }
+
+<span id='BaseElement-property-preferences'>            /**
+</span>             * Get prefs
+             * @type {*}
+             */
+            var preferences = item.model.getConfig(&#39;preferences&#39;) || {},
+                title = preferences.title + &#39;&#39;;
+
+            return preferences.title &amp;&amp; title.length &gt; 0 ?
+                title : item.model.getUUID();
+        },
+
+<span id='BaseElement-method-getItemsList'>        /**
+</span>         * Render items list
+         * @member BaseElement
+         * @param {Array} items
+         * @returns {string}
+         */
+        getItemsList: function getItemsList(items) {
+
+            return [
+                &#39;&lt;ul class=&quot;remove&quot;&gt;&#39;,
+                $.map(items, function map(item, i) {
+                    return [
+                        &#39;&lt;li rel=&quot;&#39;, item.model.getUUID(), &#39;&quot;&gt;&#39;,
+                        item.view.elements.$widget.getItemTitle(),
+                        &#39;&lt;/li&gt;&#39;
+                    ].join(&#39;&#39;);
+                }).join(&#39;&#39;),
+                &#39;&lt;/ul&gt;&#39;
+            ].join(&#39;&#39;);
         }
 
     }, AntHill.prototype, Renderer.prototype);

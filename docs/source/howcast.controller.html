@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define([
+    &#39;plugins/plugin&#39;,
+    &#39;plugins/widgets/widget.content.controller&#39;
+], function defineHowcastController(PluginBase, WidgetContentController) {
+
+<span id='HowcastController-method-constructor'><span id='HowcastController'>    /**
+</span></span>     * Define howcast controller
+     * @class HowcastController
+     * @extends PluginController
+     * @extends WidgetContentController
+     * @constructor
+     */
+    var HowcastController = function HowcastController() {
+    };
+
+    return HowcastController.extend(&#39;HowcastController&#39;, {
+
+<span id='HowcastController-method-setEmbeddedContent'>        /**
+</span>         * Set embedded content
+         * @member HowcastController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
+
+<span id='HowcastController-property-url'>            /**
+</span>             * Get url
+             * @type {string|*}
+             */
+            var url = this.model.getPrefs(&#39;howcastEmbedCode&#39;),
+                embed = this.controller.getEmbedCode(url);
+
+            if (embed) {
+                this.view.elements.$howcast.renderEmbeddedContent(embed);
+            }
+        },
+
+<span id='HowcastController-method-getEmbedCode'>        /**
+</span>         * Validate howcast
+         * @member HowcastController
+         * @param {string} embed
+         * @return {string|boolean}
+         */
+        getEmbedCode: function getEmbedCode(embed) {
+
+            if (!embed) {
+                this.scope.logger.debug(&#39;Initial state&#39;);
+                return false;
+            }
+
+            // Convert to string
+            embed += &#39;&#39;;
+
+            if (embed.match(/&lt;object/)) {
+
+                return $(embed).find(&#39;object&#39;);
+
+            } else {
+
+                this.scope.logger.warn(&#39;Invalid Howcast embed code&#39;);
+                return false;
+            }
+        },
+
+<span id='HowcastController-method-addHowcastRule'>        /**
+</span>         * Add Howcast rule
+         * @member HowcastController
+         * @param e
+         */
+        addHowcastRule: function addHowcastRule(e) {
+
+<span id='HowcastController-property-S-button'>            /**
+</span>             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target),
+                scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.publishRule,
+                [$button.attr(&#39;value&#39;), scope.constructor.prototype.name]
+            );
+        }
+
+    }, PluginBase.prototype, WidgetContentController.prototype);
+});
+</pre>
+</body>
+</html>

@@ -124,8 +124,8 @@ define([
         loadRules: function loadRules() {
 
 <span id='WidgetContentControllerRules-property-widget'>            /**
-</span>             * Load prefs
-             * @type {*}
+</span>             * Load rules
+             * @type {Widget}
              */
             var widget = this.controller.getContainment(),
                 rules = widget.model.getConfig(&#39;rules&#39;);
@@ -178,7 +178,7 @@ define([
                     this.scope.model.getUUID() !== uuid) {
                     published[uuid] = {
                         rules: rules.publish,
-                        type: item.controller.getContent().constructor.name
+                        type: item.controller.getContent().constructor.prototype.name
                     };
                 }
             }
@@ -303,10 +303,16 @@ define([
             );
 
 <span id='WidgetContentControllerRules-property-subscribeEM'>            /**
-</span>             * Simplify instance name
+</span>             * Copy subscribers
              * @type {*}
              */
-            var subscribeEM = this.eventmanager.subscribers;
+            var subscribeEM = {};
+
+            $.extend(
+                true,
+                subscribeEM,
+                this.eventmanager.subscribers
+            );
 
             if (!this.controller.unregisterRules()) {
                 return false;
@@ -367,12 +373,12 @@ define([
 <span id='WidgetContentControllerRules-property-opts'>                        /**
 </span>                         * Define opts
                          * @type {{
-                                 *      widgetPublisher: Widget,
-                                 *      type: string,
-                                 *      event: *,
-                                 *      subscribeEM: *,
-                                 *      subscribersCounter: Number
-                                 * }}
+                         *      widgetPublisher: Widget,
+                         *      type: string,
+                         *      event: *,
+                         *      subscribeEM: *,
+                         *      subscribersCounter: Number
+                         * }}
                          */
                         var opts = {
                             widgetPublisher: widgetPublisher,
@@ -384,13 +390,7 @@ define([
 
                         if (type === &#39;widget&#39;) {
 
-<span id='WidgetContentControllerRules-property-scope'>                            /**
-</span>                             * Define widget scope
-                             * @type {Widget}
-                             */
-                            scope = widgetPublisher;
-
-                            this.controller._registerScopeRule(scope, opts);
+                            this.controller._registerScopeRule(widgetPublisher, opts);
 
                         } else {
 

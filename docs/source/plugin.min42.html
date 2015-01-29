@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">tinymce.PluginManager.add(&quot;wordcount&quot;,function(a){function b(){a.theme.panel.find(&quot;#wordcount&quot;).text([&quot;Words: {0}&quot;,e.getCount()])}var c,d,e=this;c=a.getParam(&quot;wordcount_countregex&quot;,/[\w\u2019\x27\-\u00C0-\u1FFF]+/g),d=a.getParam(&quot;wordcount_cleanregex&quot;,/[0-9.(),;:!?%#$?\x27\x22_+=\\\/\-]*/g),a.on(&quot;init&quot;,function(){var c=a.theme.panel&amp;&amp;a.theme.panel.find(&quot;#statusbar&quot;)[0];c&amp;&amp;window.setTimeout(function(){c.insert({type:&quot;label&quot;,name:&quot;wordcount&quot;,text:[&quot;Words: {0}&quot;,e.getCount()],classes:&quot;wordcount&quot;,disabled:a.settings.readonly},0),a.on(&quot;setcontent beforeaddundo&quot;,b),a.on(&quot;keyup&quot;,function(a){32==a.keyCode&amp;&amp;b()})},0)}),e.getCount=function(){var b=a.getContent({format:&quot;raw&quot;}),e=0;if(b){b=b.replace(/\.\.\./g,&quot; &quot;),b=b.replace(/&lt;.[^&lt;&gt;]*?&gt;/g,&quot; &quot;).replace(/&amp;nbsp;|&amp;#160;/gi,&quot; &quot;),b=b.replace(/(\w+)(&amp;#?[a-z0-9]+;)+(\w+)/i,&quot;$1$3&quot;).replace(/&amp;.+?;/g,&quot; &quot;),b=b.replace(d,&quot;&quot;);var f=b.match(c);f&amp;&amp;(e=f.length)}return e}});</pre>
+</body>
+</html>

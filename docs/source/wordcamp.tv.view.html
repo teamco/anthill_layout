@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/wordcamp.tv/element/wordcamp.tv.element&#39;,
+    &#39;plugins/widgets/wordcamp.tv/element/wordcamp.tv.preferences.element&#39;,
+    &#39;plugins/widgets/wordcamp.tv/element/wordcamp.tv.rules.element&#39;
+], function defineWordcampTvView(BaseView, Header, Footer, WordcampTvElement, WordcampTvPreferencesElement, WordcampTvRulesElement) {
+
+<span id='WordcampTvView-method-constructor'><span id='WordcampTvView'>    /**
+</span></span>     * Define view
+     * @class WordcampTvView
+     * @extends BaseView
+     * @constructor
+     */
+    var WordcampTvView = function WordcampTvView() {
+    };
+
+    return WordcampTvView.extend(&#39;WordcampTvView&#39;, {
+
+<span id='WordcampTvView-method-renderWordcampTv'>        /**
+</span>         * Render wordcamptv element
+         * @member WordcampTvView
+         */
+        renderWordcampTv: function renderWordcampTv() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='WordcampTvView-property-S-wordcamptv'>            /**
+</span>             * Define $wordcamptv
+             * @type {WordcampTvElement}
+             */
+            this.elements.$wordcamptv = new WordcampTvElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='WordcampTvView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member WordcampTvView
+         * @returns {WordcampTvPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='WordcampTvView-property-S-preferences'>            /**
+</span>             * Define WordcampTv Preferences Element
+             * @type {WordcampTvPreferencesElement}
+             */
+            this.elements.$preferences = new WordcampTvPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='WordcampTvView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member WordcampTvView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {WordcampTvRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='WordcampTvView-property-data'>            /**
+</span>             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+<span id='WordcampTvView-property-S-rules'>            /**
+</span>             * Define WordcampTv Rules Element
+             * @type {WordcampTvRulesElement}
+             */
+            this.elements.$rules = new WordcampTvRulesElement(this, {
+                data: data,
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='WordcampTvView-method-render'>        /**
+</span>         * Render wordcamptv
+         * @member WordcampTvView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderWordcampTv.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});
+</pre>
+</body>
+</html>

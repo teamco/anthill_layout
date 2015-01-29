@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 10/1/14.
+ */
+
+define(function defineGalleryWidgets() {
+
+<span id='GalleryWidgets-method-constructor'><span id='GalleryWidgets'>    /**
+</span></span>     * Define gallery widgets
+     * @class GalleryWidgets
+     * @constructor
+     * @param {GalleryModel} galleryModel
+     */
+    var GalleryWidgets = function GalleryWidgets(galleryModel) {
+
+<span id='GalleryWidgets-property-defaultData'>        /**
+</span>         * Define static gallery content
+         * @member GalleryWidgets
+         * @type {{
+         *      name: string,
+         *      description: string,
+         *      thumbnail: string,
+         *      dimensions: {width: number, height: number},
+         *      type: string,
+         *      resource: string
+         * }[]}
+         */
+        this.defaultData = [];
+
+<span id='GalleryWidgets-property-galleryModel'>        /**
+</span>         * Define gallery model
+         * @member GalleryWidgets
+         * @type {GalleryModel}
+         */
+        this.galleryModel = galleryModel;
+    };
+
+    return GalleryWidgets.extend(&#39;GalleryWidgets&#39;, {
+
+<span id='GalleryWidgets-method-loadDefaultData'>        /**
+</span>         * Load Default Data
+         * @member GalleryWidgets
+         * @param {string} [key]
+         * @param {string} [type]
+         * @param {boolean} [reverse]
+         * @returns {{name: string, description: string, thumbnail: string, dimensions: {width: number, height: number}, type: string, resource: string}[]}
+         */
+        loadDefaultData: function loadDefaultData(key, type, reverse) {
+
+<span id='GalleryWidgets-property-galleryWidgets'>            /**
+</span>             * Define local
+             * @type {GalleryWidgets}
+             */
+            var galleryWidgets = this;
+
+<span id='GalleryWidgets-property-scope'>            /**
+</span>             * Define scope
+             * @type {Gallery}
+             */
+            var scope = galleryWidgets.galleryModel.scope;
+
+<span id='GalleryWidgets-method-_sortData'>            /**
+</span>             * Define sort
+             * @private
+             */
+            function _sortData() {
+
+                // Store ordered data
+                var data = typeof(key) === &#39;string&#39; &amp;&amp; typeof(type) === &#39;string&#39; ?
+                    galleryWidgets.defaultData.sortByValue(key, type, reverse) :
+                    galleryWidgets.defaultData;
+
+                galleryWidgets.setDefaultData({
+                    widgets: data
+                });
+
+                galleryWidgets.galleryModel.init();
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.setProviders
+                );
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.setCurrentProvider,
+                    scope.model.currentProvider.key
+                );
+            }
+
+            if (galleryWidgets.defaultData.length === 0) {
+
+<span id='GalleryWidgets-property-route'>                /**
+</span>                 * Get show widgets list route
+                 * @type {Routes.resources.showWidgetsList}
+                 */
+                var route = scope.controller.resources.showWidgetsList;
+
+                $.ajax({
+
+                    url: route[0],
+                    method: route[1],
+                    dataType: &#39;json&#39;
+
+                }).done(
+<span id='GalleryWidgets-method-_done'>                    /**
+</span>                     * Define done
+                     * @private
+                     * @param {Array} json
+                     * @return {Array}
+                     */
+                    function _done(json) {
+
+                        galleryWidgets.setDefaultData(json);
+                        _sortData();
+                    }
+                );
+
+            } else {
+
+                _sortData();
+            }
+        },
+
+<span id='GalleryWidgets-method-setDefaultData'>        /**
+</span>         * Define default data setter
+         * @member GalleryWidgets
+         * @param {{categories: Array, widgets: Array}} json
+         */
+        setDefaultData: function setDefaultData(json) {
+
+            if (typeof(this.galleryModel.dataTypes) === &#39;undefined&#39;) {
+
+<span id='GalleryModel-property-dataTypes'>                /**
+</span>                 * Define provider types
+                 * @member GalleryModel
+                 * @type {object}
+                 */
+                this.galleryModel.dataTypes = {};
+
+                var category,
+                    i = 0, l = json.categories.length;
+
+                for (; i &lt; l; i++) {
+
+<span id='GalleryWidgets-property-category'>                    /**
+</span>                     * Define category instance
+                     * @type {{name_index, name_value}}
+                     */
+                    category = json.categories[i];
+                    this.galleryModel.dataTypes[category.name_index] = category.name_value;
+                }
+            }
+
+<span id='GalleryWidgets-property-defaultData'>            /**
+</span>             * Set default data
+             * @member GalleryWidgets
+             */
+            this.defaultData = json.widgets;
+        },
+
+<span id='GalleryWidgets-method-getDefaultData'>        /**
+</span>         * Define default data getter
+         * @member GalleryWidgets
+         * @returns {{
+         *      name: string,
+         *      description: string,
+         *      thumbnail: string,
+         *      dimensions: {width: number, height: number},
+         *      type: string,
+         *      resource: string
+         * }[]}
+         */
+        getDefaultData: function getDefaultData() {
+            return this.defaultData;
+        },
+
+<span id='GalleryWidgets-method-updateDefaultData'>        /**
+</span>         * Update widget&#39;s data
+         * @member GalleryWidgets
+         * @param {{widget, category}} json
+         */
+        updateDefaultData: function updateDefaultData(json) {
+
+<span id='GalleryWidgets-property-data'>            /**
+</span>             * Get default data
+             * @type {{
+             *      name: string,
+             *      description: string,
+             *      thumbnail: string,
+             *      dimensions: {width: number, height: number},
+             *      type: string,
+             *      resource: string
+             * }[]}
+             */
+            var data = this.getDefaultData(),
+                i = 0, l = data.length;
+
+            for (; i &lt; l; i++) {
+
+                if (data[i].id === json.widget.id) {
+
+<span id='GalleryWidgets-property-widget'>                    /**
+</span>                     * Define widget instance
+                     * @type {{
+                     *      name: string,
+                     *      description: string,
+                     *      thumbnail: string,
+                     *      dimensions: {width: number, height: number},
+                     *      type: string,
+                     *      resource: string
+                     * }}
+                     */
+                    var widget = {
+                        id: data[i].id,
+                        uuid: data[i].uuid,
+                        url: data[i].url,
+                        name: json.widget.name,
+                        description: json.widget.description,
+                        thumbnail: json.widget.thumbnail,
+                        dimensions: {
+                            width: json.widget.width,
+                            height: json.widget.height
+                        },
+                        type: json.category.name_index,
+                        resource: json.widget.resource
+                    };
+
+                    // Update data
+                    data[i] = widget;
+
+                    this.galleryModel.scope.logger.debug(&#39;Update gallery model&#39;, widget);
+
+                    break;
+                }
+            }
+        },
+
+<span id='GalleryWidgets-method-addDefaultData'>        /**
+</span>         * Define add default data
+         * @member GalleryWidgets
+         * @param data
+         */
+        addDefaultData: function addDefaultData(data) {
+
+<span id='GalleryWidgets-property-widget'>            /**
+</span>             * Define widget instance
+             * @type {{
+             *      name: string,
+             *      description: string,
+             *      thumbnail: string,
+             *      dimensions: {width: number, height: number},
+             *      type: string,
+             *      resource: string
+             * }}
+             */
+            var widget = {
+                id: data.widget.id,
+                uuid: data.widget.uuid,
+                url: data.widget.url,
+                name: data.widget.name,
+                description: data.widget.description,
+                thumbnail: data.widget.thumbnail,
+                dimensions: {
+                    width: data.widget.width,
+                    height: data.widget.height
+                },
+                type: data.category.name_index,
+                resource: data.widget.resource
+            };
+
+            // Update data
+            this.defaultData.push(widget);
+
+            this.galleryModel.scope.logger.debug(&#39;Update gallery model&#39;, widget);
+        },
+
+<span id='GalleryWidgets-method-isExistResource'>        /**
+</span>         * Check if resource already exist
+         * @member GalleryWidgets
+         * @param {string} resource
+         * @returns {boolean}
+         */
+        isExistResource: function isExistResource(resource) {
+
+            if (!resource) {
+                return false;
+            }
+
+<span id='GalleryWidgets-property-widgets'>            /**
+</span>             * Get gallery widgets
+             * @type {{
+                 *      name: string,
+                 *      description: string,
+                 *      thumbnail: string,
+                 *      dimensions: {width: number, height: number},
+                 *      type: string,
+                 *      resource: string
+                 * }[]}
+             */
+            var widgets = this.getDefaultData(),
+                i = 0, l = widgets.length;
+
+            for (; i &lt; l; i++) {
+                if (widgets[i].resource === resource) {
+                    return true;
+                }
+            }
+        },
+
+<span id='GalleryWidgets-method-getWidgetData'>        /**
+</span>         * Define widget data getter
+         * @member GalleryWidgets
+         * @param {string} type
+         * @param {string} source
+         * @returns {{
+         *      name: string,
+         *      description: string,
+         *      thumbnail: string,
+         *      dimensions: {width: number, height: number},
+         *      type: string,
+         *      resource: string
+         * }}
+         */
+        getWidgetData: function getWidgetData(type, source) {
+
+<span id='GalleryWidgets-property-data'>            /**
+</span>             * Get default data
+             * @type {{
+             *      name: string,
+             *      description: string,
+             *      thumbnail: string,
+             *      dimensions: {width: number, height: number},
+             *      type: string,
+             *      resource: string
+             * }[]}
+             */
+            var data = this.defaultData,
+                i = 0,
+                l = data.length;
+
+<span id='GalleryWidgets-property-scope'>            /**
+</span>             * Get scope
+             * @type {Gallery}
+             */
+            var scope = this.galleryModel.scope;
+
+            for (; i &lt; l; i++) {
+
+                if (data[i][type] === source) {
+
+                    scope.logger.debug(&#39;Get widget data&#39;, data[i]);
+                    return data[i];
+                }
+            }
+
+            scope.logger.warn(&#39;Undefined widget data&#39;, source);
+        }
+    });
+});</pre>
+</body>
+</html>

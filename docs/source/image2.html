@@ -15,110 +15,59 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js"><span id='global-property-'>/**
-</span> * Created with RubyMine.
- * User: i061485
- * Date: 2/23/14
- * Time: 11:02 AM
+  <pre class="prettyprint lang-js"><span id='global-property-'>/** @license
+</span> * RequireJS Image Plugin
+ * Author: Miller Medeiros
+ * Version: 0.2.2 (2013/02/08)
+ * Released under the MIT license
  */
+define(function(){
 
-define([
-    &#39;config/anthill&#39;,
-    &#39;modules/MVC&#39;,
-    &#39;plugins/widgets/image/mvc/image.controller&#39;,
-    &#39;plugins/widgets/image/mvc/image.model&#39;,
-    &#39;plugins/widgets/image/mvc/image.view&#39;,
-    &#39;plugins/widgets/image/mvc/image.event.manager&#39;,
-    &#39;plugins/widgets/image/mvc/image.permission&#39;
-], function defineImage(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    var CACHE_BUST_QUERY_PARAM = &#39;bust&#39;,
+        CACHE_BUST_FLAG = &#39;!bust&#39;,
+        RELATIVE_FLAG = &#39;!rel&#39;;
 
-<span id='Image-method-Image'><span id='Image'>    /**
-</span></span>     * Define Image
-     * @param {Widget} containment
-     * @param [opts]
-     * @constructor
-     * @class Image
-     * @extends AntHill
-     */
-    var Image = function Image(containment, opts) {
+    function noop(){}
 
-<span id='Image-property-containment'>        /**
-</span>         * Define containment
-         * @member Image
-         * @type {Widget}
-         */
-        this.containment = containment;
+    function cacheBust(url){
+        url = url.replace(CACHE_BUST_FLAG, &#39;&#39;);
+        url += (url.indexOf(&#39;?&#39;) &lt; 0)? &#39;?&#39; : &#39;&amp;&#39;;
+        return url + CACHE_BUST_QUERY_PARAM +&#39;=&#39;+ Math.round(2147483647 * Math.random());
+    }
 
-<span id='Image-property-referrer'>        /**
-</span>         * Define referrer
-         * @member Image
-         * @type {*}
-         */
-        this.referrer = undefined;
-
-<span id='Image-property-DEFAULTS'>        /**
-</span>         * Define defaults
-         * @type {{
-         *      plugin: boolean,
-         *      html: {
-         *          style: string,
-         *          header: boolean,
-         *          footer: boolean,
-         *          floating: boolean,
-         *          padding: {
-         *              top: number,
-         *              right: number,
-         *              bottom: number,
-         *              left: number
-         *          }
-         *      }
-         * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: &#39;default&#39;,
-                header: false,
-                footer: false,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
+    return {
+        load : function(name, req, onLoad, config){
+            var img;
+            if(config.isBuild){
+                onLoad(null); //avoid errors on the optimizer since it can&#39;t inline image files
+            }else{
+                img = new Image();
+                img.onerror = function (err) {
+                    onLoad.error(err);
+                };
+                img.onload = function(evt){
+                    onLoad(img);
+                    try {
+                        delete img.onload; //release memory - suggested by John Hann
+                    } catch(err) {
+                        img.onload = noop; // IE7 :(
+                    }
+                };
+                if (name.indexOf(RELATIVE_FLAG) !== -1) {
+                    //load image relative to module path / baseUrl
+                    img.src = req.toUrl( name.replace(RELATIVE_FLAG, &#39;&#39;) );
+                } else {
+                    img.src = name;
                 }
             }
-        };
-
-<span id='Image-property-mvc'>        /**
-</span>         * Define MVC
-         * @member Image
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [
-                {uuid: this.containment.model.getContentUUID()},
-                DEFAULTS
-            ],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.initWidget,
-            opts
-        );
+        },
+        normalize : function (name, normalize) {
+            //used normalize to avoid caching references to a &quot;cache busted&quot; request
+            return (name.indexOf(CACHE_BUST_FLAG) === -1)? name : cacheBust(name);
+        }
     };
 
-    return Image.extend(&#39;Image&#39;, {
-
-    }, AntHill.prototype);
-});</pre>
+});
+</pre>
 </body>
 </html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/17/12
+ * Time: 5:28 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;plugins/widgets/widget.content.event.manager&#39;
+], function defineGiphyEventManager(WidgetContentEventManager) {
+
+<span id='GiphyEventManager-method-constructor'><span id='GiphyEventManager'>    /**
+</span></span>     * Define Giphy event manager
+     * @class GiphyEventManager
+     * @constructor
+     * @extends BaseEvent
+     * @extends WidgetContentEventManager
+     */
+    var GiphyEventManager = function GiphyEventManager() {
+
+        this.updateEventList({});
+    };
+
+    return GiphyEventManager.extend(&#39;GiphyEventManager&#39;, {
+
+    }, WidgetContentEventManager.prototype);
+});
+</pre>
+</body>
+</html>

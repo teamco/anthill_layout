@@ -43,7 +43,7 @@ define([
     var PanelView = function PanelView() {
     };
 
-    return PanelView.extend({
+    return PanelView.extend(&#39;PanelView&#39;, {
 
 <span id='PanelView-method-renderPanelContainer'>        /**
 </span>         * Render container
@@ -126,6 +126,7 @@ define([
          * @member PanelView
          */
         renderContentContainer: function renderContentContainer() {
+
 <span id='PanelView-property-S-content'>            /**
 </span>             * Define Panel element
              * @type {PanelContentContainerElement}
@@ -140,7 +141,7 @@ define([
 </span>         * Render panel content
          * @member PanelView
          * @param module
-         * @param {Boolean} force
+         * @param {Boolean} [force]
          * @returns {boolean}
          */
         renderContent: function renderContent(module, force) {
@@ -150,7 +151,7 @@ define([
              * @type {string}
              */
             var style = [
-                    module.constructor.name.toDash(),
+                    module.constructor.prototype.name.toDash(),
                     &#39;content&#39;
                 ].join(&#39;-&#39;),
                 sname = &#39;$&#39; + style;
@@ -161,7 +162,7 @@ define([
              */
             this.elements.items = this.elements.items || {};
 
-            if ((this.isCachedItems() &amp;&amp; !force) || this.elements.items.hasOwnProperty(sname)) {
+            if ((this.isCachedItems() || this.elements.items.hasOwnProperty(sname)) &amp;&amp; !force) {
                 return false;
             }
 

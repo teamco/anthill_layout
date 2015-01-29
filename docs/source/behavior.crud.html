@@ -61,7 +61,7 @@ define([
             );
 
             this.logger.debug(
-                &#39;Create &#39; + item.constructor.name,
+                &#39;Create &#39; + item.constructor.prototype.name,
                 this.model.getUUID(item),
                 item
             );
@@ -104,10 +104,10 @@ define([
             var count = this.base.lib.hash.hashLength(items || {});
 
             if (this.checkCondition({
-                condition: count === 0,
-                type: &#39;warn&#39;,
-                msg: &#39;Undefined items&#39;
-            })) {
+                    condition: count === 0,
+                    type: &#39;warn&#39;,
+                    msg: &#39;Undefined items&#39;
+                })) {
                 return false;
             }
 
@@ -118,7 +118,6 @@ define([
             scope.observer.publish(
                 scope.eventmanager.eventList.afterDestroyItems
             );
-
         },
 
 <span id='BaseCrud-method-approveItemDestroy'>        /**
@@ -134,24 +133,24 @@ define([
             count = this.base.define(count, 1, true);
 
             if (this.checkCondition({
-                condition: !this.base.isDefined(item),
-                type: &#39;warn&#39;,
-                msg: &#39;Undefined item&#39;
-            })) {
+                    condition: !this.base.isDefined(item),
+                    type: &#39;warn&#39;,
+                    msg: &#39;Undefined item&#39;
+                })) {
                 return false;
             }
 
             if (this.checkCondition({
-                condition: item.constructor.name !== this.model.item.name,
-                type: &#39;warn&#39;,
-                msg: &#39;Untrusted item&#39;,
-                args: [item, item.constructor.name, this.model.item.name]
-            })) {
+                    condition: item.constructor.prototype.name !== this.model.item.name,
+                    type: &#39;warn&#39;,
+                    msg: &#39;Untrusted item&#39;,
+                    args: [item, item.constructor.prototype.name, this.model.item.name]
+                })) {
                 return false;
             }
 
             scope.logger.debug(
-                &#39;Destroy &#39; + item.constructor.name,
+                &#39;Destroy &#39; + item.constructor.prototype.name,
                 item,
                 this.model.destroyItem(item)
             );
@@ -161,6 +160,16 @@ define([
                     scope.eventmanager.eventList.afterDestroyItem
                 );
             }
+        },
+
+<span id='BaseCrud-method-destroyItem'>        /**
+</span>         * Destroy item
+         * @member BaseCrud
+         * @param item
+         * @param {boolean} silent
+         */
+        destroyItem: function destroyItem(item, silent) {
+            this.api.destroyItems([item], silent);
         },
 
 <span id='BaseCrud-method-destroyItems'>        /**
@@ -210,11 +219,26 @@ define([
 </span>         * After CRUD
          * @member BaseCrud
          * @private
+         * @returns {*|boolean}
          */
         _afterCrud: function _afterCrud() {
 
-            if (this.base.isFunction(this.updateDebugger)) {
-                this.updateDebugger();
+<span id='BaseCrud-property-root'>            /**
+</span>             * Get root
+             * @type {App}
+             */
+            var root = this.root(),
+                isWidget = this.scope.model.getItemNameSpace() === &#39;widget&#39;,
+                isLoading = root.model.getConfig(&#39;loading&#39;);
+
+            if (isWidget || isLoading) {
+
+                return false;
+
+            } else {
+
+                // Save if not (widget|loading)
+                this.store();
             }
         }
 

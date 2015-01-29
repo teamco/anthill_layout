@@ -19,7 +19,9 @@
 </span> * Created by i061485 on 7/10/14.
  */
 
-define([], function defineTextFieldRenderer() {
+define([
+    &#39;jquery&#39;
+], function defineTextFieldRenderer($) {
 
 <span id='TextFieldRenderer-method-constructor'><span id='TextFieldRenderer'>    /**
 </span></span>     * Define TextFieldRenderer
@@ -36,7 +38,15 @@ define([], function defineTextFieldRenderer() {
 <span id='TextFieldRenderer-method-renderTextField'>        /**
 </span>         * Render text field
          * @member TextFieldRenderer
-         * @param {{text: string, name: string, [placeholder]: string, value, [disabled]: boolean, [monitor]}} opts
+         * @param {{
+         *      [text]: string,
+         *      name: string,
+         *      [placeholder]: string,
+         *      value,
+         *      [disabled]: boolean,
+         *      [monitor],
+         *      [validate]: {mask: RegExp, blank: boolean}
+         * }} opts
          * @returns {*[]}
          */
         renderTextField: function renderTextField(opts) {
@@ -49,7 +59,7 @@ define([], function defineTextFieldRenderer() {
 
 <span id='TextFieldRenderer-property-S-input'>            /**
 </span>             * Define $input
-             * @type {*|jQuery}
+             * @type {jQuery}
              */
             var $input = $(&#39;&lt;input /&gt;&#39;).attr({
                 name: opts.name,
@@ -71,6 +81,8 @@ define([], function defineTextFieldRenderer() {
             if (!opts.visible) {
                 $input.hide();
             }
+
+            this.validateByMask($input, opts);
 
             return [
                 this.renderLabel(uuid, opts.text, &#39;text&#39;, opts.visible),

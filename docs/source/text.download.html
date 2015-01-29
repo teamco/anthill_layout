@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 7/23/14.
+ */
+
+define([], function defineTextDownloadRenderer() {
+
+<span id='TextDownloadRenderer-method-constructor'><span id='TextDownloadRenderer'>    /**
+</span></span>     * Define TextDownloadRenderer
+     * @class TextDownloadRenderer
+     * @constructor
+     */
+    var TextDownloadRenderer = function TextDownloadRenderer() {
+
+    };
+
+    return TextDownloadRenderer.extend(&#39;TextDownloadRenderer&#39;, {
+
+<span id='TextDownloadRenderer-method-renderTextDownloader'>        /**
+</span>         * Render text downloader
+         * @member TextDownloadRenderer
+         * @param {{
+         *      as: string,
+         *      text: string,
+         *      title: string
+         * }} opts
+         */
+        renderTextDownloader: function renderTextDownloader(opts) {
+
+            return $(&#39;&lt;a /&gt;&#39;).attr({
+                download: opts.as || &#39;download.txt&#39;,
+                href: &quot;data:text/plain;base64,&quot; + btoa(opts.text || &#39;&#39;),
+                title: opts.title
+            }).text(opts.title);
+        }
+    });
+});
+
+
+</pre>
+</body>
+</html>

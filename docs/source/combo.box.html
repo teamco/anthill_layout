@@ -19,7 +19,7 @@
 </span> * Created by i061485 on 7/10/14.
  */
 
-define([], function defineComboBoxRenderer(){
+define([], function defineComboBoxRenderer() {
 
 <span id='ComboBoxRenderer-method-constructor'><span id='ComboBoxRenderer'>    /**
 </span></span>     * Define ComboBoxRenderer
@@ -42,16 +42,58 @@ define([], function defineComboBoxRenderer(){
          * @param {string} index
          * @param {{type: string, callback: function}} [event]
          * @param {boolean} [visible]
+         * @param {boolean} [placeholder]
          */
-        renderCombobox: function renderCombobox(data, selected, name, index, event, visible) {
+        renderCombobox: function renderCombobox(data, selected, name, index, event, visible, placeholder) {
+
+            // Init placeholder
+            placeholder = typeof (placeholder) === &#39;undefined&#39; ? false : !!placeholder;
+
+<span id='ComboBoxRenderer-method-_getWrapper'>            /**
+</span>             * Get wrapper
+             * @returns {BaseElement.$}
+             * @private
+             */
+            function _getWrapper() {
+
+<span id='ComboBoxRenderer-property-referrer'>                /**
+</span>                 * Get referrer
+                 * @type {*}
+                 */
+                var referrer = this.view.scope.referrer,
+                    $modal, $wrapper = this.$;
+
+                if (referrer) {
+
+<span id='ComboBoxRenderer-property-S-modal'>                    /**
+</span>                     * Get $modal dialog
+                     * @type {ModalElement}
+                     */
+                    $modal = referrer.view.elements.$modal;
+
+                    if ($modal) {
+                        $wrapper = $modal.$;
+                    }
+                }
+
+                return $wrapper;
+            }
+
+<span id='ComboBoxRenderer-property-activeContent'>            /**
+</span>             * Define active content
+             * @type {*|Page|WidgetContent}
+             */
+            var activeContent = this.view.scope.activeContent;
 
 <span id='ComboBoxRenderer-property-S-div'>            /**
 </span>             * Define container
              * @type {*|jQuery}
              */
-            var $div = $(&#39;&lt;div style=&quot;display: none;&quot; /&gt;&#39;).addClass(&#39;combo-box&#39;).attr({
-                id: this.base.lib.generator.UUID() + &#39;-combobox&#39;
-            }).append(
+            var $div = $(&#39;&lt;div class=&quot;combo-box&quot; /&gt;&#39;).
+                addClass((activeContent ? [index, activeContent.constructor.prototype.name].join(&#39;&#39;) : index).toDash()).
+                attr({
+                    id: this.base.lib.generator.UUID() + &#39;-combobox&#39;
+                }).append(
                 $(&#39;&lt;input class=&quot;hidden&quot; /&gt;&#39;).attr({
                     name: index,
                     disabled: true,
@@ -65,9 +107,18 @@ define([], function defineComboBoxRenderer(){
              * @private
              */
             function _open() {
+
+                if (this.isDisabledComboBox($div.parent())) {
+                    return false;
+                }
+
+                // Get wrapper
+                var $wrapper = _getWrapper.bind(this)();
+
                 // close all como-boxes
-                $(&#39;.combo-box&#39;).removeClass(&#39;open&#39;);
+                $(&#39;.combo-box&#39;, $wrapper).removeClass(&#39;open&#39;);
                 $div.addClass(&#39;open&#39;);
+                $(&#39;div.html&#39;, $wrapper).addClass(&#39;visible&#39;);
             }
 
 <span id='ComboBoxRenderer-method-_hide'>            /**
@@ -75,7 +126,12 @@ define([], function defineComboBoxRenderer(){
              * @private
              */
             function _hide() {
+
+                // Get wrapper
+                var $wrapper = _getWrapper.bind(this)();
+
                 $div.removeClass(&#39;open&#39;);
+                $(&#39;div.html&#39;, $wrapper).removeClass(&#39;visible&#39;);
             }
 
 <span id='ComboBoxRenderer-method-_store'>            /**
@@ -86,6 +142,9 @@ define([], function defineComboBoxRenderer(){
              * @private
              */
             function _store($selected, selected) {
+
+                // Remove tooltip text before store selected value
+                $(&#39;.tooltip&#39;, $selected).remove();
 
 <span id='ComboBoxRenderer-property-value'>                /**
 </span>                 * Define value
@@ -104,9 +163,10 @@ define([], function defineComboBoxRenderer(){
 </span>             * Define $ul
              * @type {*|jQuery}
              */
-            var $ul = $(&#39;&lt;ul /&gt;&#39;);
+            var $ul = $(&#39;&lt;ul /&gt;&#39;),
+                i = 0, l = data.length;
 
-            for (var i = 0, l = data.length; i &lt; l; i++) {
+            for (; i &lt; l; i++) {
 
                 var field = data[i],
                     $li = $(&#39;&lt;li /&gt;&#39;);
@@ -144,8 +204,8 @@ define([], function defineComboBoxRenderer(){
                      */
                     function comboBoxInternalEvent(e) {
 
-                        $div.hasClass(&#39;open&#39;) ?
-                            _hide() : _open();
+                        ($div.hasClass(&#39;open&#39;) ?
+                            _hide : _open).bind(this)();
 
 <span id='ComboBoxRenderer-property-S-selected'>                        /**
 </span>                         * Define selected $li
@@ -167,7 +227,7 @@ define([], function defineComboBoxRenderer(){
                 );
 
                 // hide on mouse leave
-                $ul.on(&#39;mouseleave.comboBoxInternal&#39;, _hide);
+                $ul.on(&#39;mouseleave.comboBoxInternal&#39;, _hide.bind(this));
 
                 if (this.base.isDefined(event)) {
                     if (this.base.isFunction(event.callback)) {
@@ -177,7 +237,54 @@ define([], function defineComboBoxRenderer(){
                     }
                 }
 
-                $li.attr({rel: field.key || field.value}).appendTo($ul);
+                $li.attr({
+                    rel: field.key || field.value,
+                    title: data[i].title || field.value
+                }).appendTo($ul);
+
+<span id='ComboBoxRenderer-property-tooltip'>                /**
+</span>                 * Get tooltip
+                 * @type {string|*}
+                 */
+                var tooltip = data[i].tooltip;
+
+                if (tooltip) {
+
+                    // Set reference
+                    $li.$ = $li;
+
+                    this.renderTooltip({
+                        title: field.value,
+                        description: tooltip,
+                        $container: $li
+                    });
+                }
+            }
+
+            if (typeof(selected) === &#39;undefined&#39;) {
+
+                if (placeholder) {
+
+                    $ul.prepend(
+                        $(&#39;&lt;li class=&quot;placeholder&quot; /&gt;&#39;).text(
+                            &#39;Select &#39; + name
+                        ).on(
+                            &#39;click.placeholder&#39;,
+                            function clickOn(e) {
+
+                                if (this.isDisabledComboBox($div.parent())) {
+                                    return false;
+                                }
+
+                                $(e.target).remove();
+                                $(&#39;li:first&#39;, $ul).trigger(&#39;click.comboBoxInternal&#39;);
+
+                            }.bind(this)
+                        )
+                    );
+                }
+
+                $(&#39;li:first&#39;, $ul).show();
             }
 
             // fix to define modal dialog height
@@ -192,6 +299,45 @@ define([], function defineComboBoxRenderer(){
                     $(&#39;&lt;div /&gt;&#39;).addClass(&#39;combo-box-arrow&#39;)
                 ])
             ];
+        },
+
+<span id='ComboBoxRenderer-method-isDisabledComboBox'>        /**
+</span>         * Check if combo box disabled
+         * @member ComboBoxRenderer
+         * @param $combo
+         * @returns {boolean}
+         */
+        isDisabledComboBox: function isDisabledComboBox($combo) {
+            return $combo.find(&#39;div.combo-box.disabled&#39;).length === 1;
+        },
+
+<span id='ComboBoxRenderer-method-enableComboBox'>        /**
+</span>         * Define enable combo box
+         * @member ComboBoxRenderer
+         * @param $combo
+         */
+        enableComboBox: function enableComboBox($combo) {
+            $combo.find(&#39;div.combo-box&#39;).removeClass(&#39;disabled&#39;);
+        },
+
+<span id='ComboBoxRenderer-method-disableComboBox'>        /**
+</span>         * Define disable combo box
+         * @member ComboBoxRenderer
+         * @param $combo
+         */
+        disableComboBox: function disableComboBox($combo) {
+            $combo.find(&#39;div.combo-box&#39;).addClass(&#39;disabled&#39;);
+        },
+
+<span id='ComboBoxRenderer-method-clearPlaceholder'>        /**
+</span>         * Clear placeholder
+         * @member ComboBoxRenderer
+         * @param $combo
+         */
+        clearPlaceholder: function clearPlaceholder($combo) {
+            $combo.find(&#39;div.combo-box &gt; ul li.placeholder&#39;).
+                trigger(&#39;click.placeholder&#39;).
+                remove();
         }
     });
 });</pre>

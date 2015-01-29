@@ -32,49 +32,38 @@ define([], function defineBaseString() {
      */
     var BaseUserAgent = function BaseUserAgent() {
 
-<span id='BaseUserAgent-property-ua'>        /**
-</span>         * Define user agent
-         * @type {string}
-         */
-        var ua = navigator.userAgent.toLowerCase();
-
 <span id='BaseUserAgent-property-browser'>        /**
-</span>         * Define browsers
+</span>         * Define browser info
          * @member BaseUserAgent
-         * @type {{
-         *      mozilla: boolean,
-         *      webkit: boolean,
-         *      opera: boolean,
-         *      msie: boolean
-         * }}
          */
-        this.browser = {
-            mozilla: /mozilla/.test(ua) &amp;&amp; !/webkit/.test(ua),
-            webkit: /webkit/.test(ua),
-            opera: /opera/.test(ua),
-            msie: /msie/.test(ua)
-        };
+        this.browser = (function () {
+            var ua = navigator.userAgent, tem,
+                M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+            if (/trident/i.test(M[1])) {
+                tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+                return [&#39;IE&#39;, (tem[1] || &#39;&#39;)];
+            }
+            if (M[1] === &#39;Chrome&#39;) {
+                tem = ua.match(/\bOPR\/(\d+)/)
+                if (tem != null) return [&#39;Opera&#39;, tem[1]];
+            }
+            M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, &#39;-?&#39;];
+            if ((tem = ua.match(/version\/(\d+)/i)) != null) M.splice(1, 1, tem[1]);
+            return M;
+        })();
     };
 
     BaseUserAgent.extend(&#39;BaseUserAgent&#39;, {
 
-<span id='BaseUserAgent-method-version'>        /**
-</span>         * Get version
-         * @member BaseUserAgent
+<span id='BaseUserAgent-method-_getBrowserInfo'>        /**
+</span>         * Get browser version
+         * @param {RegExp} regexp
          * @returns {*}
+         * @private
          */
-        version: function version() {
-            return (navigator.userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [])[1];
-        },
-
-<span id='BaseUserAgent-method-msie'>        /**
-</span>         * Get MSIE
-         * @member BaseUserAgent
-         * @returns {*}
-         */
-        msie: function msie() {
-            if (this.browser.msie) {
-                return this.version();
+        _getBrowserInfo: function _getBrowserInfo(regexp) {
+            if (this.browser[0].match(regexp)) {
+                return this.browser[1];
             }
         },
 
@@ -84,9 +73,7 @@ define([], function defineBaseString() {
          * @returns {*}
          */
         opera: function opera() {
-            if (this.browser.opera) {
-                return this.version();
-            }
+            this._getBrowserInfo(/opera/i);
         },
 
 <span id='BaseUserAgent-method-chrome'>        /**
@@ -95,11 +82,7 @@ define([], function defineBaseString() {
          * @returns {*}
          */
         chrome: function chrome() {
-            if (this.browser.webkit) {
-                if (navigator.vendor.match(/Google/)) {
-                    return this.version();
-                }
-            }
+            this._getBrowserInfo(/chrome/i);
         },
 
 <span id='BaseUserAgent-method-safari'>        /**
@@ -108,11 +91,52 @@ define([], function defineBaseString() {
          * @returns {*}
          */
         safari: function safari() {
-            if (this.browser.webkit) {
-                if (navigator.vendor.match(/Apple/)) {
-                    return this.version();
-                }
+            this._getBrowserInfo(/safari/i);
+        },
+
+<span id='BaseUserAgent-method-firefox'>        /**
+</span>         * Get Firefox
+         * @member BaseUserAgent
+         * @returns {*}
+         */
+        firefox: function firefox() {
+            this._getBrowserInfo(/firefox/i);
+        },
+
+<span id='BaseUserAgent-method-msie'>        /**
+</span>         * Get MS Internet explorer
+         * @member BaseUserAgent
+         * @returns {*}
+         */
+        msie: function msie() {
+            this._getBrowserInfo(/ie/i);
+        },
+
+<span id='BaseUserAgent-method-getBrowserZoom'>        /**
+</span>         * Get browser zoom
+         * @member BaseUserAgent
+         * @returns {number}
+         */
+        getBrowserZoom: function getBrowserZoom() {
+
+            var zoom = 1;
+
+            // Get Chrome/Safari zoome
+            if (this.chrome() || this.safari()) {
+                zoom = 1 / (screen.width / $(window).width());
             }
+
+            // Get Firefox zoom
+            if (this.firefox() &amp;&amp; !isNaN(window.devicePixelRatio)) {
+                zoom = 1 / (window.devicePixelRatio);
+            }
+
+            // Get IE zoom
+            if (this.msie() &amp;&amp; !isNaN(screen.logicalXDPI) &amp;&amp; !isNaN(screen.systemXDPI)) {
+                zoom = 1 / (Math.round((screen.deviceXDPI / screen.logicalXDPI) * 100) / 100);
+            }
+
+            return zoom;
         }
     });
 

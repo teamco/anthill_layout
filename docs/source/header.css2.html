@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"> @font-face{font-family:Hand;src:url(&quot;font/hand.ttf&quot;);}
+
+.widget .content .header {
+     height: 100%;
+     width: 100%;
+     overflow: auto;
+ }
+ .widget .content .header .logoutBtn {
+     float: right;
+     display: inline-block;
+     line-height: 43px;
+     height: 100%;
+     cursor: pointer;
+     font-size: 15px;
+     color: white;
+ }
+ .widget .content .header h1 {
+     display: inline-block;
+     line-height: 50px;
+     vertical-align: top;
+     font-size: 19px;
+     font-family: Hand;
+     color: white;
+ }
+ .widget .content .header .mainLogo {
+     width: 80px;
+     height: 47px;
+     background-size: 67px;
+     background-repeat: no-repeat;
+     display: inline-block;
+     background-image: url(&#39;data:image/png;base64,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&#39;);
+ }</pre>
+</body>
+</html>

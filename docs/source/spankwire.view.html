@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/spankwire/element/spankwire.element&#39;,
+    &#39;plugins/widgets/spankwire/element/spankwire.preferences.element&#39;,
+    &#39;plugins/widgets/spankwire/element/spankwire.rules.element&#39;
+], function defineSpankwireView(BaseView, Header, Footer, SpankwireElement, SpankwirePreferencesElement, SpankwireRulesElement) {
+
+<span id='SpankwireView-method-constructor'><span id='SpankwireView'>    /**
+</span></span>     * Define view
+     * @class SpankwireView
+     * @extends BaseView
+     * @constructor
+     */
+    var SpankwireView = function SpankwireView() {
+    };
+
+    return SpankwireView.extend(&#39;SpankwireView&#39;, {
+
+<span id='SpankwireView-method-renderSpankwire'>        /**
+</span>         * Render spankwire element
+         * @member SpankwireView
+         */
+        renderSpankwire: function renderSpankwire() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='SpankwireView-property-S-spankwire'>            /**
+</span>             * Define $spankwire
+             * @type {SpankwireElement}
+             */
+            this.elements.$spankwire = new SpankwireElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='SpankwireView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member SpankwireView
+         * @returns {SpankwirePreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='SpankwireView-property-S-preferences'>            /**
+</span>             * Define Spankwire Preferences Element
+             * @type {SpankwirePreferencesElement}
+             */
+            this.elements.$preferences = new SpankwirePreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='SpankwireView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member SpankwireView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {SpankwireRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='SpankwireView-property-data'>            /**
+</span>             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+<span id='SpankwireView-property-S-rules'>            /**
+</span>             * Define Spankwire Rules Element
+             * @type {SpankwireRulesElement}
+             */
+            this.elements.$rules = new SpankwireRulesElement(this, {
+                data: data,
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='SpankwireView-method-render'>        /**
+</span>         * Render spankwire
+         * @member SpankwireView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderSpankwire.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});
+</pre>
+</body>
+</html>

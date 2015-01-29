@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">tinymce.PluginManager.add(&quot;advlist&quot;,function(a){function b(a,b){var c=[];return tinymce.each(b.split(/[ ,]/),function(a){c.push({text:a.replace(/\-/g,&quot; &quot;).replace(/\b\w/g,function(a){return a.toUpperCase()}),data:&quot;default&quot;==a?&quot;&quot;:a})}),c}function c(b,c){a.undoManager.transact(function(){var d,e=a.dom,f=a.selection;d=e.getParent(f.getNode(),&quot;ol,ul&quot;),d&amp;&amp;d.nodeName==b&amp;&amp;c!==!1||a.execCommand(&quot;UL&quot;==b?&quot;InsertUnorderedList&quot;:&quot;InsertOrderedList&quot;),c=c===!1?g[b]:c,g[b]=c,d=e.getParent(f.getNode(),&quot;ol,ul&quot;),d&amp;&amp;(e.setStyle(d,&quot;listStyleType&quot;,c?c:null),d.removeAttribute(&quot;data-mce-style&quot;)),a.focus()})}function d(b){var c=a.dom.getStyle(a.dom.getParent(a.selection.getNode(),&quot;ol,ul&quot;),&quot;listStyleType&quot;)||&quot;&quot;;b.control.items().each(function(a){a.active(a.settings.data===c)})}var e,f,g={};e=b(&quot;OL&quot;,a.getParam(&quot;advlist_number_styles&quot;,&quot;default,lower-alpha,lower-greek,lower-roman,upper-alpha,upper-roman&quot;)),f=b(&quot;UL&quot;,a.getParam(&quot;advlist_bullet_styles&quot;,&quot;default,circle,disc,square&quot;)),a.addButton(&quot;numlist&quot;,{type:&quot;splitbutton&quot;,tooltip:&quot;Numbered list&quot;,menu:e,onshow:d,onselect:function(a){c(&quot;OL&quot;,a.control.settings.data)},onclick:function(){c(&quot;OL&quot;,!1)}}),a.addButton(&quot;bullist&quot;,{type:&quot;splitbutton&quot;,tooltip:&quot;Bullet list&quot;,menu:f,onshow:d,onselect:function(a){c(&quot;UL&quot;,a.control.settings.data)},onclick:function(){c(&quot;UL&quot;,!1)}})});</pre>
+</body>
+</html>

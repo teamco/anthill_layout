@@ -54,35 +54,38 @@ define([
 
 <span id='MaximizeContentElement-method-setAttributes'>        /**
 </span>         * Define attributes
-         * @memberOf MaximizeContentElement
+         * @member MaximizeContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
+
+            var preferences = data.model.getConfig(&#39;preferences&#39;);
 
 <span id='MaximizeContentElement-property-title'>            /**
 </span>             * Get title
              * @type {boolean|string}
              */
-            var title = data.model.getConfig(&#39;preferences/title&#39;) ||
-                data.model.getUUID();
+            var title = data.model.getItemTitle();
 
 <span id='MaximizeContentElement-property-description'>            /**
 </span>             * Get description
              * @type {string}
              */
-            var description = data.model.getConfig(&#39;preferences/description&#39;) || &#39;&#39;;
+            var description = preferences.description || &#39;&#39;;
 
             this.$.attr({
                 title: title
             }).addClass(
-                data.model.getConfig(&#39;preferences/resource&#39;).replace(/\./g, &#39;&#39;)
+                this.view.controller.getResourceClassName(
+                    preferences.resource
+                )
             );
 
 <span id='MaximizeContentElement-property-thumbnail'>            /**
 </span>             * Get thumbnail
              * @type {string|*}
              */
-            var thumbnail = data.model.getConfig(&#39;preferences/thumbnail&#39;);
+            var thumbnail = preferences.thumbnail;
 
             if (thumbnail.length &gt; 0) {
 
@@ -142,7 +145,7 @@ define([
 
 <span id='MaximizeContentElement-method-bindMaximize'>        /**
 </span>         * Bind maximize
-         * @memberOf MaximizeContentElement
+         * @member MaximizeContentElement
          * @param data
          */
         bindMaximize: function bindMaximize(data) {

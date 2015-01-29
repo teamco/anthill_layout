@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:02 AM
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/MVC&#39;,
+    &#39;plugins/widgets/truba/mvc/truba.controller&#39;,
+    &#39;plugins/widgets/truba/mvc/truba.model&#39;,
+    &#39;plugins/widgets/truba/mvc/truba.view&#39;,
+    &#39;plugins/widgets/truba/mvc/truba.event.manager&#39;,
+    &#39;plugins/widgets/truba/mvc/truba.permission&#39;
+], function defineTruba(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+
+<span id='Truba-method-Truba'><span id='Truba'>    /**
+</span></span>     * Define Truba
+     * @param containment
+     * @param [opts]
+     * @constructor
+     * @class Truba
+     * @extends AntHill
+     */
+    var Truba = function Truba(containment, opts) {
+
+<span id='Truba-property-containment'>        /**
+</span>         * Define containment
+         * @member Truba
+         */
+        this.containment = containment;
+
+<span id='Truba-property-referrer'>        /**
+</span>         * Define referrer
+         * @member Truba
+         * @type {*}
+         */
+        this.referrer = undefined;
+
+<span id='Truba-property-DEFAULTS'>        /**
+</span>         * Define defaults
+         * @type {{
+         *      plugin: boolean,
+         *      html: {
+         *          style: string,
+         *          header: boolean,
+         *          footer: boolean,
+         *          padding: {
+         *              top: number,
+         *              right: number,
+         *              bottom: number,
+         *              left: number
+         *          }
+         *      },
+         *      regex: RegExp,
+         *      mask: string
+         * }}
+         */
+        var DEFAULTS = {
+            plugin: true,
+            html: {
+                style: &#39;default&#39;,
+                header: false,
+                footer: false,
+                padding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                }
+            },
+            regex: /\d+/,
+            mask: &#39;http://truba.com/tools/config_video.php?id={id}&#39;
+        };
+
+<span id='Truba-property-mvc'>        /**
+</span>         * Define MVC
+         * @member Truba
+         * @type {MVC}
+         */
+        this.mvc = new MVC({
+            scope: this,
+            config: [
+                {uuid: this.containment.model.getContentUUID()},
+                DEFAULTS
+            ],
+            components: [
+                Controller,
+                Model,
+                View,
+                EventManager,
+                Permission
+            ],
+            render: true
+        });
+
+        this.observer.publish(
+            this.eventmanager.eventList.initWidget,
+            opts
+        );
+    };
+
+    return Truba.extend(&#39;Truba&#39;, {
+
+    }, AntHill.prototype);
+});
+</pre>
+</body>
+</html>

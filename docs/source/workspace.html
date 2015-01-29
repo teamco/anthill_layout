@@ -50,21 +50,20 @@
          */
         var Workspace = function Workspace(opts) {
 
-<span id='Workspace-property-swipePage'>            /**
-</span>             * Define swipe page
-             * @member Workspace
-             * @type {boolean}
-             */
-            this.swipePage = false;
-
 <span id='Workspace-property-DEFAULTS'>            /**
 </span>             * Define default config
              * @type {{
+             *      preferences: {},
              *      limit: boolean,
              *      isResized: boolean,
              *      type: string,
              *      order: number,
-             *      page: {counter: number, limit: number, onDestroyShowPrevious: boolean},
+             *      page: {
+             *          counter: number,
+             *          limit: number,
+             *          animate: boolean,
+             *          onDestroyShowPrevious: boolean
+             *      },
              *      html: {
              *          style: string,
              *          header: boolean,
@@ -75,6 +74,10 @@
              * }}
              */
             var DEFAULTS = {
+                preferences: opts.preferences || {
+					staticWidth: true, 
+					siteWidthSlider: &quot;1&quot;
+				},
                 limit: false,
                 isResized: true,
                 type: &#39;default&#39;,
@@ -83,6 +86,8 @@
                     plural: false,
                     counter: 0,
                     limit: 10,
+                    // Animate on switch page
+                    animate: true,
                     // Show previous page (false means Next)
                     onDestroyShowPrevious: true
                 },
@@ -118,30 +123,46 @@
                 ]
             });
 
-<span id='Workspace-property-page'>            /**
-</span>             * Define page
-             * @member Workspace
-             * @type {*|Page}
-             */
-            this.page = {};
-
-<span id='Workspace-property-items'>            /**
-</span>             * Define itemsÒ
-             * @member Workspace
-             * @type {*}
-             */
-            this.items = {};
-
-            this.observer.publish(
-                this.eventmanager.eventList.successCreated
-            );
-
-            this.observer.publish(
-                this.eventmanager.eventList.bindHashChange
-            );
+            this.init();
         };
 
         return Workspace.extend(&#39;Workspace&#39;, {
+
+<span id='Workspace-method-init'>            /**
+</span>             * Define init
+             * @member Workspace
+             */
+            init: function init() {
+
+<span id='Workspace-property-switchPage'>                /**
+</span>                 * Define swipe page
+                 * @member Workspace
+                 * @type {boolean}
+                 */
+                this.switchPage = false;
+
+<span id='Workspace-property-page'>                /**
+</span>                 * Define page
+                 * @member Workspace
+                 * @type {*|Page}
+                 */
+                this.page = {};
+
+<span id='Workspace-property-items'>                /**
+</span>                 * Define itemsÒ
+                 * @member Workspace
+                 * @type {*}
+                 */
+                this.items = {};
+
+                this.observer.publish(
+                    this.eventmanager.eventList.successCreated
+                );
+
+                this.observer.publish(
+                    this.eventmanager.eventList.bindHashChange
+                );
+            }
 
         }, AntHill.prototype);
     }

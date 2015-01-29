@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">tinymce.PluginManager.add(&quot;insertdatetime&quot;,function(a){function b(b,c){function d(a,b){if(a=&quot;&quot;+a,a.length&lt;b)for(var c=0;c&lt;b-a.length;c++)a=&quot;0&quot;+a;return a}return c=c||new Date,b=b.replace(&quot;%D&quot;,&quot;%m/%d/%Y&quot;),b=b.replace(&quot;%r&quot;,&quot;%I:%M:%S %p&quot;),b=b.replace(&quot;%Y&quot;,&quot;&quot;+c.getFullYear()),b=b.replace(&quot;%y&quot;,&quot;&quot;+c.getYear()),b=b.replace(&quot;%m&quot;,d(c.getMonth()+1,2)),b=b.replace(&quot;%d&quot;,d(c.getDate(),2)),b=b.replace(&quot;%H&quot;,&quot;&quot;+d(c.getHours(),2)),b=b.replace(&quot;%M&quot;,&quot;&quot;+d(c.getMinutes(),2)),b=b.replace(&quot;%S&quot;,&quot;&quot;+d(c.getSeconds(),2)),b=b.replace(&quot;%I&quot;,&quot;&quot;+((c.getHours()+11)%12+1)),b=b.replace(&quot;%p&quot;,&quot;&quot;+(c.getHours()&lt;12?&quot;AM&quot;:&quot;PM&quot;)),b=b.replace(&quot;%B&quot;,&quot;&quot;+a.translate(i[c.getMonth()])),b=b.replace(&quot;%b&quot;,&quot;&quot;+a.translate(h[c.getMonth()])),b=b.replace(&quot;%A&quot;,&quot;&quot;+a.translate(g[c.getDay()])),b=b.replace(&quot;%a&quot;,&quot;&quot;+a.translate(f[c.getDay()])),b=b.replace(&quot;%%&quot;,&quot;%&quot;)}function c(c){var d=b(c);if(a.settings.insertdatetime_element){var e;e=b(/%[HMSIp]/.test(c)?&quot;%Y-%m-%dT%H:%M&quot;:&quot;%Y-%m-%d&quot;),d=&#39;&lt;time datetime=&quot;&#39;+e+&#39;&quot;&gt;&#39;+d+&quot;&lt;/time&gt;&quot;;var f=a.dom.getParent(a.selection.getStart(),&quot;time&quot;);if(f)return void a.dom.setOuterHTML(f,d)}a.insertContent(d)}var d,e,f=&quot;Sun Mon Tue Wed Thu Fri Sat Sun&quot;.split(&quot; &quot;),g=&quot;Sunday Monday Tuesday Wednesday Thursday Friday Saturday Sunday&quot;.split(&quot; &quot;),h=&quot;Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec&quot;.split(&quot; &quot;),i=&quot;January February March April May June July August September October November December&quot;.split(&quot; &quot;),j=[];a.addCommand(&quot;mceInsertDate&quot;,function(){c(a.getParam(&quot;insertdatetime_dateformat&quot;,a.translate(&quot;%Y-%m-%d&quot;)))}),a.addCommand(&quot;mceInsertTime&quot;,function(){c(a.getParam(&quot;insertdatetime_timeformat&quot;,a.translate(&quot;%H:%M:%S&quot;)))}),a.addButton(&quot;insertdatetime&quot;,{type:&quot;splitbutton&quot;,title:&quot;Insert date/time&quot;,onclick:function(){c(d||e)},menu:j}),tinymce.each(a.settings.insertdatetime_formats||[&quot;%H:%M:%S&quot;,&quot;%Y-%m-%d&quot;,&quot;%I:%M:%S %p&quot;,&quot;%D&quot;],function(a){e||(e=a),j.push({text:b(a),onclick:function(){d=a,c(a)}})}),a.addMenuItem(&quot;insertdatetime&quot;,{icon:&quot;date&quot;,text:&quot;Insert date/time&quot;,menu:j,context:&quot;insert&quot;})});</pre>
+</body>
+</html>

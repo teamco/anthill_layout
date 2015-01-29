@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define([
+    &#39;plugins/plugin&#39;,
+    &#39;plugins/widgets/widget.content.controller&#39;
+], function defineTwentyFourLiveController(PluginBase, WidgetContentController) {
+
+<span id='TwentyFourLiveController-method-constructor'><span id='TwentyFourLiveController'>    /**
+</span></span>     * Define twentyfourlive controller
+     * @class TwentyFourLiveController
+     * @extends PluginController
+     * @extends WidgetContentController
+     * @constructor
+     */
+    var TwentyFourLiveController = function TwentyFourLiveController() {
+    };
+
+    return TwentyFourLiveController.extend(&#39;TwentyFourLiveController&#39;, {
+
+<span id='TwentyFourLiveController-method-setEmbeddedContent'>        /**
+</span>         * Set embedded content
+         * @member TwentyFourLiveController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
+
+<span id='TwentyFourLiveController-property-url'>            /**
+</span>             * Get url
+             * @type {string|*}
+             */
+            var url = this.model.getPrefs(&#39;twentyfourliveUrl&#39;),
+                embed = this.controller.getEmbedCode(url);
+
+            if (embed) {
+                this.view.elements.$twentyfourlive.renderEmbeddedContent(embed);
+            }
+        },
+
+<span id='TwentyFourLiveController-method-getEmbedCode'>        /**
+</span>         * Validate twentyfourlive
+         * @member TwentyFourLiveController
+         * @param {string} url
+         * @return {string|boolean}
+         */
+        getEmbedCode: function getEmbedCode(url) {
+
+            if (!url) {
+                this.scope.logger.debug(&#39;Initial state&#39;);
+                return false;
+            }
+
+            var mask = this.model.getConfig(&#39;mask&#39;),
+                regex = this.model.getConfig(&#39;regex&#39;);
+
+            if (!url.match(regex)) {
+                this.scope.logger.warn(&#39;Invalid twenty four live url&#39;);
+                return false;
+            }
+
+            if (url.match(/iframe/)) {
+
+<span id='TwentyFourLiveController-property-url'>                /**
+</span>                 * Embed iframe fix
+                 * @type {string}
+                 */
+                url = $(url).attr(&#39;src&#39;);
+            }
+
+            return url.replace(regex, mask.replace(/\{videoId}/g, &#39;$1&#39;)).
+                replace(/embed\/embed/, &#39;embed&#39;);
+        },
+
+<span id='TwentyFourLiveController-method-addTwentyFourLiveRule'>        /**
+</span>         * Add TwentyFourLive rule
+         * @member TwentyFourLiveController
+         * @param e
+         */
+        addTwentyFourLiveRule: function addTwentyFourLiveRule(e) {
+
+<span id='TwentyFourLiveController-property-S-button'>            /**
+</span>             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target),
+                scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.publishRule,
+                [$button.attr(&#39;value&#39;), scope.constructor.prototype.name]
+            );
+        }
+
+    }, PluginBase.prototype, WidgetContentController.prototype);
+});
+</pre>
+</body>
+</html>

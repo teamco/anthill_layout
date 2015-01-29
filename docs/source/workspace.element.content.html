@@ -107,17 +107,22 @@ define([
          */
         swipeTo: function swipeTo(page, animate) {
 
-<span id='WorkspaceContentElement-property-view'>            /**
+<span id='WorkspaceContentElement-property-scope'>            /**
 </span>             * Define view
-             * @type {WorkspaceView}
+             * @type {Workspace}
              */
-            var view = this.view,
-                scope = view.scope,
+            var scope = this.view.scope,
                 duration = animate ? 500 : 0;
 
-            view.elements.$pages.$.stop().animate({
+<span id='WorkspaceContentElement-property-order'>            /**
+</span>             * Get pages order
+             * @type {number}
+             */
+            var order = page.model.getConfig(&#39;order&#39;) - 1;
 
-                left: ((1 - page.model.getConfig(&#39;order&#39;)) * 100) + &#39;%&#39;
+            this.view.elements.$pages.$.stop().animate({
+
+                left: (-order * 100) + &#39;%&#39;
 
             }, {
                 duration: duration,

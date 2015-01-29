@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/mus.tv/element/mus.tv.element&#39;,
+    &#39;plugins/widgets/mus.tv/element/mus.tv.preferences.element&#39;,
+    &#39;plugins/widgets/mus.tv/element/mus.tv.rules.element&#39;
+], function defineMusTvView(BaseView, Header, Footer, MusTvElement, MusTvPreferencesElement, MusTvRulesElement) {
+
+<span id='MusTvView-method-constructor'><span id='MusTvView'>    /**
+</span></span>     * Define view
+     * @class MusTvView
+     * @extends BaseView
+     * @constructor
+     */
+    var MusTvView = function MusTvView() {
+    };
+
+    return MusTvView.extend(&#39;MusTvView&#39;, {
+
+<span id='MusTvView-method-renderMusTv'>        /**
+</span>         * Render mustv element
+         * @member MusTvView
+         */
+        renderMusTv: function renderMusTv() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='MusTvView-property-S-mustv'>            /**
+</span>             * Define $mustv
+             * @type {MusTvElement}
+             */
+            this.elements.$mustv = new MusTvElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='MusTvView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member MusTvView
+         * @returns {MusTvPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='MusTvView-property-S-preferences'>            /**
+</span>             * Define MusTv Preferences Element
+             * @type {MusTvPreferencesElement}
+             */
+            this.elements.$preferences = new MusTvPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='MusTvView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member MusTvView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {MusTvRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='MusTvView-property-data'>            /**
+</span>             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+<span id='MusTvView-property-S-rules'>            /**
+</span>             * Define MusTv Rules Element
+             * @type {MusTvRulesElement}
+             */
+            this.elements.$rules = new MusTvRulesElement(this, {
+                data: data,
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='MusTvView-method-render'>        /**
+</span>         * Render mustv
+         * @member MusTvView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderMusTv.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});
+</pre>
+</body>
+</html>

@@ -177,9 +177,12 @@ define(function defineLayoutIntersect() {
          */
         _allowOverlapping: function _allowOverlapping(src, target) {
 
+            var targetPrefs = target.model.getConfig(&#39;preferences&#39;),
+                srcPrefs = src.model.getConfig(&#39;preferences&#39;);
+
             // allow overlapping
-            return (target.model.getConfig(&#39;preferences/overlapping&#39;) ||
-                src.model.getConfig(&#39;preferences/overlapping&#39;));
+            return (targetPrefs.overlapping ||
+                srcPrefs.overlapping);
         },
 
 <span id='Intersect-method-_intersectWidgets'>        /**

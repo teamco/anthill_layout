@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define([
+    &#39;plugins/plugin&#39;,
+    &#39;plugins/widgets/widget.content.controller&#39;
+], function defineVineCoController(PluginBase, WidgetContentController) {
+
+<span id='VineCoController-method-constructor'><span id='VineCoController'>    /**
+</span></span>     * Define VineCo controller
+     * @class VineCoController
+     * @extends PluginController
+     * @extends WidgetContentController
+     * @constructor
+     */
+    var VineCoController = function VineCoController() {
+    };
+
+    return VineCoController.extend(&#39;VineCoController&#39;, {
+
+<span id='VineCoController-method-setEmbeddedContent'>        /**
+</span>         * Set embedded content
+         * @member VineCoController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
+
+            this.view.elements.$vineco.renderEmbeddedContent({
+                api: this.model.getPrefs(&#39;vinecoApi&#39;),
+                link: this.model.getPrefs(&#39;vinecoLink&#39;),
+                postcard: this.model.getPrefs(&#39;vinecoPostcard&#39;),
+                audio: this.model.getPrefs(&#39;vinecoAutoplayAudio&#39;),
+                video: this.model.getPrefs(&#39;vinecoRelatedVideos&#39;)
+            });
+        },
+
+<span id='VineCoController-method-addVineCoRule'>        /**
+</span>         * Add VineCo rule
+         * @member VineCoController
+         * @param e
+         */
+        addVineCoRule: function addVineCoRule(e) {
+
+<span id='VineCoController-property-S-button'>            /**
+</span>             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target),
+                scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.publishRule,
+                [$button.attr(&#39;value&#39;), this.scope.constructor.prototype.name]
+            );
+        }
+
+    }, PluginBase.prototype, WidgetContentController.prototype);
+});
+</pre>
+</body>
+</html>

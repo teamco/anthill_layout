@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineIctvElement(BaseElement) {
+
+<span id='IctvElement-method-IctvElement'><span id='IctvElement'>    /**
+</span></span>     * Define Ictv Element
+     * @param view
+     * @param opts
+     * @returns {IctvElement}
+     * @constructor
+     * @class IctvElement
+     * @extends BaseElement
+     */
+    var IctvElement = function IctvElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;ictv&#39;, {resource: &#39;/widgets&#39;});
+
+        return this;
+    };
+
+    return IctvElement.extend(&#39;IctvElement&#39;, {
+
+<span id='IctvElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member IctvElement
+         * @param {string} url
+         */
+        renderEmbeddedContent: function renderEmbeddedContent(url) {
+            this.$.append([
+                &quot;&lt;object id=&#39;zl_player&#39; name=&#39;zl_player&#39; type=&#39;application/x-shockwave-flash&#39; data=&#39;http://fakty.ictv.ua/public/swfobject/zl_player.swf&#39; width=&#39;100%&#39; height=&#39;100%&#39;&gt;&quot;,
+                &quot;&lt;param name=&#39;movie&#39; value=&#39;http://fakty.ictv.ua/public/swfobject/zl_player.swf&#39;/&gt;&quot;,
+                &quot;&lt;param name=&#39;bgcolor&#39; value=&#39;#000000&#39;/&gt;&quot;,
+                &quot;&lt;param name=&#39;quality&#39; value=&#39;high&#39;/&gt;&quot;,
+                &quot;&lt;param name=&#39;wmode&#39; value=&#39;transparent&#39;/&gt;&quot;,
+                &quot;&lt;param name=&#39;scale&#39; value=&#39;exactfit&#39;/&gt;&quot;,
+                &quot;&lt;param name=&#39;allowScriptAccess&#39; value=&#39;always&#39;/&gt;&quot;,
+                &quot;&lt;param name=&#39;allowFullScreen&#39; value=&#39;true&#39;/&gt;&quot;,
+                &quot;&lt;param name=&#39;flashvars&#39; value=&#39;&quot;, url, &quot;&#39;/&gt;&quot;,
+                &quot;&lt;/object&gt;&quot;
+            ].join(&#39;&#39;));
+        }
+
+    }, BaseElement.prototype);
+
+});
+</pre>
+</body>
+</html>

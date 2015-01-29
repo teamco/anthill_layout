@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 11:06 PM
+ * To change this template use File | Settings | File Templates.
+ */
+define([
+    &#39;modules/Model&#39;,
+    &#39;plugins/widgets/widget.content.model&#39;
+], function definePremiereTvModel(BaseModel, WidgetContentModel) {
+
+<span id='PremiereTvModel-method-constructor'><span id='PremiereTvModel'>    /**
+</span></span>     * Define PremiereTv model
+     * @extends BaseModel
+     * @extends WidgetContentModel
+     * @class PremiereTvModel
+     * @constructor
+     */
+    var PremiereTvModel = function PremiereTvModel() {
+
+<span id='PremiereTvModel-property-preferences'>        /**
+</span>         * Define preferences
+         * @member PremiereTvModel
+         * @type {{
+         *      premieretvEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+         * }}
+         */
+        this.preferences = {
+            premieretvEmbedCode: {
+                type: &#39;textarea&#39;,
+                disabled: true,
+                value: &#39;&lt;object type=&quot;application/x-shockwave-flash&quot; id=&quot;myDynamicContent&quot; name=&quot;myDynamicContent&quot; data=&quot;http://www.planeta-online.tv/planeta_player.swf?ver=102&quot; width=&quot;692&quot; height=&quot;384&quot; style=&quot;display: block !important;&quot;&gt;&lt;param name=&quot;menu&quot; value=&quot;true&quot;&gt;&lt;param name=&quot;allowFullScreen&quot; value=&quot;true&quot;&gt;&lt;param name=&quot;allowScriptAccess&quot; value=&quot;always&quot;&gt;&lt;param name=&quot;bgcolor&quot; value=&quot;#000000&quot;&gt;&lt;param name=&quot;wmode&quot; value=&quot;opaque&quot;&gt;&lt;param name=&quot;flashvars&quot; value=&quot;f=ZHVyYXRpb249LTEmbG9nbz1odHRwOi8vd3d3LnBsYW5ldGEtb25saW5lLnR2L2ltYWdlcy9sb2dvL3ByLnBuZyZhZGZveD10cnVlJmNhdF9pZD0xNSZzdWJqZWN0PTQmcHVpZDY9MjAmYWdlPTQmeWVhcj05Jmdlbz0xJmNvZGU9MDA0MWEyNmY5NzhhNDM5M2E0M2NjNDlkYTVjZmJkNjQmZGw9d3d3LnBsYW5ldGEtb25saW5lLnR2JnJlZj13d3cucGxhbmV0YS1vbmxpbmUudHYmbGluaz1odHRwOi8vd3d3LnBsYW5ldGEtb25saW5lLnR2L2NoYW5uZWxzLzUuaHRtbCZvcGVuTGlua3M9X3NlbGYmdGl0bGU9JUQwJTlGJUQwJUEwJUQwJTk1JUQwJTlDJUQwJUFDJUQwJTk1JUQwJUEwJUQwJTkwLlRWJnJ0bXA9cnRtcDovLzgwLjkzLjUzLjg4OjE5MzUvbGl2ZS9jaGFubmVsXzU=&quot;&gt;&lt;/object&gt;&#39;,
+                visible: true
+            }
+        };
+
+<span id='PremiereTvModel-property-rules'>        /**
+</span>         * Define rules
+         * @member PremiereTvModel
+         * @type {{}}
+         */
+        this.rules = {};
+    };
+
+    return PremiereTvModel.extend(&#39;PremiereTvModel&#39;, {
+
+<span id='PremiereTvModel-method-setPremieretvEmbedCode'>        /**
+</span>         * Set PremiereTv embed code
+         * @member PremiereTvModel
+         * @param {string} embed
+         */
+        setPremieretvEmbedCode: function setPremieretvEmbedCode(embed) {
+            this.setPrefs(&#39;premieretvEmbedCode&#39;, embed);
+        }
+
+    }, BaseModel.prototype, WidgetContentModel.prototype);
+});
+</pre>
+</body>
+</html>

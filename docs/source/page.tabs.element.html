@@ -58,27 +58,83 @@ define([
 <span id='PageTabsElement-method-renderEmbeddedContent'>        /**
 </span>         * Render Embedded content
          * @member PageTabsElement
-         * @param {{}} pages
-         * @param {Page} page
+         * @param {object} pages
          */
-        renderEmbeddedContent: function renderEmbeddedContent(pages, page) {
+        renderEmbeddedContent: function renderEmbeddedContent(pages) {
 
             this.empty();
 
-            for (var index in pages) {
+<span id='PageTabsView-property-items'>            /**
+</span>             * Define page tab items
+             * @member PageTabsView
+             * @type {object}
+             */
+            this.view.elements.items = {};
+
+            this.view.controller.clearParentThumbnail();
+
+            var item, index,
+                tabs = [], $tab,
+                order, show;
+
+            for (index in pages) {
 
                 if (pages.hasOwnProperty(index)) {
 
-                    this.$.append(
-                        this.view.renderPageTabsItem(
-                            pages[index],
-                            page === pages[index] ? this.current : &#39;&#39;
-                        )
-                    );
+<span id='PageTabsElement-property-item'>                    /**
+</span>                     * Get item
+                     * @type {Page}
+                     */
+                    item = pages[index];
+
+<span id='PageTabsElement-property-show'>                    /**
+</span>                     * Show page in tabs
+                     * @type {PagesPreferences.defaultPrefs.showInTabs|*}
+                     */
+                    show = item.model.getConfig(&#39;preferences&#39;).showInTabs;
+
+                    if (show) {
+
+<span id='PageTabsElement-property-order'>                        /**
+</span>                         * Get order
+                         * @type {number}
+                         */
+                        order = item.model.getConfig(&#39;preferences&#39;).order;
+
+<span id='PageTabsElement-property-S-tab'>                        /**
+</span>                         * Define tab
+                         * @type {jQuery}
+                         */
+                        $tab = this.view.renderPageTabsItem(item);
+
+                        typeof(order) === &#39;number&#39; ?
+                            tabs[order] = $tab :
+                            tabs.push($tab);
+                    }
                 }
             }
 
-            this.view.controller.clearParentThumbnail();
+            this.$.append(tabs);
+        },
+
+<span id='PageTabsElement-method-setPageTabAsCurrent'>        /**
+</span>         * Set page tab as current
+         * @member PageTabsElement
+         * @param {Page} page
+         */
+        setPageTabAsCurrent: function setPageTabAsCurrent(page) {
+
+            // Reset current state
+            $(&#39;li&#39;, this.$).removeClass(this.current);
+
+<span id='PageTabsElement-property-title'>            /**
+</span>             * Get current page title
+             * @type {string}
+             */
+            var title = page.model.getItemTitle();
+
+            $(&#39;li:contains(&quot;&#39; + title + &#39;&quot;)&#39;, this.$).
+                addClass(this.current);
         }
 
     }, BaseElement.prototype);

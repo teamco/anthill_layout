@@ -63,7 +63,7 @@ define([
             var panel = this.getAuthorPanel();
 
             return panel.model.getModule(
-                panel.model.getIndex(name)
+                panel.model.getModuleIndex(name)
             ).module;
         },
 
@@ -81,8 +81,36 @@ define([
             var panel = this.getAuthorPanel();
 
             return panel.model.getModule(
-                panel.model.getIndex(&#39;widget-rules&#39;)
+                panel.model.getModuleIndex(&#39;widget-rules&#39;)
             ).module;
+        },
+
+<span id='PluginController-method-getGalleryModule'>        /**
+</span>         * Get gallery module
+         * @member PluginController
+         * @return {Gallery}
+         */
+        getGalleryModule: function getGalleryModule() {
+
+<span id='PluginController-property-panel'>            /**
+</span>             * Get panel
+             * @type {Panel}
+             */
+            var panel = this.getAuthorPanel();
+
+<span id='PluginController-property-gallery'>            /**
+</span>             * Get gallery
+             * @type {Gallery}
+             */
+            var gallery = (panel.model.getModule(
+                panel.model.getModuleIndex(&#39;gallery&#39;)
+            ) || {}).module;
+
+            if (!gallery) {
+                this.logger.warn(&#39;Unable to locate gallery module&#39;);
+            }
+
+            return gallery;
         },
 
 <span id='PluginController-method-isDataNotExist'>        /**
@@ -111,6 +139,22 @@ define([
             require([data], function defineEnUs(EnUs) {
                 plugin.i18n.updateData(EnUs);
             });
+        },
+
+<span id='PluginController-method-loadModuleContent'>        /**
+</span>         * Load module content
+         * @member PluginController
+         * @param {boolean} opened
+         * @param {boolean} [force]
+         */
+        loadModuleContent: function loadModuleContent(opened, force) {
+
+            if (opened) {
+                this.view.renderContent(
+                    this.controller.getModuleData(),
+                    force
+                );
+            }
         },
 
 <span id='PluginController-method-locateElement'>        /**
@@ -149,6 +193,11 @@ define([
              * @type {*}
              */
             var content = widget.controller.getContent();
+
+            if (!content) {
+                widget.logger.warn(&#39;Undefined content&#39;);
+                return false;
+            }
 
             content.observer.publish(
                 content.eventmanager.eventList.defineReferrer,

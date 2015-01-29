@@ -65,25 +65,16 @@ define([
         setAttributes: function setAttributes() {
 
             this.$.attr({
+
                 title: this.data.name,
                 resource: this.data.resource
-            });
 
+            }).addClass(
 
-            if (this.data.thumbnail.length &gt; 0) {
-
-                this.$.css({
-                    backgroundImage: &#39;url(&quot;&#39; + this.data.thumbnail + &#39;&quot;)&#39;
-                });
-
-            } else {
-
-                this.$.addClass(
-                    this.view.controller.getResourceClassName(
-                        this.data.resource
-                    )
-                );
-            }
+                this.view.controller.getResourceClassName(
+                    this.data.resource
+                )
+            );
         },
 
 <span id='GalleryContentElement-method-bindInstallWidget'>        /**

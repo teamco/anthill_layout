@@ -27,9 +27,9 @@
 
     if (!Function.prototype.bind) {
 
-<span id='global-method-bind'>        /**
+<span id='Function-method-bind'>        /**
 </span>         * Define bind
-         * @memberOf Function
+         * @member Function
          * @param oThis
          * @returns {fBound}
          */
@@ -87,9 +87,9 @@
     // It takes a name and a function, and adds them to a function&#39;s prototype object.
     // It returns this.
 
-<span id='fNOP-method-method'>    /**
+<span id='Function-method-method'>    /**
 </span>     * Function add Method
-     * @memberOf Function
+     * @member Function
      * @param {string} name
      * @param {function} func
      * @returns {Function}
@@ -113,7 +113,6 @@
     // explicitly setting this and passing an array of parameters. The parameters (if any)
     // are obtained from the arguments array. Unfortunately, the arguments array is not a
     // true array, so we have to use apply again to invoke the array slice method.
-
     Function.method(&#39;inherits&#39;, function inherits(Parent) {
         var d = {},
             p = (this.prototype[Parent.name.toLowerCase()] = new Parent());
@@ -153,8 +152,9 @@
         return this;
     });
 
-<span id='fNOP-property-'>    /**
+<span id='Function-property-'>    /**
 </span>     * Get Function name
+     * @member Function
      */
     if (Function.prototype.name === undefined &amp;&amp; Object.defineProperty !== undefined) {
 
@@ -178,51 +178,49 @@
         });
     }
 
-<span id='fNOP-property-'>    /**
+<span id='Function-property-'>    /**
 </span>     * Get Function Caller name
+     * @member Function
      */
     Function.method(&#39;getCallerName&#39;, function getCallerName() {
         var cfn = this.caller;
         return typeof cfn === &#39;function&#39; ? cfn.name : null;
     });
 
-<span id='fNOP-property-'>    /**
+<span id='Function-property-'>    /**
 </span>     * Extend Function prototype
+     * @member Function
      */
     Function.method(&#39;extend&#39;, function extend() {
 
         var i = 0, l = arguments.length;
 
-        function extendMethod(node) {
+        function _extendMethod(node) {
+
+            // Extend constructor as named instance
             if (typeof(node) === &#39;function&#39;) {
-
-                var self = {};
-
-                $.extend(true, self, this.prototype);
+                var _proto = {};
+                $.extend(true, _proto, this.prototype);
                 this.inherits(node);
-                $.extend(true, this.prototype, self);
-
-            } else if (typeof(node) === &#39;string&#39;) {
-
-                if (this.name.length === 0) {
-                    this.prototype.name = this.name.set(node);
-                }
-
-            } else {
-
+                $.extend(true, this.prototype, _proto);
+            } else if (typeof(node) !== &#39;string&#39;) {
+                // Set function name
+                // Extend constructor prototype
+                delete node.name;
                 $.extend(true, this.prototype, node);
-            }
+            } else this.prototype.name = node;
         }
 
         for (i; i &lt; l; i += 1) {
-            extendMethod.bind(this)(arguments[i]);
+            _extendMethod.bind(this)(arguments[i]);
         }
 
         return this;
     });
 
-<span id='fNOP-property-'>    /**
+<span id='Function-property-'>    /**
 </span>     * Clone function
+     * @member Function
      */
     Function.method(&#39;clone&#39;, function clone() {
 
@@ -262,9 +260,9 @@
     // }.debounce(100, true); // execute at start and use a 100ms detection period
     if (!Function.prototype.debounce) {
 
-<span id='fNOP-method-debounce'>        /**
+<span id='Function-method-debounce'>        /**
 </span>         * Define function debounce
-         * @memberOf Function
+         * @member Function
          * @param [threshold]
          * @param [execAsap]
          * @returns {debounced}

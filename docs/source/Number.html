@@ -84,12 +84,23 @@ define([], function defineBaseNumber() {
          */
         sortNumeric: function sortNumeric(a, b) {
             return a - b;
-        }
+        },
 
+<span id='BaseNumber-method-bytes2Size'>        /**
+</span>         * Bytes to size
+         * @param {number} bytes
+         * @returns {string}
+         */
+        bytes2Size: function bytes2Size(bytes) {
+            if (!bytes) return &#39;0 Byte&#39;;
+            var k = 1000;
+            var sizes = [&#39;Bytes&#39;, &#39;KB&#39;, &#39;MB&#39;, &#39;GB&#39;, &#39;TB&#39;, &#39;PB&#39;, &#39;EB&#39;, &#39;ZB&#39;, &#39;YB&#39;];
+            var i = Math.floor(Math.log(bytes) / Math.log(k));
+            return (bytes / Math.pow(k, i)).toPrecision(3) + &#39; &#39; + sizes[i];
+        }
     });
 
     return new BaseNumber();
-
 });</pre>
 </body>
 </html>

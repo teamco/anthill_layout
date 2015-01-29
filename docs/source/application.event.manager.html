@@ -49,7 +49,11 @@ define([
 </span>         * Define event list
          * @member AppEventManager
          * @type {{
+         *      loadApplication: string,
+         *      defineGlobalInstance: string,
          *      defineSetting: string,
+         *      updateStorageVersion: string,
+         *      setRoutes: string,
          *      initResizeWindow: string,
          *      resizeWindow: {eventName: string, params: {buffer: number}},
          *      resizeWindowHooks: string,
@@ -59,13 +63,15 @@ define([
          *      resizeWorkspaces: string,
          *      resizeWorkspace: string,
          *      setAsLoaded: string,
-         *      afterLoadingItems: string,
-         *      createAuthorPanel: string,
-         *      createToolPanel: string
+         *      afterLoadingItems: string
          * }}
          */
         eventList: {
+            loadApplication: &#39;load.application&#39;,
+            defineGlobalInstance: &#39;define.global.instance&#39;,
             defineSetting: &#39;define.setting&#39;,
+            updateStorageVersion: &#39;update.storage.version&#39;,
+            setRoutes: &#39;set.routes&#39;,
             initResizeWindow: {
                 eventName: &#39;init.resize.window&#39;,
                 params: { single: true }
@@ -78,9 +84,7 @@ define([
             resizeWorkspace: &#39;resize.workspace&#39;,
             resizeWorkspaces: &#39;resize.workspaces&#39;,
             setAsLoaded: &#39;set.as.loaded&#39;,
-            afterLoadingItems: &#39;after.loading.items&#39;,
-            createAuthorPanel: &#39;create.author.panel&#39;,
-            createToolPanel: &#39;create.tool.panel&#39;
+            afterLoadingItems: &#39;after.loading.items&#39;
         }
 
     }, BaseEvent.prototype);

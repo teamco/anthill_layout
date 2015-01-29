@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/daily.motion/element/daily.motion.element&#39;,
+    &#39;plugins/widgets/daily.motion/element/daily.motion.preferences.element&#39;,
+    &#39;plugins/widgets/daily.motion/element/daily.motion.rules.element&#39;
+], function defineDailyMotionView(BaseView, Header, Footer, DailyMotionElement, DailyMotionPreferencesElement, DailyMotionRulesElement) {
+
+<span id='DailyMotionView-method-constructor'><span id='DailyMotionView'>    /**
+</span></span>     * Define view
+     * @class DailyMotionView
+     * @extends BaseView
+     * @constructor
+     */
+    var DailyMotionView = function DailyMotionView() {
+    };
+
+    return DailyMotionView.extend(&#39;DailyMotionView&#39;, {
+
+<span id='DailyMotionView-method-renderDailyMotion'>        /**
+</span>         * Render dailymotion element
+         * @member DailyMotionView
+         */
+        renderDailyMotion: function renderDailyMotion() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='DailyMotionView-property-S-dailymotion'>            /**
+</span>             * Define $dailymotion
+             * @type {DailyMotionElement}
+             */
+            this.elements.$dailymotion = new DailyMotionElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='DailyMotionView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member DailyMotionView
+         * @returns {DailyMotionPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='DailyMotionView-property-S-preferences'>            /**
+</span>             * Define DailyMotion Preferences Element
+             * @type {DailyMotionPreferencesElement}
+             */
+            this.elements.$preferences = new DailyMotionPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='DailyMotionView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member DailyMotionView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {DailyMotionRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='DailyMotionView-property-data'>            /**
+</span>             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+<span id='DailyMotionView-property-S-rules'>            /**
+</span>             * Define DailyMotion Rules Element
+             * @type {DailyMotionRulesElement}
+             */
+            this.elements.$rules = new DailyMotionRulesElement(this, {
+                data: data,
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='DailyMotionView-method-render'>        /**
+</span>         * Render dailymotion
+         * @member DailyMotionView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderDailyMotion.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});
+</pre>
+</body>
+</html>

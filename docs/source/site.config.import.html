@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 11/4/14.
+ */
+
+define(function defineSiteConfigImport() {
+
+<span id='SiteConfigImport-method-constructor'><span id='SiteConfigImport'>    /**
+</span></span>     * Define site import
+     * @class SiteConfigImport
+     * @constructor
+     */
+    var SiteConfigImport = function SiteConfigImport() {
+
+    };
+
+    return SiteConfigImport.extend(&#39;SiteConfigImport&#39;, {
+
+<span id='SiteConfigImport-method-importSiteData'>        /**
+</span>         * Import site data
+         * @member SiteConfigImport
+         */
+        importSiteData: function importSiteData() {
+            this.view.showImportData();
+        },
+
+<span id='SiteConfigImport-method-approveImportSiteData'>        /**
+</span>         * Approve import site data
+         * @member SiteConfigImport
+         */
+        approveImportSiteData: function approveImportSiteData() {
+
+<span id='SiteConfigImport-property-scope'>            /**
+</span>             * Get scope
+             * @type {SiteConfig}
+             */
+            var scope = this.scope;
+
+<span id='SiteConfigImport-property-elements'>            /**
+</span>             * Get view elements
+             * @type {SiteConfigView.elements}
+             */
+            var elements = scope.view.elements;
+
+<span id='SiteConfigImport-property-S-modal'>            /**
+</span>             * Get $modal
+             * @type {ModalElement}
+             */
+            var $modal = scope.view.get$modal();
+
+            if (!$modal || $modal.$buttons.confirm.disabled) {
+                return false;
+            }
+
+            this.root().model.setting.importData(
+                elements.$import.data
+            );
+
+            $modal.$buttons.reload.enable();
+            $modal.$buttons.confirm.disable();
+            $modal.$buttons.reject.destroy();
+            $modal.$buttons.closeX.destroy();
+        },
+
+<span id='SiteConfigImport-method-readyToImportSiteData'>        /**
+</span>         * Ready to import site data
+         * @member SiteConfigImport
+         * @param {object} json
+         * @param {FileList} file
+         */
+        readyToImportSiteData: function readyToImportSiteData(json, file) {
+            this.view.showApproveImportData(json, file);
+        },
+
+<span id='SiteConfigImport-method-reloadSiteData'>        /**
+</span>         * Reload site data
+         * @member SiteConfigImport
+         */
+        reloadSiteData: function reloadSiteData() {
+
+<span id='SiteConfigImport-property-S-modal'>            /**
+</span>             * Get $modal
+             * @type {ModalElement}
+             */
+            var $modal = this.scope.view.get$modal();
+
+            if (!$modal || $modal.$buttons.reload.disabled) {
+                return false;
+            }
+
+            document.location.reload(true);
+        }
+    });
+});</pre>
+</body>
+</html>

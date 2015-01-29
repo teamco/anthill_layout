@@ -78,7 +78,6 @@ define([
 
                 if (this.scope.base.isUUID(uuid)) {
                     return this.getItemByUUID(uuid);
-                    break;
                 }
             }
         },
@@ -89,7 +88,66 @@ define([
          * @param {string} layout
          */
         setLayoutMode: function setLayoutMode(layout) {
-            this.setPrefs(&#39;layoutMode&#39;, layout);
+            this._setItemInfoPreferences(&#39;layoutMode&#39;, layout);
+        },
+
+<span id='PageModel-method-setLayoutColumns'>        /**
+</span>         * Set layout columns
+         * @member PageModel
+         * @param {number} columns
+         */
+        setLayoutColumns: function setLayoutColumns(columns) {
+
+            this._setItemInfoPreferences(&#39;layoutColumns&#39;, columns);
+
+<span id='PageModel-property-scope'>            /**
+</span>             * Get scope
+             * @type {Page}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateLayoutConfig
+            );
+        },
+
+<span id='PageModel-method-setOverlapping'>        /**
+</span>         * Set global widgets overlapping
+         * @member PageModel
+         * @param {boolean} overlapping
+         */
+        setOverlapping: function setOverlapping(overlapping) {
+            this._setItemInfoPreferences(&#39;overlapping&#39;, overlapping);
+            this.getConfig(&#39;widget&#39;).overlapping = overlapping;
+        },
+
+<span id='PageModel-method-setShowInTabs'>        /**
+</span>         * Set show in tabs
+         * @member PageModel
+         * @param {boolean} show
+         */
+        setShowInTabs: function setShowInTabs(show) {
+            this._setItemInfoPreferences(&#39;showInTabs&#39;, show);
+        },
+
+<span id='PageModel-method-setPageHeader'>        /**
+</span>         * Set page header
+         * @member PageModel
+         * @param {boolean} header
+         */
+        setPageHeader: function setPageHeader(header) {
+            this._setItemInfoPreferences(&#39;pageHeader&#39;, header);
+            this.getConfig(&#39;html&#39;).header = header;
+        },
+
+<span id='PageModel-method-setPageFooter'>        /**
+</span>         * Set page footer
+         * @member PageModel
+         * @param {boolean} footer
+         */
+        setPageFooter: function setPageFooter(footer) {
+            this._setItemInfoPreferences(&#39;pageFooter&#39;, footer);
+            this.getConfig(&#39;html&#39;).footer = footer;
         }
 
     }, BaseModel.prototype);

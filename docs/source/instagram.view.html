@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/instagram/element/instagram.element&#39;,
+    &#39;plugins/widgets/instagram/element/instagram.preferences.element&#39;,
+    &#39;plugins/widgets/instagram/element/instagram.rules.element&#39;
+], function defineInstagramView(BaseView, Header, Footer, InstagramElement, InstagramPreferencesElement, InstagramRulesElement) {
+
+<span id='InstagramView-method-constructor'><span id='InstagramView'>    /**
+</span></span>     * Define view
+     * @class InstagramView
+     * @extends BaseView
+     * @constructor
+     */
+    var InstagramView = function InstagramView() {
+    };
+
+    return InstagramView.extend(&#39;InstagramView&#39;, {
+
+<span id='InstagramView-method-renderInstagram'>        /**
+</span>         * Render Instagram element
+         * @member InstagramView
+         */
+        renderInstagram: function renderInstagram() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='InstagramView-property-S-instagram'>            /**
+</span>             * Define $instagram
+             * @type {InstagramElement}
+             */
+            this.elements.$instagram = new InstagramElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='InstagramView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member InstagramView
+         * @returns {InstagramPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='InstagramView-property-S-preferences'>            /**
+</span>             * Define Instagram Preferences Element
+             * @type {InstagramPreferencesElement}
+             */
+            this.elements.$preferences = new InstagramPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='InstagramView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member InstagramView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {InstagramRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='InstagramView-property-S-rules'>            /**
+</span>             * Define Instagram Rules Element
+             * @type {InstagramRulesElement}
+             */
+            this.elements.$rules = new InstagramRulesElement(this, {
+                data: this.controller.getRules(),
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='InstagramView-method-render'>        /**
+</span>         * Render Instagram
+         * @member InstagramView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderInstagram.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});
+</pre>
+</body>
+</html>

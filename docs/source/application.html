@@ -44,8 +44,11 @@
          *          limit: number,
          *          counter: number
          *      },
+         *      appName: string,
+         *      version: number,
          *      mode: string,
          *      type: string,
+         *      activate: boolean,
          *      isResized: boolean,
          *      loading: boolean,
          *      logger: {
@@ -80,9 +83,11 @@
                 counter: 0
             },
             appName: &#39;anthill&#39;,
+            version: 1,
             mode: &#39;development&#39;,
             type: &#39;default&#39;,
-            isResized: false,
+            activate: false,
+            isResized: true,
             loading: false,
             limit: true,
             logger: {
@@ -109,6 +114,13 @@
                 }
             }
         };
+
+<span id='App-property-loadingDataCounter'>        /**
+</span>         * Define loading data counter
+         * @member App
+         * @type {number|*}
+         */
+        this.loadingDataCounter = undefined;
 
 <span id='App-property-panels'>        /**
 </span>         * Define panels
@@ -150,23 +162,28 @@
             render: true
         });
 
-        this.observer.publish(
-            this.eventmanager.eventList.defineSetting
-        );
+<span id='App-property-routes'>        /**
+</span>         * Update routes
+         * @type {{updateSiteContent: string[]}}
+         */
+        this.config.routes = {
+            updateSiteContent: [
+                &#39;/sites/&#39;,
+                &#39;put&#39;
+            ]
+        };
 
-        this.observer.publish(
-            this.eventmanager.eventList.initResizeWindow
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.successCreated
+        this.observer.batchPublish(
+            this.eventmanager.eventList.defineSetting,
+            this.eventmanager.eventList.setRoutes,
+            this.eventmanager.eventList.initResizeWindow,
+            this.eventmanager.eventList.successCreated,
+            this.eventmanager.eventList.loadApplication,
+            this.eventmanager.eventList.defineGlobalInstance
         );
     };
 
-    return App.extend(&#39;App&#39;, {
-
-    }, AntHill.prototype);
-
+    return App.extend(&#39;App&#39;, {}, AntHill.prototype);
 });
 </pre>
 </body>

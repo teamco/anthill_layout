@@ -57,7 +57,7 @@ define([
             }
 
             this.header(Header, this.elements.$container).setText(
-                &#39;Page Widgets&#39;
+                &#39;Maximize Widgets&#39;
             );
 
 <span id='MaximizeView-property-S-maximize'>            /**
@@ -101,7 +101,7 @@ define([
                         style: &#39;content&#39;,
                         id: [
                             data[index].model.getConfig(&#39;uuid&#39;),
-                            this.scope.constructor.name.toDash()
+                            this.scope.constructor.prototype.name.toDash()
                         ].join(&#39;-&#39;),
                         $container: this.elements.$maximize.$,
                         data: data[index]

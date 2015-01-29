@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by teamco on 8/18/14.
+ */
+
+define([&#39;jquery&#39;], function defineUploadOnDrop($) {
+
+<span id='UploadOnDropRenderer-method-constructor'><span id='UploadOnDropRenderer'>    /**
+</span></span>     * Define upload on drop
+     * @class UploadOnDropRenderer
+     * @constructor
+     */
+    var UploadOnDropRenderer = function UploadOnDropRenderer() {
+
+    };
+
+    return UploadOnDropRenderer.extend(&#39;UploadOnDropRenderer&#39;, {
+
+<span id='UploadOnDropRenderer-method-renderJSONUploader'>        /**
+</span>         * Render JSON uploader
+         * @member UploadOnDropRenderer
+         * @param opts
+         */
+        renderJSONUploader: function renderJSONUploader(opts) {
+
+            if (this.checkFileApi()) {
+
+                var scope = this.view.scope,
+                    cname = scope.constructor.prototype.name.toDash(),
+                    $dropZone = $(&#39;&lt;div class=&quot;&#39; + cname + &#39;-drop-zone&quot; /&gt;&#39;).
+                        text(&#39;Drop JSON here&#39;),
+                    $output = $(&#39;&lt;ul class=&quot;&#39; + cname + &#39;-file-info&quot;&gt;&lt;/ul&gt;&#39;);
+
+                this.$.append([
+                    $dropZone,
+                    $output
+                ]);
+
+<span id='UploadOnDropRenderer-method-_handleFileSelect'>                /**
+</span>                 * Handle file select
+                 * @param {{dataTransfer}} evt
+                 * @private
+                 */
+                function _handleFileSelect(evt) {
+
+                    evt.stopPropagation();
+                    evt.preventDefault();
+
+<span id='UploadOnDropRenderer-property-files'>                    /**
+</span>                     * FileList object
+                     * @type {FileList}
+                     */
+                    var files = evt.dataTransfer.files,
+                        file = files[0];
+
+<span id='UploadOnDropRenderer-property-reader'>                    /**
+</span>                     * Define reader
+                     * @type {FileReader}
+                     */
+                    var reader = new FileReader();
+
+<span id='UploadOnDropRenderer-method-onloadend'>                    /**
+</span>                     * If we use onloadend, we need to check the readyState.
+                     * @param evt
+                     */
+                    reader.onloadend = function (evt) {
+
+                        // DONE == 2
+                        if (evt.target.readyState === FileReader.DONE) {
+
+<span id='UploadOnDropRenderer-property-content'>                            /**
+</span>                             * Get file content
+                             * @type {string}
+                             */
+                            var content = evt.target.result;
+
+                            try {
+
+                                // Remove back slashes from json
+                                // http://json.parser.online.fr/beta/
+                                content = content.replace(/\\&quot;/g, &#39;&quot;&#39;).
+                                    replace(/\\&quot;/g, &#39;&quot;&#39;).
+                                    replace(/&quot;/, &#39;&#39;).
+                                    replace(/&quot;$/, &quot;&quot;);
+
+                                scope.observer.publish(
+                                    opts.eventName,
+                                    [JSON.parse(content), file]
+                                );
+
+                                scope.logger.debug(content);
+
+                            } catch (e) {
+
+                                scope.logger.error(&#39;Unable to parse JSON&#39;, e, content);
+                                $dropZone.addClass(&#39;error&#39;).
+                                    text(&#39;Unable to parse JSON&#39;);
+                            }
+                        }
+                    };
+
+                    reader.readAsBinaryString(
+                        file.slice(0, file.size - 1)
+                    );
+
+                    if (opts.info) {
+
+                        // List some properties
+                        var info = [
+                            &#39;&lt;li&gt;&lt;strong&gt;&#39;, encodeURIComponent(file.name), &#39;&lt;/strong&gt; (&#39;,
+                            file.type || &#39;n/a&#39;, &#39;) - &#39;,
+                            this.view.scope.base.lib.number.bytes2Size(file.size), &#39;&lt;/li&gt;&#39;,
+                            &#39;&lt;li&gt; Last modified: &#39;,
+                            file.lastModifiedDate ?
+                                file.lastModifiedDate.toLocaleDateString() : &#39;n/a&#39;,
+                            &#39;&lt;/li&gt;&#39;
+                        ];
+
+                        $output.html(info.join(&#39;&#39;));
+                    }
+                }
+
+<span id='UploadOnDropRenderer-method-_handleDragOver'>                /**
+</span>                 * Define handle Drag/Over
+                 * @param evt
+                 * @private
+                 */
+                function _handleDragOver(evt) {
+
+                    evt.stopPropagation();
+                    evt.preventDefault();
+
+                    // Explicitly show this is a copy.
+                    evt.dataTransfer.dropEffect = &#39;copy&#39;;
+                }
+
+                // Setup the dnd listeners.
+                $dropZone[0].addEventListener(&#39;dragover&#39;, _handleDragOver, false);
+                $dropZone[0].addEventListener(&#39;drop&#39;, _handleFileSelect.bind(this), false);
+            }
+        }
+    });
+});</pre>
+</body>
+</html>

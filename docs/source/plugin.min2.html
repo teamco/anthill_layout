@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">tinymce.PluginManager.add(&quot;anchor&quot;,function(a){function b(){var b=a.selection.getNode(),c=&quot;&quot;;&quot;A&quot;==b.tagName&amp;&amp;(c=b.name||b.id||&quot;&quot;),a.windowManager.open({title:&quot;Anchor&quot;,body:{type:&quot;textbox&quot;,name:&quot;name&quot;,size:40,label:&quot;Name&quot;,value:c},onsubmit:function(b){a.execCommand(&quot;mceInsertContent&quot;,!1,a.dom.createHTML(&quot;a&quot;,{id:b.data.name}))}})}a.addButton(&quot;anchor&quot;,{icon:&quot;anchor&quot;,tooltip:&quot;Anchor&quot;,onclick:b,stateSelector:&quot;a:not([href])&quot;}),a.addMenuItem(&quot;anchor&quot;,{icon:&quot;anchor&quot;,text:&quot;Anchor&quot;,context:&quot;insert&quot;,onclick:b})});</pre>
+</body>
+</html>

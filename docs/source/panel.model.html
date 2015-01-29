@@ -69,7 +69,9 @@ define([
          * @param Package
          */
         definePackage: function definePackage(Package) {
-            this.packages.push(new Package(this.scope));
+            this.packages.push(
+                new Package(this.scope)
+            );
         },
 
 <span id='PanelModel-method-getModule'>        /**
@@ -82,13 +84,13 @@ define([
             return this.modules[index] || this.modules;
         },
 
-<span id='PanelModel-method-getIndex'>        /**
+<span id='PanelModel-method-getModuleIndex'>        /**
 </span>         * Get module index
          * @member PanelModel
          * @param resource
          * @returns {number}
          */
-        getIndex: function getIndex(resource) {
+        getModuleIndex: function getModuleIndex(resource) {
 
 <span id='PanelModel-property-modules'>            /**
 </span>             * Define local instance of modules
@@ -97,12 +99,16 @@ define([
             var modules = this.modules;
 
             for (var i = 0, l = modules.length; i &lt; l; i++) {
-                if (resource === modules[i].module.constructor.name.toDash()) {
+                if (resource === modules[i].module.constructor.prototype.name.toDash()) {
                     return i;
                 }
             }
 
-            this.scope.logger.error(&#39;Undefined index&#39;);
+            this.scope.logger.error(
+                &#39;Undefined module index&#39;,
+                resource,
+                modules
+            );
         },
 
 <span id='PanelModel-method-getPackage'>        /**

@@ -31,9 +31,10 @@ define(
 <span id='global-method-defineWorkspaceDataController'>    /**
 </span>     * Define WorkspaceDataController
      * @param {PluginController} PluginBase
+     * @param {PreferencesController} PreferencesController
      * @returns {WorkspaceDataController}
      */
-        function defineWorkspaceDataController(PluginBase, PreferencesController) {
+    function defineWorkspaceDataController(PluginBase, PreferencesController) {
 
 <span id='WorkspaceDataController-method-constructor'><span id='WorkspaceDataController'>        /**
 </span></span>         * Define pages controller
@@ -48,12 +49,12 @@ define(
 
         return WorkspaceDataController.extend(&#39;WorkspaceDataController&#39;, {
 
-<span id='WorkspaceDataController-method-getData'>            /**
-</span>             * Get data
+<span id='WorkspaceDataController-method-getModuleData'>            /**
+</span>             * Get module data
              * @member WorkspaceDataController
              * @returns {*}
              */
-            getData: function getData() {
+            getModuleData: function getModuleData() {
                 return this.model.getDataItems(
                     this.getWorkspace()
                 );
@@ -114,6 +115,41 @@ define(
                 this.activeContent = workspace.model.getItemByUUID(uuid);
             },
 
+<span id='WorkspaceDataController-method-preparePreferences'>            /**
+</span>             * Prepare to show preferences
+             * @member WorkspaceDataController
+             * @param config
+             */
+            preparePreferences: function preparePreferences(config) {
+
+<span id='WorkspaceDataController-property-swipe'>                /**
+</span>                 * Get swipe
+                 * @type {boolean}
+                 */
+                var swipe = this.model.getConfig(&#39;switch&#39;);
+
+                this.observer.publish(
+                    this.eventmanager.eventList.setActiveContent,
+                    config.uuid
+                );
+
+                if (swipe) {
+
+<span id='WorkspaceDataController-property-workspace'>                    /**
+</span>                     * Define Workspace
+                     * @type {Workspace}
+                     */
+                    var workspace = this.view.controller.getWorkspace();
+
+                    workspace.observer.publish(
+                        workspace.eventmanager.eventList.switchToPage,
+                        [this.activeContent, false]
+                    );
+                }
+
+                this.view.showPreferences(config, !swipe);
+            },
+
 <span id='WorkspaceDataController-method-approveUpdatePreferences'>            /**
 </span>             * Update prefs
              * @member WorkspaceDataController
@@ -141,10 +177,12 @@ define(
 </span>                 * Get element uuid
                  * @type {string}
                  */
-                var uuid = page.model.getUUID() + &#39;-workspace-data-view&#39;;
+                var uuid = page.model.getUUID() + &#39;-workspace-data-view&#39;,
+                    $item = this.getView().elements.items[uuid];
 
-                this.getView().elements.items[uuid].updateCounter(
-                    page
+                $item.updateCounter(page);
+                $item.updateShowInTabs(
+                    this.checkShowInTabs(page)
                 );
 
 <span id='WorkspaceDataController-property-workspace'>                /**
@@ -154,6 +192,19 @@ define(
                 var workspace = this.getWorkspace();
 
                 workspace.controller.setPageByHashLocation(page);
+            },
+
+<span id='WorkspaceDataController-method-checkShowInTabs'>            /**
+</span>             * Check show in tabs
+             * @member WorkspaceDataController
+             * @param {Page} page
+             * @returns {boolean}
+             */
+            checkShowInTabs: function checkShowInTabs(page) {
+
+                return this.scope.base.defineBoolean(
+                    page.model.getConfig(&#39;preferences&#39;).showInTabs, true, true
+                );
             },
 
 <span id='WorkspaceDataController-method-definePublisher'>            /**
@@ -177,7 +228,7 @@ define(
 
 <span id='WorkspaceDataController-property-S-item'>                /**
 </span>                 * Define $item
-                 * @type {PageElement}
+                 * @type {BaseElement}
                  */
                 var $item = this.scope.activeContent.view.get$item();
 
@@ -263,10 +314,6 @@ define(
                  */
                 var page = workspace.api.createPage([], true);
 
-                this.store(
-                    this.root()
-                );
-
                 workspace.observer.publish(
                     workspace.eventmanager.eventList.switchToPage,
                     [page, true]
@@ -282,7 +329,85 @@ define(
                     panel.eventmanager.eventList.showContent,
                     [true, panel.active]
                 );
+            },
 
+<span id='WorkspaceDataController-method-updatePagesOrder'>            /**
+</span>             * Update pages order
+             * @member WorkspaceDataController
+             * @param {Array} order
+             */
+            updatePagesOrder: function updatePagesOrder(order) {
+
+                var i = 0, l = order.length,
+                    $item, page;
+
+                for (i; i &lt; l; i++) {
+
+<span id='WorkspaceDataController-property-S-item'>                    /**
+</span>                     * Get $item
+                     * @type {WorkspaceDataContentElement}
+                     */
+                    $item = this.view.elements.items[order[i]];
+
+<span id='WorkspaceDataController-property-page'>                    /**
+</span>                     * Get page
+                     * @type {Page}
+                     */
+                    page = $item.page;
+
+                    page.observer.publish(
+                        page.eventmanager.eventList.transferPreferences,
+                        [&#39;order&#39;, i]
+                    );
+                }
+
+<span id='WorkspaceDataController-property-ws'>                /**
+</span>                 * Get workspace
+                 * @type {Workspace}
+                 */
+                var ws = page.controller.getContainment();
+
+                ws.observer.publish(
+                    ws.eventmanager.eventList.afterPageOrder,
+                    order
+                );
+            },
+
+<span id='WorkspaceDataController-method-switchToActivePage'>            /**
+</span>             * Switch to active page before rendering widget preferences
+             * @member WorkspaceDataController
+             * @returns {boolean}
+             */
+            switchToActivePage: function switchToActivePage() {
+
+<span id='WorkspaceDataController-property-page'>                /**
+</span>                 * Get page
+                 * @type {Page}
+                 */
+                var page = this.activeContent;
+
+                if (!page) {
+                    this.logger.warn(&#39;Undefined page&#39;);
+                    return false;
+                }
+
+                if (page === this.controller.getPage()) {
+                    this.logger.debug(&#39;Page already current&#39;);
+                    return false;
+                }
+
+<span id='WorkspaceDataController-property-ws'>                /**
+</span>                 * Get workspace
+                 * @type {Workspace}
+                 */
+                var ws = page.controller.getContainment();
+
+                ws.observer.publish(
+                    ws.eventmanager.eventList.switchToPage, [
+                        page,
+                        false
+                    ]
+                );
             }
 
         }, PluginBase.prototype, PreferencesController.prototype);

@@ -260,6 +260,21 @@ define([
             return false;
         },
 
+<span id='Observer-method-batchPublish'>        /**
+</span>         * Batch events publisher
+         * @member Observer
+         */
+        batchPublish: function batchPublish() {
+
+            for (var i = 0, l = arguments.length; i &lt; l; i++) {
+                this.publish.apply(
+                    this,
+                    this.base.isString(arguments[i]) ?
+                        [arguments[i]] : arguments[i]
+                );
+            }
+        },
+
 <span id='Observer-method-publish'>        /**
 </span>         * Publish event
          * @member Observer

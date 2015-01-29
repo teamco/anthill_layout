@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/vine.co/element/vine.co.element&#39;,
+    &#39;plugins/widgets/vine.co/element/vine.co.preferences.element&#39;,
+    &#39;plugins/widgets/vine.co/element/vine.co.rules.element&#39;
+], function defineVineCoView(BaseView, Header, Footer, VineCoElement, VineCoPreferencesElement, VineCoRulesElement) {
+
+<span id='VineCoView-method-constructor'><span id='VineCoView'>    /**
+</span></span>     * Define view
+     * @class VineCoView
+     * @extends BaseView
+     * @constructor
+     */
+    var VineCoView = function VineCoView() {
+    };
+
+    return VineCoView.extend(&#39;VineCoView&#39;, {
+
+<span id='VineCoView-method-renderVineCo'>        /**
+</span>         * Render VineCo element
+         * @member VineCoView
+         */
+        renderVineCo: function renderVineCo() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='VineCoView-property-S-vineco'>            /**
+</span>             * Define $vineco
+             * @type {VineCoElement}
+             */
+            this.elements.$vineco = new VineCoElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='VineCoView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member VineCoView
+         * @returns {VineCoPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='VineCoView-property-S-preferences'>            /**
+</span>             * Define VineCo Preferences Element
+             * @type {VineCoPreferencesElement}
+             */
+            this.elements.$preferences = new VineCoPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='VineCoView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member VineCoView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {VineCoRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='VineCoView-property-S-rules'>            /**
+</span>             * Define VineCo Rules Element
+             * @type {VineCoRulesElement}
+             */
+            this.elements.$rules = new VineCoRulesElement(this, {
+                data: this.controller.getRules(),
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='VineCoView-method-render'>        /**
+</span>         * Render VineCo
+         * @member VineCoView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderVineCo.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});
+</pre>
+</body>
+</html>

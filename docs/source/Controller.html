@@ -59,6 +59,33 @@ define([
             this.logger.debug(&#39;After init config&#39;, arguments);
         },
 
+<span id='PluginController-method-setRoutes'>        /**
+</span>         * Define routes setter
+         * @member PluginController
+         */
+        setRoutes: function setRoutes() {
+
+            var routes = this.model.getConfig(&#39;routes&#39;) || {},
+                index;
+
+            for (index in routes) {
+                if (routes.hasOwnProperty(index)) {
+                    this.controller.setRoute(index, routes[index]);
+                }
+            }
+        },
+
+<span id='BaseController-method-bindModelObserver'>        /**
+</span>         * Bind model observer
+         * @member BaseController
+         */
+        bindModelObserver: function bindModelObserver() {
+            this.logger.debug(&#39;Bind model observer&#39;, arguments);
+            if (this.model) {
+                this.model.bindModelObserver.apply(this, arguments);
+            }
+        },
+
 <span id='BaseController-method-afterLoadingItems'>        /**
 </span>         * After loading items
          * @member BaseController
@@ -68,6 +95,8 @@ define([
                 &#39;After loading items&#39;,
                 this.model.getItems()
             );
+            this.controller.setAsLoading(false);
+            this.view.get$item().hideLoader();
         },
 
 <span id='BaseController-method-setAsLoading'>        /**
@@ -83,7 +112,7 @@ define([
              */
             var root = this.root();
 
-            root.loading = load;
+            root.model.setConfig(&#39;loading&#39;, load);
 
             if (this.scope === root) {
 
@@ -115,7 +144,7 @@ define([
 
             if (workspace.controller) {
 
-                workspace.controller.switchPageOnHashChange.bind(workspace)();
+                workspace.controller.switchPageOnHashChange.bind(workspace)(false);
             }
         },
 
@@ -125,7 +154,7 @@ define([
          * @returns {boolean}
          */
         isLoading: function isLoading() {
-            return this.root().loading;
+            return this.root().model.getConfig(&#39;loading&#39;);
         },
 
 <span id='BaseController-method-getMode'>        /**
@@ -258,8 +287,8 @@ define([
          */
         successCreated: function successCreated() {
             this.logger.debug(
-                    this.constructor.name +
-                    &#39; was successfully created&#39;,
+                this.constructor.prototype.name +
+                &#39; was successfully created&#39;,
                 this
             );
         },
@@ -270,7 +299,7 @@ define([
          */
         successRendered: function successRendered() {
             this.logger.debug(
-                this.i18n.t(&#39;success.rendered&#39;).replace(/\{0\}/, this.constructor.name),
+                this.i18n.t(&#39;success.rendered&#39;).replace(/\{0}/, this.constructor.prototype.name),
                 this
             );
         },
@@ -386,19 +415,12 @@ define([
             return this.getMode() === &#39;custom&#39;;
         },
 
-<span id='BaseController-method-setOrder'>        /**
-</span>         * Set Order
+<span id='BaseController-method-afterUpdatePreferences'>        /**
+</span>         * After update preferences
          * @member BaseController
-         * @param collector
          */
-        setOrder: function setOrder(collector) {
-            var scope = this.scope,
-                base = this.base;
-
-            scope.config.order = base.define(
-                scope.config.order,
-                base.lib.hash.hashLength(collector)
-            );
+        afterUpdatePreferences: function afterUpdatePreferences() {
+            this.logger.debug(&#39;After update preferences&#39;, arguments);
         },
 
 <span id='BaseController-method-transferPreferences'>        /**
@@ -409,7 +431,7 @@ define([
          */
         transferPreferences: function transferPreferences(index, value) {
 
-            if (this.controller.isWidget()) {
+            if (!this.controller.isWidgetContent()) {
                 this.config.preferences[index] = value;
                 return false;
             }
@@ -447,7 +469,7 @@ define([
                 html: {
                     container: [
                         &#39;#&#39;, scope.model.getUUID(),
-                        &#39;-&#39;, scope.constructor.name.toLowerCase()
+                        &#39;-&#39;, scope.constructor.prototype.name.toLowerCase()
                     ].join(&#39;&#39;)
                 },
                 containment: scope
@@ -507,7 +529,7 @@ define([
          * @returns {boolean}
          */
         isWorkspace: function isWorkspace() {
-            return this.scope.constructor.name === &#39;Workspace&#39;;
+            return this.scope.constructor.prototype.name === &#39;Workspace&#39;;
         },
 
 <span id='BaseController-method-isPage'>        /**
@@ -516,7 +538,7 @@ define([
          * @returns {boolean}
          */
         isPage: function isPage() {
-            return this.scope.constructor.name === &#39;Page&#39;;
+            return this.scope.constructor.prototype.name === &#39;Page&#39;;
         },
 
 <span id='BaseController-method-isWidget'>        /**
@@ -525,7 +547,7 @@ define([
          * @returns {boolean}
          */
         isWidget: function isWidget() {
-            return this.scope.constructor.name === &#39;Widget&#39;;
+            return this.scope.constructor.prototype.name === &#39;Widget&#39;;
         },
 
 <span id='BaseController-method-isWidgetContent'>        /**
@@ -554,8 +576,9 @@ define([
          * @member BaseController
          * @param [node]
          * @param [data]
+         * @param {number} [counter]
          */
-        store: function store(node, data) {
+        store: function store(node, data, counter) {
 
 <span id='BaseController-property-root'>            /**
 </span>             * Define root
@@ -594,32 +617,42 @@ define([
              */
             var cname = node.model.getItemNameSpace();
 
-            if (!items || !node[cname].model) {
-                node.logger.debug(&#39;Collector&#39;, data);
-                root.model.setting.save(data);
-                return false;
+            if (node[cname].model) {
+
+<span id='BaseController-property-collector[cname]'>                /**
+</span>                 * Define data
+                 * @type {*}
+                 */
+                data.collector[cname] = data.collector[cname] || {};
+
+                $.extend(
+                    true,
+                    data.collector[cname],
+                    node.controller.collectItemProperties(
+                        !node[cname].model.getItems()
+                    )
+                );
             }
-
-<span id='BaseController-property-collector[cname]'>            /**
-</span>             * Define data
-             * @type {*}
-             */
-            data.collector[cname] = data.collector[cname] || {};
-
-            $.extend(
-                true,
-                data.collector[cname],
-                node.controller.collectItemProperties(
-                    !node[cname].model.getItems()
-                )
-            );
 
             for (index in items) {
 
                 if (items.hasOwnProperty(index)) {
 
-                    this.store.bind(node.controller)(items[index], data);
+                    var item = items[index];
+
+                    if (item.model &amp;&amp; item.model.getItems()) {
+
+                        this.store.bind(node.controller)(
+                            item,
+                            data,
+                            Object.keys(items).length
+                        );
+                    }
                 }
+            }
+
+            if (!counter) {
+                root.model.setting.save(data);
             }
         },
 

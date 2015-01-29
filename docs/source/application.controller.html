@@ -22,142 +22,227 @@
  * Time: 9:17 PM
  * To change this template use File | Settings | File Templates.
  */
-define([
-    &#39;config/anthill&#39;,
-    &#39;modules/Controller&#39;
-], function defineApplicationController(AntHill, BaseController) {
-
-<span id='AppController-method-constructor'><span id='AppController'>    /**
-</span></span>     * Define application controller
-     * @class AppController
-     * @extends AntHill
-     * @extends BaseController
-     * @constructor
+define(
+    [
+        &#39;config/anthill&#39;,
+        &#39;modules/Controller&#39;,
+        &#39;config/routes&#39;
+    ],
+<span id='global-method-defineApplicationController'>    /**
+</span>     * Define Application controller
+     * @param {AntHill} AntHill
+     * @param {BaseController} BaseController
+     * @param {Routes} Routes
+     * @returns {AppController}
      */
-    var AppController = function AppController() {
-    };
+    function defineApplicationController(AntHill, BaseController, Routes) {
 
-    return AppController.extend(&#39;AppController&#39;, {
-
-<span id='AppController-method-defineSetting'>        /**
-</span>         * Define setting
-         * @member AppController
+<span id='AppController-method-constructor'><span id='AppController'>        /**
+</span></span>         * Define application controller
+         * @class AppController
+         * @extends AntHill
+         * @extends BaseController
+         * @extends Routes
+         * @constructor
          */
-        defineSetting: function defineSetting() {
-            this.model.defineSetting();
-        },
+        var AppController = function AppController() {
+        };
 
-<span id='AppController-method-loadConfig'>        /**
-</span>         * Load updated uuid
-         * @member AppController
-         * @param {string} uuid
-         */
-        loadConfig: function loadConfig(uuid) {
-            this.model.setConfig(&#39;uuid&#39;, uuid);
-            this.scope.view.get$item().updateUUID();
+        return AppController.extend(
+            &#39;AppController&#39;, {
 
-            this.scope.logger.debug(&#39;Update uuid after loading&#39;, uuid);
-        },
+<span id='AppController-method-loadApplication'>                /**
+</span>                 * Define Load Application
+                 * @member AppController
+                 */
+                loadApplication: function loadApplication() {
 
-<span id='AppController-method-initResizeWindow'>        /**
-</span>         * Init window resize
-         * @member AppController
-         */
-        initResizeWindow: function initResizeWindow() {
+                    // Render app
+                    this.view.render();
 
-            this.logger.debug(&#39;Init window resize&#39;);
+                    // Load initial
+                    if (!this.model.loadData()) {
 
-<span id='AppController-property-callback'>            /**
-</span>             * Define resize callback
-             * @type {function(this:Controller)}
-             */
-            var callback = this.controller.resizeWindowPublisher.
-                bind(this);
+                        this.model.setConfig(&#39;loading&#39;, true);
 
-            $(window).on(&#39;resizestop&#39;, callback);
-        },
+                        this.api.createWorkspace([], true).
+                            api.createPage([], true);
 
-<span id='AppController-method-resizeWindowPublisher'>        /**
-</span>         * Resize window publisher
-         * @member AppController
-         * @param e
-         */
-        resizeWindowPublisher: function resizeWindowPublisher(e) {
+                        this.model.setConfig(&#39;loading&#39;, false);
+                    }
+                },
 
-            if (e.target === window &amp;&amp; this.model.getConfig(&#39;isResized&#39;)) {
-                this.observer.publish(
-                    this.eventmanager.eventList.resizeWindow,
-                    e
-                );
-            }
-        },
+<span id='AppController-method-defineGlobalInstance'>                /**
+</span>                 * Define global instance
+                 * @member AppController
+                 */
+                defineGlobalInstance: function defineGlobalInstance() {
+                    this.logger.debug(
+                        &#39;Define global instance&#39;,
+                        this.model.getConfig(&#39;appName&#39;)
+                    );
+                },
 
-<span id='AppController-method-resizeWindow'>        /**
-</span>         * Resize window callback
-         * @member AppController
-         * @param e
-         */
-        resizeWindow: function resizeWindow(e) {
-            this.logger.debug(&#39;Start resize window&#39;, e);
+<span id='AppController-method-defineSetting'>                /**
+</span>                 * Define setting
+                 * @member AppController
+                 */
+                defineSetting: function defineSetting() {
+                    this.model.initGlobalSetting();
+                    this.controller.ajaxSetup();
+                },
 
-            this.observer.publish(
-                this.eventmanager.eventList.resizeWindowHooks
-            );
-        },
+<span id='AppController-method-updateStorageVersion'>                /**
+</span>                 * Update storage version
+                 * @member AppController
+                 * @param {number} version
+                 */
+                updateStorageVersion: function updateStorageVersion(version) {
+                    this.logger.debug(&#39;Update storage version&#39;, version);
+                    this.model.setConfig(&#39;version&#39;, version);
+                    this.model.setConfig(&#39;activate&#39;, true);
+                },
 
-<span id='AppController-method-resizeWindowHooks'>        /**
-</span>         * Resize window hooks
-         * @member AppController
-         */
-        resizeWindowHooks: function resizeWindowHooks() {
-            this.logger.debug(&#39;Start resize window hooks&#39;, arguments);
-        },
+<span id='AppController-method-ajaxSetup'>                /**
+</span>                 * Define ajax setup
+                 * @member AppController
+                 */
+                ajaxSetup: function ajaxSetup() {
 
-<span id='AppController-method-createAuthorPanel'>        /**
-</span>         * Create authoring panel
-         * @member AppController
-         */
-        createAuthorPanel: function createAuthorPanel() {
-            this.logger.debug(&#39;Create authoring panel&#39;, arguments);
-        },
+                    $.ajaxSetup({
+                        ifModified: true,
+                        beforeSend: function beforeSend(xhr, settings) {
+                            if (typeof(settings.dataType) === &#39;undefined&#39;) {
+                                xhr.setRequestHeader(
+                                    &#39;accept&#39;,
+                                    &#39;*/*;q=0.5, &#39; + settings.accepts.script
+                                );
+                            }
+                            xhr.setRequestHeader(
+                                &#39;X-CSRF-Token&#39;,
+                                this.getXCsrfToken()
+                            );
+                        }.bind(this),
+                        success: this._handleXhrLog.bind(this),
+                        complete: this._handleXhrLog.bind(this),
+                        error: this._handleXhrLog.bind(this)
+                    });
+                },
 
-<span id='AppController-method-createToolPanel'>        /**
-</span>         * Create tool panel
-         * @member AppController
-         */
-        createToolPanel: function createToolPanel() {
-            this.logger.debug(&#39;Create tool panel&#39;, arguments);
-        },
+<span id='AppController-method-_handleXhrLog'>                /**
+</span>                 * Define error handler
+                 * @member AppController
+                 */
+                _handleXhrLog: function _handleXhrLog(xhr, status, description) {
 
-<span id='AppController-method-approveClearData'>        /**
-</span>         * Approve clear data
-         * @member AppController
-         */
-        approveClearData: function approveClearData() {
+                    if (status === &#39;error&#39; || status === &#39;warning&#39;) {
+                        this.scope.view.handleNotificationsRenderer(
+                            xhr, status
+                        );
+                    }
 
-<span id='AppController-property-scope'>            /**
-</span>             * Define local scope
-             */
-            var scope = this.scope;
+                    this.scope.logger[status === &#39;error&#39; ? &#39;warn&#39; : &#39;debug&#39;](arguments);
+                },
 
-<span id='AppController-property-setting'>            /**
-</span>             * Define setting
-             * @type {Setting}
-             */
-            var setting = scope.model.setting,
-                $modal = scope.view.elements.$modal;
+<span id='AppController-method-loadConfig'>                /**
+</span>                 * Load updated uuid
+                 * @member AppController
+                 * @param {string} uuid
+                 */
+                loadConfig: function loadConfig(uuid) {
+                    this.model.setConfig(&#39;uuid&#39;, uuid);
+                    this.scope.view.get$item().updateUUID();
 
-            setting.clear();
+                    this.scope.logger.debug(&#39;Update uuid after loading&#39;, uuid);
+                },
 
-            scope.logger.warn(&#39;localStorage&#39;, setting.getStorage());
+<span id='AppController-method-initResizeWindow'>                /**
+</span>                 * Init window resize
+                 * @member AppController
+                 */
+                initResizeWindow: function initResizeWindow() {
 
-            if (this.base.isDefined($modal)) {
-                $modal.selfDestroy();
-            }
-        }
+                    this.logger.debug(&#39;Init window resize&#39;);
 
-    }, AntHill.prototype, BaseController.prototype);
+<span id='AppController-property-callback'>                    /**
+</span>                     * Define resize callback
+                     * @type {function(this:Controller)}
+                     */
+                    var callback = this.controller.resizeWindowPublisher.
+                        bind(this);
 
-});</pre>
+                    $(window).on(&#39;resizestop&#39;, callback);
+                },
+
+<span id='AppController-method-resizeWindowPublisher'>                /**
+</span>                 * Resize window publisher
+                 * @member AppController
+                 * @param e
+                 */
+                resizeWindowPublisher: function resizeWindowPublisher(e) {
+
+                    if (e.target === window &amp;&amp; this.model.getConfig(&#39;isResized&#39;)) {
+                        this.observer.publish(
+                            this.eventmanager.eventList.resizeWindow,
+                            e
+                        );
+                    }
+                },
+
+<span id='AppController-method-resizeWindow'>                /**
+</span>                 * Resize window callback
+                 * @member AppController
+                 * @param e
+                 */
+                resizeWindow: function resizeWindow(e) {
+                    this.logger.debug(&#39;Start resize window&#39;, e);
+
+                    this.observer.publish(
+                        this.eventmanager.eventList.resizeWindowHooks
+                    );
+                },
+
+<span id='AppController-method-resizeWindowHooks'>                /**
+</span>                 * Resize window hooks
+                 * @member AppController
+                 */
+                resizeWindowHooks: function resizeWindowHooks() {
+                    this.logger.debug(&#39;Start resize window hooks&#39;, arguments);
+                },
+
+<span id='AppController-method-approveClearData'>                /**
+</span>                 * Approve clear data
+                 * @member AppController
+                 */
+                approveClearData: function approveClearData() {
+
+<span id='AppController-property-scope'>                    /**
+</span>                     * Define local scope
+                     */
+                    var scope = this.scope;
+
+<span id='AppController-property-setting'>                    /**
+</span>                     * Define setting
+                     * @type {Setting}
+                     */
+                    var setting = scope.model.setting,
+                        $modal = scope.view.elements.$modal;
+
+                    setting.clear();
+
+                    scope.logger.warn(&#39;localStorage&#39;, setting.getStorage());
+
+                    if (this.base.isDefined($modal)) {
+                        $modal.selfDestroy();
+                    }
+                }
+
+            },
+            AntHill.prototype,
+            BaseController.prototype,
+            Routes.prototype
+        );
+    }
+);</pre>
 </body>
 </html>

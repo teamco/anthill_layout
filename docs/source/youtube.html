@@ -88,7 +88,7 @@ define([
                 }
             },
             regex: /^.*(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&amp;]v=)|youtu\.be\/)([^&quot;&amp;?\/ ]{11})/i,
-            mask: &#39;&lt;iframe id=&quot;ytplayer&quot; type=&quot;text/html&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;no&quot; allowtransparency=&quot;true&quot; src=&quot;https://www.youtube.com/embed/{{videoId}}&quot; frameborder=&quot;0&quot; webkitAllowFullScreen mozallowfullscreen allowfullscreen&gt;&#39;
+            mask: &#39;https://www.youtube.com/embed/{videoId}&#39;
         };
 
 <span id='Youtube-property-mvc'>        /**

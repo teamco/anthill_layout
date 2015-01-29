@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 7/31/14.
+ */
+
+define([
+    &#39;modules/Element&#39;,
+    &#39;plugins/gallery/element/gallery.providers.element&#39;
+], function defineSiteConfigWidgetsListElement(BaseElement, GalleryProvidersElement) {
+
+<span id='SiteConfigWidgetsListElement-method-constructor'><span id='SiteConfigWidgetsListElement'>    /**
+</span></span>     * Define SiteConfigWidgetsListElement
+     * @class SiteConfigWidgetsListElement
+     * @constructor
+     * @param {SiteConfigView} view
+     * @param opts
+     * @extends BaseElement
+     * @extends GalleryProvidersElement
+     * @returns {SiteConfigWidgetsListElement}
+     */
+    var SiteConfigWidgetsListElement = function SiteConfigWidgetsListElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: false
+        });
+
+        return this;
+    };
+
+    return SiteConfigWidgetsListElement.extend(&#39;SiteConfigWidgetsListElement&#39;, {
+
+<span id='SiteConfigWidgetsListElement-method-renderWidgetsList'>        /**
+</span>         * Render widgets list
+         * @member SiteConfigWidgetsListElement
+         * @param data
+         * @param show
+         * @return {SiteConfigWidgetsListElement}
+         */
+        renderWidgetsList: function renderWidgetsList(data, show) {
+
+<span id='SiteConfigWidgetsListElement-method-_renderRow'>            /**
+</span>             * Render row
+             * @param row
+             * @param style
+             * @returns {string}
+             * @private
+             */
+            function _renderRow(row, style) {
+
+                var html = [],
+                    index;
+
+                for (index in row) {
+
+                    if (row.hasOwnProperty(index)) {
+
+                        if (show.indexOf(index) &gt; -1) {
+
+                            html.push([
+                                &#39;&lt;li class=&quot;&#39;, index.toDash(), &#39;&quot;&gt;&#39;,
+                                style === &#39;header&#39; ?
+                                    index === &#39;thumbnail&#39; ? &#39;icon&#39; : index :
+                                    index === &#39;thumbnail&#39; &amp;&amp; style === &#39;row&#39; ?
+                                    &#39;&lt;img alt=&quot;&#39; + index + &#39;&quot; src=&quot;&#39; + row[index] + &#39;&quot;/&gt;&#39; :
+                                        index === &#39;name&#39; ?
+                                        &#39;&lt;span&gt;&#39; + row[index] + &#39;&lt;/span&gt;&#39; :
+                                            row[index],
+                                &#39;&lt;/li&gt;&#39;
+                            ].join(&#39;&#39;));
+                        }
+                    }
+                }
+
+                return [
+                    &#39;&lt;li class=&quot;&#39;, style, &#39;&quot;&gt;&lt;ul&gt;&#39;,
+                    html.join(&#39;&#39;),
+                    &#39;&lt;/ul&gt;&lt;/li&gt;&#39;
+                ].join(&#39;&#39;);
+            }
+
+            var i = 0,
+                l = data.length;
+
+            var $ul = $(&#39;&lt;ul /&gt;&#39;);
+
+            if (l &gt; 0) {
+
+                // Append header
+                $ul.append(
+                    _renderRow(data[0], &#39;header&#39;)
+                );
+
+                for (; i &lt; l; i++) {
+                    $ul.append(
+                        _renderRow(data[i], &#39;row&#39;)
+                    );
+                }
+
+            } else {
+
+                $ul.append(
+                    $(&#39;&lt;li class=&quot;no-data&quot; /&gt;&#39;).text(&#39;No data&#39;)
+                );
+            }
+
+            return this.bindWidgetEdit($ul);
+        },
+
+<span id='SiteConfigWidgetsListElement-method-bindWidgetEdit'>        /**
+</span>         * Bind widget edit
+         * @member SiteConfigWidgetsListElement
+         * @param $ul
+         * @returns {*}
+         */
+        bindWidgetEdit: function bindWidgetEdit($ul) {
+
+<span id='SiteConfigWidgetsListElement-property-scope'>            /**
+</span>             * Get scope
+             * @type {SiteConfig}
+             */
+            var scope = this.view.scope;
+
+            $(&#39;li.name&#39;, $ul).on(&#39;click.edit&#39;, function clickEdit() {
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.widgetEditor,
+                    $(&#39;.resource&#39;, $(this).parent()).text()
+                );
+            });
+
+            return $ul;
+        },
+
+<span id='SiteConfigWidgetsListElement-method-renderWidgetGeneratorForm'>        /**
+</span>         * Render widget generator form
+         * @member SiteConfigWidgetsListElement
+         * @param {Array} widgets
+         * @param {object} [widgetData]
+         * @param {Array} types
+         * @param {boolean} clone
+         * @returns {SiteConfigWidgetsListElement}
+         */
+        renderWidgetGeneratorForm: function renderWidgetGeneratorForm(widgets, types, widgetData, clone) {
+
+            var index, $field,
+                widget = widgets[0] ? widgets[0] : widgets,
+                $ul = $(&#39;&lt;ul /&gt;&#39;);
+
+            widgetData = widgetData || {};
+            widgetData.dimensions = widgetData.dimensions || {};
+
+<span id='SiteConfigWidgetsListElement-method-_getRenderer'>            /**
+</span>             * Get renderer
+             * @param {function} renderer
+             * @param {string} index
+             * @param {string} value
+             * @param {{[mask]: RegExp}} [validation]
+             * @returns {*}
+             * @private
+             */
+            function _getRenderer(renderer, index, value, validation) {
+
+                // Define opts
+                var opts = {
+                    name: index,
+                    text: index,
+                    placeholder: &#39;Enter &#39; + index,
+                    disabled: false,
+                    visible: true,
+                    value: value,
+                    validate: false
+                };
+
+                if (validation) {
+                    opts.validate = {
+                        mask: validation.mask,
+                        blank: false
+                    };
+                }
+
+                if (widgetData.name &amp;&amp; index === &#39;resource&#39;) {
+                    opts.disabled = true;
+                }
+
+                var $li = $(&#39;&lt;li /&gt;&#39;).addClass(index);
+
+                if (index === &#39;thumbnail&#39;) {
+
+                    opts.text += &#39; data-uri&#39;;
+
+                    $li.append(
+                        $(&#39;&lt;img /&gt;&#39;).attr({
+                            src: value,
+                            alt: index
+                        })
+                    );
+
+                    opts.monitor = {
+                        events: [&#39;change.&#39; + index],
+                        callback: function onChange() {
+
+<span id='SiteConfigWidgetsListElement-method-_toBase64'>                            /**
+</span>                             * Convert to Base64
+                             * @private
+                             */
+                            function _toBase64() {
+                                if (scope.base.isUrl(value)) {
+                                    scope.base.lib.image.toDataURL(
+                                        value,
+                                        function (err, base64Img) {
+                                            //_resize(base64Img);
+                                            $input.val(
+                                                base64Img ?
+                                                    base64Img :
+                                                    value
+                                            )
+                                        }
+                                    );
+                                }
+                            }
+
+<span id='SiteConfigWidgetsListElement-method-_resize'>                            /**
+</span>                             * Resize Data-Uri
+                             * @param {string} data
+                             * @private
+                             */
+                            function _resize(data) {
+                                scope.base.lib.image.resizeDataURL(
+                                    data,
+                                    64, 64,
+                                    function (err, base64Img) {
+                                        $input.val(
+                                            base64Img ?
+                                                base64Img :
+                                                value
+                                        );
+                                    }
+                                );
+                            }
+
+<span id='SiteConfigWidgetsListElement-property-S-input'>                            /**
+</span>                             * Define $input
+                             * @type {*|jQuery}
+                             */
+                            var $input = $(this),
+                                value = this.value;
+
+                            //scope.base.isUrl(value) ?
+                            //    _toBase64() :
+                            //    _resize(value);
+
+                            _toBase64();
+
+                            $(&#39;img&#39;, $input.parent()).attr({
+                                src: value
+                            });
+                        }
+                    };
+                }
+
+                $li.append(renderer(opts));
+
+                if (index === &#39;thumbnail&#39;) {
+                    $li.append(
+                        $(&#39;&lt;div /&gt;&#39;).addClass(&#39;clear&#39;)
+                    );
+                }
+
+                return $li;
+            }
+
+<span id='SiteConfigWidgetsListElement-property-scope'>            /**
+</span>             * Get scope
+             * @type {SiteConfig}
+             */
+            var scope = this.view.scope;
+
+            if (clone) {
+                $ul.append(
+                    this.cloneFromField(widgets)
+                );
+            }
+
+            for (index in widget) {
+
+                if (widget.hasOwnProperty(index)) {
+
+                    switch (index) {
+
+                        case &#39;name&#39;:
+                        case &#39;resource&#39;:
+                            $field = _getRenderer(
+                                this.renderTextField.bind(this),
+                                index,
+                                widgetData[index],
+                                {}
+                            );
+                            break;
+
+                        case &#39;dimensions&#39;:
+                            $field = [
+                                _getRenderer(
+                                    this.renderTextField.bind(this),
+                                    &#39;width&#39;,
+                                    widgetData[index].width,
+                                    {mask: /^\d+$/}
+                                ),
+                                _getRenderer(
+                                    this.renderTextField.bind(this),
+                                    &#39;height&#39;,
+                                    widgetData[index].height,
+                                    {mask: /^\d+$/}
+                                )
+                            ];
+                            break;
+
+                        case &#39;description&#39;:
+                            $field = _getRenderer(
+                                this.renderTextArea.bind(this),
+                                index,
+                                widgetData[index],
+                                {}
+                            );
+                            break;
+
+                        case &#39;thumbnail&#39;:
+                            scope.base.isDataURL();
+                            scope.base.isUrl();
+                            $field = _getRenderer(
+                                this.renderTextArea.bind(this),
+                                index,
+                                widgetData[index], {
+                                    mask: [
+                                        scope.base.isDataURL.regex,
+                                        scope.base.isUrl.regex
+                                    ]
+                                }
+                            );
+                            break;
+
+                        case &#39;type&#39;:
+
+                            // Define data
+                            var data = {}, type;
+
+                            for (type in types) {
+                                if (types.hasOwnProperty(type)) {
+                                    data[type] = {
+                                        key: type,
+                                        name: types[type]
+                                    }
+                                }
+                            }
+
+<span id='SiteConfigWidgetsListElement-property-sorted'>                            /**
+</span>                             * Define sorted data
+                             * @type {Array}
+                             */
+                            var sorted = this.sortComboBoxData(data);
+
+                            $field = $(&#39;&lt;li /&gt;&#39;).addClass(index).append(
+                                this.renderCombobox(
+                                    sorted,
+                                    (types[widgetData[index]] || sorted[0].value),
+                                    index,
+                                    &#39;category&#39;,
+                                    undefined,
+                                    true
+                                )
+                            );
+                            break;
+
+                        default:
+                            continue;
+                            break;
+                    }
+
+                    $ul.append($field);
+                }
+            }
+
+            return $ul;
+        },
+
+<span id='SiteConfigWidgetsListElement-method-cloneFromField'>        /**
+</span>         * Render clone from field
+         * @member SiteConfigWidgetsListElement
+         * @param widgets
+         * @returns {*[]}
+         */
+        cloneFromField: function cloneFromField(widgets) {
+
+<span id='SiteConfigWidgetsListElement-method-_toggleClone'>            /**
+</span>             * Define toggle
+             * @private
+             */
+            function _toggleClone(e) {
+                if (this.isDisabledComboBox($combo)) {
+                    this.enableComboBox($combo);
+                    e.target.value = false;
+
+                } else {
+                    this.disableComboBox($combo);
+                    e.target.value = true;
+                }
+            }
+
+            // Define data
+            var data = {},
+                i = 0, l = widgets.length,
+                widget;
+
+            for (; i &lt; l; i++) {
+                widget = widgets[i];
+                data[i] = {
+                    key: widget.resource,
+                    name: widget.name
+                }
+            }
+
+            // Define name
+            var name = &#39;scratch&#39;;
+
+<span id='SiteConfigWidgetsListElement-property-S-checkbox'>            /**
+</span>             * Define checkbox
+             * @type {*|jQuery}
+             */
+            var $checkbox = $(&#39;&lt;li /&gt;&#39;).
+                addClass([
+                    [&#39;site-config&#39;, name.humanize().toClassName(), &#39;prefs&#39;].join(&#39;-&#39;),
+                    &#39;checkbox&#39;
+                ].join(&#39; &#39;)).
+                append(this.renderCheckbox({
+                    name: name,
+                    text: &#39;Make from &#39; + name,
+                    checked: true,
+                    value: true,
+                    disabled: false,
+                    visible: true,
+                    monitor: {
+                        events: [&#39;click.combo&#39;],
+                        callback: _toggleClone.bind(this)
+                    }
+                })
+            );
+
+<span id='SiteConfigWidgetsListElement-property-sorted'>            /**
+</span>             * Define sorted data
+             * @type {Array}
+             */
+            var sorted = this.sortComboBoxData(data);
+
+<span id='SiteConfigWidgetsListElement-property-S-combo'>            /**
+</span>             * Define combo
+             * @type {*|jQuery}
+             */
+            var $combo = $(&#39;&lt;li /&gt;&#39;).addClass(&#39;clone-template&#39;).append(
+                this.renderCombobox(
+                    sorted,
+                    undefined,
+                    &#39;clone&#39;,
+                    &#39;clone&#39;,
+                    undefined,
+                    true,
+                    true
+                )
+            );
+
+            this.disableComboBox($combo);
+
+            return [$checkbox, $combo];
+        }
+
+    }, BaseElement.prototype, GalleryProvidersElement.prototype);
+});</pre>
+</body>
+</html>

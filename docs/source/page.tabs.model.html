@@ -37,11 +37,20 @@ define([
     var PageTabsModel = function PageTabsModel() {
 
 <span id='PageTabsModel-property-preferences'>        /**
-</span>         * Define preferences
+</span>         /**
+         * Define preferences
          * @member PageTabsModel
-         * @type {{}}
+         * @type {{
+         *      pagetabsSwipe: {type: string, disabled: boolean, value: boolean, visible: boolean}
+         * }}
          */
         this.preferences = {
+            pagetabsSwipe: {
+                type: &#39;checkbox&#39;,
+                disabled: false,
+                value: true,
+                visible: true
+            }
         };
 
 <span id='PageTabsModel-property-rules'>        /**
@@ -54,6 +63,13 @@ define([
 
     return PageTabsModel.extend(&#39;PageTabsModel&#39;, {
 
+<span id='PageTabsModel-method-setPagetabsSwipe'>        /**
+</span>         * Set PageTabs swipe
+         * @param {boolean} swipe
+         */
+        setPagetabsSwipe: function setPagetabsSwipe(swipe) {
+            this.setPrefs(&#39;pagetabsSwipe&#39;, swipe);
+        }
 
     }, BaseModel.prototype, WidgetContentModel.prototype);
 });</pre>

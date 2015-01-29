@@ -46,10 +46,78 @@ define([
         this.addCSS(&#39;workspace.data&#39;);
         this.addCSS(&#39;preferences&#39;);
 
+        this.initSortable();
+
         return this;
     };
 
     return WorkspaceDataElement.extend(&#39;WorkspaceDataElement&#39;, {
+
+<span id='WorkspaceDataElement-method-initSortable'>        /**
+</span>         * Init sortable
+         * @member WorkspaceDataElement
+         */
+        initSortable: function initSortable() {
+
+            this.$.sortable({
+
+                containment: this.$container.$,
+                cursor: &#39;move&#39;,
+                distance: 5,
+                items: &#39;&gt; li.content&#39;,
+                opacity: 0.8,
+                tolerance: &#39;pointer&#39;,
+
+                start: this._startSortable.bind(this),
+                stop: this._stopSortable.bind(this)
+            });
+        },
+
+<span id='WorkspaceDataElement-method-_startSortable'>        /**
+</span>         * Start sortable
+         * @member WorkspaceDataElement
+         * @param event
+         * @param ui
+         * @private
+         */
+        _startSortable: function _startSortable(event, ui) {
+
+<span id='WorkspaceDataElement-property-S-item'>            /**
+</span>             * Get $item
+             * @member WorkspaceDataElement
+             * @type {WorkspaceDataContentElement}
+             */
+            var $item = this.view.elements.items[ui.item.attr(&#39;id&#39;)];
+
+            $item.hideTooltip();
+        },
+
+<span id='WorkspaceDataElement-method-_stopSortable'>        /**
+</span>         * Stop sortable
+         * @member WorkspaceDataElement
+         * @param event
+         * @param ui
+         * @private
+         */
+        _stopSortable: function _stopSortable(event, ui) {
+
+<span id='WorkspaceDataElement-property-scope'>            /**
+</span>             * Get scope
+             * @type {WorkspaceData}
+             */
+            var scope = this.view.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updatePagesOrder,
+                [this.$.sortable(&#39;toArray&#39;)]
+            );
+
+            ui.item.attr(
+                &#39;style&#39;,
+                ui.item.attr(&#39;style&#39;).
+                    replace(/position: relative;/, &#39;&#39;)
+            );
+        },
 
 <span id='WorkspaceDataElement-method-getFooter'>        /**
 </span>         * Get footer html
@@ -59,7 +127,7 @@ define([
         getFooter: function getFooter() {
             return $(&#39;&lt;div /&gt;&#39;).text([
                 this.base.lib.hash.hashLength(
-                    this.view.scope.controller.getData()
+                    this.view.scope.controller.getModuleData()
                 ),
                 &#39;items&#39;
             ].join(&#39; &#39;));

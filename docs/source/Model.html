@@ -41,6 +41,33 @@ define([
 
     return BaseModel.extend(&#39;BaseModel&#39;, {
 
+<span id='BaseModel-method-bindModelObserver'>        /**
+</span>         * Create a two way data-binding between model and controller
+         * @member BaseModel
+         * @param {object} obj
+         * @param {string} property
+         * @param {function} fnCallback
+         * Example:
+         *      user = {};
+         *      inputElem = document.getElementById(&quot;foo&quot;);
+         *      bindModelInput(user,&#39;name&#39;,inputElem);
+         *      user.name = &quot;Joe&quot;;
+         *      alert(&quot;input value is now &quot;+inputElem.value) //input is now &#39;Joe&#39;;
+         *      inputElem.value = &#39;Bob&#39;;
+         *      alert(&quot;user.name is now &quot;+user.name) //model is now &#39;Bob&#39;;
+         */
+        bindModelObserver: function bindModelObserver(obj, property, fnCallback) {
+            Object.defineProperty(obj, property, {
+                get: function get() {
+                    return fnCallback();
+                },
+                set: function set(newValue) {
+                    fnCallback(newValue);
+                },
+                configurable: true
+            });
+        },
+
 <span id='BaseModel-method-getConfig'>        /**
 </span>         * Get scope config
          * @member BaseModel
@@ -121,7 +148,7 @@ define([
                 constructor = base.isFunction(scope) ?
                     scope : scope.constructor;
 
-            return constructor.name.toLowerCase();
+            return constructor.prototype.name.toLowerCase();
         },
 
 <span id='BaseModel-method-findItemByUUID'>        /**
@@ -220,7 +247,7 @@ define([
             return this.base.isDefined(node) ?
                 node.model ?
                     node.model.getUUID() :
-                    &#39;Undefined &#39; + node.constructor.name :
+                &#39;Undefined &#39; + node.constructor.prototype.name :
                 this.getConfig(&#39;uuid&#39;);
         },
 
@@ -278,17 +305,43 @@ define([
 </span>                     * Get item title
                      * @type {*|string}
                      */
-                    var itemTitle = item.model.getConfig(&#39;preferences&#39;).title;
+                    var itemTitle = this.getItemTitle(item);
 
-                    if (itemTitle &amp;&amp; $.trim(itemTitle).length &gt; 0) {
-                        if (itemTitle.toClassName() === title.toClassName()) {
-                            return item;
-                        }
+                    if (itemTitle &amp;&amp; (itemTitle.toClassName() === title.toClassName())) {
+                        return item;
                     }
                 }
             }
 
             this.scope.logger.debug(&#39;Unable locate item by title&#39;, items, title);
+        },
+
+<span id='BaseModel-method-getItemTitle'>        /**
+</span>         * Get item title
+         * @member BaseModel
+         * @param {Page|Widget} [node]
+         * @returns {string}
+         */
+        getItemTitle: function getItemTitle(node) {
+
+            // Reset node
+            node = node || this.scope;
+
+<span id='BaseModel-property-preferences'>            /**
+</span>             * Get prefs
+             * @type {*}
+             */
+            var preferences = node.model.getConfig(&#39;preferences&#39;) || {},
+                uuid = node.model.getUUID();
+
+            var title = this.base.define(
+                preferences.title,
+                uuid,
+                true
+            );
+
+            return $.trim(title).length &gt; 0 ?
+                title : uuid;
         },
 
 <span id='BaseModel-method-resetItems'>        /**
@@ -354,9 +407,9 @@ define([
          * @returns {string}
          */
         getItemNameSpace: function getItemNameSpace() {
-            this.scope.logger.debug(&#39;Get item namespace&#39;);
-            if (this.hasOwnProperty(&#39;item&#39;)) {
-                return this.item.name.toLowerCase();
+            this.scope.logger.debug(&#39;Get item namespace&#39;, this.item);
+            if (this.hasOwnProperty(&#39;item&#39;) &amp;&amp; this.base.isFunction(this.item)) {
+                return this.item.prototype.name.toLowerCase();
             }
 
             this.scope.logger.debug(&#39;Undefined item&#39;);
@@ -370,29 +423,6 @@ define([
         getOrder: function getOrder() {
             return this.getConfig(&#39;order&#39;);
         },
-
-//        /**
-//         * Update prefs
-//         * @member BaseModel
-//         * @param data
-//         */
-//        updatePreferences: function updatePreferences(data) {
-//
-//            /**
-//             * Get prefs
-//             * @type {*}
-//             */
-//            var preferences = this.getConfig(&#39;preferences&#39;);
-//
-//            for (var index in data) {
-//
-//                if (data.hasOwnProperty(index)) {
-//
-//                    preferences[index] = data[index];
-//                    this.setPrefs(index, data[index]);
-//                }
-//            }
-//        },
 
 <span id='BaseModel-method-setRules'>        /**
 </span>         * Set rules on loading
@@ -432,12 +462,17 @@ define([
          * @member BaseModel
          * @param {string} index
          * @param value
-         * @private
+         * @protected
          */
         _setItemInfoPreferences: function _setItemInfoPreferences(index, value) {
 
             // Update config
             this.scope.config.preferences[index] = value;
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.afterUpdatePreferences,
+                arguments
+            );
         },
 
 <span id='BaseModel-method-checkLimit'>        /**
@@ -487,8 +522,9 @@ define([
             var limit = this.getConfig(namespace).limit;
 
             if (this.checkLimit(Constructor, limit)) {
+
                 scope.logger.warn(
-                        cname + &#39;: Maximum limit reached&#39;,
+                    cname + &#39;: Maximum limit reached&#39;,
                     limit
                 );
                 node.model.setConfig(&#39;limit&#39;, true);
@@ -497,7 +533,7 @@ define([
 
 <span id='BaseModel-property-node'>                /**
 </span>                 * Init node
-                 * @type {Constructor}
+                 * @type {Function}
                  */
                 node = new Constructor(base.define(opts, {}, true));
 
@@ -508,7 +544,7 @@ define([
                 } else {
 
                     scope.logger.warn(
-                            cname + &#39; was created with some errors&#39;,
+                        cname + &#39; was created with some errors&#39;,
                         node
                     );
                 }
@@ -534,19 +570,6 @@ define([
             return node;
         },
 
-<span id='BaseModel-method-_returnLoadData'>        /**
-</span>         * Return loaded data
-         * @member BaseModel
-         * @param data
-         * @returns {*}
-         * @private
-         */
-        _returnLoadData: function _returnLoadData(data) {
-
-            this.scope.controller.setAsLoading(false);
-            return data;
-        },
-
 <span id='BaseModel-method-loadData'>        /**
 </span>         * Load data
          * @member BaseModel
@@ -555,9 +578,7 @@ define([
          */
         loadData: function loadData(data) {
 
-<span id='BaseModel-property-scope'>            /**
-</span>             * Define local scope
-             */
+            // Define local scope
             var scope = this.scope,
                 base = this.base;
 
@@ -565,20 +586,39 @@ define([
 
 <span id='BaseModel-property-data'>            /**
 </span>             * Set data
+             * @type {object}
              */
             data = base.isDefined(data) ?
                 data : this.setting.load();
 
             if (!data.hasOwnProperty(&#39;collector&#39;)) {
-                return this._returnLoadData(false);
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.afterLoadingItems
+                );
+
+                return false;
             }
 
             if (base.isDefined(this.item)) {
 
-                var isRoot = scope.controller.isRoot(scope),
+                var root = scope.controller.root(),
+                    isRoot = scope.controller.isRoot(scope),
                     cname = this.item.name,
                     lname = cname.toLowerCase(),
                     collector = base.define(data.collector, {}, true);
+
+<span id='App-property-loadingDataCounter'>                /**
+</span>                 * Define counter
+                 * @member App
+                 * @type {number}
+                 */
+                root.loadingDataCounter = base.isDefined(root.loadingDataCounter) ?
+                    root.loadingDataCounter : $.map(collector, function (k) {
+                    return $.map(k, function (i) {
+                        return i;
+                    });
+                }).length;
 
                 if (collector.hasOwnProperty(lname)) {
 
@@ -595,9 +635,7 @@ define([
 
                                 // Create item
                                 scope.api[&#39;create&#39; + cname](
-                                    node,
-                                    true,
-                                    true
+                                    node, true, true
                                 );
 
 <span id='BaseModel-property-item'>                                /**
@@ -613,19 +651,34 @@ define([
                                         scope.controller.loadConfig(node.containment);
                                     }
 
+<span id='App-property-loadingDataCounter'>                                    /**
+</span>                                     * Reduce counter
+                                     * @member App
+                                     * @type {number}
+                                     */
+                                    root.loadingDataCounter -= 1;
+
+                                    // Continue loading data
                                     this.loadData.bind(item.model)(data);
                                 }
                             }
                         }
+
                     }
 
-                    scope.observer.publish(
-                        scope.eventmanager.eventList.afterLoadingItems
-                    );
+                    if (!root.loadingDataCounter) {
+                        scope.observer.publish(
+                            scope.eventmanager.eventList.afterLoadingItems
+                        );
+                    }
                 }
+
+            } else {
+
+                scope.controller.setAsLoading(true);
             }
 
-            return this._returnLoadData(data.collector);
+            return data.collector;
         }
 
     }, AntHill.prototype, CRUD.prototype);

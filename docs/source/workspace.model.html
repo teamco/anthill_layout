@@ -45,8 +45,80 @@ define([
 
     return WorkspaceModel.extend(&#39;WorkspaceModel&#39;, {
 
-    }, BaseModel.prototype);
+<span id='WorkspaceModel-method-setStaticWidth'>        /**
+</span>         * Set static width
+         * @member WorkspaceModel
+         * @param {boolean} width
+         */
+        setStaticWidth: function setStaticWidth(width) {
 
+            // Define config
+            var config = this.scope.config;
+
+            config.preferences.staticWidth = width;
+            config.isResized = !width;
+        },
+
+<span id='WorkspaceModel-method-setSiteWidthSlider'>        /**
+</span>         * Set Site Width Slider
+         * @member WorkspaceModel
+         * @param {number} width
+         */
+        setSiteWidthSlider: function setSiteWidthSlider(width) {
+
+            this._setItemInfoPreferences(&#39;siteWidthSlider&#39;, width);
+
+<span id='WorkspaceModel-property-scope'>            /**
+</span>             * Set local scope
+             * @type {Workspace}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updatePagesWidth
+            );
+        },
+
+<span id='WorkspaceModel-method-setSiteTitle'>        /**
+</span>         * Set site title
+         * @param {string} title
+         */
+        setSiteTitle: function setSiteTitle(title) {
+
+<span id='WorkspaceModel-property-scope'>            /**
+</span>             * Set local scope
+             * @type {Workspace}
+             */
+            var scope = this.scope;
+
+            this._setItemInfoPreferences(&#39;siteTitle&#39;, title);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateSiteTitle
+            );
+        },
+
+<span id='WorkspaceModel-method-setTrackingId'>        /**
+</span>         * Set google analytics tracking id
+         * @member WorkspaceModel
+         * @param {string} trackingId
+         */
+        setTrackingId: function setTrackingId(trackingId) {
+
+<span id='WorkspaceModel-property-scope'>            /**
+</span>             * Set local scope
+             * @type {Workspace}
+             */
+            var scope = this.scope;
+
+            scope.config.preferences.trackingId = trackingId;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.loadTrackingSnippet
+            );
+        }
+
+    }, BaseModel.prototype);
 });</pre>
 </body>
 </html>

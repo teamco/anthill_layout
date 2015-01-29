@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/sound.cloud/element/sound.cloud.element&#39;,
+    &#39;plugins/widgets/sound.cloud/element/sound.cloud.preferences.element&#39;,
+    &#39;plugins/widgets/sound.cloud/element/sound.cloud.rules.element&#39;
+], function defineSoundCloudView(BaseView, Header, Footer, SoundCloudElement, SoundCloudPreferencesElement, SoundCloudRulesElement) {
+
+<span id='SoundCloudView-method-constructor'><span id='SoundCloudView'>    /**
+</span></span>     * Define view
+     * @class SoundCloudView
+     * @extends BaseView
+     * @constructor
+     */
+    var SoundCloudView = function SoundCloudView() {
+    };
+
+    return SoundCloudView.extend(&#39;SoundCloudView&#39;, {
+
+<span id='SoundCloudView-method-renderSoundCloud'>        /**
+</span>         * Render soundcloud element
+         * @member SoundCloudView
+         */
+        renderSoundCloud: function renderSoundCloud() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='SoundCloudView-property-S-soundcloud'>            /**
+</span>             * Define $soundcloud
+             * @type {SoundCloudElement}
+             */
+            this.elements.$soundcloud = new SoundCloudElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='SoundCloudView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member SoundCloudView
+         * @returns {SoundCloudPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='SoundCloudView-property-S-preferences'>            /**
+</span>             * Define SoundCloud Preferences Element
+             * @type {SoundCloudPreferencesElement}
+             */
+            this.elements.$preferences = new SoundCloudPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='SoundCloudView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member SoundCloudView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {SoundCloudRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='SoundCloudView-property-data'>            /**
+</span>             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+<span id='SoundCloudView-property-S-rules'>            /**
+</span>             * Define SoundCloud Rules Element
+             * @type {SoundCloudRulesElement}
+             */
+            this.elements.$rules = new SoundCloudRulesElement(this, {
+                data: data,
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='SoundCloudView-method-render'>        /**
+</span>         * Render soundcloud
+         * @member SoundCloudView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderSoundCloud.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});
+</pre>
+</body>
+</html>

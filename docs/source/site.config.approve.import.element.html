@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 7/31/14.
+ */
+
+define([
+    &#39;jquery&#39;,
+    &#39;modules/Element&#39;
+], function defineSiteConfigApproveImportElement($, BaseElement) {
+
+<span id='SiteConfigApproveImportElement-method-constructor'><span id='SiteConfigApproveImportElement'>    /**
+</span></span>     * Define SiteConfigApproveImportElement
+     * @class SiteConfigApproveImportElement
+     * @constructor
+     * @param {SiteConfigView} view
+     * @param opts
+     * @extends BaseElement
+     * @returns {SiteConfigApproveImportElement}
+     */
+    var SiteConfigApproveImportElement = function SiteConfigApproveImportElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: false
+        });
+
+<span id='SiteConfigApproveImportElement-property-data'>        /**
+</span>         * Define local data
+         * @member SiteConfigApproveImportElement
+         * @type {object}
+         */
+        this.data = opts.data;
+
+        this.prettifyJSON(this.data);
+
+        return this;
+    };
+
+    return SiteConfigApproveImportElement.extend(&#39;SiteConfigApproveImportElement&#39;, {
+
+<span id='SiteConfigCleanUpElement-method-prettifyJSON'>        /**
+</span>         * Prettify JSON
+         * @member SiteConfigCleanUpElement
+         * @param {object} data
+         * @returns {XML|string}
+         */
+        prettifyJSON: function prettifyJSON(data) {
+
+<span id='SiteConfigApproveImportElement-method-_loadPrettyPrint'>            /**
+</span>             * Load pretty print functionality
+             * @private
+             */
+            function _loadPrettyPrint() {
+
+                $(prettyPrint(data)).appendTo(this.$);
+                this.adoptModalDialogPosition();
+            }
+
+            if (window.prettyPrint) {
+
+                // Load cached version
+                _loadPrettyPrint.bind(this)();
+
+            } else {
+
+                require(
+                    [&#39;lib/packages/pretty.print&#39;],
+                    _loadPrettyPrint.bind(this)
+                );
+            }
+        }
+
+    }, BaseElement.prototype);
+});</pre>
+</body>
+</html>

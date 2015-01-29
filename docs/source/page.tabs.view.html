@@ -65,13 +65,6 @@ define([
 
             this.footer(Footer, this.elements.$container);
 
-<span id='PageTabsView-property-items'>            /**
-</span>             * Define page tab items
-             * @member PageTabsView
-             * @type {{}}
-             */
-            this.elements.items = {};
-
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.setEmbeddedContent
             );
@@ -81,24 +74,24 @@ define([
 </span>         * Render page tab element
          * @member PageTabsView
          * @param {Page} pageTab
-         * @param {string} current
          * @return {PageTabsItemElement}
          */
-        renderPageTabsItem: function renderPageTabsItem(pageTab, current) {
+        renderPageTabsItem: function renderPageTabsItem(pageTab) {
 
 <span id='PageTabsView-property-S-pageTab'>            /**
 </span>             * Define page tab item
              * @type {PageTabsItemElement}
+             * @return {jQuery}
              */
             var $pageTab = new PageTabsItemElement(this, {
                 $container: this.elements.$pagetabs.$,
                 pageTab: pageTab,
-                style: [&#39;page-tabs-item&#39;, current].join(&#39; &#39;)
+                style: &#39;page-tabs-item&#39;
             });
 
             this.elements.items[$pageTab.id] = $pageTab;
 
-            return $pageTab;
+            return $pageTab.$;
         },
 
 <span id='PageTabsView-method-renderPreferences'>        /**

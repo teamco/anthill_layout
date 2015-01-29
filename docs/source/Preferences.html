@@ -38,10 +38,15 @@ define([], function defineBasePreferences() {
          */
         updatePreferences: function updatePreferences($modal, render) {
 
-            var $inputs = $(&#39;input:not(:disabled), textarea, div.combo-box &gt; input&#39;, $modal.$),
+            var $inputs = $modal.collectInputFields(),
                 scope = this.scope,
                 containment = this.getContainment(),
-                cname = scope.constructor.name.toLowerCase();
+                cname = scope.constructor.prototype.name.toLowerCase();
+
+            if ($inputs.hasClass(&#39;validate&#39;)) {
+                this.scope.logger.warn(&#39;Fix incorrect data before submit&#39;);
+                return false;
+            }
 
 <span id='global-method-_validateSetter'>            /**
 </span>             * Validate setter
@@ -82,7 +87,7 @@ define([], function defineBasePreferences() {
 </span>                 * Check if prefs in content
                  * @type {boolean}
                  */
-                var isContentPrefs = input.parentNode.className.indexOf(cname) !== -1;
+                var isContentPrefs = input.parentNode.className.replace(/-/g, &#39;&#39;).indexOf(cname) !== -1;
 
                 var event = isContentPrefs ?
                     scope.eventmanager.eventList.transferContentPreferences :
@@ -128,7 +133,7 @@ define([], function defineBasePreferences() {
             }.bind(this));
 
             if (render) {
-                scope.view[&#39;render&#39; + this.scope.constructor.name]();
+                scope.view[&#39;render&#39; + this.scope.constructor.prototype.name]();
             }
 
             $modal.selfDestroy();

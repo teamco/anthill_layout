@@ -15,7 +15,11 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">.modal-dialog.preferences div.html ul {
+  <pre class="prettyprint lang-js">.modal-dialog.preferences {
+    width: 700px;
+}
+
+.modal-dialog.preferences div.html ul {
     list-style: none;
     padding: 5px;
     border: 1px solid #ddd;
@@ -24,10 +28,15 @@
     margin: 0;
 }
 
+.modal-dialog.preferences div.html &gt; ul &gt; li {
+    clear: both;
+}
+
 .modal-dialog.preferences div.html &gt; ul li {
     margin-bottom: 3px;
     padding-top: 3px;
-    clear: both;
+    position: relative;
+    overflow: hidden;
 }
 
 .modal-dialog.preferences .hidden {
@@ -105,97 +114,15 @@
     background-image: url(&#39;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAodJREFUeNq0V82K1EAQrkp3fpidARUvXkQ9+QoDMuBhD/7iTUWP3nwGEfUZFjx49OJNdNXDHoTBRR/B24oggggKy7Jiki6rk042EyeT7mRSTE+GSbrq669+vhkgIuhhweXNi9pB0NWBB/1so3Z1NtQMIGLTfXl3a/4yIXEl0UxVyeI96Ak+Ai+VAvGCKpvsUvIzEtM3z+/PbvA3ydIILSmY3NrapT6m92s/jSdsYShKVA7w1efvGVNoQSuZg10/fwrM/ojXfhcAWBA0DiWIDABaACBIzUZzwa4MHFVbIMFzYEBZdpc9AKkB2Fe3suxuaXcegFEgwCF+pWFoPQyMfAFDmAMAD1yGJuLaAOSeJqFvXVjZiC0RYD8AvsDSjUB0prjY3xUA0eHvD3eefrqQKFVLAULWFsi1Qakpe1pIgfQ4bbx/VSW2aYEeoad5nWwA67Mavnu78/4Sf46X3Nfz/yevr10n4aHZ/KMhmcfNdY/Xr4Zu/GP8rGRAbj54PY8VTFNFba1bqS2dAlZ0Unksy32CU8dN9XHnybVZwcAoTmH64uFViBMY3HyOevPR9lTHLQCEWjx08GfzL/nMx/UH1kWsW/ne7EwhVqEsiaH8gUkkM4oQ1o8gU0lOMR01DMrF2xXVG5ABqmiErNfsRuimeq5WGxeLAFQH1XNPQx7nPwBk3kaBHL4NKh0r6znSDPT7q9CukrQsBVnV82sc+UADIsjGPkLZZSUA3XoR/785MfYHZ0DHEV4NgC9o//bj7Unep2TnCSujmAhskGsGslHM8apacIw/nzXi4tIEbWq4qhm0eO0VDBwYRfvmyGibGq6yv1ncngWnAZyrABnuR2mDHZiTxF0d/BNgAPWjLLV1vUAIAAAAAElFTkSuQmCC&#39;);
 }
 
-.modal-dialog.preferences div.html li.checkbox {
-    width: 49%;
-    margin-left: 1%;
-    float: left;
+.modal-dialog.preferences div.html li.slider {
     background-color: #fff;
     -moz-box-shadow: inset 0 0 5px #ccc;
     -webkit-box-shadow: inset 0 0 5px #ccc;
     box-shadow: inset 0 0 5px #ccc;
     border: 1px solid #ccc;
     border-radius: 2px;
-    padding: 2px 4px;
+    padding: 2px 15px 25px;
     margin-top: 3px;
-    clear: none;
-}
-
-.modal-dialog.preferences div.html li.checkbox label {
-    cursor: pointer;
-}
-
-.modal-dialog.preferences div.html li.checkbox:first-child {
-    margin-left: 0;
-}
-
-.modal-dialog.preferences div.html label {
-    font-size: 14px;
-    font-weight: bold;
-    font-variant: small-caps;
-    text-transform: lowercase;
-    display: inline-block;
-    height: 22px;
-    line-height: 20px;
-    padding-left: 0;
-}
-
-.modal-dialog.preferences div.html label.textarea {
-    width: 100%;
-}
-
-.modal-dialog.preferences div.html input[type=&quot;text&quot;],
-.modal-dialog.preferences div.html div.combo-box &gt; ul {
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    background-color: #fff;
-    margin: 0 0 0 10px;
-    width: 60%;
-    height: 24px;
-    line-height: 22px;
-    float: right;
-    overflow: hidden;
-    transition: width 0.5s;
-    -webkit-transition: width 0.5s;
-    -moz-box-shadow: inset 0 0 5px #ccc;
-    -webkit-box-shadow: inset 0 0 5px #ccc;
-    box-shadow: inset 0 0 5px #ccc;
-}
-
-.modal-dialog.preferences div.html input[type=&quot;text&quot;]:focus {
-    width: 70%;
-}
-
-.modal-dialog.preferences div.html input[type=&quot;checkbox&quot;] {
-    margin-right: 10px;
-}
-
-.modal-dialog.preferences div.html textarea,
-.modal-dialog.preferences div.html p.textarea {
-    resize: none;
-    transition: height 0.5s;
-    -webkit-transition: height 0.5s;
-    -moz-box-shadow: inset 0 0 5px #ccc;
-    -webkit-box-shadow: inset 0 0 5px #ccc;
-    box-shadow: inset 0 0 5px #ccc;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    background-color: #fff;
-    width: 100%;
-    height: 24px;
-    display: inline-block;
-}
-
-.modal-dialog.preferences div.html input[disabled=&quot;disabled&quot;] {
-    background-color: #f1f1f1;;
-}
-
-.modal-dialog.preferences div.html p.textarea {
-    background-color: #f1f1f1;;
-    padding: 2px 5px;
-}
-
-.modal-dialog.preferences div.html textarea:focus {
-    height: 50px;
 }
 
 .modal-dialog.preferences fieldset {
@@ -203,12 +130,10 @@
     border-radius: 3px;
     padding: 5px 10px;
     margin-top: 10px;
-    border-radius: 3px;
     background-color: #fff;
 }
 
 .modal-dialog.preferences fieldset legend {
-    padding: 0 3px;
     font-variant: small-caps;
     font-size: 14px;
     font-weight: bold;
@@ -219,6 +144,11 @@
     border-top: 1px solid #bbb;
     padding: 0 10px;
     margin-left: -10px;
+}
+
+.modal-dialog.preferences fieldset legend span {
+    font-size: 12px;
+    font-weight: normal;
 }
 
 .modal-dialog.preferences fieldset legend.open {
@@ -269,103 +199,93 @@
 .modal-dialog.preferences div.html fieldset label {
     text-transform: lowercase;
     font-variant: small-caps;
-    padding-left: 10px;
-    line-height: 18px;
+    padding-left: 5px;
+    line-height: 20px;
+    font-size: 12px;
 }
 
-.modal-dialog.preferences fieldset legend.open + ul.interactions input[type=&quot;text&quot;],
-.modal-dialog.preferences fieldset legend.open + ul div.combo-box {
+.modal-dialog.preferences fieldset legend.open + ul.interactions input[type=&quot;text&quot;] {
     float: right;
     width: 50%;
     position: relative;
-}
-
-.modal-dialog.preferences fieldset legend.open + ul div.combo-box &gt; ul {
-    width: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 .modal-dialog.preferences fieldset legend.open + ul.interactions input[type=&quot;text&quot;]:focus {
     width: 50%;
 }
 
-.modal-dialog.preferences fieldset legend.open + ul div.combo-box-arrow {
-    position: absolute;
-    top: 1px;
-    right: 0px;
-    width: 12px;
-    height: 20px;
-    cursor: pointer;
-    background: transparent url(&#39;../../core/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png&#39;) no-repeat -69px 2px;
-}
-
-.modal-dialog.preferences fieldset legend.open + ul div.combo-box-arrow:hover {
-    background-image: url(&#39;../../core/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png&#39;);
-}
-
-.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open div.combo-box-arrow {
-    background-position: -4px 2px;
-}
-
-.modal-dialog.preferences fieldset legend.open + ul div.combo-box li {
-    background-color: transparent;
-    display: none;
-    width: 100%;
-    padding: 0 3px;
-    cursor: pointer;
-    border-bottom: 1px solid #ccc;
-    line-height: 20px;
-}
-
-.modal-dialog.preferences fieldset legend.open + ul div.combo-box li.selected {
-    display: inline-block;
-}
-
-.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open ul {
-    overflow: auto;
-    max-height: 200px;
-    height: auto;
-    position: absolute;
-    border: 1px solid #999;
-    box-shadow: 3px 3px 5px #999;
-}
-
-.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li {
-    display: inline-block;
-    margin-bottom: 0;
-}
-
-.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li:hover {
-    background-color: #ffff99;
-}
-
-.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li:last-child,
-.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li:last-child:hover {
-    border: none;
-}
-
-.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li.selected,
-.modal-dialog.preferences fieldset legend.open + ul div.combo-box.open li.selected:hover {
-    background-color: #fbcb09;
-}
-
 .modal-dialog.preferences .layout-prefs,
 .modal-dialog.preferences .widgets-prefs {
-    margin: 0;
+    padding-bottom: 0;
 }
 
-.modal-dialog.preferences .widgets-prefs li {
+.modal-dialog.preferences .widgets-prefs li.widget-prefs {
     padding: 3px 5px;
     display: inline-block;
     cursor: pointer;
-    background: transparent no-repeat center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
     width: 67px;
     height: 67px;
 }
 
+.modal-dialog.preferences .widgets-prefs li.no-content {
+    width: auto;
+    height: auto;
+    padding: 0 3px;
+}
+
+.modal-dialog.preferences .widgets-prefs li.clear {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    clear: both;
+}
+
+.modal-dialog ul.buttons li.remove,
 .modal-dialog ul.buttons li.rules {
     margin-left: 30px;
+}
+
+.modal-dialog.preferences .ui-slider {
+    box-shadow: 1px 1px 3px #999;
+    height: 5px;
+    border-radius: 0;
+    background: #eeeeee; /* Old browsers */
+    background: -moz-linear-gradient(top, #eeeeee 0%, #cccccc 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #eeeeee 0%, #cccccc 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #eeeeee 0%, #cccccc 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #eeeeee 0%, #cccccc 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #eeeeee 0%, #cccccc 100%); /* W3C */
+}
+
+.modal-dialog.preferences .ui-slider .ui-slider-handle {
+    box-shadow: 1px 1px 5px;
+    cursor: pointer;
+    width: 10px;
+    height: 15px;
+}
+
+.modal-dialog.preferences .ui-slider .ui-slider-tick {
+    position: absolute;
+}
+
+.modal-dialog.preferences .ui-slider .ui-slider-tick.separator {
+    border-left: 1px solid #999;
+    height: 10px;
+    width: 1px;
+}
+
+.modal-dialog.preferences .ui-slider .ui-slider-tick.label {
+    font-size: 11px;
+    top: 13px;
+}
+
+.modal-dialog.preferences div.html .layout-prefs {
+    padding-bottom: 0;
 }</pre>
 </body>
 </html>

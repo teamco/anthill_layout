@@ -57,19 +57,9 @@ define([
          * @param {{url: string|*}} opts
          */
         setBackgroundImage: function setBackgroundImage(opts) {
-
-            if (opts.thumbnail.length &gt; 0) {
-
-                this.$.css({
-                    backgroundImage: &#39;url(&quot;&#39; + opts.thumbnail + &#39;&quot;)&#39;
-                });
-
-            } else {
-
-                this.$.addClass(
-                    opts.resource.replace(/\./g, &#39;-&#39;)
-                );
-            }
+            this.$.addClass(
+                opts.resource.replace(/\./g, &#39;-&#39;)
+            );
         },
 
 <span id='WidgetContentElement-method-setPadding'>        /**

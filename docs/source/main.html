@@ -19,6 +19,8 @@
 
     baseUrl: &#39;../../assets/scripts/core&#39;,
 
+    waitSeconds: 200,
+
     paths: {
         // Define public application path
         &#39;public&#39;: &#39;../../public&#39;,
@@ -39,18 +41,21 @@
         modules: &#39;lib/modules&#39;,
         plugins: &#39;../plugins&#39;,
 
-        test: &#39;test&#39;,
+        tinyMCE: &#39;lib/packages/tinymce/tinymce.min&#39;,
 
         modernizr: &#39;lib/modernizr&#39;,
-        &#39;lz-string&#39;: &#39;lib/lz-string&#39;,
 
-        jquery: &#39;lib/jquery/jquery-2.1.1&#39;,
+        &#39;lz-string&#39;: &#39;lib/lz-string&#39;,
+        jquery: &#39;lib/jquery/jquery-2.1.3.min&#39;,
+        &#39;jquery.ujs&#39;: &#39;lib/jquery/jquery_ujs&#39;,
         &#39;jquery.ui&#39;: &#39;lib/jquery/jquery-ui.min&#39;,
         &#39;jquery.resizestop&#39;: &#39;lib/jquery/jquery.resizestop&#39;,
         &#39;jquery.pseudo&#39;: &#39;lib/jquery/jquery.pseudo&#39;,
+        &#39;jquery.zoomooz&#39;: &#39;lib/jquery/jquery.zoomooz.min&#39;,
 
         // create alias to plugins (not needed if plugins are on the baseUrl)
         // https://github.com/millermedeiros/requirejs-plugins
+        defer: &#39;lib/require/defer&#39;,
         async: &#39;lib/require/async&#39;,
         font: &#39;lib/require/font&#39;,
         goog: &#39;lib/require/goog&#39;,
@@ -64,17 +69,31 @@
     },
 
     shim: {
+        tinyMCE: {
+            exports: &#39;tinyMCE&#39;,
+            init: function () {
+                this.tinyMCE.DOM.events.domLoaded = true;
+                return this.tinyMCE;
+            }
+        },
         jquery: {
             exports: &#39;$&#39;
         },
+        &#39;jquery.ujs&#39;: {deps: [&#39;jquery&#39;]},
         &#39;jquery.ui&#39;: {deps: [&#39;jquery&#39;]},
         &#39;jquery.resizestop&#39;: {deps: [&#39;jquery&#39;]},
         &#39;jquery.pseudo&#39;: {deps: [&#39;jquery&#39;]},
+        &#39;jquery.zoomooz&#39;: {deps: [&#39;jquery&#39;]},
         &#39;extends/function&#39;: {deps: [&#39;jquery&#39;]},
         &#39;extends/string&#39;: {deps: [&#39;jquery&#39;]},
         &#39;extends/array&#39;: {deps: [&#39;jquery&#39;]},
         &#39;lib/jquery/jquery.knob&#39;: {deps: [&#39;jquery&#39;]},
+
         &#39;lib/jquery/jquery.nicescroll&#39;: {deps: [&#39;jquery&#39;]},
+
+        &#39;config/listeners&#39;: {deps: [&#39;extends/function&#39;]},
+        &#39;config/permission&#39;: {deps: [&#39;extends/function&#39;]},
+        &#39;config/anthill&#39;: {deps: [&#39;extends/function&#39;]},
 
         &#39;controller/layout/layout.empty.rows&#39;: {deps: [&#39;extends/function&#39;]},
         &#39;controller/layout/layout.empty.columns&#39;: {deps: [&#39;extends/function&#39;]},
@@ -97,15 +116,16 @@
         &#39;modules/Interactions&#39;: {deps: [&#39;extends/function&#39;]},
         &#39;modules/Element&#39;: {deps: [&#39;extends/function&#39;]}
     }
-
 });
 
 define([
     &#39;modernizr&#39;,
     &#39;lz-string&#39;,
     &#39;jquery&#39;,
+    &#39;jquery.ujs&#39;,
     &#39;jquery.resizestop&#39;,
     &#39;jquery.pseudo&#39;,
+    &#39;jquery.zoomooz&#39;,
     &#39;extends/function&#39;,
     &#39;extends/json&#39;,
     &#39;extends/event&#39;,
@@ -115,13 +135,9 @@ define([
 
     require([
         &#39;config/listeners&#39;,
-        &#39;config/permission&#39;
-    ]);
-
-    return require([
+        &#39;config/permission&#39;,
         &#39;config/anthill&#39;
     ]);
-
 });</pre>
 </body>
 </html>

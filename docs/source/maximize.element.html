@@ -57,7 +57,7 @@ define([
         getFooter: function getFooter() {
             return $(&#39;&lt;div /&gt;&#39;).text([
                 this.base.lib.hash.hashLength(
-                    this.view.scope.controller.getData()
+                    this.view.scope.controller.getModuleData()
                 ),
                 &#39;items&#39;
             ].join(&#39; &#39;));

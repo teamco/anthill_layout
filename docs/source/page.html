@@ -44,27 +44,6 @@ define([
      */
     var Page = function Page(opts) {
 
-<span id='Page-property-items'>        /**
-</span>         * Define items
-         * @member Page
-         * @type {*}
-         */
-        this.items = {};
-
-<span id='Page-property-widget'>        /**
-</span>         * Define widget
-         * @member Page
-         * @type {*|Widget}
-         */
-        this.widget = {};
-
-<span id='Page-property-maximized'>        /**
-</span>         * Define maximized widget
-         * @member Page
-         * @type {*|Widget}
-         */
-        this.maximized = {};
-
 <span id='Page-property-LAYOUT_MODES'>        /**
 </span>         * Define layout modes
          * @member Page
@@ -137,7 +116,9 @@ define([
          * }}
          */
         var DEFAULTS = {
-            preferences: opts.preferences || {},
+            preferences: opts.preferences || {
+                showInTabs: true
+            },
             order: 1,
             type: &#39;default&#39;,
             limit: false,
@@ -170,10 +151,11 @@ define([
                 },
                 // default widget relWidth/relHeight
                 defaults: {
-                    width: 3,
-                    height: 3
+                    width: 30,
+                    height: 30
                 },
                 counter: 0,
+                overlapping: true,
                 allowToAdd: true,
                 addNewTo: this.ORGANIZE_MODES.row
             },
@@ -210,28 +192,57 @@ define([
             render: true
         });
 
-<span id='Page-property-layout'>        /**
-</span>         * Define layout
-         * @type {Layout}
-         */
-        this.layout = {};
-
-        this.observer.publish(
-            this.eventmanager.eventList.createLayout,
-            [Layout, this.config.layout]
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.successCreated
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.loadPreferences
-        );
-
+        this.init();
     };
 
     return Page.extend(&#39;Page&#39;, {
+
+<span id='Page-method-init'>        /**
+</span>         * Init page
+         * @member Page
+         */
+        init: function init() {
+
+<span id='Page-property-items'>            /**
+</span>             * Define items
+             * @member Page
+             * @type {*}
+             */
+            this.items = {};
+
+<span id='Page-property-widget'>            /**
+</span>             * Define widget
+             * @member Page
+             * @type {*|Widget}
+             */
+            this.widget = {};
+
+<span id='Page-property-maximized'>            /**
+</span>             * Define maximized widget
+             * @member Page
+             * @type {*|Widget}
+             */
+            this.maximized = {};
+
+<span id='Page-property-layout'>            /**
+</span>             * Define layout
+             * @type {Layout}
+             */
+            this.layout = {};
+
+            this.observer.publish(
+                this.eventmanager.eventList.createLayout,
+                [Layout, this.config.layout]
+            );
+
+            this.observer.publish(
+                this.eventmanager.eventList.successCreated
+            );
+
+            this.observer.publish(
+                this.eventmanager.eventList.loadPreferences
+            );
+        }
 
     }, AntHill.prototype);
 });

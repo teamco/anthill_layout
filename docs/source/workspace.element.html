@@ -29,7 +29,7 @@ define([
 
 <span id='WorkspaceElement-method-WorkspaceElement'><span id='WorkspaceElement'>    /**
 </span></span>     * Define Workspace Element
-     * @param view
+     * @param {WorkspaceView} view
      * @param opts
      * @returns {*}
      * @constructor
@@ -44,6 +44,68 @@ define([
     };
 
     return WorkspaceElement.extend(&#39;WorkspaceElement&#39;, {
+
+<span id='WorkspaceElement-method-updateTitle'>        /**
+</span>         * Set site title
+         * @member WorkspaceElement
+         * @param {string} title
+         */
+        updateTitle: function updateTitle(title) {
+            $(&#39;title&#39;).text(title);
+        },
+
+<span id='WorkspaceElement-method-updateWidth'>        /**
+</span>         * Set workspace width
+         * @member WorkspaceElement
+         * @param {number} width
+         */
+        updateWidth: function updateWidth(width) {
+
+            if (typeof(width) !== &#39;number&#39;) {
+                return false;
+            }
+
+            var style = this.$.attr(&#39;class&#39;),
+                regex = /sw-\d{1,2}/;
+
+            style = style.match(regex) ?
+                style.replace(regex, &#39;sw-&#39; + width) :
+                style + &#39; sw-&#39; + width;
+
+            this.$.attr(&#39;class&#39;, style);
+        },
+
+<span id='WorkspaceElement-method-unsetWidth'>        /**
+</span>         * Unset workspace width
+         * @member WorkspaceElement
+         */
+        unsetWidth: function unserWidth() {
+            this.$.attr(
+                &#39;class&#39;,
+                this.$.attr(&#39;class&#39;).replace(/sw-\d{1,2}/, &#39;&#39;)
+            );
+        },
+
+<span id='WorkspaceElement-method-renderGoogleAnalytics'>        /**
+</span>         * Render Google Analytics
+         * @member WorkspaceElement
+         * @param {string} trackingId
+         */
+        renderGoogleAnalytics: function renderGoogleAnalytics(trackingId) {
+
+            window._gaq = window._gaq || [];
+            window._gaq.push([&#39;_setAccount&#39;, trackingId]);
+            window._gaq.push([&#39;_trackPageview&#39;]);
+
+            (function () {
+                var ga = document.createElement(&#39;script&#39;);
+                ga.type = &#39;text/javascript&#39;;
+                ga.async = true;
+                ga.src = (&#39;https:&#39; == document.location.protocol ? &#39;https://ssl&#39; : &#39;http://www&#39;) + &#39;.google-analytics.com/ga.js&#39;;
+                var s = document.getElementsByTagName(&#39;script&#39;)[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+        }
 
     }, BaseElement.prototype);
 });</pre>

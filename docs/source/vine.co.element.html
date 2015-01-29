@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineVineCoElement(BaseElement) {
+
+<span id='VineCoElement-method-VineCoElement'><span id='VineCoElement'>    /**
+</span></span>     * Define VineCo Element
+     * @param view
+     * @param opts
+     * @returns {VineCoElement}
+     * @constructor
+     * @class VineCoElement
+     * @extends BaseElement
+     */
+    var VineCoElement = function VineCoElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;vine.co&#39;, {resource: &#39;/widgets&#39;});
+
+        return this;
+    };
+
+    return VineCoElement.extend(&#39;VineCoElement&#39;, {
+
+<span id='VineCoElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member VineCoElement
+         * @param {{
+         *      api: string,
+         *      link: string,
+         *      postcard: string,
+         *      audio: boolean,
+         *      video: boolean
+         * }} opts
+         */
+        renderEmbeddedContent: function renderEmbeddedContent(opts) {
+
+<span id='VineCoElement-property-S-element'>            /**
+</span>             * Define $element
+             * @type {VineCoElement}
+             */
+            var $element = this;
+
+            var audio = opts.audio ? &#39;audio=1&#39; : &#39;&#39;,
+                video = opts.video ? &#39;&#39; : &#39;related=0&#39;;
+
+            var params = [];
+
+            if (audio.length &gt; 0) {
+                params.push(audio);
+            }
+
+            if (video.length &gt; 0) {
+                params.push(video);
+            }
+
+            if (!opts.link) {
+                return false;
+            }
+
+            require([opts.api], function defineVineCo() {
+                $element.$.append(
+                    $(&#39;&lt;iframe /&gt;&#39;).attr({
+                        src: [
+                            opts.link, &#39;/embed/&#39;,
+                            opts.postcard.toLowerCase(),
+                                params.length &gt; 0 ? (&#39;?&#39; + params.join(&#39;&amp;&#39;)) : &#39;&#39;
+                        ].join(&#39;&#39;),
+                        frameborder: 0,
+                        scrolling: &#39;no&#39;
+                    }).addClass(&#39;vine-embed&#39;)
+                );
+            });
+        }
+
+    }, BaseElement.prototype);
+
+});
+</pre>
+</body>
+</html>

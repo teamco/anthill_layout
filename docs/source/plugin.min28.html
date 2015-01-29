@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">tinymce.PluginManager.add(&quot;pagebreak&quot;,function(a){var b=&quot;mce-pagebreak&quot;,c=a.getParam(&quot;pagebreak_separator&quot;,&quot;&lt;!-- pagebreak --&gt;&quot;),d=new RegExp(c.replace(/[\?\.\*\[\]\(\)\{\}\+\^\$\:]/g,function(a){return&quot;\\&quot;+a}),&quot;gi&quot;),e=&#39;&lt;img src=&quot;&#39;+tinymce.Env.transparentSrc+&#39;&quot; class=&quot;&#39;+b+&#39;&quot; data-mce-resize=&quot;false&quot; /&gt;&#39;;a.addCommand(&quot;mcePageBreak&quot;,function(){a.insertContent(a.settings.pagebreak_split_block?&quot;&lt;p&gt;&quot;+e+&quot;&lt;/p&gt;&quot;:e)}),a.addButton(&quot;pagebreak&quot;,{title:&quot;Page break&quot;,cmd:&quot;mcePageBreak&quot;}),a.addMenuItem(&quot;pagebreak&quot;,{text:&quot;Page break&quot;,icon:&quot;pagebreak&quot;,cmd:&quot;mcePageBreak&quot;,context:&quot;insert&quot;}),a.on(&quot;ResolveName&quot;,function(c){&quot;IMG&quot;==c.target.nodeName&amp;&amp;a.dom.hasClass(c.target,b)&amp;&amp;(c.name=&quot;pagebreak&quot;)}),a.on(&quot;click&quot;,function(c){c=c.target,&quot;IMG&quot;===c.nodeName&amp;&amp;a.dom.hasClass(c,b)&amp;&amp;a.selection.select(c)}),a.on(&quot;BeforeSetContent&quot;,function(a){a.content=a.content.replace(d,e)}),a.on(&quot;PreInit&quot;,function(){a.serializer.addNodeFilter(&quot;img&quot;,function(b){for(var d,e,f=b.length;f--;)if(d=b[f],e=d.attr(&quot;class&quot;),e&amp;&amp;-1!==e.indexOf(&quot;mce-pagebreak&quot;)){var g=d.parent;if(a.schema.getBlockElements()[g.name]&amp;&amp;a.settings.pagebreak_split_block){g.type=3,g.value=c,g.raw=!0,d.remove();continue}d.type=3,d.value=c,d.raw=!0}})})});</pre>
+</body>
+</html>

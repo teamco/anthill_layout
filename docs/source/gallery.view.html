@@ -31,7 +31,7 @@ define([
     &#39;plugins/gallery/element/gallery.search.element&#39;,
     &#39;plugins/gallery/element/gallery.content.element&#39;,
     &#39;plugins/gallery/element/gallery.element&#39;
-], function defineGalleryView(BaseView, Header, Footer, GalleryProviders, GallerySearch, GalleryContent, Gallery) {
+], function defineGalleryView(BaseView, Header, Footer, GalleryProvidersElement, GallerySearchElement, GalleryContentElement, GalleryElement) {
 
 <span id='GalleryView-method-constructor'><span id='GalleryView'>    /**
 </span></span>     * Define view
@@ -51,39 +51,48 @@ define([
          */
         renderGallery: function renderGallery() {
 
-            if (this.isCached(&#39;$gallery&#39;, Gallery)) {
-                return false;
-            }
-
-            this.header(Header, this.elements.$container).setText(
-                &#39;Gallery Widgets&#39;
-            );
+            this.renderHeader(Header, &#39;Gallery Widgets&#39;);
 
             this.renderSearch();
 
             this.renderProviders(
-                this.controller.getData(),
-                this.controller.getCurrentProvider()
+                this.controller.getProvidersData(),
+                this.controller.getModuleData()
             );
+
+            if (this.isCached(&#39;$gallery&#39;, GalleryElement)) {
+
+<span id='GalleryView-property-scope'>                /**
+</span>                 * Get scope
+                 * @type {Gallery}
+                 */
+                var scope = this.scope;
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.loadModuleContent, [
+                        true, true
+                    ]
+                );
+
+                return false;
+            }
 
 <span id='GalleryView-property-S-gallery'>            /**
 </span>             * Define Gallery element
              * @type {GalleryElement}
              */
-            this.elements.$gallery = new Gallery(this, {
+            this.elements.$gallery = new GalleryElement(this, {
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
         },
 
-<span id='GalleryView-method-renderFooter'>        /**
-</span>         * Render footer
+<span id='GalleryView-method-setOnFocus'>        /**
+</span>         * Set search on focus
          * @member GalleryView
          */
-        renderFooter: function renderFooter() {
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$gallery.getFooter()
-            );
+        setOnFocus: function setOnFocus() {
+            this.elements.$search.focus();
         },
 
 <span id='GalleryView-method-renderProviders'>        /**
@@ -99,7 +108,7 @@ define([
 </span>             * Define Gallery element
              * @type {GalleryProvidersElement}
              */
-            this.elements.$providers = new GalleryProviders(this, {
+            this.elements.$providers = new GalleryProvidersElement(this, {
                 $container: this.elements.$container.$,
                 style: &#39;gallery-providers&#39;,
                 data: providers,
@@ -114,15 +123,11 @@ define([
          */
         renderSearch: function renderSearch() {
 
-            if (this.isCached(&#39;$search&#39;, GallerySearch)) {
-                return false;
-            }
-
 <span id='GalleryView-property-S-search'>            /**
 </span>             * Define Gallery element
              * @type {GallerySearchElement}
              */
-            this.elements.$search = new GallerySearch(this, {
+            this.elements.$search = new GallerySearchElement(this, {
                 $container: this.elements.$container.$,
                 style: &#39;gallery-search&#39;
             });
@@ -152,8 +157,9 @@ define([
 
 <span id='GalleryView-property-data'>            /**
 </span>             * Define provider data
+             * @type {Array}
              */
-            var data = provider.data;
+            var data = (provider || {}).data || [];
 
             for (var i = 0, l = data.length; i &lt; l; i++) {
 
@@ -161,7 +167,7 @@ define([
 </span>                 * Render item
                  * @type {GalleryContentElement}
                  */
-                var $item = new GalleryContent(this, {
+                var $item = new GalleryContentElement(this, {
                     style: &#39;content&#39;,
                     $container: this.elements.$gallery.$,
                     data: data[i]
@@ -174,7 +180,16 @@ define([
                 this.elements.$container.$
             );
 
-            this.renderFooter();
+            this.updateFooterContent();
+            this.setOnFocus();
+        },
+
+<span id='GalleryView-method-updateFooterContent'>        /**
+</span>         * Update footer content
+         * @member GalleryView
+         */
+        updateFooterContent: function updateFooterContent() {
+            this.renderFooter(Footer, this.elements.$gallery);
         },
 
 <span id='GalleryView-method-render'>        /**

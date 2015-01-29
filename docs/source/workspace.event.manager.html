@@ -62,11 +62,21 @@ define(
              *      resizePages: string,
              *      resizePage: string,
              *      setPageContainerDimensions: string,
+             *      updatePagesWidth: string,
              *      beforeSwitchToPage: string,
              *      switchToPage: string,
              *      afterSwitchToPage: string,
              *      adoptContentWidth: string,
-             *      afterLoadingItems: string
+             *      afterLoadingItems: string,
+             *      updateSiteTitle: string,
+             *      updateSiteWidth: string,
+             *      loadTrackingSnippet: string,
+             *      loadPreferences: string,
+             *      transferPreferences: string,
+             *      transferContentPreferences: string,
+             *      afterUpdatePreferences: string,
+             *      createAuthorPanel: string,
+             *      createToolPanel: string,
              * }}
              */
             eventList: {
@@ -77,11 +87,30 @@ define(
                 resizePage: &#39;resize.page&#39;,
                 resizePages: &#39;resize.pages&#39;,
                 setPageContainerDimensions: &#39;set.page.container.dimensions&#39;,
+                updatePagesWidth: &#39;update.pages.width&#39;,
+
                 beforeSwitchToPage: &#39;before.switch.to.page&#39;,
                 switchToPage: &#39;switch.to.page&#39;,
                 afterSwitchToPage: &#39;after.switch.to.page&#39;,
+                afterPageOrder: &#39;after.page.order&#39;,
+
                 adoptContentWidth: &#39;adopt.content.width&#39;,
-                afterLoadingItems: &#39;after.loading.items&#39;
+
+                afterLoadingItems: &#39;after.loading.items&#39;,
+
+                updateSiteWidth: &#39;update.site.width&#39;,
+
+                updateSiteTitle: &#39;update.site.title&#39;,
+
+                loadTrackingSnippet: &#39;load.tracking.snippet&#39;,
+
+                loadPreferences: &#39;load.preferences&#39;,
+                transferPreferences: &#39;transfer.preferences&#39;,
+                transferContentPreferences: &#39;transfer.content.preferences&#39;,
+                afterUpdatePreferences: &#39;after.update.preferences&#39;,
+
+                createAuthorPanel: &#39;create.author.panel&#39;,
+                createToolPanel: &#39;create.tool.panel&#39;
             }
 
         }, BaseEvent.prototype);

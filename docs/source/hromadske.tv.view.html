@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/hromadske.tv/element/hromadske.tv.element&#39;,
+    &#39;plugins/widgets/hromadske.tv/element/hromadske.tv.preferences.element&#39;,
+    &#39;plugins/widgets/hromadske.tv/element/hromadske.tv.rules.element&#39;
+], function defineHromadskeTvView(BaseView, Header, Footer, HromadskeTvElement, HromadskeTvPreferencesElement, HromadskeTvRulesElement) {
+
+<span id='HromadskeTvView-method-constructor'><span id='HromadskeTvView'>    /**
+</span></span>     * Define view
+     * @class HromadskeTvView
+     * @extends BaseView
+     * @constructor
+     */
+    var HromadskeTvView = function HromadskeTvView() {
+    };
+
+    return HromadskeTvView.extend(&#39;HromadskeTvView&#39;, {
+
+<span id='HromadskeTvView-method-renderHromadskeTv'>        /**
+</span>         * Render hromadsketv element
+         * @member HromadskeTvView
+         */
+        renderHromadskeTv: function renderHromadskeTv() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='HromadskeTvView-property-S-hromadsketv'>            /**
+</span>             * Define $hromadsketv
+             * @type {HromadskeTvElement}
+             */
+            this.elements.$hromadsketv = new HromadskeTvElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='HromadskeTvView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member HromadskeTvView
+         * @returns {HromadskeTvPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='HromadskeTvView-property-S-preferences'>            /**
+</span>             * Define HromadskeTv Preferences Element
+             * @type {HromadskeTvPreferencesElement}
+             */
+            this.elements.$preferences = new HromadskeTvPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='HromadskeTvView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member HromadskeTvView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {HromadskeTvRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='HromadskeTvView-property-data'>            /**
+</span>             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+<span id='HromadskeTvView-property-S-rules'>            /**
+</span>             * Define HromadskeTv Rules Element
+             * @type {HromadskeTvRulesElement}
+             */
+            this.elements.$rules = new HromadskeTvRulesElement(this, {
+                data: data,
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='HromadskeTvView-method-render'>        /**
+</span>         * Render hromadsketv
+         * @member HromadskeTvView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderHromadskeTv.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});
+</pre>
+</body>
+</html>

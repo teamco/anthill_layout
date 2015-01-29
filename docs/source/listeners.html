@@ -24,21 +24,18 @@
  */
 
 define([
+    &#39;jquery&#39;,
     &#39;config/application&#39;,
     &#39;config/workspace&#39;,
     &#39;config/page&#39;,
     &#39;config/layout&#39;,
     &#39;config/widget&#39;
-], function defineListeners(Application, Workspace, Page, Layout, Widget) {
+], function defineListeners($, App, Workspace, Page, Layout, Widget) {
 
-<span id='global-property-localListeners'>    /**
-</span>     * Load listeners
-     */
-    Application.prototype.localListeners = Application.prototype.localListeners || {};
-    Workspace.prototype.localListeners = Workspace.prototype.localListeners || {};
-    Page.prototype.localListeners = Page.prototype.localListeners || {};
-    Layout.prototype.localListeners = Layout.prototype.localListeners || {};
-    Widget.prototype.localListeners = Widget.prototype.localListeners || {};
+    // Load listeners
+    for (var i = 0, l = arguments.length; i &lt; l; i++) {
+        arguments[i].prototype.localListeners = arguments[i].prototype.localListeners || {};
+    }
 
 <span id='App-property-'>    /**
 </span>     * Define Application Local listeners
@@ -50,16 +47,12 @@ define([
      *      resizeWorkspace: {name: string, callback: Function}
      * }}
      */
-    $.extend(Application.prototype.localListeners, {
+    $.extend(App.prototype.localListeners, {
 
         successRendered: {
             name: &#39;success.rendered&#39;,
             callback: function successRenderedCallback() {
                 this.view.renderApplication();
-
-                if (this.controller.isDevelopmentMode()) {
-                    this.view.debug();
-                }
             }
         },
 
@@ -107,13 +100,20 @@ define([
         successRendered: {
             name: &quot;success.rendered&quot;,
             callback: function successRenderedCallback() {
+
                 this.view.renderWorkspace();
+
+                this.observer.batchPublish(
+                    this.eventmanager.eventList.loadPreferences,
+                    this.eventmanager.eventList.updateSiteWidth
+                );
             }
         },
 
         createPage: {
             name: &#39;create.page&#39;,
             callback: function createPageCallback() {
+
                 this.observer.publish(
                     this.eventmanager.eventList.setPageContainerDimensions
                 );
@@ -171,6 +171,20 @@ define([
         createWidget: {
             name: &#39;create.widget&#39;,
             callback: function createWidgetCallback() {
+
+                if (this.controller.root().model.getConfig(&#39;loading&#39;)) {
+                    return false;
+                }
+
+<span id='global-property-widget'>                /**
+</span>                 * Get current widget
+                 * @type {Widget}
+                 */
+                var widget = this.controller.getCurrentItem();
+
+                widget.model.setOverlapping(
+                    this.model.getConfig(&#39;widget/overlapping&#39;)
+                );
 
                 this.observer.publish(
                     this.eventmanager.eventList.updateHeight

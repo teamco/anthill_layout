@@ -97,7 +97,7 @@ define([
          * @param {Boolean} [silent]
          * @param {*} [where]
          * @returns {*}
-         * @private
+         * @protected
          */
         _createItem: function _createItem(item, args, render, silent, where) {
 
@@ -112,7 +112,7 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList[&#39;create&#39; + cname],
-                [args, silent]
+                [args, scope.silent]
             );
 
             if (scope.controller.checkCondition({

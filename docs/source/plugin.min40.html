@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">tinymce.PluginManager.add(&quot;visualblocks&quot;,function(a,b){function c(){var b=this;b.active(f),a.on(&quot;VisualBlocks&quot;,function(){b.active(a.dom.hasClass(a.getBody(),&quot;mce-visualblocks&quot;))})}var d,e,f;window.NodeList&amp;&amp;(a.addCommand(&quot;mceVisualBlocks&quot;,function(){var c,g=a.dom;d||(d=g.uniqueId(),c=g.create(&quot;link&quot;,{id:d,rel:&quot;stylesheet&quot;,href:b+&quot;/css/visualblocks.css&quot;}),a.getDoc().getElementsByTagName(&quot;head&quot;)[0].appendChild(c)),a.on(&quot;PreviewFormats AfterPreviewFormats&quot;,function(b){f&amp;&amp;g.toggleClass(a.getBody(),&quot;mce-visualblocks&quot;,&quot;afterpreviewformats&quot;==b.type)}),g.toggleClass(a.getBody(),&quot;mce-visualblocks&quot;),f=a.dom.hasClass(a.getBody(),&quot;mce-visualblocks&quot;),e&amp;&amp;e.active(g.hasClass(a.getBody(),&quot;mce-visualblocks&quot;)),a.fire(&quot;VisualBlocks&quot;)}),a.addButton(&quot;visualblocks&quot;,{title:&quot;Show blocks&quot;,cmd:&quot;mceVisualBlocks&quot;,onPostRender:c}),a.addMenuItem(&quot;visualblocks&quot;,{text:&quot;Show blocks&quot;,cmd:&quot;mceVisualBlocks&quot;,onPostRender:c,selectable:!0,context:&quot;view&quot;,prependToContext:!0}),a.on(&quot;init&quot;,function(){a.settings.visualblocks_default_state&amp;&amp;a.execCommand(&quot;mceVisualBlocks&quot;,!1,null,{skip_focus:!0})}),a.on(&quot;remove&quot;,function(){a.dom.removeClass(a.getBody(),&quot;mce-visualblocks&quot;)}))});</pre>
+</body>
+</html>

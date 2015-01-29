@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/channel.nine.ua/element/channel.nine.ua.element&#39;,
+    &#39;plugins/widgets/channel.nine.ua/element/channel.nine.ua.preferences.element&#39;,
+    &#39;plugins/widgets/channel.nine.ua/element/channel.nine.ua.rules.element&#39;
+], function defineChannelNineUaView(BaseView, Header, Footer, ChannelNineUaElement, ChannelNineUaPreferencesElement, ChannelNineUaRulesElement) {
+
+<span id='ChannelNineUaView-method-constructor'><span id='ChannelNineUaView'>    /**
+</span></span>     * Define view
+     * @class ChannelNineUaView
+     * @extends BaseView
+     * @constructor
+     */
+    var ChannelNineUaView = function ChannelNineUaView() {
+    };
+
+    return ChannelNineUaView.extend(&#39;ChannelNineUaView&#39;, {
+
+<span id='ChannelNineUaView-method-renderChannelNineUa'>        /**
+</span>         * Render channelnineua element
+         * @member ChannelNineUaView
+         */
+        renderChannelNineUa: function renderChannelNineUa() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='ChannelNineUaView-property-S-channelnineua'>            /**
+</span>             * Define $channelnineua
+             * @type {ChannelNineUaElement}
+             */
+            this.elements.$channelnineua = new ChannelNineUaElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='ChannelNineUaView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member ChannelNineUaView
+         * @returns {ChannelNineUaPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='ChannelNineUaView-property-S-preferences'>            /**
+</span>             * Define ChannelNineUa Preferences Element
+             * @type {ChannelNineUaPreferencesElement}
+             */
+            this.elements.$preferences = new ChannelNineUaPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='ChannelNineUaView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member ChannelNineUaView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {ChannelNineUaRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='ChannelNineUaView-property-data'>            /**
+</span>             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+<span id='ChannelNineUaView-property-S-rules'>            /**
+</span>             * Define ChannelNineUa Rules Element
+             * @type {ChannelNineUaRulesElement}
+             */
+            this.elements.$rules = new ChannelNineUaRulesElement(this, {
+                data: data,
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='ChannelNineUaView-method-render'>        /**
+</span>         * Render channelnineua
+         * @member ChannelNineUaView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderChannelNineUa.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});
+</pre>
+</body>
+</html>

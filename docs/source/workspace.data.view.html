@@ -41,13 +41,13 @@ define(
      * @param {BasePreferences} BasePreferences
      * @param {BaseView} Header
      * @param {BaseView} Footer
-     * @param {WorkspaceDataContentElement} WorkspaceDataContent
+     * @param {WorkspaceDataContentElement} WorkspaceDataContentElement
      * @param {WorkspaceDataPreferencesElement} WorkspaceDataPreferencesElement
      * @param {WorkspaceDataAddPageElement} WorkspaceDataAddPageElement
      * @param {WorkspaceDataElement} WorkspaceDataElement
      * @returns {*}
      */
-        function defineWorkspaceDataView(BaseView, BasePreferences, Header, Footer, WorkspaceDataContentElement, WorkspaceDataPreferencesElement, WorkspaceDataAddPageElement, WorkspaceDataElement) {
+    function defineWorkspaceDataView(BaseView, BasePreferences, Header, Footer, WorkspaceDataContentElement, WorkspaceDataPreferencesElement, WorkspaceDataAddPageElement, WorkspaceDataElement) {
 
 <span id='WorkspaceDataView-method-constructor'><span id='WorkspaceDataView'>        /**
 </span></span>         * Define view
@@ -71,9 +71,7 @@ define(
                     return false;
                 }
 
-                this.header(Header, this.elements.$container).setText(
-                    &#39;Workspace Pages&#39;
-                );
+                this.renderHeader(Header, &#39;Workspace Pages&#39;);
 
 <span id='WorkspaceDataView-property-S-workspacedata'>                /**
 </span>                 * Define WorkspaceData element
@@ -84,9 +82,7 @@ define(
                     $container: this.elements.$container.$
                 });
 
-                this.footer(Footer, this.elements.$container).setHtml(
-                    this.elements.$workspacedata.getFooter()
-                );
+                this.renderFooter(Footer, this.elements.$workspacedata);
             },
 
 <span id='WorkspaceDataView-method-renderContent'>            /**
@@ -106,40 +102,59 @@ define(
                 this.elements.$workspacedata.empty();
                 this.renderCreatePage();
 
-                var index, counter = 1;
+                this.renderHeader(Header, &#39;Workspace Pages&#39;);
 
-                for (index in data) {
+<span id='WorkspaceDataView-property-page'>                /**
+</span>                 * Get current page
+                 * @type {Page}
+                 */
+                var page = this.controller.getPage();
 
-                    if (data.hasOwnProperty(index)) {
+                var i = 0, l = data.length,
+                    show, current;
 
-<span id='WorkspaceDataView-property-S-item'>                        /**
-</span>                         * Render item
-                         * @type {WorkspaceDataContentElement}
-                         */
-                        var $item = new WorkspaceDataContentElement(this, {
-                            style: &#39;content&#39;,
-                            id: [
-                                data[index].model.getConfig(&#39;uuid&#39;),
-                                &#39;workspace-data-view&#39;
-                            ].join(&#39;-&#39;),
-                            $container: this.elements.$workspacedata.$,
-                            data: data[index],
-                            counter: counter
-                        });
+                for (i; i &lt; l; i++) {
 
-                        counter += 1;
-
-                        this.elements.items[$item.id] = $item;
+                    if (!data[i]) {
+                        this.scope.logger.warn(&#39;Undefined item&#39;, data, i);
+                        return false;
                     }
+
+<span id='WorkspaceDataView-property-show'>                    /**
+</span>                     * Show in tabs
+                     * @type {string}
+                     */
+                    show = this.controller.checkShowInTabs(data[i]) ? &#39;&#39; : &#39; hide&#39;;
+
+<span id='WorkspaceDataView-property-current'>                    /**
+</span>                     * Define current page style
+                     * @type {string}
+                     */
+                    current = page === data[i] ? &#39; current&#39; : &#39;&#39;;
+
+<span id='WorkspaceDataView-property-S-item'>                    /**
+</span>                     * Render item
+                     * @type {WorkspaceDataContentElement}
+                     */
+                    var $item = new WorkspaceDataContentElement(this, {
+                        style: &#39;content&#39; + current + show,
+                        id: [
+                            data[i].model.getConfig(&#39;uuid&#39;),
+                            &#39;workspace-data-view&#39;
+                        ].join(&#39;-&#39;),
+                        $container: this.elements.$workspacedata.$,
+                        data: data[i],
+                        counter: i + 1
+                    });
+
+                    this.elements.items[$item.id] = $item;
                 }
 
                 this.elements.$workspacedata.scrollCover(
                     this.elements.$container.$
                 );
 
-                this.footer(Footer, this.elements.$container).setHtml(
-                    this.elements.$workspacedata.getFooter()
-                );
+                this.renderFooter(Footer, this.elements.$workspacedata);
             },
 
 <span id='WorkspaceDataView-method-renderCreatePage'>            /**
@@ -165,22 +180,13 @@ define(
 </span>             * Show preferences
              * @member WorkspaceDataView
              * @param config
+             * @param {boolean} current
              */
-            showPreferences: function showPreferences(config) {
-
-<span id='WorkspaceDataView-property-scope'>                /**
-</span>                 * Define scope
-                 * @type {WorkspaceData}
-                 */
-                var scope = this.scope;
-
-                scope.observer.publish(
-                    scope.eventmanager.eventList.setActiveContent,
-                    config.uuid
-                );
+            showPreferences: function showPreferences(config, current) {
 
                 this.openPreferences({
                     config: config,
+                    current: current,
                     $html: this.controller.definePreferences(config.uuid).$,
                     style: &#39;workspace-data-prefs preferences&#39;,
                     title: &#39;Page preferences&#39;,

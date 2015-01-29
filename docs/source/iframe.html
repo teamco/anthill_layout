@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created by i061485 on 7/10/14.
+ */
+
+define([], function defineIframeRenderer() {
+
+<span id='IframeRenderer-method-constructor'><span id='IframeRenderer'>    /**
+</span></span>     * Define IframeRenderer
+     * @class IframeRenderer
+     * @extends LabelRenderer
+     * @constructor
+     */
+    var IframeRenderer = function IframeRenderer() {
+
+    };
+
+    return IframeRenderer.extend(&#39;IframeRenderer&#39;, {
+
+<span id='IframeRenderer-method-renderIframe'>        /**
+</span>         * Render iframe
+         * @member IframeRenderer
+         * @param {string} src
+         * @param {object} [opts]
+         * @returns {*|jQuery}
+         */
+        renderIframe: function renderIframe(src, opts) {
+
+            opts = opts || {};
+
+            var iframe = &#39;&lt;iframe webkitAllowFullScreen mozallowfullscreen allowfullscreen /&gt;&#39;,
+                attrs = {
+                    src: src,
+                    frameborder: 0,
+                    width: &#39;100%&#39;,
+                    height: &#39;100%&#39;,
+                    scrolling: &#39;no&#39;,
+                    allowtransparency: true
+                };
+
+            $.extend(attrs, opts);
+
+            return $(iframe).attr(attrs);
+        }
+    });
+});</pre>
+</body>
+</html>

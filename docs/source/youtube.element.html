@@ -52,10 +52,15 @@ define([
 <span id='YoutubeElement-method-renderEmbeddedContent'>        /**
 </span>         * Render Embedded content
          * @member YoutubeElement
-         * @param {string} iframe
+         * @param {string} url
          */
-        renderEmbeddedContent: function renderEmbeddedContent(iframe) {
-            this.$.append(iframe);
+        renderEmbeddedContent: function renderEmbeddedContent(url) {
+            this.$.append(
+                this.renderIframe(url, {
+                    id: &quot;ytplayer&quot;,
+                    type: &quot;text/html&quot;
+                })
+            );
         }
 
     }, BaseElement.prototype);

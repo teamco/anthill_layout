@@ -22,7 +22,7 @@
  * Time: 5:51 PM
  */
 
-define([], function defineSliderRenderer(){
+define([], function defineSliderRenderer() {
 
 <span id='SliderRenderer-method-constructor'><span id='SliderRenderer'>    /**
 </span></span>     * Define Slider Renderer
@@ -50,6 +50,30 @@ define([], function defineSliderRenderer(){
             }
 
             $container.slider(opts);
+
+            var labels = opts.labels || [],
+                i = opts.min || 0,
+                l = labels.length;
+
+            for (i; i &lt; l; i += (opts.step || 1)) {
+
+                // Calculate left position
+                var left = ( i / opts.max * 100 ).toFixed(2) + &quot;%&quot;;
+
+                var $separator = $(&quot;&lt;div/&gt;&quot;).addClass(&quot;ui-slider-tick separator&quot;).css({
+                    left: left
+                });
+
+                var $label = $(&quot;&lt;div/&gt;&quot;).addClass(&quot;ui-slider-tick label&quot;).css({
+                    left: left
+                }).text(labels[i]);
+
+                $container.append($separator, $label);
+
+                $label.css({
+                    marginLeft: -(this.textMetrics($label).width / 2)
+                });
+            }
         }
     });
 });</pre>

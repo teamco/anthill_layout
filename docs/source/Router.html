@@ -30,15 +30,6 @@ define([
      */
     var Router = function Router() {
 
-<span id='Router-property-routes'>        /**
-</span>         * Define routes urls
-         * @type {{create: string, update: string}}
-         */
-        this.routes = {
-            create: &#39;/author/sites&#39;,
-            update: &#39;/author/sites/{id}&#39;,
-            store: &#39;/author/history/{id}&#39;
-        };
     };
 
     return Router.extend(&#39;Router&#39;, {
@@ -93,7 +84,7 @@ define([
 </span>             * Match regex
              * @type {Array|{index: number, input: string}|*}
              */
-            var pageMatch = hash.match(/#([\w\d\-]*):?/i);
+            var pageMatch = hash.match(/#\/([\w\d\-]*):?/i);
 
 <span id='Router-property-currentPage'>            /**
 </span>             * Get current page
@@ -204,13 +195,7 @@ define([
                 return false;
             }
 
-            var title = item.model.getConfig(&#39;preferences&#39;).title;
-
-            if (title) {
-                return title.toClassName();
-            }
-
-            return item.model.getUUID();
+            return item.model.getItemTitle().toClassName();
         }
     });
 });</pre>

@@ -107,6 +107,35 @@
             capitalize();
     };
 
+<span id='String-method-utf82base64'>    /**
+</span>     * String utf8 to base64
+     * @member String
+     * @returns {string}
+     */
+    String.prototype.utf82base64 = function utf82base64() {
+        return window.btoa(encodeURIComponent(encodeURI(this)));
+    };
+
+<span id='String-method-base642utf8'>    /**
+</span>     * String base64 to utf8
+     * @member String
+     * @returns {string}
+     */
+    String.prototype.base642utf8 = function base642utf8() {
+        return decodeURI(decodeURIComponent(window.atob(this)));
+    };
+
+<span id='String-method-toHtml'>    /**
+</span>     * String to DOM element
+     * @member String
+     * @returns {*}
+     */
+    String.prototype.toHtml = function toHtml() {
+        var tempDiv = document.createElement(&#39;div&#39;);
+        tempDiv.innerHTML = this;
+        return tempDiv.firstChild;
+    };
+
 }());</pre>
 </body>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;,
+    &#39;plugins/preferences/widget.preferences&#39;
+], function defineFilmOnPreferencesElement(BaseElement, WidgetPreferences) {
+
+<span id='FilmOnPreferencesElement-method-FilmOnPreferencesElement'><span id='FilmOnPreferencesElement'>    /**
+</span></span>     * Define FilmOn Preferences Element
+     * @param view
+     * @param opts
+     * @returns {FilmOnPreferencesElement}
+     * @constructor
+     * @class FilmOnPreferencesElement
+     * @extends BaseElement
+     * @extends WidgetPreferences
+     */
+    var FilmOnPreferencesElement = function FilmOnPreferencesElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;ul /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.renderBasePrefsData(opts.data);
+
+        return this;
+    };
+
+    return FilmOnPreferencesElement.extend(&#39;FilmOnPreferencesElement&#39;, {
+
+
+    }, BaseElement.prototype, WidgetPreferences.prototype);
+
+});
+</pre>
+</body>
+</html>

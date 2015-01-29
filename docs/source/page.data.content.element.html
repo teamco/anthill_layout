@@ -62,35 +62,21 @@ define([
 </span>             * Get title
              * @type {boolean|string}
              */
-            var title = data.model.getConfig(&#39;preferences/title&#39;) ||
-                data.model.getUUID();
+            var title = data.model.getItemTitle();
 
 <span id='PageDataContentElement-property-description'>            /**
 </span>             * Get description
              * @type {string}
              */
-            var description = data.model.getConfig(&#39;preferences/description&#39;) || &#39;&#39;;
+            var description = data.model.getConfig(&#39;preferences&#39;).description || &#39;&#39;;
 
             this.$.attr({
                 title: title
             }).addClass(
                 this.view.controller.getResourceClassName(
-                    data.model.getConfig(&#39;preferences/resource&#39;)
+                    data.model.getConfig(&#39;preferences&#39;).resource
                 )
             );
-
-<span id='PageDataContentElement-property-thumbnail'>            /**
-</span>             * Get thumbnail
-             * @type {string|*}
-             */
-            var thumbnail = data.model.getConfig(&#39;preferences/thumbnail&#39;);
-
-            if (thumbnail.length &gt; 0) {
-
-                this.$.css({
-                    backgroundImage: &#39;url(&quot;&#39; + thumbnail + &#39;&quot;)&#39;
-                });
-            }
 
             this.renderTooltip({
                 title: title,

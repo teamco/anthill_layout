@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/4/12
+ * Time: 11:06 PM
+ * To change this template use File | Settings | File Templates.
+ */
+define([
+    &#39;modules/Model&#39;,
+    &#39;plugins/widgets/widget.content.model&#39;
+], function defineVineCoModel(BaseModel, WidgetContentModel) {
+
+<span id='VineCoModel-method-constructor'><span id='VineCoModel'>    /**
+</span></span>     * Define VineCo model
+     * @extends BaseModel
+     * @extends WidgetContentModel
+     * @class VineCoModel
+     * @constructor
+     */
+    var VineCoModel = function VineCoModel() {
+
+<span id='VineCoModel-property-preferences'>        /**
+</span>         * Define preferences
+         * @member VineCoModel
+         * @type {{}}
+         */
+        this.preferences = {
+            vinecoApi: {
+                type: &#39;text&#39;,
+                disabled: true,
+                value: &#39;//platform.vine.co/static/scripts/embed.js&#39;,
+                visible: true
+            },
+            vinecoLink: {
+                type: &#39;text&#39;,
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            vinecoType: {
+                type: &#39;combobox&#39;,
+                disabled: false,
+                list: [
+                    {
+                        type: &#39;text&#39;,
+                        value: &#39;Simple&#39;
+                    },
+                    {
+                        type: &#39;text&#39;,
+                        value: &#39;Postcard&#39;
+                    }
+                ],
+                value: &#39;Simple&#39;,
+                visible: true
+            },
+            vinecoAutoplayAudio: {
+                type: &#39;checkbox&#39;,
+                disabled: false,
+                value: false,
+                visible: true
+            },
+            vinecoRelatedVideos: {
+                type: &#39;checkbox&#39;,
+                disabled: false,
+                value: false,
+                visible: true
+            }
+        };
+
+<span id='VineCoModel-property-rules'>        /**
+</span>         * Define rules
+         * @member VineCoModel
+         * @type {{}}
+         */
+        this.rules = {};
+    };
+
+    return VineCoModel.extend(&#39;VineCoModel&#39;, {
+
+<span id='VineCoModel-method-setVinecoLink'>        /**
+</span>         * Set link
+         * @member VineCoModel
+         * @param {string} link
+         */
+        setVinecoLink: function setVinecoLink(link) {
+            this.setPrefs(&#39;vinecoLink&#39;, link);
+        },
+
+<span id='VineCoModel-method-setVinecoType'>        /**
+</span>         * Set postcard type
+         * @member VineCoModel
+         * @param {string} type
+         */
+        setVinecoType: function setVinecoType(type) {
+            this.setPrefs(&#39;vinecoType&#39;, type);
+        },
+
+<span id='VineCoModel-method-setVinecoAutoplayAudio'>        /**
+</span>         * Set auto play audio
+         * @member VineCoModel
+         * @param {boolean} audio
+         */
+        setVinecoAutoplayAudio: function setVinecoAutoplayAudio(audio) {
+            this.setPrefs(&#39;vinecoAutoplayAudio&#39;, audio);
+        },
+
+<span id='VineCoModel-method-setVinecoRelatedVideos'>        /**
+</span>         * Set related videos
+         * @member VineCoModel
+         * @param {boolean} video
+         */
+        setVinecoRelatedVideos: function setVinecoRelatedVideos(video) {
+            this.setPrefs(&#39;vinecoRelatedVideos&#39;, video);
+        }
+
+    }, BaseModel.prototype, WidgetContentModel.prototype);
+});
+</pre>
+</body>
+</html>

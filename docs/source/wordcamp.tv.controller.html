@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define([
+    &#39;plugins/plugin&#39;,
+    &#39;plugins/widgets/widget.content.controller&#39;
+], function defineWordcampTvController(PluginBase, WidgetContentController) {
+
+<span id='WordcampTvController-method-constructor'><span id='WordcampTvController'>    /**
+</span></span>     * Define wordcamptv controller
+     * @class WordcampTvController
+     * @extends PluginController
+     * @extends WidgetContentController
+     * @constructor
+     */
+    var WordcampTvController = function WordcampTvController() {
+    };
+
+    return WordcampTvController.extend(&#39;WordcampTvController&#39;, {
+
+<span id='WordcampTvController-method-setEmbeddedContent'>        /**
+</span>         * Set embedded content
+         * @member WordcampTvController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
+
+<span id='WordcampTvController-property-url'>            /**
+</span>             * Get url
+             * @type {string|*}
+             */
+            var url = this.model.getPrefs(&#39;wordcamptvEmbedCode&#39;),
+                embed = this.controller.getEmbedCode(url);
+
+            if (embed) {
+                this.view.elements.$wordcamptv.renderEmbeddedContent(embed);
+            }
+        },
+
+<span id='WordcampTvController-method-getEmbedCode'>        /**
+</span>         * Validate wordcamptv
+         * @member WordcampTvController
+         * @param {string} embed
+         * @return {string|boolean}
+         */
+        getEmbedCode: function getEmbedCode(embed) {
+
+            if (!embed) {
+                this.scope.logger.debug(&#39;Initial state&#39;);
+                return false;
+            }
+
+            // Convert to string
+            embed += &#39;&#39;;
+
+            if (embed.match(/^&lt;embed/)) {
+
+                return embed;
+
+            } else {
+
+                this.scope.logger.warn(&#39;Invalid WordcampTv embed code&#39;);
+                return false;
+            }
+        },
+
+<span id='WordcampTvController-method-addWordcampTvRule'>        /**
+</span>         * Add WordcampTv rule
+         * @member WordcampTvController
+         * @param e
+         */
+        addWordcampTvRule: function addWordcampTvRule(e) {
+
+<span id='WordcampTvController-property-S-button'>            /**
+</span>             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target),
+                scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.publishRule,
+                [$button.attr(&#39;value&#39;), scope.constructor.prototype.name]
+            );
+        }
+
+    }, PluginBase.prototype, WidgetContentController.prototype);
+});
+</pre>
+</body>
+</html>

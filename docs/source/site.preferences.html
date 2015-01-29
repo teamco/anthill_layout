@@ -17,101 +17,312 @@
 <body onload="prettyPrint(); highlight();">
   <pre class="prettyprint lang-js"><span id='global-property-'>/**
 </span> * Created with RubyMine.
- * User: i061485
- * Date: 2/23/14
- * Time: 11:02 AM
+ * User: teamco
+ * Date: 7/23/14
+ * Time: 8:50 PM
  */
 
 define([
-    &#39;config/anthill&#39;,
-    &#39;modules/MVC&#39;,
-    &#39;plugins/site.preferences/mvc/site.preferences.controller&#39;,
-    &#39;plugins/site.preferences/mvc/site.preferences.model&#39;,
-    &#39;plugins/site.preferences/mvc/site.preferences.view&#39;,
-    &#39;plugins/site.preferences/mvc/site.preferences.event.manager&#39;,
-    &#39;plugins/site.preferences/mvc/site.preferences.permission&#39;
-], function defineSitePreferences(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+    &#39;jquery&#39;,
+    &#39;plugins/preferences/preferences&#39;
+], function defineSitePreferences($, BasePreferences) {
 
-<span id='SitePreferences-method-SitePreferences'><span id='SitePreferences'>    /**
-</span></span>     * Define SitePreferences
-     * @constructor
-     * @param containment
+<span id='SitePreferences-method-constructor'><span id='SitePreferences'>    /**
+</span></span>     * Define prefs
      * @class SitePreferences
-     * @extends AntHill
+     * @extends Renderer
+     * @extends BasePreferences
+     * @constructor
      */
-    var SitePreferences = function SitePreferences(containment) {
+    var SitePreferences = function SitePreferences() {
 
-<span id='SitePreferences-property-containment'>        /**
-</span>         * Define containment
-         * @member SitePreferences
-         */
-        this.containment = containment;
-
-<span id='SitePreferences-property-DEFAULTS'>        /**
-</span>         * Define defaults
-         * @type {{
-         *      plugin: boolean,
-         *      html: {
-         *          style: string,
-         *          header: boolean,
-         *          footer: boolean,
-         *          floating: boolean,
-         *          padding: {
-         *              top: number,
-         *              right: number,
-         *              bottom: number,
-         *              left: number
-         *          }
-         *      }
-         * }}
-         */
-        var DEFAULTS = {
-            plugin: true,
-            html: {
-                style: &#39;default&#39;,
-                header: true,
-                footer: true,
-                floating: true,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            }
-        };
-
-<span id='SitePreferences-property-mvc'>        /**
-</span>         * Define MVC
-         * @member SitePreferences
-         * @type {MVC}
-         */
-        this.mvc = new MVC({
-            scope: this,
-            config: [DEFAULTS],
-            components: [
-                Controller,
-                Model,
-                View,
-                EventManager,
-                Permission
-            ],
-            render: true
-        });
-
-        this.observer.publish(
-            this.eventmanager.eventList.successCreated
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.updateTranslations,
-            [&#39;plugins/site.preferences/translations/en-us&#39;]
-        );
     };
 
     return SitePreferences.extend(&#39;SitePreferences&#39;, {
 
-    }, AntHill.prototype);
+<span id='SitePreferences-method-toggleFieldset'>        /**
+</span>         * Toggle fieldset
+         * @member SitePreferences
+         * @param e
+         */
+        toggleFieldset: function toggleFieldset(e) {
+
+<span id='SitePreferences-property-S-el'>            /**
+</span>             * Define $el
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $el = $(e.target);
+
+            $el.parents(&#39;div.html&#39;).
+                find(&#39;.open&#39;).
+                removeClass(&#39;open&#39;);
+
+            $el.addClass(&#39;open&#39;);
+
+            this.adoptModalDialogPosition();
+        },
+
+<span id='SitePreferences-method-getPreferencesHtml'>        /**
+</span>         * Get preferences HTML
+         * @member SitePreferences
+         * @param {Array} map
+         * @return Array
+         */
+        getPreferencesHtml: function getPreferencesHtml(map) {
+
+            return [
+                this.setSiteTitle(),
+                this.siteWidthSlider(map),
+                this.googleAnalytics()
+            ];
+        },
+
+<span id='SitePreferences-method-setSiteTitle'>        /**
+</span>         * Set site title preference
+         * @member SitePreferences
+         * @returns {*|jQuery}
+         */
+        setSiteTitle: function setSiteTitle() {
+
+<span id='SitePreferences-property-workspace'>            /**
+</span>             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                preferences = workspace.model.getConfig(&#39;preferences&#39;);
+
+<span id='SitePreferences-property-S-textfield'>            /**
+</span>             * Render slider input
+             * @type {*[]}
+             */
+            var $textfield = this.renderTextField({
+                name: &#39;siteTitle&#39;,
+                text: &#39;Site Title&#39;,
+                disabled: false,
+                visible: true,
+                value: preferences[&#39;siteTitle&#39;] || $(&#39;title&#39;).text()
+            });
+
+            return $(&#39;&lt;li /&gt;&#39;).
+                addClass(&#39;workspace-title-prefs&#39;).
+                append($textfield);
+        },
+
+<span id='SitePreferences-method-siteStaticWidth'>        /**
+</span>         * Render static width
+         * @member SitePreferences
+         * @returns {*|jQuery}
+         */
+        siteStaticWidth: function siteStaticWidth() {
+
+<span id='SitePreferences-property-text'>            /**
+</span>             * Define index
+             * @type {string}
+             */
+            var text = &#39;staticWidth&#39;;
+
+<span id='SitePreferences-property-workspace'>            /**
+</span>             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                preferences = workspace.model.getConfig(&#39;preferences&#39;),
+                checked = preferences[text];
+
+<span id='SitePreferences-property-S-element'>            /**
+</span>             * Define checkbox
+             * @type {*[]}
+             */
+            var $element = this.renderCheckbox({
+                name: text,
+                text: text.humanize(),
+                checked: checked,
+                value: checked,
+                disabled: false,
+                visible: true,
+                monitor: {
+                    events: [&#39;click.width&#39;],
+                    callback: this.toggleSlider.bind(this)
+                }
+            });
+
+            return $(&#39;&lt;li /&gt;&#39;).
+                addClass([
+                    [&#39;workspace&#39;, text.humanize().toClassName(), &#39;prefs&#39;].join(&#39;-&#39;),
+                    &#39;checkbox&#39;
+                ].join(&#39; &#39;)).
+                append($element);
+        },
+
+<span id='SitePreferences-method-toggleSlider'>        /**
+</span>         * Enable/Disable slider
+         * @member SitePreferences
+         * @param e
+         */
+        toggleSlider: function toggleSlider(e) {
+
+<span id='SitePreferences-property-workspace'>            /**
+</span>             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                $workspace = workspace.view.elements.$workspace;
+
+            var $input = $(e.target),
+                $slider = $(&#39;.ui-slider&#39;, $input.parents(&#39;ul&#39;)),
+                checked = $input.prop(&#39;checked&#39;);
+
+            if (checked) {
+
+                var width = $slider.slider(&#39;value&#39;) || 0;
+
+                $workspace.updateWidth(width);
+                $(&#39;input[name=&quot;siteWidthSlider&quot;]&#39;, $slider.parent()).val(width);
+                $slider.slider(&#39;enable&#39;);
+
+            } else {
+
+                $workspace.unsetWidth();
+                $slider.slider(&#39;disable&#39;);
+            }
+        },
+
+<span id='SitePreferences-method-siteWidthSlider'>        /**
+</span>         * Render width slider
+         * @member SitePreferences
+         * @param {Array} map
+         * @returns {*|jQuery}
+         */
+        siteWidthSlider: function siteWidthSlider(map) {
+
+<span id='SitePreferences-property-workspace'>            /**
+</span>             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                $workspace = workspace.view.elements.$workspace,
+                preferences = workspace.model.getConfig(&#39;preferences&#39;);
+
+<span id='SitePreferences-property-cname'>            /**
+</span>             * Define title
+             * @type {string}
+             */
+            var cname = &#39;Global Preferences&#39;,
+                uuid = this.base.lib.generator.UUID() + &#39;-slider&#39;,
+                $ul = $(&#39;&lt;ul /&gt;&#39;).addClass(&#39;site-width-slider&#39;),
+                $slider = $(&#39;&lt;div /&gt;&#39;);
+
+<span id='SitePreferences-property-sliderValue'>            /**
+</span>             * Get site slider value
+             * @type {number}
+             */
+            var sliderValue = preferences.siteWidthSlider;
+
+<span id='SitePreferences-property-S-textfield'>            /**
+</span>             * Render slider input
+             * @type {*[]}
+             */
+            var $textfield = this.renderTextField({
+                name: &#39;siteWidthSlider&#39;,
+                disabled: false,
+                visible: false,
+                value: sliderValue
+            });
+
+<span id='SitePreferences-method-_slide'>            /**
+</span>             * Define on slide
+             * @param event
+             * @param ui
+             * @private
+             */
+            function _slide(event, ui) {
+                $textfield[1].val(ui.value);
+                $workspace.updateWidth(ui.value);
+
+                this.view.scope.logger.debug(&#39;On slide&#39;, event, ui);
+            }
+
+            this.renderSlider($slider, {
+
+                value: sliderValue || 1,
+                min: 0,
+                max: map.length - 1,
+                labels: map,
+                disabled: !preferences.staticWidth,
+                slide: _slide.bind(this)
+            });
+
+            return $(&#39;&lt;li /&gt;&#39;).append(
+                $(&#39;&lt;fieldset /&gt;&#39;).append(
+                    $(&#39;&lt;legend /&gt;&#39;).addClass(&#39;open&#39;).text(cname).
+                        on(&#39;click.toggle&#39;, this.toggleFieldset.bind(this)).attr({
+                            title: cname
+                        }
+                    ),
+
+                    $ul.append(
+                        this.siteStaticWidth()
+                    ),
+
+                    $ul.append(
+                        $(&#39;&lt;li class=&quot;workspace-site-width-prefs slider&quot; /&gt;&#39;).append(
+                            this.renderLabel(uuid, &#39;Site Width&#39;, &#39;slider&#39;, true),
+                            $slider,
+                            $textfield
+                        )
+                    )
+                )
+            );
+        },
+
+<span id='SitePreferences-method-googleAnalytics'>        /**
+</span>         * Render Google Analytics
+         * @member SitePreferences
+         * @returns {*|jQuery}
+         */
+        googleAnalytics: function googleAnalytics() {
+
+<span id='SitePreferences-property-cname'>            /**
+</span>             * Define title
+             * @type {string}
+             */
+            var cname = &#39;Google Analytics&#39;;
+
+<span id='SitePreferences-property-S-textfield'>            /**
+</span>             * Render slider input
+             * @type {*[]}
+             */
+            var $textfield = this.renderTextField({
+                name: &#39;trackingId&#39;,
+                text: &#39;Tracking ID&#39;,
+                placeholder: &#39;Paste Tracking ID here&#39;,
+                disabled: false,
+                visible: true,
+                value: &#39;&#39;,
+                validate: {
+                    mask: /^ua-\d{4,9}-\d{1,4}$/i,
+                    blank: true
+                }
+            });
+
+            return $(&#39;&lt;li /&gt;&#39;).append(
+                $(&#39;&lt;fieldset /&gt;&#39;).append(
+                    $(&#39;&lt;legend /&gt;&#39;).text(cname).
+                        on(&#39;click.toggle&#39;, this.toggleFieldset.bind(this)).attr({
+                            title: cname
+                        }
+                    ),
+
+                    $(&#39;&lt;ul /&gt;&#39;).append(
+                        $(&#39;&lt;li class=&quot;workspace-google-analytics-prefs&quot; /&gt;&#39;).append(
+                            $textfield
+                        )
+                    )
+                )
+            );
+        }
+
+    }, BasePreferences.prototype);
 });</pre>
 </body>
 </html>

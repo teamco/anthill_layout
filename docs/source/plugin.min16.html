@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">tinymce.PluginManager.add(&quot;fullscreen&quot;,function(a){function b(){var a,b,c=window,d=document,e=d.body;return e.offsetWidth&amp;&amp;(a=e.offsetWidth,b=e.offsetHeight),c.innerWidth&amp;&amp;c.innerHeight&amp;&amp;(a=c.innerWidth,b=c.innerHeight),{w:a,h:b}}function c(){function c(){j.setStyle(m,&quot;height&quot;,b().h-(l.clientHeight-m.clientHeight))}var k,l,m,n,o=document.body,p=document.documentElement;i=!i,l=a.getContainer(),k=l.style,m=a.getContentAreaContainer().firstChild,n=m.style,i?(d=n.width,e=n.height,n.width=n.height=&quot;100%&quot;,g=k.width,h=k.height,k.width=k.height=&quot;&quot;,j.addClass(o,&quot;mce-fullscreen&quot;),j.addClass(p,&quot;mce-fullscreen&quot;),j.addClass(l,&quot;mce-fullscreen&quot;),j.bind(window,&quot;resize&quot;,c),c(),f=c):(n.width=d,n.height=e,g&amp;&amp;(k.width=g),h&amp;&amp;(k.height=h),j.removeClass(o,&quot;mce-fullscreen&quot;),j.removeClass(p,&quot;mce-fullscreen&quot;),j.removeClass(l,&quot;mce-fullscreen&quot;),j.unbind(window,&quot;resize&quot;,f)),a.fire(&quot;FullscreenStateChanged&quot;,{state:i})}var d,e,f,g,h,i=!1,j=tinymce.DOM;return a.settings.inline?void 0:(a.on(&quot;init&quot;,function(){a.addShortcut(&quot;Ctrl+Alt+F&quot;,&quot;&quot;,c)}),a.on(&quot;remove&quot;,function(){f&amp;&amp;j.unbind(window,&quot;resize&quot;,f)}),a.addCommand(&quot;mceFullScreen&quot;,c),a.addMenuItem(&quot;fullscreen&quot;,{text:&quot;Fullscreen&quot;,shortcut:&quot;Ctrl+Alt+F&quot;,selectable:!0,onClick:c,onPostRender:function(){var b=this;a.on(&quot;FullscreenStateChanged&quot;,function(a){b.active(a.state)})},context:&quot;view&quot;}),a.addButton(&quot;fullscreen&quot;,{tooltip:&quot;Fullscreen&quot;,shortcut:&quot;Ctrl+Alt+F&quot;,onClick:c,onPostRender:function(){var b=this;a.on(&quot;FullscreenStateChanged&quot;,function(a){b.active(a.state)})}}),{isFullscreen:function(){return i}})});</pre>
+</body>
+</html>

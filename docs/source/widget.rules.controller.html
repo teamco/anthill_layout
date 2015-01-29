@@ -49,11 +49,11 @@ define([
             this.model.collectItems(item);
         },
 
-<span id='WidgetRulesController-method-getData'>        /**
-</span>         * Get providers data
+<span id='WidgetRulesController-method-getModuleData'>        /**
+</span>         * Get module data
          * @member WidgetRulesController
          */
-        getData: function getData() {
+        getModuleData: function getModuleData() {
             return this.model.getWidgetRules(
                 this.getPage()
             );
@@ -99,7 +99,7 @@ define([
 <span id='WidgetRulesController-method-setActiveContent'>        /**
 </span>         * Set active content
          * @member WidgetRulesController
-         * @param {WidgetContent} content
+         * @param {string} uuid
          */
         setActiveContent: function setActiveContent(uuid) {
 
@@ -262,20 +262,6 @@ define([
             var $item = this.scope.activeContent.containment.view.get$item();
 
             this.locateElement($item, e);
-        },
-
-<span id='WidgetRulesController-method-loadContent'>        /**
-</span>         * Load page.data content
-         * @member WidgetRulesController
-         * @param opened
-         */
-        loadContent: function loadContent(opened) {
-
-            if (opened) {
-                this.getView().renderContent(
-                    this.getData()
-                );
-            }
         },
 
 <span id='WidgetRulesController-method-preferencesWidgetRules'>        /**

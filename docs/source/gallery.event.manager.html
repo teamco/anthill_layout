@@ -48,14 +48,17 @@ define([
          * @type {{
          *      updateTranslations: string,
          *      setProviders: string,
-         *      loadContent: string
+         *      loadModuleContent: string,
+         *      setRoutes: string
          * }}
          */
         this.eventList = {
             updateTranslations: &#39;update.translations&#39;,
-            loadContent: &#39;load.content&#39;,
+            loadModuleContent: &#39;load.module.content&#39;,
+            initModel: &#39;init.model&#39;,
             setProviders: &#39;set.providers&#39;,
-            setCurrentProvider: &#39;set.current.provider&#39;
+            setCurrentProvider: &#39;set.current.provider&#39;,
+            setRoutes: &#39;set.routes&#39;
         };
     };
 

@@ -52,22 +52,21 @@ define([
          */
         renderWidgetRules: function renderWidgetRules() {
 
-            if (this.isCached(&#39;$widgetrules&#39;, WidgetRules)) {
-                return false;
-            }
-
             this.header(Header, this.elements.$container).setText(
                 &#39;Widget Rules&#39;
             );
 
-<span id='WidgetRulesView-property-S-widgetrules'>            /**
-</span>             * Define WidgetRules element
-             * @type {WidgetRulesElement}
-             */
-            this.elements.$widgetrules = new WidgetRules(this, {
-                id: this.createUUID(),
-                $container: this.elements.$container.$
-            });
+            if (!this.isCached(&#39;$widgetrules&#39;, WidgetRules)) {
+
+<span id='WidgetRulesView-property-S-widgetrules'>                /**
+</span>                 * Define WidgetRules element
+                 * @type {WidgetRulesElement}
+                 */
+                this.elements.$widgetrules = new WidgetRules(this, {
+                    id: this.createUUID(),
+                    $container: this.elements.$container.$
+                });
+            }
 
             this.footer(Footer, this.elements.$container).setHtml(
                 this.elements.$widgetrules.getFooter()
@@ -101,7 +100,7 @@ define([
                         style: &#39;content&#39;,
                         id: [
                             data[index].model.getConfig(&#39;uuid&#39;),
-                            this.scope.constructor.name.toDash()
+                            this.scope.constructor.prototype.name.toDash()
                         ].join(&#39;-&#39;),
                         $container: this.elements.$widgetrules.$,
                         data: data[index]
@@ -166,7 +165,7 @@ define([
                         preferences: {
                             text: &#39;Preferences&#39;,
                             events: {
-                                click: &#39;preferences&#39; + this.scope.constructor.name
+                                click: &#39;preferences&#39; + this.scope.constructor.prototype.name
                             }
                         }
                     }

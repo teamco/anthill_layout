@@ -71,7 +71,7 @@ define([
             }
 
             var mask = this.model.getConfig(&#39;mask&#39;),
-                embed, regex = this.model.getConfig(&#39;regex&#39;);
+                regex = this.model.getConfig(&#39;regex&#39;);
 
             if (!url.match(regex)) {
                 this.scope.logger.warn(&#39;Invalid youtube url&#39;);
@@ -87,7 +87,7 @@ define([
                 url = $(url).attr(&#39;src&#39;);
             }
 
-            return url.replace(regex, mask.replace(/{{videoId}}/g, &#39;$1&#39;)).
+            return url.replace(regex, mask.replace(/\{videoId}/g, &#39;$1&#39;)).
                 replace(/embed\/embed/, &#39;embed&#39;);
         },
 
@@ -107,7 +107,7 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList.publishRule,
-                [$button.attr(&#39;value&#39;), scope.constructor.name]
+                [$button.attr(&#39;value&#39;), scope.constructor.prototype.name]
             );
         }
 

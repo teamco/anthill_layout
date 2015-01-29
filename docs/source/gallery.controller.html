@@ -23,8 +23,9 @@
  */
 
 define([
-    &#39;plugins/plugin&#39;
-], function defineGalleryController(PluginBase) {
+    &#39;plugins/plugin&#39;,
+    &#39;config/routes&#39;
+], function defineGalleryController(PluginBase, Routes) {
 
 <span id='GalleryController-method-constructor'><span id='GalleryController'>    /**
 </span></span>     * Define gallery controller
@@ -37,20 +38,30 @@ define([
 
     return GalleryController.extend(&#39;GalleryController&#39;, {
 
-<span id='GalleryController-method-getData'>        /**
+<span id='GalleryController-method-initModel'>        /**
+</span>         * Define init model
+         * @member GalleryController
+         */
+        initModel: function initModel() {
+
+            this.logger.debug(&#39;Init model&#39;);
+            this.model.loadStaticData();
+        },
+
+<span id='GalleryController-method-getProvidersData'>        /**
 </span>         * Get providers data
          * @member GalleryController
          */
-        getData: function getData() {
+        getProvidersData: function getProvidersData() {
             return this.model.getProvidersList();
         },
 
-<span id='GalleryController-method-getCurrentProvider'>        /**
-</span>         * Get current provider
+<span id='GalleryController-method-getModuleData'>        /**
+</span>         * Get current provider data
          * @member GalleryController
          * @returns {{name: string, data: *[]}[]}
          */
-        getCurrentProvider: function getCurrentProvider() {
+        getModuleData: function getModuleData() {
             return this.model.currentProvider;
         },
 
@@ -75,41 +86,49 @@ define([
 </span>             * Get available providers
              * @type {*}
              */
-            var data = this.model.staticData,
-                index;
+            var data = this.model.providers,
+                index, i = 0, pl;
 
             for (index in data) {
 
                 if (data.hasOwnProperty(index)) {
-                    this.model.setProvider(data[index]);
+
+                    pl = data[index].data.length;
+
+                    for (; i &lt; pl; i++) {
+
+                        // Categorize providers data list
+                        this.model.setProvider(data[index].data[i]);
+                    }
                 }
             }
         },
 
+<span id='GalleryController-method-changeProvider'>        /**
+</span>         * Change current provider
+         * @member GalleryController
+         * @param provider
+         * @returns {boolean}
+         */
         changeProvider: function changeProvider(provider) {
 
-            if (provider === this.getCurrentProvider().key) {
+            if (provider === this.getModuleData().key) {
                 return false;
             }
 
             this.setCurrentProvider(provider);
-            this.loadContent(true, true);
-        },
 
-<span id='GalleryController-method-loadContent'>        /**
-</span>         * Load gallery content
-         * @member GalleryController
-         * @param {boolean} opened
-         * @param {boolean} [force]
-         */
-        loadContent: function loadContent(opened, force) {
+<span id='GalleryController-property-scope'>            /**
+</span>             * Get scope
+             * @type {Gallery}
+             */
+            var scope = this.scope;
 
-            if (opened) {
-                this.getView().renderContent(
-                    this.getCurrentProvider(),
-                    force
-                );
-            }
+            scope.observer.publish(
+                scope.eventmanager.eventList.loadModuleContent, [
+                    true, true
+                ]
+            );
         },
 
 <span id='GalleryController-method-filterResults'>        /**
@@ -160,14 +179,14 @@ define([
                          */
                         regex = new RegExp(value, &#39;ig&#39;);
 
-                        ($item.data.name.match(regex) || $item.data.resource.match(regex)) ?
+                        ($item.data.name.match(regex) || $item.data.type.match(regex)) ?
                             $item.$.removeAttr(&#39;style&#39;) :
                             $item.hide();
                     }
                 }
             }
 
-            this.getView().renderFooter();
+            this.getView().updateFooterContent();
         },
 
 <span id='GalleryController-method-addWidget'>        /**
@@ -195,7 +214,7 @@ define([
             }, true);
         }
 
-    }, PluginBase.prototype);
+    }, PluginBase.prototype, Routes.prototype);
 });</pre>
 </body>
 </html>

@@ -70,7 +70,12 @@ define([
              */
             var $jwplayer = this,
                 ratio = opts.aspectratio,
-                uuid = $jwplayer.$.attr(&#39;id&#39;);
+                uuid = $jwplayer.$.attr(&#39;id&#39;) + &#39;-container&#39;;
+
+            this.$.append(&#39;&lt;div id=&quot;&#39; + uuid + &#39;&quot;/&gt;&#39;);
+
+            // Remove player rendered before
+            $(&#39;#&#39; + uuid + &#39;_wrapper&#39;).remove();
 
             if (!opts.rtmp) {
                 return false;
@@ -80,7 +85,7 @@ define([
 </span>             * Try to parse aspect ratio
              * @type {Array|string|{index: number, input: string}}
              */
-            var aspectratio = ratio.match(/[\d(.)\d:\d]/ig);
+            var aspectratio = ratio.match(/[\d(.)\d:\d]/ig) || [];
 
             aspectratio = aspectratio.join(&#39;&#39;) || &#39;16:9&#39;;
 

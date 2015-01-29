@@ -23,8 +23,9 @@
  */
 
 define([
+    &#39;jquery&#39;,
     &#39;plugins/preferences/preferences&#39;
-], function definePagesPreferences(BasePreferences) {
+], function definePagesPreferences($, BasePreferences) {
 
 <span id='PagesPreferences-method-constructor'><span id='PagesPreferences'>    /**
 </span></span>     * Define prefs
@@ -45,7 +46,8 @@ define([
          * @type {{
          *      title: {type: string, disabled: boolean, value},
          *      pageUrl: {type: string, disabled: boolean, value},
-         *      description: {type: string, disabled: boolean, value}
+         *      description: {type: string, disabled: boolean, value},
+         *      showInTabs: {type: string, disabled: boolean, value}
          * }}
          */
         defaultPrefs: {
@@ -65,6 +67,24 @@ define([
                 type: &#39;text&#39;,
                 disabled: true,
                 value: undefined,
+                visible: true
+            },
+            pageHeader: {
+                type: &#39;checkbox&#39;,
+                disabled: false,
+                value: false,
+                visible: true
+            },
+            pageFooter: {
+                type: &#39;checkbox&#39;,
+                disabled: false,
+                value: false,
+                visible: true
+            },
+            showInTabs: {
+                type: &#39;checkbox&#39;,
+                disabled: false,
+                value: true,
                 visible: true
             }
         },
@@ -123,57 +143,14 @@ define([
 
                 if (opts.data.hasOwnProperty(index)) {
 
-<span id='PagesPreferences-property-text'>                    /**
-</span>                     * Define text
-                     * @type {string}
-                     */
-                    var text = index.toPoint().humanize();
-
-<span id='PagesPreferences-property-node'>                    /**
-</span>                     * Define node
-                     */
-                    var node = opts.data[index];
-
-<span id='PagesPreferences-property-placeholder'>                    /**
-</span>                     * Define placeholder text
-                     * @type {string}
-                     */
-                    var placeholder = &#39;Enter &#39; + text,
-                        textField;
-
-                    if (node.type === &#39;text&#39;) {
-<span id='PagesPreferences-property-textField'>                        /**
-</span>                         * Get text field
-                         * @type {*[]}
-                         */
-                        textField = this.renderTextField({
-                            name: index,
-                            text: text,
-                            placeholder: placeholder,
-                            value: node.value,
-                            disabled: node.disabled,
-                            visible: node.visible
-                        });
-                    }
-
-                    if (node.type === &#39;textarea&#39;) {
-
-<span id='PagesPreferences-property-textField'>                        /**
-</span>                         * Get text field
-                         * @type {*[]}
-                         */
-                        textField = this.renderTextArea({
-                            name: index,
-                            text: text,
-                            placeholder: placeholder,
-                            value: node.value,
-                            disabled: node.disabled,
-                            visible: node.visible
-                        });
-                    }
-
                     nodes.push(
-                        $(&#39;&lt;li class=&quot;page-prefs&quot; /&gt;&#39;).append(textField)
+                        $(&#39;&lt;li class=&quot;page-prefs&quot; /&gt;&#39;).append(
+                            this.getNodeRenderer(
+                                opts.data[index],
+                                index.toPoint().humanize(),
+                                index
+                            )
+                        )
                     );
                 }
             }
@@ -199,8 +176,9 @@ define([
              * @type {Layout}
              */
             var layout = page.controller.getLayout(),
+                workspace = page.controller.getContainment(),
                 modes = page.LAYOUT_MODES,
-                cname = layout.constructor.name;
+                cname = layout.constructor.prototype.name;
 
 <span id='PagesPreferences-property-S-ul'>            /**
 </span>             * Define layout container
@@ -214,6 +192,19 @@ define([
              */
             var cellWidth = layout.controller.minCellWidth();
 
+<span id='PagesPreferences-property-staticWidth'>            /**
+</span>             * Get static width value
+             * @type {boolean|*}
+             */
+            var staticWidth = workspace.model.getConfig(&#39;preferences&#39;).staticWidth;
+
+<span id='PagesPreferences-property-width'>            /**
+</span>             * Get page width
+             * @type {number|string}
+             */
+            var width = staticWidth ?
+                page.view.get$item().getWidth() : &#39;Flexible&#39;;
+
             nodes.push(
                 $(&#39;&lt;li /&gt;&#39;).append(
                     $(&#39;&lt;fieldset /&gt;&#39;).append(
@@ -224,16 +215,17 @@ define([
 
                         $ul.append([
 
-                            $(&#39;&lt;li class=&quot;layout-prefs&quot; /&gt;&#39;).append(
+                            $(&#39;&lt;li /&gt;&#39;).append(
                                 this.renderTextField({
-                                    name: &#39;cell&#39;,
+                                    name: &#39;layout-cell-width&#39;,
                                     text: &#39;Cell size&#39;,
-                                    value: cellWidth,
+                                    value: cellWidth.toFixed(3),
+                                    visible: true,
                                     disabled: true
                                 })
-                            ).attr(&#39;rel&#39;, &#39;layout-cell&#39;),
+                            ).attr(&#39;rel&#39;, &#39;layout-cell-width&#39;),
 
-                            $(&#39;&lt;li class=&quot;layout-prefs&quot; /&gt;&#39;).append(
+                            $(&#39;&lt;li /&gt;&#39;).append(
                                 this.renderCombobox(
                                     [
                                         {
@@ -255,7 +247,29 @@ define([
                                     undefined,
                                     true
                                 )
-                            ).attr(&#39;rel&#39;, &#39;layout-behavior&#39;)
+                            ).attr(&#39;rel&#39;, &#39;layout-behavior&#39;),
+
+                            $(&#39;&lt;li /&gt;&#39;).append(
+                                this.renderTextField({
+                                    name: &#39;page-width&#39;,
+                                    text: &#39;Page width&#39;,
+                                    value: width,
+                                    visible: true,
+                                    disabled: true
+                                })
+                            ).attr(&#39;rel&#39;, &#39;page-width&#39;).
+                                addClass(&#39;page-width&#39;),
+
+                            $(&#39;&lt;li /&gt;&#39;).append(
+                                this.renderTextField({
+                                    name: &#39;layoutColumns&#39;,
+                                    text: &#39;Columns&#39;,
+                                    value: layout.config.grid.columns,
+                                    visible: true,
+                                    disabled: false
+                                })
+                            ).attr(&#39;rel&#39;, &#39;layout-columns&#39;).
+                                addClass(&#39;page-layout-columns&#39;)
                         ])
                     )
                 ).addClass(&#39;auto&#39;)
@@ -273,6 +287,12 @@ define([
          */
         renderWidgetsPrefs: function renderWidgetsPrefs(page, nodes) {
 
+<span id='PagesPreferences-property-widgets'>            /**
+</span>             * Get page items
+             * @type {*}
+             */
+            var widgets = page.model.getItems();
+
 <span id='PagesPreferences-method-_renderWidgets'>            /**
 </span>             * Render widgets
              * @returns {Array}
@@ -280,17 +300,11 @@ define([
              */
             function _renderWidgets() {
 
-                var list = [];
-
-<span id='PagesPreferences-property-widgets'>                /**
-</span>                 * Get page widgets
-                 * @type {*}
-                 */
-                var widgets = page.model.getItems(),
+                var list = [],
                     widget, uuid,
-                    title;
+                    title, index;
 
-                for (var index in widgets) {
+                for (index in widgets) {
 
                     if (widgets.hasOwnProperty(index)) {
 
@@ -319,7 +333,7 @@ define([
 </span>                         * Get title
                          * @type {*|String}
                          */
-                        title = preferences.title || uuid;
+                        title = widget.model.getItemTitle();
 
 <span id='PagesPreferences-property-S-li'>                        /**
 </span>                         * Define widget element
@@ -348,7 +362,8 @@ define([
                     }
                 }
 
-                return list;
+                return list.length &gt; 0 ? list :
+                    &#39;&lt;li class=&quot;no-content&quot;&gt;No content available&lt;/li&gt;&#39;;
             }
 
 <span id='PagesPreferences-property-S-ul'>            /**
@@ -356,20 +371,105 @@ define([
              * @type {*|jQuery}
              */
             var $ul = $(&#39;&lt;ul /&gt;&#39;).addClass(&#39;widgets-prefs&#39;),
-                cname = &#39;Widgets&#39;;
+                cname = [
+                    &#39;Widgets: &#39;,
+                    &#39;&lt;span&gt;&#39;,
+                    Object.keys(widgets).length,
+                    &#39;items&lt;/span&gt;&#39;
+                ].join(&#39; &#39;);
 
             nodes.push(
                 $(&#39;&lt;li /&gt;&#39;).append(
                     $(&#39;&lt;fieldset /&gt;&#39;).append(
-                        $(&#39;&lt;legend /&gt;&#39;).text(cname).
+                        $(&#39;&lt;legend /&gt;&#39;).html(cname).
                             on(&#39;click.toggle&#39;, this.toggleFieldset.bind(this)).attr({
                                 title: cname
                             }),
 
-                        $ul.append(_renderWidgets.bind(this)())
+                        $ul.append(
+                            this.renderPageWidgetsGlobalPrefs(),
+                            $(&#39;&lt;li class=&quot;clear&quot; /&gt;&#39;),
+                            _renderWidgets.bind(this)()
+                        )
                     )
                 )
             );
+
+            return nodes;
+        },
+
+<span id='PagesPreferences-method-renderPageWidgetsGlobalPrefs'>        /**
+</span>         * Render page widgets global preferences
+         * @member PagesPreferences
+         * @returns {Array}
+         */
+        renderPageWidgetsGlobalPrefs: function renderPageWidgetsGlobalPrefs() {
+
+<span id='PagesPreferences-property-page'>            /**
+</span>             * Get active page
+             * @type {Page}
+             */
+            var page = this.view.scope.activeContent;
+
+<span id='PagesPreferences-property-globalPrefs'>            /**
+</span>             * Define page widgets global prefs
+             * @type {{overlapping: {type: string, disabled: boolean, checked: boolean, visible: boolean}}}
+             */
+            var globalPrefs = {
+                overlapping: {
+                    type: &#39;checkbox&#39;,
+                    disabled: false,
+                    checked: page.model.getConfig(&#39;widget/overlapping&#39;),
+                    visible: true
+                }
+            };
+
+<span id='PagesPreferences-property-nodes'>            /**
+</span>             * Define List node
+             * @type {Array}
+             */
+            var nodes = [];
+
+            for (var index in globalPrefs) {
+
+                if (globalPrefs.hasOwnProperty(index)) {
+
+                    var node = globalPrefs[index],
+                        $element;
+
+<span id='PagesPreferences-property-text'>                    /**
+</span>                     * Define text
+                     * @type {string}
+                     */
+                    var text = index.toPoint().humanize();
+
+                    if (node.type === &#39;checkbox&#39;) {
+
+<span id='PagesPreferences-property-S-element'>                        /**
+</span>                         * Get checkbox
+                         * @type {*[]}
+                         */
+                        $element = this.renderCheckbox({
+                            name: index,
+                            text: text.trim(),
+                            checked: node.checked,
+                            value: node.checked,
+                            disabled: node.disabled,
+                            visible: node.visible
+                        });
+                    }
+
+                    nodes.push(
+                        $(&#39;&lt;li /&gt;&#39;).
+                            addClass([
+                                [page.constructor.prototype.name.toClassName(), index].join(&#39;-&#39;),
+                                node.type,
+                                node.visible ? &#39;&#39; : &#39;hidden&#39;
+                            ].join(&#39; &#39;)).
+                            append($element)
+                    );
+                }
+            }
 
             return nodes;
         },
@@ -433,7 +533,17 @@ define([
              */
             var pageData = this.view.controller.getModuleByName(&#39;page-data&#39;);
 
+<span id='PagesPreferences-property-scope'>            /**
+</span>             * Get scope
+             * @type {WorkspaceData}
+             */
+            var scope = this.view.scope;
+
             if (e.type === &#39;click&#39;) {
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.switchToActivePage
+                );
 
                 this.view.elements.$modal.selfDestroy();
 
@@ -444,6 +554,10 @@ define([
             }
 
             if (e.type === &#39;mouseenter&#39; || e.type === &#39;mouseleave&#39;) {
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.switchToActivePage
+                );
 
                 panel.observer.publish(
                     panel.eventmanager.eventList.openPanel,

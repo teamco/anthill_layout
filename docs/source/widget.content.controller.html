@@ -69,7 +69,7 @@ define([
                 observer.publish(
                     eventList.updateTranslations, [
                         &#39;plugins/widgets/&#39;,
-                        this.constructor.name.toPoint().replace(/./, &#39;&#39;),
+                        this.constructor.prototype.name.toPoint().replace(/./, &#39;&#39;),
                         &#39;/translations/en-us&#39;
                     ].join(&#39;&#39;)
                 );
@@ -147,6 +147,24 @@ define([
              */
             executeOnWidgetContentOnLoadEvent: function executeOnWidgetContentOnLoadEvent() {
                 this.eventmanager.executeEventsOnLoad();
+            },
+
+<span id='WidgetContentController-method-alternativeSavePreferences'>            /**
+</span>             * Alternative save in consumption mode
+             * @member WidgetContentController
+             * @param {string} key
+             * @param value
+             */
+            alternativeSavePreferences: function alternativeSavePreferences(key, value) {
+
+                // Transfer prefs to widget
+                this.observer.publish(
+                    this.eventmanager.eventList.transferContentPreferences,
+                    [key, value]
+                );
+
+                // Save
+                this.controller.store();
             },
 
 <span id='WidgetContentController-method-defineReferrer'>            /**

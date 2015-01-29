@@ -55,6 +55,7 @@ define([
          *      destroyWidgets: string,
          *      createLayout: string,
          *      destroyLayout: string,
+         *      updateLayoutConfig: string,
          *      resizeWidgets: string,
          *      resizeWidget: string,
          *      updateHashOnMaximize: string,
@@ -65,7 +66,8 @@ define([
          *      enableItemInteractions: string,
          *      loadPreferences: string,
          *      transferPreferences: string,
-         *      transferContentPreferences: string
+         *      transferContentPreferences: string,
+         *      afterUpdatePreferences: string
          * }}
          */
         eventList: {
@@ -80,23 +82,26 @@ define([
 
             createLayout: &#39;create.layout&#39;,
             destroyLayout: &#39;destroy.layout&#39;,
+            updateLayoutConfig: &#39;update.layout.config&#39;,
 
             resizeWidget: &#39;resize.widget&#39;,
-            resizeWidgets: &#39;resize.widgets&#39;,
 
+            resizeWidgets: &#39;resize.widgets&#39;,
             updateHashOnMaximize: &#39;update.hash.on.maximize&#39;,
+
             updateHashOnReduce: &#39;update.hash.on.reduce&#39;,
 
             updateHeight: &#39;update.height&#39;,
 
             afterLoadingItems: &#39;after.loading.items&#39;,
-
             disableItemInteractions: &#39;disable.item.interactions&#39;,
+
             enableItemInteractions: &#39;enable.item.interactions&#39;,
 
             loadPreferences: &#39;load.preferences&#39;,
             transferContentPreferences: &#39;transfer.content.preferences&#39;,
-            transferPreferences: &#39;transfer.preferences&#39;
+            transferPreferences: &#39;transfer.preferences&#39;,
+            afterUpdatePreferences: &#39;after.update.preferences&#39;
         }
 
     }, BaseEvent.prototype);

@@ -19,7 +19,7 @@
 </span> * Created by i061485 on 3/19/14.
  */
 
-define([], function defineBasePreferences() {
+define([&#39;jquery&#39;], function defineBasePreferences($) {
 
 <span id='BasePreferences-method-constructor'><span id='BasePreferences'>    /**
 </span></span>     * Define base prefs
@@ -30,7 +30,7 @@ define([], function defineBasePreferences() {
 
     };
 
-    return BasePreferences.extend({
+    return BasePreferences.extend(&#39;BasePreferences&#39;, {
 
 <span id='BasePreferences-method-toggleFieldset'>        /**
 </span>         * Toggle fieldset
@@ -69,7 +69,7 @@ define([], function defineBasePreferences() {
                 locate: {
                     text: &#39;Locate&#39;,
                     events: {
-                        click: &#39;locate&#39; + this.scope.constructor.name
+                        click: &#39;locate&#39; + this.scope.constructor.prototype.name
                     }
                 },
                 approve: {
@@ -86,13 +86,19 @@ define([], function defineBasePreferences() {
                 }
             }, opts.buttons || {});
 
+<span id='BasePreferences-property-current'>            /**
+</span>             * Define current page
+             * @type {Page}
+             */
+            var current = this.controller.getPage();
+
 <span id='BasePreferences-property-page'>            /**
 </span>             * Define page
              * @type {Page}
              */
-            var page = this.scope.base.define(
+            var page = opts.current ? current : this.scope.base.define(
                 this.controller.getPage(opts.config.uuid),
-                this.controller.getPage()
+                current
             );
 
             this.modalDialog({
@@ -105,9 +111,149 @@ define([], function defineBasePreferences() {
                 cover: true,
                 buttons: buttons
             });
+        },
+
+<span id='BasePreferences-method-getNodeRenderer'>        /**
+</span>         * Get node renderer
+         * @member BasePreferences
+         * @param node
+         * @param {string} text
+         * @param {string} index
+         * @returns {*}
+         */
+        getNodeRenderer: function getNodeRenderer(node, text, index) {
+
+<span id='BasePreferences-property-placeholder'>            /**
+</span>             * Define placeholder text
+             * @type {string}
+             */
+            var placeholder = node.placeholder || &#39;Enter &#39; + text,
+                $element;
+
+            if (node.type === &#39;event&#39;) {
+
+<span id='BasePreferences-property-S-element'>                /**
+</span>                 * Get text field
+                 * @type {*[]}
+                 */
+                $element = this.renderEventLink({
+                    name: index,
+                    title: text.trim(),
+                    group: node.group || index,
+                    disabled: node.disabled,
+                    events: node.events,
+                    visible: node.visible
+                });
+            }
+
+            if (node.type === &#39;texteditor&#39;) {
+
+<span id='BasePreferences-property-S-element'>                /**
+</span>                 * Get text field
+                 * @type {*[]}
+                 */
+                $element = this.renderTextEditor({
+                    name: index,
+                    text: text.trim(),
+                    placeholder: placeholder,
+                    value: node.value,
+                    disabled: node.disabled,
+                    visible: node.visible,
+                    validate: node.validate
+                });
+            }
+
+            if (node.type === &#39;text&#39;) {
+
+<span id='BasePreferences-property-S-element'>                /**
+</span>                 * Get text field
+                 * @type {*[]}
+                 */
+                $element = this.renderTextField({
+                    name: index,
+                    text: text.trim(),
+                    placeholder: placeholder,
+                    value: node.value,
+                    disabled: node.disabled,
+                    visible: node.visible,
+                    validate: node.validate
+                });
+            }
+
+            if (node.type === &#39;number&#39;) {
+
+<span id='BasePreferences-property-S-element'>                /**
+</span>                 * Get number field
+                 * @type {*[]}
+                 */
+                $element = this.renderNumberField({
+                    name: index,
+                    text: text.trim(),
+                    placeholder: placeholder,
+                    value: node.value,
+                    disabled: node.disabled,
+                    visible: node.visible,
+                    validate: node.validate
+                });
+            }
+
+            if (node.type === &#39;checkbox&#39;) {
+
+<span id='BasePreferences-property-S-element'>                /**
+</span>                 * Get checkbox
+                 * @type {*[]}
+                 */
+                $element = this.renderCheckbox({
+                    name: index,
+                    text: text.trim(),
+                    checked: node.value,
+                    value: node.value,
+                    disabled: node.disabled,
+                    visible: node.visible
+                });
+            }
+
+            if (node.type === &#39;textarea&#39;) {
+
+<span id='BasePreferences-property-S-element'>                /**
+</span>                 * Get text field
+                 * @type {*[]}
+                 */
+                $element = this.renderTextArea({
+                    name: index,
+                    text: text.trim(),
+                    placeholder: placeholder,
+                    value: node.value,
+                    disabled: node.disabled,
+                    visible: node.visible
+                });
+            }
+
+            if (node.type === &#39;combobox&#39;) {
+
+<span id='BasePreferences-property-selected'>                /**
+</span>                 * Define selected item
+                 * @type {string}
+                 */
+                var selected = node.value;
+
+<span id='BasePreferences-property-S-element'>                /**
+</span>                 * Get text field
+                 * @type {*[]}
+                 */
+                $element = this.renderCombobox(
+                    node.list,
+                    (selected.length === 0 ? node.list[0].value : selected),
+                    text.trim(),
+                    index,
+                    undefined,
+                    node.visible
+                );
+            }
+
+            return $element;
         }
     });
-
 });</pre>
 </body>
 </html>

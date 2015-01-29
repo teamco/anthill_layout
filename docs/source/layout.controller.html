@@ -62,17 +62,8 @@ define([
          */
         afterNestedOrganizer: function afterNestedOrganizer() {
 
-<span id='LayoutController-property-controller'>            /**
-</span>             * Define controller instance
-             * @type {LayoutController}
-             */
-            var controller = this.controller;
-
-            controller.readyToOrganize();
-
-            controller.store(
-                controller.root()
-            );
+            this.controller.readyToOrganize();
+            this.controller.store();
 
             this.logger.debug(this.i18n.t(&#39;after.nested.organizer&#39;));
         },
@@ -92,6 +83,29 @@ define([
             containment.controller.allowAddWidget();
         },
 
+<span id='LayoutController-method-updateNumberOfColumns'>        /**
+</span>         * Update grid number of columns
+         * @member LayoutController
+         * @param {number} columns
+         */
+        updateNumberOfColumns: function updateNumberOfColumns(columns) {
+
+            this.logger.debug(&#39;Start update columns&#39;, columns);
+
+            if (!columns) {
+
+                this.logger.warn(
+                    &#39;Undefined number of columns set default&#39;,
+                    columns,
+                    this.config.grid.columns
+                );
+
+                return false;
+            }
+
+            this.config.grid.columns = columns;
+        },
+
 <span id='LayoutController-method-updateMinCellWidth'>        /**
 </span>         * Update cell size on resize container
          * @member LayoutController
@@ -108,11 +122,18 @@ define([
          * @returns {Number}
          */
         minCellWidth: function minCellWidth() {
+
+<span id='LayoutController-property-scope'>            /**
+</span>             * Get scope
+             * @type {Layout}
+             */
             var scope = this.scope,
                 config = scope.config.grid;
+
             if (this.base.isDefined(config.minCellWidth)) {
                 return config.minCellWidth;
             }
+
             var columns = config.columns,
                 margin = config.margin;
 

@@ -105,7 +105,8 @@ define([
          *      afterDestroyItems: string,
          *      afterResizeWindow: string,
          *      successRenderHeader: string,
-         *      successRenderFooter: string
+         *      successRenderFooter: string,
+         *      bindModelObserver: string
          * }}
          */
         this.defaultListeners = {
@@ -118,7 +119,8 @@ define([
             afterDestroyItems: &#39;after.destroy.items&#39;,
             afterResizeWindow: &#39;after.resize.window&#39;,
             successRenderHeader: &#39;success.render.header&#39;,
-            successRenderFooter: &#39;success.render.footer&#39;
+            successRenderFooter: &#39;success.render.footer&#39;,
+            bindModelObserver: &#39;bind.model.observer&#39;
         };
 
 <span id='MVC-property-opts'>        /**
@@ -225,7 +227,7 @@ define([
 
 <span id='MVC-method-init'>        /**
 </span>         * Init MVC
-         * @memberOf MVC
+         * @member MVC
          */
         init: function init() {
 
@@ -297,52 +299,51 @@ define([
          * @member MVC
          * @param {Function|String} mvcPattern
          * @param {Boolean} [force]
-         * @param mvcPattern
-         * @param force
          * @returns {*}
          */
         defineMVC: function defineMVC(mvcPattern, force) {
 
             var base = this.base,
                 scope = this.scope,
-                name = base.isString(mvcPattern) ?
-                    mvcPattern :
-                    mvcPattern.name.
-                        replace(this.scope.constructor.name, &#39;&#39;).
-                        toLowerCase();
+                name = mvcPattern;
 
             if (base.isFunction(mvcPattern)) {
 
+<span id='MVC-property-name'>                /**
+</span>                 * Define name space
+                 * @type {string}
+                 */
+                name = mvcPattern.prototype.name.
+                    replace(scope.name, &#39;&#39;).
+                    toLowerCase();
+
 <span id='MVC-property-scope[name]'>                /**
 </span>                 * Define pattern
-                 * @type {mvcPattern}
+                 * @type {Function}
                  */
                 scope[name] = new mvcPattern();
 
-            } else {
+            } else if (force) {
 
-                if (force) {
+<span id='MVC-property-scopeName'>                /**
+</span>                 * Define scope name
+                 * @type {string}
+                 */
+                var scopeName = scope.name.toLowerCase();
 
-<span id='MVC-property-scopeName'>                    /**
-</span>                     * Define scope name
-                     * @type {string}
-                     */
-                    var scopeName = scope.constructor.name.toLowerCase();
+<span id='MVC-property-fn'>                /**
+</span>                 * Define function
+                 * @type {Function}
+                 */
+                var fn = new Function(
+                    scopeName,
+                    [
+                        &#39;return function &#39;, mvcPattern,
+                        &#39;(&#39;, scopeName, &#39;) { this.scope = &#39;, scopeName, &#39;; };&#39;
+                    ].join(&#39;&#39;)
+                );
 
-<span id='MVC-property-fn'>                    /**
-</span>                     * Define function
-                     * @type {Function}
-                     */
-                    var fn = new Function(
-                        scopeName,
-                        [
-                            &#39;return function &#39;, mvcPattern,
-                            &#39;(&#39;, scopeName, &#39;) { this.scope = &#39;, scopeName, &#39;; };&#39;
-                        ].join(&#39;&#39;)
-                    );
-
-                    scope[name.toLowerCase()] = new (new fn(scope))(scope);
-                }
+                scope[name.toLowerCase()] = new (new fn(scope))(scope);
             }
 
             return name;
@@ -397,6 +398,10 @@ define([
                 var pattern = this.defineMVC(mvc, this.force).toLowerCase(),
                     ref = this.scope[pattern];
 
+<span id='MVC-property-scope'>                /**
+</span>                 * Define scope
+                 * @type {mvc.scope}
+                 */
                 ref.scope = this.scope;
 
                 this.applyMVCShims(pattern);
@@ -416,7 +421,7 @@ define([
 
 <span id='MVC-property-elements'>                /**
 </span>                 * Define elements
-                 * @type {{}}
+                 * @type {object}
                  */
                 this.scope.view.elements = {};
             }
@@ -452,7 +457,7 @@ define([
 
             if (this.render) {
                 config.html = base.define(config.html, {}, true);
-                config.html.selector = scope.constructor.name.toDash();
+                config.html.selector = scope.constructor.prototype.name.toDash();
             }
         },
 
@@ -496,16 +501,18 @@ define([
 
                                     eventManager.abstract[key + &#39;Item&#39;] = index;
                                     callback = scope.controller[key + &#39;Item&#39;];
+
                                 } else if ($.inArray(method, this.RESERVED[key].plural) &gt; -1) {
 
                                     eventManager.abstract[key + &#39;Items&#39;] = index;
                                     callback = scope.controller[key + &#39;Items&#39;];
+
                                 } else {
 
                                     this.scope.logger.warn(
                                         &#39;Undefined Event Callback&#39;, [
                                             scope.controller,
-                                                key + method
+                                            key + method
                                         ]
                                     );
                                 }
@@ -615,10 +622,10 @@ define([
                 permission = scope.permission;
 
             if (scope.controller.checkCondition({
-                condition: !this.base.isDefined(permission),
-                type: &#39;warn&#39;,
-                msg: &#39;Undefined permission&#39;
-            })) {
+                    condition: !this.base.isDefined(permission),
+                    type: &#39;warn&#39;,
+                    msg: &#39;Undefined permission&#39;
+                })) {
                 return false;
             }
 
@@ -644,32 +651,30 @@ define([
                 permission = type + &#39;Permissions&#39;;
 
             if (scope.controller.checkCondition({
-                condition: !base.isDefined(mode),
-                type: &#39;warn&#39;,
-                msg: &#39;Undefined &#39; + type + &#39; mode&#39;
-            })) {
+                    condition: !base.isDefined(mode),
+                    type: &#39;warn&#39;,
+                    msg: &#39;Undefined &#39; + type + &#39; mode&#39;
+                })) {
                 return false;
             }
 
             if (scope.controller.checkCondition({
-                condition: !base.isDefined(scope[permission]),
-                type: &#39;warn&#39;,
-                msg: &#39;Undefined &#39; + type + &#39; permission&#39;
-            })) {
+                    condition: !base.isDefined(scope[permission]),
+                    type: &#39;warn&#39;,
+                    msg: &#39;Undefined &#39; + type + &#39; permission&#39;
+                })) {
                 return false;
             }
 
-<span id='MVC-property-capabilities'>            /**
-</span>             * Define capability
-             */
+            // Define capability
             var capabilities = scope[permission][mode];
 
             if (scope.controller.checkCondition({
-                condition: !base.isDefined(capabilities),
-                type: &#39;warn&#39;,
-                msg: &#39;Undefined &#39; + type + &#39; capabilities&#39;,
-                args: mode
-            })) {
+                    condition: !base.isDefined(capabilities),
+                    type: &#39;warn&#39;,
+                    msg: &#39;Undefined &#39; + type + &#39; capabilities&#39;,
+                    args: mode
+                })) {
                 return false;
             }
 

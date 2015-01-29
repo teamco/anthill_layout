@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define([
+    &#39;plugins/plugin&#39;,
+    &#39;plugins/widgets/widget.content.controller&#39;
+], function defineGooglePlusController(PluginBase, WidgetContentController) {
+
+<span id='GooglePlusController-method-constructor'><span id='GooglePlusController'>    /**
+</span></span>     * Define GooglePlus controller
+     * @class GooglePlusController
+     * @extends PluginController
+     * @extends WidgetContentController
+     * @constructor
+     */
+    var GooglePlusController = function GooglePlusController() {
+    };
+
+    return GooglePlusController.extend(&#39;GooglePlusController&#39;, {
+
+<span id='GooglePlusController-method-setEmbeddedContent'>        /**
+</span>         * Set embedded content
+         * @member GooglePlusController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
+
+            this.view.elements.$googleplus.renderEmbeddedContent(
+                this.model.getPrefs(&#39;googlePlusApi&#39;),
+                this.model.getPrefs(&#39;googlePlusUrl&#39;)
+            );
+        },
+
+<span id='GooglePlusController-method-addGooglePlusRule'>        /**
+</span>         * Add GooglePlus rule
+         * @member GooglePlusController
+         * @param e
+         */
+        addGooglePlusRule: function addGooglePlusRule(e) {
+
+<span id='GooglePlusController-property-S-button'>            /**
+</span>             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target),
+                scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.publishRule,
+                [$button.attr(&#39;value&#39;), this.scope.constructor.prototype.name]
+            );
+        }
+
+    }, PluginBase.prototype, WidgetContentController.prototype);
+});
+</pre>
+</body>
+</html>

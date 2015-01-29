@@ -113,20 +113,25 @@ define([
             opts
         );
 
-        this.observer.publish(
-            this.eventmanager.eventList.subscribeAfterSwitchPageEvent
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.subscribeCreatePageEvent
-        );
-
-        this.observer.publish(
-            this.eventmanager.eventList.subscribeDestroyPageEvent
-        );
+        this.init();
     };
 
     return PageTabs.extend(&#39;PageTabs&#39;, {
+
+<span id='PageTabs-method-init'>        /**
+</span>         * Define init
+         * @member PageTabs
+         */
+        init: function init() {
+
+            this.observer.batchPublish(
+                this.eventmanager.eventList.subscribeOrderPagesEvent,
+                this.eventmanager.eventList.subscribeAfterSwitchPageEvent,
+                this.eventmanager.eventList.subscribeCreatePageEvent,
+                this.eventmanager.eventList.subscribeDestroyPageEvent,
+                this.eventmanager.eventList.subscribeChangePageTitleEvent
+            );
+        }
 
     }, AntHill.prototype);
 });</pre>

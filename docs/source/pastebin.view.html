@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/pastebin/element/pastebin.element&#39;,
+    &#39;plugins/widgets/pastebin/element/pastebin.preferences.element&#39;,
+    &#39;plugins/widgets/pastebin/element/pastebin.rules.element&#39;
+], function definePastebinView(BaseView, Header, Footer, PastebinElement, PastebinPreferencesElement, PastebinRulesElement) {
+
+<span id='PastebinView-method-constructor'><span id='PastebinView'>    /**
+</span></span>     * Define view
+     * @class PastebinView
+     * @extends BaseView
+     * @constructor
+     */
+    var PastebinView = function PastebinView() {
+    };
+
+    return PastebinView.extend(&#39;PastebinView&#39;, {
+
+<span id='PastebinView-method-renderPastebin'>        /**
+</span>         * Render pastebin element
+         * @member PastebinView
+         */
+        renderPastebin: function renderPastebin() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='PastebinView-property-S-pastebin'>            /**
+</span>             * Define $pastebin
+             * @type {PastebinElement}
+             */
+            this.elements.$pastebin = new PastebinElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='PastebinView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member PastebinView
+         * @returns {PastebinPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='PastebinView-property-S-preferences'>            /**
+</span>             * Define Pastebin Preferences Element
+             * @type {PastebinPreferencesElement}
+             */
+            this.elements.$preferences = new PastebinPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='PastebinView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member PastebinView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {PastebinRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='PastebinView-property-data'>            /**
+</span>             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+<span id='PastebinView-property-S-rules'>            /**
+</span>             * Define Pastebin Rules Element
+             * @type {PastebinRulesElement}
+             */
+            this.elements.$rules = new PastebinRulesElement(this, {
+                data: data,
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='PastebinView-method-render'>        /**
+</span>         * Render pastebin
+         * @member PastebinView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderPastebin.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});
+</pre>
+</body>
+</html>

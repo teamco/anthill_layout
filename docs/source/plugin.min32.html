@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">tinymce.PluginManager.add(&quot;save&quot;,function(a){function b(){var b;return b=tinymce.DOM.getParent(a.id,&quot;form&quot;),!a.getParam(&quot;save_enablewhendirty&quot;,!0)||a.isDirty()?(tinymce.triggerSave(),a.getParam(&quot;save_onsavecallback&quot;)?void(a.execCallback(&quot;save_onsavecallback&quot;,a)&amp;&amp;(a.startContent=tinymce.trim(a.getContent({format:&quot;raw&quot;})),a.nodeChanged())):void(b?(a.isNotDirty=!0,(!b.onsubmit||b.onsubmit())&amp;&amp;(&quot;function&quot;==typeof b.submit?b.submit():a.windowManager.alert(&quot;Error: Form submit field collision.&quot;)),a.nodeChanged()):a.windowManager.alert(&quot;Error: No form element found.&quot;))):void 0}function c(){var b=tinymce.trim(a.startContent);return a.getParam(&quot;save_oncancelcallback&quot;)?void a.execCallback(&quot;save_oncancelcallback&quot;,a):(a.setContent(b),a.undoManager.clear(),void a.nodeChanged())}function d(){var b=this;a.on(&quot;nodeChange&quot;,function(){b.disabled(a.getParam(&quot;save_enablewhendirty&quot;,!0)&amp;&amp;!a.isDirty())})}a.addCommand(&quot;mceSave&quot;,b),a.addCommand(&quot;mceCancel&quot;,c),a.addButton(&quot;save&quot;,{icon:&quot;save&quot;,text:&quot;Save&quot;,cmd:&quot;mceSave&quot;,disabled:!0,onPostRender:d}),a.addButton(&quot;cancel&quot;,{text:&quot;Cancel&quot;,icon:!1,cmd:&quot;mceCancel&quot;,disabled:!0,onPostRender:d}),a.addShortcut(&quot;ctrl+s&quot;,&quot;&quot;,&quot;mceSave&quot;)});</pre>
+</body>
+</html>

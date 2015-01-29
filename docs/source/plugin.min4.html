@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">tinymce.PluginManager.add(&quot;autoresize&quot;,function(a){function b(){return a.plugins.fullscreen&amp;&amp;a.plugins.fullscreen.isFullscreen()}function c(d){var g,h,i,j,k,l,m,n,o,p,q,r,s=tinymce.DOM;if(h=a.getDoc()){if(i=h.body,j=h.documentElement,k=e.autoresize_min_height,!i||d&amp;&amp;&quot;setcontent&quot;===d.type&amp;&amp;d.initial||b())return void(i&amp;&amp;j&amp;&amp;(i.style.overflowY=&quot;auto&quot;,j.style.overflowY=&quot;auto&quot;));m=a.dom.getStyle(i,&quot;margin-top&quot;,!0),n=a.dom.getStyle(i,&quot;margin-bottom&quot;,!0),o=a.dom.getStyle(i,&quot;padding-top&quot;,!0),p=a.dom.getStyle(i,&quot;padding-bottom&quot;,!0),q=a.dom.getStyle(i,&quot;border-top-width&quot;,!0),r=a.dom.getStyle(i,&quot;border-bottom-width&quot;,!0),l=i.offsetHeight+parseInt(m,10)+parseInt(n,10)+parseInt(o,10)+parseInt(p,10)+parseInt(q,10)+parseInt(r,10),(isNaN(l)||0&gt;=l)&amp;&amp;(l=tinymce.Env.ie?i.scrollHeight:tinymce.Env.webkit&amp;&amp;0===i.clientHeight?0:i.offsetHeight),l&gt;e.autoresize_min_height&amp;&amp;(k=l),e.autoresize_max_height&amp;&amp;l&gt;e.autoresize_max_height?(k=e.autoresize_max_height,i.style.overflowY=&quot;auto&quot;,j.style.overflowY=&quot;auto&quot;):(i.style.overflowY=&quot;hidden&quot;,j.style.overflowY=&quot;hidden&quot;,i.scrollTop=0),k!==f&amp;&amp;(g=k-f,s.setStyle(a.iframeElement,&quot;height&quot;,k+&quot;px&quot;),f=k,tinymce.isWebKit&amp;&amp;0&gt;g&amp;&amp;c(d))}}function d(a,b,e){setTimeout(function(){c({}),a--?d(a,b,e):e&amp;&amp;e()},b)}var e=a.settings,f=0;a.settings.inline||(e.autoresize_min_height=parseInt(a.getParam(&quot;autoresize_min_height&quot;,a.getElement().offsetHeight),10),e.autoresize_max_height=parseInt(a.getParam(&quot;autoresize_max_height&quot;,0),10),a.on(&quot;init&quot;,function(){var b=a.getParam(&quot;autoresize_overflow_padding&quot;,1);a.dom.setStyles(a.getBody(),{paddingBottom:a.getParam(&quot;autoresize_bottom_margin&quot;,50),paddingLeft:b,paddingRight:b})}),a.on(&quot;nodechange setcontent keyup FullscreenStateChanged&quot;,c),a.getParam(&quot;autoresize_on_init&quot;,!0)&amp;&amp;a.on(&quot;init&quot;,function(){d(20,100,function(){d(5,1e3)})}),a.addCommand(&quot;mceAutoResize&quot;,c))});</pre>
+</body>
+</html>

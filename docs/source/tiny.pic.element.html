@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineTinyPicElement(BaseElement) {
+
+<span id='TinyPicElement-method-TinyPicElement'><span id='TinyPicElement'>    /**
+</span></span>     * Define TinyPic Element
+     * @param view
+     * @param opts
+     * @returns {TinyPicElement}
+     * @constructor
+     * @class TinyPicElement
+     * @extends BaseElement
+     */
+    var TinyPicElement = function TinyPicElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;tiny.pic&#39;, {resource: &#39;/widgets&#39;});
+
+        return this;
+    };
+
+    return TinyPicElement.extend(&#39;TinyPicElement&#39;, {
+
+<span id='TinyPicElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member TinyPicElement
+         * @param {boolean|{type, code}} embed
+         */
+        renderEmbeddedContent: function renderEmbeddedContent(embed) {
+
+            if (!embed) {
+                return false;
+            }
+
+<span id='TinyPicElement-property-S-content'>            /**
+</span>             * Define $content
+             */
+            var $content = embed.type === &#39;image&#39; ?
+                embed.code :
+                this.renderEmbed(embed.code);
+
+            this.$.append($content);
+        }
+
+    }, BaseElement.prototype);
+
+});
+</pre>
+</body>
+</html>

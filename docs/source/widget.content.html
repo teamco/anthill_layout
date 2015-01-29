@@ -53,7 +53,7 @@ define([
 </span>             * Get resource
              * @type {*}
              */
-            var resource = widget.model.getConfig(&#39;preferences/resource&#39;);
+            var resource = widget.model.getConfig(&#39;preferences&#39;).resource;
 
             if (!this.base.isString(resource)) {
                 widget.logger.error(&#39;Unable to load resource&#39;);
@@ -131,7 +131,7 @@ define([
          * @returns {*}
          */
         getThumbnail: function getThumbnail() {
-            return this.model.getConfig(&#39;preferences/thumbnail&#39;);
+            return this.model.getConfig(&#39;preferences&#39;).thumbnail;
         },
 
 <span id='WidgetController-method-getResource'>        /**
@@ -140,7 +140,7 @@ define([
          * @returns {*}
          */
         getResource: function getResource() {
-            return this.model.getConfig(&#39;preferences/resource&#39;);
+            return this.model.getConfig(&#39;preferences&#39;).resource;
         }
 
     }, AntHill.prototype);

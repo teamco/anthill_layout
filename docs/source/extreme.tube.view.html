@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/extreme.tube/element/extreme.tube.element&#39;,
+    &#39;plugins/widgets/extreme.tube/element/extreme.tube.preferences.element&#39;,
+    &#39;plugins/widgets/extreme.tube/element/extreme.tube.rules.element&#39;
+], function defineExtremeTubeView(BaseView, Header, Footer, ExtremeTubeElement, ExtremeTubePreferencesElement, ExtremeTubeRulesElement) {
+
+<span id='ExtremeTubeView-method-constructor'><span id='ExtremeTubeView'>    /**
+</span></span>     * Define view
+     * @class ExtremeTubeView
+     * @extends BaseView
+     * @constructor
+     */
+    var ExtremeTubeView = function ExtremeTubeView() {
+    };
+
+    return ExtremeTubeView.extend(&#39;ExtremeTubeView&#39;, {
+
+<span id='ExtremeTubeView-method-renderExtremeTube'>        /**
+</span>         * Render extremetube element
+         * @member ExtremeTubeView
+         */
+        renderExtremeTube: function renderExtremeTube() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='ExtremeTubeView-property-S-extremetube'>            /**
+</span>             * Define $extremetube
+             * @type {ExtremeTubeElement}
+             */
+            this.elements.$extremetube = new ExtremeTubeElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='ExtremeTubeView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member ExtremeTubeView
+         * @returns {ExtremeTubePreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='ExtremeTubeView-property-S-preferences'>            /**
+</span>             * Define ExtremeTube Preferences Element
+             * @type {ExtremeTubePreferencesElement}
+             */
+            this.elements.$preferences = new ExtremeTubePreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='ExtremeTubeView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member ExtremeTubeView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {ExtremeTubeRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='ExtremeTubeView-property-data'>            /**
+</span>             * Define data
+             * @type {*|{}}
+             */
+            var data = this.controller.getRules();
+
+<span id='ExtremeTubeView-property-S-rules'>            /**
+</span>             * Define ExtremeTube Rules Element
+             * @type {ExtremeTubeRulesElement}
+             */
+            this.elements.$rules = new ExtremeTubeRulesElement(this, {
+                data: data,
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='ExtremeTubeView-method-render'>        /**
+</span>         * Render extremetube
+         * @member ExtremeTubeView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderExtremeTube.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});
+</pre>
+</body>
+</html>

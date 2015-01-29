@@ -36,7 +36,15 @@ define([], function defineTextAreaRenderer(){
 <span id='TextAreaRenderer-method-renderTextArea'>        /**
 </span>         * Render text area
          * @member TextAreaRenderer
-         * @param {{text: string, name: string, [placeholder]: string, value, [disabled]: boolean}} opts
+         * @param {{
+         *      text: string,
+         *      name: string,
+         *      [placeholder]: string,
+         *      value,
+         *      [monitor],
+         *      [disabled]: boolean,
+         *      [validate]: {mask: RegExp, blank: boolean}
+         * }} opts
          * @returns {*[]}
          */
         renderTextArea: function renderTextArea(opts) {
@@ -74,9 +82,19 @@ define([], function defineTextAreaRenderer(){
                 }).val(opts.value);
             }
 
+            if (opts.monitor) {
+
+                $input.on(
+                    opts.monitor.events.join(&#39;,&#39;),
+                    opts.monitor.callback
+                );
+            }
+
             if (!opts.visible) {
                 $input.hide();
             }
+
+            this.validateByMask($input, opts);
 
             return [
                 this.renderLabel(uuid, opts.text, &#39;textarea&#39;, opts.visible),

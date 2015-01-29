@@ -38,13 +38,17 @@ define([
 
         this.updateEventList({
             switchToPage: &#39;switch.to.page&#39;,
+            setActivePageTab: &#39;set.active.page.tab&#39;,
+            subscribeChangePageTitleEvent: &#39;subscribe.change.page.title.event&#39;,
             subscribeAfterSwitchPageEvent: &#39;subscribe.after.switch.page.event&#39;,
             subscribeCreatePageEvent: &#39;subscribe.create.page.event&#39;,
-            subscribeDestroyPageEvent: &#39;subscribe.destroy.page.event&#39;
+            subscribeDestroyPageEvent: &#39;subscribe.destroy.page.event&#39;,
+            subscribeOrderPagesEvent: &#39;subscribe.order.pages.event&#39;
         });
 
-<span id='PageTabsEventManager-property-onLoadEvents'>        /**
-</span>         * Define onload events
+<span id='WidgetContentEventManager-property-onLoadEvents'>        /**
+</span>         * Define on load events
+         * @member WidgetContentEventManager
          * @type {[string]}
          */
         this.onLoadEvents = [

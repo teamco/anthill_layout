@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function definePolldaddyElement(BaseElement) {
+
+<span id='PolldaddyElement-method-PolldaddyElement'><span id='PolldaddyElement'>    /**
+</span></span>     * Define Polldaddy Element
+     * @param view
+     * @param opts
+     * @returns {PolldaddyElement}
+     * @constructor
+     * @class PolldaddyElement
+     * @extends BaseElement
+     */
+    var PolldaddyElement = function PolldaddyElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;polldaddy&#39;, {resource: &#39;/widgets&#39;});
+
+        return this;
+    };
+
+    return PolldaddyElement.extend(&#39;PolldaddyElement&#39;, {
+
+<span id='PolldaddyElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member PolldaddyElement
+         * @param {{type, id}} data
+         */
+        renderEmbeddedContent: function renderEmbeddedContent(data) {
+
+            if (data.type === &#39;inline&#39;) {
+
+                require([
+                    &#39;//static.polldaddy.com/p/&#39; + data.id + &#39;.js&#39;
+                ]);
+
+            } else if (data.type === &#39;popup&#39;) {
+
+                // TODO: unsupported
+                require(
+                    [&#39;//i0.poll.fm/survey.js&#39;],
+                    function definePollDaddy() {
+                        polldaddy.add({
+                            type: &#39;slider&#39;,
+                            embed: &#39;poll&#39;,
+                            delay: 100,
+                            visit: &#39;single&#39;,
+                            id: data.id
+                        });
+                    }
+                );
+            }
+        }
+
+    }, BaseElement.prototype);
+
+});
+</pre>
+</body>
+</html>

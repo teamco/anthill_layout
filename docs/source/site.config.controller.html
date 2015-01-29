@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define(
+    [
+        &#39;plugins/plugin&#39;,
+        &#39;config/routes&#39;,
+        &#39;plugins/site.config/mvc/controller/site.config.import&#39;,
+        &#39;plugins/site.config/mvc/controller/site.config.export&#39;,
+        &#39;plugins/site.config/mvc/controller/site.config.cleanup&#39;,
+        &#39;plugins/site.config/mvc/controller/site.config.preferences&#39;,
+        &#39;plugins/site.config/mvc/controller/site.config.activate&#39;,
+        &#39;plugins/site.config/mvc/controller/site.config.widget.generator&#39;,
+        &#39;plugins/preferences/preferences.controller&#39;
+    ],
+
+<span id='global-method-defineSiteConfigController'>    /**
+</span>     * Define SiteConfigController
+     * @param {PluginController} PluginBase
+     * @param {Routes} Routes
+     * @param {SiteConfigImport} SiteConfigImport
+     * @param {SiteConfigExport} SiteConfigExport
+     * @param {SiteConfigCleanup} SiteConfigCleanup
+     * @param {SiteConfigPreferences} SiteConfigPreferences
+     * @param {SiteConfigActivate} SiteConfigActivate
+     * @param {SiteConfigWidgetGenerator} SiteConfigWidgetGenerator
+     * @param {PreferencesController} PreferencesController
+     * @returns {SiteConfigController}
+     */
+    function defineSiteConfigController(PluginBase, Routes, SiteConfigImport, SiteConfigExport, SiteConfigCleanup, SiteConfigPreferences, SiteConfigActivate, SiteConfigWidgetGenerator, PreferencesController) {
+
+<span id='SiteConfigController-method-constructor'><span id='SiteConfigController'>        /**
+</span></span>         * Define site config controller
+         * @class SiteConfigController
+         * @extends PluginController
+         * @extends Routes
+         * @extends SiteConfigImport
+         * @extends PreferencesController
+         * @constructor
+         */
+        var SiteConfigController = function SiteConfigController() {
+
+        };
+
+        return SiteConfigController.extend(&#39;SiteConfigController&#39;, {
+
+<span id='SiteConfigController-method-getModuleData'>                /**
+</span>                 * Get module data
+                 * @member SiteConfigController
+                 * @returns {*}
+                 */
+                getModuleData: function getModuleData() {
+                    return this.model.getDataItems(
+                        this.getWorkspace()
+                    );
+                },
+
+<span id='SiteConfigController-method-loadModuleContent'>                /**
+</span>                 * Load site content
+                 * @member SiteConfigController
+                 * @param opened
+                 */
+                loadModuleContent: function loadModuleContent(opened) {
+                    if (opened) {
+                        this.getView().renderContent(
+                            this.getData()
+                        );
+                    }
+                }
+            },
+
+            PluginBase.prototype,
+            Routes.prototype,
+            SiteConfigImport.prototype,
+            SiteConfigExport.prototype,
+            SiteConfigCleanup.prototype,
+            SiteConfigPreferences.prototype,
+            SiteConfigActivate.prototype,
+            SiteConfigWidgetGenerator.prototype,
+            PreferencesController.prototype
+        );
+    }
+);</pre>
+</body>
+</html>

@@ -62,20 +62,19 @@ define([
 </span>             * Get title
              * @type {boolean|string}
              */
-            var title = data.model.getConfig(&#39;preferences/title&#39;) ||
-                data.model.getUUID();
+            var title = data.model.getItemTitle();
 
 <span id='WidgetRulesContentElement-property-description'>            /**
 </span>             * Get description
              * @type {string}
              */
-            var description = data.model.getConfig(&#39;preferences/description&#39;) || &#39;&#39;;
+            var description = data.model.getConfig(&#39;preferences&#39;).description || &#39;&#39;;
 
             this.$.attr({
                 title: title
             }).addClass(
                 this.view.controller.getResourceClassName(
-                    data.model.getConfig(&#39;preferences/resource&#39;)
+                    data.model.getConfig(&#39;preferences&#39;).resource
                 )
             );
 
@@ -83,7 +82,7 @@ define([
 </span>             * Get thumbnail
              * @type {string|*}
              */
-            var thumbnail = data.model.getConfig(&#39;preferences/thumbnail&#39;);
+            var thumbnail = data.model.getConfig(&#39;preferences&#39;).thumbnail;
 
             if (thumbnail.length &gt; 0) {
 

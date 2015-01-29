@@ -32,6 +32,14 @@ define([], function defineToolTipRenderer(){
 
     return ToolTipRenderer.extend(&#39;ToolTipRenderer&#39;, {
 
+<span id='ToolTipRenderer-method-hideTooltip'>        /**
+</span>         * Hide tooltip
+         * @member ToolTipRenderer
+         */
+        hideTooltip: function hideTooltip() {
+            $(&#39;.tooltip&#39;).hide();
+        },
+
 <span id='ToolTipRenderer-method-renderTooltip'>        /**
 </span>         * Render tooltip
          * @member ToolTipRenderer

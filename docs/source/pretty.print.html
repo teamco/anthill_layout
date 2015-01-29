@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">/*
+ Copyright (c) 2009 James Padolsey.  All rights reserved.
+
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+
+ 1. Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.
+
+ 2. Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in the
+ documentation and/or other materials provided with the distribution.
+
+ THIS SOFTWARE IS PROVIDED BY James Padolsey ``AS IS&#39;&#39; AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL James Padolsey OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+
+ The views and conclusions contained in the software and documentation are
+ those of the authors and should not be interpreted as representing official
+ policies, either expressed or implied, of James Padolsey.
+
+ AUTHOR James Padolsey (http://james.padolsey.com)
+ VERSION 1.03.0
+ UPDATED 29-10-2011
+ CONTRIBUTORS
+ David Waller
+ Benjamin Drucker
+
+ */
+
+var prettyPrint = (function () {
+
+    /* These &quot;util&quot; functions are not part of the core
+     functionality but are  all necessary - mostly DOM helpers */
+
+    var util = {
+
+        el: function (type, attrs) {
+
+            /* Create new element */
+            var el = document.createElement(type), attr;
+
+            /*Copy to single object */
+            attrs = util.merge({}, attrs);
+
+            /* Add attributes to el */
+            if (attrs &amp;&amp; attrs.style) {
+                var styles = attrs.style;
+                util.applyCSS(el, attrs.style);
+                delete attrs.style;
+            }
+            for (attr in attrs) {
+                if (attrs.hasOwnProperty(attr)) {
+                    el[attr] = attrs[attr];
+                }
+            }
+
+            return el;
+
+        },
+
+        applyCSS: function (el, styles) {
+            /* Applies CSS to a single element */
+            for (var prop in styles) {
+                if (styles.hasOwnProperty(prop)) {
+                    try {
+                        /* Yes, IE6 SUCKS! */
+                        el.style[prop] = styles[prop];
+                    } catch (e) {
+                    }
+                }
+            }
+        },
+
+        txt: function (t) {
+            /* Create text node */
+            return document.createTextNode(t);
+        },
+
+        row: function (cells, type, cellType) {
+
+            /* Creates new &lt;tr&gt; */
+            cellType = cellType || &#39;td&#39;;
+
+            /* colSpan is calculated by length of null items in array */
+            var colSpan = util.count(cells, null) + 1,
+                tr = util.el(&#39;tr&#39;), td,
+                attrs = {
+                    style: util.getStyles(cellType, type),
+                    colSpan: colSpan,
+                    onmouseover: function () {
+                        var tds = this.parentNode.childNodes;
+                        util.forEach(tds, function (cell) {
+                            if (cell.nodeName.toLowerCase() !== &#39;td&#39;) {
+                                return;
+                            }
+                            util.applyCSS(cell, util.getStyles(&#39;td_hover&#39;, type));
+                        });
+                    },
+                    onmouseout: function () {
+                        var tds = this.parentNode.childNodes;
+                        util.forEach(tds, function (cell) {
+                            if (cell.nodeName.toLowerCase() !== &#39;td&#39;) {
+                                return;
+                            }
+                            util.applyCSS(cell, util.getStyles(&#39;td&#39;, type));
+                        });
+                    }
+                };
+
+            util.forEach(cells, function (cell) {
+
+                if (cell === null) {
+                    return;
+                }
+                /* Default cell type is &lt;td&gt; */
+                td = util.el(cellType, attrs);
+
+                if (cell.nodeType) {
+                    /* IsDomElement */
+                    td.appendChild(cell);
+                } else {
+                    /* IsString */
+                    td.innerHTML = util.shorten(cell.toString());
+                }
+
+                tr.appendChild(td);
+            });
+
+            return tr;
+        },
+
+        hRow: function (cells, type) {
+            /* Return new &lt;th&gt; */
+            return util.row(cells, type, &#39;th&#39;);
+        },
+
+        table: function (headings, type) {
+
+            headings = headings || [];
+
+            /* Creates new table: */
+            var attrs = {
+                    thead: {
+                        style: util.getStyles(&#39;thead&#39;, type)
+                    },
+                    tbody: {
+                        style: util.getStyles(&#39;tbody&#39;, type)
+                    },
+                    table: {
+                        style: util.getStyles(&#39;table&#39;, type)
+                    }
+                },
+                tbl = util.el(&#39;table&#39;, attrs.table),
+                thead = util.el(&#39;thead&#39;, attrs.thead),
+                tbody = util.el(&#39;tbody&#39;, attrs.tbody);
+
+            if (headings.length) {
+                tbl.appendChild(thead);
+                thead.appendChild(util.hRow(headings, type));
+            }
+            tbl.appendChild(tbody);
+
+            return {
+                /* Facade for dealing with table/tbody
+                 Actual table node is this.node: */
+                node: tbl,
+                tbody: tbody,
+                thead: thead,
+                appendChild: function (node) {
+                    this.tbody.appendChild(node);
+                },
+                addRow: function (cells, _type, cellType) {
+                    this.appendChild(util.row.call(util, cells, (_type || type), cellType));
+                    return this;
+                }
+            };
+        },
+
+        shorten: function (str) {
+            var max = 40;
+            str = str.replace(/^\s\s*|\s\s*$|\n/g, &#39;&#39;);
+            return str.length &gt; max ? (str.substring(0, max - 1) + &#39;...&#39;) : str;
+        },
+
+        htmlentities: function (str) {
+            return str.replace(/&amp;/g, &#39;&amp;amp;&#39;).replace(/&lt;/g, &#39;&amp;lt;&#39;).replace(/&gt;/g, &#39;&amp;gt;&#39;);
+        },
+
+        merge: function (target, source) {
+
+            /* Merges two (or more) objects,
+             giving the last one precedence */
+
+            if (typeof target !== &#39;object&#39;) {
+                target = {};
+            }
+
+            for (var property in source) {
+
+                if (source.hasOwnProperty(property)) {
+
+                    var sourceProperty = source[ property ];
+
+                    if (typeof sourceProperty === &#39;object&#39;) {
+                        target[ property ] = util.merge(target[ property ], sourceProperty);
+                        continue;
+                    }
+
+                    target[ property ] = sourceProperty;
+
+                }
+
+            }
+
+            for (var a = 2, l = arguments.length; a &lt; l; a++) {
+                util.merge(target, arguments[a]);
+            }
+
+            return target;
+        },
+
+        count: function (arr, item) {
+            var count = 0;
+            for (var i = 0, l = arr.length; i &lt; l; i++) {
+                if (arr[i] === item) {
+                    count++;
+                }
+            }
+            return count;
+        },
+
+        thead: function (tbl) {
+            return tbl.getElementsByTagName(&#39;thead&#39;)[0];
+        },
+
+        forEach: function (arr, max, fn) {
+
+            if (!fn) {
+                fn = max;
+            }
+
+            /* Helper: iteration */
+            var len = arr.length,
+                index = -1;
+
+            while (++index &lt; len) {
+                if (fn(arr[index], index, arr) === false) {
+                    break;
+                }
+            }
+
+            return true;
+        },
+
+        type: function (v) {
+            try {
+                /* Returns type, e.g. &quot;string&quot;, &quot;number&quot;, &quot;array&quot; etc.
+                 Note, this is only used for precise typing. */
+                if (v === null) {
+                    return &#39;null&#39;;
+                }
+                if (v === undefined) {
+                    return &#39;undefined&#39;;
+                }
+                var oType = Object.prototype.toString.call(v).match(/\s(.+?)\]/)[1].toLowerCase();
+                if (v.nodeType) {
+                    if (v.nodeType === 1) {
+                        return &#39;domelement&#39;;
+                    }
+                    return &#39;domnode&#39;;
+                }
+                if (/^(string|number|array|regexp|function|date|boolean)$/.test(oType)) {
+                    return oType;
+                }
+                if (typeof v === &#39;object&#39;) {
+                    return v.jquery &amp;&amp; typeof v.jquery === &#39;string&#39; ? &#39;jquery&#39; : &#39;object&#39;;
+                }
+                if (v === window || v === document) {
+                    return &#39;object&#39;;
+                }
+                return &#39;default&#39;;
+            } catch (e) {
+                return &#39;default&#39;;
+            }
+        },
+
+        within: function (ref) {
+            /* Check existence of a val within an object
+             RETURNS KEY */
+            return {
+                is: function (o) {
+                    for (var i in ref) {
+                        if (ref[i] === o) {
+                            return i;
+                        }
+                    }
+                    return &#39;&#39;;
+                }
+            };
+        },
+
+        common: {
+            circRef: function (obj, key, settings) {
+                return util.expander(
+                        &#39;[POINTS BACK TO &lt;strong&gt;&#39; + (key) + &#39;&lt;/strong&gt;]&#39;,
+                    &#39;Click to show this item anyway&#39;,
+                    function () {
+                        this.parentNode.appendChild(prettyPrintThis(obj, {maxDepth: 1}));
+                    }
+                );
+            },
+            depthReached: function (obj, settings) {
+                return util.expander(
+                    &#39;[DEPTH REACHED]&#39;,
+                    &#39;Click to show this item anyway&#39;,
+                    function () {
+                        try {
+                            this.parentNode.appendChild(prettyPrintThis(obj, {maxDepth: 1}));
+                        } catch (e) {
+                            this.parentNode.appendChild(
+                                util.table([&#39;ERROR OCCURED DURING OBJECT RETRIEVAL&#39;], &#39;error&#39;).addRow([e.message]).node
+                            );
+                        }
+                    }
+                );
+            }
+        },
+
+        getStyles: function (el, type) {
+            type = prettyPrintThis.settings.styles[type] || {};
+            return util.merge(
+                {}, prettyPrintThis.settings.styles[&#39;default&#39;][el], type[el]
+            );
+        },
+
+        expander: function (text, title, clickFn) {
+            return util.el(&#39;a&#39;, {
+                innerHTML: util.shorten(text) + &#39; &lt;b style=&quot;visibility:hidden;&quot;&gt;[+]&lt;/b&gt;&#39;,
+                title: title,
+                onmouseover: function () {
+                    this.getElementsByTagName(&#39;b&#39;)[0].style.visibility = &#39;visible&#39;;
+                },
+                onmouseout: function () {
+                    this.getElementsByTagName(&#39;b&#39;)[0].style.visibility = &#39;hidden&#39;;
+                },
+                onclick: function () {
+                    this.style.display = &#39;none&#39;;
+                    clickFn.call(this);
+                    return false;
+                },
+                style: {
+                    cursor: &#39;pointer&#39;
+                }
+            });
+        },
+
+        stringify: function (obj) {
+
+            /* Bit of an ugly duckling!
+             - This fn returns an ATTEMPT at converting an object/array/anyType
+             into a string, kinda like a JSON-deParser
+             - This is used for when |settings.expanded === false| */
+
+            var type = util.type(obj),
+                str, first = true;
+            if (type === &#39;array&#39;) {
+                str = &#39;[&#39;;
+                util.forEach(obj, function (item, i) {
+                    str += (i === 0 ? &#39;&#39; : &#39;, &#39;) + util.stringify(item);
+                });
+                return str + &#39;]&#39;;
+            }
+            if (typeof obj === &#39;object&#39;) {
+                str = &#39;{&#39;;
+                for (var i in obj) {
+                    if (obj.hasOwnProperty(i)) {
+                        str += (first ? &#39;&#39; : &#39;, &#39;) + i + &#39;:&#39; + util.stringify(obj[i]);
+                        first = false;
+                    }
+                }
+                return str + &#39;}&#39;;
+            }
+            if (type === &#39;regexp&#39;) {
+                return &#39;/&#39; + obj.source + &#39;/&#39;;
+            }
+            if (type === &#39;string&#39;) {
+                return &#39;&quot;&#39; + obj.replace(/&quot;/g, &#39;\\&quot;&#39;) + &#39;&quot;&#39;;
+            }
+            return obj.toString();
+        },
+
+        headerGradient: (function () {
+
+            var canvas = document.createElement(&#39;canvas&#39;);
+            if (!canvas.getContext) {
+                return &#39;&#39;;
+            }
+            var cx = canvas.getContext(&#39;2d&#39;);
+            canvas.height = 30;
+            canvas.width = 1;
+
+            var linearGrad = cx.createLinearGradient(0, 0, 0, 30);
+            linearGrad.addColorStop(0, &#39;rgba(0,0,0,0)&#39;);
+            linearGrad.addColorStop(1, &#39;rgba(0,0,0,0.25)&#39;);
+
+            cx.fillStyle = linearGrad;
+            cx.fillRect(0, 0, 1, 30);
+
+            var dataURL = canvas.toDataURL &amp;&amp; canvas.toDataURL();
+            return &#39;url(&#39; + (dataURL || &#39;&#39;) + &#39;)&#39;;
+
+        })()
+
+    };
+
+    // Main..
+    var prettyPrintThis = function (obj, options) {
+
+        /*
+         *	  obj :: Object to be printed
+         *  options :: Options (merged with config)
+         */
+
+        options = options || {};
+
+        var settings = util.merge({}, prettyPrintThis.config, options),
+            container = util.el(&#39;div&#39;),
+            config = prettyPrintThis.config,
+            currentDepth = 0,
+            stack = {},
+            hasRunOnce = false;
+
+        /* Expose per-call settings.
+         Note: &quot;config&quot; is overwritten (where necessary) by options/&quot;settings&quot;
+         So, if you need to access/change *DEFAULT* settings then go via &quot;.config&quot; */
+        prettyPrintThis.settings = settings;
+
+        var typeDealer = {
+            string: function (item) {
+                return util.txt(&#39;&quot;&#39; + util.shorten(item.replace(/&quot;/g, &#39;\\&quot;&#39;)) + &#39;&quot;&#39;);
+            },
+            number: function (item) {
+                return util.txt(item);
+            },
+            regexp: function (item) {
+
+                var miniTable = util.table([&#39;RegExp&#39;, null], &#39;regexp&#39;);
+                var flags = util.table();
+                var span = util.expander(
+                        &#39;/&#39; + item.source + &#39;/&#39;,
+                    &#39;Click to show more&#39;,
+                    function () {
+                        this.parentNode.appendChild(miniTable.node);
+                    }
+                );
+
+                flags
+                    .addRow([&#39;g&#39;, item.global])
+                    .addRow([&#39;i&#39;, item.ignoreCase])
+                    .addRow([&#39;m&#39;, item.multiline]);
+
+                miniTable
+                    .addRow([&#39;source&#39;, &#39;/&#39; + item.source + &#39;/&#39;])
+                    .addRow([&#39;flags&#39;, flags.node])
+                    .addRow([&#39;lastIndex&#39;, item.lastIndex]);
+
+                return settings.expanded ? miniTable.node : span;
+            },
+            domelement: function (element, depth) {
+
+                var miniTable = util.table([&#39;DOMElement&#39;, null], &#39;domelement&#39;),
+                    props = [&#39;id&#39;, &#39;className&#39;, &#39;innerHTML&#39;, &#39;src&#39;, &#39;href&#39;], elname = element.nodeName || &#39;&#39;;
+
+                miniTable.addRow([&#39;tag&#39;, &#39;&amp;lt;&#39; + elname.toLowerCase() + &#39;&amp;gt;&#39;]);
+
+                util.forEach(props, function (prop) {
+                    if (element[prop]) {
+                        miniTable.addRow([ prop, util.htmlentities(element[prop]) ]);
+                    }
+                });
+
+                return settings.expanded ? miniTable.node : util.expander(
+                        &#39;DOMElement (&#39; + elname.toLowerCase() + &#39;)&#39;,
+                    &#39;Click to show more&#39;,
+                    function () {
+                        this.parentNode.appendChild(miniTable.node);
+                    }
+                );
+            },
+            domnode: function (node) {
+
+                /* Deals with all DOMNodes that aren&#39;t elements (nodeType !== 1) */
+                var miniTable = util.table([&#39;DOMNode&#39;, null], &#39;domelement&#39;),
+                    data = util.htmlentities((node.data || &#39;UNDEFINED&#39;).replace(/\n/g, &#39;\\n&#39;));
+                miniTable
+                    .addRow([&#39;nodeType&#39;, node.nodeType + &#39; (&#39; + node.nodeName + &#39;)&#39;])
+                    .addRow([&#39;data&#39;, data]);
+
+                return settings.expanded ? miniTable.node : util.expander(
+                    &#39;DOMNode&#39;,
+                    &#39;Click to show more&#39;,
+                    function () {
+                        this.parentNode.appendChild(miniTable.node);
+                    }
+                );
+            },
+            jquery: function (obj, depth, key) {
+                return typeDealer[&#39;array&#39;](obj, depth, key, true);
+            },
+            object: function (obj, depth, key) {
+
+                /* Checking depth + circular refs */
+                /* Note, check for circular refs before depth; just makes more sense */
+                var stackKey = util.within(stack).is(obj);
+                if (stackKey) {
+                    return util.common.circRef(obj, stackKey, settings);
+                }
+                stack[key || &#39;TOP&#39;] = obj;
+                if (depth === settings.maxDepth) {
+                    return util.common.depthReached(obj, settings);
+                }
+
+                var table = util.table([&#39;Object&#39;, null], &#39;object&#39;),
+                    isEmpty = true;
+
+                for (var i in obj) {
+                    if (!obj.hasOwnProperty || obj.hasOwnProperty(i)) {
+                        var item = obj[i],
+                            type = util.type(item);
+                        isEmpty = false;
+                        try {
+                            table.addRow([i, typeDealer[ type ](item, depth + 1, i)], type);
+                        } catch (e) {
+                            /* Security errors are thrown on certain Window/DOM properties */
+                            if (window.console &amp;&amp; window.console.log) {
+                                console.log(e.message);
+                            }
+                        }
+                    }
+                }
+
+                if (isEmpty) {
+                    table.addRow([&#39;&lt;small&gt;[empty]&lt;/small&gt;&#39;]);
+                } else {
+                    table.thead.appendChild(
+                        util.hRow([&#39;key&#39;, &#39;value&#39;], &#39;colHeader&#39;)
+                    );
+                }
+
+                var ret = (settings.expanded || hasRunOnce) ? table.node : util.expander(
+                    util.stringify(obj),
+                    &#39;Click to show more&#39;,
+                    function () {
+                        this.parentNode.appendChild(table.node);
+                    }
+                );
+
+                hasRunOnce = true;
+
+                return ret;
+
+            },
+            array: function (arr, depth, key, jquery) {
+
+                /* Checking depth + circular refs */
+                /* Note, check for circular refs before depth; just makes more sense */
+                var stackKey = util.within(stack).is(arr);
+                if (stackKey) {
+                    return util.common.circRef(arr, stackKey);
+                }
+                stack[key || &#39;TOP&#39;] = arr;
+                if (depth === settings.maxDepth) {
+                    return util.common.depthReached(arr);
+                }
+
+                /* Accepts a table and modifies it */
+                var me = jquery ? &#39;jQuery&#39; : &#39;Array&#39;, table = util.table([me + &#39;(&#39; + arr.length + &#39;)&#39;, null], jquery ? &#39;jquery&#39; : me.toLowerCase()),
+                    isEmpty = true,
+                    count = 0;
+
+                if (jquery) {
+                    table.addRow([&#39;selector&#39;, arr.selector]);
+                }
+
+                util.forEach(arr, function (item, i) {
+                    if (settings.maxArray &gt;= 0 &amp;&amp; ++count &gt; settings.maxArray) {
+                        table.addRow([
+                                i + &#39;..&#39; + (arr.length - 1),
+                            typeDealer[ util.type(item) ](&#39;...&#39;, depth + 1, i)
+                        ]);
+                        return false;
+                    }
+                    isEmpty = false;
+                    table.addRow([i, typeDealer[ util.type(item) ](item, depth + 1, i)]);
+                });
+
+                if (!jquery) {
+                    if (isEmpty) {
+                        table.addRow([&#39;&lt;small&gt;[empty]&lt;/small&gt;&#39;]);
+                    } else {
+                        table.thead.appendChild(util.hRow([&#39;index&#39;, &#39;value&#39;], &#39;colHeader&#39;));
+                    }
+                }
+
+                return settings.expanded ? table.node : util.expander(
+                    util.stringify(arr),
+                    &#39;Click to show more&#39;,
+                    function () {
+                        this.parentNode.appendChild(table.node);
+                    }
+                );
+
+            },
+            &#39;function&#39;: function (fn, depth, key) {
+
+                /* Checking JUST circular refs */
+                var stackKey = util.within(stack).is(fn);
+                if (stackKey) {
+                    return util.common.circRef(fn, stackKey);
+                }
+                stack[key || &#39;TOP&#39;] = fn;
+
+                var miniTable = util.table([&#39;Function&#39;, null], &#39;function&#39;),
+                    argsTable = util.table([&#39;Arguments&#39;]),
+                    args = fn.toString().match(/\((.+?)\)/),
+                    body = fn.toString().match(/\(.*?\)\s+?\{?([\S\s]+)/)[1].replace(/\}?$/, &#39;&#39;);
+
+                miniTable
+                    .addRow([&#39;arguments&#39;, args ? args[1].replace(/[^\w_,\s]/g, &#39;&#39;) : &#39;&lt;small&gt;[none/native]&lt;/small&gt;&#39;])
+                    .addRow([&#39;body&#39;, body]);
+
+                return settings.expanded ? miniTable.node : util.expander(
+                    &#39;function(){...}&#39;,
+                    &#39;Click to see more about this function.&#39;,
+                    function () {
+                        this.parentNode.appendChild(miniTable.node);
+                    }
+                );
+            },
+            &#39;date&#39;: function (date) {
+
+                var miniTable = util.table([&#39;Date&#39;, null], &#39;date&#39;),
+                    sDate = date.toString().split(/\s/);
+
+                /* TODO: Make this work well in IE! */
+                miniTable
+                    .addRow([&#39;Time&#39;, sDate[4]])
+                    .addRow([&#39;Date&#39;, sDate.slice(0, 4).join(&#39;-&#39;)]);
+
+                return settings.expanded ? miniTable.node : util.expander(
+                        &#39;Date (timestamp): &#39; + (+date),
+                    &#39;Click to see a little more info about this date&#39;,
+                    function () {
+                        this.parentNode.appendChild(miniTable.node);
+                    }
+                );
+
+            },
+            &#39;boolean&#39;: function (bool) {
+                return util.txt(bool.toString().toUpperCase());
+            },
+            &#39;undefined&#39;: function () {
+                return util.txt(&#39;UNDEFINED&#39;);
+            },
+            &#39;null&#39;: function () {
+                return util.txt(&#39;NULL&#39;);
+            },
+            &#39;default&#39;: function () {
+                /* When a type cannot be found */
+                return util.txt(&#39;prettyPrint: TypeNotFound Error&#39;);
+            }
+        };
+
+        container.appendChild(typeDealer[ (settings.forceObject) ? &#39;object&#39; : util.type(obj) ](obj, currentDepth));
+
+        return container;
+
+    };
+
+    /* Configuration */
+
+    /* All items can be overwridden by passing an
+     &quot;options&quot; object when calling prettyPrint */
+    prettyPrintThis.config = {
+
+        /* Try setting this to false to save space */
+        expanded: true,
+
+        forceObject: false,
+        maxDepth: 3,
+        maxArray: -1,  // default is unlimited
+        styles: {
+            array: {
+                th: {
+                    backgroundColor: &#39;#6DBD2A&#39;,
+                    color: &#39;white&#39;
+                }
+            },
+            &#39;function&#39;: {
+                th: {
+                    backgroundColor: &#39;#D82525&#39;
+                }
+            },
+            regexp: {
+                th: {
+                    backgroundColor: &#39;#E2F3FB&#39;,
+                    color: &#39;#000&#39;
+                }
+            },
+            object: {
+                th: {
+                    backgroundColor: &#39;#1F96CF&#39;
+                }
+            },
+            jquery: {
+                th: {
+                    backgroundColor: &#39;#FBF315&#39;
+                }
+            },
+            error: {
+                th: {
+                    backgroundColor: &#39;red&#39;,
+                    color: &#39;yellow&#39;
+                }
+            },
+            domelement: {
+                th: {
+                    backgroundColor: &#39;#F3801E&#39;
+                }
+            },
+            date: {
+                th: {
+                    backgroundColor: &#39;#A725D8&#39;
+                }
+            },
+            colHeader: {
+                th: {
+                    backgroundColor: &#39;#EEE&#39;,
+                    color: &#39;#000&#39;,
+                    textTransform: &#39;uppercase&#39;
+                }
+            },
+            &#39;default&#39;: {
+                table: {
+                    borderCollapse: &#39;collapse&#39;,
+                    width: &#39;100%&#39;
+                },
+                td: {
+                    padding: &#39;5px&#39;,
+                    fontSize: &#39;12px&#39;,
+                    backgroundColor: &#39;#FFF&#39;,
+                    color: &#39;#222&#39;,
+                    border: &#39;1px solid #000&#39;,
+                    verticalAlign: &#39;top&#39;,
+                    fontFamily: &#39;&quot;Consolas&quot;,&quot;Lucida Console&quot;,Courier,mono&#39;,
+                    whiteSpace: &#39;nowrap&#39;
+                },
+                td_hover: {
+                    /* Styles defined here will apply to all tr:hover &gt; td,
+                     - Be aware that &quot;inheritable&quot; properties (e.g. fontWeight) WILL BE INHERITED */
+                },
+                th: {
+                    padding: &#39;5px&#39;,
+                    fontSize: &#39;12px&#39;,
+                    backgroundColor: &#39;#222&#39;,
+                    color: &#39;#EEE&#39;,
+                    textAlign: &#39;left&#39;,
+                    border: &#39;1px solid #000&#39;,
+                    verticalAlign: &#39;top&#39;,
+                    fontFamily: &#39;&quot;Consolas&quot;,&quot;Lucida Console&quot;,Courier,mono&#39;,
+                    backgroundImage: util.headerGradient,
+                    backgroundRepeat: &#39;repeat-x&#39;
+                }
+            }
+        }
+    };
+
+    return prettyPrintThis;
+
+})();</pre>
+</body>
+</html>

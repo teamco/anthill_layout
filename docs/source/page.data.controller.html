@@ -49,11 +49,11 @@ define([
             this.model.collectItems(item);
         },
 
-<span id='PageDataController-method-getData'>        /**
-</span>         * Get providers data
+<span id='PageDataController-method-getModuleData'>        /**
+</span>         * Get module data
          * @member PageDataController
          */
-        getData: function getData() {
+        getModuleData: function getModuleData() {
             return this.model.getPageData(
                 this.getPage()
             );
@@ -67,11 +67,22 @@ define([
          */
         setActiveContent: function setActiveContent(uuid) {
 
+<span id='PageDataController-property-workspacesData'>            /**
+</span>             * Get workspace data
+             * @type {WorkspaceData}
+             */
+            var workspacesData = this.controller.getModuleByName(&#39;workspace-data&#39;);
+
 <span id='PageDataController-property-page'>            /**
-</span>             * Get page
+</span>             * Get current page
              * @type {Page}
              */
             var page = this.controller.getPage();
+
+            workspacesData.observer.publish(
+                workspacesData.eventmanager.eventList.setActiveContent,
+                page.model.getUUID()
+            );
 
 <span id='PageDataController-property-widget'>            /**
 </span>             * Get widget
@@ -102,6 +113,11 @@ define([
              * @type {WidgetContent}
              */
             this.activeContent = widget.controller.getContent();
+
+            if (!this.activeContent) {
+                this.logger.warn(&#39;Undefined content&#39;);
+                return false;
+            }
 
 <span id='PageDataController-property-referrer'>            /**
 </span>             * Define referrer
@@ -191,7 +207,7 @@ define([
              */
             var uuid = [
                 widget.model.getUUID(),
-                scope.constructor.name.toDash()
+                scope.constructor.prototype.name.toDash()
             ].join(&#39;-&#39;);
 
             this.getView().elements.items[uuid].setAttributes(
@@ -222,20 +238,6 @@ define([
             this.locateElement($item, e);
         },
 
-<span id='PageDataController-method-loadContent'>        /**
-</span>         * Load page.data content
-         * @member PageDataController
-         * @param opened
-         */
-        loadContent: function loadContent(opened) {
-
-            if (opened) {
-                this.getView().renderContent(
-                    this.getData()
-                );
-            }
-        },
-
 <span id='PageDataController-method-rulesPageData'>        /**
 </span>         * Open rules from prefs dialog
          * @member PageDataController
@@ -254,7 +256,7 @@ define([
                  * @type {WidgetRulesContentElement}
                  */
                 var $item = this.view.elements.items[
-                    widget.model.getUUID() + &#39;-widget-rules&#39;];
+                widget.model.getUUID() + &#39;-widget-rules&#39;];
 
                 $item.$.trigger(&#39;click.rules&#39;);
             }
@@ -324,6 +326,49 @@ define([
             content.observer.publish(
                 content.eventmanager.eventList.executeOnWidgetEvent,
                 &#39;restoreWidgetSticker&#39;
+            );
+        },
+
+<span id='PageDataController-method-removeWidget'>        /**
+</span>         * Remove widget from page
+         * @member PageDataController
+         * @param e
+         */
+        removeWidget: function removeWidget(e) {
+
+<span id='PageDataController-property-scope'>            /**
+</span>             * Get scope
+             * @type {PageData}
+             */
+            var scope = this.scope;
+
+<span id='PageDataController-property-content'>            /**
+</span>             * Get active content
+             * @type {WidgetContent}
+             */
+            var content = scope.activeContent;
+
+            if (!content) {
+
+                scope.logger.warn(&#39;Undefined active content&#39;, e);
+                return false;
+            }
+
+<span id='PageDataController-property-page'>            /**
+</span>             * Get page
+             * @type {Page}
+             */
+            var page = this.getPage(),
+                panel = this.getAuthorPanel();
+
+            // Close author panel
+            panel.controller.closePanels();
+
+            // Destroy properties dialog
+            scope.view.elements.$modal.selfDestroy();
+
+            page.api.destroyWidget(
+                content.controller.getContainment()
             );
         }
 

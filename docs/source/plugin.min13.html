@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">tinymce.PluginManager.add(&quot;example&quot;,function(a,b){a.addButton(&quot;example&quot;,{text:&quot;My button&quot;,icon:!1,onclick:function(){a.windowManager.open({title:&quot;Example plugin&quot;,body:[{type:&quot;textbox&quot;,name:&quot;title&quot;,label:&quot;Title&quot;}],onsubmit:function(b){a.insertContent(&quot;Title: &quot;+b.data.title)}})}}),a.addMenuItem(&quot;example&quot;,{text:&quot;Example plugin&quot;,context:&quot;tools&quot;,onclick:function(){a.windowManager.open({title:&quot;TinyMCE site&quot;,url:b+&quot;/dialog.html&quot;,width:600,height:400,buttons:[{text:&quot;Insert&quot;,onclick:function(){var b=a.windowManager.getWindows()[0];a.insertContent(b.getContentWindow().document.getElementById(&quot;content&quot;).value),b.close()}},{text:&quot;Close&quot;,onclick:&quot;close&quot;}]})}})});</pre>
+</body>
+</html>

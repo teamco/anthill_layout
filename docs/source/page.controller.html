@@ -41,6 +41,8 @@ define(
          * @extends BaseController
          * @extends AntHill
          * @extends BasePage
+         * @extends BasePreferences
+         * @extends Router
          * @extends PageLayer
          * @constructor
          */
@@ -56,11 +58,7 @@ define(
                  * @param value
                  */
                 transferContentPreferences: function transferContentPreferences(index, value) {
-
-                    this.observer.publish(
-                        this.eventmanager.eventList.transferPreferences,
-                        [index, value]
-                    );
+                    this.logger.debug(&#39;Preferences successfully transferred&#39;, index, value);
                 },
 
 <span id='PageController-method-loadPreferences'>                /**
@@ -128,6 +126,34 @@ define(
                 banAddWidget: function banAddWidget() {
                     this.scope.logger.debug(&#39;Do not allow to add widget&#39;);
                     this.model.getConfig(&#39;widget&#39;).allowToAdd = false;
+                },
+
+<span id='PageController-method-updateLayoutConfig'>                /**
+</span>                 * Update layout config
+                 * @member PageController
+                 */
+                updateLayoutConfig: function updateLayoutConfig() {
+
+                    this.logger.debug(&#39;Update layout config&#39;);
+
+<span id='PageController-property-preferences'>                    /**
+</span>                     * Get page preferences
+                     * @type {{
+                     *      layoutColumns: number
+                     * }}
+                     */
+                    var preferences = this.model.getConfig(&#39;preferences&#39;) || {};
+
+<span id='PageController-property-layout'>                    /**
+</span>                     * Get layout
+                     * @type {Layout}
+                     */
+                    var layout = this.layout;
+
+                    layout.observer.publish(
+                        layout.eventmanager.eventList.updateNumberOfColumns,
+                        preferences.layoutColumns
+                    );
                 },
 
 <span id='PageController-method-updateHeight'>                /**

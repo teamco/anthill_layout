@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/slide.share/element/slide.share.element&#39;,
+    &#39;plugins/widgets/slide.share/element/slide.share.preferences.element&#39;,
+    &#39;plugins/widgets/slide.share/element/slide.share.rules.element&#39;
+], function defineSlideShareView(BaseView, Header, Footer, SlideShareElement, SlideSharePreferencesElement, SlideShareRulesElement) {
+
+<span id='SlideShareView-method-constructor'><span id='SlideShareView'>    /**
+</span></span>     * Define view
+     * @class SlideShareView
+     * @extends BaseView
+     * @constructor
+     */
+    var SlideShareView = function SlideShareView() {
+    };
+
+    return SlideShareView.extend(&#39;SlideShareView&#39;, {
+
+<span id='SlideShareView-method-renderSlideShare'>        /**
+</span>         * Render SlideShare element
+         * @member SlideShareView
+         */
+        renderSlideShare: function renderSlideShare() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='SlideShareView-property-S-slideshare'>            /**
+</span>             * Define $slideshare
+             * @type {SlideShareElement}
+             */
+            this.elements.$slideshare = new SlideShareElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='SlideShareView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member SlideShareView
+         * @returns {SlideSharePreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='SlideShareView-property-S-preferences'>            /**
+</span>             * Define SlideShare Preferences Element
+             * @type {SlideSharePreferencesElement}
+             */
+            this.elements.$preferences = new SlideSharePreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='SlideShareView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member SlideShareView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {SlideShareRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='SlideShareView-property-S-rules'>            /**
+</span>             * Define SlideShare Rules Element
+             * @type {SlideShareRulesElement}
+             */
+            this.elements.$rules = new SlideShareRulesElement(this, {
+                data: this.controller.getRules(),
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='SlideShareView-method-render'>        /**
+</span>         * Render SlideShare
+         * @member SlideShareView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderSlideShare.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});
+</pre>
+</body>
+</html>

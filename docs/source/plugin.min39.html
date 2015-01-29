@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">tinymce.PluginManager.add(&quot;textpattern&quot;,function(a){function b(){return j&amp;&amp;(i.sort(function(a,b){return a.start.length&gt;b.start.length?-1:a.start.length&lt;b.start.length?1:0}),j=!1),i}function c(a){for(var c=b(),d=0;d&lt;c.length;d++)if(0===a.indexOf(c[d].start)&amp;&amp;(!c[d].end||a.lastIndexOf(c[d].end)==a.length-c[d].end.length))return c[d]}function d(a,c,d){var e,f,g;for(e=b(),g=0;g&lt;e.length;g++)if(f=e[g],f.end&amp;&amp;a.substr(c-f.end.length-d,f.end.length)==f.end)return f}function e(b){function e(){i=i.splitText(k),i.splitText(j-k-o),i.deleteData(0,n.start.length),i.deleteData(i.data.length-n.end.length,n.end.length)}var f,g,h,i,j,k,l,m,n,o,p;return f=a.selection,g=a.dom,f.isCollapsed()&amp;&amp;(h=f.getRng(!0),i=h.startContainer,j=h.startOffset,l=i.data,o=b?1:0,3==i.nodeType&amp;&amp;(n=d(l,j,o),n&amp;&amp;(k=Math.max(0,j-o),k=l.lastIndexOf(n.start,k-n.end.length-1),-1!==k&amp;&amp;(m=g.createRng(),m.setStart(i,k),m.setEnd(i,j-o),n=c(m.toString()),n&amp;&amp;n.end&amp;&amp;!(i.data.length&lt;=n.start.length+n.end.length)))))?(p=a.formatter.get(n.format),p&amp;&amp;p[0].inline?(e(),a.formatter.apply(n.format,{},i),i):void 0):void 0}function f(){var b,d,e,f,g,h,i,j,k,l,m;if(b=a.selection,d=a.dom,b.isCollapsed()&amp;&amp;(i=d.getParent(b.getStart(),&quot;p&quot;))){for(k=new tinymce.dom.TreeWalker(i,i);g=k.next();)if(3==g.nodeType){f=g;break}if(f){if(j=c(f.data),!j)return;if(l=b.getRng(!0),e=l.startContainer,m=l.startOffset,f==e&amp;&amp;(m=Math.max(0,m-j.start.length)),tinymce.trim(f.data).length==j.start.length)return;j.format&amp;&amp;(h=a.formatter.get(j.format),h&amp;&amp;h[0].block&amp;&amp;(f.deleteData(0,j.start.length),a.formatter.apply(j.format,{},f),l.setStart(e,m),l.collapse(!0),b.setRng(l))),j.cmd&amp;&amp;a.undoManager.transact(function(){f.deleteData(0,j.start.length),a.execCommand(j.cmd)})}}}function g(){var b,c;c=e(),c&amp;&amp;(b=a.dom.createRng(),b.setStart(c,c.data.length),b.setEnd(c,c.data.length),a.selection.setRng(b)),f()}function h(){var b,c,d,f,g;b=e(!0),b&amp;&amp;(g=a.dom,c=b.data.slice(-1),/[\u00a0 ]/.test(c)&amp;&amp;(b.deleteData(b.data.length-1,1),d=g.doc.createTextNode(c),b.nextSibling?g.insertAfter(d,b.nextSibling):b.parentNode.appendChild(d),f=g.createRng(),f.setStart(d,1),f.setEnd(d,1),a.selection.setRng(f)))}var i,j=!0;i=a.settings.textpattern_patterns||[{start:&quot;*&quot;,end:&quot;*&quot;,format:&quot;italic&quot;},{start:&quot;**&quot;,end:&quot;**&quot;,format:&quot;bold&quot;},{start:&quot;#&quot;,format:&quot;h1&quot;},{start:&quot;##&quot;,format:&quot;h2&quot;},{start:&quot;###&quot;,format:&quot;h3&quot;},{start:&quot;####&quot;,format:&quot;h4&quot;},{start:&quot;#####&quot;,format:&quot;h5&quot;},{start:&quot;######&quot;,format:&quot;h6&quot;},{start:&quot;1. &quot;,cmd:&quot;InsertOrderedList&quot;},{start:&quot;* &quot;,cmd:&quot;InsertUnorderedList&quot;},{start:&quot;- &quot;,cmd:&quot;InsertUnorderedList&quot;}],a.on(&quot;keydown&quot;,function(a){13!=a.keyCode||tinymce.util.VK.modifierPressed(a)||g()},!0),a.on(&quot;keyup&quot;,function(a){32!=a.keyCode||tinymce.util.VK.modifierPressed(a)||h()}),this.getPatterns=b,this.setPatterns=function(a){i=a,j=!0}});</pre>
+</body>
+</html>

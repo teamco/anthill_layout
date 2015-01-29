@@ -249,7 +249,7 @@ define([
 </span>             * Define module index
              * @type {number}
              */
-            var index = this.model.getIndex(resource);
+            var index = this.model.getModuleIndex(resource);
 
             if (opened) {
 
@@ -262,7 +262,11 @@ define([
                 this.view.renderContent(module, true);
 
                 module.view.render();
-                module.controller.loadContent(opened);
+
+                module.observer.publish(
+                    module.eventmanager.eventList.loadModuleContent,
+                    opened
+                );
             }
         },
 
@@ -274,7 +278,7 @@ define([
         getRenderAt: function getRenderAt() {
 
             return [
-                this.scope.constructor.name.toLowerCase(),
+                this.scope.constructor.prototype.name.toLowerCase(),
                 this.model.getConfig(&#39;renderAt&#39;)
             ].join(&#39;-&#39;);
         },
@@ -356,11 +360,23 @@ define([
          */
         subscribeGenericEvent: function subscribeGenericEvent() {
 
+<span id='PanelController-property-ws'>            /**
+</span>             * Get workspace
+             * @type {Workspace}
+             */
+            var ws = this.controller.getWorkspace();
+
 <span id='PanelController-property-wsEventManager'>            /**
 </span>             * Get workspace
              * @type {WorkspaceEventManager}
              */
-            var wsEventManager = this.controller.getWorkspace().eventmanager;
+            var wsEventManager = ws.eventmanager;
+
+            if (!wsEventManager) {
+
+                this.logger.warn(&#39;Workspace not initialized&#39;, ws);
+                return false;
+            }
 
             wsEventManager.subscribe({
                 event: {

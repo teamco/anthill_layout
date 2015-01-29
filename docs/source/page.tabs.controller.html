@@ -40,13 +40,60 @@ define([
 
     return PageTabsController.extend(&#39;PageTabsController&#39;, {
 
+<span id='PageTabsController-method-subscribeChangePageTitleEvent'>        /**
+</span>         * Subscribe to change page title
+         * @member PageTabsController
+         */
+        subscribeChangePageTitleEvent: function subscribeChangePageTitleEvent() {
+
+<span id='PageTabsController-property-ws'>            /**
+</span>             * Get workspace
+             * @type {Workspace}
+             */
+            var ws = this.controller.getWorkspace(),
+                pages = ws.model.getItems(),
+                index, page;
+
+            for (index in pages) {
+
+                if (pages.hasOwnProperty(index)) {
+
+<span id='PageTabsController-property-page'>                    /**
+</span>                     * Get page
+                     * @type {Page}
+                     */
+                    page = pages[index];
+
+                    this.controller._subscribePageEventCallback.bind(this)(
+                        &#39;afterUpdatePreferences&#39;,
+                        this.eventmanager.eventList.setEmbeddedContent,
+                        page
+                    );
+                }
+            }
+        },
+
+<span id='PageTabsController-method-subscribeOrderPagesEvent'>        /**
+</span>         * Subscribe to after page ordering event
+         * @member PageTabsController
+         */
+        subscribeOrderPagesEvent: function subscribeOrderPagesEvent() {
+            this.controller._subscribePageEventCallback.bind(this)(
+                &#39;afterPageOrder&#39;,
+                this.eventmanager.eventList.setEmbeddedContent,
+                this.controller.getWorkspace()
+            );
+        },
+
 <span id='PageTabsController-method-subscribeAfterSwitchPageEvent'>        /**
 </span>         * Subscribe to after switch page event
          * @member PageTabsController
          */
         subscribeAfterSwitchPageEvent: function subscribeAfterSwitchPageEvent() {
             this.controller._subscribePageEventCallback.bind(this)(
-                &#39;afterSwitchToPage&#39;
+                &#39;afterSwitchToPage&#39;,
+                this.eventmanager.eventList.setActivePageTab,
+                this.controller.getWorkspace()
             );
         },
 
@@ -56,7 +103,9 @@ define([
          */
         subscribeCreatePageEvent: function subscribeCreatePageEvent() {
             this.controller._subscribePageEventCallback.bind(this)(
-                &#39;afterCreateItem&#39;
+                &#39;afterCreateItem&#39;,
+                this.eventmanager.eventList.setEmbeddedContent,
+                this.controller.getWorkspace()
             );
         },
 
@@ -67,11 +116,15 @@ define([
         subscribeDestroyPageEvent: function subscribeDestroyPageEvent() {
 
             this.controller._subscribePageEventCallback.bind(this)(
-                &#39;afterDestroyItem&#39;
+                &#39;afterDestroyItem&#39;,
+                this.eventmanager.eventList.setEmbeddedContent,
+                this.controller.getWorkspace()
             );
 
             this.controller._subscribePageEventCallback.bind(this)(
-                &#39;afterDestroyItems&#39;
+                &#39;afterDestroyItems&#39;,
+                this.eventmanager.eventList.setEmbeddedContent,
+                this.controller.getWorkspace()
             );
         },
 
@@ -80,32 +133,26 @@ define([
          * @member PageTabsController
          * @private
          * @param {string} eventName
+         * @param {string} callbackEvent
+         * @param {Workspace|Page} scope
          */
-        _subscribePageEventCallback: function _subscribePageEventCallback(eventName) {
+        _subscribePageEventCallback: function _subscribePageEventCallback(eventName, callbackEvent, scope) {
 
-<span id='PageTabsController-property-ws'>            /**
+<span id='PageTabsController-property-eventManager'>            /**
 </span>             * Get workspace
-             * @type {Workspace}
+             * @type {WorkspaceEventManager|PageEventManager}
              */
-            var ws = this.controller.getWorkspace();
+            var eventManager = scope.eventmanager;
 
-<span id='PageTabsController-property-wsEventManager'>            /**
-</span>             * Get workspace
-             * @type {WorkspaceEventManager}
-             */
-            var wsEventManager = ws.eventmanager;
-
-            wsEventManager.subscribe({
+            eventManager.subscribe({
 
                 event: {
-                    eventName: wsEventManager.eventList[eventName]
+                    eventName: eventManager.eventList[eventName]
                 },
 
-                callback: function onPageEventCallback() {
+                callback: function _callback() {
 
-                    this.observer.publish(
-                        this.eventmanager.eventList.setEmbeddedContent
-                    );
+                    this.observer.publish(callbackEvent);
 
                 }.bind(this)
 
@@ -125,8 +172,21 @@ define([
             var ws = this.controller.getWorkspace();
 
             this.view.elements.$pagetabs.renderEmbeddedContent(
-                ws.model.getItems(),
-                ws.controller.getCurrentItem()
+                ws.model.getItems()
+            );
+
+            this.observer.publish(
+                this.eventmanager.eventList.setActivePageTab
+            );
+        },
+
+<span id='PageTabsController-method-setActivePageTab'>        /**
+</span>         * Set active tab
+         * @member PageTabsController
+         */
+        setActivePageTab: function setActivePageTab() {
+            this.view.elements.$pagetabs.setPageTabAsCurrent(
+                this.controller.getPage()
             );
         },
 
@@ -152,8 +212,10 @@ define([
                 var workspace = this.controller.getWorkspace();
 
                 workspace.observer.publish(
-                    workspace.eventmanager.eventList.switchToPage,
-                    [$page.pageTab, true]
+                    workspace.eventmanager.eventList.switchToPage, [
+                        $page.pageTab,
+                        this.model.getPrefs(&#39;pagetabsSwipe&#39;)
+                    ]
                 );
             }
         },
@@ -174,7 +236,7 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList.publishRule,
-                [$button.attr(&#39;value&#39;), this.scope.constructor.name]
+                [$button.attr(&#39;value&#39;), this.scope.constructor.prototype.name]
             );
         }
 

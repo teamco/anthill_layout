@@ -204,7 +204,6 @@
     background-color: transparent;
     display: none;
     width: 100%;
-    padding: 0 3px;
     cursor: pointer;
     border-bottom: 1px solid #ccc;
     line-height: 20px;
@@ -212,6 +211,7 @@
 
 .modal-dialog.rules div.html div.combo-box &gt; ul li.selected {
     display: inline-block;
+    float: left;
 }
 
 .modal-dialog.rules div.html div.combo-box.open &gt; ul {
@@ -227,6 +227,7 @@
 
 .modal-dialog.rules div.html div.combo-box.open &gt; ul li {
     display: inline-block;
+    float: left;
     margin-bottom: 0;
 }
 
@@ -261,6 +262,7 @@
     background-color: #fff;
     box-shadow: 1px 1px 1px #333;
     cursor: pointer;
+    min-height: inherit;
 }
 
 .modal-dialog div.html ul.button-add-rules li:hover,

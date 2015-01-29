@@ -79,11 +79,7 @@ define([
              * @member PageTabsItemElement
              * @type {*|string}
              */
-            this.title = scope.base.define(
-                preferences.title,
-                this.pageTab.model.getUUID(),
-                true
-            );
+            this.title = this.pageTab.model.getItemTitle();
 
 <span id='PageTabsItemElement-property-description'>            /**
 </span>             * Define description
@@ -104,17 +100,39 @@ define([
             );
 
             this.setTitle(this.title);
+            this.bindClick();
+        },
 
-            this.$.on(&#39;click.pageTab&#39;, function (e) {
+<span id='PageTabsItemElement-method-bindClick'>        /**
+</span>         * Bind click to switch page
+         * @member PageTabsItemElement
+         */
+        bindClick: function bindClick() {
 
-                var scope = this.view.scope;
+            this.$.on(
+                &#39;click.pageTab&#39;,
+                this.clickCallback.bind(this)
+            );
+        },
 
-                scope.observer.publish(
-                    scope.eventmanager.eventList.switchToPage,
-                    [this, e]
-                );
+<span id='PageTabsItemElement-method-clickCallback'>        /**
+</span>         * Click callback
+         * @member PageTabsItemElement
+         * @param e
+         * @private
+         */
+        clickCallback: function clickCallback(e) {
 
-            }.bind(this))
+<span id='PageTabsItemElement-property-scope'>            /**
+</span>             * Get scope
+             * @type {PageTabs}
+             */
+            var scope = this.view.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.switchToPage,
+                [this, e]
+            );
         }
 
     }, BaseElement.prototype);

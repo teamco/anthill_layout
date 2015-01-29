@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;modules/Element&#39;
+], function defineQrCodeElement(BaseElement) {
+
+<span id='QrCodeElement-method-QrCodeElement'><span id='QrCodeElement'>    /**
+</span></span>     * Define QrCode Element
+     * @param view
+     * @param opts
+     * @returns {QrCodeElement}
+     * @constructor
+     * @class QrCodeElement
+     * @extends BaseElement
+     */
+    var QrCodeElement = function QrCodeElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;qr.code&#39;, {resource: &#39;/widgets&#39;});
+
+        return this;
+    };
+
+    return QrCodeElement.extend(&#39;QrCodeElement&#39;, {
+
+<span id='QrCodeElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member QrCodeElement
+         */
+        renderEmbeddedContent: function renderEmbeddedContent(text, size) {
+
+            if (typeof(text) === &#39;undefined&#39; || typeof(size) === &#39;undefined&#39;) {
+
+                this.view.scope.logger.debug(&#39;Initial loading&#39;, arguments);
+                return false;
+            }
+
+            require([
+                &#39;lib/packages/raphael-min&#39;,
+                &#39;plugins/widgets/qr.code/lib/qrcodesvg&#39;
+            ], function requireQCode() {
+
+<span id='QrCodeElement-property-qrcodesvg'>                /**
+</span>                 * Init QrCode
+                 * @type {Qrcodesvg}
+                 */
+                var qrcodesvg = new Qrcodesvg(text, this.id, size);
+
+                qrcodesvg.draw();
+
+                this.view.controller.clearParentThumbnail();
+
+            }.bind(this));
+        }
+
+    }, BaseElement.prototype);
+
+});
+</pre>
+</body>
+</html>

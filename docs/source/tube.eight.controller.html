@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define([
+    &#39;plugins/plugin&#39;,
+    &#39;plugins/widgets/widget.content.controller&#39;
+], function defineTubeEightController(PluginBase, WidgetContentController) {
+
+<span id='TubeEightController-method-constructor'><span id='TubeEightController'>    /**
+</span></span>     * Define tubeeight controller
+     * @class TubeEightController
+     * @extends PluginController
+     * @extends WidgetContentController
+     * @constructor
+     */
+    var TubeEightController = function TubeEightController() {
+    };
+
+    return TubeEightController.extend(&#39;TubeEightController&#39;, {
+
+<span id='TubeEightController-method-setEmbeddedContent'>        /**
+</span>         * Set embedded content
+         * @member TubeEightController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
+
+<span id='TubeEightController-property-url'>            /**
+</span>             * Get url
+             * @type {string|*}
+             */
+            var url = this.model.getPrefs(&#39;tubeeightEmbedCode&#39;),
+                embed = this.controller.getEmbedCode(url);
+
+            if (embed) {
+                this.view.elements.$tubeeight.renderEmbeddedContent(embed);
+            }
+        },
+
+<span id='TubeEightController-method-getEmbedCode'>        /**
+</span>         * Validate tubeeight
+         * @member TubeEightController
+         * @param {string} embed
+         * @return {string|boolean}
+         */
+        getEmbedCode: function getEmbedCode(embed) {
+
+            if (!embed) {
+                this.scope.logger.debug(&#39;Initial state&#39;);
+                return false;
+            }
+
+            // Convert to string
+            embed += &#39;&#39;;
+
+            if (embed.match(/^&lt;iframe/)) {
+
+                return $(embed).attr(&#39;src&#39;);
+
+            } else {
+
+                this.scope.logger.warn(&#39;Invalid TubeEight embed code&#39;);
+                return false;
+            }
+        },
+
+<span id='TubeEightController-method-addTubeEightRule'>        /**
+</span>         * Add TubeEight rule
+         * @member TubeEightController
+         * @param e
+         */
+        addTubeEightRule: function addTubeEightRule(e) {
+
+<span id='TubeEightController-property-S-button'>            /**
+</span>             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target),
+                scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.publishRule,
+                [$button.attr(&#39;value&#39;), scope.constructor.prototype.name]
+            );
+        }
+
+    }, PluginBase.prototype, WidgetContentController.prototype);
+});
+</pre>
+</body>
+</html>

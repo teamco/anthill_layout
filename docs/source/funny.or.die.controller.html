@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define([
+    &#39;plugins/plugin&#39;,
+    &#39;plugins/widgets/widget.content.controller&#39;
+], function defineFunnyOrDieController(PluginBase, WidgetContentController) {
+
+<span id='FunnyOrDieController-method-constructor'><span id='FunnyOrDieController'>    /**
+</span></span>     * Define funnyordie controller
+     * @class FunnyOrDieController
+     * @extends PluginController
+     * @extends WidgetContentController
+     * @constructor
+     */
+    var FunnyOrDieController = function FunnyOrDieController() {
+    };
+
+    return FunnyOrDieController.extend(&#39;FunnyOrDieController&#39;, {
+
+<span id='FunnyOrDieController-method-setEmbeddedContent'>        /**
+</span>         * Set embedded content
+         * @member FunnyOrDieController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
+
+<span id='FunnyOrDieController-property-url'>            /**
+</span>             * Get url
+             * @type {string|*}
+             */
+            var url = this.model.getPrefs(&#39;funnyordieUrl&#39;),
+                embed = this.controller.getEmbedCode(url);
+
+            if (embed) {
+                this.view.elements.$funnyordie.renderEmbeddedContent(embed);
+            }
+        },
+
+<span id='FunnyOrDieController-method-getEmbedCode'>        /**
+</span>         * Validate funnyordie
+         * @member FunnyOrDieController
+         * @param {string} url
+         * @return {string|boolean}
+         */
+        getEmbedCode: function getEmbedCode(url) {
+
+            if (!url) {
+                this.scope.logger.debug(&#39;Initial state&#39;);
+                return false;
+            }
+
+            // Convert to string
+            url += &#39;&#39;;
+
+            if (url.match(/iframe/)) {
+                url = $(url).attr(&#39;src&#39;);
+            }
+
+            var mask = this.model.getConfig(&#39;mask&#39;),
+                regex = url.match(
+                    this.model.getConfig(&#39;regex&#39;)
+                );
+
+            return mask.replace(/\{id}/g, regex[1]);
+        },
+
+<span id='FunnyOrDieController-method-addFunnyOrDieRule'>        /**
+</span>         * Add FunnyOrDie rule
+         * @member FunnyOrDieController
+         * @param e
+         */
+        addFunnyOrDieRule: function addFunnyOrDieRule(e) {
+
+<span id='FunnyOrDieController-property-S-button'>            /**
+</span>             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target),
+                scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.publishRule,
+                [$button.attr(&#39;value&#39;), scope.constructor.prototype.name]
+            );
+        }
+
+    }, PluginBase.prototype, WidgetContentController.prototype);
+});
+</pre>
+</body>
+</html>

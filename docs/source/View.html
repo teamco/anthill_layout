@@ -24,9 +24,12 @@
  */
 
 define([
+    &#39;jquery&#39;,
     &#39;config/anthill&#39;,
-    &#39;element/modal.element&#39;
-], function defineBaseView(AntHill, ModalElement) {
+    &#39;element/modal.element&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+], function defineBaseView($, AntHill, ModalElement, Header, Footer) {
 
 <span id='BaseView-method-constructor'><span id='BaseView'>    /**
 </span></span>     * Define base view
@@ -64,7 +67,7 @@ define([
          * @returns {BaseElement}
          */
         get$item: function get$item() {
-            return this.elements[&#39;$&#39; + this.scope.constructor.name.toLowerCase()];
+            return this.elements[&#39;$&#39; + this.scope.constructor.prototype.name.toLowerCase()];
         },
 
 <span id='BaseView-method-createStyle'>        /**
@@ -99,9 +102,9 @@ define([
          */
         renderUUID: function renderUUID(id) {
             return id || [
-                this.base.lib.generator.UUID(),
-                this.constructor.name.toDash()
-            ].join(&#39;-&#39;);
+                    this.base.lib.generator.UUID(),
+                    this.constructor.prototype.name.toDash()
+                ].join(&#39;-&#39;);
         },
 
 <span id='BaseView-method-defineContainer'>        /**
@@ -165,13 +168,13 @@ define([
 
             return this.base.lib.hash.hashLength(
                     this.elements.items || {}
-            ) &gt; 0;
+                ) &gt; 0;
         },
 
 <span id='BaseView-method-header'>        /**
 </span>         * Render Header
          * @member BaseView
-         * @param HeaderElement
+         * @param {HeaderElement} HeaderElement
          * @param $container
          * @returns {HeaderElement}
          */
@@ -183,7 +186,7 @@ define([
              */
             this.elements.$header = new HeaderElement(this, {
                 style: [
-                    this.scope.constructor.name.toDash(),
+                    this.scope.constructor.prototype.name.toDash(),
                     &#39;header&#39;
                 ].join(&#39;-&#39;),
                 $container: $container.$,
@@ -209,7 +212,7 @@ define([
 <span id='BaseView-method-footer'>        /**
 </span>         * Render Footer
          * @member BaseView
-         * @param FooterElement
+         * @param {FooterElement} FooterElement
          * @param $container
          * @returns {FooterElement}
          */
@@ -221,7 +224,7 @@ define([
              */
             this.elements.$footer = new FooterElement(this, {
                 style: [
-                    this.scope.constructor.name.toDash(),
+                    this.scope.constructor.prototype.name.toDash(),
                     &#39;footer&#39;
                 ].join(&#39;-&#39;),
                 $container: $container.$
@@ -241,6 +244,28 @@ define([
             );
 
             return this.elements.$footer;
+        },
+
+<span id='BaseView-method-renderHeader'>        /**
+</span>         * Render Header
+         * @member BaseView
+         * @param {HeaderElement} Header
+         * @param {string} title
+         */
+        renderHeader: function renderHeader(Header, title) {
+            this.header(Header, this.elements.$container).setText(title);
+        },
+
+<span id='BaseView-method-renderFooter'>        /**
+</span>         * Render Footer
+         * @member BaseView
+         * @param {FooterElement} Footer
+         * @param {object} $element
+         */
+        renderFooter: function renderFooter(Footer, $element) {
+            this.footer(Footer, this.elements.$container).setHtml(
+                $element.getFooter()
+            );
         },
 
 <span id='BaseView-method-modalDialog'>        /**
@@ -293,10 +318,19 @@ define([
             });
         },
 
+<span id='BaseView-method-getS-modal'>        /**
+</span>         * Get $modal element
+         * @member BaseView
+         * @returns {ModalElement}
+         */
+        get$modal: function get$modal() {
+            return this.elements.$modal;
+        },
+
 <span id='BaseView-method-button'>        /**
 </span>         * Generic button
          * @member BaseView
-         * @param {Function|ButtonElement} ButtonElement
+         * @param {ButtonElement} ButtonElement
          * @param {*} opts
          * @param {*} store
          */
@@ -314,6 +348,7 @@ define([
                         $container: button.$container,
                         style: i.toDash(),
                         text: button.text,
+                        disabled: button.disabled,
                         events: button.events
                     });
 
@@ -335,6 +370,22 @@ define([
                 opacity: opts.opacity,
                 events: opts.events
             });
+        },
+
+<span id='BaseView-method-locateElement'>        /**
+</span>         * Locate DOM element in array
+         * @member BaseView
+         * @param {Array} source
+         * @param {string} type
+         * @returns {*}
+         */
+        locateElement: function locateElement(source, type) {
+            for (var i = 0, l = source.length; i &lt; l; i++) {
+                if ((source[i].tagName + &#39;&#39;).toLowerCase() === type) {
+                    return source[i];
+                }
+            }
+            return {};
         }
 
     }, AntHill.prototype);

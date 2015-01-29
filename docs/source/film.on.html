@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:02 AM
+ */
+
+define([
+    &#39;config/anthill&#39;,
+    &#39;modules/MVC&#39;,
+    &#39;plugins/widgets/film.on/mvc/film.on.controller&#39;,
+    &#39;plugins/widgets/film.on/mvc/film.on.model&#39;,
+    &#39;plugins/widgets/film.on/mvc/film.on.view&#39;,
+    &#39;plugins/widgets/film.on/mvc/film.on.event.manager&#39;,
+    &#39;plugins/widgets/film.on/mvc/film.on.permission&#39;
+], function defineFilmOn(AntHill, MVC, Controller, Model, View, EventManager, Permission) {
+
+<span id='FilmOn-method-FilmOn'><span id='FilmOn'>    /**
+</span></span>     * Define FilmOn
+     * @param containment
+     * @param [opts]
+     * @constructor
+     * @class FilmOn
+     * @extends AntHill
+     */
+    var FilmOn = function FilmOn(containment, opts) {
+
+<span id='FilmOn-property-containment'>        /**
+</span>         * Define containment
+         * @member FilmOn
+         */
+        this.containment = containment;
+
+<span id='FilmOn-property-referrer'>        /**
+</span>         * Define referrer
+         * @member FilmOn
+         * @type {*}
+         */
+        this.referrer = undefined;
+
+<span id='FilmOn-property-DEFAULTS'>        /**
+</span>         * Define defaults
+         * @type {{
+         *      plugin: boolean,
+         *      mask: string,
+         *      html: {
+         *          style: string,
+         *          header: boolean,
+         *          footer: boolean,
+         *          padding: {
+         *              top: number,
+         *              right: number,
+         *              bottom: number,
+         *              left: number
+         *          }
+         *      }
+         * }}
+         */
+        var DEFAULTS = {
+            plugin: true,
+            mask: &#39;&lt;iframe width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;no&quot; src=&quot;http://www.filmon.com/tv/channel/export?channel_id={channel}&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;&#39;,
+            html: {
+                style: &#39;default&#39;,
+                header: false,
+                footer: false,
+                padding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                }
+            }
+        };
+
+<span id='FilmOn-property-mvc'>        /**
+</span>         * Define MVC
+         * @member FilmOn
+         * @type {MVC}
+         */
+        this.mvc = new MVC({
+            scope: this,
+            config: [
+                {uuid: this.containment.model.getContentUUID()},
+                DEFAULTS
+            ],
+            components: [
+                Controller,
+                Model,
+                View,
+                EventManager,
+                Permission
+            ],
+            render: true
+        });
+
+        this.observer.publish(
+            this.eventmanager.eventList.initWidget,
+            opts
+        );
+    };
+
+    return FilmOn.extend(&#39;FilmOn&#39;, {
+
+    }, AntHill.prototype);
+});
+</pre>
+</body>
+</html>

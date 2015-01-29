@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 5/9/13
+ * Time: 11:48 AM
+ */
+
+define([
+    &#39;jquery&#39;,
+    &#39;modules/Element&#39;
+], function defineCoubElement($, BaseElement) {
+
+<span id='CoubElement-method-CoubElement'><span id='CoubElement'>    /**
+</span></span>     * Define Coub Element
+     * @param view
+     * @param opts
+     * @returns {CoubElement}
+     * @constructor
+     * @class CoubElement
+     * @extends BaseElement
+     */
+    var CoubElement = function CoubElement(view, opts) {
+
+        this._config(view, opts, $(&#39;&lt;div /&gt;&#39;)).build({
+            $container: opts.$container,
+            destroy: true
+        });
+
+        this.addCSS(&#39;coub&#39;, {resource: &#39;/widgets&#39;});
+
+        return this;
+    };
+
+    return CoubElement.extend(&#39;CoubElement&#39;, {
+
+<span id='CoubElement-method-renderEmbeddedContent'>        /**
+</span>         * Render Embedded content
+         * @member CoubElement
+         * @param {{
+         *      link: string,
+         *      start: boolean,
+         *      mute: boolean,
+         *      hide: boolean,
+         *      hd: boolean
+         * }} opts
+         */
+        renderEmbeddedContent: function renderEmbeddedContent(opts) {
+
+            if (!opts.link) {
+                return false;
+            }
+
+            var link = [
+                opts.link, &#39;?&#39;, [
+                    &#39;muted=&#39; + !!opts.mute,
+                    &#39;autostart=&#39; + !!opts.start,
+                    &#39;originalSize=&#39; + false,
+                    &#39;hideTopBar=&#39; + !!opts.hide,
+                    &#39;startWithHD=&#39; + !!opts.hd
+                ].join(&#39;&amp;&#39;)
+            ].join(&#39;&#39;);
+
+            this.$.append(
+                $(&#39;&lt;iframe /&gt;&#39;).attr({
+                    src: link,
+                    frameborder: 0,
+                    scrolling: &quot;no&quot;
+                })
+            );
+        }
+
+    }, BaseElement.prototype);
+
+});
+</pre>
+</body>
+</html>

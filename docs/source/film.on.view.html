@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='global-property-'>/**
+</span> * Created with JetBrains RubyMine.
+ * User: teamco
+ * Date: 11/24/12
+ * Time: 10:13 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+define([
+    &#39;modules/View&#39;,
+    &#39;element/header.element&#39;,
+    &#39;element/footer.element&#39;,
+    &#39;plugins/widgets/film.on/element/film.on.element&#39;,
+    &#39;plugins/widgets/film.on/element/film.on.preferences.element&#39;,
+    &#39;plugins/widgets/film.on/element/film.on.rules.element&#39;
+], function defineFilmOnView(BaseView, Header, Footer, FilmOnElement, FilmOnPreferencesElement, FilmOnRulesElement) {
+
+<span id='FilmOnView-method-constructor'><span id='FilmOnView'>    /**
+</span></span>     * Define view
+     * @class FilmOnView
+     * @extends BaseView
+     * @constructor
+     */
+    var FilmOnView = function FilmOnView() {
+    };
+
+    return FilmOnView.extend(&#39;FilmOnView&#39;, {
+
+<span id='FilmOnView-method-renderFilmOn'>        /**
+</span>         * Render FilmOn element
+         * @member FilmOnView
+         */
+        renderFilmOn: function renderFilmOn() {
+
+            this.header(Header, this.elements.$container);
+
+<span id='FilmOnView-property-S-filmon'>            /**
+</span>             * Define $filmon
+             * @type {FilmOnElement}
+             */
+            this.elements.$filmon = new FilmOnElement(this, {
+                $container: this.elements.$container.$,
+                id: this.createUUID()
+            });
+
+            this.footer(Footer, this.elements.$container);
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.setEmbeddedContent
+            );
+        },
+
+<span id='FilmOnView-method-renderPreferences'>        /**
+</span>         * Render Prefs
+         * @member FilmOnView
+         * @returns {FilmOnPreferencesElement}
+         */
+        renderPreferences: function renderPreferences() {
+
+<span id='FilmOnView-property-S-preferences'>            /**
+</span>             * Define FilmOn Preferences Element
+             * @type {FilmOnPreferencesElement}
+             */
+            this.elements.$preferences = new FilmOnPreferencesElement(this, {
+                data: this.controller.getPreferences()
+            });
+
+            return this.elements.$preferences;
+        },
+
+<span id='FilmOnView-method-renderRules'>        /**
+</span>         * Render Rules
+         * @member FilmOnView
+         * @param widgetRules
+         * @param contentRules
+         * @returns {FilmOnRulesElement}
+         */
+        renderRules: function renderRules(widgetRules, contentRules) {
+
+<span id='FilmOnView-property-S-rules'>            /**
+</span>             * Define FilmOn Rules Element
+             * @type {FilmOnRulesElement}
+             */
+            this.elements.$rules = new FilmOnRulesElement(this, {
+                data: this.controller.getRules(),
+                rules: {
+                    widget: widgetRules,
+                    content: contentRules
+                }
+            });
+
+            return this.elements.$rules;
+        },
+
+<span id='FilmOnView-method-render'>        /**
+</span>         * Render FilmOn
+         * @member FilmOnView
+         */
+        render: function render() {
+
+            this.scope.observer.publish(
+                this.scope.eventmanager.eventList.successRendered,
+                this.renderFilmOn.bind(this)
+            );
+        }
+
+    }, BaseView.prototype)
+
+});
+</pre>
+</body>
+</html>

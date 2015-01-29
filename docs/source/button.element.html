@@ -23,8 +23,9 @@
  */
 
 define([
+    &#39;jquery&#39;,
     &#39;modules/Element&#39;
-], function defineButtonElement(BaseElement) {
+], function defineButtonElement($, BaseElement) {
 
 <span id='ButtonElement-method-ButtonElement'><span id='ButtonElement'>    /**
 </span></span>     * Define Button Element
@@ -46,8 +47,11 @@ define([
 
         this.setContent();
 
-        return this;
+        this.disabled ?
+            this.disable() :
+            this.enable();
 
+        return this;
     };
 
     return ButtonElement.extend(&#39;ButtonElement&#39;, {
@@ -67,6 +71,24 @@ define([
          */
         setContent: function setContent() {
             this.setText(this.text);
+        },
+
+<span id='ButtonElement-method-disable'>        /**
+</span>         * Define disable
+         * @member ButtonElement
+         */
+        disable: function disable() {
+            this.$.addClass(&#39;disabled&#39;);
+            this.disabled = true;
+        },
+
+<span id='ButtonElement-method-enable'>        /**
+</span>         * Define enable
+         * @member ButtonElement
+         */
+        enable: function enable() {
+            this.$.removeClass(&#39;disabled&#39;);
+            this.disabled = false;
         }
 
     }, BaseElement.prototype);

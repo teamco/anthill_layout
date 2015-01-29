@@ -242,120 +242,26 @@ define([
 
                     if (hash.hasOwnProperty(index)) {
 
+                        // Define node
+                        var node = hash[index];
+
 <span id='WidgetPreferences-property-text'>                        /**
 </span>                         * Define text
                          * @type {string}
                          */
-                        var text = index.replace(title.toLowerCase(), &#39;&#39;).
-                            toPoint().
-                            humanize();
-
-<span id='WidgetPreferences-property-node'>                        /**
-</span>                         * Define node
-                         */
-                        var node = hash[index];
-
-<span id='WidgetPreferences-property-placeholder'>                        /**
-</span>                         * Define placeholder text
-                         * @type {string}
-                         */
-                        var placeholder = &#39;Enter &#39; + text,
-                            $element;
-
-                        if (node.type === &#39;event&#39;) {
-
-<span id='WidgetPreferences-property-S-element'>                            /**
-</span>                             * Get text field
-                             * @type {*[]}
-                             */
-                            $element = this.renderEventLink({
-                                name: index,
-                                title: text.trim(),
-                                group: node.group || index,
-                                disabled: node.disabled,
-                                events: node.events,
-                                visible: node.visible
-                            });
-                        }
-
-                        if (node.type === &#39;text&#39;) {
-
-<span id='WidgetPreferences-property-S-element'>                            /**
-</span>                             * Get text field
-                             * @type {*[]}
-                             */
-                            $element = this.renderTextField({
-                                name: index,
-                                text: text.trim(),
-                                placeholder: placeholder,
-                                value: node.value,
-                                disabled: node.disabled,
-                                visible: node.visible
-                            });
-                        }
-
-                        if (node.type === &#39;checkbox&#39;) {
-
-<span id='WidgetPreferences-property-S-element'>                            /**
-</span>                             * Get checkbox
-                             * @type {*[]}
-                             */
-                            $element = this.renderCheckbox({
-                                name: index,
-                                text: text.trim(),
-                                checked: node.value,
-                                value: node.value,
-                                disabled: node.disabled,
-                                visible: node.visible
-                            });
-                        }
-
-                        if (node.type === &#39;textarea&#39;) {
-
-<span id='WidgetPreferences-property-S-element'>                            /**
-</span>                             * Get text field
-                             * @type {*[]}
-                             */
-                            $element = this.renderTextArea({
-                                name: index,
-                                text: text.trim(),
-                                placeholder: placeholder,
-                                value: node.value,
-                                disabled: node.disabled,
-                                visible: node.visible
-                            });
-                        }
-
-                        if (node.type === &#39;combobox&#39;) {
-
-<span id='WidgetPreferences-property-selected'>                            /**
-</span>                             * Define selected item
-                             * @type {string}
-                             */
-                            var selected = node.value;
-
-<span id='WidgetPreferences-property-S-element'>                            /**
-</span>                             * Get text field
-                             * @type {*[]}
-                             */
-                            $element = this.renderCombobox(
-                                node.list,
-                                (selected.length === 0 ? node.list[0].value : selected),
-                                text.trim(),
-                                index,
-                                undefined,
-                                node.visible
-                            );
-                        }
+                        var text = index.replace(
+                            title.replace(/ /g, &#39;&#39;).toLowerCase(), &#39;&#39;
+                        ).toPoint().humanize();
 
                         nodes.push(
                             $(&#39;&lt;li /&gt;&#39;).
                                 addClass([
-                                        title.humanize().toClassName() + &#39;-prefs&#39;,
+                                    title.humanize().toClassName() + &#39;-prefs&#39;,
                                     node.type,
                                     node.visible ? &#39;&#39; : &#39;hidden&#39;
-                                ].join(&#39; &#39;)).
-                                append($element)
+                                ].join(&#39; &#39;)).append(
+                                this.getNodeRenderer(node, text, index)
+                            )
                         );
                     }
                 }
@@ -449,7 +355,7 @@ define([
                     ),
                     _renderNode.bind(this)(
                         &#39;content&#39;, data,
-                        this.view.scope.constructor.name, true
+                        this.view.scope.constructor.prototype.name.humanize(), true
                     )
                 ])
             );

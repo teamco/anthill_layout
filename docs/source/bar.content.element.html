@@ -58,7 +58,7 @@ define([
 
 <span id='BarContentElement-method-attachEvent'>        /**
 </span>         * Open tab
-         * @memberOf BarContentElement
+         * @member BarContentElement
          * @param resource
          */
         attachEvent: function attachEvent(resource) {
@@ -79,7 +79,7 @@ define([
             );
 
             this.renderTooltip({
-                title: this.resource.module.constructor.name.humanize(),
+                title: this.resource.module.constructor.prototype.name.humanize(),
                 $container: this
             })
         }

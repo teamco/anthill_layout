@@ -50,7 +50,39 @@ define([
          * @member WorkspaceDataModel
          */
         getDataItems: function getDataItems(workspace) {
-            return workspace.model.getItems();
+
+            var items = workspace.model.getItems(),
+                item, index, sorted = [],
+                sort;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+<span id='WorkspaceDataModel-property-item'>                    /**
+</span>                     * Get page
+                     * @type {Page}
+                     */
+                    item = items[index];
+                    sort = item.model.getConfig(&#39;preferences&#39;).order;
+
+                    if (typeof(sort) === &#39;number&#39;) {
+
+                        if (sorted[sort]) {
+                            this.scope.logger.warn(&#39;Unable to sort pages&#39;, sort);
+                            return false;
+                        }
+
+                        sorted[sort] = item;
+
+                    } else {
+
+                        sorted.push(item);
+                    }
+                }
+            }
+
+            return sorted;
         }
 
     }, BaseModel.prototype);

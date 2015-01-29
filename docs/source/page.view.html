@@ -116,19 +116,13 @@ define([
         destroyWidgetsModalDialog: function destroyWidgetsModalDialog(widgets) {
 
             this.modalDialog({
-                style: this.scope.constructor.name.toLowerCase() + &#39;-modal&#39;,
+                style: this.scope.constructor.prototype.name.toLowerCase() + &#39;-modal&#39;,
                 $container: this.elements.$page.$,
                 items: widgets,
                 type: &#39;warning&#39;,
                 title: &#39;Remove widgets&#39;,
-                html: [
-                    &#39;Are you sure want to destroy widgets:&#39;,
-                    &#39;&lt;ul&gt;&#39;,
-                    $.map(widgets, function map(i, uuid) {
-                        return &#39;&lt;li&gt;&#39; + uuid + &#39;&lt;/li&gt;&#39;;
-                    }).join(&#39;&#39;),
-                    &#39;&lt;/ul&gt;&#39;
-                ].join(&#39;&#39;),
+                text: &#39;Are you sure want to destroy:&#39;,
+                html: this.elements.$page.getItemsList(widgets),
                 cover: true,
                 autoclose: true,
                 buttons: {

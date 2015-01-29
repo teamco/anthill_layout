@@ -43,7 +43,7 @@ define([
         events: {},
 
 <span id='WidgetContentEventManager-property-onLoadEvents'>        /**
-</span>         * Define onload events
+</span>         * Define on load events
          * @member WidgetContentEventManager
          * @type {Array}
          */
@@ -60,6 +60,7 @@ define([
          *      setEmbeddedContent: string,
          *      loadPreferences: string,
          *      transferContentPreferences: string,
+         *      alternativeSavePreferences: string,
          *      loadRules: string,
          *      publishRule: string,
          *      registerRules: string,
@@ -77,6 +78,7 @@ define([
             setEmbeddedContent: &#39;set.embedded.content&#39;,
             loadPreferences: &#39;load.preferences&#39;,
             transferContentPreferences: &#39;transfer.content.preferences&#39;,
+            alternativeSavePreferences: &#39;alternative.save.preferences&#39;,
             loadRules: &#39;load.rules&#39;,
             publishRule: &#39;publish.rule&#39;,
             registerRules: &#39;register.rules&#39;,
@@ -119,7 +121,7 @@ define([
                 rules = widget.model.getConfig(&#39;rules&#39;),
                 publish = rules.publish || {},
                 subscribe = rules.subscribe || {},
-                lname = scope.constructor.name.toLowerCase(),
+                lname = scope.constructor.prototype.name.toLowerCase(),
                 event;
 
             publish[lname] = scope.base.define(publish[lname], [], true);

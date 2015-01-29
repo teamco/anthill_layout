@@ -42,12 +42,12 @@ define([
         return this.renderData();
     };
 
-    return GallerySearchElement.extend({
+    return GallerySearchElement.extend(&#39;GallerySearchElement&#39;, {
 
 <span id='GallerySearchElement-method-renderData'>        /**
 </span>         * Render search
          * @member GallerySearchElement
-         * @returns {BaseElement}
+         * @returns {GallerySearchElement}
          */
         renderData: function renderData() {
 
@@ -68,6 +68,14 @@ define([
             );
 
             return this;
+        },
+
+<span id='GallerySearchElement-method-focus'>        /**
+</span>         * Focus search field
+         * @member GallerySearchElement
+         */
+        focus: function focus() {
+            $(&#39;input&#39;, this.$).focus();
         }
 
     }, BaseElement.prototype);
