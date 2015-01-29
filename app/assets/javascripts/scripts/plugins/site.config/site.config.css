@@ -301,3 +301,7 @@ ul.site-config > .content:hover {
     list-style: none;
     padding-left: 10px;
 }
+
+.modal-dialog.clean-up {
+    width: 700px;
+}
