@@ -101,24 +101,22 @@ requirejs.config({
     }
 });
 
-define([
+require([
     'modernizr',
     'lz-string',
+
     'jquery',
     'jquery.ujs',
     'jquery.resizestop',
     'jquery.pseudo',
     'jquery.zoomooz',
+
     'extends/function',
     'extends/json',
     'extends/event',
     'extends/string',
-    'extends/array'
-], function loadConfig() {
+    'extends/array',
 
-    require([
-        'config/listeners',
-        'config/permission',
-        'config/anthill'
-    ]);
-});
+    'config/listeners',
+    'config/permission'
+]);
