@@ -390,9 +390,9 @@ define([
          * @returns {string}
          */
         getItemNameSpace: function getItemNameSpace() {
-            this.scope.logger.debug('Get item namespace');
-            if (this.hasOwnProperty('item')) {
-                return this.item.name.toLowerCase();
+            this.scope.logger.debug('Get item namespace', this.item);
+            if (this.hasOwnProperty('item') && this.base.isFunction(this.item)) {
+                return this.item.prototype.name.toLowerCase();
             }
 
             this.scope.logger.debug('Undefined item');
