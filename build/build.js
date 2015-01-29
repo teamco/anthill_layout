@@ -47,6 +47,8 @@
         markdownConverter: 'lib/require/Markdown.Converter'
     },
 
+    wrap: true,
+
     shim: {
         tinyMCE: {
             exports: 'tinyMCE',
