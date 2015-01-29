@@ -161,7 +161,7 @@ define([
             var layout = page.controller.getLayout(),
                 workspace = page.controller.getContainment(),
                 modes = page.LAYOUT_MODES,
-                cname = layout.constructor.name;
+                cname = layout.constructor.prototype.name;
 
             /**
              * Define layout container
@@ -445,7 +445,7 @@ define([
                     nodes.push(
                         $('<li />').
                             addClass([
-                                [page.constructor.name.toClassName(), index].join('-'),
+                                [page.constructor.prototype.name.toClassName(), index].join('-'),
                                 node.type,
                                 node.visible ? '' : 'hidden'
                             ].join(' ')).

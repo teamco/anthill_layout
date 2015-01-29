@@ -25,12 +25,12 @@ define([
         return this.renderData();
     };
 
-    return GallerySearchElement.extend({
+    return GallerySearchElement.extend('GallerySearchElement', {
 
         /**
          * Render search
          * @member GallerySearchElement
-         * @returns {BaseElement}
+         * @returns {GallerySearchElement}
          */
         renderData: function renderData() {
 
@@ -51,6 +51,14 @@ define([
             );
 
             return this;
+        },
+
+        /**
+         * Focus search field
+         * @member GallerySearchElement
+         */
+        focus: function focus() {
+            $('input', this.$).focus();
         }
 
     }, BaseElement.prototype);

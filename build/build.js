@@ -1,8 +1,4 @@
-requirejs.config({
-
-    baseUrl: '../../assets/scripts/core',
-
-    waitSeconds: 200,
+({
 
     paths: {
         // Define public application path
@@ -22,7 +18,7 @@ requirejs.config({
         'extends': 'lib/extends',
 
         modules: 'lib/modules',
-        plugins: '../plugins',
+        plugins: 'plugins',
 
         tinyMCE: 'lib/packages/tinymce/tinymce.min',
 
@@ -74,10 +70,6 @@ requirejs.config({
 
         'lib/jquery/jquery.nicescroll': {deps: ['jquery']},
 
-        'config/listeners': {deps: ['extends/function']},
-        'config/permission': {deps: ['extends/function']},
-        'config/anthill': {deps: ['extends/function']},
-
         'controller/layout/layout.empty.rows': {deps: ['extends/function']},
         'controller/layout/layout.empty.columns': {deps: ['extends/function']},
         'controller/layout/layout.intersect': {deps: ['extends/function']},
@@ -98,27 +90,14 @@ requirejs.config({
         'modules/CRUD': {deps: ['extends/function']},
         'modules/Interactions': {deps: ['extends/function']},
         'modules/Element': {deps: ['extends/function']}
-    }
-});
+    },
 
-define([
-    'modernizr',
-    'lz-string',
-    'jquery',
-    'jquery.ujs',
-    'jquery.resizestop',
-    'jquery.pseudo',
-    'jquery.zoomooz',
-    'extends/function',
-    'extends/json',
-    'extends/event',
-    'extends/string',
-    'extends/array'
-], function loadConfig() {
+    baseUrl : "../app/assets/javascripts/scripts/core",
+    mainConfigFile : "../app/assets/javascripts/scripts/core/config/main.js",
+    name: "config/main",
+    out: "dist/main.js",
+    optimizeCss: "standard",
+    removeCombined: true,
+    findNestedDependencies: true
 
-    require([
-        'config/listeners',
-        'config/permission',
-        'config/anthill'
-    ]);
-});
+})

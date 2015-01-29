@@ -182,27 +182,16 @@
 
             // Extend constructor as named instance
             if (typeof(node) === 'function') {
-
                 var _proto = {};
-
                 $.extend(true, _proto, this.prototype);
                 this.inherits(node);
                 $.extend(true, this.prototype, _proto);
-
-            } else
-
-            // Set function name
-            if (typeof(node) === 'string') {
-
-                if (this.name.length === 0) {
-                    this.prototype.name = this.name.set(node);
-                }
-
-            } else {
-
+            } else if (typeof(node) !== 'string') {
+                // Set function name
                 // Extend constructor prototype
+                delete node.name;
                 $.extend(true, this.prototype, node);
-            }
+            } else this.prototype.name = node;
         }
 
         for (i; i < l; i += 1) {

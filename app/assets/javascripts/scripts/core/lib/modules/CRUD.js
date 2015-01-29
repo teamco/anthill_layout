@@ -43,7 +43,7 @@ define([
         destroyItem: function destroyItem(item) {
             var scope = this.scope,
                 base = this.base,
-                namespace = item.constructor.name.toLowerCase();
+                namespace = item.constructor.prototype.name.toLowerCase();
 
             if (!base.isDefined(item)) {
                 scope.logger.warn('Undefined ' + namespace, item);
@@ -118,7 +118,7 @@ define([
         destroyItemView: function destroyItemView(item) {
             var scope = this.scope,
                 base = this.base,
-                namespace = item.constructor.name.toLowerCase();
+                namespace = item.constructor.prototype.name.toLowerCase();
 
             if (!base.isDefined(item)) {
                 scope.logger.warn('Undefined ' + namespace, item);

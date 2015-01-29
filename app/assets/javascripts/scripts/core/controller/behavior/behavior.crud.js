@@ -44,7 +44,7 @@ define([
             );
 
             this.logger.debug(
-                'Create ' + item.constructor.name,
+                'Create ' + item.constructor.prototype.name,
                 this.model.getUUID(item),
                 item
             );
@@ -124,16 +124,16 @@ define([
             }
 
             if (this.checkCondition({
-                    condition: item.constructor.name !== this.model.item.name,
+                    condition: item.constructor.prototype.name !== this.model.item.name,
                     type: 'warn',
                     msg: 'Untrusted item',
-                    args: [item, item.constructor.name, this.model.item.name]
+                    args: [item, item.constructor.prototype.name, this.model.item.name]
                 })) {
                 return false;
             }
 
             scope.logger.debug(
-                'Destroy ' + item.constructor.name,
+                'Destroy ' + item.constructor.prototype.name,
                 item,
                 this.model.destroyItem(item)
             );

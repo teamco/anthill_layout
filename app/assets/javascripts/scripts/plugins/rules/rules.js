@@ -13,7 +13,7 @@ define([], function defineBaseRules() {
 
     };
 
-    return BaseRules.extend({
+    return BaseRules.extend('BaseRules', {
 
         /**
          * Toggle fieldset
@@ -50,7 +50,7 @@ define([], function defineBaseRules() {
                 locate: {
                     text: 'Locate',
                     events: {
-                        click: 'locate' + this.scope.constructor.name
+                        click: 'locate' + this.scope.constructor.prototype.name
                     }
                 },
                 approve: {

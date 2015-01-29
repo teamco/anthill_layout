@@ -12,7 +12,7 @@ define([
     'config/page',
     'config/layout',
     'config/widget'
-], function definePermissions(Application, Workspace, Page, Layout, Widget) {
+], function definePermissions(App, Workspace, Page, Layout, Widget) {
 
     // Define global permissions
     for (var i = 0, l = arguments.length; i < l; i++) {
@@ -24,19 +24,12 @@ define([
      * @member App
      * @type {*}
      */
-    Application.prototype.globalPermissions = {
+    App.prototype.globalPermissions = {
         development: {
-            activateDebugger: false,
-            deactivateDebugger: false,
-            createAuthorPanel: true,
-            createToolPanel: true
         },
         authorize: {
-            createAuthorPanel: true,
-            createToolPanel: true
         },
         consumption: {
-            createAuthorPanel: false
         },
         test: {}
     };
@@ -47,9 +40,15 @@ define([
      * @type {{}}
      */
     Workspace.prototype.globalPermissions = {
-        development: {},
+        development: {
+            createAuthorPanel: true,
+            createToolPanel: true
+        },
         authorize: {},
-        consumption: {},
+        consumption: {
+            createAuthorPanel: false,
+            createToolPanel: false
+        },
         test: {}
     };
 

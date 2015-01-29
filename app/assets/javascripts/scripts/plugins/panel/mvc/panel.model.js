@@ -82,7 +82,7 @@ define([
             var modules = this.modules;
 
             for (var i = 0, l = modules.length; i < l; i++) {
-                if (resource === modules[i].module.constructor.name.toDash()) {
+                if (resource === modules[i].module.constructor.prototype.name.toDash()) {
                     return i;
                 }
             }

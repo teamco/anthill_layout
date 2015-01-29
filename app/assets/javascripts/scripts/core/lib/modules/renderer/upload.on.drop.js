@@ -25,7 +25,7 @@ define(['jquery'], function defineUploadOnDrop($) {
             if (this.checkFileApi()) {
 
                 var scope = this.view.scope,
-                    cname = scope.constructor.name.toDash(),
+                    cname = scope.constructor.prototype.name.toDash(),
                     $dropZone = $('<div class="' + cname + '-drop-zone" />').
                         text('Drop JSON here'),
                     $output = $('<ul class="' + cname + '-file-info"></ul>');

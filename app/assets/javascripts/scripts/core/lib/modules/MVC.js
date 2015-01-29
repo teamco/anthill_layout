@@ -288,13 +288,17 @@ define([
 
             var base = this.base,
                 scope = this.scope,
-                name = base.isString(mvcPattern) ?
-                    mvcPattern :
-                    mvcPattern.name.
-                        replace(this.scope.constructor.name, '').
-                        toLowerCase();
+                name = mvcPattern;
 
             if (base.isFunction(mvcPattern)) {
+
+                /**
+                 * Define name space
+                 * @type {string}
+                 */
+                name = mvcPattern.prototype.name.
+                    replace(scope.name, '').
+                    toLowerCase();
 
                 /**
                  * Define pattern
@@ -308,7 +312,7 @@ define([
                  * Define scope name
                  * @type {string}
                  */
-                var scopeName = scope.constructor.name.toLowerCase();
+                var scopeName = scope.name.toLowerCase();
 
                 /**
                  * Define function
@@ -436,7 +440,7 @@ define([
 
             if (this.render) {
                 config.html = base.define(config.html, {}, true);
-                config.html.selector = scope.constructor.name.toDash();
+                config.html.selector = scope.constructor.prototype.name.toDash();
             }
         },
 
@@ -645,9 +649,7 @@ define([
                 return false;
             }
 
-            /**
-             * Define capability
-             */
+            // Define capability
             var capabilities = scope[permission][mode];
 
             if (scope.controller.checkCondition({

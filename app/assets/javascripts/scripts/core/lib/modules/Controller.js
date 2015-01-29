@@ -270,7 +270,7 @@ define([
          */
         successCreated: function successCreated() {
             this.logger.debug(
-                this.constructor.name +
+                this.constructor.prototype.name +
                 ' was successfully created',
                 this
             );
@@ -282,7 +282,7 @@ define([
          */
         successRendered: function successRendered() {
             this.logger.debug(
-                this.i18n.t('success.rendered').replace(/\{0\}/, this.constructor.name),
+                this.i18n.t('success.rendered').replace(/\{0}/, this.constructor.prototype.name),
                 this
             );
         },
@@ -452,7 +452,7 @@ define([
                 html: {
                     container: [
                         '#', scope.model.getUUID(),
-                        '-', scope.constructor.name.toLowerCase()
+                        '-', scope.constructor.prototype.name.toLowerCase()
                     ].join('')
                 },
                 containment: scope
@@ -512,7 +512,7 @@ define([
          * @returns {boolean}
          */
         isWorkspace: function isWorkspace() {
-            return this.scope.constructor.name === 'Workspace';
+            return this.scope.constructor.prototype.name === 'Workspace';
         },
 
         /**
@@ -521,7 +521,7 @@ define([
          * @returns {boolean}
          */
         isPage: function isPage() {
-            return this.scope.constructor.name === 'Page';
+            return this.scope.constructor.prototype.name === 'Page';
         },
 
         /**
@@ -530,7 +530,7 @@ define([
          * @returns {boolean}
          */
         isWidget: function isWidget() {
-            return this.scope.constructor.name === 'Widget';
+            return this.scope.constructor.prototype.name === 'Widget';
         },
 
         /**

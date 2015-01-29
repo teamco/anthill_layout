@@ -57,7 +57,9 @@ define(
              *      loadPreferences: string,
              *      transferPreferences: string,
              *      transferContentPreferences: string,
-             *      afterUpdatePreferences: string
+             *      afterUpdatePreferences: string,
+             *      createAuthorPanel: string,
+             *      createToolPanel: string,
              * }}
              */
             eventList: {
@@ -88,7 +90,10 @@ define(
                 loadPreferences: 'load.preferences',
                 transferPreferences: 'transfer.preferences',
                 transferContentPreferences: 'transfer.content.preferences',
-                afterUpdatePreferences: 'after.update.preferences'
+                afterUpdatePreferences: 'after.update.preferences',
+
+                createAuthorPanel: 'create.author.panel',
+                createToolPanel: 'create.tool.panel'
             }
 
         }, BaseEvent.prototype);

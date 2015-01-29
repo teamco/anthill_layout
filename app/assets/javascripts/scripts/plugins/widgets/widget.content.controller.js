@@ -52,7 +52,7 @@ define([
                 observer.publish(
                     eventList.updateTranslations, [
                         'plugins/widgets/',
-                        this.constructor.name.toPoint().replace(/./, ''),
+                        this.constructor.prototype.name.toPoint().replace(/./, ''),
                         '/translations/en-us'
                     ].join('')
                 );

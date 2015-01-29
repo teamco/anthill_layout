@@ -90,7 +90,7 @@ define([
                          * Define constructor name instance
                          * @type {Function.name|*}
                          */
-                        var instance = scope.constructor.name;
+                        var instance = scope.constructor.prototype.name;
 
                         if (base.isDefined(instance)) {
 

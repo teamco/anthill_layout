@@ -99,7 +99,9 @@ define([
          * }}
          */
         var DEFAULTS = {
-            preferences: opts.preferences || {},
+            preferences: opts.preferences || {
+                showInTabs: true
+            },
             order: 1,
             type: 'default',
             limit: false,

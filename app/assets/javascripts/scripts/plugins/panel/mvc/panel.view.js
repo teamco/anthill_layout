@@ -26,7 +26,7 @@ define([
     var PanelView = function PanelView() {
     };
 
-    return PanelView.extend({
+    return PanelView.extend('PanelView', {
 
         /**
          * Render container
@@ -134,7 +134,7 @@ define([
              * @type {string}
              */
             var style = [
-                    module.constructor.name.toDash(),
+                    module.constructor.prototype.name.toDash(),
                     'content'
                 ].join('-'),
                 sname = '$' + style;

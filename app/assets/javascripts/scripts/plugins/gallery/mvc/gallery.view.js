@@ -71,6 +71,14 @@ define([
         },
 
         /**
+         * Set search on focus
+         * @member GalleryView
+         */
+        setOnFocus: function setOnFocus() {
+            this.elements.$search.focus();
+        },
+
+        /**
          * Render gallery providers
          * @member GalleryView
          * @param providers
@@ -156,6 +164,7 @@ define([
             );
 
             this.updateFooterContent();
+            this.setOnFocus();
         },
 
         /**

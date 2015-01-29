@@ -13,16 +13,12 @@ define([
     'config/page',
     'config/layout',
     'config/widget'
-], function defineListeners($, Application, Workspace, Page, Layout, Widget) {
+], function defineListeners($, App, Workspace, Page, Layout, Widget) {
 
-    /**
-     * Load listeners
-     */
-    Application.prototype.localListeners = Application.prototype.localListeners || {};
-    Workspace.prototype.localListeners = Workspace.prototype.localListeners || {};
-    Page.prototype.localListeners = Page.prototype.localListeners || {};
-    Layout.prototype.localListeners = Layout.prototype.localListeners || {};
-    Widget.prototype.localListeners = Widget.prototype.localListeners || {};
+    // Load listeners
+    for (var i = 0, l = arguments.length; i < l; i++) {
+        arguments[i].prototype.localListeners = arguments[i].prototype.localListeners || {};
+    }
 
     /**
      * Define Application Local listeners
@@ -34,7 +30,7 @@ define([
      *      resizeWorkspace: {name: string, callback: Function}
      * }}
      */
-    $.extend(Application.prototype.localListeners, {
+    $.extend(App.prototype.localListeners, {
 
         successRendered: {
             name: 'success.rendered',
