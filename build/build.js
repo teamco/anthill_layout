@@ -1,7 +1,7 @@
 ({
 
     paths: {
-        
+
         // Define public application path
         'public': '../../public',
 
