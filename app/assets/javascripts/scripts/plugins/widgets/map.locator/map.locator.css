@@ -44,12 +44,12 @@
     transition: all .4s;
 }
 
-/*.dial,
+.dial,
 .radiosContainer {
     -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.37);
     -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.37);
     box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.37);
-}*/
+}
 .widget .content .maplocator .radiosContainer {
     position: absolute;
     top: 50px;

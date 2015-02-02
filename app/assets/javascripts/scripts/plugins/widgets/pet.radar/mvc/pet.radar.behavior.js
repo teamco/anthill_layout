@@ -99,14 +99,14 @@ define([
         },
 
         addPetsToMap: function addPetsToMap() {
-            var interval = setInterval(function () {
-                createUserCircle();
-                circlesAmount++;
-                if (circlesAmount == 20) {
-                    clearInterval(interval);
-                }
-                ;
-            }, 100);
+            //var interval = setInterval(function () {
+            //    createUserCircle();
+            //    circlesAmount++;
+            //    if (circlesAmount == 20) {
+            //        clearInterval(interval);
+            //    }
+            //    ;
+            //}, 100);
         },
 
         createUserCircle: function createUserCircle() {

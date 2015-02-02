@@ -42,7 +42,7 @@
     border-bottom: solid 1px lightgray
 }
 .widget .content .post-template .postContent {
-    height: 230px;
+    height: 130px;
     display: inline-block;
     float: right;
     width: -moz-calc(100% - 80px);

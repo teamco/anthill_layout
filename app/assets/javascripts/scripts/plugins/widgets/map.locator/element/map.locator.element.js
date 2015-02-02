@@ -236,7 +236,6 @@ define([
             });
 
             searchButton.click(function () {
-
                 /**
                  * Define map locator scope
                  * @type {MapLocator}
