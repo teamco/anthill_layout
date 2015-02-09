@@ -48,8 +48,6 @@ define([
 
                 require(['plugins/widgets/pet.radar/mvc/pet.radar.behavior'], function behavior(PetRadarBehavior) {
 
-                    var behavior = new PetRadarBehavior();
-
                     var $radarContainer = ['<div class="close_friends_container">',
                         '<h2 class="main_title">Pets Around You</h2>',
                         '<div id="map_canvas"></div>',
@@ -60,11 +58,11 @@ define([
                         $radarContainer
                     );
 
+                    var behavior = new PetRadarBehavior($element);
                 });
             });
 
         }
 
     }, BaseElement.prototype);
-
 });

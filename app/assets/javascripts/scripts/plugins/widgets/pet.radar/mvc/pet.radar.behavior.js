@@ -7,15 +7,16 @@ define([
      * @class PetRadarBehavior
      * @extends BaseGeolocation
      * @constructor
+     * @param {PetRadarElement} $element
      */
-    var PetRadarBehavior = function PetRadarBehavior() {
+    var PetRadarBehavior = function PetRadarBehavior($element) {
 
         /**
          * Define user container
          * @member PetRadarBehavior
          * @type {*|jQuery|HTMLElement}
          */
-        this.usersContainer = $('.close_friends_container');
+        this.usersContainer = $('.close_friends_container', $element.$);
 
         /**
          * Define amount
