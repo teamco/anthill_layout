@@ -330,7 +330,6 @@ define([
             }
 
             return name;
-
         },
 
         /**
