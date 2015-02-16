@@ -48,6 +48,8 @@
     box-shadow: 0 5px 2px #ccc;
     padding-bottom: 5px;
     margin-bottom: 10px;
+    float: left;
+    width: 100%;
 }
 
 .modal-dialog p.text,
@@ -67,6 +69,8 @@
 
 .modal-dialog div.html.visible {
     overflow: visible;
+    float: left;
+    margin-top: 0;
 }
 
 .modal-dialog ul.actions {
