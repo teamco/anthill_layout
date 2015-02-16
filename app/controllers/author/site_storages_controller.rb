@@ -26,7 +26,8 @@ class Author::SiteStoragesController < Author::AuthorController
     if File.exist?(@target_path)
       @storage = {
           key: @author_site_storage.key,
-          mode: @author_site_storage.author_site_type.name
+          mode: @author_site_storage.author_site_type.name,
+          uuid: @author_site_storage.uuid
       }
 
       activated = @author_site_storage.author_site_versions.where(activated: true).first
@@ -35,6 +36,7 @@ class Author::SiteStoragesController < Author::AuthorController
         @storage[:version] = activated.version
         @storage[:content] = activated.content
       end
+
     end unless @author_site_storage.nil?
   end
 

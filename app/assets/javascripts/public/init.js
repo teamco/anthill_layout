@@ -2,6 +2,7 @@
 
     var script = document.getElementById('require-init'),
         site = script.getAttribute('data-resource'),
+        uuid = script.getAttribute('data-uuid'),
         version = parseInt(script.getAttribute('data-version'), 10) || 1,
         mode = script.getAttribute('data-mode');
 
@@ -26,6 +27,7 @@
                             container: 'body',
                             header: true
                         },
+                        uuid: uuid,
                         version: version,
                         appName: site,
                         mode: mode
