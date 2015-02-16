@@ -46,34 +46,77 @@ define([
          */
         init: function init(data) {
 
+            /**
+             * Define scope
+             * @type {App}
+             */
+            var scope = this.view.scope;
+
+            /**
+             * Define url
+             * @type {string}
+             */
+            var url;
+
             try {
 
-                /**
-                 * Define url
-                 * @type {string}
-                 */
-                var url = [
-                    'data:',
-                    data.type,
-                    ';charset=utf-8;base64,',
-                    this.view.scope.base.lib.string.base64.encode(data.content)
-                ].join('');
+                url = window.URL.createObjectURL(
+                    new Blob(
+                        [data.content], {
+                            type: data.type
+                        }
+                    )
+                );
+
+                scope.logger.debug('Blob URL', url);
 
             } catch (e) {
 
+                scope.logger.warn('Unable to create Blob URL', e);
 
+                /**
+                 * Define content
+                 * @type {string}
+                 */
+                var content = scope.base.lib.string.base64.encode(
+                    data.content
+                );
+
+                if (content.length <= 50000) {
+
+                    try {
+
+                        url = [
+                            'data:', data.type,
+                            ';charset=utf-8;base64,', content
+                        ].join('');
+
+                        scope.logger.debug('Data-URI URL', url);
+
+                    } catch (e) {
+
+                        scope.logger.warn('Unable to create URL', e);
+                    }
+
+                } else {
+
+                    scope.logger.warn('URL too long');
+                }
             }
 
-            this.$.attr({
+            if (url) {
 
-                href: url,
-                download: data.fileName || 'file.txt',
-                title: data.title || 'Download'
+                this.$.attr({
 
-            }).text(data.title || 'Download');
+                    href: url,
+                    download: data.fileName || 'file.txt',
+                    title: data.title || 'Download'
 
-            if (data.autoload) {
-                this.$[0].click();
+                }).text(data.title || 'Download');
+
+                if (data.autoload) {
+                    this.$[0].click();
+                }
             }
 
             return this;
