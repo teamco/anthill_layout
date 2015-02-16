@@ -55,6 +55,9 @@ define([
 
             return [
                 this.setSiteTitle(),
+                this.setSiteMetaDescription(),
+                this.setSiteMetaKeywords(),
+                this.setSiteMetaAuthor(),
                 this.siteWidthSlider(map),
                 this.googleAnalytics()
             ];
@@ -75,10 +78,10 @@ define([
                 preferences = workspace.model.getConfig('preferences');
 
             /**
-             * Render slider input
+             * Render title
              * @type {*[]}
              */
-            var $textfield = this.renderTextField({
+            var $title = this.renderTextField({
                 name: 'siteTitle',
                 text: 'Site Title',
                 disabled: false,
@@ -88,7 +91,100 @@ define([
 
             return $('<li />').
                 addClass('workspace-title-prefs').
-                append($textfield);
+                append($title);
+        },
+
+        /**
+         * Set site meta description
+         * @member SitePreferences
+         * @returns {*|jQuery}
+         */
+        setSiteMetaDescription: function setSiteMetaDescription() {
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                preferences = workspace.model.getConfig('preferences');
+
+            /**
+             * Render description
+             * @type {*[]}
+             */
+            var $description = this.renderTextArea({
+                name: 'siteDescription',
+                text: 'Site Description',
+                disabled: false,
+                visible: true,
+                value: preferences['siteDescription'] || $('meta[name="description"]').attr('content')
+            });
+
+            return $('<li />').
+                addClass('workspace-description-prefs').
+                append($description);
+        },
+
+        /**
+         * Set site meta key words
+         * @member SitePreferences
+         * @returns {*|jQuery}
+         */
+        setSiteMetaKeywords: function setSiteMetaKeywords() {
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                preferences = workspace.model.getConfig('preferences');
+
+            /**
+             * Render description
+             * @type {*[]}
+             */
+            var $keywords = this.renderTextArea({
+                name: 'siteKeywords',
+                text: 'Site Keywords',
+                disabled: false,
+                visible: true,
+                value: preferences['siteKeywords'] || $('meta[name="keywords"]').attr('content')
+            });
+
+            return $('<li />').
+                addClass('workspace-keywords-prefs').
+                append($keywords);
+        },
+
+        /**
+         * Set site meta author
+         * @member SitePreferences
+         * @returns {*|jQuery}
+         */
+        setSiteMetaAuthor: function setSiteMetaAuthor() {
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                preferences = workspace.model.getConfig('preferences');
+
+            /**
+             * Render description
+             * @type {*[]}
+             */
+            var $author = this.renderTextField({
+                name: 'siteAuthor',
+                text: 'Site Author',
+                disabled: false,
+                visible: true,
+                value: preferences['siteAuthor'] || $('meta[name="author"]').attr('content')
+            });
+
+            return $('<li />').
+                addClass('workspace-author-prefs').
+                append($author);
         },
 
         /**
