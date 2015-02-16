@@ -77,10 +77,19 @@ requirejs.config({
         'config/listeners': {deps: ['extends/function']},
         'config/permission': {deps: ['extends/function']},
         'config/anthill': {deps: ['extends/function']},
+        'config/routes': {deps: ['extends/function']},
 
         'controller/layout/layout.empty.rows': {deps: ['extends/function']},
         'controller/layout/layout.empty.columns': {deps: ['extends/function']},
         'controller/layout/layout.intersect': {deps: ['extends/function']},
+
+        'controller/widget/widget.maximize': {deps: ['extends/function']},
+        'controller/widget/widget.stretch': {deps: ['extends/function']},
+        'controller/widget/widget.stick': {deps: ['extends/function']},
+        'controller/widget/widget.layer': {deps: ['extends/function']},
+
+        'controller/page/page.layer': {deps: ['extends/function']},
+        'controller/page/page.maximize': {deps: ['extends/function']},
 
         'controller/behavior/behavior.crud': {deps: ['extends/function']},
         'controller/behavior/behavior.window.resize': {deps: ['extends/function']},
@@ -97,7 +106,9 @@ requirejs.config({
         'modules/Page': {deps: ['extends/function']},
         'modules/CRUD': {deps: ['extends/function']},
         'modules/Interactions': {deps: ['extends/function']},
-        'modules/Element': {deps: ['extends/function']}
+        'modules/Element': {deps: ['extends/function']},
+        'modules/Preferences': {deps: ['extends/function']},
+        'modules/Router': {deps: ['extends/function']}
     }
 });
 
