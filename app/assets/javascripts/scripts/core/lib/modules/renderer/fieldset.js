@@ -25,7 +25,7 @@ define([], function defineFieldSetRenderer() {
          */
         renderFieldSet: function renderFieldSet(text, $content, open) {
 
-            var $legend = $('<legend />').text(text).
+            var $legend = $('<legend />').html(text).
                 on('click.toggle', this.toggleFieldset.bind(this)).attr({
                     title: text
                 }

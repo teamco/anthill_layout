@@ -30,6 +30,8 @@ define([
          *      title: {type: string, disabled: boolean, value},
          *      pageUrl: {type: string, disabled: boolean, value},
          *      description: {type: string, disabled: boolean, value},
+         *      pageHeader: {type: string, disabled: boolean, value},
+         *      pageFooter: {type: string, disabled: boolean, value},
          *      showInTabs: {type: string, disabled: boolean, value}
          * }}
          */
@@ -41,6 +43,12 @@ define([
                 visible: true
             },
             description: {
+                type: 'textarea',
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            keywords: {
                 type: 'textarea',
                 disabled: false,
                 value: undefined,
@@ -139,9 +147,15 @@ define([
             }
 
             this.$.append(
-                this.renderLayoutPrefs(opts.page, nodes)
-            ).append(
-                this.renderWidgetsPrefs(opts.page, nodes)
+                $('<li />').append(
+                    this.renderFieldSet(
+                        'Meta Data',
+                        $('<ul />').append(nodes),
+                        true
+                    )
+                ),
+                this.renderLayoutPrefs(opts.page),
+                this.renderWidgetsPrefs(opts.page)
             );
         },
 
@@ -149,10 +163,9 @@ define([
          * Render Layout prefs
          * @member PagesPreferences
          * @param {Page} page
-         * @param {Array} nodes
          * @returns {*}
          */
-        renderLayoutPrefs: function renderLayoutPrefs(page, nodes) {
+        renderLayoutPrefs: function renderLayoutPrefs(page) {
 
             /**
              * Define layout
@@ -161,7 +174,7 @@ define([
             var layout = page.controller.getLayout(),
                 workspace = page.controller.getContainment(),
                 modes = page.LAYOUT_MODES,
-                cname = layout.constructor.prototype.name;
+                cname = layout.name;
 
             /**
              * Define layout container
@@ -188,87 +201,78 @@ define([
             var width = staticWidth ?
                 page.view.get$item().getWidth() : 'Flexible';
 
-            nodes.push(
-                $('<li />').append(
-                    $('<fieldset />').append(
-                        $('<legend />').text(cname).
-                            on('click.toggle', this.toggleFieldset.bind(this)).attr({
-                                title: cname
-                            }),
+            return $('<li />').append(
+                this.renderFieldSet(
+                    cname,
+                    $ul.append([
 
-                        $ul.append([
+                        $('<li />').append(
+                            this.renderTextField({
+                                name: 'layout-cell-width',
+                                text: 'Cell size',
+                                value: cellWidth.toFixed(3),
+                                visible: true,
+                                disabled: true
+                            })
+                        ).attr('rel', 'layout-cell-width'),
 
-                            $('<li />').append(
-                                this.renderTextField({
-                                    name: 'layout-cell-width',
-                                    text: 'Cell size',
-                                    value: cellWidth.toFixed(3),
-                                    visible: true,
-                                    disabled: true
-                                })
-                            ).attr('rel', 'layout-cell-width'),
+                        $('<li />').append(
+                            this.renderCombobox(
+                                [
+                                    {
+                                        type: 'text',
+                                        value: modes.freeStyle
+                                    },
+                                    {
+                                        type: 'text',
+                                        value: modes.jqUIGrid
+                                    },
+                                    {
+                                        type: 'text',
+                                        value: modes.snap2grid
+                                    }
+                                ],
+                                layout.controller.getBehaviorMode(),
+                                'Mode',
+                                'layoutMode',
+                                undefined,
+                                true
+                            )
+                        ).attr('rel', 'layout-behavior'),
 
-                            $('<li />').append(
-                                this.renderCombobox(
-                                    [
-                                        {
-                                            type: 'text',
-                                            value: modes.freeStyle
-                                        },
-                                        {
-                                            type: 'text',
-                                            value: modes.jqUIGrid
-                                        },
-                                        {
-                                            type: 'text',
-                                            value: modes.snap2grid
-                                        }
-                                    ],
-                                    layout.controller.getBehaviorMode(),
-                                    'Mode',
-                                    'layoutMode',
-                                    undefined,
-                                    true
-                                )
-                            ).attr('rel', 'layout-behavior'),
+                        $('<li />').append(
+                            this.renderTextField({
+                                name: 'page-width',
+                                text: 'Page width',
+                                value: width,
+                                visible: true,
+                                disabled: true
+                            })
+                        ).attr('rel', 'page-width').
+                            addClass('page-width'),
 
-                            $('<li />').append(
-                                this.renderTextField({
-                                    name: 'page-width',
-                                    text: 'Page width',
-                                    value: width,
-                                    visible: true,
-                                    disabled: true
-                                })
-                            ).attr('rel', 'page-width').
-                                addClass('page-width'),
-
-                            $('<li />').append(
-                                this.renderTextField({
-                                    name: 'layoutColumns',
-                                    text: 'Columns',
-                                    value: layout.config.grid.columns,
-                                    visible: true,
-                                    disabled: false
-                                })
-                            ).attr('rel', 'layout-columns').
-                                addClass('page-layout-columns')
-                        ])
-                    )
-                ).addClass('auto')
-            );
-
-            return nodes;
+                        $('<li />').append(
+                            this.renderTextField({
+                                name: 'layoutColumns',
+                                text: 'Columns',
+                                value: layout.config.grid.columns,
+                                visible: true,
+                                disabled: false
+                            })
+                        ).attr('rel', 'layout-columns').
+                            addClass('page-layout-columns')
+                    ])
+                )
+            ).addClass('auto');
         },
 
         /**
          * Render widgets prefs
          * @member PagesPreferences
          * @param {Page} page
-         * @param nodes
          * @returns {*}
          */
-        renderWidgetsPrefs: function renderWidgetsPrefs(page, nodes) {
+        renderWidgetsPrefs: function renderWidgetsPrefs(page) {
 
             /**
              * Get page items
@@ -361,24 +365,16 @@ define([
                     'items</span>'
                 ].join(' ');
 
-            nodes.push(
-                $('<li />').append(
-                    $('<fieldset />').append(
-                        $('<legend />').html(cname).
-                            on('click.toggle', this.toggleFieldset.bind(this)).attr({
-                                title: cname
-                            }),
-
-                        $ul.append(
-                            this.renderPageWidgetsGlobalPrefs(),
-                            $('<li class="clear" />'),
-                            _renderWidgets.bind(this)()
-                        )
+            return $('<li />').append(
+                this.renderFieldSet(
+                    cname,
+                    $ul.append(
+                        this.renderPageWidgetsGlobalPrefs(),
+                        $('<li class="clear" />'),
+                        _renderWidgets.bind(this)()
                     )
                 )
             );
-
-            return nodes;
         },
 
         /**
