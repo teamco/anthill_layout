@@ -54,13 +54,27 @@ define([
         getPreferencesHtml: function getPreferencesHtml(map) {
 
             return [
-                this.setSiteTitle(),
-                this.setSiteMetaDescription(),
-                this.setSiteMetaKeywords(),
-                this.setSiteMetaAuthor(),
+                this.setSiteMetaData(),
                 this.siteWidthSlider(map),
                 this.googleAnalytics()
             ];
+        },
+
+        setSiteMetaData: function setSiteMetaData() {
+
+            return $('<li />').append(
+                this.renderFieldSet(
+                    'Meta Data',
+                    $('<ul />').append(
+                        this.setSiteTitle(),
+                        this.setSiteMetaAuthor(),
+                        this.setSiteMetaDescription(),
+                        this.setSiteMetaKeywords()
+                    ),
+                    true
+                )
+            );
+
         },
 
         /**
@@ -83,7 +97,7 @@ define([
              */
             var $title = this.renderTextField({
                 name: 'siteTitle',
-                text: 'Site Title',
+                text: 'Title',
                 disabled: false,
                 visible: true,
                 value: preferences['siteTitle'] || $('title').text()
@@ -114,7 +128,7 @@ define([
              */
             var $description = this.renderTextArea({
                 name: 'siteDescription',
-                text: 'Site Description',
+                text: 'Description',
                 disabled: false,
                 visible: true,
                 value: preferences['siteDescription'] || $('meta[name="description"]').attr('content')
@@ -145,7 +159,7 @@ define([
              */
             var $keywords = this.renderTextArea({
                 name: 'siteKeywords',
-                text: 'Site Keywords',
+                text: 'Keywords',
                 disabled: false,
                 visible: true,
                 value: preferences['siteKeywords'] || $('meta[name="keywords"]').attr('content')
@@ -176,7 +190,7 @@ define([
              */
             var $author = this.renderTextField({
                 name: 'siteAuthor',
-                text: 'Site Author',
+                text: 'Author',
                 disabled: false,
                 visible: true,
                 value: preferences['siteAuthor'] || $('meta[name="author"]').attr('content')
@@ -331,26 +345,17 @@ define([
                 slide: _slide.bind(this)
             });
 
-            return $('<li />').append(
-                $('<fieldset />').append(
-                    $('<legend />').addClass('open').text(cname).
-                        on('click.toggle', this.toggleFieldset.bind(this)).attr({
-                            title: cname
-                        }
-                    ),
-
-                    $ul.append(
-                        this.siteStaticWidth()
-                    ),
-
-                    $ul.append(
-                        $('<li class="workspace-site-width-prefs slider" />').append(
-                            this.renderLabel(uuid, 'Site Width', 'slider', true),
-                            $slider,
-                            $textfield
-                        )
-                    )
+            $ul.append(
+                this.siteStaticWidth(),
+                $('<li class="workspace-site-width-prefs slider" />').append(
+                    this.renderLabel(uuid, 'Site Width', 'slider', true),
+                    $slider,
+                    $textfield
                 )
+            );
+
+            return $('<li />').append(
+                this.renderFieldSet(cname, $ul)
             );
         },
 
@@ -385,20 +390,14 @@ define([
             });
 
             return $('<li />').append(
-                $('<fieldset />').append(
-                    $('<legend />').text(cname).
-                        on('click.toggle', this.toggleFieldset.bind(this)).attr({
-                            title: cname
-                        }
-                    ),
-
+                this.renderFieldSet(
+                    cname,
                     $('<ul />').append(
-                        $('<li class="workspace-google-analytics-prefs" />').append(
-                            $textfield
-                        )
+                        $('<li class="workspace-google-analytics-prefs" />').
+                            append($textfield)
                     )
                 )
-            );
+            )
         }
 
     }, BasePreferences.prototype);
