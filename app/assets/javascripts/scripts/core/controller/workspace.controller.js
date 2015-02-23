@@ -191,32 +191,9 @@ define(
 
                         if (page === this.controller.getCurrentItem()) {
                             this.logger.debug('Page already current', page);
-                            this.controller.swipeToCurrentPage(animate);
-                            return false;
-                        }
-
-                        /**
-                         * Get all items
-                         * @type {*}
-                         */
-                        var items = this.model.getItems(),
-                            index;
-
-                        for (index in items) {
-
-                            if (items.hasOwnProperty(index)) {
-
-                                /**
-                                 * Define item
-                                 * @type {Page}
-                                 */
-                                var item = items[index];
-
-                                if (item.model.getUUID() === page.model.getUUID()) {
-
-                                    this.controller.setCurrentItem(page);
-                                }
-                            }
+                        } else {
+                            this.logger.debug('Swipe to page', page);
+                            this.controller.setCurrentItem(page);
                         }
 
                         this.controller.swipeToCurrentPage(animate);
