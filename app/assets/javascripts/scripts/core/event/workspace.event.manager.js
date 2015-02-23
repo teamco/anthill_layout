@@ -55,6 +55,7 @@ define(
              *      updateSiteAuthor: string,
              *      updateSiteDescription: string,
              *      updateSiteKeywords: string,
+             *      updateMetaData: string,
              *      updateSiteWidth: string,
              *      loadTrackingSnippet: string,
              *      loadPreferences: string,
@@ -90,6 +91,7 @@ define(
                 updateSiteAuthor: 'update.site.author',
                 updateSiteDescription: 'update.site.description',
                 updateSiteKeywords: 'update.site.keywords',
+                updateMetaData: 'update.meta.data',
 
                 loadTrackingSnippet: 'load.tracking.snippet',
 

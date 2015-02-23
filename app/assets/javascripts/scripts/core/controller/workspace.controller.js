@@ -242,7 +242,8 @@ define(
 
                     scope.view.elements.$pages.swipeTo(page, animate);
                     scope.observer.publish(
-                        scope.eventmanager.eventList.updateSiteTitle
+                        scope.eventmanager.eventList.updateMetaData,
+                        page
                     );
                 },
 
@@ -327,6 +328,23 @@ define(
 
                         $workspace.unsetWidth();
                     }
+                },
+
+                /**
+                 * Update metadata
+                 * @member WorkspaceController
+                 * @param {Page} page
+                 */
+                updateMetaData: function updateMetaData(page) {
+
+                    this.observer.batchPublish(
+                        this.eventmanager.eventList.updateSiteTitle
+                    );
+
+                    page.observer.batchPublish(
+                        page.eventmanager.eventList.updateSiteDescription,
+                        page.eventmanager.eventList.updateSiteKeywords
+                    );
                 },
 
                 /**
