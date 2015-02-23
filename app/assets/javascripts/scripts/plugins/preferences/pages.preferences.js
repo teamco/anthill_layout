@@ -31,6 +31,13 @@ define([
         renderData: function renderData(opts) {
 
             /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var ws = this.view.controller.getWorkspace(),
+                config = ws.model.getConfig('page');
+
+            /**
              * Define default widget prefs
              * @type {{
              *      title: {type: string, disabled: boolean, value},
@@ -83,13 +90,13 @@ define([
                 animateSwipe: {
                     type: 'checkbox',
                     disabled: false,
-                    value: true,
+                    value: config.animateSwipe,
                     visible: true
                 },
                 showInTabs: {
                     type: 'checkbox',
                     disabled: false,
-                    value: true,
+                    value: config.showInTabs,
                     visible: true
                 }
             };
@@ -141,16 +148,21 @@ define([
 
                 if (opts.data.hasOwnProperty(index)) {
 
-                    var isCheckBox = opts.data[index].type === 'checkbox';
+                    /**
+                     * Define isCheckBox
+                     * @type {boolean}
+                     */
+                    var isCheckBox = opts.data[index].type === 'checkbox',
+                        className = 'page-prefs' + (isCheckBox ? ' checkbox' : '');
 
                     nodes.push(
-                        $('<li class="page-prefs' + (isCheckBox ? ' checkbox' : '') + '" />').append(
+                        $('<li />').append(
                             this.getNodeRenderer(
                                 opts.data[index],
                                 index.toPoint().humanize(),
                                 index
                             )
-                        )
+                        ).addClass(className)
                     );
                 }
             }
