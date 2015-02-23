@@ -59,7 +59,9 @@ define(
 
                     $(window).on(
                         'hashchange',
-                        this.controller.switchPageOnHashChange.bind(this)
+                        this.controller.switchPageOnHashChange.bind(
+                            this.controller
+                        )
                     );
                 },
 
@@ -69,9 +71,15 @@ define(
                  */
                 switchPageOnHashChange: function switchPageOnHashChange() {
 
-                    this.observer.publish(
-                        this.eventmanager.eventList.switchToPage,
-                        this.controller.getPageByHashLocation()
+                    /**
+                     * Define scope
+                     * @type {Workspace}
+                     */
+                    var scope = this.scope;
+
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.switchToPage,
+                        this.getPageByHashLocation()
                     );
                 },
 

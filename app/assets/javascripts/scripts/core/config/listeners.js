@@ -106,7 +106,7 @@ define([
         afterLoadingItems: {
             name: 'after.loading.items',
             callback: function afterLoadingItemsCallback() {
-                this.controller.switchPageOnHashChange.bind(this)
+                this.controller.switchPageOnHashChange();
             }
         },
 

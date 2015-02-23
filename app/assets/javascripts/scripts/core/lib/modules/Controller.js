@@ -121,13 +121,12 @@ define([
 
             /**
              * Get workspace
-             * @type {Workspace}
+             * @type {WorkspaceController}
              */
-            var ws = this[namespace],
-                wsc = ws.controller;
+            var wsc = this[namespace].controller;
 
             if (wsc) {
-                wsc.switchPageOnHashChange.bind(ws)();
+                wsc.switchPageOnHashChange();
             }
         },
 
