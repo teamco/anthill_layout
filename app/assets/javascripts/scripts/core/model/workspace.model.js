@@ -64,6 +64,7 @@ define([
 
         /**
          * Set site title
+         * @member WorkspaceModel
          * @param {string} title
          */
         setSiteTitle: function setSiteTitle(title) {
@@ -78,6 +79,66 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList.updateSiteTitle
+            );
+        },
+
+        /**
+         * Set site author
+         * @member WorkspaceModel
+         * @param {string} author
+         */
+        setSiteAuthor: function setSiteAuthor(author) {
+
+            /**
+             * Set local scope
+             * @type {Workspace}
+             */
+            var scope = this.scope;
+
+            this._setItemInfoPreferences('siteAuthor', author);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateSiteAuthor
+            );
+        },
+
+        /**
+         * Set site description
+         * @member WorkspaceModel
+         * @param {string} description
+         */
+        setSiteDescription: function setSiteDescription(description) {
+
+            /**
+             * Set local scope
+             * @type {Workspace}
+             */
+            var scope = this.scope;
+
+            this._setItemInfoPreferences('siteDescription', description);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateSiteDescription
+            );
+        },
+
+        /**
+         * Set site keywords
+         * @member WorkspaceModel
+         * @param {string} keywords
+         */
+        setSiteKeywords: function setSiteKeywords(keywords) {
+
+            /**
+             * Set local scope
+             * @type {Workspace}
+             */
+            var scope = this.scope;
+
+            this._setItemInfoPreferences('siteKeywords', keywords);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateSiteKeywords
             );
         },
 

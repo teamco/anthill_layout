@@ -19,7 +19,7 @@ define(
      * @param {Router} Router
      * @returns {*}
      */
-        function defineWorkspaceController(BaseController, BasePreferences, Router) {
+    function defineWorkspaceController(BaseController, BasePreferences, Router) {
 
         /**
          * Define workspace controller
@@ -160,7 +160,7 @@ define(
                             this.controller.getItemIdentity(page) : '',
 
                         wurl = widget ?
-                            '/' + page.controller.getItemIdentity(widget) : '';
+                        '/' + page.controller.getItemIdentity(widget) : '';
 
                     this.controller.setHashLocation(
                         ''.concat('/', purl, wurl)
@@ -234,7 +234,16 @@ define(
                      */
                     var page = this.getCurrentItem();
 
-                    this.scope.view.elements.$pages.swipeTo(page, animate);
+                    /**
+                     * Define local scope
+                     * @type {Workspace}
+                     */
+                    var scope = this.scope;
+
+                    scope.view.elements.$pages.swipeTo(page, animate);
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.updateSiteTitle
+                    );
                 },
 
                 /**
@@ -325,9 +334,59 @@ define(
                  * @member WorkspaceController
                  */
                 updateSiteTitle: function updateSiteTitle() {
-                    this.view.get$item().updateTitle(
-                        this.model.getConfig('preferences')['siteTitle']
-                    );
+
+                    /**
+                     * Define $item
+                     * @type {WorkspaceElement}
+                     */
+                    var $item = this.view.get$item();
+
+                    var siteTitle = this.model.getConfig('preferences')['siteTitle'] ||
+                        $item.getSiteTitle();
+                    /**
+                     * Get current page
+                     * @type {Page}
+                     */
+                    var page = this.controller.getCurrentItem(),
+                        title = siteTitle;
+
+                    if (page.model) {
+
+                        /**
+                         * Get page title
+                         * @type {string}
+                         */
+                        var pageTitle = page.model.getItemTitle();
+
+                        /**
+                         * Define SEO title
+                         * @type {string}
+                         */
+                        title = pageTitle && (pageTitle + '').length > 0 ?
+                            [pageTitle, siteTitle].join(
+                                this.model.getConfig('SEOSeparator')
+                            ) : siteTitle;
+                    }
+
+                    $item.setSiteTitle(title);
+                },
+
+                /**
+                 * Update site author
+                 * @member WorkspaceController
+                 */
+                updateSiteAuthor: function updateSiteAuthor() {
+
+                    /**
+                     * Define $item
+                     * @type {WorkspaceElement}
+                     */
+                    var $item = this.view.get$item();
+
+                    var siteAuthor = this.model.getConfig('preferences')['siteAuthor'] ||
+                        $item.getSiteAuthor();
+
+                    $item.setSiteAuthor(siteAuthor);
                 },
 
                 /**

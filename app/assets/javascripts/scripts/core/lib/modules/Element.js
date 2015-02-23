@@ -926,6 +926,42 @@ define([
                 }).join(''),
                 '</ul>'
             ].join('');
+        },
+
+        /**
+         * Get site description
+         * @member BaseElement
+         * @returns {string}
+         */
+        getSiteDescription: function getSiteDescription() {
+            return $('meta[name="description"]').attr('content');
+        },
+
+        /**
+         * Set site description
+         * @member BaseElement
+         * @param {string} description
+         */
+        setSiteDescription: function setSiteDescription(description) {
+            $('meta[name="description"]').attr('content', description);
+        },
+
+        /**
+         * Get site description
+         * @member BaseElement
+         * @returns {string}
+         */
+        getSiteKeywords: function getSiteKeywords() {
+            return $('meta[name="keywords"]').attr('content');
+        },
+
+        /**
+         * Set site description
+         * @member BaseElement
+         * @param {string} keywords
+         */
+        setSiteKeywords: function setSiteKeywords(keywords) {
+            $('meta[name="keywords"]').attr('content', keywords);
         }
 
     }, AntHill.prototype, Renderer.prototype);

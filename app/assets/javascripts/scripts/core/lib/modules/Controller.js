@@ -439,6 +439,42 @@ define([
         },
 
         /**
+         * Update site description
+         * @member BaseController
+         */
+        updateSiteDescription: function updateSiteDescription() {
+
+            /**
+             * Get $item
+             * @type {BaseElement}
+             */
+            var $item = this.view.get$item();
+
+            var siteDescription = this.model.getConfig('preferences')['siteDescription'] ||
+                $item.getSiteDescription();
+
+            $item.setSiteDescription(siteDescription);
+        },
+
+        /**
+         * Update site keywords
+         * @member BaseController
+         */
+        updateSiteKeywords: function updateSiteKeywords() {
+
+            /**
+             * Get $item
+             * @type {BaseElement}
+             */
+            var $item = this.view.get$item();
+
+            var siteKeywords = this.model.getConfig('preferences')['siteKeywords'] ||
+                $item.getSiteKeywords();
+
+            $item.setSiteKeywords(siteKeywords);
+        },
+
+        /**
          * Extend Config
          * @member BaseController
          * @param {{config, [dom]}} opts

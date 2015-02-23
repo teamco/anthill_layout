@@ -92,6 +92,20 @@ define([
                 preferences = workspace.model.getConfig('preferences');
 
             /**
+             * Get site title
+             * @type {*|string}
+             */
+            var siteTitle = preferences['siteTitle'];
+
+            /**
+             * Split SEO title
+             * @type {*|Array}
+             */
+            var seoTitle = workspace.view.get$item().getSiteTitle().split(
+                workspace.model.getConfig('SEOSeparator')
+            );
+
+            /**
              * Render title
              * @type {*[]}
              */
@@ -100,7 +114,7 @@ define([
                 text: 'Title',
                 disabled: false,
                 visible: true,
-                value: preferences['siteTitle'] || $('title').text()
+                value: siteTitle || seoTitle[seoTitle.length - 1]
             });
 
             return $('<li />').

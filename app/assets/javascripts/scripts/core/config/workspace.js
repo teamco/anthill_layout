@@ -38,6 +38,7 @@ define(
              * @type {{
              *      preferences: {},
              *      limit: boolean,
+             *      SEOSeparator: string,
              *      isResized: boolean,
              *      type: string,
              *      order: number,
@@ -61,6 +62,7 @@ define(
 					staticWidth: true, 
 					siteWidthSlider: "1"
 				},
+                SEOSeparator: ' | ',
                 limit: false,
                 isResized: true,
                 type: 'default',
