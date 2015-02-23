@@ -7,124 +7,41 @@
  */
 
 define([
-    'config/application',
-    'config/workspace',
-    'config/page',
-    'config/layout',
-    'config/widget'
-], function definePermissions(App, Workspace, Page, Layout, Widget) {
-
-    // Load permissions
-    for (var i = 0, l = arguments.length; i < l; i++) {
-        arguments[i].prototype.localPermissions = arguments[i].prototype.localPermissions || {};
-    }
+    'config/permissions/application.permissions',
+    'config/permissions/workspace.permissions',
+    'config/permissions/page.permissions',
+    'config/permissions/layout.permissions',
+    'config/permissions/widget.permissions',
+    'modules/Logger'
+], function definePermissions(App, Workspace, Page, Layout, Widget, Logger) {
 
     /**
-     * Define Application Local permission
-     * @type {{
-     *      development: {},
-     *      authorize: {},
-     *      consumption: {},
-     *      test: {}
-     * }}
+     * Define logger instance
+     * @type {Logger}
      */
-    App.prototype.localPermissions = {
-        development: {
-        },
-        authorize: {
-        },
-        consumption: {
-        },
-        test: {
+    var logger = new Logger({
+        config: {
+            logger: {
+                show: true,
+                namespaces: false,
+                type: {
+                    debug: false,
+                    log: false,
+                    info: false,
+                    error: true,
+                    warn: true
+                }
+            }
         }
-    };
+    });
 
-    /**
-     * Define Workspace Local permission
-     * @type {{
-     *      development: {},
-     *      authorize: {},
-     *      consumption: {},
-     *      test: {}
-     * }}
-     */
-    Workspace.prototype.localPermissions = {
-        development: {
-        },
-        authorize: {
-        },
-        consumption: {
-        },
-        test: {
-        }
-    };
-
-    /**
-     * Define Page Local permission
-     * @type {{
-     *      development: {},
-     *      authorize: {},
-     *      consumption: {},
-     *      test: {}
-     * }}
-     */
-    Page.prototype.localPermissions = {
-        development: {
-        },
-        authorize: {
-        },
-        consumption: {
-        },
-        test: {
-        }
-    };
-
-    /**
-     * Define Layout Local permission
-     * @type {{
-     *      development: {},
-     *      authorize: {},
-     *      consumption: {},
-     *      test: {}
-     * }}
-     */
-    Layout.prototype.localPermissions = {
-        development: {
-        },
-        authorize: {
-        },
-        consumption: {
-        },
-        test: {
-        }
-    };
-
-    /**
-     * Define Widget Local permission
-     * @type {{
-     *      development: {draggable: boolean, resizable: boolean},
-     *      authorize: {draggable: boolean, resizable: boolean},
-     *      consumption: {draggable: boolean, resizable: boolean},
-     *      test: {draggable: boolean, resizable: boolean}
-     * }}
-     */
-    Widget.prototype.localPermissions = {
-        development: {
-            draggable: true,
-            resizable: true
-        },
-        authorize: {
-            draggable: true,
-            resizable: true
-        },
-        consumption: {
-            draggable: false,
-            resizable: false
-        },
-        test: {
-            draggable: true,
-            resizable: true
-        }
-    };
-
+    logger.puts.bind(logger, 'debug')(
+        'Define local permissions', [
+            App.prototype.localPermissions,
+            Workspace.prototype.localPermissions,
+            Page.prototype.localPermissions,
+            Layout.prototype.localPermissions,
+            Widget.prototype.localPermissions
+        ]
+    );
 });

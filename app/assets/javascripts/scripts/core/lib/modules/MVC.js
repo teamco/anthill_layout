@@ -700,7 +700,7 @@ define([
 
             /**
              * Define Logger
-             * @type {modules.logger}
+             * @type {Logger}
              */
             scope.logger = new Logger(scope);
 
