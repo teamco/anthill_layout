@@ -171,6 +171,15 @@ define([
         setPageFooter: function setPageFooter(footer) {
             this._setItemInfoPreferences('pageFooter', footer);
             this.getConfig('html').footer = footer;
+        },
+
+        /**
+         * Set page animation on swipe
+         * @member PageModel
+         * @param {boolean} animate
+         */
+        setAnimateSwipe: function setAnimateSwipe(animate) {
+            this._setItemInfoPreferences('animateSwipe', animate);
         }
 
     }, BaseModel.prototype);

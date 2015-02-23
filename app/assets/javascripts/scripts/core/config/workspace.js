@@ -72,7 +72,7 @@ define(
                     counter: 0,
                     limit: 10,
                     // Animate on switch page
-                    animate: true,
+                    animateSwipe: true,
                     // Show previous page (false means Next)
                     onDestroyShowPrevious: true
                 },

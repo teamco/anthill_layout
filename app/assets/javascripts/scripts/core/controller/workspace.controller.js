@@ -66,18 +66,12 @@ define(
                 /**
                  * Switch page on hash change
                  * @member WorkspaceController
-                 * @param {boolean} animate
                  */
-                switchPageOnHashChange: function switchPageOnHashChange(animate) {
-
-                    animate = typeof(animate) === 'undefined' ?
-                        this.model.getConfig('animate') : !!animate;
+                switchPageOnHashChange: function switchPageOnHashChange() {
 
                     this.observer.publish(
-                        this.eventmanager.eventList.switchToPage, [
-                            this.controller.getPageByHashLocation(),
-                            animate
-                        ]
+                        this.eventmanager.eventList.switchToPage,
+                        this.controller.getPageByHashLocation()
                     );
                 },
 
@@ -171,10 +165,9 @@ define(
                  * Switch to page
                  * @member WorkspaceController
                  * @param {Page} page
-                 * @param {boolean} animate
                  * @returns {boolean|*}
                  */
-                switchToPage: function switchToPage(page, animate) {
+                switchToPage: function switchToPage(page) {
 
                     if (page && page.model && this.items.hasOwnProperty(page.model.getUUID())) {
 
@@ -196,7 +189,7 @@ define(
                             this.controller.setCurrentItem(page);
                         }
 
-                        this.controller.swipeToCurrentPage(animate);
+                        this.controller.swipeToCurrentPage();
 
                     } else {
 
@@ -224,9 +217,8 @@ define(
                 /**
                  * Swipe to current page
                  * @member WorkspaceController
-                 * @param {boolean} animate
                  */
-                swipeToCurrentPage: function swipeToCurrentPage(animate) {
+                swipeToCurrentPage: function swipeToCurrentPage() {
 
                     /**
                      * Get current page
@@ -240,7 +232,7 @@ define(
                      */
                     var scope = this.scope;
 
-                    scope.view.elements.$pages.swipeTo(page, animate);
+                    scope.view.elements.$pages.swipeTo(page);
                     scope.observer.publish(
                         scope.eventmanager.eventList.updateMetaData,
                         page

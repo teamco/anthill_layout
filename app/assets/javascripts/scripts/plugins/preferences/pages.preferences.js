@@ -39,6 +39,7 @@ define([
              *      pageUrl: {type: string, disabled: boolean, value},
              *      pageHeader: {type: string, disabled: boolean, value},
              *      pageFooter: {type: string, disabled: boolean, value},
+             *      animateSwipe: {type: string, disabled: boolean, value}
              *      showInTabs: {type: string, disabled: boolean, value}
              * }}
              */
@@ -77,6 +78,12 @@ define([
                     type: 'checkbox',
                     disabled: false,
                     value: false,
+                    visible: true
+                },
+                animateSwipe: {
+                    type: 'checkbox',
+                    disabled: false,
+                    value: true,
                     visible: true
                 },
                 showInTabs: {
