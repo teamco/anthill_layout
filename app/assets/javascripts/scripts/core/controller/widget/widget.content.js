@@ -21,6 +21,24 @@ define([
     return WidgetContent.extend('WidgetContent', {
 
         /**
+         * Define load widget data
+         * @member WidgetContent
+         */
+        loadWidgetData: function loadWidgetData() {
+
+            /**
+             * Get local scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.batchPublish(
+                scope.eventmanager.eventList.loadContent,
+                scope.eventmanager.eventList.loadPreferences
+            );
+        },
+
+        /**
          * Load widget content
          * @member WidgetContent
          */
@@ -28,13 +46,13 @@ define([
 
             /**
              * Define widget instance
-             * @type {*}
+             * @type {Widget}
              */
             var widget = this;
 
             /**
              * Get resource
-             * @type {*}
+             * @type {string}
              */
             var resource = widget.model.getConfig('preferences').resource;
 

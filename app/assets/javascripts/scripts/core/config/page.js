@@ -65,8 +65,10 @@ define([
          *      preferences: {},
          *      order: number,
          *      type: string,
+         *      limit: boolean,
          *      isDefault: boolean,
-         *      isDefault: boolean,
+         *      isResized: boolean,
+         *      contentLoaded: boolean,
          *      layout: {
          *          behavior: {
          *              snap2grid: {
@@ -107,6 +109,7 @@ define([
             limit: false,
             isResized: true,
             isDefault: false,
+            contentLoaded: false,
             layout: {
                 behavior: {
                     snap2grid: {

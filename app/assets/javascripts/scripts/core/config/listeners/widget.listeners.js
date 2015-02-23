@@ -50,13 +50,7 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
                     arguments
                 ]);
 
-                this.observer.publish(
-                    this.eventmanager.eventList.loadContent
-                );
-
-                this.observer.publish(
-                    this.eventmanager.eventList.loadPreferences
-                );
+                this.controller.loadWidgetData();
             }
         }
     };
