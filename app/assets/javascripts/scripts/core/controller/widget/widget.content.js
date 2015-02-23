@@ -23,8 +23,15 @@ define([
         /**
          * Define load widget data
          * @member WidgetContent
+         * @param {boolean} [force]
          */
-        loadWidgetData: function loadWidgetData() {
+        loadWidgetData: function loadWidgetData(force) {
+
+            /**
+             * Init force
+             * @type {boolean}
+             */
+            force = this.base.defineBoolean(force, false, true);
 
             /**
              * Get local scope
@@ -52,9 +59,11 @@ define([
              */
             var pageMatch = page.controller.isPageMatch2Hash();
 
-            if (pageMatch && (pageMatch[1] === currentPage.model.getItemTitle())) {
+            function _loadData() {
 
-                currentPage.model.setConfig('contentLoaded', true);
+                if (!currentPage.model.getConfig('contentLoaded')) {
+                    currentPage.model.setConfig('contentLoaded', true);
+                }
 
                 scope.observer.batchPublish(
                     scope.eventmanager.eventList.loadContent,
@@ -62,6 +71,16 @@ define([
                 );
 
                 currentPage.logger.debug('Content start loading', this);
+            }
+
+            if (pageMatch) {
+                if (pageMatch[1] === currentPage.model.getItemTitle()) {
+                    _loadData();
+                }
+            }
+
+            if (force) {
+                _loadData();
             }
         },
 

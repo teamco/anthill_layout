@@ -200,6 +200,10 @@ define(
                     }
                 },
 
+                /**
+                 * Define loading items content
+                 * @member PageController
+                 */
                 loadItemsContent: function loadItemsContent() {
 
                     if (this.model.getConfig('contentLoaded')) {
