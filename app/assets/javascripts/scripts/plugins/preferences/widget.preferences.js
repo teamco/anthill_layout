@@ -264,22 +264,13 @@ define([
              */
             function _renderNode(type, prefs, title, isOpened) {
 
-                /**
-                 * Define css class
-                 * @type {string}
-                 */
-                var open = isOpened ? 'open' : undefined;
-
                 return $('<li />').append(
-                    $('<fieldset />').append(
-                        $('<legend />').addClass(open).text(title).
-                            on('click.toggle', this.toggleFieldset.bind(this)).attr({
-                                title: title
-                            }),
-
+                    this.renderFieldSet(
+                        title,
                         $('<ul />').addClass(type).append(
                             _renderForm.bind(this)(prefs, title)
-                        )
+                        ),
+                        isOpened
                     )
                 ).addClass('auto');
             }
@@ -375,12 +366,8 @@ define([
 
             nodes.push(
                 $('<li />').append(
-                    $('<fieldset />').append(
-                        $('<legend />').text('Interactions').
-                            on('click.toggle', this.toggleFieldset.bind(this)).attr({
-                                title: 'Interactions'
-                            }),
-
+                    this.renderFieldSet(
+                        'Interactions',
                         $ul.append([
                             this.renderPrefs('Column', column),
                             this.renderPrefs('Width', width),
