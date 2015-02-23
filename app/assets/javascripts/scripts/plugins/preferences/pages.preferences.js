@@ -24,68 +24,68 @@ define([
     return PagesPreferences.extend('PagesPreferences', {
 
         /**
-         * Define default widget prefs
-         * @member PagesPreferences
-         * @type {{
-         *      title: {type: string, disabled: boolean, value},
-         *      pageUrl: {type: string, disabled: boolean, value},
-         *      description: {type: string, disabled: boolean, value},
-         *      pageHeader: {type: string, disabled: boolean, value},
-         *      pageFooter: {type: string, disabled: boolean, value},
-         *      showInTabs: {type: string, disabled: boolean, value}
-         * }}
-         */
-        defaultPrefs: {
-            title: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            },
-            pageDescription: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            },
-            pageKeywords: {
-                type: 'textarea',
-                disabled: false,
-                value: undefined,
-                visible: true
-            },
-            pageUrl: {
-                type: 'text',
-                disabled: true,
-                value: undefined,
-                visible: true
-            },
-            pageHeader: {
-                type: 'checkbox',
-                disabled: false,
-                value: false,
-                visible: true
-            },
-            pageFooter: {
-                type: 'checkbox',
-                disabled: false,
-                value: false,
-                visible: true
-            },
-            showInTabs: {
-                type: 'checkbox',
-                disabled: false,
-                value: true,
-                visible: true
-            }
-        },
-
-        /**
          * Render data
          * @member PagesPreferences
          * @param {data} opts
          */
         renderData: function renderData(opts) {
+
+            /**
+             * Define default widget prefs
+             * @type {{
+             *      title: {type: string, disabled: boolean, value},
+             *      siteDescription: {type: string, disabled: boolean, value},
+             *      siteKeywords: {type: string, disabled: boolean, value},
+             *      pageUrl: {type: string, disabled: boolean, value},
+             *      pageHeader: {type: string, disabled: boolean, value},
+             *      pageFooter: {type: string, disabled: boolean, value},
+             *      showInTabs: {type: string, disabled: boolean, value}
+             * }}
+             */
+            var defaultPrefs = {
+                title: {
+                    type: 'text',
+                    disabled: false,
+                    value: undefined,
+                    visible: true
+                },
+                siteDescription: {
+                    type: 'textarea',
+                    disabled: false,
+                    value: undefined,
+                    visible: true
+                },
+                siteKeywords: {
+                    type: 'textarea',
+                    disabled: false,
+                    value: undefined,
+                    visible: true
+                },
+                pageUrl: {
+                    type: 'text',
+                    disabled: true,
+                    value: undefined,
+                    visible: true
+                },
+                pageHeader: {
+                    type: 'checkbox',
+                    disabled: false,
+                    value: false,
+                    visible: true
+                },
+                pageFooter: {
+                    type: 'checkbox',
+                    disabled: false,
+                    value: false,
+                    visible: true
+                },
+                showInTabs: {
+                    type: 'checkbox',
+                    disabled: false,
+                    value: true,
+                    visible: true
+                }
+            };
 
             /**
              * Define dom nodes
@@ -126,7 +126,7 @@ define([
              * @type {{}}
              */
             opts.data = _mergePrefs(
-                this.defaultPrefs,
+                defaultPrefs,
                 $.extend(opts.data, {}, true)
             );
 
@@ -209,7 +209,6 @@ define([
                     $ul.append([
 
                         $('<li />').append(
-
                             this.renderTextField({
                                 name: 'layout-cell-width',
                                 text: 'Cell size',
@@ -217,11 +216,9 @@ define([
                                 visible: true,
                                 disabled: true
                             })
-
                         ).attr('rel', 'layout-cell-width'),
 
                         $('<li />').append(
-
                             this.renderCombobox(
                                 [
                                     {
@@ -243,11 +240,9 @@ define([
                                 undefined,
                                 true
                             )
-
                         ).attr('rel', 'layout-behavior'),
 
                         $('<li />').append(
-
                             this.renderTextField({
                                 name: 'page-width',
                                 text: 'Page width',
@@ -255,12 +250,10 @@ define([
                                 visible: true,
                                 disabled: true
                             })
-
                         ).attr('rel', 'page-width').
                             addClass('page-width'),
 
                         $('<li />').append(
-
                             this.renderTextField({
                                 name: 'layoutColumns',
                                 text: 'Columns',
@@ -268,7 +261,6 @@ define([
                                 visible: true,
                                 disabled: false
                             })
-
                         ).attr('rel', 'layout-columns').
                             addClass('page-layout-columns')
                     ])

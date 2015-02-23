@@ -109,7 +109,7 @@ define([
          * @member PageModel
          * @param {string} description
          */
-        setPageDescription: function setPageDescription(description) {
+        setSiteDescription: function setSiteDescription(description) {
 
             /**
              * Set local scope
@@ -117,7 +117,6 @@ define([
              */
             var scope = this.scope;
 
-            this._setItemInfoPreferences('pageDescription', description);
             this._setItemInfoPreferences('siteDescription', description);
 
             scope.observer.publish(
@@ -130,7 +129,7 @@ define([
          * @member PageModel
          * @param {string} keywords
          */
-        setPageKeywords: function setPageKeywords(keywords) {
+        setSiteKeywords: function setSiteKeywords(keywords) {
 
             /**
              * Set local scope
@@ -138,7 +137,6 @@ define([
              */
             var scope = this.scope;
 
-            this._setItemInfoPreferences('pageKeywords', keywords);
             this._setItemInfoPreferences('siteKeywords', keywords);
 
             scope.observer.publish(
