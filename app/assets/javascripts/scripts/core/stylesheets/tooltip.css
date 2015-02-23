@@ -9,6 +9,7 @@
     border: 2px solid lightblue;
     border-radius: 5px;
     display: none;
+    color: #333;
 }
 
 .tooltip h2 {

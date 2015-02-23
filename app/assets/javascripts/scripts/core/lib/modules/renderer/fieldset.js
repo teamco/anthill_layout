@@ -25,20 +25,26 @@ define([], function defineFieldSetRenderer() {
          */
         renderFieldSet: function renderFieldSet(text, $content, open) {
 
-            var $legend = $('<legend />').html(text).
-                on('click.toggle', this.toggleFieldset.bind(this)).attr({
-                    title: text
-                }
-            );
+            var $legend = {
+                $: $('<legend />').html(text).
+                    on('click.toggle', this.toggleFieldset.bind(this))
+            };
 
             if (open) {
-                $legend.addClass('open');
+                $legend.$.addClass('open');
             }
 
-            return $('<fieldset />').append(
-                $legend,
+            var $fieldset = $('<fieldset />').append(
+                $legend.$,
                 $content
             );
+
+            this.renderTooltip({
+                title: $('<div />').html(text).text(),
+                $container: $legend
+            });
+
+            return $fieldset;
         }
     });
 });
