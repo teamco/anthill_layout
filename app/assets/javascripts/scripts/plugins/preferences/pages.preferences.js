@@ -134,8 +134,10 @@ define([
 
                 if (opts.data.hasOwnProperty(index)) {
 
+                    var isCheckBox = opts.data[index].type === 'checkbox';
+
                     nodes.push(
-                        $('<li class="page-prefs" />').append(
+                        $('<li class="page-prefs' + (isCheckBox ? ' checkbox' : '') + '" />').append(
                             this.getNodeRenderer(
                                 opts.data[index],
                                 index.toPoint().humanize(),
