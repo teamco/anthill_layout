@@ -29,7 +29,7 @@ define([], function defineEventLinkRenderer(){
              * @type {String}
              */
             var uuid = this.base.lib.generator.UUID() + '-event',
-                checked = !!this.defaultPrefs[opts.name].checked;
+                checked = !!opts.checked;
 
             var $input = $('<input />').attr({
                 name: opts.group,

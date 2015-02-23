@@ -125,7 +125,8 @@ define(['jquery'], function defineBasePreferences($) {
                     group: node.group || index,
                     disabled: node.disabled,
                     events: node.events,
-                    visible: node.visible
+                    visible: node.visible,
+                    checked: node.checked
                 });
             }
 
