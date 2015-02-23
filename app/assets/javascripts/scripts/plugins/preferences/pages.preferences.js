@@ -42,13 +42,13 @@ define([
                 value: undefined,
                 visible: true
             },
-            description: {
+            pageDescription: {
                 type: 'textarea',
                 disabled: false,
                 value: undefined,
                 visible: true
             },
-            keywords: {
+            pageKeywords: {
                 type: 'textarea',
                 disabled: false,
                 value: undefined,
@@ -83,7 +83,7 @@ define([
         /**
          * Render data
          * @member PagesPreferences
-         * @param opts
+         * @param {data} opts
          */
         renderData: function renderData(opts) {
 
@@ -209,6 +209,7 @@ define([
                     $ul.append([
 
                         $('<li />').append(
+
                             this.renderTextField({
                                 name: 'layout-cell-width',
                                 text: 'Cell size',
@@ -216,9 +217,11 @@ define([
                                 visible: true,
                                 disabled: true
                             })
+
                         ).attr('rel', 'layout-cell-width'),
 
                         $('<li />').append(
+
                             this.renderCombobox(
                                 [
                                     {
@@ -240,9 +243,11 @@ define([
                                 undefined,
                                 true
                             )
+
                         ).attr('rel', 'layout-behavior'),
 
                         $('<li />').append(
+
                             this.renderTextField({
                                 name: 'page-width',
                                 text: 'Page width',
@@ -250,10 +255,12 @@ define([
                                 visible: true,
                                 disabled: true
                             })
+
                         ).attr('rel', 'page-width').
                             addClass('page-width'),
 
                         $('<li />').append(
+
                             this.renderTextField({
                                 name: 'layoutColumns',
                                 text: 'Columns',
@@ -261,6 +268,7 @@ define([
                                 visible: true,
                                 disabled: false
                             })
+
                         ).attr('rel', 'layout-columns').
                             addClass('page-layout-columns')
                     ])
@@ -339,7 +347,8 @@ define([
                             }).css(css).
 
                             on('mouseenter.widgetPrefs mouseleave.widgetPrefs click.widgetPrefs',
-                            this.showWidgetPrefs.bind(this));
+                            this.showWidgetPrefs.bind(this)
+                        );
 
                         this.renderTooltip({
                             title: title,

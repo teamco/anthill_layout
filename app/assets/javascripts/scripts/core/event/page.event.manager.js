@@ -38,6 +38,8 @@ define([
          *      destroyWidgets: string,
          *      createLayout: string,
          *      destroyLayout: string,
+         *      updateSiteDescription: string,
+         *      updateSiteKeywords: string,
          *      updateLayoutConfig: string,
          *      resizeWidgets: string,
          *      resizeWidget: string,
@@ -75,6 +77,9 @@ define([
             updateHashOnReduce: 'update.hash.on.reduce',
 
             updateHeight: 'update.height',
+
+            updateSiteDescription: 'update.site.description',
+            updateSiteKeywords: 'update.site.keywords',
 
             afterLoadingItems: 'after.loading.items',
             disableItemInteractions: 'disable.item.interactions',

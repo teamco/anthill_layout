@@ -105,6 +105,48 @@ define([
         },
 
         /**
+         * Set page/site description
+         * @member PageModel
+         * @param {string} description
+         */
+        setPageDescription: function setPageDescription(description) {
+
+            /**
+             * Set local scope
+             * @type {Page}
+             */
+            var scope = this.scope;
+
+            this._setItemInfoPreferences('pageDescription', description);
+            this._setItemInfoPreferences('siteDescription', description);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateSiteDescription
+            );
+        },
+
+        /**
+         * Set page/site keywords
+         * @member PageModel
+         * @param {string} keywords
+         */
+        setPageKeywords: function setPageKeywords(keywords) {
+
+            /**
+             * Set local scope
+             * @type {Page}
+             */
+            var scope = this.scope;
+
+            this._setItemInfoPreferences('pageKeywords', keywords);
+            this._setItemInfoPreferences('siteKeywords', keywords);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateSiteKeywords
+            );
+        },
+
+        /**
          * Set show in tabs
          * @member PageModel
          * @param {boolean} show

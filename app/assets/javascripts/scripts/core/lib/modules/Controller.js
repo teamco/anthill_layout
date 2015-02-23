@@ -448,7 +448,7 @@ define([
              * Get $item
              * @type {BaseElement}
              */
-            var $item = this.view.get$item();
+            var $item = this.controller.root().view.get$item();
 
             var siteDescription = this.model.getConfig('preferences')['siteDescription'] ||
                 $item.getSiteDescription();
@@ -466,7 +466,7 @@ define([
              * Get $item
              * @type {BaseElement}
              */
-            var $item = this.view.get$item();
+            var $item = this.controller.root().view.get$item();
 
             var siteKeywords = this.model.getConfig('preferences')['siteKeywords'] ||
                 $item.getSiteKeywords();

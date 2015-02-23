@@ -218,11 +218,8 @@ define([
                 [Layout, this.config.layout]
             );
 
-            this.observer.publish(
-                this.eventmanager.eventList.successCreated
-            );
-
-            this.observer.publish(
+            this.observer.batchPublish(
+                this.eventmanager.eventList.successCreated,
                 this.eventmanager.eventList.loadPreferences
             );
         }
