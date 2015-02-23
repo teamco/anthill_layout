@@ -79,7 +79,7 @@ define(
 
                     scope.observer.publish(
                         scope.eventmanager.eventList.switchToPage,
-                        this.getPageByHashLocation()
+                        this.getPageByHashLocation(scope)
                     );
                 },
 
@@ -244,6 +244,10 @@ define(
                     scope.observer.publish(
                         scope.eventmanager.eventList.updateMetaData,
                         page
+                    );
+
+                    page.observer.publish(
+                        page.eventmanager.eventList.loadItemsContent
                     );
                 },
 

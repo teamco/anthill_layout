@@ -2,9 +2,7 @@
  * Created by i061485 on 6/10/14.
  */
 
-define([
-
-], function defineRouter() {
+define([], function defineRouter() {
 
     /**
      * Define router
@@ -51,37 +49,50 @@ define([
         },
 
         /**
+         * Define hash page matcher
+         * @member Router
+         * @returns {Array|{index: number, input: string}}
+         */
+        isPageMatch2Hash: function isPageMatch2Hash() {
+            return this.getHashLocation().match(/#\/([\w\d\-]*):?/i);
+        },
+
+        /**
+         * Define hash widget matcher
+         * @member Router
+         * @returns {Array|{index: number, input: string}}
+         */
+        isWidgetMatch2Hash: function isWidgetMatch2Hash() {
+            return this.getHashLocation().match(/\/([\w\d\-]*):?/i);
+        },
+
+        /**
          * Get page by hash
          * @member Router
+         * @param {Workspace} workspace
          * @returns {Page}
          */
-        getPageByHashLocation: function getPageByHashLocation() {
-
-            /**
-             * Define hash
-             * @type {string}
-             */
-            var hash = this.getHashLocation();
+        getPageByHashLocation: function getPageByHashLocation(workspace) {
 
             /**
              * Match regex
              * @type {Array|{index: number, input: string}|*}
              */
-            var pageMatch = hash.match(/#\/([\w\d\-]*):?/i);
+            var pageMatch = this.isPageMatch2Hash();
 
             /**
              * Get current page
              * @type {Page}
              */
-            var currentPage = this.getCurrentItem();
+            var currentPage = workspace.controller.getCurrentItem();
 
             /**
              * Get page
              * @type {Page}
              */
             var page = pageMatch ?
-                (this.model.getItemByTitle(pageMatch[1]) ||
-                    this.model.getItemByUUID(pageMatch[1])) :
+                (workspace.model.getItemByTitle(pageMatch[1]) ||
+                workspace.model.getItemByUUID(pageMatch[1])) :
                 currentPage;
 
             return page || currentPage;
@@ -96,16 +107,10 @@ define([
         getWidgetByHashLocation: function getWidgetByHashLocation(page) {
 
             /**
-             * Define hash
-             * @type {string}
-             */
-            var hash = this.getHashLocation();
-
-            /**
              * Match regex
              * @type {Array|{index: number, input: string}}
              */
-            var widgetMatch = hash.match(/\/([\w\d\-]*):?/i);
+            var widgetMatch = this.isWidgetMatch2Hash();
 
             /**
              * Get widget
@@ -113,7 +118,7 @@ define([
              */
             var widget = widgetMatch ?
                 (page.model.getItemByTitle(widgetMatch[1]) ||
-                    page.model.getItemByUUID(widgetMatch[1])) :
+                page.model.getItemByUUID(widgetMatch[1])) :
                 null;
 
             return widget;
@@ -150,12 +155,18 @@ define([
         updateHashOnReduce: function updateHashOnReduce(widget) {
 
             /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.controller.getWorkspace();
+
+            /**
              * Get page
              * @type {Page}
              */
             var page = this.controller.getPageByHashLocation.bind(
-                this.controller.getWorkspace().controller
-            )();
+                workspace.controller
+            )(workspace);
 
             this.controller.setPageByHashLocation(page);
         },

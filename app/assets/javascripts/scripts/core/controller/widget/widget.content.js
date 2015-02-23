@@ -32,10 +32,37 @@ define([
              */
             var scope = this.scope;
 
-            scope.observer.batchPublish(
-                scope.eventmanager.eventList.loadContent,
-                scope.eventmanager.eventList.loadPreferences
+            /**
+             * Get widget page
+             * @type {Page}
+             */
+            var page = this.getContainment();
+
+            /**
+             * Get current page
+             * @type {Page}
+             */
+            var currentPage = page.controller.getPageByHashLocation(
+                page.controller.getContainment()
             );
+
+            /**
+             * Define page matcher
+             * @type {Array|{index: number, input: string}}
+             */
+            var pageMatch = page.controller.isPageMatch2Hash();
+
+            if (pageMatch && (pageMatch[1] === currentPage.model.getItemTitle())) {
+
+                currentPage.model.setConfig('contentLoaded', true);
+
+                scope.observer.batchPublish(
+                    scope.eventmanager.eventList.loadContent,
+                    scope.eventmanager.eventList.loadPreferences
+                );
+
+                currentPage.logger.debug('Content start loading', this);
+            }
         },
 
         /**
@@ -66,7 +93,7 @@ define([
              * @type {string}
              */
             var path = [
-                '../../scripts/plugins/widgets' ,
+                '../../scripts/plugins/widgets',
                 ('/' + resource).repeat(2)
             ].join('');
 
@@ -79,6 +106,8 @@ define([
                         rules: widget.contentRules || {}
                     }]
                 );
+
+                widget.logger.debug('Content finish loading');
             });
         },
 

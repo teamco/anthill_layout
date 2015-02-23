@@ -198,6 +198,33 @@ define(
                             }
                         }
                     }
+                },
+
+                loadItemsContent: function loadItemsContent() {
+
+                    if (this.model.getConfig('contentLoaded')) {
+
+                        this.logger.debug('Content already loaded');
+
+                    } else {
+
+                        var items = this.model.getItems(),
+                            item;
+
+                        for (var index in items) {
+
+                            if (items.hasOwnProperty(index)) {
+
+                                /**
+                                 * Get item
+                                 * @type {Widget}
+                                 */
+                                item = items[index];
+
+                                item.controller.loadWidgetData();
+                            }
+                        }
+                    }
                 }
             },
 

@@ -43,6 +43,7 @@ define([
          *      updateLayoutConfig: string,
          *      resizeWidgets: string,
          *      resizeWidget: string,
+         *      loadItemsContent: string,
          *      updateHashOnMaximize: string,
          *      updateHashOnReduce: string,
          *      updateHeight: string,
@@ -83,7 +84,7 @@ define([
 
             afterLoadingItems: 'after.loading.items',
             disableItemInteractions: 'disable.item.interactions',
-
+            loadItemsContent: 'load.items.content',
             enableItemInteractions: 'enable.item.interactions',
 
             loadPreferences: 'load.preferences',
