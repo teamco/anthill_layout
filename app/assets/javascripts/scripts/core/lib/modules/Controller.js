@@ -127,7 +127,7 @@ define([
                 wsc = ws.controller;
 
             if (wsc) {
-                wsc.switchPageOnHashChange.bind(wsc)();
+                wsc.switchPageOnHashChange.bind(ws)();
             }
         },
 
