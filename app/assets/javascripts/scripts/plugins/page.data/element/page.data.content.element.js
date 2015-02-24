@@ -48,6 +48,16 @@ define([
             var title = data.model.getItemTitle();
 
             /**
+             * Define data
+             * @member PageDataContentElement
+             * @type {{name: string, description: string}}
+             */
+            this.data = {
+                name: title,
+                description: data.model.getConfig('preferences').description
+            };
+
+            /**
              * Get description
              * @type {string}
              */

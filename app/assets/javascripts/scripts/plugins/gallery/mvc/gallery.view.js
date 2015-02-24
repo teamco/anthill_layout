@@ -71,14 +71,6 @@ define([
         },
 
         /**
-         * Set search on focus
-         * @member GalleryView
-         */
-        setOnFocus: function setOnFocus() {
-            this.elements.$search.focusOn('input');
-        },
-
-        /**
          * Render gallery providers
          * @member GalleryView
          * @param providers
@@ -107,7 +99,7 @@ define([
         renderSearch: function renderSearch() {
 
             /**
-             * Define Gallery element
+             * Define Gallery search element
              * @type {GallerySearchElement}
              */
             this.elements.$search = new GallerySearchElement(this, {
@@ -163,12 +155,12 @@ define([
                 this.elements.$container.$
             );
 
-            this.elements.$search.updateData(
-                this.elements.items
-            );
-            
+            this.elements.$search.updateData({
+                items: this.elements.items,
+                focusOn: 'input'
+            });
+
             this.updateFooterContent();
-            this.setOnFocus();
         },
 
         /**

@@ -28,6 +28,7 @@ define([
 
         /**
          * Define data
+         * @member GalleryContentElement
          * @type {*}
          */
         this.data = opts.data;

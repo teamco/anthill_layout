@@ -61,10 +61,13 @@ define([
             /**
              * Focus on field
              * @member Renderer
-             * @param {string} element
+             * @param {string} [element]
              */
             focusOn: function focusOn(element) {
-                $(element, this.$).focus();
+
+                if (element) {
+                    $(element, this.$).focus();
+                }
             }
         },
         AntHill.prototype,

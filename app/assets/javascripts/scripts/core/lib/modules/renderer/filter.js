@@ -74,10 +74,11 @@ define([], function defineFilterRenderer() {
         /**
          * Update items
          * @member FilterRenderer
-         * @param items
+         * @param {{items, [focusOn]}} opts
          */
-        updateData: function updateData(items) {
-            this.items = items;
+        updateData: function updateData(opts) {
+            this.items = opts.items;
+            this.focusOn(opts.focusOn);
         },
 
         /**
@@ -110,7 +111,14 @@ define([], function defineFilterRenderer() {
 
                 if (items.hasOwnProperty(index)) {
 
-                    // Define item
+                    /**
+                     * Define item
+                     * @type {{
+                     *      name: string,
+                     *      description:string,
+                     *      [type]: string
+                     * }}
+                     */
                     $item = items[index];
 
                     if (value.length === 0) {
@@ -125,7 +133,22 @@ define([], function defineFilterRenderer() {
                          */
                         regex = new RegExp(value, 'ig');
 
-                        ($item.data.name.match(regex) || $item.data.type.match(regex)) ?
+                        if (typeof($item.data) === 'undefined') {
+
+                            this.$element.view.scope.logger.warn(
+                                'Item has no data',
+                                $item
+                            );
+
+                            return false;
+                        }
+
+                        // Define matchers
+                        var nameMatch = ($item.data.name || '').match(regex),
+                            typeMatch = ($item.data.type || '').match(regex),
+                            descriptionMatch = ($item.data.description || '').match(regex);
+
+                        (nameMatch || typeMatch || descriptionMatch) ?
                             $item.removeStyle() :
                             $item.hide();
                     }

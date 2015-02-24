@@ -50,6 +50,39 @@ div.page-data-footer > div {
 }
 
 div.page-data-content .scroll-cover {
-    top: 70px;
+    top: 90px;
     bottom: 30px;
+}
+
+div.page-data-content .page-data-search {
+    height: 22px;
+}
+
+div.page-data-content .page-data-search label {
+    display: none;
+}
+
+div.page-data-content input[type="text"] {
+    padding: 0 3px;
+}
+
+div.page-data-content input[type="text"] {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    margin: 0;
+    width: 100%;
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+    transition: width 0.5s;
+    -webkit-transition: width 0.5s;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
+    border-radius: 0;
+    float: none;
+}
+
+div.page-data-content input[type="text"]:focus {
+    position: static;
 }

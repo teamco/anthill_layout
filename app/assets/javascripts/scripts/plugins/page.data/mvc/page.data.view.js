@@ -13,8 +13,9 @@ define([
     'element/header.element',
     'element/footer.element',
     'plugins/page.data/element/page.data.content.element',
+    'plugins/page.data/element/page.data.search.element',
     'plugins/page.data/element/page.data.element'
-], function definePageDataView(AntHill, BaseView, BasePreferences, Header, Footer, PageDataContentElement, PageDataElement) {
+], function definePageDataView(AntHill, BaseView, BasePreferences, Header, Footer, PageDataContentElement, PageDataSearchElement, PageDataElement) {
 
     /**
      * Define view
@@ -41,6 +42,8 @@ define([
 
             this.renderHeader(Header, 'Page Widgets');
 
+            this.renderSearch();
+
             /**
              * Define PageData element
              * @type {PageDataElement}
@@ -51,6 +54,23 @@ define([
             });
 
             this.renderFooter(Footer, this.elements.$pagedata);
+        },
+
+        /**
+         * Render gallery search
+         * @member PageDataView
+         * @returns {boolean}
+         */
+        renderSearch: function renderSearch() {
+
+            /**
+             * Define PageData Search element
+             * @type {PageDataSearchElement}
+             */
+            this.elements.$search = new PageDataSearchElement(this, {
+                $container: this.elements.$container.$,
+                style: 'page-data-search'
+            });
         },
 
         /**
@@ -69,6 +89,7 @@ define([
             this.elements.$pagedata.empty();
 
             this.renderHeader(Header, 'Page Widgets');
+            this.renderSearch();
 
             for (var index in data) {
 
@@ -103,6 +124,19 @@ define([
                 this.elements.$container.$
             );
 
+            this.elements.$search.updateData({
+                items: this.elements.items,
+                focusOn: 'input'
+            });
+
+            this.updateFooterContent();
+        },
+
+        /**
+         * Update footer content
+         * @member PageDataView
+         */
+        updateFooterContent: function updateFooterContent() {
             this.renderFooter(Footer, this.elements.$pagedata);
         },
 
