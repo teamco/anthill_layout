@@ -34,31 +34,27 @@ define([
          */
         renderData: function renderData() {
 
-            this.$.append(
+            /**
+             * Get view
+             * @type {GalleryView}
+             */
+            var view = this.view;
 
-                this.renderTextField({
-                    text: '',
-                    name: 'search',
-                    placeholder: 'Search',
-                    monitor: {
-                        events: ['keyup.gallery-search'],
-                        callback: this.view.controller.filterResults.bind(
-                            this.view.controller
-                        )
-                    },
-                    visible: true
-                })
-            );
+            /**
+             * Define $filter
+             * @type {FilterRenderer}
+             */
+            this.$filter = this.renderFilter({
+                text: '',
+                name: 'search',
+                placeholder: 'Search',
+                visible: true,
+                callback: view.updateFooterContent.bind(view)
+            });
+
+            this.$.append(this.$filter);
 
             return this;
-        },
-
-        /**
-         * Focus search field
-         * @member GallerySearchElement
-         */
-        focus: function focus() {
-            $('input', this.$).focus();
         }
 
     }, BaseElement.prototype);

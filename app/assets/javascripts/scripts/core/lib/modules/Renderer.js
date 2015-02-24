@@ -12,6 +12,7 @@ define([
     'modules/renderer/iframe',
     'modules/renderer/embed',
     'modules/renderer/object',
+    'modules/renderer/filter',
     'modules/renderer/label',
     'modules/renderer/fieldset',
     'modules/renderer/slider',
@@ -23,7 +24,7 @@ define([
     'modules/renderer/upload.on.drop',
     'modules/renderer/text.download',
     'modules/renderer/validation'
-], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Label, FieldSet, Slider, TextEditor, TextArea, TextField, NumberField, ToolTip, UploadOnDrop, TextDownload, Validation) {
+], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Filter, Label, FieldSet, Slider, TextEditor, TextArea, TextField, NumberField, ToolTip, UploadOnDrop, TextDownload, Validation) {
 
     /**
      * Define renderer
@@ -36,6 +37,7 @@ define([
      * @extends {IframeRenderer} Iframe
      * @extends {EmbedRenderer} Embed
      * @extends {ObjectRenderer} ObjectEmbed
+     * @extends {FilterRenderer} Filter
      * @extends {LabelRenderer} Label
      * @extends {FieldSetRenderer} Label
      * @extends {SliderRenderer} Slider
@@ -54,7 +56,17 @@ define([
     };
 
     return Renderer.extend(
-        'Renderer', {},
+        'Renderer', {
+
+            /**
+             * Focus on field
+             * @member Renderer
+             * @param {string} element
+             */
+            focusOn: function focusOn(element) {
+                $(element, this.$).focus();
+            }
+        },
         AntHill.prototype,
         CheckBox.prototype,
         ComboBox.prototype,
@@ -62,6 +74,7 @@ define([
         Iframe.prototype,
         Embed.prototype,
         ObjectEmbed.prototype,
+        Filter.prototype,
         Label.prototype,
         FieldSet.prototype,
         Slider.prototype,

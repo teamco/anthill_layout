@@ -75,7 +75,7 @@ define([
          * @member GalleryView
          */
         setOnFocus: function setOnFocus() {
-            this.elements.$search.focus();
+            this.elements.$search.focusOn('input');
         },
 
         /**
@@ -163,6 +163,10 @@ define([
                 this.elements.$container.$
             );
 
+            this.elements.$search.updateData(
+                this.elements.items
+            );
+            
             this.updateFooterContent();
             this.setOnFocus();
         },

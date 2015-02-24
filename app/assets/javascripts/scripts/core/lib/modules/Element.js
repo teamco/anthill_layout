@@ -477,9 +477,7 @@ define([
          * @member BaseElement
          */
         removeStyle: function removeStyle() {
-            this.$.attr({
-                style: ''
-            });
+            this.$.removeAttr('style');
         },
 
         /**
