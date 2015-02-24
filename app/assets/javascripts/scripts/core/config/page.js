@@ -60,6 +60,13 @@ define([
         };
 
         /**
+         * Define content loaded instance
+         * @member Page
+         * @type {boolean}
+         */
+        this.contentLoaded = false;
+
+        /**
          * Define default config
          * @type {{
          *      preferences: {},
@@ -68,7 +75,6 @@ define([
          *      limit: boolean,
          *      isDefault: boolean,
          *      isResized: boolean,
-         *      contentLoaded: boolean,
          *      layout: {
          *          behavior: {
          *              snap2grid: {
@@ -109,7 +115,6 @@ define([
             limit: false,
             isResized: true,
             isDefault: false,
-            contentLoaded: false,
             layout: {
                 behavior: {
                     snap2grid: {

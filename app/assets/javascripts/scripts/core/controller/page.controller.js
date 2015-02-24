@@ -201,12 +201,36 @@ define(
                 },
 
                 /**
+                 * Get content loaded
+                 * @member PageController
+                 * @return {boolean}
+                 */
+                isLoadedContent: function isLoadedContent() {
+                    return this.scope.contentLoaded;
+                },
+
+                /**
+                 * Define content loaded setter
+                 * @member PageController
+                 * @param {boolean} loaded
+                 */
+                setLoadedContent: function setLoadedContent(loaded) {
+
+                    /**
+                     * Define content loaded
+                     * @member Page
+                     * @type {boolean}
+                     */
+                    this.scope.contentLoaded = !!loaded;
+                },
+
+                /**
                  * Define loading items content
                  * @member PageController
                  */
                 loadItemsContent: function loadItemsContent() {
 
-                    if (this.model.getConfig('contentLoaded')) {
+                    if (this.controller.isLoadedContent()) {
 
                         this.logger.debug('Content already loaded');
 
@@ -228,6 +252,9 @@ define(
                                 item.controller.loadWidgetData();
                             }
                         }
+
+                        // Update config
+                        this.controller.setLoadedContent(true);
                     }
                 }
             },

@@ -271,10 +271,6 @@ define(
                      */
                     var pageMatch = this.isPageMatch2Hash();
 
-                    if (!currentPage.model.getConfig('contentLoaded')) {
-                        currentPage.model.setConfig('contentLoaded', true);
-                    }
-
                     if (pageMatch) {
                         if (pageMatch[1] === currentPage.model.getItemTitle()) {
                             return currentPage;
