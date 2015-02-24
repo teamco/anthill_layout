@@ -33,20 +33,6 @@ define([
 
     return PageDataElement.extend('PageDataElement', {
 
-        /**
-         * Get footer html
-         * @member PageDataElement
-         * @returns {*|jQuery}
-         */
-        getFooter: function getFooter() {
-            return $('<div />').text([
-                this.base.lib.hash.hashLength(
-                    this.view.scope.controller.getModuleData()
-                ),
-                'items'
-            ].join(' '));
-        }
-
     }, BaseElement.prototype);
 
 });

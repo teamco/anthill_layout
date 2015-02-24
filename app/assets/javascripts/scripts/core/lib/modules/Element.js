@@ -495,6 +495,8 @@ define([
                 itemsLength = this.base.lib.hash.hashLength(items),
                 counter = 0;
 
+            return this;
+
             for (index in items) {
 
                 if (items.hasOwnProperty(index)) {
@@ -519,8 +521,6 @@ define([
                     counter += 1;
                 }
             }
-
-            return this;
         },
 
         /**
@@ -960,6 +960,32 @@ define([
          */
         setSiteKeywords: function setSiteKeywords(keywords) {
             $('meta[name="keywords"]').attr('content', keywords);
+        },
+
+        /**
+         * Get footer html
+         * @member BaseElement
+         * @returns {*|jQuery}
+         */
+        getFooter: function getFooter() {
+
+            var counter = 0, index,
+                items = this.view.elements.items;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    if (!items[index].$.hasClass('hide')) {
+                        counter += 1;
+                    }
+                }
+            }
+
+            return $('<div />').text([
+                counter,
+                'items'
+            ].join(' '));
         }
 
     }, AntHill.prototype, Renderer.prototype);

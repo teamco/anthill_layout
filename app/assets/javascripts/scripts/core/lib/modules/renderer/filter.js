@@ -148,9 +148,11 @@ define([], function defineFilterRenderer() {
                             typeMatch = ($item.data.type || '').match(regex),
                             descriptionMatch = ($item.data.description || '').match(regex);
 
-                        (nameMatch || typeMatch || descriptionMatch) ?
-                            $item.removeStyle() :
-                            $item.hide();
+                        $item.$[(
+                            (nameMatch ||
+                            typeMatch ||
+                            descriptionMatch) ? 'remove' : 'add'
+                        ) + 'Class']('hide');
                     }
                 }
             }

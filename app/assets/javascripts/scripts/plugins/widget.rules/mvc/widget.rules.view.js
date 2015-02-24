@@ -50,10 +50,6 @@ define([
                     $container: this.elements.$container.$
                 });
             }
-
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$widgetrules.getFooter()
-            );
         },
 
         /**
@@ -104,9 +100,15 @@ define([
                 this.elements.$container.$
             );
 
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$widgetrules.getFooter()
-            );
+            this.updateFooterContent();
+        },
+
+        /**
+         * Update footer content
+         * @member WidgetRulesView
+         */
+        updateFooterContent: function updateFooterContent() {
+            this.renderFooter(Footer, this.elements.$widgetrules);
         },
 
         /**

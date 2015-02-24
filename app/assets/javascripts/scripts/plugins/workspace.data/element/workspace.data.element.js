@@ -100,20 +100,6 @@ define([
                 ui.item.attr('style').
                     replace(/position: relative;/, '')
             );
-        },
-
-        /**
-         * Get footer html
-         * @member WorkspaceDataElement
-         * @returns {*|jQuery}
-         */
-        getFooter: function getFooter() {
-            return $('<div />').text([
-                this.base.lib.hash.hashLength(
-                    this.view.scope.controller.getModuleData()
-                ),
-                'items'
-            ].join(' '));
         }
 
     }, BaseElement.prototype);

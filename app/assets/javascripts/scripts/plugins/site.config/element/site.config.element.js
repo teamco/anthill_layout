@@ -34,20 +34,6 @@ define([
 
     return SiteConfigElement.extend('SiteConfigElement', {
 
-        /**
-         * Get footer html
-         * @member SiteConfigElement
-         * @returns {*|jQuery}
-         */
-        getFooter: function getFooter() {
-            return $('<div />').text([
-                this.base.lib.hash.hashLength(
-                    this.view.scope.controller.getModuleData()
-                ),
-                'items'
-            ].join(' '));
-        }
-
     }, BaseElement.prototype);
 
 });

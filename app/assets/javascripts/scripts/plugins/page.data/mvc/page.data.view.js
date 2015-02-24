@@ -40,10 +40,6 @@ define([
                 return false;
             }
 
-            this.renderHeader(Header, 'Page Widgets');
-
-            this.renderSearch();
-
             /**
              * Define PageData element
              * @type {PageDataElement}
@@ -52,8 +48,6 @@ define([
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
-
-            this.renderFooter(Footer, this.elements.$pagedata);
         },
 
         /**

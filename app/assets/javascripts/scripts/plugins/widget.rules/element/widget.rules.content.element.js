@@ -61,19 +61,6 @@ define([
                 )
             );
 
-            /**
-             * Get thumbnail
-             * @type {string|*}
-             */
-            var thumbnail = data.model.getConfig('preferences').thumbnail;
-
-            if (thumbnail.length > 0) {
-
-                this.$.css({
-                    backgroundImage: 'url("' + thumbnail + '")'
-                });
-            }
-
             this.renderTooltip({
                 title: title,
                 description: description,
