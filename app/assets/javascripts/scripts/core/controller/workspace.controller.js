@@ -252,6 +252,41 @@ define(
                 },
 
                 /**
+                 * Check if load page content
+                 * @member WorkspaceController
+                 * @param {boolean} force
+                 * @returns {Page}
+                 */
+                isLoadPageContent: function isLoadPageContent(force) {
+
+                    /**
+                     * Get current page
+                     * @type {Page}
+                     */
+                    var currentPage = this.getPageByHashLocation(this.scope);
+
+                    /**
+                     * Define page matcher
+                     * @type {Array|{index: number, input: string}}
+                     */
+                    var pageMatch = this.isPageMatch2Hash();
+
+                    if (!currentPage.model.getConfig('contentLoaded')) {
+                        currentPage.model.setConfig('contentLoaded', true);
+                    }
+
+                    if (pageMatch) {
+                        if (pageMatch[1] === currentPage.model.getItemTitle()) {
+                            return currentPage;
+                        }
+                    }
+
+                    if (force) {
+                        return currentPage;
+                    }
+                },
+
+                /**
                  * Save after page ordering
                  * @member WorkspaceController
                  * @param {Array} order

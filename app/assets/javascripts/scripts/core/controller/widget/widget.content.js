@@ -41,46 +41,24 @@ define([
 
             /**
              * Get widget page
-             * @type {Page}
+             * @type {Workspace}
              */
-            var page = this.getContainment();
+            var workspace = this.getWorkspace();
 
             /**
              * Get current page
              * @type {Page}
              */
-            var currentPage = page.controller.getPageByHashLocation(
-                page.controller.getContainment()
-            );
+            var page = workspace.controller.isLoadPageContent(force);
 
-            /**
-             * Define page matcher
-             * @type {Array|{index: number, input: string}}
-             */
-            var pageMatch = page.controller.isPageMatch2Hash();
-
-            function _loadData() {
-
-                if (!currentPage.model.getConfig('contentLoaded')) {
-                    currentPage.model.setConfig('contentLoaded', true);
-                }
+            if (page) {
 
                 scope.observer.batchPublish(
                     scope.eventmanager.eventList.loadContent,
                     scope.eventmanager.eventList.loadPreferences
                 );
 
-                currentPage.logger.debug('Content start loading', this);
-            }
-
-            if (pageMatch) {
-                if (pageMatch[1] === currentPage.model.getItemTitle()) {
-                    _loadData();
-                }
-            }
-
-            if (force) {
-                _loadData();
+                scope.logger.debug('Content start loading');
             }
         },
 
