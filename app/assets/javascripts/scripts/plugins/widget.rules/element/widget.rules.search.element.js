@@ -4,18 +4,18 @@
 
 define([
     'modules/Element'
-], function defineGallerySearch(BaseElement) {
+], function defineWidgetRulesSearch(BaseElement) {
 
     /**
      * Define Search Element
      * @param view
      * @param opts
-     * @returns {GallerySearchElement}
+     * @returns {WidgetRulesSearchElement}
      * @constructor
-     * @class GallerySearchElement
+     * @class WidgetRulesSearchElement
      * @extends BaseElement
      */
-    var GallerySearchElement = function GallerySearchElement(view, opts) {
+    var WidgetRulesSearchElement = function WidgetRulesSearchElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -25,18 +25,18 @@ define([
         return this.renderData();
     };
 
-    return GallerySearchElement.extend('GallerySearchElement', {
+    return WidgetRulesSearchElement.extend('WidgetRulesSearchElement', {
 
         /**
          * Render search
-         * @member GallerySearchElement
-         * @returns {GallerySearchElement}
+         * @member WidgetRulesSearchElement
+         * @returns {WidgetRulesSearchElement}
          */
         renderData: function renderData() {
 
             /**
              * Get view
-             * @type {GalleryView}
+             * @type {WidgetRulesView}
              */
             var view = this.view;
 

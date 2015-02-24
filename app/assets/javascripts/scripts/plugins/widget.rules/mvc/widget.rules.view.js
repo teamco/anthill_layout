@@ -13,8 +13,9 @@ define([
     'element/header.element',
     'element/footer.element',
     'plugins/widget.rules/element/widget.rules.content.element',
+    'plugins/widget.rules/element/widget.rules.search.element',
     'plugins/widget.rules/element/widget.rules.element'
-], function defineWidgetRulesView(AntHill, BaseView, BaseRules, Header, Footer, WidgetRulesContent, WidgetRules) {
+], function defineWidgetRulesView(AntHill, BaseView, BaseRules, Header, Footer, WidgetRulesContentElement, WidgetRulesSearchElement, WidgetRulesElement) {
 
     /**
      * Define view
@@ -35,21 +36,33 @@ define([
          */
         renderWidgetRules: function renderWidgetRules() {
 
-            this.header(Header, this.elements.$container).setText(
-                'Widget Rules'
-            );
-
-            if (!this.isCached('$widgetrules', WidgetRules)) {
+            if (!this.isCached('$widgetrules', WidgetRulesElement)) {
 
                 /**
                  * Define WidgetRules element
                  * @type {WidgetRulesElement}
                  */
-                this.elements.$widgetrules = new WidgetRules(this, {
+                this.elements.$widgetrules = new WidgetRulesElement(this, {
                     id: this.createUUID(),
                     $container: this.elements.$container.$
                 });
             }
+        },
+
+        /**
+         * Render gallery search
+         * @member WidgetRulesView
+         */
+        renderSearch: function renderSearch() {
+
+            /**
+             * Define WidgetRules Search element
+             * @type {WidgetRulesSearchElement}
+             */
+            this.elements.$search = new WidgetRulesSearchElement(this, {
+                $container: this.elements.$container.$,
+                style: 'widget-rules-search'
+            });
         },
 
         /**
@@ -67,15 +80,18 @@ define([
             this.elements.items = {};
             this.elements.$widgetrules.empty();
 
+            this.renderHeader(Header, 'Widget Rules');
+            this.renderSearch();
+
             for (var index in data) {
 
                 if (data.hasOwnProperty(index)) {
 
                     /**
                      * Render item
-                     * @type {*}
+                     * @type {WidgetRulesSearchElement}
                      */
-                    var $item = new WidgetRulesContent(this, {
+                    var $item = new WidgetRulesContentElement(this, {
                         style: 'content',
                         id: [
                             data[index].model.getConfig('uuid'),
@@ -99,6 +115,11 @@ define([
             this.elements.$widgetrules.scrollCover(
                 this.elements.$container.$
             );
+
+            this.elements.$search.updateData({
+                items: this.elements.items,
+                focusOn: 'input'
+            });
 
             this.updateFooterContent();
         },

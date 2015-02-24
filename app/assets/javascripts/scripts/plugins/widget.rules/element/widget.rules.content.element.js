@@ -53,6 +53,16 @@ define([
              */
             var description = data.model.getConfig('preferences').description || '';
 
+            /**
+             * Define data
+             * @member WidgetRulesContentElement
+             * @type {{name: string, description: string}}
+             */
+            this.data = {
+                name: title,
+                description: description
+            };
+
             this.$.attr({
                 title: title
             }).addClass(

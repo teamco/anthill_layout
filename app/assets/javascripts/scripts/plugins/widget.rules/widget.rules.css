@@ -49,7 +49,40 @@ div.widget-rules-footer > div {
     text-shadow: 1px 1px #fff;
 }
 
-.panel div.widget-rules-content .scroll-cover {
-    top: 70px;
+div.widget-rules-content .scroll-cover {
+    top: 90px;
     bottom: 30px;
+}
+
+div.widget-rules-content .widget-rules-search {
+    height: 22px;
+}
+
+div.widget-rules-content .widget-rules-search label {
+    display: none;
+}
+
+div.widget-rules-content input[type="text"] {
+    padding: 0 3px;
+}
+
+div.widget-rules-content input[type="text"] {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    margin: 0;
+    width: 100%;
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+    transition: width 0.5s;
+    -webkit-transition: width 0.5s;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
+    border-radius: 0;
+    float: none;
+}
+
+div.widget-rules-content input[type="text"]:focus {
+    position: static;
 }

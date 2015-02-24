@@ -4,7 +4,7 @@
 
 define([
     'modules/Element'
-], function defineSearch(BaseElement) {
+], function definePageDataSearch(BaseElement) {
 
     /**
      * Define Search Element
