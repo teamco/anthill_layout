@@ -13,9 +13,8 @@ define([
     'element/header.element',
     'element/footer.element',
     'plugins/page.data/element/page.data.content.element',
-    'plugins/page.data/element/page.data.search.element',
     'plugins/page.data/element/page.data.element'
-], function definePageDataView(AntHill, BaseView, BasePreferences, Header, Footer, PageDataContentElement, PageDataSearchElement, PageDataElement) {
+], function definePageDataView(AntHill, BaseView, BasePreferences, Header, Footer, PageDataContentElement, PageDataElement) {
 
     /**
      * Define view
@@ -51,23 +50,6 @@ define([
         },
 
         /**
-         * Render gallery search
-         * @member PageDataView
-         * @returns {boolean}
-         */
-        renderSearch: function renderSearch() {
-
-            /**
-             * Define PageData Search element
-             * @type {PageDataSearchElement}
-             */
-            this.elements.$search = new PageDataSearchElement(this, {
-                $container: this.elements.$container.$,
-                style: 'page-data-search'
-            });
-        },
-
-        /**
          * Render page.data content
          * @member PageDataView
          * @param data
@@ -83,7 +65,10 @@ define([
             this.elements.$pagedata.empty();
 
             this.renderHeader(Header, 'Page Widgets');
-            this.renderSearch();
+
+            this.renderSearch(
+                this.updateFooterContent.bind(this)
+            );
 
             for (var index in data) {
 

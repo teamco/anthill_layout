@@ -12,7 +12,8 @@ define([
     'element/modal.element',
     'element/header.element',
     'element/footer.element',
-], function defineBaseView($, AntHill, ModalElement, Header, Footer) {
+    'element/filter.element'
+], function defineBaseView($, AntHill, ModalElement, Header, Footer, Filter) {
 
     /**
      * Define base view
@@ -21,7 +22,6 @@ define([
      * @constructor
      */
     var BaseView = function BaseView() {
-
     };
 
     return BaseView.extend('BaseView', {
@@ -50,7 +50,7 @@ define([
          * @returns {BaseElement}
          */
         get$item: function get$item() {
-            return this.elements['$' + this.scope.constructor.prototype.name.toLowerCase()];
+            return this.elements['$' + this.scope.name.toLowerCase()];
         },
 
         /**
@@ -249,6 +249,23 @@ define([
             this.footer(Footer, this.elements.$container).setHtml(
                 $element.getFooter()
             );
+        },
+
+        /**
+         * Render search
+         * @member BaseView
+         */
+        renderSearch: function renderSearch(callback) {
+
+            /**
+             * Define Search element
+             * @type {FilterElement}
+             */
+            this.elements.$search = new Filter(this, {
+                $container: this.elements.$container.$,
+                style: [this.scope.name.toDash(), 'search'].join('-'),
+                callback: callback
+            });
         },
 
         /**

@@ -13,9 +13,8 @@ define([
     'element/header.element',
     'element/footer.element',
     'plugins/widget.rules/element/widget.rules.content.element',
-    'plugins/widget.rules/element/widget.rules.search.element',
     'plugins/widget.rules/element/widget.rules.element'
-], function defineWidgetRulesView(AntHill, BaseView, BaseRules, Header, Footer, WidgetRulesContentElement, WidgetRulesSearchElement, WidgetRulesElement) {
+], function defineWidgetRulesView(AntHill, BaseView, BaseRules, Header, Footer, WidgetRulesContentElement, WidgetRulesElement) {
 
     /**
      * Define view
@@ -50,22 +49,6 @@ define([
         },
 
         /**
-         * Render gallery search
-         * @member WidgetRulesView
-         */
-        renderSearch: function renderSearch() {
-
-            /**
-             * Define WidgetRules Search element
-             * @type {WidgetRulesSearchElement}
-             */
-            this.elements.$search = new WidgetRulesSearchElement(this, {
-                $container: this.elements.$container.$,
-                style: 'widget-rules-search'
-            });
-        },
-
-        /**
          * Render widget.rules content
          * @member WidgetRulesView
          * @param data
@@ -81,7 +64,10 @@ define([
             this.elements.$widgetrules.empty();
 
             this.renderHeader(Header, 'Widget Rules');
-            this.renderSearch();
+
+            this.renderSearch(
+                this.updateFooterContent.bind(this)
+            );
 
             for (var index in data) {
 
@@ -89,7 +75,7 @@ define([
 
                     /**
                      * Render item
-                     * @type {WidgetRulesSearchElement}
+                     * @type {WidgetRulesContentElement}
                      */
                     var $item = new WidgetRulesContentElement(this, {
                         style: 'content',

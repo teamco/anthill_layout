@@ -11,10 +11,9 @@ define([
     'element/header.element',
     'element/footer.element',
     'plugins/gallery/element/gallery.providers.element',
-    'plugins/gallery/element/gallery.search.element',
     'plugins/gallery/element/gallery.content.element',
     'plugins/gallery/element/gallery.element'
-], function defineGalleryView(BaseView, Header, Footer, GalleryProvidersElement, GallerySearchElement, GalleryContentElement, GalleryElement) {
+], function defineGalleryView(BaseView, Header, Footer, GalleryProvidersElement, GalleryContentElement, GalleryElement) {
 
     /**
      * Define view
@@ -36,7 +35,9 @@ define([
 
             this.renderHeader(Header, 'Gallery Widgets');
 
-            this.renderSearch();
+            this.renderSearch(
+                this.updateFooterContent.bind(this)
+            );
 
             this.renderProviders(
                 this.controller.getProvidersData(),
@@ -88,23 +89,6 @@ define([
                 style: 'gallery-providers',
                 data: providers,
                 current: currentProvider
-            });
-        },
-
-        /**
-         * Render gallery search
-         * @member GalleryView
-         * @returns {boolean}
-         */
-        renderSearch: function renderSearch() {
-
-            /**
-             * Define Gallery search element
-             * @type {GallerySearchElement}
-             */
-            this.elements.$search = new GallerySearchElement(this, {
-                $container: this.elements.$container.$,
-                style: 'gallery-search'
             });
         },
 
