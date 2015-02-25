@@ -50,9 +50,7 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
                     arguments
                 ]);
 
-                this.controller.loadWidgetData(
-                    // TODO
-                );
+                this.controller.loadWidgetData();
             }
         }
     };

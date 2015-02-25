@@ -23,15 +23,8 @@ define([
         /**
          * Define load widget data
          * @member WidgetContent
-         * @param {boolean} [force]
          */
-        loadWidgetData: function loadWidgetData(force) {
-
-            /**
-             * Init force
-             * @type {boolean}
-             */
-            force = this.base.defineBoolean(force, false, true);
+        loadWidgetData: function loadWidgetData() {
 
             /**
              * Get local scope
@@ -49,7 +42,7 @@ define([
              * Get current page
              * @type {Page}
              */
-            var page = workspace.controller.isLoadPageContent(force);
+            var page = workspace.controller.isLoadPageContent();
 
             if (page) {
 

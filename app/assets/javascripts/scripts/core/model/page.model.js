@@ -180,6 +180,15 @@ define([
          */
         setAnimateSwipe: function setAnimateSwipe(animate) {
             this._setItemInfoPreferences('animateSwipe', animate);
+        },
+
+        /**
+         * Set page lazy loading
+         * @member PageModel
+         * @param {boolean} lazy
+         */
+        setLazyLoading: function setLazyLoading(lazy) {
+            this._setItemInfoPreferences('lazyLoading', lazy);
         }
 
     }, BaseModel.prototype);

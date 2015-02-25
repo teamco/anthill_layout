@@ -254,31 +254,19 @@ define(
                 /**
                  * Check if load page content
                  * @member WorkspaceController
-                 * @param {boolean} force
                  * @returns {Page}
                  */
-                isLoadPageContent: function isLoadPageContent(force) {
+                isLoadPageContent: function isLoadPageContent() {
 
                     /**
-                     * Get current page
+                     * Get current page from hash
                      * @type {Page}
                      */
-                    var currentPage = this.getPageByHashLocation(this.scope);
+                    var page = this.getPageByHashLocation(this.scope);
 
-                    /**
-                     * Define page matcher
-                     * @type {Array|{index: number, input: string}}
-                     */
-                    var pageMatch = this.isPageMatch2Hash();
-
-                    if (pageMatch) {
-                        if (pageMatch[1] === currentPage.model.getItemTitle()) {
-                            return currentPage;
-                        }
-                    }
-
-                    if (force) {
-                        return currentPage;
+                    if (page.controller.isCurrent() ||
+                        page.controller.isLazyLoaded()) {
+                        return page;
                     }
                 },
 

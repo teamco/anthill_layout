@@ -98,6 +98,12 @@ define([
                     disabled: false,
                     value: config.showInTabs,
                     visible: true
+                },
+                lazyLoading: {
+                    type: 'checkbox',
+                    disabled: false,
+                    value: false,
+                    visible: true
                 }
             };
 

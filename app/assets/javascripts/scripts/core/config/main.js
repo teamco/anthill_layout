@@ -89,6 +89,8 @@ requirejs.config({
         'controller/widget/widget.layer': {deps: ['extends/function']},
 
         'controller/page/page.layer': {deps: ['extends/function']},
+        'controller/page/page.layout': {deps: ['extends/function']},
+        'controller/page/page.widget': {deps: ['extends/function']},
         'controller/page/page.maximize': {deps: ['extends/function']},
 
         'controller/behavior/behavior.crud': {deps: ['extends/function']},
