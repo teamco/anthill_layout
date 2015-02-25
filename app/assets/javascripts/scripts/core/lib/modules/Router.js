@@ -81,6 +81,12 @@ define([], function defineRouter() {
             var pageMatch = this.isPageMatch2Hash();
 
             /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            workspace = workspace || this.getWorkspace();
+
+            /**
              * Get current page
              * @type {Page}
              */
@@ -95,7 +101,21 @@ define([], function defineRouter() {
                 workspace.model.getItemByUUID(pageMatch[1])) :
                 currentPage;
 
-            return page || currentPage;
+            if (typeof(page) === 'undefined') {
+
+                workspace.observer.publish(
+                    workspace.eventmanager.eventList.switchToPage,
+                    currentPage
+                );
+
+                /**
+                 * Define page as current
+                 * @type {Page}
+                 */
+                page = currentPage;
+            }
+
+            return page;
         },
 
         /**
