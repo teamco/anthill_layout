@@ -377,19 +377,51 @@ define(
                 updateSiteTitle: function updateSiteTitle() {
 
                     /**
+                     * Define scope
+                     * @type {Workspace}
+                     */
+                    var scope = this;
+
+                    /**
                      * Define $item
                      * @type {WorkspaceElement}
                      */
-                    var $item = this.view.get$item();
+                    var $item = scope.view.get$item();
 
-                    var siteTitle = this.model.getConfig('preferences')['siteTitle'] ||
+                    var siteTitle = scope.model.getConfig('preferences')['siteTitle'] ||
                         $item.getSiteTitle();
+
+                    /**
+                     * Define default title
+                     * @type {Array}
+                     */
+                    var defaultTitle = siteTitle.split(
+                        scope.model.getConfig('SEOSeparator')
+                    );
+
+                    siteTitle = defaultTitle[defaultTitle.length - 1];
+
                     /**
                      * Get current page
                      * @type {Page}
                      */
-                    var page = this.controller.getCurrentItem(),
+                    var page = scope.controller.getCurrentItem(),
                         title = siteTitle;
+
+                    /**
+                     * Generate SEO title
+                     * @param {string} itemTitle
+                     * @param {string} parentTitle
+                     * @returns {string}
+                     * @private
+                     */
+                    function _generateTitle(itemTitle, parentTitle) {
+
+                        return itemTitle && (itemTitle + '').length > 0 ?
+                            [itemTitle, parentTitle].join(
+                                scope.model.getConfig('SEOSeparator')
+                            ) : parentTitle;
+                    }
 
                     if (page.model) {
 
@@ -403,10 +435,28 @@ define(
                          * Define SEO title
                          * @type {string}
                          */
-                        title = pageTitle && (pageTitle + '').length > 0 ?
-                            [pageTitle, siteTitle].join(
-                                this.model.getConfig('SEOSeparator')
-                            ) : siteTitle;
+                        title = _generateTitle(pageTitle, siteTitle);
+
+                        /**
+                         * Get maximized widget
+                         * @type {Widget}
+                         */
+                        var widget = this.controller.getWidgetByHashLocation(page);
+
+                        if (widget && widget.model) {
+
+                            /**
+                             * Get widget title
+                             * @type {string}
+                             */
+                            var widgetTitle = widget.model.getItemByTitle();
+
+                            /**
+                             * Define SEO title
+                             * @type {string}
+                             */
+                            title = _generateTitle(widgetTitle, title);
+                        }
                     }
 
                     $item.setSiteTitle(title);

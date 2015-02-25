@@ -54,7 +54,7 @@ define([], function defineRouter() {
          * @returns {Array|{index: number, input: string}}
          */
         isPageMatch2Hash: function isPageMatch2Hash() {
-            return this.getHashLocation().match(/#\/([\w\d\-]*):?/i);
+            return this.getHashLocation().match(/#\/([^+(\/)]*):?/i);
         },
 
         /**
@@ -63,7 +63,7 @@ define([], function defineRouter() {
          * @returns {Array|{index: number, input: string}}
          */
         isWidgetMatch2Hash: function isWidgetMatch2Hash() {
-            return this.getHashLocation().match(/\/([\w\d\-]*):?/i);
+            return this.getHashLocation().match(/#\/([^+]*)\/([^+]*):?/i);
         },
 
         /**
@@ -137,8 +137,8 @@ define([], function defineRouter() {
              * @type {*|Widget}
              */
             var widget = widgetMatch ?
-                (page.model.getItemByTitle(widgetMatch[1]) ||
-                page.model.getItemByUUID(widgetMatch[1])) :
+                (page.model.getItemByTitle(widgetMatch[2]) ||
+                page.model.getItemByUUID(widgetMatch[2])) :
                 null;
 
             return widget;
