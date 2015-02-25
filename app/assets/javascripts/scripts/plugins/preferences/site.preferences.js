@@ -113,6 +113,7 @@ define([
                 name: 'siteTitle',
                 text: 'Title',
                 disabled: false,
+                placeholder: 'Enter title',
                 visible: true,
                 value: siteTitle || seoTitle[seoTitle.length - 1]
             });
@@ -144,6 +145,7 @@ define([
                 name: 'siteDescription',
                 text: 'Description',
                 disabled: false,
+                placeholder: 'Enter description',
                 visible: true,
                 value: preferences['siteDescription'] || $('meta[name="description"]').attr('content')
             });
@@ -174,6 +176,7 @@ define([
             var $keywords = this.renderTextArea({
                 name: 'siteKeywords',
                 text: 'Keywords',
+                placeholder: 'Enter keywords',
                 disabled: false,
                 visible: true,
                 value: preferences['siteKeywords'] || $('meta[name="keywords"]').attr('content')
@@ -205,6 +208,7 @@ define([
             var $author = this.renderTextField({
                 name: 'siteAuthor',
                 text: 'Author',
+                placeholder: 'Enter author',
                 disabled: false,
                 visible: true,
                 value: preferences['siteAuthor'] || $('meta[name="author"]').attr('content')
