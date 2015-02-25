@@ -39,9 +39,7 @@ define([
                 return false;
             }
 
-            this.header(Header, this.elements.$container).setText(
-                'Maximize Widgets'
-            );
+            this.renderHeader(Header, 'Maximize Widgets');
 
             /**
              * Define Maximize element
@@ -52,9 +50,7 @@ define([
                 $container: this.elements.$container.$
             });
 
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$maximize.getFooter()
-            );
+            this.updateFooterContent();
         },
 
         /**
@@ -71,6 +67,10 @@ define([
              */
             this.elements.items = {};
             this.elements.$maximize.empty();
+
+            this.renderFilter(
+                this.updateFooterContent.bind(this)
+            );
 
             for (var index in data) {
 
@@ -105,9 +105,20 @@ define([
                 this.elements.$container.$
             );
 
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$maximize.getFooter()
-            );
+            this.elements.$filter.updateData({
+                items: this.elements.items,
+                focusOn: 'input'
+            });
+
+            this.updateFooterContent();
+        },
+
+        /**
+         * Update footer content
+         * @member MaximizeView
+         */
+        updateFooterContent: function updateFooterContent() {
+            this.renderFooter(Footer, this.elements.$maximize);
         },
 
         /**

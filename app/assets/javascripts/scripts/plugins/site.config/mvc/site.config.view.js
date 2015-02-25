@@ -60,7 +60,7 @@ define(
 
                 this.renderHeader(Header, this.i18n.t('site.data.config'));
 
-                this.renderSearch(
+                this.renderFilter(
                     this.updateFooterContent.bind(this)
                 );
 
@@ -124,7 +124,7 @@ define(
                     this.elements.$container.$
                 );
 
-                this.elements.$search.updateData({
+                this.elements.$filter.updateData({
                     items: this.elements.items,
                     focusOn: 'input'
                 });

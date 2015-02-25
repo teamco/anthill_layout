@@ -65,7 +65,7 @@ define([
 
             this.renderHeader(Header, 'Widget Rules');
 
-            this.renderSearch(
+            this.renderFilter(
                 this.updateFooterContent.bind(this)
             );
 
@@ -102,7 +102,7 @@ define([
                 this.elements.$container.$
             );
 
-            this.elements.$search.updateData({
+            this.elements.$filter.updateData({
                 items: this.elements.items,
                 focusOn: 'input'
             });

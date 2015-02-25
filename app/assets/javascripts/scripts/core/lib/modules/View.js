@@ -252,16 +252,16 @@ define([
         },
 
         /**
-         * Render search
+         * Render filter
          * @member BaseView
          */
-        renderSearch: function renderSearch(callback) {
+        renderFilter: function renderFilter(callback) {
 
             /**
              * Define Search element
              * @type {FilterElement}
              */
-            this.elements.$search = new Filter(this, {
+            this.elements.$filter = new Filter(this, {
                 $container: this.elements.$container.$,
                 style: [this.scope.name.toDash(), 'filter'].join(' '),
                 callback: callback
