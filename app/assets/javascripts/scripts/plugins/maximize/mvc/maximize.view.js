@@ -39,8 +39,6 @@ define([
                 return false;
             }
 
-            this.renderHeader(Header, 'Maximize Widgets');
-
             /**
              * Define Maximize element
              * @type {MaximizeElement}
@@ -49,8 +47,6 @@ define([
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
-
-            this.updateFooterContent();
         },
 
         /**
@@ -67,6 +63,8 @@ define([
              */
             this.elements.items = {};
             this.elements.$maximize.empty();
+
+            this.renderHeader(Header, 'Maximize Widgets');
 
             this.renderFilter(
                 this.updateFooterContent.bind(this)
