@@ -123,7 +123,7 @@ define([], function defineFilterRenderer() {
 
                     if (value.length === 0) {
 
-                        $item.removeStyle();
+                        $item.$.removeClass('hide');
 
                     } else {
 

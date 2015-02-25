@@ -40,13 +40,27 @@ define([
         /**
          * Define init
          * @member SiteConfigContentElement
-         * @param data
+         * @param {{
+         *      title: string,
+         *      description: string,
+         *      [event]: string
+         * }} data
          * @returns {SiteConfigContentElement}
          */
         init: function init(data) {
 
             this.setAttributes(data);
             this.bindShowPrefs(data);
+
+            /**
+             * Define data
+             * @member SiteConfigContentElement
+             * @type {{name: string, description: string}}
+             */
+            this.data = {
+                name: data.title,
+                description: data.description
+            };
 
             return this;
         },

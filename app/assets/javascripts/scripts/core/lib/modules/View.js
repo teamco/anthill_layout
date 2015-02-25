@@ -263,7 +263,7 @@ define([
              */
             this.elements.$search = new Filter(this, {
                 $container: this.elements.$container.$,
-                style: [this.scope.name.toDash(), 'search'].join('-'),
+                style: [this.scope.name.toDash(), 'filter'].join(' '),
                 callback: callback
             });
         },
