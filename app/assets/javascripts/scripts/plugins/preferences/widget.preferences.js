@@ -23,6 +23,120 @@ define([
     return WidgetPreferences.extend('WidgetPreferences', {
 
         /**
+         * Render form element
+         * @param {{}} hash
+         * @param {string} title
+         * @member WidgetPreferences
+         * @return {Array}
+         */
+        renderPrefsForm: function renderPrefsForm(hash, title) {
+
+            /**
+             * Define dom nodes
+             * @type {Array}
+             */
+            var nodes = [];
+
+            for (var index in hash) {
+
+                if (hash.hasOwnProperty(index)) {
+
+                    // Define node
+                    var node = hash[index];
+
+                    /**
+                     * Define text
+                     * @type {string}
+                     */
+                    var text = index.replace(
+                        title.replace(/ /g, '').toLowerCase(), ''
+                    ).toPoint().humanize();
+
+                    nodes.push(
+                        $('<li />').
+                            addClass([
+                                title.humanize().toClassName() + '-prefs',
+                                node.type,
+                                node.visible ? '' : 'hidden',
+                                node.separator ? 'separator' : ''
+                            ].join(' ')).append(
+                            this.getNodeRenderer(node, text, index)
+                        )
+                    );
+                }
+            }
+
+            return nodes;
+        },
+
+        /**
+         * Render node
+         * @member WidgetPreferences
+         * @param type
+         * @param prefs
+         * @param {string} title
+         * @param {boolean} [isOpened]
+         * @returns {*|jQuery}
+         */
+        renderPrefsNode: function renderPrefsNode(type, prefs, title, isOpened) {
+
+            return $('<li />').append(
+                this.renderFieldSet(
+                    title,
+                    $('<ul />').addClass(type).append(
+                        this.renderPrefsForm(prefs, title)
+                    ),
+                    isOpened
+                )
+            ).addClass('auto');
+        },
+
+        /**
+         * Merge prefs
+         * @member WidgetPreferences
+         * @param defaults
+         * @param prefs
+         * @returns {{}}
+         * @private
+         */
+        mergeWidgetPrefs: function mergeWidgetPrefs(defaults, prefs) {
+
+            for (var index in prefs) {
+
+                if (prefs.hasOwnProperty(index)) {
+
+                    if (defaults.hasOwnProperty(index)) {
+
+                        defaults[index].value = prefs[index];
+
+                    } else {
+
+                        // Reset checked
+                        for (var key in defaults) {
+
+                            if (defaults.hasOwnProperty(key)) {
+
+                                if (defaults[key].group === index) {
+
+                                    defaults[key].checked = false;
+                                }
+                            }
+                        }
+
+                        if (defaults.hasOwnProperty(prefs[index])) {
+
+                            // check input-radio
+                            defaults[prefs[index]].checked = true;
+                        }
+                    }
+                }
+            }
+
+            return defaults;
+        },
+
+
+        /**
          * Render prefs data
          * @member WidgetPreferences
          * @param data
@@ -36,22 +150,7 @@ define([
              *      description: {type: string, disabled: boolean, value},
              *      widgetUrl: {type: string, disabled: boolean, value},
              *      onClickOpenUrl: {type: string, disabled: boolean, value},
-             *      overlapping: {type: string, disabled: boolean, checked: boolean},
-             *      alwaysOnTop: {type: string, disabled: boolean, checked: boolean},
-             *      statistics: {type: string, disabled: boolean, checked: boolean},
-             *      setLayerUp: {type: string, disabled: boolean, group: string, events: array},
-             *      setLayerDown: {type: string, disabled: boolean, group: string, events: array},
-             *      stretchWidth: {type: string, disabled: boolean, group: string, events: array},
-             *      stretchHeight: {type: string, disabled: boolean, group: string, events: array},
-             *      stickToCenterLeft: {type: string, disabled: boolean, group: string, events: array},
-             *      stickToCenterTop: {type: string, disabled: boolean, group: string, events: array},
-             *      stickToCenter: {type: string, disabled: boolean, group: string, events: array},
-             *      stickToCenterBottom: {type: string, disabled: boolean, group: string, events: array},
-             *      stickToCenterRight: {type: string, disabled: boolean, group: string, events: array},
-             *      stickToTopLeft: {type: string, disabled: boolean, group: string, events: array},
-             *      stickToBottomLeft: {type: string, disabled: boolean, group: string, events: array},
-             *      stickToTopRight: {type: string, disabled: boolean, group: string, events: array},
-             *      stickToBottomRight: {type: string, disabled: boolean, group: string, events: array}
+             *      statistics: {type: string, disabled: boolean, checked: boolean}
              * }}
              */
             var defaultPrefs = {
@@ -79,13 +178,82 @@ define([
                     value: undefined,
                     visible: true
                 },
-                overlapping: {
+                statistics: {
                     type: 'checkbox',
                     disabled: false,
                     checked: false,
                     visible: true
-                },
-                statistics: {
+                }
+            };
+
+            // Get scope
+            var scope = this.view.scope;
+
+            /**
+             * Get widget
+             * @type {Widget}
+             */
+            var widget = scope.controller.getContainment();
+
+            this.$.append(
+                this.renderLayoutInteractions([
+                    this.renderPrefsNode(
+                        'default',
+                        this.mergeWidgetPrefs(
+                            defaultPrefs,
+                            widget.model.getConfig('preferences')
+                        ),
+                        'Widget'
+                    ),
+                    this.renderPrefsNode(
+                        'content', data,
+                        scope.name.humanize(), true
+                    ),
+                    this.renderPrefsNode(
+                        'widget-interactions',
+                        this.renderWidgetInteractions(widget),
+                        'Widget Interactions'
+                    )
+                ])
+            );
+        },
+
+        /**
+         * Render widget interactions
+         * @member WidgetPreferences
+         * @param {Widget} widget
+         * @returns {*}
+         */
+        renderWidgetInteractions: function renderWidgetInteractions(widget) {
+
+            /**
+             * Define prefs
+             * @type {{
+             *      overlapping: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+             *      alwaysOnTop: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+             *      setLayerUp: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+             *      setLayerDown: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+             *      stretchWidth: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+             *      stretchHeight: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+             *      maximizable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+             *      draggable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+             *      resizable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+             *      freeze: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+             *      expandable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+             *      unsetStick: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+             *      setStickToCenterLeft: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+             *      setStickToCenterTop: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+             *      setStickToCenter: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+             *      setStickToCenterBottom: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+             *      setStickToCenterRight: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+             *      setStickToTopLeft: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+             *      setStickToBottomLeft: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+             *      setStickToTopRight: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean},
+             *      setStickToBottomRight: {type: string, disabled: boolean, group: string, events: string[], checked: boolean, visible: boolean}
+             * }}
+             */
+            var prefs = {
+                overlapping: {
                     type: 'checkbox',
                     disabled: false,
                     checked: false,
@@ -95,6 +263,24 @@ define([
                     type: 'checkbox',
                     disabled: false,
                     checked: false,
+                    visible: true
+                },
+                stretchWidth: {
+                    type: 'checkbox',
+                    disabled: false,
+                    checked: false,
+                    visible: true
+                },
+                stretchHeight: {
+                    type: 'checkbox',
+                    disabled: false,
+                    checked: false,
+                    visible: true
+                },
+                maximizable: {
+                    type: 'checkbox',
+                    disabled: false,
+                    checked: true,
                     visible: true
                 },
                 setLayerUp: {
@@ -113,17 +299,30 @@ define([
                     checked: false,
                     visible: true
                 },
-                stretchWidth: {
+                draggable: {
+                    type: 'checkbox',
+                    disabled: false,
+                    checked: true,
+                    visible: true
+                },
+                resizable: {
+                    type: 'checkbox',
+                    disabled: false,
+                    checked: true,
+                    visible: true
+                },
+                freeze: {
                     type: 'checkbox',
                     disabled: false,
                     checked: false,
                     visible: true
                 },
-                stretchHeight: {
+                expandable: {
                     type: 'checkbox',
                     disabled: false,
-                    checked: false,
-                    visible: true
+                    checked: true,
+                    visible: true,
+                    separator: true
                 },
                 unsetStick: {
                     type: 'event',
@@ -139,7 +338,7 @@ define([
                     group: 'stick',
                     events: ['click'],
                     checked: false,
-                    visible: true
+                    visible: true,
                 },
                 setStickToCenterTop: {
                     type: 'event',
@@ -207,142 +406,19 @@ define([
                 }
             };
 
-            /**
-             * Render form element
-             * @param {{}} hash
-             * @param {string} title
-             * @private
-             * @return {Array}
-             */
-            function _renderForm(hash, title) {
-
-                /**
-                 * Define dom nodes
-                 * @type {Array}
-                 */
-                var nodes = [];
-
-                for (var index in hash) {
-
-                    if (hash.hasOwnProperty(index)) {
-
-                        // Define node
-                        var node = hash[index];
-
-                        /**
-                         * Define text
-                         * @type {string}
-                         */
-                        var text = index.replace(
-                            title.replace(/ /g, '').toLowerCase(), ''
-                        ).toPoint().humanize();
-
-                        nodes.push(
-                            $('<li />').
-                                addClass([
-                                    title.humanize().toClassName() + '-prefs',
-                                    node.type,
-                                    node.visible ? '' : 'hidden'
-                                ].join(' ')).append(
-                                this.getNodeRenderer(node, text, index)
-                            )
-                        );
-                    }
-                }
-
-                return nodes;
-            }
-
-            /**
-             * Render node
-             * @param type
-             * @param prefs
-             * @param {string} title
-             * @param {boolean} [isOpened]
-             * @returns {*|jQuery}
-             * @private
-             */
-            function _renderNode(type, prefs, title, isOpened) {
-
-                return $('<li />').append(
-                    this.renderFieldSet(
-                        title,
-                        $('<ul />').addClass(type).append(
-                            _renderForm.bind(this)(prefs, title)
-                        ),
-                        isOpened
-                    )
-                ).addClass('auto');
-            }
-
-            /**
-             * Merge prefs
-             * @param defaults
-             * @param prefs
-             * @returns {{}}
-             * @private
-             */
-            function _mergePrefs(defaults, prefs) {
-
-                for (var index in prefs) {
-
-                    if (prefs.hasOwnProperty(index)) {
-
-                        if (defaults.hasOwnProperty(index)) {
-
-                            defaults[index].value = prefs[index];
-
-                        } else {
-
-                            // Reset checked
-                            for (var key in defaults) {
-
-                                if (defaults.hasOwnProperty(key)) {
-
-                                    if (defaults[key].group === index) {
-
-                                        defaults[key].checked = false;
-                                    }
-                                }
-                            }
-
-                            if (defaults.hasOwnProperty(prefs[index])) {
-
-                                // check input-radio
-                                defaults[prefs[index]].checked = true;
-                            }
-                        }
-                    }
-                }
-
-                return defaults;
-            }
-
-            this.$.append(
-                this.renderInteractions([
-                    _renderNode.bind(this)(
-                        'default',
-                        _mergePrefs(
-                            defaultPrefs,
-                            this.view.scope.controller.getContainment().config.preferences
-                        ),
-                        'Widget'
-                    ),
-                    _renderNode.bind(this)(
-                        'content', data,
-                        this.view.scope.constructor.prototype.name.humanize(), true
-                    )
-                ])
+            return this.mergeWidgetPrefs(
+                prefs,
+                widget.model.getConfig('preferences')
             );
         },
 
         /**
-         * Render Interactions
+         * Render Layout interactions
          * @member WidgetPreferences
          * @param {Array} nodes
          * @returns {*}
          */
-        renderInteractions: function renderInteractions(nodes) {
+        renderLayoutInteractions: function renderLayoutInteractions(nodes) {
 
             /**
              * Define controller
@@ -367,7 +443,7 @@ define([
             nodes.push(
                 $('<li />').append(
                     this.renderFieldSet(
-                        'Interactions',
+                        'Layout Interactions',
                         $ul.append([
                             this.renderPrefs('Column', column),
                             this.renderPrefs('Width', width),
