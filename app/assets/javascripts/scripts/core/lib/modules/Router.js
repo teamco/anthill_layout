@@ -161,7 +161,7 @@ define([], function defineRouter() {
 
             this.controller.setHashLocation(
                 ''.concat(
-                    hash, '/',
+                    '/', hash, '/',
                     this.controller.getItemIdentity(widget)
                 )
             );
