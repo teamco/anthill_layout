@@ -93,6 +93,9 @@ requirejs.config({
         'controller/page/page.widget': {deps: ['extends/function']},
         'controller/page/page.maximize': {deps: ['extends/function']},
 
+        'controller/workspace/workspace.page': {deps: ['extends/function']},
+        'controller/workspace/workspace.seo': {deps: ['extends/function']},
+
         'controller/behavior/behavior.crud': {deps: ['extends/function']},
         'controller/behavior/behavior.window.resize': {deps: ['extends/function']},
 
