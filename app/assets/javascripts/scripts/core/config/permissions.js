@@ -6,59 +6,55 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
-    'require',
-    'modules/Logger'
-], function definePermissions(require, Logger) {
+define(
+    [
+        'modules/Logger',
+        'config/permissions/application.permissions',
+        'config/permissions/workspace.permissions',
+        'config/permissions/page.permissions',
+        'config/permissions/layout.permissions',
+        'config/permissions/widget.permissions'
+    ],
 
-    require(
-        [
-            './permissions/application.permissions',
-            './permissions/workspace.permissions',
-            './permissions/page.permissions',
-            './permissions/layout.permissions',
-            './permissions/widget.permissions'
-        ],
+    /**
+     * Define permissions
+     * @param {Logger} Logger
+     * @param {Application} Application
+     * @param {Workspace} Workspace
+     * @param {Page} Page
+     * @param {Layout} Layout
+     * @param {Widget} Widget
+     */
+    function definePermissions(Logger, Application, Workspace, Page, Layout, Widget) {
 
         /**
-         * Define permissions
-         * @param {Application} Application
-         * @param {Workspace} Workspace
-         * @param {Page} Page
-         * @param {Layout} Layout
-         * @param {Widget} Widget
+         * Define logger instance
+         * @type {Logger}
          */
-        function defineRequiredModules(Application, Workspace, Page, Layout, Widget) {
-
-            /**
-             * Define logger instance
-             * @type {Logger}
-             */
-            var logger = new Logger({
-                config: {
-                    logger: {
-                        show: true,
-                        namespaces: false,
-                        type: {
-                            debug: false,
-                            log: false,
-                            info: false,
-                            error: true,
-                            warn: true
-                        }
+        var logger = new Logger({
+            config: {
+                logger: {
+                    show: true,
+                    namespaces: false,
+                    type: {
+                        debug: false,
+                        log: false,
+                        info: false,
+                        error: true,
+                        warn: true
                     }
                 }
-            });
+            }
+        });
 
-            logger.puts.bind(logger, 'debug')(
-                'Define local permissions', [
-                    Application.prototype.localPermissions,
-                    Workspace.prototype.localPermissions,
-                    Page.prototype.localPermissions,
-                    Layout.prototype.localPermissions,
-                    Widget.prototype.localPermissions
-                ]
-            );
-        }
-    );
-});
+        logger.puts.bind(logger, 'debug')(
+            'Define local permissions', [
+                Application.prototype.localPermissions,
+                Workspace.prototype.localPermissions,
+                Page.prototype.localPermissions,
+                Layout.prototype.localPermissions,
+                Widget.prototype.localPermissions
+            ]
+        );
+    }
+);

@@ -7,58 +7,41 @@
  */
 
 define([
-    'require',
+    'config/listeners/application.listeners',
+    'config/listeners/workspace.listeners',
+    'config/listeners/page.listeners',
+    'config/listeners/layout.listeners',
+    'config/listeners/widget.listeners',
     'modules/Logger'
-], function defineListeners(require, Logger) {
+], function defineListeners(Application, Workspace, Page, Layout, Widget, Logger) {
 
-    require(
-        [
-            './listeners/application.listeners',
-            './listeners/workspace.listeners',
-            './listeners/page.listeners',
-            './listeners/layout.listeners',
-            './listeners/widget.listeners'
-        ],
-
-        /**
-         * Define listeners
-         * @param {Application} Application
-         * @param {Workspace} Workspace
-         * @param {Page} Page
-         * @param {Layout} Layout
-         * @param {Widget} Widget
-         */
-        function defineRequiredModules(Application, Workspace, Page, Layout, Widget) {
-
-            /**
-             * Define logger instance
-             * @type {Logger}
-             */
-            var logger = new Logger({
-                config: {
-                    logger: {
-                        show: true,
-                        namespaces: false,
-                        type: {
-                            debug: false,
-                            log: false,
-                            info: false,
-                            error: true,
-                            warn: true
-                        }
-                    }
+    /**
+     * Define logger instance
+     * @type {Logger}
+     */
+    var logger = new Logger({
+        config: {
+            logger: {
+                show: true,
+                namespaces: false,
+                type: {
+                    debug: false,
+                    log: false,
+                    info: false,
+                    error: true,
+                    warn: true
                 }
-            });
-
-            logger.puts.bind(logger, 'debug')(
-                'Define local listeners', [
-                    Application.prototype.localListeners,
-                    Workspace.prototype.localListeners,
-                    Page.prototype.localListeners,
-                    Layout.prototype.localListeners,
-                    Widget.prototype.localListeners
-                ]
-            );
+            }
         }
+    });
+
+    logger.puts.bind(logger, 'debug')(
+        'Define local listeners', [
+            Application.prototype.localListeners,
+            Workspace.prototype.localListeners,
+            Page.prototype.localListeners,
+            Layout.prototype.localListeners,
+            Widget.prototype.localListeners
+        ]
     );
 });
