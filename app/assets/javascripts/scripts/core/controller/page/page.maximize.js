@@ -16,6 +16,15 @@ define([], function definePageMaximize() {
     return PageMaximize.extend('PageMaximize', {
 
         /**
+         * Get maximized widget
+         * @member PageMaximize
+         * @returns {Widget|*}
+         */
+        getMaximized: function getMaximized() {
+            return this.scope.maximized;
+        },
+
+        /**
          * Set widget as maximized
          * @member  {PageMaximize}
          * @param {Widget} widget
@@ -34,7 +43,7 @@ define([], function definePageMaximize() {
 
         /**
          * Unset widget as maximized
-         * @member  {PageMaximize}
+         * @member PageMaximize
          */
         unsetMaximized: function unsetMaximized() {
 

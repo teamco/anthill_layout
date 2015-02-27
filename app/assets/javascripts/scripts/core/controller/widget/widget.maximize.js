@@ -20,10 +20,32 @@ define([], function defineWidgetMaximize() {
     return WidgetMaximize.extend('WidgetMaximize', {
 
         /**
+         * Check if widget already maximized
+         * @member WidgetMaximize
+         * @returns {boolean}
+         */
+        isMaximized: function isMaximized() {
+
+            /**
+             * Get page
+             * @type {Page}
+             */
+            var page = this.controller.getContainment();
+
+            return page.controller.getMaximized() === this.scope;
+        },
+
+        /**
          * Reduce widget
          * @member WidgetMaximize
          */
         reduceWidget: function reduceWidget() {
+
+            if (!this.controller.isMaximized()) {
+
+                this.logger.warn('Widget not maximized');
+                return false;
+            }
 
             this.observer.publish(
                 this.eventmanager.eventList.beforeReduce
@@ -37,6 +59,14 @@ define([], function defineWidgetMaximize() {
          * @member WidgetMaximize
          */
         enlargeWidget: function enlargeWidget() {
+
+            if (this.controller.isMaximized()) {
+
+                this.logger.warn('Widget already maximized');
+                return false;
+            }
+
+            if (this.model.getConfig('preferences').ma)
 
             this.observer.publish(
                 this.eventmanager.eventList.beforeMaximize

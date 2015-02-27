@@ -185,7 +185,7 @@ define([
         /**
          * Init content
          * @member Widget
-         * @type {undefined}
+         * @type {WidgetContent}
          */
         this.content = undefined;
 

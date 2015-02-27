@@ -148,7 +148,12 @@ define([
                 counter: 0,
                 overlapping: true,
                 allowToAdd: true,
-                addNewTo: this.ORGANIZE_MODES.row
+                addNewTo: this.ORGANIZE_MODES.row,
+                preferences: {
+                    draggable: true,
+                    resizable: true,
+                    maximizable: true
+                }
             },
             html: {
                 style: 'default',

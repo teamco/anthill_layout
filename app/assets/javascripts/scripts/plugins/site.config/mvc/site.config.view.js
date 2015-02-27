@@ -383,7 +383,7 @@ define(
             cleanUpConfirmation: function cleanUpConfirmation() {
 
                 this.modalDialog({
-                    style: 'clean-up',
+                    style: 'clean-up-data',
                     type: 'warning',
                     title: 'Clean up',
                     text: 'Are you sure want to cleanup browser local storage?',

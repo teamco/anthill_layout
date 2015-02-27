@@ -410,6 +410,63 @@ define([
          */
         setStatistics: function setStatistics(statistics) {
             this._setItemInfoPreferences('statistics', statistics);
+        },
+
+        /**
+         * Set maximizable
+         * @member WidgetModel
+         * @param {boolean} maximizable
+         */
+        setMaximizable: function setMaximizable(maximizable) {
+            this._setItemInfoPreferences('maximizable', maximizable);
+
+            /**
+             * Get scope
+             * @type Widget
+             */
+            var scope = this.scope;
+
+            if (!maximizable) {
+                scope.observer(
+                    scope.eventmanager.eventList.reduceWidget
+                )
+            }
+        },
+
+        /**
+         * Set draggable
+         * @member WidgetModel
+         * @param {boolean} draggable
+         */
+        setDraggable: function setDraggable(draggable) {
+            this._setItemInfoPreferences('draggable', draggable);
+        },
+
+        /**
+         * Set resizable
+         * @member WidgetModel
+         * @param {boolean} resizable
+         */
+        setResizable: function setResizable(resizable) {
+            this._setItemInfoPreferences('resizable', resizable);
+        },
+
+        /**
+         * Set freeze
+         * @member WidgetModel
+         * @param {boolean} freeze
+         */
+        setFreeze: function setFreeze(freeze) {
+            this._setItemInfoPreferences('freeze', freeze);
+        },
+
+        /**
+         * Set expandable
+         * @member WidgetModel
+         * @param {boolean} expandable
+         */
+        setExpandable: function setExpandable(expandable) {
+            this._setItemInfoPreferences('expandable', expandable);
         }
 
     }, BaseModel.prototype);
