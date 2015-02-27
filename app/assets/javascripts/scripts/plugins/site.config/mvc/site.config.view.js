@@ -415,7 +415,7 @@ define(
 
                 /**
                  * Get root
-                 * @type {App}
+                 * @type {Application}
                  */
                 var root = this.controller.root();
 

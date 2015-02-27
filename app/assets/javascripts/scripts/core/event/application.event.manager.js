@@ -8,29 +8,29 @@
 
 define([
     'modules/Event'
-], function defineAppEventManager(BaseEvent) {
+], function defineApplicationEventManager(BaseEvent) {
 
     /**
-     * Define AppEvent Manager
-     * @class AppEventManager
+     * Define ApplicationEvent Manager
+     * @class ApplicationEventManager
      * @extends BaseEvent
      * @constructor
      */
-    var AppEventManager = function AppEventManager() {
+    var ApplicationEventManager = function ApplicationEventManager() {
 
         /**
          * Define events
-         * @member AppEventManager
+         * @member ApplicationEventManager
          * @type {{}}
          */
         this.events = {};
     };
 
-    return AppEventManager.extend('AppEventManager', {
+    return ApplicationEventManager.extend('ApplicationEventManager', {
 
         /**
          * Define event list
-         * @member AppEventManager
+         * @member ApplicationEventManager
          * @type {{
          *      loadApplication: string,
          *      defineGlobalInstance: string,

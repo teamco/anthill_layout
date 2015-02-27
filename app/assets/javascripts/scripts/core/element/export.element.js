@@ -12,7 +12,7 @@ define([
 ], function defineExportElement($, BaseElement) {
 
     /**
-     * Define App export element
+     * Define Application export element
      * @param view
      * @param opts
      * @returns {*}
@@ -48,7 +48,7 @@ define([
 
             /**
              * Define scope
-             * @type {App}
+             * @type {Application}
              */
             var scope = this.view.scope;
 

@@ -593,7 +593,7 @@ define([
 
                 /**
                  * Define counter
-                 * @member App
+                 * @member Application
                  * @type {number}
                  */
                 root.loadingDataCounter = base.isDefined(root.loadingDataCounter) ?
@@ -636,7 +636,7 @@ define([
 
                                     /**
                                      * Reduce counter
-                                     * @member App
+                                     * @member Application
                                      * @type {number}
                                      */
                                     root.loadingDataCounter -= 1;

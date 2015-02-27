@@ -8,163 +8,59 @@
 
 define(
     [
-        'config/application',
-        'config/workspace',
-        'config/page',
-        'config/layout',
-        'config/widget'
+        'require',
+        'controller/workspace.controller'
     ],
 
     /**
-     * @param {App} Application
-     * @param {Workspace} Workspace
-     * @param {Page} Page
-     * @param {Layout} Layout
-     * @param {Widget} Widget
+     * Define overwrites
+     * @param require
+     * @param {WorkspaceController} WorkspaceController
      */
-    function defineListeners(Application, Workspace, Page, Layout, Widget) {
-
-        // Define global listeners
-        for (var i = 0, l = arguments.length; i < l; i++) {
-            arguments[i].prototype.globalListeners = arguments[i].prototype.globalListeners || {};
-        }
+    function defineListeners(require, WorkspaceController) {
 
         /**
-         * Define Application Global listeners
-         * @member App
-         * @type {{
-         *      defineGlobalInstance: {name: string, callback: function}
-         * }}
+         * Get WorkspaceController
+         * @type {WorkspaceController}
          */
-        Application.prototype.globalListeners = {
+        var wcp = WorkspaceController.prototype;
 
-            defineGlobalInstance: {
-                name: 'define.global.instance',
-                callback: function defineGlobalInstanceCallback() {
-                    if (this.controller.isDevelopmentMode()) {
-                        window[this.model.getConfig('appName')] = this;
-                    }
-                }
-            }
+        /**
+         * Create authoring panel
+         * @member WorkspaceController
+         */
+        wcp.createAuthorPanel = function createAuthorPanel() {
+            this.logger.debug('Create authoring panel', arguments);
         };
 
         /**
-         * Define Workspace Global listeners
-         * @member Workspace
-         * @type {{
-         *      successRendered: {name: string, callback: function},
-         *      createAuthorPanel: {name: string, callback: function},
-         *      createToolPanel: {name: string, callback: function}
-         * }}
+         * Create tool panel
+         * @member WorkspaceController
          */
-        Workspace.prototype.globalListeners = {
-            successRendered: {
-                name: "success.rendered",
-                callback: function successRenderedCallback() {
-
-                    this.permission.check({
-                        capability: 'createAuthorPanel',
-                        callback: function () {
-
-                            this.observer.publish(
-                                this.eventmanager.eventList.createAuthorPanel
-                            );
-
-                        }.bind(this)
-                    });
-
-                    this.permission.check({
-                        capability: 'createToolPanel',
-                        callback: function () {
-
-                            this.observer.publish(
-                                this.eventmanager.eventList.createToolPanel
-                            );
-
-                        }.bind(this)
-                    });
-                }
-            },
-
-            createAuthorPanel: {
-                name: 'create.author.panel',
-                callback: function createAuthorPanelCallback() {
-
-                    /**
-                     * Define app
-                     * @type {App}
-                     */
-                    var app = this.controller.root();
-
-                    require([
-                        'plugins/panel/panel',
-                        'plugins/bar/bar',
-                        'plugins/gallery/gallery',
-                        'plugins/page.data/page.data',
-                        'plugins/workspace.data/workspace.data',
-                        'plugins/widget.rules/widget.rules',
-                        'plugins/site.config/site.config'
-                    ], function definePanel(Panel, Bar, Gallery, PageData, WorkspaceData, WidgetRules, SiteConfig) {
-
-                        /**
-                         * Init panel plugin
-                         * @type {Panel}
-                         */
-                        app.panels.author = new Panel({
-                            config: {renderAt: 'right'},
-                            modules: [Gallery, PageData, WidgetRules, WorkspaceData, SiteConfig],
-                            packages: [Bar]
-                        }, app);
-
-                        app.panels.author.view.render();
-                    });
-                }
-            },
-
-            createToolPanel: {
-                name: 'create.tool.panel',
-                callback: function createToolPanelCallback() {
-
-                    /**
-                     * Define app
-                     * @type {App}
-                     */
-                    var app = this.controller.root();
-
-                    require([
-                        'plugins/panel/panel',
-                        'plugins/bar/bar',
-                        'plugins/maximize/maximize'
-                    ], function definePanel(Panel, Bar, Maximize) {
-
-                        /**
-                         * Init panel plugin
-                         * @type {Panel}
-                         */
-                        app.panels.tool = new Panel({
-                            config: {renderAt: 'left'},
-                            modules: [Maximize],
-                            packages: [Bar]
-                        }, app);
-
-                        app.panels.tool.view.render();
-                    });
-                }
-            }
+        wcp.createToolPanel = function createToolPanel() {
+            this.logger.debug('Create tool panel', arguments);
         };
 
-        /**
-         * Define Page Global listeners
-         * @member Page
-         * @type {{}}
-         */
-        Page.prototype.globalListeners = {};
+        require(
+            [
+                './listeners/application.listeners',
+                './listeners/workspace.listeners',
+                './listeners/page.listeners',
+                './listeners/layout.listeners',
+                './listeners/widget.listeners'
+            ],
 
-        /**
-         * Define Widget Global listeners
-         * @member Widget
-         * @type {{}}
-         */
-        Widget.prototype.globalListeners = {};
+            /**
+             * Define listeners
+             * @param {Application} Application
+             * @param {Workspace} Workspace
+             * @param {Page} Page
+             * @param {Layout} Layout
+             * @param {Widget} Widget
+             */
+            function defineRequiredModules(Application, Workspace, Page, Layout, Widget) {
+
+            }
+        );
     }
 );

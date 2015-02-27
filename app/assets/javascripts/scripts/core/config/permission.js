@@ -13,7 +13,7 @@ define([
     'config/permissions/layout.permissions',
     'config/permissions/widget.permissions',
     'modules/Logger'
-], function definePermissions(App, Workspace, Page, Layout, Widget, Logger) {
+], function definePermissions(Application, Workspace, Page, Layout, Widget, Logger) {
 
     /**
      * Define logger instance
@@ -37,7 +37,7 @@ define([
 
     logger.puts.bind(logger, 'debug')(
         'Define local permissions', [
-            App.prototype.localPermissions,
+            Application.prototype.localPermissions,
             Workspace.prototype.localPermissions,
             Page.prototype.localPermissions,
             Layout.prototype.localPermissions,

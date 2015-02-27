@@ -12,7 +12,7 @@ define([
     'config/page',
     'config/layout',
     'config/widget'
-], function definePermissions(App, Workspace, Page, Layout, Widget) {
+], function definePermissions(Application, Workspace, Page, Layout, Widget) {
 
     // Define global permissions
     for (var i = 0, l = arguments.length; i < l; i++) {
@@ -21,10 +21,10 @@ define([
 
     /**
      * Define Application Global permission
-     * @member App
+     * @member Application
      * @type {*}
      */
-    App.prototype.globalPermissions = {
+    Application.prototype.globalPermissions = {
         development: {
         },
         authorize: {
@@ -79,13 +79,33 @@ define([
     /**
      * Define Widget Global permission
      * @member Widget
-     * @type {{}}
+     * @type {{
+     *      development: {maximizable: boolean, draggable: boolean, resizable: boolean},
+     *      authorize: {maximizable: boolean, draggable: boolean, resizable: boolean},
+     *      consumption: {maximizable: boolean, draggable: boolean, resizable: boolean},
+     *      test: {maximizable: boolean, draggable: boolean, resizable: boolean}
+     * }}
      */
     Widget.prototype.globalPermissions = {
-        development: {},
-        authorize: {},
-        consumption: {},
-        test: {}
-
+        development: {
+            maximizable: true,
+            draggable: true,
+            resizable: true
+        },
+        authorize: {
+            maximizable: true,
+            draggable: true,
+            resizable: true
+        },
+        consumption: {
+            maximizable: true,
+            draggable: false,
+            resizable: false
+        },
+        test: {
+            maximizable: true,
+            draggable: true,
+            resizable: true
+        }
     };
 });

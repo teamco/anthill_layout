@@ -5,11 +5,11 @@
  * Time: 10:26 PM
  */
 
-define(['config/application'], function defineApplicationListeners(App) {
+define(['config/application'], function defineApplicationListeners(Application) {
 
     /**
      * Define Application Local listeners
-     * @member App
+     * @member Application
      * @type {{
      *      successRendered: {name: string, callback: Function},
      *      resizeWindow: {name: string, params: *, callback: Function},
@@ -17,7 +17,7 @@ define(['config/application'], function defineApplicationListeners(App) {
      *      resizeWorkspace: {name: string, callback: Function}
      * }}
      */
-    App.prototype.localListeners = {
+    Application.prototype.localListeners = {
 
         successRendered: {
             name: 'success.rendered',
@@ -47,5 +47,5 @@ define(['config/application'], function defineApplicationListeners(App) {
         }
     };
 
-    return App;
+    return Application;
 });

@@ -5,7 +5,7 @@
  * Time: 11:34 PM
  */
 
-define(['config/application'], function defineApplicationPermissions(App) {
+define(['config/application'], function defineApplicationPermissions(Application) {
 
     /**
      * Define Application Local permission
@@ -16,12 +16,12 @@ define(['config/application'], function defineApplicationPermissions(App) {
      *      test: {}
      * }}
      */
-    App.prototype.localPermissions = {
+    Application.prototype.localPermissions = {
         development: {},
         authorize: {},
         consumption: {},
         test: {}
     };
 
-    return App;
+    return Application;
 });

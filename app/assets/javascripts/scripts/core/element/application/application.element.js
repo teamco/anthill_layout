@@ -8,18 +8,18 @@
 
 define([
     'modules/Element'
-], function defineAppElement(BaseElement) {
+], function defineApplicationElement(BaseElement) {
 
     /**
-     * Define App element
+     * Define Application element
      * @extends BaseElement
-     * @class AppElement
+     * @class ApplicationElement
      * @param view
      * @param opts
      * @returns {*}
      * @constructor
      */
-    var AppElement = function AppElement(view, opts) {
+    var ApplicationElement = function ApplicationElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
@@ -31,11 +31,11 @@ define([
         return this;
     };
 
-    return AppElement.extend('AppElement', {
+    return ApplicationElement.extend('ApplicationElement', {
 
         /**
          * Update uuid after loading
-         * @member AppElement
+         * @member ApplicationElement
          */
         updateUUID: function updateUUID() {
             this.$.attr({

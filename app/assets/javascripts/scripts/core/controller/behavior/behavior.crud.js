@@ -16,7 +16,6 @@ define([
      * @constructor BaseCrud
      */
     var BaseCrud = function BaseCrud() {
-
     };
 
     return BaseCrud.extend('BaseCrud', {
@@ -208,7 +207,7 @@ define([
 
             /**
              * Get root
-             * @type {App}
+             * @type {Application}
              */
             var root = this.root(),
                 isWidget = this.scope.model.getItemNameSpace() === 'widget',

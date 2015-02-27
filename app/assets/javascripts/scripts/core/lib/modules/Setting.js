@@ -353,7 +353,7 @@ define([
 
                     /**
                      * Get scope
-                     * @type {App}
+                     * @type {Application}
                      */
                     var scope = this.setting.scope;
 

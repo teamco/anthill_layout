@@ -880,7 +880,7 @@ define([
 
             /**
              * Get item
-             * @type {App|Workspace|Page|Widget}
+             * @type {Application|Workspace|Page|Widget}
              */
             var item = this.view.scope;
 

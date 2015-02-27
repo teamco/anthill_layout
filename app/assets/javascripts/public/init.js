@@ -15,13 +15,13 @@
 
             require([
                 'config/application'
-            ], function init(App) {
+            ], function init(Application) {
 
                 /**
                  * Define application
-                 * @type {App}
+                 * @type {Application}
                  */
-                return new App({
+                return new Application({
                     config: {
                         html: {
                             container: 'body',

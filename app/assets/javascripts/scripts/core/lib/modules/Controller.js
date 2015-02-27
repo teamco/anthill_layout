@@ -91,7 +91,7 @@ define([
 
             /**
              * Get root
-             * @type {App}
+             * @type {Application}
              */
             var root = this.root();
 
@@ -186,7 +186,7 @@ define([
 
             /**
              * Get root
-             * @type {App}
+             * @type {Application}
              */
             var root = this.root();
 
@@ -602,7 +602,7 @@ define([
 
             /**
              * Define root
-             * @type {App}
+             * @type {Application}
              */
             var root = this.root();
 

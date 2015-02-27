@@ -10,17 +10,17 @@ define([
 ], function defineApp(AntHill, API, MVC, Controller, Model, View, EventManager, Permission) {
 
     /**
-     * Define App
-     * @class App
+     * Define Application
+     * @class Application
      * @extends AntHill
      * @param {{}} opts
      * @constructor
      */
-    var App = function App(opts) {
+    var Application = function Application(opts) {
 
         /**
          * Default config
-         * Ex. logger.namespace: 'App'
+         * Ex. logger.namespace: 'Application'
          *
          * @type {{
          *      workspace: {
@@ -100,35 +100,35 @@ define([
 
         /**
          * Define loading data counter
-         * @member App
+         * @member Application
          * @type {number|*}
          */
         this.loadingDataCounter = undefined;
 
         /**
          * Define panels
-         * @member App
+         * @member Application
          * @type {{}}
          */
         this.panels = {};
 
         /**
          * Define items
-         * @member App
+         * @member Application
          * @type {*}
          */
         this.items = {};
 
         /**
          * Define workspace
-         * @member App
+         * @member Application
          * @type {Workspace}
          */
         this.workspace = {};
 
         /**
          * Define MVC
-         * @member App
+         * @member Application
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -166,5 +166,5 @@ define([
         );
     };
 
-    return App.extend('App', {}, AntHill.prototype);
+    return Application.extend('Application', {}, AntHill.prototype);
 });

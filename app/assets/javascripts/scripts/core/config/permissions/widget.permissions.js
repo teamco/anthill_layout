@@ -10,26 +10,30 @@ define(['config/widget'], function defineWidgetPermissions(Widget) {
     /**
      * Define Widget Local permission
      * @type {{
-     *      development: {draggable: boolean, resizable: boolean},
-     *      authorize: {draggable: boolean, resizable: boolean},
-     *      consumption: {draggable: boolean, resizable: boolean},
-     *      test: {draggable: boolean, resizable: boolean}
+     *      development: {maximizable: boolean, draggable: boolean, resizable: boolean},
+     *      authorize: {maximizable: boolean, draggable: boolean, resizable: boolean},
+     *      consumption: {maximizable: boolean, draggable: boolean, resizable: boolean},
+     *      test: {maximizable: boolean, draggable: boolean, resizable: boolean}
      * }}
      */
     Widget.prototype.localPermissions = {
         development: {
+            maximizable: true,
             draggable: true,
             resizable: true
         },
         authorize: {
+            maximizable: true,
             draggable: true,
             resizable: true
         },
         consumption: {
+            maximizable: true,
             draggable: false,
             resizable: false
         },
         test: {
+            maximizable: true,
             draggable: true,
             resizable: true
         }

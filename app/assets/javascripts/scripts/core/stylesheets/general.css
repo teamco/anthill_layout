@@ -10,13 +10,13 @@ html, body {
     font: normal normal 12px/14px Tahoma, Arial, sans-serif;
 }
 
-html, body, .app,
+html, body, .application,
 .workspaces, .workspace,
 .pages, .page {
     height: 100%;
 }
 
-html, body, .app,
+html, body, .application,
 .workspaces, .workspace,
 .pages, .page, .widget {
     -moz-user-select: none;

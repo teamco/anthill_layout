@@ -43,7 +43,7 @@ define([], function defineWidgetMaximize() {
 
             if (!this.controller.isMaximized()) {
 
-                this.logger.warn('Widget not maximized');
+                this.logger.debug('Widget not maximized');
                 return false;
             }
 

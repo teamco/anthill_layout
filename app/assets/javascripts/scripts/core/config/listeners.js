@@ -13,7 +13,7 @@ define([
     'config/listeners/layout.listeners',
     'config/listeners/widget.listeners',
     'modules/Logger'
-], function defineListeners(App, Workspace, Page, Layout, Widget, Logger) {
+], function defineListeners(Application, Workspace, Page, Layout, Widget, Logger) {
 
     /**
      * Define logger instance
@@ -37,7 +37,7 @@ define([
 
     logger.puts.bind(logger, 'debug')(
         'Define local listeners', [
-            App.prototype.localListeners,
+            Application.prototype.localListeners,
             Workspace.prototype.localListeners,
             Page.prototype.localListeners,
             Layout.prototype.localListeners,

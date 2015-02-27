@@ -43,22 +43,6 @@ define(
             'WorkspaceController', {
 
                 /**
-                 * Create authoring panel
-                 * @member WorkspaceController
-                 */
-                createAuthorPanel: function createAuthorPanel() {
-                    this.logger.debug('Create authoring panel', arguments);
-                },
-
-                /**
-                 * Create tool panel
-                 * @member WorkspaceController
-                 */
-                createToolPanel: function createToolPanel() {
-                    this.logger.debug('Create tool panel', arguments);
-                },
-
-                /**
                  * Set page height
                  * @member WorkspaceController
                  */

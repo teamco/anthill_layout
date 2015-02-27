@@ -8,19 +8,19 @@
 
 define([
     'modules/Permission'
-], function defineAppPermission(BasePermission) {
+], function defineApplicationPermission(BasePermission) {
 
     /**
      * Define Permissions
      * @extends BasePermission
-     * @class AppPermission
+     * @class ApplicationPermission
      * @constructor
      */
-    var AppPermission = function AppPermission() {
+    var ApplicationPermission = function ApplicationPermission() {
 
     };
 
-    return AppPermission.extend('AppPermission', {
+    return ApplicationPermission.extend('ApplicationPermission', {
 
     }, BasePermission.prototype);
 });
