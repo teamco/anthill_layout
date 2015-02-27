@@ -30,7 +30,7 @@ define([], function defineWidgetMaximize() {
              * Get page
              * @type {Page}
              */
-            var page = this.controller.getContainment();
+            var page = this.getContainment();
 
             return page.controller.getMaximized() === this.scope;
         },
@@ -66,7 +66,11 @@ define([], function defineWidgetMaximize() {
                 return false;
             }
 
-            if (this.model.getConfig('preferences').ma)
+            if (!this.model.getConfig('preferences').maximizabe) {
+
+                this.logger.warn('Widget can\'t be maximized');
+                return false;
+            }
 
             this.observer.publish(
                 this.eventmanager.eventList.beforeMaximize

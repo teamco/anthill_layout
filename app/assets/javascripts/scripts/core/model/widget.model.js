@@ -427,9 +427,9 @@ define([
             var scope = this.scope;
 
             if (!maximizable) {
-                scope.observer(
+                scope.observer.publish(
                     scope.eventmanager.eventList.reduceWidget
-                )
+                );
             }
         },
 
