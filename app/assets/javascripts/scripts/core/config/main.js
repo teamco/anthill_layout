@@ -38,6 +38,8 @@ requirejs.config({
 
         // create alias to plugins (not needed if plugins are on the baseUrl)
         // https://github.com/millermedeiros/requirejs-plugins
+        // https://github.com/SBoudrias/require.replace
+        // https://github.com/SlexAxton/require-handlebars-plugin
         defer: 'lib/require/defer',
         async: 'lib/require/async',
         font: 'lib/require/font',
@@ -47,6 +49,8 @@ requirejs.config({
         noext: 'lib/require/noext',
         mdown: 'lib/require/mdown',
         text: 'lib/require/text',
+        replace: 'lib/require/replace',
+        hbs: 'lib/require/hbs',
         propertyParser: 'lib/require/propertyParser',
         markdownConverter: 'lib/require/Markdown.Converter'
     },

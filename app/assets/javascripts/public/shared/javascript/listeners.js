@@ -20,16 +20,10 @@ define(
     function defineListeners(require, WorkspaceController) {
 
         /**
-         * Get WorkspaceController
-         * @type {WorkspaceController}
-         */
-        var wcp = WorkspaceController.prototype;
-
-        /**
          * Create authoring panel
          * @member WorkspaceController
          */
-        wcp.createAuthorPanel = function createAuthorPanel() {
+        WorkspaceController.prototype.createAuthorPanel = function createAuthorPanel() {
             this.logger.debug('Create authoring panel', arguments);
         };
 
@@ -37,7 +31,7 @@ define(
          * Create tool panel
          * @member WorkspaceController
          */
-        wcp.createToolPanel = function createToolPanel() {
+        WorkspaceController.prototype.createToolPanel = function createToolPanel() {
             this.logger.debug('Create tool panel', arguments);
         };
 
