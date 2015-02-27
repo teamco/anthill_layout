@@ -9,19 +9,19 @@
 define([
     'require',
     'modules/Logger'
-], function defineListeners(require, Logger) {
+], function definePermissions(require, Logger) {
 
     require(
         [
-            './listeners/application.listeners',
-            './listeners/workspace.listeners',
-            './listeners/page.listeners',
-            './listeners/layout.listeners',
-            './listeners/widget.listeners'
+            './permissions/application.permissions',
+            './permissions/workspace.permissions',
+            './permissions/page.permissions',
+            './permissions/layout.permissions',
+            './permissions/widget.permissions'
         ],
 
         /**
-         * Define listeners
+         * Define permissions
          * @param {Application} Application
          * @param {Workspace} Workspace
          * @param {Page} Page
@@ -51,12 +51,12 @@ define([
             });
 
             logger.puts.bind(logger, 'debug')(
-                'Define local listeners', [
-                    Application.prototype.localListeners,
-                    Workspace.prototype.localListeners,
-                    Page.prototype.localListeners,
-                    Layout.prototype.localListeners,
-                    Widget.prototype.localListeners
+                'Define local permissions', [
+                    Application.prototype.localPermissions,
+                    Workspace.prototype.localPermissions,
+                    Page.prototype.localPermissions,
+                    Layout.prototype.localPermissions,
+                    Widget.prototype.localPermissions
                 ]
             );
         }

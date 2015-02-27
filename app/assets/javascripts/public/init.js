@@ -9,8 +9,13 @@
     require(['../scripts/core/config/main'], function loadConfig() {
 
         require([
+
+            'config/listeners',
+            'config/permissions',
+
             'public/' + site + '/javascript/listeners',
-            'public/' + site + '/javascript/permission'
+            'public/' + site + '/javascript/permissions'
+
         ], function loadGlobals() {
 
             require([

@@ -79,7 +79,7 @@ requirejs.config({
         'lib/jquery/jquery.nicescroll': {deps: ['jquery']},
 
         'config/listeners': {deps: ['extends/function']},
-        'config/permission': {deps: ['extends/function']},
+        'config/permissions': {deps: ['extends/function']},
         'config/anthill': {deps: ['extends/function']},
         'config/routes': {deps: ['extends/function']},
 
@@ -135,8 +135,5 @@ require([
     'extends/json',
     'extends/event',
     'extends/string',
-    'extends/array',
-
-    'config/listeners',
-    'config/permission'
+    'extends/array'
 ]);
