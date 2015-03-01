@@ -36,6 +36,23 @@ define([], function defineWidgetMaximize() {
         },
 
         /**
+         * Check if maximizable
+         * @member WidgetMaximize
+         * @returns {boolean}
+         */
+        isMaximizable: function isMaximizable() {
+
+            /**
+             * Get capability and prefs
+             * @type {boolean}
+             */
+            var capability = this.permission.getCapability('maximizable'),
+                preferences = !!this.model.getConfig('preferences').maximizable;
+
+            return capability && preferences;
+        },
+
+        /**
          * Reduce widget
          * @member WidgetMaximize
          */
@@ -66,7 +83,7 @@ define([], function defineWidgetMaximize() {
                 return false;
             }
 
-            if (!this.model.getConfig('preferences').maximizabe) {
+            if (!this.controller.isMaximizable()) {
 
                 this.logger.warn('Widget can\'t be maximized');
                 return false;

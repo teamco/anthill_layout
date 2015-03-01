@@ -32,7 +32,6 @@ define([
             $.each(permissions, function each(index, permission) {
                 this.setCapability(index, permission);
             }.bind(this));
-
         },
 
         /**
@@ -88,11 +87,11 @@ define([
          * @returns {boolean}
          */
         authorizedFunctionCall: function authorizedFunctionCall(fn) {
-            if (fn.getCallerName() !== this.check.name) {
-                this.scope.logger.warn('Unauthorized function call');
-                return false;
+            if (fn.getCallerName() === this.check.name) {
+                return true;
             }
-            return true;
+            this.scope.logger.warn('Unauthorized function call');
+            return false;
         },
 
         /**
@@ -103,11 +102,11 @@ define([
          */
         eventTunnelFunctionCall: function eventTunnelFunctionCall(fn) {
             var callerName = fn.getCallerName();
-            if (callerName.toPoint() !== this.scope.eventmanager.eventList[callerName]) {
-                this.scope.logger.warn('Unauthorized function call');
-                return false;
+            if (callerName.toPoint() === this.scope.eventmanager.eventList[callerName]) {
+                return true;
             }
-            return true;
+            this.scope.logger.warn('Unauthorized function call');
+            return false;
         }
 
     }, AntHill.prototype);

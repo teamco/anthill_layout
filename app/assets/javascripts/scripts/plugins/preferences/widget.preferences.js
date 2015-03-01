@@ -226,6 +226,21 @@ define([
          */
         renderWidgetInteractions: function renderWidgetInteractions(widget) {
 
+            var preferences = widget.model.getConfig('preferences'),
+
+                maximizablePermission = !!widget.permission.getCapability('maximizable'),
+                draggablePermission = !!widget.permission.getCapability('draggable'),
+                resizablePermission = !!widget.permission.getCapability('resizable'),
+
+                maximizable = maximizablePermission ?
+                    !!preferences.maximizable : false,
+
+                draggable = draggablePermission ?
+                    !!preferences.draggable : false,
+
+                resizable = resizablePermission ?
+                    !!preferences.resizable : false;
+
             /**
              * Define prefs
              * @type {{
@@ -256,7 +271,7 @@ define([
                 overlapping: {
                     type: 'checkbox',
                     disabled: false,
-                    checked: false,
+                    checked: preferences.overlapping,
                     visible: true
                 },
                 alwaysOnTop: {
@@ -279,8 +294,8 @@ define([
                 },
                 maximizable: {
                     type: 'checkbox',
-                    disabled: false,
-                    checked: true,
+                    disabled: !maximizablePermission,
+                    checked: maximizable,
                     visible: true
                 },
                 setLayerUp: {
@@ -301,14 +316,14 @@ define([
                 },
                 draggable: {
                     type: 'checkbox',
-                    disabled: false,
-                    checked: true,
+                    disabled: !draggablePermission,
+                    checked: draggable,
                     visible: true
                 },
                 resizable: {
                     type: 'checkbox',
-                    disabled: false,
-                    checked: true,
+                    disabled: !resizablePermission,
+                    checked: resizable,
                     visible: true
                 },
                 freeze: {
@@ -338,7 +353,7 @@ define([
                     group: 'stick',
                     events: ['click'],
                     checked: false,
-                    visible: true,
+                    visible: true
                 },
                 setStickToCenterTop: {
                     type: 'event',

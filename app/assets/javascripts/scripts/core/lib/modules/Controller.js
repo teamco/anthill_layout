@@ -688,7 +688,7 @@ define([
              * Define rules
              * @type {{}}
              */
-            var rules = this.model.rules;
+            var rules = this.model.rules || {};
 
             return rules.subscribers ?
                 rules.subscribers[event] : []
