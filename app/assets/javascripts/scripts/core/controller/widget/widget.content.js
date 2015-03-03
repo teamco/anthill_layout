@@ -157,10 +157,29 @@ define([
         /**
          * Get widget resource
          * @member WidgetController
-         * @returns {*}
+         * @returns {string}
          */
         getResource: function getResource() {
             return this.model.getConfig('preferences').resource;
+        },
+
+        /**
+         * Get expandable
+         * @member WidgetController
+         * @returns {boolean}
+         */
+        isExpandable: function isExpandable() {
+            return !!this.model.getConfig('preferences').expandable;
+        },
+
+        /**
+         * Define expand Content
+         * @member WidgetController
+         * @param e
+         */
+        expandContent: function expandContent(e) {
+
+            debugger
         }
 
     }, AntHill.prototype);

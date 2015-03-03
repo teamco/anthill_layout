@@ -332,7 +332,26 @@ define([
                     checked: false,
                     visible: true
                 },
+                commentable: {
+                    type: 'checkbox',
+                    disabled: false,
+                    checked: true,
+                    visible: true
+                },
+                shareable: {
+                    type: 'checkbox',
+                    disabled: false,
+                    checked: true,
+                    visible: true
+                },
                 expandable: {
+                    type: 'checkbox',
+                    disabled: false,
+                    checked: true,
+                    visible: true,
+                    separator: true
+                },
+                scrollable: {
                     type: 'checkbox',
                     disabled: false,
                     checked: true,

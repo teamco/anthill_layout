@@ -161,7 +161,7 @@ input[disabled="disabled"] {
 }
 
 li.checkbox {
-    width: 49%;
+    width: 32%;
     margin-left: 1%;
     float: left;
     background-color: #fff;

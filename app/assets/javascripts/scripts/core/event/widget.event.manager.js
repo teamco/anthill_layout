@@ -81,7 +81,8 @@ define([
          *      setStickToBottomLeft: string,
          *      setStickToTopRight: string,
          *      setStickToBottomRight: string,
-         *      restoreWidgetSticker: string
+         *      restoreWidgetSticker: string,
+         *      expandContent: string
          * }}
          */
         eventList: {
@@ -157,7 +158,9 @@ define([
             setStickToTopRight: 'set.stick.to.top.right',
             setStickToBottomRight: 'set.stick.to.bottom.right',
 
-            restoreWidgetSticker: 'restore.widget.sticker'
+            restoreWidgetSticker: 'restore.widget.sticker',
+
+            expandContent: 'expand.content'
         }
 
     }, BaseEvent.prototype);
