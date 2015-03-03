@@ -28,7 +28,7 @@ define([
                 destroy: true
             });
 
-            this.setText(opts.text);
+            this.toggleExpandText(true);
             this.bindExpander();
         }
 
@@ -56,6 +56,20 @@ define([
                     e
                 );
             });
+        },
+
+        /**
+         * Define text toggle
+         * @member WidgetExpanderElement
+         * @param {boolean} expand
+         */
+        toggleExpandText: function toggleExpandText(expand) {
+
+            this.setText(
+                expand ?
+                    this.i18n.t('expand.widget') :
+                    this.i18n.t('collapse.widget')
+            );
         }
 
     }, BaseElement.prototype);

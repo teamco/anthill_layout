@@ -82,7 +82,9 @@ define([
          *      setStickToTopRight: string,
          *      setStickToBottomRight: string,
          *      restoreWidgetSticker: string,
-         *      expandContent: string
+         *      expandContent: string,
+         *      collapseContent: string,
+         *      scrollContent: string
          * }}
          */
         eventList: {
@@ -160,7 +162,9 @@ define([
 
             restoreWidgetSticker: 'restore.widget.sticker',
 
-            expandContent: 'expand.content'
+            expandContent: 'expand.content',
+            collapseContent: 'collapse.content',
+            scrollContent: 'scroll.content'
         }
 
     }, BaseEvent.prototype);

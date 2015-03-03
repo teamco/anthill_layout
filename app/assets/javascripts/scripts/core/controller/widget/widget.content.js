@@ -117,7 +117,8 @@ define([
             this.content = new Content(this, opts);
 
             this.logger.debug('Set content', this.content, opts);
-        },
+            this.view.contentExpander()
+;        },
 
         /**
          * Get content
@@ -169,7 +170,34 @@ define([
          * @returns {boolean}
          */
         isExpandable: function isExpandable() {
-            return !!this.model.getConfig('preferences').expandable;
+
+            /**
+             * Get $content
+             * @type {WidgetContent}
+             */
+            var $content = this.getContent(),
+                deltaHeight = $content.view.get$item().getHeight();
+
+            return !!this.model.getConfig('preferences').expandable &&
+                deltaHeight > this.scope.dom.height;
+        },
+
+        /**
+         * Get expanded
+         * @member WidgetController
+         * @returns {boolean}
+         */
+        isExpanded: function isExpanded() {
+            return !!this.scope.expanded;
+        },
+
+        /**
+         * Set expanded
+         * @member WidgetController
+         * @param {boolean} expanded
+         */
+        setExpanded: function setExpanded(expanded) {
+            return this.scope.expanded = !!expanded;
         },
 
         /**
@@ -179,7 +207,87 @@ define([
          */
         expandContent: function expandContent(e) {
 
-            debugger
+            if (this.controller.isConsumptionMode()) {
+
+                this.logger.warn('Consumption mode feature', e);
+                return false;
+            }
+
+            if (this.controller.isExpanded()) {
+
+                this.observer.publish(
+                    this.eventmanager.eventList.collapseContent
+                );
+
+                return false;
+            }
+
+            /**
+             * Get $content
+             * @type {WidgetContent}
+             */
+            var $content = this.controller.getContent(),
+                deltaHeight = $content.view.get$item().getHeight();
+
+            /**
+             * Get $widget
+             * @type {WidgetElement}
+             */
+            var $widget = this.view.get$item();
+
+            $widget.setHeight(deltaHeight);
+            $widget.view.elements.$expander.toggleExpandText(false);
+
+            this.logger.debug('Expand content');
+            this.controller.setExpanded(true);
+        },
+
+        /**
+         * Define collapse Content
+         * @member WidgetController
+         * @param e
+         */
+        collapseContent: function collapseContent(e) {
+
+            if (this.controller.isConsumptionMode()) {
+
+                this.logger.warn('Consumption mode feature', e);
+                return false;
+            }
+
+            if (!this.controller.isExpanded()) {
+
+                this.logger.warn('Content not expanded');
+                return false;
+            }
+
+            /**
+             * Get $widget
+             * @type {WidgetElement}
+             */
+            var $widget = this.view.get$item();
+
+            $widget.setHeight(this.dom.height);
+            $widget.view.elements.$expander.toggleExpandText(true);
+
+            this.logger.debug('Collapse content');
+            this.controller.setExpanded(false);
+        },
+
+        /**
+         * Define scroll content
+         * @member WidgetController
+         * @param {boolean} scrollable
+         */
+        scrollContent: function scrollContent(scrollable) {
+
+            /**
+             * Define css action
+             * @type {string}
+             */
+            var action = (scrollable ? 'add' : 'remove') + 'Class';
+
+            this.view.get$item().$[action]('scroll');
         }
 
     }, AntHill.prototype);

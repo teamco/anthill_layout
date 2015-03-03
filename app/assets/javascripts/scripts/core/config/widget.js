@@ -189,6 +189,13 @@ define([
          */
         this.content = undefined;
 
+        /**
+         * Init expanded
+         * @member Widget
+         * @type {boolean}
+         */
+        this.expanded = false;
+
         this.observer.publish(
             this.eventmanager.eventList.successCreated
         );

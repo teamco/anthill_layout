@@ -422,7 +422,7 @@ define([
 
             /**
              * Get scope
-             * @type Widget
+             * @type {Widget}
              */
             var scope = this.scope;
 
@@ -467,6 +467,27 @@ define([
          */
         setExpandable: function setExpandable(expandable) {
             this._setItemInfoPreferences('expandable', expandable);
+        },
+
+        /**
+         * Set scrollable
+         * @member WidgetModel
+         * @param {boolean} scrollable
+         */
+        setScrollable: function setScrollable(scrollable) {
+
+            this._setItemInfoPreferences('scrollable', scrollable);
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.scrollContent,
+                scrollable
+            );
         }
 
     }, BaseModel.prototype);

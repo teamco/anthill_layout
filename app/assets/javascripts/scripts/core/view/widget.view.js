@@ -51,7 +51,6 @@ define([
 
             this.header(Header, this.elements.$widget);
             this.content();
-            this.contentExpander();
             this.contentComments();
             this.contentSharing();
             this.footer(Footer, this.elements.$widget);
@@ -87,8 +86,7 @@ define([
              */
             this.elements.$expander = new WidgetExpanderElement(this, {
                 style: 'expander',
-                $container: this.elements.$widget.$,
-                text: this.i18n.t('expand.widget')
+                $container: this.elements.$widget.$
             });
         },
 

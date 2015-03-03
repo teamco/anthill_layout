@@ -49,8 +49,6 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
                     },
                     arguments
                 ]);
-
-                this.controller.loadWidgetData();
             }
         }
     };
