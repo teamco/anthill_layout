@@ -256,7 +256,6 @@ define([
                     layout.eventmanager.eventList.afterNestedOrganizer
                 );
             }
-
         },
 
         /**
@@ -371,7 +370,10 @@ define([
 
             } else {
 
-                this.layout.logger.warn('Undefined behavior organize', behavior.organize);
+                this.layout.logger.warn(
+                    'Undefined behavior organize',
+                    behavior.organize
+                );
             }
         },
 

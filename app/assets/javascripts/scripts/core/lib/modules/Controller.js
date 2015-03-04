@@ -600,6 +600,12 @@ define([
          */
         store: function store(node, data, counter) {
 
+            if (this.isConsumptionMode()) {
+
+                this.scope.logger.warn('Unable to save layout in consumption mode');
+                return false;
+            }
+
             /**
              * Define root
              * @type {Application}

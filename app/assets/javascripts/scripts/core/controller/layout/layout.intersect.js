@@ -206,7 +206,7 @@ define(function defineLayoutIntersect() {
 
                     if (controller.isSnap2Grid() || controller.isUIGrid()) {
 
-                        overlapped = this.gridStyleOverlpping(source, target);
+                        overlapped = this.gridStyleOverlapping(source, target);
 
                     } else if (controller.isFreeStyle()) {
 
@@ -229,7 +229,7 @@ define(function defineLayoutIntersect() {
          * @param target
          * @returns {*}
          */
-        gridStyleOverlpping: function gridStyleOverlpping(source, target) {
+        gridStyleOverlapping: function gridStyleOverlapping(source, target) {
 
             if (this._overlapped(source.dom, target.dom)) {
 
