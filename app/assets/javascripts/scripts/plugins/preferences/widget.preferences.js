@@ -348,8 +348,7 @@ define([
                     type: 'checkbox',
                     disabled: false,
                     checked: true,
-                    visible: true,
-                    separator: true
+                    visible: true
                 },
                 scrollable: {
                     type: 'checkbox',

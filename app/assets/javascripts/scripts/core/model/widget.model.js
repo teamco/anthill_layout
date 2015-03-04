@@ -466,7 +466,19 @@ define([
          * @param {boolean} expandable
          */
         setExpandable: function setExpandable(expandable) {
+
             this._setItemInfoPreferences('expandable', expandable);
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.prepareContentExpander,
+                expandable
+            );
         },
 
         /**

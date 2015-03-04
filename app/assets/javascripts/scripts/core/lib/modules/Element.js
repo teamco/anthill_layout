@@ -415,7 +415,7 @@ define([
 
             if (this.$) {
                 this.view.scope.logger.debug('Destroy element', this);
-                this.$.unbind().remove();
+                this.$.off().remove();
             }
 
             if (this.linkCSS) {

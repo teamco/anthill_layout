@@ -117,8 +117,8 @@ define([
             this.content = new Content(this, opts);
 
             this.logger.debug('Set content', this.content, opts);
-            this.view.contentExpander()
-;        },
+            this.view.contentExpander();
+        },
 
         /**
          * Get content
@@ -175,8 +175,19 @@ define([
              * Get $content
              * @type {WidgetContent}
              */
-            var $content = this.getContent(),
-                deltaHeight = $content.view.get$item().getHeight();
+            var $content = this.getContent();
+
+            if (!this.base.isDefined($content)) {
+
+                this.scope.logger.debug('Content undefined');
+                return false;
+            }
+
+            /**
+             * Get content height
+             * @type {number}
+             */
+            var deltaHeight = $content.view.get$item().getHeight();
 
             return !!this.model.getConfig('preferences').expandable &&
                 deltaHeight > this.scope.dom.height;
@@ -201,13 +212,50 @@ define([
         },
 
         /**
+         * Prepare content expander
+         * @member WidgetController
+         * @param {boolean} expand
+         */
+        prepareContentExpander: function prepareContentExpander(expand) {
+
+            /**
+             * Get $expander
+             * @type {WidgetExpanderElement}
+             */
+            var $expander = this.view.elements.$expander,
+                isDefined = this.base.isDefined($expander);
+
+            if (expand) {
+
+                if (isDefined) {
+
+                    this.logger.debug('Expander already rendered');
+                    return false;
+                }
+
+                this.view.contentExpander();
+
+            } else {
+
+                if (!isDefined) {
+
+                    this.logger.debug('Expander should be rendered before destroy');
+                    return false;
+                }
+
+                $expander.destroy();
+                delete this.view.elements.$expander;
+            }
+        },
+
+        /**
          * Define expand Content
          * @member WidgetController
          * @param e
          */
         expandContent: function expandContent(e) {
 
-            if (this.controller.isConsumptionMode()) {
+            if (!this.controller.isConsumptionMode()) {
 
                 this.logger.warn('Consumption mode feature', e);
                 return false;
@@ -249,7 +297,7 @@ define([
          */
         collapseContent: function collapseContent(e) {
 
-            if (this.controller.isConsumptionMode()) {
+            if (!this.controller.isConsumptionMode()) {
 
                 this.logger.warn('Consumption mode feature', e);
                 return false;
