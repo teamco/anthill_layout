@@ -55,6 +55,7 @@ define([
          *      transferPreferences: string,
          *      afterUpdatePreferences: string,
          *      setContent: string,
+         *      afterSetContent: string,
          *      adoptDimensions: string,
          *      restoreLayerIndex: string,
          *      setLayerUp: string,
@@ -122,6 +123,7 @@ define([
 
             loadContent: 'load.content',
             setContent: 'set.content',
+            afterSetContent: 'after.set.content',
 
             loadPreferences: 'load.preferences',
             transferPreferences: 'transfer.preferences',

@@ -116,7 +116,19 @@ define([
              */
             this.content = new Content(this, opts);
 
-            this.logger.debug('Set content', this.content, opts);
+            this.observer.publish(
+                this.eventmanager.eventList.afterSetContent,
+                opts
+            );
+        },
+
+        /**
+         * Define after set content
+         * @member WidgetContent
+         * @param {{}} [opts]
+         */
+        afterSetContent: function afterSetContent(opts) {
+            this.logger.debug('After set content', this.content, opts);
             this.view.contentExpander();
         },
 
@@ -223,7 +235,7 @@ define([
              * @type {WidgetExpanderElement}
              */
             var $expander = this.view.elements.$expander,
-                isDefined = this.base.isDefined($expander);
+                isDefined = $expander && this.base.isDefined($expander.$);
 
             if (expand) {
 

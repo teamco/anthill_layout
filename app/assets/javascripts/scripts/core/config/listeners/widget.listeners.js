@@ -12,7 +12,9 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
      * @member Widget
      * @type {{
      *      successCreated: {name: string, callback: Function},
-     *      successRendered: {name: string, callback: Function}
+     *      successRendered: {name: string, callback: Function},
+     *      afterSetContent: {name: string, callback: Function},
+     *      stopResizable: {name: string, callback: Function}
      * }}
      */
     Widget.prototype.localListeners = {
@@ -49,6 +51,35 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
                     },
                     arguments
                 ]);
+
+                /**
+                 * Get root
+                 * @type {Application}
+                 */
+                var root = this.controller.root();
+
+                if (!silent && !root.model.getConfig('loading')) {
+                    this.observer.batchPublish(
+                        this.eventmanager.eventList.loadContent,
+                        this.eventmanager.eventList.loadPreferences
+                    );
+                }
+            }
+        },
+
+        afterSetContent: {
+            name: "after.set.content",
+            callback: function afterSetContentCallback() {
+            }
+        },
+
+        stopResizable: {
+            name: "stop.resizable",
+            callback: function stopResizableCallback() {
+                this.observer.publish(
+                    this.eventmanager.eventList.toggleContentExpander,
+                    this.controller.isExpandable()
+                );
             }
         }
     };
