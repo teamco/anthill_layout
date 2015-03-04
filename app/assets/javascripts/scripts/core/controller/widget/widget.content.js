@@ -212,11 +212,11 @@ define([
         },
 
         /**
-         * Prepare content expander
+         * Toggle content expander
          * @member WidgetController
          * @param {boolean} expand
          */
-        prepareContentExpander: function prepareContentExpander(expand) {
+        toggleContentExpander: function toggleContentExpander(expand) {
 
             /**
              * Get $expander

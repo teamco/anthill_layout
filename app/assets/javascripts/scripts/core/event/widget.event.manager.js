@@ -82,7 +82,7 @@ define([
          *      setStickToTopRight: string,
          *      setStickToBottomRight: string,
          *      restoreWidgetSticker: string,
-         *      prepareContentExpander: string,
+         *      toggleContentExpander: string,
          *      expandContent: string,
          *      collapseContent: string,
          *      scrollContent: string
@@ -163,7 +163,7 @@ define([
 
             restoreWidgetSticker: 'restore.widget.sticker',
 
-            prepareContentExpander: 'prepare.content.expander',
+            toggleContentExpander: 'toggle.content.expander',
             expandContent: 'expand.content',
             collapseContent: 'collapse.content',
             scrollContent: 'scroll.content'

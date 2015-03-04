@@ -476,7 +476,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventmanager.eventList.prepareContentExpander,
+                scope.eventmanager.eventList.toggleContentExpander,
                 expandable
             );
         },
