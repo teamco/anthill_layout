@@ -59,7 +59,7 @@ define(function defineLayoutIntersect() {
                 (this._overlapCondition(target.row, src.relBottom, '>') ||
                     this._overlapCondition(target.relBottom, src.row, '<'));
 
-            this.layout.logger.debug('Overlap not possibility', src, target, noOverlapped);
+            this.layout.logger.debug('Overlapping not possible', src, target, noOverlapped);
 
             return noOverlapped;
         },
@@ -117,7 +117,6 @@ define(function defineLayoutIntersect() {
          */
         _overlappedCore: function _isOverlappedCore(src, target, from, to) {
 
-
             return (this._overlapCondition(target[from], src[from], '>') &&
                 this._overlapCondition(target[from], src[to], '<')) ||
 
@@ -173,10 +172,9 @@ define(function defineLayoutIntersect() {
          * @member Intersect
          * @param {Widget} source
          * @param {boolean} force
-         * @private
          * @returns {*}
          */
-        _intersectWidgets: function _intersectWidgets(source, force) {
+        intersectWidgets: function intersectWidgets(source, force) {
 
             var move = {}, i = 0, l, target;
 

@@ -103,7 +103,8 @@ define(
                      * @member Page
                      * @type {boolean}
                      */
-                    this.scope.contentLoaded = !!loaded;
+                    this.contentLoaded = !!loaded;
+                    this.view.get$item().hideLoader();
                 },
 
                 /**

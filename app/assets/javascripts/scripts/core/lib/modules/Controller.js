@@ -79,7 +79,6 @@ define([
                 this.model.getItems()
             );
             this.controller.setAsLoading(false);
-            this.view.get$item().hideLoader();
         },
 
         /**

@@ -868,7 +868,29 @@ define([
          * @member BaseElement
          */
         hideLoader: function hideLoader() {
-            this.$container.removeClass('loading');
+
+            /**
+             * Get $root
+             * @type {ApplicationElement}
+             */
+            var $root = this.view.controller.root().view.get$item();
+
+            $root.$container.removeClass('loading');
+        },
+
+        /**
+         * Add loading class before loading items
+         * @member BaseElement
+         */
+        showLoader: function showLoader() {
+
+            /**
+             * Get $root
+             * @type {ApplicationElement}
+             */
+            var $root = this.view.controller.root().view.get$item();
+
+            $root.$container.addClass('loading');
         },
 
         /**

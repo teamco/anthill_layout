@@ -113,9 +113,12 @@ define([], function definePageWidget(){
              */
             loadItemsContent: function loadItemsContent() {
 
+                this.view.get$item().showLoader();
+
                 if (this.controller.isLoadedContent()) {
 
                     this.logger.debug('Content already loaded');
+                    this.view.get$item().hideLoader();
 
                 } else {
 
@@ -136,8 +139,10 @@ define([], function definePageWidget(){
                         }
                     }
 
-                    // Update config
-                    this.controller.setLoadedContent(true);
+                    this.observer.publish(
+                        this.eventmanager.eventList.setLoadedContent,
+                        true
+                    );
                 }
             }
         }
