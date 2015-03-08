@@ -1,0 +1,12 @@
+.widget .content .fire-pic {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.widget .content .fire-pic img {
+    height: 100%;
+    width: 100%;
+    border: none;
+    overflow: hidden;
+}
