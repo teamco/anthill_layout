@@ -112,9 +112,9 @@ define([
             this.modalDialog({
                 style: 'handle-' + status,
                 type: status,
-                title: [xhr.status, xhr.statusText, status].join(' '),
-                text: responseJSON ? responseJSON.error : xhr.statusText,
-                html: '',
+                title: xhr.status,
+                text: xhr.statusText,
+                html: (responseJSON || {}).error,
                 cover: true,
                 buttons: buttons
             });

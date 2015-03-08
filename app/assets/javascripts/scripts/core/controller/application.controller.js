@@ -73,6 +73,42 @@ define(
                 defineSetting: function defineSetting() {
                     this.model.initGlobalSetting();
                     this.controller.ajaxSetup();
+                    this.controller.defineOverrides();
+                },
+
+                /**
+                 * Define overrides
+                 * @member ApplicationController
+                 */
+                defineOverrides: function defineOverrides() {
+
+                    var proxiedError = window.onerror,
+                        scope = this.scope;
+
+                    // Override previous handler.
+                    window.onerror = function errorHandler(errorMsg, url, lineNumber, columnNumber, errorObject) {
+
+                        if (proxiedError) {
+
+                            // Call previous handler.
+                            proxiedError.apply(this, arguments);
+                        }
+
+                        // Just let default handler run.
+                        scope.view.handleNotificationsRenderer({
+                            status: errorMsg,
+                            statusText: [url, lineNumber, columnNumber].join(':'),
+                            responseJSON: {
+                                error: [
+                                    '<pre><code>',
+                                    errorObject.stack,
+                                    '</code></pre>'
+                                ].join('')
+                            }
+                        }, 'error');
+
+                        return false;
+                    }
                 },
 
                 /**
