@@ -357,9 +357,13 @@ define([
          */
         commentableContent: function commentableContent(commentable) {
 
+            if (typeof(commentable) === 'undefined') {
+                return false;
+            }
+
             commentable ?
                 this.view.contentComments() :
-                this.view.$comments.destroy();
+                this.view.elements.$comments.destroy();
         }
 
     }, AntHill.prototype);

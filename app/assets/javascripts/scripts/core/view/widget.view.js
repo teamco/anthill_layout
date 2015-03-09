@@ -89,10 +89,14 @@ define([
             });
         },
 
+        /**
+         * Render comments
+         * @member WidgetView
+         */
         contentComments: function contentComments() {
 
             /**
-             * De
+             * Define $comments
              * @type {undefined}
              */
             this.elements.$comments = undefined;
