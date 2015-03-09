@@ -46,7 +46,7 @@ define([], function defineWidgetMaximize() {
              * Get capability and prefs
              * @type {boolean}
              */
-            var capability = this.permission.getCapability('maximizable'),
+            var capability = this.scope.permission.getCapability('maximizable'),
                 preferences = !!this.model.getConfig('preferences').maximizable;
 
             return capability && preferences;
