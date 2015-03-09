@@ -51,7 +51,6 @@ define([
 
             this.header(Header, this.elements.$widget);
             this.content();
-            this.contentComments();
             this.contentSharing();
             this.footer(Footer, this.elements.$widget);
         },
@@ -92,6 +91,11 @@ define([
 
         contentComments: function contentComments() {
 
+            /**
+             * De
+             * @type {undefined}
+             */
+            this.elements.$comments = undefined;
         },
 
         contentSharing: function contentSharing() {

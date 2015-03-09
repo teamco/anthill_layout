@@ -87,7 +87,8 @@ define([
          *      toggleContentExpander: string,
          *      expandContent: string,
          *      collapseContent: string,
-         *      scrollContent: string
+         *      scrollContent: string,
+         *      commentableContent: string
          * }}
          */
         eventList: {
@@ -171,7 +172,8 @@ define([
             toggleContentExpander: 'toggle.content.expander',
             expandContent: 'expand.content',
             collapseContent: 'collapse.content',
-            scrollContent: 'scroll.content'
+            scrollContent: 'scroll.content',
+            commentableContent: 'commentable.content'
         }
 
     }, BaseEvent.prototype);

@@ -503,6 +503,27 @@ define([
         },
 
         /**
+         * Set commentable
+         * @member WidgetModel
+         * @param {boolean} commentable
+         */
+        setCommentable: function setCommentable(commentable) {
+
+            this._setItemInfoPreferences('commentable', commentable);
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.commentableContent,
+                commentable
+            );
+        },
+
+        /**
          * Set custom class name
          * @member WidgetModel
          * @param {string} name

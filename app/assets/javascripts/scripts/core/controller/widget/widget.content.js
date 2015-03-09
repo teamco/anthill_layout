@@ -143,7 +143,7 @@ define([
 
         /**
          * Clear thumbnail bg
-         * @member WidgetController
+         * @member WidgetContent
          */
         clearThumbnail: function clearThumbnail() {
             this.view.get$item().clearBackground();
@@ -151,7 +151,7 @@ define([
 
         /**
          * Adopt widget dimension on resize page
-         * @member WidgetController
+         * @member WidgetContent
          * @param {Boolean} animate
          */
         adoptDimensions: function adoptDimensions(animate) {
@@ -160,7 +160,7 @@ define([
 
         /**
          * Get widget thumbnail
-         * @member WidgetController
+         * @member WidgetContent
          * @returns {*}
          */
         getThumbnail: function getThumbnail() {
@@ -169,7 +169,7 @@ define([
 
         /**
          * Get widget resource
-         * @member WidgetController
+         * @member WidgetContent
          * @returns {string}
          */
         getResource: function getResource() {
@@ -178,7 +178,7 @@ define([
 
         /**
          * Get expandable
-         * @member WidgetController
+         * @member WidgetContent
          * @returns {boolean}
          */
         isExpandable: function isExpandable() {
@@ -207,7 +207,7 @@ define([
 
         /**
          * Get expanded
-         * @member WidgetController
+         * @member WidgetContent
          * @returns {boolean}
          */
         isExpanded: function isExpanded() {
@@ -216,7 +216,7 @@ define([
 
         /**
          * Set expanded
-         * @member WidgetController
+         * @member WidgetContent
          * @param {boolean} expanded
          */
         setExpanded: function setExpanded(expanded) {
@@ -225,7 +225,7 @@ define([
 
         /**
          * Toggle content expander
-         * @member WidgetController
+         * @member WidgetContent
          * @param {boolean} expand
          */
         toggleContentExpander: function toggleContentExpander(expand) {
@@ -262,7 +262,7 @@ define([
 
         /**
          * Define expand Content
-         * @member WidgetController
+         * @member WidgetContent
          * @param e
          */
         expandContent: function expandContent(e) {
@@ -304,7 +304,7 @@ define([
 
         /**
          * Define collapse Content
-         * @member WidgetController
+         * @member WidgetContent
          * @param e
          */
         collapseContent: function collapseContent(e) {
@@ -336,7 +336,7 @@ define([
 
         /**
          * Define scroll content
-         * @member WidgetController
+         * @member WidgetContent
          * @param {boolean} scrollable
          */
         scrollContent: function scrollContent(scrollable) {
@@ -348,6 +348,18 @@ define([
             var action = (scrollable ? 'add' : 'remove') + 'Class';
 
             this.view.get$item().$[action]('scroll');
+        },
+
+        /**
+         * Define commentable content
+         * @member WidgetContent
+         * @param {boolean} commentable
+         */
+        commentableContent: function commentableContent(commentable) {
+
+            commentable ?
+                this.view.contentComments() :
+                this.view.$comments.destroy();
         }
 
     }, AntHill.prototype);
