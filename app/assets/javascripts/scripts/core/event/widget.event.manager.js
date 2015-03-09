@@ -63,6 +63,7 @@ define([
          *      setAlwaysOnTop: string,
          *      setOnClickUrl: string,
          *      clearThumbnail: string,
+         *      customClassName: string,
          *      saveDom: string,
          *      afterMaximize: string,
          *      beforeMaximize: string,
@@ -137,6 +138,8 @@ define([
 
             setOnClickUrl: 'set.on.click.url',
             clearThumbnail: 'clear.thumbnail',
+
+            customClassName: 'custom.class.name',
 
             saveDom: 'save.dom',
 

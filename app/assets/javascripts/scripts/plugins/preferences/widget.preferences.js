@@ -150,6 +150,7 @@ define([
              *      description: {type: string, disabled: boolean, value},
              *      widgetUrl: {type: string, disabled: boolean, value},
              *      onClickOpenUrl: {type: string, disabled: boolean, value},
+             *      customClassName: {type: string, disabled: boolean, value},
              *      statistics: {type: string, disabled: boolean, checked: boolean}
              * }}
              */
@@ -174,6 +175,12 @@ define([
                 },
                 onClickOpenUrl: {
                     type: 'textarea',
+                    disabled: false,
+                    value: undefined,
+                    visible: true
+                },
+                customClassName: {
+                    type: 'text',
                     disabled: false,
                     value: undefined,
                     visible: true

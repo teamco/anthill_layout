@@ -148,21 +148,18 @@
 }
 
 .widget.no-bg .content {
-    background: transparent !important;
+    background: transparent;
 }
 
 .widget.ui-resizable-resizing iframe,
-.widget.ui-draggable-dragging iframe {
-    display: none !important;
-}
-
+.widget.ui-draggable-dragging iframe,
 .widget.ui-draggable-dragging .ui-resizable-handle {
     display: none;
 }
 
 .widget.ui-draggable-dragging,
 .widget.ui-resizable-resizing {
-    opacity: 0.6 !important;
+    opacity: 0.6;
 }
 
 .widget .expander {

@@ -500,6 +500,33 @@ define([
                 scope.eventmanager.eventList.scrollContent,
                 scrollable
             );
+        },
+
+        /**
+         * Set custom class name
+         * @member WidgetModel
+         * @param {string} name
+         */
+        setCustomClassName: function setCustomClassName(name) {
+
+            /**
+             * Get current class name
+             * @type {string}
+             */
+            var currentClassName = this.getConfig('preferences').customClassName;
+
+            this._setItemInfoPreferences('customClassName', name);
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.customClassName,
+                [name, currentClassName]
+            );
         }
 
     }, BaseModel.prototype);

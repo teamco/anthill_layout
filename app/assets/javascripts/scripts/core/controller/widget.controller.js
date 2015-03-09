@@ -32,7 +32,7 @@ define(
      * @param {WidgetMaximize} WidgetMaximize
      * @returns {*}
      */
-        function defineWidgetController(ui, AntHill, BaseController, WidgetInteractions, WidgetMaximize, WidgetStretch, WidgetStick, WidgetLayer, WidgetContent) {
+    function defineWidgetController(ui, AntHill, BaseController, WidgetInteractions, WidgetMaximize, WidgetStretch, WidgetStick, WidgetLayer, WidgetContent) {
 
         /**
          * Define widget controller
@@ -169,6 +169,27 @@ define(
                     this.scope.logger.debug('Get global padding', padding);
 
                     return padding;
+                },
+
+                /**
+                 * Define custom class name
+                 * @member WidgetController
+                 * @param {string} name
+                 * @param {string} previous
+                 */
+                customClassName: function customClassName(name, previous) {
+
+                    /**
+                     * Get $widget
+                     * @type {WidgetElement}
+                     */
+                    var $widget = this.view.get$item();
+
+                    $widget.$.removeClass(previous);
+
+                    if (name && name.length > 0) {
+                        $widget.$.addClass(name);
+                    }
                 },
 
                 /**
