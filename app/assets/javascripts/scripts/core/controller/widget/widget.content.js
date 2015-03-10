@@ -267,7 +267,7 @@ define([
          */
         expandContent: function expandContent(e) {
 
-            if (!this.controller.isConsumptionMode()) {
+            if (this.controller.isConsumptionMode()) {
 
                 this.logger.warn('Consumption mode feature', e);
                 return false;
@@ -300,6 +300,10 @@ define([
 
             this.logger.debug('Expand content');
             this.controller.setExpanded(true);
+
+            this.observer.publish(
+                this.eventmanager.eventList.afterExpand
+            );
         },
 
         /**
@@ -309,7 +313,7 @@ define([
          */
         collapseContent: function collapseContent(e) {
 
-            if (!this.controller.isConsumptionMode()) {
+            if (this.controller.isConsumptionMode()) {
 
                 this.logger.warn('Consumption mode feature', e);
                 return false;
@@ -332,6 +336,32 @@ define([
 
             this.logger.debug('Collapse content');
             this.controller.setExpanded(false);
+        },
+
+        /**
+         * Define after expand
+         * @member WidgetContent
+         */
+        afterExpand: function afterExpand() {
+
+            this.logger.debug('After expand');
+
+            /**
+             * Get layout
+             * @type {Layout}
+             */
+            var layout = this.controller.getPageLayout();
+
+            this.map.sticker(
+                {
+                    animate: true,
+                    organize: false,
+                    type: 'stop',
+                    $source: this.view.get$item().$
+                },
+                this.controller.isMode(),
+                layout.controller.getBehavior()
+            );
         },
 
         /**

@@ -329,9 +329,9 @@ define([
         checkWidgetPositionColumn: function checkWidgetPositionColumn(dom) {
 
             return (
-                this.checkWidgetPositionColumnLeft(dom.column) &&
-                this.checkWidgetPositionColumnRight(dom)
-                );
+            this.checkWidgetPositionColumnLeft(dom.column) &&
+            this.checkWidgetPositionColumnRight(dom)
+            );
         },
 
         /**
@@ -355,9 +355,9 @@ define([
             var dom = this.getDOM();
 
             return (
-                this.checkWidgetPositionColumn(dom) &&
-                this.checkWidgetPositionRowTop(dom.row)
-                );
+            this.checkWidgetPositionColumn(dom) &&
+            this.checkWidgetPositionRowTop(dom.row)
+            );
         },
 
         /**
@@ -432,7 +432,7 @@ define([
          * @member WidgetMap
          * @param {string} type
          */
-        setDefaultSize: function setDefaultSize(type){
+        setDefaultSize: function setDefaultSize(type) {
 
             /**
              * Define widget
@@ -454,7 +454,7 @@ define([
          * Grid sticker on interaction (Drag/Resize)
          * @member WidgetMap
          * @param {{type, $source, callback: Function, organize: Boolean, animate: Boolean}} opts
-         * @param {String} mode
+         * @param {string} mode
          * @param {{animate: Boolean}} behavior
          */
         sticker: function sticker(opts, mode, behavior) {
@@ -464,6 +464,11 @@ define([
              * @type {Widget}
              */
             var widget = this.widget;
+
+            if (typeof(mode) !== 'string') {
+                widget.logger.warn('Undefined mode');
+                return false;
+            }
 
             /**
              * Define layout
@@ -538,10 +543,10 @@ define([
                 layout = this.layout;
 
             if (this.map.overlappingOnStop(
-                this.type,
-                widget.controller.getPageLayout().controller.
-                    isOverlappingAllowed()
-            )) {
+                    this.type,
+                    widget.controller.getPageLayout().controller.
+                        isOverlappingAllowed()
+                )) {
 
                 widget.observer.publish(
                     widget.eventmanager.eventList.saveDom

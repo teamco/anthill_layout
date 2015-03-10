@@ -164,7 +164,7 @@ define(function defineLayoutIntersect() {
 
             // allow overlapping
             return (targetPrefs.overlapping ||
-                srcPrefs.overlapping);
+                srcPrefs.overlapping) && (target.expanded || src.expanded);
         },
 
         /**
