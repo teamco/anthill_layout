@@ -53,11 +53,11 @@ define(function defineLayoutIntersect() {
 
                 // horizontal
                 (this._overlapCondition(target.column, src.relRight, '>') ||
-                    this._overlapCondition(target.relRight, src.column, '<')) ||
+                this._overlapCondition(target.relRight, src.column, '<')) ||
 
-                // vertical
+                    // vertical
                 (this._overlapCondition(target.row, src.relBottom, '>') ||
-                    this._overlapCondition(target.relBottom, src.row, '<'));
+                this._overlapCondition(target.relBottom, src.row, '<'));
 
             this.layout.logger.debug('Overlapping not possible', src, target, noOverlapped);
 
@@ -121,10 +121,10 @@ define(function defineLayoutIntersect() {
                 this._overlapCondition(target[from], src[to], '<')) ||
 
                 (this._overlapCondition(target[to], src[from], '>') &&
-                    this._overlapCondition(target[to], src[to], '<')) ||
+                this._overlapCondition(target[to], src[to], '<')) ||
 
                 (this._overlapCondition(target[from], src[from], '<=') &&
-                    this._overlapCondition(target[to], src[to], '>='));
+                this._overlapCondition(target[to], src[to], '>='));
         },
 
         /**
@@ -163,8 +163,8 @@ define(function defineLayoutIntersect() {
                 srcPrefs = src.model.getConfig('preferences');
 
             // allow overlapping
-            return (targetPrefs.overlapping ||
-                srcPrefs.overlapping) && (target.expanded || src.expanded);
+            return (targetPrefs.overlapping || srcPrefs.overlapping) &&
+                (target.controller.isExpanded() || src.controller.isExpanded());
         },
 
         /**
@@ -263,11 +263,11 @@ define(function defineLayoutIntersect() {
                         rect2 = el2.getBoundingClientRect();
 
                     return !(
-                        rect1.top > rect2.bottom ||
-                        rect1.right < rect2.left ||
-                        rect1.bottom < rect2.top ||
-                        rect1.left > rect2.right
-                        );
+                    rect1.top > rect2.bottom ||
+                    rect1.right < rect2.left ||
+                    rect1.bottom < rect2.top ||
+                    rect1.left > rect2.right
+                    );
                 },
 
                 /**
@@ -282,11 +282,11 @@ define(function defineLayoutIntersect() {
                         rect2 = el2.getBoundingClientRect();
 
                     return (
-                        ((rect2.top <= rect1.top) && (rect1.top <= rect2.bottom)) &&
-                        ((rect2.top <= rect1.bottom) && (rect1.bottom <= rect2.bottom)) &&
-                        ((rect2.left <= rect1.left) && (rect1.left <= rect2.right)) &&
-                        ((rect2.left <= rect1.right) && (rect1.right <= rect2.right))
-                        );
+                    ((rect2.top <= rect1.top) && (rect1.top <= rect2.bottom)) &&
+                    ((rect2.top <= rect1.bottom) && (rect1.bottom <= rect2.bottom)) &&
+                    ((rect2.left <= rect1.left) && (rect1.left <= rect2.right)) &&
+                    ((rect2.left <= rect1.right) && (rect1.right <= rect2.right))
+                    );
                 }
             };
 

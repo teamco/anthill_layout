@@ -211,7 +211,7 @@ define([
          * @returns {boolean}
          */
         isExpanded: function isExpanded() {
-            return !!this.scope.expanded;
+            return !!this.scope.expanded && this.isConsumptionMode();
         },
 
         /**
