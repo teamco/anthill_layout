@@ -391,9 +391,14 @@ define([
                 return false;
             }
 
-            commentable ?
-                this.view.contentComments() :
+            if (commentable) {
+
+                this.view.contentComments();
+
+            } else if (this.view.elements.$comments) {
+
                 this.view.elements.$comments.destroy();
+            }
         }
 
     }, AntHill.prototype);
