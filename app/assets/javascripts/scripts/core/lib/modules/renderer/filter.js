@@ -119,12 +119,12 @@ define([], function defineFilterRenderer() {
             var input = e.target,
                 $parent = $(input).parent();
 
+            $parent.addClass('reset');
+
             if (e.which === 27) {
                 input.value = '';
                 $parent.removeClass('reset');
             }
-
-            $parent.addClass('reset');
 
             /**
              * Get item elements
