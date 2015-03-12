@@ -40,6 +40,7 @@ define([
         renderEmbeddedContent: function renderEmbeddedContent(url) {
 
             if (typeof (url) !== 'string' || (url && !(url + '').match(/\.pdf/))) {
+                this.view.scope.logger.warn('File does not match to PDF');
                 return false;
             }
 
