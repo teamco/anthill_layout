@@ -39,7 +39,10 @@ define([], function defineFilterRenderer() {
         renderFilter: function renderFilter(opts) {
 
             // Get scope
-            var scope = this.view.scope;
+            var scope = this.view.scope,
+                filterEvent = 'keyup.' +
+                    scope.name.toLowerCase() +
+                    '-search';
 
             // Define items setter
             this.items = opts.items;
@@ -53,11 +56,7 @@ define([], function defineFilterRenderer() {
                 name: opts.name,
                 placeholder: opts.placeholder,
                 monitor: {
-                    events: [
-                        'keyup.' +
-                        scope.name.toLowerCase() +
-                        '-search'
-                    ],
+                    events: [filterEvent],
                     callback: this.filterResults.bind({
                         callback: opts.callback,
                         $element: this
@@ -67,6 +66,29 @@ define([], function defineFilterRenderer() {
             });
 
             scope.logger.debug('Search field params', opts);
+
+            /**
+             * Define $reset
+             * @type {*|jQuery}
+             */
+            var $reset = $('<div />').addClass('reset-filter').
+                attr({
+                    title: 'Reset filter'
+                }).
+                on('click.reset', function reset() {
+
+                    /**
+                     * Get $node
+                     * @type {*|jQuery|HTMLElement}
+                     */
+                    var $node = $(this);
+
+                    $node.prev().val('').trigger(filterEvent);
+                    $node.parent().removeClass('reset');
+                }
+            );
+
+            $search.push($reset);
 
             return $search;
         },
@@ -94,9 +116,15 @@ define([], function defineFilterRenderer() {
                 return false;
             }
 
+            var input = e.target,
+                $parent = $(input).parent();
+
             if (e.which === 27) {
-                e.target.value = '';
+                input.value = '';
+                $parent.removeClass('reset');
             }
+
+            $parent.addClass('reset');
 
             /**
              * Get item elements
