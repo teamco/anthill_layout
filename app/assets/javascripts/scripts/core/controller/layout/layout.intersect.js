@@ -163,8 +163,7 @@ define(function defineLayoutIntersect() {
                 srcPrefs = src.model.getConfig('preferences');
 
             // allow overlapping
-            return (targetPrefs.overlapping || srcPrefs.overlapping) &&
-                (target.controller.isExpanded() || src.controller.isExpanded());
+            return (targetPrefs.overlapping || srcPrefs.overlapping);
         },
 
         /**
