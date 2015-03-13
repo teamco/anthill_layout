@@ -22,7 +22,10 @@ define([
             destroy: true
         });
 
-        return this.renderData(opts.callback);
+        return this.renderData(
+            opts.callback,
+            opts.enter
+        );
     };
 
     return FilterElement.extend('FilterElement', {
@@ -31,9 +34,10 @@ define([
          * Render search
          * @member FilterElement
          * @param {function} [callback]
+         * @param {boolean} [enter]
          * @returns {FilterElement}
          */
-        renderData: function renderData(callback) {
+        renderData: function renderData(callback, enter) {
 
             /**
              * Define $filter
@@ -44,7 +48,8 @@ define([
                 name: 'filter',
                 placeholder: 'Filter',
                 visible: true,
-                callback: callback
+                callback: callback,
+                enter: enter
             });
 
             this.$.append(this.$filter);

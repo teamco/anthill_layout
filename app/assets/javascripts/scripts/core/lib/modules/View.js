@@ -254,8 +254,10 @@ define([
         /**
          * Render filter
          * @member BaseView
+         * @param {function} [callback]
+         * @param {boolean} [enter]
          */
-        renderFilter: function renderFilter(callback) {
+        renderFilter: function renderFilter(callback, enter) {
 
             /**
              * Define Search element
@@ -264,7 +266,8 @@ define([
             this.elements.$filter = new Filter(this, {
                 $container: this.elements.$container.$,
                 style: [this.scope.name.toDash(), 'filter'].join(' '),
-                callback: callback
+                callback: callback,
+                enter: enter
             });
         },
 

@@ -31,6 +31,7 @@ define([], function defineFilterRenderer() {
          *      name: string,
          *      placeholder: string,
          *      visible: boolean,
+         *      [enter]: boolean,
          *      callback: function,
          *      [items]
          * }} opts
@@ -59,6 +60,7 @@ define([], function defineFilterRenderer() {
                     events: [filterEvent],
                     callback: this.filterResults.bind({
                         callback: opts.callback,
+                        enter: opts.enter,
                         $element: this
                     })
                 },
@@ -83,7 +85,7 @@ define([], function defineFilterRenderer() {
                      */
                     var $node = $(this);
 
-                    $node.prev().val('').trigger(filterEvent);
+                    $node.prev().val('').trigger(filterEvent).focus();
                     $node.parent().removeClass('reset');
                 }
             );
@@ -112,77 +114,116 @@ define([], function defineFilterRenderer() {
 
             e.preventDefault();
 
-            if (e.which === 13) {
-                return false;
-            }
-
             var input = e.target,
                 $parent = $(input).parent();
 
             $parent.addClass('reset');
 
-            if (e.which === 27) {
-                input.value = '';
-                $parent.removeClass('reset');
-            }
+            /**
+             * Define $filter
+             * @type {$element}
+             */
+            var $filter = this.$element;
 
             /**
              * Get item elements
              * @type {{}}
              */
-            var items = this.$element.items,
+            var items = $filter.items,
                 index, $item,
-                value = e.target.value,
+                value = input.value,
                 regex;
 
-            for (index in items) {
+            /**
+             * Get logger
+             * @type {Logger}
+             */
+            var logger = $filter.view.scope.logger;
 
-                if (items.hasOwnProperty(index)) {
+            /**
+             * Define filter
+             * @returns {boolean}
+             * @private
+             */
+            function _filter() {
 
-                    /**
-                     * Define item
-                     * @type {{
-                     *      name: string,
-                     *      description:string,
-                     *      [type]: string
-                     * }}
-                     */
-                    $item = items[index];
+                for (index in items) {
 
-                    if (value.length === 0) {
-
-                        $item.$.removeClass('hide');
-
-                    } else {
+                    if (items.hasOwnProperty(index)) {
 
                         /**
-                         * Define regex
-                         * @type {RegExp}
+                         * Define item
+                         * @type {{
+                         *      name: string,
+                         *      description:string,
+                         *      [type]: string
+                         * }}
                          */
-                        regex = new RegExp(value, 'ig');
+                        $item = items[index];
 
-                        if (typeof($item.data) === 'undefined') {
+                        if (value.length === 0) {
 
-                            this.$element.view.scope.logger.warn(
-                                'Item has no data',
-                                $item
-                            );
+                            $item.$.removeClass('hide');
 
-                            return false;
+                        } else {
+
+                            /**
+                             * Define regex
+                             * @type {RegExp}
+                             */
+                            regex = new RegExp(value, 'ig');
+
+                            if (typeof($item.data) === 'undefined') {
+
+                                logger.warn(
+                                    'Item has no data',
+                                    $item
+                                );
+
+                                return false;
+                            }
+
+                            // Define matchers
+                            var nameMatch = ($item.data.name || '').match(regex),
+                                typeMatch = ($item.data.type || '').match(regex),
+                                descriptionMatch = ($item.data.description || '').match(regex);
+
+                            $item.$[(
+                                (nameMatch ||
+                                typeMatch ||
+                                descriptionMatch) ? 'remove' : 'add'
+                            ) + 'Class']('hide');
                         }
-
-                        // Define matchers
-                        var nameMatch = ($item.data.name || '').match(regex),
-                            typeMatch = ($item.data.type || '').match(regex),
-                            descriptionMatch = ($item.data.description || '').match(regex);
-
-                        $item.$[(
-                            (nameMatch ||
-                            typeMatch ||
-                            descriptionMatch) ? 'remove' : 'add'
-                        ) + 'Class']('hide');
                     }
                 }
+            }
+
+            if (e.which === 13) {
+
+                if (this.enter) {
+                    logger.debug('Filter results on enter');
+                    _filter();
+                } else {
+                    logger.debug('Do nothing on enter');
+                    return false;
+                }
+
+            } else {
+
+                if (e.which === 27) {
+                    input.value = '';
+                    $parent.removeClass('reset');
+                    logger.debug('Clear results on escape');
+                }
+
+                logger.debug('Filter results');
+
+                if (this.enter) {
+                    logger.debug('Do nothing on key up');
+                    return false;
+                }
+
+                _filter();
             }
 
             if (typeof(this.callback) === 'function') {
