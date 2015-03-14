@@ -108,12 +108,6 @@ define(function defineWidgetExpand() {
          */
         expandContent: function expandContent(e) {
 
-            if (!this.controller.isConsumptionMode()) {
-
-                this.logger.warn('Consumption mode feature', e);
-                return false;
-            }
-
             if (this.controller.isExpanded()) {
 
                 this.observer.publish(
@@ -130,21 +124,7 @@ define(function defineWidgetExpand() {
             var $content = this.controller.getContent(),
                 deltaHeight = $content.view.get$item().getHeight();
 
-            /**
-             * Get $widget
-             * @type {WidgetElement}
-             */
-            var $widget = this.view.get$item();
-
-            $widget.setHeight(deltaHeight);
-            $widget.view.elements.$expander.toggleExpandText(false);
-
-            this.logger.debug('Expand content');
-            this.controller.setExpanded(true);
-
-            this.observer.publish(
-                this.eventmanager.eventList.afterExpand
-            );
+            this.controller.onExpand(e, true, deltaHeight);
         },
 
         /**
@@ -154,42 +134,65 @@ define(function defineWidgetExpand() {
          */
         collapseContent: function collapseContent(e) {
 
-            if (!this.controller.isConsumptionMode()) {
-
-                this.logger.warn('Consumption mode feature', e);
-                return false;
-            }
-
             if (!this.controller.isExpanded()) {
 
                 this.logger.warn('Content not expanded');
                 return false;
             }
 
+            this.controller.onExpand(e, false, this.dom.height);
+        },
+
+        /**
+         * Define on expand
+         * @param e
+         * @param {boolean} expand
+         * @param {number} height
+         * @returns {boolean}
+         */
+        onExpand: function onExpand(e, expand, height) {
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            if (!this.isConsumptionMode()) {
+
+                scope.logger.warn('Consumption mode feature', e);
+                return false;
+            }
+
             /**
              * Get $widget
-             * @type {WidgetElement}
+             * @type {WidgetElement|BaseElement}
              */
-            var $widget = this.view.get$item();
+            var $widget = scope.view.get$item();
 
-            $widget.setHeight(this.dom.height);
-            $widget.view.elements.$expander.toggleExpandText(true);
+            $widget.setHeight(height);
+            $widget.view.elements.$expander.toggleExpandText(!expand);
 
-            this.logger.debug('Collapse content');
-            this.controller.setExpanded(false);
-
-            this.observer.publish(
-                this.eventmanager.eventList.afterExpand
+            scope.observer.publish(
+                scope.eventmanager.eventList.afterExpand,
+                expand
             );
         },
 
         /**
          * Define after expand
          * @member WidgetExpand
+         * @param {boolean} expand
          */
-        afterExpand: function afterExpand() {
+        afterExpand: function afterExpand(expand) {
 
-            this.logger.debug('After expand');
+            this.logger.debug(
+                this.i18n.t(
+                    (expand ? 'expand' : 'collapse') + '.widget'
+                )
+            );
+
+            this.controller.setExpanded(expand);
 
             /**
              * Get page

@@ -89,7 +89,7 @@ define(function defineLayoutExpand() {
                     (delta + item.dom.top) :
                     item.dom.top;
 
-                $item.$.animate(
+                $item.$.stop().animate(
                     {top: top},
                     delta ? 0 : duration,
                     _callback
