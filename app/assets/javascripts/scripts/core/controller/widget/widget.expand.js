@@ -108,7 +108,7 @@ define(function defineWidgetExpand() {
          */
         expandContent: function expandContent(e) {
 
-            if (this.controller.isConsumptionMode()) {
+            if (!this.controller.isConsumptionMode()) {
 
                 this.logger.warn('Consumption mode feature', e);
                 return false;
@@ -154,7 +154,7 @@ define(function defineWidgetExpand() {
          */
         collapseContent: function collapseContent(e) {
 
-            if (this.controller.isConsumptionMode()) {
+            if (!this.controller.isConsumptionMode()) {
 
                 this.logger.warn('Consumption mode feature', e);
                 return false;
