@@ -41,6 +41,7 @@ define([
          *      updateSiteDescription: string,
          *      updateSiteKeywords: string,
          *      updateLayoutConfig: string,
+         *      expandLayout: string,
          *      resizeWidgets: string,
          *      resizeWidget: string,
          *      loadItemsContent: string,
@@ -70,6 +71,7 @@ define([
             createLayout: 'create.layout',
             destroyLayout: 'destroy.layout',
             updateLayoutConfig: 'update.layout.config',
+            expandLayout: 'expand.layout',
 
             resizeWidget: 'resize.widget',
 

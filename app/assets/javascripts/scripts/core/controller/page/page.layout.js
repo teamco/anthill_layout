@@ -47,6 +47,25 @@ define([], function definePageLayout() {
              */
             updateHeight: function updateHeight() {
                 console.log('TODO: Update height');
+            },
+
+            /**
+             * Define expandLayout
+             * @member PageLayout
+             * @param {Widget} widget
+             */
+            expandLayout: function expandLayout(widget) {
+
+                /**
+                 * Get layout
+                 * @type {Layout}
+                 */
+                var layout = this.controller.getLayout();
+
+                layout.observer.publish(
+                    layout.eventmanager.eventList.onExpand,
+                    widget
+                );
             }
         }
     );

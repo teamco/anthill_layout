@@ -6,400 +6,183 @@
  */
 
 define([
-    'config/anthill'
-], function defineWidgetContent(AntHill) {
+    'controller/widget/widget.expand',
+    'controller/widget/widget.scroll',
+    'controller/widget/widget.comment'
+], function defineWidgetContent(WidgetExpand, WidgetScroll, WidgetComment) {
 
     /**
      * Define WidgetContent
      * @class WidgetContent
-     * @extends AntHill
+     * @extends {WidgetExpand} WidgetExpand
+     * @extends {WidgetScroll} WidgetScroll
+     * @extends {WidgetComment} WidgetComment
      * @constructor
      */
     var WidgetContent = function WidgetContent() {
     };
 
-    return WidgetContent.extend('WidgetContent', {
-
-        /**
-         * Define load widget data
-         * @member WidgetContent
-         */
-        loadWidgetData: function loadWidgetData() {
+    return WidgetContent.extend(
+        'WidgetContent', {
 
             /**
-             * Get local scope
-             * @type {Widget}
-             */
-            var scope = this.scope;
-
-            /**
-             * Get widget page
-             * @type {Workspace}
-             */
-            var workspace = this.getWorkspace();
-
-            /**
-             * Get current page
-             * @type {Page}
-             */
-            var page = workspace.controller.isLoadPageContent();
-
-            if (page) {
-
-                scope.observer.batchPublish(
-                    scope.eventmanager.eventList.loadContent,
-                    scope.eventmanager.eventList.loadPreferences
-                );
-
-                scope.logger.debug('Content start loading');
-            }
-        },
-
-        /**
-         * Load widget content
-         * @member WidgetContent
-         */
-        loadContent: function loadContent() {
-
-            /**
-             * Define widget instance
-             * @type {Widget}
-             */
-            var widget = this;
-
-            /**
-             * Get resource
-             * @type {string}
-             */
-            var resource = widget.model.getConfig('preferences').resource;
-
-            if (!this.base.isString(resource)) {
-                widget.logger.error('Unable to load resource');
-                return false;
-            }
-
-            /**
-             * Define resource path
-             * @type {string}
-             */
-            var path = [
-                '../../scripts/plugins/widgets',
-                ('/' + resource).repeat(2)
-            ].join('');
-
-            require([path], function getDependencies(Content) {
-
-                widget.observer.publish(
-                    widget.eventmanager.eventList.setContent,
-                    [Content, {
-                        events: widget.contentEvents || {},
-                        rules: widget.contentRules || {}
-                    }]
-                );
-
-                widget.logger.debug('Content finish loading');
-            });
-        },
-
-        /**
-         * Set content
-         * @member WidgetContent
-         * @param {Function} Content
-         * @param {{}} [opts]
-         */
-        setContent: function setContent(Content, opts) {
-
-            /**
-             * Define content
+             * Define load widget data
              * @member WidgetContent
-             * @type {*}
              */
-            this.content = new Content(this, opts);
+            loadWidgetData: function loadWidgetData() {
 
-            this.observer.publish(
-                this.eventmanager.eventList.afterSetContent,
-                opts
-            );
-        },
+                /**
+                 * Get local scope
+                 * @type {Widget}
+                 */
+                var scope = this.scope;
 
-        /**
-         * Define after set content
-         * @member WidgetContent
-         * @param {{}} [opts]
-         */
-        afterSetContent: function afterSetContent(opts) {
-            this.logger.debug('After set content', this.content, opts);
-            this.view.contentExpander();
-        },
+                /**
+                 * Get widget page
+                 * @type {Workspace}
+                 */
+                var workspace = this.getWorkspace();
 
-        /**
-         * Get content
-         * @member WidgetContent
-         * @returns {*}
-         */
-        getContent: function getContent() {
-            return this.scope.content;
-        },
+                /**
+                 * Get current page
+                 * @type {Page}
+                 */
+                var page = workspace.controller.isLoadPageContent();
 
-        /**
-         * Clear thumbnail bg
-         * @member WidgetContent
-         */
-        clearThumbnail: function clearThumbnail() {
-            this.view.get$item().clearBackground();
-        },
+                if (page) {
 
-        /**
-         * Adopt widget dimension on resize page
-         * @member WidgetContent
-         * @param {Boolean} animate
-         */
-        adoptDimensions: function adoptDimensions(animate) {
-            this.map.adoptTo(animate);
-        },
+                    scope.observer.batchPublish(
+                        scope.eventmanager.eventList.loadContent,
+                        scope.eventmanager.eventList.loadPreferences
+                    );
 
-        /**
-         * Get widget thumbnail
-         * @member WidgetContent
-         * @returns {*}
-         */
-        getThumbnail: function getThumbnail() {
-            return this.model.getConfig('preferences').thumbnail;
-        },
-
-        /**
-         * Get widget resource
-         * @member WidgetContent
-         * @returns {string}
-         */
-        getResource: function getResource() {
-            return this.model.getConfig('preferences').resource;
-        },
-
-        /**
-         * Get expandable
-         * @member WidgetContent
-         * @returns {boolean}
-         */
-        isExpandable: function isExpandable() {
+                    scope.logger.debug('Content start loading');
+                }
+            },
 
             /**
-             * Get $content
-             * @type {WidgetContent}
+             * Load widget content
+             * @member WidgetContent
              */
-            var $content = this.getContent();
+            loadContent: function loadContent() {
 
-            if (!this.base.isDefined($content)) {
+                /**
+                 * Define widget instance
+                 * @type {Widget}
+                 */
+                var widget = this;
 
-                this.scope.logger.debug('Content undefined');
-                return false;
-            }
+                /**
+                 * Get resource
+                 * @type {string}
+                 */
+                var resource = widget.model.getConfig('preferences').resource;
 
-            /**
-             * Get content height
-             * @type {number}
-             */
-            var deltaHeight = $content.view.get$item().getHeight();
-
-            return !!this.model.getConfig('preferences').expandable &&
-                deltaHeight > this.scope.dom.height;
-        },
-
-        /**
-         * Get expanded
-         * @member WidgetContent
-         * @returns {boolean}
-         */
-        isExpanded: function isExpanded() {
-            return !!this.scope.expanded && this.isConsumptionMode();
-        },
-
-        /**
-         * Set expanded
-         * @member WidgetContent
-         * @param {boolean} expanded
-         */
-        setExpanded: function setExpanded(expanded) {
-            return this.scope.expanded = !!expanded;
-        },
-
-        /**
-         * Toggle content expander
-         * @member WidgetContent
-         * @param {boolean} expand
-         */
-        toggleContentExpander: function toggleContentExpander(expand) {
-
-            /**
-             * Get $expander
-             * @type {WidgetExpanderElement}
-             */
-            var $expander = this.view.elements.$expander,
-                isDefined = $expander && this.base.isDefined($expander.$);
-
-            if (expand) {
-
-                if (isDefined) {
-
-                    this.logger.debug('Expander already rendered');
+                if (!this.base.isString(resource)) {
+                    widget.logger.error('Unable to load resource');
                     return false;
                 }
 
-                this.view.contentExpander();
+                /**
+                 * Define resource path
+                 * @type {string}
+                 */
+                var path = [
+                    '../../scripts/plugins/widgets',
+                    ('/' + resource).repeat(2)
+                ].join('');
 
-            } else {
+                require([path], function getDependencies(Content) {
 
-                if (!isDefined) {
+                    widget.observer.publish(
+                        widget.eventmanager.eventList.setContent,
+                        [Content, {
+                            events: widget.contentEvents || {},
+                            rules: widget.contentRules || {}
+                        }]
+                    );
 
-                    this.logger.debug('Expander should be rendered before destroy');
-                    return false;
-                }
+                    widget.logger.debug('Content finish loading');
+                });
+            },
 
-                $expander.destroy();
-                delete this.view.elements.$expander;
-            }
-        },
+            /**
+             * Set content
+             * @member WidgetContent
+             * @param {Function} Content
+             * @param {{}} [opts]
+             */
+            setContent: function setContent(Content, opts) {
 
-        /**
-         * Define expand Content
-         * @member WidgetContent
-         * @param e
-         */
-        expandContent: function expandContent(e) {
-
-            if (this.controller.isConsumptionMode()) {
-
-                this.logger.warn('Consumption mode feature', e);
-                return false;
-            }
-
-            if (this.controller.isExpanded()) {
+                /**
+                 * Define content
+                 * @member WidgetContent
+                 * @type {*}
+                 */
+                this.content = new Content(this, opts);
 
                 this.observer.publish(
-                    this.eventmanager.eventList.collapseContent
+                    this.eventmanager.eventList.afterSetContent,
+                    opts
                 );
+            },
 
-                return false;
+            /**
+             * Define after set content
+             * @member WidgetContent
+             * @param {{}} [opts]
+             */
+            afterSetContent: function afterSetContent(opts) {
+                this.logger.debug('After set content', this.content, opts);
+                this.view.contentExpander();
+            },
+
+            /**
+             * Get content
+             * @member WidgetContent
+             * @returns {*}
+             */
+            getContent: function getContent() {
+                return this.scope.content;
+            },
+
+            /**
+             * Clear thumbnail bg
+             * @member WidgetContent
+             */
+            clearThumbnail: function clearThumbnail() {
+                this.view.get$item().clearBackground();
+            },
+
+            /**
+             * Adopt widget dimension on resize page
+             * @member WidgetContent
+             * @param {Boolean} animate
+             */
+            adoptDimensions: function adoptDimensions(animate) {
+                this.map.adoptTo(animate);
+            },
+
+            /**
+             * Get widget thumbnail
+             * @member WidgetContent
+             * @returns {*}
+             */
+            getThumbnail: function getThumbnail() {
+                return this.model.getConfig('preferences').thumbnail;
+            },
+
+            /**
+             * Get widget resource
+             * @member WidgetContent
+             * @returns {string}
+             */
+            getResource: function getResource() {
+                return this.model.getConfig('preferences').resource;
             }
-
-            /**
-             * Get $content
-             * @type {WidgetContent}
-             */
-            var $content = this.controller.getContent(),
-                deltaHeight = $content.view.get$item().getHeight();
-
-            /**
-             * Get $widget
-             * @type {WidgetElement}
-             */
-            var $widget = this.view.get$item();
-
-            $widget.setHeight(deltaHeight);
-            $widget.view.elements.$expander.toggleExpandText(false);
-
-            this.logger.debug('Expand content');
-            this.controller.setExpanded(true);
-
-            this.observer.publish(
-                this.eventmanager.eventList.afterExpand
-            );
         },
-
-        /**
-         * Define collapse Content
-         * @member WidgetContent
-         * @param e
-         */
-        collapseContent: function collapseContent(e) {
-
-            if (this.controller.isConsumptionMode()) {
-
-                this.logger.warn('Consumption mode feature', e);
-                return false;
-            }
-
-            if (!this.controller.isExpanded()) {
-
-                this.logger.warn('Content not expanded');
-                return false;
-            }
-
-            /**
-             * Get $widget
-             * @type {WidgetElement}
-             */
-            var $widget = this.view.get$item();
-
-            $widget.setHeight(this.dom.height);
-            $widget.view.elements.$expander.toggleExpandText(true);
-
-            this.logger.debug('Collapse content');
-            this.controller.setExpanded(false);
-        },
-
-        /**
-         * Define after expand
-         * @member WidgetContent
-         */
-        afterExpand: function afterExpand() {
-
-            this.logger.debug('After expand');
-
-            /**
-             * Get layout
-             * @type {Layout}
-             */
-            var layout = this.controller.getPageLayout();
-
-            this.map.sticker(
-                {
-                    animate: true,
-                    organize: false,
-                    type: 'stop',
-                    $source: this.view.get$item().$
-                },
-                this.controller.isMode(),
-                layout.controller.getBehavior()
-            );
-        },
-
-        /**
-         * Define scroll content
-         * @member WidgetContent
-         * @param {boolean} scrollable
-         */
-        scrollContent: function scrollContent(scrollable) {
-
-            /**
-             * Define css action
-             * @type {string}
-             */
-            var action = (scrollable ? 'add' : 'remove') + 'Class';
-
-            this.view.get$item().$[action]('scroll');
-        },
-
-        /**
-         * Define commentable content
-         * @member WidgetContent
-         * @param {boolean} commentable
-         */
-        commentableContent: function commentableContent(commentable) {
-
-            if (typeof(commentable) === 'undefined') {
-                return false;
-            }
-
-            if (commentable) {
-
-                this.view.contentComments();
-
-            } else if (this.view.elements.$comments) {
-
-                this.view.elements.$comments.destroy();
-            }
-        }
-
-    }, AntHill.prototype);
+        WidgetExpand.prototype,
+        WidgetScroll.prototype,
+        WidgetComment.prototype
+    );
 });

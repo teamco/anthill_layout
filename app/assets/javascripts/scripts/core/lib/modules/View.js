@@ -54,6 +54,24 @@ define([
         },
 
         /**
+         * Get item DOM Element
+         * @member BaseView
+         * @returns {BaseElement}
+         */
+        getDomElement: function getDomElement() {
+            return this.get$item().$[0];
+        },
+
+        /**
+         * Get item DOM info
+         * @member BaseView
+         * @returns {BaseElement}
+         */
+        getDomData: function getDomData() {
+            return this.getDomElement().getBoundingClientRect();
+        },
+
+        /**
          * Create style
          * @member BaseView
          * @returns {string}

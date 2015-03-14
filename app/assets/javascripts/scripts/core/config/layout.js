@@ -14,8 +14,9 @@ define([
     'controller/layout/layout.overlapping',
     'controller/layout/layout.empty.rows',
     'controller/layout/layout.empty.columns',
+    'controller/layout/layout.expand',
     'permission/layout.permission'
-], function defineLayout(AntHill, MVC, Controller, EventManager, Overlapping, EmptyRows, EmptyColumns, Permission) {
+], function defineLayout(AntHill, MVC, Controller, EventManager, Overlapping, LayoutEmptyRows, LayoutEmptyColumns, LayoutExpand, Permission) {
 
     /**
      * Define Layout
@@ -63,7 +64,7 @@ define([
         /**
          * Define containment
          * @member Layout
-         * @type {*}
+         * @type {Page}
          */
         this.containment = containment;
 
@@ -111,23 +112,28 @@ define([
         /**
          * Define empty rows
          * @member Layout
-         * @type {EmptyRows}
+         * @type {LayoutEmptyRows}
          */
-        this.emptyRows = new EmptyRows(this);
+        this.emptyRows = new LayoutEmptyRows(this);
 
         /**
          * Define empty columns
          * @member Layout
-         * @type {EmptyColumns}
+         * @type {LayoutEmptyColumns}
          */
-        this.emptyColumns = new EmptyColumns(this);
+        this.emptyColumns = new LayoutEmptyColumns(this);
+
+        /**
+         * Define expand
+         * @member Layout
+         * @type {LayoutExpand}
+         */
+        this.expand = new LayoutExpand(this);
 
         this.observer.publish(
             this.eventmanager.eventList.successCreated
         );
     };
 
-    return Layout.extend('Layout', {
-
-    }, AntHill.prototype);
+    return Layout.extend('Layout', {}, AntHill.prototype);
 });

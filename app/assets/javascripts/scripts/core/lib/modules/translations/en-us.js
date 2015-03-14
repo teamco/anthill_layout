@@ -22,6 +22,10 @@ define([], function defineEnUs() {
         'collapse.widget': 'Collapse',
         'silent.add.widget': 'Silent nested organizer',
 
+        'before.expand': 'Before Expand',
+        'on.expand': 'On Expand',
+        'after.expand': 'After Expand',
+
         'cancel': 'Cancel'
     };
 });

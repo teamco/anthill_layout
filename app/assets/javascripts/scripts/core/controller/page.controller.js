@@ -18,20 +18,20 @@ define(
         'controller/page/page.widget',
         'controller/page/page.maximize'
     ],
-    function definePageController(AntHill, BaseController, BasePage, BasePreferences, Router, PageLayer, PageLayout, PageWidget, PageMaximize) {
+    function definePageController(AntHill, BaseController, BasePage, BasePreferences, Router, PageLayer, PageLayout, PageWidget, PageItemMaximize) {
 
         /**
          * Define page controller
          * @class PageController
-         * @extends BaseController
-         * @extends AntHill
-         * @extends BasePage
-         * @extends BasePreferences
-         * @extends Router
-         * @extends PageLayer
-         * @extends PageLayout
-         * @extends PageWidget
-         * @extends PageMaximize
+         * @extends {BaseController} BaseController
+         * @extends {AntHill} AntHill
+         * @extends {BasePage} BasePage
+         * @extends {BasePreferences} BasePreferences
+         * @extends {Router} Router
+         * @extends {PageLayer} PageLayer
+         * @extends {PageLayout} PageLayout
+         * @extends {PageWidget} PageWidget
+         * @extends {PageItemMaximize} PageItemMaximize
          * @constructor
          */
         var PageController = function PageController() {
@@ -144,7 +144,7 @@ define(
             PageLayer.prototype,
             PageLayout.prototype,
             PageWidget.prototype,
-            PageMaximize.prototype,
+            PageItemMaximize.prototype,
             Router.prototype
         );
     }

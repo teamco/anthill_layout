@@ -289,8 +289,8 @@ define(function defineLayoutIntersect() {
                 }
             };
 
-            var $source = source.view.get$item()[0],
-                $widget = target.view.get$item()[0];
+            var $source = source.view.getDomElement(),
+                $widget = target.view.getDomElement();
 
             if (is.collide($source, $widget) || is.inside($source, $widget)) {
                 return target;
