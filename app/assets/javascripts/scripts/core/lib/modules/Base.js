@@ -8,8 +8,9 @@ define([
     'modules/base/DateTime',
     'modules/base/String',
     'modules/base/Image',
-    'modules/base/UA'
-], function defineBase(arr, fn, gen, hash, html, num, dt, str, img, ua) {
+    'modules/base/UA',
+    'modules/base/RequirePatch'
+], function defineBase(arr, fn, gen, hash, html, num, dt, str, img, ua, rpatch) {
 
     /**
      * Define base utils
@@ -30,7 +31,8 @@ define([
          *      datetime: *,
          *      string: *,
          *      image: *,
-         *      ua: *
+         *      ua: *,
+         *      rpatch: *
          * }}
          */
         var Shims = {
@@ -43,7 +45,8 @@ define([
             'datetime': dt,
             'string': str,
             'image': img,
-            'ua': ua
+            'ua': ua,
+            'rpatch': rpatch
         };
 
         /**
@@ -73,7 +76,6 @@ define([
                 this.lib[index] = this.getShims(index);
             }
         }
-
     };
 
     return Base.extend('Base', {
@@ -85,8 +87,10 @@ define([
          * @returns {String}
          */
         getType: function getType(obj) {
-            return Object.prototype.toString.call(obj).match(/^\[object (.*)\]$/)[1];
+            return Object.prototype.toString.call(obj).
+                match(/^\[object (.*)\]$/)[1];
         },
+
         /**
          * Check if object defined
          * @member Base
