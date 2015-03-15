@@ -22,6 +22,9 @@
     font-size: 12px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-right: 10%;
 }
 
 .modal-dialog.ui-draggable h2.header {
