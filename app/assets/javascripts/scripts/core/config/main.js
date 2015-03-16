@@ -42,6 +42,7 @@ requirejs.config({
         // https://github.com/SlexAxton/require-handlebars-plugin
         defer: 'lib/require/defer',
         async: 'lib/require/async',
+        cache: 'lib/require/cache',
         font: 'lib/require/font',
         goog: 'lib/require/goog',
         image: 'lib/require/image',
