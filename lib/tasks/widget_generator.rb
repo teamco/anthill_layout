@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'RMagick'
 
 module WidgetLib
 
@@ -145,12 +146,24 @@ module WidgetLib
       end
     end
 
+    def delete_image
+      path = "#{css_path}/widgets/images/#{@file_name}.png"
+      exist_file = File.exist?(path)
+
+      if exist_file
+        puts "--- Delete image: #{path}"
+        File.delete(path)
+      end
+    end
+
     def generate_css(thumbnail)
 
       Dir.mkdir "#{css_path}/widgets" unless File.exists? "#{css_path}/widgets"
+      Dir.mkdir "#{css_path}/widgets/images" unless File.exists? "#{css_path}/widgets/images"
 
       path = "#{css_path}/widgets/#{@file_name}.css"
       delete_css
+      delete_image
       puts "--- Create CSS file: #{@file_name}.css"
 
       File.open("#{path}", 'w') do |f|
@@ -161,8 +174,13 @@ module WidgetLib
                     "ul.maximize .content.#{pattern}",
                     "ul.widget-rules .content.#{pattern}",
                     ".modal-dialog.preferences .widgets-prefs li.#{pattern}",
-                    ".widget .content.#{pattern}{background-image:url('#{thumbnail}');}"
+                    ".widget .content.#{pattern}{background-image:url('images/#{@file_name}.png');}"
                 ].join(','))
+      end
+
+      puts "--- Create image from Base64: #{@file_name}.png"
+      File.open("#{css_path}/widgets/images/#{@file_name}.png", 'wb') do|f|
+        f.write(Base64.decode64(thumbnail['data:image/png;base64,'.length .. -1]))
       end
 
     end
