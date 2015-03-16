@@ -1,11 +1,15 @@
 require 'fileutils'
-require 'RMagick'
+require 'data_uri'
+require "#{Rails.root}/lib/base/base_image.rb"
 
 module WidgetLib
 
   class Generate
 
+    include Magick
+
     def initialize
+      @img = BaseImage.new
     end
 
     def init_params(cname)
@@ -179,9 +183,10 @@ module WidgetLib
       end
 
       puts "--- Create image from Base64: #{@file_name}.png"
-      File.open("#{css_path}/widgets/images/#{@file_name}.png", 'wb') do|f|
-        f.write(Base64.decode64(thumbnail['data:image/png;base64,'.length .. -1]))
-      end
+
+      image = ImageList.new
+      resized = @img.resize(image.from_blob(Base64.decode64(thumbnail['data:image/png;base64,'.length .. -1])))
+      resized.write("#{css_path}/widgets/images/#{@file_name}.png")
 
     end
 
