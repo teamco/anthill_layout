@@ -369,6 +369,38 @@ define([
         },
 
         /**
+         * Define create script
+         * @param opts
+         * @param {HTMLElement} container
+         * @param {string} [code]
+         */
+        createScript: function createScript(opts, container, code) {
+
+            opts = opts || {};
+
+            // Create script node
+            var s = document.createElement('script');
+
+            s.setAttribute('type', 'text/javascript');
+
+            for (var index in opts) {
+                if (opts.hasOwnProperty(index)) {
+                    s.setAttribute(index, opts[index]);
+                }
+            }
+
+            if (typeof(code) !== 'undefined') {
+                try {
+                    s.appendChild(document.createTextNode(code));
+                } catch (e) {
+                    s.text = code;
+                }
+            }
+
+            (container || document.body).appendChild(s);
+        },
+
+        /**
          * Create link css
          * @member BaseElement
          * @param opts

@@ -24,19 +24,6 @@ define(function defineBaseRequirePatch() {
          */
         get: function get() {
             return requirejs.s.contexts._.config;
-        },
-
-        /**
-         * Update config
-         * @member BaseRequirePatch
-         * @param opts
-         */
-        update: function update(opts) {
-
-            // Get config
-            var cfg = this.get();
-
-            $.extend(cfg, opts || {}, true);
         }
     });
 
