@@ -513,49 +513,6 @@ define([
         },
 
         /**
-         * Stretch element in parent container
-         * @member BaseElement
-         * @returns {*}
-         */
-        stretch: function stretch() {
-
-            var scope = this.view.scope,
-                containment = scope.controller.getContainment(),
-                items = containment.model.getItems();
-
-            var index, $item, item, stretch,
-                itemsLength = this.base.lib.hash.hashLength(items),
-                counter = 0;
-
-            return this;
-
-            for (index in items) {
-
-                if (items.hasOwnProperty(index)) {
-
-                    item = items[index];
-
-                    /**
-                     * Define page
-                     * @type {Page}
-                     */
-                    $item = item.view.get$item();
-
-                    stretch = containment &&
-                    item.model.getConfig('html/stretch');
-
-                    if (stretch) {
-                        $item.$.css({
-                            left: counter * (100 / itemsLength) + '%'
-                        });
-                    }
-
-                    counter += 1;
-                }
-            }
-        },
-
-        /**
          * Get root container
          * @member BaseElement
          * @returns {*|HTMLElement}
