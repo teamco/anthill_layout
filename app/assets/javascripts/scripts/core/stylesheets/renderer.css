@@ -1,3 +1,7 @@
+.modal-dialog.preferences div.html > ul li.combobox {
+    overflow: visible;
+}
+
 div.combo-box {
     display: none;
     float: right;

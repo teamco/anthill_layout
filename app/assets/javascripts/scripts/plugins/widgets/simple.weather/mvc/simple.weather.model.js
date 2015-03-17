@@ -26,18 +26,6 @@ define([
          * }}
          */
         this.preferences = {
-            simpleweatherLatitude: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            },
-            simpleweatherLongitude: {
-                type: 'text',
-                disabled: false,
-                value: undefined,
-                visible: true
-            },
             simpleweatherUnit: {
                 type: 'combobox',
                 disabled: false,
@@ -51,7 +39,19 @@ define([
                         value: 'Fahrenheit'
                     }
                 ],
-                value: 'C',
+                value: 'Celsius',
+                visible: true
+            },
+            simpleweatherLatitude: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                visible: true
+            },
+            simpleweatherLongitude: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
                 visible: true
             }
         };
