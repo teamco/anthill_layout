@@ -35,7 +35,11 @@ define([
         /**
          * Render Embedded content
          * @member SimpleWeatherElement
-         * @param {{latitude: number, longitude: number, unit: string}} opts
+         * @param {{
+         *      latitude: number,
+         *      longitude: number,
+         *      unit: string
+         * }} opts
          */
         renderEmbeddedContent: function renderEmbeddedContent(opts) {
 
@@ -55,6 +59,13 @@ define([
             );
         },
 
+        /**
+         * Define loader
+         * @member SimpleWeatherElement
+         * @param {string} location
+         * @param woeid
+         * @param {string} unit
+         */
         loadWeather: function loadWeather(location, woeid, unit) {
 
             /**
@@ -72,7 +83,8 @@ define([
                 success: function (weather) {
 
                     $element.$.append([
-                        '<h2><i class="icon-', weather.code, '"></i> ', weather.temp, '&deg;', weather.units.temp, '</h2>',
+                        '<h2><i class="icon-', weather.code, '"></i> ',
+                        weather.temp, '&deg;', weather.units.temp, '</h2>',
                         '<ul><li>', weather.city, ', ', weather.region, '</li>',
                         '<li class="currently">', weather.currently, '</li>',
                         '<li>', weather.alt.temp, '&deg;', weather.alt.unit, '</li></ul>'
