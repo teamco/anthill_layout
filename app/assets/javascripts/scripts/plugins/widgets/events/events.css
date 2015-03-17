@@ -654,10 +654,10 @@ li.eventsCalendar-day.current a:hover {
 	width: 12px;
 	height: 20px;
 	cursor: pointer;
-	background: transparent url('../../../core/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png') no-repeat -69px 2px;
+	background: transparent url('../../../core/stylesheets/ui-lightness/ui-icons_222222_256x240.png') no-repeat -69px 2px;
 }
 .widget .content .events div.combo-box-arrow:hover {
-	background-image: url('../../../core/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png');
+	background-image: url('../../../core/stylesheets/ui-lightness/ui-icons_228ef1_256x240.png');
 }
 .widget .content .events .time-picker {
 	width: 100%;

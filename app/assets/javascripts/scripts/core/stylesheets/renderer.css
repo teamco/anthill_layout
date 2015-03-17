@@ -30,11 +30,11 @@ div.combo-box-arrow {
     width: 12px;
     height: 20px;
     cursor: pointer;
-    background: transparent url('../../core/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png') no-repeat -69px 2px;
+    background: transparent url('../../core/stylesheets/ui-lightness/ui-icons_222222_256x240.png') no-repeat -69px 2px;
 }
 
 div.combo-box-arrow:hover {
-    background-image: url('../../core/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png');
+    background-image: url('../../core/stylesheets/ui-lightness/ui-icons_228ef1_256x240.png');
 }
 
 div.combo-box.open div.combo-box-arrow {
