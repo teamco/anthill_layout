@@ -32,7 +32,8 @@ define(
         var GeolocationController = function GeolocationController() {
         };
 
-        return GeolocationController.extend('GeolocationController', {
+        return GeolocationController.extend(
+            'GeolocationController', {
 
                 /**
                  * Set embedded content

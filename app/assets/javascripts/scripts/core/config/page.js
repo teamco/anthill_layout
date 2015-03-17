@@ -152,7 +152,9 @@ define([
                 preferences: {
                     draggable: true,
                     resizable: true,
-                    maximizable: true
+                    maximizable: true,
+                    hideContentOnDrag: true,
+                    hideContentOnResize: true
                 }
             },
             html: {
