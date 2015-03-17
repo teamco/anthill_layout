@@ -151,7 +151,7 @@ module WidgetLib
     end
 
     def delete_image
-      path = "#{css_path}/widgets/images/#{@file_name}.png"
+      path = "#{css_path}/images/#{@file_name}.png"
       exist_file = File.exist?(path)
 
       if exist_file
@@ -163,7 +163,7 @@ module WidgetLib
     def generate_css(thumbnail)
 
       Dir.mkdir "#{css_path}/widgets" unless File.exists? "#{css_path}/widgets"
-      Dir.mkdir "#{css_path}/widgets/images" unless File.exists? "#{css_path}/widgets/images"
+      Dir.mkdir "#{css_path}/images" unless File.exists? "#{css_path}/images"
 
       path = "#{css_path}/widgets/#{@file_name}.css"
       delete_css
@@ -183,17 +183,15 @@ module WidgetLib
       end
 
       puts "--- Create image from Base64: #{@file_name}.png"
-
       image = ImageList.new
-      resized = @img.resize(image.from_blob(Base64.decode64(thumbnail['data:image/png;base64,'.length .. -1])))
-      resized.write("#{css_path}/widgets/images/#{@file_name}.png")
-
-    end
-
-    private
-
-    def camel_case(separator)
-      @cname.scan(/\w+/).join('_').gsub(/\d+/, '').split('_').map { |e| e.capitalize }.join(separator)
+      resized = @img.resize(
+          image.from_blob(
+              Base64.decode64(
+                  thumbnail['data:image/png;base64,'.length .. -1]
+              )
+          )
+      )
+      resized.write("#{css_path}/images/#{@file_name}.png")
     end
 
     def widgets_path
@@ -202,6 +200,12 @@ module WidgetLib
 
     def css_path
       './app/assets/javascripts/scripts/plugins/stylesheets'
+    end
+
+    private
+
+    def camel_case(separator)
+      @cname.scan(/\w+/).join('_').gsub(/\d+/, '').split('_').map { |e| e.capitalize }.join(separator)
     end
 
     def check_exist
