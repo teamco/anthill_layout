@@ -42,41 +42,51 @@ define([
         /**
          * Render Embedded content
          * @member PixivElement
-         * @param {string} script
+         * @param {HTMLElement} code
          */
-        renderEmbeddedContent: function renderEmbeddedContent(script) {
+        renderEmbeddedContent: function renderEmbeddedContent(code) {
 
-            // Export data
-            var data = {
-                'data-id': script.getAttribute('data-id'),
-                'data-size': script.getAttribute('data-size'),
-                'data-border': script.getAttribute('data-border'),
-                'done': script.getAttribute('data-done')
-            };
-
+            // Export attributes
             // data-size="small|medium|large"
             // data-border="on|off"
-            this.$.append(
-                $('<div />').attr(data).addClass('pixiv-embed')
-            );
+            var attributes = {
+                'src': code.getAttribute('src'),
+                'data-id': code.getAttribute('data-id'),
+                'data-size': code.getAttribute('data-size'),
+                'data-border': code.getAttribute('data-border'),
+                'done': code.getAttribute('data-done')
+            };
 
-            // Update requirejs config
-            this.base.lib.rpatch.update({
-                config: {
-                    pixiv: {
-                        'src': script.src,
-                        'done': data.done,
-                        'data-id': data['data-id'],
-                        'data-size': data['data-size'],
-                        'data-border': data['data-border']
-                    }
+            this.createScript(attributes, this.$[0]);
+
+            /**
+             * Get EventManager
+             * @type {Pixiv}
+             */
+            var scope = this.view.scope,
+                event = scope.eventmanager,
+                $element = this;
+
+            this.base.waitFor(
+
+                function condition() {
+                    return $('div.pixiv-embed', $element.$).length > 0;
+                },
+
+                function callback() {
+
+                    // Re-emit the load event
+                    event.reEmmit('load');
+
+                    // Re-emit the message event
+                    event.reEmmit('message');
+                },
+
+                function fallback() {
+                    scope.logger.warn('Timeout. Unable to embed content');
                 }
-            });
+            );
         }
 
     }, BaseElement.prototype);
-});
-
-define(['module'], function (module){
-   debugger
 });
