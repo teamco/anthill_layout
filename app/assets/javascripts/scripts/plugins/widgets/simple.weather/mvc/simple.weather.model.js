@@ -44,11 +44,11 @@ define([
                 list: [
                     {
                         type: 'text',
-                        value: 'C'
+                        value: 'Celsius'
                     },
                     {
                         type: 'text',
-                        value: 'F'
+                        value: 'Fahrenheit'
                     }
                 ],
                 value: 'C',

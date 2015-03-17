@@ -57,19 +57,25 @@ define([
 
         loadWeather: function loadWeather(location, woeid, unit) {
 
+            /**
+             * Get $element
+             * @type {SimpleWeatherElement}
+             */
             var $element = this;
+
+            unit = (unit || 'C').charAt(0);
 
             $.simpleWeather({
                 location: location,
                 woeid: woeid,
-                unit: (unit || 'C').toLowerCase(),
+                unit: unit.toLowerCase(),
                 success: function (weather) {
 
                     $element.$.append([
                         '<h2><i class="icon-', weather.code, '"></i> ', weather.temp, '&deg;', weather.units.temp, '</h2>',
                         '<ul><li>', weather.city, ', ', weather.region, '</li>',
                         '<li class="currently">', weather.currently, '</li>',
-                        '<li>', weather.alt.temp, '&deg;C</li></ul>'
+                        '<li>', weather.alt.temp, '&deg;', weather.alt.unit, '</li></ul>'
                     ].join(''));
                 },
                 error: function error(error) {
