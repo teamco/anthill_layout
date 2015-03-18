@@ -997,6 +997,25 @@ define([
                 counter,
                 'items'
             ].join(' '));
+        },
+
+        /**
+         * Check if content has iframe
+         * @member BaseElement
+         * @returns {jQuery.length}
+         */
+        hasIframe: function hasIframe() {
+            return $('iframe', this.$).length;
+        },
+
+        /**
+         * Check if content has flash
+         * @member BaseElement
+         * @returns {jQuery.length}
+         */
+        hasFlash: function hasFlash() {
+            return $('object', this.$).length ||
+                $('object', this.$).length;
         }
 
     }, AntHill.prototype, Renderer.prototype);

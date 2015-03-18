@@ -63,6 +63,7 @@ define([
          * Define loader
          * @member SimpleWeatherElement
          * @param {string} location
+         * // Where On Earth Identifier
          * @param woeid
          * @param {string} unit
          */

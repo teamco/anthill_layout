@@ -107,19 +107,71 @@ define([
             },
 
             /**
-             * Hide content
+             * Show/Hide content
              * @member WidgetContent
+             * @param {boolean} show
              */
-            hideContent: function hideContent() {
-                this.get$content().hide();
+            showContent: function showContent(show) {
+
+                /**
+                 * Get scope
+                 * @type {Widget}
+                 */
+                var scope = this.scope;
+
+                if (!(this.isDevelopmentMode() || this.isAuthorizeMode())) {
+                    scope.logger.debug('Unable to toggle content', show);
+                    return false;
+                }
+
+                /**
+                 * Get prefs
+                 * @type {*}
+                 */
+                var preferences = this.model.getConfig('preferences'),
+                    fname = this.showContent.getCallerName(),
+                    event;
+
+                if (fname.match(/drag/i)) {
+                    event = 'Drag';
+                } else if (fname.match(/resizable/i)) {
+                    event = 'Resize';
+                }
+
+                if (typeof(event) === 'undefined') {
+                    scope.logger.warn('Undefined caller', fname);
+                    return false;
+                }
+
+                // Define hide locals
+                var hide = !!preferences['hideContentOn' + event],
+                    force = this.isHideableContentArea();
+
+                if (hide || force) {
+
+                    // Get $content
+                    var $content = this.get$content();
+
+                    if ($content) {
+                        show ? $content.show() : $content.hide();
+                    }
+                }
             },
 
             /**
-             * Show content
+             * Check if content should be force hide
              * @member WidgetContent
+             * @returns {jQuery.length}
              */
-            showContent: function showContent() {
-                this.get$content().show();
+            isHideableContentArea: function isHideableContentArea() {
+
+                // Get $content
+                var $content = this.get$content();
+
+                if ($content) {
+                    return $content.hasIframe() ||
+                        $content.hasFlash();
+                }
             },
 
             /**
@@ -168,7 +220,20 @@ define([
              * @returns {*}
              */
             get$content: function get$content() {
-                return this.getContent().view.get$item();
+
+                // Get widget content
+                var content = this.getContent();
+
+                if (typeof(content) === 'undefined') {
+                    this.scope.logger.debug('Undefined content');
+                    return false;
+                }
+
+                // Get content $item
+                var $content = content.view.get$item();
+
+                this.scope.logger.debug('$content', $content);
+                return $content;
             },
 
             /**

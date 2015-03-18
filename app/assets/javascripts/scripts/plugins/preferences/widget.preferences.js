@@ -194,13 +194,13 @@ define([
                 hideContentOnDrag: {
                     type: 'checkbox',
                     disabled: false,
-                    checked: true,
+                    checked: false,
                     visible: true
                 },
                 hideContentOnResize: {
                     type: 'checkbox',
                     disabled: false,
-                    checked: true,
+                    checked: false,
                     visible: true
                 }
             };

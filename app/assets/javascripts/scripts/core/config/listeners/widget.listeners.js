@@ -14,7 +14,10 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
      *      successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function},
      *      afterSetContent: {name: string, callback: Function},
-     *      stopResizable: {name: string, callback: Function}
+     *      startResizable: {name: string, callback: Function},
+     *      stopResizable: {name: string, callback: Function},
+     *      startDraggable: {name: string, callback: Function},
+     *      stopDraggable: {name: string, callback: Function}
      * }}
      */
     Widget.prototype.localListeners = {
@@ -76,18 +79,21 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
         startDraggable: {
             name: 'start.draggable',
             callback: function startDraggableCallback() {
-                if (this.controller.isDevelopmentMode()) {
+                this.controller.showContent(false);
+            }
+        },
 
-                    /**
-                     * Get prefs
-                     * @type {*}
-                     */
-                    var preferences = this.model.getConfig('preferences');
+        stopDraggable: {
+            name: 'stop.draggable',
+            callback: function stopDraggableCallback() {
+                this.controller.showContent(true);
+            }
+        },
 
-                    if (!!preferences.hideContentOnDrag) {
-                        this.controller.hideContent();
-                    }
-                }
+        startResizable: {
+            name: "start.resizable",
+            callback: function startResizableCallback() {
+                this.controller.showContent(false);
             }
         },
 
@@ -98,7 +104,7 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
                     this.eventmanager.eventList.toggleContentExpander,
                     this.controller.isExpandable()
                 );
-                this.controller.showContent();
+                this.controller.showContent(true);
             }
         }
     };
