@@ -37,10 +37,24 @@ define(function defineWidgetExpand() {
             }
 
             /**
+             * Get $item
+             * @type {BaseElement}
+             */
+            var $item = $content.view.get$item();
+
+            if (!this.base.isDefined($item)) {
+                this.scope.logger.warn(
+                    'Element undefined: check convention',
+                    $content.view.elements
+                );
+                return false;
+            }
+
+            /**
              * Get content height
              * @type {number}
              */
-            var deltaHeight = $content.view.get$item().getHeight();
+            var deltaHeight = $item.getHeight();
 
             return !!this.model.getConfig('preferences').expandable &&
                 deltaHeight > this.scope.dom.height;
