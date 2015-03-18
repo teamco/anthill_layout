@@ -548,6 +548,24 @@ define([
                 scope.eventmanager.eventList.customClassName,
                 [name, currentClassName]
             );
+        },
+
+        /**
+         * Set hide Content On Drag
+         * @member WidgetModel
+         * @param {boolean} hide
+         */
+        setHideContentOnDrag: function setHideContentOnDrag(hide) {
+            this._setItemInfoPreferences('hideContentOnDrag', hide);
+        },
+
+        /**
+         * Set hide Content On resize
+         * @member WidgetModel
+         * @param {boolean} hide
+         */
+        setHideContentOnResize: function setHideContentOnResize(hide) {
+            this._setItemInfoPreferences('hideContentOnResize', hide);
         }
 
     }, BaseModel.prototype);

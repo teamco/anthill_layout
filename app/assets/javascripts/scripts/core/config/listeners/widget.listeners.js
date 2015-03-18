@@ -73,6 +73,24 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
             }
         },
 
+        startDraggable: {
+            name: 'start.draggable',
+            callback: function startDraggableCallback() {
+                if (this.controller.isDevelopmentMode()) {
+
+                    /**
+                     * Get prefs
+                     * @type {*}
+                     */
+                    var preferences = this.model.getConfig('preferences');
+
+                    if (!!preferences.hideContentOnDrag) {
+                        this.controller.hideContent();
+                    }
+                }
+            }
+        },
+
         stopResizable: {
             name: "stop.resizable",
             callback: function stopResizableCallback() {
@@ -80,6 +98,7 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
                     this.eventmanager.eventList.toggleContentExpander,
                     this.controller.isExpandable()
                 );
+                this.controller.showContent();
             }
         }
     };

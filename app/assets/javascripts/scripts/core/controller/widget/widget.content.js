@@ -107,6 +107,22 @@ define([
             },
 
             /**
+             * Hide content
+             * @member WidgetContent
+             */
+            hideContent: function hideContent() {
+                this.get$content().hide();
+            },
+
+            /**
+             * Show content
+             * @member WidgetContent
+             */
+            showContent: function showContent() {
+                this.get$content().show();
+            },
+
+            /**
              * Set content
              * @member WidgetContent
              * @param {Function} Content
@@ -144,6 +160,15 @@ define([
              */
             getContent: function getContent() {
                 return this.scope.content;
+            },
+
+            /**
+             * Get $content
+             * @member WidgetContent
+             * @returns {*}
+             */
+            get$content: function get$content() {
+                return this.getContent().view.get$item();
             },
 
             /**
