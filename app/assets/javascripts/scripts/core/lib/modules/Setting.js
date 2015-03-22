@@ -377,18 +377,25 @@ define([
                             })
                         };
 
-                    $.ajax(opts).done(function (data, type, xhr) {
+                    $.ajax(opts).done(
+                        function done(data, type, xhr) {
 
-                        this.setting.cache.setItem(key, value);
-                        this.setting.activateOnSave(false);
+                            this.setting.cache.setItem(key, value);
+                            this.setting.activateOnSave(false);
 
-                        scope.logger.debug(data.notice, arguments);
-                        scope.observer.publish(
-                            scope.eventmanager.eventList.updateStorageVersion,
-                            data.version
-                        );
+                            scope.logger.debug(data.notice, arguments);
 
-                    }.bind(this));
+                            scope.observer.publish(
+                                scope.eventmanager.eventList.updateStorageVersion,
+                                data.version
+                            );
+
+                            scope.observer.publish(
+                                scope.eventmanager.eventList.afterUpdateStorage
+                            );
+
+                        }.bind(this)
+                    );
                 },
 
                 /**

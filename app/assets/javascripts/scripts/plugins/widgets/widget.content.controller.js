@@ -44,10 +44,12 @@ define([
                  */
                 var eventList = this.eventmanager.eventList;
 
-                observer.publish(eventList.loadPreferences);
-                observer.publish(eventList.loadRules);
-                observer.publish(eventList.successCreated);
-                observer.publish(eventList.defineContainer);
+                observer.batchPublish(
+                    eventList.loadPreferences,
+                    eventList.loadRules,
+                    eventList.successCreated,
+                    eventList.defineContainer
+                );
 
                 observer.publish(
                     eventList.updateTranslations, [

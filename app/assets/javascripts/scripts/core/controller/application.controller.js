@@ -123,6 +123,14 @@ define(
                 },
 
                 /**
+                 * After update storage
+                 * @member ApplicationController
+                 */
+                afterUpdateStorage: function afterUpdateStorage() {
+                    this.logger.debug('After update storage');
+                },
+
+                /**
                  * Define ajax setup
                  * @member ApplicationController
                  */

@@ -219,7 +219,7 @@ define([
 
         } else {
 
-            this.logger.warn('Undefined callback');
+            this.logger.warn('Callback should be function type', callback);
         }
     };
 
