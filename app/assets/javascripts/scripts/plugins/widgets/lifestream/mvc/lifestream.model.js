@@ -92,6 +92,13 @@ define([
                 value: undefined,
                 visible: true
             },
+            // If you want to fetch your main gallery use your DeviantART nickname.
+            // To fetch a gallery folder, add the id after a slash character.
+            // Example:
+            // Pick the gallery folder url: e.g.
+            // http://giuliom.deviantart.com/gallery/30227724 .
+            // Append the id, which is 30227724, to your nick obtaining
+            // something like 'mgiulio/30227724'
             lifestreamDeviantArtUser: {
                 type: 'text',
                 disabled: false,
@@ -110,6 +117,8 @@ define([
                 value: undefined,
                 visible: true
             },
+            // find your flickr id @
+            // http://www.flickr.com/services/api/explore/?method=flickr.people.findByUsername
             lifestreamFlickrUser: {
                 type: 'text',
                 disabled: false,
@@ -140,6 +149,8 @@ define([
                 value: undefined,
                 visible: true
             },
+            // Change the key when you're using it on your own website
+            // You can create one on https://code.google.com/apis/console
             lifestreamGooglePlusUser: {
                 type: 'text',
                 disabled: false,
@@ -152,6 +163,8 @@ define([
                 value: undefined,
                 visible: true
             },
+            // Go to instapaper.com, click Liked and open rss feed,
+            // copy last two parts of the url including the slash
             lifestreamInstapaperUser: {
                 type: 'text',
                 disabled: false,
@@ -176,6 +189,8 @@ define([
                 value: undefined,
                 visible: true
             },
+            // Go to http://www.gomiso.com/
+            // e.g. <meta name="user" content="388629" />
             lifestreamMisoUser: {
                 type: 'text',
                 disabled: false,
@@ -224,6 +239,7 @@ define([
                 value: undefined,
                 visible: true
             },
+            // Run javascript:alert(userid); when you're logged in at stackoverflow
             lifestreamStackoverflowUser: {
                 type: 'text',
                 disabled: false,
@@ -272,6 +288,8 @@ define([
                 value: undefined,
                 visible: true
             },
+            // [language] Optional setting, defaults to 'en'.
+            // Use wikipedia local site prefix (e.g. 'de' for German)
             lifestreamWikipediaLanguage: {
                 type: 'text',
                 disabled: false,
@@ -286,17 +304,80 @@ define([
          * @type {{}}
          */
         this.rules = {};
+
+        this.initSetters();
     };
 
     return LifestreamModel.extend('LifestreamModel', {
 
         /**
-         * Define setLifestreamBitlyUser
+         * Define init setters
+         * @member LifestreamModel
+         */
+        initSetters: function initSetters() {
+
+            var prefs = this.preferences,
+                index;
+
+            /**
+             * Define function
+             * @param {string} index
+             * @returns {Function}
+             * @private
+             */
+            function _defineFunction(index) {
+                return (
+                    new Function(
+                        [
+                            'return function set',
+                            index.capitalize(),
+                            '(user){this.setPrefs("',
+                            index,
+                            '",user);}'
+                        ].join('')
+                    )
+                )();
+            }
+
+            for (index in prefs) {
+                if (prefs.hasOwnProperty(index) && index.match(/User/)) {
+
+                    /**
+                     * Define setter
+                     * @member LifestreamModel
+                     * @type {Function}
+                     */
+                    this.constructor.prototype['set' + index.capitalize()] =
+                        _defineFunction(index)
+                }
+            }
+        },
+
+        /**
+         * Define setLifestreamGooglePlusKey
          * @member LifestreamModel
          * @param {string} user
          */
-        setLifestreamBitlyUser: function setLifestreamBitlyUser(user) {
-            this.setPrefs('lifestreamBitlyUser', user);
+        setLifestreamGooglePlusKey: function setLifestreamGooglePlusKey(user) {
+            this.setPrefs('lifestreamGooglePlusKey', user);
+        },
+
+        /**
+         * Define setLifestreamRssUrl
+         * @member LifestreamModel
+         * @param {string} user
+         */
+        setLifestreamRssUrl: function setLifestreamRssUrl(user) {
+            this.setPrefs('lifestreamRssUrl', user);
+        },
+
+        /**
+         * Define setLifestreamWikipediaLanguage
+         * @member LifestreamModel
+         * @param {string} user
+         */
+        setLifestreamWikipediaLanguage: function setLifestreamWikipediaLanguage(user) {
+            this.setPrefs('lifestreamWikipediaLanguage', user);
         }
 
     }, BaseModel.prototype, WidgetContentModel.prototype);

@@ -30,24 +30,37 @@ define([
 
             var prefs = this.model.getAllContentPrefs(),
                 index, opts = [], value,
-                service;
+                service, condition;
 
             for (index in prefs) {
+
                 if (prefs.hasOwnProperty(index)) {
+
+                    // Get prefs
                     value = this.model.getPrefs(index);
+
                     if (this.base.isDefined(value)) {
+
+                        // Get service name
                         service = index.toLowerCase().
-                            replace(this.name.toLowerCase(), '').
-                            replace(/user/, '');
-                        opts.push({
-                            service: service,
-                            user: value
-                        });
+                            replace(this.name.toLowerCase(), '');
+
+                        condition =
+                            service.match(/user/) ||
+                            service.match(/url/);
+
+                        if (condition && value.length > 0) {
+                            opts.push({
+                                service: service.replace(/user/, '').
+                                    replace(/url/, ''),
+                                user: value
+                            });
+                        }
                     }
                 }
             }
 
-            this.view.elements.$lifestream.renderEmbeddedContent(opts);
+            this.view.get$item().renderEmbeddedContent(opts);
         },
 
         /**
