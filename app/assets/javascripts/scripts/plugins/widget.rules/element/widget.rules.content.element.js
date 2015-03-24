@@ -25,6 +25,7 @@ define([
             destroy: false
         });
 
+        this.addInnerContent();
         this.setAttributes(opts.data);
         this.bindShowRules(opts.data);
         this.bindLocate(opts.data);
@@ -33,6 +34,14 @@ define([
     };
 
     return WidgetRulesContentElement.extend('WidgetRulesContentElement', {
+
+        /**
+         * Define inner content
+         * @member WidgetRulesContentElement
+         */
+        addInnerContent: function addInnerContent() {
+            this.$.append('<div />');
+        },
 
         /**
          * Define attributes

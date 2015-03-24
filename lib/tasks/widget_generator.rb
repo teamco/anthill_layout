@@ -174,9 +174,9 @@ module WidgetLib
         pattern = @file_name.gsub(/\./, '-')
         f.write([
                     "ul.gallery .content.#{pattern}>div:first-child",
-                    "ul.page-data .content.#{pattern}",
-                    "ul.maximize .content.#{pattern}",
-                    "ul.widget-rules .content.#{pattern}",
+                    "ul.page-data .content.#{pattern}>div:first-child",
+                    "ul.maximize .content.#{pattern}>div:first-child",
+                    "ul.widget-rules .content.#{pattern}>div:first-child",
                     ".modal-dialog.preferences .widgets-prefs li.#{pattern}",
                     ".widget .content.#{pattern}{background-image:url('images/#{@file_name}.png');}"
                 ].join(','))

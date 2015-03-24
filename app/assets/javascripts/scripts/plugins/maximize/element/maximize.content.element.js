@@ -26,6 +26,7 @@ define([
             destroy: false
         });
 
+        this.addInnerContent();
         this.setAttributes(opts.data);
         this.bindLocate(opts.data);
         this.bindMaximize(opts.data);
@@ -34,6 +35,14 @@ define([
     };
 
     return MaximizeContentElement.extend('MaximizeContentElement', {
+
+        /**
+         * Define inner content
+         * @member MaximizeContentElement
+         */
+        addInnerContent: function addInnerContent() {
+            this.$.append('<div />');
+        },
 
         /**
          * Define attributes

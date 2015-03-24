@@ -28,6 +28,14 @@ ul.page-data > .content:hover {
     border-radius: 10px;
 }
 
+ul.page-data .content > div:first-child {
+    width: 64px;
+    height: 64px;
+    margin: 3px;
+    background: transparent no-repeat center;
+    border-radius: 7px;
+}
+
 div.page-data-footer {
     position: absolute;
     bottom: 0;
