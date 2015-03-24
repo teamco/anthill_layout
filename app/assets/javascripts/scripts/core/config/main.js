@@ -31,6 +31,7 @@ requirejs.config({
         'lz-string': 'lib/lz-string',
         jquery: 'lib/jquery/jquery-2.1.3.min',
         'jquery.ujs': 'lib/jquery/jquery_ujs',
+        'jquery.timeago': 'lib/jquery/jquery.timeago',
         'jquery.ui': 'lib/jquery/jquery-ui.min',
         'jquery.resizestop': 'lib/jquery/jquery.resizestop',
         'jquery.pseudo': 'lib/jquery/jquery.pseudo',

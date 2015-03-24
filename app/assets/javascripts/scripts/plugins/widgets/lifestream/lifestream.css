@@ -1,0 +1,17 @@
+.widget .content .lifestream {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.lifestream-prefs {
+    width: 45%;
+    float: left;
+    margin-right: 5%;
+    margin-left: 0;
+}
+
+.lifestream-prefs:nth-child(even) {
+    margin-right: 0;
+    margin-left: 5%;
+}

@@ -18,7 +18,6 @@ define([], function defineWidgetContentModel() {
 
     return WidgetContentModel.extend('WidgetContentModel', {
 
-
         /**
          * Get prefs
          * @member WidgetContentModel
@@ -33,6 +32,15 @@ define([], function defineWidgetContentModel() {
             }
 
             return this.preferences[prefs].value;
+        },
+
+        /**
+         * Get all content preferences
+         * @member WidgetContentModel
+         * @returns {*}
+         */
+        getAllContentPrefs: function getAllContentPrefs() {
+            return this.preferences;
         },
 
         /**

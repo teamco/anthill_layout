@@ -1,0 +1,74 @@
+/**
+ * Created with RubyMine.
+ * User: i061485
+ * Date: 2/23/14
+ * Time: 11:03 AM
+ */
+
+define([
+    'plugins/plugin',
+    'plugins/widgets/widget.content.controller'
+], function defineLifestreamController(PluginBase, WidgetContentController) {
+
+    /**
+     * Define Lifestream controller
+     * @class LifestreamController
+     * @extends PluginController
+     * @extends WidgetContentController
+     * @constructor
+     */
+    var LifestreamController = function LifestreamController() {
+    };
+
+    return LifestreamController.extend('LifestreamController', {
+
+        /**
+         * Set embedded content
+         * @member LifestreamController
+         */
+        setEmbeddedContent: function setEmbeddedContent() {
+
+            var prefs = this.model.getAllContentPrefs(),
+                index, opts = [], value,
+                service;
+
+            for (index in prefs) {
+                if (prefs.hasOwnProperty(index)) {
+                    value = this.model.getPrefs(index);
+                    if (this.base.isDefined(value)) {
+                        service = index.toLowerCase().
+                            replace(this.name.toLowerCase(), '').
+                            replace(/user/, '');
+                        opts.push({
+                            service: service,
+                            user: value
+                        });
+                    }
+                }
+            }
+
+            this.view.elements.$lifestream.renderEmbeddedContent(opts);
+        },
+
+        /**
+         * Add Lifestream rule
+         * @member LifestreamController
+         * @param e
+         */
+        addLifestreamRule: function addLifestreamRule(e) {
+
+            /**
+             * Define $button
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $button = $(e.target),
+                scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.publishRule,
+                [$button.attr('value'), this.scope.constructor.prototype.name]
+            );
+        }
+
+    }, PluginBase.prototype, WidgetContentController.prototype);
+});
