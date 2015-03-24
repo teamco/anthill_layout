@@ -33,6 +33,7 @@ define([
          */
         this.data = opts.data;
 
+        this.addInnerContent();
         this.setAttributes();
         this.bindInstallWidget();
         this.bindShowInfo();
@@ -41,6 +42,14 @@ define([
     };
 
     return GalleryContentElement.extend('GalleryContentElement', {
+
+        /**
+         * Define inner content
+         * @member GalleryContentElement
+         */
+        addInnerContent: function addInnerContent() {
+            this.$.append('<div />');
+        },
 
         /**
          * Set attributes

@@ -173,7 +173,7 @@ module WidgetLib
       File.open("#{path}", 'w') do |f|
         pattern = @file_name.gsub(/\./, '-')
         f.write([
-                    "ul.gallery .content.#{pattern}",
+                    "ul.gallery .content.#{pattern}>div:first-child",
                     "ul.page-data .content.#{pattern}",
                     "ul.maximize .content.#{pattern}",
                     "ul.widget-rules .content.#{pattern}",
