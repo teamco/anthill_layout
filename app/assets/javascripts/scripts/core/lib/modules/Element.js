@@ -335,6 +335,14 @@ define([
          */
         addCSS: function addCSS(type, opts) {
 
+            // Get link name
+            var linkName = type + 'LinkCSS';
+
+            if (this[linkName]) {
+                this.view.scope.logger.debug('CSS already loaded');
+                return false;
+            }
+
             opts = this.base.define(opts, {}, true);
             opts.resource = this.base.define(opts.resource, '', true);
 
@@ -365,7 +373,7 @@ define([
              * Define css link instance
              * @type {*|jQuery|HTMLElement}
              */
-            this.linkCSS = $('#' + uuid);
+            this[type + 'LinkCSS'] = $('#' + uuid);
         },
 
         /**
@@ -450,8 +458,10 @@ define([
                 this.$.off().remove();
             }
 
-            if (this.linkCSS) {
-                this.linkCSS.remove();
+            for (var index in this) {
+                if (this.hasOwnProperty(index) && index.match(/LinkCSS/)) {
+                    this[index].remove();
+                }
             }
 
             return this;
