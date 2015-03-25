@@ -58,6 +58,7 @@ define([], function defineCommentsRenderer() {
                     disabled: false,
                     visible: true,
                     validate: false,
+                    style: 'no-transition',
                     monitor: {
                         events: events,
                         callback: this.doActionEvent.bind({

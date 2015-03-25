@@ -24,6 +24,7 @@ define([], function defineTextAreaRenderer(){
          *      name: string,
          *      [placeholder]: string,
          *      value,
+         *      [style]: string,
          *      [monitor],
          *      [disabled]: boolean,
          *      [validate]: {mask: RegExp, blank: boolean}
@@ -62,7 +63,7 @@ define([], function defineTextAreaRenderer(){
                     id: uuid,
                     placeholder: opts.placeholder,
                     title: opts.value
-                }).val(opts.value);
+                }).val(opts.value).addClass(opts.style);
             }
 
             this.initMonitor($input, opts.monitor);
