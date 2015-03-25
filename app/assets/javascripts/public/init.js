@@ -4,6 +4,7 @@
         site = script.getAttribute('data-resource'),
         uuid = script.getAttribute('data-uuid'),
         version = parseInt(script.getAttribute('data-version'), 10) || 1,
+        user = script.getAttribute('data-user'),
         mode = script.getAttribute('data-mode');
 
     require(['../scripts/core/config/main'], function loadConfig() {
@@ -32,6 +33,7 @@
                             container: 'body',
                             header: true
                         },
+                        user: user,
                         uuid: uuid,
                         version: version,
                         appName: site,

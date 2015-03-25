@@ -4,6 +4,7 @@
     position: absolute;
     cursor: move;
     border: none;
+    overflow: hidden;
 }
 
 .development .widget,
@@ -179,4 +180,14 @@
 
 .widget.scroll .content {
     overflow: auto;
+}
+
+.widget .comments {
+    position: absolute;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    min-height: 50px;
+    width: 100%;
+    border-top: 1px solid #999;
+    box-shadow: 0 -5px 5px -5px #000;
 }

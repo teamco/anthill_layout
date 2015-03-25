@@ -8,6 +8,7 @@
     <%= javascript_include_tag(
                 'scripts/core/lib/require',
                 'data-resource' => key,
+                'data-user' => current_user.email,
                 'data-version' => @storage[:version],
                 'data-mode' => @storage[:mode],
                 'data-uuid' => @storage[:uuid],

@@ -12,9 +12,10 @@ define([
     'element/header.element',
     'element/footer.element',
     'element/widget/widget.content.element',
+    'element/widget/widget.comment.element',
     'element/widget/widget.expander.element',
     'element/widget/widget.element'
-], function defineWidgetView(AntHill, BaseView, Header, Footer, WidgetContentElement, WidgetExpanderElement, WidgetElement) {
+], function defineWidgetView(AntHill, BaseView, Header, Footer, WidgetContentElement, WidgetCommentElement, WidgetExpanderElement, WidgetElement) {
 
     /**
      * Define Widget View
@@ -97,9 +98,12 @@ define([
 
             /**
              * Define $comments
-             * @type {undefined}
+             * @type {WidgetCommentElement}
              */
-            this.elements.$comments = undefined;
+            this.elements.$comments = new WidgetCommentElement(this, {
+                style: 'comments',
+                $container: this.elements.$widget.$
+            });
         },
 
         contentSharing: function contentSharing() {
