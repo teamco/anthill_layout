@@ -13,6 +13,7 @@ define([
     'modules/renderer/embed',
     'modules/renderer/object',
     'modules/renderer/filter',
+    'modules/renderer/comments',
     'modules/renderer/label',
     'modules/renderer/fieldset',
     'modules/renderer/slider',
@@ -24,7 +25,7 @@ define([
     'modules/renderer/upload.on.drop',
     'modules/renderer/text.download',
     'modules/renderer/validation'
-], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Filter, Label, FieldSet, Slider, TextEditor, TextArea, TextField, NumberField, ToolTip, UploadOnDrop, TextDownload, Validation) {
+], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Filter, Comments, Label, FieldSet, Slider, TextEditor, TextArea, TextField, NumberField, ToolTip, UploadOnDrop, TextDownload, Validation) {
 
     /**
      * Define renderer
@@ -38,6 +39,7 @@ define([
      * @extends {EmbedRenderer} Embed
      * @extends {ObjectRenderer} ObjectEmbed
      * @extends {FilterRenderer} Filter
+     * @extends {CommentsRenderer} Comments
      * @extends {LabelRenderer} Label
      * @extends {FieldSetRenderer} Label
      * @extends {SliderRenderer} Slider
@@ -52,7 +54,6 @@ define([
      * @constructor
      */
     var Renderer = function Renderer() {
-
     };
 
     return Renderer.extend(
@@ -108,6 +109,7 @@ define([
         Embed.prototype,
         ObjectEmbed.prototype,
         Filter.prototype,
+        Comments.prototype,
         Label.prototype,
         FieldSet.prototype,
         Slider.prototype,
