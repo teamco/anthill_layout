@@ -16,7 +16,7 @@ define([], function defineCommentsRenderer() {
 
         /**
          * Render comments form
-         * @member WidgetCommentElement
+         * @member CommentsRenderer
          * @param {{events: *|string[]}} [opts]
          */
         renderCommentsForm: function renderCommentsForm(opts) {
@@ -63,7 +63,7 @@ define([], function defineCommentsRenderer() {
 
         /**
          * Define action event
-         * @member WidgetCommentElement
+         * @member CommentsRenderer
          * @param {Event} e
          */
         doActionEvent: function doActionEvent(e) {
@@ -81,6 +81,7 @@ define([], function defineCommentsRenderer() {
 
         /**
          * Define on focus event
+         * @member CommentsRenderer
          * @param {Event} e
          * @private
          */
@@ -90,6 +91,7 @@ define([], function defineCommentsRenderer() {
 
         /**
          * Define on blur event
+         * @member CommentsRenderer
          * @param {Event} e
          * @private
          */
