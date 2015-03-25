@@ -69,23 +69,16 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
                 tinyMCE.init({
                     selector: 'textarea#' + uuid,
                     init_instance_callback: this.afterInitTinyMce.bind(this),
-                    setup: function (editor) {
+                    setup: function setup(editor) {
 
-                        if (opts.monitor) {
-                            editor.on(
-                                opts.monitor.events.join(','),
-                                opts.monitor.callback
-                            );
-                        }
-                    }
+                        this.initMonitor(editor, opts.monitor);
+
+                    }.bind(this)
                 });
 
             }.bind(this));
 
-            if (!opts.visible) {
-                $input.hide();
-            }
-
+            this.checkVisibility($input, opts.visible);
             this.validateByMask($input, opts);
 
             return [

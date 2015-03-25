@@ -65,18 +65,8 @@ define([], function defineTextAreaRenderer(){
                 }).val(opts.value);
             }
 
-            if (opts.monitor) {
-
-                $input.on(
-                    opts.monitor.events.join(','),
-                    opts.monitor.callback
-                );
-            }
-
-            if (!opts.visible) {
-                $input.hide();
-            }
-
+            this.initMonitor($input, opts.monitor);
+            this.checkVisibility($input, opts.visible);
             this.validateByMask($input, opts);
 
             return [

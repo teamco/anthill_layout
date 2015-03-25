@@ -58,14 +58,13 @@ define([], function defineEventLinkRenderer(){
                 checked
             );
 
-            $link.on(
-                opts.events.join(' '),
-
-                /**
-                 * On event
-                 * @private
-                 */
-                function _onEvent(e) {
+            /**
+             * Define monitor
+             * @type {{events: *, callback: (function(this:EventLinkRenderer)|fBound)}}
+             */
+            opts.monitor = {
+                events: opts.events,
+                callback: function _onEventCallback(e) {
 
                     e.preventDefault();
                     e.stopPropagation();
@@ -90,11 +89,10 @@ define([], function defineEventLinkRenderer(){
                     );
 
                 }.bind(this)
-            );
+            };
 
-            if (!opts.visible) {
-                $link.hide();
-            }
+            this.initMonitor($input, opts.monitor);
+            this.checkVisibility($link, opts.visible);
 
             return $link;
         }

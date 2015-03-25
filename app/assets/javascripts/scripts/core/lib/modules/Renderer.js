@@ -68,6 +68,36 @@ define([
                 if (element) {
                     $(element, this.$).focus();
                 }
+            },
+
+            /**
+             * Define monitor init
+             * @member Renderer
+             * @param $input
+             * @param monitor
+             */
+            initMonitor: function initMonitor($input, monitor) {
+
+                if (monitor) {
+
+                    $input.on(
+                        monitor.events.join(' '),
+                        monitor.callback
+                    );
+                }
+            },
+
+            /**
+             * Define check visibility
+             * @member Renderer
+             * @param $input
+             * @param {boolean} visible
+             */
+            checkVisibility: function checkVisibility($input, visible) {
+
+                if (!visible) {
+                    $input.hide();
+                }
             }
         },
         AntHill.prototype,
