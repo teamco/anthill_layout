@@ -58,7 +58,7 @@ define([
             coubStartWithHighDefinition: {
                 type: 'checkbox',
                 disabled: false,
-                value: false,
+                value: true,
                 visible: true
             }
         };
