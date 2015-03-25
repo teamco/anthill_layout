@@ -64,7 +64,7 @@ class Author::SiteStoragesController < Author::AuthorController
     versions.build({
                        version: versions.length + 1,
                        content: @author_site_storage[:content],
-                       activated: false
+                       activated: true
                    })
 
     target = get_target_url(@author_site_storage.key)

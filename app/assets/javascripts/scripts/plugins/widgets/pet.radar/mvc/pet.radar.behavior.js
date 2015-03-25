@@ -7,15 +7,16 @@ define([
      * @class PetRadarBehavior
      * @extends BaseGeolocation
      * @constructor
+     * @param {PetRadarElement} $element
      */
-    var PetRadarBehavior = function PetRadarBehavior() {
+    var PetRadarBehavior = function PetRadarBehavior($element) {
 
         /**
          * Define user container
          * @member PetRadarBehavior
          * @type {*|jQuery|HTMLElement}
          */
-        this.usersContainer = $('.close_friends_container');
+        this.usersContainer = $('.close_friends_container', $element.$);
 
         /**
          * Define amount
@@ -71,7 +72,6 @@ define([
         initialize: function initialize() {
 
             this.getPosition(
-
                 function _setLocation(position) {
 
                     var myPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -87,18 +87,18 @@ define([
                         draggable: false,
                         disableDoubleClickZoom: true,
                         disableDefaultUI: true
-                    }
+                    };
 
-                    var map = new google.maps.Map(map_canvas, map_options)
+                    var map = new google.maps.Map(map_canvas, map_options);
 
                     this.addPetsToMap();
-
                 }
             );
 
         },
 
         addPetsToMap: function addPetsToMap() {
+<<<<<<< HEAD
             //var interval = setInterval(function () {
             //    createUserCircle();
             //    circlesAmount++;
@@ -107,18 +107,29 @@ define([
             //    }
             //    ;
             //}, 100);
+=======
+            var interval = window.setInterval(function () {
+                this.createUserCircle();
+                this.circlesAmount++;
+                if (this.circlesAmount === this.images.length) {
+                    window.clearInterval(interval);
+                }
+
+            }.bind(this), 100);
+>>>>>>> ab0d75fe12a9afed856cf406e0fac2686d12e62d
         },
 
         createUserCircle: function createUserCircle() {
-            if (screenWidth < 1400) {
-                var x = Math.floor(Math.random() * 400);
-                var y = Math.floor(Math.random() * 300);
+            var x, y;
+            if (this.screenWidth < 1400) {
+                x = Math.floor(Math.random() * 400);
+                y = Math.floor(Math.random() * 300);
             } else {
-                var x = Math.floor(Math.random() * 550);
-                var y = Math.floor(Math.random() * 550);
+                x = Math.floor(Math.random() * 550);
+                y = Math.floor(Math.random() * 550);
             }
             //console.log(y + " " + x);
-            usersContainer.append('<div class="pet_account animated pulse" style="top:' + y + 'px; left:' + x + 'px;' + '"><img style="height:100px;" src="' + images[circlesAmount] + '"></div>');
+            this.usersContainer.append('<div class="pet_account animated pulse" style="top:' + y + 'px; left:' + x + 'px;' + '"><img style="height:100px;" src="' + this.images[this.circlesAmount] + '"></div>');
         }
 
     }, BaseGeolocation.prototype);

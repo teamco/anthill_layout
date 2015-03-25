@@ -7,7 +7,7 @@ gem 'sqlite3'
 
 # Use puma/thin/unicorn as the app server
 case RUBY_PLATFORM
-  when /darwin/
+  when /darwin|linux/
 
     # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
     gem 'rails', '>= 4.2.0'
