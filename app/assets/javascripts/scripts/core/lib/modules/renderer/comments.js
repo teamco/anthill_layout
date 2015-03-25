@@ -74,8 +74,8 @@ define([], function defineCommentsRenderer() {
              */
             var methodName = '_' + e.type + 'CommentsEvent';
 
-            if (this[methodName]) {
-                this[methodName](e)
+            if (this.scope[methodName]) {
+                this.scope[methodName](e)
             }
         },
 
@@ -86,7 +86,7 @@ define([], function defineCommentsRenderer() {
          * @private
          */
         _focusCommentsEvent: function _focusCommentsEvent(e) {
-
+debugger
         },
 
         /**
@@ -96,7 +96,7 @@ define([], function defineCommentsRenderer() {
          * @private
          */
         _blurCommentsEvent: function _blurCommentsEvent(e) {
-
+            debugger
         }
     });
 });

@@ -26,25 +26,14 @@ define([
             destroy: true
         });
 
-        this.renderForm();
+        this.renderCommentsForm({
+            visible: true
+        });
 
         return this;
     };
 
     return WidgetCommentElement.extend('WidgetCommentElement', {
-
-        renderForm: function renderForm() {
-
-            this.$.append(
-                this.renderTextArea({
-                    name: 'comment',
-                    placeholder: 'Add a comment...',
-                    disabled: false,
-                    visible: true,
-                    validate: false
-                })
-            );
-        }
 
     }, BaseElement.prototype);
 });
