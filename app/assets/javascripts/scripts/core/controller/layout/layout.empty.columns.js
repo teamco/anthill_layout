@@ -7,38 +7,37 @@
 
 define([
     'config/anthill'
-], function defineEmptyColumns(AntHill) {
+], function defineLayoutEmptyColumns(AntHill) {
 
     /**
-     * Define EmptyColumns
-     * @class EmptyColumns
+     * Define LayoutEmptyColumns
+     * @class LayoutEmptyColumns
      * @extends AntHill
      * @param {Layout} layout
      * @constructor
      */
-    var EmptyColumns = function EmptyColumns(layout) {
+    var LayoutEmptyColumns = function LayoutEmptyColumns(layout) {
 
         /**
          * Define layout
-         * @member EmptyColumns
+         * @member LayoutEmptyColumns
          * @type {Layout}
          */
         this.layout = layout;
 
         /**
          * Define page
-         * @member EmptyColumns
+         * @member LayoutEmptyColumns
          * @type {Page}
          */
         this.page = this.layout.controller.getContainment();
-
     };
 
-    return EmptyColumns.extend('EmptyColumns', {
+    return LayoutEmptyColumns.extend('LayoutEmptyColumns', {
 
         /**
          * Check if remove empty spaces is allowed
-         * @member EmptyColumns
+         * @member LayoutEmptyColumns
          * @returns {boolean}
          */
         isAllowed: function isAllowed() {
@@ -48,7 +47,7 @@ define([
 
         /**
          * Remove empty spaces by column
-         * @member EmptyColumns
+         * @member LayoutEmptyColumns
          * @returns {boolean}
          */
         remove: function remove() {
@@ -93,7 +92,7 @@ define([
 
         /**
          * Get widgets order
-         * @member EmptyColumns
+         * @member LayoutEmptyColumns
          * @param widgets
          * @returns {Array}
          */
@@ -126,7 +125,7 @@ define([
 
         /**
          * Get widgets above
-         * @member EmptyColumns
+         * @member LayoutEmptyColumns
          * @param {string} uuid
          * @param {{}} widgets
          * @param {Array} order

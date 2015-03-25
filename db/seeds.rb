@@ -17,12 +17,13 @@ if Author::Widget.all.length > 0
   %w(registered banned moderator admin guest).each do |role|
     Role.find_or_create_by({name: role})
   end
+  password = '1234567890'
   admin = User.create({
                           email: 'email@gmail.com',
-                          password: '1234567890',
+                          password: password,
                           role_id: Role.find_by_name(:admin).id
                       })
-  puts "--- Admin: #{admin.email}"
+  puts "--- Admin: #{admin.email}|#{password}"
   Author::SiteType.all.each { |x| x.update({user_id: admin.id}) }
   puts '--- Update user in SiteType'
   Author::Widget.all.each { |x| x.update({user_id: admin.id}) }

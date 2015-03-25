@@ -39,7 +39,15 @@ define([], function defineIframeRenderer() {
 
             $.extend(attrs, opts);
 
-            return $(iframe).attr(attrs);
+            /**
+             * Define $iframe
+             * @type {*|jQuery}
+             */
+            var $iframe = $(iframe).attr(attrs)
+
+            this.checkVisibility($iframe, opts.visible);
+
+            return $iframe;
         }
     });
 });

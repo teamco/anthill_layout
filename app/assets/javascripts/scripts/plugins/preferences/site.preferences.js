@@ -54,10 +54,27 @@ define([
         getPreferencesHtml: function getPreferencesHtml(map) {
 
             return [
-                this.setSiteTitle(),
+                this.setSiteMetaData(),
                 this.siteWidthSlider(map),
                 this.googleAnalytics()
             ];
+        },
+
+        setSiteMetaData: function setSiteMetaData() {
+
+            return $('<li />').append(
+                this.renderFieldSet(
+                    'Meta Data',
+                    $('<ul />').append(
+                        this.setSiteTitle(),
+                        this.setSiteMetaAuthor(),
+                        this.setSiteMetaDescription(),
+                        this.setSiteMetaKeywords()
+                    ),
+                    true
+                )
+            );
+
         },
 
         /**
@@ -75,20 +92,131 @@ define([
                 preferences = workspace.model.getConfig('preferences');
 
             /**
-             * Render slider input
+             * Get site title
+             * @type {*|string}
+             */
+            var siteTitle = preferences['siteTitle'];
+
+            /**
+             * Split SEO title
+             * @type {*|Array}
+             */
+            var seoTitle = workspace.view.get$item().getSiteTitle().split(
+                workspace.model.getConfig('SEOSeparator')
+            );
+
+            /**
+             * Render title
              * @type {*[]}
              */
-            var $textfield = this.renderTextField({
+            var $title = this.renderTextField({
                 name: 'siteTitle',
-                text: 'Site Title',
+                text: 'Title',
                 disabled: false,
+                placeholder: 'Enter title',
                 visible: true,
-                value: preferences['siteTitle'] || $('title').text()
+                value: siteTitle || seoTitle[seoTitle.length - 1]
             });
 
             return $('<li />').
                 addClass('workspace-title-prefs').
-                append($textfield);
+                append($title);
+        },
+
+        /**
+         * Set site meta description
+         * @member SitePreferences
+         * @returns {*|jQuery}
+         */
+        setSiteMetaDescription: function setSiteMetaDescription() {
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                preferences = workspace.model.getConfig('preferences');
+
+            /**
+             * Render description
+             * @type {*[]}
+             */
+            var $description = this.renderTextArea({
+                name: 'siteDescription',
+                text: 'Description',
+                disabled: false,
+                placeholder: 'Enter description',
+                visible: true,
+                value: preferences['siteDescription'] || $('meta[name="description"]').attr('content')
+            });
+
+            return $('<li />').
+                addClass('workspace-description-prefs').
+                append($description);
+        },
+
+        /**
+         * Set site meta key words
+         * @member SitePreferences
+         * @returns {*|jQuery}
+         */
+        setSiteMetaKeywords: function setSiteMetaKeywords() {
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                preferences = workspace.model.getConfig('preferences');
+
+            /**
+             * Render description
+             * @type {*[]}
+             */
+            var $keywords = this.renderTextArea({
+                name: 'siteKeywords',
+                text: 'Keywords',
+                placeholder: 'Enter keywords',
+                disabled: false,
+                visible: true,
+                value: preferences['siteKeywords'] || $('meta[name="keywords"]').attr('content')
+            });
+
+            return $('<li />').
+                addClass('workspace-keywords-prefs').
+                append($keywords);
+        },
+
+        /**
+         * Set site meta author
+         * @member SitePreferences
+         * @returns {*|jQuery}
+         */
+        setSiteMetaAuthor: function setSiteMetaAuthor() {
+
+            /**
+             * Get workspace
+             * @type {Workspace}
+             */
+            var workspace = this.view.controller.getWorkspace(),
+                preferences = workspace.model.getConfig('preferences');
+
+            /**
+             * Render description
+             * @type {*[]}
+             */
+            var $author = this.renderTextField({
+                name: 'siteAuthor',
+                text: 'Author',
+                placeholder: 'Enter author',
+                disabled: false,
+                visible: true,
+                value: preferences['siteAuthor'] || $('meta[name="author"]').attr('content')
+            });
+
+            return $('<li />').
+                addClass('workspace-author-prefs').
+                append($author);
         },
 
         /**
@@ -235,26 +363,17 @@ define([
                 slide: _slide.bind(this)
             });
 
-            return $('<li />').append(
-                $('<fieldset />').append(
-                    $('<legend />').addClass('open').text(cname).
-                        on('click.toggle', this.toggleFieldset.bind(this)).attr({
-                            title: cname
-                        }
-                    ),
-
-                    $ul.append(
-                        this.siteStaticWidth()
-                    ),
-
-                    $ul.append(
-                        $('<li class="workspace-site-width-prefs slider" />').append(
-                            this.renderLabel(uuid, 'Site Width', 'slider', true),
-                            $slider,
-                            $textfield
-                        )
-                    )
+            $ul.append(
+                this.siteStaticWidth(),
+                $('<li class="workspace-site-width-prefs slider" />').append(
+                    this.renderLabel(uuid, 'Site Width', 'slider', true),
+                    $slider,
+                    $textfield
                 )
+            );
+
+            return $('<li />').append(
+                this.renderFieldSet(cname, $ul)
             );
         },
 
@@ -289,20 +408,14 @@ define([
             });
 
             return $('<li />').append(
-                $('<fieldset />').append(
-                    $('<legend />').text(cname).
-                        on('click.toggle', this.toggleFieldset.bind(this)).attr({
-                            title: cname
-                        }
-                    ),
-
+                this.renderFieldSet(
+                    cname,
                     $('<ul />').append(
-                        $('<li class="workspace-google-analytics-prefs" />').append(
-                            $textfield
-                        )
+                        $('<li class="workspace-google-analytics-prefs" />').
+                            append($textfield)
                     )
                 )
-            );
+            )
         }
 
     }, BasePreferences.prototype);

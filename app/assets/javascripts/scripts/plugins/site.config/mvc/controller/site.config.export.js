@@ -23,7 +23,7 @@ define(function defineSiteConfigExport() {
 
             /**
              * Get root
-             * @type {App}
+             * @type {Application}
              */
             var root = this.controller.root(),
                 setting = root.model.setting,

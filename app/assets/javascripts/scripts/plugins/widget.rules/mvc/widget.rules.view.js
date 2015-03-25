@@ -14,7 +14,7 @@ define([
     'element/footer.element',
     'plugins/widget.rules/element/widget.rules.content.element',
     'plugins/widget.rules/element/widget.rules.element'
-], function defineWidgetRulesView(AntHill, BaseView, BaseRules, Header, Footer, WidgetRulesContent, WidgetRules) {
+], function defineWidgetRulesView(AntHill, BaseView, BaseRules, Header, Footer, WidgetRulesContentElement, WidgetRulesElement) {
 
     /**
      * Define view
@@ -35,25 +35,17 @@ define([
          */
         renderWidgetRules: function renderWidgetRules() {
 
-            this.header(Header, this.elements.$container).setText(
-                'Widget Rules'
-            );
-
-            if (!this.isCached('$widgetrules', WidgetRules)) {
+            if (!this.isCached('$widgetrules', WidgetRulesElement)) {
 
                 /**
                  * Define WidgetRules element
                  * @type {WidgetRulesElement}
                  */
-                this.elements.$widgetrules = new WidgetRules(this, {
+                this.elements.$widgetrules = new WidgetRulesElement(this, {
                     id: this.createUUID(),
                     $container: this.elements.$container.$
                 });
             }
-
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$widgetrules.getFooter()
-            );
         },
 
         /**
@@ -71,15 +63,21 @@ define([
             this.elements.items = {};
             this.elements.$widgetrules.empty();
 
+            this.renderHeader(Header, 'Widget Rules');
+
+            this.renderFilter(
+                this.updateFooterContent.bind(this)
+            );
+
             for (var index in data) {
 
                 if (data.hasOwnProperty(index)) {
 
                     /**
                      * Render item
-                     * @type {*}
+                     * @type {WidgetRulesContentElement}
                      */
-                    var $item = new WidgetRulesContent(this, {
+                    var $item = new WidgetRulesContentElement(this, {
                         style: 'content',
                         id: [
                             data[index].model.getConfig('uuid'),
@@ -104,9 +102,20 @@ define([
                 this.elements.$container.$
             );
 
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$widgetrules.getFooter()
-            );
+            this.elements.$filter.updateData({
+                items: this.elements.items,
+                focusOn: 'input'
+            });
+
+            this.updateFooterContent();
+        },
+
+        /**
+         * Update footer content
+         * @member WidgetRulesView
+         */
+        updateFooterContent: function updateFooterContent() {
+            this.renderFooter(Footer, this.elements.$widgetrules);
         },
 
         /**

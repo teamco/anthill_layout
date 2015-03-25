@@ -7,15 +7,15 @@
 
 define([
     'config/anthill'
-], function defineLayoutEmptyRows(AntHill) {
+], function defineLayoutLayoutEmptyRows(AntHill) {
 
     /**
-     * Define EmptyRows
-     * @class EmptyRows
+     * Define LayoutEmptyRows
+     * @class LayoutEmptyRows
      * @param {Layout} layout
      * @constructor
      */
-    var EmptyRows = function EmptyRows(layout) {
+    var LayoutEmptyRows = function LayoutEmptyRows(layout) {
 
         /**
          * Define layout
@@ -28,10 +28,9 @@ define([
          * @type {Page}
          */
         this.page = this.layout.controller.getContainment();
-
     };
 
-    return EmptyRows.extend('EmptyRows', {
+    return LayoutEmptyRows.extend('LayoutEmptyRows', {
 
         /**
          * Check if remove empty spaces is allowed

@@ -32,32 +32,6 @@ define([
 
     return GalleryElement.extend('GalleryElement', {
 
-        /**
-         * Get footer html
-         * @member GalleryElement
-         * @returns {*|jQuery}
-         */
-        getFooter: function getFooter() {
-
-            var counter = 0, index,
-                items = this.view.elements.items;
-
-            for (index in items) {
-
-                if (items.hasOwnProperty(index)) {
-
-                    if (!items[index].$.attr('style')) {
-                        counter += 1;
-                    }
-                }
-            }
-
-            return $('<div />').text([
-                counter,
-                'items'
-            ].join(' '));
-        }
-
     }, BaseElement.prototype);
 
 });

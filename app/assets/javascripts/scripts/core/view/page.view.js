@@ -47,8 +47,6 @@ define([
             this.deltaScroll();
             this.footer(Footer, this.elements.$page);
 
-            this.elements.$page.stretch();
-
             /**
              * Get workspace
              * @type {Workspace}

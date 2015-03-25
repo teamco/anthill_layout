@@ -330,7 +330,6 @@ define([
             }
 
             return name;
-
         },
 
         /**
@@ -619,7 +618,6 @@ define([
                 scope.logger.warn('Force created permissions', permission);
 
             scope.logger.debug('Local permissions', permission);
-
         },
 
         /**
@@ -628,6 +626,7 @@ define([
          * @returns {*|boolean}
          */
         _applyPermissions: function _applyPermissions(type) {
+
             var base = this.base,
                 scope = this.scope,
                 mode = scope.controller.getMode(),
@@ -646,7 +645,8 @@ define([
                     type: 'warn',
                     msg: 'Undefined ' + type + ' permission'
                 })) {
-                return false;
+
+                scope.constructor.prototype[permission] = {};
             }
 
             // Define capability
@@ -658,7 +658,8 @@ define([
                     msg: 'Undefined ' + type + ' capabilities',
                     args: mode
                 })) {
-                return false;
+
+                scope.constructor.prototype[permission][mode] = {};
             }
 
             scope.logger.debug('Apply ' + type + ' permissions', capabilities);
@@ -701,7 +702,7 @@ define([
 
             /**
              * Define Logger
-             * @type {modules.logger}
+             * @type {Logger}
              */
             scope.logger = new Logger(scope);
 

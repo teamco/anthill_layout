@@ -20,10 +20,49 @@ define([], function defineWidgetMaximize() {
     return WidgetMaximize.extend('WidgetMaximize', {
 
         /**
+         * Check if widget already maximized
+         * @member WidgetMaximize
+         * @returns {boolean}
+         */
+        isMaximized: function isMaximized() {
+
+            /**
+             * Get page
+             * @type {Page}
+             */
+            var page = this.getContainment();
+
+            return page.controller.getMaximized() === this.scope;
+        },
+
+        /**
+         * Check if maximizable
+         * @member WidgetMaximize
+         * @returns {boolean}
+         */
+        isMaximizable: function isMaximizable() {
+
+            /**
+             * Get capability and prefs
+             * @type {boolean}
+             */
+            var capability = this.scope.permission.getCapability('maximizable'),
+                preferences = !!this.model.getConfig('preferences').maximizable;
+
+            return capability && preferences;
+        },
+
+        /**
          * Reduce widget
          * @member WidgetMaximize
          */
         reduceWidget: function reduceWidget() {
+
+            if (!this.controller.isMaximized()) {
+
+                this.logger.debug('Widget not maximized');
+                return false;
+            }
 
             this.observer.publish(
                 this.eventmanager.eventList.beforeReduce
@@ -37,6 +76,18 @@ define([], function defineWidgetMaximize() {
          * @member WidgetMaximize
          */
         enlargeWidget: function enlargeWidget() {
+
+            if (this.controller.isMaximized()) {
+
+                this.logger.warn('Widget already maximized');
+                return false;
+            }
+
+            if (!this.controller.isMaximizable()) {
+
+                this.logger.warn('Widget can\'t be maximized');
+                return false;
+            }
 
             this.observer.publish(
                 this.eventmanager.eventList.beforeMaximize

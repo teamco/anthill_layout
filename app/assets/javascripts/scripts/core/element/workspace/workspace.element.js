@@ -29,11 +29,38 @@ define([
     return WorkspaceElement.extend('WorkspaceElement', {
 
         /**
+         * Get site author
+         * @member WorkspaceElement
+         * @returns {string}
+         */
+        getSiteAuthor: function getSiteAuthor() {
+            return $('meta[name="author"]').attr('content');
+        },
+
+        /**
+         * Set site author
+         * @member WorkspaceElement
+         * @param {string} author
+         */
+        setSiteAuthor: function setSiteAuthor(author) {
+            $('meta[name="author"]').attr('content', author);
+        },
+
+        /**
+         * Get site title
+         * @member WorkspaceElement
+         * @returns {string}
+         */
+        getSiteTitle: function getSiteTitle() {
+            return $('title').text();
+        },
+
+        /**
          * Set site title
          * @member WorkspaceElement
          * @param {string} title
          */
-        updateTitle: function updateTitle(title) {
+        setSiteTitle: function setSiteTitle(title) {
             $('title').text(title);
         },
 

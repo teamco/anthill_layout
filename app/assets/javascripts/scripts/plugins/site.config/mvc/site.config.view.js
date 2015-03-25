@@ -58,8 +58,10 @@ define(
              */
             renderSiteConfig: function renderSiteConfig() {
 
-                this.header(Header, this.elements.$container).setText(
-                    this.i18n.t('site.data.config')
+                this.renderHeader(Header, this.i18n.t('site.data.config'));
+
+                this.renderFilter(
+                    this.updateFooterContent.bind(this)
                 );
 
                 if (!this.isCached('$siteconfig', SiteConfigElement)) {
@@ -74,9 +76,7 @@ define(
                     });
                 }
 
-                this.footer(Footer, this.elements.$container).setHtml(
-                    this.elements.$siteconfig.getFooter()
-                );
+                this.updateFooterContent();
             },
 
             /**
@@ -124,9 +124,20 @@ define(
                     this.elements.$container.$
                 );
 
-                this.footer(Footer, this.elements.$container).setHtml(
-                    this.elements.$siteconfig.getFooter()
-                );
+                this.elements.$filter.updateData({
+                    items: this.elements.items,
+                    focusOn: 'input'
+                });
+
+                this.updateFooterContent();
+            },
+
+            /**
+             * Update footer content
+             * @member SiteConfigView
+             */
+            updateFooterContent: function updateFooterContent() {
+                this.renderFooter(Footer, this.elements.$siteconfig);
             },
 
             /**
@@ -372,7 +383,7 @@ define(
             cleanUpConfirmation: function cleanUpConfirmation() {
 
                 this.modalDialog({
-                    style: 'clean-up',
+                    style: 'clean-up-data',
                     type: 'warning',
                     title: 'Clean up',
                     text: 'Are you sure want to cleanup browser local storage?',
@@ -404,7 +415,7 @@ define(
 
                 /**
                  * Get root
-                 * @type {App}
+                 * @type {Application}
                  */
                 var root = this.controller.root();
 

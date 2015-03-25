@@ -24,6 +24,7 @@ define([], function defineTextAreaRenderer(){
          *      name: string,
          *      [placeholder]: string,
          *      value,
+         *      [style]: string,
          *      [monitor],
          *      [disabled]: boolean,
          *      [validate]: {mask: RegExp, blank: boolean}
@@ -62,21 +63,11 @@ define([], function defineTextAreaRenderer(){
                     id: uuid,
                     placeholder: opts.placeholder,
                     title: opts.value
-                }).val(opts.value);
+                }).val(opts.value).addClass(opts.style);
             }
 
-            if (opts.monitor) {
-
-                $input.on(
-                    opts.monitor.events.join(','),
-                    opts.monitor.callback
-                );
-            }
-
-            if (!opts.visible) {
-                $input.hide();
-            }
-
+            this.initMonitor($input, opts.monitor);
+            this.checkVisibility($input, opts.visible);
             this.validateByMask($input, opts);
 
             return [

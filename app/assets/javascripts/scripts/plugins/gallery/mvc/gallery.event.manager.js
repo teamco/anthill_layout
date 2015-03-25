@@ -30,8 +30,10 @@ define([
          * @member GalleryEventManager
          * @type {{
          *      updateTranslations: string,
-         *      setProviders: string,
          *      loadModuleContent: string,
+         *      initModel: string,
+         *      setProviders: string,
+         *      setCurrentProvider: string,
          *      setRoutes: string
          * }}
          */
@@ -45,6 +47,8 @@ define([
         };
     };
 
-    return GalleryEventManager.extend('GalleryEventManager', {
-    }, BaseEvent.prototype);
+    return GalleryEventManager.extend(
+        'GalleryEventManager', {},
+        BaseEvent.prototype
+    );
 });

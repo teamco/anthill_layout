@@ -64,8 +64,6 @@ define(
                     id: this.createUUID(),
                     $container: this.elements.$container.$
                 });
-
-                this.renderFooter(Footer, this.elements.$workspacedata);
             },
 
             /**
@@ -86,6 +84,10 @@ define(
                 this.renderCreatePage();
 
                 this.renderHeader(Header, 'Workspace Pages');
+
+                this.renderFilter(
+                    this.updateFooterContent.bind(this)
+                );
 
                 /**
                  * Get current page
@@ -137,6 +139,19 @@ define(
                     this.elements.$container.$
                 );
 
+                this.elements.$filter.updateData({
+                    items: this.elements.items,
+                    focusOn: 'input'
+                });
+
+                this.updateFooterContent();
+            },
+
+            /**
+             * Update footer content
+             * @member WorkspaceDataView
+             */
+            updateFooterContent: function updateFooterContent() {
                 this.renderFooter(Footer, this.elements.$workspacedata);
             },
 

@@ -44,10 +44,12 @@ define([
                  */
                 var eventList = this.eventmanager.eventList;
 
-                observer.publish(eventList.loadPreferences);
-                observer.publish(eventList.loadRules);
-                observer.publish(eventList.successCreated);
-                observer.publish(eventList.defineContainer);
+                observer.batchPublish(
+                    eventList.loadPreferences,
+                    eventList.loadRules,
+                    eventList.successCreated,
+                    eventList.defineContainer
+                );
 
                 observer.publish(
                     eventList.updateTranslations, [
@@ -61,15 +63,15 @@ define([
 
                 observer.publish(
                     eventList.transferEvents,
-                        (opts || {}).events || {}
+                    (opts || {}).events || {}
                 );
 
                 observer.publish(
                     eventList.transferRules,
-                        (opts || {}).rules || {}
+                    (opts || {}).rules || {}
                 );
 
-                observer.publish(
+                observer.batchPublish(
                     eventList.executeOnWidgetContentOnLoadEvent
                 );
             },
@@ -173,7 +175,7 @@ define([
 
                 /**
                  * Define $container
-                 * @type {modules.view.elements.$content|*|element.page.page.element}
+                 * @type {WidgetContentElement}
                  */
                 this.view.elements.$container =
                     widget.view.elements.$content;

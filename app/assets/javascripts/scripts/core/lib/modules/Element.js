@@ -335,6 +335,14 @@ define([
          */
         addCSS: function addCSS(type, opts) {
 
+            // Get link name
+            var linkName = type + 'LinkCSS';
+
+            if (this[linkName]) {
+                this.view.scope.logger.debug('CSS already loaded');
+                return false;
+            }
+
             opts = this.base.define(opts, {}, true);
             opts.resource = this.base.define(opts.resource, '', true);
 
@@ -365,7 +373,39 @@ define([
              * Define css link instance
              * @type {*|jQuery|HTMLElement}
              */
-            this.linkCSS = $('#' + uuid);
+            this[type + 'LinkCSS'] = $('#' + uuid);
+        },
+
+        /**
+         * Define create script
+         * @param opts
+         * @param {HTMLElement} container
+         * @param {string} [code]
+         */
+        createScript: function createScript(opts, container, code) {
+
+            opts = opts || {};
+
+            // Create script node
+            var s = document.createElement('script');
+
+            s.setAttribute('type', 'text/javascript');
+
+            for (var index in opts) {
+                if (opts.hasOwnProperty(index)) {
+                    s.setAttribute(index, opts[index]);
+                }
+            }
+
+            if (typeof(code) !== 'undefined') {
+                try {
+                    s.appendChild(document.createTextNode(code));
+                } catch (e) {
+                    s.text = code;
+                }
+            }
+
+            (container || document.body).appendChild(s);
         },
 
         /**
@@ -415,11 +455,13 @@ define([
 
             if (this.$) {
                 this.view.scope.logger.debug('Destroy element', this);
-                this.$.unbind().remove();
+                this.$.off().remove();
             }
 
-            if (this.linkCSS) {
-                this.linkCSS.remove();
+            for (var index in this) {
+                if (this.hasOwnProperty(index) && index.match(/LinkCSS/)) {
+                    this[index].remove();
+                }
             }
 
             return this;
@@ -477,52 +519,7 @@ define([
          * @member BaseElement
          */
         removeStyle: function removeStyle() {
-            this.$.attr({
-                style: ''
-            });
-        },
-
-        /**
-         * Stretch element in parent container
-         * @member BaseElement
-         * @returns {*}
-         */
-        stretch: function stretch() {
-
-            var scope = this.view.scope,
-                containment = scope.controller.getContainment(),
-                items = containment.model.getItems();
-
-            var index, $item, item, stretch,
-                itemsLength = this.base.lib.hash.hashLength(items),
-                counter = 0;
-
-            for (index in items) {
-
-                if (items.hasOwnProperty(index)) {
-
-                    item = items[index];
-
-                    /**
-                     * Define page
-                     * @type {Page}
-                     */
-                    $item = item.view.get$item();
-
-                    stretch = containment &&
-                    item.model.getConfig('html/stretch');
-
-                    if (stretch) {
-                        $item.$.css({
-                            left: counter * (100 / itemsLength) + '%'
-                        });
-                    }
-
-                    counter += 1;
-                }
-            }
-
-            return this;
+            this.$.removeAttr('style');
         },
 
         /**
@@ -870,7 +867,29 @@ define([
          * @member BaseElement
          */
         hideLoader: function hideLoader() {
-            this.$container.removeClass('loading');
+
+            /**
+             * Get $root
+             * @type {ApplicationElement}
+             */
+            var $root = this.view.controller.root().view.get$item();
+
+            $root.$container.removeClass('loading');
+        },
+
+        /**
+         * Add loading class before loading items
+         * @member BaseElement
+         */
+        showLoader: function showLoader() {
+
+            /**
+             * Get $root
+             * @type {ApplicationElement}
+             */
+            var $root = this.view.controller.root().view.get$item();
+
+            $root.$container.addClass('loading');
         },
 
         /**
@@ -882,7 +901,7 @@ define([
 
             /**
              * Get item
-             * @type {App|Workspace|Page|Widget}
+             * @type {Application|Workspace|Page|Widget}
              */
             var item = this.view.scope;
 
@@ -926,6 +945,87 @@ define([
                 }).join(''),
                 '</ul>'
             ].join('');
+        },
+
+        /**
+         * Get site description
+         * @member BaseElement
+         * @returns {string}
+         */
+        getSiteDescription: function getSiteDescription() {
+            return $('meta[name="description"]').attr('content');
+        },
+
+        /**
+         * Set site description
+         * @member BaseElement
+         * @param {string} description
+         */
+        setSiteDescription: function setSiteDescription(description) {
+            $('meta[name="description"]').attr('content', description);
+        },
+
+        /**
+         * Get site description
+         * @member BaseElement
+         * @returns {string}
+         */
+        getSiteKeywords: function getSiteKeywords() {
+            return $('meta[name="keywords"]').attr('content');
+        },
+
+        /**
+         * Set site description
+         * @member BaseElement
+         * @param {string} keywords
+         */
+        setSiteKeywords: function setSiteKeywords(keywords) {
+            $('meta[name="keywords"]').attr('content', keywords);
+        },
+
+        /**
+         * Get footer html
+         * @member BaseElement
+         * @returns {*|jQuery}
+         */
+        getFooter: function getFooter() {
+
+            var counter = 0, index,
+                items = this.view.elements.items;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    if (!items[index].$.hasClass('hide')) {
+                        counter += 1;
+                    }
+                }
+            }
+
+            return $('<div />').text([
+                counter,
+                'items'
+            ].join(' '));
+        },
+
+        /**
+         * Check if content has iframe
+         * @member BaseElement
+         * @returns {jQuery.length}
+         */
+        hasIframe: function hasIframe() {
+            return $('iframe', this.$).length;
+        },
+
+        /**
+         * Check if content has flash
+         * @member BaseElement
+         * @returns {jQuery.length}
+         */
+        hasFlash: function hasFlash() {
+            return $('object', this.$).length ||
+                $('object', this.$).length;
         }
 
     }, AntHill.prototype, Renderer.prototype);

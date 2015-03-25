@@ -12,19 +12,19 @@ define([
 
     /**
      * Define Application API
-     * @class AppAPI
+     * @class ApplicationAPI
      * @extends BaseAPI
      * @constructor
      */
-    var AppAPI = function AppAPI() {
+    var ApplicationAPI = function ApplicationAPI() {
 
     };
 
-    return AppAPI.extend('AppAPI', {
+    return ApplicationAPI.extend('ApplicationAPI', {
 
         /**
          * Create Workspace API
-         * @member AppAPI
+         * @member ApplicationAPI
          * @param {*} args
          * @param {Boolean} [render]
          * @param {Boolean} [silent]

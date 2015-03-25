@@ -18,7 +18,13 @@ define([], function defineEnUs() {
         'before.nested.organizer': 'Before nested organizer',
         'not.allowed.add.widget': 'Do not allowed to add widget',
         'save.widget': 'Save widget',
+        'expand.widget': 'Expand',
+        'collapse.widget': 'Collapse',
         'silent.add.widget': 'Silent nested organizer',
+
+        'before.expand': 'Before Expand',
+        'on.expand': 'On Expand',
+        'after.expand': 'After Expand',
 
         'cancel': 'Cancel'
     };

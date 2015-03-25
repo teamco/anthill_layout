@@ -25,6 +25,7 @@ define([
             destroy: false
         });
 
+        this.addInnerContent();
         this.setAttributes(opts.data);
         this.bindShowRules(opts.data);
         this.bindLocate(opts.data);
@@ -33,6 +34,14 @@ define([
     };
 
     return WidgetRulesContentElement.extend('WidgetRulesContentElement', {
+
+        /**
+         * Define inner content
+         * @member WidgetRulesContentElement
+         */
+        addInnerContent: function addInnerContent() {
+            this.$.append('<div />');
+        },
 
         /**
          * Define attributes
@@ -53,6 +62,16 @@ define([
              */
             var description = data.model.getConfig('preferences').description || '';
 
+            /**
+             * Define data
+             * @member WidgetRulesContentElement
+             * @type {{name: string, description: string}}
+             */
+            this.data = {
+                name: title,
+                description: description
+            };
+
             this.$.attr({
                 title: title
             }).addClass(
@@ -60,19 +79,6 @@ define([
                     data.model.getConfig('preferences').resource
                 )
             );
-
-            /**
-             * Get thumbnail
-             * @type {string|*}
-             */
-            var thumbnail = data.model.getConfig('preferences').thumbnail;
-
-            if (thumbnail.length > 0) {
-
-                this.$.css({
-                    backgroundImage: 'url("' + thumbnail + '")'
-                });
-            }
 
             this.renderTooltip({
                 title: title,

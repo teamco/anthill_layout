@@ -14,6 +14,37 @@ define([], function defineBaseDateTime() {
      * @constructor
      */
     var BaseDateTime = function BaseDateTime() {
+
+        (function () {
+
+            /**
+             * Define toISO8601
+             * @member Date
+             * @param date
+             * @returns {string}
+             */
+            Date.prototype.toISO8601 = function toISO8601(date) {
+
+                // Define padding
+                var pad = function pad(amount, width) {
+                    var padding = '';
+                    while (padding.length < width - 1 && amount < Math.pow(10, width - padding.length - 1))
+                        padding += '0';
+                    return padding + amount.toString();
+                };
+                date = date ? date : new Date();
+                var offset = date.getTimezoneOffset();
+                return pad(date.getFullYear(), 4)
+                    + '-' + pad(date.getMonth() + 1, 2)
+                    + '-' + pad(date.getDate(), 2)
+                    + 'T' + pad(date.getHours(), 2)
+                    + ':' + pad(date.getMinutes(), 2)
+                    + ':' + pad(date.getUTCSeconds(), 2)
+                    + (offset > 0 ? '-' : '+')
+                    + pad(Math.floor(Math.abs(offset) / 60), 2)
+                    + ':' + pad(Math.abs(offset) % 60, 2);
+            };
+        })();
     };
 
     BaseDateTime.extend('BaseDateTime', {

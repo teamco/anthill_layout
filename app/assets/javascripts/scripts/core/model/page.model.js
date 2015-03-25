@@ -105,6 +105,46 @@ define([
         },
 
         /**
+         * Set page/site description
+         * @member PageModel
+         * @param {string} description
+         */
+        setSiteDescription: function setSiteDescription(description) {
+
+            /**
+             * Set local scope
+             * @type {Page}
+             */
+            var scope = this.scope;
+
+            this._setItemInfoPreferences('siteDescription', description);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateSiteDescription
+            );
+        },
+
+        /**
+         * Set page/site keywords
+         * @member PageModel
+         * @param {string} keywords
+         */
+        setSiteKeywords: function setSiteKeywords(keywords) {
+
+            /**
+             * Set local scope
+             * @type {Page}
+             */
+            var scope = this.scope;
+
+            this._setItemInfoPreferences('siteKeywords', keywords);
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateSiteKeywords
+            );
+        },
+
+        /**
          * Set show in tabs
          * @member PageModel
          * @param {boolean} show
@@ -131,6 +171,24 @@ define([
         setPageFooter: function setPageFooter(footer) {
             this._setItemInfoPreferences('pageFooter', footer);
             this.getConfig('html').footer = footer;
+        },
+
+        /**
+         * Set page animation on swipe
+         * @member PageModel
+         * @param {boolean} animate
+         */
+        setAnimateSwipe: function setAnimateSwipe(animate) {
+            this._setItemInfoPreferences('animateSwipe', animate);
+        },
+
+        /**
+         * Set page lazy loading
+         * @member PageModel
+         * @param {boolean} lazy
+         */
+        setLazyLoading: function setLazyLoading(lazy) {
+            this._setItemInfoPreferences('lazyLoading', lazy);
         }
 
     }, BaseModel.prototype);

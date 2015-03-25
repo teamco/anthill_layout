@@ -50,11 +50,13 @@ define([
          *      resizeResizable: {eventName: string, params: {buffer: number}},
          *      stopResizable: string,
          *      updateResizable: string,
+         *      afterExpand: string,
          *      loadContent: string,
          *      loadPreferences: string,
          *      transferPreferences: string,
          *      afterUpdatePreferences: string,
          *      setContent: string,
+         *      afterSetContent: string,
          *      adoptDimensions: string,
          *      restoreLayerIndex: string,
          *      setLayerUp: string,
@@ -62,6 +64,7 @@ define([
          *      setAlwaysOnTop: string,
          *      setOnClickUrl: string,
          *      clearThumbnail: string,
+         *      customClassName: string,
          *      saveDom: string,
          *      afterMaximize: string,
          *      beforeMaximize: string,
@@ -81,7 +84,12 @@ define([
          *      setStickToBottomLeft: string,
          *      setStickToTopRight: string,
          *      setStickToBottomRight: string,
-         *      restoreWidgetSticker: string
+         *      restoreWidgetSticker: string,
+         *      toggleContentExpander: string,
+         *      expandContent: string,
+         *      collapseContent: string,
+         *      scrollContent: string,
+         *      commentableContent: string
          * }}
          */
         eventList: {
@@ -114,10 +122,13 @@ define([
             stopResizable: 'stop.resizable',
             updateResizable: 'update.resizable',
 
+            afterExpand: 'after.expand',
+
             adoptDimensions: 'adopt.dimensions',
 
             loadContent: 'load.content',
             setContent: 'set.content',
+            afterSetContent: 'after.set.content',
 
             loadPreferences: 'load.preferences',
             transferPreferences: 'transfer.preferences',
@@ -131,6 +142,8 @@ define([
 
             setOnClickUrl: 'set.on.click.url',
             clearThumbnail: 'clear.thumbnail',
+
+            customClassName: 'custom.class.name',
 
             saveDom: 'save.dom',
 
@@ -157,7 +170,13 @@ define([
             setStickToTopRight: 'set.stick.to.top.right',
             setStickToBottomRight: 'set.stick.to.bottom.right',
 
-            restoreWidgetSticker: 'restore.widget.sticker'
+            restoreWidgetSticker: 'restore.widget.sticker',
+
+            toggleContentExpander: 'toggle.content.expander',
+            expandContent: 'expand.content',
+            collapseContent: 'collapse.content',
+            scrollContent: 'scroll.content',
+            commentableContent: 'commentable.content'
         }
 
     }, BaseEvent.prototype);

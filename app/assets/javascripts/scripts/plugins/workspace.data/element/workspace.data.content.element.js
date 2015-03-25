@@ -57,6 +57,16 @@ define([
              */
             this.page = page;
 
+            /**
+             * Define data
+             * @member WorkspaceDataContentElement
+             * @type {{name: string, description: string}}
+             */
+            this.data = {
+                name: page.model.getItemTitle(),
+                description: page.model.getConfig('preferences').description || ''
+            };
+
             return this;
         },
 

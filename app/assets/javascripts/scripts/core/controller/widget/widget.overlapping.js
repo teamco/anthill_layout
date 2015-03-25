@@ -58,7 +58,7 @@ define([], function defineWidgetOverlapping() {
             var widget = this.widget,
                 controller = containment.controller,
                 targetWidgetsData = controller.getTargetWidgetsData(widget, up),
-                markedWidgets = layout.overlapping._intersectWidgets(this.widget, true);
+                markedWidgets = layout.overlapping.intersectWidgets(this.widget, true);
 
             if (widget.base.lib.hash.hashLength(markedWidgets) === 0) {
                 return false;
@@ -98,7 +98,7 @@ define([], function defineWidgetOverlapping() {
              */
             var containment = this.widget.controller.getContainment();
 
-            var markedWidgets = layout.overlapping._intersectWidgets(this.widget, true),
+            var markedWidgets = layout.overlapping.intersectWidgets(this.widget, true),
                 widgets = containment.model.getItems(),
                 widget;
 

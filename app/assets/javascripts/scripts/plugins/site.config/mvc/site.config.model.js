@@ -22,8 +22,7 @@ define([
          * @member SiteConfigModel
          * @type {{url: string}}
          */
-        this.preferences = {
-        };
+        this.preferences = {};
 
         /**
          * Define site preferences data
@@ -41,32 +40,32 @@ define([
             preferences: {
                 title: 'Preferences',
                 description: 'Preferences are the user options for browsing, editing, searching, notifications, and more',
-                event:'loadSitePreferences'
+                event: 'loadSitePreferences'
             },
             publish: {
                 title: 'Activate version',
                 description: 'Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later',
-                event:'activateStorage'
+                event: 'activateStorage'
             },
             import: {
                 title: 'Import',
                 description: 'Import site data JSON',
-                event:'importSiteData'
+                event: 'importSiteData'
             },
             export: {
                 title: 'Export',
                 description: 'Export site data as a JSON',
-                event:'exportSiteData'
+                event: 'exportSiteData'
             },
             cleanup: {
                 title: 'Clean Up',
                 description: 'Clean up local storage',
-                event:'cleanUpLocalStorage'
+                event: 'cleanUpLocalStorage'
             },
             widgetGenerator: {
                 title: 'Widget Generator',
                 description: 'Generate new widget',
-                event:'widgetGenerator'
+                event: 'widgetGenerator'
             }
         };
 

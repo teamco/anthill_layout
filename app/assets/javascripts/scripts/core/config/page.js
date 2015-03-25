@@ -60,13 +60,21 @@ define([
         };
 
         /**
+         * Define content loaded instance
+         * @member Page
+         * @type {boolean}
+         */
+        this.contentLoaded = false;
+
+        /**
          * Define default config
          * @type {{
          *      preferences: {},
          *      order: number,
          *      type: string,
+         *      limit: boolean,
          *      isDefault: boolean,
-         *      isDefault: boolean,
+         *      isResized: boolean,
          *      layout: {
          *          behavior: {
          *              snap2grid: {
@@ -140,7 +148,12 @@ define([
                 counter: 0,
                 overlapping: true,
                 allowToAdd: true,
-                addNewTo: this.ORGANIZE_MODES.row
+                addNewTo: this.ORGANIZE_MODES.row,
+                preferences: {
+                    draggable: true,
+                    resizable: true,
+                    maximizable: true
+                }
             },
             html: {
                 style: 'default',
@@ -218,11 +231,8 @@ define([
                 [Layout, this.config.layout]
             );
 
-            this.observer.publish(
-                this.eventmanager.eventList.successCreated
-            );
-
-            this.observer.publish(
+            this.observer.batchPublish(
+                this.eventmanager.eventList.successCreated,
                 this.eventmanager.eventList.loadPreferences
             );
         }

@@ -31,6 +31,7 @@ requirejs.config({
         'lz-string': 'lib/lz-string',
         jquery: 'lib/jquery/jquery-2.1.3.min',
         'jquery.ujs': 'lib/jquery/jquery_ujs',
+        'jquery.timeago': 'lib/jquery/jquery.timeago',
         'jquery.ui': 'lib/jquery/jquery-ui.min',
         'jquery.resizestop': 'lib/jquery/jquery.resizestop',
         'jquery.pseudo': 'lib/jquery/jquery.pseudo',
@@ -38,8 +39,11 @@ requirejs.config({
 
         // create alias to plugins (not needed if plugins are on the baseUrl)
         // https://github.com/millermedeiros/requirejs-plugins
+        // https://github.com/SBoudrias/require.replace
+        // https://github.com/SlexAxton/require-handlebars-plugin
         defer: 'lib/require/defer',
         async: 'lib/require/async',
+        cache: 'lib/require/cache',
         font: 'lib/require/font',
         goog: 'lib/require/goog',
         image: 'lib/require/image',
@@ -47,6 +51,8 @@ requirejs.config({
         noext: 'lib/require/noext',
         mdown: 'lib/require/mdown',
         text: 'lib/require/text',
+        replace: 'lib/require/replace',
+        hbs: 'lib/require/hbs',
         propertyParser: 'lib/require/propertyParser',
         markdownConverter: 'lib/require/Markdown.Converter'
     },
@@ -75,12 +81,27 @@ requirejs.config({
         'lib/jquery/jquery.nicescroll': {deps: ['jquery']},
 
         'config/listeners': {deps: ['extends/function']},
-        'config/permission': {deps: ['extends/function']},
+        'config/permissions': {deps: ['extends/function']},
         'config/anthill': {deps: ['extends/function']},
+        'config/routes': {deps: ['extends/function']},
 
         'controller/layout/layout.empty.rows': {deps: ['extends/function']},
         'controller/layout/layout.empty.columns': {deps: ['extends/function']},
         'controller/layout/layout.intersect': {deps: ['extends/function']},
+        'controller/layout/layout.expand': {deps: ['extends/function']},
+
+        'controller/widget/widget.maximize': {deps: ['extends/function']},
+        'controller/widget/widget.stretch': {deps: ['extends/function']},
+        'controller/widget/widget.stick': {deps: ['extends/function']},
+        'controller/widget/widget.layer': {deps: ['extends/function']},
+
+        'controller/page/page.layer': {deps: ['extends/function']},
+        'controller/page/page.layout': {deps: ['extends/function']},
+        'controller/page/page.widget': {deps: ['extends/function']},
+        'controller/page/page.maximize': {deps: ['extends/function']},
+
+        'controller/workspace/workspace.page': {deps: ['extends/function']},
+        'controller/workspace/workspace.seo': {deps: ['extends/function']},
 
         'controller/behavior/behavior.crud': {deps: ['extends/function']},
         'controller/behavior/behavior.window.resize': {deps: ['extends/function']},
@@ -97,7 +118,9 @@ requirejs.config({
         'modules/Page': {deps: ['extends/function']},
         'modules/CRUD': {deps: ['extends/function']},
         'modules/Interactions': {deps: ['extends/function']},
-        'modules/Element': {deps: ['extends/function']}
+        'modules/Element': {deps: ['extends/function']},
+        'modules/Preferences': {deps: ['extends/function']},
+        'modules/Router': {deps: ['extends/function']}
     }
 });
 
@@ -115,8 +138,5 @@ require([
     'extends/json',
     'extends/event',
     'extends/string',
-    'extends/array',
-
-    'config/listeners',
-    'config/permission'
+    'extends/array'
 ]);

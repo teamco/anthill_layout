@@ -410,6 +410,162 @@ define([
          */
         setStatistics: function setStatistics(statistics) {
             this._setItemInfoPreferences('statistics', statistics);
+        },
+
+        /**
+         * Set maximizable
+         * @member WidgetModel
+         * @param {boolean} maximizable
+         */
+        setMaximizable: function setMaximizable(maximizable) {
+            this._setItemInfoPreferences('maximizable', maximizable);
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            if (!maximizable) {
+                scope.observer.publish(
+                    scope.eventmanager.eventList.reduceWidget
+                );
+            }
+        },
+
+        /**
+         * Set draggable
+         * @member WidgetModel
+         * @param {boolean} draggable
+         */
+        setDraggable: function setDraggable(draggable) {
+            this._setItemInfoPreferences('draggable', draggable);
+        },
+
+        /**
+         * Set resizable
+         * @member WidgetModel
+         * @param {boolean} resizable
+         */
+        setResizable: function setResizable(resizable) {
+            this._setItemInfoPreferences('resizable', resizable);
+        },
+
+        /**
+         * Set freeze
+         * @member WidgetModel
+         * @param {boolean} freeze
+         */
+        setFreeze: function setFreeze(freeze) {
+            this._setItemInfoPreferences('freeze', freeze);
+        },
+
+        /**
+         * Set expandable
+         * @member WidgetModel
+         * @param {boolean} expandable
+         */
+        setExpandable: function setExpandable(expandable) {
+
+            this._setItemInfoPreferences('expandable', expandable);
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.toggleContentExpander,
+                expandable
+            );
+        },
+
+        /**
+         * Set scrollable
+         * @member WidgetModel
+         * @param {boolean} scrollable
+         */
+        setScrollable: function setScrollable(scrollable) {
+
+            this._setItemInfoPreferences('scrollable', scrollable);
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.scrollContent,
+                scrollable
+            );
+        },
+
+        /**
+         * Set commentable
+         * @member WidgetModel
+         * @param {boolean} commentable
+         */
+        setCommentable: function setCommentable(commentable) {
+
+            this._setItemInfoPreferences('commentable', commentable);
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.commentableContent,
+                commentable
+            );
+        },
+
+        /**
+         * Set custom class name
+         * @member WidgetModel
+         * @param {string} name
+         */
+        setCustomClassName: function setCustomClassName(name) {
+
+            /**
+             * Get current class name
+             * @type {string}
+             */
+            var currentClassName = this.getConfig('preferences').customClassName;
+
+            this._setItemInfoPreferences('customClassName', name);
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.customClassName,
+                [name, currentClassName]
+            );
+        },
+
+        /**
+         * Set hide Content On Drag
+         * @member WidgetModel
+         * @param {boolean} hide
+         */
+        setHideContentOnDrag: function setHideContentOnDrag(hide) {
+            this._setItemInfoPreferences('hideContentOnDrag', hide);
+        },
+
+        /**
+         * Set hide Content On resize
+         * @member WidgetModel
+         * @param {boolean} hide
+         */
+        setHideContentOnResize: function setHideContentOnResize(hide) {
+            this._setItemInfoPreferences('hideContentOnResize', hide);
         }
 
     }, BaseModel.prototype);

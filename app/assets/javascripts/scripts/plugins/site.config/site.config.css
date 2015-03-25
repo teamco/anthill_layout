@@ -76,7 +76,7 @@ ul.site-config > .content:hover {
 }
 
 .panel div.site-config-content .scroll-cover {
-    top: 70px;
+    top: 90px;
     bottom: 30px;
 }
 
@@ -195,6 +195,12 @@ ul.site-config > .content:hover {
     background-color: #e1e1e1;
 }
 
+.modal-dialog.widget-generator-new div.html.visible {
+    background-color: #e1e1e1;
+    width: auto;
+    padding-right: 0;
+}
+
 .modal-dialog.widget-generator-new div.html input[type="text"] {
     position: relative;
     right: 0;
@@ -302,6 +308,6 @@ ul.site-config > .content:hover {
     padding-left: 10px;
 }
 
-.modal-dialog.clean-up {
+.modal-dialog.clean-up-data {
     width: 700px;
 }

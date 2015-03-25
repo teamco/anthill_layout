@@ -19,306 +19,354 @@ define([
      * @constructor
      */
     var LayoutController = function LayoutController() {
-
     };
 
-    return LayoutController.extend('LayoutController', {
-
-        /**
-         * Before nested organizer
-         * @member LayoutController
-         * @param {boolean} silent
-         */
-        beforeNestedOrganizer: function beforeNestedOrganizer(silent) {
-
-            if (!silent) {
-                this.controller.getContainment().controller.banAddWidget();
-                this.logger.debug(this.i18n.t('before.nested.organizer'));
-            }
-
-            this.logger.debug(this.i18n.t('silent.add.widget'));
-        },
-
-        /**
-         * After nested organizer
-         * @member LayoutController
-         */
-        afterNestedOrganizer: function afterNestedOrganizer() {
-
-            this.controller.readyToOrganize();
-            this.controller.store();
-
-            this.logger.debug(this.i18n.t('after.nested.organizer'));
-        },
-
-        /**
-         * Ready to organize
-         * @member LayoutController
-         */
-        readyToOrganize: function readyToOrganize() {
+    return LayoutController.extend(
+        'LayoutController', {
 
             /**
-             * Get containment
-             * @type {Page|*}
+             * Before nested organizer
+             * @member LayoutController
+             * @param {boolean} silent
              */
-            var containment = this.getContainment();
+            beforeNestedOrganizer: function beforeNestedOrganizer(silent) {
 
-            containment.controller.allowAddWidget();
-        },
+                silent ?
+                    this.logger.debug(this.i18n.t('silent.add.widget')) :
+                    this.controller.getContainment().controller.banAddWidget();
 
-        /**
-         * Update grid number of columns
-         * @member LayoutController
-         * @param {number} columns
-         */
-        updateNumberOfColumns: function updateNumberOfColumns(columns) {
+                this.logger.debug(this.i18n.t('before.nested.organizer'));
+            },
 
-            this.logger.debug('Start update columns', columns);
+            /**
+             * After nested organizer
+             * @member LayoutController
+             */
+            afterNestedOrganizer: function afterNestedOrganizer() {
 
-            if (!columns) {
+                this.controller.readyToOrganize();
+                this.controller.store();
 
-                this.logger.warn(
-                    'Undefined number of columns set default',
-                    columns,
-                    this.config.grid.columns
+                this.logger.debug(this.i18n.t('after.nested.organizer'));
+            },
+
+            /**
+             * Define beforeExpand
+             * @member LayoutController
+             * @param {Widget} widget
+             */
+            beforeExpand: function beforeExpand(widget) {
+
+                this.logger.debug(
+                    this.i18n.t('before.expand'),
+                    widget
+                );
+            },
+
+            /**
+             * Define onExpand
+             * @member LayoutController
+             * @param {Widget} widget
+             */
+            onExpand: function onExpand(widget) {
+
+                this.logger.debug(
+                    this.i18n.t('on.expand'),
+                    widget
                 );
 
-                return false;
-            }
+                this.observer.publish(
+                    this.eventmanager.eventList.beforeExpand,
+                    widget
+                );
 
-            this.config.grid.columns = columns;
-        },
-
-        /**
-         * Update cell size on resize container
-         * @member LayoutController
-         * @returns {*}
-         */
-        updateMinCellWidth: function updateMinCellWidth() {
-            delete this.config.grid.minCellWidth;
-            return this.controller.minCellWidth();
-        },
-
-        /**
-         * Calculate cell size
-         * @member LayoutController
-         * @returns {Number}
-         */
-        minCellWidth: function minCellWidth() {
+                this.expand.adoptLayout(widget);
+            },
 
             /**
-             * Get scope
-             * @type {Layout}
+             * Define afterExpand
+             * @member LayoutController
+             * @param {Widget} widget
              */
-            var scope = this.scope,
-                config = scope.config.grid;
+            afterExpand: function afterExpand(widget) {
 
-            if (this.base.isDefined(config.minCellWidth)) {
+                this.logger.debug(
+                    this.i18n.t('after.expand'),
+                    widget
+                );
+            },
+
+            /**
+             * Ready to organize
+             * @member LayoutController
+             */
+            readyToOrganize: function readyToOrganize() {
+
+                /**
+                 * Get containment
+                 * @type {Page|*}
+                 */
+                var containment = this.getContainment();
+
+                containment.controller.allowAddWidget();
+            },
+
+            /**
+             * Update grid number of columns
+             * @member LayoutController
+             * @param {number} columns
+             */
+            updateNumberOfColumns: function updateNumberOfColumns(columns) {
+
+                this.logger.debug('Start update columns', columns);
+
+                if (!columns) {
+
+                    this.logger.warn(
+                        'Undefined number of columns set default',
+                        columns,
+                        this.config.grid.columns
+                    );
+
+                    return false;
+                }
+
+                this.config.grid.columns = columns;
+            },
+
+            /**
+             * Update cell size on resize container
+             * @member LayoutController
+             * @returns {*}
+             */
+            updateMinCellWidth: function updateMinCellWidth() {
+                delete this.config.grid.minCellWidth;
+                return this.controller.minCellWidth();
+            },
+
+            /**
+             * Calculate cell size
+             * @member LayoutController
+             * @returns {Number}
+             */
+            minCellWidth: function minCellWidth() {
+
+                /**
+                 * Get scope
+                 * @type {Layout}
+                 */
+                var scope = this.scope,
+                    config = scope.config.grid;
+
+                if (this.base.isDefined(config.minCellWidth)) {
+                    return config.minCellWidth;
+                }
+
+                var columns = config.columns,
+                    margin = config.margin;
+
+                var elements = scope.controller.getContainment().view.elements,
+                    $page = elements.$page,
+                    $widgets = elements.$widgets;
+
+                var pl = $widgets.getPaddingLeft(),
+                    pr = $widgets.getPaddingRight(),
+                    ml = $widgets.getMarginLeft(),
+                    mr = $widgets.getMarginRight();
+
+                var width = $page.getWidth() - pl - pr - ml - mr;
+
+                config.minCellWidth = (width - margin * columns) / columns;
+
+                scope.logger.debug('Calculated cell size (px)', config.minCellWidth);
+
                 return config.minCellWidth;
-            }
+            },
 
-            var columns = config.columns,
-                margin = config.margin;
+            /**
+             * Get grid width
+             * @member LayoutController
+             * @returns {number}
+             */
+            getGridWidth: function getGridWidth() {
+                var config = this.scope.config.grid,
+                    cell = this.minCellWidth();
 
-            var elements = scope.controller.getContainment().view.elements,
-                $page = elements.$page,
-                $widgets = elements.$widgets;
-
-            var pl = $widgets.getPaddingLeft(),
-                pr = $widgets.getPaddingRight(),
-                ml = $widgets.getMarginLeft(),
-                mr = $widgets.getMarginRight();
-
-            var width = $page.getWidth() - pl - pr - ml - mr;
-
-            config.minCellWidth = (width - margin * columns) / columns;
-
-            scope.logger.debug('Calculated cell size (px)', config.minCellWidth);
-
-            return config.minCellWidth;
-        },
-
-        /**
-         * Get grid width
-         * @member LayoutController
-         * @returns {number}
-         */
-        getGridWidth: function getGridWidth() {
-            var config = this.scope.config.grid,
-                cell = this.minCellWidth();
-
-            return (cell + config.margin) * config.columns;
-        },
-
-        /**
-         * Get next position
-         * @member LayoutController
-         * @param {{column: Number, row: Number}} dom
-         * @returns {{left: Number, top: Number}}
-         */
-        getNextPosition: function getNextPosition(dom) {
-            var $widgets = this.scope.controller.getContainment().controller.getWidgetsContainer(),
-                top = $widgets.getTopDelta(),
-                left = $widgets.getLeftDelta();
-
-            var layout = this.scope,
-                cell = layout.controller.minCellWidth(),
-                margin = layout.config.grid.margin;
+                return (cell + config.margin) * config.columns;
+            },
 
             /**
              * Get next position
-             * @param {Number} pos
-             * @returns {Number}
-             * @private
+             * @member LayoutController
+             * @param {{column: Number, row: Number}} dom
+             * @returns {{left: Number, top: Number}}
              */
-            function _getNextPosition(pos) {
-                return pos * cell + (margin * (pos + 1));
-            }
+            getNextPosition: function getNextPosition(dom) {
+                var $widgets = this.scope.controller.getContainment().controller.getWidgetsContainer(),
+                    top = $widgets.getTopDelta(),
+                    left = $widgets.getLeftDelta();
 
-            return {
-                left: _getNextPosition(dom.column) + left,
-                top: _getNextPosition(dom.row) + top,
-                zIndex: dom.zIndex
-            };
+                var layout = this.scope,
+                    cell = layout.controller.minCellWidth(),
+                    margin = layout.config.grid.margin;
 
-        },
+                /**
+                 * Get next position
+                 * @param {Number} pos
+                 * @returns {Number}
+                 * @private
+                 */
+                function _getNextPosition(pos) {
+                    return pos * cell + (margin * (pos + 1));
+                }
 
-        /**
-         * Get layout Behavior mode
-         * @member LayoutController
-         * @returns {String}
-         */
-        getBehaviorMode: function getBehaviorMode() {
-            return this.scope.config.mode;
-        },
+                return {
+                    left: _getNextPosition(dom.column) + left,
+                    top: _getNextPosition(dom.row) + top,
+                    zIndex: dom.zIndex
+                };
 
-        /**
-         * Set layout Behavior mode
-         * @member LayoutController
-         * @param {string} mode
-         * @returns {String}
-         */
-        setBehaviorMode: function setBehaviorMode(mode) {
-            this.logger.warn(
-                'Behavior mode was changed',
-                this.controller.getBehaviorMode(),
-                mode
-            );
+            },
 
             /**
-             * Define Behavior mode
-             * @type {string}
+             * Get layout Behavior mode
+             * @member LayoutController
+             * @returns {String}
              */
-            this.config.mode = mode;
-        },
+            getBehaviorMode: function getBehaviorMode() {
+                return this.scope.config.mode;
+            },
 
-        /**
-         * Check if mode is Snap to Grid
-         * @member LayoutController
-         * @returns {boolean}
-         */
-        isSnap2Grid: function isSnap2Grid() {
-            return this.getBehaviorMode() ===
-                this.getContainment().LAYOUT_MODES.snap2grid;
-        },
+            /**
+             * Set layout Behavior mode
+             * @member LayoutController
+             * @param {string} mode
+             * @returns {String}
+             */
+            setBehaviorMode: function setBehaviorMode(mode) {
+                this.logger.warn(
+                    'Behavior mode was changed',
+                    this.controller.getBehaviorMode(),
+                    mode
+                );
 
-        /**
-         * Check if mode is Snap to Grid
-         * @member LayoutController
-         * @returns {boolean}
-         */
-        isUIGrid: function isUIGrid() {
-            return this.getBehaviorMode() ===
-                this.getContainment().LAYOUT_MODES.jqUIGrid;
-        },
+                /**
+                 * Define Behavior mode
+                 * @type {string}
+                 */
+                this.config.mode = mode;
+            },
 
-        /**
-         * Check if mode is Free Style
-         * @member LayoutController
-         * @returns {boolean}
-         */
-        isFreeStyle: function isFreeStyle() {
-            return this.getBehaviorMode() ===
-                this.getContainment().LAYOUT_MODES.freeStyle;
-        },
+            /**
+             * Check if mode is Snap to Grid
+             * @member LayoutController
+             * @returns {boolean}
+             */
+            isSnap2Grid: function isSnap2Grid() {
+                return this.getBehaviorMode() ===
+                    this.getContainment().LAYOUT_MODES.snap2grid;
+            },
 
-        /**
-         * Check if overlapping allowed
-         * @member LayoutController
-         * @returns {boolean}
-         */
-        isOverlappingAllowed: function isOverlappingAllowed() {
-            return this._getLayoutMode('organize') !==
-                this.getContainment().ORGANIZE_MODES.none;
-        },
+            /**
+             * Check if mode is Snap to Grid
+             * @member LayoutController
+             * @returns {boolean}
+             */
+            isUIGrid: function isUIGrid() {
+                return this.getBehaviorMode() ===
+                    this.getContainment().LAYOUT_MODES.jqUIGrid;
+            },
 
-        /**
-         * Get layout behavior mode
-         * @member LayoutController
-         * @returns {*}
-         */
-        getBehavior: function getBehavior() {
-            return this.scope.config.behavior[this.getBehaviorMode()];
-        },
+            /**
+             * Check if mode is Free Style
+             * @member LayoutController
+             * @returns {boolean}
+             */
+            isFreeStyle: function isFreeStyle() {
+                return this.getBehaviorMode() ===
+                    this.getContainment().LAYOUT_MODES.freeStyle;
+            },
 
-        /**
-         * Set behavior empty spaces mode
-         * @member LayoutController
-         * @param {String} mode
-         */
-        setEmptySpacesMode: function setEmptySpacesMode(mode) {
-            this.controller._setLayoutMode('emptySpaces', mode);
-        },
+            /**
+             * Check if overlapping allowed
+             * @member LayoutController
+             * @returns {boolean}
+             */
+            isOverlappingAllowed: function isOverlappingAllowed() {
+                return this._getLayoutMode('organize') !==
+                    this.getContainment().ORGANIZE_MODES.none;
+            },
 
-        /**
-         * Set behavior organize mode
-         * @member LayoutController
-         * @param {String} mode
-         */
-        setOrganizeMode: function setOrganizeMode(mode) {
-            this.controller._setLayoutMode('organize', mode);
-        },
+            /**
+             * Get layout behavior mode
+             * @member LayoutController
+             * @returns {*}
+             */
+            getBehavior: function getBehavior() {
+                return this.scope.config.behavior[this.getBehaviorMode()];
+            },
 
-        /**
-         * Set layout mode
-         * @member LayoutController
-         * @param {string} type
-         * @param {string|boolean} mode
-         * @private
-         */
-        _setLayoutMode: function _setLayoutMode(type, mode) {
-            this.scope.logger.warn(
+            /**
+             * Set behavior empty spaces mode
+             * @member LayoutController
+             * @param {String} mode
+             */
+            setEmptySpacesMode: function setEmptySpacesMode(mode) {
+                this.controller._setLayoutMode('emptySpaces', mode);
+            },
+
+            /**
+             * Set behavior organize mode
+             * @member LayoutController
+             * @param {String} mode
+             */
+            setOrganizeMode: function setOrganizeMode(mode) {
+                this.controller._setLayoutMode('organize', mode);
+            },
+
+            /**
+             * Set layout mode
+             * @member LayoutController
+             * @param {string} type
+             * @param {string|boolean} mode
+             * @private
+             */
+            _setLayoutMode: function _setLayoutMode(type, mode) {
+                this.scope.logger.warn(
                     type.toUnderscore().capitalize() + ' was changed',
-                this._getLayoutMode(type),
-                mode
-            );
-            this._updateLayoutMode(type, mode);
+                    this._getLayoutMode(type),
+                    mode
+                );
+                this._updateLayoutMode(type, mode);
+            },
+
+            /**
+             * Get layout mode
+             * @member LayoutController
+             * @param {string} type
+             * @returns {*|Overlapping}
+             * @private
+             */
+            _getLayoutMode: function _getLayoutMode(type) {
+                return this.getBehavior()[type];
+            },
+
+            /**
+             * Update layout mode
+             * @member LayoutController
+             * @param mode
+             * @param {string} type
+             * @private
+             * @returns {*|Overlapping}
+             */
+            _updateLayoutMode: function _updateLayoutMode(type, mode) {
+                this.scope.config.behavior[this.getBehaviorMode()][type] = mode;
+
+                return this._getLayoutMode(type);
+            }
+
         },
-
-        /**
-         * Get layout mode
-         * @member LayoutController
-         * @param {string} type
-         * @returns {*|Overlapping}
-         * @private
-         */
-        _getLayoutMode: function _getLayoutMode(type) {
-            return this.getBehavior()[type];
-        },
-
-        /**
-         * Update layout mode
-         * @member LayoutController
-         * @param mode
-         * @param {string} type
-         * @private
-         * @returns {*|Overlapping}
-         */
-        _updateLayoutMode: function _updateLayoutMode(type, mode) {
-            this.scope.config.behavior[this.getBehaviorMode()][type] = mode;
-
-            return this._getLayoutMode(type);
-        }
-
-    }, AntHill.prototype, BaseController.prototype);
+        AntHill.prototype,
+        BaseController.prototype
+    );
 });

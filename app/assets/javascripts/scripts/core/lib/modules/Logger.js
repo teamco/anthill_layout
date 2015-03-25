@@ -83,7 +83,9 @@ define([
                 log = this.isLoggable();
 
             if (log && config.type[type]) {
+
                 try {
+
                     if (!!config.namespaces) {
 
                         /**
@@ -105,21 +107,29 @@ define([
                             }
                         }
                     }
+
                     var args = [], i = 1;
+
                     for (i; i < arguments.length; i += 1) {
                         args.push(arguments[i]);
                     }
 
                     if (base.isDefined(console[type])) {
+
                         hash[type] = args;
                         content.push(hash);
+
                     } else {
+
                         content.push({log: args});
                     }
+
                     if (type === 'error' && base.isDefined(console.trace)) {
                         content.push({trace: args});
                     }
+
                 } catch (e) {
+
                     if (base.isDefined(console.error)) {
                         content.push({
                             error: [e, arguments]
@@ -136,16 +146,26 @@ define([
             }
 
             console.groupCollapsed(scope);
+
             for (i; i < l; i += 1) {
+
                 hash = content[i];
+
                 var k = base.lib.hash.firstHashKey(hash);
+
                 hash[k]['caller'] = this.puts.caller;
                 hash[k]['line'] = this.stackIt(
                     ((new Error).stack + '').split("\n")
                 );
+
                 console[k](hash[k]);
             }
-            console.info('timestamp', base.lib.datetime.timestamp());
+
+            console.info(
+                'timestamp',
+                base.lib.datetime.timestamp()
+            );
+
             console.groupEnd();
 
             return true;
@@ -158,7 +178,9 @@ define([
          * @returns {Array}
          */
         stackIt: function stackIt(stacks) {
+
             var log = [];
+
             for (var i = 1, l = stacks.length; i < l; i++) {
                 log.push(stacks[i].replace(/^\s+at |\s+$/g, ''));
             }
@@ -193,6 +215,7 @@ define([
          * @member Logger
          */
         defineLogs: function defineLogs() {
+
             var base = this.base,
                 availableLogs = base.lib.hash.hashKeys(
                     this.config.type
@@ -201,8 +224,16 @@ define([
                 i = 0;
 
             for (i; i < length; i += 1) {
+
                 var log = availableLogs[i];
+
                 if (base.isDefined(log)) {
+
+                    /**
+                     * Define logger types
+                     * @member Logger
+                     * @type {function}
+                     */
                     this[log] = this.puts.bind(this, log);
                 }
             }

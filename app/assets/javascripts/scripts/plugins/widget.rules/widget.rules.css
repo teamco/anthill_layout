@@ -28,6 +28,14 @@ ul.widget-rules > .content:hover {
     border-radius: 10px;
 }
 
+ul.widget-rules .content > div:first-child {
+    width: 64px;
+    height: 64px;
+    margin: 3px;
+    background: transparent no-repeat center;
+    border-radius: 7px;
+}
+
 div.widget-rules-footer {
     position: absolute;
     bottom: 0;
@@ -49,7 +57,7 @@ div.widget-rules-footer > div {
     text-shadow: 1px 1px #fff;
 }
 
-.panel div.widget-rules-content .scroll-cover {
-    top: 70px;
+div.widget-rules-content .scroll-cover {
+    top: 90px;
     bottom: 30px;
 }

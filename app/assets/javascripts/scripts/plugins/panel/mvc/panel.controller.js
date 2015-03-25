@@ -171,7 +171,7 @@ define([
 
             /**
              * Get panels
-             * @type {App.panels}
+             * @type {Application.panels}
              */
             var panels = this.root().panels,
                 index, panel;

@@ -9,7 +9,9 @@ define(
     [
         'modules/Controller',
         'modules/Preferences',
-        'modules/Router'
+        'modules/Router',
+        'controller/workspace/workspace.page',
+        'controller/workspace/workspace.seo'
     ],
 
     /**
@@ -17,9 +19,11 @@ define(
      * @param {BaseController} BaseController
      * @param {BasePreferences} BasePreferences
      * @param {Router} Router
+     * @param {WorkspacePage} WorkspacePage
+     * @param {WorkspaceSEO} WorkspaceSEO
      * @returns {*}
      */
-        function defineWorkspaceController(BaseController, BasePreferences, Router) {
+    function defineWorkspaceController(BaseController, BasePreferences, Router, WorkspacePage, WorkspaceSEO) {
 
         /**
          * Define workspace controller
@@ -27,29 +31,16 @@ define(
          * @extends BaseController
          * @extends BasePreferences
          * @extends Router
+         * @extends WorkspacePage
+         * @extends WorkspaceSEO
          * @constructor
          */
         var WorkspaceController = function WorkspaceController() {
 
         };
 
-        return WorkspaceController.extend('WorkspaceController', {
-
-                /**
-                 * Create authoring panel
-                 * @member WorkspaceController
-                 */
-                createAuthorPanel: function createAuthorPanel() {
-                    this.logger.debug('Create authoring panel', arguments);
-                },
-
-                /**
-                 * Create tool panel
-                 * @member WorkspaceController
-                 */
-                createToolPanel: function createToolPanel() {
-                    this.logger.debug('Create tool panel', arguments);
-                },
+        return WorkspaceController.extend(
+            'WorkspaceController', {
 
                 /**
                  * Set page height
@@ -59,43 +50,10 @@ define(
 
                     $(window).on(
                         'hashchange',
-                        this.controller.switchPageOnHashChange.bind(this)
+                        this.controller.switchPageOnHashChange.bind(
+                            this.controller
+                        )
                     );
-                },
-
-                /**
-                 * Switch page on hash change
-                 * @member WorkspaceController
-                 * @param {boolean} animate
-                 */
-                switchPageOnHashChange: function switchPageOnHashChange(animate) {
-
-                    animate = typeof(animate) === 'undefined' ?
-                        this.model.getConfig('animate') : !!animate;
-
-                    this.observer.publish(
-                        this.eventmanager.eventList.switchToPage, [
-                            this.controller.getPageByHashLocation(),
-                            animate
-                        ]
-                    );
-                },
-
-                /**
-                 * Set page height
-                 * @member WorkspaceController
-                 */
-                setPageContainerDimensions: function setPageContainerDimensions() {
-
-                    /**
-                     * Get $pages
-                     * @type {WorkspaceContentElement}
-                     */
-                    var $pages = this.view.elements.$pages,
-                        counter = this.model.getConfig('page/counter');
-
-                    $pages.defineHeight();
-                    $pages.defineWidth(counter);
                 },
 
                 /**
@@ -108,166 +66,6 @@ define(
                         this.model.getItems(),
                         this.model.getConfig('page/counter')
                     );
-                },
-
-                /**
-                 * Update pages width
-                 * @member WorkspaceController
-                 */
-                updatePagesWidth: function updatePagesWidth() {
-
-                    /**
-                     * Get all pages
-                     * @type {object}
-                     */
-                    var pages = this.model.getItems(),
-                        index, page;
-
-                    for (index in pages) {
-                        if (pages.hasOwnProperty(index)) {
-
-                            /**
-                             * Get page
-                             * @type {Page}
-                             */
-                            page = pages[index];
-
-                            page.layout.observer.publish(
-                                page.layout.eventmanager.eventList.updateMinCellWidth
-                            );
-                        }
-                    }
-                },
-
-                /**
-                 * Before Switch to page
-                 * @member WorkspaceController
-                 * @param {Page} page
-                 */
-                beforeSwitchToPage: function beforeSwitchToPage(page) {
-
-                    this.logger.debug('Before switch to page', page);
-
-                    this.switchPage = true;
-
-                    /**
-                     * Get widget
-                     * @type {Widget|*}
-                     */
-                    var widget = this.controller.getWidgetByHashLocation(page);
-
-                    var purl = page ?
-                            this.controller.getItemIdentity(page) : '',
-
-                        wurl = widget ?
-                            '/' + page.controller.getItemIdentity(widget) : '';
-
-                    this.controller.setHashLocation(
-                        ''.concat('/', purl, wurl)
-                    );
-                },
-
-                /**
-                 * Switch to page
-                 * @member WorkspaceController
-                 * @param {Page} page
-                 * @param {boolean} animate
-                 * @returns {boolean|*}
-                 */
-                switchToPage: function switchToPage(page, animate) {
-
-                    if (page && page.model && this.items.hasOwnProperty(page.model.getUUID())) {
-
-                        if (this.switchPage) {
-
-                            this.logger.debug('Page under swipe', page);
-                            return false;
-                        }
-
-                        this.observer.publish(
-                            this.eventmanager.eventList.beforeSwitchToPage,
-                            page
-                        );
-
-                        if (page === this.controller.getCurrentItem()) {
-                            this.logger.debug('Page already current', page);
-                            this.controller.swipeToCurrentPage(animate);
-                            return false;
-                        }
-
-                        /**
-                         * Get all items
-                         * @type {*}
-                         */
-                        var items = this.model.getItems(),
-                            index;
-
-                        for (index in items) {
-
-                            if (items.hasOwnProperty(index)) {
-
-                                /**
-                                 * Define item
-                                 * @type {Page}
-                                 */
-                                var item = items[index];
-
-                                if (item.model.getUUID() === page.model.getUUID()) {
-
-                                    this.controller.setCurrentItem(page);
-                                }
-                            }
-                        }
-
-                        this.controller.swipeToCurrentPage(animate);
-
-                    } else {
-
-                        window.location.hash = '';
-                        this.logger.warn('Undefined page', page);
-                        return false;
-                    }
-                },
-
-                /**
-                 * After Switch to page
-                 * @member WorkspaceController
-                 * @param {Page} page
-                 */
-                afterSwitchToPage: function afterSwitchToPage(page) {
-
-                    this.logger.debug('After switch to page', page);
-
-                    this.switchPage = false;
-
-                    //this.getWidgetByHashLocation()
-                    //console.log('TODO add widget implementation');
-                },
-
-                /**
-                 * Swipe to current page
-                 * @member WorkspaceController
-                 * @param {boolean} animate
-                 */
-                swipeToCurrentPage: function swipeToCurrentPage(animate) {
-
-                    /**
-                     * Get current page
-                     * @type {Page}
-                     */
-                    var page = this.getCurrentItem();
-
-                    this.scope.view.elements.$pages.swipeTo(page, animate);
-                },
-
-                /**
-                 * Save after page ordering
-                 * @member WorkspaceController
-                 * @param {Array} order
-                 */
-                afterPageOrder: function afterPageOrder(order) {
-                    this.logger.debug('Page order', order);
-                    this.controller.store();
                 },
 
                 /**
@@ -341,40 +139,14 @@ define(
 
                         $workspace.unsetWidth();
                     }
-                },
-
-                /**
-                 * Update site title
-                 * @member WorkspaceController
-                 */
-                updateSiteTitle: function updateSiteTitle() {
-                    this.view.get$item().updateTitle(
-                        this.model.getConfig('preferences')['siteTitle']
-                    );
-                },
-
-                /**
-                 * Load google analytics tracking snippet
-                 * @member WorkspaceController
-                 */
-                loadTrackingSnippet: function loadTrackingSnippet() {
-
-                    /**
-                     * Get tracking id
-                     * @type {string}
-                     */
-                    var trackingId = this.model.getConfig('preferences').trackingId;
-
-                    if (typeof(trackingId) === 'string' && trackingId.length > 0) {
-
-                        this.view.get$item().renderGoogleAnalytics(trackingId);
-                    }
                 }
             },
 
             BaseController.prototype,
             BasePreferences.prototype,
-            Router.prototype
+            Router.prototype,
+            WorkspacePage.prototype,
+            WorkspaceSEO.prototype
         );
     }
 );

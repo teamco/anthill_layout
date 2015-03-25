@@ -38,9 +38,14 @@ define([
          *      destroyWidgets: string,
          *      createLayout: string,
          *      destroyLayout: string,
+         *      updateSiteDescription: string,
+         *      updateSiteKeywords: string,
          *      updateLayoutConfig: string,
+         *      expandLayout: string,
          *      resizeWidgets: string,
          *      resizeWidget: string,
+         *      loadItemsContent: string,
+         *      setLoadedContent: string,
          *      updateHashOnMaximize: string,
          *      updateHashOnReduce: string,
          *      updateHeight: string,
@@ -66,6 +71,7 @@ define([
             createLayout: 'create.layout',
             destroyLayout: 'destroy.layout',
             updateLayoutConfig: 'update.layout.config',
+            expandLayout: 'expand.layout',
 
             resizeWidget: 'resize.widget',
 
@@ -76,9 +82,13 @@ define([
 
             updateHeight: 'update.height',
 
+            updateSiteDescription: 'update.site.description',
+            updateSiteKeywords: 'update.site.keywords',
+
             afterLoadingItems: 'after.loading.items',
             disableItemInteractions: 'disable.item.interactions',
-
+            loadItemsContent: 'load.items.content',
+            setLoadedContent: 'set.loaded.content',
             enableItemInteractions: 'enable.item.interactions',
 
             loadPreferences: 'load.preferences',

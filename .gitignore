@@ -30,7 +30,7 @@ pickle-email-*.html
 .rvmrc
 
 Gemfile.lock
-app/assets/javascripts/scripts/plugins/stylesheets/widgets
+app/assets/javascripts/scripts/plugins/stylesheets
 db/*.sqlite3
 app/assets/.idea
 public/assets

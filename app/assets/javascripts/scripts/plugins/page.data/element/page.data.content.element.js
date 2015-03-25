@@ -25,6 +25,7 @@ define([
             destroy: false
         });
 
+        this.addInnerContent();
         this.setAttributes(opts.data);
         this.bindShowPrefs(opts.data);
         this.bindLocate(opts.data);
@@ -33,6 +34,14 @@ define([
     };
 
     return PageDataContentElement.extend('PageDataContentElement', {
+
+        /**
+         * Define inner content
+         * @member PageDataContentElement
+         */
+        addInnerContent: function addInnerContent() {
+            this.$.append('<div />');
+        },
 
         /**
          * Define attributes
@@ -46,6 +55,16 @@ define([
              * @type {boolean|string}
              */
             var title = data.model.getItemTitle();
+
+            /**
+             * Define data
+             * @member PageDataContentElement
+             * @type {{name: string, description: string}}
+             */
+            this.data = {
+                name: title,
+                description: data.model.getConfig('preferences').description
+            };
 
             /**
              * Get description

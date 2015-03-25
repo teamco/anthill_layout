@@ -36,6 +36,9 @@ define([
          *      updateMinCellWidth: string,
          *      beforeNestedOrganizer: string,
          *      afterNestedOrganizer: string,
+         *      beforeExpand: string,
+         *      onExpand: string,
+         *      afterExpand: string,
          *      setOrganizeMode: string,
          *      setBehaviorMode: string,
          *      setEmptySpacesMode: string
@@ -46,6 +49,9 @@ define([
             updateMinCellWidth: 'update.min.cell.width',
             beforeNestedOrganizer: 'before.nested.organizer',
             afterNestedOrganizer: 'after.nested.organizer',
+            beforeExpand: 'before.expand',
+            onExpand: 'on.expand',
+            afterExpand: 'after.expand',
             setOrganizeMode: 'set.organize.mode',
             setBehaviorMode: 'set.behavior.mode',
             setEmptySpacesMode: 'set.empty.spaces.mode'

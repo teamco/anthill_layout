@@ -16,27 +16,27 @@ define(
      * @param {AntHill} AntHill
      * @param {BaseController} BaseController
      * @param {Routes} Routes
-     * @returns {AppController}
+     * @returns {ApplicationController}
      */
     function defineApplicationController(AntHill, BaseController, Routes) {
 
         /**
          * Define application controller
-         * @class AppController
+         * @class ApplicationController
          * @extends AntHill
          * @extends BaseController
          * @extends Routes
          * @constructor
          */
-        var AppController = function AppController() {
+        var ApplicationController = function ApplicationController() {
         };
 
-        return AppController.extend(
-            'AppController', {
+        return ApplicationController.extend(
+            'ApplicationController', {
 
                 /**
                  * Define Load Application
-                 * @member AppController
+                 * @member ApplicationController
                  */
                 loadApplication: function loadApplication() {
 
@@ -57,7 +57,7 @@ define(
 
                 /**
                  * Define global instance
-                 * @member AppController
+                 * @member ApplicationController
                  */
                 defineGlobalInstance: function defineGlobalInstance() {
                     this.logger.debug(
@@ -68,16 +68,52 @@ define(
 
                 /**
                  * Define setting
-                 * @member AppController
+                 * @member ApplicationController
                  */
                 defineSetting: function defineSetting() {
                     this.model.initGlobalSetting();
                     this.controller.ajaxSetup();
+                    this.controller.defineOverrides();
+                },
+
+                /**
+                 * Define overrides
+                 * @member ApplicationController
+                 */
+                defineOverrides: function defineOverrides() {
+
+                    var proxiedError = window.onerror,
+                        scope = this.scope;
+
+                    // Override previous handler.
+                    window.onerror = function errorHandler(errorMsg, url, lineNumber, columnNumber, errorObject) {
+
+                        if (proxiedError) {
+
+                            // Call previous handler.
+                            proxiedError.apply(this, arguments);
+                        }
+
+                        // Just let default handler run.
+                        scope.view.handleNotificationsRenderer({
+                            status: errorMsg,
+                            statusText: [url, lineNumber, columnNumber].join(':'),
+                            responseJSON: {
+                                error: [
+                                    '<pre><code>',
+                                    errorObject.stack,
+                                    '</code></pre>'
+                                ].join('')
+                            }
+                        }, 'error');
+
+                        return false;
+                    }
                 },
 
                 /**
                  * Update storage version
-                 * @member AppController
+                 * @member ApplicationController
                  * @param {number} version
                  */
                 updateStorageVersion: function updateStorageVersion(version) {
@@ -87,8 +123,16 @@ define(
                 },
 
                 /**
+                 * After update storage
+                 * @member ApplicationController
+                 */
+                afterUpdateStorage: function afterUpdateStorage() {
+                    this.logger.debug('After update storage');
+                },
+
+                /**
                  * Define ajax setup
-                 * @member AppController
+                 * @member ApplicationController
                  */
                 ajaxSetup: function ajaxSetup() {
 
@@ -114,7 +158,7 @@ define(
 
                 /**
                  * Define error handler
-                 * @member AppController
+                 * @member ApplicationController
                  */
                 _handleXhrLog: function _handleXhrLog(xhr, status, description) {
 
@@ -129,7 +173,7 @@ define(
 
                 /**
                  * Load updated uuid
-                 * @member AppController
+                 * @member ApplicationController
                  * @param {string} uuid
                  */
                 loadConfig: function loadConfig(uuid) {
@@ -141,7 +185,7 @@ define(
 
                 /**
                  * Init window resize
-                 * @member AppController
+                 * @member ApplicationController
                  */
                 initResizeWindow: function initResizeWindow() {
 
@@ -159,7 +203,7 @@ define(
 
                 /**
                  * Resize window publisher
-                 * @member AppController
+                 * @member ApplicationController
                  * @param e
                  */
                 resizeWindowPublisher: function resizeWindowPublisher(e) {
@@ -174,7 +218,7 @@ define(
 
                 /**
                  * Resize window callback
-                 * @member AppController
+                 * @member ApplicationController
                  * @param e
                  */
                 resizeWindow: function resizeWindow(e) {
@@ -187,7 +231,7 @@ define(
 
                 /**
                  * Resize window hooks
-                 * @member AppController
+                 * @member ApplicationController
                  */
                 resizeWindowHooks: function resizeWindowHooks() {
                     this.logger.debug('Start resize window hooks', arguments);
@@ -195,7 +239,7 @@ define(
 
                 /**
                  * Approve clear data
-                 * @member AppController
+                 * @member ApplicationController
                  */
                 approveClearData: function approveClearData() {
 

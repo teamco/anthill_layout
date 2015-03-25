@@ -8,34 +8,35 @@
 
 define([
     'modules/Event'
-], function defineAppEventManager(BaseEvent) {
+], function defineApplicationEventManager(BaseEvent) {
 
     /**
-     * Define AppEvent Manager
-     * @class AppEventManager
+     * Define ApplicationEvent Manager
+     * @class ApplicationEventManager
      * @extends BaseEvent
      * @constructor
      */
-    var AppEventManager = function AppEventManager() {
+    var ApplicationEventManager = function ApplicationEventManager() {
 
         /**
          * Define events
-         * @member AppEventManager
+         * @member ApplicationEventManager
          * @type {{}}
          */
         this.events = {};
     };
 
-    return AppEventManager.extend('AppEventManager', {
+    return ApplicationEventManager.extend('ApplicationEventManager', {
 
         /**
          * Define event list
-         * @member AppEventManager
+         * @member ApplicationEventManager
          * @type {{
          *      loadApplication: string,
          *      defineGlobalInstance: string,
          *      defineSetting: string,
          *      updateStorageVersion: string,
+         *      afterUpdateStorage: string,
          *      setRoutes: string,
          *      initResizeWindow: string,
          *      resizeWindow: {eventName: string, params: {buffer: number}},
@@ -54,6 +55,7 @@ define([
             defineGlobalInstance: 'define.global.instance',
             defineSetting: 'define.setting',
             updateStorageVersion: 'update.storage.version',
+            afterUpdateStorage: 'after.update.storage',
             setRoutes: 'set.routes',
             initResizeWindow: {
                 eventName: 'init.resize.window',

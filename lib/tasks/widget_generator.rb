@@ -1,10 +1,15 @@
 require 'fileutils'
+require 'data_uri'
+require "#{Rails.root}/lib/base/base_image.rb"
 
 module WidgetLib
 
   class Generate
 
+    include Magick
+
     def initialize
+      @img = BaseImage.new
     end
 
     def init_params(cname)
@@ -145,32 +150,48 @@ module WidgetLib
       end
     end
 
+    def delete_image
+      path = "#{css_path}/images/#{@file_name}.png"
+      exist_file = File.exist?(path)
+
+      if exist_file
+        puts "--- Delete image: #{path}"
+        File.delete(path)
+      end
+    end
+
     def generate_css(thumbnail)
 
       Dir.mkdir "#{css_path}/widgets" unless File.exists? "#{css_path}/widgets"
+      Dir.mkdir "#{css_path}/images" unless File.exists? "#{css_path}/images"
 
       path = "#{css_path}/widgets/#{@file_name}.css"
       delete_css
+      delete_image
       puts "--- Create CSS file: #{@file_name}.css"
 
       File.open("#{path}", 'w') do |f|
         pattern = @file_name.gsub(/\./, '-')
         f.write([
-                    "ul.gallery .content.#{pattern}",
-                    "ul.page-data .content.#{pattern}",
-                    "ul.maximize .content.#{pattern}",
-                    "ul.widget-rules .content.#{pattern}",
+                    "ul.gallery .content.#{pattern}>div:first-child",
+                    "ul.page-data .content.#{pattern}>div:first-child",
+                    "ul.maximize .content.#{pattern}>div:first-child",
+                    "ul.widget-rules .content.#{pattern}>div:first-child",
                     ".modal-dialog.preferences .widgets-prefs li.#{pattern}",
-                    ".widget .content.#{pattern}{background-image:url('#{thumbnail}');}"
+                    ".widget .content.#{pattern}{background-image:url('images/#{@file_name}.png');}"
                 ].join(','))
       end
 
-    end
-
-    private
-
-    def camel_case(separator)
-      @cname.scan(/\w+/).join('_').gsub(/\d+/, '').split('_').map { |e| e.capitalize }.join(separator)
+      puts "--- Create image from Base64: #{@file_name}.png"
+      image = ImageList.new
+      resized = @img.resize(
+          image.from_blob(
+              Base64.decode64(
+                  thumbnail['data:image/png;base64,'.length .. -1]
+              )
+          )
+      )
+      resized.write("#{css_path}/images/#{@file_name}.png")
     end
 
     def widgets_path
@@ -179,6 +200,12 @@ module WidgetLib
 
     def css_path
       './app/assets/javascripts/scripts/plugins/stylesheets'
+    end
+
+    private
+
+    def camel_case(separator)
+      @cname.scan(/\w+/).join('_').gsub(/\d+/, '').split('_').map { |e| e.capitalize }.join(separator)
     end
 
     def check_exist

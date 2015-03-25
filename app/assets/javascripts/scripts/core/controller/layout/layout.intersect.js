@@ -53,13 +53,13 @@ define(function defineLayoutIntersect() {
 
                 // horizontal
                 (this._overlapCondition(target.column, src.relRight, '>') ||
-                    this._overlapCondition(target.relRight, src.column, '<')) ||
+                this._overlapCondition(target.relRight, src.column, '<')) ||
 
-                // vertical
+                    // vertical
                 (this._overlapCondition(target.row, src.relBottom, '>') ||
-                    this._overlapCondition(target.relBottom, src.row, '<'));
+                this._overlapCondition(target.relBottom, src.row, '<'));
 
-            this.layout.logger.debug('Overlap not possibility', src, target, noOverlapped);
+            this.layout.logger.debug('Overlapping not possible', src, target, noOverlapped);
 
             return noOverlapped;
         },
@@ -117,15 +117,14 @@ define(function defineLayoutIntersect() {
          */
         _overlappedCore: function _isOverlappedCore(src, target, from, to) {
 
-
             return (this._overlapCondition(target[from], src[from], '>') &&
                 this._overlapCondition(target[from], src[to], '<')) ||
 
                 (this._overlapCondition(target[to], src[from], '>') &&
-                    this._overlapCondition(target[to], src[to], '<')) ||
+                this._overlapCondition(target[to], src[to], '<')) ||
 
                 (this._overlapCondition(target[from], src[from], '<=') &&
-                    this._overlapCondition(target[to], src[to], '>='));
+                this._overlapCondition(target[to], src[to], '>='));
         },
 
         /**
@@ -164,8 +163,7 @@ define(function defineLayoutIntersect() {
                 srcPrefs = src.model.getConfig('preferences');
 
             // allow overlapping
-            return (targetPrefs.overlapping ||
-                srcPrefs.overlapping);
+            return (targetPrefs.overlapping || srcPrefs.overlapping);
         },
 
         /**
@@ -173,10 +171,9 @@ define(function defineLayoutIntersect() {
          * @member Intersect
          * @param {Widget} source
          * @param {boolean} force
-         * @private
          * @returns {*}
          */
-        _intersectWidgets: function _intersectWidgets(source, force) {
+        intersectWidgets: function intersectWidgets(source, force) {
 
             var move = {}, i = 0, l, target;
 
@@ -206,7 +203,7 @@ define(function defineLayoutIntersect() {
 
                     if (controller.isSnap2Grid() || controller.isUIGrid()) {
 
-                        overlapped = this.gridStyleOverlpping(source, target);
+                        overlapped = this.gridStyleOverlapping(source, target);
 
                     } else if (controller.isFreeStyle()) {
 
@@ -229,7 +226,7 @@ define(function defineLayoutIntersect() {
          * @param target
          * @returns {*}
          */
-        gridStyleOverlpping: function gridStyleOverlpping(source, target) {
+        gridStyleOverlapping: function gridStyleOverlapping(source, target) {
 
             if (this._overlapped(source.dom, target.dom)) {
 
@@ -265,11 +262,11 @@ define(function defineLayoutIntersect() {
                         rect2 = el2.getBoundingClientRect();
 
                     return !(
-                        rect1.top > rect2.bottom ||
-                        rect1.right < rect2.left ||
-                        rect1.bottom < rect2.top ||
-                        rect1.left > rect2.right
-                        );
+                    rect1.top > rect2.bottom ||
+                    rect1.right < rect2.left ||
+                    rect1.bottom < rect2.top ||
+                    rect1.left > rect2.right
+                    );
                 },
 
                 /**
@@ -284,16 +281,16 @@ define(function defineLayoutIntersect() {
                         rect2 = el2.getBoundingClientRect();
 
                     return (
-                        ((rect2.top <= rect1.top) && (rect1.top <= rect2.bottom)) &&
-                        ((rect2.top <= rect1.bottom) && (rect1.bottom <= rect2.bottom)) &&
-                        ((rect2.left <= rect1.left) && (rect1.left <= rect2.right)) &&
-                        ((rect2.left <= rect1.right) && (rect1.right <= rect2.right))
-                        );
+                    ((rect2.top <= rect1.top) && (rect1.top <= rect2.bottom)) &&
+                    ((rect2.top <= rect1.bottom) && (rect1.bottom <= rect2.bottom)) &&
+                    ((rect2.left <= rect1.left) && (rect1.left <= rect2.right)) &&
+                    ((rect2.left <= rect1.right) && (rect1.right <= rect2.right))
+                    );
                 }
             };
 
-            var $source = source.view.get$item()[0],
-                $widget = target.view.get$item()[0];
+            var $source = source.view.getDomElement(),
+                $widget = target.view.getDomElement();
 
             if (is.collide($source, $widget) || is.inside($source, $widget)) {
                 return target;

@@ -72,7 +72,7 @@ class Author::WidgetsController < Author::AuthorController
     @author_widget = @category.author_widgets.build(author_widget_params) unless @category.nil?
 
     if @author_widget.nil?
-      error_handler_on_create
+      respond_to { |format| error_handler_on_create(format) }
     else
 
       uuid = UUID.new
@@ -96,7 +96,7 @@ class Author::WidgetsController < Author::AuthorController
             format.json { render :show, status: :created, location: @author_widget }
           end
         else
-          error_handler_on_create
+          error_handler_on_create(format)
         end
       end
     end
@@ -153,6 +153,7 @@ class Author::WidgetsController < Author::AuthorController
     rescue
       logger.info '>>>>> Rescue: Remove widget'
       @widget_lib.remove_widget_dir
+      @author_widget.errors.add(:error, 'Thumbnail file size is too big')
       generate = false
     end
     generate
@@ -213,7 +214,7 @@ class Author::WidgetsController < Author::AuthorController
     params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :resource, :visible)
   end
 
-  def error_handler_on_create
+  def error_handler_on_create(format)
     if request.xhr?
       format.json {
         render json: @author_widget.errors, status: 400

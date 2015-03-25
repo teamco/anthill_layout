@@ -44,17 +44,17 @@ define([], function defineRoutes() {
          * Prepare XHR data before send
          * @member Routes
          * @param {object} collector
-         * @returns {{authenticity_token: (*|jQuery)}}
+         * @returns {{authenticity_token: string}}
          */
         prepareXhrData: function prepareXhrData(collector) {
 
             /**
              * Define token
-             * @type {{authenticity_token: (*|jQuery)}}
+             * @type {{authenticity_token: string}}
              */
-            var data = {
-                authenticity_token: this.getXCsrfToken()
-            }, index;
+            var data = {}, index;
+
+            data[this.getXCsrfParam()] = this.getXCsrfToken();
 
             for (index in collector) {
                 if (collector.hasOwnProperty(index)) {
@@ -67,6 +67,15 @@ define([], function defineRoutes() {
             }
 
             return data;
+        },
+
+        /**
+         * Get X-Csrf-Token param
+         * @member Routes
+         * @returns {string}
+         */
+        getXCsrfParam: function getXCsrfParam() {
+            return $('meta[name="csrf-param"]').attr('content');
         },
 
         /**

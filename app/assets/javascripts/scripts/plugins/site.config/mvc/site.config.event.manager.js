@@ -24,6 +24,13 @@ define([
          * @type {{}}
          */
         this.events = {};
+
+        /**
+         * Set subscribed flag
+         * @member SiteConfigEventManager
+         * @type {boolean}
+         */
+        this.subscribed = false;
     };
 
     return SiteConfigEventManager.extend('SiteConfigEventManager', {
@@ -59,6 +66,51 @@ define([
             widgetEditor: 'widget.editor',
             setRoutes: 'set.routes',
             activateStorage: 'activate.storage'
+        },
+
+        /**
+         * Subscribe publish on
+         * @member SiteConfigEventManager
+         * @param {Application} root
+         * @param {Function} [callback]
+         * @returns {{}}
+         */
+        subscribePublishOn: function subscribePublishOn(root, callback) {
+
+            if (this.subscribed) {
+                this.scope.logger.debug(
+                    'Events already subscribed',
+                    arguments
+                );
+                return false;
+            }
+
+            /**
+             * Set subscribed flag
+             * @member SiteConfigEventManager
+             * @type {boolean}
+             */
+            this.subscribed = true;
+
+            /**
+             * Define event list
+             * @type {*}
+             */
+            var rootEventList = root.eventmanager.eventList;
+
+            /**
+             * Define events
+             * @type {{scope: Page, events: {eventName: string}[], callback: Function}}
+             */
+            var publish = {
+                scope: root,
+                events: [
+                    {eventName: rootEventList.afterUpdateStorage}
+                ],
+                callback: callback
+            };
+
+            this.publishOn(publish);
         }
 
     }, BaseEvent.prototype);

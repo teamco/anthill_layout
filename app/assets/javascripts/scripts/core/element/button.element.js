@@ -75,5 +75,4 @@ define([
         }
 
     }, BaseElement.prototype);
-
 });

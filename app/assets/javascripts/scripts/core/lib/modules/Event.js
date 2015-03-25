@@ -234,6 +234,17 @@ define([
             }
 
             return eventUUIDs;
+        },
+
+        /**
+         * Re-Emmit event
+         * @member BaseEvent
+         * @param {string} name
+         */
+        reEmmit: function reEmmit(name) {
+            var evt = document.createEvent('Event');
+            evt.initEvent(name, false, false);
+            window.dispatchEvent(evt);
         }
 
     }, AntHill.prototype);

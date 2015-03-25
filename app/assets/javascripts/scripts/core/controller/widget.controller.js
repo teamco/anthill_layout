@@ -32,7 +32,7 @@ define(
      * @param {WidgetMaximize} WidgetMaximize
      * @returns {*}
      */
-        function defineWidgetController(ui, AntHill, BaseController, WidgetInteractions, WidgetMaximize, WidgetStretch, WidgetStick, WidgetLayer, WidgetContent) {
+    function defineWidgetController(ui, AntHill, BaseController, WidgetInteractions, WidgetMaximize, WidgetStretch, WidgetStick, WidgetLayer, WidgetContent) {
 
         /**
          * Define widget controller
@@ -172,6 +172,27 @@ define(
                 },
 
                 /**
+                 * Define custom class name
+                 * @member WidgetController
+                 * @param {string} name
+                 * @param {string} previous
+                 */
+                customClassName: function customClassName(name, previous) {
+
+                    /**
+                     * Get $widget
+                     * @type {WidgetElement}
+                     */
+                    var $widget = this.view.get$item();
+
+                    $widget.$.removeClass(previous);
+
+                    if (name && name.length > 0) {
+                        $widget.$.addClass(name);
+                    }
+                },
+
+                /**
                  * Behavior mode
                  * @member WidgetController
                  * @param {{
@@ -186,7 +207,7 @@ define(
 
                     /**
                      * Check if mod
-                     * @type {boolean}
+                     * @type {string}
                      */
                     var mode = this.isMode();
 
@@ -242,26 +263,15 @@ define(
                 /**
                  * Check behavior mode
                  * @member WidgetController
-                 * @returns {boolean}
+                 * @returns {string|undefined}
                  */
                 isMode: function isMode() {
 
                     var modes = this.getContainment().LAYOUT_MODES,
                         layout = this.getPageLayout(),
-                        mode = layout.config.mode,
-                        index;
+                        mode = layout.config.mode;
 
-                    for (index in modes) {
-
-                        if (modes.hasOwnProperty(index)) {
-
-                            if (mode === modes[index]) {
-                                return mode;
-                            }
-                        }
-                    }
-
-                    return false;
+                    return modes[mode];
                 },
 
                 /**

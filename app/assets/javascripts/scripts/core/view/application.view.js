@@ -13,61 +13,61 @@ define([
     'element/footer.element',
     'element/application/application.content.element',
     'element/export.element'
-], function defineApplicationView(BaseView, AppElement, Header, Footer, AppContentElement, ExportElement) {
+], function defineApplicationView(BaseView, ApplicationElement, Header, Footer, ApplicationContentElement, ExportElement) {
 
     /**
      * View
      * @constructor
-     * @class AppView
+     * @class ApplicationView
      * @extends BaseView
      */
-    var AppView = function AppView() {
+    var ApplicationView = function ApplicationView() {
     };
 
-    return AppView.extend('AppView', {
+    return ApplicationView.extend('ApplicationView', {
 
         /**
          * Render Application
-         * @member AppView
+         * @member ApplicationView
          */
         renderApplication: function renderApplication() {
 
             /**
              * Define $application
-             * @type {AppElement}
+             * @type {ApplicationElement}
              */
-            this.elements.$app = new AppElement(this, {
+            this.elements.$application = new ApplicationElement(this, {
                 $container: this.getConfigHTML().container,
                 id: this.createUUID(),
                 mode: this.controller.getMode()
             });
 
-            this.header(Header, this.elements.$app);
+            this.header(Header, this.elements.$application);
 
             this.workspaces();
 
-            this.footer(Footer, this.elements.$app);
+            this.footer(Footer, this.elements.$application);
         },
 
         /**
          * Render Workspaces container
-         * @member AppView
+         * @member ApplicationView
          */
         workspaces: function workspaces() {
 
             /**
              * Define $workspaces
-             * @type {AppContentElement}
+             * @type {ApplicationContentElement}
              */
-            this.elements.$workspaces = new AppContentElement(this, {
-                $container: this.elements.$app.$,
+            this.elements.$workspaces = new ApplicationContentElement(this, {
+                $container: this.elements.$application.$,
                 style: 'workspaces'
             });
         },
 
         /**
-         * Render export link
-         * @member AppView
+         * Render export lin
+         * @member ApplicationView
          */
         renderExportLink: function renderExportLink(data) {
 
@@ -76,7 +76,7 @@ define([
              * @type {ExportElement}
              */
             this.elements.$export = new ExportElement(this, {
-                $container: this.elements.$app.$,
+                $container: this.elements.$application.$,
                 id: 'export-url',
                 data: data
             });
@@ -84,7 +84,7 @@ define([
 
         /**
          * Handle notification renderer
-         * @member AppView
+         * @member ApplicationView
          * @param xhr
          * @param {string} status
          */
@@ -112,9 +112,9 @@ define([
             this.modalDialog({
                 style: 'handle-' + status,
                 type: status,
-                title: [xhr.status, xhr.statusText, status].join(' '),
-                text: responseJSON ? responseJSON.error : xhr.statusText,
-                html: '',
+                title: xhr.status,
+                text: xhr.statusText,
+                html: (responseJSON || {}).error,
                 cover: true,
                 buttons: buttons
             });
@@ -122,7 +122,7 @@ define([
 
         /**
          * Start rendering
-         * @member AppView
+         * @member ApplicationView
          * @param {boolean} [silent]
          */
         render: function render(silent) {

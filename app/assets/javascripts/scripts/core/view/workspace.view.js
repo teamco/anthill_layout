@@ -43,8 +43,6 @@ define([
             this.header(Header, this.elements.$workspace);
             this.pages();
             this.footer(Footer, this.elements.$workspace);
-
-            this.elements.$workspace.stretch();
         },
 
         /**

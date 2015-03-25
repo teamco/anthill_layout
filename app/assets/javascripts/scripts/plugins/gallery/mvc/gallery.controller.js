@@ -179,14 +179,25 @@ define([
          */
         addWidget: function addWidget($element) {
 
-            this.getPage().api.createItem({
+            /**
+             * Get page
+             * @type {Page}
+             */
+            var page = this.getPage();
+
+            var prefs = $.extend(
+                {},
+                page.model.getConfig('widget').preferences, {
+                    resource: $element.$.attr('resource'),
+                    thumbnail: $element.data.thumbnail,
+                    title: $element.data.name,
+                    description: $element.data.description
+                }
+            );
+
+            page.api.createItem({
                 config: {
-                    preferences: {
-                        resource: $element.$.attr('resource'),
-                        thumbnail: $element.data.thumbnail,
-                        title: $element.data.name,
-                        description: $element.data.description
-                    },
+                    preferences: prefs,
                     html: {
                         dimensions: {
                             width: $element.data.dimensions.width,

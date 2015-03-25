@@ -39,10 +39,6 @@ define([
                 return false;
             }
 
-            this.header(Header, this.elements.$container).setText(
-                'Maximize Widgets'
-            );
-
             /**
              * Define Maximize element
              * @type {MaximizeElement}
@@ -51,10 +47,6 @@ define([
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
-
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$maximize.getFooter()
-            );
         },
 
         /**
@@ -71,6 +63,12 @@ define([
              */
             this.elements.items = {};
             this.elements.$maximize.empty();
+
+            this.renderHeader(Header, 'Maximize Widgets');
+
+            this.renderFilter(
+                this.updateFooterContent.bind(this)
+            );
 
             for (var index in data) {
 
@@ -105,9 +103,20 @@ define([
                 this.elements.$container.$
             );
 
-            this.footer(Footer, this.elements.$container).setHtml(
-                this.elements.$maximize.getFooter()
-            );
+            this.elements.$filter.updateData({
+                items: this.elements.items,
+                focusOn: 'input'
+            });
+
+            this.updateFooterContent();
+        },
+
+        /**
+         * Update footer content
+         * @member MaximizeView
+         */
+        updateFooterContent: function updateFooterContent() {
+            this.renderFooter(Footer, this.elements.$maximize);
         },
 
         /**

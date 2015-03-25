@@ -12,7 +12,8 @@ define([
     'element/modal.element',
     'element/header.element',
     'element/footer.element',
-], function defineBaseView($, AntHill, ModalElement, Header, Footer) {
+    'element/filter.element'
+], function defineBaseView($, AntHill, ModalElement, Header, Footer, Filter) {
 
     /**
      * Define base view
@@ -21,7 +22,6 @@ define([
      * @constructor
      */
     var BaseView = function BaseView() {
-
     };
 
     return BaseView.extend('BaseView', {
@@ -50,7 +50,25 @@ define([
          * @returns {BaseElement}
          */
         get$item: function get$item() {
-            return this.elements['$' + this.scope.constructor.prototype.name.toLowerCase()];
+            return this.elements['$' + this.scope.name.toLowerCase()];
+        },
+
+        /**
+         * Get item DOM Element
+         * @member BaseView
+         * @returns {BaseElement}
+         */
+        getDomElement: function getDomElement() {
+            return this.get$item().$[0];
+        },
+
+        /**
+         * Get item DOM info
+         * @member BaseView
+         * @returns {BaseElement}
+         */
+        getDomData: function getDomData() {
+            return this.getDomElement().getBoundingClientRect();
         },
 
         /**
@@ -249,6 +267,26 @@ define([
             this.footer(Footer, this.elements.$container).setHtml(
                 $element.getFooter()
             );
+        },
+
+        /**
+         * Render filter
+         * @member BaseView
+         * @param {function} [callback]
+         * @param {boolean} [enter]
+         */
+        renderFilter: function renderFilter(callback, enter) {
+
+            /**
+             * Define Search element
+             * @type {FilterElement}
+             */
+            this.elements.$filter = new Filter(this, {
+                $container: this.elements.$container.$,
+                style: [this.scope.name.toDash(), 'filter'].join(' '),
+                callback: callback,
+                enter: enter
+            });
         },
 
         /**

@@ -12,8 +12,10 @@ define([
     'element/header.element',
     'element/footer.element',
     'element/widget/widget.content.element',
+    'element/widget/widget.comment.element',
+    'element/widget/widget.expander.element',
     'element/widget/widget.element'
-], function defineWidgetView(AntHill, BaseView, Header, Footer, WidgetContentElement, WidgetElement) {
+], function defineWidgetView(AntHill, BaseView, Header, Footer, WidgetContentElement, WidgetCommentElement, WidgetExpanderElement, WidgetElement) {
 
     /**
      * Define Widget View
@@ -50,6 +52,7 @@ define([
 
             this.header(Header, this.elements.$widget);
             this.content();
+            this.contentSharing();
             this.footer(Footer, this.elements.$widget);
         },
 
@@ -69,6 +72,42 @@ define([
                 thumbnail: this.controller.getThumbnail(),
                 $container: this.elements.$widget.$
             });
+        },
+
+        /**
+         * Render content expander
+         * @member WidgetView
+         */
+        contentExpander: function contentExpander() {
+
+            /**
+             * Define $expander
+             * @type {WidgetExpanderElement}
+             */
+            this.elements.$expander = new WidgetExpanderElement(this, {
+                style: 'expander',
+                $container: this.elements.$widget.$
+            });
+        },
+
+        /**
+         * Render comments
+         * @member WidgetView
+         */
+        contentComments: function contentComments() {
+
+            /**
+             * Define $comments
+             * @type {WidgetCommentElement}
+             */
+            this.elements.$comments = new WidgetCommentElement(this, {
+                style: 'comments',
+                $container: this.elements.$widget.$
+            });
+        },
+
+        contentSharing: function contentSharing() {
+
         },
 
         /**

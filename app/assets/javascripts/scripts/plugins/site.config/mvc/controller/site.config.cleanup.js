@@ -20,7 +20,18 @@ define(function defineSiteConfigCleanup() {
          * @member SiteConfigCleanup
          */
         cleanUpLocalStorage: function cleanUpLocalStorage() {
+
             this.view.cleanUpConfirmation();
+
+            this.eventmanager.subscribePublishOn(
+                this.controller.root(),
+                function afterUpdateStorageCallback() {
+
+                    // Reload without cache
+                    document.location.reload(true);
+                    
+                }.bind(this)
+            );
         },
 
         /**
@@ -40,10 +51,13 @@ define(function defineSiteConfigCleanup() {
                 $modal.selfDestroy();
             }
 
-            this.root().model.setting.clear();
+            /**
+             * Get root
+             * @type {Application}
+             */
+            var root = this.root();
 
-            // Reload without cache
-            document.location.reload(true);
+            root.model.setting.clear();
         }
     });
 });

@@ -52,6 +52,10 @@ define(
              *      adoptContentWidth: string,
              *      afterLoadingItems: string,
              *      updateSiteTitle: string,
+             *      updateSiteAuthor: string,
+             *      updateSiteDescription: string,
+             *      updateSiteKeywords: string,
+             *      updateMetaData: string,
              *      updateSiteWidth: string,
              *      loadTrackingSnippet: string,
              *      loadPreferences: string,
@@ -84,6 +88,10 @@ define(
                 updateSiteWidth: 'update.site.width',
 
                 updateSiteTitle: 'update.site.title',
+                updateSiteAuthor: 'update.site.author',
+                updateSiteDescription: 'update.site.description',
+                updateSiteKeywords: 'update.site.keywords',
+                updateMetaData: 'update.meta.data',
 
                 loadTrackingSnippet: 'load.tracking.snippet',
 

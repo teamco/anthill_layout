@@ -2,29 +2,37 @@
  * Created by i061485 on 7/9/14.
  */
 
-define([], function definePageMaximize() {
+define([], function definePageItemMaximize() {
 
     /**
-     * Define PageMaximize
-     * @class PageMaximize
+     * Define PageItemMaximize
+     * @class PageItemMaximize
      * @constructor
      */
-    var PageMaximize = function PageMaximize() {
-        
+    var PageItemMaximize = function PageItemMaximize() {
     };
-    
-    return PageMaximize.extend('PageMaximize', {
+
+    return PageItemMaximize.extend('PageItemMaximize', {
+
+        /**
+         * Get maximized widget
+         * @member PageItemMaximize
+         * @returns {Widget|*}
+         */
+        getMaximized: function getMaximized() {
+            return this.scope.maximized;
+        },
 
         /**
          * Set widget as maximized
-         * @member  {PageMaximize}
+         * @member  {PageItemMaximize}
          * @param {Widget} widget
          */
         setMaximized: function setMaximized(widget) {
 
             /**
              * Set maximized
-             * @member PageMaximize
+             * @member PageItemMaximize
              * @type {Widget}
              */
             this.maximized = widget;
@@ -34,13 +42,13 @@ define([], function definePageMaximize() {
 
         /**
          * Unset widget as maximized
-         * @member  {PageMaximize}
+         * @member PageItemMaximize
          */
         unsetMaximized: function unsetMaximized() {
 
             /**
              * Unset maximized
-             * @member PageMaximize
+             * @member PageItemMaximize
              * @type {{}}
              */
             this.maximized = {};
@@ -50,7 +58,7 @@ define([], function definePageMaximize() {
 
         /**
          * Disable items interactions on enlarge
-         * @member PageMaximize
+         * @member PageItemMaximize
          * @param {Widget} widget
          */
         disableItemInteractions: function disableItemInteractions(widget) {
@@ -92,7 +100,7 @@ define([], function definePageMaximize() {
 
         /**
          * Enable item interaction on reduce
-         * @member PageMaximize
+         * @member PageItemMaximize
          */
         enableItemInteractions: function enableItemInteractions() {
 
@@ -127,5 +135,5 @@ define([], function definePageMaximize() {
                 this.eventmanager.eventList.unsetMaximized
             );
         }
-    });    
+    });
 });

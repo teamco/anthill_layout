@@ -454,7 +454,7 @@ define([
          * Grid sticker on interaction (Drag/Resize)
          * @member WidgetMap
          * @param {{type, $source, callback: Function, organize: Boolean, animate: Boolean}} opts
-         * @param {String} mode
+         * @param {boolean} mode
          * @param {{animate: Boolean}} behavior
          */
         sticker: function sticker(opts, mode, behavior) {
@@ -464,6 +464,10 @@ define([
              * @type {Widget}
              */
             var widget = this.widget;
+
+            if (!mode) {
+                widget.logger.warn('Un');
+            }
 
             /**
              * Define layout

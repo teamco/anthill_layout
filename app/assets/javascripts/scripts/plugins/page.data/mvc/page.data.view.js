@@ -39,8 +39,6 @@ define([
                 return false;
             }
 
-            this.renderHeader(Header, 'Page Widgets');
-
             /**
              * Define PageData element
              * @type {PageDataElement}
@@ -49,8 +47,6 @@ define([
                 id: this.createUUID(),
                 $container: this.elements.$container.$
             });
-
-            this.renderFooter(Footer, this.elements.$pagedata);
         },
 
         /**
@@ -69,6 +65,10 @@ define([
             this.elements.$pagedata.empty();
 
             this.renderHeader(Header, 'Page Widgets');
+
+            this.renderFilter(
+                this.updateFooterContent.bind(this)
+            );
 
             for (var index in data) {
 
@@ -103,6 +103,19 @@ define([
                 this.elements.$container.$
             );
 
+            this.elements.$filter.updateData({
+                items: this.elements.items,
+                focusOn: 'input'
+            });
+
+            this.updateFooterContent();
+        },
+
+        /**
+         * Update footer content
+         * @member PageDataView
+         */
+        updateFooterContent: function updateFooterContent() {
             this.renderFooter(Footer, this.elements.$pagedata);
         },
 

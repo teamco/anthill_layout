@@ -133,7 +133,7 @@ define([
                      * Find intersections
                      * @type {*}
                      */
-                    intersecting = this._intersectWidgets(src, false);
+                    intersecting = this.intersectWidgets(src, false);
 
                     this._organizeCollector(
                         src,
@@ -256,7 +256,6 @@ define([
                     layout.eventmanager.eventList.afterNestedOrganizer
                 );
             }
-
         },
 
         /**
@@ -371,7 +370,10 @@ define([
 
             } else {
 
-                this.layout.logger.warn('Undefined behavior organize', behavior.organize);
+                this.layout.logger.warn(
+                    'Undefined behavior organize',
+                    behavior.organize
+                );
             }
         },
 

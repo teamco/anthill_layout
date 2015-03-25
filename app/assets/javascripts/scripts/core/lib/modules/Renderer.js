@@ -12,7 +12,10 @@ define([
     'modules/renderer/iframe',
     'modules/renderer/embed',
     'modules/renderer/object',
+    'modules/renderer/filter',
+    'modules/renderer/comments',
     'modules/renderer/label',
+    'modules/renderer/fieldset',
     'modules/renderer/slider',
     'modules/renderer/text.editor',
     'modules/renderer/text.area',
@@ -22,7 +25,7 @@ define([
     'modules/renderer/upload.on.drop',
     'modules/renderer/text.download',
     'modules/renderer/validation'
-], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Label, Slider, TextEditor, TextArea, TextField, NumberField, ToolTip, UploadOnDrop, TextDownload, Validation) {
+], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Filter, Comments, Label, FieldSet, Slider, TextEditor, TextArea, TextField, NumberField, ToolTip, UploadOnDrop, TextDownload, Validation) {
 
     /**
      * Define renderer
@@ -35,7 +38,10 @@ define([
      * @extends {IframeRenderer} Iframe
      * @extends {EmbedRenderer} Embed
      * @extends {ObjectRenderer} ObjectEmbed
+     * @extends {FilterRenderer} Filter
+     * @extends {CommentsRenderer} Comments
      * @extends {LabelRenderer} Label
+     * @extends {FieldSetRenderer} Label
      * @extends {SliderRenderer} Slider
      * @extends {TextEditorRenderer} TextEditor
      * @extends {TextAreaRenderer} TextArea
@@ -48,11 +54,53 @@ define([
      * @constructor
      */
     var Renderer = function Renderer() {
-
     };
 
     return Renderer.extend(
-        'Renderer', {},
+        'Renderer', {
+
+            /**
+             * Focus on field
+             * @member Renderer
+             * @param {string} [element]
+             */
+            focusOn: function focusOn(element) {
+
+                if (element) {
+                    $(element, this.$).focus();
+                }
+            },
+
+            /**
+             * Define monitor init
+             * @member Renderer
+             * @param $input
+             * @param monitor
+             */
+            initMonitor: function initMonitor($input, monitor) {
+
+                if (monitor) {
+
+                    $input.on(
+                        monitor.events.join(' '),
+                        monitor.callback
+                    );
+                }
+            },
+
+            /**
+             * Define check visibility
+             * @member Renderer
+             * @param $input
+             * @param {boolean} visible
+             */
+            checkVisibility: function checkVisibility($input, visible) {
+
+                if (!visible) {
+                    $input.hide();
+                }
+            }
+        },
         AntHill.prototype,
         CheckBox.prototype,
         ComboBox.prototype,
@@ -60,7 +108,10 @@ define([
         Iframe.prototype,
         Embed.prototype,
         ObjectEmbed.prototype,
+        Filter.prototype,
+        Comments.prototype,
         Label.prototype,
+        FieldSet.prototype,
         Slider.prototype,
         TextEditor.prototype,
         TextArea.prototype,

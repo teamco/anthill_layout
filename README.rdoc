@@ -11,3 +11,5 @@
 5. Update <b>db</b>: <em>rake db:migrate</em>
 6. Run <b>server</b>: <em>rails s thin</em>
 7. Open in <b>browser</b>: <em>http://127.0.0.1:3000/sites</em>
+
+madge --image core.png --format amd --exclude 'lib/packages/tinymce|lib/jquery|lib/require|lib/lz-string|lib/modernizr|lib/packages|lib/modules/base/|lib/extends/' app/assets/javascripts/scripts/core

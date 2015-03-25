@@ -86,37 +86,55 @@ define([
          * Swipe container to current page
          * @member WorkspaceContentElement
          * @param {Page} page
-         * @param {boolean} animate
          */
-        swipeTo: function swipeTo(page, animate) {
+        swipeTo: function swipeTo(page) {
 
             /**
              * Define view
              * @type {Workspace}
              */
             var scope = this.view.scope,
-                duration = animate ? 500 : 0;
+                animate = page.model.getConfig('preferences').animateSwipe,
+                duration = 500;
+
+            /**
+             * Define on complete callback
+             * @private
+             */
+            function _completeCallback() {
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.afterSwitchToPage,
+                    page
+                );
+            }
+
+            /**
+             * Get $pages
+             * @type {WorkspaceContentElement}
+             */
+            var $pages = this.view.elements.$pages;
 
             /**
              * Get pages order
              * @type {number}
              */
-            var order = page.model.getConfig('order') - 1;
+            var order = page.model.getConfig('order') - 1,
+                css = {left: (-order * 100) + '%'};
 
-            this.view.elements.$pages.$.stop().animate({
+            if (typeof(animate) === 'undefined' ?
+                    scope.model.getConfig('page').animateSwipe : !!animate) {
 
-                left: (-order * 100) + '%'
+                $pages.$.stop().animate(css, {
+                    duration: duration,
+                    complete: _completeCallback
+                });
 
-            }, {
-                duration: duration,
-                complete: function complete() {
+            } else {
 
-                    scope.observer.publish(
-                        scope.eventmanager.eventList.afterSwitchToPage,
-                        page
-                    );
-                }
-            });
+                $pages.$.css(css);
+                _completeCallback();
+            }
         }
 
     }, BaseElement.prototype);

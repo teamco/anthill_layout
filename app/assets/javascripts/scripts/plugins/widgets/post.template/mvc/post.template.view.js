@@ -38,7 +38,7 @@ define([
              * Define $post.template
              * @type {PostTemplateElement}
              */
-            this.elements.$postTemplate = new PostTemplateElement(this, {
+            this.elements.$posttemplate = new PostTemplateElement(this, {
                 $container: this.elements.$container.$,
                 id: this.createUUID()
             });

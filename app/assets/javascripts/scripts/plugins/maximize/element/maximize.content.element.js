@@ -26,6 +26,7 @@ define([
             destroy: false
         });
 
+        this.addInnerContent();
         this.setAttributes(opts.data);
         this.bindLocate(opts.data);
         this.bindMaximize(opts.data);
@@ -34,6 +35,14 @@ define([
     };
 
     return MaximizeContentElement.extend('MaximizeContentElement', {
+
+        /**
+         * Define inner content
+         * @member MaximizeContentElement
+         */
+        addInnerContent: function addInnerContent() {
+            this.$.append('<div />');
+        },
 
         /**
          * Define attributes
@@ -65,17 +74,14 @@ define([
             );
 
             /**
-             * Get thumbnail
-             * @type {string|*}
+             * Define data
+             * @member MaximizeContentElement
+             * @type {{name: string, description: string}}
              */
-            var thumbnail = preferences.thumbnail;
-
-            if (thumbnail.length > 0) {
-
-                this.$.css({
-                    backgroundImage: 'url("' + thumbnail + '")'
-                });
-            }
+            this.data = {
+                name: title,
+                description: description
+            };
 
             this.renderTooltip({
                 title: title,

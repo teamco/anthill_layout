@@ -22,6 +22,8 @@
     font-size: 12px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    padding-right: 10%;
+    white-space: nowrap;
 }
 
 .modal-dialog.ui-draggable h2.header {
@@ -48,6 +50,8 @@
     box-shadow: 0 5px 2px #ccc;
     padding-bottom: 5px;
     margin-bottom: 10px;
+    float: left;
+    width: 100%;
 }
 
 .modal-dialog p.text,
@@ -57,16 +61,25 @@
     font-size: 12px;
 }
 
+.modal-dialog p.text,
+.modal-dialog h2.header {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .modal-dialog div.html {
     max-height: 480px;
     max-width: 700px;
     overflow-x: auto;
     overflow-y: auto;
-    box-shadow: inset -10px -5px 10px #ccc, inset -10px 5px 10px #ccc;
 }
 
 .modal-dialog div.html.visible {
     overflow: visible;
+    float: left;
+    margin-top: 0;
+    width: 100%;
+    padding-right: 20px;
 }
 
 .modal-dialog ul.actions {
@@ -81,17 +94,17 @@
     float: left;
     width: 10px;
     height: 100%;
-    background: transparent url('ui-lightness/images/ui-icons_222222_256x240.png') no-repeat;
+    background: transparent url('ui-lightness/ui-icons_222222_256x240.png') no-repeat;
     text-indent: -9000px;
     cursor: pointer;
 }
 
 .modal-dialog ul.actions li:hover {
-    background: transparent url('ui-lightness/images/ui-icons_ef8c08_256x240.png') no-repeat;
+    background: transparent url('ui-lightness/ui-icons_ef8c08_256x240.png') no-repeat;
 }
 
 .modal-dialog ul.actions li:active {
-    background: transparent url('ui-lightness/images/ui-icons_228ef1_256x240.png') no-repeat;
+    background: transparent url('ui-lightness/ui-icons_228ef1_256x240.png') no-repeat;
 }
 
 .modal-dialog ul.actions li.close-x {

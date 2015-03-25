@@ -32,9 +32,9 @@ define([
         return this;
     };
 
-    return WorkspaceDataPreferencesElement.extend('WorkspaceDataPreferencesElement', {
-
-
-    }, BaseElement.prototype, PagesPreferences.prototype);
-
+    return WorkspaceDataPreferencesElement.extend(
+        'WorkspaceDataPreferencesElement', {},
+        BaseElement.prototype,
+        PagesPreferences.prototype
+    );
 });

@@ -91,7 +91,7 @@ define([
 
             /**
              * Get root
-             * @type {App}
+             * @type {Application}
              */
             var root = this.root();
 
@@ -121,13 +121,12 @@ define([
 
             /**
              * Get workspace
-             * @type {Workspace}
+             * @type {WorkspaceController}
              */
-            var workspace = this[namespace];
+            var wsc = this[namespace].controller;
 
-            if (workspace.controller) {
-
-                workspace.controller.switchPageOnHashChange.bind(workspace)(false);
+            if (wsc) {
+                wsc.switchPageOnHashChange();
             }
         },
 
@@ -187,19 +186,13 @@ define([
 
             /**
              * Get root
-             * @type {App}
+             * @type {Application}
              */
             var root = this.root();
 
-            /**
-             * Get workspace
-             * @type {Workspace}
-             */
-            var workspace = this.base.isDefined(uuid) ?
+            return this.base.isDefined(uuid) ?
                 root.model.getItemByUUID(uuid) :
                 root.controller.getCurrentItem();
-
-            return workspace;
         },
 
         /**
@@ -216,15 +209,9 @@ define([
              */
             var workspace = this.getWorkspace();
 
-            /**
-             * Define page
-             * @type {Page}
-             */
-            var page = this.base.isDefined(uuid) ?
+            return this.base.isDefined(uuid) ?
                 workspace.model.getItemByUUID(uuid) :
                 workspace.controller.getCurrentItem();
-
-            return page;
         },
 
         /**
@@ -282,7 +269,8 @@ define([
          */
         successRendered: function successRendered() {
             this.logger.debug(
-                this.i18n.t('success.rendered').replace(/\{0}/, this.constructor.prototype.name),
+                this.i18n.t('success.rendered').
+                    replace(/\{0}/, this.name),
                 this
             );
         },
@@ -294,7 +282,9 @@ define([
          * @param {boolean} render
          */
         successRenderHeader: function successRenderHeader($header, render) {
-            this.logger.debug('Success Render Header', render, $header);
+            this.logger.debug(
+                'Success Render Header', render, $header
+            );
         },
 
         /**
@@ -304,7 +294,9 @@ define([
          * @param {boolean} render
          */
         successRenderFooter: function successRenderFooter($footer, render) {
-            this.logger.debug('Success Render Footer', render, $footer);
+            this.logger.debug(
+                'Success Render Footer', render, $footer
+            );
         },
 
         /**
@@ -318,7 +310,9 @@ define([
                 sname = scope.model.getItemNameSpace();
 
             if (sname === 'object') {
-                scope.logger.error('Unable to locate current item');
+                scope.logger.error(
+                    'Unable to locate current item'
+                );
             }
 
             return scope[sname];
@@ -353,10 +347,17 @@ define([
          * @returns {boolean}
          */
         checkCondition: function checkCondition(opts) {
+
+            /**
+             * Define logger
+             * @type {function}
+             */
+            var logger = this.scope.logger[opts.type || 'debug'];
+
             if (opts.condition) {
                 opts.args ?
-                    this.scope.logger[opts.type || 'debug'](opts.msg, opts.args) :
-                    this.scope.logger[opts.type || 'debug'](opts.msg);
+                    logger(opts.msg, opts.args) :
+                    logger(opts.msg);
                 return true;
             }
             return false;
@@ -436,6 +437,42 @@ define([
          */
         getRules: function getRules() {
             return this.model.rules;
+        },
+
+        /**
+         * Update site description
+         * @member BaseController
+         */
+        updateSiteDescription: function updateSiteDescription() {
+
+            /**
+             * Get $item
+             * @type {BaseElement}
+             */
+            var $item = this.controller.root().view.get$item();
+
+            var siteDescription = this.model.getConfig('preferences')['siteDescription'] ||
+                $item.getSiteDescription();
+
+            $item.setSiteDescription(siteDescription);
+        },
+
+        /**
+         * Update site keywords
+         * @member BaseController
+         */
+        updateSiteKeywords: function updateSiteKeywords() {
+
+            /**
+             * Get $item
+             * @type {BaseElement}
+             */
+            var $item = this.controller.root().view.get$item();
+
+            var siteKeywords = this.model.getConfig('preferences')['siteKeywords'] ||
+                $item.getSiteKeywords();
+
+            $item.setSiteKeywords(siteKeywords);
         },
 
         /**
@@ -563,9 +600,15 @@ define([
          */
         store: function store(node, data, counter) {
 
+            if (this.isConsumptionMode()) {
+
+                this.scope.logger.warn('Unable to save layout in consumption mode');
+                return false;
+            }
+
             /**
              * Define root
-             * @type {App}
+             * @type {Application}
              */
             var root = this.root();
 
@@ -651,7 +694,7 @@ define([
              * Define rules
              * @type {{}}
              */
-            var rules = this.model.rules;
+            var rules = this.model.rules || {};
 
             return rules.subscribers ?
                 rules.subscribers[event] : []
