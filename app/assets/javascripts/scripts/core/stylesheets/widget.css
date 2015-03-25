@@ -186,8 +186,17 @@
     position: absolute;
     bottom: 0;
     background: rgba(255, 255, 255, 0.8);
-    min-height: 50px;
     width: 100%;
-    border-top: 1px solid #999;
-    box-shadow: 0 -5px 5px -5px #000;
+    box-shadow: 0 0 1px 0 #000;
+    cursor: auto;
+}
+
+.widget .comments label {
+    display: none;
+}
+
+.widget .comments textarea {
+    width: 98%;
+    margin: 1%;
+    background: rgba(255, 255, 255, 0.8);
 }
