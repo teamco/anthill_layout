@@ -17,11 +17,19 @@ define([], function defineCommentsRenderer() {
         /**
          * Render comments form
          * @member CommentsRenderer
+         * @param {ButtonElement} ButtonElement
          * @param {{events: *|string[]}} [opts]
          */
-        renderCommentsForm: function renderCommentsForm(opts) {
+        renderCommentsForm: function renderCommentsForm(ButtonElement, opts) {
 
             opts = opts || {};
+
+            /**
+             * Define button store
+             * @member CommentsRenderer
+             * @type {{}}
+             */
+            this.$buttons = {};
 
             if (!opts.visible) {
 
@@ -59,6 +67,60 @@ define([], function defineCommentsRenderer() {
                     }
                 })
             );
+
+            this.renderButtons(ButtonElement);
+        },
+
+        renderButtons: function renderButtons(ButtonElement) {
+
+            /**
+             * Define buttons
+             * @type {{
+             *      cancel: {text: string, events: {click: string}},
+             *      post: {text: string, events: {click: string}}
+             * }}
+             */
+            var buttons = {
+                post: {
+                    text: 'Post comment',
+                    events: {
+                        click: 'postComment'
+                    }
+                },
+                cancel: {
+                    text: 'Cancel',
+                    events: {
+                        click: 'cancelComment'
+                    }
+                }
+            };
+
+            /**
+             * Define buttons container
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $container = $('<ul class="buttons" />');
+
+            $.each(buttons, function each(i, button) {
+                button.$container = $container;
+            });
+
+            this.view.button(
+                ButtonElement,
+                buttons,
+                this.$buttons
+            );
+
+            this.$.append($container.hide());
+        },
+
+        /**
+         * Define show buttons
+         * @member CommentsRenderer
+         * @param {boolean} show
+         */
+        showButtons: function showButtons(show) {
+            this.$buttons.cancel.$container[show ? 'show' : 'hide']();
         },
 
         /**
@@ -86,7 +148,8 @@ define([], function defineCommentsRenderer() {
          * @private
          */
         _focusCommentsEvent: function _focusCommentsEvent(e) {
-debugger
+
+            this.showButtons(true);
         },
 
         /**
@@ -96,7 +159,10 @@ debugger
          * @private
          */
         _blurCommentsEvent: function _blurCommentsEvent(e) {
-            debugger
+
+            if (e.target.textLength === 0) {
+                this.showButtons(false);
+            }
         }
     });
 });

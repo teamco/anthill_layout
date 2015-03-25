@@ -36,6 +36,22 @@ define(function defineWidgetComment() {
 
                 this.view.elements.$comments.destroy();
             }
+        },
+
+        /**
+         * Define post comment
+         * @member WidgetComment
+         */
+        postComment: function postComment() {
+debugger
+        },
+
+        /**
+         * Define cancel comment
+         * @member WidgetComment
+         */
+        cancelComment: function cancelComment() {
+debugger
         }
     });
 });

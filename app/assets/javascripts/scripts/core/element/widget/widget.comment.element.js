@@ -7,8 +7,9 @@
  */
 
 define([
-    'modules/Element'
-], function defineComment(BaseElement) {
+    'modules/Element',
+    'element/button.element'
+], function defineComment(BaseElement, ButtonElement) {
 
     /**
      * Define Comment
@@ -26,14 +27,23 @@ define([
             destroy: true
         });
 
-        this.renderCommentsForm({
-            visible: true
-        });
+        this.defineContent(ButtonElement);
 
         return this;
     };
 
     return WidgetCommentElement.extend('WidgetCommentElement', {
+
+        /**
+         * Define comments content
+         * @param {ButtonElement} ButtonElement
+         */
+        defineContent: function defineContent(ButtonElement) {
+
+            this.renderCommentsForm(ButtonElement, {
+                visible: true
+            });
+        }
 
     }, BaseElement.prototype);
 });

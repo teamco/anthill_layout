@@ -199,4 +199,9 @@
     width: 98%;
     margin: 1%;
     background: rgba(255, 255, 255, 0.8);
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    -ms-transition: none;
+    transition: none;
 }
