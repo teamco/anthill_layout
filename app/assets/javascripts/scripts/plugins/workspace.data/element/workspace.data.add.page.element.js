@@ -13,7 +13,7 @@ define(
      * @param {BaseElement} BaseElement
      * @returns {*}
      */
-        function defineWorkspaceDataAddPageElement(BaseElement) {
+    function defineWorkspaceDataAddPageElement(BaseElement) {
 
         /**
          * Define WorkspaceData AddPage Element
@@ -63,6 +63,53 @@ define(
                 });
 
                 return this;
+            },
+
+            renderWizard: function renderWizard(workspace) {
+
+                var $ul = $('<ul />');
+
+                var $blank = $('<li />').append(
+                    this.renderCheckbox({
+                        name: 'blank',
+                        text: 'Blank',
+                        checked: true,
+                        value: true,
+                        disabled: false,
+                        visible: true
+                    })
+                );
+
+                var items = workspace.model.getItems();
+
+                /**
+                 * Define clone pages
+                 * @type {Array}
+                 */
+                var clonePages = $.map(items, function map(page) {
+                    return {
+                        type: 'text',
+                        value: page.model.getItemTitle()
+                    };
+                });
+
+                var $clone = $('<li />').append(
+                    this.renderCombobox(
+                        clonePages,
+                        clonePages[0].value,
+                        'Clone',
+                        'clone-page',
+                        undefined,
+                        true
+                    )
+                );
+
+                $ul.append([
+                    $blank,
+                    $clone
+                ]);
+
+                return $ul;
             }
 
         }, BaseElement.prototype);

@@ -280,7 +280,7 @@ define([
 
                     /**
                      * Get item
-                     * @type {{Page|Widget|*}}
+                     * @type {Page|Widget|*}
                      */
                     item = items[index];
 

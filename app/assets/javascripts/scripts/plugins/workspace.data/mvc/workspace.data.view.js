@@ -165,12 +165,66 @@ define(
                  * Render add new pages
                  * @type {WorkspaceDataAddPageElement}
                  */
-                this.$addPage = new WorkspaceDataAddPageElement(this, {
+                this.elements.$addPage = new WorkspaceDataAddPageElement(this, {
                     style: 'add-page',
                     $container: this.elements.$workspacedata.$,
                     events: {
-                        click: ['createPage']
+                        click: ['prepareCreatePage']
                     }
+                });
+            },
+
+            /**
+             * Render create page wizard
+             * @member WorkspaceDataView
+             * @param {{
+             *      workspace: Workspace,
+             *      style: string,
+             *      [type]: string,
+             *      title: string,
+             *      text: string,
+             *      $html
+             * }} opts
+             */
+            renderCreatePageWizard: function renderCreatePageWizard(opts) {
+
+                /**
+                 * Define buttons
+                 * @type {{
+                 *      approve: {text: string, events: {click: string}},
+                 *      reject: {text: string, events: {click: string[]}}
+                 * }}
+                 */
+                var buttons = {
+                    approve: {
+                        text: 'OK',
+                        events: {
+                            click: 'approveCreatePage'
+                        }
+                    },
+                    reject: {
+                        text: 'Cancel',
+                        events: {
+                            click: ['rejectModalEvent']
+                        }
+                    }
+                };
+
+                /**
+                 * Define current page
+                 * @type {Page}
+                 */
+                var page = this.controller.getPage();
+
+                this.modalDialog({
+                    style: opts.style,
+                    $container: page.view.get$item().$,
+                    type: opts.type || 'info',
+                    title: opts.title,
+                    text: opts.workspace.model.getUUID(),
+                    html: opts.$html,
+                    cover: true,
+                    buttons: buttons
                 });
             },
 
