@@ -65,6 +65,12 @@ define(
                 return this;
             },
 
+            /**
+             * Render add wizard
+             * @member WorkspaceDataAddPageElement
+             * @param {Workspace} workspace
+             * @returns {*|jQuery|HTMLElement}
+             */
             renderWizard: function renderWizard(workspace) {
 
                 var $ul = $('<ul />');
