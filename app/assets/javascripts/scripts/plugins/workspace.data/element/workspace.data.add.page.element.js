@@ -75,17 +75,6 @@ define(
 
                 var $ul = $('<ul />');
 
-                var $blank = $('<li />').append(
-                    this.renderCheckbox({
-                        name: 'blank',
-                        text: 'Blank',
-                        checked: true,
-                        value: true,
-                        disabled: false,
-                        visible: true
-                    })
-                );
-
                 var items = workspace.model.getItems();
 
                 /**
@@ -95,27 +84,48 @@ define(
                 var clonePages = $.map(items, function map(page) {
                     return {
                         type: 'text',
-                        value: page.model.getItemTitle()
+                        value: page.model.getUUID()
                     };
                 });
 
+                clonePages.unshift({
+                    type: 'text',
+                    value: 'Empty page'
+                });
+
+                /**
+                 * Define title
+                 * @type {*|jQuery}
+                 */
+                var $title = $('<li />').append(
+                    this.renderTextField({
+                        name: 'title',
+                        text: 'Title',
+                        placeholder: 'Enter title',
+                        disabled: false,
+                        visible: true
+                    })
+                );
+
+                /**
+                 * Define clone from
+                 * @type {*|jQuery}
+                 */
                 var $clone = $('<li />').append(
                     this.renderCombobox(
                         clonePages,
                         clonePages[0].value,
-                        'Clone',
-                        'clone-page',
+                        'Create as',
+                        'clone-item-content',
                         undefined,
                         true
                     )
                 );
 
-                $ul.append([
-                    $blank,
-                    $clone
+                return $ul.append([
+                    $clone,
+                    $title
                 ]);
-
-                return $ul;
             }
 
         }, BaseElement.prototype);

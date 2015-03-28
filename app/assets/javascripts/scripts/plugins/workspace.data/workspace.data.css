@@ -114,3 +114,15 @@ ul.workspace-data > .add-page:hover {
     margin-right: 1%;
     clear: none;
 }
+
+.create-page.modal-dialog div.html > ul {
+    list-style: none;
+    background: #dedede;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.create-page.modal-dialog div.html > ul > li {
+    position: relative;
+    margin-bottom: 5px;
+}

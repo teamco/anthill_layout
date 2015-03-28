@@ -309,7 +309,7 @@ define(
                  * Create new page
                  * @member WorkspaceDataController
                  */
-                createPage: function createPage() {
+                approveCreatePage: function approveCreatePage(e) {
 
                     /**
                      * Get workspace
@@ -322,6 +322,11 @@ define(
                      * @type {Page}
                      */
                     var page = workspace.api.createPage([], true);
+
+                    page.controller.updatePreferences(
+                        this.scope.view.elements.$modal,
+                        false
+                    );
 
                     workspace.observer.publish(
                         workspace.eventmanager.eventList.switchToPage,

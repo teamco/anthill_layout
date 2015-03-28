@@ -192,7 +192,7 @@ define([
 
             return this.base.isDefined(uuid) ?
                 root.model.getItemByUUID(uuid) :
-                root.controller.getCurrentItem();
+                root.model.getCurrentItem();
         },
 
         /**
@@ -211,7 +211,7 @@ define([
 
             return this.base.isDefined(uuid) ?
                 workspace.model.getItemByUUID(uuid) :
-                workspace.controller.getCurrentItem();
+                workspace.model.getCurrentItem();
         },
 
         /**
@@ -220,7 +220,14 @@ define([
          * @returns {*|Widget}
          */
         getWidget: function getWidget() {
-            return this.getPage().controller.getCurrentItem();
+
+            /**
+             * Get page
+             * @type {Page}
+             */
+            var page = this.getPage();
+
+            return page.model.getCurrentItem();
         },
 
         /**
@@ -300,25 +307,6 @@ define([
         },
 
         /**
-         * Get current items
-         * @member BaseController
-         * @returns {*}
-         */
-        getCurrentItem: function getCurrentItem() {
-
-            var scope = this.scope,
-                sname = scope.model.getItemNameSpace();
-
-            if (sname === 'object') {
-                scope.logger.error(
-                    'Unable to locate current item'
-                );
-            }
-
-            return scope[sname];
-        },
-
-        /**
          * Set item as current in parent node
          * @member BaseController
          */
@@ -337,7 +325,7 @@ define([
         setCurrentItem: function setCurrentItem(item) {
             var scope = this.scope;
             scope[scope.model.getItemNameSpace()] = item;
-            return this.getCurrentItem();
+            return this.model.getCurrentItem();
         },
 
         /**

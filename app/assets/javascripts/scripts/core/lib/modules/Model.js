@@ -300,6 +300,25 @@ define([
         },
 
         /**
+         * Get current item
+         * @member BaseModel
+         * @returns {*}
+         */
+        getCurrentItem: function getCurrentItem() {
+
+            var scope = this.scope,
+                sname = this.getItemNameSpace();
+
+            if (sname === 'object') {
+                scope.logger.error(
+                    'Unable to locate current item'
+                );
+            }
+
+            return scope[sname];
+        },
+
+        /**
          * Get item title
          * @member BaseModel
          * @param {Page|Widget} [node]

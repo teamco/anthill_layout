@@ -90,7 +90,7 @@ define([], function defineRouter() {
              * Get current page
              * @type {Page}
              */
-            var currentPage = workspace.controller.getCurrentItem();
+            var currentPage = workspace.model.getCurrentItem();
 
             /**
              * Get page

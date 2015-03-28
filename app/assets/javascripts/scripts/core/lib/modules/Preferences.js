@@ -24,10 +24,10 @@ define([], function defineBasePreferences() {
             var $inputs = $modal.collectInputFields(),
                 scope = this.scope,
                 containment = this.getContainment(),
-                cname = scope.constructor.prototype.name.toLowerCase();
+                cname = scope.name.toLowerCase();
 
             if ($inputs.hasClass('validate')) {
-                this.scope.logger.warn('Fix incorrect data before submit');
+                scope.logger.warn('Fix incorrect data before submit');
                 return false;
             }
 

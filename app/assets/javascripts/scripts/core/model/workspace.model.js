@@ -160,6 +160,19 @@ define([
             scope.observer.publish(
                 scope.eventmanager.eventList.loadTrackingSnippet
             );
+        },
+
+        /**
+         * Define clone item content
+         * @member WorkspaceModel
+         * @param {string} itemUUID
+         */
+        setCloneItemContent: function setCloneItemContent(itemUUID) {
+
+            var clone = this.getItemByUUID(itemUUID),
+                currentItem = this.getCurrentItem();
+
+
         }
 
     }, BaseModel.prototype);

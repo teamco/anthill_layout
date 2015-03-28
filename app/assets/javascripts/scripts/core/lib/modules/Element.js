@@ -743,7 +743,7 @@ define([
              * Get item
              * @type {*}
              */
-            var item = scope.controller.getCurrentItem();
+            var item = scope.model.getCurrentItem();
 
             /**
              * Get item constructor name

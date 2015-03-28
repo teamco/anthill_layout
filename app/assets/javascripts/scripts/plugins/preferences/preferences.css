@@ -19,7 +19,6 @@
     margin-bottom: 3px;
     padding-top: 3px;
     position: relative;
-    overflow: hidden;
 }
 
 .modal-dialog.preferences .hidden {

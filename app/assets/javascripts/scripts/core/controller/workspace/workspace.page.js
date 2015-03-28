@@ -131,7 +131,7 @@ define([], function defineWorkspacePage() {
                         page
                     );
 
-                    if (page === this.controller.getCurrentItem()) {
+                    if (page === this.model.getCurrentItem()) {
                         this.logger.debug('Page already current', page);
                     } else {
                         this.logger.debug('Swipe to page', page);
@@ -173,7 +173,7 @@ define([], function defineWorkspacePage() {
                  * Get current page
                  * @type {Page}
                  */
-                var page = this.getCurrentItem();
+                var page = this.model.getCurrentItem();
 
                 /**
                  * Define local scope
