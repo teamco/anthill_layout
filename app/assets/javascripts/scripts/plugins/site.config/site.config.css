@@ -311,3 +311,7 @@ ul.site-config > .content:hover {
 .modal-dialog.clean-up-data {
     width: 700px;
 }
+
+.modal-dialog.clean-up-data div.html {
+    margin: 10px 10px 0 0;
+}
