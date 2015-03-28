@@ -81,7 +81,7 @@ define(
                 /**
                  * Set active content
                  * @member WorkspaceDataController
-                 * @param uuid
+                 * @param {string} [uuid]
                  */
                 setActiveContent: function setActiveContent(uuid) {
 
@@ -286,10 +286,21 @@ define(
                 prepareCreatePage: function prepareCreatePage() {
 
                     /**
+                     * Get scope
+                     * @type {WorkspaceData}
+                     */
+                    var scope = this.scope;
+
+                    // Unset active content
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.setActiveContent
+                    );
+
+                    /**
                      * Get view
                      * @type {WorkspaceDataView}
                      */
-                    var view = this.scope.view;
+                    var view = scope.view;
 
                     /**
                      * Get workspace

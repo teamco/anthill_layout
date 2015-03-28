@@ -252,15 +252,16 @@ define([
          * @returns {*}
          */
         getItemByUUID: function getItemByUUID(uuid) {
+
             var base = this.base,
                 items = this.getItems(),
-                item = base.lib.hash.isHashKey(items, uuid) ?
-                    items[uuid] : undefined;
+                item = items[uuid];
 
-            if (!base.isDefined(item)) {
-                this.scope.logger.debug('Undefined item');
+            if (base.isDefined(item)) {
+                return item;
             }
-            return item;
+
+            this.scope.logger.debug('Undefined item');
         },
 
         /**
@@ -681,6 +682,30 @@ define([
             }
 
             return data.collector;
+        },
+
+        /**
+         * Check if transfer preferences should be skipped
+         * @member BaseModel
+         * @param {string} index
+         * @returns {boolean}
+         */
+        checkSkipPreferencesOn: function checkSkipPreferencesOn(index) {
+
+            /**
+             * Define skipTransfer
+             * @type {boolean}
+             */
+            var skipTransfer = this.skipPreferencesOn &&
+                this.skipPreferencesOn.indexOf(index) > -1;
+
+            if (skipTransfer) {
+                this.scope.logger.debug(
+                    'Transfer preferences should be skipped'
+                );
+            }
+
+            return skipTransfer;
         }
 
     }, AntHill.prototype, CRUD.prototype);

@@ -403,10 +403,14 @@ define([
          */
         transferPreferences: function transferPreferences(index, value) {
 
-            if (!this.controller.isWidgetContent()) {
-                this.config.preferences[index] = value;
+            var widgetContent = this.controller.isWidgetContent(),
+                skipTransfer = this.model.checkSkipPreferencesOn(index);
+
+            if (widgetContent || skipTransfer) {
                 return false;
             }
+
+            this.config.preferences[index] = value;
         },
 
         /**
@@ -565,18 +569,22 @@ define([
          */
         isWidgetContent: function isWidgetContent() {
 
+            // Get scope
+            var scope = this.scope;
+
             /**
              * Get widget
              * @type {Widget}
              */
-            var widget = this.scope.controller.getContainment();
+            var widget = scope.controller.getContainment();
 
-            if (!widget) {
-                this.scope.logger.info('Root is not widget content');
-                return false;
+            if (widget) {
+                scope.logger.debug('Widget has content');
+                return widget.controller.isWidget();
             }
 
-            return widget.controller.isWidget();
+            scope.logger.info('Root is not widget content');
+            return false;
         },
 
         /**

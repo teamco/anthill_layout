@@ -24,6 +24,15 @@ define([
          * @type {Page}
          */
         this.item = Page;
+
+        /**
+         * Skip transfer preferences
+         * @member WorkspaceModel
+         * @type {string[]}
+         */
+        this.skipPreferencesOn = [
+            'cloneItemContent'
+        ];
     };
 
     return WorkspaceModel.extend('WorkspaceModel', {

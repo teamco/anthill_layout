@@ -99,8 +99,8 @@ define(
                  */
                 var $title = $('<li />').append(
                     this.renderTextField({
-                        name: 'title',
-                        text: 'Title',
+                        name: 'page-title',
+                        text: 'Page title',
                         placeholder: 'Enter title',
                         disabled: false,
                         visible: true
@@ -116,7 +116,7 @@ define(
                         clonePages,
                         clonePages[0].value,
                         'Create as',
-                        'clone-item-content',
+                        'cloneItemContent',
                         undefined,
                         true
                     )
