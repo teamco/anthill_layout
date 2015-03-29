@@ -227,11 +227,12 @@ define(['jquery'], function defineBasePreferences($) {
                  */
                 $element = this.renderCombobox(
                     node.list,
-                    (selected.length === 0 ? node.list[0].value : selected),
+                    selected,
                     text.trim(),
                     index,
                     undefined,
-                    node.visible
+                    node.visible,
+                    node.placeholder
                 );
             }
 
