@@ -218,7 +218,9 @@ define([], function defineComboBoxRenderer() {
                 if (this.base.isDefined(event)) {
                     if (this.base.isFunction(event.callback)) {
                         $li.on(event.type, function comboBoxEvent(e) {
-                            event.callback($(e.target).attr('rel'));
+                            event.callback(
+                                $(e.target).attr('rel')
+                            );
                         });
                     }
                 }
