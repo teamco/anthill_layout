@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 20150330104957) do
     t.datetime "updated_at",      null: false
   end
 
+  add_index "author_site_storage_widgets", ["site_storage_id"], name: "index_author_site_storage_widgets_on_site_storage_id"
+  add_index "author_site_storage_widgets", ["widget_id"], name: "index_author_site_storage_widgets_on_widget_id"
+
   create_table "author_site_storages", force: :cascade do |t|
     t.string   "uuid"
     t.string   "key"

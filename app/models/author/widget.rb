@@ -9,6 +9,8 @@ class Author::Widget < ActiveRecord::Base
   has_many :author_site_storage_widgets, :class_name => 'Author::SiteStorageWidget'
   has_many :author_site_storages, :class_name => 'Author::SiteStorage', through: :author_site_storage_widgets
 
+  accepts_nested_attributes_for :author_site_storage_widgets, allow_destroy: true
+
   validates :resource, presence: true,
             format: {with: /\A[a-zA-Z](.)+\z/, message: 'only allows letters'}
 

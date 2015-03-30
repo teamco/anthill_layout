@@ -9,17 +9,15 @@ class Author::SiteStorage < ActiveRecord::Base
   has_many :author_site_storage_widgets, :class_name => 'Author::SiteStorageWidget'
   has_many :author_widgets, :class_name => 'Author::Widget', through: :author_site_storage_widgets
 
-  accepts_nested_attributes_for :author_site_versions,
-                                allow_destroy: true
-
   belongs_to :author_site_type,
              :class_name => 'Author::SiteType',
              :foreign_key => :site_type_id
 
-  accepts_nested_attributes_for :author_site_type
+  belongs_to :user, :foreign_key => :user_id
 
-  belongs_to :user,
-             :foreign_key => :user_id
+  accepts_nested_attributes_for :author_site_storage_widgets, allow_destroy: true
+  accepts_nested_attributes_for :author_site_versions, allow_destroy: true
+  accepts_nested_attributes_for :author_site_type
 
   validates :key,
             presence: true,
