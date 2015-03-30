@@ -308,6 +308,10 @@ body.admin form li {
   display: inline-block;
 }
 
+body.admin form ul.widgets {
+  position: relative;
+}
+
 body.admin form ul.widgets > li {
   width: 15%;
   overflow: hidden;
@@ -315,11 +319,29 @@ body.admin form ul.widgets > li {
   box-shadow: 1px 1px 1px #999;
   padding-left: 5px;
   background: #efefef;
+  border-radius: 3px;
+}
+
+body.admin form ul.widgets > li:hover {
+  background: #fff;
+  cursor: pointer;
+}
+
+body.admin form ul.widgets > li label {
+  font-size: 11px;
+  width: 100%;
+}
+
+body.admin form ul.widgets > li input[type="checkbox"] {
+  margin-right: 5px;
 }
 
 body.admin form ul > li label {
   min-width: inherit;
   cursor: pointer;
+  font-variant: normal;
+  font-weight: normal;
+  text-transform: capitalize;
 }
 
 body.admin form ul div.field {
