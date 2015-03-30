@@ -103,6 +103,7 @@ class Author::SiteStoragesController < Author::AuthorController
                      })
     else
       @activated = versions.where(version: params[:author_site_storage][:activated_version]).first
+      params[:author_site_storage].delete :activated_version
     end
 
     respond_to do |format|
@@ -194,13 +195,10 @@ class Author::SiteStoragesController < Author::AuthorController
   def update_handler(versions)
     updated = false
     if @author_site_storage.update(author_site_storage_params)
-      if @activated.nil?
-        updated = update_version_activation(
-            versions.where({activated: true}).last.version
-        )
-      else
-        updated = update_version_activation(@activated.version)
-      end
+      update_version_activation(
+          @activated.nil? ?
+              versions.where({activated: true}).last.version : @activated.version
+      )
     end
     updated
   end
@@ -273,6 +271,7 @@ class Author::SiteStoragesController < Author::AuthorController
         :key,
         :content,
         :site_type_id,
+        :activated_version,
         author_site_storage_widget_ids: [],
         author_site_versions_attributes: [
             :id,

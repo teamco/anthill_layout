@@ -1,10 +1,5 @@
 <%= javascript_tag do %>
-    function selectAll(e) {
-        $('ul.widgets input[type="checkbox"]').prop(
-            'checked',
-            $('#select_all_widgets').prop('checked')
-        );
-    }
+    function selectAll(e){$('ul.widgets input[type="checkbox"]').prop('checked',$('#select_all_widgets').prop('checked'));}
 <% end %>
 <%= form_for(@author_site_storage) do |f| -%>
 
@@ -21,16 +16,17 @@
     <%= render_activated_version(f) -%>
 
     <div class="field">
-      <label><%= check_box_tag 'select_all_widgets', 'select_all_widgets', false, {onchange: 'selectAll()'} %>Select widgets</label>
+      <label><%= check_box_tag 'select_all_widgets', 'select_all_widgets', false, {onchange: 'selectAll()'} %>Select
+        widgets</label>
       <%= hidden_field_tag 'author_site_storage[author_site_storage_widget_ids][]', nil %>
       <ul class="widgets">
-        <% Author::Widget.all.each do |widget| %>
+        <% Author::Widget.order(:name).each do |widget| %>
             <li>
               <%= check_box_tag 'author_site_storage[author_site_storage_widget_ids][]',
                                 widget.id,
                                 @author_site_storage.author_site_storage_widget_ids.include?(widget.id),
                                 id: dom_id(widget) %>
-              <%= label_tag dom_id(widget), widget.name, {title: widget.name} %>
+              <%= label_tag dom_id(widget), widget.name, {title: "#{widget.name}\n#{widget.description}"} %>
             </li>
         <% end %>
       </ul>
