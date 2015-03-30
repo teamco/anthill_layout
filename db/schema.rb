@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120145340) do
+ActiveRecord::Schema.define(version: 20150330104957) do
+
+  create_table "author_site_storage_widgets", force: :cascade do |t|
+    t.integer  "site_storage_id"
+    t.integer  "widget_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "author_site_storages", force: :cascade do |t|
     t.string   "uuid"

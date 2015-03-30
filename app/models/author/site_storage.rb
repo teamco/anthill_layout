@@ -6,6 +6,9 @@ class Author::SiteStorage < ActiveRecord::Base
            :class_name => 'Author::SiteVersion',
            dependent: :destroy
 
+  has_many :author_site_storage_widgets, :class_name => 'Author::SiteStorageWidget'
+  has_many :author_widgets, :class_name => 'Author::Widget', through: :author_site_storage_widgets
+
   accepts_nested_attributes_for :author_site_versions,
                                 allow_destroy: true
 

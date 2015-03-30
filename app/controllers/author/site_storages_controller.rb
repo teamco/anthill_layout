@@ -273,6 +273,7 @@ class Author::SiteStoragesController < Author::AuthorController
         :key,
         :content,
         :site_type_id,
+        author_site_storage_widget_ids: [],
         author_site_versions_attributes: [
             :id,
             :version,
