@@ -43,13 +43,11 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages/new
   def new
     @author_site_storage = Author::SiteStorage.new
-    @author_site_types = Author::SiteType.all
     render action: :form
   end
 
   # GET /author/site_storages/1/edit
   def edit
-    @author_site_types = Author::SiteType.all
     render action: :form
   end
 
@@ -195,7 +193,7 @@ class Author::SiteStoragesController < Author::AuthorController
   def update_handler(versions)
     updated = false
     if @author_site_storage.update(author_site_storage_params)
-      update_version_activation(
+      updated = update_version_activation(
           @activated.nil? ?
               versions.where({activated: true}).last.version : @activated.version
       )
@@ -260,6 +258,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_storage
+    @author_site_types = Author::SiteType.all
     @author_site_storage = Author::SiteStorage.where(key: params[:key]).first ||
         Author::SiteStorage.where(key: params[:id]).first
     @target_path = get_target_url(@author_site_storage.key) unless @author_site_storage.nil?

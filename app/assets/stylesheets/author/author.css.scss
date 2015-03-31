@@ -304,6 +304,18 @@ body.admin form ul {
   border-radius: 5px;
 }
 
+body.admin form ul.categories {
+  background-color: transparent;
+}
+
+body.admin form ul.categories > li {
+  width: 100%;
+}
+
+body.admin form ul.categories > li > label {
+  cursor: pointer;
+}
+
 body.admin form li {
   display: inline-block;
 }
@@ -313,20 +325,24 @@ body.admin form ul.widgets {
 }
 
 body.admin form ul.widgets > li {
-  width: 15%;
   overflow: hidden;
   white-space: nowrap;
   box-shadow: 1px 1px 1px #999;
-  padding-left: 5px;
+  padding: 0 5px;
   background: #efefef;
   border-radius: 3px;
 }
 
 body.admin form ul.widgets > li:hover {
   background: #fff;
+  box-shadow: 0 0 1px #999;
   cursor: pointer;
 }
 
+body.admin form ul.widgets > li:active {
+  box-shadow: inset -3px -3px 1px #bbb;
+  background: #ccc;
+}
 body.admin form ul.widgets > li label {
   font-size: 11px;
   width: 100%;
@@ -336,7 +352,7 @@ body.admin form ul.widgets > li input[type="checkbox"] {
   margin-right: 5px;
 }
 
-body.admin form ul > li label {
+body.admin form ul.widgets > li label {
   min-width: inherit;
   cursor: pointer;
   font-variant: normal;

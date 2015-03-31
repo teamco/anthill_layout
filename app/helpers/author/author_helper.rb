@@ -54,7 +54,7 @@ module Author::AuthorHelper
     content_tag(:div, class: 'field') do
       concat f.label name
       concat f.collection_select(opts[:id], opts[:collection], opts[:index], opts[:value])
-    end
+    end unless opts[:collection].nil?
   end
 
   def render_submit(f)
