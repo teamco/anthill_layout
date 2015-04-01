@@ -99,13 +99,13 @@ define(
                  */
                 var $title = $('<li />').append(
                     this.renderTextField({
-                        name: 'page-title',
+                        name: 'title',
                         text: 'Page title',
                         placeholder: 'Enter title',
                         disabled: false,
                         visible: true
                     })
-                );
+                ).addClass('page-title');
 
                 /**
                  * Define clone from

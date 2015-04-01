@@ -13,7 +13,6 @@ define([], function defineBasePreferences() {
      * @constructor
      */
     var BasePreferences = function BasePreferences() {
-
     };
 
     return BasePreferences.extend('BasePreferences', {
