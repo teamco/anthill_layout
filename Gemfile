@@ -23,14 +23,14 @@ case RUBY_PLATFORM
 
       # Use Capistrano for deployment
       gem 'capistrano-rails'
-      gem 'debase'
+      gem 'debase', '>= 0.1.3.beta1'
     end
 
     gem 'rack-attack'
 
     # Use jquery as the JavaScript library
     gem 'jquery-rails', '>= 4.0.0'
-    gem 'rmagick', '~> 2.13.4'
+    gem 'rmagick', '>= 2.13.4'
 
   when /win32/
 
