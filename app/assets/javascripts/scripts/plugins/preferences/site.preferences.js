@@ -8,17 +8,16 @@
 define([
     'jquery',
     'plugins/preferences/preferences'
-], function defineSitePreferences($, BasePreferences) {
+], function defineSitePreferences($, BasePreferencesElement) {
 
     /**
      * Define prefs
      * @class SitePreferences
      * @extends Renderer
-     * @extends BasePreferences
+     * @extends BasePreferencesElement
      * @constructor
      */
     var SitePreferences = function SitePreferences() {
-
     };
 
     return SitePreferences.extend('SitePreferences', {
@@ -418,5 +417,5 @@ define([
             )
         }
 
-    }, BasePreferences.prototype);
+    }, BasePreferencesElement.prototype);
 });

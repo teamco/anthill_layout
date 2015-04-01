@@ -7,6 +7,11 @@
 
 define([], function defineBasePreferences() {
 
+    /**
+     * Define BasePreferences
+     * @class BasePreferences
+     * @constructor
+     */
     var BasePreferences = function BasePreferences() {
 
     };
