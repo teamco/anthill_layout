@@ -99,7 +99,13 @@ define([], function defineLibEvent() {
 
                 options.clientX = options.pointerX;
                 options.clientY = options.pointerY;
+
+                /**
+                 * Define event
+                 * @type {Event}
+                 */
                 var evt = document.createEventObject();
+
                 oEvent = extend(evt, options);
                 element.fireEvent('on' + eventName, oEvent);
             }
