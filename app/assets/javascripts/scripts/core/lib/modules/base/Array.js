@@ -5,20 +5,18 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-define([], function defineBaseArray() {
+define([], function defineLibArray() {
 
     /**
-     * Define BaseArray
-     * @class BaseArray
+     * Define LibArray
+     * @class LibArray
      * @constructor
      */
-    var BaseArray = function BaseArray() {
+    var LibArray = function LibArray() {
     };
 
-    BaseArray.extend('BaseArray', {
-
-
+    LibArray.extend('LibArray', {
     });
 
-    return new BaseArray();
+    return new LibArray();
 });

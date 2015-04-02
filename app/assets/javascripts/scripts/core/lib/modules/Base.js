@@ -9,8 +9,10 @@ define([
     'modules/base/String',
     'modules/base/Image',
     'modules/base/UA',
+    'modules/base/File',
+    'modules/base/Event',
     'modules/base/RequirePatch'
-], function defineBase(arr, fn, gen, hash, html, num, dt, str, img, ua, rpatch) {
+], function defineBase(arr, fn, gen, hash, html, num, dt, str, img, ua, file, event, rpatch) {
 
     /**
      * Define base utils
@@ -22,17 +24,19 @@ define([
         /**
          * Define shims
          * @type {{
-         *      array: *,
-         *      function: *,
-         *      generator: *,
-         *      hash: *,
-         *      html: *,
-         *      number: *,
-         *      datetime: *,
-         *      string: *,
-         *      image: *,
-         *      ua: *,
-         *      rpatch: *
+         *      array: LibArray,
+         *      function: LibFunction,
+         *      generator: LibGenerator,
+         *      hash: LibHash,
+         *      html: LibHTML,
+         *      number: LibNumber,
+         *      datetime: LibDateTime,
+         *      string: LibString,
+         *      image: LibImage,
+         *      ua: LibUserAgent,
+         *      file: LibFile,
+         *      event: LibEvent,
+         *      rpatch: LibRequirePatch
          * }}
          */
         var Shims = {
@@ -46,6 +50,8 @@ define([
             'string': str,
             'image': img,
             'ua': ua,
+            'file': file,
+            'event': event,
             'rpatch': rpatch
         };
 

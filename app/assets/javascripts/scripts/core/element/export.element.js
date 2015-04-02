@@ -50,7 +50,8 @@ define([
              * Define scope
              * @type {Application}
              */
-            var scope = this.view.scope;
+            var scope = this.view.scope,
+                lib = scope.base.lib;
 
             /**
              * Define url
@@ -60,13 +61,11 @@ define([
 
             try {
 
-                url = window.URL.createObjectURL(
-                    new Blob(
-                        [data.content], {
-                            type: data.type
-                        }
-                    )
-                );
+                data.content = scope.base.isBase64(data.content) ?
+                    data.content :
+                    lib.string.utf8ToBase64(data.content);
+                
+                url = lib.file.createURL(data);
 
                 scope.logger.debug('Blob URL', url);
 
@@ -78,7 +77,7 @@ define([
                  * Define content
                  * @type {string}
                  */
-                var content = scope.base.lib.string.base64.encode(
+                var content = lib.string.base64.encode(
                     data.content
                 );
 
@@ -115,7 +114,8 @@ define([
                 }).text(data.title || 'Download');
 
                 if (data.autoload) {
-                    this.$[0].click();
+
+                    lib.event.simulate(this.$[0], "click");
                 }
             }
 
