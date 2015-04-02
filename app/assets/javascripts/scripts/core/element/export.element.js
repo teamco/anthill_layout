@@ -61,11 +61,12 @@ define([
 
             try {
 
-                data.content = scope.base.isBase64(data.content) ?
-                    data.content :
-                    lib.string.utf8ToBase64(data.content);
-                
-                url = lib.file.createURL(data);
+                url = lib.file.createURL(
+                    scope.base.isBase64(data.content) ?
+                        data.content :
+                        lib.string.utf8ToBase64(data.content),
+                    data.type
+                );
 
                 scope.logger.debug('Blob URL', url);
 

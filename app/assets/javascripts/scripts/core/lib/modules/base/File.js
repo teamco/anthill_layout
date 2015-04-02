@@ -20,15 +20,16 @@ define([], function defineLibFile() {
         /**
          * Create Blob URL
          * @member LibFile
-         * @param {{content: string, type: string}} data
+         * @param {string} content
+         * @param {string} type
          * @returns {*}
          */
-        createURL: function createURL(data) {
+        createURL: function createURL(content, type) {
 
             return window.URL.createObjectURL(
                 this._base64toBlob(
-                    data.content,
-                    data.type
+                    content,
+                    type
                 )
             )
         },
