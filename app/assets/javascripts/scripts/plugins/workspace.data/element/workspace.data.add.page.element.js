@@ -33,12 +33,14 @@ define(
 
             /**
              * Define title
+             * @member WorkspaceDataAddPageElement
              * @type {string}
              */
             this.title = 'Create new page';
 
             /**
              * Define description
+             * @member WorkspaceDataAddPageElement
              * @type {string}
              */
             this.description = 'Clicking a button will take you to the edit page for the new widgets';
@@ -87,13 +89,12 @@ define(
                         var uuid = page.model.getUUID(),
                             title = page.model.getItemTitle(),
                             counter = page.model.getConfig('widget/counter'),
-                            noTitle = uuid === title,
-                            description = (noTitle ? '' : uuid) + '<br />',
+                            description = (uuid === title ? '' : title) + '<br />',
                             pluralize = 'items: ' + counter;
 
                         return {
                             type: 'text',
-                            value: noTitle ? uuid : title,
+                            value: uuid,
                             tooltip: description + pluralize
                         };
                     });

@@ -185,27 +185,14 @@ define([
              */
             var page = this.getPage();
 
-            var prefs = $.extend(
-                {},
-                page.model.getConfig('widget').preferences, {
-                    resource: $element.$.attr('resource'),
-                    thumbnail: $element.data.thumbnail,
-                    title: $element.data.name,
-                    description: $element.data.description
-                }
-            );
-
-            page.api.createItem({
-                config: {
-                    preferences: prefs,
-                    html: {
-                        dimensions: {
-                            width: $element.data.dimensions.width,
-                            height: $element.data.dimensions.height
-                        }
-                    }
-                }
-            }, true);
+            page.controller.createWidgetFromResource({
+                width: $element.data.dimensions.width,
+                height: $element.data.dimensions.height,
+                resource: $element.$.attr('resource'),
+                thumbnail: $element.data.thumbnail,
+                title: $element.data.name,
+                description: $element.data.description
+            }, false);
         }
 
     }, PluginBase.prototype, Routes.prototype);

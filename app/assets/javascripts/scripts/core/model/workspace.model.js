@@ -178,10 +178,62 @@ define([
          */
         setCloneItemContent: function setCloneItemContent(itemUUID) {
 
-            var clone = this.getItemByUUID(itemUUID),
-                currentItem = this.getCurrentItem();
+            /**
+             * Get clone page
+             * @type {Page}
+             */
+            var clonePage = this.getItemByUUID(itemUUID);
+
+            /**
+             * Get current page
+             * @type {Page}
+             */
+            var currentPage = this.getCurrentItem();
+
+            // Transfer layout
+            currentPage.observer.publish(
+                currentPage.eventmanager.eventList.createLayout,
+                clonePage.model.getConfig('layout')
+            );
+
+            /**
+             * Get clone page items
+             * @type {{Widget: {}}}
+             */
+            var cloneWidgets = clonePage.model.getItems(),
+                index;
+
+            for (index in cloneWidgets) {
+
+                if (cloneWidgets.hasOwnProperty(index)) {
+
+                    /**
+                     * Define widget
+                     * @type {Widget}
+                     */
+                    var widget = cloneWidgets[index],
+                        prefs = widget.model.getConfig('preferences');
+
+                    if (typeof(prefs.resource) === 'undefined') {
+
+                        widget.logger.warn('Undefined resource', prefs);
+                        return false;
+                    }
+
+                    currentPage.controller.createWidgetFromResource({
+
+                        resource: prefs.resource,
+                        thumbnail: prefs.thumbnail,
+                        title: prefs.title,
+                        description: prefs.description,
+                        width: widget.dom.width,
+                        height: widget.dom.height
+
+                    }, true);
 
 
+                }
+            }
         }
 
     }, BaseModel.prototype);

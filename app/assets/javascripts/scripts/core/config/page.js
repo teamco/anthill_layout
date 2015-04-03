@@ -14,9 +14,8 @@ define([
     'model/page.model',
     'view/page.view',
     'event/page.event.manager',
-    'config/layout',
     'permission/page.permission'
-], function definePage(AntHill, MVC, API, Controller, Model, View, EventManager, Layout, Permission) {
+], function definePage(AntHill, MVC, API, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define Page
@@ -228,7 +227,7 @@ define([
 
             this.observer.publish(
                 this.eventmanager.eventList.createLayout,
-                [Layout, this.config.layout]
+                this.config.layout
             );
 
             this.observer.batchPublish(
