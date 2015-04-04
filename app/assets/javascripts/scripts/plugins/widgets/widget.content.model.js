@@ -113,10 +113,10 @@ define([], function defineWidgetContentModel() {
              * Define
              * @type {string}
              */
-            var cname = this.scope.constructor.prototype.name.toLowerCase(),
+            var cname = this.scope.name.toLowerCase(),
                 prefs = source.model.preferences;
 
-            if (source.constructor.prototype.name.toLowerCase() !== cname) {
+            if (source.name.toLowerCase() !== cname) {
                 this.scope.logger.warn('Unable to copy preferences', source);
                 return false;
             }

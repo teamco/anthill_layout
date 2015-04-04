@@ -192,7 +192,7 @@ define([
                 thumbnail: $element.data.thumbnail,
                 title: $element.data.name,
                 description: $element.data.description
-            }, false);
+            }, true, false);
         }
 
     }, PluginBase.prototype, Routes.prototype);

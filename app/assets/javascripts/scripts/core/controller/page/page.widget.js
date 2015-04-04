@@ -31,7 +31,7 @@ define([], function definePageWidget() {
              * }} opts
              * @param {boolean} silent
              */
-            createWidgetFromResource: function createWidgetFromResource(opts, silent) {
+            createWidgetFromResource: function createWidgetFromResource(opts, render, silent) {
 
                 /**
                  * Get scope
@@ -59,7 +59,7 @@ define([], function definePageWidget() {
                             }
                         }
                     }
-                }, true, silent);
+                }, render, silent);
             },
 
             /**

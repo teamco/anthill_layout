@@ -201,7 +201,7 @@ define([
              * @type {{Widget: {}}}
              */
             var cloneWidgets = clonePage.model.getItems(),
-                index;
+                index, cloneMap = {};
 
             for (index in cloneWidgets) {
 
@@ -211,25 +211,108 @@ define([
                      * Define widget
                      * @type {Widget}
                      */
-                    var widget = cloneWidgets[index],
-                        prefs = widget.model.getConfig('preferences');
+                    var cloneWidget = cloneWidgets[index],
+                        cloneWidgetPrefs = cloneWidget.model.getConfig('preferences');
 
-                    if (typeof(prefs.resource) === 'undefined') {
+                    if (typeof(cloneWidgetPrefs.resource) === 'undefined') {
 
-                        widget.logger.warn('Undefined resource', prefs);
+                        cloneWidget.logger.warn('Undefined resource', cloneWidgetPrefs);
                         return false;
                     }
 
+                    // Create without render
                     currentPage.controller.createWidgetFromResource({
 
-                        resource: prefs.resource,
-                        thumbnail: prefs.thumbnail,
-                        title: prefs.title,
-                        description: prefs.description,
-                        width: widget.dom.width,
-                        height: widget.dom.height
+                        resource: cloneWidgetPrefs.resource,
+                        thumbnail: cloneWidgetPrefs.thumbnail,
+                        title: cloneWidgetPrefs.title,
+                        description: cloneWidgetPrefs.description,
+                        width: cloneWidget.dom.width,
+                        height: cloneWidget.dom.height
 
-                    }, true);
+                    }, false, true);
+
+                    /**
+                     * Get current widget
+                     * @type {Widget}
+                     */
+                    var currentWidget = currentPage.widget,
+                        key;
+
+                    // Define map
+                    cloneMap[cloneWidget.model.getUUID()] = currentWidget.model.getUUID();
+
+                    // Copy dom
+                    currentWidget.dom = cloneWidget.dom;
+
+                    // Render widget
+                    currentWidget.observer.publish(
+                        currentWidget.eventmanager.eventList.successRendered
+                    );
+
+                    for (key in cloneWidgetPrefs) {
+
+                        if (cloneWidgetPrefs.hasOwnProperty(key)) {
+
+                            currentWidget.config.preferences[key] =
+                                cloneWidgetPrefs[key];
+                        }
+                    }
+
+                    // Temporary clone rules
+                    currentWidget.config.rules = cloneWidget.model.getConfig('rules');
+                }
+            }
+
+            // Get all page widgets
+            var items = currentPage.model.getItems();
+
+            for (var item in items) {
+
+                if (items.hasOwnProperty(item)) {
+
+                    /**
+                     * Get widget
+                     * @type {Widget}
+                     */
+                    currentWidget = items[item];
+
+                    var rules = currentWidget.model.getConfig('rules');
+
+                    /**
+                     * Get subscribed widgets
+                     * @type {Object}
+                     */
+                    var subscribe = rules.subscribe || {},
+                        rs, currentKey, z;
+
+                    if (subscribe) {
+
+                        for (rs in subscribe) {
+                            if (subscribe.hasOwnProperty(rs)) {
+
+                                currentKey = cloneMap[rs];
+
+                                if (rs.match(/content/)) {
+                                    currentKey = cloneMap[rs.replace(/\-content/, '')] + '-content';
+                                }
+
+                                subscribe[currentKey] = {};
+
+                                for (var sk in subscribe[rs]) {
+                                    if (subscribe[rs].hasOwnProperty(sk)) {
+                                        subscribe[currentKey][sk] = subscribe[currentKey][sk] || [];
+                                        for (z = 0; z < subscribe[rs][sk].length; z++) {
+                                            subscribe[currentKey][sk].push(subscribe[rs][sk][i]);
+                                        }
+                                    }
+                                }
+
+                                // Delete temp rules
+                                delete subscribe[rs];
+                            }
+                        }
+                    }
 
 
                 }
