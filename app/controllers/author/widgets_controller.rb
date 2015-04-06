@@ -20,7 +20,7 @@ class Author::WidgetsController < Author::AuthorController
   # GET /author/widgets
   # GET /author/widgets.json
   def index
-    @author_widgets = Author::Widget.all.where(visible: true).order(name: :asc)
+    @author_widgets = Author::Widget.all.includes(:author_widget_category).where(visible: true).order(name: :asc)
     @json_data ||= {
         categories: Author::WidgetCategory.all,
         widgets: []
