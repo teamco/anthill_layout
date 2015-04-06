@@ -219,6 +219,36 @@ define([], function defineWorkspacePage() {
             afterPageOrder: function afterPageOrder(order) {
                 this.logger.debug('Page order', order);
                 this.controller.store();
+            },
+
+            /**
+             * Define clone page
+             * @member WorkspacePage
+             * @param {string} uuid
+             */
+            clonePage: function clonePage(uuid) {
+
+                /**
+                 * Get clone page
+                 * @type {Page}
+                 */
+                var clonePage = this.model.getItemByUUID(uuid);
+
+                /**
+                 * Get current page
+                 * @type {Page}
+                 */
+                var currentPage = this.model.getCurrentItem();
+
+                // Transfer layout
+                currentPage.observer.publish(
+                    currentPage.eventmanager.eventList.createLayout,
+                    clonePage.model.getConfig('layout')
+                );
+
+                this.logger.debug('Clone page', clonePage, currentPage);
+
+                currentPage.controller.cloneWidgets(clonePage);
             }
         }
     );

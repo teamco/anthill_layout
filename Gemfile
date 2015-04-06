@@ -18,6 +18,8 @@ case RUBY_PLATFORM
     gem 'byebug', group: [:development, :test]
     group :development do
 
+      gem 'bullet'
+
       gem 'web-console', '~> 2.0'
       gem 'ruby-debug-ide', '>= 0.4.25'
 

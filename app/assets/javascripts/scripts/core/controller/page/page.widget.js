@@ -5,11 +5,14 @@
  * Time: 6:29 PM
  */
 
-define([], function definePageWidget() {
+define([
+    'controller/page/page.widget.copy'
+], function definePageWidget(PageWidgetCopy) {
 
     /**
      * Define PageWidget
      * @class PageWidget
+     * @extend PageWidgetCopy
      * @constructor
      */
     var PageWidget = function PageWidget() {
@@ -188,6 +191,7 @@ define([], function definePageWidget() {
                     );
                 }
             }
-        }
+        },
+        PageWidgetCopy.prototype
     );
 });
