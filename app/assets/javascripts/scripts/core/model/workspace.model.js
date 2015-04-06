@@ -24,6 +24,15 @@ define([
          * @type {Page}
          */
         this.item = Page;
+
+        /**
+         * Skip transfer preferences
+         * @member WorkspaceModel
+         * @type {string[]}
+         */
+        this.skipPreferencesOn = [
+            'cloneItemContent'
+        ];
     };
 
     return WorkspaceModel.extend('WorkspaceModel', {
@@ -159,6 +168,25 @@ define([
 
             scope.observer.publish(
                 scope.eventmanager.eventList.loadTrackingSnippet
+            );
+        },
+
+        /**
+         * Define clone item content
+         * @member WorkspaceModel
+         * @param {string} itemUUID
+         */
+        setCloneItemContent: function setCloneItemContent(itemUUID) {
+
+            /**
+             * Get scope
+             * @type {Workspace}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.clonePage,
+                itemUUID
             );
         }
 

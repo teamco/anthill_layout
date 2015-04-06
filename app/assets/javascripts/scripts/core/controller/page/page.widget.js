@@ -5,19 +5,65 @@
  * Time: 6:29 PM
  */
 
-define([], function definePageWidget(){
+define([
+    'controller/page/page.widget.copy'
+], function definePageWidget(PageWidgetCopy) {
 
     /**
      * Define PageWidget
      * @class PageWidget
+     * @extend PageWidgetCopy
      * @constructor
      */
     var PageWidget = function PageWidget() {
-
     };
 
     return PageWidget.extend(
         'PageWidget', {
+
+            /**
+             * Create widget from resource
+             * @member PageWidget
+             * @param {{
+             *      resource: string,
+             *      thumbnail: string,
+             *      title: string,
+             *      description: string,
+             *      width: number,
+             *      height: number
+             * }} opts
+             * @param {boolean} silent
+             */
+            createWidgetFromResource: function createWidgetFromResource(opts, render, silent) {
+
+                /**
+                 * Get scope
+                 * @type {Page}
+                 */
+                var scope = this.scope;
+
+                // Merge widget prefs
+                var prefs = $.extend({},
+                    this.model.getConfig('widget').preferences, {
+                        resource: opts.resource,
+                        thumbnail: opts.thumbnail,
+                        title: opts.name,
+                        description: opts.description
+                    }
+                );
+
+                scope.api.createWidget({
+                    config: {
+                        preferences: prefs,
+                        html: {
+                            dimensions: {
+                                width: opts.width,
+                                height: opts.height
+                            }
+                        }
+                    }
+                }, render, silent);
+            },
 
             /**
              * Check if allowed to add widget to page
@@ -145,6 +191,7 @@ define([], function definePageWidget(){
                     );
                 }
             }
-        }
+        },
+        PageWidgetCopy.prototype
     );
 });

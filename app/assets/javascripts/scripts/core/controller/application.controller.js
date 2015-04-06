@@ -101,7 +101,7 @@ define(
                             responseJSON: {
                                 error: [
                                     '<pre><code>',
-                                    errorObject.stack,
+                                    (errorObject || {}).stack,
                                     '</code></pre>'
                                 ].join('')
                             }

@@ -64,6 +64,7 @@ define(
              *      afterUpdatePreferences: string,
              *      createAuthorPanel: string,
              *      createToolPanel: string,
+             *      clonePage: string
              * }}
              */
             eventList: {
@@ -101,7 +102,9 @@ define(
                 afterUpdatePreferences: 'after.update.preferences',
 
                 createAuthorPanel: 'create.author.panel',
-                createToolPanel: 'create.tool.panel'
+                createToolPanel: 'create.tool.panel',
+
+                clonePage: 'clone.page'
             }
 
         }, BaseEvent.prototype);

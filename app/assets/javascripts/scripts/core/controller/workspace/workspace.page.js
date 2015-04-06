@@ -131,7 +131,7 @@ define([], function defineWorkspacePage() {
                         page
                     );
 
-                    if (page === this.controller.getCurrentItem()) {
+                    if (page === this.model.getCurrentItem()) {
                         this.logger.debug('Page already current', page);
                     } else {
                         this.logger.debug('Swipe to page', page);
@@ -173,7 +173,7 @@ define([], function defineWorkspacePage() {
                  * Get current page
                  * @type {Page}
                  */
-                var page = this.getCurrentItem();
+                var page = this.model.getCurrentItem();
 
                 /**
                  * Define local scope
@@ -219,6 +219,36 @@ define([], function defineWorkspacePage() {
             afterPageOrder: function afterPageOrder(order) {
                 this.logger.debug('Page order', order);
                 this.controller.store();
+            },
+
+            /**
+             * Define clone page
+             * @member WorkspacePage
+             * @param {string} uuid
+             */
+            clonePage: function clonePage(uuid) {
+
+                /**
+                 * Get clone page
+                 * @type {Page}
+                 */
+                var clonePage = this.model.getItemByUUID(uuid);
+
+                /**
+                 * Get current page
+                 * @type {Page}
+                 */
+                var currentPage = this.model.getCurrentItem();
+
+                // Transfer layout
+                currentPage.observer.publish(
+                    currentPage.eventmanager.eventList.createLayout,
+                    clonePage.model.getConfig('layout')
+                );
+
+                this.logger.debug('Clone page', clonePage, currentPage);
+
+                currentPage.controller.cloneWidgets(clonePage);
             }
         }
     );

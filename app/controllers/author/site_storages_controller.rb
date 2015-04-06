@@ -43,13 +43,11 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages/new
   def new
     @author_site_storage = Author::SiteStorage.new
-    @author_site_types = Author::SiteType.all
     render action: :form
   end
 
   # GET /author/site_storages/1/edit
   def edit
-    @author_site_types = Author::SiteType.all
     render action: :form
   end
 
@@ -103,6 +101,7 @@ class Author::SiteStoragesController < Author::AuthorController
                      })
     else
       @activated = versions.where(version: params[:author_site_storage][:activated_version]).first
+      params[:author_site_storage].delete :activated_version
     end
 
     respond_to do |format|
@@ -194,13 +193,10 @@ class Author::SiteStoragesController < Author::AuthorController
   def update_handler(versions)
     updated = false
     if @author_site_storage.update(author_site_storage_params)
-      if @activated.nil?
-        updated = update_version_activation(
-            versions.where({activated: true}).last.version
-        )
-      else
-        updated = update_version_activation(@activated.version)
-      end
+      updated = update_version_activation(
+          @activated.nil? ?
+              versions.where({activated: true}).last.version : @activated.version
+      )
     end
     updated
   end
@@ -262,6 +258,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_storage
+    @author_site_types = Author::SiteType.all
     @author_site_storage = Author::SiteStorage.where(key: params[:key]).first ||
         Author::SiteStorage.where(key: params[:id]).first
     @target_path = get_target_url(@author_site_storage.key) unless @author_site_storage.nil?
@@ -273,6 +270,8 @@ class Author::SiteStoragesController < Author::AuthorController
         :key,
         :content,
         :site_type_id,
+        :activated_version,
+        author_site_storage_widget_ids: [],
         author_site_versions_attributes: [
             :id,
             :version,

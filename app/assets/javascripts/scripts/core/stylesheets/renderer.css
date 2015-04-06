@@ -14,8 +14,8 @@ div.combo-box > ul {
     margin: 0 !important;
     padding: 0 !important;
     border: 1px solid #ccc !important;
+    background-color: #fff !important;
     border-radius: 2px;
-    background-color: #fff;
     height: 24px;
     line-height: 22px;
     float: right;

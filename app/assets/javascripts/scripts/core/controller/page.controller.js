@@ -10,7 +10,6 @@ define(
     [
         'config/anthill',
         'modules/Controller',
-        'modules/Page',
         'modules/Preferences',
         'modules/Router',
         'controller/page/page.layer',
@@ -18,7 +17,7 @@ define(
         'controller/page/page.widget',
         'controller/page/page.maximize'
     ],
-    function definePageController(AntHill, BaseController, BasePage, BasePreferences, Router, PageLayer, PageLayout, PageWidget, PageItemMaximize) {
+    function definePageController(AntHill, BaseController, BasePreferences, Router, PageLayer, PageLayout, PageWidget, PageItemMaximize) {
 
         /**
          * Define page controller
@@ -139,7 +138,6 @@ define(
 
             AntHill.prototype,
             BaseController.prototype,
-            BasePage.prototype,
             BasePreferences.prototype,
             PageLayer.prototype,
             PageLayout.prototype,

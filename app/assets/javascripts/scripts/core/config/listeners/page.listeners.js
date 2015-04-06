@@ -45,7 +45,7 @@ define(['config/page'], function definePageListeners(Page) {
                  * Get current widget
                  * @type {Widget}
                  */
-                var widget = this.controller.getCurrentItem();
+                var widget = this.model.getCurrentItem();
 
                 widget.model.setOverlapping(
                     this.model.getConfig('widget/overlapping')

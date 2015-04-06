@@ -7,13 +7,13 @@
 
 define([
     'plugins/preferences/preferences'
-], function defineWidgetPreferences(BasePreferences) {
+], function defineWidgetPreferences(BasePreferencesElement) {
 
     /**
      * Define prefs
      * @class WidgetPreferences
      * @extends Renderer
-     * @extends BasePreferences
+     * @extends BasePreferencesElement
      * @constructor
      */
     var WidgetPreferences = function WidgetPreferences() {
@@ -534,5 +534,5 @@ define([
             return $('<li />').append($move);
         }
 
-    }, BasePreferences.prototype);
+    }, BasePreferencesElement.prototype);
 });

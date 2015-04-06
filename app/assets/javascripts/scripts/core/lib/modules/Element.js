@@ -743,7 +743,7 @@ define([
              * Get item
              * @type {*}
              */
-            var item = scope.controller.getCurrentItem();
+            var item = scope.model.getCurrentItem();
 
             /**
              * Get item constructor name
@@ -893,40 +893,6 @@ define([
         },
 
         /**
-         * Get item title
-         * @member BaseElement
-         * @return {string|boolean}
-         */
-        getItemTitle: function getItemTitle() {
-
-            /**
-             * Get item
-             * @type {Application|Workspace|Page|Widget}
-             */
-            var item = this.view.scope;
-
-            if (typeof (item) === 'undefined') {
-                item.logger.warn('Undefined item');
-                return false;
-            }
-
-            if (typeof (item.model) === 'undefined') {
-                item.logger.warn('Undefined item\'s model', item);
-                return false;
-            }
-
-            /**
-             * Get prefs
-             * @type {*}
-             */
-            var preferences = item.model.getConfig('preferences') || {},
-                title = preferences.title + '';
-
-            return preferences.title && title.length > 0 ?
-                title : item.model.getUUID();
-        },
-
-        /**
          * Render items list
          * @member BaseElement
          * @param {Array} items
@@ -939,7 +905,7 @@ define([
                 $.map(items, function map(item, i) {
                     return [
                         '<li rel="', item.model.getUUID(), '">',
-                        item.view.elements.$widget.getItemTitle(),
+                        item.model.getItemTitle(),
                         '</li>'
                     ].join('');
                 }).join(''),

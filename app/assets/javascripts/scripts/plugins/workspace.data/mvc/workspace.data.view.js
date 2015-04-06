@@ -21,7 +21,7 @@ define(
     /**
      * Define WorkspaceDataView
      * @param {BaseView} BaseView
-     * @param {BasePreferences} BasePreferences
+     * @param {BasePreferences} BasePreferencesElement
      * @param {BaseView} Header
      * @param {BaseView} Footer
      * @param {WorkspaceDataContentElement} WorkspaceDataContentElement
@@ -30,207 +30,266 @@ define(
      * @param {WorkspaceDataElement} WorkspaceDataElement
      * @returns {*}
      */
-    function defineWorkspaceDataView(BaseView, BasePreferences, Header, Footer, WorkspaceDataContentElement, WorkspaceDataPreferencesElement, WorkspaceDataAddPageElement, WorkspaceDataElement) {
+    function defineWorkspaceDataView(BaseView, BasePreferencesElement, Header, Footer, WorkspaceDataContentElement, WorkspaceDataPreferencesElement, WorkspaceDataAddPageElement, WorkspaceDataElement) {
 
         /**
          * Define view
          * @class WorkspaceDataView
          * @extends BaseView
+         * @extends BasePreferencesElement
          * @constructor
          */
         var WorkspaceDataView = function WorkspaceDataView() {
         };
 
-        return WorkspaceDataView.extend('WorkspaceDataView', {
-
-            /**
-             * Render WorkspaceData
-             * @member WorkspaceDataView
-             * @returns {boolean}
-             */
-            renderWorkspaceData: function renderWorkspaceData() {
-
-                if (this.isCached('$workspacedata', WorkspaceDataElement)) {
-                    return false;
-                }
-
-                this.renderHeader(Header, 'Workspace Pages');
+        return WorkspaceDataView.extend(
+            'WorkspaceDataView', {
 
                 /**
-                 * Define WorkspaceData element
-                 * @type {WorkspaceDataElement}
+                 * Render WorkspaceData
+                 * @member WorkspaceDataView
+                 * @returns {boolean}
                  */
-                this.elements.$workspacedata = new WorkspaceDataElement(this, {
-                    id: this.createUUID(),
-                    $container: this.elements.$container.$
-                });
-            },
+                renderWorkspaceData: function renderWorkspaceData() {
 
-            /**
-             * Render workspace.data content
-             * @member WorkspaceDataView
-             * @param data
-             * @returns {boolean}
-             */
-            renderContent: function renderContent(data) {
-
-                /**
-                 * Define content
-                 * @type {{}}
-                 */
-                this.elements.items = {};
-
-                this.elements.$workspacedata.empty();
-                this.renderCreatePage();
-
-                this.renderHeader(Header, 'Workspace Pages');
-
-                this.renderFilter(
-                    this.updateFooterContent.bind(this)
-                );
-
-                /**
-                 * Get current page
-                 * @type {Page}
-                 */
-                var page = this.controller.getPage();
-
-                var i = 0, l = data.length,
-                    show, current;
-
-                for (i; i < l; i++) {
-
-                    if (!data[i]) {
-                        this.scope.logger.warn('Undefined item', data, i);
+                    if (this.isCached('$workspacedata', WorkspaceDataElement)) {
                         return false;
                     }
 
-                    /**
-                     * Show in tabs
-                     * @type {string}
-                     */
-                    show = this.controller.checkShowInTabs(data[i]) ? '' : ' hide';
+                    this.renderHeader(Header, 'Workspace Pages');
 
                     /**
-                     * Define current page style
-                     * @type {string}
+                     * Define WorkspaceData element
+                     * @type {WorkspaceDataElement}
                      */
-                    current = page === data[i] ? ' current' : '';
+                    this.elements.$workspacedata = new WorkspaceDataElement(this, {
+                        id: this.createUUID(),
+                        $container: this.elements.$container.$
+                    });
+                },
+
+                /**
+                 * Render workspace.data content
+                 * @member WorkspaceDataView
+                 * @param data
+                 * @returns {boolean}
+                 */
+                renderContent: function renderContent(data) {
 
                     /**
-                     * Render item
-                     * @type {WorkspaceDataContentElement}
+                     * Define content
+                     * @type {{}}
                      */
-                    var $item = new WorkspaceDataContentElement(this, {
-                        style: 'content' + current + show,
-                        id: [
-                            data[i].model.getConfig('uuid'),
-                            'workspace-data-view'
-                        ].join('-'),
-                        $container: this.elements.$workspacedata.$,
-                        data: data[i],
-                        counter: i + 1
+                    this.elements.items = {};
+
+                    this.elements.$workspacedata.empty();
+                    this.renderCreatePage();
+
+                    this.renderHeader(Header, 'Workspace Pages');
+
+                    this.renderFilter(
+                        this.updateFooterContent.bind(this)
+                    );
+
+                    /**
+                     * Get current page
+                     * @type {Page}
+                     */
+                    var page = this.controller.getPage();
+
+                    var i = 0, l = data.length,
+                        show, current;
+
+                    for (i; i < l; i++) {
+
+                        if (!data[i]) {
+                            this.scope.logger.warn('Undefined item', data, i);
+                            return false;
+                        }
+
+                        /**
+                         * Show in tabs
+                         * @type {string}
+                         */
+                        show = this.controller.checkShowInTabs(data[i]) ? '' : ' hide';
+
+                        /**
+                         * Define current page style
+                         * @type {string}
+                         */
+                        current = page === data[i] ? ' current' : '';
+
+                        /**
+                         * Render item
+                         * @type {WorkspaceDataContentElement}
+                         */
+                        var $item = new WorkspaceDataContentElement(this, {
+                            style: 'content' + current + show,
+                            id: [
+                                data[i].model.getConfig('uuid'),
+                                'workspace-data-view'
+                            ].join('-'),
+                            $container: this.elements.$workspacedata.$,
+                            data: data[i],
+                            counter: i + 1
+                        });
+
+                        this.elements.items[$item.id] = $item;
+                    }
+
+                    this.elements.$workspacedata.scrollCover(
+                        this.elements.$container.$
+                    );
+
+                    this.elements.$filter.updateData({
+                        items: this.elements.items,
+                        focusOn: 'input'
                     });
 
-                    this.elements.items[$item.id] = $item;
-                }
-
-                this.elements.$workspacedata.scrollCover(
-                    this.elements.$container.$
-                );
-
-                this.elements.$filter.updateData({
-                    items: this.elements.items,
-                    focusOn: 'input'
-                });
-
-                this.updateFooterContent();
-            },
-
-            /**
-             * Update footer content
-             * @member WorkspaceDataView
-             */
-            updateFooterContent: function updateFooterContent() {
-                this.renderFooter(Footer, this.elements.$workspacedata);
-            },
-
-            /**
-             * Render create new page
-             * @member WorkspaceDataView
-             */
-            renderCreatePage: function renderCreatePage() {
+                    this.updateFooterContent();
+                },
 
                 /**
-                 * Render add new pages
-                 * @type {WorkspaceDataAddPageElement}
+                 * Update footer content
+                 * @member WorkspaceDataView
                  */
-                this.$addPage = new WorkspaceDataAddPageElement(this, {
-                    style: 'add-page',
-                    $container: this.elements.$workspacedata.$,
-                    events: {
-                        click: ['createPage']
-                    }
-                });
-            },
+                updateFooterContent: function updateFooterContent() {
+                    this.renderFooter(Footer, this.elements.$workspacedata);
+                },
 
-            /**
-             * Show preferences
-             * @member WorkspaceDataView
-             * @param config
-             * @param {boolean} current
-             */
-            showPreferences: function showPreferences(config, current) {
+                /**
+                 * Render create new page
+                 * @member WorkspaceDataView
+                 */
+                renderCreatePage: function renderCreatePage() {
 
-                this.openPreferences({
-                    config: config,
-                    current: current,
-                    $html: this.controller.definePreferences(config.uuid).$,
-                    style: 'workspace-data-prefs preferences',
-                    title: 'Page preferences',
-                    buttons: {
-                        destroyPageWidgets: {
-                            text: 'Destroy widgets',
+                    /**
+                     * Render add new pages
+                     * @type {WorkspaceDataAddPageElement}
+                     */
+                    this.elements.$addPage = new WorkspaceDataAddPageElement(this, {
+                        style: 'add-page',
+                        $container: this.elements.$workspacedata.$,
+                        events: {
+                            click: ['prepareCreatePage']
+                        }
+                    });
+                },
+
+                /**
+                 * Render create page wizard
+                 * @member WorkspaceDataView
+                 * @param {{
+             *      workspace: Workspace,
+             *      style: string,
+             *      [type]: string,
+             *      title: string,
+             *      text: string,
+             *      $html
+             * }} opts
+                 */
+                renderCreatePageWizard: function renderCreatePageWizard(opts) {
+
+                    /**
+                     * Define buttons
+                     * @type {{
+                 *      approve: {text: string, events: {click: string}},
+                 *      reject: {text: string, events: {click: string[]}}
+                 * }}
+                     */
+                    var buttons = {
+                        approve: {
+                            text: 'OK',
                             events: {
-                                click: 'destroyPageWidgets'
+                                click: 'approveCreatePage'
+                            }
+                        },
+                        reject: {
+                            text: 'Cancel',
+                            events: {
+                                click: ['rejectModalEvent']
                             }
                         }
-                    }
-                });
-            },
+                    };
 
-            /**
-             * Render Prefs
-             * @member WorkspaceDataView
-             * @param {Page} page
-             * @returns {WorkspaceDataPreferencesElement}
-             */
-            renderPreferences: function renderPreferences(page) {
+                    /**
+                     * Define current page
+                     * @type {Page}
+                     */
+                    var page = this.controller.getPage();
+
+                    this.modalDialog({
+                        style: opts.style,
+                        $container: page.view.get$item().$,
+                        type: opts.type || 'info',
+                        title: opts.title,
+                        text: opts.workspace.model.getUUID(),
+                        html: opts.$html,
+                        cover: true,
+                        buttons: buttons
+                    });
+                },
 
                 /**
-                 * Define WorkspaceData Preferences Element
-                 * @type {WorkspaceDataPreferencesElement}
+                 * Show preferences
+                 * @member WorkspaceDataView
+                 * @param config
+                 * @param {boolean} current
                  */
-                this.elements.$preferences = new WorkspaceDataPreferencesElement(this, {
-                    data: page.model.getConfig('preferences'),
-                    page: page
-                });
+                showPreferences: function showPreferences(config, current) {
 
-                return this.elements.$preferences;
+                    this.openPreferences({
+                        config: config,
+                        current: current,
+                        $html: this.controller.definePreferences(config.uuid).$,
+                        style: 'workspace-data-prefs preferences',
+                        title: 'Page preferences',
+                        buttons: {
+                            destroyPageWidgets: {
+                                text: 'Destroy widgets',
+                                events: {
+                                    click: 'destroyPageWidgets'
+                                }
+                            }
+                        }
+                    });
+                },
+
+                /**
+                 * Render Prefs
+                 * @member WorkspaceDataView
+                 * @param {Page} page
+                 * @returns {WorkspaceDataPreferencesElement}
+                 */
+                renderPreferences: function renderPreferences(page) {
+
+                    /**
+                     * Define WorkspaceData Preferences Element
+                     * @type {WorkspaceDataPreferencesElement}
+                     */
+                    this.elements.$preferences = new WorkspaceDataPreferencesElement(this, {
+                        data: page.model.getConfig('preferences'),
+                        page: page
+                    });
+
+                    return this.elements.$preferences;
+                },
+
+                /**
+                 * Render workspace.data
+                 * @member WorkspaceDataView
+                 */
+                render: function render() {
+
+                    this.scope.observer.publish(
+                        this.scope.eventmanager.eventList.successRendered,
+                        this.renderWorkspaceData.bind(this)
+                    );
+                }
+
             },
-
-            /**
-             * Render workspace.data
-             * @member WorkspaceDataView
-             */
-            render: function render() {
-
-                this.scope.observer.publish(
-                    this.scope.eventmanager.eventList.successRendered,
-                    this.renderWorkspaceData.bind(this)
-                );
-            }
-
-        }, BaseView.prototype, BasePreferences.prototype)
+            BaseView.prototype,
+            BasePreferencesElement.prototype
+        )
     }
 );

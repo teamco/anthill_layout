@@ -16,7 +16,6 @@ define([
      * @constructor
      */
     var WidgetContentControllerRules = function WidgetContentControllerRules() {
-
     };
 
     return WidgetContentControllerRules.extend('WidgetContentControllerRules', {
@@ -161,7 +160,7 @@ define([
                     this.scope.model.getUUID() !== uuid) {
                     published[uuid] = {
                         rules: rules.publish,
-                        type: item.controller.getContent().constructor.prototype.name
+                        type: item.controller.getContent().name
                     };
                 }
             }
@@ -397,7 +396,10 @@ define([
                             this[puuid] = setInterval(
                                 function () {
 
-                                    this.scope.controller._getContentScope(this.interval, this.opts);
+                                    this.scope.controller._getContentScope(
+                                        this.interval,
+                                        this.opts
+                                    );
 
                                 }.bind({
                                         scope: this,
@@ -437,7 +439,11 @@ define([
 
             if (this.scope[puuid] * interval > timeout) {
 
-                this.scope.logger.warn('Timeout on loading scope rules', opts.widgetPublisher);
+                this.scope.logger.warn(
+                    'Timeout on loading scope rules',
+                    opts.widgetPublisher
+                );
+
                 return false;
             }
 
@@ -447,7 +453,10 @@ define([
              */
             var scope = opts.widgetPublisher.controller.getContent();
 
-            this.scope.logger.debug('Wait until scope will be available', scope);
+            this.scope.logger.debug(
+                'Wait until scope will be available',
+                scope
+            );
 
             if (scope) {
 

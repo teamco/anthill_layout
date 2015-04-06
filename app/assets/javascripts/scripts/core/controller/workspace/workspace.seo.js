@@ -70,7 +70,7 @@ define([], function defineWorkspaceSEO() {
                  * Get current page
                  * @type {Page}
                  */
-                var page = scope.controller.getCurrentItem(),
+                var page = scope.model.getCurrentItem(),
                     title = siteTitle;
 
                 /**

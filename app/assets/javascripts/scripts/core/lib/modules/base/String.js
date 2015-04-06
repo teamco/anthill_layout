@@ -5,21 +5,45 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-define([], function defineBaseString() {
+define([], function defineLibString() {
 
     /**
-     * Define BaseString
-     * @class BaseString
+     * Define LibString
+     * @class LibString
      * @constructor
      */
-    var BaseString = function BaseString() {
+    var LibString = function LibString() {
     };
 
-    BaseString.extend('BaseString', {
+    LibString.extend('LibString', {
+
+        /**
+         * UTF8 to Base64
+         * @member LibString
+         * @param {string} str
+         * @returns {string}
+         */
+        utf8ToBase64: function utf8ToBase64(str) {
+            return window.btoa(
+                encodeURIComponent(str)
+            );
+        },
+
+        /**
+         * Base64 to UTF8
+         * @member LibString
+         * @param {string} str
+         * @returns {string}
+         */
+        base64ToUtf8: function base64ToUtf8(str) {
+            return decodeURIComponent(
+                window.atob(str)
+            );
+        },
 
         /**
          * Convert string to base64
-         * @member BaseString
+         * @member LibString
          * @member String
          */
         base64: (function _base64() {
@@ -239,5 +263,5 @@ define([], function defineBaseString() {
         }())
     });
 
-    return new BaseString();
+    return new LibString();
 });

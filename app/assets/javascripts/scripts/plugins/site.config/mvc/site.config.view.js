@@ -25,7 +25,7 @@ define(
     /**
      * Define SiteConfigView
      * @param {BaseView} BaseView
-     * @param {BasePreferences} BasePreferences
+     * @param {BasePreferences} BasePreferencesElement
      * @param {BaseView} Header
      * @param {BaseView} Footer
      * @param {SiteConfigContentElement} SiteConfigContentElement
@@ -38,7 +38,7 @@ define(
      * @param {SiteConfigElement} SiteConfigElement
      * @returns {*}
      */
-    function defineSiteConfigView(BaseView, BasePreferences, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigActivateElement, SiteConfigImportFileElement, SiteConfigApproveImportElement, SiteConfigWidgetsListElement, SiteConfigElement) {
+    function defineSiteConfigView(BaseView, BasePreferencesElement, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigActivateElement, SiteConfigImportFileElement, SiteConfigApproveImportElement, SiteConfigWidgetsListElement, SiteConfigElement) {
 
         /**
          * Define view
@@ -49,352 +49,170 @@ define(
         var SiteConfigView = function SiteConfigView() {
         };
 
-        return SiteConfigView.extend('SiteConfigView', {
-
-            /**
-             * Render SiteConfig
-             * @member SiteConfigView
-             * @returns {boolean}
-             */
-            renderSiteConfig: function renderSiteConfig() {
-
-                this.renderHeader(Header, this.i18n.t('site.data.config'));
-
-                this.renderFilter(
-                    this.updateFooterContent.bind(this)
-                );
-
-                if (!this.isCached('$siteconfig', SiteConfigElement)) {
-
-                    /**
-                     * Define SiteConfig element
-                     * @type {SiteConfigElement}
-                     */
-                    this.elements.$siteconfig = new SiteConfigElement(this, {
-                        id: this.createUUID(),
-                        $container: this.elements.$container.$
-                    });
-                }
-
-                this.updateFooterContent();
-            },
-
-            /**
-             * Render site.config content
-             * @member SiteConfigView
-             * @param data
-             * @returns {boolean}
-             */
-            renderContent: function renderContent(data) {
+        return SiteConfigView.extend(
+            'SiteConfigView', {
 
                 /**
-                 * Define content
-                 * @type {{}}
+                 * Render SiteConfig
+                 * @member SiteConfigView
+                 * @returns {boolean}
                  */
-                this.elements.items = {};
-                this.elements.$siteconfig.empty();
+                renderSiteConfig: function renderSiteConfig() {
 
-                var index, counter = 1;
+                    this.renderHeader(Header, this.i18n.t('site.data.config'));
 
-                for (index in data) {
+                    this.renderFilter(
+                        this.updateFooterContent.bind(this)
+                    );
 
-                    if (data.hasOwnProperty(index)) {
+                    if (!this.isCached('$siteconfig', SiteConfigElement)) {
 
                         /**
-                         * Render item
-                         * @type {SiteConfigContentElement}
+                         * Define SiteConfig element
+                         * @type {SiteConfigElement}
                          */
-                        var $item = new SiteConfigContentElement(this, {
-                            style: [
-                                'content',
-                                data[index].title.toClassName()
-                            ].join(' '),
-                            $container: this.elements.$siteconfig.$,
-                            counter: counter,
-                            data: data[index]
+                        this.elements.$siteconfig = new SiteConfigElement(this, {
+                            id: this.createUUID(),
+                            $container: this.elements.$container.$
                         });
-
-                        counter += 1;
-
-                        this.elements.items[$item.id] = $item;
                     }
-                }
 
-                this.elements.$siteconfig.scrollCover(
-                    this.elements.$container.$
-                );
-
-                this.elements.$filter.updateData({
-                    items: this.elements.items,
-                    focusOn: 'input'
-                });
-
-                this.updateFooterContent();
-            },
-
-            /**
-             * Update footer content
-             * @member SiteConfigView
-             */
-            updateFooterContent: function updateFooterContent() {
-                this.renderFooter(Footer, this.elements.$siteconfig);
-            },
-
-            /**
-             * Show import data
-             * @member SiteConfigView
-             */
-            showImportData: function showImportData() {
+                    this.updateFooterContent();
+                },
 
                 /**
-                 * Define $html
-                 * @type {SiteConfigImportFileElement}
+                 * Render site.config content
+                 * @member SiteConfigView
+                 * @param data
+                 * @returns {boolean}
                  */
-                var $html = this.renderImportData();
+                renderContent: function renderContent(data) {
 
-                /**
-                 * Define buttons
-                 * @type {*}
-                 */
-                var buttons = {
-                    reject: {
-                        text: this.i18n.t('site.data.cancel'),
-                        events: {
-                            click: 'rejectModalEvent'
+                    /**
+                     * Define content
+                     * @type {{}}
+                     */
+                    this.elements.items = {};
+                    this.elements.$siteconfig.empty();
+
+                    var index, counter = 1;
+
+                    for (index in data) {
+
+                        if (data.hasOwnProperty(index)) {
+
+                            /**
+                             * Render item
+                             * @type {SiteConfigContentElement}
+                             */
+                            var $item = new SiteConfigContentElement(this, {
+                                style: [
+                                    'content',
+                                    data[index].title.toClassName()
+                                ].join(' '),
+                                $container: this.elements.$siteconfig.$,
+                                counter: counter,
+                                data: data[index]
+                            });
+
+                            counter += 1;
+
+                            this.elements.items[$item.id] = $item;
                         }
                     }
-                };
+
+                    this.elements.$siteconfig.scrollCover(
+                        this.elements.$container.$
+                    );
+
+                    this.elements.$filter.updateData({
+                        items: this.elements.items,
+                        focusOn: 'input'
+                    });
+
+                    this.updateFooterContent();
+                },
 
                 /**
-                 * Get Workspace
-                 * @type {Workspace}
+                 * Update footer content
+                 * @member SiteConfigView
                  */
-                var workspace = this.controller.getWorkspace();
-
-                this.modalDialog({
-                    style: 'import-site-data upload-json',
-                    type: 'info',
-                    title: this.i18n.t('import.site.data'),
-                    text: workspace.model.getUUID(),
-                    html: $html.$,
-                    cover: true,
-                    buttons: buttons
-                });
-            },
-
-            /**
-             * Show approve import data
-             * @member SiteConfigView
-             * @param {object} json
-             * @param {File} file
-             */
-            showApproveImportData: function showApproveImportData(json, file) {
+                updateFooterContent: function updateFooterContent() {
+                    this.renderFooter(Footer, this.elements.$siteconfig);
+                },
 
                 /**
-                 * Define $html
-                 * @type {SiteConfigApproveImportElement}
+                 * Show import data
+                 * @member SiteConfigView
                  */
-                var $html = this.renderApproveImportData(json);
+                showImportData: function showImportData() {
 
-                /**
-                 * Define buttons
-                 * @type {*}
-                 */
-                var buttons = {
-                    reload: {
-                        text: this.i18n.t('import.site.data.confirm.reload'),
-                        disabled: true,
-                        events: {
-                            click: 'reloadSiteData'
+                    /**
+                     * Define $html
+                     * @type {SiteConfigImportFileElement}
+                     */
+                    var $html = this.renderImportData();
+
+                    /**
+                     * Define buttons
+                     * @type {*}
+                     */
+                    var buttons = {
+                        reject: {
+                            text: this.i18n.t('site.data.cancel'),
+                            events: {
+                                click: 'rejectModalEvent'
+                            }
                         }
-                    },
-                    confirm: {
-                        text: this.i18n.t('site.data.confirm'),
-                        events: {
-                            click: 'approveImportSiteData'
-                        }
-                    },
-                    reject: {
-                        text: this.i18n.t('site.data.cancel'),
-                        events: {
-                            click: 'rejectModalEvent'
-                        }
-                    }
-                };
+                    };
 
-                this.elements.$modal.selfDestroy();
+                    /**
+                     * Get Workspace
+                     * @type {Workspace}
+                     */
+                    var workspace = this.controller.getWorkspace();
 
-                this.modalDialog({
-                    style: 'import-site-data approve',
-                    type: 'warning',
-                    title: this.i18n.t('import.site.data.confirm'),
-                    text: [
-                        encodeURIComponent(file.name),
-                        ' (', file.type || 'n/a', '), ',
-                        this.scope.base.lib.number.bytes2Size(file.size)
-                    ].join(''),
-                    html: $html.$,
-                    cover: true,
-                    buttons: buttons
-                });
-            },
-
-            /**
-             * Show preferences
-             * @member SiteConfigView
-             * @param opts
-             * @param map
-             */
-            showPreferences: function showPreferences(opts, map) {
+                    this.modalDialog({
+                        style: 'import-site-data upload-json',
+                        type: 'info',
+                        title: this.i18n.t('import.site.data'),
+                        text: workspace.model.getUUID(),
+                        html: $html.$,
+                        cover: true,
+                        buttons: buttons
+                    });
+                },
 
                 /**
-                 * Define $html
-                 * @type {SiteConfigPreferencesElement}
+                 * Show approve import data
+                 * @member SiteConfigView
+                 * @param {object} json
+                 * @param {File} file
                  */
-                var $html = this.renderPreferences(map);
+                showApproveImportData: function showApproveImportData(json, file) {
 
-                /**
-                 * Define buttons
-                 * @type {*}
-                 */
-                var buttons = {
-                    approve: {
-                        text: this.i18n.t('site.data.save'),
-                        events: {
-                            click: 'approveUpdatePreferences'
-                        }
-                    },
-                    reject: {
-                        text: this.i18n.t('site.data.cancel'),
-                        events: {
-                            click: ['revertSitePreferences', 'rejectModalEvent']
-                        }
-                    }
-                };
+                    /**
+                     * Define $html
+                     * @type {SiteConfigApproveImportElement}
+                     */
+                    var $html = this.renderApproveImportData(json);
 
-                /**
-                 * Get Workspace
-                 * @type {Workspace}
-                 */
-                var workspace = this.controller.getWorkspace();
-
-                this.modalDialog({
-                    style: [
-                        opts.title.toDash(), 'site-config'
-                    ].join(' '),
-                    type: 'info',
-                    title: opts.title,
-                    text: workspace.model.getUUID(),
-                    html: $html.$,
-                    cover: true,
-                    buttons: buttons
-                });
-            },
-
-            /**
-             * Render import file element
-             * @member SiteConfigView
-             * @returns {SiteConfigImportFileElement}
-             */
-            renderImportData: function renderImportData() {
-
-                /**
-                 * Define SiteConfig ImportFile Element
-                 * @type {SiteConfigImportFileElement|SiteConfigApproveImportElement}
-                 */
-                this.elements.$import = new SiteConfigImportFileElement(this, {});
-
-                return this.elements.$import;
-            },
-
-            /**
-             * Render approve import file element
-             * @member SiteConfigView
-             * @returns {SiteConfigApproveImportElement}
-             */
-            renderApproveImportData: function renderApproveImportData(json) {
-
-                /**
-                 * Define SiteConfig Approve Import Element
-                 * @type {SiteConfigApproveImportElement}
-                 */
-                this.elements.$import = new SiteConfigApproveImportElement(this, {
-                    data: json
-                });
-
-                return this.elements.$import;
-            },
-
-            /**
-             * Render Prefs
-             * @member SiteConfigView
-             * @param map
-             * @returns {SiteConfigPreferencesElement}
-             */
-            renderPreferences: function renderPreferences(map) {
-
-                /**
-                 * Define SiteConfig Preferences Element
-                 * @type {SiteConfigPreferencesElement}
-                 */
-                this.elements.$preferences = new SiteConfigPreferencesElement(this, {
-                    map: map
-                });
-
-                return this.elements.$preferences;
-            },
-
-            /**
-             * Render cleanup element
-             * @member SiteConfigView
-             * @returns {SiteConfigCleanUpElement}
-             */
-            renderCleanUp: function renderCleanUp() {
-
-                /**
-                 * Define SiteConfig CleanUp Element
-                 * @type {SiteConfigCleanUpElement}
-                 */
-                this.elements.$cleanup = new SiteConfigCleanUpElement(this, {});
-
-                return this.elements.$cleanup;
-            },
-
-            /**
-             * Render activate element
-             * @member SiteConfigView
-             * @returns {SiteConfigActivateElement}
-             */
-            renderActivate: function renderActivate() {
-
-                /**
-                 * Define SiteConfig Activate Element
-                 * @type {SiteConfigActivateElement}
-                 */
-                this.elements.$activate = new SiteConfigActivateElement(this, {});
-
-                return this.elements.$activate;
-            },
-
-            /**
-             * Render cleanup confirmation modal dialog
-             * @member SiteConfigView
-             */
-            cleanUpConfirmation: function cleanUpConfirmation() {
-
-                this.modalDialog({
-                    style: 'clean-up-data',
-                    type: 'warning',
-                    title: 'Clean up',
-                    text: 'Are you sure want to cleanup browser local storage?',
-                    html: this.renderCleanUp().$,
-                    cover: true,
-                    autoclose: true,
-                    buttons: {
-                        approve: {
+                    /**
+                     * Define buttons
+                     * @type {*}
+                     */
+                    var buttons = {
+                        reload: {
+                            text: this.i18n.t('import.site.data.confirm.reload'),
+                            disabled: true,
+                            events: {
+                                click: 'reloadSiteData'
+                            }
+                        },
+                        confirm: {
                             text: this.i18n.t('site.data.confirm'),
                             events: {
-                                click: 'approveCleanUp'
+                                click: 'approveImportSiteData'
                             }
                         },
                         reject: {
@@ -403,205 +221,391 @@ define(
                                 click: 'rejectModalEvent'
                             }
                         }
-                    }
-                });
-            },
+                    };
 
-            /**
-             * Render activate confirmation modal dialog
-             * @member SiteConfigView
-             */
-            activateConfirmation: function activateConfirmation() {
+                    this.elements.$modal.selfDestroy();
+
+                    this.modalDialog({
+                        style: 'import-site-data approve',
+                        type: 'warning',
+                        title: this.i18n.t('import.site.data.confirm'),
+                        text: [
+                            encodeURIComponent(file.name),
+                            ' (', file.type || 'n/a', '), ',
+                            this.scope.base.lib.number.bytes2Size(file.size)
+                        ].join(''),
+                        html: $html.$,
+                        cover: true,
+                        buttons: buttons
+                    });
+                },
 
                 /**
-                 * Get root
-                 * @type {Application}
+                 * Show preferences
+                 * @member SiteConfigView
+                 * @param opts
+                 * @param map
                  */
-                var root = this.controller.root();
+                showPreferences: function showPreferences(opts, map) {
 
-                this.modalDialog({
-                    style: 'activate',
-                    type: 'warning',
-                    title: 'Activate',
-                    text: [
-                        'Are you sure want to activate current version: ',
-                        root.model.getConfig('version'), '?'
-                    ].join(''),
-                    html: this.renderActivate().$,
-                    cover: true,
-                    autoclose: true,
-                    buttons: {
-                        approve: {
-                            text: this.i18n.t('site.data.confirm'),
-                            events: {
-                                click: 'approveActivate'
-                            }
-                        },
-                        reject: {
-                            text: this.i18n.t('site.data.cancel'),
-                            events: {
-                                click: 'rejectModalEvent'
-                            }
-                        }
-                    }
-                });
-            },
+                    /**
+                     * Define $html
+                     * @type {SiteConfigPreferencesElement}
+                     */
+                    var $html = this.renderPreferences(map);
 
-            /**
-             * Render widgets manager
-             * @member SiteConfigView
-             */
-            renderWidgetsManager: function renderWidgetsManager() {
-
-                /**
-                 * Define SiteConfig Widgets list Element
-                 * @type {SiteConfigWidgetsListElement}
-                 */
-                this.elements.$widgetgenerator = new SiteConfigWidgetsListElement(this, {});
-
-                return this.elements.$widgetgenerator;
-            },
-
-            /**
-             * Define show widgets list
-             * @member SiteConfigView
-             * @param {Array} widgets
-             * @param {Array} show
-             */
-            showWidgetsList: function showWidgetsList(widgets, show) {
-
-                if (this.elements.$modal) {
-
-                    // Clear modal
-                    this.elements.$modal.selfDestroy();
-                }
-
-                this.modalDialog({
-                    style: 'widget-list',
-                    type: 'info',
-                    title: this.i18n.t('widget.manager.list').replace(/\{1}/, widgets.length + ''),
-                    html: this.renderWidgetsManager().renderWidgetsList(widgets, show),
-                    cover: true,
-                    autoclose: false,
-                    buttons: {
-                        approve: {
-                            text: this.i18n.t('widget.manager.generate'),
-                            events: {
-                                click: 'nextWidgetGenerator'
-                            }
-                        },
-                        reject: {
-                            text: this.i18n.t('site.data.cancel'),
-                            events: {
-                                click: 'rejectModalEvent'
-                            }
-                        }
-                    }
-                });
-            },
-
-            /**
-             * Define show widgets generator
-             * @member SiteConfigView
-             * @param {Array} widgets
-             * @param {Array} types
-             * @param {object} defaults
-             */
-            showWidgetGenerator: function showWidgetGenerator(widgets, types, defaults) {
-
-                if (this.elements.$modal) {
-
-                    // Clear modal
-                    this.elements.$modal.selfDestroy();
-                }
-
-                this.modalDialog({
-                    style: 'widget-generator-new',
-                    type: 'info',
-                    title: this.i18n.t('widget.manager.generate.new'),
-                    html: this.elements.$widgetgenerator.renderWidgetGeneratorForm(
-                        widgets,
-                        types,
-                        defaults,
-                        true
-                    ),
-                    cover: true,
-                    closeX: false,
-                    autoclose: false,
-                    buttons: {
+                    /**
+                     * Define buttons
+                     * @type {*}
+                     */
+                    var buttons = {
                         approve: {
                             text: this.i18n.t('site.data.save'),
                             events: {
-                                click: 'generateNewWidget'
+                                click: 'approveUpdatePreferences'
                             }
                         },
                         reject: {
-                            text: this.i18n.t('site.data.back'),
+                            text: this.i18n.t('site.data.cancel'),
                             events: {
-                                click: 'loadWidgetsList'
+                                click: ['revertSitePreferences', 'rejectModalEvent']
                             }
                         }
+                    };
+
+                    /**
+                     * Get Workspace
+                     * @type {Workspace}
+                     */
+                    var workspace = this.controller.getWorkspace();
+
+                    this.modalDialog({
+                        style: [
+                            opts.title.toDash(), 'site-config'
+                        ].join(' '),
+                        type: 'info',
+                        title: opts.title,
+                        text: workspace.model.getUUID(),
+                        html: $html.$,
+                        cover: true,
+                        buttons: buttons
+                    });
+                },
+
+                /**
+                 * Render import file element
+                 * @member SiteConfigView
+                 * @returns {SiteConfigImportFileElement}
+                 */
+                renderImportData: function renderImportData() {
+
+                    /**
+                     * Define SiteConfig ImportFile Element
+                     * @type {SiteConfigImportFileElement|SiteConfigApproveImportElement}
+                     */
+                    this.elements.$import = new SiteConfigImportFileElement(this, {});
+
+                    return this.elements.$import;
+                },
+
+                /**
+                 * Render approve import file element
+                 * @member SiteConfigView
+                 * @returns {SiteConfigApproveImportElement}
+                 */
+                renderApproveImportData: function renderApproveImportData(json) {
+
+                    /**
+                     * Define SiteConfig Approve Import Element
+                     * @type {SiteConfigApproveImportElement}
+                     */
+                    this.elements.$import = new SiteConfigApproveImportElement(this, {
+                        data: json
+                    });
+
+                    return this.elements.$import;
+                },
+
+                /**
+                 * Render Prefs
+                 * @member SiteConfigView
+                 * @param map
+                 * @returns {SiteConfigPreferencesElement}
+                 */
+                renderPreferences: function renderPreferences(map) {
+
+                    /**
+                     * Define SiteConfig Preferences Element
+                     * @type {SiteConfigPreferencesElement}
+                     */
+                    this.elements.$preferences = new SiteConfigPreferencesElement(this, {
+                        map: map
+                    });
+
+                    return this.elements.$preferences;
+                },
+
+                /**
+                 * Render cleanup element
+                 * @member SiteConfigView
+                 * @returns {SiteConfigCleanUpElement}
+                 */
+                renderCleanUp: function renderCleanUp() {
+
+                    /**
+                     * Define SiteConfig CleanUp Element
+                     * @type {SiteConfigCleanUpElement}
+                     */
+                    this.elements.$cleanup = new SiteConfigCleanUpElement(this, {});
+
+                    return this.elements.$cleanup;
+                },
+
+                /**
+                 * Render activate element
+                 * @member SiteConfigView
+                 * @returns {SiteConfigActivateElement}
+                 */
+                renderActivate: function renderActivate() {
+
+                    /**
+                     * Define SiteConfig Activate Element
+                     * @type {SiteConfigActivateElement}
+                     */
+                    this.elements.$activate = new SiteConfigActivateElement(this, {});
+
+                    return this.elements.$activate;
+                },
+
+                /**
+                 * Render cleanup confirmation modal dialog
+                 * @member SiteConfigView
+                 */
+                cleanUpConfirmation: function cleanUpConfirmation() {
+
+                    this.modalDialog({
+                        style: 'clean-up-data',
+                        type: 'warning',
+                        title: 'Clean up',
+                        text: 'Are you sure want to cleanup browser local storage?',
+                        html: this.renderCleanUp().$,
+                        cover: true,
+                        autoclose: true,
+                        buttons: {
+                            approve: {
+                                text: this.i18n.t('site.data.confirm'),
+                                events: {
+                                    click: 'approveCleanUp'
+                                }
+                            },
+                            reject: {
+                                text: this.i18n.t('site.data.cancel'),
+                                events: {
+                                    click: 'rejectModalEvent'
+                                }
+                            }
+                        }
+                    });
+                },
+
+                /**
+                 * Render activate confirmation modal dialog
+                 * @member SiteConfigView
+                 */
+                activateConfirmation: function activateConfirmation() {
+
+                    /**
+                     * Get root
+                     * @type {Application}
+                     */
+                    var root = this.controller.root();
+
+                    this.modalDialog({
+                        style: 'activate',
+                        type: 'warning',
+                        title: 'Activate',
+                        text: [
+                            'Are you sure want to activate current version: ',
+                            root.model.getConfig('version'), '?'
+                        ].join(''),
+                        html: this.renderActivate().$,
+                        cover: true,
+                        autoclose: true,
+                        buttons: {
+                            approve: {
+                                text: this.i18n.t('site.data.confirm'),
+                                events: {
+                                    click: 'approveActivate'
+                                }
+                            },
+                            reject: {
+                                text: this.i18n.t('site.data.cancel'),
+                                events: {
+                                    click: 'rejectModalEvent'
+                                }
+                            }
+                        }
+                    });
+                },
+
+                /**
+                 * Render widgets manager
+                 * @member SiteConfigView
+                 */
+                renderWidgetsManager: function renderWidgetsManager() {
+
+                    /**
+                     * Define SiteConfig Widgets list Element
+                     * @type {SiteConfigWidgetsListElement}
+                     */
+                    this.elements.$widgetgenerator = new SiteConfigWidgetsListElement(this, {});
+
+                    return this.elements.$widgetgenerator;
+                },
+
+                /**
+                 * Define show widgets list
+                 * @member SiteConfigView
+                 * @param {Array} widgets
+                 * @param {Array} show
+                 */
+                showWidgetsList: function showWidgetsList(widgets, show) {
+
+                    if (this.elements.$modal) {
+
+                        // Clear modal
+                        this.elements.$modal.selfDestroy();
                     }
-                });
-            },
 
-            /**
-             * Define update widget generator
-             * @member SiteConfigView
-             * @param {object} widget
-             * @param {Array} types
-             */
-            updateWidgetGenerator: function updateWidgetGenerator(widget, types) {
+                    this.modalDialog({
+                        style: 'widget-list',
+                        type: 'info',
+                        title: this.i18n.t('widget.manager.list').replace(/\{1}/, widgets.length + ''),
+                        html: this.renderWidgetsManager().renderWidgetsList(widgets, show),
+                        cover: true,
+                        autoclose: false,
+                        buttons: {
+                            approve: {
+                                text: this.i18n.t('widget.manager.generate'),
+                                events: {
+                                    click: 'nextWidgetGenerator'
+                                }
+                            },
+                            reject: {
+                                text: this.i18n.t('site.data.cancel'),
+                                events: {
+                                    click: 'rejectModalEvent'
+                                }
+                            }
+                        }
+                    });
+                },
 
-                if (this.elements.$modal) {
+                /**
+                 * Define show widgets generator
+                 * @member SiteConfigView
+                 * @param {Array} widgets
+                 * @param {Array} types
+                 * @param {object} defaults
+                 */
+                showWidgetGenerator: function showWidgetGenerator(widgets, types, defaults) {
 
-                    // Clear modal
-                    this.elements.$modal.selfDestroy();
+                    if (this.elements.$modal) {
+
+                        // Clear modal
+                        this.elements.$modal.selfDestroy();
+                    }
+
+                    this.modalDialog({
+                        style: 'widget-generator-new',
+                        type: 'info',
+                        title: this.i18n.t('widget.manager.generate.new'),
+                        html: this.elements.$widgetgenerator.renderWidgetGeneratorForm(
+                            widgets,
+                            types,
+                            defaults,
+                            true
+                        ),
+                        cover: true,
+                        closeX: false,
+                        autoclose: false,
+                        buttons: {
+                            approve: {
+                                text: this.i18n.t('site.data.save'),
+                                events: {
+                                    click: 'generateNewWidget'
+                                }
+                            },
+                            reject: {
+                                text: this.i18n.t('site.data.back'),
+                                events: {
+                                    click: 'loadWidgetsList'
+                                }
+                            }
+                        }
+                    });
+                },
+
+                /**
+                 * Define update widget generator
+                 * @member SiteConfigView
+                 * @param {object} widget
+                 * @param {Array} types
+                 */
+                updateWidgetGenerator: function updateWidgetGenerator(widget, types) {
+
+                    if (this.elements.$modal) {
+
+                        // Clear modal
+                        this.elements.$modal.selfDestroy();
+                    }
+
+                    this.modalDialog({
+                        style: 'widget-generator-new',
+                        type: 'info',
+                        title: this.i18n.t('widget.manager.generate.update'),
+                        html: this.elements.$widgetgenerator.renderWidgetGeneratorForm(
+                            widget,
+                            types,
+                            widget,
+                            false
+                        ),
+                        cover: true,
+                        closeX: false,
+                        autoclose: false,
+                        items: widget,
+                        buttons: {
+                            approve: {
+                                text: this.i18n.t('site.data.save'),
+                                events: {
+                                    click: 'updateWidget'
+                                }
+                            },
+                            reject: {
+                                text: this.i18n.t('site.data.back'),
+                                events: {
+                                    click: 'loadWidgetsList'
+                                }
+                            }
+                        }
+                    });
+                },
+
+                /**
+                 * Render site.config
+                 * @member SiteConfigView
+                 */
+                render: function render() {
+
+                    this.scope.observer.publish(
+                        this.scope.eventmanager.eventList.successRendered,
+                        this.renderSiteConfig.bind(this)
+                    );
                 }
 
-                this.modalDialog({
-                    style: 'widget-generator-new',
-                    type: 'info',
-                    title: this.i18n.t('widget.manager.generate.update'),
-                    html: this.elements.$widgetgenerator.renderWidgetGeneratorForm(
-                        widget,
-                        types,
-                        widget,
-                        false
-                    ),
-                    cover: true,
-                    closeX: false,
-                    autoclose: false,
-                    items: widget,
-                    buttons: {
-                        approve: {
-                            text: this.i18n.t('site.data.save'),
-                            events: {
-                                click: 'updateWidget'
-                            }
-                        },
-                        reject: {
-                            text: this.i18n.t('site.data.back'),
-                            events: {
-                                click: 'loadWidgetsList'
-                            }
-                        }
-                    }
-                });
             },
-
-            /**
-             * Render site.config
-             * @member SiteConfigView
-             */
-            render: function render() {
-
-                this.scope.observer.publish(
-                    this.scope.eventmanager.eventList.successRendered,
-                    this.renderSiteConfig.bind(this)
-                );
-            }
-
-        }, BaseView.prototype, BasePreferences.prototype)
+            BaseView.prototype,
+            BasePreferencesElement.prototype
+        )
     }
 );

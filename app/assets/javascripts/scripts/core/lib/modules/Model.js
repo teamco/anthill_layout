@@ -252,15 +252,16 @@ define([
          * @returns {*}
          */
         getItemByUUID: function getItemByUUID(uuid) {
+
             var base = this.base,
                 items = this.getItems(),
-                item = base.lib.hash.isHashKey(items, uuid) ?
-                    items[uuid] : undefined;
+                item = items[uuid];
 
-            if (!base.isDefined(item)) {
-                this.scope.logger.debug('Undefined item');
+            if (base.isDefined(item)) {
+                return item;
             }
-            return item;
+
+            this.scope.logger.debug('Undefined item');
         },
 
         /**
@@ -280,7 +281,7 @@ define([
 
                     /**
                      * Get item
-                     * @type {{Page|Widget|*}}
+                     * @type {Page|Widget|*}
                      */
                     item = items[index];
 
@@ -297,6 +298,25 @@ define([
             }
 
             this.scope.logger.debug('Unable locate item by title', items, title);
+        },
+
+        /**
+         * Get current item
+         * @member BaseModel
+         * @returns {*}
+         */
+        getCurrentItem: function getCurrentItem() {
+
+            var scope = this.scope,
+                sname = this.getItemNameSpace();
+
+            if (sname === 'object') {
+                scope.logger.error(
+                    'Unable to locate current item'
+                );
+            }
+
+            return scope[sname];
         },
 
         /**
@@ -662,6 +682,30 @@ define([
             }
 
             return data.collector;
+        },
+
+        /**
+         * Check if transfer preferences should be skipped
+         * @member BaseModel
+         * @param {string} index
+         * @returns {boolean}
+         */
+        checkSkipPreferencesOn: function checkSkipPreferencesOn(index) {
+
+            /**
+             * Define skipTransfer
+             * @type {boolean}
+             */
+            var skipTransfer = this.skipPreferencesOn &&
+                this.skipPreferencesOn.indexOf(index) > -1;
+
+            if (skipTransfer) {
+                this.scope.logger.debug(
+                    'Transfer preferences should be skipped'
+                );
+            }
+
+            return skipTransfer;
         }
 
     }, AntHill.prototype, CRUD.prototype);

@@ -5,20 +5,19 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-define([], function defineBaseFunction() {
+define([], function defineLibFunction() {
 
     /**
-     * Define Base function
-     * @class BaseFunction
+     * Define Lib function
+     * @class LibFunction
      * @constructor
      */
-    var BaseFunction = function BaseFunction() {
+    var LibFunction = function LibFunction() {
     };
 
-    BaseFunction.extend('BaseFunction', {
-
+    LibFunction.extend('LibFunction', {
     });
 
-    return new BaseFunction();
+    return new LibFunction();
 
 });

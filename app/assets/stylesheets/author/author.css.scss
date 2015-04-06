@@ -41,6 +41,10 @@ body.admin .fetcher .content {
   margin: 20px 0 0;
 }
 
+body.admin .fetcher .content > div {
+  padding-right: 20px;
+}
+
 body.admin .fetcher div.admin-content {
   height: 100%;
   position: relative;
@@ -162,7 +166,6 @@ body.admin ul textarea:focus {
 body.admin form {
   position: relative;
   width: 100%;
-  padding-right: 20px;
 }
 
 body.admin form select {
@@ -219,6 +222,10 @@ body.admin a.back:hover {
 body.admin .field {
   clear: both;
   margin-bottom: 10px;
+}
+
+body.admin .field > label {
+  cursor: pointer;
 }
 
 body.admin .actions {
@@ -300,12 +307,61 @@ body.admin form ul {
   border-radius: 5px;
 }
 
+body.admin form ul.categories {
+  background-color: transparent;
+}
+
+body.admin form ul.categories > li {
+  width: 100%;
+}
+
+body.admin form ul.categories > li > label {
+  cursor: pointer;
+}
+
 body.admin form li {
   display: inline-block;
 }
 
-body.admin form ul > li label {
+body.admin form ul.widgets {
+  position: relative;
+}
+
+body.admin form ul.widgets > li {
+  overflow: hidden;
+  white-space: nowrap;
+  box-shadow: 1px 1px 1px #999;
+  padding: 0 5px;
+  background: #efefef;
+  border-radius: 3px;
+}
+
+body.admin form ul.widgets > li:hover {
+  background: #fff;
+  box-shadow: 0 0 1px #999;
+  cursor: pointer;
+}
+
+body.admin form ul.widgets > li:active {
+  box-shadow: inset -3px -3px 1px #bbb;
+  background: #ccc;
+}
+
+body.admin form ul.widgets > li label {
+  font-size: 11px;
+  width: 100%;
+}
+
+body.admin form ul.widgets > li input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+body.admin form ul.widgets > li label {
   min-width: inherit;
+  cursor: pointer;
+  font-variant: normal;
+  font-weight: normal;
+  text-transform: capitalize;
 }
 
 body.admin form ul div.field {

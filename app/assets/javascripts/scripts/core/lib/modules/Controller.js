@@ -192,7 +192,7 @@ define([
 
             return this.base.isDefined(uuid) ?
                 root.model.getItemByUUID(uuid) :
-                root.controller.getCurrentItem();
+                root.model.getCurrentItem();
         },
 
         /**
@@ -211,7 +211,7 @@ define([
 
             return this.base.isDefined(uuid) ?
                 workspace.model.getItemByUUID(uuid) :
-                workspace.controller.getCurrentItem();
+                workspace.model.getCurrentItem();
         },
 
         /**
@@ -220,7 +220,14 @@ define([
          * @returns {*|Widget}
          */
         getWidget: function getWidget() {
-            return this.getPage().controller.getCurrentItem();
+
+            /**
+             * Get page
+             * @type {Page}
+             */
+            var page = this.getPage();
+
+            return page.model.getCurrentItem();
         },
 
         /**
@@ -300,25 +307,6 @@ define([
         },
 
         /**
-         * Get current items
-         * @member BaseController
-         * @returns {*}
-         */
-        getCurrentItem: function getCurrentItem() {
-
-            var scope = this.scope,
-                sname = scope.model.getItemNameSpace();
-
-            if (sname === 'object') {
-                scope.logger.error(
-                    'Unable to locate current item'
-                );
-            }
-
-            return scope[sname];
-        },
-
-        /**
          * Set item as current in parent node
          * @member BaseController
          */
@@ -337,7 +325,7 @@ define([
         setCurrentItem: function setCurrentItem(item) {
             var scope = this.scope;
             scope[scope.model.getItemNameSpace()] = item;
-            return this.getCurrentItem();
+            return this.model.getCurrentItem();
         },
 
         /**
@@ -415,10 +403,14 @@ define([
          */
         transferPreferences: function transferPreferences(index, value) {
 
-            if (!this.controller.isWidgetContent()) {
-                this.config.preferences[index] = value;
+            var widgetContent = this.controller.isWidgetContent(),
+                skipTransfer = this.model.checkSkipPreferencesOn(index);
+
+            if (widgetContent || skipTransfer) {
                 return false;
             }
+
+            this.config.preferences[index] = value;
         },
 
         /**
@@ -577,18 +569,22 @@ define([
          */
         isWidgetContent: function isWidgetContent() {
 
+            // Get scope
+            var scope = this.scope;
+
             /**
              * Get widget
              * @type {Widget}
              */
-            var widget = this.scope.controller.getContainment();
+            var widget = scope.controller.getContainment();
 
-            if (!widget) {
-                this.scope.logger.info('Root is not widget content');
-                return false;
+            if (widget) {
+                scope.logger.debug('Widget has content');
+                return widget.controller.isWidget();
             }
 
-            return widget.controller.isWidget();
+            scope.logger.info('Root is not widget content');
+            return false;
         },
 
         /**
