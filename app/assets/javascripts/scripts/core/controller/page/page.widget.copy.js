@@ -37,72 +37,89 @@ define(function definePageWidgetCopy() {
                     if (cloneWidgets.hasOwnProperty(index)) {
 
                         /**
-                         * Define widget
-                         * @type {Widget}
+                         * Get updated clone map
+                         * @type {Object}
                          */
-                        var cloneWidget = cloneWidgets[index],
-                            cloneWidgetPrefs = cloneWidget.model.getConfig('preferences');
-
-                        if (typeof(cloneWidgetPrefs.resource) === 'undefined') {
-
-                            cloneWidget.logger.warn('Undefined resource', cloneWidgetPrefs);
-                            return false;
-                        }
-
-                        // Create without render
-                        this.createWidgetFromResource({
-
-                            resource: cloneWidgetPrefs.resource,
-                            thumbnail: cloneWidgetPrefs.thumbnail,
-                            title: cloneWidgetPrefs.title,
-                            description: cloneWidgetPrefs.description,
-                            width: cloneWidget.dom.width,
-                            height: cloneWidget.dom.height
-
-                        }, false, true);
-
-                        /**
-                         * Get current widget
-                         * @type {Widget}
-                         */
-                        var currentWidget = this.model.getCurrentItem(),
-                            key;
-
-                        // Define map
-                        cloneMap[cloneWidget.model.getUUID()] = currentWidget.model.getUUID();
-
-                        // Copy dom
-                        currentWidget.dom = cloneWidget.dom;
-
-                        // Render widget
-                        currentWidget.observer.publish(
-                            currentWidget.eventmanager.eventList.successRendered
+                        cloneMap = this.cloneWidget(
+                            cloneWidgets[index], cloneMap
                         );
-
-                        for (key in cloneWidgetPrefs) {
-
-                            if (cloneWidgetPrefs.hasOwnProperty(key)) {
-
-                                currentWidget.config.preferences[key] =
-                                    cloneWidgetPrefs[key];
-                            }
-                        }
-
-                        // Temporary clone rules
-                        currentWidget.config.rules = cloneWidget.model.getConfig('rules');
                     }
                 }
 
-                this._defineWidgetRules(cloneMap);
+                this.defineWidgetsRules(cloneMap);
+            },
+
+            /**
+             * Define clone widget
+             * @member PageWidgetCopy
+             * @param {Widget} cloneWidget
+             * @param {Object} cloneMap
+             * @returns {Object}
+             */
+            cloneWidget: function cloneWidget(cloneWidget, cloneMap) {
+
+                this.scope.logger.debug('Clone widget', arguments);
+
+                // Get prefs
+                var cloneWidgetPrefs = cloneWidget.model.getConfig('preferences');
+
+                if (typeof(cloneWidgetPrefs.resource) === 'undefined') {
+
+                    cloneWidget.logger.warn('Undefined resource', cloneWidgetPrefs);
+                    return false;
+                }
+
+                // Create without render
+                this.createWidgetFromResource({
+
+                    resource: cloneWidgetPrefs.resource,
+                    thumbnail: cloneWidgetPrefs.thumbnail,
+                    title: cloneWidgetPrefs.title,
+                    description: cloneWidgetPrefs.description,
+                    width: cloneWidget.dom.width,
+                    height: cloneWidget.dom.height
+
+                }, false, true);
+
+                /**
+                 * Get current widget
+                 * @type {Widget}
+                 */
+                var currentWidget = this.model.getCurrentItem(),
+                    key;
+
+                // Define map
+                cloneMap[cloneWidget.model.getUUID()] = currentWidget.model.getUUID();
+
+                // Copy dom
+                currentWidget.dom = cloneWidget.dom;
+
+                // Render widget
+                currentWidget.observer.publish(
+                    currentWidget.eventmanager.eventList.successRendered
+                );
+
+                for (key in cloneWidgetPrefs) {
+
+                    if (cloneWidgetPrefs.hasOwnProperty(key)) {
+
+                        currentWidget.config.preferences[key] =
+                            cloneWidgetPrefs[key];
+                    }
+                }
+
+                // Temporary clone rules
+                currentWidget.config.rules = cloneWidget.model.getConfig('rules');
+
+                return cloneMap;
             },
 
             /**
              * Define widget rules
              * @member PageWidgetCopy
              * @param {Object} cloneMap
-             * @private
              */
-            _defineWidgetRules: function _defineWidgetRules(cloneMap) {
+            defineWidgetsRules: function defineWidgetsRules(cloneMap) {
 
                 // Get all page widgets
                 var items = this.model.getItems();
@@ -117,10 +134,23 @@ define(function definePageWidgetCopy() {
                          */
                         currentWidget = items[item];
 
-                        this._copyWidgetRulesSubscribe(currentWidget, cloneMap);
-                        this._copyWidgetRulesSubscribers(currentWidget, cloneMap);
+                        this.defineWidgetRules(currentWidget, cloneMap);
                     }
                 }
+            },
+
+            /**
+             * Define widget rules
+             * @member PageWidgetCopy
+             * @param {Widget} currentWidget
+             * @param {Array} cloneMap
+             */
+            defineWidgetRules: function defineWidgetRules(currentWidget, cloneMap) {
+
+                this.scope.logger.debug('Define widget rules', arguments);
+
+                this._copyWidgetRulesSubscribe(currentWidget, cloneMap);
+                this._copyWidgetRulesSubscribers(currentWidget, cloneMap);
             },
 
             /**
