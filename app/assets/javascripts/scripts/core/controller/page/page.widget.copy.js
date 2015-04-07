@@ -109,7 +109,7 @@ define(function definePageWidgetCopy() {
                 }
 
                 // Temporary clone rules
-                currentWidget.config.rules = cloneWidget.model.getConfig('rules');
+                currentWidget.config.rules = $.extend({}, cloneWidget.model.getConfig('rules'));
 
                 return cloneMap;
             },
