@@ -170,7 +170,8 @@ define(function definePageWidgetCopy() {
                  * @type {Object}
                  */
                 var subscribe = rules.subscribe || {},
-                    rs, currentKey, z = 0;
+                    rs, currentKey, z = 0,
+                    removeSubscribe = [];
 
                 if (typeof(subscribe) === 'undefined') {
 
@@ -210,9 +211,17 @@ define(function definePageWidgetCopy() {
                             }
                         }
 
-                        // Delete temp rules
-                        delete subscribe[rs];
+                        // Collect temp rules
+                        removeSubscribe.push(rs);
                     }
+                }
+
+                var sl = removeSubscribe.length;
+
+                for (z = 0; z < sl; z++) {
+
+                    // Delete temp rules
+                    delete subscribe[removeSubscribe[z]];
                 }
             },
 
