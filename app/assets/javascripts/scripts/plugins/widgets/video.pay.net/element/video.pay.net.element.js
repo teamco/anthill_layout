@@ -35,49 +35,12 @@ define([
         /**
          * Render Embedded content
          * @member VideoPayNetElement
-         * @param {Array} data
+         * @param {string} url
          */
-        renderEmbeddedContent: function renderEmbeddedContent(data) {
+        renderEmbeddedContent: function renderEmbeddedContent(url) {
 
-            /**
-             * Get $element
-             * @type {VideoPayNetElement}
-             */
-            var $element = this,
-                count = 0;
-
-            require(
-                [
-                    'jquery.timeago',
-                    'plugins/widgets/video.pay.net/lib/jquery.video.pay.net.min'
-                ],
-                function loadStream() {
-
-                    $element.$.video-pay-net({
-                        limit: 400,
-                        list: data,
-                        feedloaded: function feedloaded() {
-
-                            count++;
-
-                            // Check if all the feeds have been loaded
-                            if (count === data.length + 1) {
-
-                                $('li', $element.$).each(function eachFeed() {
-
-                                    var element = $(this),
-                                        date = new Date(element.data('time'));
-
-                                    element.append([
-                                        '<abbr class="timeago" title="',
-                                        date.toISO8601(date), '">', date, '</abbr>'
-                                    ].join(''));
-                                });
-                                $('.timeago', $element.$).timeago();
-                            }
-                        }
-                    });
-                }
+            this.$.append(
+                this.renderIframe(url)
             );
         }
 

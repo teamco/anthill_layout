@@ -27,40 +27,43 @@ define([
          * @member VideoPayNetController
          */
         setEmbeddedContent: function setEmbeddedContent() {
+            /**
+             * Get url
+             * @type {string|*}
+             */
+            var url = this.model.getPrefs('videopaynetEmbedCode'),
+                embed = this.controller.getEmbedCode(url);
 
-            var prefs = this.model.getAllContentPrefs(),
-                index, opts = [], value,
-                service, condition;
+            if (embed) {
+                this.view.elements.$bigmirnet.renderEmbeddedContent(embed);
+            }
+        },
 
-            for (index in prefs) {
+        /**
+         * Validate iframe
+         * @member VideoPayNetController
+         * @param {string} embed
+         * @return {string|boolean}
+         */
+        getEmbedCode: function getEmbedCode(embed) {
 
-                if (prefs.hasOwnProperty(index)) {
-
-                    // Get prefs
-                    value = this.model.getPrefs(index);
-
-                    if (this.base.isDefined(value)) {
-
-                        // Get service name
-                        service = index.toLowerCase().
-                            replace(this.name.toLowerCase(), '');
-
-                        condition =
-                            service.match(/user/) ||
-                            service.match(/url/);
-
-                        if (condition && value.length > 0) {
-                            opts.push({
-                                service: service.replace(/user/, '').
-                                    replace(/url/, ''),
-                                user: value
-                            });
-                        }
-                    }
-                }
+            if (!embed) {
+                this.scope.logger.debug('Initial state');
+                return false;
             }
 
-            this.view.get$item().renderEmbeddedContent(opts);
+            // Convert to string
+            embed += '';
+
+            if (embed.match(/^<iframe/)) {
+
+                return $(embed).attr('src');
+
+            } else {
+
+                this.scope.logger.warn('Invalid VideoPayNet embed code');
+                return false;
+            }
         },
 
         /**
