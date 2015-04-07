@@ -45,7 +45,10 @@ define([], function defineIframeRenderer() {
              */
             var $iframe = $(iframe).attr(attrs)
 
-            this.checkVisibility($iframe, opts.visible);
+            this.checkVisibility(
+                $iframe,
+                this.base.defineBoolean(opts.visible, true, true)
+            );
 
             return $iframe;
         }

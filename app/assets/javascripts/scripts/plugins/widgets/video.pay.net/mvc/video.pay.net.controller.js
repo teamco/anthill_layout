@@ -35,7 +35,7 @@ define([
                 embed = this.controller.getEmbedCode(url);
 
             if (embed) {
-                this.view.elements.$bigmirnet.renderEmbeddedContent(embed);
+                this.view.elements.$videopaynet.renderEmbeddedContent(embed);
             }
         },
 
