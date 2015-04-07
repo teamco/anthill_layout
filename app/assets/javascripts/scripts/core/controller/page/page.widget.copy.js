@@ -61,7 +61,7 @@ define(function definePageWidgetCopy() {
                 this.scope.logger.debug('Clone widget', arguments);
 
                 // Get prefs
-                var cloneWidgetPrefs = cloneWidget.model.getConfig('preferences');
+                var cloneWidgetPrefs = $.extend({}, cloneWidget.model.getConfig('preferences'));
 
                 if (typeof(cloneWidgetPrefs.resource) === 'undefined') {
 
@@ -85,28 +85,21 @@ define(function definePageWidgetCopy() {
                  * Get current widget
                  * @type {Widget}
                  */
-                var currentWidget = this.model.getCurrentItem(),
-                    key;
+                var currentWidget = this.model.getCurrentItem();
 
                 // Define map
                 cloneMap[cloneWidget.model.getUUID()] = currentWidget.model.getUUID();
 
                 // Copy dom
-                currentWidget.dom = cloneWidget.dom;
+                currentWidget.dom = $.extend({}, cloneWidget.dom);
 
                 // Render widget
                 currentWidget.observer.publish(
                     currentWidget.eventmanager.eventList.successRendered
                 );
 
-                for (key in cloneWidgetPrefs) {
-
-                    if (cloneWidgetPrefs.hasOwnProperty(key)) {
-
-                        currentWidget.config.preferences[key] =
-                            cloneWidgetPrefs[key];
-                    }
-                }
+                // Copy prefs
+                currentWidget.config.preferences = cloneWidgetPrefs;
 
                 // Temporary clone rules
                 currentWidget.config.rules = $.extend({}, cloneWidget.model.getConfig('rules'));
@@ -128,13 +121,7 @@ define(function definePageWidgetCopy() {
 
                     if (items.hasOwnProperty(item)) {
 
-                        /**
-                         * Get widget
-                         * @type {Widget}
-                         */
-                        currentWidget = items[item];
-
-                        this.defineWidgetRules(currentWidget, cloneMap);
+                        this.defineWidgetRules(items[item], cloneMap);
                     }
                 }
             },
