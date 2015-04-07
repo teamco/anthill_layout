@@ -27,7 +27,7 @@ define(function definePageWidgetCopy() {
 
                 /**
                  * Get clone page items
-                 * @type {{Widget: {}}}
+                 * @type {Object}
                  */
                 var cloneWidgets = fromPage.model.getItems(),
                     index, cloneMap = {};
@@ -61,11 +61,17 @@ define(function definePageWidgetCopy() {
                 this.scope.logger.debug('Clone widget', arguments);
 
                 // Get prefs
-                var cloneWidgetPrefs = $.extend({}, cloneWidget.model.getConfig('preferences'));
+                var cloneWidgetPrefs = $.extend(
+                    {}, cloneWidget.model.getConfig('preferences')
+                );
 
                 if (typeof(cloneWidgetPrefs.resource) === 'undefined') {
 
-                    cloneWidget.logger.warn('Undefined resource', cloneWidgetPrefs);
+                    cloneWidget.logger.warn(
+                        'Undefined resource',
+                        cloneWidgetPrefs
+                    );
+
                     return false;
                 }
 
@@ -102,7 +108,9 @@ define(function definePageWidgetCopy() {
                 currentWidget.config.preferences = cloneWidgetPrefs;
 
                 // Temporary clone rules
-                currentWidget.config.rules = $.extend({}, cloneWidget.model.getConfig('rules'));
+                currentWidget.config.rules = $.extend(
+                    {}, cloneWidget.model.getConfig('rules')
+                );
 
                 return cloneMap;
             },
