@@ -43,7 +43,7 @@ define([
                 var scope = this.scope;
 
                 // Merge widget prefs
-                var prefs = $.extend({},
+                var prefs = $.extend(true, {},
                     this.model.getConfig('widget').preferences, {
                         resource: opts.resource,
                         thumbnail: opts.thumbnail,
