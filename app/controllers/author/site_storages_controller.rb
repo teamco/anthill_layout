@@ -192,6 +192,9 @@ class Author::SiteStoragesController < Author::AuthorController
 
   def update_handler(versions)
     updated = false
+
+    update_widget_connections
+
     if @author_site_storage.update(author_site_storage_params)
       updated = update_version_activation(
           @activated.nil? ?
@@ -199,6 +202,18 @@ class Author::SiteStoragesController < Author::AuthorController
       )
     end
     updated
+  end
+
+  def update_widget_connections
+
+    widgets = Author::Widget.find(params[:author_site_storage][:author_site_storage_widget_ids].reject(&:blank?))
+
+    widgets.empty? ?
+        @author_site_storage.author_site_storage_widgets.delete_all :
+        @author_site_storage.author_widgets << widgets
+
+    params[:author_site_storage].delete :author_site_storage_widget_ids
+
   end
 
   def update_version_activation(version)
@@ -282,4 +297,5 @@ class Author::SiteStoragesController < Author::AuthorController
         ]
     )
   end
+
 end

@@ -16,7 +16,9 @@
     <%= render_activated_version(f) -%>
 
     <div class="field">
-      <%= label_tag 'select_all_widgets', '(Un)Select All widgets', {onclick: 'selectAll(this)'} %>
+      <%= label_tag 'select_all_widgets',
+                    "(Un)Select All widgets: #{@author_site_storage.author_widgets.size}",
+                    {onclick: 'selectAll(this)'} %>
       <%= hidden_field_tag 'author_site_storage[author_site_storage_widget_ids][]', nil %>
       <ul class="categories">
         <% Author::WidgetCategory.order(:name_value).each do |category| %>
