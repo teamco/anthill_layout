@@ -51,7 +51,8 @@ define([
              * @type {Application}
              */
             var scope = this.view.scope,
-                lib = scope.base.lib;
+                lib = scope.base.lib,
+                fname = data.fileName || 'file.txt';
 
             /**
              * Define url
@@ -65,7 +66,8 @@ define([
                     scope.base.isBase64(data.content) ?
                         data.content :
                         lib.string.utf8ToBase64(data.content),
-                    data.type
+                    data.type,
+                    fname
                 );
 
                 scope.logger.debug('Blob URL', url);
@@ -109,14 +111,14 @@ define([
                 this.$.attr({
 
                     href: url,
-                    download: data.fileName || 'file.txt',
+                    download: fname,
                     title: data.title || 'Download'
 
                 }).text(data.title || 'Download');
 
                 if (data.autoload) {
 
-                    lib.event.simulate(this.$[0], "click");
+                    lib.event.simulate(this.$[0], 'click');
                 }
             }
 

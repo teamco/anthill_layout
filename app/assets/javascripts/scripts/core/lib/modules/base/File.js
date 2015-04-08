@@ -18,20 +18,47 @@ define([], function defineLibFile() {
     LibFile.extend('LibFile', {
 
         /**
+         * Check API
+         * @member LibFile
+         * @returns {boolean}
+         */
+        checkFileApi: function checkFileApi() {
+
+            // Get scope
+            var scope = this.view.scope;
+
+            // Check for the various File API support.
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+                scope.logger.debug('Great success! All the File APIs are supported');
+                return true;
+            } else {
+                scope.logger.warn('The File APIs are not fully supported in this browser');
+                return false;
+            }
+        },
+
+        /**
          * Create Blob URL
          * @member LibFile
          * @param {string} content
          * @param {string} type
-         * @returns {*}
+         * @param {string} fname
+         * @returns {string}
          */
-        createURL: function createURL(content, type) {
+        createURL: function createURL(content, type, fname) {
 
-            return window.URL.createObjectURL(
-                this._base64toBlob(
-                    content,
-                    type
-                )
-            )
+            /**
+             * Define blob instance
+             * @type {Blob}
+             */
+            var blob = this._base64toBlob(
+                content,
+                type
+            );
+
+            return (navigator.appVersion.toString().indexOf('.NET') > 0) ?
+                window.navigator.msSaveOrOpenBlob(blob, fname) :
+                window.URL.createObjectURL(blob);
         },
 
         /**

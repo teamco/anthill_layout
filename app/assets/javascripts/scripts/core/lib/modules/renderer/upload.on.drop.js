@@ -22,7 +22,7 @@ define(['jquery'], function defineUploadOnDrop($) {
          */
         renderJSONUploader: function renderJSONUploader(opts) {
 
-            if (this.checkFileApi()) {
+            if (this.base.lib.file.checkFileApi()) {
 
                 var scope = this.view.scope,
                     cname = scope.constructor.prototype.name.toDash(),
