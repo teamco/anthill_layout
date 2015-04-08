@@ -62,7 +62,7 @@ define(function definePageWidgetCopy() {
 
                 // Get prefs
                 var cloneWidgetPrefs = $.extend(
-                    {}, cloneWidget.model.getConfig('preferences')
+                    true, {}, cloneWidget.model.getConfig('preferences')
                 );
 
                 if (typeof(cloneWidgetPrefs.resource) === 'undefined') {
@@ -97,7 +97,7 @@ define(function definePageWidgetCopy() {
                 cloneMap[cloneWidget.model.getUUID()] = currentWidget.model.getUUID();
 
                 // Copy dom
-                currentWidget.dom = $.extend({}, cloneWidget.dom);
+                currentWidget.dom = $.extend(true, {}, cloneWidget.dom);
 
                 // Render widget
                 currentWidget.observer.publish(
@@ -109,7 +109,7 @@ define(function definePageWidgetCopy() {
 
                 // Temporary clone rules
                 currentWidget.config.rules = $.extend(
-                    {}, cloneWidget.model.getConfig('rules')
+                    true, {}, cloneWidget.model.getConfig('rules')
                 );
 
                 return cloneMap;
