@@ -47,7 +47,7 @@ define([
                     this.model.getConfig('widget').preferences, {
                         resource: opts.resource,
                         thumbnail: opts.thumbnail,
-                        title: opts.name,
+                        title: opts.title,
                         description: opts.description
                     }
                 );
