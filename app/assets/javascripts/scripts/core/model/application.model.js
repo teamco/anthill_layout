@@ -37,16 +37,22 @@ define([
         initGlobalSetting: function initGlobalSetting() {
 
             /**
+             * Get scope
+             * @type {Application}
+             */
+            var scope = this.scope;
+
+            /**
              * Define setting
              * @member ApplicationModel
              * @type {Setting}
              */
             this.setting = new Setting(
-                this.scope,
-                this.controller.getAppName()
+                scope,
+                scope.controller.getAppName()
             );
 
-            this.scope.logger.debug('Define setting', this.setting);
+            scope.logger.debug('Define setting', this.setting);
         }
 
     }, BaseModel.prototype);

@@ -19,6 +19,7 @@ case RUBY_PLATFORM
     group :development do
 
       gem 'bullet'
+      gem 'xilence'
 
       gem 'web-console', '~> 2.0'
       gem 'ruby-debug-ide', '>= 0.4.25'
