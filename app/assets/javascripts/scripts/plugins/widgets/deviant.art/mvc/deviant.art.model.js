@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member DeviantArtModel
+         * @memberOf DeviantArtModel
          * @type {{
          *      deviantartEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member DeviantArtModel
+         * @memberOf DeviantArtModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set DeviantArt embed code
-         * @member DeviantArtModel
+         * @memberOf DeviantArtModel
          * @param {string} embed
          */
         setDeviantartEmbedCode: function setDeviantartEmbedCode(embed) {

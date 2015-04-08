@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Rutube
+         * @memberOf Rutube
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Rutube
+         * @memberOf Rutube
          * @type {*}
          */
         this.referrer = undefined;
@@ -72,7 +72,7 @@ define([
 
         /**
          * Define MVC
-         * @member Rutube
+         * @memberOf Rutube
          * @type {MVC}
          */
         this.mvc = new MVC({

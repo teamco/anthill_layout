@@ -36,7 +36,7 @@ define(
 
                 /**
                  * Define Load Application
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 loadApplication: function loadApplication() {
 
@@ -57,7 +57,7 @@ define(
 
                 /**
                  * Define global instance
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 defineGlobalInstance: function defineGlobalInstance() {
                     this.logger.debug(
@@ -68,7 +68,7 @@ define(
 
                 /**
                  * Define setting
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 defineSetting: function defineSetting() {
                     this.model.initGlobalSetting();
@@ -78,7 +78,7 @@ define(
 
                 /**
                  * Define overrides
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 defineOverrides: function defineOverrides() {
 
@@ -113,7 +113,7 @@ define(
 
                 /**
                  * Update storage version
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  * @param {number} version
                  */
                 updateStorageVersion: function updateStorageVersion(version) {
@@ -124,7 +124,7 @@ define(
 
                 /**
                  * After update storage
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 afterUpdateStorage: function afterUpdateStorage() {
                     this.logger.debug('After update storage');
@@ -132,7 +132,7 @@ define(
 
                 /**
                  * Define ajax setup
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 ajaxSetup: function ajaxSetup() {
 
@@ -158,7 +158,7 @@ define(
 
                 /**
                  * Define error handler
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 _handleXhrLog: function _handleXhrLog(xhr, status, description) {
 
@@ -173,7 +173,7 @@ define(
 
                 /**
                  * Load updated uuid
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  * @param {string} uuid
                  */
                 loadConfig: function loadConfig(uuid) {
@@ -185,7 +185,7 @@ define(
 
                 /**
                  * Init window resize
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 initResizeWindow: function initResizeWindow() {
 
@@ -203,7 +203,7 @@ define(
 
                 /**
                  * Resize window publisher
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  * @param e
                  */
                 resizeWindowPublisher: function resizeWindowPublisher(e) {
@@ -218,7 +218,7 @@ define(
 
                 /**
                  * Resize window callback
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  * @param e
                  */
                 resizeWindow: function resizeWindow(e) {
@@ -231,7 +231,7 @@ define(
 
                 /**
                  * Resize window hooks
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 resizeWindowHooks: function resizeWindowHooks() {
                     this.logger.debug('Start resize window hooks', arguments);
@@ -239,7 +239,7 @@ define(
 
                 /**
                  * Approve clear data
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 approveClearData: function approveClearData() {
 

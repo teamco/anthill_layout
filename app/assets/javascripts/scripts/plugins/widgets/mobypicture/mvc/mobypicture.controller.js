@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member MobypictureController
+         * @memberOf MobypictureController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$mobypicture.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add Mobypicture rule
-         * @member MobypictureController
+         * @memberOf MobypictureController
          * @param e
          */
         addMobypictureRule: function addMobypictureRule(e) {

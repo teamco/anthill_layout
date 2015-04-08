@@ -28,7 +28,7 @@ define([
 
         /**
          * Render photobucket element
-         * @member PhotobucketView
+         * @memberOf PhotobucketView
          */
         renderPhotobucket: function renderPhotobucket() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member PhotobucketView
+         * @memberOf PhotobucketView
          * @returns {PhotobucketPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member PhotobucketView
+         * @memberOf PhotobucketView
          * @param widgetRules
          * @param contentRules
          * @returns {PhotobucketRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render photobucket
-         * @member PhotobucketView
+         * @memberOf PhotobucketView
          */
         render: function render() {
 

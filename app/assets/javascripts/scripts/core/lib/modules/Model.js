@@ -26,7 +26,7 @@ define([
 
         /**
          * Create a two way data-binding between model and controller
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {object} obj
          * @param {string} property
          * @param {function} fnCallback
@@ -53,7 +53,7 @@ define([
 
         /**
          * Get scope config
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {String} [key]
          * @returns {*}
          */
@@ -97,7 +97,7 @@ define([
 
         /**
          * Set scope config
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {String} [key]
          * @param {*} [value]
          * @returns {scope.config}
@@ -120,7 +120,7 @@ define([
 
         /**
          * Get scope namespace
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {*} node
          * @returns {string}
          */
@@ -136,7 +136,7 @@ define([
 
         /**
          * Find item in a whole project
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {*} root
          * @param {string} uuid
          * @return {*}
@@ -177,7 +177,7 @@ define([
 
         /**
          * Get parent items
-         * @member BaseModel
+         * @memberOf BaseModel
          * @returns {*}
          */
         getParentItems: function getParentItems() {
@@ -186,7 +186,7 @@ define([
 
         /**
          * Get items
-         * @member BaseModel
+         * @memberOf BaseModel
          * @returns {*}
          */
         getItems: function getItems() {
@@ -195,7 +195,7 @@ define([
 
         /**
          * Get all items apart of item
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {{model}} item
          * @returns {Array}
          */
@@ -222,7 +222,7 @@ define([
 
         /**
          * Get UUID
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {{model}} [node]
          * @returns {String}
          */
@@ -236,7 +236,7 @@ define([
 
         /**
          * Get content UUID
-         * @member BaseModel
+         * @memberOf BaseModel
          */
         getContentUUID: function getContentUUID() {
             return [
@@ -247,7 +247,7 @@ define([
 
         /**
          * Get item from collector by UUID
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {string} uuid
          * @returns {*}
          */
@@ -266,7 +266,7 @@ define([
 
         /**
          * Get item from collector by title
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {string} title
          * @returns {*}
          */
@@ -302,7 +302,7 @@ define([
 
         /**
          * Get current item
-         * @member BaseModel
+         * @memberOf BaseModel
          * @returns {*}
          */
         getCurrentItem: function getCurrentItem() {
@@ -321,7 +321,7 @@ define([
 
         /**
          * Get item title
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {Page|Widget} [node]
          * @returns {string}
          */
@@ -349,7 +349,7 @@ define([
 
         /**
          * Reset collector
-         * @member BaseModel
+         * @memberOf BaseModel
          * @returns {*}
          */
         resetItems: function resetItems() {
@@ -359,7 +359,7 @@ define([
 
         /**
          * Delete widget from collector
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param uuid
          * @returns {*}
          */
@@ -370,7 +370,7 @@ define([
 
         /**
          * Update collector
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {string} uuid
          * @param hash
          * returns {*}
@@ -383,7 +383,7 @@ define([
 
         /**
          * Add item to collector
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {{model}} node
          * @param {boolean} [force]
          * @returns {*}
@@ -406,7 +406,7 @@ define([
 
         /**
          * Get Item constructor name
-         * @member BaseModel
+         * @memberOf BaseModel
          * @returns {string}
          */
         getItemNameSpace: function getItemNameSpace() {
@@ -420,7 +420,7 @@ define([
 
         /**
          * Get items order
-         * @member BaseModel
+         * @memberOf BaseModel
          * @returns {*}
          */
         getOrder: function getOrder() {
@@ -429,14 +429,14 @@ define([
 
         /**
          * Set rules on loading
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param rules
          */
         setRules: function setRules(rules) {
 
             /**
              * Local rules storage
-             * @member BaseModel
+             * @memberOf BaseModel
              * @type {{}}
              */
             this.rules = rules;
@@ -444,7 +444,7 @@ define([
 
         /**
          * Set Title
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {string} title
          */
         setTitle: function setTitle(title) {
@@ -453,7 +453,7 @@ define([
 
         /**
          * Set Description
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {string} description
          */
         setDescription: function setDescription(description) {
@@ -462,7 +462,7 @@ define([
 
         /**
          * Set item info preferences
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {string} index
          * @param value
          * @protected
@@ -480,7 +480,7 @@ define([
 
         /**
          * Check items limit
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {Function} constructor
          * @param {Number} limit
          * @returns {boolean}
@@ -503,7 +503,7 @@ define([
 
         /**
          * Update items collector
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {function} Constructor
          * @param {{}} opts
          * @returns {*}
@@ -575,7 +575,7 @@ define([
 
         /**
          * Load data
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param [data]
          * @returns {*}
          */
@@ -613,7 +613,7 @@ define([
 
                 /**
                  * Define counter
-                 * @member Application
+                 * @memberOf Application
                  * @type {number}
                  */
                 root.loadingDataCounter = base.isDefined(root.loadingDataCounter) ?
@@ -656,7 +656,7 @@ define([
 
                                     /**
                                      * Reduce counter
-                                     * @member Application
+                                     * @memberOf Application
                                      * @type {number}
                                      */
                                     root.loadingDataCounter -= 1;
@@ -686,7 +686,7 @@ define([
 
         /**
          * Check if transfer preferences should be skipped
-         * @member BaseModel
+         * @memberOf BaseModel
          * @param {string} index
          * @returns {boolean}
          */

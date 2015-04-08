@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Pinterest
+         * @memberOf Pinterest
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Pinterest
+         * @memberOf Pinterest
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @member Pinterest
+         * @memberOf Pinterest
          * @type {MVC}
          */
         this.mvc = new MVC({

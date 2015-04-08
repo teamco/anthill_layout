@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member XHamsterController
+         * @memberOf XHamsterController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate xHamster
-         * @member XHamsterController
+         * @memberOf XHamsterController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -75,7 +75,7 @@ define([
 
         /**
          * Add XHamster rule
-         * @member XHamsterController
+         * @memberOf XHamsterController
          * @param e
          */
         addXHamsterRule: function addXHamsterRule(e) {

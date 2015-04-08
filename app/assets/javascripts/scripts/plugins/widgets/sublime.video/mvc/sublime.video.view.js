@@ -28,7 +28,7 @@ define([
 
         /**
          * Render sublimevideo element
-         * @member SublimeVideoView
+         * @memberOf SublimeVideoView
          */
         renderSublimeVideo: function renderSublimeVideo() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member SublimeVideoView
+         * @memberOf SublimeVideoView
          * @returns {SublimeVideoPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member SublimeVideoView
+         * @memberOf SublimeVideoView
          * @param widgetRules
          * @param contentRules
          * @returns {SublimeVideoRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render sublimevideo
-         * @member SublimeVideoView
+         * @memberOf SublimeVideoView
          */
         render: function render() {
 

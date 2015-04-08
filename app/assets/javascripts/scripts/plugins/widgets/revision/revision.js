@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Revision
+         * @memberOf Revision
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Revision
+         * @memberOf Revision
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Revision
+         * @memberOf Revision
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member MixcloudModel
+         * @memberOf MixcloudModel
          * @type {{
          *      mixcloudEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member MixcloudModel
+         * @memberOf MixcloudModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Mixcloud embed code
-         * @member MixcloudModel
+         * @memberOf MixcloudModel
          * @param {string} embed
          */
         setMixcloudEmbedCode: function setMixcloudEmbedCode(embed) {

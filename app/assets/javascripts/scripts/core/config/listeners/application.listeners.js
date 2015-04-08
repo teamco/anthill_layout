@@ -9,7 +9,7 @@ define(['config/application'], function defineApplicationListeners(Application) 
 
     /**
      * Define Application Local listeners
-     * @member Application
+     * @memberOf Application
      * @type {{
      *      successRendered: {name: string, callback: Function},
      *      resizeWindow: {name: string, params: *, callback: Function},

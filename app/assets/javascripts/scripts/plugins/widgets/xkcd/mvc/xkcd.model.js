@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member XkcdModel
+         * @memberOf XkcdModel
          * @type {{
          *      xkcdEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member XkcdModel
+         * @memberOf XkcdModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Xkcd embed code
-         * @member XkcdModel
+         * @memberOf XkcdModel
          * @param {string} embed
          */
         setXkcdEmbedCode: function setXkcdEmbedCode(embed) {

@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member FilmOnElement
+         * @memberOf FilmOnElement
          * @param {string} iframe
          */
         renderEmbeddedContent: function renderEmbeddedContent(iframe) {

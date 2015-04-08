@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member MapLocatorModel
+         * @memberOf MapLocatorModel
          * @type {{}}
          */
         this.preferences = {
@@ -125,7 +125,7 @@ define([
 
         /**
          * Define rules
-         * @member MapLocatorModel
+         * @memberOf MapLocatorModel
          * @type {{}}
          */
         this.rules = {};
@@ -135,7 +135,7 @@ define([
 
         /**
          * Set MapLocator Latitude
-         * @member MapLocatorModel
+         * @memberOf MapLocatorModel
          * @param {number} latitude
          */
         setMapLocatorLatitude: function setMapLocatorLatitude(latitude) {
@@ -144,7 +144,7 @@ define([
 
         /**
          * Set MapLocator Longitude
-         * @member MapLocatorModel
+         * @memberOf MapLocatorModel
          * @param {number} longitude
          */
         setMapLocatorLongitude: function setMapLocatorLongitude(longitude) {
@@ -153,7 +153,7 @@ define([
 
         /**
          * Set MapLocator zoom
-         * @member MapLocatorModel
+         * @memberOf MapLocatorModel
          * @param {number} zoom
          */
         setMapLocatorZoom: function setMapLocatorZoom(zoom) {
@@ -162,7 +162,7 @@ define([
 
         /**
          * Set MapLocator Search radius
-         * @member MapLocatorModel
+         * @memberOf MapLocatorModel
          * @param {string} radius
          */
         setMapLocatorSearchRadius: function setMapLocatorSearchRadius(radius) {

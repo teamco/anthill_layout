@@ -28,7 +28,7 @@ define([
 
         /**
          * Render firepic element
-         * @member FirePicView
+         * @memberOf FirePicView
          */
         renderFirePic: function renderFirePic() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member FirePicView
+         * @memberOf FirePicView
          * @returns {FirePicPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member FirePicView
+         * @memberOf FirePicView
          * @param widgetRules
          * @param contentRules
          * @returns {FirePicRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render firepic
-         * @member FirePicView
+         * @memberOf FirePicView
          */
         render: function render() {
 

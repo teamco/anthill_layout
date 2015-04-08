@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member ScribdModel
+         * @memberOf ScribdModel
          * @type {{
          *      scribdEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member ScribdModel
+         * @memberOf ScribdModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Scribd embed code
-         * @member ScribdModel
+         * @memberOf ScribdModel
          * @param {string} embed
          */
         setScribdEmbedCode: function setScribdEmbedCode(embed) {

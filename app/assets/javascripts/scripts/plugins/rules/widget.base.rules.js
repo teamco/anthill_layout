@@ -22,7 +22,7 @@ define([
 
         /**
          * Buttons collector
-         * @member BaseWidgetRules
+         * @memberOf BaseWidgetRules
          * @type {{}}
          */
         this.$buttons = {};
@@ -32,7 +32,7 @@ define([
 
         /**
          * Define default widget rules
-         * @member BaseWidgetRules
+         * @memberOf BaseWidgetRules
          * @type {{
          * }}
          */
@@ -41,7 +41,7 @@ define([
 
         /**
          * Transfer selected value
-         * @member BaseWidgetRules
+         * @memberOf BaseWidgetRules
          * @param {string} value
          * @private
          */
@@ -53,7 +53,7 @@ define([
 
         /**
          * Render widget rules
-         * @member BaseWidgetRules
+         * @memberOf BaseWidgetRules
          * @param widgetRules
          */
         renderWidgetRules: function renderWidgetRules(widgetRules) {
@@ -123,7 +123,7 @@ define([
 
         /**
          * Render content rules
-         * @member BaseWidgetRules
+         * @memberOf BaseWidgetRules
          * @param contentRules
          */
         renderContentRules: function renderContentRules(contentRules) {
@@ -198,7 +198,7 @@ define([
 
         /**
          * Render subscribe rules
-         * @member BaseWidgetRules
+         * @memberOf BaseWidgetRules
          * @param subscribe
          */
         renderSubscribeRules: function renderSubscribeRules(subscribe) {
@@ -306,7 +306,7 @@ define([
 
         /**
          * Render data
-         * @member BaseWidgetRules
+         * @memberOf BaseWidgetRules
          * @param data
          * @param widgetRules
          * @param contentRules
@@ -315,7 +315,7 @@ define([
 
             /**
              * Buttons collector
-             * @member BaseWidgetRules
+             * @memberOf BaseWidgetRules
              * @type {{}}
              */
             this.$buttons = this.base.define(this.$buttons, {}, true);
@@ -328,7 +328,7 @@ define([
 
         /**
          * Add new rule
-         * @member BaseWidgetRules
+         * @memberOf BaseWidgetRules
          * @param {string} rule
          * @param {string} type
          * @param $container

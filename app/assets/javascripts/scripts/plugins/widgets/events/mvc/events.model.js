@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member EventsModel
+         * @memberOf EventsModel
          * @type {{}}
          */
         this.preferences = {
@@ -35,7 +35,7 @@ define([
 
         /**
          * Define rules
-         * @member EventsModel
+         * @memberOf EventsModel
          * @type {{}}
          */
         this.rules = {};
@@ -45,7 +45,7 @@ define([
 
         /**
          * Set events json
-         * @member EventsModel
+         * @memberOf EventsModel
          * @param {string} json
          */
         setEventsJson: function setEventsJson(json) {

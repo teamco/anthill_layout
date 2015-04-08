@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member GiphyElement
+         * @memberOf GiphyElement
          * @param {{src, type, [id], [width], [height]}} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

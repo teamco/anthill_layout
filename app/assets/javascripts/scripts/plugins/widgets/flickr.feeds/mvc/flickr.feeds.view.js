@@ -28,7 +28,7 @@ define([
 
         /**
          * Render FlickrFeeds element
-         * @member FlickrFeedsView
+         * @memberOf FlickrFeedsView
          */
         renderFlickrFeeds: function renderFlickrFeeds() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member FlickrFeedsView
+         * @memberOf FlickrFeedsView
          * @returns {FlickrFeedsPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member FlickrFeedsView
+         * @memberOf FlickrFeedsView
          * @param widgetRules
          * @param contentRules
          * @returns {FlickrFeedsRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render FlickrFeeds
-         * @member FlickrFeedsView
+         * @memberOf FlickrFeedsView
          */
         render: function render() {
 

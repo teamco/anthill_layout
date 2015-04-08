@@ -28,7 +28,7 @@ define([
 
         /**
          * Render onetvru element
-         * @member OnetvRuView
+         * @memberOf OnetvRuView
          */
         renderOnetvRu: function renderOnetvRu() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member OnetvRuView
+         * @memberOf OnetvRuView
          * @returns {OnetvRuPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member OnetvRuView
+         * @memberOf OnetvRuView
          * @param widgetRules
          * @param contentRules
          * @returns {OnetvRuRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render onetvru
-         * @member OnetvRuView
+         * @memberOf OnetvRuView
          */
         render: function render() {
 

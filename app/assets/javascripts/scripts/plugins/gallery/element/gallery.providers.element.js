@@ -32,7 +32,7 @@ define([
 
         /**
          * Prepare data for combo box
-         * @member GalleryProvidersElement
+         * @memberOf GalleryProvidersElement
          * @param data
          * @returns {*}
          */
@@ -57,7 +57,7 @@ define([
 
         /**
          * Render data
-         * @member GalleryProvidersElement
+         * @memberOf GalleryProvidersElement
          * @param data
          * @param currentProvider
          * @returns {GalleryProvidersElement}

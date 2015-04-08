@@ -19,7 +19,7 @@ define([], function defineLibString() {
 
         /**
          * UTF8 to Base64
-         * @member LibString
+         * @memberOf LibString
          * @param {string} str
          * @returns {string}
          */
@@ -31,7 +31,7 @@ define([], function defineLibString() {
 
         /**
          * Base64 to UTF8
-         * @member LibString
+         * @memberOf LibString
          * @param {string} str
          * @returns {string}
          */
@@ -43,8 +43,8 @@ define([], function defineLibString() {
 
         /**
          * Convert string to base64
-         * @member LibString
-         * @member String
+         * @memberOf LibString
+         * @memberOf String
          */
         base64: (function _base64() {
 

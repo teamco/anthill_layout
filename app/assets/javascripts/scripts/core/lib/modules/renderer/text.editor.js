@@ -17,7 +17,7 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
 
         /**
          * Render text area
-         * @member TextEditorRenderer
+         * @memberOf TextEditorRenderer
          * @param {{
          *      text: string,
          *      name: string,
@@ -89,7 +89,7 @@ define(['tinyMCE'], function defineTextEditorRenderer(tinyMCE) {
 
         /**
          * Define after init tinyMce callback
-         * @member TextEditorRenderer
+         * @memberOf TextEditorRenderer
          */
         afterInitTinyMce: function afterInitTinyMce(editor) {
 

@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member PornHost
+         * @memberOf PornHost
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member PornHost
+         * @memberOf PornHost
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member PornHost
+         * @memberOf PornHost
          * @type {MVC}
          */
         this.mvc = new MVC({

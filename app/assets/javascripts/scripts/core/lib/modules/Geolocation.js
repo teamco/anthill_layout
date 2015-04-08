@@ -15,7 +15,7 @@ define([], function defineBaseGeolocation(){
 
         /**
          * Get Position
-         * @member BaseGeolocation
+         * @memberOf BaseGeolocation
          * @param {Function} [callback]
          */
         getPosition: function getPosition(callback) {
@@ -44,7 +44,7 @@ define([], function defineBaseGeolocation(){
 
         /**
          * Error handler
-         * @member BaseGeolocation
+         * @memberOf BaseGeolocation
          * @param [error]
          */
         geolocationErrorHandler: function geolocationErrorHandler(error) {

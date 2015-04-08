@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member SmotriCom
+         * @memberOf SmotriCom
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member SmotriCom
+         * @memberOf SmotriCom
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member SmotriCom
+         * @memberOf SmotriCom
          * @type {MVC}
          */
         this.mvc = new MVC({

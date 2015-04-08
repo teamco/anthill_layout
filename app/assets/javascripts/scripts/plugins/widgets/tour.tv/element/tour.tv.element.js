@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member TourTvElement
+         * @memberOf TourTvElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

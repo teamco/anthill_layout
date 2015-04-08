@@ -28,7 +28,7 @@ define([
 
         /**
          * Render FilmOn element
-         * @member FilmOnView
+         * @memberOf FilmOnView
          */
         renderFilmOn: function renderFilmOn() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member FilmOnView
+         * @memberOf FilmOnView
          * @returns {FilmOnPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member FilmOnView
+         * @memberOf FilmOnView
          * @param widgetRules
          * @param contentRules
          * @returns {FilmOnRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render FilmOn
-         * @member FilmOnView
+         * @memberOf FilmOnView
          */
         render: function render() {
 

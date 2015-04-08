@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member RevisionModel
+         * @memberOf RevisionModel
          * @type {{
          *      revisionEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member RevisionModel
+         * @memberOf RevisionModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Revision embed code
-         * @member RevisionModel
+         * @memberOf RevisionModel
          * @param {string} embed
          */
         setRevisionEmbedCode: function setRevisionEmbedCode(embed) {

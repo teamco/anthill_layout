@@ -19,7 +19,7 @@ define([], function defineLibEvent() {
 
         /**
          * Define possible events
-         * @member LibEvent
+         * @memberOf LibEvent
          */
         eventMatchers: {
             'HTMLEvents': /^(?:load|unload|abort|error|select|change|submit|reset|focus|blur|resize|scroll)$/,
@@ -28,7 +28,7 @@ define([], function defineLibEvent() {
 
         /**
          * Define default opts
-         * @member LibEvent
+         * @memberOf LibEvent
          */
         defaultOptions: {
             pointerX: 0,
@@ -44,7 +44,7 @@ define([], function defineLibEvent() {
 
         /**
          * Simulate Event
-         * @member LibEvent
+         * @memberOf LibEvent
          * @param element
          * @param eventName
          * @returns {*}

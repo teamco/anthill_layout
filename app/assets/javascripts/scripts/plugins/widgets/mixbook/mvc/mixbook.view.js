@@ -28,7 +28,7 @@ define([
 
         /**
          * Render mixbook element
-         * @member MixbookView
+         * @memberOf MixbookView
          */
         renderMixbook: function renderMixbook() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member MixbookView
+         * @memberOf MixbookView
          * @returns {MixbookPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member MixbookView
+         * @memberOf MixbookView
          * @param widgetRules
          * @param contentRules
          * @returns {MixbookRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render mixbook
-         * @member MixbookView
+         * @memberOf MixbookView
          */
         render: function render() {
 

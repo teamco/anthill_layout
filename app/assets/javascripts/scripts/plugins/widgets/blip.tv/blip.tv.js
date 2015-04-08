@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member BlipTv
+         * @memberOf BlipTv
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member BlipTv
+         * @memberOf BlipTv
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member BlipTv
+         * @memberOf BlipTv
          * @type {MVC}
          */
         this.mvc = new MVC({

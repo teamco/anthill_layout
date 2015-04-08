@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member RdioController
+         * @memberOf RdioController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate rdio
-         * @member RdioController
+         * @memberOf RdioController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Rdio rule
-         * @member RdioController
+         * @memberOf RdioController
          * @param e
          */
         addRdioRule: function addRdioRule(e) {

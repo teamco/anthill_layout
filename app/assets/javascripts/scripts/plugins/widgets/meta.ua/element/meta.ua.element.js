@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member MetaUaElement
+         * @memberOf MetaUaElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member RedTubeModel
+         * @memberOf RedTubeModel
          * @type {{redTubeUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}}}
          */
         this.preferences = {
@@ -35,7 +35,7 @@ define([
 
         /**
          * Define rules
-         * @member RedTubeModel
+         * @memberOf RedTubeModel
          * @type {{}}
          */
         this.rules = {};
@@ -45,7 +45,7 @@ define([
 
         /**
          * Set RedTube Url
-         * @member RedTubeModel
+         * @memberOf RedTubeModel
          * @param {string} url
          */
         setRedTubeUrl: function setRedTubeUrl(url) {

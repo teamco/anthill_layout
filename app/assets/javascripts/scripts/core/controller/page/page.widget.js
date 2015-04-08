@@ -23,7 +23,7 @@ define([
 
             /**
              * Create widget from resource
-             * @member PageWidget
+             * @memberOf PageWidget
              * @param {{
              *      resource: string,
              *      thumbnail: string,
@@ -67,7 +67,7 @@ define([
 
             /**
              * Check if allowed to add widget to page
-             * @member PageWidget
+             * @memberOf PageWidget
              * @returns {boolean}
              */
             isAllowAddWidget: function isAllowAddWidget() {
@@ -84,7 +84,7 @@ define([
 
             /**
              * Allow to add widget to page
-             * @member PageWidget
+             * @memberOf PageWidget
              */
             allowAddWidget: function allowAddWidget() {
                 this.scope.logger.debug('Allow to add widget');
@@ -93,7 +93,7 @@ define([
 
             /**
              * Do not allow to add widget to page
-             * @member PageWidget
+             * @memberOf PageWidget
              */
             banAddWidget: function banAddWidget() {
                 this.scope.logger.debug('Do not allow to add widget');
@@ -102,7 +102,7 @@ define([
 
             /**
              * Get widgets container
-             * @member PageWidget
+             * @memberOf PageWidget
              * @returns {*}
              */
             getWidgetsContainer: function getWidgetsContainer() {
@@ -111,7 +111,7 @@ define([
 
             /**
              * Update widget properties
-             * @member PageWidget
+             * @memberOf PageWidget
              * @param [item]
              * @returns {boolean}
              */
@@ -155,7 +155,7 @@ define([
 
             /**
              * Define loading items content
-             * @member PageWidget
+             * @memberOf PageWidget
              */
             loadItemsContent: function loadItemsContent() {
 

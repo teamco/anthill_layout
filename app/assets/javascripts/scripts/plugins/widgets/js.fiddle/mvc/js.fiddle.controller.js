@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member JsFiddleController
+         * @memberOf JsFiddleController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate jsfiddle
-         * @member JsFiddleController
+         * @memberOf JsFiddleController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add JsFiddle rule
-         * @member JsFiddleController
+         * @memberOf JsFiddleController
          * @param e
          */
         addJsFiddleRule: function addJsFiddleRule(e) {

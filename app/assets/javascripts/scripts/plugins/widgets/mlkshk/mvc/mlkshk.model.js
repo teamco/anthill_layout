@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member MlkshkModel
+         * @memberOf MlkshkModel
          * @type {{
          *      mlkshkEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member MlkshkModel
+         * @memberOf MlkshkModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Mlkshk embed code
-         * @member MlkshkModel
+         * @memberOf MlkshkModel
          * @param {string} embed
          */
         setMlkshkEmbedCode: function setMlkshkEmbedCode(embed) {

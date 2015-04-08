@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TimeToastModel
+         * @memberOf TimeToastModel
          * @type {{
          *      timetoastEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TimeToastModel
+         * @memberOf TimeToastModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set TimeToast embed code
-         * @member TimeToastModel
+         * @memberOf TimeToastModel
          * @param {string} embed
          */
         setTimetoastEmbedCode: function setTimetoastEmbedCode(embed) {

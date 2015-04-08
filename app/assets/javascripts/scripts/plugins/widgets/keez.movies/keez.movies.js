@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member KeezMovies
+         * @memberOf KeezMovies
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member KeezMovies
+         * @memberOf KeezMovies
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member KeezMovies
+         * @memberOf KeezMovies
          * @type {MVC}
          */
         this.mvc = new MVC({

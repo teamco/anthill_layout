@@ -9,7 +9,7 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
 
     /**
      * Define Widget Local listeners
-     * @member Widget
+     * @memberOf Widget
      * @type {{
      *      successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function},

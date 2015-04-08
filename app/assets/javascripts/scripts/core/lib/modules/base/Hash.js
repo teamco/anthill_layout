@@ -19,7 +19,7 @@ define([], function defineLibHash() {
 
         /**
          * Extend hash
-         * @member LibHash
+         * @memberOf LibHash
          * @param {*} hash
          * @param {*} defaults
          * @returns {*}
@@ -33,7 +33,7 @@ define([], function defineLibHash() {
 
         /**
          * Check if hash empty
-         * @member LibHash
+         * @memberOf LibHash
          * @param {*} o
          * @returns {boolean}
          */
@@ -43,7 +43,7 @@ define([], function defineLibHash() {
 
         /**
          * Check if Hash(h) has Key(k)
-         * @member LibHash
+         * @memberOf LibHash
          * @param {*} h
          * @param {String} k
          * @returns {boolean}
@@ -56,7 +56,7 @@ define([], function defineLibHash() {
 
         /**
          * First hash element value
-         * @member LibHash
+         * @memberOf LibHash
          * @param {*} h
          * @returns {*}
          */
@@ -75,7 +75,7 @@ define([], function defineLibHash() {
 
         /**
          * First hash element's key
-         * @member LibHash
+         * @memberOf LibHash
          * @param {*} h
          * @returns {Boolean|String}
          */
@@ -94,7 +94,7 @@ define([], function defineLibHash() {
 
         /**
          * Find all Hash keys
-         * @member LibHash
+         * @memberOf LibHash
          * @param {*} h
          * @returns {Array}
          */
@@ -113,7 +113,7 @@ define([], function defineLibHash() {
 
         /**
          * Get Hash length
-         * @member LibHash
+         * @memberOf LibHash
          * @param {*} o
          * @returns {Number}
          */
@@ -123,7 +123,7 @@ define([], function defineLibHash() {
 
         /**
          * Get hash key by value
-         * @member LibHash
+         * @memberOf LibHash
          * @param {*} h
          * @param {*} v
          * @returns {string}

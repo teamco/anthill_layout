@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member SlideShareController
+         * @memberOf SlideShareController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -35,7 +35,7 @@ define([
 
         /**
          * Add SlideShare rule
-         * @member SlideShareController
+         * @memberOf SlideShareController
          * @param e
          */
         addSlideShareRule: function addSlideShareRule(e) {

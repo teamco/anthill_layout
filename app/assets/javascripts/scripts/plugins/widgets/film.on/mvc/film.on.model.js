@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member FilmOnModel
+         * @memberOf FilmOnModel
          * @type {{}}
          */
         this.preferences = {
@@ -35,7 +35,7 @@ define([
 
         /**
          * Define rules
-         * @member FilmOnModel
+         * @memberOf FilmOnModel
          * @type {{}}
          */
         this.rules = {};
@@ -45,7 +45,7 @@ define([
 
         /**
          * Set FilmOn Url
-         * @member FilmOnModel
+         * @memberOf FilmOnModel
          * @param {number} channel
          */
         setFilmonChannelId: function setFilmonChannelId(channel) {

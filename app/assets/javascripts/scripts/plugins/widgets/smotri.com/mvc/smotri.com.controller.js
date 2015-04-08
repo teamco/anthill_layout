@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member SmotriComController
+         * @memberOf SmotriComController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate smotricom
-         * @member SmotriComController
+         * @memberOf SmotriComController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -77,7 +77,7 @@ define([
 
         /**
          * Add SmotriCom rule
-         * @member SmotriComController
+         * @memberOf SmotriComController
          * @param e
          */
         addSmotriComRule: function addSmotriComRule(e) {

@@ -30,7 +30,7 @@ define([
 
         /**
          * Get site author
-         * @member WorkspaceElement
+         * @memberOf WorkspaceElement
          * @returns {string}
          */
         getSiteAuthor: function getSiteAuthor() {
@@ -39,7 +39,7 @@ define([
 
         /**
          * Set site author
-         * @member WorkspaceElement
+         * @memberOf WorkspaceElement
          * @param {string} author
          */
         setSiteAuthor: function setSiteAuthor(author) {
@@ -48,7 +48,7 @@ define([
 
         /**
          * Get site title
-         * @member WorkspaceElement
+         * @memberOf WorkspaceElement
          * @returns {string}
          */
         getSiteTitle: function getSiteTitle() {
@@ -57,7 +57,7 @@ define([
 
         /**
          * Set site title
-         * @member WorkspaceElement
+         * @memberOf WorkspaceElement
          * @param {string} title
          */
         setSiteTitle: function setSiteTitle(title) {
@@ -66,7 +66,7 @@ define([
 
         /**
          * Set workspace width
-         * @member WorkspaceElement
+         * @memberOf WorkspaceElement
          * @param {number} width
          */
         updateWidth: function updateWidth(width) {
@@ -87,7 +87,7 @@ define([
 
         /**
          * Unset workspace width
-         * @member WorkspaceElement
+         * @memberOf WorkspaceElement
          */
         unsetWidth: function unserWidth() {
             this.$.attr(
@@ -98,7 +98,7 @@ define([
 
         /**
          * Render Google Analytics
-         * @member WorkspaceElement
+         * @memberOf WorkspaceElement
          * @param {string} trackingId
          */
         renderGoogleAnalytics: function renderGoogleAnalytics(trackingId) {

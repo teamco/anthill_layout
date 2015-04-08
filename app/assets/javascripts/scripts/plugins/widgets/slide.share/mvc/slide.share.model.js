@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member SlideShareModel
+         * @memberOf SlideShareModel
          * @type {{}}
          */
         this.preferences = {
@@ -35,7 +35,7 @@ define([
 
         /**
          * Define rules
-         * @member SlideShareModel
+         * @memberOf SlideShareModel
          * @type {{}}
          */
         this.rules = {};
@@ -45,7 +45,7 @@ define([
 
         /**
          * Set embed code
-         * @member SlideShareModel
+         * @memberOf SlideShareModel
          * @param {string} embed
          */
         setSlideshareEmbed: function setSlideshareEmbed(embed) {

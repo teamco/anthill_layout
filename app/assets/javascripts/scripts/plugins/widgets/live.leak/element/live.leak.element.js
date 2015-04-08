@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member LiveLeakElement
+         * @memberOf LiveLeakElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

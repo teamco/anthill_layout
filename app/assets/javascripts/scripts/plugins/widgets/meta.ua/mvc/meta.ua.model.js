@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member MetaUaModel
+         * @memberOf MetaUaModel
          * @type {{
          *      metaUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member MetaUaModel
+         * @memberOf MetaUaModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set MetaUa Url
-         * @member MetaUaModel
+         * @memberOf MetaUaModel
          * @param {string} url
          */
         setMetauaUrl: function setMetauaUrl(url) {

@@ -34,7 +34,7 @@ define(
 
                 /**
                  * Get module data
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  * @returns {*}
                  */
                 getModuleData: function getModuleData() {
@@ -45,7 +45,7 @@ define(
 
                 /**
                  * Load pages content
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  * @param opened
                  */
                 loadContent: function loadContent(opened) {
@@ -58,7 +58,7 @@ define(
 
                 /**
                  * Get Prefs
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  * @returns {WorkspaceDataModel.preferences}
                  */
                 getPreferences: function getPreferences() {
@@ -67,7 +67,7 @@ define(
 
                 /**
                  * Define preferences
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  * @param {string} uuid
                  * @returns {*}
                  */
@@ -80,7 +80,7 @@ define(
 
                 /**
                  * Set active content
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  * @param {string} [uuid]
                  */
                 setActiveContent: function setActiveContent(uuid) {
@@ -100,7 +100,7 @@ define(
 
                 /**
                  * Prepare to show preferences
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  * @param config
                  */
                 preparePreferences: function preparePreferences(config) {
@@ -135,7 +135,7 @@ define(
 
                 /**
                  * Update prefs
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  */
                 approveUpdatePreferences: function approveUpdatePreferences() {
 
@@ -179,7 +179,7 @@ define(
 
                 /**
                  * Check show in tabs
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  * @param {Page} page
                  * @returns {boolean}
                  */
@@ -192,7 +192,7 @@ define(
 
                 /**
                  * Define publisher
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  * @param page
                  */
                 definePublisher: function definePublisher(page) {
@@ -204,7 +204,7 @@ define(
 
                 /**
                  * Locate page data element
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  * @param e
                  */
                 locateWorkspaceData: function locateWorkspaceData(e) {
@@ -220,7 +220,7 @@ define(
 
                 /**
                  * Destroy page widgets
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  */
                 destroyPageWidgets: function destroyPageWidgets() {
 
@@ -239,7 +239,7 @@ define(
 
                 /**
                  * Update widgets counter
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  */
                 updateCounter: function updateCounter() {
 
@@ -281,7 +281,7 @@ define(
 
                 /**
                  * Prepare to create page
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  */
                 prepareCreatePage: function prepareCreatePage() {
 
@@ -318,7 +318,7 @@ define(
 
                 /**
                  * Create new page
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  */
                 approveCreatePage: function approveCreatePage(e) {
 
@@ -358,7 +358,7 @@ define(
 
                 /**
                  * Update pages order
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  * @param {Array} order
                  */
                 updatePagesOrder: function updatePagesOrder(order) {
@@ -400,7 +400,7 @@ define(
 
                 /**
                  * Switch to active page before rendering widget preferences
-                 * @member WorkspaceDataController
+                 * @memberOf WorkspaceDataController
                  * @returns {boolean}
                  */
                 switchToActivePage: function switchToActivePage() {

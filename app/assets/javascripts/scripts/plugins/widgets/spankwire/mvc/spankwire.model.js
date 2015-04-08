@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member SpankwireModel
+         * @memberOf SpankwireModel
          * @type {{
          *      spankwireEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member SpankwireModel
+         * @memberOf SpankwireModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Spankwire embed code
-         * @member SpankwireModel
+         * @memberOf SpankwireModel
          * @param {string} embed
          */
         setSpankwireEmbedCode: function setSpankwireEmbedCode(embed) {

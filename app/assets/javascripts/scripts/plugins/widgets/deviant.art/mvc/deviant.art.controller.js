@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member DeviantArtController
+         * @memberOf DeviantArtController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$deviantart.renderEmbeddedContent(
@@ -36,7 +36,7 @@ define([
 
         /**
          * Validate DeviantArt
-         * @member DeviantArtController
+         * @memberOf DeviantArtController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -59,7 +59,7 @@ define([
 
         /**
          * Add DeviantArt rule
-         * @member DeviantArtController
+         * @memberOf DeviantArtController
          * @param e
          */
         addDeviantArtRule: function addDeviantArtRule(e) {

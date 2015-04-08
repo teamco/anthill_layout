@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member TrubaElement
+         * @memberOf TrubaElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

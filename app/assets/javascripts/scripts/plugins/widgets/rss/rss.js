@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Rss
+         * @memberOf Rss
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Rss
+         * @memberOf Rss
          * @type {*}
          */
         this.referrer = undefined;
@@ -76,7 +76,7 @@ define([
 
         /**
          * Define MVC
-         * @member Rss
+         * @memberOf Rss
          * @type {MVC}
          */
         this.mvc = new MVC({

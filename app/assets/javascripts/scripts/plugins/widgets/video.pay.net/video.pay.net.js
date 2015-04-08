@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member VideoPayNet
+         * @memberOf VideoPayNet
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member VideoPayNet
+         * @memberOf VideoPayNet
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @member VideoPayNet
+         * @memberOf VideoPayNet
          * @type {MVC}
          */
         this.mvc = new MVC({

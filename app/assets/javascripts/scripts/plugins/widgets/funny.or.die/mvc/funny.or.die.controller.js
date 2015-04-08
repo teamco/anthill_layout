@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member FunnyOrDieController
+         * @memberOf FunnyOrDieController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate funnyordie
-         * @member FunnyOrDieController
+         * @memberOf FunnyOrDieController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -70,7 +70,7 @@ define([
 
         /**
          * Add FunnyOrDie rule
-         * @member FunnyOrDieController
+         * @memberOf FunnyOrDieController
          * @param e
          */
         addFunnyOrDieRule: function addFunnyOrDieRule(e) {

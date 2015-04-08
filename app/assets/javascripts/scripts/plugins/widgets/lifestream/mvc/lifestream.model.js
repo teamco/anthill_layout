@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member LifestreamModel
+         * @memberOf LifestreamModel
          * @type {{
          *      lifestreamBitlyUser: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      lifestreamBloggerUser: {type: string, disabled: boolean, value: undefined, visible: boolean},
@@ -300,7 +300,7 @@ define([
 
         /**
          * Define rules
-         * @member LifestreamModel
+         * @memberOf LifestreamModel
          * @type {{}}
          */
         this.rules = {};
@@ -312,7 +312,7 @@ define([
 
         /**
          * Define init setters
-         * @member LifestreamModel
+         * @memberOf LifestreamModel
          */
         initSetters: function initSetters() {
 
@@ -344,7 +344,7 @@ define([
 
                     /**
                      * Define setter
-                     * @member LifestreamModel
+                     * @memberOf LifestreamModel
                      * @type {Function}
                      */
                     this.constructor.prototype['set' + index.capitalize()] =
@@ -355,7 +355,7 @@ define([
 
         /**
          * Define setLifestreamGooglePlusKey
-         * @member LifestreamModel
+         * @memberOf LifestreamModel
          * @param {string} user
          */
         setLifestreamGooglePlusKey: function setLifestreamGooglePlusKey(user) {
@@ -364,7 +364,7 @@ define([
 
         /**
          * Define setLifestreamRssUrl
-         * @member LifestreamModel
+         * @memberOf LifestreamModel
          * @param {string} user
          */
         setLifestreamRssUrl: function setLifestreamRssUrl(user) {
@@ -373,7 +373,7 @@ define([
 
         /**
          * Define setLifestreamWikipediaLanguage
-         * @member LifestreamModel
+         * @memberOf LifestreamModel
          * @param {string} user
          */
         setLifestreamWikipediaLanguage: function setLifestreamWikipediaLanguage(user) {

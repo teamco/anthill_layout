@@ -28,7 +28,7 @@ define([
 
         /**
          * Render twentyfourlive element
-         * @member TwentyFourLiveView
+         * @memberOf TwentyFourLiveView
          */
         renderTwentyFourLive: function renderTwentyFourLive() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member TwentyFourLiveView
+         * @memberOf TwentyFourLiveView
          * @returns {TwentyFourLivePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member TwentyFourLiveView
+         * @memberOf TwentyFourLiveView
          * @param widgetRules
          * @param contentRules
          * @returns {TwentyFourLiveRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render twentyfourlive
-         * @member TwentyFourLiveView
+         * @memberOf TwentyFourLiveView
          */
         render: function render() {
 

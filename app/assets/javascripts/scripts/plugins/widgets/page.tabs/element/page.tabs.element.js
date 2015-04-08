@@ -40,7 +40,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member PageTabsElement
+         * @memberOf PageTabsElement
          * @param {object} pages
          */
         renderEmbeddedContent: function renderEmbeddedContent(pages) {
@@ -49,7 +49,7 @@ define([
 
             /**
              * Define page tab items
-             * @member PageTabsView
+             * @memberOf PageTabsView
              * @type {object}
              */
             this.view.elements.items = {};
@@ -102,7 +102,7 @@ define([
 
         /**
          * Set page tab as current
-         * @member PageTabsElement
+         * @memberOf PageTabsElement
          * @param {Page} page
          */
         setPageTabAsCurrent: function setPageTabAsCurrent(page) {

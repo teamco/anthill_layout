@@ -28,7 +28,7 @@ define([
 
         /**
          * Render screencast element
-         * @member ScreencastView
+         * @memberOf ScreencastView
          */
         renderScreencast: function renderScreencast() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member ScreencastView
+         * @memberOf ScreencastView
          * @returns {ScreencastPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member ScreencastView
+         * @memberOf ScreencastView
          * @param widgetRules
          * @param contentRules
          * @returns {ScreencastRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render screencast
-         * @member ScreencastView
+         * @memberOf ScreencastView
          */
         render: function render() {
 

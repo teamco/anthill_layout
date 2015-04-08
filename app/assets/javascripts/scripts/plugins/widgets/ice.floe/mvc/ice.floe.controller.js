@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member IceFloeController
+         * @memberOf IceFloeController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -33,7 +33,7 @@ define([
 
         /**
          * Add IceFloe rule
-         * @member IceFloeController
+         * @memberOf IceFloeController
          * @param e
          */
         addIceFloeRule: function addIceFloeRule(e) {

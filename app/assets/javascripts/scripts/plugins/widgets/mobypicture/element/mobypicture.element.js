@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member MobypictureElement
+         * @memberOf MobypictureElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

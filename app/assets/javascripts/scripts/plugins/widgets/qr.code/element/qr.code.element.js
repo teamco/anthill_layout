@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member QrCodeElement
+         * @memberOf QrCodeElement
          */
         renderEmbeddedContent: function renderEmbeddedContent(text, size) {
 

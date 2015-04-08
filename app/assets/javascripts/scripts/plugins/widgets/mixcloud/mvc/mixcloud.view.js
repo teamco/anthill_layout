@@ -28,7 +28,7 @@ define([
 
         /**
          * Render mixcloud element
-         * @member MixcloudView
+         * @memberOf MixcloudView
          */
         renderMixcloud: function renderMixcloud() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member MixcloudView
+         * @memberOf MixcloudView
          * @returns {MixcloudPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member MixcloudView
+         * @memberOf MixcloudView
          * @param widgetRules
          * @param contentRules
          * @returns {MixcloudRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render mixcloud
-         * @member MixcloudView
+         * @memberOf MixcloudView
          */
         render: function render() {
 

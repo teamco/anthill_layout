@@ -28,7 +28,7 @@ define([
 
         /**
          * Render picasa element
-         * @member PicasaView
+         * @memberOf PicasaView
          */
         renderPicasa: function renderPicasa() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member PicasaView
+         * @memberOf PicasaView
          * @returns {PicasaPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member PicasaView
+         * @memberOf PicasaView
          * @param widgetRules
          * @param contentRules
          * @returns {PicasaRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render picasa
-         * @member PicasaView
+         * @memberOf PicasaView
          */
         render: function render() {
 

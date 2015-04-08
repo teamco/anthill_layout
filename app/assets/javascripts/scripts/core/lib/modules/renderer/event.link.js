@@ -18,7 +18,7 @@ define([], function defineEventLinkRenderer(){
 
         /**
          * Render link event
-         * @member EventLinkRenderer
+         * @memberOf EventLinkRenderer
          * @param opts
          * @returns {*|jQuery}
          */

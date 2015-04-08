@@ -34,7 +34,7 @@ define([
 
         /**
          * Init export element
-         * @member ExportElement
+         * @memberOf ExportElement
          * @param {{
          *      type: string,
          *      [fileName]: string,

@@ -17,7 +17,7 @@ define([], function defineTextDownloadRenderer() {
 
         /**
          * Render text downloader
-         * @member TextDownloadRenderer
+         * @memberOf TextDownloadRenderer
          * @param {{
          *      as: string,
          *      text: string,

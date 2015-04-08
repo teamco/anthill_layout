@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Rdio
+         * @memberOf Rdio
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Rdio
+         * @memberOf Rdio
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Rdio
+         * @memberOf Rdio
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -17,7 +17,7 @@ define([], function defineFieldSetRenderer() {
 
         /**
          * Render fieldset
-         * @member FieldSetRenderer
+         * @memberOf FieldSetRenderer
          * @param {string} text
          * @param {*} $content
          * @param {boolean} [open]

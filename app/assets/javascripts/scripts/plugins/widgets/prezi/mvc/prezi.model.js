@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member PreziModel
+         * @memberOf PreziModel
          * @type {{
          *      preziEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member PreziModel
+         * @memberOf PreziModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Prezi embed code
-         * @member PreziModel
+         * @memberOf PreziModel
          * @param {string} embed
          */
         setPreziEmbedCode: function setPreziEmbedCode(embed) {

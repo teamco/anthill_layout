@@ -28,7 +28,7 @@ define([
 
         /**
          * Render VineCo element
-         * @member VineCoView
+         * @memberOf VineCoView
          */
         renderVineCo: function renderVineCo() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member VineCoView
+         * @memberOf VineCoView
          * @returns {VineCoPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member VineCoView
+         * @memberOf VineCoView
          * @param widgetRules
          * @param contentRules
          * @returns {VineCoRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render VineCo
-         * @member VineCoView
+         * @memberOf VineCoView
          */
         render: function render() {
 

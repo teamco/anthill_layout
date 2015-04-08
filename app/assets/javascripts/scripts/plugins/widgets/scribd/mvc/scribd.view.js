@@ -28,7 +28,7 @@ define([
 
         /**
          * Render scribd element
-         * @member ScribdView
+         * @memberOf ScribdView
          */
         renderScribd: function renderScribd() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member ScribdView
+         * @memberOf ScribdView
          * @returns {ScribdPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member ScribdView
+         * @memberOf ScribdView
          * @param widgetRules
          * @param contentRules
          * @returns {ScribdRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render scribd
-         * @member ScribdView
+         * @memberOf ScribdView
          */
         render: function render() {
 

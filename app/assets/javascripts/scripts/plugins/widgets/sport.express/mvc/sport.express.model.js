@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member SportExpressModel
+         * @memberOf SportExpressModel
          * @type {{
          *      sportexpressEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member SportExpressModel
+         * @memberOf SportExpressModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set SportExpress embed code
-         * @member SportExpressModel
+         * @memberOf SportExpressModel
          * @param {string} embed
          */
         setSportexpressEmbedCode: function setSportexpressEmbedCode(embed) {

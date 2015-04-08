@@ -38,7 +38,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member EventsElement
+         * @memberOf EventsElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
 
@@ -164,7 +164,7 @@ define([
 
         /**
          * Collect Event data
-         * @member EventsElement
+         * @memberOf EventsElement
          */
         collectEventData: function collectEventData(event, timestamp) {
 

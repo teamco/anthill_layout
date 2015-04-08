@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member SoundCloud
+         * @memberOf SoundCloud
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member SoundCloud
+         * @memberOf SoundCloud
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member SoundCloud
+         * @memberOf SoundCloud
          * @type {MVC}
          */
         this.mvc = new MVC({

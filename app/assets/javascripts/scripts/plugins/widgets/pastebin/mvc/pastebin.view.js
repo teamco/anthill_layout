@@ -28,7 +28,7 @@ define([
 
         /**
          * Render pastebin element
-         * @member PastebinView
+         * @memberOf PastebinView
          */
         renderPastebin: function renderPastebin() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member PastebinView
+         * @memberOf PastebinView
          * @returns {PastebinPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member PastebinView
+         * @memberOf PastebinView
          * @param widgetRules
          * @param contentRules
          * @returns {PastebinRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render pastebin
-         * @member PastebinView
+         * @memberOf PastebinView
          */
         render: function render() {
 

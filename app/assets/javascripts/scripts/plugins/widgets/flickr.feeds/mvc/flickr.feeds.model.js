@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member FlickrFeedsModel
+         * @memberOf FlickrFeedsModel
          * @type {{
          *      flickrfeedsServices: {
          *          type: string,
@@ -124,7 +124,7 @@ define([
 
         /**
          * Define rules
-         * @member FlickrFeedsModel
+         * @memberOf FlickrFeedsModel
          * @type {{}}
          */
         this.rules = {};
@@ -134,7 +134,7 @@ define([
 
         /**
          * Define setFlickrfeedsServices
-         * @member FlickrFeedsModel
+         * @memberOf FlickrFeedsModel
          * @param {string} service
          */
         setFlickrfeedsServices: function setFlickrfeedsServices(service) {
@@ -143,7 +143,7 @@ define([
 
         /**
          * Define setFlickrfeedsTags
-         * @member FlickrFeedsModel
+         * @memberOf FlickrFeedsModel
          * @param {string} tags
          */
         setFlickrfeedsTags: function setFlickrfeedsTags(tags) {
@@ -152,7 +152,7 @@ define([
 
         /**
          * Define setFlickrfeedsUserId
-         * @member FlickrFeedsModel
+         * @memberOf FlickrFeedsModel
          * @param {string} user
          */
         setFlickrfeedsUserId: function setFlickrfeedsUserId(user) {
@@ -161,7 +161,7 @@ define([
 
         /**
          * Define setFlickrfeedsMaxItems
-         * @member FlickrFeedsModel
+         * @memberOf FlickrFeedsModel
          * @param {number} max
          */
         setFlickrfeedsMaxItems: function setFlickrfeedsMaxItems(max) {

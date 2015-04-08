@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member XVideosController
+         * @memberOf XVideosController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate xvideos
-         * @member XVideosController
+         * @memberOf XVideosController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -75,7 +75,7 @@ define([
 
         /**
          * Add XVideos rule
-         * @member XVideosController
+         * @memberOf XVideosController
          * @param e
          */
         addXVideosRule: function addXVideosRule(e) {

@@ -25,7 +25,7 @@ define([
 
         /**
          * Define local data
-         * @member SiteConfigApproveImportElement
+         * @memberOf SiteConfigApproveImportElement
          * @type {object}
          */
         this.data = opts.data;
@@ -39,7 +39,7 @@ define([
 
         /**
          * Prettify JSON
-         * @member SiteConfigCleanUpElement
+         * @memberOf SiteConfigCleanUpElement
          * @param {object} data
          * @returns {XML|string}
          */

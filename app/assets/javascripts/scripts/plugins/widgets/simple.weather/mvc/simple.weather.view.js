@@ -28,7 +28,7 @@ define([
 
         /**
          * Render $simpleweather element
-         * @member SimpleWeatherView
+         * @memberOf SimpleWeatherView
          */
         renderSimpleWeather: function renderSimpleWeather() {
 
@@ -53,7 +53,7 @@ define([
 
         /**
          * Render Prefs
-         * @member SimpleWeatherView
+         * @memberOf SimpleWeatherView
          * @returns {SimpleWeatherPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -71,7 +71,7 @@ define([
 
         /**
          * Render Rules
-         * @member SimpleWeatherView
+         * @memberOf SimpleWeatherView
          * @param widgetRules
          * @param contentRules
          * @returns {SimpleWeatherRulesElement}
@@ -101,7 +101,7 @@ define([
 
         /**
          * Render SimpleWeather
-         * @member SimpleWeatherView
+         * @memberOf SimpleWeatherView
          */
         render: function render() {
 

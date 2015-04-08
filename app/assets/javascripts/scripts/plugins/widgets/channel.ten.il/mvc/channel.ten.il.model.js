@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member ChannelTenIlModel
+         * @memberOf ChannelTenIlModel
          * @type {{
          *      channeltenilEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member ChannelTenIlModel
+         * @memberOf ChannelTenIlModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set ChannelTenIl embed code
-         * @member ChannelTenIlModel
+         * @memberOf ChannelTenIlModel
          * @param {string} embed
          */
         setChanneltenilEmbedCode: function setChanneltenilEmbedCode(embed) {

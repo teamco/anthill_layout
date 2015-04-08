@@ -28,7 +28,7 @@ define([
 
         /**
          * Define data
-         * @member GalleryContentElement
+         * @memberOf GalleryContentElement
          * @type {*}
          */
         this.data = opts.data;
@@ -45,7 +45,7 @@ define([
 
         /**
          * Define inner content
-         * @member GalleryContentElement
+         * @memberOf GalleryContentElement
          */
         addInnerContent: function addInnerContent() {
             this.$.append('<div />');
@@ -53,7 +53,7 @@ define([
 
         /**
          * Set attributes
-         * @member GalleryContentElement
+         * @memberOf GalleryContentElement
          */
         setAttributes: function setAttributes() {
 
@@ -72,7 +72,7 @@ define([
 
         /**
          * Bind Install widget
-         * @member GalleryContentElement
+         * @memberOf GalleryContentElement
          */
         bindInstallWidget: function bindInstallWidget() {
 
@@ -92,7 +92,7 @@ define([
 
         /**
          * Show item info
-         * @member GalleryContentElement
+         * @memberOf GalleryContentElement
          */
         bindShowInfo: function bindShowInfo() {
 

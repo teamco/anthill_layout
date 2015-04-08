@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member VineCoElement
+         * @memberOf VineCoElement
          * @param {{
          *      api: string,
          *      link: string,

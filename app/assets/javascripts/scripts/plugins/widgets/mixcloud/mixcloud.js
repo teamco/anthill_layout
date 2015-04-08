@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Mixcloud
+         * @memberOf Mixcloud
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Mixcloud
+         * @memberOf Mixcloud
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Mixcloud
+         * @memberOf Mixcloud
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -41,7 +41,7 @@ define([
 
         /**
          * Define setup
-         * @member ButtonElement
+         * @memberOf ButtonElement
          * @param opts
          */
         setup: function setup(opts) {
@@ -50,7 +50,7 @@ define([
 
         /**
          * Set content
-         * @member ButtonElement
+         * @memberOf ButtonElement
          */
         setContent: function setContent() {
             this.setText(this.text);
@@ -58,7 +58,7 @@ define([
 
         /**
          * Define disable
-         * @member ButtonElement
+         * @memberOf ButtonElement
          */
         disable: function disable() {
             this.$.addClass('disabled');
@@ -67,7 +67,7 @@ define([
 
         /**
          * Define enable
-         * @member ButtonElement
+         * @memberOf ButtonElement
          */
         enable: function enable() {
             this.$.removeClass('disabled');

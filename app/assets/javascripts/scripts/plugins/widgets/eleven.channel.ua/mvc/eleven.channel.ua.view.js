@@ -28,7 +28,7 @@ define([
 
         /**
          * Render elevenchannelua element
-         * @member ElevenChannelUaView
+         * @memberOf ElevenChannelUaView
          */
         renderElevenChannelUa: function renderElevenChannelUa() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member ElevenChannelUaView
+         * @memberOf ElevenChannelUaView
          * @returns {ElevenChannelUaPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member ElevenChannelUaView
+         * @memberOf ElevenChannelUaView
          * @param widgetRules
          * @param contentRules
          * @returns {ElevenChannelUaRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render elevenchannelua
-         * @member ElevenChannelUaView
+         * @memberOf ElevenChannelUaView
          */
         render: function render() {
 

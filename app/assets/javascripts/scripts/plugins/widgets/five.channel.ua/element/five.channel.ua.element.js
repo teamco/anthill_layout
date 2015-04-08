@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member FiveChannelUaElement
+         * @memberOf FiveChannelUaElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

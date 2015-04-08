@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member OneHdRuModel
+         * @memberOf OneHdRuModel
          * @type {{
          *      onehdruEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member OneHdRuModel
+         * @memberOf OneHdRuModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set OneHdRu embed code
-         * @member OneHdRuModel
+         * @memberOf OneHdRuModel
          * @param {string} embed
          */
         setOnehdruEmbedCode: function setOnehdruEmbedCode(embed) {

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member EspresoTvController
+         * @memberOf EspresoTvController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate espresotv
-         * @member EspresoTvController
+         * @memberOf EspresoTvController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -76,7 +76,7 @@ define([
 
         /**
          * Add EspresoTv rule
-         * @member EspresoTvController
+         * @memberOf EspresoTvController
          * @param e
          */
         addEspresoTvRule: function addEspresoTvRule(e) {

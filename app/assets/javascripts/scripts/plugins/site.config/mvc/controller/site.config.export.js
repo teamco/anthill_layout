@@ -17,7 +17,7 @@ define(function defineSiteConfigExport() {
 
         /**
          * Export site data
-         * @member SiteConfigExport
+         * @memberOf SiteConfigExport
          */
         exportSiteData: function exportSiteData() {
 

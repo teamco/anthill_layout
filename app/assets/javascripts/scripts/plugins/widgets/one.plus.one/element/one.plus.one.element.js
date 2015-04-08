@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member OnePlusOneElement
+         * @memberOf OnePlusOneElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

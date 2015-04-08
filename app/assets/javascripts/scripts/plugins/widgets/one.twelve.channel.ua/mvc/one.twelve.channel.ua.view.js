@@ -28,7 +28,7 @@ define([
 
         /**
          * Render onetwelvechannelua element
-         * @member OneTwelveChannelUaView
+         * @memberOf OneTwelveChannelUaView
          */
         renderOneTwelveChannelUa: function renderOneTwelveChannelUa() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member OneTwelveChannelUaView
+         * @memberOf OneTwelveChannelUaView
          * @returns {OneTwelveChannelUaPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member OneTwelveChannelUaView
+         * @memberOf OneTwelveChannelUaView
          * @param widgetRules
          * @param contentRules
          * @returns {OneTwelveChannelUaRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render onetwelvechannelua
-         * @member OneTwelveChannelUaView
+         * @memberOf OneTwelveChannelUaView
          */
         render: function render() {
 

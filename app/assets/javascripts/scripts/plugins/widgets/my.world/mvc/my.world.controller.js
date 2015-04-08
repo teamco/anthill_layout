@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member MyWorldController
+         * @memberOf MyWorldController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate myworld
-         * @member MyWorldController
+         * @memberOf MyWorldController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add MyWorld rule
-         * @member MyWorldController
+         * @memberOf MyWorldController
          * @param e
          */
         addMyWorldRule: function addMyWorldRule(e) {

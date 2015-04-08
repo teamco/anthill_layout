@@ -19,7 +19,7 @@ define(function defineWidgetScroll(){
 
         /**
          * Define scroll content
-         * @member WidgetScroll
+         * @memberOf WidgetScroll
          * @param {boolean} scrollable
          */
         scrollContent: function scrollContent(scrollable) {

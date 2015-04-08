@@ -28,7 +28,7 @@ define([
 
         /**
          * Render ubr element
-         * @member UbrView
+         * @memberOf UbrView
          */
         renderUbr: function renderUbr() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member UbrView
+         * @memberOf UbrView
          * @returns {UbrPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member UbrView
+         * @memberOf UbrView
          * @param widgetRules
          * @param contentRules
          * @returns {UbrRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render ubr
-         * @member UbrView
+         * @memberOf UbrView
          */
         render: function render() {
 

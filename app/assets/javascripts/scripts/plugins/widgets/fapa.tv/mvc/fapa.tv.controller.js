@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member FapaTvController
+         * @memberOf FapaTvController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate fapatv
-         * @member FapaTvController
+         * @memberOf FapaTvController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add FapaTv rule
-         * @member FapaTvController
+         * @memberOf FapaTvController
          * @param e
          */
         addFapaTvRule: function addFapaTvRule(e) {

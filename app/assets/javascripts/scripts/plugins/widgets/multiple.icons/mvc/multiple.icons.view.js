@@ -28,7 +28,7 @@ define([
 
         /**
          * Render multiple.icons element
-         * @member MultipleIconsView
+         * @memberOf MultipleIconsView
          */
         renderMultipleIcons: function renderMultipleIcons() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member MultipleIconsView
+         * @memberOf MultipleIconsView
          * @returns {MultipleIconsPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member MultipleIconsView
+         * @memberOf MultipleIconsView
          * @param widgetRules
          * @param contentRules
          * @returns {MultipleIconsRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render multiple.icons
-         * @member MultipleIconsView
+         * @memberOf MultipleIconsView
          */
         render: function render() {
 

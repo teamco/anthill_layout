@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member PikTvModel
+         * @memberOf PikTvModel
          * @type {{
          *      piktvUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member PikTvModel
+         * @memberOf PikTvModel
          * @type {{}}
          */
         this.rules = {};

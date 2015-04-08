@@ -18,7 +18,7 @@ define([], function defineIframeRenderer() {
 
         /**
          * Render iframe
-         * @member IframeRenderer
+         * @memberOf IframeRenderer
          * @param {string} src
          * @param {object} [opts]
          * @returns {*|jQuery}

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TwitrPixController
+         * @memberOf TwitrPixController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$twitrpix.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add TwitrPix rule
-         * @member TwitrPixController
+         * @memberOf TwitrPixController
          * @param e
          */
         addTwitrPixRule: function addTwitrPixRule(e) {

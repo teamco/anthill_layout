@@ -20,14 +20,14 @@ define([
 
         /**
          * Define Page item
-         * @member WorkspaceModel
+         * @memberOf WorkspaceModel
          * @type {Page}
          */
         this.item = Page;
 
         /**
          * Skip transfer preferences
-         * @member WorkspaceModel
+         * @memberOf WorkspaceModel
          * @type {string[]}
          */
         this.skipPreferencesOn = [
@@ -39,7 +39,7 @@ define([
 
         /**
          * Set static width
-         * @member WorkspaceModel
+         * @memberOf WorkspaceModel
          * @param {boolean} width
          */
         setStaticWidth: function setStaticWidth(width) {
@@ -53,7 +53,7 @@ define([
 
         /**
          * Set Site Width Slider
-         * @member WorkspaceModel
+         * @memberOf WorkspaceModel
          * @param {number} width
          */
         setSiteWidthSlider: function setSiteWidthSlider(width) {
@@ -73,7 +73,7 @@ define([
 
         /**
          * Set site title
-         * @member WorkspaceModel
+         * @memberOf WorkspaceModel
          * @param {string} title
          */
         setSiteTitle: function setSiteTitle(title) {
@@ -93,7 +93,7 @@ define([
 
         /**
          * Set site author
-         * @member WorkspaceModel
+         * @memberOf WorkspaceModel
          * @param {string} author
          */
         setSiteAuthor: function setSiteAuthor(author) {
@@ -113,7 +113,7 @@ define([
 
         /**
          * Set site description
-         * @member WorkspaceModel
+         * @memberOf WorkspaceModel
          * @param {string} description
          */
         setSiteDescription: function setSiteDescription(description) {
@@ -133,7 +133,7 @@ define([
 
         /**
          * Set site keywords
-         * @member WorkspaceModel
+         * @memberOf WorkspaceModel
          * @param {string} keywords
          */
         setSiteKeywords: function setSiteKeywords(keywords) {
@@ -153,7 +153,7 @@ define([
 
         /**
          * Set google analytics tracking id
-         * @member WorkspaceModel
+         * @memberOf WorkspaceModel
          * @param {string} trackingId
          */
         setTrackingId: function setTrackingId(trackingId) {
@@ -173,7 +173,7 @@ define([
 
         /**
          * Define clone item content
-         * @member WorkspaceModel
+         * @memberOf WorkspaceModel
          * @param {string} itemUUID
          */
         setCloneItemContent: function setCloneItemContent(itemUUID) {

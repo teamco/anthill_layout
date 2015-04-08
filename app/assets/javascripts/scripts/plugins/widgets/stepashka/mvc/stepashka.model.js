@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member StepashkaModel
+         * @memberOf StepashkaModel
          * @type {{
          *      stepashkaEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member StepashkaModel
+         * @memberOf StepashkaModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Stepashka embed code
-         * @member StepashkaModel
+         * @memberOf StepashkaModel
          * @param {string} embed
          */
         setStepashkaEmbedCode: function setStepashkaEmbedCode(embed) {

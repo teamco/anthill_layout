@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member GiphyController
+         * @memberOf GiphyController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate giphy
-         * @member GiphyController
+         * @memberOf GiphyController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -85,7 +85,7 @@ define([
 
         /**
          * Add Giphy rule
-         * @member GiphyController
+         * @memberOf GiphyController
          * @param e
          */
         addGiphyRule: function addGiphyRule(e) {

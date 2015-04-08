@@ -33,7 +33,7 @@ define([
 
         /**
          * Define init
-         * @member SiteConfigImportFileElement
+         * @memberOf SiteConfigImportFileElement
          * @returns {SiteConfigImportFileElement}
          */
         init: function init() {

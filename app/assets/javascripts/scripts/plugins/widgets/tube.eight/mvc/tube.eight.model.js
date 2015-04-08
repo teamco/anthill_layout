@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TubeEightModel
+         * @memberOf TubeEightModel
          * @type {{
          *      tubeeightEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TubeEightModel
+         * @memberOf TubeEightModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set TubeEight embed code
-         * @member TubeEightModel
+         * @memberOf TubeEightModel
          * @param {string} embed
          */
         setTubeeightEmbedCode: function setTubeeightEmbedCode(embed) {

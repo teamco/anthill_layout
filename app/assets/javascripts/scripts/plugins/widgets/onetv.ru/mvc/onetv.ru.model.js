@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member OnetvRuModel
+         * @memberOf OnetvRuModel
          * @type {{
          *      onetvruEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member OnetvRuModel
+         * @memberOf OnetvRuModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set OnetvRu embed code
-         * @member OnetvRuModel
+         * @memberOf OnetvRuModel
          * @param {string} embed
          */
         setOnetvruEmbedCode: function setOnetvruEmbedCode(embed) {

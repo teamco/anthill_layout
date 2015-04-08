@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PastebinController
+         * @memberOf PastebinController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate pastebin
-         * @member PastebinController
+         * @memberOf PastebinController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Pastebin rule
-         * @member PastebinController
+         * @memberOf PastebinController
          * @param e
          */
         addPastebinRule: function addPastebinRule(e) {

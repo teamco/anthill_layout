@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member RadikalFotoController
+         * @memberOf RadikalFotoController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$radikalfoto.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add RadikalFoto rule
-         * @member RadikalFotoController
+         * @memberOf RadikalFotoController
          * @param e
          */
         addRadikalFotoRule: function addRadikalFotoRule(e) {

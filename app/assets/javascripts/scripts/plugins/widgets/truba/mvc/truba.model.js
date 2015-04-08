@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TrubaModel
+         * @memberOf TrubaModel
          * @type {{
          *      trubaUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TrubaModel
+         * @memberOf TrubaModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Truba Url
-         * @member TrubaModel
+         * @memberOf TrubaModel
          * @param {string} url
          */
         setTrubaUrl: function setTrubaUrl(url) {

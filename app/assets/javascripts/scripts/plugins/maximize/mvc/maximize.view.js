@@ -31,7 +31,7 @@ define([
 
             /**
              * Render Maximize
-             * @member MaximizeView
+             * @memberOf MaximizeView
              * @returns {boolean}
              */
             renderMaximize: function renderMaximize() {
@@ -52,7 +52,7 @@ define([
 
             /**
              * Render maximize content
-             * @member MaximizeView
+             * @memberOf MaximizeView
              * @param data
              * @returns {boolean}
              */
@@ -114,7 +114,7 @@ define([
 
             /**
              * Update footer content
-             * @member MaximizeView
+             * @memberOf MaximizeView
              */
             updateFooterContent: function updateFooterContent() {
                 this.renderFooter(Footer, this.elements.$maximize);
@@ -122,7 +122,7 @@ define([
 
             /**
              * Render maximize
-             * @member MaximizeView
+             * @memberOf MaximizeView
              */
             render: function render() {
 

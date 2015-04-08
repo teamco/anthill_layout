@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member CollegeHumorElement
+         * @memberOf CollegeHumorElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

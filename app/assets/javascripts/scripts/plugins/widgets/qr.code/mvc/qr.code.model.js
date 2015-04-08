@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member QrCodeModel
+         * @memberOf QrCodeModel
          * @type {{
          *      qrText: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      qrSize: {type: string, disabled: boolean, value: undefined, visible: boolean}
@@ -44,7 +44,7 @@ define([
 
         /**
          * Define rules
-         * @member QrCodeModel
+         * @memberOf QrCodeModel
          * @type {{}}
          */
         this.rules = {};
@@ -54,7 +54,7 @@ define([
 
         /**
          * Set QrCode text
-         * @member QrCodeModel
+         * @memberOf QrCodeModel
          * @param {string} qrCodeText
          */
         setQrcodeText: function setQrcodeText(qrCodeText) {
@@ -63,7 +63,7 @@ define([
 
         /**
          * Set QrCode size
-         * @member QrCodeModel
+         * @memberOf QrCodeModel
          * @param {string} qrCodeSize
          */
         setQrcodeSize: function setQrcodeSize(qrCodeSize) {

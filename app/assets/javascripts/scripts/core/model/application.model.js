@@ -22,7 +22,7 @@ define([
 
         /**
          * Define item
-         * @member ApplicationModel
+         * @memberOf ApplicationModel
          * @type {Workspace}
          */
         this.item = Workspace;
@@ -32,7 +32,7 @@ define([
 
         /**
          * Define global setting
-         * @member ApplicationModel
+         * @memberOf ApplicationModel
          */
         initGlobalSetting: function initGlobalSetting() {
 
@@ -44,7 +44,7 @@ define([
 
             /**
              * Define setting
-             * @member ApplicationModel
+             * @memberOf ApplicationModel
              * @type {Setting}
              */
             this.setting = new Setting(

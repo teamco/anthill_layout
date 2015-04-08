@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Polldaddy
+         * @memberOf Polldaddy
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Polldaddy
+         * @memberOf Polldaddy
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Polldaddy
+         * @memberOf Polldaddy
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -28,7 +28,7 @@ define([
 
         /**
          * Render isnare element
-         * @member IsnareView
+         * @memberOf IsnareView
          */
         renderIsnare: function renderIsnare() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member IsnareView
+         * @memberOf IsnareView
          * @returns {IsnarePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member IsnareView
+         * @memberOf IsnareView
          * @param widgetRules
          * @param contentRules
          * @returns {IsnareRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render isnare
-         * @member IsnareView
+         * @memberOf IsnareView
          */
         render: function render() {
 

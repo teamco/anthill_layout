@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member RedTubeElement
+         * @memberOf RedTubeElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

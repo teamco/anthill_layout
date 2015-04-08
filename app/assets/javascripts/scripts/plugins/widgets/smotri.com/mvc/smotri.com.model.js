@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member SmotriComModel
+         * @memberOf SmotriComModel
          * @type {{
          *      smotricomEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member SmotriComModel
+         * @memberOf SmotriComModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set SmotriCom embed code
-         * @member SmotriComModel
+         * @memberOf SmotriComModel
          * @param {string} embed
          */
         setSmotricomEmbedCode: function setSmotricomEmbedCode(embed) {

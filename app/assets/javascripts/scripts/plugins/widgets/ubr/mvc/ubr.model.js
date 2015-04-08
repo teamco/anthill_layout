@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member UbrModel
+         * @memberOf UbrModel
          * @type {{
          *      ubrEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member UbrModel
+         * @memberOf UbrModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Ubr embed code
-         * @member UbrModel
+         * @memberOf UbrModel
          * @param {string} embed
          */
         setUbrEmbedCode: function setUbrEmbedCode(embed) {

@@ -28,7 +28,7 @@ define([
 
         /**
          * Render fapatv element
-         * @member FapaTvView
+         * @memberOf FapaTvView
          */
         renderFapaTv: function renderFapaTv() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member FapaTvView
+         * @memberOf FapaTvView
          * @returns {FapaTvPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member FapaTvView
+         * @memberOf FapaTvView
          * @param widgetRules
          * @param contentRules
          * @returns {FapaTvRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render fapatv
-         * @member FapaTvView
+         * @memberOf FapaTvView
          */
         render: function render() {
 

@@ -17,7 +17,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define widget generator
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          */
         widgetGenerator: function widgetGenerator() {
 
@@ -27,7 +27,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define widgets list
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          */
         loadWidgetsList: function loadWidgetsList() {
 
@@ -48,7 +48,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define create widget step
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          */
         nextWidgetGenerator: function nextWidgetGenerator() {
 
@@ -69,7 +69,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Collect form widget's data
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @returns {{
          *      category: string,
          *      collector: {},
@@ -167,7 +167,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define on before send widget's data
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @param xhr
          * @param opts
          * @private
@@ -221,7 +221,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define on error send widget's data
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @param xhr
          * @param status
          * @param description
@@ -240,7 +240,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Generate new widget
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          */
         generateNewWidget: function generateNewWidget() {
 
@@ -292,7 +292,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define Stop Sending Event On Approve
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @param {boolean} disable
          * @returns {*|boolean}
          */
@@ -318,7 +318,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define on success handler
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @param data
          * @param status
          * @param xhr
@@ -338,7 +338,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define callback for generate new widget
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @param data
          * @param status
          * @param xhr
@@ -375,7 +375,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define widget editor
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @param {string} resource
          */
         widgetEditor: function widgetEditor(resource) {
@@ -414,7 +414,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define update widget data
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @returns {boolean}
          */
         updateWidget: function updateWidget() {
@@ -515,7 +515,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define update widget's data callback
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @param data
          * @param status
          * @param xhr
@@ -541,7 +541,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Clear widget generate form
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @private
          */
         _clearWidgetForm: function _clearWidgetForm() {

@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member GooglePlusElement
+         * @memberOf GooglePlusElement
          * @param {string} api
          * @param {string} url
          */

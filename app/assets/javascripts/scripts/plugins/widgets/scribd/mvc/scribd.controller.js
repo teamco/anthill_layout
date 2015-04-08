@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member ScribdController
+         * @memberOf ScribdController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -37,7 +37,7 @@ define([
 
         /**
          * Validate scribd
-         * @member ScribdController
+         * @memberOf ScribdController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -73,7 +73,7 @@ define([
 
         /**
          * Add Scribd rule
-         * @member ScribdController
+         * @memberOf ScribdController
          * @param e
          */
         addScribdRule: function addScribdRule(e) {

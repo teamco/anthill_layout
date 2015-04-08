@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member XkcdController
+         * @memberOf XkcdController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$xkcd.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add Xkcd rule
-         * @member XkcdController
+         * @memberOf XkcdController
          * @param e
          */
         addXkcdRule: function addXkcdRule(e) {

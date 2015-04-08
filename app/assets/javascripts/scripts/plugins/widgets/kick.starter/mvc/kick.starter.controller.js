@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member KickStarterController
+         * @memberOf KickStarterController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate kickstarter
-         * @member KickStarterController
+         * @memberOf KickStarterController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add KickStarter rule
-         * @member KickStarterController
+         * @memberOf KickStarterController
          * @param e
          */
         addKickStarterRule: function addKickStarterRule(e) {

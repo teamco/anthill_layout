@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PikTvController
+         * @memberOf PikTvController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$piktv.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add PikTv rule
-         * @member PikTvController
+         * @memberOf PikTvController
          * @param e
          */
         addPikTvRule: function addPikTvRule(e) {

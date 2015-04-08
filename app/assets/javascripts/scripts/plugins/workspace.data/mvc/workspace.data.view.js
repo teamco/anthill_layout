@@ -47,7 +47,7 @@ define(
 
                 /**
                  * Render WorkspaceData
-                 * @member WorkspaceDataView
+                 * @memberOf WorkspaceDataView
                  * @returns {boolean}
                  */
                 renderWorkspaceData: function renderWorkspaceData() {
@@ -70,7 +70,7 @@ define(
 
                 /**
                  * Render workspace.data content
-                 * @member WorkspaceDataView
+                 * @memberOf WorkspaceDataView
                  * @param data
                  * @returns {boolean}
                  */
@@ -151,7 +151,7 @@ define(
 
                 /**
                  * Update footer content
-                 * @member WorkspaceDataView
+                 * @memberOf WorkspaceDataView
                  */
                 updateFooterContent: function updateFooterContent() {
                     this.renderFooter(Footer, this.elements.$workspacedata);
@@ -159,7 +159,7 @@ define(
 
                 /**
                  * Render create new page
-                 * @member WorkspaceDataView
+                 * @memberOf WorkspaceDataView
                  */
                 renderCreatePage: function renderCreatePage() {
 
@@ -178,7 +178,7 @@ define(
 
                 /**
                  * Render create page wizard
-                 * @member WorkspaceDataView
+                 * @memberOf WorkspaceDataView
                  * @param {{
              *      workspace: Workspace,
              *      style: string,
@@ -232,7 +232,7 @@ define(
 
                 /**
                  * Show preferences
-                 * @member WorkspaceDataView
+                 * @memberOf WorkspaceDataView
                  * @param config
                  * @param {boolean} current
                  */
@@ -257,7 +257,7 @@ define(
 
                 /**
                  * Render Prefs
-                 * @member WorkspaceDataView
+                 * @memberOf WorkspaceDataView
                  * @param {Page} page
                  * @returns {WorkspaceDataPreferencesElement}
                  */
@@ -277,7 +277,7 @@ define(
 
                 /**
                  * Render workspace.data
-                 * @member WorkspaceDataView
+                 * @memberOf WorkspaceDataView
                  */
                 render: function render() {
 

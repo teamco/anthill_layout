@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member FlickrModel
+         * @memberOf FlickrModel
          * @type {{
          *      flickEmbed: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member FlickrModel
+         * @memberOf FlickrModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set embed
-         * @member FlickrModel
+         * @memberOf FlickrModel
          * @param {string} embed
          */
         setFlickrEmbed: function setFlickrEmbed(embed) {

@@ -36,7 +36,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member PetPassportElement
+         * @memberOf PetPassportElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
             var $element = this;

@@ -14,7 +14,7 @@ define(function defineGalleryWidgets() {
 
         /**
          * Define static gallery content
-         * @member GalleryWidgets
+         * @memberOf GalleryWidgets
          * @type {{
          *      name: string,
          *      description: string,
@@ -28,7 +28,7 @@ define(function defineGalleryWidgets() {
 
         /**
          * Define gallery model
-         * @member GalleryWidgets
+         * @memberOf GalleryWidgets
          * @type {GalleryModel}
          */
         this.galleryModel = galleryModel;
@@ -38,7 +38,7 @@ define(function defineGalleryWidgets() {
 
         /**
          * Load Default Data
-         * @member GalleryWidgets
+         * @memberOf GalleryWidgets
          * @param {string} [key]
          * @param {string} [type]
          * @param {boolean} [reverse]
@@ -124,7 +124,7 @@ define(function defineGalleryWidgets() {
 
         /**
          * Define default data setter
-         * @member GalleryWidgets
+         * @memberOf GalleryWidgets
          * @param {{categories: Array, widgets: Array}} json
          */
         setDefaultData: function setDefaultData(json) {
@@ -133,7 +133,7 @@ define(function defineGalleryWidgets() {
 
                 /**
                  * Define provider types
-                 * @member GalleryModel
+                 * @memberOf GalleryModel
                  * @type {object}
                  */
                 this.galleryModel.dataTypes = {};
@@ -154,14 +154,14 @@ define(function defineGalleryWidgets() {
 
             /**
              * Set default data
-             * @member GalleryWidgets
+             * @memberOf GalleryWidgets
              */
             this.defaultData = json.widgets;
         },
 
         /**
          * Define default data getter
-         * @member GalleryWidgets
+         * @memberOf GalleryWidgets
          * @returns {{
          *      name: string,
          *      description: string,
@@ -177,7 +177,7 @@ define(function defineGalleryWidgets() {
 
         /**
          * Update widget's data
-         * @member GalleryWidgets
+         * @memberOf GalleryWidgets
          * @param {{widget, category}} json
          */
         updateDefaultData: function updateDefaultData(json) {
@@ -238,7 +238,7 @@ define(function defineGalleryWidgets() {
 
         /**
          * Define add default data
-         * @member GalleryWidgets
+         * @memberOf GalleryWidgets
          * @param data
          */
         addDefaultData: function addDefaultData(data) {
@@ -277,7 +277,7 @@ define(function defineGalleryWidgets() {
 
         /**
          * Check if resource already exist
-         * @member GalleryWidgets
+         * @memberOf GalleryWidgets
          * @param {string} resource
          * @returns {boolean}
          */
@@ -310,7 +310,7 @@ define(function defineGalleryWidgets() {
 
         /**
          * Define widget data getter
-         * @member GalleryWidgets
+         * @memberOf GalleryWidgets
          * @param {string} type
          * @param {string} source
          * @returns {{

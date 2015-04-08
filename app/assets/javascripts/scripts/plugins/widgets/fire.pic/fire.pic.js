@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member FirePic
+         * @memberOf FirePic
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member FirePic
+         * @memberOf FirePic
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member FirePic
+         * @memberOf FirePic
          * @type {MVC}
          */
         this.mvc = new MVC({

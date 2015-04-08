@@ -28,7 +28,7 @@ define([
 
         /**
          * Get config HTML
-         * @member BaseView
+         * @memberOf BaseView
          * @param {string} [key]
          * @returns {*}
          */
@@ -46,7 +46,7 @@ define([
 
         /**
          * Get item.$
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {BaseElement}
          */
         get$item: function get$item() {
@@ -55,7 +55,7 @@ define([
 
         /**
          * Get item DOM Element
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {BaseElement}
          */
         getDomElement: function getDomElement() {
@@ -64,7 +64,7 @@ define([
 
         /**
          * Get item DOM info
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {BaseElement}
          */
         getDomData: function getDomData() {
@@ -73,7 +73,7 @@ define([
 
         /**
          * Create style
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {string}
          */
         createStyle: function createStyle() {
@@ -85,7 +85,7 @@ define([
 
         /**
          * Create UUID
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {string}
          */
         createUUID: function createUUID() {
@@ -97,7 +97,7 @@ define([
 
         /**
          * Render UUID
-         * @member BaseView
+         * @memberOf BaseView
          * @param id
          * @returns {*|string}
          */
@@ -110,7 +110,7 @@ define([
 
         /**
          * Define $container
-         * @member BaseView
+         * @memberOf BaseView
          * @param $container
          */
         defineContainer: function defineContainer($container) {
@@ -119,7 +119,7 @@ define([
 
         /**
          * Get container class name
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {string}
          */
         getContainerClassName: function getContainerClassName() {
@@ -128,7 +128,7 @@ define([
 
         /**
          * Get container selector
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {*|jQuery}
          */
         getContainerSelector: function getContainerSelector() {
@@ -140,7 +140,7 @@ define([
 
         /**
          * Check if element cached
-         * @member BaseView
+         * @memberOf BaseView
          * @param $element
          * @param Constructor
          * @returns {boolean}
@@ -162,7 +162,7 @@ define([
 
         /**
          * Check if render force
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {boolean}
          */
         isCachedItems: function isCachedItems() {
@@ -174,7 +174,7 @@ define([
 
         /**
          * Render Header
-         * @member BaseView
+         * @memberOf BaseView
          * @param {HeaderElement} HeaderElement
          * @param $container
          * @returns {HeaderElement}
@@ -212,7 +212,7 @@ define([
 
         /**
          * Render Footer
-         * @member BaseView
+         * @memberOf BaseView
          * @param {FooterElement} FooterElement
          * @param $container
          * @returns {FooterElement}
@@ -249,7 +249,7 @@ define([
 
         /**
          * Render Header
-         * @member BaseView
+         * @memberOf BaseView
          * @param {HeaderElement} Header
          * @param {string} title
          */
@@ -259,7 +259,7 @@ define([
 
         /**
          * Render Footer
-         * @member BaseView
+         * @memberOf BaseView
          * @param {FooterElement} Footer
          * @param {object} $element
          */
@@ -271,7 +271,7 @@ define([
 
         /**
          * Render filter
-         * @member BaseView
+         * @memberOf BaseView
          * @param {function} [callback]
          * @param {boolean} [enter]
          */
@@ -291,7 +291,7 @@ define([
 
         /**
          * Generic modal dialog window
-         * @member BaseView
+         * @memberOf BaseView
          * @param {{
          *      [style]: String,
          *      $container,
@@ -341,7 +341,7 @@ define([
 
         /**
          * Get $modal element
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {ModalElement}
          */
         get$modal: function get$modal() {
@@ -350,7 +350,7 @@ define([
 
         /**
          * Generic button
-         * @member BaseView
+         * @memberOf BaseView
          * @param {ButtonElement} ButtonElement
          * @param {*} opts
          * @param {*} store
@@ -379,7 +379,7 @@ define([
 
         /**
          * Define cover
-         * @member BaseView
+         * @memberOf BaseView
          * @param CoverElement
          * @param opts
          * @returns {CoverElement}
@@ -395,7 +395,7 @@ define([
 
         /**
          * Locate DOM element in array
-         * @member BaseView
+         * @memberOf BaseView
          * @param {Array} source
          * @param {string} type
          * @returns {*}

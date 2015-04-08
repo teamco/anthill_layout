@@ -28,7 +28,7 @@ define([
 
         /**
          * Render twitrpix element
-         * @member TwitrPixView
+         * @memberOf TwitrPixView
          */
         renderTwitrPix: function renderTwitrPix() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member TwitrPixView
+         * @memberOf TwitrPixView
          * @returns {TwitrPixPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member TwitrPixView
+         * @memberOf TwitrPixView
          * @param widgetRules
          * @param contentRules
          * @returns {TwitrPixRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render twitrpix
-         * @member TwitrPixView
+         * @memberOf TwitrPixView
          */
         render: function render() {
 

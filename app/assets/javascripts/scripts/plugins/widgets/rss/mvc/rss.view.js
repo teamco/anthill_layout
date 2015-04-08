@@ -28,7 +28,7 @@ define([
 
         /**
          * Render rss element
-         * @member RssView
+         * @memberOf RssView
          */
         renderRss: function renderRss() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member RssView
+         * @memberOf RssView
          * @returns {RssPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member RssView
+         * @memberOf RssView
          * @param widgetRules
          * @param contentRules
          * @returns {RssRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render rss
-         * @member RssView
+         * @memberOf RssView
          */
         render: function render() {
 

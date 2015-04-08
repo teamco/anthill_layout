@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member SportExpressElement
+         * @memberOf SportExpressElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

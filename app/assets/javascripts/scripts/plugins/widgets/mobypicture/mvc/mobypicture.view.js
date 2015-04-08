@@ -28,7 +28,7 @@ define([
 
         /**
          * Render mobypicture element
-         * @member MobypictureView
+         * @memberOf MobypictureView
          */
         renderMobypicture: function renderMobypicture() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member MobypictureView
+         * @memberOf MobypictureView
          * @returns {MobypicturePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member MobypictureView
+         * @memberOf MobypictureView
          * @param widgetRules
          * @param contentRules
          * @returns {MobypictureRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render mobypicture
-         * @member MobypictureView
+         * @memberOf MobypictureView
          */
         render: function render() {
 

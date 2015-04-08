@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member IssuuController
+         * @memberOf IssuuController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate issuu
-         * @member IssuuController
+         * @memberOf IssuuController
          * @param {string} embed
          * @return {object|boolean}
          */
@@ -79,7 +79,7 @@ define([
 
         /**
          * Add Issuu rule
-         * @member IssuuController
+         * @memberOf IssuuController
          * @param e
          */
         addIssuuRule: function addIssuuRule(e) {

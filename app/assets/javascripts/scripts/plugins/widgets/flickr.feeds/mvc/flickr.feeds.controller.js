@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member FlickrFeedsController
+         * @memberOf FlickrFeedsController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Add FlickrFeeds rule
-         * @member FlickrFeedsController
+         * @memberOf FlickrFeedsController
          * @param e
          */
         addFlickrFeedsRule: function addFlickrFeedsRule(e) {

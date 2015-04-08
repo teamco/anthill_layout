@@ -28,7 +28,7 @@ define([
 
         /**
          * Render premieretv element
-         * @member PremiereTvView
+         * @memberOf PremiereTvView
          */
         renderPremiereTv: function renderPremiereTv() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member PremiereTvView
+         * @memberOf PremiereTvView
          * @returns {PremiereTvPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member PremiereTvView
+         * @memberOf PremiereTvView
          * @param widgetRules
          * @param contentRules
          * @returns {PremiereTvRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render premieretv
-         * @member PremiereTvView
+         * @memberOf PremiereTvView
          */
         render: function render() {
 

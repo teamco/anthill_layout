@@ -22,7 +22,7 @@ define([], function defineLibImage() {
          * I strongly recommend you read the docs
          * @ mozilla for `canvas.toDataURL()`
          *
-         * @member   LibImage
+         * @memberOf   LibImage
          * @param    {String}   url
          * @param    {Function} callback
          * @param    {String}   [outputFormat='image/png']
@@ -61,7 +61,7 @@ define([], function defineLibImage() {
 
         /**
          * Takes a data URI and returns the Data URI corresponding to the resized image at the wanted size
-         * @member LibImage
+         * @memberOf LibImage
          * @param {string} data
          * @param {number} width
          * @param {number} height

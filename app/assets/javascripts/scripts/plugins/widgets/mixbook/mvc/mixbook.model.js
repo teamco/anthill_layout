@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member MixbookModel
+         * @memberOf MixbookModel
          * @type {{
          *      mixbookEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member MixbookModel
+         * @memberOf MixbookModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Mixbook embed code
-         * @member MixbookModel
+         * @memberOf MixbookModel
          * @param {string} embed
          */
         setMixbookEmbedCode: function setMixbookEmbedCode(embed) {

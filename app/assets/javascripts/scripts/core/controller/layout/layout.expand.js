@@ -32,7 +32,7 @@ define(function defineLayoutExpand() {
 
         /**
          * Define adoptLayout
-         * @member LayoutExpand
+         * @memberOf LayoutExpand
          * @param {Widget} widget
          */
         adoptLayout: function adoptLayout(widget) {
@@ -129,7 +129,7 @@ define(function defineLayoutExpand() {
 
         /**
          * Get below located items
-         * @member LayoutExpand
+         * @memberOf LayoutExpand
          * @param {Widget} widget
          * @returns {Array}
          */

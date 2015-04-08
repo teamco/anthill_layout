@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member ExtremeTubeController
+         * @memberOf ExtremeTubeController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate extremetube
-         * @member ExtremeTubeController
+         * @memberOf ExtremeTubeController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add ExtremeTube rule
-         * @member ExtremeTubeController
+         * @memberOf ExtremeTubeController
          * @param e
          */
         addExtremeTubeRule: function addExtremeTubeRule(e) {

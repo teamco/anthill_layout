@@ -20,7 +20,7 @@ define([], function defineLibHTML() {
 
         /**
          * Escape HTML
-         * @member LibHTML
+         * @memberOf LibHTML
          * @param text
          * @param escape
          * @returns {*}
@@ -40,7 +40,7 @@ define([], function defineLibHTML() {
 
         /**
          * Escape HTML Symbols
-         * @member LibHTML
+         * @memberOf LibHTML
          * @param text
          * @param source
          * @param target

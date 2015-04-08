@@ -17,7 +17,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
 
         /**
          * Toggle fieldset
-         * @member BasePreferencesElement
+         * @memberOf BasePreferencesElement
          * @param e
          */
         toggleFieldset: function toggleFieldset(e) {
@@ -39,7 +39,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
 
         /**
          * Open preferences
-         * @member BasePreferencesElement
+         * @memberOf BasePreferencesElement
          * @param opts
          */
         openPreferences: function openPreferences(opts) {
@@ -98,7 +98,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
 
         /**
          * Get node renderer
-         * @member BasePreferencesElement
+         * @memberOf BasePreferencesElement
          * @param node
          * @param {string} text
          * @param {string} index

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member InstagramController
+         * @memberOf InstagramController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -35,7 +35,7 @@ define([
 
         /**
          * Add Instagram rule
-         * @member InstagramController
+         * @memberOf InstagramController
          * @param e
          */
         addInstagramRule: function addInstagramRule(e) {

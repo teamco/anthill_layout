@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member LifestreamElement
+         * @memberOf LifestreamElement
          * @param {Array} data
          */
         renderEmbeddedContent: function renderEmbeddedContent(data) {

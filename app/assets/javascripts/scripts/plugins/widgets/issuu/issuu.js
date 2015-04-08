@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Issuu
+         * @memberOf Issuu
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Issuu
+         * @memberOf Issuu
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Issuu
+         * @memberOf Issuu
          * @type {MVC}
          */
         this.mvc = new MVC({

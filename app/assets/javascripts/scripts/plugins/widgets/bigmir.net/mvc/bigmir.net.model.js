@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member BigmirNetModel
+         * @memberOf BigmirNetModel
          * @type {{
          *      bigmirnetEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member BigmirNetModel
+         * @memberOf BigmirNetModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set BigmirNet embed code
-         * @member BigmirNetModel
+         * @memberOf BigmirNetModel
          * @param {string} embed
          */
         setBigmirnetEmbedCode: function setBigmirnetEmbedCode(embed) {

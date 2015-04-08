@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member GooglePlusController
+         * @memberOf GooglePlusController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -36,7 +36,7 @@ define([
 
         /**
          * Add GooglePlus rule
-         * @member GooglePlusController
+         * @memberOf GooglePlusController
          * @param e
          */
         addGooglePlusRule: function addGooglePlusRule(e) {

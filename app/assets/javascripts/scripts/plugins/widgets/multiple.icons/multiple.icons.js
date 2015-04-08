@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member MultipleIcons
+         * @memberOf MultipleIcons
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member MultipleIcons
+         * @memberOf MultipleIcons
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @member MultipleIcons
+         * @memberOf MultipleIcons
          * @type {MVC}
          */
         this.mvc = new MVC({

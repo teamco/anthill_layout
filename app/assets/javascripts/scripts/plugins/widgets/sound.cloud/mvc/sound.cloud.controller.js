@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member SoundCloudController
+         * @memberOf SoundCloudController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate soundcloud
-         * @member SoundCloudController
+         * @memberOf SoundCloudController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add SoundCloud rule
-         * @member SoundCloudController
+         * @memberOf SoundCloudController
          * @param e
          */
         addSoundCloudRule: function addSoundCloudRule(e) {

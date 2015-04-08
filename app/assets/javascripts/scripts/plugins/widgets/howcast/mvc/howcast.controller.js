@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member HowcastController
+         * @memberOf HowcastController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate howcast
-         * @member HowcastController
+         * @memberOf HowcastController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Howcast rule
-         * @member HowcastController
+         * @memberOf HowcastController
          * @param e
          */
         addHowcastRule: function addHowcastRule(e) {

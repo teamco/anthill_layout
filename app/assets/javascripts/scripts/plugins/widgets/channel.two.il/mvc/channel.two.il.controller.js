@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member ChannelTwoIlController
+         * @memberOf ChannelTwoIlController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$channeltwoil.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add ChannelTwoIl rule
-         * @member ChannelTwoIlController
+         * @memberOf ChannelTwoIlController
          * @param e
          */
         addChannelTwoIlRule: function addChannelTwoIlRule(e) {

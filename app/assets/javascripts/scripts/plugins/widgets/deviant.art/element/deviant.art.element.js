@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member DeviantArtElement
+         * @memberOf DeviantArtElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

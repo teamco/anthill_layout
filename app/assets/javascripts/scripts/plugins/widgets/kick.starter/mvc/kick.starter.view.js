@@ -28,7 +28,7 @@ define([
 
         /**
          * Render kickstarter element
-         * @member KickStarterView
+         * @memberOf KickStarterView
          */
         renderKickStarter: function renderKickStarter() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member KickStarterView
+         * @memberOf KickStarterView
          * @returns {KickStarterPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member KickStarterView
+         * @memberOf KickStarterView
          * @param widgetRules
          * @param contentRules
          * @returns {KickStarterRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render kickstarter
-         * @member KickStarterView
+         * @memberOf KickStarterView
          */
         render: function render() {
 

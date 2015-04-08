@@ -28,21 +28,21 @@ define([
 
         /**
          * Define overlapped css class
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @type {string}
          */
         this.overlapped = 'overlapped';
 
         /**
          * Define show content class
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @type {string}
          */
         this.content = 'disable-interactions';
 
         /**
          * Define maximize class
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @type {string}
          */
         this.maximize = 'maximize';
@@ -57,7 +57,7 @@ define([
 
         /**
          * Bind interactions on hover
-         * @member WidgetElement
+         * @memberOf WidgetElement
          */
         bindHoverInteractions: function bindHoverInteractions() {
 
@@ -79,7 +79,7 @@ define([
 
         /**
          * Bind disable interactions
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @private
          * @param {Widget} scope
          * @param {BaseElement} $widget
@@ -102,7 +102,7 @@ define([
 
         /**
          * Bind enable interactions
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @private
          * @param {Widget} scope
          * @param {BaseElement} $widget
@@ -126,7 +126,7 @@ define([
 
         /**
          * Set widget position
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {{animate: Boolean, callback: Function}} [opts]
          * @private
          */
@@ -156,7 +156,7 @@ define([
 
         /**
          * Get item content
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @returns {*}
          */
         getContent: function getContent() {
@@ -165,7 +165,7 @@ define([
 
         /**
          * Clear thumbnail bg
-         * @member WidgetElement
+         * @memberOf WidgetElement
          */
         clearBackground: function clearBackground() {
             this.$.addClass('no-bg');
@@ -173,7 +173,7 @@ define([
 
         /**
          * Move on top layer
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {boolean} ontop
          */
         moveOnTopLayer: function moveOnTopLayer(ontop) {
@@ -183,7 +183,7 @@ define([
 
         /**
          * Update layer of a widgets
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {number} layer
          */
         updateElementLayer: function updateElementLayer(layer) {
@@ -194,7 +194,7 @@ define([
 
         /**
          * Check if widget on top
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @returns {boolean}
          */
         isOnTop: function isOnTop() {
@@ -203,7 +203,7 @@ define([
 
         /**
          * Select overlapped widgets
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {boolean} select
          */
         selectWidget: function selectWidget(select) {
@@ -223,7 +223,7 @@ define([
 
         /**
          * Enlarge widget
-         * @member WidgetElement
+         * @memberOf WidgetElement
          */
         enlarge: function enlarge() {
 
@@ -251,7 +251,7 @@ define([
 
         /**
          * Reduce widget
-         * @member WidgetElement
+         * @memberOf WidgetElement
          */
         reduce: function reduce() {
 
@@ -280,7 +280,7 @@ define([
 
         /**
          * Stretch element width
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {Page} page
          */
         stretchWidth: function stretchWidth(page) {
@@ -295,7 +295,7 @@ define([
 
         /**
          * Restore original width
-         * @member WidgetElement
+         * @memberOf WidgetElement
          */
         restoreWidth: function restoreWidth() {
 
@@ -311,7 +311,7 @@ define([
 
         /**
          * Stretch element height
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {Page} page
          */
         stretchHeight: function stretchHeight(page) {
@@ -324,7 +324,7 @@ define([
 
         /**
          * Restore original height
-         * @member WidgetElement
+         * @memberOf WidgetElement
          */
         restoreHeight: function restoreHeight() {
 
@@ -340,7 +340,7 @@ define([
 
         /**
          * Stick to
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {string} side
          * @param {Page} page
          * @private
@@ -356,7 +356,7 @@ define([
 
         /**
          * Restore sticker
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {boolean} [force]
          */
         restoreSticker: function restoreSticker(force) {
@@ -387,7 +387,7 @@ define([
 
         /**
          * Stick to center left
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {Page} page
          */
         stickToCenterLeft: function stickToCenterLeft(page) {
@@ -396,7 +396,7 @@ define([
 
         /**
          * Stick to center top
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {Page} page
          */
         stickToCenterTop: function stickToCenterTop(page) {
@@ -405,7 +405,7 @@ define([
 
         /**
          * Stick to center
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {Page} page
          */
         stickToCenter: function stickToCenter(page) {
@@ -414,7 +414,7 @@ define([
 
         /**
          * Stick to center bottom
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {Page} page
          */
         stickToCenterBottom: function stickToCenterBottom(page) {
@@ -423,7 +423,7 @@ define([
 
         /**
          * Stick to center right
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {Page} page
          */
         stickToCenterRight: function stickToCenterRight(page) {
@@ -432,7 +432,7 @@ define([
 
         /**
          * Stick to top left
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {Page} page
          */
         stickToTopLeft: function stickToTopLeft(page) {
@@ -441,7 +441,7 @@ define([
 
         /**
          * Stick to bottom left
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {Page} page
          */
         stickToBottomLeft: function stickToBottomLeft(page) {
@@ -450,7 +450,7 @@ define([
 
         /**
          * Stick to top right
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {Page} page
          */
         stickToTopRight: function stickToTopRight(page) {
@@ -459,7 +459,7 @@ define([
 
         /**
          * Stick to bottom right
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {Page} page
          */
         stickToBottomRight: function stickToBottomRight(page) {
@@ -468,7 +468,7 @@ define([
 
         /**
          * Bind click
-         * @member WidgetElement
+         * @memberOf WidgetElement
          * @param {string} url
          */
         bindOnClickOpenUrl: function bindOnClickOpenUrl(url) {
@@ -480,7 +480,7 @@ define([
 
         /**
          * Bind stats
-         * @member ImageElement
+         * @memberOf ImageElement
          */
         bindStatsCollector: function bindStatsCollector() {
 

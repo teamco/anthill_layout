@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member OnetvRu
+         * @memberOf OnetvRu
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member OnetvRu
+         * @memberOf OnetvRu
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member OnetvRu
+         * @memberOf OnetvRu
          * @type {MVC}
          */
         this.mvc = new MVC({

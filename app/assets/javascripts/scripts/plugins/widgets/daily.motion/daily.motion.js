@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member DailyMotion
+         * @memberOf DailyMotion
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member DailyMotion
+         * @memberOf DailyMotion
          * @type {*}
          */
         this.referrer = undefined;
@@ -76,7 +76,7 @@ define([
 
         /**
          * Define MVC
-         * @member DailyMotion
+         * @memberOf DailyMotion
          * @type {MVC}
          */
         this.mvc = new MVC({

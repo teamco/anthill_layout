@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member TedElement
+         * @memberOf TedElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

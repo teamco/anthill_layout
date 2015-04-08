@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member TnaFlix
+         * @memberOf TnaFlix
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member TnaFlix
+         * @memberOf TnaFlix
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member TnaFlix
+         * @memberOf TnaFlix
          * @type {MVC}
          */
         this.mvc = new MVC({

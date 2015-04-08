@@ -28,7 +28,7 @@ define([
 
         /**
          * Render dailymotion element
-         * @member DailyMotionView
+         * @memberOf DailyMotionView
          */
         renderDailyMotion: function renderDailyMotion() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member DailyMotionView
+         * @memberOf DailyMotionView
          * @returns {DailyMotionPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member DailyMotionView
+         * @memberOf DailyMotionView
          * @param widgetRules
          * @param contentRules
          * @returns {DailyMotionRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render dailymotion
-         * @member DailyMotionView
+         * @memberOf DailyMotionView
          */
         render: function render() {
 

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member YouPornModel
+         * @memberOf YouPornModel
          * @type {{
          *      youpornEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member YouPornModel
+         * @memberOf YouPornModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set YouPorn embed code
-         * @member YouPornModel
+         * @memberOf YouPornModel
          * @param {string} embed
          */
         setYoupornEmbedCode: function setYoupornEmbedCode(embed) {

@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member PicasaElement
+         * @memberOf PicasaElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

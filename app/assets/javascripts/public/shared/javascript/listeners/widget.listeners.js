@@ -9,7 +9,7 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
 
     /**
      * Define Widget Global listeners
-     * @member Widget
+     * @memberOf Widget
      * @type {{}}
      */
     Widget.prototype.globalListeners = {};

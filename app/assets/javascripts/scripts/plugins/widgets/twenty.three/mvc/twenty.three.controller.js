@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TwentyThreeController
+         * @memberOf TwentyThreeController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$twentythree.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add TwentyThree rule
-         * @member TwentyThreeController
+         * @memberOf TwentyThreeController
          * @param e
          */
         addTwentyThreeRule: function addTwentyThreeRule(e) {

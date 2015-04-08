@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member ShareController
+         * @memberOf ShareController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$share.renderEmbeddedContent({
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add Share rule
-         * @member ShareController
+         * @memberOf ShareController
          * @param e
          */
         addShareRule: function addShareRule(e) {

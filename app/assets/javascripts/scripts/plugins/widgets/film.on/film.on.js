@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member FilmOn
+         * @memberOf FilmOn
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member FilmOn
+         * @memberOf FilmOn
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member FilmOn
+         * @memberOf FilmOn
          * @type {MVC}
          */
         this.mvc = new MVC({

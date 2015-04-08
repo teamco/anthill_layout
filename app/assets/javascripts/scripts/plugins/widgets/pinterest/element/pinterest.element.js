@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member PinterestElement
+         * @memberOf PinterestElement
          * @param {string} api
          * @param {string} url
          * @param {{

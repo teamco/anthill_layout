@@ -28,7 +28,7 @@ define([
 
         /**
          * Render xvideos element
-         * @member XVideosView
+         * @memberOf XVideosView
          */
         renderXVideos: function renderXVideos() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member XVideosView
+         * @memberOf XVideosView
          * @returns {XVideosPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member XVideosView
+         * @memberOf XVideosView
          * @param widgetRules
          * @param contentRules
          * @returns {XVideosRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render xvideos
-         * @member XVideosView
+         * @memberOf XVideosView
          */
         render: function render() {
 

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member MlkshkController
+         * @memberOf MlkshkController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$mlkshk.renderEmbeddedContent(
@@ -36,7 +36,7 @@ define([
 
         /**
          * Validate Mlkshk
-         * @member MlkshkController
+         * @memberOf MlkshkController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -65,7 +65,7 @@ define([
 
         /**
          * Add Mlkshk rule
-         * @member MlkshkController
+         * @memberOf MlkshkController
          * @param e
          */
         addMlkshkRule: function addMlkshkRule(e) {

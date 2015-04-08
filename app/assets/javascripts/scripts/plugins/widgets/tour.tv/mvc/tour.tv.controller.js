@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TourTvController
+         * @memberOf TourTvController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$tourtv.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add TourTv rule
-         * @member TourTvController
+         * @memberOf TourTvController
          * @param e
          */
         addTourTvRule: function addTourTvRule(e) {

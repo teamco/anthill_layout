@@ -28,7 +28,7 @@ define([
 
         /**
          * Render Application
-         * @member ApplicationView
+         * @memberOf ApplicationView
          */
         renderApplication: function renderApplication() {
 
@@ -51,7 +51,7 @@ define([
 
         /**
          * Render Workspaces container
-         * @member ApplicationView
+         * @memberOf ApplicationView
          */
         workspaces: function workspaces() {
 
@@ -67,7 +67,7 @@ define([
 
         /**
          * Render export lin
-         * @member ApplicationView
+         * @memberOf ApplicationView
          */
         renderExportLink: function renderExportLink(data) {
 
@@ -84,7 +84,7 @@ define([
 
         /**
          * Handle notification renderer
-         * @member ApplicationView
+         * @memberOf ApplicationView
          * @param xhr
          * @param {string} status
          */
@@ -122,7 +122,7 @@ define([
 
         /**
          * Start rendering
-         * @member ApplicationView
+         * @memberOf ApplicationView
          * @param {boolean} [silent]
          */
         render: function render(silent) {

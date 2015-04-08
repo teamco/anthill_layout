@@ -19,7 +19,7 @@ define(function defineWidgetExpand() {
 
         /**
          * Get expandable
-         * @member WidgetExpand
+         * @memberOf WidgetExpand
          * @returns {boolean}
          */
         isExpandable: function isExpandable() {
@@ -62,7 +62,7 @@ define(function defineWidgetExpand() {
 
         /**
          * Get expanded
-         * @member WidgetExpand
+         * @memberOf WidgetExpand
          * @returns {boolean}
          */
         isExpanded: function isExpanded() {
@@ -71,7 +71,7 @@ define(function defineWidgetExpand() {
 
         /**
          * Set expanded
-         * @member WidgetExpand
+         * @memberOf WidgetExpand
          * @param {boolean} expanded
          */
         setExpanded: function setExpanded(expanded) {
@@ -80,7 +80,7 @@ define(function defineWidgetExpand() {
 
         /**
          * Toggle content expander
-         * @member WidgetExpand
+         * @memberOf WidgetExpand
          * @param {boolean} expand
          */
         toggleContentExpander: function toggleContentExpander(expand) {
@@ -117,7 +117,7 @@ define(function defineWidgetExpand() {
 
         /**
          * Define expand Content
-         * @member WidgetExpand
+         * @memberOf WidgetExpand
          * @param e
          */
         expandContent: function expandContent(e) {
@@ -143,7 +143,7 @@ define(function defineWidgetExpand() {
 
         /**
          * Define collapse Content
-         * @member WidgetExpand
+         * @memberOf WidgetExpand
          * @param e
          */
         collapseContent: function collapseContent(e) {
@@ -195,7 +195,7 @@ define(function defineWidgetExpand() {
 
         /**
          * Define after expand
-         * @member WidgetExpand
+         * @memberOf WidgetExpand
          * @param {boolean} expand
          */
         afterExpand: function afterExpand(expand) {

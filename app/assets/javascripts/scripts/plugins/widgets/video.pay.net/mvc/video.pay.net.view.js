@@ -28,7 +28,7 @@ define([
 
         /**
          * Render VideoPayNet element
-         * @member VideoPayNetView
+         * @memberOf VideoPayNetView
          */
         renderVideoPayNet: function renderVideoPayNet() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member VideoPayNetView
+         * @memberOf VideoPayNetView
          * @returns {VideoPayNetPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member VideoPayNetView
+         * @memberOf VideoPayNetView
          * @param widgetRules
          * @param contentRules
          * @returns {VideoPayNetRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render VideoPayNet
-         * @member VideoPayNetView
+         * @memberOf VideoPayNetView
          */
         render: function render() {
 

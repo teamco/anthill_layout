@@ -39,7 +39,7 @@ define([
 
         /**
          * Define init
-         * @member WorkspaceDataContentElement
+         * @memberOf WorkspaceDataContentElement
          * @param {Page} page
          * @returns {WorkspaceDataContentElement}
          */
@@ -59,7 +59,7 @@ define([
 
             /**
              * Define data
-             * @member WorkspaceDataContentElement
+             * @memberOf WorkspaceDataContentElement
              * @type {{name: string, description: string}}
              */
             this.data = {
@@ -72,7 +72,7 @@ define([
 
         /**
          * Render page widgets counter
-         * @member WorkspaceDataContentElement
+         * @memberOf WorkspaceDataContentElement
          * @param {Page} page
          */
         renderCounter: function renderCounter(page) {
@@ -85,7 +85,7 @@ define([
 
         /**
          * Update counter text
-         * @member WorkspaceDataContentElement
+         * @memberOf WorkspaceDataContentElement
          * @param {Page} page
          */
         updateCounter: function updateCounter(page) {
@@ -121,7 +121,7 @@ define([
 
         /**
          * Define update $item if show in tabs
-         * @member WorkspaceDataContentElement
+         * @memberOf WorkspaceDataContentElement
          * @param {boolean} show
          */
         updateShowInTabs: function updateShowInTabs(show) {
@@ -130,7 +130,7 @@ define([
 
         /**
          * Get page $counter
-         * @member WorkspaceDataContentElement
+         * @memberOf WorkspaceDataContentElement
          * @returns {*|jQuery|HTMLElement}
          */
         get$counter: function get$counter() {
@@ -139,7 +139,7 @@ define([
 
         /**
          * Define attributes
-         * @member WorkspaceDataContentElement
+         * @memberOf WorkspaceDataContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
@@ -158,7 +158,7 @@ define([
 
         /**
          * Set publish on events
-         * @member WorkspaceDataContentElement
+         * @memberOf WorkspaceDataContentElement
          * @param page
          */
         setPublishOn: function setPublishOn(page) {
@@ -167,7 +167,7 @@ define([
 
         /**
          * Bind show prefs
-         * @member WorkspaceDataContentElement
+         * @memberOf WorkspaceDataContentElement
          * @param data
          */
         bindShowPrefs: function bindShowPrefs(data) {

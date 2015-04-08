@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TelekanalUaController
+         * @memberOf TelekanalUaController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate telekanalua
-         * @member TelekanalUaController
+         * @memberOf TelekanalUaController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -63,7 +63,7 @@ define([
 
         /**
          * Add TelekanalUa rule
-         * @member TelekanalUaController
+         * @memberOf TelekanalUaController
          * @param e
          */
         addTelekanalUaRule: function addTelekanalUaRule(e) {

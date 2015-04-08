@@ -17,7 +17,7 @@ define(function defineSiteConfigActivate() {
 
         /**
          * Define activate storage
-         * @member SiteConfigActivate
+         * @memberOf SiteConfigActivate
          */
         activateStorage: function activateStorage() {
             this.view.activateConfirmation();
@@ -25,7 +25,7 @@ define(function defineSiteConfigActivate() {
 
         /**
          * Define approve activate storage
-         * @member SiteConfigActivate
+         * @memberOf SiteConfigActivate
          */
         approveActivate: function approveActivate() {
 

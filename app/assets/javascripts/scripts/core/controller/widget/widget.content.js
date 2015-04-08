@@ -27,7 +27,7 @@ define([
 
             /**
              * Define load widget data
-             * @member WidgetContent
+             * @memberOf WidgetContent
              */
             loadWidgetData: function loadWidgetData() {
 
@@ -62,7 +62,7 @@ define([
 
             /**
              * Load widget content
-             * @member WidgetContent
+             * @memberOf WidgetContent
              */
             loadContent: function loadContent() {
 
@@ -108,7 +108,7 @@ define([
 
             /**
              * Show/Hide content
-             * @member WidgetContent
+             * @memberOf WidgetContent
              * @param {boolean} show
              */
             showContent: function showContent(show) {
@@ -160,7 +160,7 @@ define([
 
             /**
              * Check if content should be force hide
-             * @member WidgetContent
+             * @memberOf WidgetContent
              * @returns {jQuery.length}
              */
             isHideableContentArea: function isHideableContentArea() {
@@ -176,7 +176,7 @@ define([
 
             /**
              * Set content
-             * @member WidgetContent
+             * @memberOf WidgetContent
              * @param {Function} Content
              * @param {{}} [opts]
              */
@@ -184,7 +184,7 @@ define([
 
                 /**
                  * Define content
-                 * @member WidgetContent
+                 * @memberOf WidgetContent
                  * @type {*}
                  */
                 this.content = new Content(this, opts);
@@ -197,7 +197,7 @@ define([
 
             /**
              * Define after set content
-             * @member WidgetContent
+             * @memberOf WidgetContent
              * @param {{}} [opts]
              */
             afterSetContent: function afterSetContent(opts) {
@@ -207,7 +207,7 @@ define([
 
             /**
              * Get content
-             * @member WidgetContent
+             * @memberOf WidgetContent
              * @returns {*}
              */
             getContent: function getContent() {
@@ -216,7 +216,7 @@ define([
 
             /**
              * Get $content
-             * @member WidgetContent
+             * @memberOf WidgetContent
              * @returns {*}
              */
             get$content: function get$content() {
@@ -238,7 +238,7 @@ define([
 
             /**
              * Clear thumbnail bg
-             * @member WidgetContent
+             * @memberOf WidgetContent
              */
             clearThumbnail: function clearThumbnail() {
                 this.view.get$item().clearBackground();
@@ -246,7 +246,7 @@ define([
 
             /**
              * Adopt widget dimension on resize page
-             * @member WidgetContent
+             * @memberOf WidgetContent
              * @param {Boolean} animate
              */
             adoptDimensions: function adoptDimensions(animate) {
@@ -255,7 +255,7 @@ define([
 
             /**
              * Get widget thumbnail
-             * @member WidgetContent
+             * @memberOf WidgetContent
              * @returns {*}
              */
             getThumbnail: function getThumbnail() {
@@ -264,7 +264,7 @@ define([
 
             /**
              * Get widget resource
-             * @member WidgetContent
+             * @memberOf WidgetContent
              * @returns {string}
              */
             getResource: function getResource() {

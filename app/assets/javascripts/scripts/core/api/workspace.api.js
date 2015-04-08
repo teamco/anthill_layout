@@ -24,7 +24,7 @@ define([
 
         /**
          * Create Page API
-         * @member WorkspaceAPI
+         * @memberOf WorkspaceAPI
          * @param {*} args
          * @param {Boolean} [render]
          * @param {Boolean} [silent]

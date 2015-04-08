@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Howcast
+         * @memberOf Howcast
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Howcast
+         * @memberOf Howcast
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Howcast
+         * @memberOf Howcast
          * @type {MVC}
          */
         this.mvc = new MVC({

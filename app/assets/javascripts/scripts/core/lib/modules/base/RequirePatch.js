@@ -19,7 +19,7 @@ define(function defineLibRequirePatch() {
 
         /**
          * Get requirejs config
-         * @member LibRequirePatch
+         * @memberOf LibRequirePatch
          * @returns {*}
          */
         get: function get() {

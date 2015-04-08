@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member MobypictureModel
+         * @memberOf MobypictureModel
          * @type {{
          *      mobypictureEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member MobypictureModel
+         * @memberOf MobypictureModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Mobypicture embed code
-         * @member MobypictureModel
+         * @memberOf MobypictureModel
          * @param {string} embed
          */
         setMobypictureEmbedCode: function setMobypictureEmbedCode(embed) {

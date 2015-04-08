@@ -20,7 +20,7 @@ define(function definePageWidgetCopy() {
 
             /**
              * Define clone widgets from other page
-             * @member PageWidgetCopy
+             * @memberOf PageWidgetCopy
              * @param {Page} fromPage
              */
             cloneWidgets: function cloneWidgets(fromPage) {
@@ -51,7 +51,7 @@ define(function definePageWidgetCopy() {
 
             /**
              * Define clone widget
-             * @member PageWidgetCopy
+             * @memberOf PageWidgetCopy
              * @param {Widget} cloneWidget
              * @param {Object} cloneMap
              * @returns {Object}
@@ -117,7 +117,7 @@ define(function definePageWidgetCopy() {
 
             /**
              * Define widget rules
-             * @member PageWidgetCopy
+             * @memberOf PageWidgetCopy
              * @param {Object} cloneMap
              */
             defineWidgetsRules: function defineWidgetsRules(cloneMap) {
@@ -136,7 +136,7 @@ define(function definePageWidgetCopy() {
 
             /**
              * Define widget rules
-             * @member PageWidgetCopy
+             * @memberOf PageWidgetCopy
              * @param {Widget} currentWidget
              * @param {Array} cloneMap
              */
@@ -150,7 +150,7 @@ define(function definePageWidgetCopy() {
 
             /**
              * Define copy widget rules subscribe
-             * @member PageWidgetCopy
+             * @memberOf PageWidgetCopy
              * @param {Widget} widget
              * @param {Object} cloneMap
              * @private
@@ -222,7 +222,7 @@ define(function definePageWidgetCopy() {
 
             /**
              * Define copy widget rules subscribers
-             * @member PageWidgetCopy
+             * @memberOf PageWidgetCopy
              * @param {Widget} widget
              * @param {Object} cloneMap
              * @private

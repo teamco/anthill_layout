@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member OneTwelveChannelUaController
+         * @memberOf OneTwelveChannelUaController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$onetwelvechannelua.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add OneTwelveChannelUa rule
-         * @member OneTwelveChannelUaController
+         * @memberOf OneTwelveChannelUaController
          * @param e
          */
         addOneTwelveChannelUaRule: function addOneTwelveChannelUaRule(e) {

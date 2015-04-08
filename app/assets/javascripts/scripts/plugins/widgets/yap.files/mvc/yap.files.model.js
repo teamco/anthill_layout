@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member YapFilesModel
+         * @memberOf YapFilesModel
          * @type {{
          *      yapfilesEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member YapFilesModel
+         * @memberOf YapFilesModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set YapFiles embed code
-         * @member YapFilesModel
+         * @memberOf YapFilesModel
          * @param {string} embed
          */
         setYapfilesEmbedCode: function setYapfilesEmbedCode(embed) {

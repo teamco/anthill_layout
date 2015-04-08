@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TourTvModel
+         * @memberOf TourTvModel
          * @type {{
          *      tourtvEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TourTvModel
+         * @memberOf TourTvModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set TourTv embed code
-         * @member TourTvModel
+         * @memberOf TourTvModel
          * @param {string} embed
          */
         setTourtvEmbedCode: function setTourtvEmbedCode(embed) {

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member FirePicController
+         * @memberOf FirePicController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$firepic.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add FirePic rule
-         * @member FirePicController
+         * @memberOf FirePicController
          * @param e
          */
         addFirePicRule: function addFirePicRule(e) {

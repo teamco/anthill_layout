@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member YapFilesController
+         * @memberOf YapFilesController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate yapfiles
-         * @member YapFilesController
+         * @memberOf YapFilesController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add YapFiles rule
-         * @member YapFilesController
+         * @memberOf YapFilesController
          * @param e
          */
         addYapFilesRule: function addYapFilesRule(e) {

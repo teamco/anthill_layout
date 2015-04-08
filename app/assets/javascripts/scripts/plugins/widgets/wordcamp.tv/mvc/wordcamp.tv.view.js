@@ -28,7 +28,7 @@ define([
 
         /**
          * Render wordcamptv element
-         * @member WordcampTvView
+         * @memberOf WordcampTvView
          */
         renderWordcampTv: function renderWordcampTv() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member WordcampTvView
+         * @memberOf WordcampTvView
          * @returns {WordcampTvPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member WordcampTvView
+         * @memberOf WordcampTvView
          * @param widgetRules
          * @param contentRules
          * @returns {WordcampTvRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render wordcamptv
-         * @member WordcampTvView
+         * @memberOf WordcampTvView
          */
         render: function render() {
 

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member LifestreamController
+         * @memberOf LifestreamController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -65,7 +65,7 @@ define([
 
         /**
          * Add Lifestream rule
-         * @member LifestreamController
+         * @memberOf LifestreamController
          * @param e
          */
         addLifestreamRule: function addLifestreamRule(e) {

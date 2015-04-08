@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member TsnUaElement
+         * @memberOf TsnUaElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

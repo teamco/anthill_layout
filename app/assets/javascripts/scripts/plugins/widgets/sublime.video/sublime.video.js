@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member SublimeVideo
+         * @memberOf SublimeVideo
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member SublimeVideo
+         * @memberOf SublimeVideo
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member SublimeVideo
+         * @memberOf SublimeVideo
          * @type {MVC}
          */
         this.mvc = new MVC({

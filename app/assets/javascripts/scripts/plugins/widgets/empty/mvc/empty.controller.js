@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member EmptyController
+         * @memberOf EmptyController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -33,7 +33,7 @@ define([
 
         /**
          * Add Empty rule
-         * @member EmptyController
+         * @memberOf EmptyController
          * @param e
          */
         addEmptyRule: function addEmptyRule(e) {

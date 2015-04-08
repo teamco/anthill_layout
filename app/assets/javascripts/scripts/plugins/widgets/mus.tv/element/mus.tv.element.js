@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member MusTvElement
+         * @memberOf MusTvElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

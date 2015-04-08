@@ -9,7 +9,7 @@ define(['config/page'], function definePageListeners(Page) {
 
     /**
      * Define Page Local listeners
-     * @member Page
+     * @memberOf Page
      * @type {{
      *      successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function},

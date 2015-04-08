@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member SomeEcardsModel
+         * @memberOf SomeEcardsModel
          * @type {{
          *      someecardsEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member SomeEcardsModel
+         * @memberOf SomeEcardsModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set SomeEcards embed code
-         * @member SomeEcardsModel
+         * @memberOf SomeEcardsModel
          * @param {string} embed
          */
         setSomeecardsEmbedCode: function setSomeecardsEmbedCode(embed) {

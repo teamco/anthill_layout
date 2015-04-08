@@ -20,14 +20,14 @@ define([
 
         /**
          * Define events
-         * @member PanelEventManager
+         * @memberOf PanelEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Define event list
-         * @member PanelEventManager
+         * @memberOf PanelEventManager
          * @type {{
          *      updateTranslations: string,
          *      showContent: string,

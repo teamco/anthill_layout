@@ -38,7 +38,7 @@ define([
 
         /**
          * Define inner content
-         * @member MaximizeContentElement
+         * @memberOf MaximizeContentElement
          */
         addInnerContent: function addInnerContent() {
             this.$.append('<div />');
@@ -46,7 +46,7 @@ define([
 
         /**
          * Define attributes
-         * @member MaximizeContentElement
+         * @memberOf MaximizeContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
@@ -75,7 +75,7 @@ define([
 
             /**
              * Define data
-             * @member MaximizeContentElement
+             * @memberOf MaximizeContentElement
              * @type {{name: string, description: string}}
              */
             this.data = {
@@ -92,7 +92,7 @@ define([
 
         /**
          * Locate widget before showing prefs
-         * @member MaximizeContentElement
+         * @memberOf MaximizeContentElement
          * @param data
          */
         bindLocate: function bindLocate(data) {
@@ -134,7 +134,7 @@ define([
 
         /**
          * Bind maximize
-         * @member MaximizeContentElement
+         * @memberOf MaximizeContentElement
          * @param data
          */
         bindMaximize: function bindMaximize(data) {

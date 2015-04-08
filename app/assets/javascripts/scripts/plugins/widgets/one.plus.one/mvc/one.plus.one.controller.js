@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member OnePlusOneController
+         * @memberOf OnePlusOneController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate tsnua
-         * @member OnePlusOneController
+         * @memberOf OnePlusOneController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add OnePlusOne rule
-         * @member OnePlusOneController
+         * @memberOf OnePlusOneController
          * @param e
          */
         addOnePlusOneRule: function addOnePlusOneRule(e) {

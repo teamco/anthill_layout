@@ -28,7 +28,7 @@ define([
 
         /**
          * Render deviantart element
-         * @member DeviantArtView
+         * @memberOf DeviantArtView
          */
         renderDeviantArt: function renderDeviantArt() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member DeviantArtView
+         * @memberOf DeviantArtView
          * @returns {DeviantArtPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member DeviantArtView
+         * @memberOf DeviantArtView
          * @param widgetRules
          * @param contentRules
          * @returns {DeviantArtRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render deviantart
-         * @member DeviantArtView
+         * @memberOf DeviantArtView
          */
         render: function render() {
 

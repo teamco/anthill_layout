@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member RssController
+         * @memberOf RssController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -35,7 +35,7 @@ define([
 
         /**
          * Parse RSS
-         * @member RssController
+         * @memberOf RssController
          * @param {string} url
          * @param {function} callback
          */
@@ -59,7 +59,7 @@ define([
 
         /**
          * Add Rss rule
-         * @member RssController
+         * @memberOf RssController
          * @param e
          */
         addRssRule: function addRssRule(e) {

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PicasaController
+         * @memberOf PicasaController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$picasa.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add Picasa rule
-         * @member PicasaController
+         * @memberOf PicasaController
          * @param e
          */
         addPicasaRule: function addPicasaRule(e) {

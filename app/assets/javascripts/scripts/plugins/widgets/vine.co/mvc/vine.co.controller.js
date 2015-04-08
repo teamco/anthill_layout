@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member VineCoController
+         * @memberOf VineCoController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -39,7 +39,7 @@ define([
 
         /**
          * Add VineCo rule
-         * @member VineCoController
+         * @memberOf VineCoController
          * @param e
          */
         addVineCoRule: function addVineCoRule(e) {

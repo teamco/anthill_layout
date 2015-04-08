@@ -28,7 +28,7 @@ define([
 
         /**
          * Render rutube element
-         * @member RutubeView
+         * @memberOf RutubeView
          */
         renderRutube: function renderRutube() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member RutubeView
+         * @memberOf RutubeView
          * @returns {RutubePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member RutubeView
+         * @memberOf RutubeView
          * @param widgetRules
          * @param contentRules
          * @returns {RutubeRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render rutube
-         * @member RutubeView
+         * @memberOf RutubeView
          */
         render: function render() {
 

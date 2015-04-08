@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TviController
+         * @memberOf TviController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate tvi
-         * @member TviController
+         * @memberOf TviController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -76,7 +76,7 @@ define([
 
         /**
          * Add Tvi rule
-         * @member TviController
+         * @memberOf TviController
          * @param e
          */
         addTviRule: function addTviRule(e) {

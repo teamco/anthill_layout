@@ -28,7 +28,7 @@ define([
 
         /**
          * Render issuu element
-         * @member IssuuView
+         * @memberOf IssuuView
          */
         renderIssuu: function renderIssuu() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member IssuuView
+         * @memberOf IssuuView
          * @returns {IssuuPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member IssuuView
+         * @memberOf IssuuView
          * @param widgetRules
          * @param contentRules
          * @returns {IssuuRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render issuu
-         * @member IssuuView
+         * @memberOf IssuuView
          */
         render: function render() {
 

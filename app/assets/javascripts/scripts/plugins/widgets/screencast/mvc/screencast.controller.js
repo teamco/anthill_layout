@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member ScreencastController
+         * @memberOf ScreencastController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate screencast
-         * @member ScreencastController
+         * @memberOf ScreencastController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -77,7 +77,7 @@ define([
 
         /**
          * Add Screencast rule
-         * @member ScreencastController
+         * @memberOf ScreencastController
          * @param e
          */
         addScreencastRule: function addScreencastRule(e) {

@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member PhotobucketElement
+         * @memberOf PhotobucketElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

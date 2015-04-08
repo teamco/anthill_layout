@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member ScreenrModel
+         * @memberOf ScreenrModel
          * @type {{
          *      screenrEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member ScreenrModel
+         * @memberOf ScreenrModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Screenr embed code
-         * @member ScreenrModel
+         * @memberOf ScreenrModel
          * @param {string} embed
          */
         setScreenrEmbedCode: function setScreenrEmbedCode(embed) {

@@ -37,7 +37,7 @@ define([
 
         /**
          * Define inner content
-         * @member PageDataContentElement
+         * @memberOf PageDataContentElement
          */
         addInnerContent: function addInnerContent() {
             this.$.append('<div />');
@@ -45,7 +45,7 @@ define([
 
         /**
          * Define attributes
-         * @member PageDataContentElement
+         * @memberOf PageDataContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
@@ -58,7 +58,7 @@ define([
 
             /**
              * Define data
-             * @member PageDataContentElement
+             * @memberOf PageDataContentElement
              * @type {{name: string, description: string}}
              */
             this.data = {
@@ -89,7 +89,7 @@ define([
 
         /**
          * Locate widget before showing prefs
-         * @member PageDataContentElement
+         * @memberOf PageDataContentElement
          * @param data
          */
         bindLocate: function bindLocate(data) {
@@ -132,7 +132,7 @@ define([
 
         /**
          * Bind show prefs
-         * @member PageDataContentElement
+         * @memberOf PageDataContentElement
          * @param data
          */
         bindShowPrefs: function bindShowPrefs(data) {

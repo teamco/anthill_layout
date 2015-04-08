@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member GooglePlusModel
+         * @memberOf GooglePlusModel
          * @type {{
          *      googlePlusApi: {type: string, disabled: boolean, value: string, visible: boolean},
          *      googlePlusUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
@@ -44,7 +44,7 @@ define([
 
         /**
          * Define rules
-         * @member GooglePlusModel
+         * @memberOf GooglePlusModel
          * @type {{}}
          */
         this.rules = {};
@@ -54,7 +54,7 @@ define([
 
         /**
          * Set google plus url
-         * @member GooglePlusModel
+         * @memberOf GooglePlusModel
          * @param {string} url
          */
         setGooglePlusUrl: function setGooglePlusUrl(url) {

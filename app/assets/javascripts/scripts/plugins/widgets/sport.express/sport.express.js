@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member SportExpress
+         * @memberOf SportExpress
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member SportExpress
+         * @memberOf SportExpress
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member SportExpress
+         * @memberOf SportExpress
          * @type {MVC}
          */
         this.mvc = new MVC({

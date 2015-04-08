@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member SublimeVideoController
+         * @memberOf SublimeVideoController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate sublimevideo
-         * @member SublimeVideoController
+         * @memberOf SublimeVideoController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add SublimeVideo rule
-         * @member SublimeVideoController
+         * @memberOf SublimeVideoController
          * @param e
          */
         addSublimeVideoRule: function addSublimeVideoRule(e) {

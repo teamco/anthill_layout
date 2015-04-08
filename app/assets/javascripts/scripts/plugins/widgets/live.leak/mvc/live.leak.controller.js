@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member LiveLeakController
+         * @memberOf LiveLeakController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate LiveLeak
-         * @member LiveLeakController
+         * @memberOf LiveLeakController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -75,7 +75,7 @@ define([
 
         /**
          * Add LiveLeak rule
-         * @member LiveLeakController
+         * @memberOf LiveLeakController
          * @param e
          */
         addLiveLeakRule: function addLiveLeakRule(e) {

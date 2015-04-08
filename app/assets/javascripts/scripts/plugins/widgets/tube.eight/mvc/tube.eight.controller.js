@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TubeEightController
+         * @memberOf TubeEightController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate tubeeight
-         * @member TubeEightController
+         * @memberOf TubeEightController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add TubeEight rule
-         * @member TubeEightController
+         * @memberOf TubeEightController
          * @param e
          */
         addTubeEightRule: function addTubeEightRule(e) {

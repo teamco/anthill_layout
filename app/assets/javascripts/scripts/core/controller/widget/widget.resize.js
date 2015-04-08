@@ -16,21 +16,21 @@ define([
      * @class Resizable
      * @extends Interactions
      * @param {Widget} scope
-     * @member Widget.interactions
+     * @memberOf Widget.interactions
      * @constructor
      */
     var Resizable = function Resizable(scope) {
 
         /**
          * Define scope
-         * @member Resizable
+         * @memberOf Resizable
          * @type {Widget}
          */
         this.scope = scope;
 
         /**
          * Define widget jquery element
-         * @member Resizable
+         * @memberOf Resizable
          * @type {jQuery}
          */
         this.$scope = scope.view.get$item().$;
@@ -42,7 +42,7 @@ define([
 
         /**
          * Init resizable
-         * @member Resizable
+         * @memberOf Resizable
          */
         init: function init() {
 
@@ -67,7 +67,7 @@ define([
 
         /**
          * Enable resize
-         * @member Resizable
+         * @memberOf Resizable
          */
         enable: function enable() {
 
@@ -84,7 +84,7 @@ define([
 
         /**
          * Disable resize
-         * @member Resizable
+         * @memberOf Resizable
          */
         disable: function disable() {
 
@@ -101,7 +101,7 @@ define([
 
         /**
          * Destroy resize
-         * @member Resizable
+         * @memberOf Resizable
          */
         destroy: function destroy() {
 
@@ -118,7 +118,7 @@ define([
 
         /**
          * Create resize
-         * @member Resizable
+         * @memberOf Resizable
          * @param event
          * @param ui
          */
@@ -137,7 +137,7 @@ define([
 
         /**
          * Start resize
-         * @member Resizable
+         * @memberOf Resizable
          * @param event
          * @param ui
          */
@@ -161,7 +161,7 @@ define([
 
         /**
          * Stop resize
-         * @member Resizable
+         * @memberOf Resizable
          * @param event
          * @param ui
          */
@@ -183,7 +183,7 @@ define([
 
         /**
          * On resize event
-         * @member Resizable
+         * @memberOf Resizable
          * @param event
          * @param ui
          */

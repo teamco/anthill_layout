@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member VineCoModel
+         * @memberOf VineCoModel
          * @type {{}}
          */
         this.preferences = {
@@ -69,7 +69,7 @@ define([
 
         /**
          * Define rules
-         * @member VineCoModel
+         * @memberOf VineCoModel
          * @type {{}}
          */
         this.rules = {};
@@ -79,7 +79,7 @@ define([
 
         /**
          * Set link
-         * @member VineCoModel
+         * @memberOf VineCoModel
          * @param {string} link
          */
         setVinecoLink: function setVinecoLink(link) {
@@ -88,7 +88,7 @@ define([
 
         /**
          * Set postcard type
-         * @member VineCoModel
+         * @memberOf VineCoModel
          * @param {string} type
          */
         setVinecoType: function setVinecoType(type) {
@@ -97,7 +97,7 @@ define([
 
         /**
          * Set auto play audio
-         * @member VineCoModel
+         * @memberOf VineCoModel
          * @param {boolean} audio
          */
         setVinecoAutoplayAudio: function setVinecoAutoplayAudio(audio) {
@@ -106,7 +106,7 @@ define([
 
         /**
          * Set related videos
-         * @member VineCoModel
+         * @memberOf VineCoModel
          * @param {boolean} video
          */
         setVinecoRelatedVideos: function setVinecoRelatedVideos(video) {

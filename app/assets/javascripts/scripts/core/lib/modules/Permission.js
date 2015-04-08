@@ -23,7 +23,7 @@ define([
 
         /**
          * Config capabilities
-         * @member BasePermission
+         * @memberOf BasePermission
          */
         config: function config() {
             var base = this.base,
@@ -36,7 +36,7 @@ define([
 
         /**
          * Check permission rules
-         * @member BasePermission
+         * @memberOf BasePermission
          * @param {{[callback]: function, [fallback]: function, args: *|Array, capability: String}} opts
          */
         check: function check(opts) {
@@ -60,7 +60,7 @@ define([
 
         /**
          * Set capabilities
-         * @member BasePermission
+         * @memberOf BasePermission
          * @param {String} key
          * @param {*} value
          * @returns {*}
@@ -72,7 +72,7 @@ define([
 
         /**
          * Get capabilities
-         * @member BasePermission
+         * @memberOf BasePermission
          * @param {String} key
          * @returns {*}
          */
@@ -82,7 +82,7 @@ define([
 
         /**
          * Check if function call is defined as authorized (via permissions)
-         * @member BasePermission
+         * @memberOf BasePermission
          * @param {Function} fn
          * @returns {boolean}
          */
@@ -96,7 +96,7 @@ define([
 
         /**
          * Check if function called via tunnel
-         * @member BasePermission
+         * @memberOf BasePermission
          * @param fn
          * @returns {boolean}
          */

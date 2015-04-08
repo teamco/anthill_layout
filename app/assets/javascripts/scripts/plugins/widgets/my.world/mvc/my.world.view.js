@@ -28,7 +28,7 @@ define([
 
         /**
          * Render myworld element
-         * @member MyWorldView
+         * @memberOf MyWorldView
          */
         renderMyWorld: function renderMyWorld() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member MyWorldView
+         * @memberOf MyWorldView
          * @returns {MyWorldPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member MyWorldView
+         * @memberOf MyWorldView
          * @param widgetRules
          * @param contentRules
          * @returns {MyWorldRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render myworld
-         * @member MyWorldView
+         * @memberOf MyWorldView
          */
         render: function render() {
 

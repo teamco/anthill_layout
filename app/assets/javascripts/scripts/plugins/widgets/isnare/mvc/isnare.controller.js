@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member IsnareController
+         * @memberOf IsnareController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$isnare.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add Isnare rule
-         * @member IsnareController
+         * @memberOf IsnareController
          * @param e
          */
         addIsnareRule: function addIsnareRule(e) {

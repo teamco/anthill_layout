@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member RutubeElement
+         * @memberOf RutubeElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

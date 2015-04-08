@@ -28,7 +28,7 @@ define([
 
         /**
          * Render krem element
-         * @member KremView
+         * @memberOf KremView
          */
         renderKrem: function renderKrem() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member KremView
+         * @memberOf KremView
          * @returns {KremPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member KremView
+         * @memberOf KremView
          * @param widgetRules
          * @param contentRules
          * @returns {KremRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render krem
-         * @member KremView
+         * @memberOf KremView
          */
         render: function render() {
 

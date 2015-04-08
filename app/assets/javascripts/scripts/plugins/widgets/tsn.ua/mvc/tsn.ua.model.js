@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TsnUaModel
+         * @memberOf TsnUaModel
          * @type {{
          *      tsnuaEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TsnUaModel
+         * @memberOf TsnUaModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set TsnUa embed code
-         * @member TsnUaModel
+         * @memberOf TsnUaModel
          * @param {string} embed
          */
         setTsnuaEmbedCode: function setTsnuaEmbedCode(embed) {

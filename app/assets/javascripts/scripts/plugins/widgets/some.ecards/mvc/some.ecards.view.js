@@ -28,7 +28,7 @@ define([
 
         /**
          * Render someecards element
-         * @member SomeEcardsView
+         * @memberOf SomeEcardsView
          */
         renderSomeEcards: function renderSomeEcards() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member SomeEcardsView
+         * @memberOf SomeEcardsView
          * @returns {SomeEcardsPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member SomeEcardsView
+         * @memberOf SomeEcardsView
          * @param widgetRules
          * @param contentRules
          * @returns {SomeEcardsRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render someecards
-         * @member SomeEcardsView
+         * @memberOf SomeEcardsView
          */
         render: function render() {
 

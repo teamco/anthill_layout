@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member PolldaddyModel
+         * @memberOf PolldaddyModel
          * @type {{
          *      polldaddyEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member PolldaddyModel
+         * @memberOf PolldaddyModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Polldaddy embed code
-         * @member PolldaddyModel
+         * @memberOf PolldaddyModel
          * @param {string} embed
          */
         setPolldaddyEmbedCode: function setPolldaddyEmbedCode(embed) {

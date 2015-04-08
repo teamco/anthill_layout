@@ -31,7 +31,7 @@ define([
 
         /**
          * Render widgets list
-         * @member SiteConfigWidgetsListElement
+         * @memberOf SiteConfigWidgetsListElement
          * @param data
          * @param show
          * @return {SiteConfigWidgetsListElement}
@@ -108,7 +108,7 @@ define([
 
         /**
          * Bind widget edit
-         * @member SiteConfigWidgetsListElement
+         * @memberOf SiteConfigWidgetsListElement
          * @param $ul
          * @returns {*}
          */
@@ -133,7 +133,7 @@ define([
 
         /**
          * Render widget generator form
-         * @member SiteConfigWidgetsListElement
+         * @memberOf SiteConfigWidgetsListElement
          * @param {Array} widgets
          * @param {object} [widgetData]
          * @param {Array} types
@@ -384,7 +384,7 @@ define([
 
         /**
          * Render clone from field
-         * @member SiteConfigWidgetsListElement
+         * @memberOf SiteConfigWidgetsListElement
          * @param widgets
          * @returns {*[]}
          */

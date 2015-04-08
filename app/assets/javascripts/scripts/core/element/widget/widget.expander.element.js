@@ -39,7 +39,7 @@ define([
 
         /**
          * Define bind Expander
-         * @member WidgetExpanderElement
+         * @memberOf WidgetExpanderElement
          */
         bindExpander: function bindExpander() {
 
@@ -60,7 +60,7 @@ define([
 
         /**
          * Define text toggle
-         * @member WidgetExpanderElement
+         * @memberOf WidgetExpanderElement
          * @param {boolean} expand
          */
         toggleExpandText: function toggleExpandText(expand) {

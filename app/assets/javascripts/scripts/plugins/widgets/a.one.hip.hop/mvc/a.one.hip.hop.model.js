@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member AOneHipHopModel
+         * @memberOf AOneHipHopModel
          * @type {{
          *      aonehiphopEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member AOneHipHopModel
+         * @memberOf AOneHipHopModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set AOneHipHop embed code
-         * @member AOneHipHopModel
+         * @memberOf AOneHipHopModel
          * @param {string} embed
          */
         setAonehiphopEmbedCode: function setAonehiphopEmbedCode(embed) {

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member ExtremeTubeModel
+         * @memberOf ExtremeTubeModel
          * @type {{
          *      extremetubeEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member ExtremeTubeModel
+         * @memberOf ExtremeTubeModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set ExtremeTube embed code
-         * @member ExtremeTubeModel
+         * @memberOf ExtremeTubeModel
          * @param {string} embed
          */
         setExtremetubeEmbedCode: function setExtremetubeEmbedCode(embed) {

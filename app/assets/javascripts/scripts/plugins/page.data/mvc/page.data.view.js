@@ -31,7 +31,7 @@ define([
 
             /**
              * Render PageData
-             * @member PageDataView
+             * @memberOf PageDataView
              * @returns {boolean}
              */
             renderPageData: function renderPageData() {
@@ -52,7 +52,7 @@ define([
 
             /**
              * Render page.data content
-             * @member PageDataView
+             * @memberOf PageDataView
              * @param data
              * @returns {boolean}
              */
@@ -114,7 +114,7 @@ define([
 
             /**
              * Update footer content
-             * @member PageDataView
+             * @memberOf PageDataView
              */
             updateFooterContent: function updateFooterContent() {
                 this.renderFooter(Footer, this.elements.$pagedata);
@@ -122,7 +122,7 @@ define([
 
             /**
              * Show preferences
-             * @member PageDataView
+             * @memberOf PageDataView
              * @param config
              * @param {boolean} load
              */
@@ -196,7 +196,7 @@ define([
 
             /**
              * Render page.data
-             * @member PageDataView
+             * @memberOf PageDataView
              */
             render: function render() {
 

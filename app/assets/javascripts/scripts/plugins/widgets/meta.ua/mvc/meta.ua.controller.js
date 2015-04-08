@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member MetaUaController
+         * @memberOf MetaUaController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate meta
-         * @member MetaUaController
+         * @memberOf MetaUaController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -70,7 +70,7 @@ define([
 
         /**
          * Add MetaUa rule
-         * @member MetaUaController
+         * @memberOf MetaUaController
          * @param e
          */
         addMetaUaRule: function addMetaUaRule(e) {

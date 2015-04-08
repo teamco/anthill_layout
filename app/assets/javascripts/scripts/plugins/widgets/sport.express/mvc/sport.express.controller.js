@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member SportExpressController
+         * @memberOf SportExpressController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate sportexpress
-         * @member SportExpressController
+         * @memberOf SportExpressController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add SportExpress rule
-         * @member SportExpressController
+         * @memberOf SportExpressController
          * @param e
          */
         addSportExpressRule: function addSportExpressRule(e) {

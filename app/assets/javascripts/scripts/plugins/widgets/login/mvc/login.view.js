@@ -28,7 +28,7 @@ define([
 
         /**
          * Render login element
-         * @member LoginView
+         * @memberOf LoginView
          */
         renderLogin: function renderLogin() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member LoginView
+         * @memberOf LoginView
          * @returns {LoginPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member LoginView
+         * @memberOf LoginView
          * @param widgetRules
          * @param contentRules
          * @returns {LoginRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render login
-         * @member LoginView
+         * @memberOf LoginView
          */
         render: function render() {
 

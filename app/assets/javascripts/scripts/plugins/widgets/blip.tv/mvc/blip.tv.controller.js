@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member BlipTvController
+         * @memberOf BlipTvController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate bliptv
-         * @member BlipTvController
+         * @memberOf BlipTvController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add BlipTv rule
-         * @member BlipTvController
+         * @memberOf BlipTvController
          * @param e
          */
         addBlipTvRule: function addBlipTvRule(e) {

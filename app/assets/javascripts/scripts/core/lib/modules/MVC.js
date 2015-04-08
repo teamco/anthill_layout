@@ -23,14 +23,14 @@ define([
 
         /**
          * Define scope
-         * @member MVC
+         * @memberOf MVC
          * @type {mvc.scope}
          */
         this.scope = opts.scope;
 
         /**
          * Define MVC Relationship from -> to
-         * @member MVC
+         * @memberOf MVC
          * @type {Array}
          */
         this.RELATIONS = [
@@ -55,7 +55,7 @@ define([
 
         /**
          * Define reserved methods
-         * @member MVC
+         * @memberOf MVC
          * @type {{
          *      create: {singular: Array},
          *      destroy: {singular: Array, plural: Array}
@@ -77,7 +77,7 @@ define([
 
         /**
          * Define default listeners
-         * @member MVC
+         * @memberOf MVC
          * @type {{
          *      beforeInitConfig: string,
          *      afterInitConfig: string,
@@ -127,7 +127,7 @@ define([
 
         /**
          * Define scope config
-         * @member MVC
+         * @memberOf MVC
          * @type {mvc.scope.config}
          */
         this.scope.config = this.base.lib.hash.extendHash(
@@ -137,7 +137,7 @@ define([
 
         /**
          * Define mvc components
-         * @member MVC
+         * @memberOf MVC
          * @type {mvc.components}
          */
         this.components = this.base.define(
@@ -148,21 +148,21 @@ define([
 
         /**
          * Define mvc config
-         * @member MVC
+         * @memberOf MVC
          * @type {mvc.config}
          */
         this.config = this.base.define(selfConfig, {}, true);
 
         /**
          * Define mvc force creating components
-         * @member MVC
+         * @memberOf MVC
          * @type {Boolean}
          */
         this.force = this.base.defineBoolean(opts.force, false, true);
 
         /**
          * Define mvc render
-         * @member MVC
+         * @memberOf MVC
          * @type {Boolean}
          */
         this.render = this.base.defineBoolean(opts.render, true, true);
@@ -210,7 +210,7 @@ define([
 
         /**
          * Init MVC
-         * @member MVC
+         * @memberOf MVC
          */
         init: function init() {
 
@@ -259,7 +259,7 @@ define([
 
         /**
          * Define parent node
-         * @member MVC
+         * @memberOf MVC
          */
         defineContainment: function defineContainment() {
 
@@ -279,7 +279,7 @@ define([
 
         /**
          * Define MVC
-         * @member MVC
+         * @memberOf MVC
          * @param {Function|String} mvcPattern
          * @param {Boolean} [force]
          * @returns {*}
@@ -334,7 +334,7 @@ define([
 
         /**
          * Set relation between MVC components
-         * @member MVC
+         * @memberOf MVC
          */
         setRelation: function setRelation() {
             var relations = this.RELATIONS,
@@ -357,7 +357,7 @@ define([
 
         /**
          * Apply MVC
-         * @member MVC
+         * @memberOf MVC
          * @returns {boolean}
          */
         applyMVC: function applyMVC() {
@@ -394,7 +394,7 @@ define([
 
         /**
          * Apply MVC shims
-         * @member MVC
+         * @memberOf MVC
          * @param pattern
          */
         applyMVCShims: function applyMVCShims(pattern) {
@@ -424,7 +424,7 @@ define([
 
         /**
          * Apply config
-         * @member MVC
+         * @memberOf MVC
          */
         applyConfig: function applyConfig() {
             var base = this.base,
@@ -445,7 +445,7 @@ define([
 
         /**
          * Apply event manager
-         * @member MVC
+         * @memberOf MVC
          */
         applyEventManager: function applyEventManager() {
 
@@ -523,7 +523,7 @@ define([
 
         /**
          * Apply default listeners
-         * @member MVC
+         * @memberOf MVC
          */
         applyDefaultListeners: function applyDefaultListeners() {
 
@@ -546,7 +546,7 @@ define([
 
         /**
          * Apply listeners
-         * @member MVC
+         * @memberOf MVC
          */
         applyListeners: function applyListeners(type) {
 
@@ -590,7 +590,7 @@ define([
 
         /**
          * Define permissions
-         * @member MVC
+         * @memberOf MVC
          * @returns {boolean}
          */
         applyPermissions: function applyPermissions() {
@@ -622,7 +622,7 @@ define([
 
         /**
          * Apply global permissions
-         * @member MVC
+         * @memberOf MVC
          * @returns {*|boolean}
          */
         _applyPermissions: function _applyPermissions(type) {
@@ -673,7 +673,7 @@ define([
 
         /**
          * Apply Observer
-         * @member MVC
+         * @memberOf MVC
          */
         applyObserver: function applyObserver() {
 
@@ -693,7 +693,7 @@ define([
 
         /**
          * Apply Logger
-         * @member MVC
+         * @memberOf MVC
          */
         applyLogger: function applyLogger() {
             var scope = this.scope,

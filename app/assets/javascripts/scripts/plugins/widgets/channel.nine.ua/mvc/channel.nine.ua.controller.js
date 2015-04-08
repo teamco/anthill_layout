@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member ChannelNineUaController
+         * @memberOf ChannelNineUaController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$channelnineua.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add ChannelNineUa rule
-         * @member ChannelNineUaController
+         * @memberOf ChannelNineUaController
          * @param e
          */
         addChannelNineUaRule: function addChannelNineUaRule(e) {

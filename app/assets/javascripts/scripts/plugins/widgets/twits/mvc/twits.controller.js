@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TwitsController
+         * @memberOf TwitsController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -40,7 +40,7 @@ define([
 
         /**
          * Add Twits rule
-         * @member TwitsController
+         * @memberOf TwitsController
          * @param e
          */
         addTwitsRule: function addTwitsRule(e) {

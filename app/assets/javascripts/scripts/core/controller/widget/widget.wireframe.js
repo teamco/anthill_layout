@@ -20,14 +20,14 @@ define([
 
         /**
          * Define widget
-         * @member Wireframe
+         * @memberOf Wireframe
          * @type {*}
          */
         this.widget = widget;
 
         /**
          * Define selector
-         * @member Wireframe
+         * @memberOf Wireframe
          * @type {string}
          */
         this.selector = 'next-widget-position';
@@ -37,7 +37,7 @@ define([
 
         /**
          * Move wireframe on widget drag
-         * @member Wireframe
+         * @memberOf Wireframe
          */
         dragSticker: function dragSticker() {
 
@@ -60,7 +60,7 @@ define([
 
         /**
          * Resize wireframe on widget resize
-         * @member Wireframe
+         * @memberOf Wireframe
          */
         resizeSticker: function resizeSticker() {
 
@@ -83,7 +83,7 @@ define([
 
         /**
          * Show wireframe
-         * @member Wireframe
+         * @memberOf Wireframe
          */
         show: function show() {
             this.$.show();
@@ -91,7 +91,7 @@ define([
 
         /**
          * Hide wireframe
-         * @member Wireframe
+         * @memberOf Wireframe
          */
         hide: function hide() {
             this.$.hide();
@@ -99,7 +99,7 @@ define([
 
         /**
          * Get wireframe jQuery element
-         * @member Wireframe
+         * @memberOf Wireframe
          * @returns {*}
          */
         getWireFrame: function getWireFrame() {
@@ -118,7 +118,7 @@ define([
 
         /**
          * Move wireframe to current page
-         * @member Wireframe
+         * @memberOf Wireframe
          */
         moveToCurrentPage: function moveToCurrentPage() {
             if (this.getWireFrame().length === 0) {
@@ -130,7 +130,7 @@ define([
 
         /**
          * Define wireframe jQuery element
-         * @member Wireframe
+         * @memberOf Wireframe
          * @param {{style}} opts
          * @returns {*}
          */
@@ -138,7 +138,7 @@ define([
 
             /**
              * Define wireframe element
-             * @member Wireframe
+             * @memberOf Wireframe
              * @type {*}
              */
             this.$ = this.getWireFrame();
@@ -157,7 +157,7 @@ define([
 
         /**
          * Init wireframe
-         * @member Wireframe
+         * @memberOf Wireframe
          * @param opts
          */
         init: function init(opts) {

@@ -9,7 +9,7 @@ define(['config/application'], function defineApplicationListeners(Application) 
 
     /**
      * Define Application Global listeners
-     * @member Application
+     * @memberOf Application
      * @type {{
      *      defineGlobalInstance: {name: string, callback: function}
      * }}

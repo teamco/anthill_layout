@@ -28,7 +28,7 @@ define([
 
         /**
          * Render youporn element
-         * @member YouPornView
+         * @memberOf YouPornView
          */
         renderYouPorn: function renderYouPorn() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member YouPornView
+         * @memberOf YouPornView
          * @returns {YouPornPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member YouPornView
+         * @memberOf YouPornView
          * @param widgetRules
          * @param contentRules
          * @returns {YouPornRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render youporn
-         * @member YouPornView
+         * @memberOf YouPornView
          */
         render: function render() {
 

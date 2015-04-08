@@ -21,14 +21,13 @@ define([
      * @constructor BaseController
      */
     var BaseController = function BaseController() {
-
     };
 
     return BaseController.extend('BaseController', {
 
         /**
          * Before init config
-         * @member BaseController
+         * @memberOf BaseController
          */
         beforeInitConfig: function beforeInitConfig() {
             this.logger.debug('Before init config', arguments);
@@ -36,7 +35,7 @@ define([
 
         /**
          * After init config
-         * @member BaseController
+         * @memberOf BaseController
          */
         afterInitConfig: function afterInitConfig() {
             this.logger.debug('After init config', arguments);
@@ -44,7 +43,7 @@ define([
 
         /**
          * Define routes setter
-         * @member PluginController
+         * @memberOf PluginController
          */
         setRoutes: function setRoutes() {
 
@@ -60,7 +59,7 @@ define([
 
         /**
          * Bind model observer
-         * @member BaseController
+         * @memberOf BaseController
          */
         bindModelObserver: function bindModelObserver() {
             this.logger.debug('Bind model observer', arguments);
@@ -71,7 +70,7 @@ define([
 
         /**
          * After loading items
-         * @member BaseController
+         * @memberOf BaseController
          */
         afterLoadingItems: function afterLoadingItems() {
             this.logger.debug(
@@ -84,7 +83,7 @@ define([
 
         /**
          * Set core loading attribute
-         * @member BaseController
+         * @memberOf BaseController
          * @param load
          */
         setAsLoading: function setAsLoading(load) {
@@ -107,7 +106,7 @@ define([
 
         /**
          * Set as loaded
-         * @member BaseController
+         * @memberOf BaseController
          */
         setAsLoaded: function setAsLoaded() {
 
@@ -132,7 +131,7 @@ define([
 
         /**
          * Check if core already loaded
-         * @member @BaseController
+         * @memberOf @BaseController
          * @returns {boolean}
          */
         isLoading: function isLoading() {
@@ -141,7 +140,7 @@ define([
 
         /**
          * Get Application mode
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {*|number}
          */
         getMode: function getMode() {
@@ -150,7 +149,7 @@ define([
 
         /**
          * Get parent node object
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {*}
          */
         getContainment: function getContainment() {
@@ -159,7 +158,7 @@ define([
 
         /**
          * Get Application Root
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {*|string}
          */
         root: function root() {
@@ -178,7 +177,7 @@ define([
 
         /**
          * Get Application name
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {string}
          */
         getAppName: function getAppName() {
@@ -188,7 +187,7 @@ define([
 
         /**
          * Get Workspace
-         * @member BaseController
+         * @memberOf BaseController
          * @param {string} [uuid]
          * @returns {Workspace}
          */
@@ -207,7 +206,7 @@ define([
 
         /**
          * Get Page
-         * @member BaseController
+         * @memberOf BaseController
          * @param {string} [uuid]
          * @returns {Page}
          */
@@ -226,7 +225,7 @@ define([
 
         /**
          * Get Widget
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {*|Widget}
          */
         getWidget: function getWidget() {
@@ -242,7 +241,7 @@ define([
 
         /**
          * Get Config Logger
-         * @member BaseController
+         * @memberOf BaseController
          * @param {String} log
          * @param {Object} hash
          */
@@ -252,7 +251,7 @@ define([
 
         /**
          * Get scope view
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {view}
          */
         getView: function getView() {
@@ -261,7 +260,7 @@ define([
 
         /**
          * Get scope model
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {model}
          */
         getModel: function getModel() {
@@ -270,7 +269,7 @@ define([
 
         /**
          * Success Created
-         * @member BaseController
+         * @memberOf BaseController
          */
         successCreated: function successCreated() {
             this.logger.debug(
@@ -282,7 +281,7 @@ define([
 
         /**
          * Success Rendered
-         * @member BaseController
+         * @memberOf BaseController
          */
         successRendered: function successRendered() {
             this.logger.debug(
@@ -294,7 +293,7 @@ define([
 
         /**
          * Success Render Footer
-         * @member BaseController
+         * @memberOf BaseController
          * @param {HeaderElement} $header
          * @param {boolean} render
          */
@@ -306,7 +305,7 @@ define([
 
         /**
          * Success Render Footer
-         * @member BaseController
+         * @memberOf BaseController
          * @param {FooterElement} $footer
          * @param {boolean} render
          */
@@ -318,7 +317,7 @@ define([
 
         /**
          * Set item as current in parent node
-         * @member BaseController
+         * @memberOf BaseController
          */
         setAsCurrent: function setAsCurrent() {
             this.getContainment().controller.setCurrentItem(
@@ -328,7 +327,7 @@ define([
 
         /**
          * Set current item
-         * @member BaseController
+         * @memberOf BaseController
          * @param {{}} item
          * @returns {*}
          */
@@ -340,7 +339,7 @@ define([
 
         /**
          * Check condition
-         * @member BaseController
+         * @memberOf BaseController
          * @param {{condition, msg, [type], [args]}} opts
          * @returns {boolean}
          */
@@ -363,7 +362,7 @@ define([
 
         /**
          * Get Development Mode
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {Boolean}
          */
         isDevelopmentMode: function isDevelopmentMode() {
@@ -372,7 +371,7 @@ define([
 
         /**
          * Get Authorize Mode
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {Boolean}
          */
         isAuthorizeMode: function isAuthorizeMode() {
@@ -381,7 +380,7 @@ define([
 
         /**
          * Get Consumption Mode
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {boolean}
          */
         isConsumptionMode: function isConsumptionMode() {
@@ -390,7 +389,7 @@ define([
 
         /**
          * Get Custom Mode
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {boolean}
          */
         isCustomMode: function isCustomMode() {
@@ -399,7 +398,7 @@ define([
 
         /**
          * After update preferences
-         * @member BaseController
+         * @memberOf BaseController
          */
         afterUpdatePreferences: function afterUpdatePreferences() {
             this.logger.debug('After update preferences', arguments);
@@ -407,7 +406,7 @@ define([
 
         /**
          * Transfer preferences to containment
-         * @member BaseController
+         * @memberOf BaseController
          * @param index
          * @param value
          */
@@ -425,7 +424,7 @@ define([
 
         /**
          * Get preferences
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {{}}
          */
         getPreferences: function getPreferences() {
@@ -434,7 +433,7 @@ define([
 
         /**
          * Get rules
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {{}}
          */
         getRules: function getRules() {
@@ -443,7 +442,7 @@ define([
 
         /**
          * Update site description
-         * @member BaseController
+         * @memberOf BaseController
          */
         updateSiteDescription: function updateSiteDescription() {
 
@@ -461,7 +460,7 @@ define([
 
         /**
          * Update site keywords
-         * @member BaseController
+         * @memberOf BaseController
          */
         updateSiteKeywords: function updateSiteKeywords() {
 
@@ -479,7 +478,7 @@ define([
 
         /**
          * Extend Config
-         * @member BaseController
+         * @memberOf BaseController
          * @param {{config, [dom]}} opts
          * @returns {*}
          */
@@ -504,7 +503,7 @@ define([
 
         /**
          * Set Interaction
-         * @member BaseController
+         * @memberOf BaseController
          * @param {Resizable|Draggable|Function} Event
          * @returns {*}
          */
@@ -527,7 +526,7 @@ define([
 
         /**
          * Get Interaction
-         * @member BaseController
+         * @memberOf BaseController
          * @param {String} event
          * @returns {*}
          */
@@ -537,7 +536,7 @@ define([
 
         /**
          * Check is root
-         * @member BaseController
+         * @memberOf BaseController
          * @param scope
          * @returns {boolean}
          */
@@ -547,7 +546,7 @@ define([
 
         /**
          * Check is workspace
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {boolean}
          */
         isWorkspace: function isWorkspace() {
@@ -556,7 +555,7 @@ define([
 
         /**
          * Check is page
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {boolean}
          */
         isPage: function isPage() {
@@ -565,7 +564,7 @@ define([
 
         /**
          * Check is widget
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {boolean}
          */
         isWidget: function isWidget() {
@@ -574,7 +573,7 @@ define([
 
         /**
          * Check is widget content
-         * @member BaseController
+         * @memberOf BaseController
          * @returns {boolean}
          */
         isWidgetContent: function isWidgetContent() {
@@ -599,7 +598,7 @@ define([
 
         /**
          * Store data after layout organize
-         * @member BaseController
+         * @memberOf BaseController
          * @param [node]
          * @param [data]
          * @param {number} [counter]
@@ -690,7 +689,7 @@ define([
 
         /**
          * Get subscribers list
-         * @member BaseController
+         * @memberOf BaseController
          * @param {string} event
          * @return {Array}
          */
@@ -708,7 +707,7 @@ define([
 
         /**
          * Collect items data
-         * @member BaseController
+         * @memberOf BaseController
          * @param {Boolean} collectDOM
          * @returns {{}}
          */

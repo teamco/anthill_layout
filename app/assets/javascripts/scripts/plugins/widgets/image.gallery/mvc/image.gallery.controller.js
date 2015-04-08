@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member ImageGalleryController
+         * @memberOf ImageGalleryController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -36,7 +36,7 @@ define([
 
         /**
          * Add ImageGallery rule
-         * @member ImageGalleryController
+         * @memberOf ImageGalleryController
          * @param e
          */
         addImageGalleryRule: function addImageGalleryRule(e) {

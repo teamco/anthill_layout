@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member OpenWeatherMapElement
+         * @memberOf OpenWeatherMapElement
          * @param {{
          *      latitude: number,
          *      longitude: number,

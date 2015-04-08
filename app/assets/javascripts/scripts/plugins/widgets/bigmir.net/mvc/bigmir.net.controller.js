@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member BigmirNetController
+         * @memberOf BigmirNetController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate bigmirnet
-         * @member BigmirNetController
+         * @memberOf BigmirNetController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add BigmirNet rule
-         * @member BigmirNetController
+         * @memberOf BigmirNetController
          * @param e
          */
         addBigmirNetRule: function addBigmirNetRule(e) {

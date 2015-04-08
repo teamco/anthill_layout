@@ -19,7 +19,7 @@ define([], function defineLibDateTime() {
 
             /**
              * Define toISO8601
-             * @member Date
+             * @memberOf Date
              * @param date
              * @returns {string}
              */
@@ -51,7 +51,7 @@ define([], function defineLibDateTime() {
 
         /**
          * Get date
-         * @member LibDateTime
+         * @memberOf LibDateTime
          * @returns {Date}
          */
         getDate: function getDate() {
@@ -60,7 +60,7 @@ define([], function defineLibDateTime() {
 
         /**
          * Get timestamp
-         * @member LibDateTime
+         * @memberOf LibDateTime
          * @param time
          * @returns {*}
          */
@@ -71,7 +71,7 @@ define([], function defineLibDateTime() {
 
         /**
          * Get timestamp utc
-         * @member LibDateTime
+         * @memberOf LibDateTime
          * @returns {number}
          */
         timestampUTC: function timestampUTC() {

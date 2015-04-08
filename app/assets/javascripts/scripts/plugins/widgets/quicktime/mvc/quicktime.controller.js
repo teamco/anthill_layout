@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member QuicktimeController
+         * @memberOf QuicktimeController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -35,7 +35,7 @@ define([
 
         /**
          * Add Quicktime rule
-         * @member QuicktimeController
+         * @memberOf QuicktimeController
          * @param e
          */
         addQuicktimeRule: function addQuicktimeRule(e) {

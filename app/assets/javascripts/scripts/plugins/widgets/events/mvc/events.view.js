@@ -28,7 +28,7 @@ define([
 
         /**
          * Render events element
-         * @member EventsView
+         * @memberOf EventsView
          */
         renderEvents: function renderEvents() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member EventsView
+         * @memberOf EventsView
          * @returns {EventsPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member EventsView
+         * @memberOf EventsView
          * @param widgetRules
          * @param contentRules
          * @returns {EventsRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render events
-         * @member EventsView
+         * @memberOf EventsView
          */
         render: function render() {
 

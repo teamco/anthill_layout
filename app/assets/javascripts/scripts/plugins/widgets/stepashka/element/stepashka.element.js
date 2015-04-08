@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member StepashkaElement
+         * @memberOf StepashkaElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

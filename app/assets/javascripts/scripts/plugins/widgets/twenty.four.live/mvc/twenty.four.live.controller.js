@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TwentyFourLiveController
+         * @memberOf TwentyFourLiveController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate twentyfourlive
-         * @member TwentyFourLiveController
+         * @memberOf TwentyFourLiveController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -76,7 +76,7 @@ define([
 
         /**
          * Add TwentyFourLive rule
-         * @member TwentyFourLiveController
+         * @memberOf TwentyFourLiveController
          * @param e
          */
         addTwentyFourLiveRule: function addTwentyFourLiveRule(e) {

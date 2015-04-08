@@ -17,7 +17,7 @@ define(['jquery'], function defineUploadOnDrop($) {
 
         /**
          * Render JSON uploader
-         * @member UploadOnDropRenderer
+         * @memberOf UploadOnDropRenderer
          * @param opts
          */
         renderJSONUploader: function renderJSONUploader(opts) {

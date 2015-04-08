@@ -28,7 +28,7 @@ define([
 
         /**
          * Render truba element
-         * @member TrubaView
+         * @memberOf TrubaView
          */
         renderTruba: function renderTruba() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member TrubaView
+         * @memberOf TrubaView
          * @returns {TrubaPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member TrubaView
+         * @memberOf TrubaView
          * @param widgetRules
          * @param contentRules
          * @returns {TrubaRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render truba
-         * @member TrubaView
+         * @memberOf TrubaView
          */
         render: function render() {
 

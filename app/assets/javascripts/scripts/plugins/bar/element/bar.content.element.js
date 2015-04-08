@@ -28,7 +28,7 @@ define([
 
         /**
          * Define resource
-         * @member BarContentElement
+         * @memberOf BarContentElement
          */
         this.resource = opts.resource;
 
@@ -41,7 +41,7 @@ define([
 
         /**
          * Open tab
-         * @member BarContentElement
+         * @memberOf BarContentElement
          * @param resource
          */
         attachEvent: function attachEvent(resource) {

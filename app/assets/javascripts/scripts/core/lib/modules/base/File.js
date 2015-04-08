@@ -19,7 +19,7 @@ define([], function defineLibFile() {
 
         /**
          * Check API
-         * @member LibFile
+         * @memberOf LibFile
          * @returns {boolean}
          */
         checkFileApi: function checkFileApi() {
@@ -39,7 +39,7 @@ define([], function defineLibFile() {
 
         /**
          * Create Blob URL
-         * @member LibFile
+         * @memberOf LibFile
          * @param {string} content
          * @param {string} type
          * @param {string} fname
@@ -63,7 +63,7 @@ define([], function defineLibFile() {
 
         /**
          * Define convert base64 to blob
-         * @member LibFile
+         * @memberOf LibFile
          * @param {string} base64Data
          * @param {string} contentType
          * @returns {*}

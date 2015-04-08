@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member KremModel
+         * @memberOf KremModel
          * @type {{
          *      kremEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member KremModel
+         * @memberOf KremModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Krem embed code
-         * @member KremModel
+         * @memberOf KremModel
          * @param {string} embed
          */
         setKremEmbedCode: function setKremEmbedCode(embed) {

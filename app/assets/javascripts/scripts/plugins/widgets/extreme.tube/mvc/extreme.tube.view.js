@@ -28,7 +28,7 @@ define([
 
         /**
          * Render extremetube element
-         * @member ExtremeTubeView
+         * @memberOf ExtremeTubeView
          */
         renderExtremeTube: function renderExtremeTube() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member ExtremeTubeView
+         * @memberOf ExtremeTubeView
          * @returns {ExtremeTubePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member ExtremeTubeView
+         * @memberOf ExtremeTubeView
          * @param widgetRules
          * @param contentRules
          * @returns {ExtremeTubeRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render extremetube
-         * @member ExtremeTubeView
+         * @memberOf ExtremeTubeView
          */
         render: function render() {
 

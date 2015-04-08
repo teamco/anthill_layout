@@ -40,7 +40,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member ImageElement
+         * @memberOf ImageElement
          * @param {{}} opts
          */
         renderEmbeddedContent: function renderEmbeddedContent(opts) {
@@ -105,7 +105,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member ImageElement
+         * @memberOf ImageElement
          * @param {{}} opts
          */
         renderSplitEmbeddedContent: function renderSplitEmbeddedContent(opts) {

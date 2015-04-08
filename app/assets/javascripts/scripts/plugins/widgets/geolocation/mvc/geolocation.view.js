@@ -28,7 +28,7 @@ define([
 
         /**
          * Render geolocation element
-         * @member GeolocationView
+         * @memberOf GeolocationView
          */
         renderGeolocation: function renderGeolocation() {
 
@@ -50,7 +50,7 @@ define([
 
         /**
          * Render Prefs
-         * @member GeolocationView
+         * @memberOf GeolocationView
          * @returns {GeolocationPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -68,7 +68,7 @@ define([
 
         /**
          * Render Rules
-         * @member GeolocationView
+         * @memberOf GeolocationView
          * @param widgetRules
          * @param contentRules
          * @returns {GeolocationRulesElement}
@@ -98,7 +98,7 @@ define([
 
         /**
          * Show position
-         * @member GeolocationView
+         * @memberOf GeolocationView
          */
         showPosition: function showPosition() {
             this.scope.observer.publish(
@@ -108,7 +108,7 @@ define([
 
         /**
          * Render geolocation
-         * @member GeolocationView
+         * @memberOf GeolocationView
          */
         render: function render() {
 

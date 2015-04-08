@@ -20,13 +20,13 @@ define([], function defineLibNumber() {
 
         /**
          * Default number type
-         * @member LibNumber
+         * @memberOf LibNumber
          */
         defaultNumberType: 10,
 
         /**
          * Convert String to Integer
-         * @member LibNumber
+         * @memberOf LibNumber
          * @param {string} s
          * @param {number} t
          * @returns {Number}
@@ -38,7 +38,7 @@ define([], function defineLibNumber() {
 
         /**
          * Convert String to Integer
-         * @member LibNumber
+         * @memberOf LibNumber
          * @param {string} s
          * @returns {Number}
          */
@@ -49,7 +49,7 @@ define([], function defineLibNumber() {
 
         /**
          * Get random number
-         * @member LibNumber
+         * @memberOf LibNumber
          * @param {number} min
          * @param {number} max
          * @returns {number}
@@ -60,7 +60,7 @@ define([], function defineLibNumber() {
 
         /**
          * Numeric sort
-         * @member LibNumber
+         * @memberOf LibNumber
          * @param {Number} a
          * @param {Number} b
          * @returns {Number}

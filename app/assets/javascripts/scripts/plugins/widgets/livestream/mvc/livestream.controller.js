@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member LivestreamController
+         * @memberOf LivestreamController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate livestream
-         * @member LivestreamController
+         * @memberOf LivestreamController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Livestream rule
-         * @member LivestreamController
+         * @memberOf LivestreamController
          * @param e
          */
         addLivestreamRule: function addLivestreamRule(e) {

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member ChannelNineUaModel
+         * @memberOf ChannelNineUaModel
          * @type {{
          *      channelnineuaEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member ChannelNineUaModel
+         * @memberOf ChannelNineUaModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set ChannelNineUa embed code
-         * @member ChannelNineUaModel
+         * @memberOf ChannelNineUaModel
          * @param {string} embed
          */
         setChannelnineuaEmbedCode: function setChannelnineuaEmbedCode(embed) {

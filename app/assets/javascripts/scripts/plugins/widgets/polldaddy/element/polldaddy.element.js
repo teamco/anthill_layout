@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member PolldaddyElement
+         * @memberOf PolldaddyElement
          * @param {{type, id}} data
          */
         renderEmbeddedContent: function renderEmbeddedContent(data) {

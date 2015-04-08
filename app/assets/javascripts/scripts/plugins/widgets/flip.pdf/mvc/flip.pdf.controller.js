@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member FlipPdfController
+         * @memberOf FlipPdfController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$flippdf.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add FlipPdf rule
-         * @member FlipPdfController
+         * @memberOf FlipPdfController
          * @param e
          */
         addFlipPdfRule: function addFlipPdfRule(e) {

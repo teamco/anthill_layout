@@ -100,35 +100,35 @@ define([
 
         /**
          * Define loading data counter
-         * @member Application
+         * @memberOf Application
          * @type {number|*}
          */
         this.loadingDataCounter = undefined;
 
         /**
          * Define panels
-         * @member Application
+         * @memberOf Application
          * @type {{}}
          */
         this.panels = {};
 
         /**
          * Define items
-         * @member Application
+         * @memberOf Application
          * @type {*}
          */
         this.items = {};
 
         /**
          * Define workspace
-         * @member Application
+         * @memberOf Application
          * @type {Workspace}
          */
         this.workspace = {};
 
         /**
          * Define MVC
-         * @member Application
+         * @memberOf Application
          * @type {MVC}
          */
         this.mvc = new MVC({

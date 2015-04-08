@@ -24,7 +24,7 @@ define([
 
         /**
          * Render data
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @param {data} opts
          */
         renderData: function renderData(opts) {
@@ -187,7 +187,7 @@ define([
 
         /**
          * Render Layout prefs
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @param {Page} page
          * @returns {*}
          */
@@ -294,7 +294,7 @@ define([
 
         /**
          * Render widgets prefs
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @param {Page} page
          * @returns {*}
          */
@@ -406,7 +406,7 @@ define([
 
         /**
          * Render page widgets global preferences
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @returns {Array}
          */
         renderPageWidgetsGlobalPrefs: function renderPageWidgetsGlobalPrefs() {
@@ -482,7 +482,7 @@ define([
 
         /**
          * Show Widget prefs
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @param e
          */
         showWidgetPrefs: function showWidgetPrefs(e) {

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member PicasaModel
+         * @memberOf PicasaModel
          * @type {{
          *      picasaEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member PicasaModel
+         * @memberOf PicasaModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Picasa embed code
-         * @member PicasaModel
+         * @memberOf PicasaModel
          * @param {string} embed
          */
         setPicasaEmbedCode: function setPicasaEmbedCode(embed) {

@@ -33,14 +33,14 @@ define(
 
             /**
              * Define title
-             * @member WorkspaceDataAddPageElement
+             * @memberOf WorkspaceDataAddPageElement
              * @type {string}
              */
             this.title = 'Create new page';
 
             /**
              * Define description
-             * @member WorkspaceDataAddPageElement
+             * @memberOf WorkspaceDataAddPageElement
              * @type {string}
              */
             this.description = 'Clicking a button will take you to the edit page for the new widgets';
@@ -53,7 +53,7 @@ define(
 
                 /**
                  * Define Init
-                 * @member WorkspaceDataAddPageElement
+                 * @memberOf WorkspaceDataAddPageElement
                  * @returns {WorkspaceDataAddPageElement}
                  */
                 init: function init() {
@@ -70,7 +70,7 @@ define(
 
                 /**
                  * Render add wizard
-                 * @member WorkspaceDataAddPageElement
+                 * @memberOf WorkspaceDataAddPageElement
                  * @param {Workspace} workspace
                  * @returns {*|jQuery|HTMLElement}
                  */

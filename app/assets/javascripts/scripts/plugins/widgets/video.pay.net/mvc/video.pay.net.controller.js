@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member VideoPayNetController
+         * @memberOf VideoPayNetController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             /**
@@ -41,7 +41,7 @@ define([
 
         /**
          * Validate iframe
-         * @member VideoPayNetController
+         * @memberOf VideoPayNetController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -68,7 +68,7 @@ define([
 
         /**
          * Add VideoPayNet rule
-         * @member VideoPayNetController
+         * @memberOf VideoPayNetController
          * @param e
          */
         addVideoPayNetRule: function addVideoPayNetRule(e) {

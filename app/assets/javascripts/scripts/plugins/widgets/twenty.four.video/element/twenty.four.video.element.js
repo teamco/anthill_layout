@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member TwentyFourVideoElement
+         * @memberOf TwentyFourVideoElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

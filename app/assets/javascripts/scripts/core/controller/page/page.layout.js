@@ -15,7 +15,7 @@ define(['config/layout'], function definePageLayout(Layout) {
 
             /**
              * Update layout config
-             * @member PageLayout
+             * @memberOf PageLayout
              */
             updateLayoutConfig: function updateLayoutConfig() {
 
@@ -43,7 +43,7 @@ define(['config/layout'], function definePageLayout(Layout) {
 
             /**
              * Update page height
-             * @member PageLayout
+             * @memberOf PageLayout
              */
             updateHeight: function updateHeight() {
                 console.log('TODO: Update height');
@@ -51,7 +51,7 @@ define(['config/layout'], function definePageLayout(Layout) {
 
             /**
              * Define expandLayout
-             * @member PageLayout
+             * @memberOf PageLayout
              * @param {Widget} widget
              */
             expandLayout: function expandLayout(widget) {
@@ -70,14 +70,14 @@ define(['config/layout'], function definePageLayout(Layout) {
 
             /**
              * Create page layout
-             * @member PageLayout
+             * @memberOf PageLayout
              * @param opts
              */
             createLayout: function createLayout(opts) {
 
                 /**
                  * Define layout
-                 * @member Page
+                 * @memberOf Page
                  * @type {Layout}
                  */
                 this.layout = new Layout(opts, this);
@@ -85,7 +85,7 @@ define(['config/layout'], function definePageLayout(Layout) {
 
             /**
              * Destroy layout
-             * @member PageLayout
+             * @memberOf PageLayout
              */
             destroyLayout: function destroyLayout() {
                 this.logger.info(
@@ -97,7 +97,7 @@ define(['config/layout'], function definePageLayout(Layout) {
 
             /**
              * Get Layout
-             * @member PageLayout
+             * @memberOf PageLayout
              * @returns {Layout}
              */
             getLayout: function getLayout() {
@@ -106,7 +106,7 @@ define(['config/layout'], function definePageLayout(Layout) {
 
             /**
              * Update layout config
-             * @member PageLayout
+             * @memberOf PageLayout
              */
             updateLayout: function updateLayout() {
 

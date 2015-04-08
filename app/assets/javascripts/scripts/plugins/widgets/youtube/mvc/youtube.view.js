@@ -28,7 +28,7 @@ define([
 
         /**
          * Render youtube element
-         * @member YoutubeView
+         * @memberOf YoutubeView
          */
         renderYoutube: function renderYoutube() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member YoutubeView
+         * @memberOf YoutubeView
          * @returns {YoutubePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member YoutubeView
+         * @memberOf YoutubeView
          * @param widgetRules
          * @param contentRules
          * @returns {YoutubeRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render youtube
-         * @member YoutubeView
+         * @memberOf YoutubeView
          */
         render: function render() {
 

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TelekanalUaModel
+         * @memberOf TelekanalUaModel
          * @type {{
          *      telekanaluaUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TelekanalUaModel
+         * @memberOf TelekanalUaModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set TelekanalUa Url
-         * @member TelekanalUaModel
+         * @memberOf TelekanalUaModel
          * @param {string} url
          */
         setTelekanaluaUrl: function setTelekanaluaUrl(url) {

@@ -31,7 +31,7 @@ define([
 
         /**
          * Prettify JSON
-         * @member SiteConfigCleanUpElement
+         * @memberOf SiteConfigCleanUpElement
          * @returns {XML|string}
          */
         prettifyJSON: function prettifyJSON() {

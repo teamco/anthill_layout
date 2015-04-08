@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TwentyFourVideoController
+         * @memberOf TwentyFourVideoController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate twentyfourvideo
-         * @member TwentyFourVideoController
+         * @memberOf TwentyFourVideoController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add TwentyFourVideo rule
-         * @member TwentyFourVideoController
+         * @memberOf TwentyFourVideoController
          * @param e
          */
         addTwentyFourVideoRule: function addTwentyFourVideoRule(e) {

@@ -28,7 +28,7 @@ define([
 
         /**
          * Render howcast element
-         * @member HowcastView
+         * @memberOf HowcastView
          */
         renderHowcast: function renderHowcast() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member HowcastView
+         * @memberOf HowcastView
          * @returns {HowcastPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member HowcastView
+         * @memberOf HowcastView
          * @param widgetRules
          * @param contentRules
          * @returns {HowcastRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render howcast
-         * @member HowcastView
+         * @memberOf HowcastView
          */
         render: function render() {
 

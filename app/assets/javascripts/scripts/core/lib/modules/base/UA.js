@@ -17,7 +17,7 @@ define([], function defineLibString() {
 
         /**
          * Define browser info
-         * @member LibUserAgent
+         * @memberOf LibUserAgent
          */
         this.browser = (function () {
             var ua = navigator.userAgent, tem,
@@ -52,7 +52,7 @@ define([], function defineLibString() {
 
         /**
          * Get Opera
-         * @member LibUserAgent
+         * @memberOf LibUserAgent
          * @returns {*}
          */
         opera: function opera() {
@@ -61,7 +61,7 @@ define([], function defineLibString() {
 
         /**
          * Get Chrome
-         * @member LibUserAgent
+         * @memberOf LibUserAgent
          * @returns {*}
          */
         chrome: function chrome() {
@@ -70,7 +70,7 @@ define([], function defineLibString() {
 
         /**
          * Get Safari
-         * @member LibUserAgent
+         * @memberOf LibUserAgent
          * @returns {*}
          */
         safari: function safari() {
@@ -79,7 +79,7 @@ define([], function defineLibString() {
 
         /**
          * Get Firefox
-         * @member LibUserAgent
+         * @memberOf LibUserAgent
          * @returns {*}
          */
         firefox: function firefox() {
@@ -88,7 +88,7 @@ define([], function defineLibString() {
 
         /**
          * Get MS Internet explorer
-         * @member LibUserAgent
+         * @memberOf LibUserAgent
          * @returns {*}
          */
         msie: function msie() {
@@ -97,7 +97,7 @@ define([], function defineLibString() {
 
         /**
          * Get browser zoom
-         * @member LibUserAgent
+         * @memberOf LibUserAgent
          * @returns {number}
          */
         getBrowserZoom: function getBrowserZoom() {

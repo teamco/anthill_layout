@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member YapFilesElement
+         * @memberOf YapFilesElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

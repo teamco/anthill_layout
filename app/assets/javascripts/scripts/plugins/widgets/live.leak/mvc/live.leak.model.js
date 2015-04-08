@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member LiveLeakModel
+         * @memberOf LiveLeakModel
          * @type {{
          *      liveleakUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member LiveLeakModel
+         * @memberOf LiveLeakModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set LiveLeak Url
-         * @member LiveLeakModel
+         * @memberOf LiveLeakModel
          * @param {string} url
          */
         setLiveleakUrl: function setLiveleakUrl(url) {

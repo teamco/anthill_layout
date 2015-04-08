@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member EmpflixController
+         * @memberOf EmpflixController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate empflix
-         * @member EmpflixController
+         * @memberOf EmpflixController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -71,7 +71,7 @@ define([
 
         /**
          * Add Empflix rule
-         * @member EmpflixController
+         * @memberOf EmpflixController
          * @param e
          */
         addEmpflixRule: function addEmpflixRule(e) {

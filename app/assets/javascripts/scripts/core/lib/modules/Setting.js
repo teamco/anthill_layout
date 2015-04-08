@@ -15,21 +15,21 @@ define([
 
         /**
          * Define scope
-         * @member Setting
+         * @memberOf Setting
          * @type {*}
          */
         this.scope = scope;
 
         /**
          * Define setting mode
-         * @member Setting
+         * @memberOf Setting
          * @type {String}
          */
         this.mode = this.scope.controller.getMode();
 
         /**
          * Define storage modes
-         * @member Setting
+         * @memberOf Setting
          * @type {{localStorage: Storage, serverStorage: Storage}}
          */
         this.STORAGE_MODES = {
@@ -39,7 +39,7 @@ define([
 
         /**
          * Define setting storage
-         * @member Setting
+         * @memberOf Setting
          * @type {{
          *      development: Storage,
          *      authorize: Storage,
@@ -56,7 +56,7 @@ define([
 
         /**
          * Define cache
-         * @member Setting
+         * @memberOf Setting
          * @type {Storage}
          */
         this.cache = this.STORAGE_MODES.localStorage;
@@ -65,7 +65,7 @@ define([
 
         /**
          * Get storage namespace
-         * @member Setting
+         * @memberOf Setting
          * @returns {String}
          */
         this.getNameSpace = function getNameSpace() {
@@ -79,14 +79,14 @@ define([
 
         /**
          * Activate on save
-         * @member Setting
+         * @memberOf Setting
          * @param {boolean} activate
          */
         activateOnSave: function activateOnSave(activate) {
 
             /**
              * Define activate
-             * @member Setting
+             * @memberOf Setting
              * @type {boolean}
              */
             this.activate = activate;
@@ -94,7 +94,7 @@ define([
 
         /**
          * Set initial state
-         * @member Setting
+         * @memberOf Setting
          * @param {boolean} state
          */
         setInititalState: function setInititalState(state) {
@@ -108,7 +108,7 @@ define([
 
         /**
          * Get initial state
-         * @member Setting
+         * @memberOf Setting
          * @returns {boolean}
          */
         getInititalState: function getInititalState() {
@@ -117,7 +117,7 @@ define([
 
         /**
          * Get token
-         * @member Setting
+         * @memberOf Setting
          * @returns {String}
          */
         getToken: function getToken() {
@@ -126,7 +126,7 @@ define([
 
         /**
          * Init storage
-         * @member Setting
+         * @memberOf Setting
          */
         init: function init() {
 
@@ -134,7 +134,7 @@ define([
 
             /**
              * Load storage
-             * @member Setting
+             * @memberOf Setting
              * @type {{}}
              */
             var storage = this.load();
@@ -149,7 +149,7 @@ define([
 
                 /**
                  * Define token
-                 * @member Setting
+                 * @memberOf Setting
                  * @type {String}
                  */
                 this.token = base.lib.generator.UUID();
@@ -162,7 +162,7 @@ define([
 
         /**
          * Clear local storage
-         * @member Setting
+         * @memberOf Setting
          */
         clear: function clear() {
             this.getStorage().clear();
@@ -170,7 +170,7 @@ define([
 
         /**
          * Get Storage
-         * @member Setting
+         * @memberOf Setting
          * @returns {*}
          */
         getStorage: function getStorage() {
@@ -190,7 +190,7 @@ define([
 
         /**
          * Import data
-         * @member Setting
+         * @memberOf Setting
          * @param data
          */
         importData: function importData(data) {
@@ -201,7 +201,7 @@ define([
 
         /**
          * Update data
-         * @member Setting
+         * @memberOf Setting
          * @param data
          */
         updateData: function updateData(data) {
@@ -220,7 +220,7 @@ define([
 
         /**
          * Save
-         * @member Setting
+         * @memberOf Setting
          * @param [opts]
          */
         save: function save(opts) {
@@ -270,7 +270,7 @@ define([
 
         /**
          * Load
-         * @member Setting
+         * @memberOf Setting
          */
         load: function load() {
 
@@ -305,7 +305,7 @@ define([
 
         /**
          * Compress json
-         * @member Setting
+         * @memberOf Setting
          * @param {string} json
          * @returns {string}
          */
@@ -316,7 +316,7 @@ define([
 
         /**
          * Decompress json
-         * @member Setting
+         * @memberOf Setting
          * @param {string} compress
          * @returns {string}
          */
@@ -327,7 +327,7 @@ define([
 
         /**
          * Define server side storage
-         * @member Setting
+         * @memberOf Setting
          * @returns {{
          *      setting: Setting,
          *      setItem: Function,
@@ -347,7 +347,7 @@ define([
 
                 /**
                  * Set storage item
-                 * @member {STORAGE_MODES}
+                 * @memberOf {STORAGE_MODES}
                  */
                 setItem: function setItem(key, value) {
 
@@ -400,7 +400,7 @@ define([
 
                 /**
                  * Get storage item
-                 * @member {STORAGE_MODES}
+                 * @memberOf {STORAGE_MODES}
                  * @return {string}
                  */
                 getItem: function getItem(key) {
@@ -414,7 +414,7 @@ define([
 
                 /**
                  * Clear storage
-                 * @member {STORAGE_MODES}
+                 * @memberOf {STORAGE_MODES}
                  */
                 clear: function clear() {
                     this.setting.save();

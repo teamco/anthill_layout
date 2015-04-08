@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member UbrController
+         * @memberOf UbrController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate ubr
-         * @member UbrController
+         * @memberOf UbrController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -76,7 +76,7 @@ define([
 
         /**
          * Add Ubr rule
-         * @member UbrController
+         * @memberOf UbrController
          * @param e
          */
         addUbrRule: function addUbrRule(e) {

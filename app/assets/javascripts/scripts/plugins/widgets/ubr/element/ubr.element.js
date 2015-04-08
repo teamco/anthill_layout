@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member UbrElement
+         * @memberOf UbrElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

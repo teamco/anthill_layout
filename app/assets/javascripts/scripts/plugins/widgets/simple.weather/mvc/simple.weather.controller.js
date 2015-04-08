@@ -27,7 +27,7 @@ define([
 
             /**
              * Set embedded content
-             * @member SimpleWeatherController
+             * @memberOf SimpleWeatherController
              */
             setEmbeddedContent: function setEmbeddedContent() {
 
@@ -48,7 +48,7 @@ define([
 
             /**
              * Set embedded content
-             * @member SimpleWeatherController
+             * @memberOf SimpleWeatherController
              * @private
              */
             _setEmbeddedContent: function _setEmbeddedContent() {
@@ -61,7 +61,7 @@ define([
 
             /**
              * Get location
-             * @member SimpleWeatherController
+             * @memberOf SimpleWeatherController
              */
             getLocation: function getLocation() {
                 this.controller.getPosition(
@@ -75,7 +75,7 @@ define([
 
             /**
              * Add SimpleWeather rule
-             * @member SimpleWeatherController
+             * @memberOf SimpleWeatherController
              * @param e
              */
             addSimpleWeatherRule: function addSimpleWeatherRule(e) {

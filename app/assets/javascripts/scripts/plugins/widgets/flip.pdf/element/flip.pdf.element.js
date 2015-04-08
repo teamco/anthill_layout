@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member FlipPdfElement
+         * @memberOf FlipPdfElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

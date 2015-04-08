@@ -17,7 +17,7 @@ define(function defineSiteConfigCleanup() {
 
         /**
          * Clean up local storage
-         * @member SiteConfigCleanup
+         * @memberOf SiteConfigCleanup
          */
         cleanUpLocalStorage: function cleanUpLocalStorage() {
 
@@ -36,13 +36,13 @@ define(function defineSiteConfigCleanup() {
 
         /**
          * Approve clean up
-         * @member SiteConfigCleanup
+         * @memberOf SiteConfigCleanup
          */
         approveCleanUp: function approveCleanUp() {
 
             /**
              * Define scope
-             * @member SiteConfig
+             * @memberOf SiteConfig
              */
             var scope = this.scope,
                 $modal = scope.view.elements.$modal;

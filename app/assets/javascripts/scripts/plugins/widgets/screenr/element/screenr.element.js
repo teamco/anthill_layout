@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member ScreenrElement
+         * @memberOf ScreenrElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

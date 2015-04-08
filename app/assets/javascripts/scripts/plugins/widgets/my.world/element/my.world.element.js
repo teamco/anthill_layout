@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member MyWorldElement
+         * @memberOf MyWorldElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

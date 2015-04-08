@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TinyPicController
+         * @memberOf TinyPicController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$tinypic.renderEmbeddedContent(
@@ -36,7 +36,7 @@ define([
 
         /**
          * Validate tiny pic
-         * @member TinyPicController
+         * @memberOf TinyPicController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -73,7 +73,7 @@ define([
 
         /**
          * Add TinyPic rule
-         * @member TinyPicController
+         * @memberOf TinyPicController
          * @param e
          */
         addTinyPicRule: function addTinyPicRule(e) {

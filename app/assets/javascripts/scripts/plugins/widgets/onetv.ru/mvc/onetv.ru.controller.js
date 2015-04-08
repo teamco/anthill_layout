@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member OnetvRuController
+         * @memberOf OnetvRuController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate onetvru
-         * @member OnetvRuController
+         * @memberOf OnetvRuController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add OnetvRu rule
-         * @member OnetvRuController
+         * @memberOf OnetvRuController
          * @param e
          */
         addOnetvRuRule: function addOnetvRuRule(e) {

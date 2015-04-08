@@ -28,7 +28,7 @@ define([
 
         /**
          * Render pdf element
-         * @member PdfView
+         * @memberOf PdfView
          */
         renderPdf: function renderPdf() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member PdfView
+         * @memberOf PdfView
          * @returns {PdfPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member PdfView
+         * @memberOf PdfView
          * @param widgetRules
          * @param contentRules
          * @returns {PdfRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render pdf
-         * @member PdfView
+         * @memberOf PdfView
          */
         render: function render() {
 

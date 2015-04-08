@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member PastebinModel
+         * @memberOf PastebinModel
          * @type {{
          *      pastebinEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member PastebinModel
+         * @memberOf PastebinModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Pastebin embed code
-         * @member PastebinModel
+         * @memberOf PastebinModel
          * @param {string} embed
          */
         setPastebinEmbedCode: function setPastebinEmbedCode(embed) {

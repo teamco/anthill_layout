@@ -2,7 +2,7 @@
 
     /**
      * Duplicate string
-     * @member String
+     * @memberOf String
      * @param times
      * @returns {string}
      */
@@ -12,7 +12,7 @@
 
     /**
      * String to CamelCase by dot separator
-     * @member String
+     * @memberOf String
      * @returns {String}
      */
     String.prototype.toCamel = function toCamel() {
@@ -25,7 +25,7 @@
 
     /**
      * String from CamelCase to point separator
-     * @member String
+     * @memberOf String
      * @returns {String}
      */
     String.prototype.toPoint = function toPoint() {
@@ -36,7 +36,7 @@
 
     /**
      * String from CamelCase to underscore separator
-     * @member String
+     * @memberOf String
      * @returns {string}
      */
     String.prototype.toUnderscore = function toUnderscore() {
@@ -47,7 +47,7 @@
 
     /**
      * String from CamelCase to dash separator
-     * @member String
+     * @memberOf String
      * @returns {string}
      */
     String.prototype.toDash = function toDash() {
@@ -58,7 +58,7 @@
 
     /**
      * String from CamelCase to dash separator
-     * @member String
+     * @memberOf String
      * @returns {string}
      */
     String.prototype.toClassName = function toClassName() {
@@ -70,7 +70,7 @@
 
     /**
      * Capitalize string
-     * @member String
+     * @memberOf String
      * @returns {string}
      */
     String.prototype.capitalize = function capitalize() {
@@ -79,7 +79,7 @@
 
     /**
      * String humanize
-     * @member String
+     * @memberOf String
      * @returns {string}
      */
     String.prototype.humanize = function humanize() {
@@ -92,7 +92,7 @@
 
     /**
      * String utf8 to base64
-     * @member String
+     * @memberOf String
      * @returns {string}
      */
     String.prototype.utf82base64 = function utf82base64() {
@@ -101,7 +101,7 @@
 
     /**
      * String base64 to utf8
-     * @member String
+     * @memberOf String
      * @returns {string}
      */
     String.prototype.base642utf8 = function base642utf8() {
@@ -110,7 +110,7 @@
 
     /**
      * String to DOM element
-     * @member String
+     * @memberOf String
      * @returns {*}
      */
     String.prototype.toHtml = function toHtml() {

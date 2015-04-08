@@ -20,7 +20,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Set page height
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              */
             setPageContainerDimensions: function setPageContainerDimensions() {
 
@@ -37,7 +37,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Switch page on hash change
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              */
             switchPageOnHashChange: function switchPageOnHashChange() {
 
@@ -55,7 +55,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Update pages width
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              */
             updatePagesWidth: function updatePagesWidth() {
 
@@ -84,7 +84,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Before Switch to page
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              * @param {Page} page
              */
             beforeSwitchToPage: function beforeSwitchToPage(page) {
@@ -112,7 +112,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Switch to page
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              * @param {Page} page
              * @returns {boolean|*}
              */
@@ -150,7 +150,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * After Switch to page
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              * @param {Page} page
              */
             afterSwitchToPage: function afterSwitchToPage(page) {
@@ -165,7 +165,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Swipe to current page
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              */
             swipeToCurrentPage: function swipeToCurrentPage() {
 
@@ -194,7 +194,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Check if load page content
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              * @returns {Page}
              */
             isLoadPageContent: function isLoadPageContent() {
@@ -213,7 +213,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Save after page ordering
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              * @param {Array} order
              */
             afterPageOrder: function afterPageOrder(order) {
@@ -223,7 +223,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Define clone page
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              * @param {string} uuid
              */
             clonePage: function clonePage(uuid) {

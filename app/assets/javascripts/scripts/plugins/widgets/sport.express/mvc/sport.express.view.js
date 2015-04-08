@@ -28,7 +28,7 @@ define([
 
         /**
          * Render sportexpress element
-         * @member SportExpressView
+         * @memberOf SportExpressView
          */
         renderSportExpress: function renderSportExpress() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member SportExpressView
+         * @memberOf SportExpressView
          * @returns {SportExpressPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member SportExpressView
+         * @memberOf SportExpressView
          * @param widgetRules
          * @param contentRules
          * @returns {SportExpressRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render sportexpress
-         * @member SportExpressView
+         * @memberOf SportExpressView
          */
         render: function render() {
 

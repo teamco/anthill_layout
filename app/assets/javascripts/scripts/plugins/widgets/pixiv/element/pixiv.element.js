@@ -29,7 +29,7 @@ define([
 
         /**
          * Define embed
-         * @member PixivElement
+         * @memberOf PixivElement
          * @type {*}
          */
         this.embed = opts.embed;
@@ -41,7 +41,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member PixivElement
+         * @memberOf PixivElement
          * @param {HTMLElement} code
          */
         renderEmbeddedContent: function renderEmbeddedContent(code) {

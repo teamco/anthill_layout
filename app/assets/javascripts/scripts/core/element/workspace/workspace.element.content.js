@@ -30,7 +30,7 @@ define([
 
         /**
          * Define height after add page
-         * @member WorkspaceContentElement
+         * @memberOf WorkspaceContentElement
          */
         defineHeight: function defineHeight() {
 
@@ -47,7 +47,7 @@ define([
 
         /**
          * Define width after add page
-         * @member WorkspaceContentElement
+         * @memberOf WorkspaceContentElement
          * @param {number} to
          */
         defineWidth: function defineWidth(to) {
@@ -59,7 +59,7 @@ define([
 
         /**
          * Define pages width after add page
-         * @member WorkspaceContentElement
+         * @memberOf WorkspaceContentElement
          * @param {*} items
          * @param {number} counter
          */
@@ -84,7 +84,7 @@ define([
 
         /**
          * Swipe container to current page
-         * @member WorkspaceContentElement
+         * @memberOf WorkspaceContentElement
          * @param {Page} page
          */
         swipeTo: function swipeTo(page) {

@@ -17,7 +17,7 @@ define([], function defineWidgetStretch(){
 
         /**
          * Stretch height
-         * @member WidgetStretch
+         * @memberOf WidgetStretch
          * @param {boolean} stretch
          */
         stretchHeight: function stretchHeight(stretch) {
@@ -36,7 +36,7 @@ define([], function defineWidgetStretch(){
 
         /**
          * Stretch width
-         * @member WidgetStretch
+         * @memberOf WidgetStretch
          * @param {boolean} stretch
          */
         stretchWidth: function stretchWidth(stretch) {

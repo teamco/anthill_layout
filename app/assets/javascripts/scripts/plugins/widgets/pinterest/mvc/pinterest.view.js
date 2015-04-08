@@ -28,7 +28,7 @@ define([
 
         /**
          * Render Pinterest element
-         * @member PinterestView
+         * @memberOf PinterestView
          */
         renderPinterest: function renderPinterest() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member PinterestView
+         * @memberOf PinterestView
          * @returns {PinterestPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member PinterestView
+         * @memberOf PinterestView
          * @param widgetRules
          * @param contentRules
          * @returns {PinterestRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render Pinterest
-         * @member PinterestView
+         * @memberOf PinterestView
          */
         render: function render() {
 

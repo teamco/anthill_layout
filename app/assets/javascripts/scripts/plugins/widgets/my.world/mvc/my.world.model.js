@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member MyWorldModel
+         * @memberOf MyWorldModel
          * @type {{
          *      myworldEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member MyWorldModel
+         * @memberOf MyWorldModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set MyWorld embed code
-         * @member MyWorldModel
+         * @memberOf MyWorldModel
          * @param {string} embed
          */
         setMyworldEmbedCode: function setMyworldEmbedCode(embed) {

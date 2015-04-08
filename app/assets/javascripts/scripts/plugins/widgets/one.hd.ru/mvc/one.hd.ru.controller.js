@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member OneHdRuController
+         * @memberOf OneHdRuController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$onehdru.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add OneHdRu rule
-         * @member OneHdRuController
+         * @memberOf OneHdRuController
          * @param e
          */
         addOneHdRuRule: function addOneHdRuRule(e) {

@@ -28,7 +28,7 @@ define([
 
         /**
          * Render GooglePresentation element
-         * @member GooglePresentationView
+         * @memberOf GooglePresentationView
          */
         renderGooglePresentation: function renderGooglePresentation() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member GooglePresentationView
+         * @memberOf GooglePresentationView
          * @returns {GooglePresentationPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member GooglePresentationView
+         * @memberOf GooglePresentationView
          * @param widgetRules
          * @param contentRules
          * @returns {GooglePresentationRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render GooglePresentation
-         * @member GooglePresentationView
+         * @memberOf GooglePresentationView
          */
         render: function render() {
 

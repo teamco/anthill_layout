@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member VideoPayNetModel
+         * @memberOf VideoPayNetModel
          * @type {{
          *      videopaynetEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member VideoPayNetModel
+         * @memberOf VideoPayNetModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Define setVideopaynetEmbedCode
-         * @member VideoPayNetModel
+         * @memberOf VideoPayNetModel
          * @param {string} code
          */
         setVideopaynetEmbedCode: function setVideopaynetEmbedCode(code) {

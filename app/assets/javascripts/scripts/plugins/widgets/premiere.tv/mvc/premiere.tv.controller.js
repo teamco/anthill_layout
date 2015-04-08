@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PremiereTvController
+         * @memberOf PremiereTvController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$premieretv.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add PremiereTv rule
-         * @member PremiereTvController
+         * @memberOf PremiereTvController
          * @param e
          */
         addPremiereTvRule: function addPremiereTvRule(e) {

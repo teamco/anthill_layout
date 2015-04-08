@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member XHamsterElement
+         * @memberOf XHamsterElement
          * @param {string} iframe
          */
         renderEmbeddedContent: function renderEmbeddedContent(iframe) {

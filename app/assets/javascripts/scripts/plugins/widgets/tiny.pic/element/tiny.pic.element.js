@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member TinyPicElement
+         * @memberOf TinyPicElement
          * @param {boolean|{type, code}} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

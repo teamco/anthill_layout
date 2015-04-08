@@ -54,7 +54,7 @@ define(
 
                 /**
                  * Render SiteConfig
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  * @returns {boolean}
                  */
                 renderSiteConfig: function renderSiteConfig() {
@@ -82,7 +82,7 @@ define(
 
                 /**
                  * Render site.config content
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  * @param data
                  * @returns {boolean}
                  */
@@ -135,7 +135,7 @@ define(
 
                 /**
                  * Update footer content
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  */
                 updateFooterContent: function updateFooterContent() {
                     this.renderFooter(Footer, this.elements.$siteconfig);
@@ -143,7 +143,7 @@ define(
 
                 /**
                  * Show import data
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  */
                 showImportData: function showImportData() {
 
@@ -185,7 +185,7 @@ define(
 
                 /**
                  * Show approve import data
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  * @param {object} json
                  * @param {File} file
                  */
@@ -242,7 +242,7 @@ define(
 
                 /**
                  * Show preferences
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  * @param opts
                  * @param map
                  */
@@ -294,7 +294,7 @@ define(
 
                 /**
                  * Render import file element
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  * @returns {SiteConfigImportFileElement}
                  */
                 renderImportData: function renderImportData() {
@@ -310,7 +310,7 @@ define(
 
                 /**
                  * Render approve import file element
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  * @returns {SiteConfigApproveImportElement}
                  */
                 renderApproveImportData: function renderApproveImportData(json) {
@@ -328,7 +328,7 @@ define(
 
                 /**
                  * Render Prefs
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  * @param map
                  * @returns {SiteConfigPreferencesElement}
                  */
@@ -347,7 +347,7 @@ define(
 
                 /**
                  * Render cleanup element
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  * @returns {SiteConfigCleanUpElement}
                  */
                 renderCleanUp: function renderCleanUp() {
@@ -363,7 +363,7 @@ define(
 
                 /**
                  * Render activate element
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  * @returns {SiteConfigActivateElement}
                  */
                 renderActivate: function renderActivate() {
@@ -379,7 +379,7 @@ define(
 
                 /**
                  * Render cleanup confirmation modal dialog
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  */
                 cleanUpConfirmation: function cleanUpConfirmation() {
 
@@ -410,7 +410,7 @@ define(
 
                 /**
                  * Render activate confirmation modal dialog
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  */
                 activateConfirmation: function activateConfirmation() {
 
@@ -450,7 +450,7 @@ define(
 
                 /**
                  * Render widgets manager
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  */
                 renderWidgetsManager: function renderWidgetsManager() {
 
@@ -465,7 +465,7 @@ define(
 
                 /**
                  * Define show widgets list
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  * @param {Array} widgets
                  * @param {Array} show
                  */
@@ -503,7 +503,7 @@ define(
 
                 /**
                  * Define show widgets generator
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  * @param {Array} widgets
                  * @param {Array} types
                  * @param {object} defaults
@@ -548,7 +548,7 @@ define(
 
                 /**
                  * Define update widget generator
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  * @param {object} widget
                  * @param {Array} types
                  */
@@ -593,7 +593,7 @@ define(
 
                 /**
                  * Render site.config
-                 * @member SiteConfigView
+                 * @memberOf SiteConfigView
                  */
                 render: function render() {
 

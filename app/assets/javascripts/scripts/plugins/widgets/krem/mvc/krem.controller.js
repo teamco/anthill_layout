@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member KremController
+         * @memberOf KremController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate krem
-         * @member KremController
+         * @memberOf KremController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Krem rule
-         * @member KremController
+         * @memberOf KremController
          * @param e
          */
         addKremRule: function addKremRule(e) {

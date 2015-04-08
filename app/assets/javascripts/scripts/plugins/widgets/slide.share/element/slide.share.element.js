@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member SlideShareElement
+         * @memberOf SlideShareElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

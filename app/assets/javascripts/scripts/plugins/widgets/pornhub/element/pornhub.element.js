@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member PornhubElement
+         * @memberOf PornhubElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

@@ -28,7 +28,7 @@ define([
 
         /**
          * Render Coub element
-         * @member CoubView
+         * @memberOf CoubView
          */
         renderCoub: function renderCoub() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member CoubView
+         * @memberOf CoubView
          * @returns {CoubPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member CoubView
+         * @memberOf CoubView
          * @param widgetRules
          * @param contentRules
          * @returns {CoubRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render Coub
-         * @member CoubView
+         * @memberOf CoubView
          */
         render: function render() {
 

@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member FlickrFeedsElement
+         * @memberOf FlickrFeedsElement
          * @param item
          * @param {{[tags], [user_id]}} opts
          */

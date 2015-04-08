@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TwitsModel
+         * @memberOf TwitsModel
          * @type {{
          *      twitsWidgetId: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      maximumNumberOfTweets: {type: string, disabled: boolean, value: number, visible: boolean},
@@ -72,7 +72,7 @@ define([
 
         /**
          * Define rules
-         * @member TwitsModel
+         * @memberOf TwitsModel
          * @type {{}}
          */
         this.rules = {};
@@ -82,7 +82,7 @@ define([
 
         /**
          * Set Twits widget id
-         * @member TwitsModel
+         * @memberOf TwitsModel
          * @param {string} id
          */
         setTwitsWidgetId: function setTwitsWidgetId(id) {
@@ -91,7 +91,7 @@ define([
 
         /**
          * Set max number of tweets
-         * @member TwitsModel
+         * @memberOf TwitsModel
          * @param {string} tweets
          */
         setMaximumNumberOfTweets: function setMaximumNumberOfTweets(tweets) {
@@ -100,7 +100,7 @@ define([
 
         /**
          * Set show hash as link
-         * @member TwitsModel
+         * @memberOf TwitsModel
          * @param {boolean} hash
          */
         setShowHashAsLink: function setShowHashAsLink(hash) {
@@ -109,7 +109,7 @@ define([
 
         /**
          * Set show photo
-         * @member TwitsModel
+         * @memberOf TwitsModel
          * @param {boolean} photo
          */
         setShowPhoto: function setShowPhoto(photo) {
@@ -118,7 +118,7 @@ define([
 
         /**
          * Set show time
-         * @member TwitsModel
+         * @memberOf TwitsModel
          * @param {boolean} time
          */
         setShowTime: function setShowTime(time) {
@@ -127,7 +127,7 @@ define([
 
         /**
          * Set show retweets
-         * @member TwitsModel
+         * @memberOf TwitsModel
          * @param {boolean} retweets
          */
         setShowRetweets: function setShowRetweets(retweets) {

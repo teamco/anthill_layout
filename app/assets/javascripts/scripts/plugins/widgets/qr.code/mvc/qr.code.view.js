@@ -28,7 +28,7 @@ define([
 
         /**
          * Render QrCode element
-         * @member QrCodeView
+         * @memberOf QrCodeView
          */
         renderQrCode: function renderQrCode() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member QrCodeView
+         * @memberOf QrCodeView
          * @returns {QrCodePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member QrCodeView
+         * @memberOf QrCodeView
          * @param widgetRules
          * @param contentRules
          * @returns {QrCodeRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render QrCode
-         * @member QrCodeView
+         * @memberOf QrCodeView
          */
         render: function render() {
 

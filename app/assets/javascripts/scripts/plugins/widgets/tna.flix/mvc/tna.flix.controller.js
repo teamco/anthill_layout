@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TnaFlixController
+         * @memberOf TnaFlixController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate tnaflix
-         * @member TnaFlixController
+         * @memberOf TnaFlixController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -71,7 +71,7 @@ define([
 
         /**
          * Add TnaFlix rule
-         * @member TnaFlixController
+         * @memberOf TnaFlixController
          * @param e
          */
         addTnaFlixRule: function addTnaFlixRule(e) {

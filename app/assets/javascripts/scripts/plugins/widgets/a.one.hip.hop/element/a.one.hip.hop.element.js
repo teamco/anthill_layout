@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member AOneHipHopElement
+         * @memberOf AOneHipHopElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

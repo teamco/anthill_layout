@@ -18,7 +18,7 @@ define([], function defineComboBoxRenderer() {
 
         /**
          * Render combo box
-         * @member ComboBoxRenderer
+         * @memberOf ComboBoxRenderer
          * @param {Array} data
          * @param selected
          * @param {string} name
@@ -291,7 +291,7 @@ define([], function defineComboBoxRenderer() {
 
         /**
          * Check if combo box disabled
-         * @member ComboBoxRenderer
+         * @memberOf ComboBoxRenderer
          * @param $combo
          * @returns {boolean}
          */
@@ -301,7 +301,7 @@ define([], function defineComboBoxRenderer() {
 
         /**
          * Define enable combo box
-         * @member ComboBoxRenderer
+         * @memberOf ComboBoxRenderer
          * @param $combo
          */
         enableComboBox: function enableComboBox($combo) {
@@ -310,7 +310,7 @@ define([], function defineComboBoxRenderer() {
 
         /**
          * Define disable combo box
-         * @member ComboBoxRenderer
+         * @memberOf ComboBoxRenderer
          * @param $combo
          */
         disableComboBox: function disableComboBox($combo) {
@@ -319,7 +319,7 @@ define([], function defineComboBoxRenderer() {
 
         /**
          * Clear placeholder
-         * @member ComboBoxRenderer
+         * @memberOf ComboBoxRenderer
          * @param $combo
          */
         clearPlaceholder: function clearPlaceholder($combo) {

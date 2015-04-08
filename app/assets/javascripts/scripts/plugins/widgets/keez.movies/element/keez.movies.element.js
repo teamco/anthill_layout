@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member KeezMoviesElement
+         * @memberOf KeezMoviesElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

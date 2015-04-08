@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member JsFiddleModel
+         * @memberOf JsFiddleModel
          * @type {{
          *      jsfiddleEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member JsFiddleModel
+         * @memberOf JsFiddleModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set JsFiddle embed code
-         * @member JsFiddleModel
+         * @memberOf JsFiddleModel
          * @param {string} embed
          */
         setJsfiddleEmbedCode: function setJsfiddleEmbedCode(embed) {

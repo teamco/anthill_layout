@@ -41,7 +41,7 @@ define(
 
                 /**
                  * Transfer preferences
-                 * @member PageController
+                 * @memberOf PageController
                  * @param {string} index
                  * @param value
                  */
@@ -51,7 +51,7 @@ define(
 
                 /**
                  * Load config preferences
-                 * @member PageController
+                 * @memberOf PageController
                  */
                 loadPreferences: function loadPreferences() {
 
@@ -83,7 +83,7 @@ define(
 
                 /**
                  * Get content loaded
-                 * @member PageController
+                 * @memberOf PageController
                  * @return {boolean}
                  */
                 isLoadedContent: function isLoadedContent() {
@@ -92,14 +92,14 @@ define(
 
                 /**
                  * Define content loaded setter
-                 * @member PageController
+                 * @memberOf PageController
                  * @param {boolean} loaded
                  */
                 setLoadedContent: function setLoadedContent(loaded) {
 
                     /**
                      * Define content loaded
-                     * @member Page
+                     * @memberOf Page
                      * @type {boolean}
                      */
                     this.contentLoaded = !!loaded;
@@ -108,7 +108,7 @@ define(
 
                 /**
                  * Check if page lazy loaded
-                 * @member PageController
+                 * @memberOf PageController
                  * @returns {boolean}
                  */
                 isLazyLoaded: function isLazyLoaded() {
@@ -117,7 +117,7 @@ define(
 
                 /**
                  * Check if page is current
-                 * @member PageController
+                 * @memberOf PageController
                  * @returns {Page}
                  */
                 isCurrent: function isCurrent() {

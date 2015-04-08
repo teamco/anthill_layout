@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member BlipTvElement
+         * @memberOf BlipTvElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

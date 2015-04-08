@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Screencast
+         * @memberOf Screencast
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Screencast
+         * @memberOf Screencast
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Screencast
+         * @memberOf Screencast
          * @type {MVC}
          */
         this.mvc = new MVC({

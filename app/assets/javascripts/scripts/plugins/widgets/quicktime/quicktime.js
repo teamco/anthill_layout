@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Quicktime
+         * @memberOf Quicktime
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Quicktime
+         * @memberOf Quicktime
          * @type {*}
          */
         this.referrer = undefined;
@@ -72,7 +72,7 @@ define([
 
         /**
          * Define MVC
-         * @member Quicktime
+         * @memberOf Quicktime
          * @type {MVC}
          */
         this.mvc = new MVC({

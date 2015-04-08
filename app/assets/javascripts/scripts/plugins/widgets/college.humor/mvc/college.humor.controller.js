@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member CollegeHumorController
+         * @memberOf CollegeHumorController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate collegehumor
-         * @member CollegeHumorController
+         * @memberOf CollegeHumorController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add CollegeHumor rule
-         * @member CollegeHumorController
+         * @memberOf CollegeHumorController
          * @param e
          */
         addCollegeHumorRule: function addCollegeHumorRule(e) {

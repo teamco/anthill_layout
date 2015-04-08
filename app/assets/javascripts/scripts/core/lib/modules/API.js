@@ -23,7 +23,7 @@ define([
 
         /**
          * Create reference to function create [item] ...
-         * @member BaseAPI
+         * @memberOf BaseAPI
          * @param args
          * @param {Boolean} render
          * @returns {*}
@@ -34,7 +34,7 @@ define([
 
         /**
          * Create reference to function destroy [items] ...
-         * @member BaseAPI
+         * @memberOf BaseAPI
          * @param {*} [items]
          * @param {Boolean} [silent]
          * @returns {*}
@@ -45,7 +45,7 @@ define([
 
         /**
          * Execute reference function
-         * @member BaseAPI
+         * @memberOf BaseAPI
          * @param arg1
          * @param arg2
          * @param {String} prefix
@@ -73,7 +73,7 @@ define([
 
         /**
          * Create item API
-         * @member BaseAPI
+         * @memberOf BaseAPI
          * @param {Function} item
          * @param {*} args
          * @param {Boolean} [render]
@@ -114,7 +114,7 @@ define([
 
         /**
          * Render item API
-         * @member BaseAPI
+         * @memberOf BaseAPI
          * @param {Function} item
          * @param {Boolean} [render]
          * @param {Boolean} [silent]

@@ -24,7 +24,7 @@ define([
 
         /**
          * Toggle fieldset
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @param e
          */
         toggleFieldset: function toggleFieldset(e) {
@@ -46,7 +46,7 @@ define([
 
         /**
          * Get preferences HTML
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @param {Array} map
          * @return Array
          */
@@ -78,7 +78,7 @@ define([
 
         /**
          * Set site title preference
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @returns {*|jQuery}
          */
         setSiteTitle: function setSiteTitle() {
@@ -124,7 +124,7 @@ define([
 
         /**
          * Set site meta description
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @returns {*|jQuery}
          */
         setSiteMetaDescription: function setSiteMetaDescription() {
@@ -156,7 +156,7 @@ define([
 
         /**
          * Set site meta key words
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @returns {*|jQuery}
          */
         setSiteMetaKeywords: function setSiteMetaKeywords() {
@@ -188,7 +188,7 @@ define([
 
         /**
          * Set site meta author
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @returns {*|jQuery}
          */
         setSiteMetaAuthor: function setSiteMetaAuthor() {
@@ -220,7 +220,7 @@ define([
 
         /**
          * Render static width
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @returns {*|jQuery}
          */
         siteStaticWidth: function siteStaticWidth() {
@@ -266,7 +266,7 @@ define([
 
         /**
          * Enable/Disable slider
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @param e
          */
         toggleSlider: function toggleSlider(e) {
@@ -299,7 +299,7 @@ define([
 
         /**
          * Render width slider
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @param {Array} map
          * @returns {*|jQuery}
          */
@@ -378,7 +378,7 @@ define([
 
         /**
          * Render Google Analytics
-         * @member SitePreferences
+         * @memberOf SitePreferences
          * @returns {*|jQuery}
          */
         googleAnalytics: function googleAnalytics() {

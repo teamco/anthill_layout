@@ -36,7 +36,7 @@ define([
 
         /**
          * Set background image
-         * @member WidgetContentElement
+         * @memberOf WidgetContentElement
          * @param {{url: string|*}} opts
          */
         setBackgroundImage: function setBackgroundImage(opts) {
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set padding
-         * @member WidgetContentElement
+         * @memberOf WidgetContentElement
          */
         setPadding: function setPadding() {
             var padding = this.view.controller.getLocalPadding();

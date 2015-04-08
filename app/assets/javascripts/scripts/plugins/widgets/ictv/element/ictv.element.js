@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member IctvElement
+         * @memberOf IctvElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

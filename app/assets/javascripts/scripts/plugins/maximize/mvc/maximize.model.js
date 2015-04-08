@@ -19,7 +19,7 @@ define([
 
         /**
          * Define data
-         * @member MaximizeModel
+         * @memberOf MaximizeModel
          * @type {{}}
          */
         this.data = {};
@@ -29,7 +29,7 @@ define([
 
         /**
          * Get items
-         * @member MaximizeModel
+         * @memberOf MaximizeModel
          * @param page
          * @returns {*}
          */
@@ -39,7 +39,7 @@ define([
 
         /**
          * Collect items
-         * @member MaximizeModel
+         * @memberOf MaximizeModel
          * @param item
          */
         collectItems: function collectItems(item) {
@@ -48,7 +48,7 @@ define([
 
         /**
          * Get data
-         * @member MaximizeModel
+         * @memberOf MaximizeModel
          * @returns {{}}
          */
         getCollectedItems: function getCollectedItems() {
