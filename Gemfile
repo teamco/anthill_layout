@@ -20,6 +20,7 @@ case RUBY_PLATFORM
 
       gem 'bullet'
       gem 'xilence'
+      gem 'meta_request'
 
       gem 'web-console', '~> 2.0'
       gem 'ruby-debug-ide', '>= 0.4.25'

@@ -97,7 +97,10 @@ define(function defineGalleryWidgets() {
 
                     url: route[0],
                     method: route[1],
-                    dataType: 'json'
+                    dataType: 'json',
+                    data: {
+                        site: scope.controller.getAppName()
+                    }
 
                 }).done(
                     /**

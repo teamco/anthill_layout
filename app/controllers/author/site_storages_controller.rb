@@ -3,14 +3,17 @@ require 'uuid'
 
 class Author::SiteStoragesController < Author::AuthorController
 
+  include Author
+
   before_action :authenticate_user!, except: [:show]
   before_action :set_author_site_storage, only: [:show, :edit, :update, :activate, :destroy]
+
   layout :resolve_layout
 
   # GET /author/site_storages
   # GET /author/site_storages.json
   def index
-    @author_site_storages = Author::SiteStorage.all.order(:key)
+    @author_site_storages = SiteStorage.all.order(:key)
 
     @resource = {
         items: @author_site_storages.size,
@@ -42,7 +45,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
   # GET /author/site_storages/new
   def new
-    @author_site_storage = Author::SiteStorage.new
+    @author_site_storage = SiteStorage.new
     render action: :form
   end
 
@@ -207,7 +210,7 @@ class Author::SiteStoragesController < Author::AuthorController
   def update_widget_connections
 
     widget_ids = params[:author_site_storage][:author_site_storage_widget_ids]
-    widgets = Author::Widget.find(widget_ids.reject(&:blank?)) unless widget_ids.nil?
+    widgets = Widget.find(widget_ids.reject(&:blank?)) unless widget_ids.nil?
 
     widgets.blank? ?
         @author_site_storage.author_site_storage_widgets.delete_all :
@@ -252,7 +255,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
   def update_activation
 
-    mode = Author::SiteType.where(
+    mode = SiteType.where(
         name: params[:author_site_type][:name]
     ).first
 
@@ -274,9 +277,9 @@ class Author::SiteStoragesController < Author::AuthorController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_storage
-    @author_site_types = Author::SiteType.all
-    @author_site_storage = Author::SiteStorage.where(key: params[:key]).first ||
-        Author::SiteStorage.where(key: params[:id]).first
+    @author_site_types = SiteType.all
+    @author_site_storage = SiteStorage.where(key: params[:key]).first ||
+        SiteStorage.where(key: params[:id]).first
     @target_path = get_target_url(@author_site_storage.key) unless @author_site_storage.nil?
   end
 
