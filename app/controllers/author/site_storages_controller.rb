@@ -196,7 +196,7 @@ class Author::SiteStoragesController < Author::AuthorController
   def update_handler(versions)
     updated = false
 
-    update_widget_connections
+    update_widget_connections unless request.xhr?
 
     if @author_site_storage.update(author_site_storage_params)
       updated = update_version_activation(
