@@ -177,6 +177,16 @@ define([
         },
 
         /**
+         * Get Application name
+         * @member BaseController
+         * @returns {string}
+         */
+        getAppName: function getAppName() {
+
+            return this.root().model.getConfig('appName');
+        },
+
+        /**
          * Get Workspace
          * @member BaseController
          * @param {string} [uuid]

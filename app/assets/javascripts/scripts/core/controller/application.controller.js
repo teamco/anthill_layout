@@ -62,7 +62,7 @@ define(
                 defineGlobalInstance: function defineGlobalInstance() {
                     this.logger.debug(
                         'Define global instance',
-                        this.model.getConfig('appName')
+                        this.controller.getAppName()
                     );
                 },
 

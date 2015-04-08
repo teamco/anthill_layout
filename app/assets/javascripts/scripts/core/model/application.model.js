@@ -43,7 +43,7 @@ define([
              */
             this.setting = new Setting(
                 this.scope,
-                this.getConfig('appName')
+                this.controller.getAppName()
             );
 
             this.scope.logger.debug('Define setting', this.setting);
