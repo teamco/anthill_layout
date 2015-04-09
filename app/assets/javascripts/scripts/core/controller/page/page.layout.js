@@ -7,6 +7,11 @@
 
 define(['config/layout'], function definePageLayout(Layout) {
 
+    /**
+     * Define PageLayout
+     * @class PageLayout
+     * @constructor
+     */
     var PageLayout = function PageLayout() {
     };
 
@@ -24,8 +29,8 @@ define(['config/layout'], function definePageLayout(Layout) {
                 /**
                  * Get page preferences
                  * @type {{
-                     *      layoutColumns: number
-                     * }}
+                 *      layoutColumns: number
+                 * }}
                  */
                 var preferences = this.model.getConfig('preferences') || {};
 

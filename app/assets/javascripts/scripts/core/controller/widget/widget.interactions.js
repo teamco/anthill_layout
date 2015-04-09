@@ -16,7 +16,6 @@ define([
      * @constructor
      */
     var WidgetInteractions = function WidgetInteractions() {
-
     };
 
     return WidgetInteractions.extend('WidgetInteractions', {

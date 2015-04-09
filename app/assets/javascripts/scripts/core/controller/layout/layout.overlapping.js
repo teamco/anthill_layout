@@ -22,7 +22,7 @@ define([
 
         /**
          * Define layout
-         * @memberOf Overlapping
+         * @property Overlapping
          * @type {Layout}
          */
         this.layout = layout;
@@ -339,6 +339,7 @@ define([
             }
 
             if (behavior.organize === 'column') {
+
                 var column = widget.dom.column,
                     left = widget.dom.left,
                     right = widget.dom.right;
@@ -363,6 +364,7 @@ define([
                     _organizeByRow.bind(this)(widget.dom, source, widget);
 
                 }
+
             } else if (behavior.organize === 'row') {
 
                 // Organize by row

@@ -20,14 +20,14 @@ define([
 
         /**
          * Define widget
-         * @memberOf Wireframe
+         * @property Wireframe
          * @type {*}
          */
         this.widget = widget;
 
         /**
          * Define selector
-         * @memberOf Wireframe
+         * @property Wireframe
          * @type {string}
          */
         this.selector = 'next-widget-position';

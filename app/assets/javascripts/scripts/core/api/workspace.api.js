@@ -17,7 +17,6 @@ define([
      * @constructor
      */
     var WorkspaceAPI = function WorkspaceAPI() {
-
     };
 
     return WorkspaceAPI.extend('WorkspaceAPI', {
@@ -37,6 +36,8 @@ define([
              * @type {Page}
              */
             var page = this._createItem(Page, args, render, silent);
+
+            page.logger.debug('Created page');
 
             return page;
         }

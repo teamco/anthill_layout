@@ -16,7 +16,6 @@ define([
      * @class BaseAPI
      */
     var BaseAPI = function BaseAPI() {
-
     };
 
     return BaseAPI.extend('BaseAPI', {

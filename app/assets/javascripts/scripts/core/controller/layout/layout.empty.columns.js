@@ -20,14 +20,14 @@ define([
 
         /**
          * Define layout
-         * @memberOf LayoutEmptyColumns
+         * @property LayoutEmptyColumns
          * @type {Layout}
          */
         this.layout = layout;
 
         /**
          * Define page
-         * @memberOf LayoutEmptyColumns
+         * @property LayoutEmptyColumns
          * @type {Page}
          */
         this.page = this.layout.controller.getContainment();

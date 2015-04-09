@@ -19,12 +19,14 @@ define([
 
         /**
          * Define layout
+         * @property LayoutEmptyRows
          * @type {Layout}
          */
         this.layout = layout;
 
         /**
          * Define page
+         * @property LayoutEmptyRows
          * @type {Page}
          */
         this.page = this.layout.controller.getContainment();

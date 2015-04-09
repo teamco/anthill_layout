@@ -225,5 +225,4 @@ define([
         }
 
     }, AntHill.prototype);
-
 });

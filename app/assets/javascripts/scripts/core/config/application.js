@@ -122,7 +122,7 @@ define([
         /**
          * Define workspace
          * @property Application
-         * @type {Object|Workspace}
+         * @type {Object}
          */
         this.workspace = {};
 

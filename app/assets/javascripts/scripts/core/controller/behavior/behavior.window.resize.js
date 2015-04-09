@@ -14,7 +14,6 @@ define([
      * @constructor BaseResize
      */
     var BaseResize = function BaseResize() {
-
     };
 
     return BaseResize.extend('BaseResize', {

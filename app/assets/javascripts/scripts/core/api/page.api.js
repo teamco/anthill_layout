@@ -19,7 +19,6 @@ define([
      * @constructor
      */
     var PageAPI = function PageAPI() {
-
     };
 
     return PageAPI.extend('PageAPI', {

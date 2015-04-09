@@ -2,7 +2,7 @@
  * Created by i061485 on 7/9/14.
  */
 
-define([], function definePageItemMaximize() {
+define(function definePageItemMaximize() {
 
     /**
      * Define PageItemMaximize

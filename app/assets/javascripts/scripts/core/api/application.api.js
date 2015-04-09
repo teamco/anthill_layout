@@ -17,7 +17,6 @@ define([
      * @constructor
      */
     var ApplicationAPI = function ApplicationAPI() {
-
     };
 
     return ApplicationAPI.extend('ApplicationAPI', {

@@ -30,7 +30,7 @@ define([
 
         /**
          * Define dom
-         * @memberOf Widget
+         * @property Widget
          * @type {*}
          */
         this.dom = this.base.define(opts.dom, {}, true);
@@ -103,7 +103,7 @@ define([
 
         /**
          * Define constants
-         * @memberOf Widget
+         * @property Widget
          * @type {{magnet: Array}}
          */
         this.CONSTANTS = {
@@ -112,21 +112,21 @@ define([
 
         /**
          * Transfer content events
-         * @memberOf Widget
+         * @property Widget
          * @type {{}}
          */
         this.contentEvents = {};
 
         /**
          * Transfer content rules
-         * @memberOf Widget
+         * @property Widget
          * @type {{}}
          */
         this.contentRules = {};
 
         /**
          * Define MVC
-         * @memberOf Widget
+         * @property Widget
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -145,21 +145,21 @@ define([
 
         /**
          * Define map
-         * @memberOf Widget
+         * @property Widget
          * @type {WidgetMap}
          */
         this.map = new WidgetMap(this);
 
         /**
          * Define wireframe
-         * @memberOf Widget
+         * @property Widget
          * @type {Wireframe}
          */
         this.wireframe = new Wireframe(this);
 
         /**
          * Define interactions: Drag/Resize/Drop
-         * @memberOf Widget
+         * @property Widget
          * @type {{
          *      draggable: Draggable,
          *      resizable: Resizable,
@@ -170,28 +170,28 @@ define([
 
         /**
          * Define draggable interaction
-         * @memberOf Widget.interactions
+         * @property Widget.interactions
          * @type {Draggable}
          */
         this.interactions.draggable = undefined;
 
         /**
          * Define resizable interaction
-         * @memberOf Widget.interactions
+         * @property Widget.interactions
          * @type {Resizable}
          */
         this.interactions.resizable = undefined;
 
         /**
          * Init content
-         * @memberOf Widget
+         * @property Widget
          * @type {WidgetContent}
          */
         this.content = undefined;
 
         /**
          * Init expanded
-         * @memberOf Widget
+         * @property Widget
          * @type {boolean}
          */
         this.expanded = false;

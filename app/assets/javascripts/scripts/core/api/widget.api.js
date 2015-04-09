@@ -16,7 +16,6 @@ define([
      * @constructor
      */
     var WidgetAPI = function WidgetAPI() {
-
     };
 
     return WidgetAPI.extend('WidgetAPI', {

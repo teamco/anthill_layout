@@ -2,7 +2,7 @@
  * Created by i061485 on 7/9/14.
  */
 
-define([], function definePageLayer(){
+define(function definePageLayer(){
 
     /**
      * Define page layer
@@ -10,7 +10,6 @@ define([], function definePageLayer(){
      * @constructor
      */
     var PageLayer = function PageLayer() {
-
     };
 
     return PageLayer.extend('PageLayer', {

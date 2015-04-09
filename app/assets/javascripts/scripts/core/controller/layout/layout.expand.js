@@ -17,12 +17,14 @@ define(function defineLayoutExpand() {
 
         /**
          * Define layout
+         * @property LayoutExpand
          * @type {Layout}
          */
         this.layout = layout;
 
         /**
          * Define page
+         * @property LayoutExpand
          * @type {Page}
          */
         this.page = this.layout.controller.getContainment();

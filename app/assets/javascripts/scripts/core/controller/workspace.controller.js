@@ -36,7 +36,6 @@ define(
          * @constructor
          */
         var WorkspaceController = function WorkspaceController() {
-
         };
 
         return WorkspaceController.extend(

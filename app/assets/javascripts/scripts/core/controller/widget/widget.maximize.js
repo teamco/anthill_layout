@@ -5,7 +5,7 @@
  * Time: 9:15 PM
  */
 
-define([], function defineWidgetMaximize() {
+define(function defineWidgetMaximize() {
 
     /**
      * Define WidgetMaximize
@@ -14,7 +14,6 @@ define([], function defineWidgetMaximize() {
      * @extends Router
      */
     var WidgetMaximize = function WidgetMaximize() {
-
     };
 
     return WidgetMaximize.extend('WidgetMaximize', {

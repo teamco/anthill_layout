@@ -2,7 +2,7 @@
  * Created by teamco on 5/21/14.
  */
 
-define([], function defineWidgetOverlapping() {
+define(function defineWidgetOverlapping() {
 
     /**
      * Define Widget Overlapping
@@ -10,7 +10,6 @@ define([], function defineWidgetOverlapping() {
      * @constructor
      */
     var WidgetOverlapping = function WidgetOverlapping() {
-
     };
 
     return WidgetOverlapping.extend('WidgetOverlapping', {

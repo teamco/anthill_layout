@@ -23,14 +23,14 @@ define([
 
         /**
          * Define scope
-         * @memberOf Resizable
+         * @property Resizable
          * @type {Widget}
          */
         this.scope = scope;
 
         /**
          * Define widget jquery element
-         * @memberOf Resizable
+         * @property Resizable
          * @type {jQuery}
          */
         this.$scope = scope.view.get$item().$;

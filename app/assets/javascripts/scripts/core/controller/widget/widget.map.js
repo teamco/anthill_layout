@@ -22,14 +22,14 @@ define([
 
         /**
          * Define widget instance
-         * @memberOf WidgetMap
+         * @property WidgetMap
          * @type {*}
          */
         this.widget = widget;
 
         /**
          * Define animation duration
-         * @memberOf WidgetMap
+         * @property WidgetMap
          * @type {number}
          */
         this.duration = 500;

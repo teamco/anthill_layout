@@ -5,7 +5,7 @@
  * Time: 12:45 PM
  */
 
-define([], function defineWorkspaceSEO() {
+define(function defineWorkspaceSEO() {
 
     /**
      * Define WorkspaceSEO

@@ -63,14 +63,14 @@ define([
 
         /**
          * Define containment
-         * @memberOf Layout
+         * @property Layout
          * @type {Page}
          */
         this.containment = containment;
 
         /**
          * Define constants
-         * @memberOf Layout
+         * @property Layout
          * @type {{organize: *[], emptySpaces: *[]}}
          */
         this.CONSTANTS = {
@@ -88,7 +88,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Layout
+         * @property Layout
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -104,28 +104,28 @@ define([
 
         /**
          * Define overlapping
-         * @memberOf Layout
+         * @property Layout
          * @type {Overlapping}
          */
         this.overlapping = new Overlapping(this);
 
         /**
          * Define empty rows
-         * @memberOf Layout
+         * @property Layout
          * @type {LayoutEmptyRows}
          */
         this.emptyRows = new LayoutEmptyRows(this);
 
         /**
          * Define empty columns
-         * @memberOf Layout
+         * @property Layout
          * @type {LayoutEmptyColumns}
          */
         this.emptyColumns = new LayoutEmptyColumns(this);
 
         /**
          * Define expand
-         * @memberOf Layout
+         * @property Layout
          * @type {LayoutExpand}
          */
         this.expand = new LayoutExpand(this);

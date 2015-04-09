@@ -5,7 +5,7 @@
  * Time: 11:23 PM
  */
 
-define([], function defineRoutes() {
+define(function defineRoutes() {
 
     /**
      * Define Routes
@@ -50,9 +50,9 @@ define([], function defineRoutes() {
 
             /**
              * Define token
-             * @type {{authenticity_token: string}}
+             * @type {Object|{authenticity_token: string}}
              */
-            var data = {}, index;
+            var data = {authenticity_token: ''}, index;
 
             data[this.getXCsrfParam()] = this.getXCsrfToken();
 

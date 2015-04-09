@@ -4,15 +4,19 @@
 
 define([], function defineWidgetLayer() {
 
+    /**
+     * Define WidgetLayer
+     * @class WidgetLayer
+     * @constructor
+     */
     var WidgetLayer = function WidgetLayer() {
-
     };
 
     return WidgetLayer.extend('WidgetLayer', {
 
         /**
          * Set widget layer up
-         * @memberOf WidgetController
+         * @memberOf WidgetLayer
          * @param {boolean} save
          */
         setLayerUp: function setLayerUp(save) {
@@ -21,7 +25,7 @@ define([], function defineWidgetLayer() {
 
         /**
          * Set widget layer down
-         * @memberOf WidgetController
+         * @memberOf WidgetLayer
          * @param {boolean} save
          */
         setLayerDown: function setLayerDown(save) {
@@ -30,7 +34,7 @@ define([], function defineWidgetLayer() {
 
         /**
          * Update layout z-index
-         * @memberOf WidgetController
+         * @memberOf WidgetLayer
          * @param index
          */
         updateLayerIndex: function updateLayerIndex(index) {
@@ -47,7 +51,7 @@ define([], function defineWidgetLayer() {
 
         /**
          * Restore layer index
-         * @memberOf WidgetController
+         * @memberOf WidgetLayer
          */
         restoreLayerIndex: function restoreLayerIndex() {
 
@@ -62,7 +66,7 @@ define([], function defineWidgetLayer() {
 
         /**
          * Set widget always on top
-         * @memberOf WidgetController
+         * @memberOf WidgetLayer
          * @param {boolean} ontop
          */
         setAlwaysOnTop: function setAlwaysOnTop(ontop) {

@@ -5,7 +5,7 @@
  * Time: 11:36 AM
  */
 
-define([], function defineWidgetStick() {
+define(function defineWidgetStick() {
 
     /**
      * Define widget stick
@@ -13,7 +13,6 @@ define([], function defineWidgetStick() {
      * @constructor
      */
     var WidgetStick = function WidgetStick() {
-
     };
 
     return WidgetStick.extend('WidgetStick', {
