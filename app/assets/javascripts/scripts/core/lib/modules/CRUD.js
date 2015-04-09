@@ -16,7 +16,6 @@ define([
      * @constructor
      */
     var CRUD = function CRUD() {
-
     };
 
     return CRUD.extend('CRUD', {
@@ -144,5 +143,4 @@ define([
         }
 
     }, AntHill.prototype);
-
 });

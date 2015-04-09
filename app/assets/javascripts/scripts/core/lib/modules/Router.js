@@ -2,7 +2,7 @@
  * Created by i061485 on 6/10/14.
  */
 
-define([], function defineRouter() {
+define(function defineRouter() {
 
     /**
      * Define router
@@ -10,7 +10,6 @@ define([], function defineRouter() {
      * @constructor
      */
     var Router = function Router() {
-
     };
 
     return Router.extend('Router', {

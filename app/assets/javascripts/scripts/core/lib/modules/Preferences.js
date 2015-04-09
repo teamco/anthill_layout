@@ -5,7 +5,7 @@
  * Time: 1:23 PM
  */
 
-define([], function defineBasePreferences() {
+define(function defineBasePreferences() {
 
     /**
      * Define BasePreferences

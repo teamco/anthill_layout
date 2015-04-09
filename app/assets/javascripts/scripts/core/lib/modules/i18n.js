@@ -48,7 +48,7 @@ define([
 
         /**
          * Get data by key
-         * @memberOf i18n
+         * @property i18n
          * @param key
          * @returns {*}
          */
@@ -59,7 +59,7 @@ define([
 
         /**
          * Update data
-         * @memberOf i18n
+         * @property i18n
          * @param translation
          */
         this.updateData = function updateData(translation) {
@@ -104,5 +104,4 @@ define([
             return result;
         }
     });
-
 });

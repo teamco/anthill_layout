@@ -15,21 +15,21 @@ define([
 
         /**
          * Define scope
-         * @memberOf Setting
+         * @property Setting
          * @type {*}
          */
         this.scope = scope;
 
         /**
          * Define setting mode
-         * @memberOf Setting
+         * @property Setting
          * @type {String}
          */
         this.mode = this.scope.controller.getMode();
 
         /**
          * Define storage modes
-         * @memberOf Setting
+         * @property Setting
          * @type {{localStorage: Storage, serverStorage: Storage}}
          */
         this.STORAGE_MODES = {
@@ -39,7 +39,7 @@ define([
 
         /**
          * Define setting storage
-         * @memberOf Setting
+         * @property Setting
          * @type {{
          *      development: Storage,
          *      authorize: Storage,
@@ -56,7 +56,7 @@ define([
 
         /**
          * Define cache
-         * @memberOf Setting
+         * @property Setting
          * @type {Storage}
          */
         this.cache = this.STORAGE_MODES.localStorage;
@@ -65,7 +65,7 @@ define([
 
         /**
          * Get storage namespace
-         * @memberOf Setting
+         * @property Setting
          * @returns {String}
          */
         this.getNameSpace = function getNameSpace() {
@@ -86,7 +86,7 @@ define([
 
             /**
              * Define activate
-             * @memberOf Setting
+             * @property Setting
              * @type {boolean}
              */
             this.activate = activate;
@@ -101,6 +101,7 @@ define([
 
             /**
              * Change state
+             * @property Setting
              * @type {boolean}
              */
             this.initial = state;
@@ -135,7 +136,7 @@ define([
             /**
              * Load storage
              * @memberOf Setting
-             * @type {{}}
+             * @type {{token: string}}
              */
             var storage = this.load();
 
@@ -149,7 +150,7 @@ define([
 
                 /**
                  * Define token
-                 * @memberOf Setting
+                 * @property Setting
                  * @type {String}
                  */
                 this.token = base.lib.generator.UUID();
@@ -378,6 +379,7 @@ define([
                         };
 
                     $.ajax(opts).done(
+
                         function done(data, type, xhr) {
 
                             this.setting.cache.setItem(key, value);

@@ -20,7 +20,7 @@ define([
 
         /**
          * Define listeners
-         * @memberOf Observer
+         * @property Observer
          * @type {{}}
          */
         this.listeners = {};
@@ -441,5 +441,4 @@ define([
         }
 
     }, AntHill.prototype);
-
 });

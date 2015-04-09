@@ -65,7 +65,7 @@ define([
         /**
          * Get item DOM info
          * @memberOf BaseView
-         * @returns {BaseElement}
+         * @returns {ClientRect}
          */
         getDomData: function getDomData() {
             return this.getDomElement().getBoundingClientRect();
@@ -114,6 +114,11 @@ define([
          * @param $container
          */
         defineContainer: function defineContainer($container) {
+
+            /**
+             * Define container
+             * @property BaseView.elements
+             */
             this.elements.$container = $container;
         },
 
@@ -183,6 +188,7 @@ define([
 
             /**
              * Define $header
+             * @property BaseView.elements
              * @type {HeaderElement}
              */
             this.elements.$header = new HeaderElement(this, {
@@ -221,6 +227,7 @@ define([
 
             /**
              * Define $footer
+             * @property BaseView.elements
              * @type {FooterElement}
              */
             this.elements.$footer = new FooterElement(this, {
@@ -279,6 +286,7 @@ define([
 
             /**
              * Define Search element
+             * @property BaseView.elements
              * @type {FilterElement}
              */
             this.elements.$filter = new Filter(this, {
@@ -316,6 +324,7 @@ define([
 
             /**
              * Define $modal
+             * @property BaseView.elements
              * @type {ModalElement}
              */
             this.elements.$modal = new ModalElement(this, {

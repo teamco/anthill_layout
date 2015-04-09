@@ -5,10 +5,14 @@
  * Time: 11:06 AM
  */
 
-define([], function defineBaseGeolocation(){
+define(function defineBaseGeolocation(){
 
+    /**
+     * Define BaseGeolocation
+     * @class BaseGeolocation
+     * @constructor
+     */
     var BaseGeolocation = function BaseGeolocation() {
-
     };
 
     return BaseGeolocation.extend('BaseGeolocation', {

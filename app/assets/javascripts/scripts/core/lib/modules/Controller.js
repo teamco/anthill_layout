@@ -43,7 +43,7 @@ define([
 
         /**
          * Define routes setter
-         * @memberOf PluginController
+         * @memberOf BaseController
          */
         setRoutes: function setRoutes() {
 
@@ -131,7 +131,7 @@ define([
 
         /**
          * Check if core already loaded
-         * @memberOf @BaseController
+         * @memberOf BaseController
          * @returns {boolean}
          */
         isLoading: function isLoading() {
@@ -499,39 +499,6 @@ define([
             scope.logger.debug('Configuration', opts.config);
 
             return opts;
-        },
-
-        /**
-         * Set Interaction
-         * @memberOf BaseController
-         * @param {Resizable|Draggable|Function} Event
-         * @returns {*}
-         */
-        setInteraction: function setInteraction(Event) {
-
-            /**
-             * Event name
-             * @type {string}
-             */
-            var ename = Event.name.toLowerCase();
-
-            /**
-             * Register interactions
-             * @type {Draggable|Resizable}
-             */
-            this.scope.interactions[ename] = new Event(this.scope);
-
-            return this.getInteraction(ename);
-        },
-
-        /**
-         * Get Interaction
-         * @memberOf BaseController
-         * @param {String} event
-         * @returns {*}
-         */
-        getInteraction: function getInteraction(event) {
-            return this.scope.interactions[event];
         },
 
         /**

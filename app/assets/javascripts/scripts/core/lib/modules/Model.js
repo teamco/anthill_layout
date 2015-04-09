@@ -9,17 +9,16 @@
 define([
     'config/anthill',
     'modules/CRUD'
-], function initModel(AntHill, CRUD) {
+], function initModel(AntHill, BaseCrud) {
 
     /**
      * Define Base model
      * @class BaseModel
-     * @extends CRUD
+     * @extends BaseCrud
      * @extends AntHill
      * @constructor
      */
     var BaseModel = function BaseModel() {
-
     };
 
     return BaseModel.extend('BaseModel', {
@@ -708,6 +707,5 @@ define([
             return skipTransfer;
         }
 
-    }, AntHill.prototype, CRUD.prototype);
-
+    }, AntHill.prototype, BaseCrud.prototype);
 });

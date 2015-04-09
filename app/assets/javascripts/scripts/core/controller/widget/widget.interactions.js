@@ -34,6 +34,46 @@ define([
             observer.publish(eventList.initResizable);
         },
 
+
+        /**
+         * Set Interaction
+         * @memberOf WidgetInteractions
+         * @param {Function|Resizable|Draggable|Droppable} InteractionEvent
+         * @returns {*}
+         */
+        setInteraction: function setInteraction(InteractionEvent) {
+
+            /**
+             * Event name
+             * @type {string}
+             */
+            var ename = Event.name.toLowerCase();
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            /**
+             * Register interactions
+             * @type {Draggable|Resizable|Droppable}
+             */
+            scope.interactions[ename] = new InteractionEvent(scope);
+
+            return this.getInteraction(ename);
+        },
+
+        /**
+         * Get Interaction
+         * @memberOf WidgetInteractions
+         * @param {String} event
+         * @returns {*}
+         */
+        getInteraction: function getInteraction(event) {
+            return this.scope.interactions[event];
+        },
+
         /**
          * Init drag
          * @memberOf WidgetInteractions
