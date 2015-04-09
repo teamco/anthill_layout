@@ -23,7 +23,7 @@ define([
 
         /**
          * Define shims
-         * @type {{
+         * @type {Object|{
          *      array: LibArray,
          *      function: LibFunction,
          *      generator: LibGenerator,
@@ -57,13 +57,13 @@ define([
 
         /**
          * Define lib
-         * @memberOf Base
+         * @property Base
          */
         this.lib = {};
 
         /**
          * Get shim
-         * @memberOf Base
+         * @property Base
          * @param type
          * @returns {*}
          */

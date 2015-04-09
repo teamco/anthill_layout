@@ -20,7 +20,7 @@ define([
 
         /**
          * Define scope
-         * @memberOf Logger
+         * @property Logger
          * @type {*}
          */
         this.scope = scope;
@@ -223,7 +223,7 @@ define([
                 length = availableLogs.length,
                 i = 0;
 
-            for (i; i < length; i += 1) {
+            for (; i < length; i += 1) {
 
                 var log = availableLogs[i];
 
@@ -231,7 +231,7 @@ define([
 
                     /**
                      * Define logger types
-                     * @memberOf Logger
+                     * @property Logger
                      * @type {function}
                      */
                     this[log] = this.puts.bind(this, log);

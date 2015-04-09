@@ -55,5 +55,4 @@ define([], function defineLibHTML() {
     });
 
     return new LibHTML();
-
 });

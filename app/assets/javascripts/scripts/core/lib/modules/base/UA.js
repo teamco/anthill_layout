@@ -124,5 +124,4 @@ define([], function defineLibString() {
     });
 
     return new LibUserAgent();
-
 });

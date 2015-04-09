@@ -82,9 +82,7 @@ define([], function defineLibString() {
                         utftext += String.fromCharCode((c >> 12) | 224);
                         utftext += String.fromCharCode(((c >> 6) & 63) | 128);
                         utftext += String.fromCharCode((c & 63) | 128);
-
                     }
-
                 }
 
                 return utftext;
@@ -120,9 +118,7 @@ define([], function defineLibString() {
                         c2 = utftext.charCodeAt(i + 2);
                         string += String.fromCharCode(((c & 15) << 12) | ((c1 & 63) << 6) | (c2 & 63));
                         i += 3;
-
                     }
-
                 }
 
                 return string;

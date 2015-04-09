@@ -139,5 +139,4 @@ define([], function defineLibHash() {
     });
 
     return new LibHash();
-
 });

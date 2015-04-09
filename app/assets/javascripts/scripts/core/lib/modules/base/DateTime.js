@@ -242,5 +242,4 @@ define([], function defineLibDateTime() {
     });
 
     return new LibDateTime();
-
 });

@@ -19,5 +19,4 @@ define([], function defineLibFunction() {
     });
 
     return new LibFunction();
-
 });

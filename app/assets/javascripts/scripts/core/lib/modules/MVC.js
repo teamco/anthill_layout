@@ -23,14 +23,14 @@ define([
 
         /**
          * Define scope
-         * @memberOf MVC
+         * @property MVC
          * @type {mvc.scope}
          */
         this.scope = opts.scope;
 
         /**
          * Define MVC Relationship from -> to
-         * @memberOf MVC
+         * @property MVC
          * @type {Array}
          */
         this.RELATIONS = [
@@ -55,7 +55,7 @@ define([
 
         /**
          * Define reserved methods
-         * @memberOf MVC
+         * @property MVC
          * @type {{
          *      create: {singular: Array},
          *      destroy: {singular: Array, plural: Array}
@@ -77,7 +77,7 @@ define([
 
         /**
          * Define default listeners
-         * @memberOf MVC
+         * @property MVC
          * @type {{
          *      beforeInitConfig: string,
          *      afterInitConfig: string,
@@ -127,7 +127,7 @@ define([
 
         /**
          * Define scope config
-         * @memberOf MVC
+         * @property MVC.scope
          * @type {mvc.scope.config}
          */
         this.scope.config = this.base.lib.hash.extendHash(
@@ -137,7 +137,7 @@ define([
 
         /**
          * Define mvc components
-         * @memberOf MVC
+         * @property MVC
          * @type {mvc.components}
          */
         this.components = this.base.define(
@@ -148,21 +148,21 @@ define([
 
         /**
          * Define mvc config
-         * @memberOf MVC
+         * @property MVC
          * @type {mvc.config}
          */
         this.config = this.base.define(selfConfig, {}, true);
 
         /**
          * Define mvc force creating components
-         * @memberOf MVC
+         * @property MVC
          * @type {Boolean}
          */
         this.force = this.base.defineBoolean(opts.force, false, true);
 
         /**
          * Define mvc render
-         * @memberOf MVC
+         * @property MVC
          * @type {Boolean}
          */
         this.render = this.base.defineBoolean(opts.render, true, true);
@@ -172,7 +172,7 @@ define([
 
         scope.eventmanager = {};
 
-        $.extend(config, scope.config);
+        $.extend(true, config, scope.config);
 
         this.init();
 
@@ -184,9 +184,7 @@ define([
 
         if (eventList) {
 
-            /**
-             * Publish before InitConfig event
-             */
+            // Publish before InitConfig event
             scope.observer.publish(
                 eventList.beforeInitConfig, [
                     'Config before create',
@@ -194,9 +192,7 @@ define([
                 ]
             );
 
-            /**
-             * Publish after InitConfig event
-             */
+            // Publish after InitConfig event
             scope.observer.publish(
                 eventList.afterInitConfig, [
                     'Config after create',
@@ -685,9 +681,7 @@ define([
              */
             scope.observer = new Observer();
 
-            /**
-             * Define observer scope
-             */
+            // Define observer scope
             scope.observer.scope = scope;
         },
 
@@ -696,6 +690,7 @@ define([
          * @memberOf MVC
          */
         applyLogger: function applyLogger() {
+
             var scope = this.scope,
                 base = this.base,
                 config = scope.config.logger;
@@ -714,5 +709,4 @@ define([
         }
 
     }, AntHill.prototype);
-
 });
