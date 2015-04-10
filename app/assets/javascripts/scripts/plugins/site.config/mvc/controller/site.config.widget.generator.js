@@ -95,7 +95,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
             /**
              * Define collector
-             * @type {{clone: string, scratch: string, visible: boolean}}
+             * @type {{name: string, category: string, clone: string, scratch: string, visible: boolean}}
              */
             var collector = {
                 clone: '',
@@ -143,7 +143,8 @@ define(function defineSiteConfigWidgetGenerator() {
                 clone = gallery.model.staticData.getWidgetData(
                     'name',
                     collector.scratch !== 'true' ?
-                        collector.clone : 'empty'
+                        collector.clone.length === 0 ?
+                            collector.name : collector.clone : 'empty'
                 ) || {}
             }
 
