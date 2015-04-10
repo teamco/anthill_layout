@@ -210,7 +210,7 @@ class Author::SiteStoragesController < Author::AuthorController
   def update_widget_connections
 
     widget_ids = params[:author_site_storage][:author_site_storage_widget_ids]
-    widgets = Widget.find(widget_ids.reject(&:blank?)) unless widget_ids.nil?
+    widgets = Widget.find(widget_ids.reject(&:blank?)) rescue []
 
     widgets.blank? ?
         @author_site_storage.author_site_storage_widgets.delete_all :
