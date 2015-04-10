@@ -84,6 +84,7 @@ define([
             var $ul = $('<ul />');
 
             if (l > 0) {
+                data[0].thumbnail = '';
 
                 // Append header
                 $ul.append(
@@ -91,6 +92,9 @@ define([
                 );
 
                 for (; i < l; i++) {
+                    data[i].thumbnail = '/assets/scripts/plugins/stylesheets/images/' + data[i].resource + '.png';
+
+                    // Append rows
                     $ul.append(
                         _renderRow(data[i], 'row')
                     );
