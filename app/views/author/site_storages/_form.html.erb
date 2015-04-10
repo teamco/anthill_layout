@@ -1,5 +1,6 @@
 <%= javascript_tag do %>
-    function selectAll(e){var $c=$(e).attr('for')==="select_all_widgets"?"ul.widgets":$(e).next(),$w=$('input[type="checkbox"]',$c);$w.prop('checked',!$w.prop('checked'));}
+    function selectAll(e){var $c=$(e).attr('for')==="select_all_widgets"?"ul.widgets":$(e).next(),$w=$('input[type="checkbox"]',$c);$w.prop('checked',!$w.prop('checked'));updateCounter();}
+    function updateCounter(){var $l=$('label[for="select_all_widgets"]');$l.text($l.text().replace(/\d+/,$('input[type="checkbox"]:checked').length));}
 <% end %>
 <%= form_for(@author_site_storage) do |f| -%>
 
@@ -21,6 +22,7 @@
                     {onclick: 'selectAll(this)'} %>
       <%= hidden_field_tag 'author_site_storage[author_site_storage_widget_ids][]', nil %>
       <ul class="categories">
+        <% widget_ids = @author_site_storage.author_widget_ids %>
         <% Author::WidgetCategory.order(:name_value).each do |category| %>
             <li>
               <%= label_tag dom_id(category), category.name_value, {onclick: 'selectAll(this)'} %>
@@ -29,8 +31,10 @@
                     <li>
                       <%= check_box_tag 'author_site_storage[author_site_storage_widget_ids][]',
                                         widget.id,
-                                        @author_site_storage.author_site_storage_widget_ids.include?(widget.id),
-                                        id: dom_id(widget) %>
+                                        widget_ids.include?(widget.id), {
+                                                id: dom_id(widget),
+                                                onclick: 'updateCounter()'
+                                        } %>
                       <%= label_tag dom_id(widget), widget.name, {title: "#{widget.name}\n#{widget.description}"} %>
                     </li>
                 <% end %>
