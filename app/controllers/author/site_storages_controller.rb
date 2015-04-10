@@ -212,9 +212,8 @@ class Author::SiteStoragesController < Author::AuthorController
     widget_ids = params[:author_site_storage][:author_site_storage_widget_ids]
     widgets = Widget.find(widget_ids.reject(&:blank?)) rescue []
 
-    widgets.blank? ?
-        @author_site_storage.author_site_storage_widgets.delete_all :
-        @author_site_storage.author_widgets << widgets
+    @author_site_storage.author_site_storage_widgets.delete_all
+    @author_site_storage.author_widgets << widgets unless widgets.blank?
 
     params[:author_site_storage].delete :author_site_storage_widget_ids
 

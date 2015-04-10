@@ -13,17 +13,23 @@
   </thead>
 
   <tbody>
-  <% @author_widgets.each_with_index do |author_widget, index| %>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td class="name"><%= link_to author_widget.name, edit_author_widget_path(author_widget) %></td>
-        <td><%= author_widget.author_widget_category.name_value %></td>
-        <td title="<%= author_widget.description %>"><%= truncate(author_widget.description, length: 150, separator: ' ') %></td>
-        <td class="c"><%= image_tag author_widget.thumbnail %></td>
-        <td class="c"><%= author_widget.width %> x <%= author_widget.height %></td>
-        <td class="c"><%= author_widget.resource %></td>
-        <td class="c"><%= link_to_destroy(author_widget, author_widget.name) %></td>
+  <% @json_data[:categories].each do |category| %>
+      <tr class="category">
+        <td><%= category.id %></td>
+        <td colspan="7"><%= category.name_value %></td>
       </tr>
+      <% category.author_widgets.order(name: :asc).each do |author_widget| %>
+          <tr>
+            <td><%= author_widget.id %></td>
+            <td class="name"><%= link_to author_widget.name, edit_author_widget_path(author_widget) %></td>
+            <td><%= author_widget.author_widget_category.name_value %></td>
+            <td title="<%= author_widget.description %>"><%= truncate(author_widget.description, length: 150, separator: ' ') %></td>
+            <td class="c"><%= image_tag author_widget.thumbnail %></td>
+            <td class="c"><%= author_widget.width %> x <%= author_widget.height %></td>
+            <td class="c"><%= author_widget.resource %></td>
+            <td class="c"><%= link_to_destroy(author_widget, author_widget.name) %></td>
+          </tr>
+      <% end %>
   <% end %>
   </tbody>
 </table>
