@@ -170,6 +170,11 @@ define([
         var config = {},
             scope = this.scope;
 
+        /**
+         * Define event manager
+         * @memberOf BaseEvent
+         * @type {Object}
+         */
         scope.eventmanager = {};
 
         $.extend(true, config, scope.config);
@@ -178,7 +183,8 @@ define([
 
         /**
          * Define local instance of eventList
-         * @type {*}
+         * @property BaseEvent.eventmanager
+         * @type {Object}
          */
         var eventList = scope.eventmanager.eventList;
 
@@ -266,6 +272,7 @@ define([
 
                 /**
                  * Define parent node
+                 * @memberOf AntHill
                  * @type {*}
                  */
                 scope.containment = config.containment;
@@ -298,7 +305,7 @@ define([
 
                 /**
                  * Define pattern
-                 * @type {Function}
+                 * @type {*}
                  */
                 scope[name] = new mvcPattern();
 
@@ -345,6 +352,11 @@ define([
                 to = relation[1].toLowerCase();
                 if (base.isDefined(scope[from]) &&
                     base.isDefined(scope[to])) {
+
+                    /**
+                     * Define relation
+                     * @memberOf {BaseController|BaseModel|BaseView}
+                     */
                     scope[from][to] = scope[to];
                 }
             }
@@ -364,7 +376,7 @@ define([
 
                 /**
                  * Get mvc component
-                 * @type {function}
+                 * @type {*}
                  */
                 var mvc = this.components[i];
 
@@ -399,7 +411,8 @@ define([
 
                 /**
                  * Define elements
-                 * @type {object}
+                 * @memberOf BaseView
+                 * @type {Object}
                  */
                 this.scope.view.elements = {};
             }
@@ -409,7 +422,8 @@ define([
 
                 /**
                  * Define preferences
-                 * @type {*}
+                 * @memberOf BaseModel
+                 * @type {Object}
                  */
                 this.scope.model.preferences = this.base.define(
                     this.scope.model.preferences,
@@ -596,8 +610,17 @@ define([
                 this._applyPermissions('global');
             }
 
-            var scope = this.scope,
-                permission = scope.permission;
+            /**
+             * Get scope
+             * @type {mvc.scope|{permission, controller, logger}}
+             */
+            var scope = this.scope;
+
+            /**
+             * Get permissions
+             * @type {BasePermission|{capability}}
+             */
+            var permission = scope.permission;
 
             if (scope.controller.checkCondition({
                     condition: !this.base.isDefined(permission),
@@ -607,6 +630,11 @@ define([
                 return false;
             }
 
+            /**
+             * Define capability
+             * @memberOf BasePermission.capability
+             * @type {{}}
+             */
             permission.capability = {};
 
             this.base.isFunction(permission.config) ?

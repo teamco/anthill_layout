@@ -561,9 +561,9 @@ define(
                     }
 
                     this.modalDialog({
-                        style: 'widget-generator-new',
+                        style: 'widget-generator-new widget-generator-edit',
                         type: 'info',
-                        title: this.i18n.t('widget.manager.generate.update'),
+                        title: this.i18n.t('widget.manager.generate.update') + ': ' + widget.name,
                         html: this.elements.$widgetgenerator.renderWidgetGeneratorForm(
                             widget,
                             types,

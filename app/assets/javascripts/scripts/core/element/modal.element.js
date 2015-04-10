@@ -514,7 +514,9 @@ define([
             this.$.addClass(type);
 
             setTimeout(function () {
-                this._get$Notification().stop().slideUp();
+                this._get$Notification().stop().slideUp(function(){
+                    $(this).text('').show();
+                });
                 this.$.removeClass(type);
                 this.$.addClass(this.type);
             }.bind(this), 4000);

@@ -336,7 +336,8 @@ define([
                                 widgetData[index], {
                                     mask: [
                                         scope.base.isDataURL.regex,
-                                        scope.base.isUrl.regex
+                                        scope.base.isUrl.regex,
+                                        /^\/assets\/scripts\/plugins\/stylesheets\/images/
                                     ]
                                 }
                             );
@@ -473,6 +474,25 @@ define([
             this.disableComboBox($combo);
 
             return [$checkbox, $combo];
+        },
+
+        /**
+         * Get resource value
+         * @memberOf SiteConfigWidgetsListElement
+         * @returns {string}
+         */
+        getResource: function getResource() {
+
+            /**
+             * Get $modal
+             * @type {ModalElement}
+             */
+            var $modal = this.view.get$modal();
+
+            if ($modal) {
+
+                return $('input[name="resource"]', $modal.$).val();
+            }
         }
 
     }, BaseElement.prototype, GalleryProvidersElement.prototype);

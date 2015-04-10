@@ -70,7 +70,7 @@ define(function defineSiteConfigWidgetGenerator() {
         /**
          * Collect form widget's data
          * @memberOf SiteConfigWidgetGenerator
-         * @returns {{
+         * @returns {boolean|{
          *      category: string,
          *      collector: {},
          *      $modal: ModalElement,
@@ -82,10 +82,16 @@ define(function defineSiteConfigWidgetGenerator() {
         _collectFormWidgetData: function _collectFormWidgetData() {
 
             /**
+             * Get scope
+             * @type {SiteConfig}
+             */
+            var scope = this.scope;
+
+            /**
              * Get $modal
              * @type {ModalElement}
              */
-            var $modal = this.scope.view.get$modal();
+            var $modal = scope.view.get$modal();
 
             var inputs = $modal.collectInputFields(),
                 validate = inputs.hasClass('validate'),
@@ -119,7 +125,7 @@ define(function defineSiteConfigWidgetGenerator() {
              * @type {Gallery}
              */
             var gallery = this.getGalleryModule(),
-                clone;
+                clone, name;
 
             if (gallery) {
 
@@ -128,6 +134,25 @@ define(function defineSiteConfigWidgetGenerator() {
                     gallery.model.dataTypes,
                     collector.category
                 );
+
+                /**
+                 * Get widget resource
+                 * @type {string}
+                 */
+                var resource = scope.view.elements.$widgetgenerator.getResource();
+
+                if (collector.clone.length > 0) {
+
+                    resource = (gallery.model.staticData.getWidgetData(
+                        'name', collector.clone
+                    ) || {}).resource;
+                }
+
+                if (typeof(resource) === 'undefined' || resource.length === 0) {
+
+                    scope.logger.warn('Undefined resource', collector);
+                    return false;
+                }
 
                 /**
                  * Get clone data
@@ -141,10 +166,9 @@ define(function defineSiteConfigWidgetGenerator() {
                  * }}
                  */
                 clone = gallery.model.staticData.getWidgetData(
-                    'name',
-                    collector.scratch !== 'true' ?
-                        collector.clone.length === 0 ?
-                            collector.name : collector.clone : 'empty'
+                    'resource',
+                    collector.scratch === 'true' ?
+                        'empty' : resource
                 ) || {}
             }
 
