@@ -23,7 +23,7 @@ class Author::WidgetsController < Author::AuthorController
   def index
 
     @json_data ||= {
-        categories: WidgetCategory.all,
+        categories: WidgetCategory.order(name_value: :asc),
         widgets: []
     }
 
@@ -119,8 +119,9 @@ class Author::WidgetsController < Author::AuthorController
   def update
 
     generated_thumbnail = author_widget_params[:thumbnail].match(/^\/assets/)
-    author_widget_params[:widget_category_id] = @category.id
-    author_widget_params[:thumbnail] = @author_widget.thumbnail if generated_thumbnail
+
+    params[:author_widget].delete(:thumbnail) if generated_thumbnail
+    params[:author_widget][:widget_category_id] = @category.id
 
     respond_to do |format|
 
@@ -225,7 +226,7 @@ class Author::WidgetsController < Author::AuthorController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_widget_params
-    params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :resource, :visible)
+    params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :resource, :visible, :widget_category_id)
   end
 
   def error_handler_on_create(format)
