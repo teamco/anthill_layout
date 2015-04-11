@@ -118,7 +118,9 @@ class Author::WidgetsController < Author::AuthorController
   # PATCH/PUT /author/widgets/1.json
   def update
 
+    generated_thumbnail = @author_widget.thumbnail.match(/^\/assets/)
     author_widget_params[:widget_category_id] = @category.id
+    author_widget_params[:thumbnail] = @author_widget.thumbnail if generated_thumbnail
 
     respond_to do |format|
 
@@ -126,7 +128,7 @@ class Author::WidgetsController < Author::AuthorController
         if request.xhr?
           widget = WidgetLib::Generate.new
           widget.init_params(@author_widget.resource)
-          widget.generate_css(@author_widget.thumbnail)
+          widget.generate_css(@author_widget.thumbnail) unless generated_thumbnail
           format.json { render :show, status: :ok, location: @author_widget }
         else
           format.html { redirect_to @author_widget, notice: 'Widget was successfully updated.' }
