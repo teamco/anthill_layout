@@ -16,7 +16,7 @@
   <% @json_data[:categories].each do |category| %>
       <tr class="category">
         <td><%= category.id %></td>
-        <td colspan="7"><%= category.name_value %></td>
+        <td colspan="7"><%= "#{category.name_value} (#{category.author_widgets.length})" %></td>
       </tr>
       <% category.author_widgets.order(name: :asc).each do |author_widget| %>
           <tr>
