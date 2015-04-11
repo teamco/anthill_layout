@@ -118,7 +118,7 @@ class Author::WidgetsController < Author::AuthorController
   # PATCH/PUT /author/widgets/1.json
   def update
 
-    generated_thumbnail = @author_widget.thumbnail.match(/^\/assets/)
+    generated_thumbnail = author_widget_params[:thumbnail].match(/^\/assets/)
     author_widget_params[:widget_category_id] = @category.id
     author_widget_params[:thumbnail] = @author_widget.thumbnail if generated_thumbnail
 
