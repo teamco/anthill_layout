@@ -20,12 +20,10 @@ define([], function defineLibFile() {
         /**
          * Check API
          * @memberOf LibFile
+         * @param scope
          * @returns {boolean}
          */
-        checkFileApi: function checkFileApi() {
-
-            // Get scope
-            var scope = this.view.scope;
+        checkFileApi: function checkFileApi(scope) {
 
             // Check for the various File API support.
             if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -61,7 +59,7 @@ define([], function defineLibFile() {
 
             reader.onloadend = function onLoadEnd(evt) {
 
-                if (evt.target.readyState === this.reader.DONE) {
+                if (evt.target.readyState === reader.DONE) {
 
                     var chars = new Uint8Array(evt.target.result),
                         CHUNK_SIZE = 0x8000,
