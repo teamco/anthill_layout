@@ -60,6 +60,7 @@ define([
          *      [adoptOnResize]: boolean,
          *      [html]: String,
          *      [text]: String,
+         *      [hover]: Boolean,
          *      [draggable]: Boolean,
          *      [autoclose]: Boolean,
          *      [coverOpacity]: Number
@@ -73,62 +74,62 @@ define([
 
             /**
              * Set modal title
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {String|*}
              */
             this.title = opts.title;
 
             /**
              * Set modal type ['error', 'warning', 'success', 'info']
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {String|*}
              */
             this.type = opts.type;
 
             /**
              * Set modal html
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {String|*}
              */
             this.html = opts.html;
 
             /**
              * Set modal text
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {String|*}
              */
             this.text = opts.text;
 
             /**
              * Set modal item dependency (called from)
-             * @memberOf ModalElement
+             * @property ModalElement
              */
             this.items = opts.items;
 
             /**
              * Set modal style
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {String|*|string}
              */
             this.style = opts.style || '';
 
             /**
              * Set modal css
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {$modal.css}
              */
             this.css = opts.css || {};
 
             /**
              * Set hover opacity
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {*}
              */
             this.hover = this.base.defineBoolean(opts.hover, true, true);
 
             /**
              * Set modal parent container
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {*|jQuery|HTMLElement}
              */
             this.$container = opts.$container || $('body');
@@ -138,56 +139,56 @@ define([
              *      ['tl' 'tc' 'tr']
              *      ['cl' 'cc' 'cr']
              *      ['bl' 'bc' 'br']
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {$modal}
              */
             this.position = opts.position || 'cc';
 
             /**
              * Adopt position on resize
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {boolean}
              */
             this.adoptOnResize = this.base.defineBoolean(opts.adoptOnResize, true, true);
 
             /**
              * Set modal is draggable condition
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {*}
              */
             this.draggable = this.base.defineBoolean(opts.draggable, true, true);
 
             /**
              * Set close X button
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {*}
              */
             this.closeX = this.base.defineBoolean(opts.closeX, true, true);
 
             /**
              * Set cover config
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {*}
              */
             this.cover = this.base.defineBoolean(opts.cover, true, true);
 
             /**
              * Set close modal on click cover
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {*}
              */
             this.autoclose = this.base.defineBoolean(opts.autoclose, false, true);
 
             /**
              * Set cover opacity
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {Number|*}
              */
             this.coverOpacity = opts.coverOpacity;
 
             /**
              * Set buttons config
-             * @memberOf ModalElement
+             * @property ModalElement
              * @type {*|{}}
              */
             this.buttons = opts.buttons || {};
