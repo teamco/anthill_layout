@@ -2,9 +2,7 @@
 <% if @storage[:version].nil? %>
     <p class="undefined-site">Undefined site version</p>
 <% else %>
-    <%= stylesheet_link_tag(
-                stylesheet_path("../../assets/public/#{key}/css/general")
-        ) %>
+    <%= stylesheet_link_tag("public/#{key}/css/general") %>
     <%= javascript_include_tag(
                 'scripts/core/lib/require',
                 'data-resource' => key,
