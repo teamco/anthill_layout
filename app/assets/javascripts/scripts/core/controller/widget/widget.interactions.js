@@ -47,7 +47,7 @@ define([
              * Event name
              * @type {string}
              */
-            var ename = Event.name.toLowerCase();
+            var ename = InteractionEvent.name.toLowerCase();
 
             /**
              * Get scope
