@@ -38,6 +38,50 @@ define([], function defineLibFile() {
         },
 
         /**
+         * Define binary file reader
+         * @memberOf LibFile
+         * @param file
+         * @param {Function} callback
+         * @param {boolean} [base64]
+         * @returns {boolean}
+         */
+        readBinaryFile: function readBinaryFile(file, callback, base64) {
+
+            if (typeof(file) === 'undefined') {
+                return false;
+            }
+
+            base64 = typeof(base64) === 'undefined' ? true : base64;
+
+            /**
+             * Define reader
+             * @type {FileReader}
+             */
+            var reader = new FileReader();
+
+            reader.onloadend = function onLoadEnd(evt) {
+
+                if (evt.target.readyState === this.reader.DONE) {
+
+                    var chars = new Uint8Array(evt.target.result),
+                        CHUNK_SIZE = 0x8000,
+                        index = 0, length = chars.length,
+                        result = '', slice;
+
+                    while (index < length) {
+                        slice = chars.subarray(index, Math.min(index + CHUNK_SIZE, length));
+                        result += String.fromCharCode.apply(null, slice);
+                        index += CHUNK_SIZE;
+                    }
+
+                    callback(base64 ? window.btoa(result) : result);
+                }
+            };
+
+            reader.readAsArrayBuffer(file);
+        },
+
+        /**
          * Create Blob URL
          * @memberOf LibFile
          * @param {string} content
