@@ -15,9 +15,11 @@
         ) %>
 
     <%= javascript_tag defer: 'defer', id: 'set-local-storage' do -%>
-        window.localStorage['<%= key %>'] = '<%= @storage[:content] %>';
-        var script = document.getElementById('set-local-storage');
-        script.parentNode.removeChild(script);
+        (function(){
+            window.localStorage['<%= key %>'] = '<%= @storage[:content] %>';
+            var script = document.getElementById('set-local-storage');
+            script.parentNode.removeChild(script);
+        })();
     <% end -%>
 
 <% end %>
