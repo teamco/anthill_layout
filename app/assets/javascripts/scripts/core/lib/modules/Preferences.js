@@ -13,6 +13,13 @@ define(function defineBasePreferences() {
      * @constructor
      */
     var BasePreferences = function BasePreferences() {
+
+        /**
+         * Define scope
+         * @property BasePreferences
+         * @type {undefined}
+         */
+        this.scope = undefined;
     };
 
     return BasePreferences.extend('BasePreferences', {

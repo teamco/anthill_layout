@@ -44,28 +44,28 @@ define([
 
             /**
              * Define view
-             * @memberOf BaseElement
+             * @property BaseElement
              * @type {BaseView}
              */
             this.view = view;
 
             /**
              * Define style
-             * @memberOf BaseElement
+             * @property BaseElement
              * @type {String}
              */
             this.style = opts.style || view.createStyle();
 
             /**
              * Define id
-             * @memberOf BaseElement
+             * @property BaseElement
              * @type {String}
              */
             this.id = view.renderUUID(opts.id);
 
             /**
              * Define disabled
-             * @memberOf BaseElement
+             * @property BaseElement
              * @type {boolean}
              */
             this.disabled = this.base.defineBoolean(
@@ -74,7 +74,7 @@ define([
 
             /**
              * Define events
-             * @memberOf BaseElement
+             * @property BaseElement
              * @type {*}
              */
             this.events = opts.events;
@@ -88,14 +88,14 @@ define([
 
             /**
              * Define CSS
-             * @memberOf BaseElement
+             * @property BaseElement
              * @type {*}
              */
             this.css = this.base.define(opts.css, {}, true);
 
             /**
              * Define jQuery element
-             * @memberOf BaseElement
+             * @property BaseElement
              */
             this.$ = $html.attr({
                 id: this.id
@@ -303,7 +303,7 @@ define([
 
                 /**
                  * Define $container
-                 * @memberOf BaseElement
+                 * @property BaseElement
                  * @type {*|jQuery|HTMLElement}
                  */
                 this.$container = $(opts.$container);

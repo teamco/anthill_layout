@@ -16,6 +16,13 @@ define([
      * @class BaseAPI
      */
     var BaseAPI = function BaseAPI() {
+
+        /**
+         * Define scope
+         * @property BaseAPI
+         * @type {undefined}
+         */
+        this.scope = undefined;
     };
 
     return BaseAPI.extend('BaseAPI', {

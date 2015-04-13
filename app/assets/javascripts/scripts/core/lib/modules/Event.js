@@ -17,6 +17,27 @@ define([
      * @constructor
      */
     var BaseEvent = function BaseEvent() {
+
+        /**
+         * Define event list
+         * @property BaseEvent
+         * @type {undefined}
+         */
+        this.eventList = undefined;
+
+        /**
+         * Define events
+         * @property BaseEvent
+         * @type {undefined}
+         */
+        this.events = undefined;
+
+        /**
+         * Define scope
+         * @property BaseEvent
+         * @type {undefined}
+         */
+        this.scope = undefined;
     };
 
     return BaseEvent.extend('BaseEvent', {

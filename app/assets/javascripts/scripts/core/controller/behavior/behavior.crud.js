@@ -7,22 +7,29 @@
 
 define([
     'config/anthill'
-], function defineBaseCrud(AntHill) {
+], function defineBehaviorCrud(AntHill) {
 
     /**
      * Define Base CRUD
      * @extends AntHill
-     * @class BaseCrud
-     * @constructor BaseCrud
+     * @class BehaviorCrud
+     * @constructor BehaviorCrud
      */
-    var BaseCrud = function BaseCrud() {
+    var BehaviorCrud = function BehaviorCrud() {
+
+        /**
+         * Define scope
+         * @property BehaviorCrud
+         * @type {undefined}
+         */
+        this.scope = undefined;
     };
 
-    return BaseCrud.extend('BaseCrud', {
+    return BehaviorCrud.extend('BehaviorCrud', {
 
         /**
          * Create Item
-         * @memberOf BaseCrud
+         * @memberOf BehaviorCrud
          * @param {*} opts
          * @param {*|Boolean} silent
          */
@@ -55,7 +62,7 @@ define([
 
         /**
          * Reject to modal event
-         * @memberOf BaseCrud
+         * @memberOf BehaviorCrud
          */
         rejectModalEvent: function rejectModalEvent() {
             var scope = this.scope,
@@ -71,7 +78,7 @@ define([
 
         /**
          * Approve to destroy items
-         * @memberOf BaseCrud
+         * @memberOf BehaviorCrud
          * @param items
          */
         approveItemsDestroy: function approveItemsDestroy(items) {
@@ -104,7 +111,7 @@ define([
 
         /**
          * Approve to destroy item
-         * @memberOf BaseCrud
+         * @memberOf BehaviorCrud
          * @param {*} item
          * @param {Number} [count]
          * @returns {boolean}
@@ -146,7 +153,7 @@ define([
 
         /**
          * Destroy item
-         * @memberOf BaseCrud
+         * @memberOf BehaviorCrud
          * @param item
          * @param {boolean} silent
          */
@@ -156,7 +163,7 @@ define([
 
         /**
          * Destroy Items
-         * @memberOf BaseCrud
+         * @memberOf BehaviorCrud
          * @param {Object} [items]
          * @param {Boolean} [silent]
          */
@@ -172,7 +179,7 @@ define([
 
         /**
          * After create item event
-         * @memberOf BaseCrud
+         * @memberOf BehaviorCrud
          */
         afterCreateItem: function afterCreateItem() {
             this.logger.debug('After create item');
@@ -181,7 +188,7 @@ define([
 
         /**
          * After destroy item event
-         * @memberOf BaseCrud
+         * @memberOf BehaviorCrud
          */
         afterDestroyItem: function afterDestroyItem() {
             this.logger.debug('After destroy item');
@@ -190,7 +197,7 @@ define([
 
         /**
          * After destroy item event
-         * @memberOf BaseCrud
+         * @memberOf BehaviorCrud
          */
         afterDestroyItems: function afterDestroyItems() {
             this.logger.debug('After destroy items');
@@ -199,7 +206,7 @@ define([
 
         /**
          * After CRUD
-         * @memberOf BaseCrud
+         * @memberOf BehaviorCrud
          * @private
          * @returns {*|boolean}
          */

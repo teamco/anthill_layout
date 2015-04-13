@@ -9,22 +9,25 @@ define(
     [
         'config/anthill',
         'modules/Controller',
+        'controller/behavior/behavior.error.handler',
         'config/routes'
     ],
     /**
      * Define Application controller
      * @param {AntHill} AntHill
      * @param {BaseController} BaseController
+     * @param {BehaviorErrorHandler} BehaviorErrorHandler
      * @param {Routes} Routes
      * @returns {ApplicationController}
      */
-    function defineApplicationController(AntHill, BaseController, Routes) {
+    function defineApplicationController(AntHill, BaseController, BehaviorErrorHandler, Routes) {
 
         /**
          * Define application controller
          * @class ApplicationController
          * @extends AntHill
          * @extends BaseController
+         * @extends BehaviorErrorHandler
          * @extends Routes
          * @constructor
          */
@@ -73,42 +76,7 @@ define(
                 defineSetting: function defineSetting() {
                     this.model.initGlobalSetting();
                     this.controller.ajaxSetup();
-                    this.controller.defineOverrides();
-                },
-
-                /**
-                 * Define overrides
-                 * @memberOf ApplicationController
-                 */
-                defineOverrides: function defineOverrides() {
-
-                    var proxiedError = window.onerror,
-                        scope = this.scope;
-
-                    // Override previous handler.
-                    window.onerror = function errorHandler(errorMsg, url, lineNumber, columnNumber, errorObject) {
-
-                        if (proxiedError) {
-
-                            // Call previous handler.
-                            proxiedError.apply(this, arguments);
-                        }
-
-                        // Just let default handler run.
-                        scope.view.handleNotificationsRenderer({
-                            status: errorMsg,
-                            statusText: [url, lineNumber, columnNumber].join(':'),
-                            responseJSON: {
-                                error: [
-                                    '<pre><code>',
-                                    (errorObject || {}).stack,
-                                    '</code></pre>'
-                                ].join('')
-                            }
-                        }, 'error');
-
-                        return false;
-                    }
+                    this.controller.defineClientErrorHandler();
                 },
 
                 /**
@@ -137,8 +105,9 @@ define(
                 ajaxSetup: function ajaxSetup() {
 
                     $.ajaxSetup({
+                        timeout: 10000,
                         ifModified: true,
-                        beforeSend: function beforeSend(xhr, settings) {
+                        beforeSend: function _beforeSend(xhr, settings) {
                             if (typeof(settings.dataType) === 'undefined') {
                                 xhr.setRequestHeader(
                                     'accept',
@@ -154,21 +123,6 @@ define(
                         complete: this._handleXhrLog.bind(this),
                         error: this._handleXhrLog.bind(this)
                     });
-                },
-
-                /**
-                 * Define error handler
-                 * @memberOf ApplicationController
-                 */
-                _handleXhrLog: function _handleXhrLog(xhr, status, description) {
-
-                    if (status === 'error' || status === 'warning') {
-                        this.scope.view.handleNotificationsRenderer(
-                            xhr, status
-                        );
-                    }
-
-                    this.scope.logger[status === 'error' ? 'warn' : 'debug'](arguments);
                 },
 
                 /**
@@ -193,7 +147,7 @@ define(
 
                     /**
                      * Define resize callback
-                     * @type {function(this:Controller)}
+                     * @type {Function}
                      */
                     var callback = this.controller.resizeWindowPublisher.
                         bind(this);
@@ -245,6 +199,7 @@ define(
 
                     /**
                      * Define local scope
+                     * @type {Application}
                      */
                     var scope = this.scope;
 
@@ -267,6 +222,7 @@ define(
             },
             AntHill.prototype,
             BaseController.prototype,
+            BehaviorErrorHandler.prototype,
             Routes.prototype
         );
     }

@@ -17,6 +17,13 @@ define([
      * @constructor
      */
     var BasePermission = function BasePermission() {
+
+        /**
+         * Define scope
+         * @property BasePermission
+         * @type {undefined}
+         */
+        this.scope = undefined;
     };
 
     return BasePermission.extend('BasePermission', {

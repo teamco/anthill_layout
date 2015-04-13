@@ -12,7 +12,7 @@ define([
 
     /**
      * Define language types
-     * @type {{en-us: *}}
+     * @type {Object}
      */
     var langTypes = {
         'en-us': EnUs

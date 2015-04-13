@@ -8,7 +8,7 @@
 
 define([
     'config/anthill'
-], function initCRUD(AntHill) {
+], function defineCRUD(AntHill) {
 
     /**
      * Define abstract CRUD
@@ -16,6 +16,20 @@ define([
      * @constructor
      */
     var CRUD = function CRUD() {
+
+        /**
+         * Define scope
+         * @property CRUD
+         * @type {undefined}
+         */
+        this.scope = undefined;
+
+        /**
+         * Define base
+         * @property CRUD
+         * @type {undefined}
+         */
+        this.base = undefined;
     };
 
     return CRUD.extend('CRUD', {

@@ -22,6 +22,20 @@ define([
      * @constructor
      */
     var BaseView = function BaseView() {
+
+        /**
+         * Define elements
+         * @property BaseView
+         * @type {Object}
+         */
+        this.elements = {};
+
+        /**
+         * Define scope
+         * @property BaseView
+         * @type {AntHill}
+         */
+        this.scope = undefined;
     };
 
     return BaseView.extend('BaseView', {
@@ -36,7 +50,7 @@ define([
 
             /**
              * Define model
-             * @type {{}}
+             * @type {BaseModel}
              */
             var model = this.scope.model;
 
