@@ -203,10 +203,22 @@ define(function defineSiteConfigWidgetGenerator() {
              * Get scope
              * @type {SiteConfig}
              */
-            var scope = this.controller.scope,
-                controller = this.controller,
+            var controller = this.controller,
+                scope = controller.scope,
                 data = this.data,
                 validate = controller.i18n.t('widget.generation.inputs.validate');
+
+
+            if (!data) {
+
+                scope.view.get$modal().handleNotification(validate, 'warning');
+                scope.logger.warn(validate, xhr, opts);
+
+                // Allow to create another one
+                controller.stopSendingEventOnApprove(false);
+                xhr.abort();
+                return false;
+            }
 
             if (data.validate || data.empty) {
 
@@ -216,6 +228,7 @@ define(function defineSiteConfigWidgetGenerator() {
                 // Allow to create another one
                 controller.stopSendingEventOnApprove(false);
                 xhr.abort();
+                return false;
             }
 
             /**
@@ -226,7 +239,7 @@ define(function defineSiteConfigWidgetGenerator() {
                 exist = controller.i18n.t('widget.generation.resource.exist'),
                 abort = controller.i18n.t('widget.generation.ajax.abort');
 
-            if (gallery && gallery.model.staticData.isExistResource(data.collector.resource)) {
+            if (gallery && data.collector && gallery.model.staticData.isExistResource(data.collector.resource)) {
 
                 data.$modal.handleNotification(exist, 'warning');
                 scope.logger.warn(exist, xhr, opts);
@@ -234,6 +247,7 @@ define(function defineSiteConfigWidgetGenerator() {
                 // Allow to create another one
                 controller.stopSendingEventOnApprove(false);
                 xhr.abort();
+                return false;
             }
 
             if (controller.stopSendingEventOnApprove(true)) {
@@ -241,6 +255,7 @@ define(function defineSiteConfigWidgetGenerator() {
                 data.$modal.handleNotification(abort, 'warning');
                 scope.logger.warn(abort, xhr, opts);
                 xhr.abort();
+                return false;
             }
         },
 
