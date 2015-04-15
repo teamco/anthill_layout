@@ -339,7 +339,7 @@ define([
                          */
                         var preferences = widget.model.getConfig('preferences');
 
-                        var thumbnail = preferences.thumbnail,
+                        var thumbnail = preferences.thumbnail || '',
                             css = thumbnail.length > 0 ? {backgroundImage: 'url("' + thumbnail + '")'} : {};
 
                         /**
