@@ -378,6 +378,18 @@ define([
                             })
                         };
 
+                    /**
+                     * Get current page
+                     * @type {Page}
+                     */
+                    var page = scope.controller.getPage(),
+                        isLoadedContent = page.controller.isLoadedContent();
+
+                    if (!isLoadedContent) {
+                        scope.logger.debug('Skip XHR until content was loaded');
+                        return false;
+                    }
+
                     $.ajax(opts).done(
 
                         function done(data, type, xhr) {
