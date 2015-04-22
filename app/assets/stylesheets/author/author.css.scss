@@ -126,14 +126,57 @@ body.admin ul.admin-navigation li > a {
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  background: transparent no-repeat bottom left;
+  background-size: 32px;
+  position: relative;
+  z-index: 1;
 }
 
 body.admin ul.admin-navigation li span {
   position: absolute;
-  bottom: 1em;
-  right: 1em;
   font-size: 1.1em;
-  color: #005fb3;
+  color: #333;
+  display: inline-block;
+  width: 100%;
+  text-align: right;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0) 100%);
+  left: 0;
+  bottom: 0;
+  height: 4em;
+  line-height: 4em;
+  padding-right: 10px;
+  text-shadow: 1px 1px 1px #fff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top: 1px solid #fff;
+}
+
+body.admin ul.admin-navigation li.category {
+  clear: both;
+  width: 100%;
+  height: auto;
+  box-shadow: none;
+  font-size: 24px;
+  text-shadow: 1px 1px 1px #333;
+  color: #fff;
+  background: transparent;
+  padding: 5px 0 0;
+}
+
+body.admin ul.admin-navigation li.sites a {
+  background-image: url("/assets/site-storage.png");
+}
+
+body.admin ul.admin-navigation li.site-types a {
+  background-image: url("/assets/site-type.png");
+}
+
+body.admin ul.admin-navigation li.widgets a {
+  background-image: url("/assets/widgets.png");
+}
+
+body.admin ul.admin-navigation li.widget-categories a {
+  background-image: url("/assets/widget-category.png");
 }
 
 body.admin h1 {
@@ -378,7 +421,7 @@ body.admin form ul.categories > li {
   margin-bottom: 10px;
   padding: 5px 10px;
   border-radius: 5px;
-  background: linear-gradient(to bottom, #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%);
+  background: linear-gradient(to bottom, #f2f5f6 0%, #e3eaed 37%, #c8d7dc 100%);
 }
 
 body.admin form ul.categories > li > label {
