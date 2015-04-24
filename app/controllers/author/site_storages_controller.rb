@@ -33,6 +33,9 @@ class Author::SiteStoragesController < Author::AuthorController
           uuid: @author_site_storage.uuid
       }
 
+      mode = SiteType.find_by_name(params[:mode])
+      @storage[:mode] = mode.name unless mode.nil?
+
       activated = @author_site_storage.author_site_versions.where(activated: true).first
 
       unless activated.nil?
