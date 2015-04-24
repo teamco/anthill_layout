@@ -29,3 +29,6 @@ en:
   sites_management: "Sites Management"
   sites_storage: "Sites storage"
   site_types: "Site types"
+  version: "Version"
+  edit: "Edit"
+  preview: "Preview"

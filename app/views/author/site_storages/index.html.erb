@@ -1,32 +1,27 @@
-<table>
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>UUID</th>
-    <th>Type</th>
-    <th>Key</th>
-    <th>Preview</th>
-    <th>Version</th>
-    <th>Widgets</th>
-    <th>Destroy</th>
-    <th>Author</th>
-  </tr>
-  </thead>
-  <tbody>
+<ul class="admin-navigation inner">
   <% @author_site_storages.each_with_index do |author_site_storage, index| %>
       <% versions = author_site_storage.author_site_versions %>
       <% activated_version = versions.where(activated: true).first %>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td><%= author_site_storage.uuid %></td>
-        <td><%= author_site_storage.author_site_type.try(:name) %></td>
-        <td class="name"><%= link_to author_site_storage.key, edit_author_site_storage_path(author_site_storage) %></td>
-        <td><%= link_to "Show #{author_site_storage.key}", {}, {target: '_blank', href: "/sites/#{author_site_storage.key}"} %></td>
-        <td class="c"><%= link_to "#{activated_version.try(:version) || '?'} (#{versions.length})", author_site_storage_site_versions_path(author_site_storage) %></td>
-        <td class="c"><%= author_site_storage.author_widgets.length %></td>
-        <td class="c"><%= link_to_destroy(author_site_storage, author_site_storage.key) %></td>
-        <td><%= edit_user(author_site_storage) %></td>
-      </tr>
+      <li>
+        <%= link_to author_site_storage.key, {}, {target: '_blank', href: "/sites/#{author_site_storage.key}"} %>
+        <h4><%= author_site_storage.author_site_type.try(:name) %></h4>
+        <h6><%= author_site_storage.uuid %></h6>
+
+        <h3>
+          <%= author_site_storage.author_widgets.length %><br/>
+          <span><%= "#{t('widgets').downcase}" %></span>
+        </h3>
+
+        <div>
+          <div>
+            <ul class="menu arrow_box">
+              <li><%= link_to t('preview'), {}, {target: '_blank', href: "/sites/#{author_site_storage.key}/consumption"} %></li>
+              <li><%= link_to t('edit'), edit_author_site_storage_path(author_site_storage) %></li>
+              <li><%= link_to_destroy(author_site_storage, author_site_storage.key) %></li>
+            </ul>
+          </div>
+          <%= link_to t('version'), author_site_storage_site_versions_path(author_site_storage) %><%= ": #{activated_version.try(:version) || '?'} (#{versions.length})" %>
+        </div>
+      </li>
   <% end %>
-  </tbody>
-</table>
+</ul>

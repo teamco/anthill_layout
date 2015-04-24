@@ -6,6 +6,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  list-style: none;
 }
 
 body.admin {
@@ -103,7 +104,7 @@ body.admin section.content {
   position: relative;
 }
 
-body.admin ul.admin-navigation li {
+body.admin ul.admin-navigation > li {
   position: relative;
   width: 10em;
   height: 10em;
@@ -117,7 +118,12 @@ body.admin ul.admin-navigation li {
   background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
 }
 
-body.admin ul.admin-navigation li > a {
+body.admin ul.admin-navigation.inner > li {
+  width: 15em;
+  height: 15em;
+}
+
+body.admin ul.admin-navigation > li > a {
   text-decoration: none;
   color: #3b5a82;
   font-size: 1.5em;
@@ -132,7 +138,34 @@ body.admin ul.admin-navigation li > a {
   z-index: 1;
 }
 
-body.admin ul.admin-navigation li span {
+body.admin ul.admin-navigation.inner > li h3 {
+  font-size: 3em;
+  position: absolute;
+  bottom: 1.7em;
+  color: #ce3e26;
+  text-shadow: 1px 1px #333;
+  right: 0.3em;
+  line-height: 0.5em;
+}
+
+body.admin ul.admin-navigation.inner > li h3 span {
+  font-size: 12px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+body.admin ul.admin-navigation.inner > li h4 {
+  color: #0077b3;
+  margin-bottom: 0.5em;
+}
+
+body.admin ul.admin-navigation.inner > li > a {
+  height: auto;
+  margin-bottom: 0.3em;
+}
+
+body.admin ul.admin-navigation > li > div {
   position: absolute;
   font-size: 1.1em;
   color: #333;
@@ -151,32 +184,90 @@ body.admin ul.admin-navigation li span {
   border-top: 1px solid #fff;
 }
 
-body.admin ul.admin-navigation li.category {
-  clear: both;
-  width: 100%;
-  height: auto;
-  box-shadow: none;
-  font-size: 24px;
-  text-shadow: 1px 1px 1px #333;
+body.admin ul.admin-navigation.inner > li > div > div {
+  min-width: 30px;
+  height: 50px;
+  background: transparent image_url('settings.png') no-repeat 0.5em center;
+  float: left;
+  cursor: pointer;
+}
+
+body.admin ul.admin-navigation.inner > li > div > div ul.menu {
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #333;
+  transition: all 0.5s linear;
+  opacity: 0;
+  left: 30px;
+}
+
+body.admin ul.admin-navigation.inner > li > div > div:hover ul.menu {
+  display: inline-block;
+  opacity: 1;
+}
+
+body.admin ul.admin-navigation.inner > li > div > div ul.menu li {
+  padding: 5px 15px 5px 10px;
+  text-align: left;
+  line-height: normal;
+  text-shadow: none;
+  font-size: 12px;
+}
+
+body.admin ul.admin-navigation.inner > li > div > div ul.menu li a {
+  color: #dedede;
+  text-decoration: none;
+}
+
+body.admin ul.admin-navigation.inner > li > div > div ul.menu li:hover a {
   color: #fff;
-  background: transparent;
-  padding: 5px 0 0;
 }
 
-body.admin ul.admin-navigation li.sites a {
-  background-image: url("/assets/site-storage.png");
+body.admin .arrow_box {
+  position: relative;
+  background: #364854;
+  border: 2px solid #c2e1f5;
 }
 
-body.admin ul.admin-navigation li.site-types a {
-  background-image: url("/assets/site-type.png");
+body.admin .arrow_box:after,
+body.admin .arrow_box:before {
+  right: 100%;
+  top: 25px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
 }
 
-body.admin ul.admin-navigation li.widgets a {
-  background-image: url("/assets/widgets.png");
+body.admin .arrow_box:after {
+  border-color: rgba(54, 72, 84, 0);
+  border-right-color: #364854;
+  border-width: 10px;
+  margin-top: -10px;
 }
 
-body.admin ul.admin-navigation li.widget-categories a {
-  background-image: url("/assets/widget-category.png");
+body.admin .arrow_box:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-right-color: #c2e1f5;
+  border-width: 13px;
+  margin-top: -13px;
+}
+
+body.admin ul.admin-navigation > li.sites a {
+  background-image: image_url("site-storage.png");
+}
+
+body.admin ul.admin-navigation > li.site-types a {
+  background-image: image_url("site-type.png");
+}
+
+body.admin ul.admin-navigation > li.widgets a {
+  background-image: image_url("widgets.png");
+}
+
+body.admin ul.admin-navigation > li.widget-categories a {
+  background-image: image_url("widget-category.png");
 }
 
 body.admin h1 {
