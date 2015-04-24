@@ -165,6 +165,14 @@ body.admin ul.admin-navigation.inner > li > a {
   margin-bottom: 0.3em;
 }
 
+body.admin ul.admin-navigation.inner > li > a.add {
+  font-size: 12em;
+  margin: 0;
+  text-align: center;
+  color: #F0FFFF;
+  text-shadow: 1px 1px #333;
+}
+
 body.admin ul.admin-navigation > li > div {
   position: absolute;
   font-size: 1.1em;
@@ -195,14 +203,12 @@ body.admin ul.admin-navigation.inner > li > div > div {
 body.admin ul.admin-navigation.inner > li > div > div ul.menu {
   border-radius: 5px;
   box-shadow: 1px 1px 5px #333;
-  transition: all 0.5s linear;
-  opacity: 0;
   left: 30px;
+  display: none;
 }
 
 body.admin ul.admin-navigation.inner > li > div > div:hover ul.menu {
   display: inline-block;
-  opacity: 1;
 }
 
 body.admin ul.admin-navigation.inner > li > div > div ul.menu li {
@@ -223,7 +229,7 @@ body.admin ul.admin-navigation.inner > li > div > div ul.menu li:hover a {
 }
 
 body.admin .arrow_box {
-  position: relative;
+  position: absolute;
   background: #364854;
   border: 2px solid #c2e1f5;
 }

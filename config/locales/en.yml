@@ -31,4 +31,5 @@ en:
   site_types: "Site types"
   version: "Version"
   edit: "Edit"
-  preview: "Preview"
+  consumption: "Consumption"
+  development: "Development"

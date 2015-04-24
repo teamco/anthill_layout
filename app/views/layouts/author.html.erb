@@ -36,7 +36,6 @@
   </section>
   <section class="content <%= controller_name %>">
     <% unless %w[sessions passwords registrations].include? controller_name %>
-        <%#= render_title if action_name == 'index' %>
         <%= yield %>
     <% end %>
   </section>
