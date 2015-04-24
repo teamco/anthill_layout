@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   end
 
   get '/sites/:key', to: 'author/site_storages#show'
+  get '/sites/:key/:mode', to: 'author/site_storages#show'
+
   put '/sites/:key', to: 'author/site_storages#update'
   put '/sites/activate/:key', to: 'author/site_storages#activate'
 
