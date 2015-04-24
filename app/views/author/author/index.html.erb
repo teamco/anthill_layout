@@ -1,20 +1,20 @@
 <ul class="admin-navigation">
-  <li class="category">Sites management</li>
+  <li class="category"><%= t('sites_management') %></li>
   <li class="sites">
-    <%= link_to 'Sites storage', author_site_storages_path %>
+    <%= link_to t('sites_storage'), author_site_storages_path %>
     <span><%= @author[:site_storages] %> (<%= @author[:site_versions] %>)</span>
   </li>
   <li class="site-types">
-    <%= link_to 'Site types', author_site_types_path %>
+    <%= link_to t('site_types'), author_site_types_path %>
     <span><%= @author[:site_types] %></span>
   </li>
-  <li class="category">Widgets management</li>
+  <li class="category"><%= t('widget_management') %></li>
   <li class="widgets">
-    <%= link_to 'Widgets', author_widgets_path %>
+    <%= link_to t('widgets'), author_widgets_path %>
     <span><%= @author[:widgets] %></span>
   </li>
   <li class="widget-categories">
-    <%= link_to 'Widget Categories', author_widget_categories_path %>
+    <%= link_to t('widget_categories'), author_widget_categories_path %>
     <span><%= @author[:widget_categories] %></span>
   </li>
 </ul>
