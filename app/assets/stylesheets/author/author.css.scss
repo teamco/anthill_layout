@@ -106,8 +106,8 @@ body.admin section.content {
 
 body.admin ul.admin-navigation > li {
   position: relative;
-  width: 10em;
-  height: 10em;
+  width: 15em;
+  height: 15em;
   display: inline-block;
   float: left;
   margin-right: 1em;
@@ -127,11 +127,6 @@ body.admin ul.admin-navigation > li.activated {
   background: linear-gradient(to bottom, rgba(252, 255, 244, 1) 0%, rgba(233, 233, 206, 1) 100%);
 }
 
-body.admin ul.admin-navigation.inner > li {
-  width: 15em;
-  height: 15em;
-}
-
 body.admin ul.admin-navigation > li > a {
   text-decoration: none;
   color: #3b5a82;
@@ -141,8 +136,8 @@ body.admin ul.admin-navigation > li > a {
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
-  background: transparent no-repeat bottom left;
-  background-size: 32px;
+  background: transparent no-repeat left 5em;
+  background-size: 64px;
   position: relative;
   z-index: 1;
 }
