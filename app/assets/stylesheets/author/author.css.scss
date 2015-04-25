@@ -167,6 +167,7 @@ body.admin ul.admin-navigation.inner > li h6 {
 body.admin ul.admin-navigation.inner > li > a {
   height: auto;
   margin-bottom: 0.3em;
+  line-height: normal;
 }
 
 body.admin ul.admin-navigation.inner > li > a.add {
@@ -197,7 +198,6 @@ body.admin ul.admin-navigation > li > div {
 }
 
 body.admin ul.admin-navigation > li > div > img {
-  width: 40px;
   height: 40px;
   margin-top: 4px;
 }
