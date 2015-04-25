@@ -118,6 +118,11 @@ body.admin ul.admin-navigation > li {
   background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
 }
 
+body.admin ul.admin-navigation > li:hover {
+  background: linear-gradient(to bottom, rgba(242, 245, 246, 1) 0%, rgba(227, 234, 237, 1) 37%, rgba(200, 215, 220, 1) 100%);
+}
+
+body.admin ul.admin-navigation > li.activated:hover,
 body.admin ul.admin-navigation > li.activated {
   background: linear-gradient(to bottom, rgba(252, 255, 244, 1) 0%, rgba(233, 233, 206, 1) 100%);
 }
