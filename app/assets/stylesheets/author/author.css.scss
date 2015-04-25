@@ -160,6 +160,10 @@ body.admin ul.admin-navigation.inner > li h4 {
   margin-bottom: 0.5em;
 }
 
+body.admin ul.admin-navigation.inner > li h6 {
+  margin-bottom: 0.5em;
+}
+
 body.admin ul.admin-navigation.inner > li > a {
   height: auto;
   margin-bottom: 0.3em;
@@ -190,6 +194,12 @@ body.admin ul.admin-navigation > li > div {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   border-top: 1px solid #fff;
+}
+
+body.admin ul.admin-navigation > li > div > img {
+  width: 40px;
+  height: 40px;
+  margin-top: 4px;
 }
 
 body.admin ul.admin-navigation.inner > li > div > div {

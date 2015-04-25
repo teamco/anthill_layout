@@ -1,35 +1,24 @@
-<table>
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Icon</th>
-    <th>Size</th>
-    <th>Category</th>
-    <th>Resource</th>
-    <th>Destroy</th>
-  </tr>
-  </thead>
-
-  <tbody>
+<ul class="admin-navigation inner">
   <% @json_data[:categories].each do |category| %>
-      <tr class="category">
-        <td><%= category.id %></td>
-        <td colspan="7"><%= "#{category.name_value} (#{category.author_widgets.length})" %></td>
-      </tr>
+      <li class="category"><%= "#{category.name_value} (#{category.author_widgets.length})" %></li>
       <% category.author_widgets.order(name: :asc).each do |author_widget| %>
-          <tr>
-            <td><%= author_widget.id %></td>
-            <td class="name"><%= link_to author_widget.name, edit_author_widget_path(author_widget) %></td>
-            <td><%= author_widget.author_widget_category.name_value %></td>
-            <td title="<%= author_widget.description %>"><%= truncate(author_widget.description, length: 150, separator: ' ') %></td>
-            <td class="c"><%= image_tag author_widget.thumbnail %></td>
-            <td class="c"><%= author_widget.width %> x <%= author_widget.height %></td>
-            <td class="c"><%= author_widget.resource %></td>
-            <td class="c"><%= link_to_destroy(author_widget, author_widget.name) %></td>
-          </tr>
+          <li>
+            <%= link_to author_widget.name, edit_author_widget_path(author_widget) %>
+            <h6><%= author_widget.resource %></h6>
+            <h4 title="<%= author_widget.description %>"><%= truncate(author_widget.description, length: 50, separator: ' ') %></h4>
+
+            <h3><%= author_widget.width %> x <%= author_widget.height %></h3>
+
+            <div>
+              <div>
+                <ul class="menu arrow_box">
+                  <li><%= link_to t('edit'), edit_author_widget_path(author_widget) %></li>
+                  <li><%= link_to_destroy(author_widget, author_widget.name) %></li>
+                </ul>
+              </div>
+              <%= image_tag author_widget.thumbnail %>
+            </div>
+          </li>
       <% end %>
   <% end %>
-  </tbody>
-</table>
+</ul>
