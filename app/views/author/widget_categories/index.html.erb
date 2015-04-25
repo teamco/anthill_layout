@@ -1,21 +1,19 @@
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Index</th>
-      <th>Destroy</th>
-    </tr>
-  </thead>
+<ul class="admin-navigation inner">
+  <% @author_widget_categories.each do |author_widget_category| %>
+      <li>
+        <%= link_to author_widget_category.name_value, edit_author_widget_category_path(author_widget_category) %>
+        <h4><%= author_widget_category.name_index %></h4>
 
-  <tbody>
-    <% @author_widget_categories.each_with_index do |author_widget_category, index| %>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td class="name"><%= link_to author_widget_category.name_value, edit_author_widget_category_path(author_widget_category)  %></td>
-        <td><%= author_widget_category.name_index %></td>
-        <td class="c"><%= link_to_destroy(author_widget_category, author_widget_category.name_value) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <h3><%= author_widget_category.author_widgets.length %></h3>
+
+        <div>
+          <div>
+            <ul class="menu arrow_box">
+              <li><%= link_to t('edit'), edit_author_widget_category_path(author_widget_category) %></li>
+              <li><%= link_to_destroy(author_widget_category, author_widget_category.name_value) %></li>
+            </ul>
+          </div>
+        </div>
+      </li>
+  <% end %>
+</ul>
