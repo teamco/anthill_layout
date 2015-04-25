@@ -2,7 +2,11 @@
   <li class="category"><%= t('sites_management') %></li>
   <li class="sites">
     <%= link_to t('sites_storage'), author_site_storages_path %>
-    <div><%= @author[:site_storages] %> (<%= @author[:site_versions] %>)</div>
+    <div><%= @author[:site_storages] %></div>
+  </li>
+  <li class="site-versions">
+    <%= link_to t('sites_versions'), author_site_versions_path %>
+    <div><%= @author[:site_versions] %></div>
   </li>
   <li class="site-types">
     <%= link_to t('site_types'), author_site_types_path %>

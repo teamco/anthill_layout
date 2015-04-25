@@ -17,7 +17,7 @@
         <span>
           <% unless controller_name == 'author' %>
               &raquo;
-              <% action_key = "#{action_name.humanize}#{action_name == 'index' ? '' : "(#{params[:id]})"}" %>
+              <% action_key = "#{action_name.humanize}#{params[:id].nil? ? '' : "(#{params[:id]})"}" %>
               <%= link_to "#{controller_name.humanize}", {controller: controller_name, action: :index} %>:
               <%= link_to action_key, {controller: controller_name, action: action_name, id: params[:id]} %>
               <%= "(#{@resource[:items]})" if action_name == 'index' %>

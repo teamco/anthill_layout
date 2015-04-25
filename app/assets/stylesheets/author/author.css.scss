@@ -118,6 +118,10 @@ body.admin ul.admin-navigation > li {
   background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
 }
 
+body.admin ul.admin-navigation > li.activated {
+  background: linear-gradient(to bottom, rgba(252, 255, 244, 1) 0%, rgba(233, 233, 206, 1) 100%);
+}
+
 body.admin ul.admin-navigation.inner > li {
   width: 15em;
   height: 15em;
@@ -172,10 +176,11 @@ body.admin ul.admin-navigation.inner > li > a {
 
 body.admin ul.admin-navigation.inner > li > a.add {
   font-size: 12em;
+  line-height: 1em;
   margin: 0;
   text-align: center;
-  color: #F0FFFF;
-  text-shadow: 1px 1px #333;
+  color: cadetblue;
+  text-shadow: 1px 1px #fff;
 }
 
 body.admin ul.admin-navigation > li > div {
@@ -284,6 +289,10 @@ body.admin ul.admin-navigation > li.category {
 
 body.admin ul.admin-navigation > li.sites a {
   background-image: image_url("site-storage.png");
+}
+
+body.admin ul.admin-navigation > li.site-versions a {
+  background-image: image_url("site-versions.png");
 }
 
 body.admin ul.admin-navigation > li.site-types a {

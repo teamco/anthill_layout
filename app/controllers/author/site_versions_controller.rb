@@ -11,11 +11,11 @@ class Author::SiteVersionsController < Author::AuthorController
   def index
     site_storage = SiteStorage.where(key: params[:site_storage_id]).first
     @author_site_versions = site_storage.nil? ?
-        SiteVersion.all.order(:updated_at).reverse_order :
+        SiteVersion.all.order(:updated_at).reverse_order.group(:site_storage_id) :
         site_storage.author_site_versions.order(:updated_at).reverse_order
 
     @resource = {
-        items: @author_site_versions.size,
+        items: @author_site_versions.length,
         path: new_author_site_version_path
     }
 
