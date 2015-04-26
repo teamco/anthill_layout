@@ -2,7 +2,7 @@
     <p class="undefined-site"><%= t('undefined_version') %></p>
 <% elsif @storage[:mode] != 'consumption' %>
     <%= render partial: 'show', locals: {storage: @storage, current_user: current_user} %>
-<% elsif @storage[:mode] == 'consumption' and @storage[:publish] %>
+<% elsif @storage[:mode] == 'consumption' and @storage[:published] %>
     <%= render partial: 'show', locals: {storage: @storage, current_user: current_user} %>
 <% else %>
     <p class="undefined-site"><%= t('not_published') %></p>
