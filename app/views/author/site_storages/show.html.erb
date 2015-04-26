@@ -1,25 +1,9 @@
-<% key = @storage[:key] %>
 <% if @storage[:version].nil? %>
-    <p class="undefined-site">Undefined site version</p>
+    <p class="undefined-site"><%= t('undefined_version') %></p>
+<% elsif @storage[:mode] != 'consumption' %>
+    <%= render partial: 'show', locals: {storage: @storage, current_user: current_user} %>
+<% elsif @storage[:mode] == 'consumption' and @storage[:publish] %>
+    <%= render partial: 'show', locals: {storage: @storage, current_user: current_user} %>
 <% else %>
-    <%= stylesheet_link_tag("public/#{key}/css/general") %>
-    <%= javascript_include_tag(
-                'scripts/core/lib/require',
-                'data-resource' => key,
-                'data-user' => current_user.nil? ? 'guest' : current_user.email,
-                'data-version' => @storage[:version],
-                'data-mode' => @storage[:mode],
-                'data-uuid' => @storage[:uuid],
-                'data-main' => javascript_path('public/init'),
-                'id' => 'require-init'
-        ) %>
-
-    <%= javascript_tag defer: 'defer', id: 'set-local-storage' do -%>
-        (function(){
-            window.localStorage['<%= key %>'] = '<%= @storage[:content] %>';
-            var script = document.getElementById('set-local-storage');
-            script.parentNode.removeChild(script);
-        })();
-    <% end -%>
-
+    <p class="undefined-site"><%= t('not_published') %></p>
 <% end %>

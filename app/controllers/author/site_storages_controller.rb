@@ -30,7 +30,8 @@ class Author::SiteStoragesController < Author::AuthorController
       @storage = {
           key: @author_site_storage.key,
           mode: @author_site_storage.author_site_type.name,
-          uuid: @author_site_storage.uuid
+          uuid: @author_site_storage.uuid,
+          published: @author_site_storage.publish
       }
 
       mode = SiteType.find_by_name(params[:mode])
@@ -48,6 +49,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
   # GET /author/site_storages/new
   def new
+    @author_site_types = SiteType.order(:name)
     @author_site_storage = SiteStorage.new
     render action: :form
   end
@@ -279,7 +281,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_storage
-    @author_site_types = SiteType.all
+    @author_site_types = SiteType.order(:name)
     @author_site_storage = SiteStorage.where(key: params[:key]).first ||
         SiteStorage.where(key: params[:id]).first
     @target_path = get_target_url(@author_site_storage.key) unless @author_site_storage.nil?
@@ -291,6 +293,7 @@ class Author::SiteStoragesController < Author::AuthorController
         :key,
         :content,
         :site_type_id,
+        :publish,
         :activated_version,
         author_site_storage_widget_ids: [],
         author_site_versions_attributes: [

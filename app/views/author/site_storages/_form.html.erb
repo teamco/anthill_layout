@@ -7,6 +7,7 @@
     <%= render_notification(@author_site_storage) -%>
     <%= render_text_field(f, :key, !@author_site_storage.key.nil?) -%>
     <%= render_text_area(f, :content) -%>
+    <%= render_checkbox(f, :publish) -%>
     <%= render_collection(f, 'Type', {
                                    id: :site_type_id,
                                    collection: @author_site_types,

@@ -36,3 +36,5 @@ en:
   development: "Development"
   show: "Show"
   show_all: "Show All"
+  not_published: "Site not published"
+  undefined_version: "Undefined site version"
