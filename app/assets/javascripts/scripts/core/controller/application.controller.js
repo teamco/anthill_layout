@@ -55,6 +55,16 @@ define(
                             api.createPage([], true);
 
                         this.model.setConfig('loading', false);
+
+                        /**
+                         * Get current page
+                         * @type {Page}
+                         */
+                        var page = this.controller.getPage();
+
+                        page.observer.publish(
+                            page.eventmanager.eventList.loadItemsContent
+                        );
                     }
                 },
 
