@@ -35,14 +35,6 @@ define([
         },
 
         /**
-         * Get interaction containment
-         * @memberOf WidgetInteractions
-         */
-        getInteractionContainment: function getInteractionContainment() {
-
-        },
-
-        /**
          * Set Interaction
          * @memberOf WidgetInteractions
          * @param {Function|Resizable|Draggable|Droppable} InteractionEvent

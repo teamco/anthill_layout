@@ -7,7 +7,7 @@
  */
 
 define([
-	'jquery.ui',
+    'jquery.ui',
     'modules/Interactions'
 ], function defineWidgetResize(ui, Interactions) {
 
@@ -50,18 +50,19 @@ define([
              * Define scope
              * @type {Widget}
              */
-            var scope = this.scope;
+            var scope = this.scope,
+                resizable = scope.model.getConfig('events').resizable;
 
             if (scope.permission.authorizedFunctionCall(this.init)) {
 
                 this.$scope.resizable(
                     $.extend({
-                        containment: scope.controller.getInteractionContainment(),
+                        containment: resizable.containment,
                         create: this.create.bind(this),
                         start: this.start.bind(this),
                         stop: this.stop.bind(this),
                         resize: this.resize.bind(this)
-                    }, scope.model.getConfig('events').resizable)
+                    }, resizable)
                 );
             }
         },
