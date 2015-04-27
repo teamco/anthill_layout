@@ -34,6 +34,13 @@ define([
             observer.publish(eventList.initResizable);
         },
 
+        /**
+         * Get interaction containment
+         * @memberOf WidgetInteractions
+         */
+        getInteractionContainment: function getInteractionContainment() {
+
+        },
 
         /**
          * Set Interaction

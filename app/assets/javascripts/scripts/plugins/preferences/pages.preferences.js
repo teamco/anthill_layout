@@ -103,6 +103,12 @@ define([
                     disabled: false,
                     value: false,
                     visible: true
+                },
+                outlineContainment: {
+                    type: 'checkbox',
+                    disabled: false,
+                    value: false,
+                    visible: true
                 }
             };
 

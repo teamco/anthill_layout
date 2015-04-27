@@ -90,6 +90,7 @@ define([
             loadItemsContent: 'load.items.content',
             setLoadedContent: 'set.loaded.content',
             enableItemInteractions: 'enable.item.interactions',
+            updateItemInteractions: 'update.item.interactions',
 
             loadPreferences: 'load.preferences',
             transferContentPreferences: 'transfer.content.preferences',

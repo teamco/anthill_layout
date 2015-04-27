@@ -189,6 +189,27 @@ define([
          */
         setLazyLoading: function setLazyLoading(lazy) {
             this._setItemInfoPreferences('lazyLoading', lazy);
+        },
+
+        /**
+         * Set page outline containment
+         * @memberOf PageModel
+         * @param {boolean} outline
+         */
+        setOutlineContainment: function setOutlineContainment(outline) {
+
+            this._setItemInfoPreferences('outlineContainment', outline);
+
+            /**
+             * Get scope
+             * @type {Page}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateItemInteractions,
+                outline
+            );
         }
 
     }, BaseModel.prototype);

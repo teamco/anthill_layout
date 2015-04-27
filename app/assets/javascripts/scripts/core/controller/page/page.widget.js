@@ -122,7 +122,7 @@ define([
                  * @type {Page}
                  */
                 var scope = this.scope,
-                    items = this.model.getItems(),
+                    items = scope.model.getItems(),
                     grid = scope.layout.controller.minCellWidth() +
                         scope.layout.config.grid.margin;
 
@@ -189,6 +189,48 @@ define([
                         this.eventmanager.eventList.setLoadedContent,
                         true
                     );
+                }
+            },
+
+            /**
+             * Update widget interactions
+             * @memberOf PageWidget
+             * @param {boolean} outline
+             */
+            updateItemInteractions: function updateItemInteractions(outline) {
+
+                /**
+                 * Get scope
+                 * @type Page
+                 */
+                var scope = this.scope,
+                    items = scope.model.getItems(),
+                    item;
+
+                scope.logger.debug('Update widget containment interactions', outline);
+
+                var containment = outline ?
+                    scope.view.get$item().$ :
+                    false;
+
+                for (var index in items) {
+
+                    if (items.hasOwnProperty(index)) {
+
+                        /**
+                         * Get item
+                         * @type Widget
+                         */
+                        item = items[index];
+
+                        item.observer.publish(
+                            item.eventmanager.eventList.initDraggable
+                        );
+
+                        item.observer.publish(
+                            item.eventmanager.eventList.initResizable
+                        );
+                    }
                 }
             }
         },

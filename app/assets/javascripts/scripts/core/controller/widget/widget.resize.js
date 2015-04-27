@@ -48,6 +48,7 @@ define([
 
             /**
              * Define scope
+             * @type {Widget}
              */
             var scope = this.scope;
 
@@ -55,7 +56,7 @@ define([
 
                 this.$scope.resizable(
                     $.extend({
-                        containment: scope.controller.get$page().$,
+                        containment: scope.controller.getInteractionContainment(),
                         create: this.create.bind(this),
                         start: this.start.bind(this),
                         stop: this.stop.bind(this),
