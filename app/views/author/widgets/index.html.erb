@@ -1,6 +1,6 @@
 <ul class="admin-navigation inner">
   <% @json_data[:categories].each do |category| %>
-      <li class="category"><%= "#{category.name_value} (#{category.author_widgets.length})" %></li>
+      <li class="category"><%= "#{category.name_value} (#{category.author_widgets.select { |x| x.id if @json_data[:in].include? x.id }.length})" %></li>
       <% category.author_widgets.order(name: :asc).each do |author_widget| %>
           <% if @json_data[:in].include? author_widget.id %>
               <li>
