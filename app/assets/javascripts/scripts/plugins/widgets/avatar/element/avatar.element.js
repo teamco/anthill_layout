@@ -40,6 +40,7 @@ define([
             '/widgets/avatar/images/avatar_placeholder.jpg'
         ].join('');
 
+        this.coordinates = {};
         return this;
     };
 
@@ -49,9 +50,11 @@ define([
          * Render Embedded content
          * @memberOf AvatarElement
          */
-        renderEmbeddedContent: function renderEmbeddedContent() {
+        renderEmbeddedContent: function renderEmbeddedContent(x, y) {
 
             var $element = this;
+            this.coordinates.x = x;
+            this.coordinates.y = y;
 
             var $avatarMainFrame = [
                 '<div class="bord">',

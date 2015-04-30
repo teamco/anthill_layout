@@ -30,8 +30,8 @@ define([
         initAvatarPosition: function initAvatarPosition() {
 
             if (localStorage.getItem('avatarX')) {
-                var left = localStorage.getItem('avatarX'),
-                    top = localStorage.getItem('avatarY');
+                var left = this.coordinates.x || 0,
+                    top = this.coordinates.y || 0;
 
                 this.$avatarImage.css({
                     top: top + 'px',
@@ -82,6 +82,8 @@ define([
         },
 
         setDraggable: function setDraggable(drag) {
+            var $element = this,
+                scope = $element.view.scope;
             if (drag) {
                 if (this.$avatarImage.data('ui-draggable')) {
                     this.$avatarImage.draggable('enable');
@@ -93,8 +95,16 @@ define([
                             var left = $(this).offset().left;
                             var parentTop = $('.bord').offset().top; //TODO replace .bord with existing object
                             var parentLeft = $('.bord').offset().left; //TODO replace .bord with existing object
-                            localStorage.setItem('avatarX', left - parentLeft - 5);
-                            localStorage.setItem('avatarY', top - parentTop - 5);
+
+                            scope.observer.publish(
+                                scope.eventmanager.eventList.updateCoordinates, [
+                                    left - parentLeft - 5,
+                                    top - parentTop - 5
+                                ]
+                            );
+
+                            //localStorage.setItem('avatarX', left - parentLeft - 5);
+                            //localStorage.setItem('avatarY', top - parentTop - 5);
                         }
                     });
                 }

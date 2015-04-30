@@ -19,7 +19,9 @@ define([
      */
     var AvatarEventManager = function AvatarEventManager() {
 
-        this.updateEventList({});
+        this.updateEventList({
+            updateCoordinates: 'update.coordinates'
+        });
     };
 
     return AvatarEventManager.extend('AvatarEventManager', {

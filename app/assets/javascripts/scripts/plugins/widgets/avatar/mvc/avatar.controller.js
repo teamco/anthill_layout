@@ -27,8 +27,26 @@ define([
          * @memberOf AvatarController
          */
         setEmbeddedContent: function setEmbeddedContent() {
+            this.view.elements.$avatar.renderEmbeddedContent(
+                this.model.getPrefs('avatarCoordinateX'),
+                this.model.getPrefs('avatarCoordinateY')
+            );
+        },
 
-            this.view.elements.$avatar.renderEmbeddedContent();
+        updateCoordinates: function updateCoordinates(x, y){
+            this.model.setAvatarCoordinateX(x);
+            this.model.setAvatarCoordinateY(y);
+            this.observer.publish(
+                this.eventmanager.eventList.transferContentPreferences, [
+                    'avatarCoordinateX', this.model.getPrefs('avatarCoordinateX')
+                ]
+            );
+            this.observer.publish(
+                this.eventmanager.eventList.transferContentPreferences, [
+                    'avatarCoordinateY', this.model.getPrefs('avatarCoordinateY')
+                ]
+            );
+            this.controller.store();
         },
 
         /**

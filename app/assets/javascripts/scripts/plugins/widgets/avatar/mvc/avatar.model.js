@@ -25,6 +25,18 @@ define([
          * @type {{}}
          */
         this.preferences = {
+            avatarCoordinateX: {
+                type: "number",
+                disable: true,
+                value: undefined,
+                visible: true
+            },
+            avatarCoordinateY: {
+                type: "number",
+                disable: true,
+                value: undefined,
+                visible: true
+            }
         };
 
         /**
@@ -37,6 +49,12 @@ define([
 
     return AvatarModel.extend('AvatarModel', {
 
+        setAvatarCoordinateX: function setAvatarCoordinateX(x) {
+            this.setPrefs('avatarCoordinateX', x);
+        },
+        setAvatarCoordinateY: function setAvatarCoordinateY(y) {
+            this.setPrefs('avatarCoordinateY', y);
+        }
 
     }, BaseModel.prototype, WidgetContentModel.prototype);
 });
