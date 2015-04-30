@@ -6,10 +6,11 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([], function defineEnUs() {
+define(function defineEnUs() {
 
     return {
-        'gallery.providers.all': 'All',
-        'gallery.providers.favorites': 'Favorites'
+        'change.photo': 'Change your avatar photo',
+        'like.photo': 'Like this photo',
+        'profile.setting': 'Profile Settings'
     };
 });

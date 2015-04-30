@@ -40,77 +40,97 @@ define([
             '/widgets/avatar/images/avatar_placeholder.jpg'
         ].join('');
 
+        /**
+         * Define coordinates
+         * @memberOf AvatarElement
+         * @type {{x: number, y: number}}
+         */
         this.coordinates = {};
+
         return this;
     };
 
-    return AvatarElement.extend('AvatarElement', {
+    return AvatarElement.extend(
+        'AvatarElement', {
 
-        /**
-         * Render Embedded content
-         * @memberOf AvatarElement
-         */
-        renderEmbeddedContent: function renderEmbeddedContent(x, y) {
+            /**
+             * Render Embedded content
+             * @memberOf AvatarElement
+             * @param {number} x
+             * @param {number} y
+             */
+            renderEmbeddedContent: function renderEmbeddedContent(x, y) {
 
-            var $element = this;
-            this.coordinates.x = x;
-            this.coordinates.y = y;
+                /**
+                 * Get Element
+                 * @type {AvatarElement}
+                 */
+                var $element = this;
 
-            var $avatarMainFrame = [
-                '<div class="bord">',
-                '<div class="imageFrame">',
-                '<img src="', this.defaultImage, '">',
-                '</div>',
-                '<div class="under_layer"><div class="iconsContainer"></div></div>',
-                '</div>'
-            ].join('');
+                this.coordinates.x = x;
+                this.coordinates.y = y;
 
-            var $draggMenu = [
-                '<div class="dragMenu">',
-                '<span>change image position</span>',
-                '<a class="dragIt">Unlock</a>',
-                '</div>'
-            ].join('');
+                var $avatarMainFrame = [
+                    '<div class="bord">',
+                    '<div class="imageFrame">',
+                    '<img src="', this.defaultImage, '">',
+                    '</div>',
+                    '<div class="under_layer"><div class="iconsContainer"></div></div>',
+                    '</div>'
+                ].join('');
 
-            var $avatarIconsData = [
-                {
-                    'class': 'changeAvatarButton',
-                    'title': 'Change your avatar photo'
-                },
-                {
-                    'class': 'likeButton',
-                    'title': 'Like this photo'
-                },
-                {
-                    'class': 'settingsButton',
-                    'title': 'Profile Settings'
+                var $draggMenu = [
+                    '<div class="dragMenu">',
+                    '<span>change image position</span>',
+                    '<a class="dragIt">Unlock</a>',
+                    '</div>'
+                ].join('');
+
+                var $avatarIconsData = [
+                    {
+                        'class': 'changeAvatarButton',
+                        'title': this.i18n.t('change.photo')
+                    },
+                    {
+                        'class': 'likeButton',
+                        'title': this.i18n.t('like.photo')
+                    },
+                    {
+                        'class': 'settingsButton',
+                        'title': this.i18n.t('profile.setting')
+                    }
+                ];
+
+                $element.view.controller.clearParentThumbnail();
+
+                $element.$.append(
+                    $avatarMainFrame
+                );
+
+                $('.imageFrame', $element.$).append($draggMenu);
+
+                for (i = 0; i < $avatarIconsData.length; i++) {
+                    $('.iconsContainer', $element.$).
+                        append([
+                            '<a class="', $avatarIconsData[i].class,
+                            '" title="', $avatarIconsData[i].title,
+                            '">'].join(''));
                 }
-            ];
 
-            $element.view.controller.clearParentThumbnail();
+                this.initFunctionality();
+            },
 
-            $element.$.append(
-                $avatarMainFrame
-            );
-
-            $('.imageFrame', $element.$).append($draggMenu);
-
-            for (i = 0; i < $avatarIconsData.length; i++) {
-                $('.iconsContainer', $element.$).
-                    append([
-                        '<a class="', $avatarIconsData[i].class,
-                        '" title="', $avatarIconsData[i].title,
-                        '">'].join(''));
+            /**
+             * Init functionality
+             * @memberOf AvatarElement
+             */
+            initFunctionality: function initFunctionality() {
+                this.defineSelectors();
+                this.initAvatarPosition();
+                this.bindConfig();
             }
-
-            this.initFunctionality();
         },
-
-        initFunctionality: function initFunctionality() {
-            this.defineSelectors();
-            this.initAvatarPosition();
-            this.bindConfig();
-        }
-
-    }, BaseElement.prototype, AvatarBehavior.prototype);
+        BaseElement.prototype,
+        AvatarBehavior.prototype
+    );
 });
