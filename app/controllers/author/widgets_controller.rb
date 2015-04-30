@@ -40,7 +40,7 @@ class Author::WidgetsController < Author::AuthorController
         order(name: :asc) if @author_widgets.nil? unless request.xhr?
 
     @resource = {
-        items: (@author_widgets || []).length,
+        items: (@author_widgets||[]).length,
         path: new_author_widget_path
     }
 
