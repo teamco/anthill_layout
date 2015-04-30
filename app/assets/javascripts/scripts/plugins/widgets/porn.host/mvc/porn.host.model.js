@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member PornHostModel
+         * @memberOf PornHostModel
          * @type {{
          *      pornhostEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member PornHostModel
+         * @memberOf PornHostModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set PornHost embed code
-         * @member PornHostModel
+         * @memberOf PornHostModel
          * @param {string} embed
          */
         setPornhostEmbedCode: function setPornhostEmbedCode(embed) {

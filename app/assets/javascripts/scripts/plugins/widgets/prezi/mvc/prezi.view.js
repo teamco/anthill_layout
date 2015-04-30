@@ -28,7 +28,7 @@ define([
 
         /**
          * Render prezi element
-         * @member PreziView
+         * @memberOf PreziView
          */
         renderPrezi: function renderPrezi() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member PreziView
+         * @memberOf PreziView
          * @returns {PreziPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member PreziView
+         * @memberOf PreziView
          * @param widgetRules
          * @param contentRules
          * @returns {PreziRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render prezi
-         * @member PreziView
+         * @memberOf PreziView
          */
         render: function render() {
 

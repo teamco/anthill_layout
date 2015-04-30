@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member AnimotoModel
+         * @memberOf AnimotoModel
          * @type {{
          *      animotoEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member AnimotoModel
+         * @memberOf AnimotoModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Animoto Url
-         * @member AnimotoModel
+         * @memberOf AnimotoModel
          * @param {string} embed
          */
         setAnimotoEmbedCode: function setAnimotoEmbedCode(embed) {

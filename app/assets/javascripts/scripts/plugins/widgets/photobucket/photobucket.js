@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Photobucket
+         * @memberOf Photobucket
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Photobucket
+         * @memberOf Photobucket
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Photobucket
+         * @memberOf Photobucket
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Pixiv
+         * @memberOf Pixiv
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Pixiv
+         * @memberOf Pixiv
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Pixiv
+         * @memberOf Pixiv
          * @type {MVC}
          */
         this.mvc = new MVC({

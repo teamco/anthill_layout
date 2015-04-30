@@ -2,7 +2,7 @@
  * Created by teamco on 5/21/14.
  */
 
-define([], function defineWidgetOverlapping() {
+define(function defineWidgetOverlapping() {
 
     /**
      * Define Widget Overlapping
@@ -10,14 +10,13 @@ define([], function defineWidgetOverlapping() {
      * @constructor
      */
     var WidgetOverlapping = function WidgetOverlapping() {
-
     };
 
     return WidgetOverlapping.extend('WidgetOverlapping', {
 
         /**
          * Adopt layer of a widgets
-         * @member WidgetOverlapping
+         * @memberOf WidgetOverlapping
          * @param {number} layer
          * @param {boolean} [save]
          */
@@ -38,7 +37,7 @@ define([], function defineWidgetOverlapping() {
 
         /**
          * Update widget z-index layer
-         * @member WidgetOverlapping
+         * @memberOf WidgetOverlapping
          * @param {boolean} up
          * @param {boolean} [save]
          */
@@ -81,7 +80,7 @@ define([], function defineWidgetOverlapping() {
 
         /**
          * Select overlapped widgets
-         * @member WidgetOverlapping
+         * @memberOf WidgetOverlapping
          * @returns {*}
          */
         selectOverlappedWidgets: function selectOverlappedWidgets() {
@@ -126,7 +125,7 @@ define([], function defineWidgetOverlapping() {
 
         /**
          * unSelect overlapped widgets
-         * @member WidgetOverlapping
+         * @memberOf WidgetOverlapping
          * @param source
          * @returns {*}
          */

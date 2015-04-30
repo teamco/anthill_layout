@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member WordcampTv
+         * @memberOf WordcampTv
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member WordcampTv
+         * @memberOf WordcampTv
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member WordcampTv
+         * @memberOf WordcampTv
          * @type {MVC}
          */
         this.mvc = new MVC({

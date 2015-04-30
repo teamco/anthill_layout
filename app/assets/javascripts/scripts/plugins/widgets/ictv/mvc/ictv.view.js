@@ -28,7 +28,7 @@ define([
 
         /**
          * Render ictv element
-         * @member IctvView
+         * @memberOf IctvView
          */
         renderIctv: function renderIctv() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member IctvView
+         * @memberOf IctvView
          * @returns {IctvPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member IctvView
+         * @memberOf IctvView
          * @param widgetRules
          * @param contentRules
          * @returns {IctvRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render ictv
-         * @member IctvView
+         * @memberOf IctvView
          */
         render: function render() {
 

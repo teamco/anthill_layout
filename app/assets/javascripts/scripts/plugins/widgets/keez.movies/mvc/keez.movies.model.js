@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member KeezMoviesModel
+         * @memberOf KeezMoviesModel
          * @type {{
          *      keezmoviesEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member KeezMoviesModel
+         * @memberOf KeezMoviesModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set KeezMovies embed code
-         * @member KeezMoviesModel
+         * @memberOf KeezMoviesModel
          * @param {string} embed
          */
         setKeezmoviesEmbedCode: function setKeezmoviesEmbedCode(embed) {

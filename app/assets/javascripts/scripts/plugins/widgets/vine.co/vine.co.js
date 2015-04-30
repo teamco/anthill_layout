@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member VineCo
+         * @memberOf VineCo
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member VineCo
+         * @memberOf VineCo
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @member VineCo
+         * @memberOf VineCo
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -14,9 +14,8 @@ define([
     'model/page.model',
     'view/page.view',
     'event/page.event.manager',
-    'config/layout',
     'permission/page.permission'
-], function definePage(AntHill, MVC, API, Controller, Model, View, EventManager, Layout, Permission) {
+], function definePage(AntHill, MVC, API, Controller, Model, View, EventManager, Permission) {
 
     /**
      * Define Page
@@ -29,7 +28,7 @@ define([
 
         /**
          * Define layout modes
-         * @member Page
+         * @property Page
          * @type {{
          *      snap2grid: string,
          *      jqUIGrid: string
@@ -44,7 +43,7 @@ define([
 
         /**
          * Define organize modes
-         * @member Page
+         * @property Page
          * @type {{
          *      none: string,
          *      row: string,
@@ -61,7 +60,7 @@ define([
 
         /**
          * Define content loaded instance
-         * @member Page
+         * @property Page
          * @type {boolean}
          */
         this.contentLoaded = false;
@@ -171,7 +170,7 @@ define([
 
         /**
          * Define MVC
-         * @member Page
+         * @property Page
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -195,40 +194,41 @@ define([
 
         /**
          * Init page
-         * @member Page
+         * @memberOf Page
          */
         init: function init() {
 
             /**
              * Define items
-             * @member Page
+             * @property Page
              * @type {*}
              */
             this.items = {};
 
             /**
              * Define widget
-             * @member Page
-             * @type {*|Widget}
+             * @property Page
+             * @type {Object|Widget}
              */
             this.widget = {};
 
             /**
              * Define maximized widget
-             * @member Page
-             * @type {*|Widget}
+             * @property Page
+             * @type {Object|Widget}
              */
             this.maximized = {};
 
             /**
              * Define layout
+             * @property Page
              * @type {Layout}
              */
             this.layout = {};
 
             this.observer.publish(
                 this.eventmanager.eventList.createLayout,
-                [Layout, this.config.layout]
+                this.config.layout
             );
 
             this.observer.batchPublish(

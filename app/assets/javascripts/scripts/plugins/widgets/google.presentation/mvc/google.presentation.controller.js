@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member GooglePresentationController
+         * @memberOf GooglePresentationController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -35,7 +35,7 @@ define([
 
         /**
          * Add GooglePresentation rule
-         * @member GooglePresentationController
+         * @memberOf GooglePresentationController
          * @param e
          */
         addGooglePresentationRule: function addGooglePresentationRule(e) {

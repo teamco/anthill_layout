@@ -20,7 +20,7 @@ define([
 
         /**
          * Render text field
-         * @member TextFieldRenderer
+         * @memberOf TextFieldRenderer
          * @param {{
          *      [text]: string,
          *      name: string,

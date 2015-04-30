@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member FreshTvController
+         * @memberOf FreshTvController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$freshtv.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add FreshTv rule
-         * @member FreshTvController
+         * @memberOf FreshTvController
          * @param e
          */
         addFreshTvRule: function addFreshTvRule(e) {

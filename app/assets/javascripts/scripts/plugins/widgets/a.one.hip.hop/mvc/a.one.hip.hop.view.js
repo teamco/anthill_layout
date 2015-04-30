@@ -28,7 +28,7 @@ define([
 
         /**
          * Render aonehiphop element
-         * @member AOneHipHopView
+         * @memberOf AOneHipHopView
          */
         renderAOneHipHop: function renderAOneHipHop() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member AOneHipHopView
+         * @memberOf AOneHipHopView
          * @returns {AOneHipHopPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member AOneHipHopView
+         * @memberOf AOneHipHopView
          * @param widgetRules
          * @param contentRules
          * @returns {AOneHipHopRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render aonehiphop
-         * @member AOneHipHopView
+         * @memberOf AOneHipHopView
          */
         render: function render() {
 

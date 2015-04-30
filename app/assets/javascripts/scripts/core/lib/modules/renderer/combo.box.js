@@ -18,7 +18,7 @@ define([], function defineComboBoxRenderer() {
 
         /**
          * Render combo box
-         * @member ComboBoxRenderer
+         * @memberOf ComboBoxRenderer
          * @param {Array} data
          * @param selected
          * @param {string} name
@@ -34,17 +34,20 @@ define([], function defineComboBoxRenderer() {
 
             /**
              * Get wrapper
+             * @param {BaseElement} $element
              * @returns {BaseElement.$}
              * @private
              */
-            function _getWrapper() {
+            function _getWrapper($element) {
 
                 /**
                  * Get referrer
                  * @type {*}
                  */
-                var referrer = this.view.scope.referrer,
-                    $modal, $wrapper = this.$;
+                var referrer = $element.view.scope.referrer,
+                    $modal, $wrapper = $element.$;
+
+                referrer = referrer ? referrer : $element;
 
                 if (referrer) {
 
@@ -73,7 +76,7 @@ define([], function defineComboBoxRenderer() {
              * @type {*|jQuery}
              */
             var $div = $('<div class="combo-box" />').
-                addClass((activeContent ? [index, activeContent.constructor.prototype.name].join('') : index).toDash()).
+                addClass((activeContent ? [index, activeContent.name].join('') : index).toDash()).
                 attr({
                     id: this.base.lib.generator.UUID() + '-combobox'
                 }).append(
@@ -96,7 +99,7 @@ define([], function defineComboBoxRenderer() {
                 }
 
                 // Get wrapper
-                var $wrapper = _getWrapper.bind(this)();
+                var $wrapper = _getWrapper(this);
 
                 // close all como-boxes
                 $('.combo-box', $wrapper).removeClass('open');
@@ -111,7 +114,7 @@ define([], function defineComboBoxRenderer() {
             function _hide() {
 
                 // Get wrapper
-                var $wrapper = _getWrapper.bind(this)();
+                var $wrapper = _getWrapper(this);
 
                 $div.removeClass('open');
                 $('div.html', $wrapper).removeClass('visible');
@@ -215,7 +218,9 @@ define([], function defineComboBoxRenderer() {
                 if (this.base.isDefined(event)) {
                     if (this.base.isFunction(event.callback)) {
                         $li.on(event.type, function comboBoxEvent(e) {
-                            event.callback($(e.target).attr('rel'));
+                            event.callback(
+                                $(e.target).attr('rel')
+                            );
                         });
                     }
                 }
@@ -286,7 +291,7 @@ define([], function defineComboBoxRenderer() {
 
         /**
          * Check if combo box disabled
-         * @member ComboBoxRenderer
+         * @memberOf ComboBoxRenderer
          * @param $combo
          * @returns {boolean}
          */
@@ -296,7 +301,7 @@ define([], function defineComboBoxRenderer() {
 
         /**
          * Define enable combo box
-         * @member ComboBoxRenderer
+         * @memberOf ComboBoxRenderer
          * @param $combo
          */
         enableComboBox: function enableComboBox($combo) {
@@ -305,7 +310,7 @@ define([], function defineComboBoxRenderer() {
 
         /**
          * Define disable combo box
-         * @member ComboBoxRenderer
+         * @memberOf ComboBoxRenderer
          * @param $combo
          */
         disableComboBox: function disableComboBox($combo) {
@@ -314,7 +319,7 @@ define([], function defineComboBoxRenderer() {
 
         /**
          * Clear placeholder
-         * @member ComboBoxRenderer
+         * @memberOf ComboBoxRenderer
          * @param $combo
          */
         clearPlaceholder: function clearPlaceholder($combo) {

@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member MlkshkElement
+         * @memberOf MlkshkElement
          * @param {string} code
          */
         renderEmbeddedContent: function renderEmbeddedContent(code) {

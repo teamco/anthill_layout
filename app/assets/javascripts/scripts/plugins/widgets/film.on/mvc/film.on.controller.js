@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member FilmOnController
+         * @memberOf FilmOnController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -44,7 +44,7 @@ define([
 
         /**
          * Add FilmOn rule
-         * @member FilmOnController
+         * @memberOf FilmOnController
          * @param e
          */
         addFilmOnRule: function addFilmOnRule(e) {

@@ -20,14 +20,14 @@ define([
 
         /**
          * Define item
-         * @member PageModel
+         * @memberOf PageModel
          * @type {Widget}
          */
         this.item = Widget;
 
         /**
          * Define on destroy dependencies
-         * @member PageModel
+         * @memberOf PageModel
          * @type {Array}
          */
         this.onDestroy = [
@@ -39,7 +39,7 @@ define([
 
         /**
          * Get widget by content uuid
-         * @member PageModel
+         * @memberOf PageModel
          * @param {string} id
          * @returns {*}
          */
@@ -67,7 +67,7 @@ define([
 
         /**
          * Set layout mode
-         * @member PageModel
+         * @memberOf PageModel
          * @param {string} layout
          */
         setLayoutMode: function setLayoutMode(layout) {
@@ -76,7 +76,7 @@ define([
 
         /**
          * Set layout columns
-         * @member PageModel
+         * @memberOf PageModel
          * @param {number} columns
          */
         setLayoutColumns: function setLayoutColumns(columns) {
@@ -96,7 +96,7 @@ define([
 
         /**
          * Set global widgets overlapping
-         * @member PageModel
+         * @memberOf PageModel
          * @param {boolean} overlapping
          */
         setOverlapping: function setOverlapping(overlapping) {
@@ -106,7 +106,7 @@ define([
 
         /**
          * Set page/site description
-         * @member PageModel
+         * @memberOf PageModel
          * @param {string} description
          */
         setSiteDescription: function setSiteDescription(description) {
@@ -126,7 +126,7 @@ define([
 
         /**
          * Set page/site keywords
-         * @member PageModel
+         * @memberOf PageModel
          * @param {string} keywords
          */
         setSiteKeywords: function setSiteKeywords(keywords) {
@@ -146,7 +146,7 @@ define([
 
         /**
          * Set show in tabs
-         * @member PageModel
+         * @memberOf PageModel
          * @param {boolean} show
          */
         setShowInTabs: function setShowInTabs(show) {
@@ -155,7 +155,7 @@ define([
 
         /**
          * Set page header
-         * @member PageModel
+         * @memberOf PageModel
          * @param {boolean} header
          */
         setPageHeader: function setPageHeader(header) {
@@ -165,7 +165,7 @@ define([
 
         /**
          * Set page footer
-         * @member PageModel
+         * @memberOf PageModel
          * @param {boolean} footer
          */
         setPageFooter: function setPageFooter(footer) {
@@ -175,7 +175,7 @@ define([
 
         /**
          * Set page animation on swipe
-         * @member PageModel
+         * @memberOf PageModel
          * @param {boolean} animate
          */
         setAnimateSwipe: function setAnimateSwipe(animate) {
@@ -184,11 +184,32 @@ define([
 
         /**
          * Set page lazy loading
-         * @member PageModel
+         * @memberOf PageModel
          * @param {boolean} lazy
          */
         setLazyLoading: function setLazyLoading(lazy) {
             this._setItemInfoPreferences('lazyLoading', lazy);
+        },
+
+        /**
+         * Set page outline containment
+         * @memberOf PageModel
+         * @param {boolean} outline
+         */
+        setOutlineContainment: function setOutlineContainment(outline) {
+
+            this._setItemInfoPreferences('outlineContainment', outline);
+
+            /**
+             * Get scope
+             * @type {Page}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateItemInteractions,
+                outline
+            );
         }
 
     }, BaseModel.prototype);

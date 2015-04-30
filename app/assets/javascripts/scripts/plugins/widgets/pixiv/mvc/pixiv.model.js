@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member PixivModel
+         * @memberOf PixivModel
          * @type {{
          *      pixivEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member PixivModel
+         * @memberOf PixivModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Pixiv embed code
-         * @member PixivModel
+         * @memberOf PixivModel
          * @param {string} embed
          */
         setPixivEmbedCode: function setPixivEmbedCode(embed) {

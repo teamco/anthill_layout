@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member VimeoElement
+         * @memberOf VimeoElement
          * @param {string} iframe
          */
         renderEmbeddedContent: function renderEmbeddedContent(iframe) {

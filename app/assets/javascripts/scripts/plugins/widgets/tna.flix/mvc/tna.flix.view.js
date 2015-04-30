@@ -28,7 +28,7 @@ define([
 
         /**
          * Render tnaflix element
-         * @member TnaFlixView
+         * @memberOf TnaFlixView
          */
         renderTnaFlix: function renderTnaFlix() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member TnaFlixView
+         * @memberOf TnaFlixView
          * @returns {TnaFlixPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member TnaFlixView
+         * @memberOf TnaFlixView
          * @param widgetRules
          * @param contentRules
          * @returns {TnaFlixRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render tnaflix
-         * @member TnaFlixView
+         * @memberOf TnaFlixView
          */
         render: function render() {
 

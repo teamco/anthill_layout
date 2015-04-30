@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member FiveChannelUaModel
+         * @memberOf FiveChannelUaModel
          * @type {{
          *      fivechanneluaUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member FiveChannelUaModel
+         * @memberOf FiveChannelUaModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set FiveChannelUa Url
-         * @member FiveChannelUaModel
+         * @memberOf FiveChannelUaModel
          * @param {string} url
          */
         setFivechanneluaUrl: function setFivechanneluaUrl(url) {

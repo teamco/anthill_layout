@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member GooglePresentationModel
+         * @memberOf GooglePresentationModel
          * @type {{
          *      googlepresentationEmbed: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member GooglePresentationModel
+         * @memberOf GooglePresentationModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set embed
-         * @member GooglePresentationModel
+         * @memberOf GooglePresentationModel
          * @param {string} embed
          */
         setGooglepresentationEmbed: function setGooglepresentationEmbed(embed) {

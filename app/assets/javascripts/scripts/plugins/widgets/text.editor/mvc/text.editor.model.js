@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TextEditorModel
+         * @memberOf TextEditorModel
          * @type {{
          *      bodyHtml: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TextEditorModel
+         * @memberOf TextEditorModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set body html
-         * @member TextEditorModel
+         * @memberOf TextEditorModel
          * @param {text} html
          */
         setBodyHtml: function setBodyHtml(html) {

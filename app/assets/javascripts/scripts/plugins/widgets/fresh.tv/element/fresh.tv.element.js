@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member FreshTvElement
+         * @memberOf FreshTvElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

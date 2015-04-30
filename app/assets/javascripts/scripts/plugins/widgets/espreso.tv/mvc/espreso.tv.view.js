@@ -28,7 +28,7 @@ define([
 
         /**
          * Render espresotv element
-         * @member EspresoTvView
+         * @memberOf EspresoTvView
          */
         renderEspresoTv: function renderEspresoTv() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member EspresoTvView
+         * @memberOf EspresoTvView
          * @returns {EspresoTvPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member EspresoTvView
+         * @memberOf EspresoTvView
          * @param widgetRules
          * @param contentRules
          * @returns {EspresoTvRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render espresotv
-         * @member EspresoTvView
+         * @memberOf EspresoTvView
          */
         render: function render() {
 

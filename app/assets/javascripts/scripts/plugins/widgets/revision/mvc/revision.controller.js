@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member RevisionController
+         * @memberOf RevisionController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate revision
-         * @member RevisionController
+         * @memberOf RevisionController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Revision rule
-         * @member RevisionController
+         * @memberOf RevisionController
          * @param e
          */
         addRevisionRule: function addRevisionRule(e) {

@@ -28,7 +28,7 @@ define([
 
         /**
          * Render livestream element
-         * @member LivestreamView
+         * @memberOf LivestreamView
          */
         renderLivestream: function renderLivestream() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member LivestreamView
+         * @memberOf LivestreamView
          * @returns {LivestreamPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member LivestreamView
+         * @memberOf LivestreamView
          * @param widgetRules
          * @param contentRules
          * @returns {LivestreamRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render livestream
-         * @member LivestreamView
+         * @memberOf LivestreamView
          */
         render: function render() {
 

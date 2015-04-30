@@ -2,7 +2,7 @@
  * Created by i061485 on 7/9/14.
  */
 
-define([], function definePageItemMaximize() {
+define(function definePageItemMaximize() {
 
     /**
      * Define PageItemMaximize
@@ -16,7 +16,7 @@ define([], function definePageItemMaximize() {
 
         /**
          * Get maximized widget
-         * @member PageItemMaximize
+         * @memberOf PageItemMaximize
          * @returns {Widget|*}
          */
         getMaximized: function getMaximized() {
@@ -25,14 +25,14 @@ define([], function definePageItemMaximize() {
 
         /**
          * Set widget as maximized
-         * @member  {PageItemMaximize}
+         * @memberOf  {PageItemMaximize}
          * @param {Widget} widget
          */
         setMaximized: function setMaximized(widget) {
 
             /**
              * Set maximized
-             * @member PageItemMaximize
+             * @memberOf PageItemMaximize
              * @type {Widget}
              */
             this.maximized = widget;
@@ -42,13 +42,13 @@ define([], function definePageItemMaximize() {
 
         /**
          * Unset widget as maximized
-         * @member PageItemMaximize
+         * @memberOf PageItemMaximize
          */
         unsetMaximized: function unsetMaximized() {
 
             /**
              * Unset maximized
-             * @member PageItemMaximize
+             * @memberOf PageItemMaximize
              * @type {{}}
              */
             this.maximized = {};
@@ -58,7 +58,7 @@ define([], function definePageItemMaximize() {
 
         /**
          * Disable items interactions on enlarge
-         * @member PageItemMaximize
+         * @memberOf PageItemMaximize
          * @param {Widget} widget
          */
         disableItemInteractions: function disableItemInteractions(widget) {
@@ -100,7 +100,7 @@ define([], function definePageItemMaximize() {
 
         /**
          * Enable item interaction on reduce
-         * @member PageItemMaximize
+         * @memberOf PageItemMaximize
          */
         enableItemInteractions: function enableItemInteractions() {
 

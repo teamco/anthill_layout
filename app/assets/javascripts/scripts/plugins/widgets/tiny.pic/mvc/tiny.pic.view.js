@@ -28,7 +28,7 @@ define([
 
         /**
          * Render tinypic element
-         * @member TinyPicView
+         * @memberOf TinyPicView
          */
         renderTinyPic: function renderTinyPic() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member TinyPicView
+         * @memberOf TinyPicView
          * @returns {TinyPicPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member TinyPicView
+         * @memberOf TinyPicView
          * @param widgetRules
          * @param contentRules
          * @returns {TinyPicRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render tinypic
-         * @member TinyPicView
+         * @memberOf TinyPicView
          */
         render: function render() {
 

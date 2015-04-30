@@ -20,7 +20,7 @@ define([
 
         /**
          * Define events
-         * @member WidgetEventManager
+         * @memberOf WidgetEventManager
          * @type {{}}
          */
         this.events = {};
@@ -30,7 +30,7 @@ define([
 
         /**
          * Define event list
-         * @member WidgetEventManager
+         * @memberOf WidgetEventManager
          * @type {{
          *      initDraggable: string,
          *      enableDraggable: string,

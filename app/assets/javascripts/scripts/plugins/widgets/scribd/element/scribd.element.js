@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member ScribdElement
+         * @memberOf ScribdElement
          * @param {{id, src}} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

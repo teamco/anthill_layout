@@ -28,7 +28,7 @@ define([
 
         /**
          * Render collegehumor element
-         * @member CollegeHumorView
+         * @memberOf CollegeHumorView
          */
         renderCollegeHumor: function renderCollegeHumor() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member CollegeHumorView
+         * @memberOf CollegeHumorView
          * @returns {CollegeHumorPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member CollegeHumorView
+         * @memberOf CollegeHumorView
          * @param widgetRules
          * @param contentRules
          * @returns {CollegeHumorRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render collegehumor
-         * @member CollegeHumorView
+         * @memberOf CollegeHumorView
          */
         render: function render() {
 

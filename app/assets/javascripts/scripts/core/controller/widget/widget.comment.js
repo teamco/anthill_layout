@@ -19,7 +19,7 @@ define(function defineWidgetComment() {
 
         /**
          * Define commentable content
-         * @member WidgetComment
+         * @memberOf WidgetComment
          * @param {boolean} commentable
          */
         commentableContent: function commentableContent(commentable) {
@@ -40,7 +40,7 @@ define(function defineWidgetComment() {
 
         /**
          * Define post comment
-         * @member WidgetComment
+         * @memberOf WidgetComment
          */
         postComment: function postComment() {
 debugger
@@ -48,7 +48,7 @@ debugger
 
         /**
          * Define cancel comment
-         * @member WidgetComment
+         * @memberOf WidgetComment
          */
         cancelComment: function cancelComment() {
 debugger

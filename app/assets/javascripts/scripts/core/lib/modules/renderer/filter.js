@@ -25,7 +25,7 @@ define([], function defineFilterRenderer() {
 
         /**
          * Render iframe
-         * @member FilterRenderer
+         * @memberOf FilterRenderer
          * @param {{
          *      text: string,
          *      name: string,
@@ -97,7 +97,7 @@ define([], function defineFilterRenderer() {
 
         /**
          * Update items
-         * @member FilterRenderer
+         * @memberOf FilterRenderer
          * @param {{items, [focusOn]}} opts
          */
         updateData: function updateData(opts) {
@@ -107,7 +107,7 @@ define([], function defineFilterRenderer() {
 
         /**
          * Filter search results
-         * @member FilterRenderer
+         * @memberOf FilterRenderer
          * @param e
          */
         filterResults: function filterResults(e) {

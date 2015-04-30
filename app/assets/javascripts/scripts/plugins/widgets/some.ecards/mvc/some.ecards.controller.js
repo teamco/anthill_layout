@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member SomeEcardsController
+         * @memberOf SomeEcardsController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$someecards.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add SomeEcards rule
-         * @member SomeEcardsController
+         * @memberOf SomeEcardsController
          * @param e
          */
         addSomeEcardsRule: function addSomeEcardsRule(e) {

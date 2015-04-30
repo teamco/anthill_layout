@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member WordcampTvController
+         * @memberOf WordcampTvController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate wordcamptv
-         * @member WordcampTvController
+         * @memberOf WordcampTvController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add WordcampTv rule
-         * @member WordcampTvController
+         * @memberOf WordcampTvController
          * @param e
          */
         addWordcampTvRule: function addWordcampTvRule(e) {

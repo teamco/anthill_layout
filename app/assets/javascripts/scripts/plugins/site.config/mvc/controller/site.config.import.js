@@ -17,7 +17,7 @@ define(function defineSiteConfigImport() {
 
         /**
          * Import site data
-         * @member SiteConfigImport
+         * @memberOf SiteConfigImport
          */
         importSiteData: function importSiteData() {
             this.view.showImportData();
@@ -25,7 +25,7 @@ define(function defineSiteConfigImport() {
 
         /**
          * Approve import site data
-         * @member SiteConfigImport
+         * @memberOf SiteConfigImport
          */
         approveImportSiteData: function approveImportSiteData() {
 
@@ -63,7 +63,7 @@ define(function defineSiteConfigImport() {
 
         /**
          * Ready to import site data
-         * @member SiteConfigImport
+         * @memberOf SiteConfigImport
          * @param {object} json
          * @param {FileList} file
          */
@@ -73,7 +73,7 @@ define(function defineSiteConfigImport() {
 
         /**
          * Reload site data
-         * @member SiteConfigImport
+         * @memberOf SiteConfigImport
          */
         reloadSiteData: function reloadSiteData() {
 

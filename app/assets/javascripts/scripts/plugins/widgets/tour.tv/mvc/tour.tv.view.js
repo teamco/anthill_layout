@@ -28,7 +28,7 @@ define([
 
         /**
          * Render tourtv element
-         * @member TourTvView
+         * @memberOf TourTvView
          */
         renderTourTv: function renderTourTv() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member TourTvView
+         * @memberOf TourTvView
          * @returns {TourTvPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member TourTvView
+         * @memberOf TourTvView
          * @param widgetRules
          * @param contentRules
          * @returns {TourTvRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render tourtv
-         * @member TourTvView
+         * @memberOf TourTvView
          */
         render: function render() {
 

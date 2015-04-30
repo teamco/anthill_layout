@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member OnetvRuElement
+         * @memberOf OnetvRuElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

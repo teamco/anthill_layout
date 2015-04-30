@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member PornhubModel
+         * @memberOf PornhubModel
          * @type {{pornhubUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}}}
          */
         this.preferences = {
@@ -35,7 +35,7 @@ define([
 
         /**
          * Define rules
-         * @member PornhubModel
+         * @memberOf PornhubModel
          * @type {{}}
          */
         this.rules = {};
@@ -45,7 +45,7 @@ define([
 
         /**
          * Set Pornhub Url
-         * @member PornhubModel
+         * @memberOf PornhubModel
          * @param {string} url
          */
         setPornhubUrl: function setPornhubUrl(url) {

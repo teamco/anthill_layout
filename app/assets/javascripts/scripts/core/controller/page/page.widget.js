@@ -5,23 +5,69 @@
  * Time: 6:29 PM
  */
 
-define([], function definePageWidget(){
+define([
+    'controller/page/page.widget.copy'
+], function definePageWidget(PageWidgetCopy) {
 
     /**
      * Define PageWidget
      * @class PageWidget
+     * @extend PageWidgetCopy
      * @constructor
      */
     var PageWidget = function PageWidget() {
-
     };
 
     return PageWidget.extend(
         'PageWidget', {
 
             /**
+             * Create widget from resource
+             * @memberOf PageWidget
+             * @param {{
+             *      resource: string,
+             *      thumbnail: string,
+             *      title: string,
+             *      description: string,
+             *      width: number,
+             *      height: number
+             * }} opts
+             * @param {boolean} silent
+             */
+            createWidgetFromResource: function createWidgetFromResource(opts, render, silent) {
+
+                /**
+                 * Get scope
+                 * @type {Page}
+                 */
+                var scope = this.scope;
+
+                // Merge widget prefs
+                var prefs = $.extend(true, {},
+                    this.model.getConfig('widget').preferences, {
+                        resource: opts.resource,
+                        thumbnail: opts.thumbnail,
+                        title: opts.title,
+                        description: opts.description
+                    }
+                );
+
+                scope.api.createWidget({
+                    config: {
+                        preferences: prefs,
+                        html: {
+                            dimensions: {
+                                width: opts.width,
+                                height: opts.height
+                            }
+                        }
+                    }
+                }, render, silent);
+            },
+
+            /**
              * Check if allowed to add widget to page
-             * @member PageWidget
+             * @memberOf PageWidget
              * @returns {boolean}
              */
             isAllowAddWidget: function isAllowAddWidget() {
@@ -38,7 +84,7 @@ define([], function definePageWidget(){
 
             /**
              * Allow to add widget to page
-             * @member PageWidget
+             * @memberOf PageWidget
              */
             allowAddWidget: function allowAddWidget() {
                 this.scope.logger.debug('Allow to add widget');
@@ -47,7 +93,7 @@ define([], function definePageWidget(){
 
             /**
              * Do not allow to add widget to page
-             * @member PageWidget
+             * @memberOf PageWidget
              */
             banAddWidget: function banAddWidget() {
                 this.scope.logger.debug('Do not allow to add widget');
@@ -56,7 +102,7 @@ define([], function definePageWidget(){
 
             /**
              * Get widgets container
-             * @member PageWidget
+             * @memberOf PageWidget
              * @returns {*}
              */
             getWidgetsContainer: function getWidgetsContainer() {
@@ -65,7 +111,7 @@ define([], function definePageWidget(){
 
             /**
              * Update widget properties
-             * @member PageWidget
+             * @memberOf PageWidget
              * @param [item]
              * @returns {boolean}
              */
@@ -76,7 +122,7 @@ define([], function definePageWidget(){
                  * @type {Page}
                  */
                 var scope = this.scope,
-                    items = this.model.getItems(),
+                    items = scope.model.getItems(),
                     grid = scope.layout.controller.minCellWidth() +
                         scope.layout.config.grid.margin;
 
@@ -109,7 +155,7 @@ define([], function definePageWidget(){
 
             /**
              * Define loading items content
-             * @member PageWidget
+             * @memberOf PageWidget
              */
             loadItemsContent: function loadItemsContent() {
 
@@ -144,7 +190,50 @@ define([], function definePageWidget(){
                         true
                     );
                 }
+            },
+
+            /**
+             * Update widget interactions
+             * @memberOf PageWidget
+             * @param {boolean} outline
+             */
+            updateItemInteractions: function updateItemInteractions(outline) {
+
+                /**
+                 * Get scope
+                 * @type Page
+                 */
+                var scope = this.scope,
+                    items = scope.model.getItems(),
+                    item;
+
+                scope.logger.debug('Update widget containment interactions', outline);
+
+                var containment = outline ?
+                    scope.view.get$item().$ :
+                    false;
+
+                for (var index in items) {
+
+                    if (items.hasOwnProperty(index)) {
+
+                        /**
+                         * Get item
+                         * @type Widget
+                         */
+                        item = items[index];
+
+                        item.observer.publish(
+                            item.eventmanager.eventList.initDraggable
+                        );
+
+                        item.observer.publish(
+                            item.eventmanager.eventList.initResizable
+                        );
+                    }
+                }
             }
-        }
+        },
+        PageWidgetCopy.prototype
     );
 });

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PreziController
+         * @memberOf PreziController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate prezi
-         * @member PreziController
+         * @memberOf PreziController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Prezi rule
-         * @member PreziController
+         * @memberOf PreziController
          * @param e
          */
         addPreziRule: function addPreziRule(e) {

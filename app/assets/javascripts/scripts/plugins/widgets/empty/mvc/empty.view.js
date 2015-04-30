@@ -28,7 +28,7 @@ define([
 
         /**
          * Render Empty element
-         * @member EmptyView
+         * @memberOf EmptyView
          */
         renderEmpty: function renderEmpty() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member EmptyView
+         * @memberOf EmptyView
          * @returns {EmptyPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member EmptyView
+         * @memberOf EmptyView
          * @param widgetRules
          * @param contentRules
          * @returns {EmptyRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render Empty
-         * @member EmptyView
+         * @memberOf EmptyView
          */
         render: function render() {
 

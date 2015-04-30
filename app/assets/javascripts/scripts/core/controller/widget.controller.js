@@ -54,7 +54,7 @@ define(
 
                 /**
                  * Get config
-                 * @member WidgetController
+                 * @memberOf WidgetController
                  * @param {string} type
                  * @returns {*|{
                  *      animate: Boolean,
@@ -113,7 +113,7 @@ define(
 
                 /**
                  * Get page jquery object
-                 * @member WidgetController
+                 * @memberOf WidgetController
                  * @returns {*|jQuery}
                  */
                 get$page: function get$page() {
@@ -122,7 +122,7 @@ define(
 
                 /**
                  * Get page layout
-                 * @member WidgetController
+                 * @memberOf WidgetController
                  * @returns {Layout}
                  */
                 getPageLayout: function getPageLayout() {
@@ -131,7 +131,7 @@ define(
 
                 /**
                  * Get merged local padding from widget dom
-                 * @member WidgetController
+                 * @memberOf WidgetController
                  * @returns {{top: number, right: number, bottom: number, left: number}|*}
                  */
                 getLocalPadding: function getLocalPadding() {
@@ -149,7 +149,7 @@ define(
 
                 /**
                  * Get global padding from layout config
-                 * @member WidgetController
+                 * @memberOf WidgetController
                  * @returns {{top: number, right: number, bottom: number, left: number}}
                  */
                 getGlobalPadding: function getGlobalPadding() {
@@ -173,7 +173,7 @@ define(
 
                 /**
                  * Define custom class name
-                 * @member WidgetController
+                 * @memberOf WidgetController
                  * @param {string} name
                  * @param {string} previous
                  */
@@ -194,7 +194,7 @@ define(
 
                 /**
                  * Behavior mode
-                 * @member WidgetController
+                 * @memberOf WidgetController
                  * @param {{
                  *      animate: Boolean,
                  *      [callback]: Function,
@@ -228,7 +228,7 @@ define(
 
                 /**
                  * Define snap2grid mode
-                 * @member WidgetController
+                 * @memberOf WidgetController
                  * @param opts
                  * @param mode
                  * @param behavior
@@ -240,7 +240,7 @@ define(
 
                 /**
                  * Define snap2grid mode
-                 * @member WidgetController
+                 * @memberOf WidgetController
                  * @param opts
                  * @param mode
                  * @param behavior
@@ -251,7 +251,7 @@ define(
 
                 /**
                  * Define snap2grid mode
-                 * @member WidgetController
+                 * @memberOf WidgetController
                  * @param opts
                  * @param mode
                  * @param behavior
@@ -262,7 +262,7 @@ define(
 
                 /**
                  * Check behavior mode
-                 * @member WidgetController
+                 * @memberOf WidgetController
                  * @returns {string|undefined}
                  */
                 isMode: function isMode() {
@@ -276,7 +276,7 @@ define(
 
                 /**
                  * Save widget DOM
-                 * @member WidgetController
+                 * @memberOf WidgetController
                  */
                 saveDom: function saveDom() {
                     this.logger.debug(this.i18n.t('save.widget'));
@@ -285,7 +285,7 @@ define(
 
                 /**
                  * Load config preferences
-                 * @member WidgetController
+                 * @memberOf WidgetController
                  */
                 loadPreferences: function loadPreferences() {
 

@@ -5,8 +5,13 @@
  * Time: 6:35 PM
  */
 
-define([], function definePageLayout() {
+define(['config/layout'], function definePageLayout(Layout) {
 
+    /**
+     * Define PageLayout
+     * @class PageLayout
+     * @constructor
+     */
     var PageLayout = function PageLayout() {
     };
 
@@ -15,7 +20,7 @@ define([], function definePageLayout() {
 
             /**
              * Update layout config
-             * @member PageLayout
+             * @memberOf PageLayout
              */
             updateLayoutConfig: function updateLayoutConfig() {
 
@@ -24,8 +29,8 @@ define([], function definePageLayout() {
                 /**
                  * Get page preferences
                  * @type {{
-                     *      layoutColumns: number
-                     * }}
+                 *      layoutColumns: number
+                 * }}
                  */
                 var preferences = this.model.getConfig('preferences') || {};
 
@@ -43,7 +48,7 @@ define([], function definePageLayout() {
 
             /**
              * Update page height
-             * @member PageLayout
+             * @memberOf PageLayout
              */
             updateHeight: function updateHeight() {
                 console.log('TODO: Update height');
@@ -51,7 +56,7 @@ define([], function definePageLayout() {
 
             /**
              * Define expandLayout
-             * @member PageLayout
+             * @memberOf PageLayout
              * @param {Widget} widget
              */
             expandLayout: function expandLayout(widget) {
@@ -66,6 +71,61 @@ define([], function definePageLayout() {
                     layout.eventmanager.eventList.onExpand,
                     widget
                 );
+            },
+
+            /**
+             * Create page layout
+             * @memberOf PageLayout
+             * @param opts
+             */
+            createLayout: function createLayout(opts) {
+
+                /**
+                 * Define layout
+                 * @memberOf Page
+                 * @type {Layout}
+                 */
+                this.layout = new Layout(opts, this);
+            },
+
+            /**
+             * Destroy layout
+             * @memberOf PageLayout
+             */
+            destroyLayout: function destroyLayout() {
+                this.logger.info(
+                    'Destroy Layout',
+                    this.layout
+                );
+                delete this.layout;
+            },
+
+            /**
+             * Get Layout
+             * @memberOf PageLayout
+             * @returns {Layout}
+             */
+            getLayout: function getLayout() {
+                return this.scope.layout;
+            },
+
+            /**
+             * Update layout config
+             * @memberOf PageLayout
+             */
+            updateLayout: function updateLayout() {
+
+                /**
+                 * Define scope
+                 * @type {Layout}
+                 */
+                var layout = this.scope.layout;
+
+                layout.observer.publish(
+                    layout.eventmanager.eventList.updateMinCellWidth
+                );
+
+                this.updateWidgetsConfig();
             }
         }
     );

@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member VidmeElement
+         * @memberOf VidmeElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

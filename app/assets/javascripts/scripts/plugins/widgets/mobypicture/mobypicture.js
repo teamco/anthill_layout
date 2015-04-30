@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Mobypicture
+         * @memberOf Mobypicture
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Mobypicture
+         * @memberOf Mobypicture
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Mobypicture
+         * @memberOf Mobypicture
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TedController
+         * @memberOf TedController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate ted
-         * @member TedController
+         * @memberOf TedController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Ted rule
-         * @member TedController
+         * @memberOf TedController
          * @param e
          */
         addTedRule: function addTedRule(e) {

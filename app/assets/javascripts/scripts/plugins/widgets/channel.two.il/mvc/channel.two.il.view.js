@@ -28,7 +28,7 @@ define([
 
         /**
          * Render channeltwoil element
-         * @member ChannelTwoIlView
+         * @memberOf ChannelTwoIlView
          */
         renderChannelTwoIl: function renderChannelTwoIl() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member ChannelTwoIlView
+         * @memberOf ChannelTwoIlView
          * @returns {ChannelTwoIlPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member ChannelTwoIlView
+         * @memberOf ChannelTwoIlView
          * @param widgetRules
          * @param contentRules
          * @returns {ChannelTwoIlRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render channeltwoil
-         * @member ChannelTwoIlView
+         * @memberOf ChannelTwoIlView
          */
         render: function render() {
 

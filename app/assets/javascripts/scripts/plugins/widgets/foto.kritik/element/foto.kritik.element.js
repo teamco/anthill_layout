@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member FotoKritikElement
+         * @memberOf FotoKritikElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

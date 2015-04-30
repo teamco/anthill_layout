@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member QrCodeController
+         * @memberOf QrCodeController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -36,7 +36,7 @@ define([
 
         /**
          * Add QrCode rule
-         * @member QrCodeController
+         * @memberOf QrCodeController
          * @param e
          */
         addQrCodeRule: function addQrCodeRule(e) {

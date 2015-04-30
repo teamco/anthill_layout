@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member OneTwelveChannelUaModel
+         * @memberOf OneTwelveChannelUaModel
          * @type {{
          *      onetwelvechanneluaEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member OneTwelveChannelUaModel
+         * @memberOf OneTwelveChannelUaModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set OneTwelveChannelUa embed code
-         * @member OneTwelveChannelUaModel
+         * @memberOf OneTwelveChannelUaModel
          * @param {string} embed
          */
         setOnetwelvechanneluaEmbedCode: function setOnetwelvechanneluaEmbedCode(embed) {

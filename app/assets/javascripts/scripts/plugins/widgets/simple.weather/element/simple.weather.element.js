@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member SimpleWeatherElement
+         * @memberOf SimpleWeatherElement
          * @param {{
          *      latitude: number,
          *      longitude: number,
@@ -61,7 +61,7 @@ define([
 
         /**
          * Define loader
-         * @member SimpleWeatherElement
+         * @memberOf SimpleWeatherElement
          * @param {string} location
          * // Where On Earth Identifier
          * @param woeid

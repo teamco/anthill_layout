@@ -28,7 +28,7 @@ define([
 
         /**
          * Render spankwire element
-         * @member SpankwireView
+         * @memberOf SpankwireView
          */
         renderSpankwire: function renderSpankwire() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member SpankwireView
+         * @memberOf SpankwireView
          * @returns {SpankwirePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member SpankwireView
+         * @memberOf SpankwireView
          * @param widgetRules
          * @param contentRules
          * @returns {SpankwireRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render spankwire
-         * @member SpankwireView
+         * @memberOf SpankwireView
          */
         render: function render() {
 

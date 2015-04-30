@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member VidmeController
+         * @memberOf VidmeController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate vidme
-         * @member VidmeController
+         * @memberOf VidmeController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Vidme rule
-         * @member VidmeController
+         * @memberOf VidmeController
          * @param e
          */
         addVidmeRule: function addVidmeRule(e) {

@@ -31,7 +31,7 @@ define([
 
         /**
          * Render widgets list
-         * @member SiteConfigWidgetsListElement
+         * @memberOf SiteConfigWidgetsListElement
          * @param data
          * @param show
          * @return {SiteConfigWidgetsListElement}
@@ -84,6 +84,7 @@ define([
             var $ul = $('<ul />');
 
             if (l > 0) {
+                data[0].thumbnail = '';
 
                 // Append header
                 $ul.append(
@@ -91,6 +92,9 @@ define([
                 );
 
                 for (; i < l; i++) {
+                    data[i].thumbnail = '/assets/scripts/plugins/stylesheets/images/' + data[i].resource + '.png';
+
+                    // Append rows
                     $ul.append(
                         _renderRow(data[i], 'row')
                     );
@@ -108,7 +112,7 @@ define([
 
         /**
          * Bind widget edit
-         * @member SiteConfigWidgetsListElement
+         * @memberOf SiteConfigWidgetsListElement
          * @param $ul
          * @returns {*}
          */
@@ -133,7 +137,7 @@ define([
 
         /**
          * Render widget generator form
-         * @member SiteConfigWidgetsListElement
+         * @memberOf SiteConfigWidgetsListElement
          * @param {Array} widgets
          * @param {object} [widgetData]
          * @param {Array} types
@@ -332,7 +336,8 @@ define([
                                 widgetData[index], {
                                     mask: [
                                         scope.base.isDataURL.regex,
-                                        scope.base.isUrl.regex
+                                        scope.base.isUrl.regex,
+                                        /^\/assets\/scripts\/plugins\/stylesheets\/images/
                                     ]
                                 }
                             );
@@ -384,7 +389,7 @@ define([
 
         /**
          * Render clone from field
-         * @member SiteConfigWidgetsListElement
+         * @memberOf SiteConfigWidgetsListElement
          * @param widgets
          * @returns {*[]}
          */
@@ -469,6 +474,25 @@ define([
             this.disableComboBox($combo);
 
             return [$checkbox, $combo];
+        },
+
+        /**
+         * Get resource value
+         * @memberOf SiteConfigWidgetsListElement
+         * @returns {string}
+         */
+        getResource: function getResource() {
+
+            /**
+             * Get $modal
+             * @type {ModalElement}
+             */
+            var $modal = this.view.get$modal();
+
+            if ($modal) {
+
+                return $('input[name="resource"]', $modal.$).val();
+            }
         }
 
     }, BaseElement.prototype, GalleryProvidersElement.prototype);

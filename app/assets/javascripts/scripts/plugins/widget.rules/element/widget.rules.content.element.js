@@ -37,7 +37,7 @@ define([
 
         /**
          * Define inner content
-         * @member WidgetRulesContentElement
+         * @memberOf WidgetRulesContentElement
          */
         addInnerContent: function addInnerContent() {
             this.$.append('<div />');
@@ -45,7 +45,7 @@ define([
 
         /**
          * Define attributes
-         * @member WidgetRulesContentElement
+         * @memberOf WidgetRulesContentElement
          * @param data
          */
         setAttributes: function setAttributes(data) {
@@ -64,7 +64,7 @@ define([
 
             /**
              * Define data
-             * @member WidgetRulesContentElement
+             * @memberOf WidgetRulesContentElement
              * @type {{name: string, description: string}}
              */
             this.data = {
@@ -89,7 +89,7 @@ define([
 
         /**
          * Locate widget before showing rules
-         * @member WidgetRulesContentElement
+         * @memberOf WidgetRulesContentElement
          * @param data
          */
         bindLocate: function bindLocate(data) {
@@ -132,7 +132,7 @@ define([
 
         /**
          * Bind show rules
-         * @member WidgetRulesContentElement
+         * @memberOf WidgetRulesContentElement
          * @param data
          */
         bindShowRules: function bindShowRules(data) {

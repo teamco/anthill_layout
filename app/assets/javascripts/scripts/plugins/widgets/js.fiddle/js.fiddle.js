@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member JsFiddle
+         * @memberOf JsFiddle
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member JsFiddle
+         * @memberOf JsFiddle
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member JsFiddle
+         * @memberOf JsFiddle
          * @type {MVC}
          */
         this.mvc = new MVC({

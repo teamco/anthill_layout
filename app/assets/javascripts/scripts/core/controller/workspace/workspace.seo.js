@@ -5,7 +5,7 @@
  * Time: 12:45 PM
  */
 
-define([], function defineWorkspaceSEO() {
+define(function defineWorkspaceSEO() {
 
     /**
      * Define WorkspaceSEO
@@ -20,7 +20,7 @@ define([], function defineWorkspaceSEO() {
 
             /**
              * Update metadata
-             * @member WorkspaceSEO
+             * @memberOf WorkspaceSEO
              * @param {Page} page
              */
             updateMetaData: function updateMetaData(page) {
@@ -37,7 +37,7 @@ define([], function defineWorkspaceSEO() {
 
             /**
              * Update site title
-             * @member WorkspaceSEO
+             * @memberOf WorkspaceSEO
              */
             updateSiteTitle: function updateSiteTitle() {
 
@@ -70,7 +70,7 @@ define([], function defineWorkspaceSEO() {
                  * Get current page
                  * @type {Page}
                  */
-                var page = scope.controller.getCurrentItem(),
+                var page = scope.model.getCurrentItem(),
                     title = siteTitle;
 
                 /**
@@ -129,7 +129,7 @@ define([], function defineWorkspaceSEO() {
 
             /**
              * Update site author
-             * @member WorkspaceSEO
+             * @memberOf WorkspaceSEO
              */
             updateSiteAuthor: function updateSiteAuthor() {
 
@@ -147,7 +147,7 @@ define([], function defineWorkspaceSEO() {
 
             /**
              * Load google analytics tracking snippet
-             * @member WorkspaceSEO
+             * @memberOf WorkspaceSEO
              */
             loadTrackingSnippet: function loadTrackingSnippet() {
 

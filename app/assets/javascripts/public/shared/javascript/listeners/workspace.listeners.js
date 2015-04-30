@@ -9,7 +9,7 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
 
     /**
      * Define Workspace Global listeners
-     * @member Workspace
+     * @memberOf Workspace
      * @type {{
      *      successRendered: {name: string, callback: function},
      *      createAuthorPanel: {name: string, callback: function},

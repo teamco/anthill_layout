@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PolldaddyController
+         * @memberOf PolldaddyController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$polldaddy.renderEmbeddedContent(
@@ -36,7 +36,7 @@ define([
 
         /**
          * Parse embedded content to extract id
-         * @member PolldaddyController
+         * @memberOf PolldaddyController
          * @param {string} embed
          * @returns {*}
          */
@@ -66,7 +66,7 @@ define([
 
         /**
          * Add Polldaddy rule
-         * @member PolldaddyController
+         * @memberOf PolldaddyController
          * @param e
          */
         addPolldaddyRule: function addPolldaddyRule(e) {

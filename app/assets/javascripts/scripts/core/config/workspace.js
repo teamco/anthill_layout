@@ -22,7 +22,7 @@ define(
      * @param {WorkspacePermission} Permission
      * @returns {Workspace}
      */
-        function defineWorkspace(AntHill, MVC, API, Controller, Model, View, EventManager, Permission) {
+    function defineWorkspace(AntHill, MVC, API, Controller, Model, View, EventManager, Permission) {
 
         /**
          * Define Workspace
@@ -59,9 +59,9 @@ define(
              */
             var DEFAULTS = {
                 preferences: opts.preferences || {
-					staticWidth: true, 
-					siteWidthSlider: "1"
-				},
+                    staticWidth: true,
+                    siteWidthSlider: "1"
+                },
                 SEOSeparator: ' | ',
                 limit: false,
                 isResized: true,
@@ -93,7 +93,7 @@ define(
 
             /**
              * Define MVC
-             * @member Workspace
+             * @property Workspace
              * @type {MVC}
              */
             this.mvc = new MVC({
@@ -116,28 +116,28 @@ define(
 
             /**
              * Define init
-             * @member Workspace
+             * @memberOf Workspace
              */
             init: function init() {
 
                 /**
                  * Define swipe page
-                 * @member Workspace
+                 * @property Workspace
                  * @type {boolean}
                  */
                 this.switchPage = false;
 
                 /**
                  * Define page
-                 * @member Workspace
-                 * @type {*|Page}
+                 * @property Workspace
+                 * @type {Object|Page}
                  */
                 this.page = {};
 
                 /**
-                 * Define itemsÒ
-                 * @member Workspace
-                 * @type {*}
+                 * Define items
+                 * @property Workspace
+                 * @type {Object}
                  */
                 this.items = {};
 

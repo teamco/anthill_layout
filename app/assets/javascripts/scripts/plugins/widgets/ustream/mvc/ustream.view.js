@@ -28,7 +28,7 @@ define([
 
         /**
          * Render ustream element
-         * @member UstreamView
+         * @memberOf UstreamView
          */
         renderUstream: function renderUstream() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member UstreamView
+         * @memberOf UstreamView
          * @returns {UstreamPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member UstreamView
+         * @memberOf UstreamView
          * @param widgetRules
          * @param contentRules
          * @returns {UstreamRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render ustream
-         * @member UstreamView
+         * @memberOf UstreamView
          */
         render: function render() {
 

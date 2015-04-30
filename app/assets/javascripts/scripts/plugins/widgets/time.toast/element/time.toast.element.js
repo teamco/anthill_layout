@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member TimeToastElement
+         * @memberOf TimeToastElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

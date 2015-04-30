@@ -28,7 +28,7 @@ define([
 
         /**
          * Render $oneplusone element
-         * @member OnePlusOneView
+         * @memberOf OnePlusOneView
          */
         renderOnePlusOne: function renderOnePlusOne() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member OnePlusOneView
+         * @memberOf OnePlusOneView
          * @returns {OnePlusOnePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member OnePlusOneView
+         * @memberOf OnePlusOneView
          * @param widgetRules
          * @param contentRules
          * @returns {OnePlusOneRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render $oneplusone
-         * @member OnePlusOneView
+         * @memberOf OnePlusOneView
          */
         render: function render() {
 

@@ -32,7 +32,7 @@ define([
 
         /**
          * Render search
-         * @member FilterElement
+         * @memberOf FilterElement
          * @param {function} [callback]
          * @param {boolean} [enter]
          * @returns {FilterElement}

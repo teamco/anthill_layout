@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member AnimotoElement
+         * @memberOf AnimotoElement
          * @param {{id, [classid], movie, type}} opts
          */
         renderEmbeddedContent: function renderEmbeddedContent(opts) {

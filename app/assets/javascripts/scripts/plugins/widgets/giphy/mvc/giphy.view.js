@@ -28,7 +28,7 @@ define([
 
         /**
          * Render giphy element
-         * @member GiphyView
+         * @memberOf GiphyView
          */
         renderGiphy: function renderGiphy() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member GiphyView
+         * @memberOf GiphyView
          * @returns {GiphyPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member GiphyView
+         * @memberOf GiphyView
          * @param widgetRules
          * @param contentRules
          * @returns {GiphyRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render giphy
-         * @member GiphyView
+         * @memberOf GiphyView
          */
         render: function render() {
 

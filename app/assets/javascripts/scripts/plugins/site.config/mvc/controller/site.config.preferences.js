@@ -17,7 +17,7 @@ define(function defineSiteConfigPreferences() {
 
         /**
          * Load preferences
-         * @member SiteConfigPreferences
+         * @memberOf SiteConfigPreferences
          * @param data
          */
         loadSitePreferences: function loadSitePreferences(data) {
@@ -29,7 +29,7 @@ define(function defineSiteConfigPreferences() {
 
         /**
          * Get Prefs
-         * @member SiteConfigPreferences
+         * @memberOf SiteConfigPreferences
          * @returns {SiteConfigModel.preferences}
          */
         getPreferences: function getPreferences() {
@@ -38,7 +38,7 @@ define(function defineSiteConfigPreferences() {
 
         /**
          * Approve update preferences
-         * @member SiteConfigPreferences
+         * @memberOf SiteConfigPreferences
          */
         approveUpdatePreferences: function approveUpdatePreferences() {
 
@@ -57,7 +57,7 @@ define(function defineSiteConfigPreferences() {
 
         /**
          * Revert preferences on cancel
-         * @member SiteConfigPreferences
+         * @memberOf SiteConfigPreferences
          */
         revertSitePreferences: function revertSitePreferences() {
 

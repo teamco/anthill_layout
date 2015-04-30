@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member BigmirNet
+         * @memberOf BigmirNet
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member BigmirNet
+         * @memberOf BigmirNet
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member BigmirNet
+         * @memberOf BigmirNet
          * @type {MVC}
          */
         this.mvc = new MVC({

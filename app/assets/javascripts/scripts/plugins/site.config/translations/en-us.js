@@ -25,6 +25,6 @@ define([], function defineEnUs() {
         'widget.generation.resource.exist': 'Resource already exist',
         'widget.manager.list': 'Widgets Manager: ({1} items)',
         'widget.manager.generate.new': 'Generate new widget',
-        'widget.manager.generate.update': 'Update widget generator'
+        'widget.manager.generate.update': 'Update widget'
     };
 });

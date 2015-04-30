@@ -28,7 +28,7 @@ define([
 
         /**
          * Render revision element
-         * @member RevisionView
+         * @memberOf RevisionView
          */
         renderRevision: function renderRevision() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member RevisionView
+         * @memberOf RevisionView
          * @returns {RevisionPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member RevisionView
+         * @memberOf RevisionView
          * @param widgetRules
          * @param contentRules
          * @returns {RevisionRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render revision
-         * @member RevisionView
+         * @memberOf RevisionView
          */
         render: function render() {
 

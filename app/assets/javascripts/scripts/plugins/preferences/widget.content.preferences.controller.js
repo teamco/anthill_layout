@@ -15,7 +15,7 @@ define([], function defineWidgetContentPreferencesController() {
 
         /**
          * Load prefs
-         * @member WidgetContentPreferencesController
+         * @memberOf WidgetContentPreferencesController
          */
         loadPreferences: function loadPreferences() {
 
@@ -55,7 +55,7 @@ define([], function defineWidgetContentPreferencesController() {
 
         /**
          * Transfer preferences to containment
-         * @member WidgetContentPreferencesController
+         * @memberOf WidgetContentPreferencesController
          * @param index
          * @param value
          */

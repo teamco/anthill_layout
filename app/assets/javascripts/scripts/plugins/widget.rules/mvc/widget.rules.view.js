@@ -30,7 +30,7 @@ define([
 
         /**
          * Render WidgetRules
-         * @member WidgetRulesView
+         * @memberOf WidgetRulesView
          * @returns {boolean}
          */
         renderWidgetRules: function renderWidgetRules() {
@@ -50,7 +50,7 @@ define([
 
         /**
          * Render widget.rules content
-         * @member WidgetRulesView
+         * @memberOf WidgetRulesView
          * @param data
          * @returns {boolean}
          */
@@ -112,7 +112,7 @@ define([
 
         /**
          * Update footer content
-         * @member WidgetRulesView
+         * @memberOf WidgetRulesView
          */
         updateFooterContent: function updateFooterContent() {
             this.renderFooter(Footer, this.elements.$widgetrules);
@@ -120,7 +120,7 @@ define([
 
         /**
          * Show rules
-         * @member WidgetRulesView
+         * @memberOf WidgetRulesView
          * @param config
          * @returns {boolean|*}
          */
@@ -167,7 +167,7 @@ define([
 
         /**
          * Render widget.rules
-         * @member WidgetRulesView
+         * @memberOf WidgetRulesView
          */
         render: function render() {
 

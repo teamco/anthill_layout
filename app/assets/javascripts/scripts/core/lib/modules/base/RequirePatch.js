@@ -5,21 +5,21 @@
  * Time: 9:24 PM
  * To change this template use File | Settings | File Templates.
  */
-define(function defineBaseRequirePatch() {
+define(function defineLibRequirePatch() {
 
     /**
-     * Define BaseRequirePatch
-     * @class BaseRequirePatch
+     * Define LibRequirePatch
+     * @class LibRequirePatch
      * @constructor
      */
-    var BaseRequirePatch = function BaseRequirePatch() {
+    var LibRequirePatch = function LibRequirePatch() {
     };
 
-    BaseRequirePatch.extend('BaseRequirePatch', {
+    LibRequirePatch.extend('LibRequirePatch', {
 
         /**
          * Get requirejs config
-         * @member BaseRequirePatch
+         * @memberOf LibRequirePatch
          * @returns {*}
          */
         get: function get() {
@@ -27,5 +27,5 @@ define(function defineBaseRequirePatch() {
         }
     });
 
-    return new BaseRequirePatch();
+    return new LibRequirePatch();
 });

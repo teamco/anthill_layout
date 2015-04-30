@@ -17,7 +17,7 @@ define([], function defineWidgetSubscribe() {
 
         /**
          * On drag event simulate
-         * @member WidgetSubscribe
+         * @memberOf WidgetSubscribe
          * @param type
          * @param args
          */
@@ -63,7 +63,7 @@ define([], function defineWidgetSubscribe() {
 
         /**
          * On resize event simulate
-         * @member WidgetSubscribe
+         * @memberOf WidgetSubscribe
          * @param type
          * @param args
          */
@@ -137,7 +137,7 @@ define([], function defineWidgetSubscribe() {
 
         /**
          * On drag stop event simulate
-         * @member WidgetSubscribe
+         * @memberOf WidgetSubscribe
          */
         stopDraggableSimulate: function stopDraggableSimulate() {
 
@@ -159,7 +159,7 @@ define([], function defineWidgetSubscribe() {
 
         /**
          * On resize stop event simulate
-         * @member WidgetSubscribe
+         * @memberOf WidgetSubscribe
          */
         stopResizableSimulate: function stopResizableSimulate() {
 
@@ -181,7 +181,7 @@ define([], function defineWidgetSubscribe() {
 
         /**
          * Split embedded content
-         * @member WidgetSubscribe
+         * @memberOf WidgetSubscribe
          * @returns {boolean}
          */
         splitEmbeddedContentSimulate: function splitEmbeddedContentSimulate() {
@@ -221,7 +221,7 @@ define([], function defineWidgetSubscribe() {
 
         /**
          * Set embedded content simulate
-         * @member WidgetSubscribe
+         * @memberOf WidgetSubscribe
          */
         setEmbeddedContentSimulate: function setEmbeddedContentSimulate() {
 
@@ -249,7 +249,7 @@ define([], function defineWidgetSubscribe() {
 
         /**
          * Transfer stats
-         * @member WidgetSubscribe
+         * @memberOf WidgetSubscribe
          * @param {string} uuid
          * @param $element
          */
@@ -269,7 +269,7 @@ define([], function defineWidgetSubscribe() {
 
         /**
          * Switch to page
-         * @member WidgetSubscribe
+         * @memberOf WidgetSubscribe
          * @param {PageTabsItemElement} $page
          * @param {Event} e
          */

@@ -28,7 +28,7 @@ define([
 
         /**
          * Render rdio element
-         * @member RdioView
+         * @memberOf RdioView
          */
         renderRdio: function renderRdio() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member RdioView
+         * @memberOf RdioView
          * @returns {RdioPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member RdioView
+         * @memberOf RdioView
          * @param widgetRules
          * @param contentRules
          * @returns {RdioRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render rdio
-         * @member RdioView
+         * @memberOf RdioView
          */
         render: function render() {
 

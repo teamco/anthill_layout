@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member SmotriComElement
+         * @memberOf SmotriComElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

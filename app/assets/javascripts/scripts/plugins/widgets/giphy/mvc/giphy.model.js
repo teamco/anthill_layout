@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member GiphyModel
+         * @memberOf GiphyModel
          * @type {{
          *      giphyEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member GiphyModel
+         * @memberOf GiphyModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Giphy embed code
-         * @member GiphyModel
+         * @memberOf GiphyModel
          * @param {string} embed
          */
         setGiphyEmbedCode: function setGiphyEmbedCode(embed) {

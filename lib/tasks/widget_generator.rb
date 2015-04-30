@@ -167,7 +167,6 @@ module WidgetLib
 
       path = "#{css_path}/widgets/#{@file_name}.css"
       delete_css
-      delete_image
       puts "--- Create CSS file: #{@file_name}.css"
 
       File.open("#{path}", 'w') do |f|
@@ -183,15 +182,20 @@ module WidgetLib
       end
 
       puts "--- Create image from Base64: #{@file_name}.png"
-      image = ImageList.new
-      resized = @img.resize(
-          image.from_blob(
-              Base64.decode64(
-                  thumbnail['data:image/png;base64,'.length .. -1]
-              )
-          )
-      )
-      resized.write("#{css_path}/images/#{@file_name}.png")
+      begin
+        image = ImageList.new
+        resized = @img.resize(
+            image.from_blob(
+                Base64.decode64(
+                    thumbnail['data:image/png;base64,'.length .. -1]
+                )
+            )
+        )
+        delete_image
+        resized.write("#{css_path}/images/#{@file_name}.png")
+      rescue
+        puts '+++ Unable to convert image'
+      end
     end
 
     def widgets_path

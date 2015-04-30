@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TnaFlixModel
+         * @memberOf TnaFlixModel
          * @type {{
          *      tnaflixEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TnaFlixModel
+         * @memberOf TnaFlixModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set TnaFlix embed code
-         * @member TnaFlixModel
+         * @memberOf TnaFlixModel
          * @param {string} embed
          */
         setTnaflixEmbedCode: function setTnaflixEmbedCode(embed) {

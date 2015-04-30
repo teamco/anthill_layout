@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TviModel
+         * @memberOf TviModel
          * @type {{
          *      tviEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TviModel
+         * @memberOf TviModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Tvi embed code
-         * @member TviModel
+         * @memberOf TviModel
          * @param {string} embed
          */
         setTviEmbedCode: function setTviEmbedCode(embed) {

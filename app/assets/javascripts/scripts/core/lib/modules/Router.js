@@ -2,7 +2,7 @@
  * Created by i061485 on 6/10/14.
  */
 
-define([], function defineRouter() {
+define(function defineRouter() {
 
     /**
      * Define router
@@ -10,14 +10,13 @@ define([], function defineRouter() {
      * @constructor
      */
     var Router = function Router() {
-
     };
 
     return Router.extend('Router', {
 
         /**
          * Get Hash location
-         * @member Router
+         * @memberOf Router
          * @returns {string}
          */
         getHashLocation: function getHashLocation() {
@@ -26,7 +25,7 @@ define([], function defineRouter() {
 
         /**
          * Set Hash location
-         * @member Router
+         * @memberOf Router
          */
         setHashLocation: function setHashLocation(hash) {
             window.location.hash = hash;
@@ -34,7 +33,7 @@ define([], function defineRouter() {
 
         /**
          * Set page by hash location
-         * @member Router
+         * @memberOf Router
          * @param {Page} page
          */
         setPageByHashLocation: function setPageByHashLocation(page) {
@@ -50,7 +49,7 @@ define([], function defineRouter() {
 
         /**
          * Define hash page matcher
-         * @member Router
+         * @memberOf Router
          * @returns {Array|{index: number, input: string}}
          */
         isPageMatch2Hash: function isPageMatch2Hash() {
@@ -59,7 +58,7 @@ define([], function defineRouter() {
 
         /**
          * Define hash widget matcher
-         * @member Router
+         * @memberOf Router
          * @returns {Array|{index: number, input: string}}
          */
         isWidgetMatch2Hash: function isWidgetMatch2Hash() {
@@ -68,7 +67,7 @@ define([], function defineRouter() {
 
         /**
          * Get page by hash
-         * @member Router
+         * @memberOf Router
          * @param {Workspace} workspace
          * @returns {Page}
          */
@@ -90,7 +89,7 @@ define([], function defineRouter() {
              * Get current page
              * @type {Page}
              */
-            var currentPage = workspace.controller.getCurrentItem();
+            var currentPage = workspace.model.getCurrentItem();
 
             /**
              * Get page
@@ -120,7 +119,7 @@ define([], function defineRouter() {
 
         /**
          * Get widget by hash
-         * @member Router
+         * @memberOf Router
          * @param {Page} page
          * @returns {Widget|*}
          */
@@ -146,7 +145,7 @@ define([], function defineRouter() {
 
         /**
          * Update hash on widget maximize
-         * @member Router
+         * @memberOf Router
          * @param {Widget} widget
          */
         updateHashOnMaximize: function updateHashOnMaximize(widget) {
@@ -169,7 +168,7 @@ define([], function defineRouter() {
 
         /**
          * Update hash on widget reduce
-         * @member Router
+         * @memberOf Router
          * @param {Widget} widget
          */
         updateHashOnReduce: function updateHashOnReduce(widget) {
@@ -193,7 +192,7 @@ define([], function defineRouter() {
 
         /**
          * Get item identity
-         * @member BaseController
+         * @memberOf BaseController
          * @param {Page|Widget} item
          * @returns {*|String}
          */

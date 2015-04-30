@@ -28,7 +28,7 @@ define([
 
         /**
          * Render bliptv element
-         * @member BlipTvView
+         * @memberOf BlipTvView
          */
         renderBlipTv: function renderBlipTv() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member BlipTvView
+         * @memberOf BlipTvView
          * @returns {BlipTvPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member BlipTvView
+         * @memberOf BlipTvView
          * @param widgetRules
          * @param contentRules
          * @returns {BlipTvRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render bliptv
-         * @member BlipTvView
+         * @memberOf BlipTvView
          */
         render: function render() {
 

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member LoginController
+         * @memberOf LoginController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$login.renderEmbeddedContent();
@@ -32,7 +32,7 @@ define([
 
         /**
          * Add Login rule
-         * @member LoginController
+         * @memberOf LoginController
          * @param e
          */
         addLoginRule: function addLoginRule(e) {

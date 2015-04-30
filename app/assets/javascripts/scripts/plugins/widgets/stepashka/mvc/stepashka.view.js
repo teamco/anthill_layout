@@ -28,7 +28,7 @@ define([
 
         /**
          * Render stepashka element
-         * @member StepashkaView
+         * @memberOf StepashkaView
          */
         renderStepashka: function renderStepashka() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member StepashkaView
+         * @memberOf StepashkaView
          * @returns {StepashkaPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member StepashkaView
+         * @memberOf StepashkaView
          * @param widgetRules
          * @param contentRules
          * @returns {StepashkaRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render stepashka
-         * @member StepashkaView
+         * @memberOf StepashkaView
          */
         render: function render() {
 

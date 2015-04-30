@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member PhotobucketModel
+         * @memberOf PhotobucketModel
          * @type {{
          *      photobucketEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member PhotobucketModel
+         * @memberOf PhotobucketModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Photobucket embed code
-         * @member PhotobucketModel
+         * @memberOf PhotobucketModel
          * @param {string} embed
          */
         setPhotobucketEmbedCode: function setPhotobucketEmbedCode(embed) {

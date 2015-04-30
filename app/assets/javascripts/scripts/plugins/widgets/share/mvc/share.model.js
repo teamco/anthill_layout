@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member ShareModel
+         * @memberOf ShareModel
          * @type {{}}
          */
         this.preferences = {
@@ -35,7 +35,7 @@ define([
 
         /**
          * Define rules
-         * @member ShareModel
+         * @memberOf ShareModel
          * @type {{}}
          */
         this.rules = {};

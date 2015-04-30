@@ -28,7 +28,7 @@ define([
 
         /**
          * Render tsnua element
-         * @member TsnUaView
+         * @memberOf TsnUaView
          */
         renderTsnUa: function renderTsnUa() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member TsnUaView
+         * @memberOf TsnUaView
          * @returns {TsnUaPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member TsnUaView
+         * @memberOf TsnUaView
          * @param widgetRules
          * @param contentRules
          * @returns {TsnUaRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render tsnua
-         * @member TsnUaView
+         * @memberOf TsnUaView
          */
         render: function render() {
 

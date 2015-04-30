@@ -31,7 +31,7 @@ define([
 
         /**
          * Render widget
-         * @member WidgetView
+         * @memberOf WidgetView
          */
         renderWidget: function renderWidget() {
 
@@ -58,7 +58,7 @@ define([
 
         /**
          * Render content
-         * @member WidgetView
+         * @memberOf WidgetView
          */
         content: function content() {
 
@@ -76,7 +76,7 @@ define([
 
         /**
          * Render content expander
-         * @member WidgetView
+         * @memberOf WidgetView
          */
         contentExpander: function contentExpander() {
 
@@ -92,7 +92,7 @@ define([
 
         /**
          * Render comments
-         * @member WidgetView
+         * @memberOf WidgetView
          */
         contentComments: function contentComments() {
 
@@ -112,7 +112,7 @@ define([
 
         /**
          * Render widget
-         * @member WidgetView
+         * @memberOf WidgetView
          * @param {boolean} silent
          */
         render: function render(silent) {

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TinyPicModel
+         * @memberOf TinyPicModel
          * @type {{
          *      tinypicEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TinyPicModel
+         * @memberOf TinyPicModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set TinyPic embed code
-         * @member TinyPicModel
+         * @memberOf TinyPicModel
          * @param {string} embed
          */
         setTinypicEmbedCode: function setTinypicEmbedCode(embed) {

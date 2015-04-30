@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member HromadskeTvController
+         * @memberOf HromadskeTvController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate hromadsketv
-         * @member HromadskeTvController
+         * @memberOf HromadskeTvController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -76,7 +76,7 @@ define([
 
         /**
          * Add HromadskeTv rule
-         * @member HromadskeTvController
+         * @memberOf HromadskeTvController
          * @param e
          */
         addHromadskeTvRule: function addHromadskeTvRule(e) {

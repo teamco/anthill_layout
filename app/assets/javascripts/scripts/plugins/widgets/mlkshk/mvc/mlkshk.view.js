@@ -28,7 +28,7 @@ define([
 
         /**
          * Render mlkshk element
-         * @member MlkshkView
+         * @memberOf MlkshkView
          */
         renderMlkshk: function renderMlkshk() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member MlkshkView
+         * @memberOf MlkshkView
          * @returns {MlkshkPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member MlkshkView
+         * @memberOf MlkshkView
          * @param widgetRules
          * @param contentRules
          * @returns {MlkshkRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render mlkshk
-         * @member MlkshkView
+         * @memberOf MlkshkView
          */
         render: function render() {
 

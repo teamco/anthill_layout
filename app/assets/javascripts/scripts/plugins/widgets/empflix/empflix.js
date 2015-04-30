@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Empflix
+         * @memberOf Empflix
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Empflix
+         * @memberOf Empflix
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Empflix
+         * @memberOf Empflix
          * @type {MVC}
          */
         this.mvc = new MVC({

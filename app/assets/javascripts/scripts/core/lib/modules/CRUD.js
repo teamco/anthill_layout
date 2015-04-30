@@ -8,7 +8,7 @@
 
 define([
     'config/anthill'
-], function initCRUD(AntHill) {
+], function defineCRUD(AntHill) {
 
     /**
      * Define abstract CRUD
@@ -17,13 +17,26 @@ define([
      */
     var CRUD = function CRUD() {
 
+        /**
+         * Define scope
+         * @property CRUD
+         * @type {undefined}
+         */
+        this.scope = undefined;
+
+        /**
+         * Define base
+         * @property CRUD
+         * @type {undefined}
+         */
+        this.base = undefined;
     };
 
     return CRUD.extend('CRUD', {
 
         /**
          * Create item
-         * @member CRUD
+         * @memberOf CRUD
          * @param opts
          * @returns {*}
          */
@@ -36,7 +49,7 @@ define([
 
         /**
          * Destroy items
-         * @member CRUD
+         * @memberOf CRUD
          * @param item
          * @returns {*}
          */
@@ -92,7 +105,7 @@ define([
 
         /**
          * Destroy items
-         * @member CRUD
+         * @memberOf CRUD
          * @returns {*}
          */
         destroyItems: function destroyItems() {
@@ -111,7 +124,7 @@ define([
 
         /**
          * Destroy item view
-         * @member CRUD
+         * @memberOf CRUD
          * @param item
          * @returns {*}
          */
@@ -144,5 +157,4 @@ define([
         }
 
     }, AntHill.prototype);
-
 });

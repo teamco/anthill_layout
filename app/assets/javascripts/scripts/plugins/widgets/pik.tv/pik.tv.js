@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member PikTv
+         * @memberOf PikTv
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member PikTv
+         * @memberOf PikTv
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member PikTv
+         * @memberOf PikTv
          * @type {MVC}
          */
         this.mvc = new MVC({

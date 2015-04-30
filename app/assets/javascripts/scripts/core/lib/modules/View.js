@@ -22,13 +22,27 @@ define([
      * @constructor
      */
     var BaseView = function BaseView() {
+
+        /**
+         * Define elements
+         * @property BaseView
+         * @type {Object}
+         */
+        this.elements = {};
+
+        /**
+         * Define scope
+         * @property BaseView
+         * @type {AntHill}
+         */
+        this.scope = undefined;
     };
 
     return BaseView.extend('BaseView', {
 
         /**
          * Get config HTML
-         * @member BaseView
+         * @memberOf BaseView
          * @param {string} [key]
          * @returns {*}
          */
@@ -36,7 +50,7 @@ define([
 
             /**
              * Define model
-             * @type {{}}
+             * @type {BaseModel}
              */
             var model = this.scope.model;
 
@@ -46,7 +60,7 @@ define([
 
         /**
          * Get item.$
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {BaseElement}
          */
         get$item: function get$item() {
@@ -55,7 +69,7 @@ define([
 
         /**
          * Get item DOM Element
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {BaseElement}
          */
         getDomElement: function getDomElement() {
@@ -64,8 +78,8 @@ define([
 
         /**
          * Get item DOM info
-         * @member BaseView
-         * @returns {BaseElement}
+         * @memberOf BaseView
+         * @returns {ClientRect}
          */
         getDomData: function getDomData() {
             return this.getDomElement().getBoundingClientRect();
@@ -73,7 +87,7 @@ define([
 
         /**
          * Create style
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {string}
          */
         createStyle: function createStyle() {
@@ -85,7 +99,7 @@ define([
 
         /**
          * Create UUID
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {string}
          */
         createUUID: function createUUID() {
@@ -97,7 +111,7 @@ define([
 
         /**
          * Render UUID
-         * @member BaseView
+         * @memberOf BaseView
          * @param id
          * @returns {*|string}
          */
@@ -110,16 +124,21 @@ define([
 
         /**
          * Define $container
-         * @member BaseView
+         * @memberOf BaseView
          * @param $container
          */
         defineContainer: function defineContainer($container) {
+
+            /**
+             * Define container
+             * @property BaseView.elements
+             */
             this.elements.$container = $container;
         },
 
         /**
          * Get container class name
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {string}
          */
         getContainerClassName: function getContainerClassName() {
@@ -128,7 +147,7 @@ define([
 
         /**
          * Get container selector
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {*|jQuery}
          */
         getContainerSelector: function getContainerSelector() {
@@ -140,7 +159,7 @@ define([
 
         /**
          * Check if element cached
-         * @member BaseView
+         * @memberOf BaseView
          * @param $element
          * @param Constructor
          * @returns {boolean}
@@ -162,7 +181,7 @@ define([
 
         /**
          * Check if render force
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {boolean}
          */
         isCachedItems: function isCachedItems() {
@@ -174,7 +193,7 @@ define([
 
         /**
          * Render Header
-         * @member BaseView
+         * @memberOf BaseView
          * @param {HeaderElement} HeaderElement
          * @param $container
          * @returns {HeaderElement}
@@ -183,6 +202,7 @@ define([
 
             /**
              * Define $header
+             * @property BaseView.elements
              * @type {HeaderElement}
              */
             this.elements.$header = new HeaderElement(this, {
@@ -212,7 +232,7 @@ define([
 
         /**
          * Render Footer
-         * @member BaseView
+         * @memberOf BaseView
          * @param {FooterElement} FooterElement
          * @param $container
          * @returns {FooterElement}
@@ -221,6 +241,7 @@ define([
 
             /**
              * Define $footer
+             * @property BaseView.elements
              * @type {FooterElement}
              */
             this.elements.$footer = new FooterElement(this, {
@@ -249,7 +270,7 @@ define([
 
         /**
          * Render Header
-         * @member BaseView
+         * @memberOf BaseView
          * @param {HeaderElement} Header
          * @param {string} title
          */
@@ -259,7 +280,7 @@ define([
 
         /**
          * Render Footer
-         * @member BaseView
+         * @memberOf BaseView
          * @param {FooterElement} Footer
          * @param {object} $element
          */
@@ -271,7 +292,7 @@ define([
 
         /**
          * Render filter
-         * @member BaseView
+         * @memberOf BaseView
          * @param {function} [callback]
          * @param {boolean} [enter]
          */
@@ -279,6 +300,7 @@ define([
 
             /**
              * Define Search element
+             * @property BaseView.elements
              * @type {FilterElement}
              */
             this.elements.$filter = new Filter(this, {
@@ -291,7 +313,7 @@ define([
 
         /**
          * Generic modal dialog window
-         * @member BaseView
+         * @memberOf BaseView
          * @param {{
          *      [style]: String,
          *      $container,
@@ -316,6 +338,7 @@ define([
 
             /**
              * Define $modal
+             * @property BaseView.elements
              * @type {ModalElement}
              */
             this.elements.$modal = new ModalElement(this, {
@@ -341,7 +364,7 @@ define([
 
         /**
          * Get $modal element
-         * @member BaseView
+         * @memberOf BaseView
          * @returns {ModalElement}
          */
         get$modal: function get$modal() {
@@ -350,7 +373,7 @@ define([
 
         /**
          * Generic button
-         * @member BaseView
+         * @memberOf BaseView
          * @param {ButtonElement} ButtonElement
          * @param {*} opts
          * @param {*} store
@@ -379,7 +402,7 @@ define([
 
         /**
          * Define cover
-         * @member BaseView
+         * @memberOf BaseView
          * @param CoverElement
          * @param opts
          * @returns {CoverElement}
@@ -395,7 +418,7 @@ define([
 
         /**
          * Locate DOM element in array
-         * @member BaseView
+         * @memberOf BaseView
          * @param {Array} source
          * @param {string} type
          * @returns {*}

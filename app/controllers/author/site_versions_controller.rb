@@ -1,5 +1,7 @@
 class Author::SiteVersionsController < Author::AuthorController
 
+  include Author
+
   before_action :set_author_site_version, only: [:show, :edit, :update, :destroy]
 
   layout 'author'
@@ -7,13 +9,13 @@ class Author::SiteVersionsController < Author::AuthorController
   # GET /author/site_versions
   # GET /author/site_versions.json
   def index
-    site_storage = Author::SiteStorage.where(key: params[:site_storage_id]).first
+    site_storage = SiteStorage.where(key: params[:site_storage_id]).first
     @author_site_versions = site_storage.nil? ?
-        Author::SiteVersion.all.order(:updated_at).reverse_order :
+        SiteVersion.all.order(:updated_at).reverse_order.group(:site_storage_id) :
         site_storage.author_site_versions.order(:updated_at).reverse_order
 
     @resource = {
-        items: @author_site_versions.size,
+        items: @author_site_versions.length,
         path: new_author_site_version_path
     }
 
@@ -26,7 +28,7 @@ class Author::SiteVersionsController < Author::AuthorController
 
   # GET /author/site_versions/new
   def new
-    @author_site_version = Author::SiteVersion.new
+    @author_site_version = SiteVersion.new
     render action: :form
   end
 
@@ -38,7 +40,7 @@ class Author::SiteVersionsController < Author::AuthorController
   # POST /author/site_versions
   # POST /author/site_versions.json
   def create
-    @author_site_version = Author::SiteVersion.new(author_site_version_params)
+    @author_site_version = SiteVersion.new(author_site_version_params)
 
     respond_to do |format|
       if @author_site_version.save
@@ -78,7 +80,7 @@ class Author::SiteVersionsController < Author::AuthorController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_version
-    @author_site_version = Author::SiteVersion.find(params[:id])
+    @author_site_version = SiteVersion.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

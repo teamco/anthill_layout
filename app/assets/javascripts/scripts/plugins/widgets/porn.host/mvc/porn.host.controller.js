@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PornHostController
+         * @memberOf PornHostController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate pornhost
-         * @member PornHostController
+         * @memberOf PornHostController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add PornHost rule
-         * @member PornHostController
+         * @memberOf PornHostController
          * @param e
          */
         addPornHostRule: function addPornHostRule(e) {

@@ -20,7 +20,7 @@ define([
 
         /**
          * Define events
-         * @member ApplicationEventManager
+         * @memberOf ApplicationEventManager
          * @type {{}}
          */
         this.events = {};
@@ -30,7 +30,7 @@ define([
 
         /**
          * Define event list
-         * @member ApplicationEventManager
+         * @memberOf ApplicationEventManager
          * @type {{
          *      loadApplication: string,
          *      defineGlobalInstance: string,

@@ -9,7 +9,7 @@ define(['config/layout'], function defineLayoutListeners(Layout) {
 
     /**
      * Define Layout Local listeners
-     * @member Layout
+     * @memberOf Layout
      * @type {{
      *      afterNestedOrganizer: {name: string, callback: Function}
      * }}

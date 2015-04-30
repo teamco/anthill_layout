@@ -12,7 +12,7 @@
 
         /**
          * Define bind
-         * @member Function
+         * @memberOf Function
          * @param oThis
          * @returns {fBound}
          */
@@ -72,7 +72,7 @@
 
     /**
      * Function add Method
-     * @member Function
+     * @memberOf Function
      * @param {string} name
      * @param {function} func
      * @returns {Function}
@@ -137,7 +137,7 @@
 
     /**
      * Get Function name
-     * @member Function
+     * @memberOf Function
      */
     if (Function.prototype.name === undefined && Object.defineProperty !== undefined) {
 
@@ -163,7 +163,7 @@
 
     /**
      * Get Function Caller name
-     * @member Function
+     * @memberOf Function
      */
     Function.method('getCallerName', function getCallerName() {
         var cfn = this.caller;
@@ -172,7 +172,7 @@
 
     /**
      * Extend Function prototype
-     * @member Function
+     * @memberOf Function
      */
     Function.method('extend', function extend() {
 
@@ -203,7 +203,7 @@
 
     /**
      * Clone function
-     * @member Function
+     * @memberOf Function
      */
     Function.method('clone', function clone() {
 
@@ -245,7 +245,7 @@
 
         /**
          * Define function debounce
-         * @member Function
+         * @memberOf Function
          * @param [threshold]
          * @param [execAsap]
          * @returns {debounced}

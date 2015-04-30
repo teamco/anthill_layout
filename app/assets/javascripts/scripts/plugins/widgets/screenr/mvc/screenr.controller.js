@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member ScreenrController
+         * @memberOf ScreenrController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate screenr
-         * @member ScreenrController
+         * @memberOf ScreenrController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Screenr rule
-         * @member ScreenrController
+         * @memberOf ScreenrController
          * @param e
          */
         addScreenrRule: function addScreenrRule(e) {

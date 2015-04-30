@@ -61,7 +61,7 @@ define([
 
             /**
              * Focus on field
-             * @member Renderer
+             * @memberOf Renderer
              * @param {string} [element]
              */
             focusOn: function focusOn(element) {
@@ -73,7 +73,7 @@ define([
 
             /**
              * Define monitor init
-             * @member Renderer
+             * @memberOf Renderer
              * @param $input
              * @param monitor
              */
@@ -90,7 +90,7 @@ define([
 
             /**
              * Define check visibility
-             * @member Renderer
+             * @memberOf Renderer
              * @param $input
              * @param {boolean} visible
              */

@@ -6,20 +6,20 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([], function defineBaseDateTime() {
+define([], function defineLibDateTime() {
 
     /**
      * Define Date time
-     * @class BaseDateTime
+     * @class LibDateTime
      * @constructor
      */
-    var BaseDateTime = function BaseDateTime() {
+    var LibDateTime = function LibDateTime() {
 
         (function () {
 
             /**
              * Define toISO8601
-             * @member Date
+             * @memberOf Date
              * @param date
              * @returns {string}
              */
@@ -47,11 +47,11 @@ define([], function defineBaseDateTime() {
         })();
     };
 
-    BaseDateTime.extend('BaseDateTime', {
+    LibDateTime.extend('LibDateTime', {
 
         /**
          * Get date
-         * @member BaseDateTime
+         * @memberOf LibDateTime
          * @returns {Date}
          */
         getDate: function getDate() {
@@ -60,7 +60,7 @@ define([], function defineBaseDateTime() {
 
         /**
          * Get timestamp
-         * @member BaseDateTime
+         * @memberOf LibDateTime
          * @param time
          * @returns {*}
          */
@@ -71,7 +71,7 @@ define([], function defineBaseDateTime() {
 
         /**
          * Get timestamp utc
-         * @member BaseDateTime
+         * @memberOf LibDateTime
          * @returns {number}
          */
         timestampUTC: function timestampUTC() {
@@ -241,6 +241,5 @@ define([], function defineBaseDateTime() {
         }
     });
 
-    return new BaseDateTime();
-
+    return new LibDateTime();
 });

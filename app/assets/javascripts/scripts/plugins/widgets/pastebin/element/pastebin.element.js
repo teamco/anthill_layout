@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member PastebinElement
+         * @memberOf PastebinElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

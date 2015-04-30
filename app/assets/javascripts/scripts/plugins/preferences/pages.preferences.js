@@ -8,24 +8,23 @@
 define([
     'jquery',
     'plugins/preferences/preferences'
-], function definePagesPreferences($, BasePreferences) {
+], function definePagesPreferences($, BasePreferencesElement) {
 
     /**
      * Define prefs
      * @class PagesPreferences
      * @extends Renderer
-     * @extends BasePreferences
+     * @extends BasePreferencesElement
      * @constructor
      */
     var PagesPreferences = function PagesPreferences() {
-
     };
 
     return PagesPreferences.extend('PagesPreferences', {
 
         /**
          * Render data
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @param {data} opts
          */
         renderData: function renderData(opts) {
@@ -100,6 +99,12 @@ define([
                     visible: true
                 },
                 lazyLoading: {
+                    type: 'checkbox',
+                    disabled: false,
+                    value: false,
+                    visible: true
+                },
+                outlineContainment: {
                     type: 'checkbox',
                     disabled: false,
                     value: false,
@@ -188,7 +193,7 @@ define([
 
         /**
          * Render Layout prefs
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @param {Page} page
          * @returns {*}
          */
@@ -295,7 +300,7 @@ define([
 
         /**
          * Render widgets prefs
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @param {Page} page
          * @returns {*}
          */
@@ -340,7 +345,7 @@ define([
                          */
                         var preferences = widget.model.getConfig('preferences');
 
-                        var thumbnail = preferences.thumbnail,
+                        var thumbnail = preferences.thumbnail || '',
                             css = thumbnail.length > 0 ? {backgroundImage: 'url("' + thumbnail + '")'} : {};
 
                         /**
@@ -407,7 +412,7 @@ define([
 
         /**
          * Render page widgets global preferences
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @returns {Array}
          */
         renderPageWidgetsGlobalPrefs: function renderPageWidgetsGlobalPrefs() {
@@ -483,7 +488,7 @@ define([
 
         /**
          * Show Widget prefs
-         * @member PagesPreferences
+         * @memberOf PagesPreferences
          * @param e
          */
         showWidgetPrefs: function showWidgetPrefs(e) {
@@ -573,5 +578,5 @@ define([
             }
         }
 
-    }, BasePreferences.prototype);
+    }, BasePreferencesElement.prototype);
 });

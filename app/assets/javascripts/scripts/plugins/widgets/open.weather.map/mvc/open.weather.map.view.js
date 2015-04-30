@@ -28,7 +28,7 @@ define([
 
         /**
          * Render open.weather.map element
-         * @member OpenWeatherMapView
+         * @memberOf OpenWeatherMapView
          */
         renderOpenWeatherMap: function renderOpenWeatherMap() {
 
@@ -50,7 +50,7 @@ define([
 
         /**
          * Render Prefs
-         * @member OpenWeatherMapView
+         * @memberOf OpenWeatherMapView
          * @returns {OpenWeatherMapPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -68,7 +68,7 @@ define([
 
         /**
          * Render Rules
-         * @member OpenWeatherMapView
+         * @memberOf OpenWeatherMapView
          * @param widgetRules
          * @param contentRules
          * @returns {OpenWeatherMapRulesElement}
@@ -98,7 +98,7 @@ define([
 
         /**
          * Show position
-         * @member OpenWeatherMapView
+         * @memberOf OpenWeatherMapView
          */
         showPosition: function showPosition() {
             this.scope.observer.publish(
@@ -108,7 +108,7 @@ define([
 
         /**
          * Render open.weather.map
-         * @member OpenWeatherMapView
+         * @memberOf OpenWeatherMapView
          */
         render: function render() {
 

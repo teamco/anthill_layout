@@ -2,22 +2,22 @@
  * Created by i061485 on 3/19/14.
  */
 
-define(['jquery'], function defineBasePreferences($) {
+define(['jquery'], function defineBasePreferencesElement($) {
 
     /**
-     * Define base prefs
-     * @class BasePreferences
+     * Define BasePreferencesElement
+     * @class BasePreferencesElement
      * @constructor
      */
-    var BasePreferences = function BasePreferences() {
+    var BasePreferencesElement = function BasePreferencesElement() {
 
     };
 
-    return BasePreferences.extend('BasePreferences', {
+    return BasePreferencesElement.extend('BasePreferencesElement', {
 
         /**
          * Toggle fieldset
-         * @member BasePreferences
+         * @memberOf BasePreferencesElement
          * @param e
          */
         toggleFieldset: function toggleFieldset(e) {
@@ -39,7 +39,7 @@ define(['jquery'], function defineBasePreferences($) {
 
         /**
          * Open preferences
-         * @member BasePreferences
+         * @memberOf BasePreferencesElement
          * @param opts
          */
         openPreferences: function openPreferences(opts) {
@@ -98,7 +98,7 @@ define(['jquery'], function defineBasePreferences($) {
 
         /**
          * Get node renderer
-         * @member BasePreferences
+         * @memberOf BasePreferencesElement
          * @param node
          * @param {string} text
          * @param {string} index
@@ -227,11 +227,12 @@ define(['jquery'], function defineBasePreferences($) {
                  */
                 $element = this.renderCombobox(
                     node.list,
-                    (selected.length === 0 ? node.list[0].value : selected),
+                    selected,
                     text.trim(),
                     index,
                     undefined,
-                    node.visible
+                    node.visible,
+                    node.placeholder
                 );
             }
 

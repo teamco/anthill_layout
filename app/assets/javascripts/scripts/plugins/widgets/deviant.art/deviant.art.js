@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member DeviantArt
+         * @memberOf DeviantArt
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member DeviantArt
+         * @memberOf DeviantArt
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member DeviantArt
+         * @memberOf DeviantArt
          * @type {MVC}
          */
         this.mvc = new MVC({

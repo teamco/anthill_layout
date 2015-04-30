@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member TubeEightElement
+         * @memberOf TubeEightElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

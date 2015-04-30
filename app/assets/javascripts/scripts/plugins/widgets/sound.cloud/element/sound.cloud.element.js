@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member SoundCloudElement
+         * @memberOf SoundCloudElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

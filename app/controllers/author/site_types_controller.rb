@@ -1,5 +1,7 @@
 class Author::SiteTypesController < Author::AuthorController
 
+  include Author
+
   before_action :set_author_site_type, only: [:show, :edit, :update, :destroy]
 
   layout 'author'
@@ -7,7 +9,7 @@ class Author::SiteTypesController < Author::AuthorController
   # GET /author/site_types
   # GET /author/site_types.json
   def index
-    @author_site_types = Author::SiteType.all.order(:name)
+    @author_site_types = SiteType.all.order(:name)
 
     @resource = {
         items: @author_site_types.size,
@@ -23,7 +25,7 @@ class Author::SiteTypesController < Author::AuthorController
 
   # GET /author/site_types/new
   def new
-    @author_site_type = Author::SiteType.new
+    @author_site_type = SiteType.new
     render action: 'form'
   end
 
@@ -35,7 +37,7 @@ class Author::SiteTypesController < Author::AuthorController
   # POST /author/site_types
   # POST /author/site_types.json
   def create
-    @author_site_type = Author::SiteType.new(author_site_type_params)
+    @author_site_type = SiteType.new(author_site_type_params)
 
     respond_to do |format|
       if @author_site_type.save
@@ -75,7 +77,7 @@ class Author::SiteTypesController < Author::AuthorController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_author_site_type
-    @author_site_type = Author::SiteType.find(params[:id])
+    @author_site_type = SiteType.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

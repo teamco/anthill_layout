@@ -9,7 +9,7 @@ define(['config/layout'], function defineLayoutListeners(Layout) {
 
     /**
      * Define Layout global listeners
-     * @member Layout
+     * @memberOf Layout
      * @type {{}}
      */
     Layout.prototype.globalListeners = {};

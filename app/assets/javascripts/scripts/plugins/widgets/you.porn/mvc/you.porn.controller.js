@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member YouPornController
+         * @memberOf YouPornController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate youporn
-         * @member YouPornController
+         * @memberOf YouPornController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add YouPorn rule
-         * @member YouPornController
+         * @memberOf YouPornController
          * @param e
          */
         addYouPornRule: function addYouPornRule(e) {

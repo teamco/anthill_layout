@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member MixbookController
+         * @memberOf MixbookController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate mixbook
-         * @member MixbookController
+         * @memberOf MixbookController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Mixbook rule
-         * @member MixbookController
+         * @memberOf MixbookController
          * @param e
          */
         addMixbookRule: function addMixbookRule(e) {

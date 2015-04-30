@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member IsnareModel
+         * @memberOf IsnareModel
          * @type {{
          *      isnareEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member IsnareModel
+         * @memberOf IsnareModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Isnare embed code
-         * @member IsnareModel
+         * @memberOf IsnareModel
          * @param {string} embed
          */
         setIsnareEmbedCode: function setIsnareEmbedCode(embed) {

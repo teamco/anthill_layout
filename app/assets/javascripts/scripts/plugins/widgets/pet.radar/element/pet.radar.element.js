@@ -36,7 +36,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member PetRadarElement
+         * @memberOf PetRadarElement
          */
         renderEmbeddedContent: function renderEmbeddedContent() {
             var $element = this;

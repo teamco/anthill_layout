@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member StepashkaController
+         * @memberOf StepashkaController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate stepashka
-         * @member StepashkaController
+         * @memberOf StepashkaController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Stepashka rule
-         * @member StepashkaController
+         * @memberOf StepashkaController
          * @param e
          */
         addStepashkaRule: function addStepashkaRule(e) {

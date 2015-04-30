@@ -28,7 +28,7 @@ define([
 
         /**
          * Render SlideShare element
-         * @member SlideShareView
+         * @memberOf SlideShareView
          */
         renderSlideShare: function renderSlideShare() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member SlideShareView
+         * @memberOf SlideShareView
          * @returns {SlideSharePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member SlideShareView
+         * @memberOf SlideShareView
          * @param widgetRules
          * @param contentRules
          * @returns {SlideShareRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render SlideShare
-         * @member SlideShareView
+         * @memberOf SlideShareView
          */
         render: function render() {
 

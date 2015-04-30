@@ -9,7 +9,7 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
 
     /**
      * Define Workspace Local listeners
-     * @member Workspace
+     * @memberOf Workspace
      * @type {{
      *      successCreated: {name: string, callback: Function},
      *      successRendered: {name: string, callback: Function},

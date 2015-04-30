@@ -15,7 +15,7 @@ define([
 
         /**
          * Define avatar config functionality selectors
-         * @member AvatarBehavior
+         * @memberOf AvatarBehavior
          */
         defineSelectors: function defineSelectors() {
             this.$avContainer = $('.bord', this.$);

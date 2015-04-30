@@ -28,7 +28,7 @@ define([
 
         /**
          * Render xkcd element
-         * @member XkcdView
+         * @memberOf XkcdView
          */
         renderXkcd: function renderXkcd() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member XkcdView
+         * @memberOf XkcdView
          * @returns {XkcdPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member XkcdView
+         * @memberOf XkcdView
          * @param widgetRules
          * @param contentRules
          * @returns {XkcdRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render xkcd
-         * @member XkcdView
+         * @memberOf XkcdView
          */
         render: function render() {
 

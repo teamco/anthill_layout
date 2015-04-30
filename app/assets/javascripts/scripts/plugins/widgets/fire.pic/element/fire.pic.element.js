@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member FirePicElement
+         * @memberOf FirePicElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

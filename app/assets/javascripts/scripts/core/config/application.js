@@ -100,35 +100,35 @@ define([
 
         /**
          * Define loading data counter
-         * @member Application
+         * @property Application
          * @type {number|*}
          */
         this.loadingDataCounter = undefined;
 
         /**
          * Define panels
-         * @member Application
+         * @property Application
          * @type {{}}
          */
         this.panels = {};
 
         /**
          * Define items
-         * @member Application
+         * @property Application
          * @type {*}
          */
         this.items = {};
 
         /**
          * Define workspace
-         * @member Application
-         * @type {Workspace}
+         * @property Application
+         * @type {Object}
          */
         this.workspace = {};
 
         /**
          * Define MVC
-         * @member Application
+         * @property Application
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -147,6 +147,7 @@ define([
 
         /**
          * Update routes
+         * @property Application.config
          * @type {{updateSiteContent: string[]}}
          */
         this.config.routes = {

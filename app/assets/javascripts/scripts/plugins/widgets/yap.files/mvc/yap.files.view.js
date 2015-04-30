@@ -28,7 +28,7 @@ define([
 
         /**
          * Render yapfiles element
-         * @member YapFilesView
+         * @memberOf YapFilesView
          */
         renderYapFiles: function renderYapFiles() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member YapFilesView
+         * @memberOf YapFilesView
          * @returns {YapFilesPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member YapFilesView
+         * @memberOf YapFilesView
          * @param widgetRules
          * @param contentRules
          * @returns {YapFilesRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render yapfiles
-         * @member YapFilesView
+         * @memberOf YapFilesView
          */
         render: function render() {
 

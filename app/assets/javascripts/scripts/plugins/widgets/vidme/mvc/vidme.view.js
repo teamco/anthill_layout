@@ -28,7 +28,7 @@ define([
 
         /**
          * Render vidme element
-         * @member VidmeView
+         * @memberOf VidmeView
          */
         renderVidme: function renderVidme() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member VidmeView
+         * @memberOf VidmeView
          * @returns {VidmePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member VidmeView
+         * @memberOf VidmeView
          * @param widgetRules
          * @param contentRules
          * @returns {VidmeRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render vidme
-         * @member VidmeView
+         * @memberOf VidmeView
          */
         render: function render() {
 

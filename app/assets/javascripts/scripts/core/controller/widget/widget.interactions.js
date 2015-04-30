@@ -16,14 +16,13 @@ define([
      * @constructor
      */
     var WidgetInteractions = function WidgetInteractions() {
-
     };
 
     return WidgetInteractions.extend('WidgetInteractions', {
 
         /**
          * Setup interactions {Drag|Resize}
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          */
         setupInteractions: function setupInteractions() {
 
@@ -36,8 +35,47 @@ define([
         },
 
         /**
+         * Set Interaction
+         * @memberOf WidgetInteractions
+         * @param {Function|Resizable|Draggable|Droppable} InteractionEvent
+         * @returns {*}
+         */
+        setInteraction: function setInteraction(InteractionEvent) {
+
+            /**
+             * Event name
+             * @type {string}
+             */
+            var ename = InteractionEvent.name.toLowerCase();
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            /**
+             * Register interactions
+             * @type {Draggable|Resizable|Droppable}
+             */
+            scope.interactions[ename] = new InteractionEvent(scope);
+
+            return this.getInteraction(ename);
+        },
+
+        /**
+         * Get Interaction
+         * @memberOf WidgetInteractions
+         * @param {String} event
+         * @returns {*}
+         */
+        getInteraction: function getInteraction(event) {
+            return this.scope.interactions[event];
+        },
+
+        /**
          * Init drag
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          */
         initDraggable: function initDraggable() {
             this.controller.setInteraction(Draggable);
@@ -45,7 +83,7 @@ define([
 
         /**
          * Enable drag
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          */
         enableDraggable: function enableDraggable() {
             this.interactions.draggable.enable();
@@ -53,7 +91,7 @@ define([
 
         /**
          * Disable drag
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          */
         disableDraggable: function disableDraggable() {
             this.interactions.draggable.disable();
@@ -61,7 +99,7 @@ define([
 
         /**
          * Destroy drag
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          */
         destroyDraggable: function destroyDraggable() {
             this.interactions.draggable.destroy();
@@ -69,7 +107,7 @@ define([
 
         /**
          * Init resize
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          */
         initResizable: function initResizable() {
             this.controller.setInteraction(Resizable);
@@ -77,7 +115,7 @@ define([
 
         /**
          * Enable resize
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          */
         enableResizable: function enableResizable() {
             this.interactions.resizable.enable();
@@ -85,7 +123,7 @@ define([
 
         /**
          * Disable resize
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          */
         disableResizable: function disableResizable() {
             this.interactions.resizable.disable();
@@ -93,7 +131,7 @@ define([
 
         /**
          * Destroy resize
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          */
         destroyResizable: function destroyResizable() {
             this.interactions.resizable.destroy();
@@ -101,7 +139,7 @@ define([
 
         /**
          * Debug interactions
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          * @param {String} interaction
          */
         debugInteractions: function debugInteractions(interaction) {
@@ -110,7 +148,7 @@ define([
 
         /**
          * Create drag
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          */
         createDraggable: function createDraggable() {
             this.logger.debug('Create drag', arguments);
@@ -118,7 +156,7 @@ define([
 
         /**
          * Start drag
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          */
         startDraggable: function startDraggable() {
             this.logger.debug('Start drag', arguments);
@@ -126,7 +164,7 @@ define([
 
         /**
          * Grid sticker on drag
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          * @param {String} type
          */
         dragDraggable: function dragDraggable(type) {
@@ -143,7 +181,7 @@ define([
 
         /**
          * Stop drag
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          * @param {String} type
          */
         stopDraggable: function stopDraggable(type) {
@@ -160,7 +198,7 @@ define([
 
         /**
          * Create resize
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          * @param {String} type
          */
         createResizable: function createResizable(type) {
@@ -169,7 +207,7 @@ define([
 
         /**
          * Resize start
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          * @param {String} type
          */
         startResizable: function startResizable(type) {
@@ -178,7 +216,7 @@ define([
 
         /**
          * Grid sticker on resize
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          * @param {String} type
          */
         resizeResizable: function resizeResizable(type) {
@@ -195,7 +233,7 @@ define([
 
         /**
          * Resize stop
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          * @param {String} type
          * @param {{}} [opts]
          * @param [args]
@@ -249,7 +287,7 @@ define([
 
         /**
          * Update Resizable
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          * @param key
          * @param value
          */
@@ -259,7 +297,7 @@ define([
 
         /**
          * Update Draggable
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          * @param key
          * @param value
          */
@@ -269,7 +307,7 @@ define([
 
         /**
          * Update interactions
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          * @param type
          * @param key
          * @param value
@@ -280,7 +318,7 @@ define([
 
         /**
          * Check if widget is draggable
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          * @returns {Boolean}
          */
         isDraggable: function isDraggable() {
@@ -289,7 +327,7 @@ define([
 
         /**
          * Check if widget is resizable
-         * @member WidgetInteractions
+         * @memberOf WidgetInteractions
          * @returns {Boolean}
          */
         isResizable: function isResizable() {
@@ -298,7 +336,7 @@ define([
 
         /**
          * Transfer click to content
-         * @member WidgetController
+         * @memberOf WidgetController
          * @param {string} url
          */
         setOnClickUrl: function setOnClickUrl(url) {

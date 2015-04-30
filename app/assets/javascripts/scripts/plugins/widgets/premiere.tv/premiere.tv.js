@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member PremiereTv
+         * @memberOf PremiereTv
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member PremiereTv
+         * @memberOf PremiereTv
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member PremiereTv
+         * @memberOf PremiereTv
          * @type {MVC}
          */
         this.mvc = new MVC({

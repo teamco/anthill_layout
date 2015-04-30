@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member UstreamController
+         * @memberOf UstreamController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate ustream
-         * @member UstreamController
+         * @memberOf UstreamController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Ustream rule
-         * @member UstreamController
+         * @memberOf UstreamController
          * @param e
          */
         addUstreamRule: function addUstreamRule(e) {

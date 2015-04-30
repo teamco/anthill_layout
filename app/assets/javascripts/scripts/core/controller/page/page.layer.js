@@ -2,7 +2,7 @@
  * Created by i061485 on 7/9/14.
  */
 
-define([], function definePageLayer(){
+define(function definePageLayer(){
 
     /**
      * Define page layer
@@ -10,14 +10,13 @@ define([], function definePageLayer(){
      * @constructor
      */
     var PageLayer = function PageLayer() {
-
     };
 
     return PageLayer.extend('PageLayer', {
 
         /**
          * Get container target widgets
-         * @member PageLayer
+         * @memberOf PageLayer
          * @param {Widget} source
          * @param {boolean} [up]
          * @returns {{}}
@@ -82,7 +81,7 @@ define([], function definePageLayer(){
 
         /**
          * Re-order layers before save
-         * @member PageLayer
+         * @memberOf PageLayer
          */
         reorderLayers: function reorderLayers() {
 
@@ -150,7 +149,7 @@ define([], function definePageLayer(){
 
         /**
          * Revert layer
-         * @member PageLayer
+         * @memberOf PageLayer
          */
         revertLayer: function revertLayer() {
 

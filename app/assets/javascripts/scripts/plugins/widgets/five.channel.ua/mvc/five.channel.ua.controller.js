@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member FiveChannelUaController
+         * @memberOf FiveChannelUaController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate fivechannelua
-         * @member FiveChannelUaController
+         * @memberOf FiveChannelUaController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -76,7 +76,7 @@ define([
 
         /**
          * Add FiveChannelUa rule
-         * @member FiveChannelUaController
+         * @memberOf FiveChannelUaController
          * @param e
          */
         addFiveChannelUaRule: function addFiveChannelUaRule(e) {

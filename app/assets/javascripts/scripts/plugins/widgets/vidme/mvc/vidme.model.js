@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member VidmeModel
+         * @memberOf VidmeModel
          * @type {{
          *      vidmeEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member VidmeModel
+         * @memberOf VidmeModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Vidme embed code
-         * @member VidmeModel
+         * @memberOf VidmeModel
          * @param {string} embed
          */
         setVidmeEmbedCode: function setVidmeEmbedCode(embed) {

@@ -20,7 +20,7 @@ define([], function defineWidgetContentModel() {
 
         /**
          * Get prefs
-         * @member WidgetContentModel
+         * @memberOf WidgetContentModel
          * @param {string} prefs
          * @returns {boolean|string}
          */
@@ -36,7 +36,7 @@ define([], function defineWidgetContentModel() {
 
         /**
          * Get all content preferences
-         * @member WidgetContentModel
+         * @memberOf WidgetContentModel
          * @returns {*}
          */
         getAllContentPrefs: function getAllContentPrefs() {
@@ -45,7 +45,7 @@ define([], function defineWidgetContentModel() {
 
         /**
          * Get prefs
-         * @member WidgetContentModel
+         * @memberOf WidgetContentModel
          * @param {string} prefs
          * @returns {*}
          */
@@ -71,7 +71,7 @@ define([], function defineWidgetContentModel() {
 
         /**
          * Set prefs
-         * @member WidgetContentModel
+         * @memberOf WidgetContentModel
          * @param {string} prefs
          * @param {*} value
          */
@@ -79,7 +79,7 @@ define([], function defineWidgetContentModel() {
 
             /**
              * Define preferences
-             * @member WidgetContentModel
+             * @memberOf WidgetContentModel
              * @type {*}
              */
             this.preferences = this.base.define(
@@ -103,7 +103,7 @@ define([], function defineWidgetContentModel() {
 
         /**
          * Copy prefs
-         * @member WidgetContentModel
+         * @memberOf WidgetContentModel
          * @param source
          * @returns {boolean}
          */
@@ -113,10 +113,10 @@ define([], function defineWidgetContentModel() {
              * Define
              * @type {string}
              */
-            var cname = this.scope.constructor.prototype.name.toLowerCase(),
+            var cname = this.scope.name.toLowerCase(),
                 prefs = source.model.preferences;
 
-            if (source.constructor.prototype.name.toLowerCase() !== cname) {
+            if (source.name.toLowerCase() !== cname) {
                 this.scope.logger.warn('Unable to copy preferences', source);
                 return false;
             }

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TwitrPixModel
+         * @memberOf TwitrPixModel
          * @type {{
          *      twitrpixEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TwitrPixModel
+         * @memberOf TwitrPixModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set TwitrPix embed code
-         * @member TwitrPixModel
+         * @memberOf TwitrPixModel
          * @param {string} embed
          */
         setTwitrpixEmbedCode: function setTwitrpixEmbedCode(embed) {

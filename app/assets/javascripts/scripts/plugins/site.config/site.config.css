@@ -104,6 +104,7 @@ ul.site-config > .content:hover {
 
 .modal-dialog.import-site-data div.html {
     box-shadow: none;
+    margin-right: 10px;
 }
 
 .modal-dialog.import-site-data .site-config .site-config-drop-zone.error {
@@ -193,10 +194,13 @@ ul.site-config > .content:hover {
 
 .modal-dialog.widget-generator-new div.html {
     background-color: #e1e1e1;
+    margin: 10px 10px 5px;
+    padding: 0;
+    border-radius: 5px;
 }
 
 .modal-dialog.widget-generator-new div.html.visible {
-    background-color: #e1e1e1;
+    margin: 0 10px 5px;
     width: auto;
     padding-right: 0;
 }
@@ -218,6 +222,10 @@ ul.site-config > .content:hover {
 .modal-dialog.widget-generator-new div.html li.description,
 .modal-dialog.widget-generator-new div.html li.thumbnail {
     height: auto;
+}
+
+.modal-dialog.widget-generator-new div.html li.thumbnail {
+    padding-top: 60px;
 }
 
 .modal-dialog.widget-generator-new div.html li.width,
@@ -272,7 +280,7 @@ ul.site-config > .content:hover {
 
 .modal-dialog.widget-generator-new div.html li.thumbnail label {
     width: auto;
-    margin-left: 10%;
+    margin-left: 45px;
 }
 
 .modal-dialog.widget-generator-new div.html li.thumbnail textarea {
@@ -310,4 +318,8 @@ ul.site-config > .content:hover {
 
 .modal-dialog.clean-up-data {
     width: 700px;
+}
+
+.modal-dialog.clean-up-data div.html {
+    margin: 10px 10px 0 0;
 }

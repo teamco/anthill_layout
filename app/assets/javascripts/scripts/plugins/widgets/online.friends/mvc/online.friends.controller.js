@@ -25,7 +25,7 @@ define([
 
         /**
          * Set embedded content
-         * @member OnlineFriendsController
+         * @memberOf OnlineFriendsController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add OnlineFriends rule
-         * @member OnlineFriendsController
+         * @memberOf OnlineFriendsController
          * @param e
          */
         addOnlineFriendsRule: function addOnlineFriendsRule(e) {

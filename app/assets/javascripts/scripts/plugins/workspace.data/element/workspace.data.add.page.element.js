@@ -13,7 +13,7 @@ define(
      * @param {BaseElement} BaseElement
      * @returns {*}
      */
-        function defineWorkspaceDataAddPageElement(BaseElement) {
+    function defineWorkspaceDataAddPageElement(BaseElement) {
 
         /**
          * Define WorkspaceData AddPage Element
@@ -33,12 +33,14 @@ define(
 
             /**
              * Define title
+             * @memberOf WorkspaceDataAddPageElement
              * @type {string}
              */
             this.title = 'Create new page';
 
             /**
              * Define description
+             * @memberOf WorkspaceDataAddPageElement
              * @type {string}
              */
             this.description = 'Clicking a button will take you to the edit page for the new widgets';
@@ -46,25 +48,99 @@ define(
             return this.init();
         };
 
-        return WorkspaceDataAddPageElement.extend('WorkspaceDataAddPageElement', {
+        return WorkspaceDataAddPageElement.extend(
+            'WorkspaceDataAddPageElement', {
 
-            /**
-             * Define Init
-             * @member WorkspaceDataAddPageElement
-             * @returns {WorkspaceDataAddPageElement}
-             */
-            init: function init() {
+                /**
+                 * Define Init
+                 * @memberOf WorkspaceDataAddPageElement
+                 * @returns {WorkspaceDataAddPageElement}
+                 */
+                init: function init() {
 
-                this.setTitle(this.title);
-                this.renderTooltip({
-                    title: this.title,
-                    description: this.description,
-                    $container: this
-                });
+                    this.setTitle(this.title);
+                    this.renderTooltip({
+                        title: this.title,
+                        description: this.description,
+                        $container: this
+                    });
 
-                return this;
-            }
+                    return this;
+                },
 
-        }, BaseElement.prototype);
+                /**
+                 * Render add wizard
+                 * @memberOf WorkspaceDataAddPageElement
+                 * @param {Workspace} workspace
+                 * @returns {*|jQuery|HTMLElement}
+                 */
+                renderWizard: function renderWizard(workspace) {
+
+                    var $ul = $('<ul />');
+
+                    var items = workspace.model.getItems();
+
+                    /**
+                     * Define clone pages
+                     * @type {Array}
+                     */
+                    var clonePages = $.map(items, function map(page) {
+
+                        var uuid = page.model.getUUID(),
+                            title = page.model.getItemTitle(),
+                            counter = page.model.getConfig('widget/counter'),
+                            description = (uuid === title ? '' : title) + '<br />',
+                            pluralize = 'items: ' + counter;
+
+                        return {
+                            type: 'text',
+                            value: uuid,
+                            tooltip: description + pluralize
+                        };
+                    });
+
+                    clonePages.unshift({
+                        type: 'text',
+                        value: 'Empty page'
+                    });
+
+                    /**
+                     * Define title
+                     * @type {*|jQuery}
+                     */
+                    var $title = $('<li />').append(
+                        this.renderTextField({
+                            name: 'title',
+                            text: 'Page title',
+                            placeholder: 'Enter title',
+                            disabled: false,
+                            visible: true
+                        })
+                    ).addClass('page-title');
+
+                    /**
+                     * Define clone from
+                     * @type {*|jQuery}
+                     */
+                    var $clone = $('<li />').append(
+                        this.renderCombobox(
+                            clonePages,
+                            clonePages[0].value,
+                            'Create as',
+                            'cloneItemContent',
+                            undefined,
+                            true
+                        )
+                    );
+
+                    return $ul.append([
+                        $clone,
+                        $title
+                    ]);
+                }
+
+            },
+            BaseElement.prototype
+        );
     }
 );

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member DailyMotionModel
+         * @memberOf DailyMotionModel
          * @type {{
          *      dailymotionUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member DailyMotionModel
+         * @memberOf DailyMotionModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set DailyMotion Url
-         * @member DailyMotionModel
+         * @memberOf DailyMotionModel
          * @param {string} url
          */
         setDailymotionUrl: function setDailymotionUrl(url) {

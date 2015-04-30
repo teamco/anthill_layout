@@ -28,7 +28,7 @@ define([
 
         /**
          * Render smotricom element
-         * @member SmotriComView
+         * @memberOf SmotriComView
          */
         renderSmotriCom: function renderSmotriCom() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member SmotriComView
+         * @memberOf SmotriComView
          * @returns {SmotriComPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member SmotriComView
+         * @memberOf SmotriComView
          * @param widgetRules
          * @param contentRules
          * @returns {SmotriComRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render smotricom
-         * @member SmotriComView
+         * @memberOf SmotriComView
          */
         render: function render() {
 

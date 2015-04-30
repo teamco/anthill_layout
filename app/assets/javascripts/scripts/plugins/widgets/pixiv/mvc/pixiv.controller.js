@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PixivController
+         * @memberOf PixivController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate pixiv
-         * @member PixivController
+         * @memberOf PixivController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Pixiv rule
-         * @member PixivController
+         * @memberOf PixivController
          * @param e
          */
         addPixivRule: function addPixivRule(e) {

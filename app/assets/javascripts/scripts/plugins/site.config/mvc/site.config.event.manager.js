@@ -20,14 +20,14 @@ define([
 
         /**
          * Define events
-         * @member SiteConfigEventManager
+         * @memberOf SiteConfigEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Set subscribed flag
-         * @member SiteConfigEventManager
+         * @memberOf SiteConfigEventManager
          * @type {boolean}
          */
         this.subscribed = false;
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define event list
-         * @member SiteConfigEventManager
+         * @memberOf SiteConfigEventManager
          * @type {{
          *      updateTranslations: string,
          *      loadModuleContent: string,
@@ -70,7 +70,7 @@ define([
 
         /**
          * Subscribe publish on
-         * @member SiteConfigEventManager
+         * @memberOf SiteConfigEventManager
          * @param {Application} root
          * @param {Function} [callback]
          * @returns {{}}
@@ -87,7 +87,7 @@ define([
 
             /**
              * Set subscribed flag
-             * @member SiteConfigEventManager
+             * @memberOf SiteConfigEventManager
              * @type {boolean}
              */
             this.subscribed = true;

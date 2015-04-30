@@ -28,7 +28,7 @@ define([
 
         /**
          * Render freshtv element
-         * @member FreshTvView
+         * @memberOf FreshTvView
          */
         renderFreshTv: function renderFreshTv() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member FreshTvView
+         * @memberOf FreshTvView
          * @returns {FreshTvPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member FreshTvView
+         * @memberOf FreshTvView
          * @param widgetRules
          * @param contentRules
          * @returns {FreshTvRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render freshtv
-         * @member FreshTvView
+         * @memberOf FreshTvView
          */
         render: function render() {
 

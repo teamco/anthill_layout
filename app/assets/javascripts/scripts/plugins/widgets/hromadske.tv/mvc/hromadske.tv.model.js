@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member HromadskeTvModel
+         * @memberOf HromadskeTvModel
          * @type {{
          *      hromadsketvUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member HromadskeTvModel
+         * @memberOf HromadskeTvModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set HromadskeTv Url
-         * @member HromadskeTvModel
+         * @memberOf HromadskeTvModel
          * @param {string} url
          */
         setHromadsketvUrl: function setHromadsketvUrl(url) {

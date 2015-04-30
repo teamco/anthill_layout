@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TwentyFourLiveModel
+         * @memberOf TwentyFourLiveModel
          * @type {{
          *      twentyfourliveUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TwentyFourLiveModel
+         * @memberOf TwentyFourLiveModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set TwentyFourLive Url
-         * @member TwentyFourLiveModel
+         * @memberOf TwentyFourLiveModel
          * @param {string} url
          */
         setTwentyfourliveUrl: function setTwentyfourliveUrl(url) {

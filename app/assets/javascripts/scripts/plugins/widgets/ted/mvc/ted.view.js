@@ -28,7 +28,7 @@ define([
 
         /**
          * Render ted element
-         * @member TedView
+         * @memberOf TedView
          */
         renderTed: function renderTed() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member TedView
+         * @memberOf TedView
          * @returns {TedPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member TedView
+         * @memberOf TedView
          * @param widgetRules
          * @param contentRules
          * @returns {TedRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render ted
-         * @member TedView
+         * @memberOf TedView
          */
         render: function render() {
 

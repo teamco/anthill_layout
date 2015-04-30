@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member RedTube
+         * @memberOf RedTube
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member RedTube
+         * @memberOf RedTube
          * @type {*}
          */
         this.referrer = undefined;
@@ -75,7 +75,7 @@ define([
 
         /**
          * Define MVC
-         * @member RedTube
+         * @memberOf RedTube
          * @type {MVC}
          */
         this.mvc = new MVC({

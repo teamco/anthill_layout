@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member MusTvModel
+         * @memberOf MusTvModel
          * @type {{
          *      mustvEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member MusTvModel
+         * @memberOf MusTvModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set MusTv embed code
-         * @member MusTvModel
+         * @memberOf MusTvModel
          * @param {string} embed
          */
         setMustvEmbedCode: function setMustvEmbedCode(embed) {

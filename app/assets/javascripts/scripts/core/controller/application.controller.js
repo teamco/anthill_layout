@@ -9,22 +9,25 @@ define(
     [
         'config/anthill',
         'modules/Controller',
+        'controller/behavior/behavior.error.handler',
         'config/routes'
     ],
     /**
      * Define Application controller
      * @param {AntHill} AntHill
      * @param {BaseController} BaseController
+     * @param {BehaviorErrorHandler} BehaviorErrorHandler
      * @param {Routes} Routes
      * @returns {ApplicationController}
      */
-    function defineApplicationController(AntHill, BaseController, Routes) {
+    function defineApplicationController(AntHill, BaseController, BehaviorErrorHandler, Routes) {
 
         /**
          * Define application controller
          * @class ApplicationController
          * @extends AntHill
          * @extends BaseController
+         * @extends BehaviorErrorHandler
          * @extends Routes
          * @constructor
          */
@@ -36,7 +39,7 @@ define(
 
                 /**
                  * Define Load Application
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 loadApplication: function loadApplication() {
 
@@ -52,68 +55,43 @@ define(
                             api.createPage([], true);
 
                         this.model.setConfig('loading', false);
+
+                        /**
+                         * Get current page
+                         * @type {Page}
+                         */
+                        var page = this.controller.getPage();
+
+                        page.observer.publish(
+                            page.eventmanager.eventList.loadItemsContent
+                        );
                     }
                 },
 
                 /**
                  * Define global instance
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 defineGlobalInstance: function defineGlobalInstance() {
                     this.logger.debug(
                         'Define global instance',
-                        this.model.getConfig('appName')
+                        this.controller.getAppName()
                     );
                 },
 
                 /**
                  * Define setting
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 defineSetting: function defineSetting() {
                     this.model.initGlobalSetting();
                     this.controller.ajaxSetup();
-                    this.controller.defineOverrides();
-                },
-
-                /**
-                 * Define overrides
-                 * @member ApplicationController
-                 */
-                defineOverrides: function defineOverrides() {
-
-                    var proxiedError = window.onerror,
-                        scope = this.scope;
-
-                    // Override previous handler.
-                    window.onerror = function errorHandler(errorMsg, url, lineNumber, columnNumber, errorObject) {
-
-                        if (proxiedError) {
-
-                            // Call previous handler.
-                            proxiedError.apply(this, arguments);
-                        }
-
-                        // Just let default handler run.
-                        scope.view.handleNotificationsRenderer({
-                            status: errorMsg,
-                            statusText: [url, lineNumber, columnNumber].join(':'),
-                            responseJSON: {
-                                error: [
-                                    '<pre><code>',
-                                    errorObject.stack,
-                                    '</code></pre>'
-                                ].join('')
-                            }
-                        }, 'error');
-
-                        return false;
-                    }
+                    this.controller.defineClientErrorHandler();
                 },
 
                 /**
                  * Update storage version
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  * @param {number} version
                  */
                 updateStorageVersion: function updateStorageVersion(version) {
@@ -124,7 +102,7 @@ define(
 
                 /**
                  * After update storage
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 afterUpdateStorage: function afterUpdateStorage() {
                     this.logger.debug('After update storage');
@@ -132,13 +110,14 @@ define(
 
                 /**
                  * Define ajax setup
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 ajaxSetup: function ajaxSetup() {
 
                     $.ajaxSetup({
+                        timeout: 10000,
                         ifModified: true,
-                        beforeSend: function beforeSend(xhr, settings) {
+                        beforeSend: function _beforeSend(xhr, settings) {
                             if (typeof(settings.dataType) === 'undefined') {
                                 xhr.setRequestHeader(
                                     'accept',
@@ -157,23 +136,8 @@ define(
                 },
 
                 /**
-                 * Define error handler
-                 * @member ApplicationController
-                 */
-                _handleXhrLog: function _handleXhrLog(xhr, status, description) {
-
-                    if (status === 'error' || status === 'warning') {
-                        this.scope.view.handleNotificationsRenderer(
-                            xhr, status
-                        );
-                    }
-
-                    this.scope.logger[status === 'error' ? 'warn' : 'debug'](arguments);
-                },
-
-                /**
                  * Load updated uuid
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  * @param {string} uuid
                  */
                 loadConfig: function loadConfig(uuid) {
@@ -185,7 +149,7 @@ define(
 
                 /**
                  * Init window resize
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 initResizeWindow: function initResizeWindow() {
 
@@ -193,7 +157,7 @@ define(
 
                     /**
                      * Define resize callback
-                     * @type {function(this:Controller)}
+                     * @type {Function}
                      */
                     var callback = this.controller.resizeWindowPublisher.
                         bind(this);
@@ -203,7 +167,7 @@ define(
 
                 /**
                  * Resize window publisher
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  * @param e
                  */
                 resizeWindowPublisher: function resizeWindowPublisher(e) {
@@ -218,7 +182,7 @@ define(
 
                 /**
                  * Resize window callback
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  * @param e
                  */
                 resizeWindow: function resizeWindow(e) {
@@ -231,7 +195,7 @@ define(
 
                 /**
                  * Resize window hooks
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 resizeWindowHooks: function resizeWindowHooks() {
                     this.logger.debug('Start resize window hooks', arguments);
@@ -239,12 +203,13 @@ define(
 
                 /**
                  * Approve clear data
-                 * @member ApplicationController
+                 * @memberOf ApplicationController
                  */
                 approveClearData: function approveClearData() {
 
                     /**
                      * Define local scope
+                     * @type {Application}
                      */
                     var scope = this.scope;
 
@@ -267,6 +232,7 @@ define(
             },
             AntHill.prototype,
             BaseController.prototype,
+            BehaviorErrorHandler.prototype,
             Routes.prototype
         );
     }

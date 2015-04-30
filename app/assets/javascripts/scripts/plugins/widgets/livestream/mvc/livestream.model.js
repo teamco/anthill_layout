@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member LivestreamModel
+         * @memberOf LivestreamModel
          * @type {{
          *      livestreamEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member LivestreamModel
+         * @memberOf LivestreamModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Livestream embed code
-         * @member LivestreamModel
+         * @memberOf LivestreamModel
          * @param {string} embed
          */
         setLivestreamEmbedCode: function setLivestreamEmbedCode(embed) {

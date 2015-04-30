@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member YapFiles
+         * @memberOf YapFiles
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member YapFiles
+         * @memberOf YapFiles
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member YapFiles
+         * @memberOf YapFiles
          * @type {MVC}
          */
         this.mvc = new MVC({

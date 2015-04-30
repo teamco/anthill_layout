@@ -28,7 +28,7 @@ define([
 
         /**
          * Render GooglePlus element
-         * @member GooglePlusView
+         * @memberOf GooglePlusView
          */
         renderGooglePlus: function renderGooglePlus() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member GooglePlusView
+         * @memberOf GooglePlusView
          * @returns {GooglePlusPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member GooglePlusView
+         * @memberOf GooglePlusView
          * @param widgetRules
          * @param contentRules
          * @returns {GooglePlusRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render GooglePlus
-         * @member GooglePlusView
+         * @memberOf GooglePlusView
          */
         render: function render() {
 

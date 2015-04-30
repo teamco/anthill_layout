@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member RedTubeController
+         * @memberOf RedTubeController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate red tube
-         * @member RedTubeController
+         * @memberOf RedTubeController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -75,7 +75,7 @@ define([
 
         /**
          * Add RedTube rule
-         * @member RedTubeController
+         * @memberOf RedTubeController
          * @param e
          */
         addRedTubeRule: function addRedTubeRule(e) {

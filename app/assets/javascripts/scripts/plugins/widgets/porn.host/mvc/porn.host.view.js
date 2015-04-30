@@ -28,7 +28,7 @@ define([
 
         /**
          * Render pornhost element
-         * @member PornHostView
+         * @memberOf PornHostView
          */
         renderPornHost: function renderPornHost() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member PornHostView
+         * @memberOf PornHostView
          * @returns {PornHostPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member PornHostView
+         * @memberOf PornHostView
          * @param widgetRules
          * @param contentRules
          * @returns {PornHostRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render pornhost
-         * @member PornHostView
+         * @memberOf PornHostView
          */
         render: function render() {
 

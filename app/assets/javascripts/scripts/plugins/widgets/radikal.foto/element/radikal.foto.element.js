@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member RadikalFotoElement
+         * @memberOf RadikalFotoElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

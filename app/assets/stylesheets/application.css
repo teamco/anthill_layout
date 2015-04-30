@@ -26,4 +26,5 @@ p.undefined-site {
     box-shadow: 1px 1px 10px #999;
     text-shadow: 1px 1px 1px #000;
     color: lightcoral;
+    text-align: center;
 }

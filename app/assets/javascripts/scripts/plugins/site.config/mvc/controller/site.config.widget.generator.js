@@ -17,7 +17,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define widget generator
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          */
         widgetGenerator: function widgetGenerator() {
 
@@ -27,7 +27,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define widgets list
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          */
         loadWidgetsList: function loadWidgetsList() {
 
@@ -48,7 +48,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define create widget step
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          */
         nextWidgetGenerator: function nextWidgetGenerator() {
 
@@ -69,8 +69,8 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Collect form widget's data
-         * @member SiteConfigWidgetGenerator
-         * @returns {{
+         * @memberOf SiteConfigWidgetGenerator
+         * @returns {boolean|{
          *      category: string,
          *      collector: {},
          *      $modal: ModalElement,
@@ -82,10 +82,16 @@ define(function defineSiteConfigWidgetGenerator() {
         _collectFormWidgetData: function _collectFormWidgetData() {
 
             /**
+             * Get scope
+             * @type {SiteConfig}
+             */
+            var scope = this.scope;
+
+            /**
              * Get $modal
              * @type {ModalElement}
              */
-            var $modal = this.scope.view.get$modal();
+            var $modal = scope.view.get$modal();
 
             var inputs = $modal.collectInputFields(),
                 validate = inputs.hasClass('validate'),
@@ -95,7 +101,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
             /**
              * Define collector
-             * @type {{clone: string, scratch: string, visible: boolean}}
+             * @type {{name: string, category: string, clone: string, scratch: string, visible: boolean}}
              */
             var collector = {
                 clone: '',
@@ -119,7 +125,7 @@ define(function defineSiteConfigWidgetGenerator() {
              * @type {Gallery}
              */
             var gallery = this.getGalleryModule(),
-                clone;
+                clone, name;
 
             if (gallery) {
 
@@ -128,6 +134,25 @@ define(function defineSiteConfigWidgetGenerator() {
                     gallery.model.dataTypes,
                     collector.category
                 );
+
+                /**
+                 * Get widget resource
+                 * @type {string}
+                 */
+                var resource = scope.view.elements.$widgetgenerator.getResource();
+
+                if (collector.clone.length > 0) {
+
+                    resource = (gallery.model.staticData.getWidgetData(
+                        'name', collector.clone
+                    ) || {}).resource;
+                }
+
+                if (typeof(resource) === 'undefined' || resource.length === 0) {
+
+                    scope.logger.warn('Undefined resource', collector);
+                    return false;
+                }
 
                 /**
                  * Get clone data
@@ -141,9 +166,9 @@ define(function defineSiteConfigWidgetGenerator() {
                  * }}
                  */
                 clone = gallery.model.staticData.getWidgetData(
-                    'name',
-                    collector.scratch !== 'true' ?
-                        collector.clone : 'empty'
+                    'resource',
+                    collector.scratch === 'true' ?
+                        'empty' : resource
                 ) || {}
             }
 
@@ -167,7 +192,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define on before send widget's data
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @param xhr
          * @param opts
          * @private
@@ -178,10 +203,22 @@ define(function defineSiteConfigWidgetGenerator() {
              * Get scope
              * @type {SiteConfig}
              */
-            var scope = this.controller.scope,
-                controller = this.controller,
+            var controller = this.controller,
+                scope = controller.scope,
                 data = this.data,
                 validate = controller.i18n.t('widget.generation.inputs.validate');
+
+
+            if (!data) {
+
+                scope.view.get$modal().handleNotification(validate, 'warning');
+                scope.logger.warn(validate, xhr, opts);
+
+                // Allow to create another one
+                controller.stopSendingEventOnApprove(false);
+                xhr.abort();
+                return false;
+            }
 
             if (data.validate || data.empty) {
 
@@ -191,6 +228,7 @@ define(function defineSiteConfigWidgetGenerator() {
                 // Allow to create another one
                 controller.stopSendingEventOnApprove(false);
                 xhr.abort();
+                return false;
             }
 
             /**
@@ -201,7 +239,7 @@ define(function defineSiteConfigWidgetGenerator() {
                 exist = controller.i18n.t('widget.generation.resource.exist'),
                 abort = controller.i18n.t('widget.generation.ajax.abort');
 
-            if (gallery && gallery.model.staticData.isExistResource(data.collector.resource)) {
+            if (gallery && data.collector && gallery.model.staticData.isExistResource(data.collector.resource)) {
 
                 data.$modal.handleNotification(exist, 'warning');
                 scope.logger.warn(exist, xhr, opts);
@@ -209,6 +247,7 @@ define(function defineSiteConfigWidgetGenerator() {
                 // Allow to create another one
                 controller.stopSendingEventOnApprove(false);
                 xhr.abort();
+                return false;
             }
 
             if (controller.stopSendingEventOnApprove(true)) {
@@ -216,12 +255,13 @@ define(function defineSiteConfigWidgetGenerator() {
                 data.$modal.handleNotification(abort, 'warning');
                 scope.logger.warn(abort, xhr, opts);
                 xhr.abort();
+                return false;
             }
         },
 
         /**
          * Define on error send widget's data
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @param xhr
          * @param status
          * @param description
@@ -240,7 +280,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Generate new widget
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          */
         generateNewWidget: function generateNewWidget() {
 
@@ -292,7 +332,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define Stop Sending Event On Approve
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @param {boolean} disable
          * @returns {*|boolean}
          */
@@ -318,7 +358,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define on success handler
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @param data
          * @param status
          * @param xhr
@@ -338,7 +378,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define callback for generate new widget
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @param data
          * @param status
          * @param xhr
@@ -375,7 +415,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define widget editor
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @param {string} resource
          */
         widgetEditor: function widgetEditor(resource) {
@@ -414,7 +454,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define update widget data
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @returns {boolean}
          */
         updateWidget: function updateWidget() {
@@ -515,7 +555,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define update widget's data callback
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @param data
          * @param status
          * @param xhr
@@ -541,7 +581,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Clear widget generate form
-         * @member SiteConfigWidgetGenerator
+         * @memberOf SiteConfigWidgetGenerator
          * @private
          */
         _clearWidgetForm: function _clearWidgetForm() {

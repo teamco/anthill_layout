@@ -17,12 +17,14 @@ define(function defineLayoutExpand() {
 
         /**
          * Define layout
+         * @property LayoutExpand
          * @type {Layout}
          */
         this.layout = layout;
 
         /**
          * Define page
+         * @property LayoutExpand
          * @type {Page}
          */
         this.page = this.layout.controller.getContainment();
@@ -32,7 +34,7 @@ define(function defineLayoutExpand() {
 
         /**
          * Define adoptLayout
-         * @member LayoutExpand
+         * @memberOf LayoutExpand
          * @param {Widget} widget
          */
         adoptLayout: function adoptLayout(widget) {
@@ -129,7 +131,7 @@ define(function defineLayoutExpand() {
 
         /**
          * Get below located items
-         * @member LayoutExpand
+         * @memberOf LayoutExpand
          * @param {Widget} widget
          * @returns {Array}
          */

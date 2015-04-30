@@ -5,17 +5,21 @@
  * Time: 11:06 AM
  */
 
-define([], function defineBaseGeolocation(){
+define(function defineBaseGeolocation(){
 
+    /**
+     * Define BaseGeolocation
+     * @class BaseGeolocation
+     * @constructor
+     */
     var BaseGeolocation = function BaseGeolocation() {
-
     };
 
     return BaseGeolocation.extend('BaseGeolocation', {
 
         /**
          * Get Position
-         * @member BaseGeolocation
+         * @memberOf BaseGeolocation
          * @param {Function} [callback]
          */
         getPosition: function getPosition(callback) {
@@ -44,7 +48,7 @@ define([], function defineBaseGeolocation(){
 
         /**
          * Error handler
-         * @member BaseGeolocation
+         * @memberOf BaseGeolocation
          * @param [error]
          */
         geolocationErrorHandler: function geolocationErrorHandler(error) {

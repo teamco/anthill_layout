@@ -27,7 +27,7 @@ define([
 
         /**
          * Render workspace
-         * @member WorkspaceView
+         * @memberOf WorkspaceView
          */
         renderWorkspace: function renderWorkspace() {
 
@@ -47,7 +47,7 @@ define([
 
         /**
          * Render pages
-         * @member WorkspaceView
+         * @memberOf WorkspaceView
          */
         pages: function pages() {
 
@@ -63,7 +63,7 @@ define([
 
         /**
          * Render workspace
-         * @member WorkspaceView
+         * @memberOf WorkspaceView
          * @param silent
          */
         render: function render(silent) {

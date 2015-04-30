@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member LoginGoogleModel
+         * @memberOf LoginGoogleModel
          * @type {{}}
          */
         this.preferences = {
@@ -29,7 +29,7 @@ define([
 
         /**
          * Define rules
-         * @member LoginGoogleModel
+         * @memberOf LoginGoogleModel
          * @type {{}}
          */
         this.rules = {};

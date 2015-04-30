@@ -21,7 +21,7 @@ define(
 
         /**
          * Create authoring panel
-         * @member WorkspaceController
+         * @memberOf WorkspaceController
          */
         WorkspaceController.prototype.createAuthorPanel = function createAuthorPanel() {
             this.logger.debug('Create authoring panel', arguments);
@@ -29,7 +29,7 @@ define(
 
         /**
          * Create tool panel
-         * @member WorkspaceController
+         * @memberOf WorkspaceController
          */
         WorkspaceController.prototype.createToolPanel = function createToolPanel() {
             this.logger.debug('Create tool panel', arguments);

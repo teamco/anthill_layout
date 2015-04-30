@@ -16,14 +16,13 @@ define([
      * @constructor
      */
     var WidgetContentControllerRules = function WidgetContentControllerRules() {
-
     };
 
     return WidgetContentControllerRules.extend('WidgetContentControllerRules', {
 
         /**
          * Update prefs
-         * @member WidgetContentControllerRules
+         * @memberOf WidgetContentControllerRules
          * @param {ModalElement} $modal
          */
         updateRules: function updateRules($modal) {
@@ -82,7 +81,7 @@ define([
 
         /**
          * Update events are ready to subscribe
-         * @member WidgetContentControllerRules
+         * @memberOf WidgetContentControllerRules
          * @param events
          * @param {Array} event
          * @param {string} uuid
@@ -102,7 +101,7 @@ define([
 
         /**
          * Load rules
-         * @member WidgetContentControllerRules
+         * @memberOf WidgetContentControllerRules
          */
         loadRules: function loadRules() {
 
@@ -123,7 +122,7 @@ define([
 
         /**
          * Get Published rules
-         * @member WidgetContentControllerRules
+         * @memberOf WidgetContentControllerRules
          * @returns {{}}
          */
         getPublishedRules: function getPublishedRules() {
@@ -161,7 +160,7 @@ define([
                     this.scope.model.getUUID() !== uuid) {
                     published[uuid] = {
                         rules: rules.publish,
-                        type: item.controller.getContent().constructor.prototype.name
+                        type: item.controller.getContent().name
                     };
                 }
             }
@@ -171,7 +170,7 @@ define([
 
         /**
          * Transfer rules to containment
-         * @member WidgetContentControllerRules
+         * @memberOf WidgetContentControllerRules
          * @param rules
          */
         transferRules: function transferRules(rules) {
@@ -191,7 +190,7 @@ define([
 
         /**
          * Unregister rules
-         * @member WidgetContentControllerRules
+         * @memberOf WidgetContentControllerRules
          * @return {boolean}
          */
         unregisterRules: function unregisterRules() {
@@ -265,7 +264,7 @@ define([
 
         /**
          * Register rules
-         * @member WidgetContentControllerRules
+         * @memberOf WidgetContentControllerRules
          */
         registerRules: function registerRules() {
 
@@ -397,7 +396,10 @@ define([
                             this[puuid] = setInterval(
                                 function () {
 
-                                    this.scope.controller._getContentScope(this.interval, this.opts);
+                                    this.scope.controller._getContentScope(
+                                        this.interval,
+                                        this.opts
+                                    );
 
                                 }.bind({
                                         scope: this,
@@ -415,7 +417,7 @@ define([
 
         /**
          * Get content scope via interval
-         * @member WidgetContentControllerRules
+         * @memberOf WidgetContentControllerRules
          * @param interval
          * @param opts
          * @returns {boolean}
@@ -437,7 +439,11 @@ define([
 
             if (this.scope[puuid] * interval > timeout) {
 
-                this.scope.logger.warn('Timeout on loading scope rules', opts.widgetPublisher);
+                this.scope.logger.warn(
+                    'Timeout on loading scope rules',
+                    opts.widgetPublisher
+                );
+
                 return false;
             }
 
@@ -447,7 +453,10 @@ define([
              */
             var scope = opts.widgetPublisher.controller.getContent();
 
-            this.scope.logger.debug('Wait until scope will be available', scope);
+            this.scope.logger.debug(
+                'Wait until scope will be available',
+                scope
+            );
 
             if (scope) {
 
@@ -460,7 +469,7 @@ define([
 
         /**
          * Register scope rule
-         * @member WidgetContentControllerRules
+         * @memberOf WidgetContentControllerRules
          * @param scope
          * @param opts
          * @returns {boolean}
@@ -484,7 +493,7 @@ define([
 
         /**
          * Register rule
-         * @member WidgetContentControllerRules
+         * @memberOf WidgetContentControllerRules
          * @param scope
          * @param subscribeEM
          * @param subscribersCounter
@@ -568,7 +577,7 @@ define([
 
         /**
          * Add widget rule
-         * @member WidgetContentControllerRules
+         * @memberOf WidgetContentControllerRules
          * @param e
          */
         addWidgetRule: function addWidgetRule(e) {
@@ -588,7 +597,7 @@ define([
 
         /**
          * Publish rule
-         * @member WidgetContentControllerRules
+         * @memberOf WidgetContentControllerRules
          * @param {string} rule
          * @param {string} type
          */

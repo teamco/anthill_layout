@@ -6,21 +6,21 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([], function defineBaseHTML() {
+define([], function defineLibHTML() {
 
     /**
-     * Define BaseHTML
-     * @class BaseHTML
+     * Define LibHTML
+     * @class LibHTML
      * @constructor
      */
-    var BaseHTML = function BaseHTML() {
+    var LibHTML = function LibHTML() {
     };
 
-    BaseHTML.extend('BaseHTML', {
+    LibHTML.extend('LibHTML', {
 
         /**
          * Escape HTML
-         * @member BaseHTML
+         * @memberOf LibHTML
          * @param text
          * @param escape
          * @returns {*}
@@ -40,7 +40,7 @@ define([], function defineBaseHTML() {
 
         /**
          * Escape HTML Symbols
-         * @member BaseHTML
+         * @memberOf LibHTML
          * @param text
          * @param source
          * @param target
@@ -54,6 +54,5 @@ define([], function defineBaseHTML() {
         }
     });
 
-    return new BaseHTML();
-
+    return new LibHTML();
 });

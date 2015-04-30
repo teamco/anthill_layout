@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member PinterestModel
+         * @memberOf PinterestModel
          * @type {{
          *      pinterestApi: {type: string, disabled: boolean, value: string, visible: boolean},
          *      pinterestBoardUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
@@ -101,7 +101,7 @@ define([
 
         /**
          * Define rules
-         * @member PinterestModel
+         * @memberOf PinterestModel
          * @type {{}}
          */
         this.rules = {};
@@ -111,7 +111,7 @@ define([
 
         /**
          * Set pinterest board url
-         * @member PinterestModel
+         * @memberOf PinterestModel
          * @param {string} url
          */
         setPinterestBoardUrl: function setPinterestBoardUrl(url) {
@@ -120,7 +120,7 @@ define([
 
         /**
          * Set pinterest type
-         * @member PinterestModel
+         * @memberOf PinterestModel
          * @param {string} type
          */
         setPinterestType: function setPinterestType(type) {
@@ -129,7 +129,7 @@ define([
 
         /**
          * Set pinterest image width
-         * @member PinterestModel
+         * @memberOf PinterestModel
          * @param {number} width
          */
         setPinterestImageWidth: function setPinterestImageWidth(width) {
@@ -138,7 +138,7 @@ define([
 
         /**
          * Set pinterest board height
-         * @member PinterestModel
+         * @memberOf PinterestModel
          * @param {number} height
          */
         setPinterestBoardHeight: function setPinterestBoardHeight(height) {
@@ -147,7 +147,7 @@ define([
 
         /**
          * Set pinterest board width
-         * @member PinterestModel
+         * @memberOf PinterestModel
          * @param {number} width
          */
         setPinterestBoardWidth: function setPinterestBoardWidth(width) {

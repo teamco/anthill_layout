@@ -28,7 +28,7 @@ define([
 
         /**
          * Render animoto element
-         * @member AnimotoView
+         * @memberOf AnimotoView
          */
         renderAnimoto: function renderAnimoto() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member AnimotoView
+         * @memberOf AnimotoView
          * @returns {AnimotoPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member AnimotoView
+         * @memberOf AnimotoView
          * @param widgetRules
          * @param contentRules
          * @returns {AnimotoRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render animoto
-         * @member AnimotoView
+         * @memberOf AnimotoView
          */
         render: function render() {
 

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member ScreencastModel
+         * @memberOf ScreencastModel
          * @type {{
          *      screencastEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member ScreencastModel
+         * @memberOf ScreencastModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Screencast embed code
-         * @member ScreencastModel
+         * @memberOf ScreencastModel
          * @param {string} embed
          */
         setScreencastEmbedCode: function setScreencastEmbedCode(embed) {

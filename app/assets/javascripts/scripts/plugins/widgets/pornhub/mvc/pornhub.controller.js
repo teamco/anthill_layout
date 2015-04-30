@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PornhubController
+         * @memberOf PornhubController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate PornHub
-         * @member PornhubController
+         * @memberOf PornhubController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -75,7 +75,7 @@ define([
 
         /**
          * Add Pornhub rule
-         * @member PornhubController
+         * @memberOf PornhubController
          * @param e
          */
         addPornhubRule: function addPornhubRule(e) {

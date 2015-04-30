@@ -28,7 +28,7 @@ define([
 
         /**
          * Render jsfiddle element
-         * @member JsFiddleView
+         * @memberOf JsFiddleView
          */
         renderJsFiddle: function renderJsFiddle() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member JsFiddleView
+         * @memberOf JsFiddleView
          * @returns {JsFiddlePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member JsFiddleView
+         * @memberOf JsFiddleView
          * @param widgetRules
          * @param contentRules
          * @returns {JsFiddleRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render jsfiddle
-         * @member JsFiddleView
+         * @memberOf JsFiddleView
          */
         render: function render() {
 

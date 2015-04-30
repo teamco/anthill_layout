@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member SublimeVideoModel
+         * @memberOf SublimeVideoModel
          * @type {{
          *      sublimevideoEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member SublimeVideoModel
+         * @memberOf SublimeVideoModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set SublimeVideo embed code
-         * @member SublimeVideoModel
+         * @memberOf SublimeVideoModel
          * @param {string} embed
          */
         setSublimevideoEmbedCode: function setSublimevideoEmbedCode(embed) {

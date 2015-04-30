@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member MixcloudElement
+         * @memberOf MixcloudElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

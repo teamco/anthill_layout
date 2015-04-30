@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member SwfElement
+         * @memberOf SwfElement
          * @param {{}} opts
          */
         renderEmbeddedContent: function renderEmbeddedContent(opts) {

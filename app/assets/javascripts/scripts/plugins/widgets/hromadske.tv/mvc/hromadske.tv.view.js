@@ -28,7 +28,7 @@ define([
 
         /**
          * Render hromadsketv element
-         * @member HromadskeTvView
+         * @memberOf HromadskeTvView
          */
         renderHromadskeTv: function renderHromadskeTv() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member HromadskeTvView
+         * @memberOf HromadskeTvView
          * @returns {HromadskeTvPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member HromadskeTvView
+         * @memberOf HromadskeTvView
          * @param widgetRules
          * @param contentRules
          * @returns {HromadskeTvRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render hromadsketv
-         * @member HromadskeTvView
+         * @memberOf HromadskeTvView
          */
         render: function render() {
 

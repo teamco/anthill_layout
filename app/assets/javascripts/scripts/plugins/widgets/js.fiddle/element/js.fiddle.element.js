@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member JsFiddleElement
+         * @memberOf JsFiddleElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

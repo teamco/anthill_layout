@@ -28,7 +28,7 @@ define([
 
         /**
          * Render Flickr element
-         * @member FlickrView
+         * @memberOf FlickrView
          */
         renderFlickr: function renderFlickr() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member FlickrView
+         * @memberOf FlickrView
          * @returns {FlickrPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member FlickrView
+         * @memberOf FlickrView
          * @param widgetRules
          * @param contentRules
          * @returns {FlickrRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render Flickr
-         * @member FlickrView
+         * @memberOf FlickrView
          */
         render: function render() {
 

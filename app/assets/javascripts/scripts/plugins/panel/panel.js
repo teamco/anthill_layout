@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Panel
+         * @memberOf Panel
          */
         this.containment = containment;
 
         /**
          * Define opened
-         * @member Panel
+         * @memberOf Panel
          * @type {boolean}
          */
         this.opened = false;
@@ -102,7 +102,7 @@ define([
 
         /**
          * Define MVC
-         * @member Panel
+         * @memberOf Panel
          * @type {MVC}
          */
         this.mvc = new MVC({

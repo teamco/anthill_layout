@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member MapLocator
+         * @memberOf MapLocator
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member MapLocator
+         * @memberOf MapLocator
          * @type {*}
          */
         this.referrer = undefined;
@@ -72,7 +72,7 @@ define([
 
         /**
          * Define MVC
-         * @member MapLocator
+         * @memberOf MapLocator
          * @type {MVC}
          */
         this.mvc = new MVC({

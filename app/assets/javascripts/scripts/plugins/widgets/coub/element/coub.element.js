@@ -35,7 +35,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member CoubElement
+         * @memberOf CoubElement
          * @param {{
          *      link: string,
          *      start: boolean,

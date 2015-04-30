@@ -28,7 +28,7 @@ define([
 
         /**
          * Render tvi element
-         * @member TviView
+         * @memberOf TviView
          */
         renderTvi: function renderTvi() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member TviView
+         * @memberOf TviView
          * @returns {TviPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member TviView
+         * @memberOf TviView
          * @param widgetRules
          * @param contentRules
          * @returns {TviRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render tvi
-         * @member TviView
+         * @memberOf TviView
          */
         render: function render() {
 

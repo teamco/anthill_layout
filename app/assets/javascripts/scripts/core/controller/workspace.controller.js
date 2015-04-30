@@ -36,7 +36,6 @@ define(
          * @constructor
          */
         var WorkspaceController = function WorkspaceController() {
-
         };
 
         return WorkspaceController.extend(
@@ -44,7 +43,7 @@ define(
 
                 /**
                  * Set page height
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  */
                 bindHashChange: function bindHashChange() {
 
@@ -58,7 +57,7 @@ define(
 
                 /**
                  * Adopt content width after adding new page
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  */
                 adoptContentWidth: function adoptContentWidth() {
 
@@ -70,7 +69,7 @@ define(
 
                 /**
                  * Transfer preferences
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  * @param {string} index
                  * @param value
                  */
@@ -84,7 +83,7 @@ define(
 
                 /**
                  * Load config preferences
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  */
                 loadPreferences: function loadPreferences() {
 
@@ -116,7 +115,7 @@ define(
 
                 /**
                  * Update site width
-                 * @member WorkspaceController
+                 * @memberOf WorkspaceController
                  */
                 updateSiteWidth: function updateSiteWidth() {
 

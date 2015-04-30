@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member XkcdElement
+         * @memberOf XkcdElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

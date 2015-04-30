@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member AvatarController
+         * @memberOf AvatarController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -33,7 +33,7 @@ define([
 
         /**
          * Add Avatar rule
-         * @member AvatarController
+         * @memberOf AvatarController
          * @param e
          */
         addAvatarRule: function addAvatarRule(e) {

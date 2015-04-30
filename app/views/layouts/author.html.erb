@@ -9,27 +9,36 @@
 </head>
 <body class="admin">
 <div class="fetcher">
-  <div class="admin-content <%= controller_name %>">
-    <% unless %w[sessions passwords registrations].include? controller_name %>
-        <%= render_title if action_name == 'index' %>
-        <ul class="admin-navigation">
-          <li><%= link_to 'Widgets', author_widgets_path %></li>
-          <li><%= link_to 'Widget Categories', author_widget_categories_path %></li>
-          <li><%= link_to 'Site storage', author_site_storages_path %></li>
-          <li><%= link_to 'Site version', author_site_versions_path %></li>
-          <li><%= link_to 'Site types', author_site_types_path %></li>
-          <% if user_signed_in? %>
-              <li class="logout"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
-              <li>Logged in as <%= link_to current_user.email, edit_user_registration_path %></li>
+  <header>
+    <ul>
+      <li class="menu">Menu</li>
+      <li class="title">
+        <span><%= link_to t('author_panel'), author_path %></span>
+        <span>
+          <% unless controller_name == 'author' %>
+              &raquo;
+              <% action_key = "#{action_name.humanize}#{params[:id].nil? ? '' : "(#{params[:id]})"}" %>
+              <%= link_to "#{controller_name.humanize}", {controller: controller_name, action: :index} %>:
+              <%= link_to action_key, {controller: controller_name, action: action_name, id: params[:id]} %>
+              <%= "(#{@resource[:items]})" if action_name == 'index' %>
           <% end %>
-        </ul>
-    <% end %>
-    <div>
-      <div class="content">
+        </span>
+      </li>
+    </ul>
+  </header>
+  <section class="panel">
+    <ul>
+      <% if user_signed_in? %>
+          <li class="logout"><%= link_to(t('logout'), destroy_user_session_path, method: :delete) %></li>
+          <li>Logged in as <%= link_to current_user.email, edit_user_registration_path %></li>
+      <% end %>
+    </ul>
+  </section>
+  <section class="content <%= controller_name %>">
+    <% unless %w[sessions passwords registrations].include? controller_name %>
         <%= yield %>
-      </div>
-    </div>
-  </div>
+    <% end %>
+  </section>
 </div>
 </body>
 </html>

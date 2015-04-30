@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member AnimotoController
+         * @memberOf AnimotoController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate animoto
-         * @member AnimotoController
+         * @memberOf AnimotoController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -77,7 +77,7 @@ define([
 
         /**
          * Add Animoto rule
-         * @member AnimotoController
+         * @memberOf AnimotoController
          * @param e
          */
         addAnimotoRule: function addAnimotoRule(e) {

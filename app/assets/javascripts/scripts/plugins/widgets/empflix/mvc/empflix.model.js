@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member EmpflixModel
+         * @memberOf EmpflixModel
          * @type {{
          *      empflixEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member EmpflixModel
+         * @memberOf EmpflixModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Empflix embed code
-         * @member EmpflixModel
+         * @memberOf EmpflixModel
          * @param {string} embed
          */
         setEmpflixEmbedCode: function setEmpflixEmbedCode(embed) {

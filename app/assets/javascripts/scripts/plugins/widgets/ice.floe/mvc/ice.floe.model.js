@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member IceFloeModel
+         * @memberOf IceFloeModel
          * @type {{}}
          */
         this.preferences = {
@@ -29,7 +29,7 @@ define([
 
         /**
          * Define rules
-         * @member IceFloeModel
+         * @memberOf IceFloeModel
          * @type {{}}
          */
         this.rules = {};

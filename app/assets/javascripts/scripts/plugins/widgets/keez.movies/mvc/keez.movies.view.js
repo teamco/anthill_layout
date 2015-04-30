@@ -28,7 +28,7 @@ define([
 
         /**
          * Render keezmovies element
-         * @member KeezMoviesView
+         * @memberOf KeezMoviesView
          */
         renderKeezMovies: function renderKeezMovies() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member KeezMoviesView
+         * @memberOf KeezMoviesView
          * @returns {KeezMoviesPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member KeezMoviesView
+         * @memberOf KeezMoviesView
          * @param widgetRules
          * @param contentRules
          * @returns {KeezMoviesRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render keezmovies
-         * @member KeezMoviesView
+         * @memberOf KeezMoviesView
          */
         render: function render() {
 

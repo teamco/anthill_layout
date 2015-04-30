@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member XHamsterModel
+         * @memberOf XHamsterModel
          * @type {{
          *      xhamsterUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member XHamsterModel
+         * @memberOf XHamsterModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set XHamster Url
-         * @member XHamsterModel
+         * @memberOf XHamsterModel
          * @param {string} url
          */
         setXhamsterUrl: function setXhamsterUrl(url) {

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member MusTvController
+         * @memberOf MusTvController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate mustv
-         * @member MusTvController
+         * @memberOf MusTvController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -76,7 +76,7 @@ define([
 
         /**
          * Add MusTv rule
-         * @member MusTvController
+         * @memberOf MusTvController
          * @param e
          */
         addMusTvRule: function addMusTvRule(e) {

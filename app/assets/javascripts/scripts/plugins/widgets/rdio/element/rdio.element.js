@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member RdioElement
+         * @memberOf RdioElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

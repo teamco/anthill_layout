@@ -34,7 +34,7 @@ define([
 
         /**
          * Init export element
-         * @member ExportElement
+         * @memberOf ExportElement
          * @param {{
          *      type: string,
          *      [fileName]: string,
@@ -50,7 +50,9 @@ define([
              * Define scope
              * @type {Application}
              */
-            var scope = this.view.scope;
+            var scope = this.view.scope,
+                lib = scope.base.lib,
+                fname = data.fileName || 'file.txt';
 
             /**
              * Define url
@@ -60,12 +62,12 @@ define([
 
             try {
 
-                url = window.URL.createObjectURL(
-                    new Blob(
-                        [data.content], {
-                            type: data.type
-                        }
-                    )
+                url = lib.file.createURL(
+                    scope.base.isBase64(data.content) ?
+                        data.content :
+                        lib.string.utf8ToBase64(data.content),
+                    data.type,
+                    fname
                 );
 
                 scope.logger.debug('Blob URL', url);
@@ -78,7 +80,7 @@ define([
                  * Define content
                  * @type {string}
                  */
-                var content = scope.base.lib.string.base64.encode(
+                var content = lib.string.base64.encode(
                     data.content
                 );
 
@@ -109,13 +111,14 @@ define([
                 this.$.attr({
 
                     href: url,
-                    download: data.fileName || 'file.txt',
+                    download: fname,
                     title: data.title || 'Download'
 
                 }).text(data.title || 'Download');
 
                 if (data.autoload) {
-                    this.$[0].click();
+
+                    lib.event.simulate(this.$[0], 'click');
                 }
             }
 

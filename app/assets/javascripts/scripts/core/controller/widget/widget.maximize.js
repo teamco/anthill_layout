@@ -5,7 +5,7 @@
  * Time: 9:15 PM
  */
 
-define([], function defineWidgetMaximize() {
+define(function defineWidgetMaximize() {
 
     /**
      * Define WidgetMaximize
@@ -14,14 +14,13 @@ define([], function defineWidgetMaximize() {
      * @extends Router
      */
     var WidgetMaximize = function WidgetMaximize() {
-
     };
 
     return WidgetMaximize.extend('WidgetMaximize', {
 
         /**
          * Check if widget already maximized
-         * @member WidgetMaximize
+         * @memberOf WidgetMaximize
          * @returns {boolean}
          */
         isMaximized: function isMaximized() {
@@ -37,7 +36,7 @@ define([], function defineWidgetMaximize() {
 
         /**
          * Check if maximizable
-         * @member WidgetMaximize
+         * @memberOf WidgetMaximize
          * @returns {boolean}
          */
         isMaximizable: function isMaximizable() {
@@ -54,7 +53,7 @@ define([], function defineWidgetMaximize() {
 
         /**
          * Reduce widget
-         * @member WidgetMaximize
+         * @memberOf WidgetMaximize
          */
         reduceWidget: function reduceWidget() {
 
@@ -73,7 +72,7 @@ define([], function defineWidgetMaximize() {
 
         /**
          * Enlarge widget
-         * @member WidgetMaximize
+         * @memberOf WidgetMaximize
          */
         enlargeWidget: function enlargeWidget() {
 
@@ -98,7 +97,7 @@ define([], function defineWidgetMaximize() {
 
         /**
          * Before maximize callback
-         * @member WidgetMaximize
+         * @memberOf WidgetMaximize
          */
         beforeMaximize: function beforeMaximize() {
 
@@ -125,7 +124,7 @@ define([], function defineWidgetMaximize() {
 
         /**
          * After maximize callback
-         * @member WidgetMaximize
+         * @memberOf WidgetMaximize
          */
         afterMaximize: function afterMaximize() {
             this.logger.debug('After maximize');
@@ -133,7 +132,7 @@ define([], function defineWidgetMaximize() {
 
         /**
          * Before reduce callback
-         * @member WidgetMaximize
+         * @memberOf WidgetMaximize
          */
         beforeReduce: function beforeReduce() {
 
@@ -157,7 +156,7 @@ define([], function defineWidgetMaximize() {
 
         /**
          * After reduce callback
-         * @member WidgetMaximize
+         * @memberOf WidgetMaximize
          */
         afterReduce: function afterReduce() {
             this.logger.debug('After reduce');

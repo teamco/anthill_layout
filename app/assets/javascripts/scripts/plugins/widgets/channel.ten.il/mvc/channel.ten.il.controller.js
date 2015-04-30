@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member ChannelTenIlController
+         * @memberOf ChannelTenIlController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$channeltenil.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add ChannelTenIl rule
-         * @member ChannelTenIlController
+         * @memberOf ChannelTenIlController
          * @param e
          */
         addChannelTenIlRule: function addChannelTenIlRule(e) {

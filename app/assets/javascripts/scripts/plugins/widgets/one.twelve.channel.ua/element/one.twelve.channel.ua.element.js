@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member OneTwelveChannelUaElement
+         * @memberOf OneTwelveChannelUaElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

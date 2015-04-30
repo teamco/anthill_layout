@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TrubaController
+         * @memberOf TrubaController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate truba
-         * @member TrubaController
+         * @memberOf TrubaController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -75,7 +75,7 @@ define([
 
         /**
          * Add Truba rule
-         * @member TrubaController
+         * @memberOf TrubaController
          * @param e
          */
         addTrubaRule: function addTrubaRule(e) {

@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member TnaFlixElement
+         * @memberOf TnaFlixElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

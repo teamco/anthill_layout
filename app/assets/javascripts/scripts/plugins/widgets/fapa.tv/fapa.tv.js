@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member FapaTv
+         * @memberOf FapaTv
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member FapaTv
+         * @memberOf FapaTv
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member FapaTv
+         * @memberOf FapaTv
          * @type {MVC}
          */
         this.mvc = new MVC({

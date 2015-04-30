@@ -7,7 +7,7 @@
  */
 
 define([
-	'jquery.ui',
+    'jquery.ui',
     'modules/Interactions'
 ], function defineWidgetResize(ui, Interactions) {
 
@@ -16,21 +16,21 @@ define([
      * @class Resizable
      * @extends Interactions
      * @param {Widget} scope
-     * @member Widget.interactions
+     * @memberOf Widget.interactions
      * @constructor
      */
     var Resizable = function Resizable(scope) {
 
         /**
          * Define scope
-         * @member Resizable
+         * @property Resizable
          * @type {Widget}
          */
         this.scope = scope;
 
         /**
          * Define widget jquery element
-         * @member Resizable
+         * @property Resizable
          * @type {jQuery}
          */
         this.$scope = scope.view.get$item().$;
@@ -42,32 +42,34 @@ define([
 
         /**
          * Init resizable
-         * @member Resizable
+         * @memberOf Resizable
          */
         init: function init() {
 
             /**
              * Define scope
+             * @type {Widget}
              */
-            var scope = this.scope;
+            var scope = this.scope,
+                resizable = scope.model.getConfig('events').resizable;
 
             if (scope.permission.authorizedFunctionCall(this.init)) {
 
                 this.$scope.resizable(
                     $.extend({
-                        containment: scope.controller.get$page().$,
+                        containment: resizable.containment,
                         create: this.create.bind(this),
                         start: this.start.bind(this),
                         stop: this.stop.bind(this),
                         resize: this.resize.bind(this)
-                    }, scope.model.getConfig('events').resizable)
+                    }, resizable)
                 );
             }
         },
 
         /**
          * Enable resize
-         * @member Resizable
+         * @memberOf Resizable
          */
         enable: function enable() {
 
@@ -84,7 +86,7 @@ define([
 
         /**
          * Disable resize
-         * @member Resizable
+         * @memberOf Resizable
          */
         disable: function disable() {
 
@@ -101,7 +103,7 @@ define([
 
         /**
          * Destroy resize
-         * @member Resizable
+         * @memberOf Resizable
          */
         destroy: function destroy() {
 
@@ -118,7 +120,7 @@ define([
 
         /**
          * Create resize
-         * @member Resizable
+         * @memberOf Resizable
          * @param event
          * @param ui
          */
@@ -137,7 +139,7 @@ define([
 
         /**
          * Start resize
-         * @member Resizable
+         * @memberOf Resizable
          * @param event
          * @param ui
          */
@@ -161,7 +163,7 @@ define([
 
         /**
          * Stop resize
-         * @member Resizable
+         * @memberOf Resizable
          * @param event
          * @param ui
          */
@@ -183,7 +185,7 @@ define([
 
         /**
          * On resize event
-         * @member Resizable
+         * @memberOf Resizable
          * @param event
          * @param ui
          */

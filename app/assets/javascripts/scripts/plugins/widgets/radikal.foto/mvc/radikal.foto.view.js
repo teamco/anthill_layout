@@ -28,7 +28,7 @@ define([
 
         /**
          * Render radikalfoto element
-         * @member RadikalFotoView
+         * @memberOf RadikalFotoView
          */
         renderRadikalFoto: function renderRadikalFoto() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member RadikalFotoView
+         * @memberOf RadikalFotoView
          * @returns {RadikalFotoPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member RadikalFotoView
+         * @memberOf RadikalFotoView
          * @param widgetRules
          * @param contentRules
          * @returns {RadikalFotoRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render radikalfoto
-         * @member RadikalFotoView
+         * @memberOf RadikalFotoView
          */
         render: function render() {
 

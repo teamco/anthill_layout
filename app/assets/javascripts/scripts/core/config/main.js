@@ -25,6 +25,7 @@ requirejs.config({
         plugins: '../plugins',
 
         tinyMCE: 'lib/packages/tinymce/tinymce.min',
+        pluralize: 'lib/packages/pluralize',
 
         modernizr: 'lib/modernizr',
 
@@ -94,6 +95,9 @@ requirejs.config({
         'controller/widget/widget.stretch': {deps: ['extends/function']},
         'controller/widget/widget.stick': {deps: ['extends/function']},
         'controller/widget/widget.layer': {deps: ['extends/function']},
+        'controller/widget/widget.expand': {deps: ['extends/function']},
+        'controller/widget/widget.scroll': {deps: ['extends/function']},
+        'controller/widget/widget.comment': {deps: ['extends/function']},
 
         'controller/page/page.layer': {deps: ['extends/function']},
         'controller/page/page.layout': {deps: ['extends/function']},

@@ -2,7 +2,7 @@
  * Created by i061485 on 7/3/14.
  */
 
-define([], function defineWidgetStretch(){
+define(function defineWidgetStretch(){
 
     /**
      * Define widget stretch
@@ -10,14 +10,13 @@ define([], function defineWidgetStretch(){
      * @constructor
      */
     var WidgetStretch = function WidgetStretch() {
-
     };
 
     return WidgetStretch.extend('WidgetStretch', {
 
         /**
          * Stretch height
-         * @member WidgetStretch
+         * @memberOf WidgetStretch
          * @param {boolean} stretch
          */
         stretchHeight: function stretchHeight(stretch) {
@@ -36,7 +35,7 @@ define([], function defineWidgetStretch(){
 
         /**
          * Stretch width
-         * @member WidgetStretch
+         * @memberOf WidgetStretch
          * @param {boolean} stretch
          */
         stretchWidth: function stretchWidth(stretch) {

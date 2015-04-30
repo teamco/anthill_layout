@@ -28,7 +28,7 @@ define([
 
         /**
          * Render Gallery
-         * @member GalleryView
+         * @memberOf GalleryView
          * @returns {boolean}
          */
         renderGallery: function renderGallery() {
@@ -73,7 +73,7 @@ define([
 
         /**
          * Render gallery providers
-         * @member GalleryView
+         * @memberOf GalleryView
          * @param providers
          * @param currentProvider
          * @returns {boolean}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render gallery content
-         * @member GalleryView
+         * @memberOf GalleryView
          * @param provider
          * @param {Boolean} force
          * @returns {boolean}
@@ -149,7 +149,7 @@ define([
 
         /**
          * Update footer content
-         * @member GalleryView
+         * @memberOf GalleryView
          */
         updateFooterContent: function updateFooterContent() {
             this.renderFooter(Footer, this.elements.$gallery);
@@ -157,7 +157,7 @@ define([
 
         /**
          * Render gallery
-         * @member GalleryView
+         * @memberOf GalleryView
          */
         render: function render() {
 

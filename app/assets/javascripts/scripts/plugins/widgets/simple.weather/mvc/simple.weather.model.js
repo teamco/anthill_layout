@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member SimpleWeatherModel
+         * @memberOf SimpleWeatherModel
          * @type {{
          * }}
          */
@@ -58,7 +58,7 @@ define([
 
         /**
          * Define rules
-         * @member SimpleWeatherModel
+         * @memberOf SimpleWeatherModel
          * @type {{}}
          */
         this.rules = {};
@@ -68,7 +68,7 @@ define([
 
         /**
          * Set Simple weather Latitude
-         * @member SimpleWeatherModel
+         * @memberOf SimpleWeatherModel
          * @param {number} latitude
          */
         setSimpleweatherLatitude: function setSimpleweatherLatitude(latitude) {
@@ -77,7 +77,7 @@ define([
 
         /**
          * Set Simple weather Longitude
-         * @member SimpleWeatherModel
+         * @memberOf SimpleWeatherModel
          * @param {number} longitude
          */
         setSimpleweatherLongitude: function setSimpleweatherLongitude(longitude) {
@@ -86,7 +86,7 @@ define([
 
         /**
          * Set Simple weather unit
-         * @member SimpleWeatherModel
+         * @memberOf SimpleWeatherModel
          * @param {string} unit
          */
         setSimpleweatherUnit: function setSimpleweatherUnit(unit) {

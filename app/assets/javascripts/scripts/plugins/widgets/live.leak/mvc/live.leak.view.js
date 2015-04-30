@@ -28,7 +28,7 @@ define([
 
         /**
          * Render LiveLeak element
-         * @member LiveLeakView
+         * @memberOf LiveLeakView
          */
         renderLiveLeak: function renderLiveLeak() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member LiveLeakView
+         * @memberOf LiveLeakView
          * @returns {LiveLeakPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member LiveLeakView
+         * @memberOf LiveLeakView
          * @param widgetRules
          * @param contentRules
          * @returns {LiveLeakRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render LiveLeak
-         * @member LiveLeakView
+         * @memberOf LiveLeakView
          */
         render: function render() {
 

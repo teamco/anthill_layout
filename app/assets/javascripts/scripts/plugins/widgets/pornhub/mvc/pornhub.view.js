@@ -28,7 +28,7 @@ define([
 
         /**
          * Render Pornhub element
-         * @member PornhubView
+         * @memberOf PornhubView
          */
         renderPornhub: function renderPornhub() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member PornhubView
+         * @memberOf PornhubView
          * @returns {PornhubPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member PornhubView
+         * @memberOf PornhubView
          * @param widgetRules
          * @param contentRules
          * @returns {PornhubRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render Pornhub
-         * @member PornhubView
+         * @memberOf PornhubView
          */
         render: function render() {
 

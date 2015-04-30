@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member SoundCloudModel
+         * @memberOf SoundCloudModel
          * @type {{
          *      soundcloudEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member SoundCloudModel
+         * @memberOf SoundCloudModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set SoundCloud embed code
-         * @member SoundCloudModel
+         * @memberOf SoundCloudModel
          * @param {string} embed
          */
         setSoundcloudEmbedCode: function setSoundcloudEmbedCode(embed) {

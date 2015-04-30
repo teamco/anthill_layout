@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member FotoKritikController
+         * @memberOf FotoKritikController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate fotokritik
-         * @member FotoKritikController
+         * @memberOf FotoKritikController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add FotoKritik rule
-         * @member FotoKritikController
+         * @memberOf FotoKritikController
          * @param e
          */
         addFotoKritikRule: function addFotoKritikRule(e) {

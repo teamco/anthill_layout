@@ -26,13 +26,13 @@ define([
 
         /**
          * Define load static data
-         * @member GalleryModel
+         * @memberOf GalleryModel
          */
         loadStaticData: function loadStaticData(){
 
             /**
              * Define static data
-             * @member GalleryModel
+             * @memberOf GalleryModel
              * @type {GalleryWidgets}
              */
             this.staticData = new GalleryWidgets(this);
@@ -43,13 +43,13 @@ define([
 
         /**
          * Define init
-         * @member GalleryModel
+         * @memberOf GalleryModel
          */
         init: function init() {
 
             /**
              * Define providers
-             * @member GalleryModel
+             * @memberOf GalleryModel
              * @type {{indoor: {name: string, data: *[]}}}
              */
             this.providers = {
@@ -62,14 +62,14 @@ define([
 
             /**
              * Define default provider
-             * @member GalleryModel
+             * @memberOf GalleryModel
              * @type {{name: string, data: *[]}[]}
              */
             this.defaultProvider = this.getProvidersList().all;
 
             /**
              * Define current provider
-             * @member GalleryModel
+             * @memberOf GalleryModel
              * @type {{name: string, data: *[]}[]}
              */
             this.currentProvider = this.defaultProvider;
@@ -77,7 +77,7 @@ define([
 
         /**
          * Get data provider
-         * @member GalleryModel
+         * @memberOf GalleryModel
          * @param provider
          * @returns {*}
          */
@@ -87,7 +87,7 @@ define([
 
         /**
          * Get providers list
-         * @member GalleryModel
+         * @memberOf GalleryModel
          * @returns {*}
          */
         getProvidersList: function getProvidersList() {
@@ -96,7 +96,7 @@ define([
 
         /**
          * Set provider as current
-         * @member GalleryModel
+         * @memberOf GalleryModel
          * @param {string} key
          */
         setProviderAsCurrent: function setProviderAsCurrent(key) {
@@ -114,7 +114,7 @@ define([
 
             /**
              * Define current provider
-             * @member GalleryModel
+             * @memberOf GalleryModel
              * @type {{name: string, data: *[]}[]}
              */
             this.currentProvider = provider;
@@ -124,7 +124,7 @@ define([
 
         /**
          * Set widget to provider
-         * @member GalleryModel
+         * @memberOf GalleryModel
          * @param {{}} meta
          */
         setProvider: function setProvider(meta) {

@@ -28,7 +28,7 @@ define([
 
         /**
          * Render onehdru element
-         * @member OneHdRuView
+         * @memberOf OneHdRuView
          */
         renderOneHdRu: function renderOneHdRu() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member OneHdRuView
+         * @memberOf OneHdRuView
          * @returns {OneHdRuPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member OneHdRuView
+         * @memberOf OneHdRuView
          * @param widgetRules
          * @param contentRules
          * @returns {OneHdRuRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render onehdru
-         * @member OneHdRuView
+         * @memberOf OneHdRuView
          */
         render: function render() {
 

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member RssModel
+         * @memberOf RssModel
          * @type {{
          *      rssUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member RssModel
+         * @memberOf RssModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Rss Feed Url
-         * @member RssModel
+         * @memberOf RssModel
          * @param {string} url
          */
         setRssFeedUrl: function setRssFeedUrl(url) {

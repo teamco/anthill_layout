@@ -28,7 +28,7 @@ define([
 
         /**
          * Render bigmirnet element
-         * @member BigmirNetView
+         * @memberOf BigmirNetView
          */
         renderBigmirNet: function renderBigmirNet() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member BigmirNetView
+         * @memberOf BigmirNetView
          * @returns {BigmirNetPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member BigmirNetView
+         * @memberOf BigmirNetView
          * @param widgetRules
          * @param contentRules
          * @returns {BigmirNetRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render bigmirnet
-         * @member BigmirNetView
+         * @memberOf BigmirNetView
          */
         render: function render() {
 

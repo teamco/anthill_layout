@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Pastebin
+         * @memberOf Pastebin
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Pastebin
+         * @memberOf Pastebin
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Pastebin
+         * @memberOf Pastebin
          * @type {MVC}
          */
         this.mvc = new MVC({

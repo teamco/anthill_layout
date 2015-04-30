@@ -4,17 +4,17 @@ module Author::AuthorHelper
     link_to 'Destroy', item, method: :delete, data: {confirm: "Are you sure want to delete: #{name}?"}
   end
 
+  def render_add_new
+    link_to(
+        '+',
+        @resource[:path],
+        {title: "Add #{controller_name.humanize.singularize}", class: 'add'}
+    ) unless add_new_black_list.include? controller_name if action_name === 'index'
+  end
+
   def render_title
     content_tag(:div, class: 'title') do
-      if action_name === 'index'
-        concat content_tag(:h1, "#{controller_name.humanize}: #{action_name} (#{@resource[:items]})")
-        concat link_to(
-                   "Add #{controller_name.humanize.singularize}",
-                   @resource[:path]
-               ) unless add_new_black_list.include? controller_name
-      end
-      concat content_tag(:p, notice, id: 'notice')
-    end
+    end unless controller_name == 'author'
   end
 
   def render_text_field(f, name, disabled=false)
@@ -54,7 +54,7 @@ module Author::AuthorHelper
     content_tag(:div, class: 'field') do
       concat f.label name
       concat f.collection_select(opts[:id], opts[:collection], opts[:index], opts[:value])
-    end
+    end unless opts[:collection].nil?
   end
 
   def render_submit(f)

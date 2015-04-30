@@ -28,7 +28,7 @@ define([
 
         /**
          * Render channelnineua element
-         * @member ChannelNineUaView
+         * @memberOf ChannelNineUaView
          */
         renderChannelNineUa: function renderChannelNineUa() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member ChannelNineUaView
+         * @memberOf ChannelNineUaView
          * @returns {ChannelNineUaPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member ChannelNineUaView
+         * @memberOf ChannelNineUaView
          * @param widgetRules
          * @param contentRules
          * @returns {ChannelNineUaRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render channelnineua
-         * @member ChannelNineUaView
+         * @memberOf ChannelNineUaView
          */
         render: function render() {
 

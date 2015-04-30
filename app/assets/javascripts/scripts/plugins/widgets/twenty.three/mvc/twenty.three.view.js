@@ -28,7 +28,7 @@ define([
 
         /**
          * Render twentythree element
-         * @member TwentyThreeView
+         * @memberOf TwentyThreeView
          */
         renderTwentyThree: function renderTwentyThree() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member TwentyThreeView
+         * @memberOf TwentyThreeView
          * @returns {TwentyThreePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member TwentyThreeView
+         * @memberOf TwentyThreeView
          * @param widgetRules
          * @param contentRules
          * @returns {TwentyThreeRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render twentythree
-         * @member TwentyThreeView
+         * @memberOf TwentyThreeView
          */
         render: function render() {
 

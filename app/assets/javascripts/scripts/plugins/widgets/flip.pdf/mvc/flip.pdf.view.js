@@ -28,7 +28,7 @@ define([
 
         /**
          * Render flippdf element
-         * @member FlipPdfView
+         * @memberOf FlipPdfView
          */
         renderFlipPdf: function renderFlipPdf() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member FlipPdfView
+         * @memberOf FlipPdfView
          * @returns {FlipPdfPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member FlipPdfView
+         * @memberOf FlipPdfView
          * @param widgetRules
          * @param contentRules
          * @returns {FlipPdfRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render flippdf
-         * @member FlipPdfView
+         * @memberOf FlipPdfView
          */
         render: function render() {
 

@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member PikTvElement
+         * @memberOf PikTvElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

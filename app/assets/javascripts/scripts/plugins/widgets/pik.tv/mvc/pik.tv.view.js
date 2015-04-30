@@ -28,7 +28,7 @@ define([
 
         /**
          * Render piktv element
-         * @member PikTvView
+         * @memberOf PikTvView
          */
         renderPikTv: function renderPikTv() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member PikTvView
+         * @memberOf PikTvView
          * @returns {PikTvPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member PikTvView
+         * @memberOf PikTvView
          * @param widgetRules
          * @param contentRules
          * @returns {PikTvRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render piktv
-         * @member PikTvView
+         * @memberOf PikTvView
          */
         render: function render() {
 

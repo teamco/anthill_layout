@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member CoubModel
+         * @memberOf CoubModel
          * @type {{
          *      coubLink: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      coubAutoStart: {type: string, disabled: boolean, value: boolean, visible: boolean},
@@ -65,7 +65,7 @@ define([
 
         /**
          * Define rules
-         * @member CoubModel
+         * @memberOf CoubModel
          * @type {{}}
          */
         this.rules = {};
@@ -75,7 +75,7 @@ define([
 
         /**
          * Set link
-         * @member CoubModel
+         * @memberOf CoubModel
          * @param {string} link
          */
         setCoubLink: function setCoubLink(link) {
@@ -84,7 +84,7 @@ define([
 
         /**
          * Set auto start
-         * @member CoubModel
+         * @memberOf CoubModel
          * @param {boolean} start
          */
         setCoubAutoStart: function setCoubAutoStart(start) {
@@ -93,7 +93,7 @@ define([
 
         /**
          * Set mute
-         * @member CoubModel
+         * @memberOf CoubModel
          * @param {boolean} mute
          */
         setCoubMute: function setCoubMute(mute) {
@@ -102,7 +102,7 @@ define([
 
         /**
          * Set hide top bar
-         * @member CoubModel
+         * @memberOf CoubModel
          * @param {boolean} hide
          */
         setCoubHideTopBar: function setCoubHideTopBar(hide) {
@@ -111,7 +111,7 @@ define([
 
         /**
          * Set start with hd
-         * @member CoubModel
+         * @memberOf CoubModel
          * @param {boolean} hd
          */
         setCoubStartWithHighDefinition: function setCoubStartWithHighDefinition(hd) {

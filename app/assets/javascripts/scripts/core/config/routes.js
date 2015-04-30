@@ -5,7 +5,7 @@
  * Time: 11:23 PM
  */
 
-define([], function defineRoutes() {
+define(function defineRoutes() {
 
     /**
      * Define Routes
@@ -19,14 +19,14 @@ define([], function defineRoutes() {
 
         /**
          * Define route resources
-         * @member Routes
+         * @memberOf Routes
          * @type {object}
          */
         resources: {},
 
         /**
          * Define route setter
-         * @member Routes
+         * @memberOf Routes
          * @param {string} route
          * @param {[string, string]} data
          */
@@ -34,7 +34,7 @@ define([], function defineRoutes() {
 
             /**
              * Define route
-             * @member Routes
+             * @memberOf Routes
              * @type {string|string[]}
              */
             this.resources[route] = data;
@@ -42,7 +42,7 @@ define([], function defineRoutes() {
 
         /**
          * Prepare XHR data before send
-         * @member Routes
+         * @memberOf Routes
          * @param {object} collector
          * @returns {{authenticity_token: string}}
          */
@@ -50,9 +50,9 @@ define([], function defineRoutes() {
 
             /**
              * Define token
-             * @type {{authenticity_token: string}}
+             * @type {Object|{authenticity_token: string}}
              */
-            var data = {}, index;
+            var data = {authenticity_token: ''}, index;
 
             data[this.getXCsrfParam()] = this.getXCsrfToken();
 
@@ -71,7 +71,7 @@ define([], function defineRoutes() {
 
         /**
          * Get X-Csrf-Token param
-         * @member Routes
+         * @memberOf Routes
          * @returns {string}
          */
         getXCsrfParam: function getXCsrfParam() {
@@ -80,7 +80,7 @@ define([], function defineRoutes() {
 
         /**
          * Get X-Csrf-Token
-         * @member Routes
+         * @memberOf Routes
          * @returns {string}
          */
         getXCsrfToken: function getXCsrfToken() {

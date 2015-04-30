@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Spankwire
+         * @memberOf Spankwire
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Spankwire
+         * @memberOf Spankwire
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Spankwire
+         * @memberOf Spankwire
          * @type {MVC}
          */
         this.mvc = new MVC({

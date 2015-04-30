@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TimeToastController
+         * @memberOf TimeToastController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate timetoast
-         * @member TimeToastController
+         * @memberOf TimeToastController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add TimeToast rule
-         * @member TimeToastController
+         * @memberOf TimeToastController
          * @param e
          */
         addTimeToastRule: function addTimeToastRule(e) {

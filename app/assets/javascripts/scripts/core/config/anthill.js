@@ -19,62 +19,63 @@ define([
 
         /**
          * Init API
-         * @member AntHill
-         * @type {BaseAPI}
+         * @property AntHill
+         * @type {*}
          */
         this.api = undefined;
 
         /**
          * Init observer
-         * @member AntHill
-         * @type {Observer}
+         * @property AntHill
+         * @type {*}
          */
         this.observer = undefined;
 
         /**
          * Init event manager
-         * @member AntHill
+         * @property AntHill
          * @type {*}
          */
         this.eventmanager = undefined;
 
         /**
          * Define permissions
-         * @member AntHill
-         * @type {BasePermission}
+         * @property AntHill
+         * @type {*}
          */
         this.permission = undefined;
 
         /**
          * Init config
-         * @member AntHill
+         * @property AntHill
          * @type {Object}
          */
         this.config = {};
 
         /**
          * Init model
-         * @member AntHill
-         * @type {BaseModel}
+         * @property AntHill
+         * @type {*}
          */
         this.model = undefined;
 
         /**
          * Init view
-         * @member AntHill
-         * @type {BaseView}
+         * @property AntHill
+         * @type {*}
          */
         this.view = undefined;
 
         /**
          * Init controller
-         * @member AntHill
-         * @type {BaseController}
+         * @property AntHill
+         * @type {*}
          */
         this.controller = undefined;
 
         /**
          * Init logger
+         * @property Anthill
          * @type {Logger}
          */
         this.logger = undefined;
@@ -84,7 +85,7 @@ define([
 
         /**
          * Define base
-         * @member AntHill
+         * @memberOf AntHill
          * @type {Base}
          */
         base: new Base(),

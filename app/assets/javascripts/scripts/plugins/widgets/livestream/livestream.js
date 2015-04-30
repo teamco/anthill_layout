@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Livestream
+         * @memberOf Livestream
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Livestream
+         * @memberOf Livestream
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Livestream
+         * @memberOf Livestream
          * @type {MVC}
          */
         this.mvc = new MVC({

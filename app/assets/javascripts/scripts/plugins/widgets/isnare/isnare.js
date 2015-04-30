@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Isnare
+         * @memberOf Isnare
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Isnare
+         * @memberOf Isnare
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Isnare
+         * @memberOf Isnare
          * @type {MVC}
          */
         this.mvc = new MVC({

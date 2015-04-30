@@ -22,7 +22,7 @@ define([
         /**
          /**
          * Define preferences
-         * @member PageTabsModel
+         * @memberOf PageTabsModel
          * @type {{
          *      pagetabsSwipe: {type: string, disabled: boolean, value: boolean, visible: boolean}
          * }}
@@ -38,7 +38,7 @@ define([
 
         /**
          * Define rules
-         * @member PageTabsModel
+         * @memberOf PageTabsModel
          * @type {{}}
          */
         this.rules = {};

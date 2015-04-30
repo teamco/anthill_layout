@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member SimpleWeather
+         * @memberOf SimpleWeather
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member SimpleWeather
+         * @memberOf SimpleWeather
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member SimpleWeather
+         * @memberOf SimpleWeather
          * @type {MVC}
          */
         this.mvc = new MVC({

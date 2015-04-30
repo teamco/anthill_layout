@@ -28,7 +28,7 @@ define([
 
         /**
          * Render polldaddy element
-         * @member PolldaddyView
+         * @memberOf PolldaddyView
          */
         renderPolldaddy: function renderPolldaddy() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member PolldaddyView
+         * @memberOf PolldaddyView
          * @returns {PolldaddyPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member PolldaddyView
+         * @memberOf PolldaddyView
          * @param widgetRules
          * @param contentRules
          * @returns {PolldaddyRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render polldaddy
-         * @member PolldaddyView
+         * @memberOf PolldaddyView
          */
         render: function render() {
 

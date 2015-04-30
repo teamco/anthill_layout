@@ -22,7 +22,7 @@ define([
 
         /**
          * Define item
-         * @member ApplicationModel
+         * @memberOf ApplicationModel
          * @type {Workspace}
          */
         this.item = Workspace;
@@ -32,21 +32,27 @@ define([
 
         /**
          * Define global setting
-         * @member ApplicationModel
+         * @memberOf ApplicationModel
          */
         initGlobalSetting: function initGlobalSetting() {
 
             /**
+             * Get scope
+             * @type {Application}
+             */
+            var scope = this.scope;
+
+            /**
              * Define setting
-             * @member ApplicationModel
+             * @memberOf ApplicationModel
              * @type {Setting}
              */
             this.setting = new Setting(
-                this.scope,
-                this.getConfig('appName')
+                scope,
+                scope.controller.getAppName()
             );
 
-            this.scope.logger.debug('Define setting', this.setting);
+            scope.logger.debug('Define setting', this.setting);
         }
 
     }, BaseModel.prototype);

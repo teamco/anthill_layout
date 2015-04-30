@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member ExtremeTubeElement
+         * @memberOf ExtremeTubeElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

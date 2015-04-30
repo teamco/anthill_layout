@@ -28,7 +28,7 @@ define([
 
         /**
          * Render Lifestream element
-         * @member LifestreamView
+         * @memberOf LifestreamView
          */
         renderLifestream: function renderLifestream() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member LifestreamView
+         * @memberOf LifestreamView
          * @returns {LifestreamPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member LifestreamView
+         * @memberOf LifestreamView
          * @param widgetRules
          * @param contentRules
          * @returns {LifestreamRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render Lifestream
-         * @member LifestreamView
+         * @memberOf LifestreamView
          */
         render: function render() {
 

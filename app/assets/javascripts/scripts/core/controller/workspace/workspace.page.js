@@ -5,7 +5,7 @@
  * Time: 12:41 PM
  */
 
-define([], function defineWorkspacePage() {
+define(function defineWorkspacePage() {
 
     /**
      * Define WorkspacePage controller
@@ -20,7 +20,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Set page height
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              */
             setPageContainerDimensions: function setPageContainerDimensions() {
 
@@ -37,7 +37,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Switch page on hash change
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              */
             switchPageOnHashChange: function switchPageOnHashChange() {
 
@@ -55,7 +55,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Update pages width
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              */
             updatePagesWidth: function updatePagesWidth() {
 
@@ -84,7 +84,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Before Switch to page
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              * @param {Page} page
              */
             beforeSwitchToPage: function beforeSwitchToPage(page) {
@@ -112,7 +112,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Switch to page
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              * @param {Page} page
              * @returns {boolean|*}
              */
@@ -131,7 +131,7 @@ define([], function defineWorkspacePage() {
                         page
                     );
 
-                    if (page === this.controller.getCurrentItem()) {
+                    if (page === this.model.getCurrentItem()) {
                         this.logger.debug('Page already current', page);
                     } else {
                         this.logger.debug('Swipe to page', page);
@@ -150,7 +150,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * After Switch to page
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              * @param {Page} page
              */
             afterSwitchToPage: function afterSwitchToPage(page) {
@@ -165,7 +165,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Swipe to current page
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              */
             swipeToCurrentPage: function swipeToCurrentPage() {
 
@@ -173,7 +173,7 @@ define([], function defineWorkspacePage() {
                  * Get current page
                  * @type {Page}
                  */
-                var page = this.getCurrentItem();
+                var page = this.model.getCurrentItem();
 
                 /**
                  * Define local scope
@@ -194,7 +194,7 @@ define([], function defineWorkspacePage() {
 
             /**
              * Check if load page content
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              * @returns {Page}
              */
             isLoadPageContent: function isLoadPageContent() {
@@ -213,12 +213,42 @@ define([], function defineWorkspacePage() {
 
             /**
              * Save after page ordering
-             * @member WorkspacePage
+             * @memberOf WorkspacePage
              * @param {Array} order
              */
             afterPageOrder: function afterPageOrder(order) {
                 this.logger.debug('Page order', order);
                 this.controller.store();
+            },
+
+            /**
+             * Define clone page
+             * @memberOf WorkspacePage
+             * @param {string} uuid
+             */
+            clonePage: function clonePage(uuid) {
+
+                /**
+                 * Get clone page
+                 * @type {Page}
+                 */
+                var clonePage = this.model.getItemByUUID(uuid);
+
+                /**
+                 * Get current page
+                 * @type {Page}
+                 */
+                var currentPage = this.model.getCurrentItem();
+
+                // Transfer layout
+                currentPage.observer.publish(
+                    currentPage.eventmanager.eventList.createLayout,
+                    clonePage.model.getConfig('layout')
+                );
+
+                this.logger.debug('Clone page', clonePage, currentPage);
+
+                currentPage.controller.cloneWidgets(clonePage);
             }
         }
     );

@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member PetPassport
+         * @memberOf PetPassport
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member PetPassport
+         * @memberOf PetPassport
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @member PetPassport
+         * @memberOf PetPassport
          * @type {MVC}
          */
         this.mvc = new MVC({

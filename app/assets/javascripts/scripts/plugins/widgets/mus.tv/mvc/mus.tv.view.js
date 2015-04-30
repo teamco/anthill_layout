@@ -28,7 +28,7 @@ define([
 
         /**
          * Render mustv element
-         * @member MusTvView
+         * @memberOf MusTvView
          */
         renderMusTv: function renderMusTv() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member MusTvView
+         * @memberOf MusTvView
          * @returns {MusTvPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member MusTvView
+         * @memberOf MusTvView
          * @param widgetRules
          * @param contentRules
          * @returns {MusTvRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render mustv
-         * @member MusTvView
+         * @memberOf MusTvView
          */
         render: function render() {
 

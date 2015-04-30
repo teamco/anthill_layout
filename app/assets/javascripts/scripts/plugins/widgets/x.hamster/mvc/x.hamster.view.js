@@ -28,7 +28,7 @@ define([
 
         /**
          * Render XHamster element
-         * @member XHamsterView
+         * @memberOf XHamsterView
          */
         renderXHamster: function renderXHamster() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member XHamsterView
+         * @memberOf XHamsterView
          * @returns {XHamsterPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member XHamsterView
+         * @memberOf XHamsterView
          * @param widgetRules
          * @param contentRules
          * @returns {XHamsterRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render XHamster
-         * @member XHamsterView
+         * @memberOf XHamsterView
          */
         render: function render() {
 

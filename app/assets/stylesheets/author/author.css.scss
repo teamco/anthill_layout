@@ -6,105 +6,331 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  list-style: none;
 }
 
 body.admin {
-  background-color: #ccc;
+  background: linear-gradient(to bottom, #cfe7fa 0%, #6393c1 100%); /* W3C */
   font-size: 12px;
 }
 
-body.admin a {
-  text-decoration: none;
-  color: #3b5a82;
-}
-
-body.admin a:hover {
-  color: #0000cc;
-}
-
 body.admin .fetcher {
-  width: 90%;
-  height: 90%;
-  border: 1px solid #333;
-  box-shadow: 3px 3px 10px #333;
-  padding: 2px;
-  border-radius: 5px;
-  margin: 20px auto 0;
-  background-color: #fff;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-}
-
-body.admin .fetcher .content {
-  height: 96%;
-  width: 100%;
-  overflow: auto;
-  margin: 20px 0 0;
-}
-
-body.admin .fetcher div.admin-content {
-  height: 100%;
-  position: relative;
-}
-
-body.admin .fetcher div.admin-content > ul {
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  left: 20px;
-  width: 170px;
-  margin: 20px 0;
-}
-
-body.admin .fetcher div.admin-content > div {
-  margin-left: 210px;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  margin-top: 20px;
-}
-
-body.admin .fetcher div.admin-content > div.title {
-  background: rgba(255, 255, 255, 0.9);
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  margin-top: 0;
-  padding-top: 20px;
-  width: 100%;
-  height: auto;
-  box-shadow: 0 20px 15px -10px rgba(255, 255, 255, 0.75);
-}
-
-body.admin .fetcher div.admin-content > div.title p {
-  padding: 5px 0;
-}
-
-body.admin .fetcher div.admin-content > div.title p.notice {
-  color: #228B22;
-}
-
-body.admin .fetcher div.admin-content > div:last-child {
-  position: absolute;
-  top: 0;
-  padding-top: 0;
-  margin: 0;
-  width: 100%;
-  padding-left: 210px;
 }
 
 body.admin .c {
   text-align: center;
 }
 
-body.admin table {
-  width: 96%;
-  margin-bottom: 20px;
-  margin-top: 80px;
+body.admin header {
+  height: 40px;
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  box-shadow: 1px 1px 5px #333;
+  z-index: 10;
+  left: 0;
+  top: 0;
+}
+
+body.admin header ul {
+  height: 100%;
+  list-style: none;
+}
+
+body.admin header li {
+  float: left;
+  height: 100%;
+  display: inline-block;
+  font-size: 24px;
+  line-height: 40px;
+}
+
+body.admin header li.menu {
+  position: relative;
+  text-indent: -9999px;
+  cursor: pointer;
+  width: 35px;
+}
+
+body.admin header li.menu:before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 13px;
+  width: 1em;
+  height: 0.15em;
+  background: #666;
+  box-shadow: 0 0.25em 0 0 #666, 0 0.5em 0 0 #666;
+}
+
+body.admin header:hover li.menu:before {
+  background: #000;
+  box-shadow: 0 0.25em 0 0 #000, 0 0.5em 0 0 #000;
+}
+
+body.admin header li.title {
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+body.admin section.panel {
+  background: linear-gradient(to bottom, #f7fbfc 0%, #d9edf2 40%, #add9e4 101%);
+  width: 0;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  border-right: 1px solid #999;
+  box-shadow: 1px 1px 15px 0 #999;
+  -webkit-transition: width 0.2s ease-in-out;
+  -moz-transition: width 0.2s ease-in-out;
+  -o-transition: width 0.2s ease-in-out;
+  transition: width 0.2s ease-in-out;
+}
+
+body.admin section.panel.activated {
+  width: 200px;
+}
+
+body.admin section.content {
+  height: 95%;
+  overflow: auto;
+  padding: 2%;
+  position: relative;
+}
+
+body.admin ul.admin-navigation > li {
+  position: relative;
+  width: 15em;
+  height: 15em;
+  display: inline-block;
+  float: left;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  border-radius: 5px;
+  padding: 1em;
+  box-shadow: 1px 1px 3px #333;
+  background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+}
+
+body.admin ul.admin-navigation > li:hover {
+  background: linear-gradient(to bottom, rgba(242, 245, 246, 1) 0%, rgba(227, 234, 237, 1) 37%, rgba(200, 215, 220, 1) 100%);
+}
+
+body.admin ul.admin-navigation > li.activated:hover,
+body.admin ul.admin-navigation > li.activated {
+  background: linear-gradient(to bottom, rgba(252, 255, 244, 1) 0%, rgba(233, 233, 206, 1) 100%);
+}
+
+body.admin ul.admin-navigation > li > a {
+  text-decoration: none;
+  color: #3b5a82;
+  font-size: 1.5em;
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: transparent no-repeat left 5em;
+  background-size: 64px;
+  position: relative;
+  z-index: 1;
+}
+
+body.admin ul.admin-navigation.inner > li h3 {
+  font-size: 3em;
+  position: absolute;
+  bottom: 1.7em;
+  color: #DAA520;
+  text-shadow: 1px 1px #333;
+  right: 0.3em;
+  line-height: 0.5em;
+  text-align: center;
+}
+
+body.admin ul.admin-navigation.inner > li h3 span {
+  font-size: 12px;
+  display: inline-block;
+  font-variant: small-caps;
+  width: 100%;
+  text-align: center;
+}
+
+body.admin ul.admin-navigation.inner > li h4 {
+  color: #0077b3;
+  margin-bottom: 0.5em;
+}
+
+body.admin ul.admin-navigation.inner > li h5 {
+  margin-bottom: 0.5em;
+  font-size: 1.1em;
+  font-variant: small-caps;
+}
+
+body.admin ul.admin-navigation.inner > li h5.published {
+  color: #32CD32;
+}
+
+body.admin ul.admin-navigation.inner > li h5.offline {
+  color: #ce3e26;
+}
+
+body.admin ul.admin-navigation.inner > li h6 {
+  margin-bottom: 0.5em;
+}
+
+body.admin ul.admin-navigation.inner > li > a {
+  height: auto;
+  margin-bottom: 0.3em;
+  line-height: normal;
+}
+
+body.admin ul.admin-navigation.inner > li > a.add {
+  font-size: 12em;
+  line-height: 1em;
+  margin: 0;
+  text-align: center;
+  color: cadetblue;
+  text-shadow: 1px 1px #fff;
+}
+
+body.admin ul.admin-navigation > li > div {
+  position: absolute;
+  font-size: 1.1em;
+  color: #333;
+  display: inline-block;
+  width: 100%;
+  text-align: right;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0) 100%);
+  left: 0;
+  bottom: 0;
+  height: 4em;
+  line-height: 4em;
+  padding-right: 10px;
+  text-shadow: 1px 1px 1px #fff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top: 1px solid #fff;
+}
+
+body.admin ul.admin-navigation > li > div > img {
+  height: 40px;
+  margin-top: 4px;
+}
+
+body.admin ul.admin-navigation.inner > li > div > div {
+  min-width: 30px;
+  height: 50px;
+  background: transparent image_url('settings.png') no-repeat 0.5em center;
+  float: left;
+  cursor: pointer;
+}
+
+body.admin ul.admin-navigation.inner > li > div > div ul.menu {
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #333;
+  left: 30px;
+  display: none;
+}
+
+body.admin ul.admin-navigation.inner > li > div > div:hover ul.menu {
+  display: inline-block;
+}
+
+body.admin ul.admin-navigation.inner > li > div > div ul.menu li {
+  padding: 5px 15px 5px 10px;
+  text-align: left;
+  line-height: normal;
+  text-shadow: none;
+  font-size: 12px;
+}
+
+body.admin ul.admin-navigation.inner > li > div > div ul.menu li a {
+  color: #dedede;
+  text-decoration: none;
+}
+
+body.admin ul.admin-navigation.inner > li > div > div ul.menu li:hover a {
+  color: #fff;
+}
+
+body.admin .arrow_box {
+  position: absolute;
+  background: #364854;
+  border: 2px solid #c2e1f5;
+}
+
+body.admin .arrow_box:after,
+body.admin .arrow_box:before {
+  right: 100%;
+  top: 25px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+body.admin .arrow_box:after {
+  border-color: rgba(54, 72, 84, 0);
+  border-right-color: #364854;
+  border-width: 10px;
+  margin-top: -10px;
+}
+
+body.admin .arrow_box:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-right-color: #c2e1f5;
+  border-width: 13px;
+  margin-top: -13px;
+}
+
+body.admin ul.admin-navigation > li.category {
+  width: 100%;
+  height: 2em;
+  font-size: 1.5em;
+  padding: 1em 0 0;
+  background: none;
+  box-shadow: none;
+  margin-bottom: 0.5em;
+  text-shadow: 1px 1px #333;
+  color: #fff;
+}
+
+body.admin ul.admin-navigation > li.sites a {
+  background-image: image_url("site-storage.png");
+}
+
+body.admin ul.admin-navigation > li.site-versions a {
+  background-image: image_url("site-versions.png");
+}
+
+body.admin ul.admin-navigation > li.site-types a {
+  background-image: image_url("site-type.png");
+}
+
+body.admin ul.admin-navigation > li.widgets a {
+  background-image: image_url("widgets.png");
+}
+
+body.admin ul.admin-navigation > li.widget-categories a {
+  background-image: image_url("widget-category.png");
 }
 
 body.admin h1 {
   font-size: 24px;
   margin-bottom: 20px;
+}
+
+body.admin table {
+  width: 100%;
+  background-color: #fff;
 }
 
 body.admin th {
@@ -134,20 +360,58 @@ body.admin td.name {
   background-color: antiquewhite;
 }
 
-body.admin ul {
-  list-style: none;
-  margin: 20px;
-  padding: 10px;
-  background: #dedede;
-  border: 1px solid #ccc;
+body.admin tr.activated td {
+  background-color: #c2daf9;
 }
 
-body.admin ul > li {
-  margin: 2px;
+body.admin tr.activated td.strong,
+body.admin tr.activated td.strong a {
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  background-color: #3961b9;
 }
 
-body.admin ul > li label {
-  min-width: 200px;
+body.admin tr.category td {
+  background-color: #C9FFCA;
+}
+
+body.admin .field {
+  clear: both;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #999;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+body.admin .field > label {
+  cursor: pointer;
+}
+
+body.admin section.content > div.title {
+  background: rgba(255, 255, 255, 0.9);
+  position: fixed;
+  z-index: 1;
+  margin-top: -2%;
+  width: 94%;
+  height: auto;
+  box-shadow: 0 20px 15px -10px rgba(255, 255, 255, 0.75);
+  padding: 20px 2% 5px;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  margin-left: 1px;
+}
+
+body.admin section.content > div.title p {
+  padding: 5px 0;
+}
+
+body.admin section.content > div.title p.notice {
+  color: #228B22;
+}
+
+body.admin div.field input[type="text"] {
+  margin-right: 7px;
 }
 
 body.admin ul input[type="text"]:focus {
@@ -161,8 +425,7 @@ body.admin ul textarea:focus {
 
 body.admin form {
   position: relative;
-  width: 100%;
-  padding-right: 20px;
+  width: 98%;
 }
 
 body.admin form select {
@@ -179,10 +442,6 @@ body.admin form select {
   box-shadow: inset 0 0 5px #ccc;
   transition: width 0s;
   padding: 3px;
-}
-
-body.admin form .field input {
-
 }
 
 body.admin form .field input:focus {
@@ -216,11 +475,6 @@ body.admin a.back:hover {
   color: #3961b9;
 }
 
-body.admin .field {
-  clear: both;
-  margin-bottom: 10px;
-}
-
 body.admin .actions {
   margin-top: 10px;
 }
@@ -238,6 +492,7 @@ body.admin li.logout a {
   color: #fff;
   cursor: pointer;
   margin-bottom: 20px;
+  margin-right: 20px;
 }
 
 body.admin li.logout a {
@@ -250,7 +505,7 @@ body.admin li.logout a:hover {
   background: #49A4FF;
   padding: 10px;
   margin-top: -1px;
-  margin-right: -1px;
+  margin-right: 19px;
 }
 
 body.admin li.logout a:hover {
@@ -300,12 +555,67 @@ body.admin form ul {
   border-radius: 5px;
 }
 
+body.admin form ul.categories {
+  background-color: transparent;
+}
+
+body.admin form ul.categories > li {
+  width: 100%;
+  border: 1px solid #999;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #f2f5f6 0%, #e3eaed 37%, #c8d7dc 100%);
+}
+
+body.admin form ul.categories > li > label {
+  cursor: pointer;
+}
+
 body.admin form li {
   display: inline-block;
 }
 
-body.admin form ul > li label {
+body.admin form ul.widgets {
+  position: relative;
+}
+
+body.admin form ul.widgets > li {
+  overflow: hidden;
+  white-space: nowrap;
+  box-shadow: 1px 1px 3px #333;
+  padding: 0 5px;
+  background: #efefef;
+  border-radius: 3px;
+  margin-bottom: 5px;
+}
+
+body.admin form ul.widgets > li:hover {
+  background: #fff;
+  box-shadow: 0 0 3px #999;
+  cursor: pointer;
+}
+
+body.admin form ul.widgets > li:active {
+  box-shadow: inset -3px -3px 1px #bbb;
+  background: #ccc;
+}
+
+body.admin form ul.widgets > li label {
+  font-size: 11px;
+  width: 100%;
+}
+
+body.admin form ul.widgets > li input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+body.admin form ul.widgets > li label {
   min-width: inherit;
+  cursor: pointer;
+  font-variant: normal;
+  font-weight: normal;
+  text-transform: capitalize;
 }
 
 body.admin form ul div.field {
@@ -314,13 +624,6 @@ body.admin form ul div.field {
   margin-right: 20px;
 }
 
-body.admin tr.activated td {
-  background-color: #c2daf9;
-}
-
-body.admin tr.activated td.strong,
-body.admin tr.activated td.strong a {
-  color: #fff;
-  text-shadow: 1px 1px 1px #000;
-  background-color: #3961b9;
+body.admin ul > li label {
+  min-width: 200px;
 }

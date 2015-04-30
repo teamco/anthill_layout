@@ -6,23 +6,36 @@
  */
 
 define([
-], function defineBaseResize() {
+], function defineBehaviorWindowResize() {
 
     /**
-     * Define Base Window resize
-     * @class BaseResize
-     * @constructor BaseResize
+     * Define Behavior Window resize
+     * @class BehaviorWindowResize
+     * @constructor BehaviorWindowResize
      */
-    var BaseResize = function BaseResize() {
+    var BehaviorWindowResize = function BehaviorWindowResize() {
 
+        /**
+         * Define model
+         * @property BehaviorWindowResize
+         * @type {undefined}
+         */
+        this.model = undefined;
+
+        /**
+         * Define scope
+         * @property BehaviorWindowResize
+         * @type {undefined}
+         */
+        this.scope = undefined;
     };
 
-    return BaseResize.extend('BaseResize', {
+    return BehaviorWindowResize.extend('BehaviorWindowResize', {
 
         /**
          * Get resize attributes
          * Get items are ready to be resized
-         * @member BaseResize
+         * @memberOf BehaviorWindowResize
          * @returns {{event: string|*, items: *}}
          * @private
          */
@@ -59,7 +72,7 @@ define([
 
         /**
          * Nested resize
-         * @member BaseResize
+         * @memberOf BehaviorWindowResize
          * @param resize
          * @private
          */
@@ -108,7 +121,7 @@ define([
 
         /**
          * Resize items on resize window
-         * @member BaseResize
+         * @memberOf BehaviorWindowResize
          */
         resizeItems: function resizeItems() {
 
@@ -124,7 +137,7 @@ define([
 
         /**
          * Resize item on resize window
-         * @member BaseResize
+         * @memberOf BehaviorWindowResize
          * @param item
          */
         resizeItem: function resizeItem(item) {

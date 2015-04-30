@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member ScreencastElement
+         * @memberOf ScreencastElement
          * @param {{type, src}} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

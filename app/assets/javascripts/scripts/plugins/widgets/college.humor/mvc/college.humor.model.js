@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member CollegeHumorModel
+         * @memberOf CollegeHumorModel
          * @type {{
          *      collegehumorEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member CollegeHumorModel
+         * @memberOf CollegeHumorModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set CollegeHumor embed code
-         * @member CollegeHumorModel
+         * @memberOf CollegeHumorModel
          * @param {string} embed
          */
         setCollegehumorEmbedCode: function setCollegehumorEmbedCode(embed) {

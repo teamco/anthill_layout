@@ -28,7 +28,7 @@ define([
 
         /**
          * Render funnyordie element
-         * @member FunnyOrDieView
+         * @memberOf FunnyOrDieView
          */
         renderFunnyOrDie: function renderFunnyOrDie() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member FunnyOrDieView
+         * @memberOf FunnyOrDieView
          * @returns {FunnyOrDiePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member FunnyOrDieView
+         * @memberOf FunnyOrDieView
          * @param widgetRules
          * @param contentRules
          * @returns {FunnyOrDieRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render funnyordie
-         * @member FunnyOrDieView
+         * @memberOf FunnyOrDieView
          */
         render: function render() {
 

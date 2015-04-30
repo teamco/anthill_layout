@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
-  devise_for :users, controllers: {
-                       omniauth_callbacks: 'callbacks'
-                   }
+  devise_for :users,
+             controllers: {
+                 omniauth_callbacks: 'callbacks'
+             }
 
   namespace :author do
     resources :site_types
@@ -17,10 +18,14 @@ Rails.application.routes.draw do
   end
 
   get '/sites/:key', to: 'author/site_storages#show'
+  get '/sites/:key/:mode', to: 'author/site_storages#show'
+
   put '/sites/:key', to: 'author/site_storages#update'
   put '/sites/activate/:key', to: 'author/site_storages#activate'
 
-  root 'author/site_storages#index'
+  get '/author', to: 'author/author#index'
+
+  root 'author/author#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

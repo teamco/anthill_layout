@@ -28,7 +28,7 @@ define([
 
         /**
          * Render pixiv element
-         * @member PixivView
+         * @memberOf PixivView
          */
         renderPixiv: function renderPixiv() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member PixivView
+         * @memberOf PixivView
          * @returns {PixivPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member PixivView
+         * @memberOf PixivView
          * @param widgetRules
          * @param contentRules
          * @returns {PixivRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render pixiv
-         * @member PixivView
+         * @memberOf PixivView
          */
         render: function render() {
 

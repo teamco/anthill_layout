@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member WordcampTvModel
+         * @memberOf WordcampTvModel
          * @type {{
          *      wordcamptvEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member WordcampTvModel
+         * @memberOf WordcampTvModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set WordcampTv embed code
-         * @member WordcampTvModel
+         * @memberOf WordcampTvModel
          * @param {string} embed
          */
         setWordcamptvEmbedCode: function setWordcamptvEmbedCode(embed) {

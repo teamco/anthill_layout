@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member QrCode
+         * @memberOf QrCode
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member QrCode
+         * @memberOf QrCode
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @member QrCode
+         * @memberOf QrCode
          * @type {MVC}
          */
         this.mvc = new MVC({

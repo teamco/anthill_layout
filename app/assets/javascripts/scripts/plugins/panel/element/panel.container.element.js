@@ -33,7 +33,7 @@ define([
         /**
          * Toggle open class
          * @param {Boolean} open
-         * @member PanelContainerElement
+         * @memberOf PanelContainerElement
          */
         opened: function opened(open) {
             open ?
@@ -43,7 +43,7 @@ define([
 
         /**
          * Bind resize
-         * @member PanelContainerElement
+         * @memberOf PanelContainerElement
          */
         bindResize: function bindResize() {
 

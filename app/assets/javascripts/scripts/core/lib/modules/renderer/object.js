@@ -18,7 +18,7 @@ define([], function defineObjectRenderer() {
 
         /**
          * Render Object
-         * @member ObjectRenderer
+         * @memberOf ObjectRenderer
          * @param {string} object
          * @param {object} [opts]
          * @returns {*|jQuery}

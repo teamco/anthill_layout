@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member RdioModel
+         * @memberOf RdioModel
          * @type {{
          *      rdioEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member RdioModel
+         * @memberOf RdioModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Rdio embed code
-         * @member RdioModel
+         * @memberOf RdioModel
          * @param {string} embed
          */
         setRdioEmbedCode: function setRdioEmbedCode(embed) {

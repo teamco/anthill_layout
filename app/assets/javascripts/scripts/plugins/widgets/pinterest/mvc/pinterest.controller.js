@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PinterestController
+         * @memberOf PinterestController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -41,7 +41,7 @@ define([
 
         /**
          * Add Pinterest rule
-         * @member PinterestController
+         * @memberOf PinterestController
          * @param e
          */
         addPinterestRule: function addPinterestRule(e) {

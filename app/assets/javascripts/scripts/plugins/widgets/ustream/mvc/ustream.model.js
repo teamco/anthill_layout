@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member UstreamModel
+         * @memberOf UstreamModel
          * @type {{
          *      ustreamEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member UstreamModel
+         * @memberOf UstreamModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Ustream embed code
-         * @member UstreamModel
+         * @memberOf UstreamModel
          * @param {string} embed
          */
         setUstreamEmbedCode: function setUstreamEmbedCode(embed) {

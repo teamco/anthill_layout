@@ -11,13 +11,13 @@ define([], function defineEventsBehavior() {
 
         /**
          * Define main $container
-         * @member EventsBehavior
+         * @memberOf EventsBehavior
          */
         this.$mainContainer = $mainContainer;
 
         /**
          * Define $element
-         * @member EventsBehavior
+         * @memberOf EventsBehavior
          */
         this.$element = $element;
     };
@@ -26,7 +26,7 @@ define([], function defineEventsBehavior() {
 
         /**
          * Define Init
-         * @member EventsBehavior
+         * @memberOf EventsBehavior
          */
         initialize: function initialize() {
 
@@ -63,7 +63,7 @@ define([], function defineEventsBehavior() {
 
         /**
          * Remove container
-         * @member EventsBehavior
+         * @memberOf EventsBehavior
          */
         removeContainer: function removeContainer() {
             $('.eventEditorContainer', this.$element.$).remove();
@@ -71,7 +71,7 @@ define([], function defineEventsBehavior() {
 
         /**
          * Define cancel button binding
-         * @member EventsBehavior
+         * @memberOf EventsBehavior
          */
         bindCancel: function bindCancel() {
 
@@ -84,7 +84,7 @@ define([], function defineEventsBehavior() {
 
         /**
          * Define recycle button binding
-         * @member EventsBehavior
+         * @memberOf EventsBehavior
          */
         bindRecycle: function bindRecycle() {
 
@@ -112,7 +112,7 @@ define([], function defineEventsBehavior() {
 
         /**
          * Define save button binding
-         * @member EventsBehavior
+         * @memberOf EventsBehavior
          */
         bindSave: function bindSave() {
 

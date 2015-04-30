@@ -2,7 +2,7 @@
  * Created by i061485 on 7/10/14.
  */
 
-define([], function defineCheckBoxRenderer(){
+define(function defineCheckBoxRenderer(){
 
     /**
      * Define CheckBoxRenderer
@@ -11,15 +11,21 @@ define([], function defineCheckBoxRenderer(){
      * @constructor
      */
     var CheckBoxRenderer = function CheckBoxRenderer(){
-
     };
 
     return CheckBoxRenderer.extend('CheckBoxRenderer', {
 
         /**
          * Render checkbox
-         * @member CheckBoxRenderer
-         * @param {{text: string, name: string, value, [checked]: boolean, [disabled]: boolean, [monitor]}} opts
+         * @memberOf CheckBoxRenderer
+         * @param {{
+         *      text: string,
+         *      name: string,
+         *      value,
+         *      [checked]: boolean,
+         *      [disabled]: boolean,
+         *      [monitor]
+         * }} opts
          * @returns {*[]}
          */
         renderCheckbox: function renderCheckbox(opts) {
@@ -33,7 +39,7 @@ define([], function defineCheckBoxRenderer(){
 
             /**
              * Define $input
-             * @type {*|jQuery}
+             * @type {Object}
              */
             var $input = $('<input />').attr({
                 name: opts.name,

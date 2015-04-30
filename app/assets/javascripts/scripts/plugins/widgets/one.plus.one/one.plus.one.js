@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member OnePlusOne
+         * @memberOf OnePlusOne
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member OnePlusOne
+         * @memberOf OnePlusOne
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member OnePlusOne
+         * @memberOf OnePlusOne
          * @type {MVC}
          */
         this.mvc = new MVC({

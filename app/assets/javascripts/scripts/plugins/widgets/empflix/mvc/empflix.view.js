@@ -28,7 +28,7 @@ define([
 
         /**
          * Render empflix element
-         * @member EmpflixView
+         * @memberOf EmpflixView
          */
         renderEmpflix: function renderEmpflix() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member EmpflixView
+         * @memberOf EmpflixView
          * @returns {EmpflixPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member EmpflixView
+         * @memberOf EmpflixView
          * @param widgetRules
          * @param contentRules
          * @returns {EmpflixRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render empflix
-         * @member EmpflixView
+         * @memberOf EmpflixView
          */
         render: function render() {
 

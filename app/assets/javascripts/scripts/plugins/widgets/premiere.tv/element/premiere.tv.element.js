@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member PremiereTvElement
+         * @memberOf PremiereTvElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

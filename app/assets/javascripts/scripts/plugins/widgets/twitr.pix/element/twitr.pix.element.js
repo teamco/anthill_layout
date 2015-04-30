@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member TwitrPixElement
+         * @memberOf TwitrPixElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

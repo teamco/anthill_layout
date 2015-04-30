@@ -28,7 +28,7 @@ define([
 
         /**
          * Render ice.floe element
-         * @member IceFloeView
+         * @memberOf IceFloeView
          */
         renderIceFloe: function renderIceFloe() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member IceFloeView
+         * @memberOf IceFloeView
          * @returns {IceFloePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member IceFloeView
+         * @memberOf IceFloeView
          * @param widgetRules
          * @param contentRules
          * @returns {IceFloeRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render ice.floe
-         * @member IceFloeView
+         * @memberOf IceFloeView
          */
         render: function render() {
 

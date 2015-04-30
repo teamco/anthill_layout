@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member FotoKritikModel
+         * @memberOf FotoKritikModel
          * @type {{
          *      fotokritikEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member FotoKritikModel
+         * @memberOf FotoKritikModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set FotoKritik embed code
-         * @member FotoKritikModel
+         * @memberOf FotoKritikModel
          * @param {string} embed
          */
         setFotokritikEmbedCode: function setFotokritikEmbedCode(embed) {

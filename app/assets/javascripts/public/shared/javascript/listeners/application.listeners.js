@@ -9,7 +9,7 @@ define(['config/application'], function defineApplicationListeners(Application) 
 
     /**
      * Define Application Global listeners
-     * @member Application
+     * @memberOf Application
      * @type {{
      *      defineGlobalInstance: {name: string, callback: function}
      * }}
@@ -20,7 +20,7 @@ define(['config/application'], function defineApplicationListeners(Application) 
             name: 'define.global.instance',
             callback: function defineGlobalInstanceCallback() {
                 if (this.controller.isDevelopmentMode()) {
-                    window[this.model.getConfig('appName')] = this;
+                    window[this.controller.getAppName()] = this;
                 }
             }
         }

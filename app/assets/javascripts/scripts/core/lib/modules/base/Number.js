@@ -6,27 +6,27 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([], function defineBaseNumber() {
+define([], function defineLibNumber() {
 
     /**
-     * Define BaseNumber
-     * @class BaseNumber
+     * Define LibNumber
+     * @class LibNumber
      * @constructor
      */
-    var BaseNumber = function BaseNumber() {
+    var LibNumber = function LibNumber() {
     };
 
-    BaseNumber.extend('BaseNumber', {
+    LibNumber.extend('LibNumber', {
 
         /**
          * Default number type
-         * @member BaseNumber
+         * @memberOf LibNumber
          */
         defaultNumberType: 10,
 
         /**
          * Convert String to Integer
-         * @member BaseNumber
+         * @memberOf LibNumber
          * @param {string} s
          * @param {number} t
          * @returns {Number}
@@ -38,7 +38,7 @@ define([], function defineBaseNumber() {
 
         /**
          * Convert String to Integer
-         * @member BaseNumber
+         * @memberOf LibNumber
          * @param {string} s
          * @returns {Number}
          */
@@ -49,7 +49,7 @@ define([], function defineBaseNumber() {
 
         /**
          * Get random number
-         * @member BaseNumber
+         * @memberOf LibNumber
          * @param {number} min
          * @param {number} max
          * @returns {number}
@@ -60,7 +60,7 @@ define([], function defineBaseNumber() {
 
         /**
          * Numeric sort
-         * @member BaseNumber
+         * @memberOf LibNumber
          * @param {Number} a
          * @param {Number} b
          * @returns {Number}
@@ -83,5 +83,5 @@ define([], function defineBaseNumber() {
         }
     });
 
-    return new BaseNumber();
+    return new LibNumber();
 });

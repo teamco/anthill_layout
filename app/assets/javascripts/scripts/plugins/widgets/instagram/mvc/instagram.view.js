@@ -28,7 +28,7 @@ define([
 
         /**
          * Render Instagram element
-         * @member InstagramView
+         * @memberOf InstagramView
          */
         renderInstagram: function renderInstagram() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member InstagramView
+         * @memberOf InstagramView
          * @returns {InstagramPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member InstagramView
+         * @memberOf InstagramView
          * @param widgetRules
          * @param contentRules
          * @returns {InstagramRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render Instagram
-         * @member InstagramView
+         * @memberOf InstagramView
          */
         render: function render() {
 

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PostToolController
+         * @memberOf PostToolController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -33,7 +33,7 @@ define([
 
         /**
          * Add PostTool rule
-         * @member PostToolController
+         * @memberOf PostToolController
          * @param e
          */
         addPostToolRule: function addPostToolRule(e) {

@@ -9,8 +9,10 @@ define([
     'modules/base/String',
     'modules/base/Image',
     'modules/base/UA',
+    'modules/base/File',
+    'modules/base/Event',
     'modules/base/RequirePatch'
-], function defineBase(arr, fn, gen, hash, html, num, dt, str, img, ua, rpatch) {
+], function defineBase(arr, fn, gen, hash, html, num, dt, str, img, ua, file, event, rpatch) {
 
     /**
      * Define base utils
@@ -21,18 +23,20 @@ define([
 
         /**
          * Define shims
-         * @type {{
-         *      array: *,
-         *      function: *,
-         *      generator: *,
-         *      hash: *,
-         *      html: *,
-         *      number: *,
-         *      datetime: *,
-         *      string: *,
-         *      image: *,
-         *      ua: *,
-         *      rpatch: *
+         * @type {Object|{
+         *      array: LibArray,
+         *      function: LibFunction,
+         *      generator: LibGenerator,
+         *      hash: LibHash,
+         *      html: LibHTML,
+         *      number: LibNumber,
+         *      datetime: LibDateTime,
+         *      string: LibString,
+         *      image: LibImage,
+         *      ua: LibUserAgent,
+         *      file: LibFile,
+         *      event: LibEvent,
+         *      rpatch: LibRequirePatch
          * }}
          */
         var Shims = {
@@ -46,18 +50,20 @@ define([
             'string': str,
             'image': img,
             'ua': ua,
+            'file': file,
+            'event': event,
             'rpatch': rpatch
         };
 
         /**
          * Define lib
-         * @member Base
+         * @property Base
          */
         this.lib = {};
 
         /**
          * Get shim
-         * @member Base
+         * @property Base
          * @param type
          * @returns {*}
          */
@@ -82,7 +88,7 @@ define([
 
         /**
          * Get object type
-         * @member Base
+         * @memberOf Base
          * @param obj
          * @returns {String}
          */
@@ -93,7 +99,7 @@ define([
 
         /**
          * Check if object defined
-         * @member Base
+         * @memberOf Base
          * @param {*} o
          * @return {boolean}
          */
@@ -103,7 +109,7 @@ define([
 
         /**
          * Check if object is blank
-         * @member Base
+         * @memberOf Base
          * @param {String} o
          * @return {boolean}
          */
@@ -113,7 +119,7 @@ define([
 
         /**
          * Check if boolean
-         * @member Base
+         * @memberOf Base
          * @param o
          * @returns {boolean}
          */
@@ -123,7 +129,7 @@ define([
 
         /**
          * Check if object is empty
-         * @member Base
+         * @memberOf Base
          * @param {String|Array|jQuery} o
          * @returns {boolean}
          */
@@ -138,7 +144,7 @@ define([
 
         /**
          * Check if object string type
-         * @member Base
+         * @memberOf Base
          * @param {String} o
          * @returns {boolean}
          */
@@ -148,7 +154,7 @@ define([
 
         /**
          * Check if array
-         * @member Base
+         * @memberOf Base
          * @param a
          * @returns {boolean}
          */
@@ -158,7 +164,7 @@ define([
 
         /**
          * Check if object is instance of jQuery
-         * @member Base
+         * @memberOf Base
          * @param o
          * @returns {boolean}
          */
@@ -168,7 +174,7 @@ define([
 
         /**
          * Check if object
-         * @member Base
+         * @memberOf Base
          * @param o
          * @returns {boolean}
          */
@@ -178,7 +184,7 @@ define([
 
         /**
          * Check if function
-         * @member Base
+         * @memberOf Base
          * @param o
          * @returns {boolean}
          */
@@ -188,7 +194,7 @@ define([
 
         /**
          * Check if value is numeric
-         * @member Base
+         * @memberOf Base
          * @param n
          * @returns {boolean}
          */
@@ -199,7 +205,7 @@ define([
 
         /**
          * Check if uuid has uuid format
-         * @member Base
+         * @memberOf Base
          * @param {string} uuid
          * @returns {Array|{index: number, input: string}|*}
          */
@@ -209,7 +215,7 @@ define([
 
         /**
          * Check if url
-         * @member Base
+         * @memberOf Base
          * @param {string} [url]
          * @returns {Array|{index: number, input: string}|*}
          */
@@ -263,7 +269,7 @@ define([
 
         /**
          * Define isBase64 matcher
-         * @member Base
+         * @memberOf Base
          * @param {string} s
          * @returns {boolean}
          */
@@ -282,7 +288,7 @@ define([
          * data URI - MDN https://developer.mozilla.org/en-US/docs/data_URIs
          * The "data" URL scheme: http://tools.ietf.org/html/rfc2397
          * Valid URL Characters: http://tools.ietf.org/html/rfc2396#section2
-         * @member Base
+         * @memberOf Base
          * @param {string} [s]
          * @returns {boolean}
          */
@@ -298,7 +304,7 @@ define([
 
         /**
          * Define object if undefined
-         * @member Base
+         * @memberOf Base
          * @param o
          * @param value
          * @param {Boolean} [force]
@@ -315,7 +321,7 @@ define([
 
         /**
          * Define boolean if undefined
-         * @member Base
+         * @memberOf Base
          * @param o
          * @param value
          * @param [force]
@@ -332,7 +338,7 @@ define([
 
         /**
          * Define wait for condition
-         * @member Base
+         * @memberOf Base
          * @param {function} conditionFn
          * @param {function} callbackFn
          * @param {function} fallbackFn

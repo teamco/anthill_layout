@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Picasa
+         * @memberOf Picasa
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Picasa
+         * @memberOf Picasa
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member Picasa
+         * @memberOf Picasa
          * @type {MVC}
          */
         this.mvc = new MVC({

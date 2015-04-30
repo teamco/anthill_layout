@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member EspresoTvElement
+         * @memberOf EspresoTvElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

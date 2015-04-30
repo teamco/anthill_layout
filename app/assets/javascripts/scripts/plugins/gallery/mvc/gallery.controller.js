@@ -23,7 +23,7 @@ define([
 
         /**
          * Define init model
-         * @member GalleryController
+         * @memberOf GalleryController
          */
         initModel: function initModel() {
 
@@ -33,7 +33,7 @@ define([
 
         /**
          * Get providers data
-         * @member GalleryController
+         * @memberOf GalleryController
          */
         getProvidersData: function getProvidersData() {
             return this.model.getProvidersList();
@@ -41,7 +41,7 @@ define([
 
         /**
          * Get current provider data
-         * @member GalleryController
+         * @memberOf GalleryController
          * @returns {{name: string, data: *[]}[]}
          */
         getModuleData: function getModuleData() {
@@ -50,7 +50,7 @@ define([
 
         /**
          * Set current provider
-         * @member GalleryController
+         * @memberOf GalleryController
          * @param name
          */
         setCurrentProvider: function setCurrentProvider(name) {
@@ -59,7 +59,7 @@ define([
 
         /**
          * Set providers
-         * @member GalleryController
+         * @memberOf GalleryController
          */
         setProviders: function setProviders() {
 
@@ -89,7 +89,7 @@ define([
 
         /**
          * Change current provider
-         * @member GalleryController
+         * @memberOf GalleryController
          * @param provider
          * @returns {boolean}
          */
@@ -116,7 +116,7 @@ define([
 
         /**
          * Filter search results
-         * @member GalleryController
+         * @memberOf GalleryController
          * @param e
          */
         filterResults: function filterResults(e) {
@@ -174,7 +174,7 @@ define([
 
         /**
          * Add widget
-         * @member GalleryController
+         * @memberOf GalleryController
          * @param $element
          */
         addWidget: function addWidget($element) {
@@ -185,27 +185,14 @@ define([
              */
             var page = this.getPage();
 
-            var prefs = $.extend(
-                {},
-                page.model.getConfig('widget').preferences, {
-                    resource: $element.$.attr('resource'),
-                    thumbnail: $element.data.thumbnail,
-                    title: $element.data.name,
-                    description: $element.data.description
-                }
-            );
-
-            page.api.createItem({
-                config: {
-                    preferences: prefs,
-                    html: {
-                        dimensions: {
-                            width: $element.data.dimensions.width,
-                            height: $element.data.dimensions.height
-                        }
-                    }
-                }
-            }, true);
+            page.controller.createWidgetFromResource({
+                width: $element.data.dimensions.width,
+                height: $element.data.dimensions.height,
+                resource: $element.$.attr('resource'),
+                thumbnail: $element.data.thumbnail,
+                title: $element.data.name,
+                description: $element.data.description
+            }, true, false);
         }
 
     }, PluginBase.prototype, Routes.prototype);

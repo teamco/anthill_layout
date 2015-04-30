@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member SpankwireElement
+         * @memberOf SpankwireElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

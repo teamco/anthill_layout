@@ -28,7 +28,7 @@ define([
 
         /**
          * Render meta element
-         * @member MetaUaView
+         * @memberOf MetaUaView
          */
         renderMetaUa: function renderMetaUa() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member MetaUaView
+         * @memberOf MetaUaView
          * @returns {MetaUaPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member MetaUaView
+         * @memberOf MetaUaView
          * @param widgetRules
          * @param contentRules
          * @returns {MetaUaRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render meta
-         * @member MetaUaView
+         * @memberOf MetaUaView
          */
         render: function render() {
 

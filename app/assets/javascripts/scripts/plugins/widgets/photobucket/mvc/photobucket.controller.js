@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PhotobucketController
+         * @memberOf PhotobucketController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$photobucket.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add Photobucket rule
-         * @member PhotobucketController
+         * @memberOf PhotobucketController
          * @param e
          */
         addPhotobucketRule: function addPhotobucketRule(e) {

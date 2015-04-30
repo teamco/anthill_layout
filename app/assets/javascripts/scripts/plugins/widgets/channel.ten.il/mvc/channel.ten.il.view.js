@@ -28,7 +28,7 @@ define([
 
         /**
          * Render channeltenil element
-         * @member ChannelTenIlView
+         * @memberOf ChannelTenIlView
          */
         renderChannelTenIl: function renderChannelTenIl() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member ChannelTenIlView
+         * @memberOf ChannelTenIlView
          * @returns {ChannelTenIlPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member ChannelTenIlView
+         * @memberOf ChannelTenIlView
          * @param widgetRules
          * @param contentRules
          * @returns {ChannelTenIlRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render channeltenil
-         * @member ChannelTenIlView
+         * @memberOf ChannelTenIlView
          */
         render: function render() {
 

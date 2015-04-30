@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member KeezMoviesController
+         * @memberOf KeezMoviesController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate keezmovies
-         * @member KeezMoviesController
+         * @memberOf KeezMoviesController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add KeezMovies rule
-         * @member KeezMoviesController
+         * @memberOf KeezMoviesController
          * @param e
          */
         addKeezMoviesRule: function addKeezMoviesRule(e) {

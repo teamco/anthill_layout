@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member KremElement
+         * @memberOf KremElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

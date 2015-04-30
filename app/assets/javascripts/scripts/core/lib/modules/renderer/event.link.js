@@ -2,7 +2,7 @@
  * Created by i061485 on 7/10/14.
  */
 
-define([], function defineEventLinkRenderer(){
+define(function defineEventLinkRenderer(){
 
     /**
      * Define EventLinkRenderer
@@ -11,14 +11,13 @@ define([], function defineEventLinkRenderer(){
      * @constructor
      */
     var EventLinkRenderer = function EventLinkRenderer(){
-
     };
 
     return EventLinkRenderer.extend('EventLinkRenderer', {
 
         /**
          * Render link event
-         * @member EventLinkRenderer
+         * @memberOf EventLinkRenderer
          * @param opts
          * @returns {*|jQuery}
          */
@@ -91,8 +90,10 @@ define([], function defineEventLinkRenderer(){
                 }.bind(this)
             };
 
-            this.initMonitor($input, opts.monitor);
-            this.checkVisibility($link, opts.visible);
+            this.initMonitor($link, opts.monitor);
+            this.checkVisibility(
+                $link, this.base.defineBoolean(opts.visible, true, true)
+            );
 
             return $link;
         }

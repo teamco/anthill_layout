@@ -22,7 +22,7 @@ define([
 
         /**
          * Get modules data
-         * @member BarController
+         * @memberOf BarController
          */
         getData: function getData() {
             return this.model.getModules();
@@ -30,7 +30,7 @@ define([
 
         /**
          * Define modules
-         * @member BarController
+         * @memberOf BarController
          */
         defineModules: function defineModules() {
             this.model.storeModules();
@@ -38,7 +38,7 @@ define([
 
         /**
          * Load gallery content
-         * @member BarController
+         * @memberOf BarController
          */
         loadContent: function loadContent() {
 

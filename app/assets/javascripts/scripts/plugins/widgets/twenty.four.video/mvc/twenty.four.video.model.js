@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TwentyFourVideoModel
+         * @memberOf TwentyFourVideoModel
          * @type {{
          *      twentyfourvideoEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TwentyFourVideoModel
+         * @memberOf TwentyFourVideoModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set TwentyFourVideo embed code
-         * @member TwentyFourVideoModel
+         * @memberOf TwentyFourVideoModel
          * @param {string} embed
          */
         setTwentyfourvideoEmbedCode: function setTwentyfourvideoEmbedCode(embed) {

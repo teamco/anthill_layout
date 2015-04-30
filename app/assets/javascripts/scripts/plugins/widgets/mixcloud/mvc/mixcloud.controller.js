@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member MixcloudController
+         * @memberOf MixcloudController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate mixcloud
-         * @member MixcloudController
+         * @memberOf MixcloudController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Mixcloud rule
-         * @member MixcloudController
+         * @memberOf MixcloudController
          * @param e
          */
         addMixcloudRule: function addMixcloudRule(e) {

@@ -18,14 +18,13 @@ define([
      * @constructor
      */
     var PluginController = function PluginController() {
-
     };
 
     PluginController.extend('PluginController', {
 
         /**
          * Get page data
-         * @member PluginController
+         * @memberOf PluginController
          * @returns {Panel}
          */
         getAuthorPanel: function getAuthorPanel() {
@@ -34,7 +33,7 @@ define([
 
         /**
          * Get module by name
-         * @member PluginController
+         * @memberOf PluginController
          * @returns {*}
          */
         getModuleByName: function getModuleByName(name) {
@@ -52,7 +51,7 @@ define([
 
         /**
          * Get widget rules
-         * @member PluginController
+         * @memberOf PluginController
          * @returns {WidgetRules}
          */
         getWidgetRules: function getWidgetRules() {
@@ -70,7 +69,7 @@ define([
 
         /**
          * Get gallery module
-         * @member PluginController
+         * @memberOf PluginController
          * @return {Gallery}
          */
         getGalleryModule: function getGalleryModule() {
@@ -98,7 +97,7 @@ define([
 
         /**
          * Check if data was existing
-         * @member PluginController
+         * @memberOf PluginController
          * @returns {boolean}
          */
         isDataNotExist: function isDataNotExist() {
@@ -109,7 +108,7 @@ define([
 
         /**
          * Update translations
-         * @member PluginController
+         * @memberOf PluginController
          */
         updateTranslations: function updateTranslations(data) {
 
@@ -126,7 +125,7 @@ define([
 
         /**
          * Load module content
-         * @member PluginController
+         * @memberOf PluginController
          * @param {boolean} opened
          * @param {boolean} [force]
          */
@@ -166,7 +165,7 @@ define([
 
         /**
          * Define content referrer
-         * @member PluginController
+         * @memberOf PluginController
          * @param {Widget} widget
          */
         defineContentReferrer: function defineContentReferrer(widget) {
@@ -190,7 +189,7 @@ define([
 
         /**
          * Get resource class name
-         * @member PluginController
+         * @memberOf PluginController
          * @param {string} resource
          */
         getResourceClassName: function getResourceClassName(resource) {

@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member LivestreamElement
+         * @memberOf LivestreamElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

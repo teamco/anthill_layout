@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member LiveLeak
+         * @memberOf LiveLeak
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member LiveLeak
+         * @memberOf LiveLeak
          * @type {*}
          */
         this.referrer = undefined;
@@ -76,7 +76,7 @@ define([
 
         /**
          * Define MVC
-         * @member LiveLeak
+         * @memberOf LiveLeak
          * @type {MVC}
          */
         this.mvc = new MVC({

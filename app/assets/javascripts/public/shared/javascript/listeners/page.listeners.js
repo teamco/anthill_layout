@@ -9,7 +9,7 @@ define(['config/page'], function definePageListeners(Page) {
 
     /**
      * Define Page Global listeners
-     * @member Page
+     * @memberOf Page
      * @type {{}}
      */
     Page.prototype.globalListeners = {};

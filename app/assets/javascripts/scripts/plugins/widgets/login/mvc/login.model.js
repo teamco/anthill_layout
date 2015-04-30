@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member LoginModel
+         * @memberOf LoginModel
          * @type {{}}
          */
         this.preferences = {
@@ -29,7 +29,7 @@ define([
 
         /**
          * Define rules
-         * @member LoginModel
+         * @memberOf LoginModel
          * @type {{}}
          */
         this.rules = {};

@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member DailyMotionController
+         * @memberOf DailyMotionController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate dailymotion
-         * @member DailyMotionController
+         * @memberOf DailyMotionController
          * @param {string} url
          * @return {string|boolean}
          */
@@ -70,7 +70,7 @@ define([
 
         /**
          * Add DailyMotion rule
-         * @member DailyMotionController
+         * @memberOf DailyMotionController
          * @param e
          */
         addDailyMotionRule: function addDailyMotionRule(e) {

@@ -17,14 +17,13 @@ define([
      * @constructor
      */
     var ApplicationAPI = function ApplicationAPI() {
-
     };
 
     return ApplicationAPI.extend('ApplicationAPI', {
 
         /**
          * Create Workspace API
-         * @member ApplicationAPI
+         * @memberOf ApplicationAPI
          * @param {*} args
          * @param {Boolean} [render]
          * @param {Boolean} [silent]

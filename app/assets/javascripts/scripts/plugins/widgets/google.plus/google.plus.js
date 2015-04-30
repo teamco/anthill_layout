@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member GooglePlus
+         * @memberOf GooglePlus
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member GooglePlus
+         * @memberOf GooglePlus
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @member GooglePlus
+         * @memberOf GooglePlus
          * @type {MVC}
          */
         this.mvc = new MVC({

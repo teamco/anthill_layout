@@ -1,5 +1,7 @@
 class Author::WidgetCategoriesController < Author::AuthorController
 
+  include Author
+
   before_action :set_author_widget_category, only: [:show, :edit, :update, :destroy]
 
   layout 'author'
@@ -7,7 +9,7 @@ class Author::WidgetCategoriesController < Author::AuthorController
   # GET /author/widget_categories
   # GET /author/widget_categories.json
   def index
-    @author_widget_categories = Author::WidgetCategory.all.order(:name_value)
+    @author_widget_categories = WidgetCategory.all.order(:name_value)
 
     @resource = {
         items: @author_widget_categories.size,
@@ -23,7 +25,7 @@ class Author::WidgetCategoriesController < Author::AuthorController
 
   # GET /author/widget_categories/new
   def new
-    @author_widget_category = Author::WidgetCategory.new
+    @author_widget_category = WidgetCategory.new
     render action: :form
   end
 
@@ -35,7 +37,7 @@ class Author::WidgetCategoriesController < Author::AuthorController
   # POST /author/widget_categories
   # POST /author/widget_categories.json
   def create
-    @author_widget_category = Author::WidgetCategory.new(author_widget_category_params)
+    @author_widget_category = WidgetCategory.new(author_widget_category_params)
 
     respond_to do |format|
       if @author_widget_category.save
@@ -75,7 +77,7 @@ class Author::WidgetCategoriesController < Author::AuthorController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_author_widget_category
-      @author_widget_category = Author::WidgetCategory.find(params[:id])
+      @author_widget_category = WidgetCategory.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

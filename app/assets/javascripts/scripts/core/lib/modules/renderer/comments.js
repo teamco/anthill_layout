@@ -16,7 +16,7 @@ define([], function defineCommentsRenderer() {
 
         /**
          * Render comments form
-         * @member CommentsRenderer
+         * @memberOf CommentsRenderer
          * @param {ButtonElement} ButtonElement
          * @param {{events: *|string[]}} [opts]
          */
@@ -26,7 +26,7 @@ define([], function defineCommentsRenderer() {
 
             /**
              * Define button store
-             * @member CommentsRenderer
+             * @memberOf CommentsRenderer
              * @type {{}}
              */
             this.$buttons = {};
@@ -117,7 +117,7 @@ define([], function defineCommentsRenderer() {
 
         /**
          * Define show buttons
-         * @member CommentsRenderer
+         * @memberOf CommentsRenderer
          * @param {boolean} show
          */
         showButtons: function showButtons(show) {
@@ -126,7 +126,7 @@ define([], function defineCommentsRenderer() {
 
         /**
          * Define action event
-         * @member CommentsRenderer
+         * @memberOf CommentsRenderer
          * @param {Event} e
          */
         doActionEvent: function doActionEvent(e) {
@@ -144,7 +144,7 @@ define([], function defineCommentsRenderer() {
 
         /**
          * Define on focus event
-         * @member CommentsRenderer
+         * @memberOf CommentsRenderer
          * @param {Event} e
          * @private
          */
@@ -155,7 +155,7 @@ define([], function defineCommentsRenderer() {
 
         /**
          * Define on blur event
-         * @member CommentsRenderer
+         * @memberOf CommentsRenderer
          * @param {Event} e
          * @private
          */

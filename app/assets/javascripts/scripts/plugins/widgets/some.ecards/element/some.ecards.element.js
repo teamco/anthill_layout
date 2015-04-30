@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member SomeEcardsElement
+         * @memberOf SomeEcardsElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member IssuuModel
+         * @memberOf IssuuModel
          * @type {{
          *      issuuEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member IssuuModel
+         * @memberOf IssuuModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Issuu embed code
-         * @member IssuuModel
+         * @memberOf IssuuModel
          * @param {string} embed
          */
         setIssuuEmbedCode: function setIssuuEmbedCode(embed) {

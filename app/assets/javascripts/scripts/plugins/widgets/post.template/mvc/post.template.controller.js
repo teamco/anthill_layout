@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member PostTemplateController
+         * @memberOf PostTemplateController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.get$item().renderEmbeddedContent();
@@ -32,7 +32,7 @@ define([
 
         /**
          * Add PostTemplate rule
-         * @member PostTemplateController
+         * @memberOf PostTemplateController
          * @param e
          */
         addPostTemplateRule: function addPostTemplateRule(e) {

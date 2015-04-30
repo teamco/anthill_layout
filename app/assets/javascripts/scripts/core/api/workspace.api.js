@@ -17,14 +17,13 @@ define([
      * @constructor
      */
     var WorkspaceAPI = function WorkspaceAPI() {
-
     };
 
     return WorkspaceAPI.extend('WorkspaceAPI', {
 
         /**
          * Create Page API
-         * @member WorkspaceAPI
+         * @memberOf WorkspaceAPI
          * @param {*} args
          * @param {Boolean} [render]
          * @param {Boolean} [silent]
@@ -37,6 +36,8 @@ define([
              * @type {Page}
              */
             var page = this._createItem(Page, args, render, silent);
+
+            page.logger.debug('Created page');
 
             return page;
         }

@@ -26,7 +26,7 @@ define(
 
             /**
              * Define events
-             * @member WorkspaceEventManager
+             * @memberOf WorkspaceEventManager
              * @type {{}}
              */
             this.events = {};
@@ -36,7 +36,7 @@ define(
 
             /**
              * Define event list
-             * @member WorkspaceEventManager
+             * @memberOf WorkspaceEventManager
              * @type {{
              *      bindHashChange: string,
              *      createPage: string,
@@ -64,6 +64,7 @@ define(
              *      afterUpdatePreferences: string,
              *      createAuthorPanel: string,
              *      createToolPanel: string,
+             *      clonePage: string
              * }}
              */
             eventList: {
@@ -101,7 +102,9 @@ define(
                 afterUpdatePreferences: 'after.update.preferences',
 
                 createAuthorPanel: 'create.author.panel',
-                createToolPanel: 'create.tool.panel'
+                createToolPanel: 'create.tool.panel',
+
+                clonePage: 'clone.page'
             }
 
         }, BaseEvent.prototype);

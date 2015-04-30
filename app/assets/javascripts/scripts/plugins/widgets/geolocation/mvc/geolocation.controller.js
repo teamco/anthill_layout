@@ -37,7 +37,7 @@ define(
 
                 /**
                  * Set embedded content
-                 * @member GeolocationController
+                 * @memberOf GeolocationController
                  */
                 setEmbeddedContent: function setEmbeddedContent() {
 
@@ -58,7 +58,7 @@ define(
 
                 /**
                  * Set embedded content
-                 * @member GeolocationController
+                 * @memberOf GeolocationController
                  * @private
                  */
                 _setEmbeddedContent: function _setEmbeddedContent() {
@@ -77,7 +77,7 @@ define(
 
                 /**
                  * Add Geolocation rule
-                 * @member GeolocationController
+                 * @memberOf GeolocationController
                  * @param e
                  */
                 addGeolocationRule: function addGeolocationRule(e) {
@@ -97,7 +97,7 @@ define(
 
                 /**
                  * Get location
-                 * @member GeolocationController
+                 * @memberOf GeolocationController
                  */
                 getLocation: function getLocation() {
                     this.controller.getPosition(

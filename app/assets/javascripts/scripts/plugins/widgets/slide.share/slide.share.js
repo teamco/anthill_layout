@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member SlideShare
+         * @memberOf SlideShare
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member SlideShare
+         * @memberOf SlideShare
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @member SlideShare
+         * @memberOf SlideShare
          * @type {MVC}
          */
         this.mvc = new MVC({

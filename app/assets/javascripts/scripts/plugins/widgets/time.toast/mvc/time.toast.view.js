@@ -28,7 +28,7 @@ define([
 
         /**
          * Render timetoast element
-         * @member TimeToastView
+         * @memberOf TimeToastView
          */
         renderTimeToast: function renderTimeToast() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member TimeToastView
+         * @memberOf TimeToastView
          * @returns {TimeToastPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member TimeToastView
+         * @memberOf TimeToastView
          * @param widgetRules
          * @param contentRules
          * @returns {TimeToastRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render timetoast
-         * @member TimeToastView
+         * @memberOf TimeToastView
          */
         render: function render() {
 

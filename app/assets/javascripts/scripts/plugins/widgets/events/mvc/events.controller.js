@@ -27,7 +27,7 @@ define([
 
             /**
              * Set embedded content
-             * @member EventsController
+             * @memberOf EventsController
              */
             setEmbeddedContent: function setEmbeddedContent() {
 
@@ -36,7 +36,7 @@ define([
 
             /**
              * Get stored data
-             * @member EventsController
+             * @memberOf EventsController
              * @returns {*}
              */
             getStoredData: function getStoredData() {
@@ -45,7 +45,7 @@ define([
 
             /**
              * Parse data
-             * @member EventsController
+             * @memberOf EventsController
              * @returns {*}
              */
             parseData: function parseData() {
@@ -62,7 +62,7 @@ define([
 
             /**
              * Add Events rule
-             * @member EventsController
+             * @memberOf EventsController
              * @param e
              */
             addEventsRule: function addEventsRule(e) {
@@ -82,7 +82,7 @@ define([
 
             /**
              * Get Event Data
-             * @member EventsController
+             * @memberOf EventsController
              * @param {number} timestamp
              * @param {EventsElement} $element
              */
@@ -115,7 +115,7 @@ define([
 
             /**
              * Get events list
-             * @member EventsController
+             * @memberOf EventsController
              * @returns {Object}
              */
             getEventsList: function getEventsList() {
@@ -138,7 +138,7 @@ define([
 
             /**
              * Set active event
-             * @member EventsController
+             * @memberOf EventsController
              * @param event
              */
             setActiveEvent: function setActiveEvent(event) {
@@ -147,7 +147,7 @@ define([
 
             /**
              * Get active event
-             * @member EventsController
+             * @memberOf EventsController
              * @return {object}
              */
             getAciveEvent: function getActiveEvent() {
@@ -156,7 +156,7 @@ define([
 
             /**
              * Update events data JSON
-             * @member EventsController
+             * @memberOf EventsController
              * @param event
              */
             updateEventsData: function updateEventsData(event, timestamp) {
@@ -182,7 +182,7 @@ define([
 
             /**
              * Update events data in model
-             * @member EventsController
+             * @memberOf EventsController
              * @param events
              */
             updateEventsModel: function updateEventsModel(events) {
@@ -210,7 +210,7 @@ define([
 
             /**
              * Remove event
-             * @member EventsController
+             * @memberOf EventsController
              * @param timestamp
              */
             removeEvent: function removeEvent(timestamp) {

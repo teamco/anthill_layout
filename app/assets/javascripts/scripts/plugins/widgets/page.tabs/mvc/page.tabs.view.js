@@ -30,7 +30,7 @@ define([
 
         /**
          * Render page.tabs element
-         * @member PageTabsView
+         * @memberOf PageTabsView
          */
         renderPageTabs: function renderPageTabs() {
 
@@ -55,7 +55,7 @@ define([
 
         /**
          * Render page tab element
-         * @member PageTabsView
+         * @memberOf PageTabsView
          * @param {Page} pageTab
          * @return {PageTabsItemElement}
          */
@@ -79,7 +79,7 @@ define([
 
         /**
          * Render Prefs
-         * @member PageTabsView
+         * @memberOf PageTabsView
          * @returns {PageTabsPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -97,7 +97,7 @@ define([
 
         /**
          * Render Rules
-         * @member PageTabsView
+         * @memberOf PageTabsView
          * @param widgetRules
          * @param contentRules
          * @returns {PageTabsRulesElement}
@@ -121,7 +121,7 @@ define([
 
         /**
          * Render page.tabs
-         * @member PageTabsView
+         * @memberOf PageTabsView
          */
         render: function render() {
 

@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member ChannelTenIlElement
+         * @memberOf ChannelTenIlElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

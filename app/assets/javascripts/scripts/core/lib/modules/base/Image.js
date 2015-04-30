@@ -4,17 +4,17 @@
  * Date: 11/27/14
  * Time: 9:04 PM
  */
-define([], function defineBaseImage() {
+define([], function defineLibImage() {
 
     /**
-     * Define BaseImage
-     * @class BaseImage
+     * Define LibImage
+     * @class LibImage
      * @constructor
      */
-    var BaseImage = function BaseImage() {
+    var LibImage = function LibImage() {
     };
 
-    BaseImage.extend('BaseImage', {
+    LibImage.extend('LibImage', {
 
         /**
          * Converts an image to a base64 string.
@@ -22,7 +22,7 @@ define([], function defineBaseImage() {
          * I strongly recommend you read the docs
          * @ mozilla for `canvas.toDataURL()`
          *
-         * @member   BaseImage
+         * @memberOf   LibImage
          * @param    {String}   url
          * @param    {Function} callback
          * @param    {String}   [outputFormat='image/png']
@@ -61,7 +61,7 @@ define([], function defineBaseImage() {
 
         /**
          * Takes a data URI and returns the Data URI corresponding to the resized image at the wanted size
-         * @member BaseImage
+         * @memberOf LibImage
          * @param {string} data
          * @param {number} width
          * @param {number} height
@@ -159,10 +159,10 @@ define([], function defineBaseImage() {
 
     /**
      * Init base image
-     * @type {BaseImage}
+     * @type {LibImage}
      * @private
      */
-    var _baseImg = new BaseImage();
+    var _baseImg = new LibImage();
 
     /**
      * Define process1

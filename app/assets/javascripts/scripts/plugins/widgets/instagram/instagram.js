@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member Instagram
+         * @memberOf Instagram
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member Instagram
+         * @memberOf Instagram
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @member Instagram
+         * @memberOf Instagram
          * @type {MVC}
          */
         this.mvc = new MVC({

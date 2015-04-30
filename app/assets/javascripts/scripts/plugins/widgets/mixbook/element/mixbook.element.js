@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member MixbookElement
+         * @memberOf MixbookElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

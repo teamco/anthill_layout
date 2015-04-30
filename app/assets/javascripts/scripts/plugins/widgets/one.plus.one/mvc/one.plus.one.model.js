@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member OnePlusOneModel
+         * @memberOf OnePlusOneModel
          * @type {{
          *      oneplusoneEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member OnePlusOneModel
+         * @memberOf OnePlusOneModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set OnePlusOne embed code
-         * @member OnePlusOneModel
+         * @memberOf OnePlusOneModel
          * @param {string} embed
          */
         setOneplusoneEmbedCode: function setOneplusoneEmbedCode(embed) {

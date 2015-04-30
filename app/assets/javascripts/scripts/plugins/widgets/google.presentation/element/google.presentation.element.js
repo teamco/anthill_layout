@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member GooglePresentationElement
+         * @memberOf GooglePresentationElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

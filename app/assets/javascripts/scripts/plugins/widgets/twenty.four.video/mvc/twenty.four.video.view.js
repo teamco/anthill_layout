@@ -28,7 +28,7 @@ define([
 
         /**
          * Render twentyfourvideo element
-         * @member TwentyFourVideoView
+         * @memberOf TwentyFourVideoView
          */
         renderTwentyFourVideo: function renderTwentyFourVideo() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member TwentyFourVideoView
+         * @memberOf TwentyFourVideoView
          * @returns {TwentyFourVideoPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member TwentyFourVideoView
+         * @memberOf TwentyFourVideoView
          * @param widgetRules
          * @param contentRules
          * @returns {TwentyFourVideoRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render twentyfourvideo
-         * @member TwentyFourVideoView
+         * @memberOf TwentyFourVideoView
          */
         render: function render() {
 

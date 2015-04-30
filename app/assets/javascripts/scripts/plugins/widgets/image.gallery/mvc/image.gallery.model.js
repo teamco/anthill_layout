@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member ImageGalleryModel
+         * @memberOf ImageGalleryModel
          * @type {{
          *      imageGalleryUrls: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      imageGalleryTexts: {type: string, disabled: boolean, value: undefined, visible: boolean},
@@ -51,7 +51,7 @@ define([
 
         /**
          * Define rules
-         * @member ImageGalleryModel
+         * @memberOf ImageGalleryModel
          * @type {{}}
          */
         this.rules = {};
@@ -61,7 +61,7 @@ define([
 
         /**
          * Set ImageGallery Url
-         * @member ImageGalleryModel
+         * @memberOf ImageGalleryModel
          * @param {string} url
          */
         setImageGalleryUrls: function setImageGalleryUrls(url) {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Set ImageGallery Text
-         * @member ImageGalleryModel
+         * @memberOf ImageGalleryModel
          * @param {string} text
          */
         setImageGalleryTexts: function setImageGalleryTexts(text) {

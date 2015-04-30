@@ -6,8 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
-], function defineInteractions() {
+define(function defineInteractions() {
 
     /**
      * Define interactions
@@ -21,7 +20,7 @@ define([
 
         /**
          * Check permission
-         * @member Interactions
+         * @memberOf Interactions
          */
         checkPermission: function checkPermission() {
             this.scope.permission.check({
@@ -32,7 +31,7 @@ define([
 
         /**
          * Debug UI
-         * @member Interactions
+         * @memberOf Interactions
          * @param event
          * @param ui
          */
@@ -56,7 +55,7 @@ define([
 
         /**
          * Check if enabled
-         * @member Interactions
+         * @memberOf Interactions
          * @returns {boolean}
          */
         isEnabled: function isEnabled() {
@@ -65,7 +64,7 @@ define([
 
         /**
          * Check if disabled
-         * @member Interactions
+         * @memberOf Interactions
          * @returns {boolean}
          */
         isDisabled: function isDisabled() {
@@ -74,6 +73,7 @@ define([
 
         /**
          * Get resize direction
+         * @memberOf Interactions
          * @param ui
          * @returns {string}
          */
@@ -132,6 +132,7 @@ define([
 
         /**
          * Get West
+         * @memberOf Interactions
          * @param ui
          * @returns {{left: number, width: number}}
          */
@@ -163,6 +164,7 @@ define([
 
         /**
          * Get East
+         * @memberOf Interactions
          * @param ui
          * @returns {{width: number}}
          */
@@ -187,6 +189,7 @@ define([
 
         /**
          * Get North
+         * @memberOf Interactions
          * @param ui
          * @returns {{height: number, top: number}}
          */
@@ -218,6 +221,7 @@ define([
 
         /**
          * Get South
+         * @memberOf Interactions
          * @param ui
          * @returns {{height: number}}
          */
@@ -240,5 +244,4 @@ define([
             };
         }
     });
-
 });

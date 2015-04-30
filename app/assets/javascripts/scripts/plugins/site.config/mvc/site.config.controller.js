@@ -50,7 +50,7 @@ define(
 
                 /**
                  * Get module data
-                 * @member SiteConfigController
+                 * @memberOf SiteConfigController
                  * @returns {*}
                  */
                 getModuleData: function getModuleData() {
@@ -61,7 +61,7 @@ define(
 
                 /**
                  * Load site content
-                 * @member SiteConfigController
+                 * @memberOf SiteConfigController
                  * @param opened
                  */
                 loadModuleContent: function loadModuleContent(opened) {

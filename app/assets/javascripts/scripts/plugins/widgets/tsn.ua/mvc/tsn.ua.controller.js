@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member TsnUaController
+         * @memberOf TsnUaController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate tsnua
-         * @member TsnUaController
+         * @memberOf TsnUaController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add TsnUa rule
-         * @member TsnUaController
+         * @memberOf TsnUaController
          * @param e
          */
         addTsnUaRule: function addTsnUaRule(e) {

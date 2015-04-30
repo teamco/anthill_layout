@@ -28,7 +28,7 @@ define([
 
         /**
          * Render screenr element
-         * @member ScreenrView
+         * @memberOf ScreenrView
          */
         renderScreenr: function renderScreenr() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member ScreenrView
+         * @memberOf ScreenrView
          * @returns {ScreenrPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member ScreenrView
+         * @memberOf ScreenrView
          * @param widgetRules
          * @param contentRules
          * @returns {ScreenrRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render screenr
-         * @member ScreenrView
+         * @memberOf ScreenrView
          */
         render: function render() {
 

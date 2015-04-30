@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member FunnyOrDieModel
+         * @memberOf FunnyOrDieModel
          * @type {{
          *      funnyordieUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member FunnyOrDieModel
+         * @memberOf FunnyOrDieModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set FunnyOrDie Url
-         * @member FunnyOrDieModel
+         * @memberOf FunnyOrDieModel
          * @param {string} url
          */
         setFunnyordieUrl: function setFunnyordieUrl(url) {

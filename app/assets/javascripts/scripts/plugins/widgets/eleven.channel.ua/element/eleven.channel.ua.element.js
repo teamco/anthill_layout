@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member ElevenChannelUaElement
+         * @memberOf ElevenChannelUaElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

@@ -31,7 +31,7 @@ define([
 
         /**
          * Define on load events
-         * @member WidgetContentEventManager
+         * @memberOf WidgetContentEventManager
          * @type {[string]}
          */
         this.onLoadEvents = [

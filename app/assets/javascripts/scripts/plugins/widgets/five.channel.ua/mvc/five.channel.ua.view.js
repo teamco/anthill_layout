@@ -28,7 +28,7 @@ define([
 
         /**
          * Render fivechannelua element
-         * @member FiveChannelUaView
+         * @memberOf FiveChannelUaView
          */
         renderFiveChannelUa: function renderFiveChannelUa() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member FiveChannelUaView
+         * @memberOf FiveChannelUaView
          * @returns {FiveChannelUaPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member FiveChannelUaView
+         * @memberOf FiveChannelUaView
          * @param widgetRules
          * @param contentRules
          * @returns {FiveChannelUaRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render fivechannelua
-         * @member FiveChannelUaView
+         * @memberOf FiveChannelUaView
          */
         render: function render() {
 

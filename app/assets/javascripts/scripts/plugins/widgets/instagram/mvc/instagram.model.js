@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member InstagramModel
+         * @memberOf InstagramModel
          * @type {{}}
          */
         this.preferences = {
@@ -35,7 +35,7 @@ define([
 
         /**
          * Define rules
-         * @member InstagramModel
+         * @memberOf InstagramModel
          * @type {{}}
          */
         this.rules = {};
@@ -45,7 +45,7 @@ define([
 
         /**
          * Set embed
-         * @member InstagramModel
+         * @memberOf InstagramModel
          * @param {string} embed
          */
         setInstagramEmbed: function setInstagramEmbed(embed) {

@@ -7,22 +7,22 @@
  */
 define([
     'lib/packages/rgbcolor'
-], function defineBaseGenerator(RGBColor) {
+], function defineLibGenerator(RGBColor) {
 
     /**
      * Define generators
-     * @class BaseGenerator
+     * @class LibGenerator
      * @constructor
      */
-    var BaseGenerator = function BaseGenerator() {
+    var LibGenerator = function LibGenerator() {
     };
 
-    BaseGenerator.extend('BaseGenerator', {
+    LibGenerator.extend('LibGenerator', {
 
         /**
          * Generate UUID
          * @description RFC4122 Description "http://www.ietf.org/rfc/rfc4122.txt"
-         * @member BaseGenerator
+         * @memberOf LibGenerator
          * @param {String} [uuid]
          * @returns {String}
          */
@@ -48,7 +48,7 @@ define([
 
         /**
          * Get timestamp
-         * @member BaseGenerator
+         * @memberOf LibGenerator
          * @returns {*}
          */
         timestamp: function timestamp() {
@@ -57,7 +57,7 @@ define([
 
         /**
          * Generate random color HEX
-         * @member BaseGenerator
+         * @memberOf LibGenerator
          * @returns {string}
          */
         randomColor: function randomColor() {
@@ -67,7 +67,7 @@ define([
 
         /**
          * Invert CSS color [color|background-color]
-         * @member BaseGenerator
+         * @memberOf LibGenerator
          * @param {String} cssType
          */
         invertColor: function invertColor(cssType) {
@@ -85,5 +85,5 @@ define([
 
     });
 
-    return new BaseGenerator();
+    return new LibGenerator();
 });

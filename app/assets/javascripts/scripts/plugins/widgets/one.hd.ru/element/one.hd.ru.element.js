@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member OneHdRuElement
+         * @memberOf OneHdRuElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

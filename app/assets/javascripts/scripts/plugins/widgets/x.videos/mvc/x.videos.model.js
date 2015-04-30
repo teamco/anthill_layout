@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member XVideosModel
+         * @memberOf XVideosModel
          * @type {{
          *      xvideosUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member XVideosModel
+         * @memberOf XVideosModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set XVideos Url
-         * @member XVideosModel
+         * @memberOf XVideosModel
          * @param {string} url
          */
         setXvideosUrl: function setXvideosUrl(url) {

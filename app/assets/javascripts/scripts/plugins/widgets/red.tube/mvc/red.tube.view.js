@@ -28,7 +28,7 @@ define([
 
         /**
          * Render RedTube element
-         * @member RedTubeView
+         * @memberOf RedTubeView
          */
         renderRedTube: function renderRedTube() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member RedTubeView
+         * @memberOf RedTubeView
          * @returns {RedTubePreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member RedTubeView
+         * @memberOf RedTubeView
          * @param widgetRules
          * @param contentRules
          * @returns {RedTubeRulesElement}
@@ -94,7 +94,7 @@ define([
 
         /**
          * Render RedTube
-         * @member RedTubeView
+         * @memberOf RedTubeView
          */
         render: function render() {
 

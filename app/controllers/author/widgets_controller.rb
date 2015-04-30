@@ -3,6 +3,7 @@ require 'fileutils'
 
 class Author::WidgetsController < Author::AuthorController
 
+  include Author
   include Magick
 
   require "#{Rails.root}/lib/tasks/widget_generator.rb"
@@ -20,14 +21,26 @@ class Author::WidgetsController < Author::AuthorController
   # GET /author/widgets
   # GET /author/widgets.json
   def index
-    @author_widgets = Author::Widget.all.where(visible: true).order(name: :asc)
+
     @json_data ||= {
-        categories: Author::WidgetCategory.all,
+        categories: WidgetCategory.order(name_value: :asc),
         widgets: []
     }
 
+    method = request.env['REQUEST_METHOD']
+    site = request.query_parameters['site']
+
+    if site == params[:site]
+
+      site_storage = SiteStorage.find_by_key(site)
+      @author_widgets = site_storage.author_widgets.includes(:author_widget_category).where(visible: true).order(name: :asc)
+
+    end if method == 'GET' if request.xhr?
+
+    @author_widgets = Widget.all.includes(:author_widget_category).where(visible: true).order(name: :asc) if @author_widgets.nil?
+
     @resource = {
-        items: @author_widgets.size,
+        items: @author_widgets.length,
         path: new_author_widget_path
     }
 
@@ -37,7 +50,6 @@ class Author::WidgetsController < Author::AuthorController
           uuid: w[:uuid],
           name: w[:name],
           description: w[:description],
-          thumbnail: w[:thumbnail],
           dimensions: {
               width: w[:width],
               height: w[:height]
@@ -56,7 +68,7 @@ class Author::WidgetsController < Author::AuthorController
 
   # GET /author/widgets/new
   def new
-    @author_widget = Author::Widget.new
+    @author_widget = Widget.new
     render action: :form
   end
 
@@ -106,7 +118,10 @@ class Author::WidgetsController < Author::AuthorController
   # PATCH/PUT /author/widgets/1.json
   def update
 
-    author_widget_params[:widget_category_id] = @category.id
+    generated_thumbnail = author_widget_params[:thumbnail].match(/^\/assets/)
+
+    params[:author_widget].delete(:thumbnail) if generated_thumbnail
+    params[:author_widget][:widget_category_id] = @category.id
 
     respond_to do |format|
 
@@ -114,7 +129,7 @@ class Author::WidgetsController < Author::AuthorController
         if request.xhr?
           widget = WidgetLib::Generate.new
           widget.init_params(@author_widget.resource)
-          widget.generate_css(@author_widget.thumbnail)
+          widget.generate_css(@author_widget.thumbnail) unless generated_thumbnail
           format.json { render :show, status: :ok, location: @author_widget }
         else
           format.html { redirect_to @author_widget, notice: 'Widget was successfully updated.' }
@@ -196,22 +211,22 @@ class Author::WidgetsController < Author::AuthorController
   end
 
   def set_author_widget_category
-    @category = Author::WidgetCategory.find_by_name_index(params[:author_widget_category][:name_index])
+    @category = WidgetCategory.find_by_name_index(params[:author_widget_category][:name_index])
   end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_author_widget
-    @author_widget = Author::Widget.find(params[:id])
+    @author_widget = Widget.find(params[:id])
   end
 
   def set_clone_from
-    clone_from = Author::Widget.find_by_resource(params[:author_widget_clone])
+    clone_from = Widget.find_by_resource(params[:author_widget_clone])
     @clone_from = clone_from.resource rescue 'empty'
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_widget_params
-    params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :resource, :visible)
+    params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :resource, :visible, :widget_category_id)
   end
 
   def error_handler_on_create(format)

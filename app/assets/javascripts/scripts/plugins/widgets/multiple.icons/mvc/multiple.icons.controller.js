@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member MultipleIconsController
+         * @memberOf MultipleIconsController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -33,7 +33,7 @@ define([
 
         /**
          * Add MultipleIcons rule
-         * @member MultipleIconsController
+         * @memberOf MultipleIconsController
          * @param e
          */
         addMultipleIconsRule: function addMultipleIconsRule(e) {

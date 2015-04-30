@@ -6,16 +6,14 @@
  */
 
 define([
-    'modules/Element',
-    'modules/File.API'
-], function defineSiteConfigImportFileElement(BaseElement, FileAPI) {
+    'modules/Element'
+], function defineSiteConfigImportFileElement(BaseElement) {
 
     /**
      * Define SiteConfigImportFileElement Element
      * @constructor
      * @class SiteConfigImportFileElement
      * @extends BaseElement
-     * @extends FileAPI
      * @extends Renderer
      * @param {SiteConfigView} view
      * @param opts
@@ -35,7 +33,7 @@ define([
 
         /**
          * Define init
-         * @member SiteConfigImportFileElement
+         * @memberOf SiteConfigImportFileElement
          * @returns {SiteConfigImportFileElement}
          */
         init: function init() {
@@ -54,6 +52,6 @@ define([
             return this;
         }
 
-    }, BaseElement.prototype, FileAPI.prototype);
+    }, BaseElement.prototype);
 
 });

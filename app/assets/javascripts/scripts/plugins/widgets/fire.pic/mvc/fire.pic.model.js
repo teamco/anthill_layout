@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member FirePicModel
+         * @memberOf FirePicModel
          * @type {{
          *      firepicUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member FirePicModel
+         * @memberOf FirePicModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set FirePic embed code
-         * @member FirePicModel
+         * @memberOf FirePicModel
          * @param {string} url
          */
         setFirepicUrl: function setFirepicUrl(url) {

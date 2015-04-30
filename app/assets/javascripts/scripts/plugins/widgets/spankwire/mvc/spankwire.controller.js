@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member SpankwireController
+         * @memberOf SpankwireController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -42,7 +42,7 @@ define([
 
         /**
          * Validate spankwire
-         * @member SpankwireController
+         * @memberOf SpankwireController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -69,7 +69,7 @@ define([
 
         /**
          * Add Spankwire rule
-         * @member SpankwireController
+         * @memberOf SpankwireController
          * @param e
          */
         addSpankwireRule: function addSpankwireRule(e) {

@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member SublimeVideoElement
+         * @memberOf SublimeVideoElement
          * @param {string} url
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {

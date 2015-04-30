@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member AOneHipHopController
+         * @memberOf AOneHipHopController
          */
         setEmbeddedContent: function setEmbeddedContent() {
             this.view.elements.$aonehiphop.renderEmbeddedContent(
@@ -34,7 +34,7 @@ define([
 
         /**
          * Add AOneHipHop rule
-         * @member AOneHipHopController
+         * @memberOf AOneHipHopController
          * @param e
          */
         addAOneHipHopRule: function addAOneHipHopRule(e) {

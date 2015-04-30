@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member IctvController
+         * @memberOf IctvController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -43,7 +43,7 @@ define([
 
         /**
          * Validate ictv
-         * @member IctvController
+         * @memberOf IctvController
          * @param {string} embed
          * @return {string|boolean}
          */
@@ -70,7 +70,7 @@ define([
 
         /**
          * Add Ictv rule
-         * @member IctvController
+         * @memberOf IctvController
          * @param e
          */
         addIctvRule: function addIctvRule(e) {

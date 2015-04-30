@@ -28,7 +28,7 @@ define([
 
         /**
          * Render fotokritik element
-         * @member FotoKritikView
+         * @memberOf FotoKritikView
          */
         renderFotoKritik: function renderFotoKritik() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member FotoKritikView
+         * @memberOf FotoKritikView
          * @returns {FotoKritikPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member FotoKritikView
+         * @memberOf FotoKritikView
          * @param widgetRules
          * @param contentRules
          * @returns {FotoKritikRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render fotokritik
-         * @member FotoKritikView
+         * @memberOf FotoKritikView
          */
         render: function render() {
 

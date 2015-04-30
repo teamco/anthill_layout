@@ -27,7 +27,7 @@ define([
 
         /**
          * Define page tab item
-         * @member PageTabsItemElement
+         * @memberOf PageTabsItemElement
          * @type {Page}
          */
         this.pageTab = opts.pageTab;
@@ -41,7 +41,7 @@ define([
 
         /**
          * Init page tabs item
-         * @member PageTabsItemElement
+         * @memberOf PageTabsItemElement
          */
         initContent: function initContent() {
 
@@ -59,21 +59,21 @@ define([
 
             /**
              * Define title
-             * @member PageTabsItemElement
+             * @memberOf PageTabsItemElement
              * @type {*|string}
              */
             this.title = this.pageTab.model.getItemTitle();
 
             /**
              * Define description
-             * @member PageTabsItemElement
+             * @memberOf PageTabsItemElement
              * @type {*|string}
              */
             this.description = preferences.description;
 
             /**
              * Define pageUrl
-             * @member PageTabsItemElement
+             * @memberOf PageTabsItemElement
              * @type {*}
              */
             this.pageUrl = preferences.pageUrl;
@@ -88,7 +88,7 @@ define([
 
         /**
          * Bind click to switch page
-         * @member PageTabsItemElement
+         * @memberOf PageTabsItemElement
          */
         bindClick: function bindClick() {
 
@@ -100,7 +100,7 @@ define([
 
         /**
          * Click callback
-         * @member PageTabsItemElement
+         * @memberOf PageTabsItemElement
          * @param e
          * @private
          */

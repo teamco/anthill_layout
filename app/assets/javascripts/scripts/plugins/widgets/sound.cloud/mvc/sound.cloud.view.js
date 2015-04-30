@@ -28,7 +28,7 @@ define([
 
         /**
          * Render soundcloud element
-         * @member SoundCloudView
+         * @memberOf SoundCloudView
          */
         renderSoundCloud: function renderSoundCloud() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member SoundCloudView
+         * @memberOf SoundCloudView
          * @returns {SoundCloudPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member SoundCloudView
+         * @memberOf SoundCloudView
          * @param widgetRules
          * @param contentRules
          * @returns {SoundCloudRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render soundcloud
-         * @member SoundCloudView
+         * @memberOf SoundCloudView
          */
         render: function render() {
 

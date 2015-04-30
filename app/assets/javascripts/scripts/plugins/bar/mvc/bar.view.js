@@ -27,7 +27,7 @@ define([
 
         /**
          * Render Bar
-         * @member BarView
+         * @memberOf BarView
          */
         renderBar: function renderBar() {
 
@@ -54,7 +54,7 @@ define([
          * Render bar content
          * @param data
          * @param {Boolean} force
-         * @member BarView
+         * @memberOf BarView
          * @returns {boolean}
          */
         renderContent: function renderContent(data, force) {
@@ -106,7 +106,7 @@ define([
 
         /**
          * Render bar
-         * @member BarView
+         * @memberOf BarView
          */
         render: function render() {
 

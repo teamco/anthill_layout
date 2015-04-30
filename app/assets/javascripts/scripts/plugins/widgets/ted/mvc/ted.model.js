@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TedModel
+         * @memberOf TedModel
          * @type {{
          *      tedEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TedModel
+         * @memberOf TedModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set Ted embed code
-         * @member TedModel
+         * @memberOf TedModel
          * @param {string} embed
          */
         setTedEmbedCode: function setTedEmbedCode(embed) {

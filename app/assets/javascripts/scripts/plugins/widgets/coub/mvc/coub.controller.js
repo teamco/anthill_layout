@@ -24,7 +24,7 @@ define([
 
         /**
          * Set embedded content
-         * @member CoubController
+         * @memberOf CoubController
          */
         setEmbeddedContent: function setEmbeddedContent() {
 
@@ -39,7 +39,7 @@ define([
 
         /**
          * Add Coub rule
-         * @member CoubController
+         * @memberOf CoubController
          * @param e
          */
         addCoubRule: function addCoubRule(e) {

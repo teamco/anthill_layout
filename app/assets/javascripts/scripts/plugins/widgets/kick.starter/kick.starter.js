@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member KickStarter
+         * @memberOf KickStarter
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member KickStarter
+         * @memberOf KickStarter
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member KickStarter
+         * @memberOf KickStarter
          * @type {MVC}
          */
         this.mvc = new MVC({

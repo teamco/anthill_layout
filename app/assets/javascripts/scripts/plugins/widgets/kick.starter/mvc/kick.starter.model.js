@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member KickStarterModel
+         * @memberOf KickStarterModel
          * @type {{
          *      kickstarterEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member KickStarterModel
+         * @memberOf KickStarterModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set KickStarter embed code
-         * @member KickStarterModel
+         * @memberOf KickStarterModel
          * @param {string} embed
          */
         setKickstarterEmbedCode: function setKickstarterEmbedCode(embed) {

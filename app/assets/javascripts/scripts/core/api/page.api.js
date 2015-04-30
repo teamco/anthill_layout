@@ -19,14 +19,13 @@ define([
      * @constructor
      */
     var PageAPI = function PageAPI() {
-
     };
 
     return PageAPI.extend('PageAPI', {
 
         /**
          * Create Widget API
-         * @member PageAPI
+         * @memberOf PageAPI
          * @param {*} args
          * @param {Boolean} [render]
          * @param {Boolean} [silent]
@@ -64,7 +63,7 @@ define([
 
         /**
          * Destroy widget
-         * @member PageAPI
+         * @memberOf PageAPI
          * @param {Widget} widget
          * @param {Boolean} [silent]
          */
@@ -78,7 +77,7 @@ define([
 
         /**
          * Destroy widgets
-         * @member PageAPI
+         * @memberOf PageAPI
          * @param {[Widget]} [items]
          * @param {Boolean} [silent]
          */

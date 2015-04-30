@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member TwentyThreeModel
+         * @memberOf TwentyThreeModel
          * @type {{
          *      twentythreeEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member TwentyThreeModel
+         * @memberOf TwentyThreeModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set TwentyThree embed code
-         * @member TwentyThreeModel
+         * @memberOf TwentyThreeModel
          * @param {string} embed
          */
         setTwentythreeEmbedCode: function setTwentythreeEmbedCode(embed) {

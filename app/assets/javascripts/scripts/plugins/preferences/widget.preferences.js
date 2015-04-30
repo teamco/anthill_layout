@@ -7,13 +7,13 @@
 
 define([
     'plugins/preferences/preferences'
-], function defineWidgetPreferences(BasePreferences) {
+], function defineWidgetPreferences(BasePreferencesElement) {
 
     /**
      * Define prefs
      * @class WidgetPreferences
      * @extends Renderer
-     * @extends BasePreferences
+     * @extends BasePreferencesElement
      * @constructor
      */
     var WidgetPreferences = function WidgetPreferences() {
@@ -26,7 +26,7 @@ define([
          * Render form element
          * @param {{}} hash
          * @param {string} title
-         * @member WidgetPreferences
+         * @memberOf WidgetPreferences
          * @return {Array}
          */
         renderPrefsForm: function renderPrefsForm(hash, title) {
@@ -71,7 +71,7 @@ define([
 
         /**
          * Render node
-         * @member WidgetPreferences
+         * @memberOf WidgetPreferences
          * @param type
          * @param prefs
          * @param {string} title
@@ -93,7 +93,7 @@ define([
 
         /**
          * Merge prefs
-         * @member WidgetPreferences
+         * @memberOf WidgetPreferences
          * @param defaults
          * @param prefs
          * @returns {{}}
@@ -138,7 +138,7 @@ define([
 
         /**
          * Render prefs data
-         * @member WidgetPreferences
+         * @memberOf WidgetPreferences
          * @param data
          */
         renderBasePrefsData: function renderBasePrefsData(data) {
@@ -239,7 +239,7 @@ define([
 
         /**
          * Render widget interactions
-         * @member WidgetPreferences
+         * @memberOf WidgetPreferences
          * @param {Widget} widget
          * @returns {*}
          */
@@ -466,7 +466,7 @@ define([
 
         /**
          * Render Layout interactions
-         * @member WidgetPreferences
+         * @memberOf WidgetPreferences
          * @param {Array} nodes
          * @returns {*}
          */
@@ -511,7 +511,7 @@ define([
 
         /**
          * Render move
-         * @member WidgetPreferences
+         * @memberOf WidgetPreferences
          * @param {string} side
          * @param value
          * @returns {*|jQuery}
@@ -534,5 +534,5 @@ define([
             return $('<li />').append($move);
         }
 
-    }, BasePreferences.prototype);
+    }, BasePreferencesElement.prototype);
 });

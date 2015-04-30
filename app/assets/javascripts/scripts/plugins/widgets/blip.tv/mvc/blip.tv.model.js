@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member BlipTvModel
+         * @memberOf BlipTvModel
          * @type {{
          *      bliptvEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member BlipTvModel
+         * @memberOf BlipTvModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set BlipTv embed code
-         * @member BlipTvModel
+         * @memberOf BlipTvModel
          * @param {string} embed
          */
         setBliptvEmbedCode: function setBliptvEmbedCode(embed) {

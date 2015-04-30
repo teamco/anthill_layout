@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @member PremiereTvModel
+         * @memberOf PremiereTvModel
          * @type {{
          *      premieretvEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @member PremiereTvModel
+         * @memberOf PremiereTvModel
          * @type {{}}
          */
         this.rules = {};
@@ -47,7 +47,7 @@ define([
 
         /**
          * Set PremiereTv embed code
-         * @member PremiereTvModel
+         * @memberOf PremiereTvModel
          * @param {string} embed
          */
         setPremieretvEmbedCode: function setPremieretvEmbedCode(embed) {

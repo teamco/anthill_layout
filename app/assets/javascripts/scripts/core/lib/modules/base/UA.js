@@ -6,18 +6,18 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([], function defineBaseString() {
+define([], function defineLibString() {
 
     /**
-     * Define BaseUserAgent
+     * Define LibUserAgent
      * @constructor
-     * @class BaseUserAgent
+     * @class LibUserAgent
      */
-    var BaseUserAgent = function BaseUserAgent() {
+    var LibUserAgent = function LibUserAgent() {
 
         /**
          * Define browser info
-         * @member BaseUserAgent
+         * @memberOf LibUserAgent
          */
         this.browser = (function () {
             var ua = navigator.userAgent, tem,
@@ -36,7 +36,7 @@ define([], function defineBaseString() {
         })();
     };
 
-    BaseUserAgent.extend('BaseUserAgent', {
+    LibUserAgent.extend('LibUserAgent', {
 
         /**
          * Get browser version
@@ -52,7 +52,7 @@ define([], function defineBaseString() {
 
         /**
          * Get Opera
-         * @member BaseUserAgent
+         * @memberOf LibUserAgent
          * @returns {*}
          */
         opera: function opera() {
@@ -61,7 +61,7 @@ define([], function defineBaseString() {
 
         /**
          * Get Chrome
-         * @member BaseUserAgent
+         * @memberOf LibUserAgent
          * @returns {*}
          */
         chrome: function chrome() {
@@ -70,7 +70,7 @@ define([], function defineBaseString() {
 
         /**
          * Get Safari
-         * @member BaseUserAgent
+         * @memberOf LibUserAgent
          * @returns {*}
          */
         safari: function safari() {
@@ -79,7 +79,7 @@ define([], function defineBaseString() {
 
         /**
          * Get Firefox
-         * @member BaseUserAgent
+         * @memberOf LibUserAgent
          * @returns {*}
          */
         firefox: function firefox() {
@@ -88,7 +88,7 @@ define([], function defineBaseString() {
 
         /**
          * Get MS Internet explorer
-         * @member BaseUserAgent
+         * @memberOf LibUserAgent
          * @returns {*}
          */
         msie: function msie() {
@@ -97,7 +97,7 @@ define([], function defineBaseString() {
 
         /**
          * Get browser zoom
-         * @member BaseUserAgent
+         * @memberOf LibUserAgent
          * @returns {number}
          */
         getBrowserZoom: function getBrowserZoom() {
@@ -123,6 +123,5 @@ define([], function defineBaseString() {
         }
     });
 
-    return new BaseUserAgent();
-
+    return new LibUserAgent();
 });

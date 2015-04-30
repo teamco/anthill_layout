@@ -28,7 +28,7 @@ define([
 
         /**
          * Render tubeeight element
-         * @member TubeEightView
+         * @memberOf TubeEightView
          */
         renderTubeEight: function renderTubeEight() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member TubeEightView
+         * @memberOf TubeEightView
          * @returns {TubeEightPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member TubeEightView
+         * @memberOf TubeEightView
          * @param widgetRules
          * @param contentRules
          * @returns {TubeEightRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render tubeeight
-         * @member TubeEightView
+         * @memberOf TubeEightView
          */
         render: function render() {
 

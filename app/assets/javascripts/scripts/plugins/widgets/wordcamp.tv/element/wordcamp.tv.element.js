@@ -34,7 +34,7 @@ define([
 
         /**
          * Render Embedded content
-         * @member WordcampTvElement
+         * @memberOf WordcampTvElement
          * @param {string} embed
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {

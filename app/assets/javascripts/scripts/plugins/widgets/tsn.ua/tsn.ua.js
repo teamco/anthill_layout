@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @member TsnUa
+         * @memberOf TsnUa
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @member TsnUa
+         * @memberOf TsnUa
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @member TsnUa
+         * @memberOf TsnUa
          * @type {MVC}
          */
         this.mvc = new MVC({

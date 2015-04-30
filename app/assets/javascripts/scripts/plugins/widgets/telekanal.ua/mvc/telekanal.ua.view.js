@@ -28,7 +28,7 @@ define([
 
         /**
          * Render telekanalua element
-         * @member TelekanalUaView
+         * @memberOf TelekanalUaView
          */
         renderTelekanalUa: function renderTelekanalUa() {
 
@@ -52,7 +52,7 @@ define([
 
         /**
          * Render Prefs
-         * @member TelekanalUaView
+         * @memberOf TelekanalUaView
          * @returns {TelekanalUaPreferencesElement}
          */
         renderPreferences: function renderPreferences() {
@@ -70,7 +70,7 @@ define([
 
         /**
          * Render Rules
-         * @member TelekanalUaView
+         * @memberOf TelekanalUaView
          * @param widgetRules
          * @param contentRules
          * @returns {TelekanalUaRulesElement}
@@ -100,7 +100,7 @@ define([
 
         /**
          * Render telekanalua
-         * @member TelekanalUaView
+         * @memberOf TelekanalUaView
          */
         render: function render() {
 
