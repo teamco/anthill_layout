@@ -22,18 +22,21 @@ define([
         /**
          * Define preferences
          * @memberOf AvatarModel
-         * @type {{}}
+         * @type {{
+         *      avatarCoordinateX: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      avatarCoordinateY: {type: string, disabled: boolean, value: undefined, visible: boolean}
+         * }}
          */
         this.preferences = {
             avatarCoordinateX: {
-                type: "number",
-                disable: true,
+                type: 'number',
+                disabled: true,
                 value: undefined,
                 visible: true
             },
             avatarCoordinateY: {
-                type: "number",
-                disable: true,
+                type: 'number',
+                disabled: true,
                 value: undefined,
                 visible: true
             }
@@ -49,9 +52,20 @@ define([
 
     return AvatarModel.extend('AvatarModel', {
 
+        /**
+         * Set X
+         * @memberOf AvatarModel
+         * @param {number} x
+         */
         setAvatarCoordinateX: function setAvatarCoordinateX(x) {
             this.setPrefs('avatarCoordinateX', x);
         },
+
+        /**
+         * Set Y
+         * @memberOf AvatarModel
+         * @param {number} y
+         */
         setAvatarCoordinateY: function setAvatarCoordinateY(y) {
             this.setPrefs('avatarCoordinateY', y);
         }

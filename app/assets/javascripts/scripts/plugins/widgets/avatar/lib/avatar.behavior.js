@@ -8,7 +8,6 @@ define([
      * @constructor
      */
     var AvatarBehavior = function AvatarBehavior() {
-
     };
 
     return AvatarBehavior.extend('AvatarBehavior', {

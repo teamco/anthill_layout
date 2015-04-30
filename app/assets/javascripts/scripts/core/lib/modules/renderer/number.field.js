@@ -13,7 +13,6 @@ define([
      * @constructor
      */
     var NumberFieldRenderer = function NumberFieldRenderer() {
-
     };
 
     return NumberFieldRenderer.extend('NumberFieldRenderer', {
