@@ -5,7 +5,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
   include Author
 
-  before_action :authenticate_user!, except: [:show]
+  # before_action :authenticate_user!, except: [:show]
   before_action :set_author_site_storage, only: [:show, :edit, :update, :activate, :destroy]
 
   layout :resolve_layout
