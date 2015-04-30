@@ -23,40 +23,44 @@ class Author::WidgetsController < Author::AuthorController
   def index
 
     @json_data ||= {
-        categories: WidgetCategory.order(name_value: :asc),
+        categories: [],
         widgets: []
     }
 
     method = request.env['REQUEST_METHOD']
-    site = request.query_parameters['site']
+    site = params[:site_storage_id]
 
-    if site == params[:site]
+    request.xhr? ?
+        (site_widgets if method == 'GET') :
+        site_widgets unless site.nil?
 
-      site_storage = SiteStorage.find_by_key(site)
-      @author_widgets = site_storage.author_widgets.includes(:author_widget_category).where(visible: true).order(name: :asc)
-
-    end if method == 'GET' if request.xhr?
-
-    @author_widgets = Widget.all.includes(:author_widget_category).where(visible: true).order(name: :asc) if @author_widgets.nil?
+    @author_widgets = Widget.all.
+        includes(:author_widget_category).
+        where(visible: true).
+        order(name: :asc) if @author_widgets.nil? unless request.xhr?
 
     @resource = {
-        items: @author_widgets.length,
+        items: (@author_widgets || []).length,
         path: new_author_widget_path
     }
 
-    @json_data[:widgets] = @author_widgets.map do |w|
-      {
-          id: w[:id],
-          uuid: w[:uuid],
-          name: w[:name],
-          description: w[:description],
-          dimensions: {
-              width: w[:width],
-              height: w[:height]
-          },
-          type: w.author_widget_category[:name_index],
-          resource: w[:resource]
-      }
+    unless @author_widgets.nil?
+      @json_data[:in] = @author_widgets.map { |x| x.id }
+      @json_data[:categories] = @author_widgets.map { |x| x.author_widget_category }.uniq!.sort { |a, b| a.name_value<=>b.name_value }
+      @json_data[:widgets] = @author_widgets.map do |w|
+        {
+            id: w[:id],
+            uuid: w[:uuid],
+            name: w[:name],
+            description: w[:description],
+            dimensions: {
+                width: w[:width],
+                height: w[:height]
+            },
+            type: w.author_widget_category[:name_index],
+            resource: w[:resource]
+        }
+      end
     end
 
   end
@@ -153,6 +157,14 @@ class Author::WidgetsController < Author::AuthorController
   end
 
   private
+
+  def site_widgets
+    site_storage = SiteStorage.find_by_key(params[:site_storage_id])
+    @author_widgets = site_storage.author_widgets.
+        includes(:author_widget_category).
+        where(visible: true).
+        order(name: :asc) unless site_storage.nil?
+  end
 
   def generate_widget
     @widget_lib = WidgetLib::Generate.new

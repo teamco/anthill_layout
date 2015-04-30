@@ -63,7 +63,7 @@ define([
                 }
             },
             routes: {
-                showWidgetsList: ['/author/widgets.json', 'get']
+                showWidgetsList: ['/author/site_storages/r{0}/widgets.json', 'get']
             }
         };
 

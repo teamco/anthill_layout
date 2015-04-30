@@ -95,12 +95,9 @@ define(function defineGalleryWidgets() {
 
                 $.ajax({
 
-                    url: route[0],
+                    url: route[0].replace(/\{0}/, scope.controller.getAppName()),
                     method: route[1],
-                    dataType: 'json',
-                    data: {
-                        site: scope.controller.getAppName()
-                    }
+                    dataType: 'json'
 
                 }).done(
                     /**

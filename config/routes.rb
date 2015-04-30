@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :widgets
     resources :site_storages do
       resources :site_versions
+      resources :widgets
     end
     resources :site_versions do
       resources :site_storages
