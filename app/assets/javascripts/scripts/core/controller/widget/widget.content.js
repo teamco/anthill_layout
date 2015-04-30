@@ -198,11 +198,23 @@ define([
             /**
              * Define after set content
              * @memberOf WidgetContent
-             * @param {{}} [opts]
+             * @param {Object} [opts]
              */
             afterSetContent: function afterSetContent(opts) {
                 this.logger.debug('After set content', this.content, opts);
-                this.view.contentExpander();
+            },
+
+            /**
+             * Define after render content
+             * @memberOf WidgetContent
+             */
+            afterRenderContent: function afterRenderContent() {
+
+                this.logger.debug('After render content');
+
+                if (this.model.getConfig('preferences').expandable) {
+                    this.view.contentExpander();
+                }
             },
 
             /**

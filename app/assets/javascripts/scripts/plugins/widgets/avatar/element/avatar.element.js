@@ -81,8 +81,8 @@ define([
 
                 var $draggMenu = [
                     '<div class="dragMenu">',
-                    '<span>change image position</span>',
-                    '<a class="dragIt">Unlock</a>',
+                    '<span>', this.i18n.t('change.position'), '</span>',
+                    '<a class="dragIt">', this.i18n.t('unlock.photo'), '</a>',
                     '</div>'
                 ].join('');
 

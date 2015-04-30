@@ -39,7 +39,7 @@ define([
 
                 /**
                  * Define event list
-                 * @type {{}}
+                 * @type {Object}
                  */
                 var eventList = this.eventmanager.eventList;
 
@@ -48,14 +48,6 @@ define([
                     eventList.loadRules,
                     eventList.successCreated,
                     eventList.defineContainer
-                );
-
-                observer.publish(
-                    eventList.updateTranslations, [
-                        'plugins/widgets/',
-                        this.constructor.prototype.name.toPoint().replace(/./, ''),
-                        '/translations/en-us'
-                    ].join('')
                 );
 
                 this.view.render();

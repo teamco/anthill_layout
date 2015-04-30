@@ -6,17 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
-    'modules/translations/en-us'
-], function defineI18n(EnUs) {
-
-    /**
-     * Define language types
-     * @type {Object}
-     */
-    var langTypes = {
-        'en-us': EnUs
-    };
+define(function defineI18n() {
 
     /**
      * Define translations
@@ -34,17 +24,39 @@ define([
 
         /**
          * Define language
+         * @memberOf i18n
          * @type {string}
          */
-        lang = lang || defaultLanguage;
+        this.language = lang || defaultLanguage;
 
         /**
          * Define data
-         * @type {*}
+         * @type {Object}
          */
-        var data = langTypes.hasOwnProperty(lang) ?
-            langTypes[lang] :
-            langTypes[defaultLanguage];
+        var data,
+            scope = this;
+
+        require(['modules/translations/' + scope.language], function loadTranslations(translation) {
+
+            /**
+             * Define language types
+             * @type {Object}
+             */
+            var langTypes = {};
+
+            langTypes[scope.language] = translation;
+
+            data = langTypes[defaultLanguage];
+
+            if (langTypes.hasOwnProperty(scope.language)) {
+
+                data = langTypes[scope.language];
+
+            } else {
+
+                console.warn('Unable to define language', lang);
+            }
+        });
 
         /**
          * Get data by key
@@ -69,6 +81,7 @@ define([
             for (index in translation) {
 
                 if (translation.hasOwnProperty(index)) {
+
                     data[index] = translation[index];
                 }
             }

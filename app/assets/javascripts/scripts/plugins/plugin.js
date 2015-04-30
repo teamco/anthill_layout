@@ -109,8 +109,10 @@ define([
         /**
          * Update translations
          * @memberOf PluginController
+         * @param {string} i18nPath
+         * @param {_successRenderedCallback} callback
          */
-        updateTranslations: function updateTranslations(data) {
+        updateTranslations: function updateTranslations(i18nPath, callback) {
 
             /**
              * Define this reference
@@ -118,8 +120,13 @@ define([
              */
             var plugin = this;
 
-            require([data], function defineEnUs(EnUs) {
+            require([i18nPath], function defineEnUs(EnUs) {
+
                 plugin.i18n.updateData(EnUs);
+
+                if (typeof(callback) === 'function') {
+                    callback();
+                }
             });
         },
 
@@ -210,15 +217,66 @@ define([
      */
     PluginController.prototype.successRendered = function successRendered(callback) {
 
-        successRenderedSuper.bind(this)();
+        // Get scope
+        var scope = this;
 
-        if (typeof(callback) === 'function') {
+        /**
+         * Define callback
+         * @returns {boolean}
+         * @private
+         */
+        function _successRenderedCallback() {
 
-            callback();
+            if (typeof(callback) === 'function') {
+
+                var html = scope.model.getConfig('html');
+
+                if (typeof(html.selector) === 'undefined') {
+
+                    scope.logger.warn('Configuration of render: false', html);
+                    return false;
+                }
+
+                callback();
+
+            } else {
+
+                scope.logger.warn('Callback should be function type', callback);
+            }
+
+        }
+
+        successRenderedSuper.bind(scope)();
+
+        if (scope.controller.isWidgetContent()) {
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateTranslations, [
+                    [
+                        'plugins/widgets/',
+                        scope.name.toPoint().replace(/./, ''),
+                        '/translations/en-us'
+                    ].join(''),
+                    function _successRenderedExtendedCallback() {
+
+                        _successRenderedCallback();
+
+                        /**
+                         * Get widget
+                         * @type {Widget}
+                         */
+                        var widget = scope.controller.getContainment();
+
+                        widget.observer.publish(
+                            widget.eventmanager.eventList.afterRenderContent
+                        );
+                    }
+                ]
+            );
 
         } else {
 
-            this.logger.warn('Callback should be function type', callback);
+            _successRenderedCallback();
         }
     };
 

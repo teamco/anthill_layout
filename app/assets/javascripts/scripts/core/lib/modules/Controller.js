@@ -550,7 +550,7 @@ define([
              * @returns {boolean}
              */
             isWidget: function isWidget() {
-                return this.scope.constructor.prototype.name === 'Widget';
+                return this.scope.name === 'Widget';
             },
 
             /**

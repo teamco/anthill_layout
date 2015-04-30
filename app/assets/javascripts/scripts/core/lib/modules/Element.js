@@ -278,6 +278,10 @@ define([
 
             if (this.base.defineBoolean(destroy, false, true)) {
 
+                if ($.trim(this.style) === 'default') {
+                    return false;
+                }
+
                 destroyElement.bind(this)(
                     $('.' + this.style, $container)
                 );

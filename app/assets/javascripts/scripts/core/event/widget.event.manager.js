@@ -129,6 +129,7 @@ define([
             loadContent: 'load.content',
             setContent: 'set.content',
             afterSetContent: 'after.set.content',
+            afterRenderContent: 'after.render.content',
 
             loadPreferences: 'load.preferences',
             transferPreferences: 'transfer.preferences',
