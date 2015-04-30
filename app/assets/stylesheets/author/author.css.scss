@@ -253,6 +253,8 @@ body.admin ul.admin-navigation.inner > li > div > div ul.menu li {
 body.admin ul.admin-navigation.inner > li > div > div ul.menu li a {
   color: #dedede;
   text-decoration: none;
+  width: 100%;
+  display: inline-block;
 }
 
 body.admin ul.admin-navigation.inner > li > div > div ul.menu li:hover a {
