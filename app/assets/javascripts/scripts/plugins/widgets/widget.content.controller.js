@@ -20,7 +20,6 @@ define([
      * @constructor
      */
     var WidgetContentController = function WidgetContentController() {
-
     };
 
     return WidgetContentController.extend('WidgetContentController', {
@@ -139,14 +138,47 @@ define([
              * @memberOf WidgetContentController
              * @param {string} key
              * @param value
+             * @param {boolean} [save]
              */
-            alternativeSavePreferences: function alternativeSavePreferences(key, value) {
+            alternativeSavePreferences: function alternativeSavePreferences(key, value, save) {
+
+                // Define save
+                save = typeof(save) === undefined ? true : save;
 
                 // Transfer prefs to widget
                 this.observer.publish(
                     this.eventmanager.eventList.transferContentPreferences,
                     [key, value]
                 );
+
+                if (save) {
+
+                    // Save
+                    this.controller.store();
+                }
+            },
+
+            /**
+             * Alternative save all prefs in consumption mode
+             * @memberOf WidgetContentController
+             */
+            alternativeSaveAllPreferences: function alternativeSaveAllPreferences() {
+
+                var prefs = this.model.preferences,
+                    index;
+
+                for (index in prefs) {
+                    if (prefs.hasOwnProperty(index)) {
+
+                        this.observer.publish(
+                            this.eventmanager.eventList.alternativeSavePreferences, [
+                                index,
+                                prefs[index].value,
+                                false
+                            ]
+                        );
+                    }
+                }
 
                 // Save
                 this.controller.store();

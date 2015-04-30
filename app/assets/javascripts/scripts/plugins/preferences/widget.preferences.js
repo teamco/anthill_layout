@@ -17,7 +17,6 @@ define([
      * @constructor
      */
     var WidgetPreferences = function WidgetPreferences() {
-
     };
 
     return WidgetPreferences.extend('WidgetPreferences', {

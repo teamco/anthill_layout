@@ -33,20 +33,18 @@ define([
             );
         },
 
+        /**
+         * Update coordinates
+         * @memberOf AvatarController
+         * @param {number} x
+         * @param {number} y
+         */
         updateCoordinates: function updateCoordinates(x, y){
             this.model.setAvatarCoordinateX(x);
             this.model.setAvatarCoordinateY(y);
             this.observer.publish(
-                this.eventmanager.eventList.transferContentPreferences, [
-                    'avatarCoordinateX', this.model.getPrefs('avatarCoordinateX')
-                ]
+                this.eventmanager.eventList.alternativeSaveAllPreferences
             );
-            this.observer.publish(
-                this.eventmanager.eventList.transferContentPreferences, [
-                    'avatarCoordinateY', this.model.getPrefs('avatarCoordinateY')
-                ]
-            );
-            this.controller.store();
         },
 
         /**

@@ -62,6 +62,7 @@ define([
             loadPreferences: 'load.preferences',
             transferContentPreferences: 'transfer.content.preferences',
             alternativeSavePreferences: 'alternative.save.preferences',
+            alternativeSaveAllPreferences: 'alternative.save.all.preferences',
             loadRules: 'load.rules',
             publishRule: 'publish.rule',
             registerRules: 'register.rules',
