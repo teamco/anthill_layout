@@ -102,7 +102,7 @@ define([
              */
             this.elements.$comments = new WidgetCommentElement(this, {
                 style: 'comments',
-                $container: this.elements.$widget.$
+                $container: this.elements.$content
             });
         },
 
