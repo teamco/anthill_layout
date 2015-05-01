@@ -211,9 +211,9 @@ define([
                     '<ul class="buttons"></ul>'
                 ].join('')
             ).
-                addClass([this.style, this.type].join(' ')).
                 css(this.css);
 
+            this.setModalType(this.type);
             this.setHeader();
             this.setHtml(this.html, this._get$HTML());
             this.setText(this.text, this._get$Text());
@@ -457,6 +457,15 @@ define([
         },
 
         /**
+         * Define modal type
+         * @memberOf ModalElement
+         * @param {string} type
+         */
+        setModalType: function setModalType(type) {
+            this.$.addClass([this.style, type].join(' '));
+        },
+
+        /**
          * Collect input fields (input/textarea)
          * @memberOf ModalElement
          * @param {{method: string, value: string}} [filter]
@@ -515,7 +524,7 @@ define([
             this.$.addClass(type);
 
             setTimeout(function () {
-                this._get$Notification().stop().slideUp(function(){
+                this._get$Notification().stop().slideUp(function () {
                     $(this).text('').show();
                 });
                 this.$.removeClass(type);

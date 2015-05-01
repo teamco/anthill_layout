@@ -16,6 +16,7 @@ define(
         'plugins/site.config/element/site.config.preferences.element',
         'plugins/site.config/element/site.config.cleanup.element',
         'plugins/site.config/element/site.config.activate.element',
+        'plugins/site.config/element/site.config.publish.element',
         'plugins/site.config/element/site.config.import.file.element',
         'plugins/site.config/element/site.config.approve.import.element',
         'plugins/site.config/element/site.config.widgets.list.element',
@@ -32,13 +33,14 @@ define(
      * @param {SiteConfigPreferencesElement} SiteConfigPreferencesElement
      * @param {SiteConfigCleanUpElement} SiteConfigCleanUpElement
      * @param {SiteConfigActivateElement} SiteConfigActivateElement
+     * @param {SiteConfigPublishElement} SiteConfigPublishElement
      * @param {SiteConfigImportFileElement} SiteConfigImportFileElement
      * @param {SiteConfigApproveImportElement} SiteConfigApproveImportElement
      * @param {SiteConfigWidgetsListElement} SiteConfigWidgetsListElement
      * @param {SiteConfigElement} SiteConfigElement
      * @returns {*}
      */
-    function defineSiteConfigView(BaseView, BasePreferencesElement, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigActivateElement, SiteConfigImportFileElement, SiteConfigApproveImportElement, SiteConfigWidgetsListElement, SiteConfigElement) {
+    function defineSiteConfigView(BaseView, BasePreferencesElement, Header, Footer, SiteConfigContentElement, SiteConfigPreferencesElement, SiteConfigCleanUpElement, SiteConfigActivateElement, SiteConfigPublishElement, SiteConfigImportFileElement, SiteConfigApproveImportElement, SiteConfigWidgetsListElement, SiteConfigElement) {
 
         /**
          * Define view
@@ -378,6 +380,22 @@ define(
                 },
 
                 /**
+                 * Render publish element
+                 * @memberOf SiteConfigView
+                 * @returns {SiteConfigPublishElement}
+                 */
+                renderPublish: function renderPublish() {
+
+                    /**
+                     * Define SiteConfig Activate Element
+                     * @type {SiteConfigPublishElement}
+                     */
+                    this.elements.$publish = new SiteConfigPublishElement(this, {});
+
+                    return this.elements.$publish;
+                },
+
+                /**
                  * Render cleanup confirmation modal dialog
                  * @memberOf SiteConfigView
                  */
@@ -436,6 +454,46 @@ define(
                                 text: this.i18n.t('site.data.confirm'),
                                 events: {
                                     click: 'approveActivate'
+                                }
+                            },
+                            reject: {
+                                text: this.i18n.t('site.data.cancel'),
+                                events: {
+                                    click: 'rejectModalEvent'
+                                }
+                            }
+                        }
+                    });
+                },
+
+                /**
+                 * Render publish confirmation modal dialog
+                 * @memberOf SiteConfigView
+                 */
+                publishConfirmation: function publishConfirmation() {
+
+                    /**
+                     * Get root
+                     * @type {Application}
+                     */
+                    var root = this.controller.root();
+
+                    this.modalDialog({
+                        style: 'publish',
+                        type: 'warning',
+                        title: 'Publish',
+                        text: [
+                            'Are you sure want to publish current version: ',
+                            root.model.getConfig('version'), '?'
+                        ].join(''),
+                        html: this.renderPublish().$,
+                        cover: true,
+                        autoclose: true,
+                        buttons: {
+                            approve: {
+                                text: this.i18n.t('site.data.confirm'),
+                                events: {
+                                    click: 'approvePublish'
                                 }
                             },
                             reject: {

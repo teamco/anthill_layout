@@ -85,7 +85,8 @@ define([
             routes: {
                 activateSiteStorage: ['/sites/activate/', 'put'],
                 createNewWidget: ['/author/widgets', 'post'],
-                updateExistingWidget: ['/author/widgets/{id}', 'put']
+                updateExistingWidget: ['/author/widgets/{id}', 'put'],
+                publishSiteStorage: ['/author/site_storages/publish/{id}', 'put']
             },
             widget: {
                 type: 'regular',
@@ -126,7 +127,5 @@ define([
         );
     };
 
-    return SiteConfig.extend('SiteConfig', {
-
-    }, AntHill.prototype);
+    return SiteConfig.extend('SiteConfig', {}, AntHill.prototype);
 });

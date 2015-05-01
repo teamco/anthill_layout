@@ -29,6 +29,10 @@ define([
 
     return SiteConfigActivateElement.extend('SiteConfigActivateElement', {
 
+        /**
+         * Render content
+         * @memberOf SiteConfigActivateElement
+         */
         renderContent: function renderContent() {
 
             /**

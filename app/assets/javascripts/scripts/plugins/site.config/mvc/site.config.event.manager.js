@@ -50,7 +50,8 @@ define([
          *      widgetGenerator: string,
          *      widgetEditor: string,
          *      setRoutes: string,
-         *      activateStorage: string
+         *      activateStorage: string,
+         *      publishStorage: string
          * }}
          */
         eventList: {
@@ -65,7 +66,8 @@ define([
             widgetGenerator: 'widget.generator',
             widgetEditor: 'widget.editor',
             setRoutes: 'set.routes',
-            activateStorage: 'activate.storage'
+            activateStorage: 'activate.storage',
+            publishStorage: 'publish.storage'
         },
 
         /**

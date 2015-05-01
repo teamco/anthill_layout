@@ -42,10 +42,15 @@ define([
                 description: 'Preferences are the user options for browsing, editing, searching, notifications, and more',
                 event: 'loadSitePreferences'
             },
-            publish: {
+            activate: {
                 title: 'Activate version',
                 description: 'Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later',
                 event: 'activateStorage'
+            },
+            publish: {
+                title: 'Publish version',
+                description: 'Publish site in consumption mode',
+                event: 'publishStorage'
             },
             import: {
                 title: 'Import',

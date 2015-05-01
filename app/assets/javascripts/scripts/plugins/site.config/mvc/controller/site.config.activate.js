@@ -10,7 +10,6 @@ define(function defineSiteConfigActivate() {
      * @constructor
      */
     var SiteConfigActivate = function SiteConfigActivate() {
-
     };
 
     return SiteConfigActivate.extend('SiteConfigActivate', {
@@ -94,8 +93,7 @@ define(function defineSiteConfigActivate() {
 
                 scope.logger.debug(data.notice, arguments);
                 $modal.selfDestroy();
-
-            }.bind(this));
+            });
         }
     });
 });
