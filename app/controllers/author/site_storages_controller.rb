@@ -6,7 +6,10 @@ class Author::SiteStoragesController < Author::AuthorController
   include Author
 
   before_action :authenticate_user!, except: [:show]
-  before_action :set_author_site_storage, only: [:show, :edit, :update, :activate, :destroy]
+  before_action :set_author_site_storage,
+                only: [
+                    :show, :edit, :update, :activate, :destroy, :publish
+                ]
 
   layout :resolve_layout
 
@@ -81,7 +84,7 @@ class Author::SiteStoragesController < Author::AuthorController
     respond_to do |format|
       if File.exist?(target)
         if @author_site_storage.save
-          format.html { redirect_to author_site_storages_path, notice: 'Site storage was successfully created.' }
+          format.html { redirect_to author_site_storages_path, notice: t('success_create') }
           format.json { render :index, status: :created, location: @author_site_storage }
         else
           FileUtils.rm_r(target)
@@ -115,7 +118,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
     respond_to do |format|
       if update_handler(versions)
-        notice = 'Site storage was successfully updated'
+        notice = t('success_update')
         if request.xhr?
           version = versions.last
           data = {
@@ -142,13 +145,16 @@ class Author::SiteStoragesController < Author::AuthorController
     end
   end
 
+  def publish
+    published = @author_site_storage.publish
+    respond_to { |format| format.js if @author_site_storage.update({publish: !published}) if request.xhr? }
+  end
+
   def activate
 
     respond_to do |format|
-
       if update_activation
-
-        notice = 'Site storage version was successfully activated'
+        notice = t('success_activation')
         if request.xhr?
           data = {
               storage: {
@@ -183,7 +189,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
     @author_site_storage.destroy
     respond_to do |format|
-      format.html { redirect_to author_site_storages_url, notice: 'Site storage was successfully destroyed.' }
+      format.html { redirect_to author_site_storages_url, notice: t('success_delete') }
       format.json { head :no_content }
     end
   end
@@ -236,7 +242,7 @@ class Author::SiteStoragesController < Author::AuthorController
     ).first
 
     if activated.nil?
-      puts 'Undefined activated storage'
+      puts t('undefined_activation')
       updated = false
     else
       if activated == @version
@@ -245,7 +251,7 @@ class Author::SiteStoragesController < Author::AuthorController
         if activated.update({activated: false})
           updated = true
           if @version.nil?
-            puts 'Undefined storage version'
+            puts t('undefined_version')
             updated = false
           else
             updated = @version.update({activated: true}) unless activated == @version
@@ -267,7 +273,7 @@ class Author::SiteStoragesController < Author::AuthorController
     updated = update_version_activation(params[:author_site_version][:version])
 
     if mode.nil?
-      puts 'Undefined storage mode'
+      puts t('undefined_mode')
       updated = false
     else
       updated = @author_site_storage.update({site_type_id: mode.id}) unless @author_site_storage.author_site_type == mode if updated
