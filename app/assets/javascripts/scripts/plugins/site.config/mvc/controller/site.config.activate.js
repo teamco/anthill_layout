@@ -35,7 +35,7 @@ define(function defineSiteConfigActivate() {
             var scope = this.scope;
 
             /**
-             * Get root
+             * Get root config
              * @type {{activate: boolean, mode: string}}
              */
             var config = this.root().model.getConfig();

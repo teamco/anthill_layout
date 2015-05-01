@@ -46,6 +46,12 @@ define(function defineSiteConfigPublish() {
             }
 
             /**
+             * Get root config
+             * @type {{activate: boolean, mode: string}}
+             */
+            var config = this.root().model.getConfig();
+
+            /**
              * Get create update site route
              * @type {{string[]}}
              */
@@ -53,7 +59,7 @@ define(function defineSiteConfigPublish() {
                 key = config.appName,
                 opts = {
                     dataType: 'json',
-                    url: route[0] + key,
+                    url: route[0].replace(/\{id}/, key),
                     method: route[1]
                 };
 
