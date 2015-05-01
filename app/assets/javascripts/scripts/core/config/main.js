@@ -30,7 +30,7 @@ requirejs.config({
         modernizr: 'lib/modernizr',
 
         'lz-string': 'lib/lz-string',
-        jquery: 'lib/jquery/jquery-2.1.3.min',
+        jquery: 'lib/jquery/jquery-2.1.4.min',
         'jquery.ujs': 'lib/jquery/jquery_ujs',
         'jquery.timeago': 'lib/jquery/jquery.timeago',
         'jquery.ui': 'lib/jquery/jquery-ui.min',
