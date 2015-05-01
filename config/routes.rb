@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :widget_categories
   end
 
+  get 'author/site_storages/publish/:key', to: 'author/site_storages#publish'
   put 'author/site_storages/publish/:key', to: 'author/site_storages#publish', as: 'publish_site'
 
   get '/sites/:key', to: 'author/site_storages#show', as: 'preview'

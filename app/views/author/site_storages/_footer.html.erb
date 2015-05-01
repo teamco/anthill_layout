@@ -1,0 +1,6 @@
+<% versions = site.author_site_versions %>
+<% activated_version = versions.where(activated: true).first %>
+<div>
+  <div><%= render partial: 'menu', locals: {site: site} %></div>
+  <%= link_to t('version'), author_site_storage_site_versions_path(site) %><%= ": #{activated_version.try(:version) || '?'} (#{versions.length})" %>
+</div>

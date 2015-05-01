@@ -147,7 +147,15 @@ class Author::SiteStoragesController < Author::AuthorController
 
   def publish
     published = @author_site_storage.publish
-    respond_to { |format| format.js if @author_site_storage.update({publish: !published}) if request.xhr? }
+    if @author_site_storage.update({publish: !published})
+      respond_to do |format|
+        format.html { redirect_to author_site_storages_path, notice: t('success_update') }
+        format.json if request.xhr?
+      end
+    else
+      format.json { render json: @author_site_storage.errors, status: :unprocessable_entity } if request.xhr?
+      format.html { redirect_to author_site_storages_path, status: :unprocessable_entity }
+    end
   end
 
   def activate
