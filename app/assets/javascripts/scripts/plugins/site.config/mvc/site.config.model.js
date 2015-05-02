@@ -52,6 +52,11 @@ define([
                 description: 'Publish site in consumption mode',
                 event: 'publishStorage'
             },
+            widgetGenerator: {
+                title: 'Widget Generator',
+                description: 'Generate new widget',
+                event: 'widgetGenerator'
+            },
             import: {
                 title: 'Import',
                 description: 'Import site data JSON',
@@ -66,11 +71,6 @@ define([
                 title: 'Clean Up',
                 description: 'Clean up local storage',
                 event: 'cleanUpLocalStorage'
-            },
-            widgetGenerator: {
-                title: 'Widget Generator',
-                description: 'Generate new widget',
-                event: 'widgetGenerator'
             }
         };
 
