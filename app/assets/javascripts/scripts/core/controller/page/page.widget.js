@@ -167,7 +167,7 @@ define([
                 } else {
 
                     var items = this.model.getItems(),
-                        item;
+                        item, index;
 
                     if (!Object.keys(items).length) {
 
@@ -182,7 +182,7 @@ define([
                         return false;
                     }
 
-                    for (var index in items) {
+                    for (index in items) {
 
                         if (items.hasOwnProperty(index)) {
 
