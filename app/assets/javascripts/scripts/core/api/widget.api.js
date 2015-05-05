@@ -93,7 +93,7 @@ define([
         _setInteraction: function _setInteraction(interaction) {
             var scope = this.scope;
             scope.observer.publish(
-                scope.eventManager.eventList[interaction]
+                scope.eventmanager.eventList[interaction]
             );
         }
 

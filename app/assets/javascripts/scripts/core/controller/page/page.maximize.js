@@ -77,11 +77,11 @@ define(function definePageItemMaximize() {
                     item = items[index];
 
                     item.observer.publish(
-                        item.eventManager.eventList.disableDraggable
+                        item.eventmanager.eventList.disableDraggable
                     );
 
                     item.observer.publish(
-                        item.eventManager.eventList.disableResizable
+                        item.eventmanager.eventList.disableResizable
                     );
 
                     if (widget !== item) {
@@ -93,7 +93,7 @@ define(function definePageItemMaximize() {
             this.controller.banAddWidget();
 
             this.observer.publish(
-                this.eventManager.eventList.setMaximized,
+                this.eventmanager.eventList.setMaximized,
                 widget
             );
         },
@@ -118,11 +118,11 @@ define(function definePageItemMaximize() {
                     item = items[index];
 
                     item.observer.publish(
-                        item.eventManager.eventList.enableDraggable
+                        item.eventmanager.eventList.enableDraggable
                     );
 
                     item.observer.publish(
-                        item.eventManager.eventList.enableResizable
+                        item.eventmanager.eventList.enableResizable
                     );
 
                     item.view.get$item().show();
@@ -132,7 +132,7 @@ define(function definePageItemMaximize() {
             this.controller.allowAddWidget();
 
             this.observer.publish(
-                this.eventManager.eventList.unsetMaximized
+                this.eventmanager.eventList.unsetMaximized
             );
         }
     });

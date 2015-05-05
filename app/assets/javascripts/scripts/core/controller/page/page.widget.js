@@ -159,17 +159,28 @@ define([
              */
             loadItemsContent: function loadItemsContent() {
 
-                this.view.get$item().showLoader();
-
                 if (this.controller.isLoadedContent()) {
 
                     this.logger.debug('Content already loaded');
-                    this.view.get$item().hideLoader();
+                    return false;
 
                 } else {
 
                     var items = this.model.getItems(),
                         item;
+
+                    if (!Object.keys(items).length) {
+
+                        this.logger.debug('Page without items');
+                        this.view.get$item().hideLoader();
+
+                        this.observer.publish(
+                            this.eventmanager.eventList.setLoadedContent,
+                            true
+                        );
+
+                        return false;
+                    }
 
                     for (var index in items) {
 
@@ -184,11 +195,6 @@ define([
                             item.controller.loadWidgetData();
                         }
                     }
-
-                    this.observer.publish(
-                        this.eventManager.eventList.setLoadedContent,
-                        true
-                    );
                 }
             },
 
@@ -225,19 +231,46 @@ define([
                         item = items[index];
 
                         item.observer.publish(
-                            item.eventManager.eventList.updateContainment, [
+                            item.eventmanager.eventList.updateContainment, [
                                 'draggable',
                                 containment
                             ]
                         );
 
                         item.observer.publish(
-                            item.eventManager.eventList.updateContainment, [
+                            item.eventmanager.eventList.updateContainment, [
                                 'resizable',
                                 containment
                             ]
                         );
                     }
+                }
+            },
+
+            /**
+             * Define update loaded content
+             * @memberOf PageWidget
+             * @param {Widget} widget
+             */
+            updateLoadedContent: function updateLoadedContent(widget) {
+
+                this.logger.debug('Update loaded content', widget);
+
+                // Get items count
+                var items = Object.keys(
+                    this.model.getItems()
+                ).length;
+
+                this.ready += 1;
+
+                if (this.ready === items) {
+
+                    this.view.get$item().hideLoader();
+
+                    this.observer.publish(
+                        this.eventmanager.eventList.setLoadedContent,
+                        true
+                    );
                 }
             }
         },

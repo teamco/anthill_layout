@@ -142,11 +142,11 @@ define(
                 this.items = {};
 
                 this.observer.publish(
-                    this.eventManager.eventList.successCreated
+                    this.eventmanager.eventList.successCreated
                 );
 
                 this.observer.publish(
-                    this.eventManager.eventList.bindHashChange
+                    this.eventmanager.eventList.bindHashChange
                 );
             }
 

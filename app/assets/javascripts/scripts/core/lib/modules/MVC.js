@@ -175,7 +175,7 @@ define([
          * @memberOf BaseEvent
          * @type {Object}
          */
-        scope.eventManager = {};
+        scope.eventmanager = {};
 
         $.extend(true, config, scope.config);
 
@@ -183,10 +183,10 @@ define([
 
         /**
          * Define local instance of eventList
-         * @property BaseEvent.eventManager
+         * @property BaseEvent.eventmanager
          * @type {Object}
          */
-        var eventList = scope.eventManager.eventList;
+        var eventList = scope.eventmanager.eventList;
 
         if (eventList) {
 
@@ -461,16 +461,16 @@ define([
 
             var scope = this.scope,
                 base = this.base,
-                eventManager = scope.eventManager;
+                eventmanager = scope.eventmanager;
 
-            if (base.isDefined(eventManager)) {
+            if (base.isDefined(eventmanager)) {
 
-                eventManager.scope = scope;
-                eventManager.abstract = base.define(
-                    eventManager.abstract, {}, true
+                eventmanager.scope = scope;
+                eventmanager.abstract = base.define(
+                    eventmanager.abstract, {}, true
                 );
 
-                var eventList = eventManager.eventList,
+                var eventList = eventmanager.eventList,
                     index;
 
                 for (index in eventList) {
@@ -491,12 +491,12 @@ define([
 
                                 if ($.inArray(method, this.RESERVED[key].singular) > -1) {
 
-                                    eventManager.abstract[key + 'Item'] = index;
+                                    eventmanager.abstract[key + 'Item'] = index;
                                     callback = scope.controller[key + 'Item'];
 
                                 } else if ($.inArray(method, this.RESERVED[key].plural) > -1) {
 
-                                    eventManager.abstract[key + 'Items'] = index;
+                                    eventmanager.abstract[key + 'Items'] = index;
                                     callback = scope.controller[key + 'Items'];
 
                                 } else {
@@ -511,7 +511,7 @@ define([
                             }
                         }
 
-                        eventManager.subscribe({
+                        eventmanager.subscribe({
                             event: event,
                             callback: callback
                         }, true);
@@ -520,14 +520,14 @@ define([
 
                 this.applyDefaultListeners();
 
-                scope.logger.debug('Subscribe events', eventManager);
+                scope.logger.debug('Subscribe events', eventmanager);
 
                 this.applyListeners('local');
                 this.applyListeners('global');
 
             } else {
 
-                scope.logger.warn('Undefined Event manager', scope.eventManager);
+                scope.logger.warn('Undefined Event manager', scope.eventmanager);
             }
         },
 
@@ -546,7 +546,7 @@ define([
             for (var index in listeners) {
 
                 if (listeners.hasOwnProperty(index)) {
-                    this.scope.eventManager.subscribe({
+                    this.scope.eventmanager.subscribe({
                         event: listeners[index],
                         callback: this.scope.controller[index]
                     }, true);
@@ -582,7 +582,7 @@ define([
 
                         for (var i = 0, l = event.length; i < l; i++) {
 
-                            scope.eventManager.subscribe({
+                            scope.eventmanager.subscribe({
                                 event: {
                                     eventName: event[i].name,
                                     params: event[i].params,

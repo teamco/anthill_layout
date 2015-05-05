@@ -95,7 +95,7 @@ define([
         });
 
         this.observer.publish(
-            this.eventManager.eventList.initWidget,
+            this.eventmanager.eventList.initWidget,
             opts
         );
     };

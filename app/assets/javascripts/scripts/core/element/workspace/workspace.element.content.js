@@ -104,7 +104,7 @@ define([
             function _completeCallback() {
 
                 scope.observer.publish(
-                    scope.eventManager.eventList.afterSwitchToPage,
+                    scope.eventmanager.eventList.afterSwitchToPage,
                     page
                 );
             }

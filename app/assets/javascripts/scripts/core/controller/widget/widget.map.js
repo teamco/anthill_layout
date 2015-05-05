@@ -485,7 +485,7 @@ define([
             this.setDefaultSize('Height');
 
             widget.observer.publish(
-                widget.eventManager.eventList.saveDom
+                widget.eventmanager.eventList.saveDom
             );
 
             opts = this.base.define(opts, {}, true);
@@ -572,13 +572,13 @@ define([
                 )) {
 
                 widget.observer.publish(
-                    widget.eventManager.eventList.saveDom
+                    widget.eventmanager.eventList.saveDom
                 );
 
                 hash[widget.model.getUUID()] = widget;
 
                 layout.observer.publish(
-                    layout.eventManager.eventList.beforeNestedOrganizer
+                    layout.eventmanager.eventList.beforeNestedOrganizer
                 );
 
                 layout.overlapping.nestedOrganizer({

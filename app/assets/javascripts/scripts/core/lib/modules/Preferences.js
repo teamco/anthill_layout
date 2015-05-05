@@ -84,8 +84,8 @@ define(function defineBasePreferences() {
                 var isContentPrefs = input.parentNode.className.replace(/-/g, '').indexOf(cname) !== -1;
 
                 var event = isContentPrefs ?
-                    scope.eventManager.eventList.transferContentPreferences :
-                    containment.eventManager.eventList.transferPreferences;
+                    scope.eventmanager.eventList.transferContentPreferences :
+                    containment.eventmanager.eventList.transferPreferences;
 
                 /**
                  * Transform input name

@@ -52,7 +52,7 @@ define([
             }
 
             scope.layout.observer.publish(
-                scope.layout.eventManager.eventList.beforeNestedOrganizer,
+                scope.layout.eventmanager.eventList.beforeNestedOrganizer,
                 silent
             );
 
@@ -70,7 +70,7 @@ define([
         destroyWidget: function destroyWidget(widget, silent) {
             var scope = this.scope;
             scope.observer.publish(
-                scope.eventManager.eventList.destroyWidget,
+                scope.eventmanager.eventList.destroyWidget,
                 [widget, silent]
             );
         },
@@ -84,7 +84,7 @@ define([
         destroyWidgets: function destroyWidgets(items, silent) {
             var scope = this.scope;
             scope.observer.publish(
-                scope.eventManager.eventList.destroyWidgets,
+                scope.eventmanager.eventList.destroyWidgets,
                 [items, silent]
             );
         }

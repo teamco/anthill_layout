@@ -53,7 +53,7 @@ define([
                 var scope = this.scope;
 
                 scope.observer.publish(
-                    scope.eventManager.eventList.loadModuleContent, [
+                    scope.eventmanager.eventList.loadModuleContent, [
                         true, true
                     ]
                 );
@@ -162,7 +162,7 @@ define([
         render: function render() {
 
             this.scope.observer.publish(
-                this.scope.eventManager.eventList.successRendered,
+                this.scope.eventmanager.eventList.successRendered,
                 this.renderGallery.bind(this)
             );
         }

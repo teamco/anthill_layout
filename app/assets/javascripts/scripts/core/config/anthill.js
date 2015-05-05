@@ -36,7 +36,7 @@ define([
          * @property AntHill
          * @type {*}
          */
-        this.eventManager = undefined;
+        this.eventmanager = undefined;
 
         /**
          * Define permissions

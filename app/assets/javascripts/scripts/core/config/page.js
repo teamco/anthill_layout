@@ -201,9 +201,9 @@ define([
             /**
              * Define ready
              * @property Page
-             * @type {boolean}
+             * @type {number}
              */
-            this.ready = false;
+            this.ready = 0;
 
             /**
              * Define items
@@ -234,13 +234,13 @@ define([
             this.layout = {};
 
             this.observer.publish(
-                this.eventManager.eventList.createLayout,
+                this.eventmanager.eventList.createLayout,
                 this.config.layout
             );
 
             this.observer.batchPublish(
-                this.eventManager.eventList.successCreated,
-                this.eventManager.eventList.loadPreferences
+                this.eventmanager.eventList.successCreated,
+                this.eventmanager.eventList.loadPreferences
             );
         }
 

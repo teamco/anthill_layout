@@ -112,7 +112,7 @@ define(
                     var swipe = this.model.getConfig('switch');
 
                     this.observer.publish(
-                        this.eventManager.eventList.setActiveContent,
+                        this.eventmanager.eventList.setActiveContent,
                         config.uuid
                     );
 
@@ -125,7 +125,7 @@ define(
                         var workspace = this.view.controller.getWorkspace();
 
                         workspace.observer.publish(
-                            workspace.eventManager.eventList.switchToPage,
+                            workspace.eventmanager.eventList.switchToPage,
                             [this.activeContent, false]
                         );
                     }
@@ -196,7 +196,7 @@ define(
                  * @param page
                  */
                 definePublisher: function definePublisher(page) {
-                    this.scope.eventManager.subscribePublishOn(
+                    this.scope.eventmanager.subscribePublishOn(
                         page,
                         this.updateCounter.bind(this.scope)
                     );
@@ -293,7 +293,7 @@ define(
 
                     // Unset active content
                     scope.observer.publish(
-                        scope.eventManager.eventList.setActiveContent
+                        scope.eventmanager.eventList.setActiveContent
                     );
 
                     /**
@@ -340,7 +340,7 @@ define(
                     );
 
                     workspace.observer.publish(
-                        workspace.eventManager.eventList.switchToPage,
+                        workspace.eventmanager.eventList.switchToPage,
                         [page, true]
                     );
 
@@ -351,7 +351,7 @@ define(
                     var panel = this.getAuthorPanel();
 
                     panel.observer.publish(
-                        panel.eventManager.eventList.showContent,
+                        panel.eventmanager.eventList.showContent,
                         [true, panel.active]
                     );
                 },
@@ -381,7 +381,7 @@ define(
                         page = $item.page;
 
                         page.observer.publish(
-                            page.eventManager.eventList.transferPreferences,
+                            page.eventmanager.eventList.transferPreferences,
                             ['order', i]
                         );
                     }
@@ -393,7 +393,7 @@ define(
                     var ws = page.controller.getContainment();
 
                     ws.observer.publish(
-                        ws.eventManager.eventList.afterPageOrder,
+                        ws.eventmanager.eventList.afterPageOrder,
                         order
                     );
                 },
@@ -428,7 +428,7 @@ define(
                     var ws = page.controller.getContainment();
 
                     ws.observer.publish(
-                        ws.eventManager.eventList.switchToPage, [
+                        ws.eventmanager.eventList.switchToPage, [
                             page,
                             false
                         ]

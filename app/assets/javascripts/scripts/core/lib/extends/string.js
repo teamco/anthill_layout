@@ -78,6 +78,15 @@
     };
 
     /**
+     * JsCase string
+     * @memberOf String
+     * @returns {string}
+     */
+    String.prototype.jsCase = function jsCase() {
+        return this.charAt(0).toLowerCase() + this.slice(1);
+    };
+
+    /**
      * String humanize
      * @memberOf String
      * @returns {string}

@@ -58,6 +58,7 @@ define([
          *      afterUpdatePreferences: string,
          *      setContent: string,
          *      afterSetContent: string,
+         *      afterRenderContent: string,
          *      adoptDimensions: string,
          *      restoreLayerIndex: string,
          *      setLayerUp: string,

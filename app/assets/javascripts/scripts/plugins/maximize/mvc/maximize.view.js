@@ -90,7 +90,7 @@ define([
                         });
 
                         this.scope.observer.publish(
-                            this.scope.eventManager.eventList.storeItem,
+                            this.scope.eventmanager.eventList.storeItem,
                             data[index]
                         );
 
@@ -127,7 +127,7 @@ define([
             render: function render() {
 
                 this.scope.observer.publish(
-                    this.scope.eventManager.eventList.successRendered,
+                    this.scope.eventmanager.eventList.successRendered,
                     this.renderMaximize.bind(this)
                 );
             }

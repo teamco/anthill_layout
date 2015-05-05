@@ -76,7 +76,7 @@ define(
                 transferContentPreferences: function transferContentPreferences(index, value) {
 
                     this.observer.publish(
-                        this.eventManager.eventList.transferPreferences,
+                        this.eventmanager.eventList.transferPreferences,
                         [index, value]
                     );
                 },

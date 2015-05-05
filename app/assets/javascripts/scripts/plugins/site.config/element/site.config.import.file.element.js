@@ -45,7 +45,7 @@ define([
             var scope = this.view.scope;
 
             this.renderJSONUploader({
-                eventName: scope.eventManager.eventList.readyToImportSiteData,
+                eventName: scope.eventmanager.eventList.readyToImportSiteData,
                 info: true
             });
 

@@ -47,7 +47,7 @@ define([
             this.footer(Footer, this.elements.$container);
 
             this.scope.observer.publish(
-                this.scope.eventManager.eventList.setEmbeddedContent
+                this.scope.eventmanager.eventList.setEmbeddedContent
             );
         },
 
@@ -106,7 +106,7 @@ define([
         render: function render() {
 
             this.scope.observer.publish(
-                this.scope.eventManager.eventList.successRendered,
+                this.scope.eventmanager.eventList.successRendered,
                 this.renderSimpleWeather.bind(this)
             );
         }

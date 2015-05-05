@@ -102,7 +102,7 @@ define([
          */
         showPosition: function showPosition() {
             this.scope.observer.publish(
-                this.scope.eventManager.eventList.setEmbeddedContent
+                this.scope.eventmanager.eventList.setEmbeddedContent
             );
         },
 
@@ -113,7 +113,7 @@ define([
         render: function render() {
 
             this.scope.observer.publish(
-                this.scope.eventManager.eventList.successRendered,
+                this.scope.eventmanager.eventList.successRendered,
                 this.renderGeolocation.bind(this)
             );
         }

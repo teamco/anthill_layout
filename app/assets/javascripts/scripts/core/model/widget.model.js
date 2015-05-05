@@ -177,7 +177,7 @@ define([
             this._setItemInfoPreferences('stretchWidth', stretch);
 
             scope.observer.publish(
-                scope.eventManager.eventList.stretchWidth,
+                scope.eventmanager.eventList.stretchWidth,
                 stretch
             );
         },
@@ -199,7 +199,7 @@ define([
             this._setItemInfoPreferences('stretchHeight', stretch);
 
             scope.observer.publish(
-                scope.eventManager.eventList.stretchHeight,
+                scope.eventmanager.eventList.stretchHeight,
                 stretch
             );
         },
@@ -220,7 +220,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList[eventName]
+                scope.eventmanager.eventList[eventName]
             );
         },
 
@@ -330,7 +330,7 @@ define([
             this.scope.config.preferences.alwaysOnTop = ontop;
 
             scope.observer.publish(
-                scope.eventManager.eventList.setAlwaysOnTop,
+                scope.eventmanager.eventList.setAlwaysOnTop,
                 ontop
             );
         },
@@ -349,7 +349,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList[eventName],
+                scope.eventmanager.eventList[eventName],
                 true
             );
         },
@@ -368,7 +368,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList[eventName],
+                scope.eventmanager.eventList[eventName],
                 true
             );
         },
@@ -398,7 +398,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.setOnClickUrl,
+                scope.eventmanager.eventList.setOnClickUrl,
                 url
             );
         },
@@ -428,7 +428,7 @@ define([
 
             if (!maximizable) {
                 scope.observer.publish(
-                    scope.eventManager.eventList.reduceWidget
+                    scope.eventmanager.eventList.reduceWidget
                 );
             }
         },
@@ -476,7 +476,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.toggleContentExpander,
+                scope.eventmanager.eventList.toggleContentExpander,
                 expandable
             );
         },
@@ -497,7 +497,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.scrollContent,
+                scope.eventmanager.eventList.scrollContent,
                 scrollable
             );
         },
@@ -518,7 +518,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.commentableContent,
+                scope.eventmanager.eventList.commentableContent,
                 commentable
             );
         },
@@ -545,7 +545,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.customClassName,
+                scope.eventmanager.eventList.customClassName,
                 [name, currentClassName]
             );
         },

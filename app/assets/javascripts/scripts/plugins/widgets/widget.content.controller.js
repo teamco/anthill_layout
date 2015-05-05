@@ -41,7 +41,7 @@ define([
                  * Define event list
                  * @type {Object}
                  */
-                var eventList = this.eventManager.eventList;
+                var eventList = this.eventmanager.eventList;
 
                 observer.batchPublish(
                     eventList.loadPreferences,
@@ -87,7 +87,7 @@ define([
                         this.logger.debug('Transfer event', event, params);
 
                         this.observer.publish(
-                            this.eventManager.eventList[event],
+                            this.eventmanager.eventList[event],
                             params
                         );
                     }
@@ -107,13 +107,13 @@ define([
                  */
                 var widget = this.controller.getContainment();
 
-                if (!widget.eventManager.eventList.hasOwnProperty(eventName)) {
+                if (!widget.eventmanager.eventList.hasOwnProperty(eventName)) {
                     this.logger.warn('Undefined event', eventName);
                     return false;
                 }
 
                 widget.observer.publish(
-                    widget.eventManager.eventList[eventName]
+                    widget.eventmanager.eventList[eventName]
                 );
             },
 
@@ -122,7 +122,7 @@ define([
              * @memberOf WidgetContentController
              */
             executeOnWidgetContentOnLoadEvent: function executeOnWidgetContentOnLoadEvent() {
-                this.eventManager.executeEventsOnLoad();
+                this.eventmanager.executeEventsOnLoad();
             },
 
             /**
@@ -139,7 +139,7 @@ define([
 
                 // Transfer prefs to widget
                 this.observer.publish(
-                    this.eventManager.eventList.transferContentPreferences,
+                    this.eventmanager.eventList.transferContentPreferences,
                     [key, value]
                 );
 
@@ -163,7 +163,7 @@ define([
                     if (prefs.hasOwnProperty(index)) {
 
                         this.observer.publish(
-                            this.eventManager.eventList.alternativeSavePreferences, [
+                            this.eventmanager.eventList.alternativeSavePreferences, [
                                 index,
                                 prefs[index].value,
                                 false
@@ -218,7 +218,7 @@ define([
                 var widget = this.getContainment();
 
                 widget.observer.publish(
-                    widget.eventManager.eventList.clearThumbnail
+                    widget.eventmanager.eventList.clearThumbnail
                 );
             },
 
@@ -265,7 +265,7 @@ define([
                 var uuid = widget.model.getUUID();
 
                 this.observer.publish(
-                    this.eventManager.eventList.transferStatistics,
+                    this.eventmanager.eventList.transferStatistics,
                     [uuid, e.target]
                 );
             },

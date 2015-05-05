@@ -112,7 +112,7 @@ define([
                  * Get event name
                  * @type {string}
                  */
-                var event = scope.eventManager.eventList[data.event];
+                var event = scope.eventmanager.eventList[data.event];
 
                 event ?
                     scope.observer.publish(event, data) :

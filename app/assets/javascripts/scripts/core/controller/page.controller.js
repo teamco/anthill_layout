@@ -22,9 +22,8 @@ define(
         /**
          * Define page controller
          * @class PageController
-         * @extends {BaseController} BaseController
          * @extends {AntHill} AntHill
-         * @extends {BasePage} BasePage
+         * @extends {BaseController} BaseController
          * @extends {BasePreferences} BasePreferences
          * @extends {Router} Router
          * @extends {PageLayer} PageLayer
@@ -43,18 +42,8 @@ define(
                  * Define set as ready state
                  * @memberOf PageController
                  */
-                setAsReady: function setAsReady() {
-
-                    if (this.ready) {
-
-                        this.logger.debug('Page already saved');
-                        return false
-                    }
-
-                    // Set as ready
-                    this.ready = true;
+                setAsReady: function setAsReady() {debugger
                     this.logger.debug('Page is ready to use');
-
                     this.controller.store();
                 },
 
@@ -122,7 +111,6 @@ define(
                      * @type {boolean}
                      */
                     this.contentLoaded = !!loaded;
-                    this.view.get$item().hideLoader();
                 },
 
                 /**

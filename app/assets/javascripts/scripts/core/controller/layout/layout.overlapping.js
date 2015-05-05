@@ -253,7 +253,7 @@ define([
             if (this.save) {
                 layout.logger.debug('Finish nested organizer');
                 layout.observer.publish(
-                    layout.eventManager.eventList.afterNestedOrganizer
+                    layout.eventmanager.eventList.afterNestedOrganizer
                 );
             }
         },

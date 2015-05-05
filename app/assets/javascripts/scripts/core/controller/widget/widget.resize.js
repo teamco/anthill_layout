@@ -132,7 +132,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.createResizable,
+                scope.eventmanager.eventList.createResizable,
                 [event.type, arguments]
             );
         },
@@ -156,7 +156,7 @@ define([
             scope.wireframe.resizeSticker();
 
             scope.observer.publish(
-                scope.eventManager.eventList.startResizable,
+                scope.eventmanager.eventList.startResizable,
                 [event.type, arguments]
             );
         },
@@ -177,7 +177,7 @@ define([
             this.debugUI(event, ui);
 
             scope.observer.publish(
-                scope.eventManager.eventList.stopResizable,
+                scope.eventmanager.eventList.stopResizable,
                 [event.type, arguments]
             );
             scope.wireframe.hide();
@@ -199,7 +199,7 @@ define([
             this.debugUI(event, ui);
 
             scope.observer.publish(
-                scope.eventManager.eventList.resizeResizable,
+                scope.eventmanager.eventList.resizeResizable,
                 [event.type, arguments]
             );
         }

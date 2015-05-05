@@ -113,7 +113,7 @@ define([
             var scope = this.view.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.switchToPage,
+                scope.eventmanager.eventList.switchToPage,
                 [this, e]
             );
         }

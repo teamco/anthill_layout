@@ -99,11 +99,11 @@ define([
         });
 
         this.observer.publish(
-            this.eventManager.eventList.successCreated
+            this.eventmanager.eventList.successCreated
         );
 
         this.observer.publish(
-            this.eventManager.eventList.updateTranslations,
+            this.eventmanager.eventList.updateTranslations,
             ['plugins/workspace.data/translations/en-us']
         );
     };

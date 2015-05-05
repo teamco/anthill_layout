@@ -158,12 +158,12 @@ define([
         };
 
         this.observer.batchPublish(
-            this.eventManager.eventList.defineSetting,
-            this.eventManager.eventList.setRoutes,
-            this.eventManager.eventList.initResizeWindow,
-            this.eventManager.eventList.successCreated,
-            this.eventManager.eventList.loadApplication,
-            this.eventManager.eventList.defineGlobalInstance
+            this.eventmanager.eventList.defineSetting,
+            this.eventmanager.eventList.setRoutes,
+            this.eventmanager.eventList.initResizeWindow,
+            this.eventmanager.eventList.successCreated,
+            this.eventmanager.eventList.loadApplication,
+            this.eventmanager.eventList.defineGlobalInstance
         );
     };
 

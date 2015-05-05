@@ -49,7 +49,7 @@ define([
 
                     this.controller._subscribePageEventCallback.bind(this)(
                         'afterUpdatePreferences',
-                        this.eventManager.eventList.setEmbeddedContent,
+                        this.eventmanager.eventList.setEmbeddedContent,
                         page
                     );
                 }
@@ -63,7 +63,7 @@ define([
         subscribeOrderPagesEvent: function subscribeOrderPagesEvent() {
             this.controller._subscribePageEventCallback.bind(this)(
                 'afterPageOrder',
-                this.eventManager.eventList.setEmbeddedContent,
+                this.eventmanager.eventList.setEmbeddedContent,
                 this.controller.getWorkspace()
             );
         },
@@ -75,7 +75,7 @@ define([
         subscribeAfterSwitchPageEvent: function subscribeAfterSwitchPageEvent() {
             this.controller._subscribePageEventCallback.bind(this)(
                 'afterSwitchToPage',
-                this.eventManager.eventList.setActivePageTab,
+                this.eventmanager.eventList.setActivePageTab,
                 this.controller.getWorkspace()
             );
         },
@@ -87,7 +87,7 @@ define([
         subscribeCreatePageEvent: function subscribeCreatePageEvent() {
             this.controller._subscribePageEventCallback.bind(this)(
                 'afterCreateItem',
-                this.eventManager.eventList.setEmbeddedContent,
+                this.eventmanager.eventList.setEmbeddedContent,
                 this.controller.getWorkspace()
             );
         },
@@ -100,13 +100,13 @@ define([
 
             this.controller._subscribePageEventCallback.bind(this)(
                 'afterDestroyItem',
-                this.eventManager.eventList.setEmbeddedContent,
+                this.eventmanager.eventList.setEmbeddedContent,
                 this.controller.getWorkspace()
             );
 
             this.controller._subscribePageEventCallback.bind(this)(
                 'afterDestroyItems',
-                this.eventManager.eventList.setEmbeddedContent,
+                this.eventmanager.eventList.setEmbeddedContent,
                 this.controller.getWorkspace()
             );
         },
@@ -125,12 +125,12 @@ define([
              * Get workspace
              * @type {WorkspaceEventManager|PageEventManager}
              */
-            var eventManager = scope.eventManager;
+            var eventmanager = scope.eventmanager;
 
-            eventManager.subscribe({
+            eventmanager.subscribe({
 
                 event: {
-                    eventName: eventManager.eventList[eventName]
+                    eventName: eventmanager.eventList[eventName]
                 },
 
                 callback: function _callback() {
@@ -159,7 +159,7 @@ define([
             );
 
             this.observer.publish(
-                this.eventManager.eventList.setActivePageTab
+                this.eventmanager.eventList.setActivePageTab
             );
         },
 
@@ -195,7 +195,7 @@ define([
                 var workspace = this.controller.getWorkspace();
 
                 workspace.observer.publish(
-                    workspace.eventManager.eventList.switchToPage, [
+                    workspace.eventmanager.eventList.switchToPage, [
                         $page.pageTab,
                         this.model.getPrefs('pagetabsSwipe')
                     ]
@@ -218,7 +218,7 @@ define([
                 scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.publishRule,
+                scope.eventmanager.eventList.publishRule,
                 [$button.attr('value'), this.scope.constructor.prototype.name]
             );
         }

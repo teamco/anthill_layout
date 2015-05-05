@@ -101,7 +101,7 @@ define([
              */
             function _locatePrefs(event) {
                 scope.observer.publish(
-                    scope.eventManager.eventList.loadPreferences, [
+                    scope.eventmanager.eventList.loadPreferences, [
                         {uuid: config.uuid},
                         false,
                         event,
@@ -143,7 +143,7 @@ define([
              */
             function _clickPrefs() {
                 scope.observer.publish(
-                    scope.eventManager.eventList.loadPreferences,
+                    scope.eventmanager.eventList.loadPreferences,
                     [config, true]
                 );
             }

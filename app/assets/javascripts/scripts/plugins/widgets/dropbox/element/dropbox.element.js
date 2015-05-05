@@ -112,7 +112,7 @@ define([
                         var scope = view.scope;
 
                         scope.observer.publish(
-                            scope.eventManager.eventList.setEmbeddedContent
+                            scope.eventmanager.eventList.setEmbeddedContent
                         );
                     },
                     linkType: 'direct'

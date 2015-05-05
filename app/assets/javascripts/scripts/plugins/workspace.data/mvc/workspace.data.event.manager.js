@@ -62,7 +62,7 @@ define([
              * Define event list
              * @type {*}
              */
-            var pageEventList = page.eventManager.eventList;
+            var pageEventList = page.eventmanager.eventList;
 
             /**
              * Define events

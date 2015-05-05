@@ -179,7 +179,7 @@ define([
             function _clickPrefs() {
 
                 this.view.scope.observer.publish(
-                    this.view.scope.eventManager.eventList.preparePreferences,
+                    this.view.scope.eventmanager.eventList.preparePreferences,
                     config
                 );
             }

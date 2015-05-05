@@ -62,8 +62,9 @@ define(
                          */
                         var page = this.controller.getPage();
 
+                        page.view.get$item().showLoader();
                         page.observer.publish(
-                            page.eventManager.eventList.loadItemsContent
+                            page.eventmanager.eventList.loadItemsContent
                         );
                     }
                 },
@@ -174,7 +175,7 @@ define(
 
                     if (e.target === window && this.model.getConfig('isResized')) {
                         this.observer.publish(
-                            this.eventManager.eventList.resizeWindow,
+                            this.eventmanager.eventList.resizeWindow,
                             e
                         );
                     }
@@ -189,7 +190,7 @@ define(
                     this.logger.debug('Start resize window', e);
 
                     this.observer.publish(
-                        this.eventManager.eventList.resizeWindowHooks
+                        this.eventmanager.eventList.resizeWindowHooks
                     );
                 },
 

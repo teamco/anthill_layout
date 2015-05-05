@@ -221,7 +221,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.successRenderHeader, [
+                scope.eventmanager.eventList.successRenderHeader, [
                     this.elements.$header,
                     this.getConfigHTML('header')
                 ]
@@ -259,7 +259,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.successRenderFooter, [
+                scope.eventmanager.eventList.successRenderFooter, [
                     this.elements.$footer,
                     this.getConfigHTML('footer')
                 ]

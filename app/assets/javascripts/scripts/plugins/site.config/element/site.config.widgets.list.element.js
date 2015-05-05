@@ -127,7 +127,7 @@ define([
             $('li.name', $ul).on('click.edit', function clickEdit() {
 
                 scope.observer.publish(
-                    scope.eventManager.eventList.widgetEditor,
+                    scope.eventmanager.eventList.widgetEditor,
                     $('.resource', $(this).parent()).text()
                 );
             });

@@ -48,7 +48,7 @@ define(function defineWorkspacePage() {
                 var scope = this.scope;
 
                 scope.observer.publish(
-                    scope.eventManager.eventList.switchToPage,
+                    scope.eventmanager.eventList.switchToPage,
                     this.getPageByHashLocation(scope)
                 );
             },
@@ -76,7 +76,7 @@ define(function defineWorkspacePage() {
                         page = pages[index];
 
                         page.layout.observer.publish(
-                            page.layout.eventManager.eventList.updateMinCellWidth
+                            page.layout.eventmanager.eventList.updateMinCellWidth
                         );
                     }
                 }
@@ -127,7 +127,7 @@ define(function defineWorkspacePage() {
                     }
 
                     this.observer.publish(
-                        this.eventManager.eventList.beforeSwitchToPage,
+                        this.eventmanager.eventList.beforeSwitchToPage,
                         page
                     );
 
@@ -183,12 +183,13 @@ define(function defineWorkspacePage() {
 
                 scope.view.elements.$pages.swipeTo(page);
                 scope.observer.publish(
-                    scope.eventManager.eventList.updateMetaData,
+                    scope.eventmanager.eventList.updateMetaData,
                     page
                 );
 
+                page.view.get$item().showLoader();
                 page.observer.publish(
-                    page.eventManager.eventList.loadItemsContent
+                    page.eventmanager.eventList.loadItemsContent
                 );
             },
 
@@ -248,7 +249,7 @@ define(function defineWorkspacePage() {
 
                 // Transfer layout
                 currentPage.observer.publish(
-                    currentPage.eventManager.eventList.createLayout,
+                    currentPage.eventmanager.eventList.createLayout,
                     clonePage.model.getConfig('layout')
                 );
 

@@ -44,7 +44,7 @@ define([
             this.model.setPrefs(preference, value);
 
             this.scope.observer.publish(
-                this.scope.eventManager.eventList.transferContentPreferences,
+                this.scope.eventmanager.eventList.transferContentPreferences,
                 [preference, value]
             );
         },
@@ -64,7 +64,7 @@ define([
                 scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.publishRule,
+                scope.eventmanager.eventList.publishRule,
                 [$button.attr('value'), scope.constructor.prototype.name]
             );
         }

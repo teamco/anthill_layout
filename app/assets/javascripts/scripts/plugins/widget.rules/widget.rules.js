@@ -97,11 +97,11 @@ define([
         });
 
         this.observer.publish(
-            this.eventManager.eventList.successCreated
+            this.eventmanager.eventList.successCreated
         );
 
         this.observer.publish(
-            this.eventManager.eventList.updateTranslations,
+            this.eventmanager.eventList.updateTranslations,
             ['plugins/widget.rules/translations/en-us']
         );
     };

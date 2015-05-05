@@ -98,7 +98,7 @@ define([
              * Define event list
              * @type {*}
              */
-            var rootEventList = root.eventManager.eventList;
+            var rootEventList = root.eventmanager.eventList;
 
             /**
              * Define events

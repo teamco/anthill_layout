@@ -262,7 +262,7 @@ define([
                  * Get app event manager
                  * @type {ApplicationEventManager}
                  */
-                var appEventManager = this.view.controller.root().eventManager;
+                var appEventManager = this.view.controller.root().eventmanager;
 
                 appEventManager.subscribe({
                     event: {

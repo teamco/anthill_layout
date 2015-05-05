@@ -52,7 +52,7 @@ define([
              */
             var panel = this.view.scope.containment,
                 publish = panel.observer.publish.bind(panel.observer),
-                event = panel.eventManager.eventList;
+                event = panel.eventmanager.eventList;
 
             this.$.on('click.toggle', function clickToggle() {
                     panel.view.controller.isOpened() ?

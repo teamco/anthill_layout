@@ -68,7 +68,7 @@ define(function defineLayoutExpand() {
             function _callback() {
 
                 layout.observer.publish(
-                    layout.eventManager.eventList.afterExpand,
+                    layout.eventmanager.eventList.afterExpand,
                     widget
                 );
             }

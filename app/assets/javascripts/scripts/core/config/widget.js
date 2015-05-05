@@ -197,7 +197,7 @@ define([
         this.expanded = false;
 
         this.observer.publish(
-            this.eventManager.eventList.successCreated
+            this.eventmanager.eventList.successCreated
         );
     };
 

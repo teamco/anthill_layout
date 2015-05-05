@@ -93,7 +93,6 @@ define([
                     this.model.getItems()
                 );
                 this.controller.setAsLoading(false);
-                this.view.get$item().hideLoader();
             },
 
             /**
@@ -114,7 +113,7 @@ define([
                 if (this.scope === root) {
 
                     root.observer.publish(
-                        root.eventManager.eventList.setAsLoaded
+                        root.eventmanager.eventList.setAsLoaded
                     );
                 }
             },

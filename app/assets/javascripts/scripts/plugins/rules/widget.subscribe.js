@@ -148,11 +148,11 @@ define([], function defineWidgetSubscribe() {
             var widget = this.scope.controller.getContainment();
 
             widget.observer.publish(
-                widget.eventManager.eventList.saveDom
+                widget.eventmanager.eventList.saveDom
             );
 
             widget.observer.publish(
-                widget.eventManager.eventList.stopDraggable,
+                widget.eventmanager.eventList.stopDraggable,
                 'stopDraggable'
             );
         },
@@ -170,11 +170,11 @@ define([], function defineWidgetSubscribe() {
             var widget = this.scope.controller.getContainment();
 
             widget.observer.publish(
-                widget.eventManager.eventList.saveDom
+                widget.eventmanager.eventList.saveDom
             );
 
             widget.observer.publish(
-                widget.eventManager.eventList.stopResizable,
+                widget.eventmanager.eventList.stopResizable,
                 'stopResizable'
             );
         },
@@ -193,7 +193,7 @@ define([], function defineWidgetSubscribe() {
             var widget = this.referrer;
 
             var subscribers = widget.controller.getSubscribers(
-                widget.eventManager.eventList.splitEmbeddedContent
+                widget.eventmanager.eventList.splitEmbeddedContent
             );
 
             /**
@@ -205,12 +205,12 @@ define([], function defineWidgetSubscribe() {
             scope.model.copyPrefs(widget);
 
             scope.observer.publish(
-                scope.eventManager.eventList.splitEmbeddedContent,
+                scope.eventmanager.eventList.splitEmbeddedContent,
                 [subscribers, true]
             );
 
             scope.referrer.observer.publish(
-                scope.referrer.eventManager.eventList.setActiveContent,
+                scope.referrer.eventmanager.eventList.setActiveContent,
                 scope.controller.getContainment().model.getUUID()
             );
 
@@ -234,11 +234,11 @@ define([], function defineWidgetSubscribe() {
             scope.model.copyPrefs(this.referrer);
 
             scope.observer.publish(
-                scope.eventManager.eventList.setEmbeddedContent
+                scope.eventmanager.eventList.setEmbeddedContent
             );
 
             scope.referrer.observer.publish(
-                scope.referrer.eventManager.eventList.setActiveContent,
+                scope.referrer.eventmanager.eventList.setActiveContent,
                 scope.controller.getContainment().model.getUUID()
             );
 
@@ -262,7 +262,7 @@ define([], function defineWidgetSubscribe() {
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.collectStats,
+                scope.eventmanager.eventList.collectStats,
                 [uuid, $element]
             );
         },

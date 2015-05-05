@@ -33,7 +33,7 @@ define(['config/page'], function definePageListeners(Page) {
                 this.controller.updateLayout();
 
                 this.observer.batchPublish(
-                    this.eventManager.eventList.updateItemInteractions
+                    this.eventmanager.eventList.updateItemInteractions
                 );
             }
         },
@@ -57,7 +57,7 @@ define(['config/page'], function definePageListeners(Page) {
                 );
 
                 this.observer.publish(
-                    this.eventManager.eventList.updateHeight
+                    this.eventmanager.eventList.updateHeight
                 );
             }
         },
@@ -67,12 +67,12 @@ define(['config/page'], function definePageListeners(Page) {
             callback: function resizeWidgetCallback(widget) {
 
                 widget.observer.publish(
-                    widget.eventManager.eventList.adoptDimensions,
+                    widget.eventmanager.eventList.adoptDimensions,
                     true
                 );
 
                 this.observer.publish(
-                    this.eventManager.eventList.updateHeight
+                    this.eventmanager.eventList.updateHeight
                 );
             }
         }

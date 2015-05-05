@@ -68,7 +68,7 @@ define(function defineSiteConfigPreferences() {
             var workspace = this.getWorkspace();
 
             workspace.observer.publish(
-                workspace.eventManager.eventList.updateSiteWidth
+                workspace.eventmanager.eventList.updateSiteWidth
             );
         }
     });

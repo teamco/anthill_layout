@@ -26,12 +26,12 @@ define(function defineWorkspaceSEO() {
             updateMetaData: function updateMetaData(page) {
 
                 this.observer.batchPublish(
-                    this.eventManager.eventList.updateSiteTitle
+                    this.eventmanager.eventList.updateSiteTitle
                 );
 
                 page.observer.batchPublish(
-                    page.eventManager.eventList.updateSiteDescription,
-                    page.eventManager.eventList.updateSiteKeywords
+                    page.eventmanager.eventList.updateSiteDescription,
+                    page.eventmanager.eventList.updateSiteKeywords
                 );
             },
 

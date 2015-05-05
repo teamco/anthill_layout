@@ -34,7 +34,7 @@ define([
          * @returns {*}
          */
         getEventList: function getEventList() {
-            return this.scope.eventManager.events;
+            return this.scope.eventmanager.events;
         },
         /**
          * Get event UUID
@@ -236,7 +236,7 @@ define([
             eventUUID = this.unRegister(eventName, eventUUID);
 
             if (eventUUID) {
-                delete this.scope.eventManager.events[eventUUID];
+                delete this.scope.eventmanager.events[eventUUID];
                 return true;
             }
 

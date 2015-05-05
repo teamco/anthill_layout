@@ -73,7 +73,7 @@ define([
                 var panel = this.controller.getAuthorPanel();
 
                 panel.observer.publish(
-                    panel.eventManager.eventList.closePanel,
+                    panel.eventmanager.eventList.closePanel,
                     panel.active
                 );
 
@@ -105,7 +105,7 @@ define([
         loadPreferences: function loadPreferences(config, event, callback) {
 
             this.observer.publish(
-                this.eventManager.eventList.setActiveContent,
+                this.eventmanager.eventList.setActiveContent,
                 config.uuid
             );
 
@@ -180,7 +180,7 @@ define([
             if (page.maximized === widget) {
 
                 widget.observer.publish(
-                    widget.eventManager.eventList.reduceWidget
+                    widget.eventmanager.eventList.reduceWidget
                 );
 
             } else {
@@ -188,12 +188,12 @@ define([
                 if (page.maximized.observer) {
 
                     page.maximized.observer.publish(
-                        page.maximized.eventManager.eventList.reduceWidget
+                        page.maximized.eventmanager.eventList.reduceWidget
                     );
                 }
 
                 widget.observer.publish(
-                    widget.eventManager.eventList.enlargeWidget
+                    widget.eventmanager.eventList.enlargeWidget
                 );
             }
         }

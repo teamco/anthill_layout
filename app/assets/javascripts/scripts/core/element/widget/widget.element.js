@@ -94,7 +94,7 @@ define([
                     $widget.addClass(content);
 
                     scope.observer.publish(
-                        scope.eventManager.eventList.disableDraggable
+                        scope.eventmanager.eventList.disableDraggable
                     );
                 });
             });
@@ -118,7 +118,7 @@ define([
                     $widget.off('dblclick.widget');
 
                     scope.observer.publish(
-                        scope.eventManager.eventList.enableDraggable
+                        scope.eventmanager.eventList.enableDraggable
                     );
                 }
             });
@@ -243,7 +243,7 @@ define([
             }, 500, function afterEnlarge() {
 
                 scope.observer.publish(
-                    scope.eventManager.eventList.afterMaximize
+                    scope.eventmanager.eventList.afterMaximize
                 );
 
             }.bind(scope)).addClass(this.maximize);
@@ -272,7 +272,7 @@ define([
             }, 500, function afterReduce() {
 
                 scope.observer.publish(
-                    scope.eventManager.eventList.afterReduce
+                    scope.eventmanager.eventList.afterReduce
                 );
 
             }.bind(scope)).removeClass(this.maximize);
@@ -372,10 +372,10 @@ define([
                 return this._setPosition();
             }
 
-            if (stick && scope.eventManager.isEvent(stick)) {
+            if (stick && scope.eventmanager.isEvent(stick)) {
 
                 scope.observer.publish(
-                    scope.eventManager.eventList[stick]
+                    scope.eventmanager.eventList[stick]
                 );
 
             } else {
@@ -493,7 +493,7 @@ define([
                 var scope = this.scope;
 
 //                scope.observer.publish(
-//                    scope.eventManager.eventList.provideStats,
+//                    scope.eventmanager.eventList.provideStats,
 //                    e
 //                );
             }

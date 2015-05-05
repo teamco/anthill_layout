@@ -114,7 +114,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.createDraggable,
+                scope.eventmanager.eventList.createDraggable,
                 arguments
             );
         },
@@ -139,7 +139,7 @@ define([
             scope.wireframe.dragSticker();
 
             scope.observer.publish(
-                scope.eventManager.eventList.startDraggable,
+                scope.eventmanager.eventList.startDraggable,
                 arguments
             );
         },
@@ -161,7 +161,7 @@ define([
             this.debugUI(event, ui);
 
             scope.observer.publish(
-                scope.eventManager.eventList.stopDraggable,
+                scope.eventmanager.eventList.stopDraggable,
                 [event.type, arguments]
             );
 
@@ -185,7 +185,7 @@ define([
             this.debugUI(event, ui);
 
             scope.observer.publish(
-                scope.eventManager.eventList.dragDraggable,
+                scope.eventmanager.eventList.dragDraggable,
                 [event.type, arguments]
             );
         }

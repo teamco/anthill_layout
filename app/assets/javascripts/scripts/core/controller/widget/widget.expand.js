@@ -125,7 +125,7 @@ define(function defineWidgetExpand() {
             if (this.controller.isExpanded()) {
 
                 this.observer.publish(
-                    this.eventManager.eventList.collapseContent
+                    this.eventmanager.eventList.collapseContent
                 );
 
                 return false;
@@ -188,7 +188,7 @@ define(function defineWidgetExpand() {
             $widget.view.elements.$expander.toggleExpandText(!expand);
 
             scope.observer.publish(
-                scope.eventManager.eventList.afterExpand,
+                scope.eventmanager.eventList.afterExpand,
                 expand
             );
         },
@@ -215,7 +215,7 @@ define(function defineWidgetExpand() {
             var page = this.controller.getContainment();
 
             page.observer.publish(
-                page.eventManager.eventList.expandLayout,
+                page.eventmanager.eventList.expandLayout,
                 this
             );
         }

@@ -43,7 +43,7 @@ define([
             this.model.setAvatarCoordinateX(x);
             this.model.setAvatarCoordinateY(y);
             this.observer.publish(
-                this.eventManager.eventList.alternativeSaveAllPreferences
+                this.eventmanager.eventList.alternativeSaveAllPreferences
             );
         },
 
@@ -62,7 +62,7 @@ define([
                 scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.publishRule,
+                scope.eventmanager.eventList.publishRule,
                 [$button.attr('value'), this.scope.constructor.prototype.name]
             );
         }

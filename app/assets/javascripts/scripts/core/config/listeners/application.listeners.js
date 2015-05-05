@@ -30,7 +30,7 @@ define(['config/application'], function defineApplicationListeners(Application) 
             name: 'resize.window',
             callback: function resizeWindowCallback() {
                 this.observer.publish(
-                    this.eventManager.eventList.resizeWorkspaces
+                    this.eventmanager.eventList.resizeWorkspaces
                 );
             }
         },
@@ -41,7 +41,7 @@ define(['config/application'], function defineApplicationListeners(Application) 
             name: 'resize.workspace',
             callback: function resizeWorkspaceCallback(workspace) {
                 workspace.observer.publish(
-                    workspace.eventManager.eventList.resizePages
+                    workspace.eventmanager.eventList.resizePages
                 );
             }
         }

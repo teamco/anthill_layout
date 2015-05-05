@@ -48,6 +48,7 @@ define([
          *      resizeWidget: string,
          *      loadItemsContent: string,
          *      setLoadedContent: string,
+         *      updateLoadedContent: string,
          *      updateHashOnMaximize: string,
          *      updateHashOnReduce: string,
          *      updateHeight: string,
@@ -93,6 +94,7 @@ define([
             disableItemInteractions: 'disable.item.interactions',
             loadItemsContent: 'load.items.content',
             setLoadedContent: 'set.loaded.content',
+            updateLoadedContent: 'update.loaded.content',
             enableItemInteractions: 'enable.item.interactions',
             updateItemInteractions: 'update.item.interactions',
 

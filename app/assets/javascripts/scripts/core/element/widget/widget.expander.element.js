@@ -52,7 +52,7 @@ define([
             this.$.on('click.expand', function expand(e) {
 
                 scope.observer.publish(
-                    scope.eventManager.eventList.expandContent,
+                    scope.eventmanager.eventList.expandContent,
                     e
                 );
             });

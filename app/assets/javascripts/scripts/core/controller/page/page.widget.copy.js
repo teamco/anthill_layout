@@ -101,7 +101,7 @@ define(function definePageWidgetCopy() {
 
                 // Render widget
                 currentWidget.observer.publish(
-                    currentWidget.eventManager.eventList.successRendered
+                    currentWidget.eventmanager.eventList.successRendered
                 );
 
                 // Copy prefs

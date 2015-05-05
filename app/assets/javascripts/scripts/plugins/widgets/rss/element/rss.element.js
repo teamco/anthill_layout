@@ -46,7 +46,7 @@ define([
             var scope = this.view.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.parseRSS,
+                scope.eventmanager.eventList.parseRSS,
                 [url, this.updateContent.bind(this)]
             );
         },

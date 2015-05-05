@@ -91,7 +91,7 @@ define([
             var scope = this.view.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.updatePagesOrder,
+                scope.eventmanager.eventList.updatePagesOrder,
                 [this.$.sortable('toArray')]
             );
 

@@ -170,7 +170,7 @@ define([
         render: function render() {
 
             this.scope.observer.publish(
-                this.scope.eventManager.eventList.successRendered,
+                this.scope.eventmanager.eventList.successRendered,
                 this.renderPanel.bind(this)
             );
         }

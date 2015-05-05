@@ -80,15 +80,15 @@ define([
         });
 
         this.observer.publish(
-            this.eventManager.eventList.successCreated
+            this.eventmanager.eventList.successCreated
         );
 
         this.observer.publish(
-            this.eventManager.eventList.defineModules
+            this.eventmanager.eventList.defineModules
         );
 
         this.observer.publish(
-            this.eventManager.eventList.updateTranslations,
+            this.eventmanager.eventList.updateTranslations,
             ['plugins/bar/translations/en-us']
         );
     };

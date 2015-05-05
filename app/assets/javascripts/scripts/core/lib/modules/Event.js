@@ -97,7 +97,7 @@ define([
                     var item = items[index];
 
                     // Recursive search
-                    var search = item.eventManager.findItemByEventUUID(
+                    var search = item.eventmanager.findItemByEventUUID(
                         item, uuid
                     );
 
@@ -243,7 +243,7 @@ define([
                 var event = data.events[i];
 
                 eventUUIDs.push(
-                    data.scope.eventManager.subscribe({
+                    data.scope.eventmanager.subscribe({
                         event: {
                             eventName: event.eventName,
                             params: event.params,

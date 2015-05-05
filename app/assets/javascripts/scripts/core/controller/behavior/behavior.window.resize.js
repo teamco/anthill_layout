@@ -48,13 +48,13 @@ define([
 
                 var cname = this.model.getItemNameSpace(),
                     plural = this.model.getConfig(cname).plural,
-                    abstract = this.scope.eventManager.abstract;
+                    abstract = this.scope.eventmanager.abstract;
 
                 /**
                  * Define resize event
                  * @type {*}
                  */
-                event = this.scope.eventManager.eventList[abstract.resizeItem];
+                event = this.scope.eventmanager.eventList[abstract.resizeItem];
 
                 if (!plural) {
 

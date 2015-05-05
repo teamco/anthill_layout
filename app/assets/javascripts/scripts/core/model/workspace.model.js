@@ -67,7 +67,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.updatePagesWidth
+                scope.eventmanager.eventList.updatePagesWidth
             );
         },
 
@@ -87,7 +87,7 @@ define([
             this._setItemInfoPreferences('siteTitle', title);
 
             scope.observer.publish(
-                scope.eventManager.eventList.updateSiteTitle
+                scope.eventmanager.eventList.updateSiteTitle
             );
         },
 
@@ -107,7 +107,7 @@ define([
             this._setItemInfoPreferences('siteAuthor', author);
 
             scope.observer.publish(
-                scope.eventManager.eventList.updateSiteAuthor
+                scope.eventmanager.eventList.updateSiteAuthor
             );
         },
 
@@ -127,7 +127,7 @@ define([
             this._setItemInfoPreferences('siteDescription', description);
 
             scope.observer.publish(
-                scope.eventManager.eventList.updateSiteDescription
+                scope.eventmanager.eventList.updateSiteDescription
             );
         },
 
@@ -147,7 +147,7 @@ define([
             this._setItemInfoPreferences('siteKeywords', keywords);
 
             scope.observer.publish(
-                scope.eventManager.eventList.updateSiteKeywords
+                scope.eventmanager.eventList.updateSiteKeywords
             );
         },
 
@@ -167,7 +167,7 @@ define([
             scope.config.preferences.trackingId = trackingId;
 
             scope.observer.publish(
-                scope.eventManager.eventList.loadTrackingSnippet
+                scope.eventmanager.eventList.loadTrackingSnippet
             );
         },
 
@@ -185,7 +185,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.clonePage,
+                scope.eventmanager.eventList.clonePage,
                 itemUUID
             );
         }

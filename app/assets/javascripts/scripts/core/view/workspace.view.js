@@ -68,7 +68,7 @@ define([
          */
         render: function render(silent) {
             this.scope.observer.publish(
-                this.scope.eventManager.eventList.successRendered,
+                this.scope.eventmanager.eventList.successRendered,
                 silent
             );
         }

@@ -70,7 +70,7 @@ define([
             }
 
             scope.observer.publish(
-                scope.eventManager.eventList.transferRules,
+                scope.eventmanager.eventList.transferRules,
                 events
             );
 
@@ -116,7 +116,7 @@ define([
             this.logger.debug('Load rules', rules);
 
             this.observer.publish(
-                this.eventManager.eventList.registerRules
+                this.eventmanager.eventList.registerRules
             );
         },
 
@@ -184,7 +184,7 @@ define([
             widget.model.updateRules(rules);
 
             this.observer.publish(
-                this.eventManager.eventList.registerRules
+                this.eventmanager.eventList.registerRules
             );
         },
 
@@ -199,7 +199,7 @@ define([
              * Define subscriber events
              * @type {*}
              */
-            var subscribeEM = this.scope.eventManager.subscribers;
+            var subscribeEM = this.scope.eventmanager.subscribers;
 
             for (var index in subscribeEM) {
 
@@ -280,8 +280,8 @@ define([
              * Define subscriber events
              * @type {*}
              */
-            this.eventManager.subscribers = this.base.define(
-                this.eventManager.subscribers, {}, true
+            this.eventmanager.subscribers = this.base.define(
+                this.eventmanager.subscribers, {}, true
             );
 
             /**
@@ -293,7 +293,7 @@ define([
             $.extend(
                 true,
                 subscribeEM,
-                this.eventManager.subscribers
+                this.eventmanager.subscribers
             );
 
             if (!this.controller.unregisterRules()) {
@@ -505,7 +505,7 @@ define([
              * Define event list
              * @type {{}}
              */
-            var eventList = scope.eventManager.eventList || {};
+            var eventList = scope.eventmanager.eventList || {};
 
             /**
              * Define event name
@@ -559,7 +559,7 @@ define([
                  * Subscribe to event
                  * @type {Array}
                  */
-                var eventUUIDs = this.scope.eventManager.publishOn({
+                var eventUUIDs = this.scope.eventmanager.publishOn({
                     scope: scope,
                     events: [
                         {eventName: eventList[ename]}
@@ -590,7 +590,7 @@ define([
                 scope = this.scope;
 
             scope.observer.publish(
-                scope.eventManager.eventList.publishRule,
+                scope.eventmanager.eventList.publishRule,
                 [$button.attr('value'), 'Widget']
             );
         },
