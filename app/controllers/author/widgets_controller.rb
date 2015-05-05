@@ -46,7 +46,7 @@ class Author::WidgetsController < Author::AuthorController
 
     unless @author_widgets.nil?
       @json_data[:in] = @author_widgets.map { |x| x.id }
-      @json_data[:categories] = @author_widgets.map { |x| x.author_widget_category }.uniq!.sort { |a, b| a.name_value<=>b.name_value }
+      @json_data[:categories] = @author_widgets.map { |x| x.author_widget_category }.uniq.sort { |a, b| a.name_value<=>b.name_value }
       @json_data[:widgets] = @author_widgets.map do |w|
         {
             id: w[:id],
