@@ -111,6 +111,8 @@ define(
                      * @type {boolean}
                      */
                     this.contentLoaded = !!loaded;
+
+                    this.view.get$item().hideLoader();
                 },
 
                 /**

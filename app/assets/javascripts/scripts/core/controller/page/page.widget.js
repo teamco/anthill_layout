@@ -265,8 +265,6 @@ define([
 
                 if (this.ready === items) {
 
-                    this.view.get$item().hideLoader();
-
                     this.observer.publish(
                         this.eventmanager.eventList.setLoadedContent,
                         true
