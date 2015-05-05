@@ -1,6 +1,4 @@
 .widget {
-    width: 150px;
-    height: 150px;
     position: absolute;
     cursor: move;
     border: none;
@@ -27,7 +25,7 @@
 }
 
 .widget.overlapped:after {
-    content: " ";
+    content: ' ';
     position: absolute;
     top: 0;
     left: 0;
@@ -41,7 +39,7 @@
 .authorize .widget:hover:after,
 .widget.ui-draggable-dragging:after,
 .widget.ui-resizable-resizing:after {
-    content: " ";
+    content: ' ';
     position: absolute;
     top: 0;
     left: 0;

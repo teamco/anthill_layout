@@ -33,9 +33,11 @@ define([
          * @type {{
          *      setMaximized: string,
          *      unsetMaximized: string,
+         *      setAsReady: string,
          *      createWidget: string,
          *      destroyWidget: string,
          *      destroyWidgets: string,
+         *      approveItemsDestroy: string,
          *      createLayout: string,
          *      destroyLayout: string,
          *      updateSiteDescription: string,
@@ -67,6 +69,8 @@ define([
             destroyWidget: 'destroy.widget',
             destroyWidgets: 'destroy.widgets',
             approveItemsDestroy: 'approve.items.destroy',
+
+            setAsReady: 'set.as.ready',
 
             createLayout: 'create.layout',
             destroyLayout: 'destroy.layout',

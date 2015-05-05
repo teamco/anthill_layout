@@ -199,6 +199,13 @@ define([
         init: function init() {
 
             /**
+             * Define ready
+             * @property Page
+             * @type {boolean}
+             */
+            this.ready = false;
+
+            /**
              * Define items
              * @property Page
              * @type {*}

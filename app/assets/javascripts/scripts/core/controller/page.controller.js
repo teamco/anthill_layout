@@ -40,6 +40,25 @@ define(
             'PageController', {
 
                 /**
+                 * Define set as ready state
+                 * @memberOf PageController
+                 */
+                setAsReady: function setAsReady() {
+
+                    if (this.ready) {
+                        
+                        this.logger.debug('Page already saved');
+                        return false
+                    }
+
+                    // Set as ready
+                    this.ready = true;
+                    this.logger.debug('Page is ready to use');
+
+                    this.controller.store();
+                },
+
+                /**
                  * Transfer preferences
                  * @memberOf PageController
                  * @param {string} index

@@ -32,9 +32,8 @@ define(['config/page'], function definePageListeners(Page) {
                 this.view.renderPage();
                 this.controller.updateLayout();
 
-                this.observer.publish(
-                    this.eventmanager.eventList.updateItemInteractions,
-                    this.model.getConfig('preferences').outlineContainment
+                this.observer.batchPublish(
+                    this.eventmanager.eventList.updateItemInteractions
                 );
             }
         },

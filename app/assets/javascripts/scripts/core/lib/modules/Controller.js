@@ -288,8 +288,7 @@ define([
              */
             successCreated: function successCreated() {
                 this.logger.debug(
-                    this.constructor.prototype.name +
-                    ' was successfully created',
+                    'Successfully created',
                     this
                 );
             },
@@ -505,7 +504,7 @@ define([
                     html: {
                         container: [
                             '#', scope.model.getUUID(),
-                            '-', scope.constructor.prototype.name.toLowerCase()
+                            '-', scope.name.toLowerCase()
                         ].join('')
                     },
                     containment: scope
@@ -532,7 +531,7 @@ define([
              * @returns {boolean}
              */
             isWorkspace: function isWorkspace() {
-                return this.scope.constructor.prototype.name === 'Workspace';
+                return this.scope.name === 'Workspace';
             },
 
             /**
@@ -541,7 +540,7 @@ define([
              * @returns {boolean}
              */
             isPage: function isPage() {
-                return this.scope.constructor.prototype.name === 'Page';
+                return this.scope.name === 'Page';
             },
 
             /**

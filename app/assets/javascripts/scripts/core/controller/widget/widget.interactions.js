@@ -360,12 +360,20 @@ define([
         updateContainment: function updateContainment(type, containment) {
 
             // Update interaction
-            this.interactions[type].$scope[type]('option', 'containment', containment);
+            this.interactions[type].$scope[type](
+                'option',
+                'containment',
+                containment
+            );
 
             // Update config
             this.config.events[type].containment = !!containment;
 
-            this.logger.debug('Update interaction containment', type, containment);
+            this.logger.debug(
+                'Update interaction containment',
+                type,
+                containment
+            );
         }
     });
 });

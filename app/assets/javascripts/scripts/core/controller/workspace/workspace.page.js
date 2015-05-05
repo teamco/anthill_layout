@@ -229,16 +229,22 @@ define(function defineWorkspacePage() {
             clonePage: function clonePage(uuid) {
 
                 /**
+                 * Get current page
+                 * @type {Page}
+                 */
+                var currentPage = this.model.getCurrentItem();
+
+                /**
                  * Get clone page
                  * @type {Page}
                  */
                 var clonePage = this.model.getItemByUUID(uuid);
 
-                /**
-                 * Get current page
-                 * @type {Page}
-                 */
-                var currentPage = this.model.getCurrentItem();
+                if (typeof(clonePage) === 'undefined') {
+
+                    this.logger.debug('Create empty page', uuid);
+                    return false;
+                }
 
                 // Transfer layout
                 currentPage.observer.publish(

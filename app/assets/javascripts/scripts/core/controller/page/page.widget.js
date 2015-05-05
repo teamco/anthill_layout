@@ -189,24 +189,34 @@ define([
                         this.eventmanager.eventList.setLoadedContent,
                         true
                     );
+
+                    this.observer.publish(
+                        this.eventmanager.eventList.setAsReady
+                    );
                 }
             },
 
             /**
              * Update widget interactions
              * @memberOf PageWidget
-             * @param {boolean} outline
              */
-            updateItemInteractions: function updateItemInteractions(outline) {
+            updateItemInteractions: function updateItemInteractions() {
 
                 var items = this.model.getItems(),
                     item, index;
 
-                this.logger.debug('Update widget containment interactions', outline);
+                // Get outline
+                var outline = this.model.getConfig('preferences').
+                    outlineContainment;
 
                 var containment = outline ?
-                    this.view.get$item().$ :
-                    false;
+                    false : this.view.get$item().$;
+
+                this.logger.debug(
+                    'Update widget containment interactions',
+                    outline,
+                    containment
+                );
 
                 for (index in items) {
 

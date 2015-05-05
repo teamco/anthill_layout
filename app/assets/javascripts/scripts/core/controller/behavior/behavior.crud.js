@@ -217,16 +217,17 @@ define([
              * @type {Application}
              */
             var root = this.root(),
-                isWidget = this.scope.model.getItemNameSpace() === 'widget',
+                isWidget = this.isWidget(),
+                isPage = this.isPage(),
                 isLoading = root.model.getConfig('loading');
 
-            if (isWidget || isLoading) {
+            if (isWidget || isPage || isLoading) {
 
                 return false;
 
             } else {
 
-                // Save if not (widget|loading)
+                // Save if not (page|widget|loading)
                 this.store();
             }
         }

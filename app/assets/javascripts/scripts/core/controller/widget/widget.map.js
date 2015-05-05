@@ -329,9 +329,9 @@ define([
         checkWidgetPositionColumn: function checkWidgetPositionColumn(dom) {
 
             return (
-                this.checkWidgetPositionColumnLeft(dom.column) &&
-                this.checkWidgetPositionColumnRight(dom)
-                );
+            this.checkWidgetPositionColumnLeft(dom.column) &&
+            this.checkWidgetPositionColumnRight(dom)
+            );
         },
 
         /**
@@ -355,9 +355,9 @@ define([
             var dom = this.getDOM();
 
             return (
-                this.checkWidgetPositionColumn(dom) &&
-                this.checkWidgetPositionRowTop(dom.row)
-                );
+            this.checkWidgetPositionColumn(dom) &&
+            this.checkWidgetPositionRowTop(dom.row)
+            );
         },
 
         /**
@@ -432,7 +432,7 @@ define([
          * @memberOf WidgetMap
          * @param {string} type
          */
-        setDefaultSize: function setDefaultSize(type){
+        setDefaultSize: function setDefaultSize(type) {
 
             /**
              * Define widget
@@ -470,10 +470,16 @@ define([
             }
 
             /**
-             * Define layout
+             * Get layout
              * @type {Layout}
              */
-            var layout = this.widget.controller.getPageLayout();
+            var layout = widget.controller.getPageLayout();
+
+            /**
+             * Get page
+             * @type {Page}
+             */
+            var page = widget.controller.getContainment();
 
             this.setDefaultSize('Width');
             this.setDefaultSize('Height');
@@ -488,45 +494,63 @@ define([
                 this.dragTo() :
                 this.resizeTo();
 
-            if (css.top >= 0 && css.left >= 0) {
+            /**
+             * Define animate duration
+             * @type {Number}
+             */
+            var duration = this.animateOnStop(
+                    opts.type,
+                    behavior.animate,
+                    opts.animate
+                ) ? this.duration : 0,
 
                 /**
-                 * Define animate duration
-                 * @type {Number}
+                 * Define callback
+                 * @type {function(this:{map: AntHill, widget: *, layout: *, organize: (Boolean|*), callback: (Function|*), behavior: {animate: Boolean}, type: *})}
                  */
-                var duration = this.animateOnStop(
-                        opts.type,
-                        behavior.animate,
-                        opts.animate
-                    ) ? this.duration : 0,
+                callback = this._mapStickerCallback.bind({
+                    map: this,
+                    widget: this.widget,
+                    layout: layout,
+                    organize: opts.organize,
+                    callback: opts.callback,
+                    behavior: behavior,
+                    type: opts.type
+                });
 
-                    /**
-                     * Define callback
-                     * @type {function(this:{map: AntHill, widget: *, layout: *, organize: (Boolean|*), callback: (Function|*), behavior: {animate: Boolean}, type: *})}
-                     */
-                    callback = this._mapStickerCallback.bind({
-                        map: this,
-                        widget: this.widget,
-                        layout: layout,
-                        organize: opts.organize,
-                        callback: opts.callback,
-                        behavior: behavior,
-                        type: opts.type
-                    });
+            /**
+             * Define position updater
+             * @private
+             */
+            function _updatePosition() {
 
-                if (duration === 0) {
-
-                    opts.$source.stop().css(css);
-                    callback();
-
-                } else {
+                if (duration) {
 
                     opts.$source.stop().animate(
                         css,
                         duration,
                         callback
                     );
+
+                } else {
+
+                    opts.$source.stop().css(css);
+                    callback();
                 }
+            }
+
+            // Fetch outline page
+            var outline = page.model.getConfig('preferences').outlineContainment;
+
+            if (css.top >= 0 && css.left >= 0) {
+
+                widget.logger.debug('Update position in page', css);
+                _updatePosition();
+
+            } else if (outline) {
+
+                widget.logger.debug('Update position out of the page', css);
+                _updatePosition();
             }
         },
 
@@ -542,10 +566,10 @@ define([
                 layout = this.layout;
 
             if (this.map.overlappingOnStop(
-                this.type,
-                widget.controller.getPageLayout().controller.
-                    isOverlappingAllowed()
-            )) {
+                    this.type,
+                    widget.controller.getPageLayout().controller.
+                        isOverlappingAllowed()
+                )) {
 
                 widget.observer.publish(
                     widget.eventmanager.eventList.saveDom
