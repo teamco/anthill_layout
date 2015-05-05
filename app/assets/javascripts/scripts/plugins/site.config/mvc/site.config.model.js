@@ -79,7 +79,7 @@ define([
          * @memberOf SiteConfigModel
          * @type {number[]}
          */
-        this.map = [960, 1024, 1040, 1140, 1280, 1920, '100%'];
+        this.map = [480, 640, 960, 1024, 1040, 1140, 1280, 1920, '100%'];
     };
 
     return SiteConfigModel.extend('SiteConfigModel', {

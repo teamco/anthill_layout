@@ -6,26 +6,34 @@
 }
 
 .workspace.sw-0 {
-    width: 960px;
+    width: 480px;
 }
 
 .workspace.sw-1 {
-    width: 1024px;
+    width: 640px;
 }
 
 .workspace.sw-2 {
-    width: 1040px;
+    width: 960px;
 }
 
 .workspace.sw-3 {
-    width: 1140px;
+    width: 1024px;
 }
 
 .workspace.sw-4 {
-    width: 1280px;
+    width: 1040px;
 }
 
 .workspace.sw-5 {
+    width: 1140px;
+}
+
+.workspace.sw-6 {
+    width: 1280px;
+}
+
+.workspace.sw-7 {
     width: 1920px;
 }
 
