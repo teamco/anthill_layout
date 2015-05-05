@@ -349,6 +349,23 @@ define([
             if (url.length > 0) {
                 this.view.get$item().bindOnClickOpenUrl(url);
             }
+        },
+
+        /**
+         * Define update containment
+         * @memberOf WidgetController
+         * @param {string} type
+         * @param {boolean|string|*} containment
+         */
+        updateContainment: function updateContainment(type, containment) {
+
+            // Update interaction
+            this.interactions[type].$scope[type]('option', 'containment', containment);
+
+            // Update config
+            this.config.events[type].containment = !!containment;
+
+            this.logger.debug('Update interaction containment', type, containment);
         }
     });
 });

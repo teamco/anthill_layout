@@ -50,6 +50,7 @@ define([
          *      resizeResizable: {eventName: string, params: {buffer: number}},
          *      stopResizable: string,
          *      updateResizable: string,
+         *      updateContainment: string,
          *      afterExpand: string,
          *      loadContent: string,
          *      loadPreferences: string,
@@ -121,6 +122,8 @@ define([
             },
             stopResizable: 'stop.resizable',
             updateResizable: 'update.resizable',
+
+            updateContainment: 'update.containment',
 
             afterExpand: 'after.expand',
 

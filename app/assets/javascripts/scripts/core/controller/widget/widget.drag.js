@@ -46,12 +46,17 @@ define([
          */
         init: function init() {
 
-            var scope = this.scope;
+            /**
+             * Define scope
+             * @type {Widget}
+             */
+            var scope = this.scope,
+                draggable = scope.model.getConfig('events').draggable;
 
             if (scope.permission.authorizedFunctionCall(this.init)) {
                 this.$scope.draggable(
                     $.extend({
-                        containment: scope.controller.get$page().$,
+                        containment: draggable.containment,
                         create: this.create.bind(this),
                         start: this.start.bind(this),
                         stop: this.stop.bind(this),

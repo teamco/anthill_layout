@@ -199,21 +199,16 @@ define([
              */
             updateItemInteractions: function updateItemInteractions(outline) {
 
-                /**
-                 * Get scope
-                 * @type Page
-                 */
-                var scope = this.scope,
-                    items = scope.model.getItems(),
-                    item;
+                var items = this.model.getItems(),
+                    item, index;
 
-                scope.logger.debug('Update widget containment interactions', outline);
+                this.logger.debug('Update widget containment interactions', outline);
 
                 var containment = outline ?
-                    scope.view.get$item().$ :
+                    this.view.get$item().$ :
                     false;
 
-                for (var index in items) {
+                for (index in items) {
 
                     if (items.hasOwnProperty(index)) {
 
@@ -224,11 +219,17 @@ define([
                         item = items[index];
 
                         item.observer.publish(
-                            item.eventmanager.eventList.initDraggable
+                            item.eventmanager.eventList.updateContainment, [
+                                'draggable',
+                                containment
+                            ]
                         );
 
                         item.observer.publish(
-                            item.eventmanager.eventList.initResizable
+                            item.eventmanager.eventList.updateContainment, [
+                                'resizable',
+                                containment
+                            ]
                         );
                     }
                 }

@@ -28,8 +28,14 @@ define(['config/page'], function definePageListeners(Page) {
         successRendered: {
             name: "success.rendered",
             callback: function successRenderedCallback() {
+
                 this.view.renderPage();
                 this.controller.updateLayout();
+
+                this.observer.publish(
+                    this.eventmanager.eventList.updateItemInteractions,
+                    this.model.getConfig('preferences').outlineContainment
+                );
             }
         },
 

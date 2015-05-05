@@ -200,6 +200,10 @@ define([
 
             this._setItemInfoPreferences('outlineContainment', outline);
 
+            if (this.scope.controller.isLoading()) {
+                return false;
+            }
+
             /**
              * Get scope
              * @type {Page}
