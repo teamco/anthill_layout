@@ -41,7 +41,7 @@ define(['config/layout'], function definePageLayout(Layout) {
                 var layout = this.layout;
 
                 layout.observer.publish(
-                    layout.eventmanager.eventList.updateNumberOfColumns,
+                    layout.eventManager.eventList.updateNumberOfColumns,
                     preferences.layoutColumns
                 );
             },
@@ -68,7 +68,7 @@ define(['config/layout'], function definePageLayout(Layout) {
                 var layout = this.controller.getLayout();
 
                 layout.observer.publish(
-                    layout.eventmanager.eventList.onExpand,
+                    layout.eventManager.eventList.onExpand,
                     widget
                 );
             },
@@ -122,7 +122,7 @@ define(['config/layout'], function definePageLayout(Layout) {
                 var layout = this.scope.layout;
 
                 layout.observer.publish(
-                    layout.eventmanager.eventList.updateMinCellWidth
+                    layout.eventManager.eventList.updateMinCellWidth
                 );
 
                 this.updateWidgetsConfig();

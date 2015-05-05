@@ -28,7 +28,7 @@ define([
 
             var scope = this.scope,
                 observer = scope.observer,
-                eventList = scope.eventmanager.eventList;
+                eventList = scope.eventManager.eventList;
 
             observer.publish(eventList.initDraggable);
             observer.publish(eventList.initResizable);

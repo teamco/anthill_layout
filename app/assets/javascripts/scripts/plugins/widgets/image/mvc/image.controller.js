@@ -33,8 +33,8 @@ define([
              * @type {splitEmbeddedContent|setEmbeddedContent|string}
              */
             var event = this.model.getPrefs('imageSplitContent') ?
-                this.eventmanager.eventList.splitEmbeddedContent :
-                this.eventmanager.eventList.setEmbeddedContent;
+                this.eventManager.eventList.splitEmbeddedContent :
+                this.eventManager.eventList.setEmbeddedContent;
 
             this.observer.publish(event);
         },
@@ -66,7 +66,7 @@ define([
             subscribers = this.base.define(
                 subscribers,
                 this.controller.getSubscribers(
-                    this.eventmanager.eventList.splitEmbeddedContent
+                    this.eventManager.eventList.splitEmbeddedContent
                 )
             );
 
@@ -97,7 +97,7 @@ define([
                 scope = this.scope;
 
             scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
+                scope.eventManager.eventList.publishRule,
                 [$button.attr('value'), this.scope.constructor.prototype.name]
             );
         }

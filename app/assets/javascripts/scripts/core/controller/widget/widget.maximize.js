@@ -64,7 +64,7 @@ define(function defineWidgetMaximize() {
             }
 
             this.observer.publish(
-                this.eventmanager.eventList.beforeReduce
+                this.eventManager.eventList.beforeReduce
             );
 
             this.view.get$item().reduce();
@@ -89,7 +89,7 @@ define(function defineWidgetMaximize() {
             }
 
             this.observer.publish(
-                this.eventmanager.eventList.beforeMaximize
+                this.eventManager.eventList.beforeMaximize
             );
 
             this.view.get$item().enlarge();
@@ -110,12 +110,12 @@ define(function defineWidgetMaximize() {
             var page = this.controller.getContainment();
 
             page.observer.publish(
-                page.eventmanager.eventList.disableItemInteractions,
+                page.eventManager.eventList.disableItemInteractions,
                 this
             );
 
             page.observer.publish(
-                page.eventmanager.eventList.updateHashOnMaximize,
+                page.eventManager.eventList.updateHashOnMaximize,
                 this
             );
 
@@ -145,11 +145,11 @@ define(function defineWidgetMaximize() {
             var page = this.controller.getContainment();
 
             page.observer.publish(
-                page.eventmanager.eventList.enableItemInteractions
+                page.eventManager.eventList.enableItemInteractions
             );
 
             page.observer.publish(
-                page.eventmanager.eventList.updateHashOnReduce,
+                page.eventManager.eventList.updateHashOnReduce,
                 this
             );
         },

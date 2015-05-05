@@ -100,7 +100,7 @@ define([], function defineEventsBehavior() {
                     var scope = this.$element.view.scope;
 
                     scope.observer.publish(
-                        scope.eventmanager.eventList.removeEvent,
+                        scope.eventManager.eventList.removeEvent,
                         $(event.target).parent()[0].className
                     );
 					

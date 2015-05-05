@@ -90,7 +90,7 @@ define([
             if (this.controller.isOpened()) {
 
                 this.observer.publish(
-                    this.eventmanager.eventList.showContent,
+                    this.eventManager.eventList.showContent,
                     [true, this.controller.getActiveResource()]
                 );
             }
@@ -156,7 +156,7 @@ define([
             } else {
 
                 this.observer.publish(
-                    this.eventmanager.eventList.openPanel,
+                    this.eventManager.eventList.openPanel,
                     resource
                 );
             }
@@ -185,7 +185,7 @@ define([
                     if (panel !== except) {
 
                         panel.observer.publish(
-                            panel.eventmanager.eventList.closePanel,
+                            panel.eventManager.eventList.closePanel,
                             panel.active
                         );
                     }
@@ -247,7 +247,7 @@ define([
                 module.view.render();
 
                 module.observer.publish(
-                    module.eventmanager.eventList.loadModuleContent,
+                    module.eventManager.eventList.loadModuleContent,
                     opened
                 );
             }
@@ -332,7 +332,7 @@ define([
          */
         executeGenericEvent: function executeGenericEvent() {
             this.observer.publish(
-                this.eventmanager.eventList.closePanel,
+                this.eventManager.eventList.closePanel,
                 this.active
             );
         },
@@ -353,7 +353,7 @@ define([
              * Get workspace
              * @type {WorkspaceEventManager}
              */
-            var wsEventManager = ws.eventmanager;
+            var wsEventManager = ws.eventManager;
 
             if (!wsEventManager) {
 

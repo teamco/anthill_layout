@@ -104,7 +104,7 @@ define([
              */
             function _locatePrefs(event) {
                 scope.observer.publish(
-                    scope.eventmanager.eventList.loadPreferences, [
+                    scope.eventManager.eventList.loadPreferences, [
                         {uuid: config.uuid},
                         event,
                         scope.controller.locateMaximize.bind(
@@ -145,7 +145,7 @@ define([
              */
             function _clickMaximize() {
                 scope.observer.publish(
-                    scope.eventmanager.eventList.defineInteraction,
+                    scope.eventManager.eventList.defineInteraction,
                     data
                 );
             }

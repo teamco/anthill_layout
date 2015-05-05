@@ -52,8 +52,8 @@ define([
                 if (page) {
 
                     scope.observer.batchPublish(
-                        scope.eventmanager.eventList.loadContent,
-                        scope.eventmanager.eventList.loadPreferences
+                        scope.eventManager.eventList.loadContent,
+                        scope.eventManager.eventList.loadPreferences
                     );
 
                     scope.logger.debug('Content start loading');
@@ -95,7 +95,7 @@ define([
                 require([path], function getDependencies(Content) {
 
                     widget.observer.publish(
-                        widget.eventmanager.eventList.setContent,
+                        widget.eventManager.eventList.setContent,
                         [Content, {
                             events: widget.contentEvents || {},
                             rules: widget.contentRules || {}
@@ -190,7 +190,7 @@ define([
                 this.content = new Content(this, opts);
 
                 this.observer.publish(
-                    this.eventmanager.eventList.afterSetContent,
+                    this.eventManager.eventList.afterSetContent,
                     opts
                 );
             },
@@ -215,6 +215,10 @@ define([
                 if (this.model.getConfig('preferences').expandable) {
                     this.view.contentExpander();
                 }
+
+                this.observer.publish(
+                    this.eventManager.eventList
+                );
             },
 
             /**

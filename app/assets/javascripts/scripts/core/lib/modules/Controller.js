@@ -114,7 +114,7 @@ define([
                 if (this.scope === root) {
 
                     root.observer.publish(
-                        root.eventmanager.eventList.setAsLoaded
+                        root.eventManager.eventList.setAsLoaded
                     );
                 }
             },

@@ -46,7 +46,7 @@ define([
                 scope = this.scope;
 
             scope.observer.publish(
-                scope.eventmanager.eventList.publishRule,
+                scope.eventManager.eventList.publishRule,
                 [$button.attr('value'), this.scope.constructor.prototype.name]
             );
         }

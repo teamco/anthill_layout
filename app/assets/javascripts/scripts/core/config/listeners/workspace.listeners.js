@@ -33,8 +33,8 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
                 this.view.renderWorkspace();
 
                 this.observer.batchPublish(
-                    this.eventmanager.eventList.loadPreferences,
-                    this.eventmanager.eventList.updateSiteWidth
+                    this.eventManager.eventList.loadPreferences,
+                    this.eventManager.eventList.updateSiteWidth
                 );
             }
         },
@@ -44,7 +44,7 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
             callback: function createPageCallback() {
 
                 this.observer.publish(
-                    this.eventmanager.eventList.setPageContainerDimensions
+                    this.eventManager.eventList.setPageContainerDimensions
                 );
             }
         },
@@ -63,7 +63,7 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
                 page.controller.updateLayout();
 
                 page.observer.publish(
-                    page.eventmanager.eventList.resizeWidgets
+                    page.eventManager.eventList.resizeWidgets
                 );
 
                 page.controller.updateHeight();

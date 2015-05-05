@@ -234,13 +234,13 @@ define([
             this.layout = {};
 
             this.observer.publish(
-                this.eventmanager.eventList.createLayout,
+                this.eventManager.eventList.createLayout,
                 this.config.layout
             );
 
             this.observer.batchPublish(
-                this.eventmanager.eventList.successCreated,
-                this.eventmanager.eventList.loadPreferences
+                this.eventManager.eventList.successCreated,
+                this.eventManager.eventList.loadPreferences
             );
         }
 

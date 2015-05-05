@@ -23,7 +23,7 @@ define(function defineSiteConfigCleanup() {
 
             this.view.cleanUpConfirmation();
 
-            this.eventmanager.subscribePublishOn(
+            this.eventManager.subscribePublishOn(
                 this.controller.root(),
                 function afterUpdateStorageCallback() {
 

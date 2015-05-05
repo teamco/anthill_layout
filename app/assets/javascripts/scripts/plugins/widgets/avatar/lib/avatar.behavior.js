@@ -149,7 +149,7 @@ define(function defineAvatarBehavior() {
                                 parentLeft = $element.$avContainer.offset().left;
 
                             scope.observer.publish(
-                                scope.eventmanager.eventList.updateCoordinates, [
+                                scope.eventManager.eventList.updateCoordinates, [
                                     left - parentLeft - borderWidth,
                                     top - parentTop - borderWidth
                                 ]

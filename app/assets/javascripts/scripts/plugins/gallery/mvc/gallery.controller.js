@@ -108,7 +108,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventmanager.eventList.loadModuleContent, [
+                scope.eventManager.eventList.loadModuleContent, [
                     true, true
                 ]
             );

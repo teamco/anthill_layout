@@ -86,13 +86,13 @@ define([
         });
 
         this.observer.batchPublish(
-            this.eventmanager.eventList.successCreated,
-            this.eventmanager.eventList.setRoutes,
-            this.eventmanager.eventList.initModel
+            this.eventManager.eventList.successCreated,
+            this.eventManager.eventList.setRoutes,
+            this.eventManager.eventList.initModel
         );
 
         this.observer.publish(
-            this.eventmanager.eventList.updateTranslations,
+            this.eventManager.eventList.updateTranslations,
             ['plugins/gallery/translations/en-us']
         );
     };

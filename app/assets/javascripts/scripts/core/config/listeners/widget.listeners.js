@@ -42,7 +42,7 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
                  * Define event
                  * @type {stopResizable|string}
                  */
-                var event = this.eventmanager.eventList.stopResizable;
+                var event = this.eventManager.eventList.stopResizable;
 
                 this.view.renderWidget();
                 this.controller.setupInteractions();
@@ -63,8 +63,8 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
 
                 if (!silent && !root.model.getConfig('loading')) {
                     this.observer.batchPublish(
-                        this.eventmanager.eventList.loadContent,
-                        this.eventmanager.eventList.loadPreferences
+                        this.eventManager.eventList.loadContent,
+                        this.eventManager.eventList.loadPreferences
                     );
                 }
             }
@@ -101,7 +101,7 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
             name: "stop.resizable",
             callback: function stopResizableCallback() {
                 this.observer.publish(
-                    this.eventmanager.eventList.toggleContentExpander,
+                    this.eventManager.eventList.toggleContentExpander,
                     this.controller.isExpandable()
                 );
                 this.controller.showContent(true);

@@ -63,7 +63,7 @@ define([
             var page = this.controller.getPage();
 
             workspacesData.observer.publish(
-                workspacesData.eventmanager.eventList.setActiveContent,
+                workspacesData.eventManager.eventList.setActiveContent,
                 page.model.getUUID()
             );
 
@@ -84,7 +84,7 @@ define([
                 var panel = this.controller.getAuthorPanel();
 
                 panel.observer.publish(
-                    panel.eventmanager.eventList.closePanel,
+                    panel.eventManager.eventList.closePanel,
                     panel.active
                 );
 
@@ -269,7 +269,7 @@ define([
             var widget = content.controller.getContainment();
 
             panel.observer.publish(
-                panel.eventmanager.eventList.openPanel,
+                panel.eventManager.eventList.openPanel,
                 ['widget-rules', event, _triggerRules.bind(widgetRules)]
             );
 
@@ -289,7 +289,7 @@ define([
             var content = this.scope.activeContent;
 
             content.observer.publish(
-                content.eventmanager.eventList.executeOnWidgetEvent,
+                content.eventManager.eventList.executeOnWidgetEvent,
                 'restoreLayerIndex'
             );
         },
@@ -307,7 +307,7 @@ define([
             var content = this.scope.activeContent;
 
             content.observer.publish(
-                content.eventmanager.eventList.executeOnWidgetEvent,
+                content.eventManager.eventList.executeOnWidgetEvent,
                 'restoreWidgetSticker'
             );
         },

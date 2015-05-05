@@ -516,7 +516,7 @@ define([
             function _locateElement(event) {
 
                 this.observer.publish(
-                    this.eventmanager.eventList.loadPreferences, [
+                    this.eventManager.eventList.loadPreferences, [
                         {uuid: uuid},
                         false,
                         event,
@@ -554,13 +554,13 @@ define([
             if (e.type === 'click') {
 
                 scope.observer.publish(
-                    scope.eventmanager.eventList.switchToActivePage
+                    scope.eventManager.eventList.switchToActivePage
                 );
 
                 this.view.elements.$modal.selfDestroy();
 
                 panel.observer.publish(
-                    panel.eventmanager.eventList.openPanel,
+                    panel.eventManager.eventList.openPanel,
                     ['page-data', e, _triggerPrefs.bind(pageData)]
                 );
             }
@@ -568,11 +568,11 @@ define([
             if (e.type === 'mouseenter' || e.type === 'mouseleave') {
 
                 scope.observer.publish(
-                    scope.eventmanager.eventList.switchToActivePage
+                    scope.eventManager.eventList.switchToActivePage
                 );
 
                 panel.observer.publish(
-                    panel.eventmanager.eventList.openPanel,
+                    panel.eventManager.eventList.openPanel,
                     ['page-data', e, _locateElement.bind(pageData)]
                 );
             }

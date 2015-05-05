@@ -76,11 +76,11 @@ define(function defineGalleryWidgets() {
                 galleryWidgets.galleryModel.init();
 
                 scope.observer.publish(
-                    scope.eventmanager.eventList.setProviders
+                    scope.eventManager.eventList.setProviders
                 );
 
                 scope.observer.publish(
-                    scope.eventmanager.eventList.setCurrentProvider,
+                    scope.eventManager.eventList.setCurrentProvider,
                     scope.model.currentProvider.key
                 );
             }

@@ -131,7 +131,7 @@ define([
         this.expand = new LayoutExpand(this);
 
         this.observer.publish(
-            this.eventmanager.eventList.successCreated
+            this.eventManager.eventList.successCreated
         );
     };
 

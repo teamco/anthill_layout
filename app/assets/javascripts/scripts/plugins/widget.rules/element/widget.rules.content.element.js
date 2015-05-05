@@ -101,7 +101,7 @@ define([
              */
             function _locateRules(event) {
                 scope.observer.publish(
-                    scope.eventmanager.eventList.loadRules, [
+                    scope.eventManager.eventList.loadRules, [
                         {uuid: config.uuid},
                         false,
                         event,
@@ -152,7 +152,7 @@ define([
              */
             function _clickRules(e) {
                 scope.observer.publish(
-                    scope.eventmanager.eventList.loadRules,
+                    scope.eventManager.eventList.loadRules,
                     [config, true, e, _loadStoredRules.bind(this)]
                 );
             }

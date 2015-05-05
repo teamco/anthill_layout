@@ -26,7 +26,7 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
                     callback: function () {
 
                         this.observer.publish(
-                            this.eventmanager.eventList.createAuthorPanel
+                            this.eventManager.eventList.createAuthorPanel
                         );
 
                     }.bind(this)
@@ -37,7 +37,7 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
                     callback: function () {
 
                         this.observer.publish(
-                            this.eventmanager.eventList.createToolPanel
+                            this.eventManager.eventList.createToolPanel
                         );
 
                     }.bind(this)

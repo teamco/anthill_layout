@@ -68,7 +68,7 @@ define([], function defineWidgetContentPreferencesController() {
             var widget = this.controller.getContainment();
 
             widget.observer.publish(
-                widget.eventmanager.eventList.transferPreferences,
+                widget.eventManager.eventList.transferPreferences,
                 [index, value]
             );
         }

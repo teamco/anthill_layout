@@ -92,7 +92,7 @@ define([
         });
 
         this.observer.publish(
-            this.eventmanager.eventList.initWidget,
+            this.eventManager.eventList.initWidget,
             opts
         );
 
@@ -108,11 +108,11 @@ define([
         init: function init() {
 
             this.observer.batchPublish(
-                this.eventmanager.eventList.subscribeOrderPagesEvent,
-                this.eventmanager.eventList.subscribeAfterSwitchPageEvent,
-                this.eventmanager.eventList.subscribeCreatePageEvent,
-                this.eventmanager.eventList.subscribeDestroyPageEvent,
-                this.eventmanager.eventList.subscribeChangePageTitleEvent
+                this.eventManager.eventList.subscribeOrderPagesEvent,
+                this.eventManager.eventList.subscribeAfterSwitchPageEvent,
+                this.eventManager.eventList.subscribeCreatePageEvent,
+                this.eventManager.eventList.subscribeDestroyPageEvent,
+                this.eventManager.eventList.subscribeChangePageTitleEvent
             );
         }
 

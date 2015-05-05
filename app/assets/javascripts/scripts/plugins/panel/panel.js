@@ -122,26 +122,26 @@ define([
         });
 
         this.observer.publish(
-            this.eventmanager.eventList.successCreated
+            this.eventManager.eventList.successCreated
         );
 
         this.observer.publish(
-            this.eventmanager.eventList.updateTranslations,
+            this.eventManager.eventList.updateTranslations,
             ['plugins/panel/translations/en-us']
         );
 
         this.observer.publish(
-            this.eventmanager.eventList.defineModules,
+            this.eventManager.eventList.defineModules,
             [opts.modules]
         );
 
         this.observer.publish(
-            this.eventmanager.eventList.definePackages,
+            this.eventManager.eventList.definePackages,
             [opts.packages]
         );
 
         this.observer.publish(
-            this.eventmanager.eventList.subscribeGenericEvent
+            this.eventManager.eventList.subscribeGenericEvent
         );
     };
 

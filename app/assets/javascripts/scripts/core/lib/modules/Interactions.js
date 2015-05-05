@@ -42,7 +42,7 @@ define(function defineInteractions() {
              * @type {Widget}
              */
             var scope = this.scope,
-                eventName = scope.eventmanager.eventList.debugInteractions;
+                eventName = scope.eventManager.eventList.debugInteractions;
 
             if (eventName) {
 

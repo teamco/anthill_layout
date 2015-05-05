@@ -117,12 +117,12 @@ define([
         });
 
         this.observer.batchPublish(
-            this.eventmanager.eventList.successCreated,
-            this.eventmanager.eventList.setRoutes
+            this.eventManager.eventList.successCreated,
+            this.eventManager.eventList.setRoutes
         );
 
         this.observer.publish(
-            this.eventmanager.eventList.updateTranslations,
+            this.eventManager.eventList.updateTranslations,
             ['plugins/site.config/translations/en-us']
         );
     };

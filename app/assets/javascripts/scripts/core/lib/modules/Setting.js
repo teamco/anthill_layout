@@ -400,12 +400,12 @@ define([
                             scope.logger.debug(data.notice, arguments);
 
                             scope.observer.publish(
-                                scope.eventmanager.eventList.updateStorageVersion,
+                                scope.eventManager.eventList.updateStorageVersion,
                                 data.version
                             );
 
                             scope.observer.publish(
-                                scope.eventmanager.eventList.afterUpdateStorage
+                                scope.eventManager.eventList.afterUpdateStorage
                             );
 
                         }.bind(this)

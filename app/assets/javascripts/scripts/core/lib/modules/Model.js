@@ -494,7 +494,7 @@ define([
                 this.scope.config.preferences[index] = value;
 
                 this.scope.observer.publish(
-                    this.scope.eventmanager.eventList.afterUpdatePreferences,
+                    this.scope.eventManager.eventList.afterUpdatePreferences,
                     arguments
                 );
             },
@@ -618,7 +618,7 @@ define([
                 if (!data.hasOwnProperty('collector')) {
 
                     scope.observer.publish(
-                        scope.eventmanager.eventList.afterLoadingItems
+                        scope.eventManager.eventList.afterLoadingItems
                     );
 
                     return false;
@@ -692,7 +692,7 @@ define([
 
                         if (!root.loadingDataCounter) {
                             scope.observer.publish(
-                                scope.eventmanager.eventList.afterLoadingItems
+                                scope.eventManager.eventList.afterLoadingItems
                             );
                         }
                     }

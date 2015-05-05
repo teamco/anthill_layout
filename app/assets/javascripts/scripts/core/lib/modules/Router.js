@@ -103,7 +103,7 @@ define(function defineRouter() {
             if (typeof(page) === 'undefined') {
 
                 workspace.observer.publish(
-                    workspace.eventmanager.eventList.switchToPage,
+                    workspace.eventManager.eventList.switchToPage,
                     currentPage
                 );
 

@@ -43,7 +43,7 @@ define(
                 setEmbeddedContent: function setEmbeddedContent() {
 
                     this.observer.publish(
-                        this.eventmanager.eventList.getLocation
+                        this.eventManager.eventList.getLocation
                     );
                 },
 
@@ -88,7 +88,7 @@ define(
                         scope = this.scope;
 
                     scope.observer.publish(
-                        scope.eventmanager.eventList.publishRule,
+                        scope.eventManager.eventList.publishRule,
                         [$button.attr('value'), scope.constructor.prototype.name]
                     );
                 },

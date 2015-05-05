@@ -245,7 +245,7 @@ define([
                 mapLocator.model.setMapLocatorSearchRadius(scope.$dial.val() + '000');
 
                 mapLocator.observer.publish(
-                    mapLocator.eventmanager.eventList.setEmbeddedContent
+                    mapLocator.eventManager.eventList.setEmbeddedContent
                 );
             });
 

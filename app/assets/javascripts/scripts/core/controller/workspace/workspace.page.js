@@ -48,7 +48,7 @@ define(function defineWorkspacePage() {
                 var scope = this.scope;
 
                 scope.observer.publish(
-                    scope.eventmanager.eventList.switchToPage,
+                    scope.eventManager.eventList.switchToPage,
                     this.getPageByHashLocation(scope)
                 );
             },
@@ -76,7 +76,7 @@ define(function defineWorkspacePage() {
                         page = pages[index];
 
                         page.layout.observer.publish(
-                            page.layout.eventmanager.eventList.updateMinCellWidth
+                            page.layout.eventManager.eventList.updateMinCellWidth
                         );
                     }
                 }
@@ -127,7 +127,7 @@ define(function defineWorkspacePage() {
                     }
 
                     this.observer.publish(
-                        this.eventmanager.eventList.beforeSwitchToPage,
+                        this.eventManager.eventList.beforeSwitchToPage,
                         page
                     );
 
@@ -183,12 +183,12 @@ define(function defineWorkspacePage() {
 
                 scope.view.elements.$pages.swipeTo(page);
                 scope.observer.publish(
-                    scope.eventmanager.eventList.updateMetaData,
+                    scope.eventManager.eventList.updateMetaData,
                     page
                 );
 
                 page.observer.publish(
-                    page.eventmanager.eventList.loadItemsContent
+                    page.eventManager.eventList.loadItemsContent
                 );
             },
 
@@ -248,7 +248,7 @@ define(function defineWorkspacePage() {
 
                 // Transfer layout
                 currentPage.observer.publish(
-                    currentPage.eventmanager.eventList.createLayout,
+                    currentPage.eventManager.eventList.createLayout,
                     clonePage.model.getConfig('layout')
                 );
 

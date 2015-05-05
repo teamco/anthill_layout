@@ -88,7 +88,7 @@ define([
                     });
 
                     this.scope.observer.publish(
-                        this.scope.eventmanager.eventList.storeItem,
+                        this.scope.eventManager.eventList.storeItem,
                         data[index]
                     );
 
@@ -133,7 +133,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventmanager.eventList.setActiveContent,
+                scope.eventManager.eventList.setActiveContent,
                 config.uuid
             );
 
@@ -172,7 +172,7 @@ define([
         render: function render() {
 
             this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
+                this.scope.eventManager.eventList.successRendered,
                 this.renderWidgetRules.bind(this)
             );
         }

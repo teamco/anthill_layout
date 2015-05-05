@@ -54,7 +54,7 @@ define([
             var containment = this.controller.getContainment();
 
             containment.observer.publish(
-                containment.eventmanager.eventList.adoptContentWidth
+                containment.eventManager.eventList.adoptContentWidth
             );
         },
 
@@ -131,7 +131,7 @@ define([
         render: function render(silent) {
 
             this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
+                this.scope.eventManager.eventList.successRendered,
                 silent
             );
         }

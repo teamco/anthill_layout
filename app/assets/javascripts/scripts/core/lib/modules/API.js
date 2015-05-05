@@ -100,7 +100,7 @@ define([
             scope.silent = this.base.defineBoolean(silent, false, true);
 
             scope.observer.publish(
-                scope.eventmanager.eventList['create' + cname],
+                scope.eventManager.eventList['create' + cname],
                 [args, scope.silent]
             );
 

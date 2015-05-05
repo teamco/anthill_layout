@@ -186,12 +186,8 @@ define([
                     }
 
                     this.observer.publish(
-                        this.eventmanager.eventList.setLoadedContent,
+                        this.eventManager.eventList.setLoadedContent,
                         true
-                    );
-
-                    this.observer.publish(
-                        this.eventmanager.eventList.setAsReady
                     );
                 }
             },
@@ -229,14 +225,14 @@ define([
                         item = items[index];
 
                         item.observer.publish(
-                            item.eventmanager.eventList.updateContainment, [
+                            item.eventManager.eventList.updateContainment, [
                                 'draggable',
                                 containment
                             ]
                         );
 
                         item.observer.publish(
-                            item.eventmanager.eventList.updateContainment, [
+                            item.eventManager.eventList.updateContainment, [
                                 'resizable',
                                 containment
                             ]

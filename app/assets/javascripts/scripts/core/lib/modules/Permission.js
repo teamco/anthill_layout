@@ -109,7 +109,7 @@ define([
          */
         eventTunnelFunctionCall: function eventTunnelFunctionCall(fn) {
             var callerName = fn.getCallerName();
-            if (callerName.toPoint() === this.scope.eventmanager.eventList[callerName]) {
+            if (callerName.toPoint() === this.scope.eventManager.eventList[callerName]) {
                 return true;
             }
             this.scope.logger.warn('Unauthorized function call');

@@ -47,7 +47,7 @@ define(
                     if (!latitude || !longitude) {
 
                         this.observer.publish(
-                            this.eventmanager.eventList.getLocation
+                            this.eventManager.eventList.getLocation
                         );
 
                         return false;
@@ -90,7 +90,7 @@ define(
                         scope = this.scope;
 
                     scope.observer.publish(
-                        scope.eventmanager.eventList.publishRule,
+                        scope.eventManager.eventList.publishRule,
                         [$button.attr('value'), scope.constructor.prototype.name]
                     );
                 },

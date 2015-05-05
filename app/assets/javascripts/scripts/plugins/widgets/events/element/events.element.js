@@ -82,7 +82,7 @@ define([
                 $element.$.append(
                     $('<a class="create_new_event" />').on('click', function () {
                         scope.observer.publish(
-                            scope.eventmanager.eventList.getEventData, [1412013690000, $element]
+                            scope.eventManager.eventList.getEventData, [1412013690000, $element]
                         )
                     }).text('ADD EVENT')
                 );
@@ -175,7 +175,7 @@ define([
             var scope = this.view.scope;
 
             scope.observer.publish(
-                scope.eventmanager.eventList.updateEventsData,
+                scope.eventManager.eventList.updateEventsData,
                 [event, timestamp]
             );
         }

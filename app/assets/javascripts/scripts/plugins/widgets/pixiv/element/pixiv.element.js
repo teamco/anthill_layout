@@ -64,7 +64,7 @@ define([
              * @type {Pixiv}
              */
             var scope = this.view.scope,
-                event = scope.eventmanager,
+                event = scope.eventManager,
                 $element = this;
 
             this.base.waitFor(

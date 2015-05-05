@@ -189,7 +189,7 @@ define([
             }
 
             content.observer.publish(
-                content.eventmanager.eventList.defineReferrer,
+                content.eventManager.eventList.defineReferrer,
                 this.scope
             );
         },
@@ -251,7 +251,7 @@ define([
         if (scope.controller.isWidgetContent()) {
 
             scope.observer.publish(
-                scope.eventmanager.eventList.updateTranslations, [
+                scope.eventManager.eventList.updateTranslations, [
                     [
                         'plugins/widgets/',
                         scope.name.toPoint().replace(/./, ''),
@@ -268,7 +268,7 @@ define([
                         var widget = scope.controller.getContainment();
 
                         widget.observer.publish(
-                            widget.eventmanager.eventList.afterRenderContent
+                            widget.eventManager.eventList.afterRenderContent
                         );
                     }
                 ]

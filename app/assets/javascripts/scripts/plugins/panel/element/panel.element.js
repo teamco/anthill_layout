@@ -83,7 +83,7 @@ define([
             $container.opened(opened);
 
             scope.observer.publish(
-                scope.eventmanager.eventList.showContent,
+                scope.eventManager.eventList.showContent,
                 [opened, resource]
             );
 

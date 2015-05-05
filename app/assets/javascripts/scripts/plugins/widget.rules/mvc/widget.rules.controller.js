@@ -59,7 +59,7 @@ define([
 
             // set active content
             scope.observer.publish(
-                scope.eventmanager.eventList.setActiveContent,
+                scope.eventManager.eventList.setActiveContent,
                 uuid
             );
 
@@ -72,8 +72,8 @@ define([
                 var widget = this.getPage().model.getItemByUUID(uuid);
 
                 return this.scope.activeContent.view.renderRules(
-                    widget.eventmanager.getEvents(),
-                    widget.controller.getContent().eventmanager.getEvents()
+                    widget.eventManager.getEvents(),
+                    widget.controller.getContent().eventManager.getEvents()
                 );
 
             }
@@ -128,7 +128,7 @@ define([
         loadRules: function loadRules(config, load, event, callback) {
 
             this.observer.publish(
-                this.eventmanager.eventList.setActiveContent,
+                this.eventManager.eventList.setActiveContent,
                 config.uuid
             );
 
@@ -187,7 +187,7 @@ define([
                     for (var i = 0, l = rules.length; i < l; i++) {
 
                         scope.observer.publish(
-                            scope.eventmanager.eventList.publishRule,
+                            scope.eventManager.eventList.publishRule,
                             [rules[i], index]
                         );
                     }
@@ -297,7 +297,7 @@ define([
             var widget = content.controller.getContainment();
 
             panel.observer.publish(
-                panel.eventmanager.eventList.openPanel,
+                panel.eventManager.eventList.openPanel,
                 ['page-data', event, _triggerPrefs.bind(pageData)]
             );
 

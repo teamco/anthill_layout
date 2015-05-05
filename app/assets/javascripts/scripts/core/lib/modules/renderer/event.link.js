@@ -83,7 +83,7 @@ define(function defineEventLinkRenderer(){
                     }).val(opts.name);
 
                     content.observer.publish(
-                        content.eventmanager.eventList.executeOnWidgetEvent,
+                        content.eventManager.eventList.executeOnWidgetEvent,
                         opts.name
                     );
 

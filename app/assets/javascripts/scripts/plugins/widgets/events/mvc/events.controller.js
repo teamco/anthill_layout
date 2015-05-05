@@ -75,7 +75,7 @@ define([
                     scope = this.scope;
 
                 scope.observer.publish(
-                    scope.eventmanager.eventList.publishRule,
+                    scope.eventManager.eventList.publishRule,
                     [$button.attr('value'), this.scope.constructor.prototype.name]
                 );
             },
@@ -98,7 +98,7 @@ define([
 
                     // Update
                     this.observer.publish(
-                        this.eventmanager.eventList.setActiveEvent,
+                        this.eventManager.eventList.setActiveEvent,
                         events[timestamp]
                     );
 
@@ -203,7 +203,7 @@ define([
 
                 // Save prefs in containment
                 scope.observer.publish(
-                    scope.eventmanager.eventList.alternativeSavePreferences,
+                    scope.eventManager.eventList.alternativeSavePreferences,
                     ['eventsJson', json]
                 );
             },

@@ -46,7 +46,7 @@ define(
                 setAsReady: function setAsReady() {
 
                     if (this.ready) {
-                        
+
                         this.logger.debug('Page already saved');
                         return false
                     }

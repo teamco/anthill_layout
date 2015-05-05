@@ -46,7 +46,7 @@ define([
             this.footer(Footer, this.elements.$container);
 
             this.scope.observer.publish(
-                this.scope.eventmanager.eventList.checkEmbeddedContent
+                this.scope.eventManager.eventList.checkEmbeddedContent
             );
         },
 
@@ -99,7 +99,7 @@ define([
         render: function render() {
 
             this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
+                this.scope.eventManager.eventList.successRendered,
                 this.renderImage.bind(this)
             );
         }

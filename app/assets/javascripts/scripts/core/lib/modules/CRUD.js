@@ -73,12 +73,12 @@ define([
             var items = scope.items,
                 index = model.getUUID(),
                 onDestroy = this.base.define(model.onDestroy, [], true),
-                itemEventManager = item.eventmanager,
+                itemEventManager = item.eventManager,
                 i = 0, l = onDestroy.length;
 
             for (i; i < l; i += 1) {
                 item.observer.publish(
-                    item.eventmanager.eventList['destroy' + onDestroy[i]]
+                    item.eventManager.eventList['destroy' + onDestroy[i]]
                 );
             }
 

@@ -116,7 +116,7 @@ define([
             $.each(
                 this.base.define(this.events, [], true),
                 function each(index, event) {
-                    scope.eventmanager.onEvent.bind({
+                    scope.eventManager.onEvent.bind({
                         scope: scope,
                         $: $element
                     })(event, index);

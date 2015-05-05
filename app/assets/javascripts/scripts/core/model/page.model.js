@@ -90,7 +90,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventmanager.eventList.updateLayoutConfig
+                scope.eventManager.eventList.updateLayoutConfig
             );
         },
 
@@ -120,7 +120,7 @@ define([
             this._setItemInfoPreferences('siteDescription', description);
 
             scope.observer.publish(
-                scope.eventmanager.eventList.updateSiteDescription
+                scope.eventManager.eventList.updateSiteDescription
             );
         },
 
@@ -140,7 +140,7 @@ define([
             this._setItemInfoPreferences('siteKeywords', keywords);
 
             scope.observer.publish(
-                scope.eventmanager.eventList.updateSiteKeywords
+                scope.eventManager.eventList.updateSiteKeywords
             );
         },
 
@@ -211,7 +211,7 @@ define([
             var scope = this.scope;
 
             scope.observer.publish(
-                scope.eventmanager.eventList.updateItemInteractions,
+                scope.eventManager.eventList.updateItemInteractions,
                 outline
             );
         }

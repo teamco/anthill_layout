@@ -76,7 +76,7 @@ define([
                 );
 
                 this.observer.publish(
-                    this.eventmanager.eventList.beforeExpand,
+                    this.eventManager.eventList.beforeExpand,
                     widget
                 );
 
