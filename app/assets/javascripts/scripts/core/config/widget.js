@@ -87,10 +87,12 @@ define([
                     scrollSpeed: 100,
                     cursor: 'move',
                     appendTo: 'parent',
-                    cancel: '.ui-resizable-handle'
+                    cancel: '.ui-resizable-handle',
+                    containment: 'parent'
                 },
                 resizable: {
-                    handles: 'all'
+                    handles: 'all',
+                    containment: 'parent'
                 },
                 droppable: {
                     activeClass: 'widget-ui-hover',
