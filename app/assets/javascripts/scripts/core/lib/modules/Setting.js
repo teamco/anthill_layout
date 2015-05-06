@@ -353,10 +353,16 @@ define([
                 setItem: function setItem(key, value) {
 
                     /**
+                     * Get setting
+                     * @type {Setting}
+                     */
+                    var setting = this.setting;
+
+                    /**
                      * Get scope
                      * @type {Application}
                      */
-                    var scope = this.setting.scope;
+                    var scope = setting.scope;
 
                     /**
                      * Get create update site route
@@ -378,24 +384,13 @@ define([
                             })
                         };
 
-                    /**
-                     * Get current page
-                     * @type {Page}
-                     */
-                    var page = scope.controller.getPage(),
-                        isLoadedContent = page.controller.isLoadedContent();
 
-                    if (!isLoadedContent) {
-                        scope.logger.debug('Skip XHR until content was loaded');
-                        return false;
-                    }
 
                     $.ajax(opts).done(
-
                         function done(data, type, xhr) {
 
-                            this.setting.cache.setItem(key, value);
-                            this.setting.activateOnSave(false);
+                            setting.cache.setItem(key, value);
+                            setting.activateOnSave(false);
 
                             scope.logger.debug(data.notice, arguments);
 
@@ -407,8 +402,7 @@ define([
                             scope.observer.publish(
                                 scope.eventmanager.eventList.afterUpdateStorage
                             );
-
-                        }.bind(this)
+                        }
                     );
                 },
 

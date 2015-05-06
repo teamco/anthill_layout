@@ -183,7 +183,6 @@ define([
          */
         afterCreateItem: function afterCreateItem() {
             this.logger.debug('After create item');
-            this.controller._afterCrud();
         },
 
         /**
@@ -192,7 +191,6 @@ define([
          */
         afterDestroyItem: function afterDestroyItem() {
             this.logger.debug('After destroy item');
-            this.controller._afterCrud();
         },
 
         /**
@@ -201,35 +199,6 @@ define([
          */
         afterDestroyItems: function afterDestroyItems() {
             this.logger.debug('After destroy items');
-            this.controller._afterCrud();
-        },
-
-        /**
-         * After CRUD
-         * @memberOf BehaviorCrud
-         * @private
-         * @returns {*|boolean}
-         */
-        _afterCrud: function _afterCrud() {
-
-            /**
-             * Get root
-             * @type {Application}
-             */
-            var root = this.root(),
-                isWidget = this.isWidget(),
-                isPage = this.isPage(),
-                isLoading = root.model.getConfig('loading');
-
-            if (isWidget || isPage || isLoading) {
-
-                return false;
-
-            } else {
-
-                // Save if not (page|widget|loading)
-                this.store();
-            }
         }
 
     }, AntHill.prototype);

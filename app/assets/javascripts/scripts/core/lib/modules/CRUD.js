@@ -54,9 +54,10 @@ define([
          * @returns {*}
          */
         destroyItem: function destroyItem(item) {
+
             var scope = this.scope,
                 base = this.base,
-                namespace = item.constructor.prototype.name.toLowerCase();
+                namespace = item.name.toLowerCase();
 
             if (!base.isDefined(item)) {
                 scope.logger.warn('Undefined ' + namespace, item);
