@@ -162,6 +162,7 @@ define([
                 if (this.controller.isLoadedContent()) {
 
                     this.logger.debug('Content already loaded');
+                    this.view.get$item().hideLoader();
                     return false;
 
                 } else {
