@@ -112,7 +112,7 @@ class Author::SiteStoragesController < Author::AuthorController
                      })
       params[:author_site_storage][:publish] = false
     else
-      @activated = versions.where(version: params[:author_site_storage][:activated_version]).first
+      @activated = versions.where(id: params[:author_site_storage][:activated_version]).first
       params[:author_site_storage].delete :activated_version
     end
 
