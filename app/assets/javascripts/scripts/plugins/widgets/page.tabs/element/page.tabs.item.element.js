@@ -46,12 +46,6 @@ define([
         initContent: function initContent() {
 
             /**
-             * Define local scope
-             * @type {PageTabs}
-             */
-            var scope = this.view.scope;
-
-            /**
              * Get prefs
              * @type {*}
              */
