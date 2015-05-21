@@ -181,6 +181,26 @@ define(['jquery'], function defineBasePreferencesElement($) {
                 });
             }
 
+            if (node.type === 'range') {
+
+                /**
+                 * Get number field
+                 * @type {*[]}
+                 */
+                $element = this.renderRange({
+                    name: index,
+                    text: text.trim(),
+                    value: node.value,
+                    min: node.min,
+                    max: node.max,
+                    step: node.step,
+                    unit: node.unit,
+                    disabled: node.disabled,
+                    visible: node.visible,
+                    validate: node.validate
+                });
+            }
+
             if (node.type === 'checkbox') {
 
                 /**

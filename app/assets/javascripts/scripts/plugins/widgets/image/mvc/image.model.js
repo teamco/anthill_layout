@@ -67,6 +67,15 @@ define([
                 disabled: false,
                 checked: false,
                 visible: true
+            },
+            imageBlur: {
+                type: 'range',
+                disabled: false,
+                checked: false,
+                visible: true,
+                min: 0,
+                max: 100,
+                unit: 'px'
             }
         };
 

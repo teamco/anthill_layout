@@ -272,3 +272,26 @@ textarea:focus {
 .filter.reset input[type="text"] {
     background-image: none;
 }
+
+.range {
+    clear: both;
+}
+
+.range label {
+
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 60%;
+    height: 7px;
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+input[type="range"] + input[type="number"] {
+    width: 50px;
+    left: 0;
+    position: relative;
+}
