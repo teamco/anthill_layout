@@ -71,10 +71,101 @@ define([
             imageBlur: {
                 type: 'range',
                 disabled: false,
-                checked: false,
                 visible: true,
+                value: 0,
                 min: 0,
                 max: 100,
+                step: 1,
+                unit: 'px'
+            },
+            imageBrightness: {
+                type: 'range',
+                disabled: false,
+                visible: true,
+                value: 1.1,
+                min: 0.1,
+                max: 10,
+                step: 0.1,
+                unit: ''
+            },
+            imageContrast: {
+                type: 'range',
+                disabled: false,
+                visible: true,
+                value: 1.1,
+                min: 0.1,
+                max: 10,
+                step: 0.1,
+                unit: ''
+            },
+            imageGrayscale: {
+                type: 'range',
+                disabled: false,
+                visible: true,
+                value: 0.1,
+                min: 0.1,
+                max: 1,
+                step: 0.01,
+                unit: ''
+            },
+            imageHueRotate: {
+                type: 'range',
+                disabled: false,
+                visible: true,
+                value: 0,
+                min: 0,
+                max: 360,
+                step: 1,
+                unit: 'deg'
+            },
+            imageInvert: {
+                type: 'range',
+                disabled: false,
+                visible: true,
+                value: 0.1,
+                min: 0.1,
+                max: 1,
+                step: 0.01,
+                unit: ''
+            },
+            imageOpacity: {
+                type: 'range',
+                disabled: false,
+                visible: true,
+                value: 100,
+                min: 0,
+                max: 100,
+                step: 1,
+                unit: '%'
+            },
+            imageSaturate: {
+                type: 'range',
+                disabled: false,
+                visible: true,
+                value: 5,
+                min: 0.1,
+                max: 10,
+                step: 0.1,
+                unit: ''
+            },
+            imageSepia: {
+                type: 'range',
+                disabled: false,
+                visible: true,
+                value: 0.5,
+                min: 0.1,
+                max: 1,
+                step: 0.01,
+                unit: ''
+            },
+            imageDropShadow: {
+                type: 'range',
+                disabled: false,
+                visible: true,
+                value: 0,
+                min: 0,
+                max: 50,
+                step: 1,
                 unit: 'px'
             }
         };
