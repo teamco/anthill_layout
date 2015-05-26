@@ -86,11 +86,12 @@ define([
          */
         updateUrl: function updateUrl($img, src) {
 
-            var $range = $('li.range:first', $img.parents('ul:first'));
+            var $range = $('li.range', $img.parents('ul:first')),
+                border = parseInt($range.css('borderWidth'), 10);
 
             $img.attr({src: src}).show().
                 parent().css({
-                    top: $range.position().top
+                    marginTop: -($range.outerHeight() + border * 2) * $range.length
                 });
         }
 

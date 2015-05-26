@@ -8,13 +8,12 @@
     border: none;
 }
 
-.modal-dialog.preferences div.html > ul li.image-preview {
+.modal-dialog.widget-prefs div.html > ul li.image-preview {
     width: 40%;
-    position: absolute;
-    right: 20px;
+    float: left;
 }
 
-.widget-prefs.modal-dialog .image-preview img {
+.modal-dialog.widget-prefs .image-preview img {
     width: 100%;
     display: none;
 }
