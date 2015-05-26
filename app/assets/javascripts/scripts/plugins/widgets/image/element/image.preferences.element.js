@@ -12,13 +12,13 @@ define([
 
     /**
      * Define Image Preferences Element
-     * @param view
-     * @param opts
-     * @returns {ImagePreferencesElement}
      * @constructor
      * @class ImagePreferencesElement
      * @extends BaseElement
      * @extends WidgetPreferences
+     * @param {ImageView} view
+     * @param opts
+     * @returns {ImagePreferencesElement}
      */
     var ImagePreferencesElement = function ImagePreferencesElement(view, opts) {
 
@@ -28,12 +28,26 @@ define([
         });
 
         this.renderBasePrefsData(opts.data);
+        this.renderImagePlaceholder();
 
         return this;
     };
 
     return ImagePreferencesElement.extend('ImagePreferencesElement', {
 
+        /**
+         * Define image placeholder
+         * @memberOf ImagePreferencesElement
+         */
+        renderImagePlaceholder: function renderImagePlaceholder() {
+
+            // Get image prefs container
+            var $container = $('legend:contains(Image)', this.$).next();
+
+            $container.append(
+                $('<img />')
+            );
+        }
 
     }, BaseElement.prototype, WidgetPreferences.prototype);
 

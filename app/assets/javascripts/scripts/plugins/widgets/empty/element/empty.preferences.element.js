@@ -12,13 +12,13 @@ define([
 
     /**
      * Define Empty Preferences Element
-     * @param view
-     * @param opts
-     * @returns {EmptyPreferencesElement}
      * @constructor
      * @class EmptyPreferencesElement
+     * @param {EmptyView} view
+     * @param opts
      * @extends BaseElement
      * @extends WidgetPreferences
+     * @returns {EmptyPreferencesElement}
      */
     var EmptyPreferencesElement = function EmptyPreferencesElement(view, opts) {
 
