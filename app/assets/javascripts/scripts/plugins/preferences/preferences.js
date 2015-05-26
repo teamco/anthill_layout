@@ -7,10 +7,17 @@ define(['jquery'], function defineBasePreferencesElement($) {
     /**
      * Define BasePreferencesElement
      * @class BasePreferencesElement
+     * @extends TextAreaRenderer
+     * @extends TextFieldRenderer
+     * @extends TextEditorRenderer
+     * @extends CheckBoxRenderer
+     * @extends ComboBoxRenderer
+     * @extends NumberFieldRenderer
+     * @extends RangeRenderer
+     * @extends EventLinkRenderer
      * @constructor
      */
     var BasePreferencesElement = function BasePreferencesElement() {
-
     };
 
     return BasePreferencesElement.extend('BasePreferencesElement', {
@@ -126,7 +133,8 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     disabled: node.disabled,
                     events: node.events,
                     visible: node.visible,
-                    checked: node.checked
+                    checked: node.checked,
+                    monitor: node.monitor
                 });
             }
 
@@ -143,7 +151,8 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     value: node.value,
                     disabled: node.disabled,
                     visible: node.visible,
-                    validate: node.validate
+                    validate: node.validate,
+                    monitor: node.monitor
                 });
             }
 
@@ -160,7 +169,8 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     value: node.value,
                     disabled: node.disabled,
                     visible: node.visible,
-                    validate: node.validate
+                    validate: node.validate,
+                    monitor: node.monitor
                 });
             }
 
@@ -177,7 +187,8 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     value: node.value,
                     disabled: node.disabled,
                     visible: node.visible,
-                    validate: node.validate
+                    validate: node.validate,
+                    monitor: node.monitor
                 });
             }
 
@@ -197,7 +208,8 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     unit: node.unit,
                     disabled: node.disabled,
                     visible: node.visible,
-                    validate: node.validate
+                    validate: node.validate,
+                    monitor: node.monitor
                 });
             }
 
@@ -213,7 +225,8 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     checked: node.value,
                     value: node.value,
                     disabled: node.disabled,
-                    visible: node.visible
+                    visible: node.visible,
+                    monitor: node.monitor
                 });
             }
 
@@ -229,7 +242,8 @@ define(['jquery'], function defineBasePreferencesElement($) {
                     placeholder: placeholder,
                     value: node.value,
                     disabled: node.disabled,
-                    visible: node.visible
+                    visible: node.visible,
+                    monitor: node.monitor
                 });
             }
 

@@ -81,12 +81,47 @@ define([
              */
             initMonitor: function initMonitor($input, monitor) {
 
+                /**
+                 * Get validated callback
+                 * @param {function} fn
+                 * @returns {function|undefined}
+                 * @private
+                 */
+                function _validateCallback(fn) {
+
+                    if (typeof fn === 'function') {
+                        return fn;
+                    }
+
+                    controller.scope.logger.warn(
+                        'Undefined callback', fn
+                    );
+                }
+
                 if (monitor) {
 
-                    $input.on(
-                        monitor.events.join(' '),
-                        monitor.callback
-                    );
+                    /**
+                     * Get callback
+                     * @type {function|string}
+                     */
+                    var callback = monitor.callback,
+                        controller = this.view.controller;
+
+                    if (typeof callback === 'string') {
+
+                        if (_validateCallback(controller[callback])) {
+
+                            callback = controller[callback].bind(controller);
+                        }
+                    }
+
+                    if (_validateCallback(callback)) {
+
+                        $input.on(
+                            monitor.events.join(' '),
+                            callback
+                        );
+                    }
                 }
             },
 
