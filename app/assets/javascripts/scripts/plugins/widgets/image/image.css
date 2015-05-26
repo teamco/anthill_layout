@@ -7,3 +7,14 @@
 .widget .content .image img {
     border: none;
 }
+
+.modal-dialog.preferences div.html > ul li.image-preview {
+    width: 40%;
+    position: absolute;
+    right: 20px;
+}
+
+.widget-prefs.modal-dialog .image-preview img {
+    width: 100%;
+    display: none;
+}

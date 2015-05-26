@@ -44,9 +44,54 @@ define([
             // Get image prefs container
             var $container = $('legend:contains(Image)', this.$).next();
 
-            $container.append(
-                $('<img />')
-            );
+            $container.append([
+                '<li class="image-preview">',
+                '<img />',
+                '</li>'
+            ].join(''));
+        },
+
+        /**
+         * Update preview image
+         * @memberOf ImagePreferencesElement
+         * @param {ModalElement} $modal
+         * @param event
+         */
+        updatePreviewImage: function updatePreviewImage($modal, event) {
+
+            /**
+             * Get preview image
+             * @type {*|jQuery|HTMLElement}
+             */
+            var $img = $('li.image-preview img', $modal.$),
+                target = event.target;
+
+            // Get callback
+            var callback = 'update' + target.name.replace(/image/, '');
+
+            if (typeof this[callback] !== 'function') {
+
+                this.view.scope.logger.warn('Undefined callback', callback);
+                return false;
+            }
+
+            this[callback]($img, target.value);
+        },
+
+        /**
+         * Update url
+         * @memberOf ImagePreferencesElement
+         * @param $img
+         * @param {string} src
+         */
+        updateUrl: function updateUrl($img, src) {
+
+            var $range = $('li.range:first', $img.parents('ul:first'));
+
+            $img.attr({src: src}).show().
+                parent().css({
+                    top: $range.position().top
+                });
         }
 
     }, BaseElement.prototype, WidgetPreferences.prototype);

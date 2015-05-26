@@ -83,6 +83,27 @@ define([
         },
 
         /**
+         * Update preview
+         * @memberOf ImageController
+         * @param event
+         */
+        updatePreview: function updatePreview(event) {
+
+            /**
+             * Get scope
+             * @type {Image}
+             */
+            var scope = this.scope,
+                $referrer = scope.referrer,
+                $modal = $referrer.view.get$modal();
+
+            scope.view.elements.$preferences.updatePreviewImage(
+                $modal,
+                event
+            );
+        },
+
+        /**
          * Add Image rule
          * @memberOf ImageController
          * @param e

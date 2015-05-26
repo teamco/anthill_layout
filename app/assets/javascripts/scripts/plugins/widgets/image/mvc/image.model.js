@@ -36,7 +36,11 @@ define([
                 type: 'textarea',
                 disabled: false,
                 value: undefined,
-                visible: true
+                visible: true,
+                monitor: {
+                    events: ['blur.preview'],
+                    callback: 'updatePreview'
+                }
             },
             imageText: {
                 type: 'textarea',
