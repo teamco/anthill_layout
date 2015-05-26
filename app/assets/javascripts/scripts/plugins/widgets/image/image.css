@@ -15,5 +15,10 @@
 
 .modal-dialog.widget-prefs .image-preview img {
     width: 100%;
+    margin-left: 10px;
     display: none;
+}
+
+.modal-dialog.image {
+    min-width: 660px;
 }
