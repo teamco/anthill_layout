@@ -101,6 +101,15 @@ define([
             }
 
             this.view.controller.clearParentThumbnail();
+            this.updateFilters(opts);
+        },
+
+        /**
+         * Define update filters
+         * @memberOf ImageElement
+         * @param {object} opts
+         */
+        updateFilters: function updateFilters(opts) {
 
             for (var index in opts) {
 
