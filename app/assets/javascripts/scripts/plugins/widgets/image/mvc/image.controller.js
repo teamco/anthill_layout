@@ -51,16 +51,16 @@ define([
                 repeatX: this.model.getPrefs('imageRepeatX'),
                 repeatY: this.model.getPrefs('imageRepeatY'),
                 stretch: this.model.getPrefs('imageStretch'),
-                blur: this.model.getPrefs('imageBlur'),
-                brightness: this.model.getPrefs('imageBrightness'),
-                contrast: this.model.getPrefs('imageContrast'),
-                grayscale: this.model.getPrefs('imageGrayscale'),
-                hue: this.model.getPrefs('imageHueRotate'),
-                invert: this.model.getPrefs('imageInvert'),
-                opacity: this.model.getPrefs('imageOpacity'),
-                saturate: this.model.getPrefs('imageSaturate'),
-                sepia: this.model.getPrefs('imageSepia'),
-                shadow: this.model.getPrefs('imageDropShadow')
+                updateBlur: this.model.getPrefs('imageBlur'),
+                updateBrightness: this.model.getPrefs('imageBrightness'),
+                updateContrast: this.model.getPrefs('imageContrast'),
+                updateGrayscale: this.model.getPrefs('imageGrayscale'),
+                updateHueRotate: this.model.getPrefs('imageHueRotate'),
+                updateInvert: this.model.getPrefs('imageInvert'),
+                updateOpacity: this.model.getPrefs('imageOpacity'),
+                updateSaturate: this.model.getPrefs('imageSaturate'),
+                updateSepia: this.model.getPrefs('imageSepia'),
+                updateDropShadow: this.model.getPrefs('imageDropShadow')
             });
         },
 

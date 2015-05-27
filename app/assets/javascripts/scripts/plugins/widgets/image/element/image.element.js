@@ -41,7 +41,7 @@ define([
         /**
          * Render Embedded content
          * @memberOf ImageElement
-         * @param {{}} opts
+         * @param {object} opts
          */
         renderEmbeddedContent: function renderEmbeddedContent(opts) {
 
@@ -101,6 +101,28 @@ define([
             }
 
             this.view.controller.clearParentThumbnail();
+
+            for (var index in opts) {
+
+                if (opts.hasOwnProperty(index)) {
+
+                    if (index.match(/^update/)) {
+
+                        /**
+                         * Define callback
+                         * @type {function}
+                         */
+                        var callback = this[index];
+
+                        typeof callback === 'function' ?
+                            callback.bind(this)(this.$, opts[index]) :
+                            this.view.scope.logger.warn(
+                                'Undefined callback',
+                                index
+                            );
+                    }
+                }
+            }
         },
 
         /**
@@ -316,9 +338,9 @@ define([
          * @param opacity
          */
         updateOpacity: function updateOpacity($img, opacity) {
-            this.defineCss(
-                $img, 'opacity({0}%)'.replace(/\{0}/, opacity)
-            );
+            $img.css({
+                opacity: parseInt(opacity, 10) / 100
+            });
         },
 
         /**
