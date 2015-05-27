@@ -169,6 +169,226 @@ define([
             $image.setHtml($image.$img);
 
             return false;
+        },
+
+        /**
+         * Define image css
+         * @memberOf ImageElement
+         * @param $img
+         * @param {string} value
+         */
+        defineCss: function defineCss($img, value) {
+
+            /**
+             * Define update css
+             * @private
+             */
+            function _updateCss(css) {
+                $img.css({
+                    '-webkit-filter': css,
+                    filter: css
+                });
+            }
+
+            var _f = $img.css('filter'),
+                _wf = $img.css('-webkit-filter');
+
+            var _filter = _f === 'none' ?
+                _wf === 'none' ? 'none' : _wf : _f;
+
+            if (_filter === 'none') {
+
+                _updateCss(value);
+                return false;
+            }
+
+            var _css = _filter.split(/ /g),
+                _value = [], i = 0, l = _css.length,
+                _updated = false;
+
+            for (; i < l; i++) {
+
+                var filter = _css[i];
+
+                if (filter.indexOf(value.match(/\w+/)[0]) !== -1) {
+                    filter = value;
+                    _updated = true;
+                }
+
+                _value.push(filter);
+            }
+
+            if (!_updated) {
+                _value.push(value);
+            }
+
+            _updateCss(_value.join(' '));
+        },
+
+        /**
+         * Update blur
+         * @memberOf ImageElement
+         * @param $img
+         * @param blur
+         */
+        updateBlur: function updateBlur($img, blur) {
+            this.defineCss(
+                $img, 'blur({0}px)'.replace(/\{0}/, blur)
+            );
+        },
+
+        /**
+         * Update saturate
+         * @memberOf ImageElement
+         * @param $img
+         * @param saturate
+         */
+        updateSaturate: function updateSaturate($img, saturate) {
+            this.defineCss(
+                $img, 'saturate({0})'.replace(/\{0}/, saturate)
+            );
+        },
+
+        /**
+         * Update contrast
+         * @memberOf ImageElement
+         * @param $img
+         * @param contrast
+         */
+        updateContrast: function updateContrast($img, contrast) {
+            this.defineCss(
+                $img, 'contrast({0})'.replace(/\{0}/, contrast)
+            );
+        },
+
+        /**
+         * Update brightness
+         * @memberOf ImageElement
+         * @param $img
+         * @param brightness
+         */
+        updateBrightness: function updateBrightness($img, brightness) {
+            this.defineCss(
+                $img, 'brightness({0})'.replace(/\{0}/, brightness)
+            );
+        },
+
+        /**
+         * Update grayscale
+         * @memberOf ImageElement
+         * @param $img
+         * @param grayscale
+         */
+        updateGrayscale: function updateGrayscale($img, grayscale) {
+            this.defineCss(
+                $img, 'grayscale({0})'.replace(/\{0}/, grayscale)
+            );
+        },
+
+        /**
+         * Update hue-rotate
+         * @memberOf ImageElement
+         * @param $img
+         * @param hueRotate
+         */
+        updateHueRotate: function updateHueRotate($img, hueRotate) {
+            this.defineCss(
+                $img, 'hue-rotate({0}deg)'.replace(/\{0}/, hueRotate)
+            );
+        },
+
+        /**
+         * Update invert
+         * @memberOf ImageElement
+         * @param $img
+         * @param invert
+         */
+        updateInvert: function updateInvert($img, invert) {
+            this.defineCss(
+                $img, 'invert({0})'.replace(/\{0}/, invert)
+            );
+        },
+
+        /**
+         * Update opacity
+         * @memberOf ImageElement
+         * @param $img
+         * @param opacity
+         */
+        updateOpacity: function updateOpacity($img, opacity) {
+            this.defineCss(
+                $img, 'opacity({0}%)'.replace(/\{0}/, opacity)
+            );
+        },
+
+        /**
+         * Update sepia
+         * @memberOf ImageElement
+         * @param $img
+         * @param sepia
+         */
+        updateSepia: function updateSepia($img, sepia) {
+            this.defineCss(
+                $img, 'sepia({0})'.replace(/\{0}/, sepia)
+            );
+        },
+
+        /**
+         * Update drop shadow
+         * @memberOf ImageElement
+         * @param $img
+         * @param shadow
+         */
+        updateDropShadow: function updateDropShadow($img, shadow) {
+            $img.css({
+                boxShadow: 'rgb(0, 0, 0) 0 0 {0}px'.replace(/\{0}/, shadow)
+            });
+        },
+
+        /**
+         * Update url
+         * @memberOf ImageElement
+         * @param $img
+         * @param {string} src
+         */
+        updateUrl: function updateUrl($img, src) {
+
+            /**
+             * Define range activation
+             * @param {boolean} activate
+             * @private
+             */
+            function _activateRange(activate) {
+                $('li.range input', $img.parents('ul:first')).prop({
+                    disabled: !activate
+                });
+            }
+
+            var $range = $('li.range', $img.parents('ul:first')),
+                $element = this;
+
+            $img.on('load', function _load() {
+
+                // Get border width
+                var border = parseInt($range.css('borderWidth'), 10) || 0;
+
+                $img.show().parent().css({
+                    marginTop: -($range.outerHeight() + border * 2) * $range.length
+                });
+
+                _activateRange(true);
+            });
+
+            $img.on('error', function _error() {
+
+                $element.view.scope.logger.warn(
+                    'Unable to load image', arguments
+                );
+
+                _activateRange(false);
+            });
+
+            $img.attr({src: src});
         }
 
     }, BaseElement.prototype);

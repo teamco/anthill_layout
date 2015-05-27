@@ -222,61 +222,154 @@ define([
         this.rules = {};
     };
 
-    return ImageModel.extend('ImageModel', {
+    return ImageModel.extend(
+        'ImageModel', {
 
-        /**
-         * Set Image Url
-         * @memberOf ImageModel
-         * @param {string} url
-         */
-        setImageUrl: function setImageUrl(url) {
-            this.setPrefs('imageUrl', url);
+            /**
+             * Set Image Url
+             * @memberOf ImageModel
+             * @param {string} url
+             */
+            setImageUrl: function setImageUrl(url) {
+                this.setPrefs('imageUrl', url);
+            },
+
+            /**
+             * Set Image Text
+             * @memberOf ImageModel
+             * @param {string} text
+             */
+            setImageText: function setImageText(text) {
+                this.setPrefs('imageText', text);
+            },
+
+            /**
+             * Set image repeat-x
+             * @memberOf ImageModel
+             * @param {boolean} repeatX
+             */
+            setImageRepeatX: function setImageRepeatX(repeatX) {
+                this.setPrefs('imageRepeatX', repeatX);
+            },
+
+            /**
+             * Set image repeat-y
+             * @memberOf ImageModel
+             * @param {boolean} repeatY
+             */
+            setImageRepeatY: function setImageRepeatY(repeatY) {
+                this.setPrefs('imageRepeatY', repeatY);
+            },
+
+            /**
+             * Set image stretch
+             * @memberOf ImageModel
+             * @param {boolean} stretch
+             */
+            setImageStretch: function setImageStretch(stretch) {
+                this.setPrefs('imageStretch', stretch);
+            },
+
+            /**
+             * Set image split content
+             * @memberOf ImageModel
+             * @param {boolean} split
+             */
+            setImageSplitContent: function setImageSplitContent(split) {
+                this.setPrefs('imageSplitContent', split);
+            },
+
+            /**
+             * Set image blur
+             * @memberOf ImageModel
+             * @param {number} blur
+             */
+            setImageBlur: function setImageBlur(blur) {
+                this.setPrefs('imageBlur', blur);
+            },
+
+            /**
+             * Set image brightness
+             * @memberOf ImageModel
+             * @param {number} brightness
+             */
+            setImageBrightness: function setImageBrightness(brightness) {
+                this.setPrefs('imageBrightness', brightness);
+            },
+
+            /**
+             * Set image contrast
+             * @memberOf ImageModel
+             * @param {number} contrast
+             */
+            setImageContrast: function setImageContrast(contrast) {
+                this.setPrefs('imageContrast', contrast);
+            },
+
+            /**
+             * Set image grayscale
+             * @memberOf ImageModel
+             * @param {number} grayscale
+             */
+            setImageGrayscale: function setImageGrayscale(grayscale) {
+                this.setPrefs('imageGrayscale', grayscale);
+            },
+
+            /**
+             * Set image hue
+             * @memberOf ImageModel
+             * @param {number} hue
+             */
+            setImageHueRotate: function setImageHueRotate(hue) {
+                this.setPrefs('imageHueRotate', hue);
+            },
+
+            /**
+             * Set image invert
+             * @memberOf ImageModel
+             * @param {number} invert
+             */
+            setImageInvert: function setImageInvert(invert) {
+                this.setPrefs('imageInvert', invert);
+            },
+
+            /**
+             * Set image opacity
+             * @memberOf ImageModel
+             * @param {number} opacity
+             */
+            setImageOpacity: function setImageOpacity(opacity) {
+                this.setPrefs('imageOpacity', opacity);
+            },
+
+            /**
+             * Set image saturate
+             * @memberOf ImageModel
+             * @param {number} saturate
+             */
+            setImageSaturate: function setImageSaturate(saturate) {
+                this.setPrefs('imageSaturate', saturate);
+            },
+
+            /**
+             * Set image sepia
+             * @memberOf ImageModel
+             * @param {number} sepia
+             */
+            setImageSepia: function setImageSepia(sepia) {
+                this.setPrefs('imageSepia', sepia);
+            },
+
+            /**
+             * Set image shadow
+             * @memberOf ImageModel
+             * @param {number} shadow
+             */
+            setImageDropShadow: function setImageDropShadow(shadow) {
+                this.setPrefs('imageDropShadow', shadow);
+            }
         },
-
-        /**
-         * Set Image Text
-         * @memberOf ImageModel
-         * @param {string} text
-         */
-        setImageText: function setImageText(text) {
-            this.setPrefs('imageText', text);
-        },
-
-        /**
-         * Set image repeat-x
-         * @memberOf ImageModel
-         * @param {boolean} repeatX
-         */
-        setImageRepeatX: function setImageRepeatX(repeatX) {
-            this.setPrefs('imageRepeatX', repeatX);
-        },
-
-        /**
-         * Set image repeat-y
-         * @memberOf ImageModel
-         * @param {boolean} repeatY
-         */
-        setImageRepeatY: function setImageRepeatY(repeatY) {
-            this.setPrefs('imageRepeatY', repeatY);
-        },
-
-        /**
-         * Set image stretch
-         * @memberOf ImageModel
-         * @param {boolean} stretch
-         */
-        setImageStretch: function setImageStretch(stretch) {
-            this.setPrefs('imageStretch', stretch);
-        },
-
-        /**
-         * Set image split content
-         * @memberOf ImageModel
-         * @param {boolean} split
-         */
-        setImageSplitContent: function setImageSplitContent(split) {
-            this.setPrefs('imageSplitContent', split);
-        }
-
-    }, BaseModel.prototype, WidgetContentModel.prototype);
+        BaseModel.prototype,
+        WidgetContentModel.prototype
+    );
 });
