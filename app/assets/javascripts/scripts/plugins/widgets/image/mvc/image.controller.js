@@ -50,10 +50,19 @@ define([
                 text: this.model.getPrefs('imageText'),
                 repeatX: this.model.getPrefs('imageRepeatX'),
                 repeatY: this.model.getPrefs('imageRepeatY'),
-                stretch: this.model.getPrefs('imageStretch')
+                stretch: this.model.getPrefs('imageStretch'),
+                blur: this.model.getPrefs('imageBlur'),
+                brightness: this.model.getPrefs('imageBrightness'),
+                contrast: this.model.getPrefs('imageContrast'),
+                grayscale: this.model.getPrefs('imageGrayscale'),
+                hue: this.model.getPrefs('imageHueRotate'),
+                invert: this.model.getPrefs('imageInvert'),
+                opacity: this.model.getPrefs('imageOpacity'),
+                saturate: this.model.getPrefs('imageSaturate'),
+                sepia: this.model.getPrefs('imageSepia'),
+                shadow: this.model.getPrefs('imageDropShadow')
             });
         },
-
 
         /**
          * Split embedded content
