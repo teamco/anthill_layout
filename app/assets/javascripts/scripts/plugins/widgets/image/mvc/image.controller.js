@@ -79,7 +79,6 @@ define([
                 splitTo: subscribers.length,
                 simulate: this.base.defineBoolean(simulate, false, true)
             });
-
         },
 
         /**
