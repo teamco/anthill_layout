@@ -74,53 +74,73 @@ define([
             },
             imageBlur: {
                 type: 'range',
-                disabled: false,
+                disabled: true,
                 visible: true,
                 value: 0,
                 min: 0,
                 max: 100,
                 step: 1,
-                unit: 'px'
+                unit: 'px',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
             },
             imageBrightness: {
                 type: 'range',
-                disabled: false,
+                disabled: true,
                 visible: true,
                 value: 1.1,
                 min: 0.1,
                 max: 10,
                 step: 0.1,
-                unit: ''
+                unit: '',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
             },
             imageContrast: {
                 type: 'range',
-                disabled: false,
+                disabled: true,
                 visible: true,
                 value: 1.1,
                 min: 0.1,
                 max: 10,
                 step: 0.1,
-                unit: ''
+                unit: '',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
             },
             imageGrayscale: {
                 type: 'range',
-                disabled: false,
+                disabled: true,
                 visible: true,
                 value: 0.1,
                 min: 0.1,
                 max: 1,
                 step: 0.01,
-                unit: ''
+                unit: '',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
             },
             imageHueRotate: {
                 type: 'range',
-                disabled: false,
+                disabled: true,
                 visible: true,
                 value: 0,
                 min: 0,
                 max: 360,
                 step: 1,
-                unit: 'deg'
+                unit: 'deg',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
             },
             imageInvert: {
                 type: 'range',
@@ -130,47 +150,67 @@ define([
                 min: 0.1,
                 max: 1,
                 step: 0.01,
-                unit: ''
+                unit: '',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
             },
             imageOpacity: {
                 type: 'range',
-                disabled: false,
+                disabled: true,
                 visible: true,
                 value: 100,
                 min: 0,
                 max: 100,
                 step: 1,
-                unit: '%'
+                unit: '%',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
             },
             imageSaturate: {
                 type: 'range',
-                disabled: false,
+                disabled: true,
                 visible: true,
                 value: 5,
                 min: 0.1,
                 max: 10,
                 step: 0.1,
-                unit: ''
+                unit: '',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
             },
             imageSepia: {
                 type: 'range',
-                disabled: false,
+                disabled: true,
                 visible: true,
                 value: 0.5,
                 min: 0.1,
                 max: 1,
                 step: 0.01,
-                unit: ''
+                unit: '',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
             },
             imageDropShadow: {
                 type: 'range',
-                disabled: false,
+                disabled: true,
                 visible: true,
                 value: 0,
                 min: 0,
                 max: 50,
                 step: 1,
-                unit: 'px'
+                unit: 'px',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
             }
         };
 

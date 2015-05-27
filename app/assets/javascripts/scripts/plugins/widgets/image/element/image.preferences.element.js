@@ -86,13 +86,112 @@ define([
          */
         updateUrl: function updateUrl($img, src) {
 
-            var $range = $('li.range', $img.parents('ul:first')),
-                border = parseInt($range.css('borderWidth'), 10);
+            /**
+             * Define range activation
+             * @param {boolean} activate
+             * @private
+             */
+            function _activateRange(activate) {
+                $('li.range input', $img.parents('ul:first')).prop({
+                    disabled: !activate
+                });
+            }
 
-            $img.attr({src: src}).show().
-                parent().css({
+            var $range = $('li.range', $img.parents('ul:first')),
+                border = parseInt($range.css('borderWidth'), 10),
+                $element = this;
+
+            $img.on('load', function _load() {
+
+                $img.show().parent().css({
                     marginTop: -($range.outerHeight() + border * 2) * $range.length
                 });
+
+                _activateRange(true);
+            });
+
+            $img.on('error', function _error() {
+
+                $element.view.scope.logger.warn(
+                    'Unable to load image', arguments
+                );
+
+                _activateRange(false);
+            });
+
+            $img.attr({src: src});
+        },
+
+        /**
+         * Define image css
+         * @memberOf ImagePreferencesElement
+         * @param $img
+         * @param {string} value
+         */
+        defineCss: function defineCss($img, value) {
+
+            /**
+             * Define update css
+             * @private
+             */
+            function _updateCss(css) {
+                $img.css({
+                    '-webkit-filter': css,
+                    filter: css
+                });
+            }
+
+            var _f = $img.css('filter'),
+                _wf = $img.css('-webkit-filter');
+
+            var _filter = _f === 'none' ?
+                _wf === 'none' ? 'none' : _wf : _f;
+
+            if (_filter === 'none') {
+
+                _updateCss(value);
+                return false;
+            }
+
+            var _css = _f.split(' '),
+                _value = [], i = 0, l = _css.length;
+
+            for (; i < l; i++) {
+
+                var filter = _css[i];
+
+                if (filter.indexOf(value.match(/\w+/)[0]) !== -1) {
+                    filter = value;
+                }
+
+                _value.push(filter);
+            }
+
+            _updateCss(_value.join(' '));
+        },
+
+        /**
+         * Update blur
+         * @memberOf ImagePreferencesElement
+         * @param $img
+         * @param blur
+         */
+        updateBlur: function updateBlur($img, blur) {
+            this.defineCss(
+                $img, 'blur({0}px)'.replace(/\{0}/, blur)
+            );
+        },
+
+        /**
+         * Update saturate
+         * @memberOf ImagePreferencesElement
+         * @param $img
+         * @param saturate
+         */
+        updateSaturate: function updateSaturate($img, saturate) {
+            this.defineCss(
+                $img, 'saturate({0})'.replace(/\{0}/, saturate)
+            );
         }
 
     }, BaseElement.prototype, WidgetPreferences.prototype);

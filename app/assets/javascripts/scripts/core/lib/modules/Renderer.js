@@ -98,7 +98,7 @@ define([
                     );
                 }
 
-                if (monitor) {
+                if (monitor && monitor.events) {
 
                     /**
                      * Get callback

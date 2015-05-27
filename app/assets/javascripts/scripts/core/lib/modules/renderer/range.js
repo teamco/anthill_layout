@@ -57,6 +57,17 @@ define([
             }
 
             /**
+             * Define trigger callback
+             * @private
+             */
+            function _triggerCallback() {
+
+                if (opts.monitor && opts.monitor.events) {
+                    $input.trigger(opts.monitor.events.join(' '));
+                }
+            }
+
+            /**
              * Update range field
              * @private
              */
@@ -68,6 +79,8 @@ define([
                 $input.val(
                     _validateValue($number, $number.val())
                 );
+
+                _triggerCallback();
             }
 
             /**
@@ -75,6 +88,7 @@ define([
              * @type {String}
              */
             var uuid = this.base.lib.generator.UUID() + '-input',
+                disabled = this.base.defineBoolean(opts.disabled, false, true),
                 $input = $('<input />').attr({
                     name: opts.name,
                     type: 'range',
@@ -83,7 +97,7 @@ define([
                     max: opts.max,
                     step: opts.step || 1,
                     title: opts.value || opts.min,
-                    disabled: this.base.defineBoolean(opts.disabled, false, true)
+                    disabled: disabled
                 }).val(opts.value);
 
             this.initMonitor($input, opts.monitor);
@@ -96,7 +110,7 @@ define([
              */
             var numberField = this.renderNumberField({
                 value: opts.value,
-                disabled: false,
+                disabled: disabled,
                 visible: true,
                 monitor: {
                     events: ['keyup.range', 'blur.range'],
@@ -108,9 +122,12 @@ define([
             $input.on(
                 'input.range change.range keyup.range blur.range',
                 function _updateNumberField() {
+
                     numberField[1].val(
                         _validateValue($input, $input.val())
                     );
+
+                    _triggerCallback();
                 }
             );
 
