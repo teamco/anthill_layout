@@ -95,12 +95,15 @@ define([
              */
             var scope = this.scope,
                 $referrer = scope.referrer,
-                $modal = $referrer.view.get$modal();
+                $modal = $referrer.view.get$modal(),
+                $preferences = scope.view.elements.$preferences;
 
-            scope.view.elements.$preferences.updatePreviewImage(
-                $modal,
-                event
-            );
+            if ($preferences) {
+                $preferences.updatePreviewImage(
+                    $modal,
+                    event
+                );
+            }
         },
 
         /**

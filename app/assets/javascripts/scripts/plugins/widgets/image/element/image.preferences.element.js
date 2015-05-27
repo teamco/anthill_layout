@@ -49,6 +49,18 @@ define([
                 '<img />',
                 '</li>'
             ].join(''));
+
+            // Update image
+            var $url = $('textarea[name="imageUrl"]', $container);
+
+            this.updatePreviewImage(
+                this, {
+                    target: $url[0]
+                }
+            );
+            //if ($url.val().length) {
+            //    $url.trigger('blur');
+            //}
         },
 
         /**
@@ -98,10 +110,12 @@ define([
             }
 
             var $range = $('li.range', $img.parents('ul:first')),
-                border = parseInt($range.css('borderWidth'), 10),
                 $element = this;
 
             $img.on('load', function _load() {
+
+                // Get border width
+                var border = parseInt($range.css('borderWidth'), 10) || 0;
 
                 $img.show().parent().css({
                     marginTop: -($range.outerHeight() + border * 2) * $range.length
@@ -153,8 +167,9 @@ define([
                 return false;
             }
 
-            var _css = _f.split(' '),
-                _value = [], i = 0, l = _css.length;
+            var _css = _filter.split(/ /g),
+                _value = [], i = 0, l = _css.length,
+                _updated = false;
 
             for (; i < l; i++) {
 
@@ -162,9 +177,14 @@ define([
 
                 if (filter.indexOf(value.match(/\w+/)[0]) !== -1) {
                     filter = value;
+                    _updated = true;
                 }
 
                 _value.push(filter);
+            }
+
+            if (!_updated) {
+                _value.push(value);
             }
 
             _updateCss(_value.join(' '));
@@ -192,6 +212,102 @@ define([
             this.defineCss(
                 $img, 'saturate({0})'.replace(/\{0}/, saturate)
             );
+        },
+
+        /**
+         * Update contrast
+         * @memberOf ImagePreferencesElement
+         * @param $img
+         * @param contrast
+         */
+        updateContrast: function updateContrast($img, contrast) {
+            this.defineCss(
+                $img, 'contrast({0})'.replace(/\{0}/, contrast)
+            );
+        },
+
+        /**
+         * Update brightness
+         * @memberOf ImagePreferencesElement
+         * @param $img
+         * @param brightness
+         */
+        updateBrightness: function updateBrightness($img, brightness) {
+            this.defineCss(
+                $img, 'brightness({0})'.replace(/\{0}/, brightness)
+            );
+        },
+
+        /**
+         * Update grayscale
+         * @memberOf ImagePreferencesElement
+         * @param $img
+         * @param grayscale
+         */
+        updateGrayscale: function updateGrayscale($img, grayscale) {
+            this.defineCss(
+                $img, 'grayscale({0})'.replace(/\{0}/, grayscale)
+            );
+        },
+
+        /**
+         * Update hue-rotate
+         * @memberOf ImagePreferencesElement
+         * @param $img
+         * @param hueRotate
+         */
+        updateHueRotate: function updateHueRotate($img, hueRotate) {
+            this.defineCss(
+                $img, 'hue-rotate({0}deg)'.replace(/\{0}/, hueRotate)
+            );
+        },
+
+        /**
+         * Update invert
+         * @memberOf ImagePreferencesElement
+         * @param $img
+         * @param invert
+         */
+        updateInvert: function updateInvert($img, invert) {
+            this.defineCss(
+                $img, 'invert({0})'.replace(/\{0}/, invert)
+            );
+        },
+
+        /**
+         * Update opacity
+         * @memberOf ImagePreferencesElement
+         * @param $img
+         * @param opacity
+         */
+        updateOpacity: function updateOpacity($img, opacity) {
+            this.defineCss(
+                $img, 'opacity({0}%)'.replace(/\{0}/, opacity)
+            );
+        },
+
+        /**
+         * Update sepia
+         * @memberOf ImagePreferencesElement
+         * @param $img
+         * @param sepia
+         */
+        updateSepia: function updateSepia($img, sepia) {
+            this.defineCss(
+                $img, 'sepia({0})'.replace(/\{0}/, sepia)
+            );
+        },
+
+        /**
+         * Update drop shadow
+         * @memberOf ImagePreferencesElement
+         * @param $img
+         * @param shadow
+         */
+        updateDropShadow: function updateDropShadow($img, shadow) {
+            $img.css({
+                boxShadow: 'rgb(0, 0, 0) 0 0 {0}px'.replace(/\{0}/, shadow)
+            });
         }
 
     }, BaseElement.prototype, WidgetPreferences.prototype);

@@ -59,7 +59,9 @@ define(function defineBasePreferences() {
 
                     if (opts.type !== 'radio' || (opts.type === 'radio' && opts.setter !== 'on')) {
 
-                        opts.scope.logger.warn('Undefined model setter', opts);
+                        opts.name.length > 0 ?
+                            opts.scope.logger.warn('Undefined model setter', opts) :
+                            opts.scope.logger.debug('Skip model setter', opts);
                     }
 
                 } else {
