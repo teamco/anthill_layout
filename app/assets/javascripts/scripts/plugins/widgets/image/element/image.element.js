@@ -207,22 +207,27 @@ define([
          * @memberOf ImageElement
          * @param $img
          * @param {string} value
+         * @param {string} type
          */
-        defineCss: function defineCss($img, value) {
+        defineCss: function defineCss(type, $img, value) {
 
             /**
              * Define update css
              * @private
              */
             function _updateCss(css) {
-                $img.css({
-                    '-webkit-filter': css,
-                    filter: css
-                });
+
+                // Define css
+                var style = {};
+
+                style[type] = css;
+                style['-webkit-' + type] = css;
+
+                $img.css(style);
             }
 
-            var _f = $img.css('filter'),
-                _wf = $img.css('-webkit-filter');
+            var _f = $img.css(type),
+                _wf = $img.css('-webkit-' + type);
 
             var _filter = _f === 'none' ?
                 _wf === 'none' ? 'none' : _wf : _f;
@@ -264,7 +269,7 @@ define([
          */
         updateBlur: function updateBlur($img, blur) {
             this.defineCss(
-                $img, 'blur({0}px)'.replace(/\{0}/, blur)
+                'filter', $img, 'blur({0}px)'.replace(/\{0}/, blur)
             );
         },
 
@@ -276,7 +281,7 @@ define([
          */
         updateSaturate: function updateSaturate($img, saturate) {
             this.defineCss(
-                $img, 'saturate({0})'.replace(/\{0}/, saturate)
+                'filter', $img, 'saturate({0})'.replace(/\{0}/, saturate)
             );
         },
 
@@ -288,7 +293,7 @@ define([
          */
         updateContrast: function updateContrast($img, contrast) {
             this.defineCss(
-                $img, 'contrast({0})'.replace(/\{0}/, contrast)
+                'filter', $img, 'contrast({0})'.replace(/\{0}/, contrast)
             );
         },
 
@@ -300,7 +305,7 @@ define([
          */
         updateBrightness: function updateBrightness($img, brightness) {
             this.defineCss(
-                $img, 'brightness({0})'.replace(/\{0}/, brightness)
+                'filter', $img, 'brightness({0})'.replace(/\{0}/, brightness)
             );
         },
 
@@ -312,7 +317,7 @@ define([
          */
         updateGrayscale: function updateGrayscale($img, grayscale) {
             this.defineCss(
-                $img, 'grayscale({0})'.replace(/\{0}/, grayscale)
+                'filter', $img, 'grayscale({0})'.replace(/\{0}/, grayscale)
             );
         },
 
@@ -324,7 +329,7 @@ define([
          */
         updateHueRotate: function updateHueRotate($img, hueRotate) {
             this.defineCss(
-                $img, 'hue-rotate({0}deg)'.replace(/\{0}/, hueRotate)
+                'filter', $img, 'hue-rotate({0}deg)'.replace(/\{0}/, hueRotate)
             );
         },
 
@@ -336,7 +341,7 @@ define([
          */
         updateInvert: function updateInvert($img, invert) {
             this.defineCss(
-                $img, 'invert({0})'.replace(/\{0}/, invert)
+                'filter', $img, 'invert({0})'.replace(/\{0}/, invert)
             );
         },
 
@@ -360,7 +365,7 @@ define([
          */
         updateSepia: function updateSepia($img, sepia) {
             this.defineCss(
-                $img, 'sepia({0})'.replace(/\{0}/, sepia)
+                'filter', $img, 'sepia({0})'.replace(/\{0}/, sepia)
             );
         },
 
@@ -374,6 +379,54 @@ define([
             $img.css({
                 boxShadow: 'rgb(0, 0, 0) 0 0 {0}px'.replace(/\{0}/, shadow)
             });
+        },
+
+        /**
+         * Update scale
+         * @memberOf ImageElement
+         * @param $img
+         * @param scale
+         */
+        updateScale: function updateScale($img, scale) {
+            this.defineCss(
+                'transform', $img, 'scale({0})'.replace(/\{0}/, scale)
+            );
+        },
+
+        /**
+         * Update rotate
+         * @memberOf ImageElement
+         * @param $img
+         * @param rotate
+         */
+        updateRotate: function updateRotate($img, rotate) {
+            this.defineCss(
+                'transform', $img, 'rotate({0}deg)'.replace(/\{0}/, rotate)
+            );
+        },
+
+        /**
+         * Update SkewY
+         * @memberOf ImageElement
+         * @param $img
+         * @param y
+         */
+        updateSkewY: function updateSkewY($img, y) {
+            this.defineCss(
+                'transform', $img, 'skewY({0}deg)'.replace(/\{0}/, y)
+            );
+        },
+
+        /**
+         * Update SkewX
+         * @memberOf ImageElement
+         * @param $img
+         * @param x
+         */
+        updateSkewX: function updateSkewX($img, x) {
+            this.defineCss(
+                'transform', $img, 'skewX({0}deg)'.replace(/\{0}/, x)
+            );
         },
 
         /**

@@ -211,6 +211,62 @@ define([
                     events: ['update.preview'],
                     callback: 'updatePreview'
                 }
+            },
+            imageScale: {
+                type: 'range',
+                disabled: true,
+                visible: true,
+                value: 1,
+                min: 0.1,
+                max: 5,
+                step: 0.1,
+                unit: '',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
+            },
+            imageRotate: {
+                type: 'range',
+                disabled: true,
+                visible: true,
+                value: 0,
+                min: -360,
+                max: 360,
+                step: 1,
+                unit: 'deg',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
+            },
+            imageSkewY: {
+                type: 'range',
+                disabled: true,
+                visible: true,
+                value: 0,
+                min: -100,
+                max: 100,
+                step: 1,
+                unit: 'deg',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
+            },
+            imageSkewX: {
+                type: 'range',
+                disabled: true,
+                visible: true,
+                value: 0,
+                min: -100,
+                max: 100,
+                step: 1,
+                unit: 'deg',
+                monitor: {
+                    events: ['update.preview'],
+                    callback: 'updatePreview'
+                }
             }
         };
 

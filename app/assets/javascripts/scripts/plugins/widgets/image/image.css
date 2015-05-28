@@ -14,7 +14,7 @@
 }
 
 .modal-dialog.widget-prefs .image-preview img {
-    width: 100%;
+    max-width: 200px;
     margin-left: 10px;
     display: none;
 }
