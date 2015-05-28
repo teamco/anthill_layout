@@ -390,9 +390,19 @@ define([
              * @private
              */
             function _activateRange(activate) {
-                $('li.range input', $img.parents('ul:first')).prop({
-                    disabled: !activate
-                });
+
+                // Get range inputs
+                var $range = $('li.range input', $img.parents('ul:first')),
+                    i = 0, l = $range.length;
+
+                $range.prop({disabled: !activate});
+
+                if (activate) {
+
+                    for (; i < l; i++) {
+                        $($range[i]).trigger('blur.range')
+                    }
+                }
             }
 
             var $range = $('li.range', $img.parents('ul:first')),
