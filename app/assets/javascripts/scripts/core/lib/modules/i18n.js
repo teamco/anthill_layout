@@ -30,23 +30,17 @@ define(function defineI18n() {
         this.language = lang || defaultLanguage;
 
         /**
-         * Define data
+         * Define language types
          * @type {Object}
          */
-        var data,
-            scope = this;
+        var langTypes = {};
+
+        var scope = this,
+            data = langTypes[defaultLanguage];
 
         require(['modules/translations/' + scope.language], function loadTranslations(translation) {
 
-            /**
-             * Define language types
-             * @type {Object}
-             */
-            var langTypes = {};
-
             langTypes[scope.language] = translation;
-
-            data = langTypes[defaultLanguage];
 
             if (langTypes.hasOwnProperty(scope.language)) {
 
