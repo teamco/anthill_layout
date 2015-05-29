@@ -262,6 +262,18 @@ define([
         },
 
         /**
+         * Define reset matrix css
+         * @memberOf ImageElement
+         * @param $img
+         */
+        resetMatrix: function resetMatrix($img) {
+            $img.attr({
+                style: $img.attr('style').
+                    replace(/matrix\(([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+)\) /g, '')
+            });
+        },
+
+        /**
          * Update blur
          * @memberOf ImageElement
          * @param $img
@@ -382,15 +394,15 @@ define([
         },
 
         /**
-         * Update scale
+         * Update zoom
          * @memberOf ImageElement
          * @param $img
-         * @param scale
+         * @param zoom
          */
-        updateScale: function updateScale($img, scale) {
-            this.defineCss(
-                'transform', $img, 'scale({0})'.replace(/\{0}/, scale)
-            );
+        updateZoom: function updateZoom($img, zoom) {
+            $img.css({
+                zoom: zoom + '%'
+            });
         },
 
         /**
@@ -403,6 +415,7 @@ define([
             this.defineCss(
                 'transform', $img, 'rotate({0}deg)'.replace(/\{0}/, rotate)
             );
+            this.resetMatrix($img);
         },
 
         /**
@@ -415,6 +428,7 @@ define([
             this.defineCss(
                 'transform', $img, 'skewY({0}deg)'.replace(/\{0}/, y)
             );
+            this.resetMatrix($img);
         },
 
         /**
@@ -427,6 +441,7 @@ define([
             this.defineCss(
                 'transform', $img, 'skewX({0}deg)'.replace(/\{0}/, x)
             );
+            this.resetMatrix($img);
         },
 
         /**

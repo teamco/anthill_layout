@@ -212,15 +212,15 @@ define([
                     callback: 'updatePreview'
                 }
             },
-            imageScale: {
+            imageZoom: {
                 type: 'range',
                 disabled: true,
                 visible: true,
-                value: 1,
-                min: 0.1,
-                max: 5,
+                value: 100,
+                min: 1,
+                max: 200,
                 step: 0.1,
-                unit: '',
+                unit: '%',
                 monitor: {
                     events: ['update.preview'],
                     callback: 'updatePreview'
@@ -414,6 +414,42 @@ define([
              */
             setImageSepia: function setImageSepia(sepia) {
                 this.setPrefs('imageSepia', sepia);
+            },
+
+            /**
+             * Set image zoom
+             * @memberOf ImageModel
+             * @param {number} zoom
+             */
+            setImageZoom: function setImageZoom(zoom) {
+                this.setPrefs('imageZoom', zoom);
+            },
+
+            /**
+             * Set image rotate
+             * @memberOf ImageModel
+             * @param {number} rotate
+             */
+            setImageRotate: function setImageRotate(rotate) {
+                this.setPrefs('imageRotate', rotate);
+            },
+
+            /**
+             * Set image SkewY
+             * @memberOf ImageModel
+             * @param {number} skewY
+             */
+            setImageSkewY: function setImageSkewY(skewY) {
+                this.setPrefs('imageSkewY', skewY);
+            },
+
+            /**
+             * Set image SkewX
+             * @memberOf ImageModel
+             * @param {number} skewX
+             */
+            setImageSkewX: function setImageSkewX(skewX) {
+                this.setPrefs('imageSkewX', skewX);
             },
 
             /**

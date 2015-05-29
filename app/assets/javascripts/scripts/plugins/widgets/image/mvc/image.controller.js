@@ -60,6 +60,10 @@ define([
                 updateOpacity: this.model.getPrefs('imageOpacity'),
                 updateSaturate: this.model.getPrefs('imageSaturate'),
                 updateSepia: this.model.getPrefs('imageSepia'),
+                updateZoom: this.model.getPrefs('imageZoom'),
+                updateRotate: this.model.getPrefs('imageRotate'),
+                updateSkewY: this.model.getPrefs('imageSkewY'),
+                updateSkewX: this.model.getPrefs('imageSkewX'),
                 updateDropShadow: this.model.getPrefs('imageDropShadow')
             });
         },
