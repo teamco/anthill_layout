@@ -23,12 +23,26 @@ define([
          * Define preferences
          * @memberOf ImageModel
          * @type {{
-         *      imageUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      imageUrl: {type: string, disabled: boolean, value: undefined, visible: boolean, monitor: {events: string[], callback: string}},
          *      imageText: {type: string, disabled: boolean, value: undefined, visible: boolean},
          *      imageRepeatX: {type: string, disabled: boolean, checked: boolean, visible: boolean},
          *      imageRepeatY: {type: string, disabled: boolean, checked: boolean, visible: boolean},
          *      imageStretch: {type: string, disabled: boolean, checked: boolean, visible: boolean},
-         *      imageSplitContent: {type: string, disabled: boolean, checked: boolean, visible: boolean}
+         *      imageSplitContent: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+         *      imageBlur: {type: string, disabled: boolean, visible: boolean, value: number, min: number, max: number, step: number, unit: string, monitor: {events: string[], callback: string}},
+         *      imageBrightness: {type: string, disabled: boolean, visible: boolean, value: number, min: number, max: number, step: number, unit: string, monitor: {events: string[], callback: string}},
+         *      imageContrast: {type: string, disabled: boolean, visible: boolean, value: number, min: number, max: number, step: number, unit: string, monitor: {events: string[], callback: string}},
+         *      imageGrayscale: {type: string, disabled: boolean, visible: boolean, value: number, min: number, max: number, step: number, unit: string, monitor: {events: string[], callback: string}},
+         *      imageHueRotate: {type: string, disabled: boolean, visible: boolean, value: number, min: number, max: number, step: number, unit: string, monitor: {events: string[], callback: string}},
+         *      imageInvert: {type: string, disabled: boolean, visible: boolean, value: number, min: number, max: number, step: number, unit: string, monitor: {events: string[], callback: string}},
+         *      imageOpacity: {type: string, disabled: boolean, visible: boolean, value: number, min: number, max: number, step: number, unit: string, monitor: {events: string[], callback: string}},
+         *      imageSaturate: {type: string, disabled: boolean, visible: boolean, value: number, min: number, max: number, step: number, unit: string, monitor: {events: string[], callback: string}},
+         *      imageSepia: {type: string, disabled: boolean, visible: boolean, value: number, min: number, max: number, step: number, unit: string, monitor: {events: string[], callback: string}},
+         *      imageDropShadow: {type: string, disabled: boolean, visible: boolean, value: number, min: number, max: number, step: number, unit: string, monitor: {events: string[], callback: string}},
+         *      imageZoom: {type: string, disabled: boolean, visible: boolean, value: number, min: number, max: number, step: number, unit: string, monitor: {events: string[], callback: string}},
+         *      imageRotate: {type: string, disabled: boolean, visible: boolean, value: number, min: number, max: number, step: number, unit: string, monitor: {events: string[], callback: string}},
+         *      imageSkewY: {type: string, disabled: boolean, visible: boolean, value: number, min: number, max: number, step: number, unit: string, monitor: {events: string[], callback: string}},
+         *      imageSkewX: {type: string, disabled: boolean, visible: boolean, value: number, min: number, max: number, step: number, unit: string, monitor: {events: string[], callback: string}}
          * }}
          */
         this.preferences = {

@@ -490,14 +490,18 @@ define([
 
             $img.on('error', function _error() {
 
-                $element.view.scope.logger.warn(
-                    'Unable to load image', arguments
-                );
+                if (src && src.length > 0) {
+                    $element.view.scope.logger.warn(
+                        'Unable to load image', arguments
+                    );
+                }
 
                 _activateRange(false);
             });
 
-            $img.attr({src: src});
+            if (src && src.length > 0) {
+                $img.attr({src: src});
+            }
         }
 
     }, BaseElement.prototype);
