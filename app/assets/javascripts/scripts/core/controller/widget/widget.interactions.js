@@ -363,8 +363,11 @@ define([
 
             for (; i < l; i++) {
 
+                // Get type
+                var type = types[i];
+
                 // Get interaction
-                var interaction = this.interactions[types[i]];
+                var interaction = this.interactions[type];
 
                 if (interaction) {
 

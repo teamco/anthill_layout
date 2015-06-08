@@ -581,12 +581,13 @@ define([
              * Get scope
              * @type {Widget}
              */
-            var scope = this.scope;
+            var scope = this.scope,
+                page = scope.controller.getContainment();
 
             scope.observer.publish(
                 scope.eventmanager.eventList.updateContainment, [
                     ['draggable', 'resizable'],
-                    containment
+                    page.view.get$item().$
                 ]
             );
         }
