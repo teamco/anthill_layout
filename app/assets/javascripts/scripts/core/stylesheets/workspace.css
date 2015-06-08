@@ -61,7 +61,7 @@
     overflow: hidden;
 }
 
-body.development .workspace .pages {
+body.development .workspace .page {
     border-right: 1px dotted #ccc;
     border-left: 1px dotted #ccc;
 }
