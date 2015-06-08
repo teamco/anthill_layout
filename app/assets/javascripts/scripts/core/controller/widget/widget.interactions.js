@@ -354,17 +354,32 @@ define([
         /**
          * Define update containment
          * @memberOf WidgetController
-         * @param {string} type
+         * @param {array} types
          * @param {boolean|string|*} containment
          */
-        updateContainment: function updateContainment(type, containment) {
+        updateContainment: function updateContainment(types, containment) {
 
-            // Update interaction
-            this.interactions[type].$scope[type](
-                'option',
-                'containment',
-                containment
-            );
+            var i = 0, l = types.length;
+
+            for (; i < l; i++) {
+
+                // Get interaction
+                var interaction = this.interactions[types[i]];
+
+                if (interaction) {
+
+                    // Update interaction
+                    interaction.$scope[type](
+                        'option',
+                        'containment',
+                        containment
+                    );
+
+                } else {
+
+                    this.logger.warn('Undefined interaction', types[i]);
+                }
+            }
 
             // Update config
             this.config.events[type].containment = !!containment;

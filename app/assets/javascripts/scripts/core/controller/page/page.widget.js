@@ -233,14 +233,7 @@ define([
 
                         item.observer.publish(
                             item.eventmanager.eventList.updateContainment, [
-                                'draggable',
-                                containment
-                            ]
-                        );
-
-                        item.observer.publish(
-                            item.eventmanager.eventList.updateContainment, [
-                                'resizable',
+                                ['draggable', 'resizable'],
                                 containment
                             ]
                         );

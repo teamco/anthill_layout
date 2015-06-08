@@ -566,6 +566,29 @@ define([
          */
         setHideContentOnResize: function setHideContentOnResize(hide) {
             this._setItemInfoPreferences('hideContentOnResize', hide);
+        },
+
+        /**
+         * Set outline to page containment
+         * @memberOf WidgetModel
+         * @param {boolean} outline
+         */
+        setPageContainment: function setPageContainment(outline) {
+
+            this._setItemInfoPreferences('pageContainment', outline);
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updateContainment, [
+                    ['draggable', 'resizable'],
+                    containment
+                ]
+            );
         }
 
     }, BaseModel.prototype);

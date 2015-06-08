@@ -142,6 +142,15 @@ define([
          */
         renderBasePrefsData: function renderBasePrefsData(data) {
 
+            // Get scope
+            var scope = this.view.scope;
+
+            /**
+             * Get widget
+             * @type {Widget}
+             */
+            var widget = scope.controller.getContainment();
+
             /**
              * Define widget default prefs
              * @type {{
@@ -201,17 +210,14 @@ define([
                     disabled: false,
                     checked: false,
                     visible: true
+                },
+                pageContainment: {
+                    type: 'checkbox',
+                    disabled: false,
+                    checked: false,
+                    visible: true
                 }
             };
-
-            // Get scope
-            var scope = this.view.scope;
-
-            /**
-             * Get widget
-             * @type {Widget}
-             */
-            var widget = scope.controller.getContainment();
 
             this.$.append(
                 this.renderLayoutInteractions([
