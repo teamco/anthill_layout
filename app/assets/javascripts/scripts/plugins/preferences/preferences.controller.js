@@ -16,11 +16,8 @@ define([
      * @extends BasePreferences
      */
     var PreferencesController = function PreferencesController() {
-
     };
 
     return PreferencesController.extend('PreferencesController', {
-
-
     }, BasePreferences.prototype);
 });

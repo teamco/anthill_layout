@@ -50,21 +50,10 @@ define(function defineBasePreferences() {
             function _validateSetter(opts) {
 
                 /**
-                 * Define setter as a function
-                 * @type {function}
+                 * Define callback
+                 * @private
                  */
-                var setter = opts.scope.model[opts.setter];
-
-                if (typeof(setter) !== 'function') {
-
-                    if (opts.type !== 'radio' || (opts.type === 'radio' && opts.setter !== 'on')) {
-
-                        opts.name.length > 0 ?
-                            opts.scope.logger.warn('Undefined model setter', opts) :
-                            opts.scope.logger.debug('Skip model setter', opts);
-                    }
-
-                } else {
+                function _validateCallback() {
 
                     setter.bind(opts.scope.model)(
                         opts.value
@@ -74,6 +63,51 @@ define(function defineBasePreferences() {
                         opts.event,
                         [opts.name, opts.value]
                     );
+                }
+
+                /**
+                 * Define setter as a function
+                 * @type {function}
+                 */
+                var setter = opts.scope.model[opts.setter],
+                    name = opts.name;
+
+                if (typeof(setter) !== 'function') {
+
+                    if (opts.type !== 'radio' || (opts.type === 'radio' && opts.setter !== 'on')) {
+
+                        if (name.length > 0) {
+
+                            opts.scope.logger.warn('Undefined model setter', opts);
+
+                            // Toggle method widget <=> content
+                            var method = opts.scope.controller.isWidget() ?
+                                '_setItemInfoPreferences' : 'setPrefs';
+
+                            /**
+                             * Define setter
+                             * @type {Function}
+                             */
+                            setter = opts.scope.base.lib.function.create({
+                                name: opts.setter,
+                                params: name,
+                                body: 'this.' + method + '("' + name + '", ' + name + ');',
+                                scope: opts.scope.model.constructor.prototype
+                            });
+
+                            opts.scope.logger.warn('Define model setter', setter, opts);
+
+                            _validateCallback();
+
+                        } else {
+
+                            opts.scope.logger.debug('Skip model setter', opts);
+                        }
+                    }
+
+                } else {
+
+                    _validateCallback();
                 }
             }
 

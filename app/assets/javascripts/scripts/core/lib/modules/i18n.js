@@ -59,6 +59,9 @@ define(function defineI18n() {
          * @returns {*}
          */
         this.getData = function getData(key) {
+            if (typeof data === 'undefined') {
+                debugger;
+            }
             return data.hasOwnProperty(key) ?
                 data[key] : '';
         };

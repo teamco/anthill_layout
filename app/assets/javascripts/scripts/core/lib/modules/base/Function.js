@@ -16,6 +16,29 @@ define([], function defineLibFunction() {
     };
 
     LibFunction.extend('LibFunction', {
+
+        /**
+         * Define function creator
+         * @memberOf LibFunction
+         * @param opts
+         * @returns {Function}
+         */
+        create: function create(opts) {
+
+            /**
+             * Define function
+             * @type {Function}
+             */
+            var fn = new Function(opts.params, opts.body);
+
+            if (opts.scope) {
+
+                // Add function to scope
+                opts.scope[opts.name] = fn;
+            }
+
+            return fn;
+        }
     });
 
     return new LibFunction();

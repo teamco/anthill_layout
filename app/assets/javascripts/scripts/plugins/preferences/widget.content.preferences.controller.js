@@ -5,72 +5,78 @@
  * Time: 1:26 PM
  */
 
-define([], function defineWidgetContentPreferencesController() {
+define(function defineWidgetContentPreferencesController() {
 
+    /**
+     * Define widget content prefs controller
+     * @class WidgetContentPreferencesController
+     * @constructor
+     */
     var WidgetContentPreferencesController = function WidgetContentPreferencesController() {
-
     };
 
-    return WidgetContentPreferencesController.extend('WidgetContentPreferencesController', {
-
-        /**
-         * Load prefs
-         * @memberOf WidgetContentPreferencesController
-         */
-        loadPreferences: function loadPreferences() {
+    return WidgetContentPreferencesController.extend(
+        'WidgetContentPreferencesController', {
 
             /**
              * Load prefs
-             * @type {*}
+             * @memberOf WidgetContentPreferencesController
              */
-            var widget = this.controller.getContainment(),
-                globalPrefs = widget.model.getConfig('preferences'),
-                localPrefs = this.model.preferences || {},
-                index, value;
+            loadPreferences: function loadPreferences() {
 
-            for (index in localPrefs) {
+                /**
+                 * Load prefs
+                 * @type {*}
+                 */
+                var widget = this.controller.getContainment(),
+                    globalPrefs = widget.model.getConfig('preferences'),
+                    localPrefs = this.model.preferences || {},
+                    index, value;
 
-                if (localPrefs.hasOwnProperty(index) &&
-                    globalPrefs.hasOwnProperty(index)) {
+                for (index in localPrefs) {
 
-                    value = globalPrefs[index];
+                    if (localPrefs.hasOwnProperty(index) &&
+                        globalPrefs.hasOwnProperty(index)) {
 
-                    /**
-                     * Define method name
-                     * @type {string}
-                     */
-                    var setter = 'set' + index.toCamel().capitalize();
+                        value = globalPrefs[index];
 
-                    if (typeof(this.model[setter]) === 'function') {
+                        /**
+                         * Define method name
+                         * @type {string}
+                         */
+                        var setter = 'set' + index.toCamel().capitalize();
 
-                        this.model[setter](value);
+                        if (typeof(this.model[setter]) === 'function') {
 
-                    } else {
+                            this.model[setter](value);
 
-                        this.logger.debug('Skip', setter);
+                        } else {
+
+                            this.logger.debug('Skip', setter);
+                        }
                     }
                 }
-            }
-        },
-
-        /**
-         * Transfer preferences to containment
-         * @memberOf WidgetContentPreferencesController
-         * @param index
-         * @param value
-         */
-        transferContentPreferences: function transferContentPreferences(index, value) {
+            },
 
             /**
-             * Define widget
-             * @type {Widget}
+             * Transfer preferences to containment
+             * @memberOf WidgetContentPreferencesController
+             * @param index
+             * @param value
              */
-            var widget = this.controller.getContainment();
+            transferContentPreferences: function transferContentPreferences(index, value) {
 
-            widget.observer.publish(
-                widget.eventmanager.eventList.transferPreferences,
-                [index, value]
-            );
+                /**
+                 * Define widget
+                 * @type {Widget}
+                 */
+                var widget = this.controller.getContainment();
+
+                widget.observer.publish(
+                    widget.eventmanager.eventList.transferPreferences,
+                    [index, value]
+                );
+            }
         }
-    });
+    );
 });

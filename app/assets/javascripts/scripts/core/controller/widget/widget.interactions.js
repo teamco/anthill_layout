@@ -378,18 +378,18 @@ define([
                         containment
                     );
 
+                    // Update config
+                    this.config.events[type].containment = !!containment;
+
                 } else {
 
                     this.logger.warn('Undefined interaction', types[i]);
                 }
             }
 
-            // Update config
-            this.config.events[type].containment = !!containment;
-
             this.logger.debug(
                 'Update interaction containment',
-                type,
+                types,
                 containment
             );
         }
