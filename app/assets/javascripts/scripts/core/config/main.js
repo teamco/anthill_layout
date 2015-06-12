@@ -113,6 +113,8 @@ requirejs.config({
         'controller/widget/widget.map': {deps: ['extends/function']},
         'controller/widget/widget.wireframe': {deps: ['extends/function']},
 
+        'view/application.view': {deps: ['modules/i18n']},
+
         'modules/API': {deps: ['extends/function']},
         'modules/Observer': {deps: ['extends/function']},
         'modules/Logger': {deps: ['extends/function']},
