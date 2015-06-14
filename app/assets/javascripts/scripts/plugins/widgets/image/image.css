@@ -17,6 +17,7 @@
     max-width: 200px;
     margin-left: 10px;
     display: none;
+    transform-origin: center;
 }
 
 .modal-dialog.image {
