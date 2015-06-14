@@ -11,6 +11,7 @@ define(function defineWidgetContentPreferencesController() {
      * Define widget content prefs controller
      * @class WidgetContentPreferencesController
      * @constructor
+     * @extends AntHill
      */
     var WidgetContentPreferencesController = function WidgetContentPreferencesController() {
     };
@@ -25,8 +26,8 @@ define(function defineWidgetContentPreferencesController() {
             loadPreferences: function loadPreferences() {
 
                 /**
-                 * Load prefs
-                 * @type {*}
+                 * Get widget
+                 * @type {Widget}
                  */
                 var widget = this.controller.getContainment(),
                     globalPrefs = widget.model.getConfig('preferences'),
@@ -46,14 +47,23 @@ define(function defineWidgetContentPreferencesController() {
                          */
                         var setter = 'set' + index.toCamel().capitalize();
 
-                        if (typeof(this.model[setter]) === 'function') {
+                        if (typeof(this.model[setter]) !== 'function') {
 
-                            this.model[setter](value);
+                            /**
+                             * Define setter
+                             * @type {Function}
+                             */
+                            var fn = this.base.lib.function.create({
+                                name: setter,
+                                params: index,
+                                body: 'this.setPrefs("' + index + '", ' + index + ');',
+                                scope: this.model.constructor.prototype
+                            });
 
-                        } else {
-
-                            this.logger.debug('Skip', setter);
+                            this.logger.warn('Define model setter', fn, index, setter);
                         }
+
+                        this.model[setter](value);
                     }
                 }
             },

@@ -35,6 +35,8 @@ define([], function defineLibFunction() {
 
                 // Add function to scope
                 opts.scope[opts.name] = fn;
+
+                return opts.scope[opts.name];
             }
 
             return fn;

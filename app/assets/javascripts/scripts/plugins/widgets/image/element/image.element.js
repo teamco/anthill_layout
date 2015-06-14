@@ -11,12 +11,12 @@ define([
 
     /**
      * Define Image Element
-     * @param view
-     * @param opts
-     * @returns {ImageElement}
      * @constructor
      * @class ImageElement
      * @extends BaseElement
+     * @param {ImageView} view
+     * @param opts
+     * @returns {ImageElement}
      */
     var ImageElement = function ImageElement(view, opts) {
 
@@ -29,6 +29,7 @@ define([
 
         /**
          * Define element
+         * @property ImageElement
          * @type {boolean}
          */
         this.image = true;
@@ -111,6 +112,9 @@ define([
          */
         updateFilters: function updateFilters(opts) {
 
+            // Get image
+            var $img = $('img', this.$);
+
             for (var index in opts) {
 
                 if (opts.hasOwnProperty(index)) {
@@ -124,7 +128,7 @@ define([
                         var callback = this[index];
 
                         typeof callback === 'function' ?
-                            callback.bind(this)(this.$, opts[index]) :
+                            callback.bind(this)($img, opts[index]) :
                             this.view.scope.logger.warn(
                                 'Undefined callback',
                                 index
@@ -505,5 +509,4 @@ define([
         }
 
     }, BaseElement.prototype);
-
 });
