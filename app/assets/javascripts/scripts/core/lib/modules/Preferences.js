@@ -78,7 +78,7 @@ define(function defineBasePreferences() {
 
                         if (name.length > 0) {
 
-                            opts.scope.logger.warn('Undefined model setter', opts);
+                            opts.scope.logger.debug('Undefined model setter', opts);
 
                             // Toggle method widget <=> content
                             var method = opts.scope.controller.isWidget() ?
@@ -95,7 +95,7 @@ define(function defineBasePreferences() {
                                 scope: opts.scope.model.constructor.prototype
                             });
 
-                            opts.scope.logger.warn('Define model setter', setter, opts);
+                            opts.scope.logger.debug('Define model setter', setter, opts);
 
                             _validateCallback();
 
