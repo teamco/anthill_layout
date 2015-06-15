@@ -130,19 +130,61 @@ requirejs.config({
     }
 });
 
-require([
-    'modernizr',
-    'lz-string',
+define(function loadData() {
 
-    'jquery',
-    'jquery.ujs',
-    'jquery.resizestop',
-    'jquery.pseudo',
-    'jquery.zoomooz',
+    return {
 
-    'extends/function',
-    'extends/json',
-    'extends/event',
-    'extends/string',
-    'extends/array'
-]);
+        data: function data(config) {
+
+            require([
+                'modernizr',
+                'lz-string',
+                'jquery',
+                'jquery.ujs',
+                'jquery.resizestop',
+                'jquery.pseudo',
+                'jquery.zoomooz',
+                'extends/function',
+                'extends/json',
+                'extends/event',
+                'extends/string',
+                'extends/array'
+            ], function loadInit() {
+
+                require([
+
+                    'config/listeners',
+                    'config/permissions',
+
+                    'public/' + config.site + '/javascript/listeners',
+                    'public/' + config.site + '/javascript/permissions'
+
+                ], function loadGlobals() {
+
+                    require([
+                        'config/application'
+                    ], function init(Application) {
+
+                        /**
+                         * Define application
+                         * @type {Application}
+                         */
+                        return new Application({
+                            config: {
+                                html: {
+                                    container: 'body',
+                                    header: true
+                                },
+                                user: config.user,
+                                uuid: config.uuid,
+                                version: config.version,
+                                appName: config.site,
+                                mode: config.mode
+                            }
+                        });
+                    });
+                });
+            });
+        }
+    };
+});

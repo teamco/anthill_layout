@@ -7,40 +7,15 @@
         user = script.getAttribute('data-user'),
         mode = script.getAttribute('data-mode');
 
-    require(['../scripts/core/config/main'], function loadConfig() {
+    require(['../scripts/core/config/main'], function defineDelegator(config) {
 
-        require([
-
-            'config/listeners',
-            'config/permissions',
-
-            'public/' + site + '/javascript/listeners',
-            'public/' + site + '/javascript/permissions'
-
-        ], function loadGlobals() {
-
-            require([
-                'config/application'
-            ], function init(Application) {
-
-                /**
-                 * Define application
-                 * @type {Application}
-                 */
-                return new Application({
-                    config: {
-                        html: {
-                            container: 'body',
-                            header: true
-                        },
-                        user: user,
-                        uuid: uuid,
-                        version: version,
-                        appName: site,
-                        mode: mode
-                    }
-                });
-            });
+        config.data({
+            site: site,
+            uuid: uuid,
+            version: version,
+            user: user,
+            mode: mode
         });
     });
+
 })();
