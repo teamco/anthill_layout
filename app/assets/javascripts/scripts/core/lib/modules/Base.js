@@ -11,8 +11,9 @@ define([
     'modules/base/UA',
     'modules/base/File',
     'modules/base/Event',
+    'modules/base/Css',
     'modules/base/RequirePatch'
-], function defineBase(arr, fn, gen, hash, html, num, dt, str, img, ua, file, event, rpatch) {
+], function defineBase(arr, fn, gen, hash, html, num, dt, str, img, ua, file, event, css, rpatch) {
 
     /**
      * Define base utils
@@ -36,6 +37,7 @@ define([
          *      ua: LibUserAgent,
          *      file: LibFile,
          *      event: LibEvent,
+         *      css: LibCss,
          *      rpatch: LibRequirePatch
          * }}
          */
@@ -52,6 +54,7 @@ define([
             'ua': ua,
             'file': file,
             'event': event,
+            'css': css,
             'rpatch': rpatch
         };
 

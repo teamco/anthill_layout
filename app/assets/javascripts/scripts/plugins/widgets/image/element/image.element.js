@@ -207,83 +207,13 @@ define([
         },
 
         /**
-         * Define image css
-         * @memberOf ImageElement
-         * @param $img
-         * @param {string} value
-         * @param {string} type
-         */
-        defineCss: function defineCss(type, $img, value) {
-
-            /**
-             * Define update css
-             * @private
-             */
-            function _updateCss(css) {
-
-                // Define css
-                var style = {};
-
-                style[type] = css;
-                style['-webkit-' + type] = css;
-
-                $img.css(style);
-            }
-
-            var _f = $img[0].style[type],
-                _wf = $img[0].style['webkit' + type.capitalize()];
-
-            var _filter = _f.length ? _f : _wf.length ? _wf : 0;
-
-            if (!_filter) {
-
-                _updateCss(value);
-                return false;
-            }
-
-            var _css = _filter.split(/ /g),
-                _value = [], i = 0, l = _css.length,
-                _updated = false;
-
-            for (; i < l; i++) {
-
-                var filter = _css[i];
-
-                if (filter.indexOf(value.match(/\w+/)[0]) !== -1) {
-                    filter = value;
-                    _updated = true;
-                }
-
-                _value.push(filter);
-            }
-
-            if (!_updated) {
-                _value.push(value);
-            }
-
-            _updateCss(_value.join(' '));
-        },
-
-        /**
-         * Define reset matrix css
-         * @memberOf ImageElement
-         * @param $img
-         */
-        resetMatrix: function resetMatrix($img) {
-            $img.attr({
-                style: $img.attr('style').
-                    replace(/matrix\(([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+), ([+\-\d.]+)\) /g, '')
-            });
-        },
-
-        /**
          * Update blur
          * @memberOf ImageElement
          * @param $img
          * @param blur
          */
         updateBlur: function updateBlur($img, blur) {
-            this.defineCss(
+            this.base.lib.css.defineCss(
                 'filter', $img, 'blur({0}px)'.replace(/\{0}/, blur)
             );
         },
@@ -295,7 +225,7 @@ define([
          * @param saturate
          */
         updateSaturate: function updateSaturate($img, saturate) {
-            this.defineCss(
+            this.base.lib.css.defineCss(
                 'filter', $img, 'saturate({0})'.replace(/\{0}/, saturate)
             );
         },
@@ -307,7 +237,7 @@ define([
          * @param contrast
          */
         updateContrast: function updateContrast($img, contrast) {
-            this.defineCss(
+            this.base.lib.css.defineCss(
                 'filter', $img, 'contrast({0})'.replace(/\{0}/, contrast)
             );
         },
@@ -319,7 +249,7 @@ define([
          * @param brightness
          */
         updateBrightness: function updateBrightness($img, brightness) {
-            this.defineCss(
+            this.base.lib.css.defineCss(
                 'filter', $img, 'brightness({0})'.replace(/\{0}/, brightness)
             );
         },
@@ -331,7 +261,7 @@ define([
          * @param grayscale
          */
         updateGrayscale: function updateGrayscale($img, grayscale) {
-            this.defineCss(
+            this.base.lib.css.defineCss(
                 'filter', $img, 'grayscale({0})'.replace(/\{0}/, grayscale)
             );
         },
@@ -343,7 +273,7 @@ define([
          * @param hueRotate
          */
         updateHueRotate: function updateHueRotate($img, hueRotate) {
-            this.defineCss(
+            this.base.lib.css.defineCss(
                 'filter', $img, 'hue-rotate({0}deg)'.replace(/\{0}/, hueRotate)
             );
         },
@@ -355,7 +285,7 @@ define([
          * @param invert
          */
         updateInvert: function updateInvert($img, invert) {
-            this.defineCss(
+            this.base.lib.css.defineCss(
                 'filter', $img, 'invert({0})'.replace(/\{0}/, invert)
             );
         },
@@ -379,7 +309,7 @@ define([
          * @param sepia
          */
         updateSepia: function updateSepia($img, sepia) {
-            this.defineCss(
+            this.base.lib.css.defineCss(
                 'filter', $img, 'sepia({0})'.replace(/\{0}/, sepia)
             );
         },
@@ -415,10 +345,14 @@ define([
          * @param rotate
          */
         updateRotate: function updateRotate($img, rotate) {
-            this.defineCss(
+
+            // Get css
+            var css = this.base.lib.css;
+
+            css.defineCss(
                 'transform', $img, 'rotate({0}deg)'.replace(/\{0}/, rotate)
             );
-            this.resetMatrix($img);
+            css.resetMatrix($img);
         },
 
         /**
@@ -428,10 +362,14 @@ define([
          * @param y
          */
         updateSkewY: function updateSkewY($img, y) {
-            this.defineCss(
+
+            // Get css
+            var css = this.base.lib.css;
+
+            css.defineCss(
                 'transform', $img, 'skewY({0}deg)'.replace(/\{0}/, y)
             );
-            this.resetMatrix($img);
+            css.resetMatrix($img);
         },
 
         /**
@@ -441,10 +379,14 @@ define([
          * @param x
          */
         updateSkewX: function updateSkewX($img, x) {
-            this.defineCss(
+
+            // Get css
+            var css = this.base.lib.css;
+
+            css.defineCss(
                 'transform', $img, 'skewX({0}deg)'.replace(/\{0}/, x)
             );
-            this.resetMatrix($img);
+            css.resetMatrix($img);
         },
 
         /**
