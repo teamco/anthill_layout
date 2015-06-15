@@ -230,13 +230,12 @@ define([
                 $img.css(style);
             }
 
-            var _f = $img.css(type),
-                _wf = $img.css('-webkit-' + type);
+            var _f = $img[0].style[type],
+                _wf = $img[0].style['webkit' + type.capitalize()];
 
-            var _filter = _f === 'none' ?
-                _wf === 'none' ? 'none' : _wf : _f;
+            var _filter = _f.length ? _f : _wf.length ? _wf : 0;
 
-            if (_filter === 'none') {
+            if (!_filter) {
 
                 _updateCss(value);
                 return false;

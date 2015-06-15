@@ -6,6 +6,7 @@
 
 .widget .content .image img {
     border: none;
+    transform-origin: center;
 }
 
 .modal-dialog.widget-prefs div.html > ul li.image-preview {
