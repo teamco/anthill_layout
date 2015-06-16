@@ -129,8 +129,11 @@
 
     baseUrl : "../app/assets/javascripts/scripts/core",
     name: "config/main",
-    out: "target/main-r.js",
+    out: "../app/assets/javascripts/target/main.js",
+    optimize: 'uglify2',
     optimizeCss: "standard",
+    preserveLicenseComments: false,
+    generateSourceMaps: true,
     removeCombined: true,
     catchError: {
         define: true
