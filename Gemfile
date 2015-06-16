@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 
-#gem 'mysql2'
+gem 'mysql2'
 
 # Use puma/thin/unicorn as the app server
 case RUBY_PLATFORM
