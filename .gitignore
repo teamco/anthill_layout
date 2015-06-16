@@ -34,5 +34,4 @@ app/assets/javascripts/scripts/plugins/stylesheets
 db/*.sqlite3
 app/assets/.idea
 public/assets
-app/assets/javascripts/public/main.js
-build/target
+target
