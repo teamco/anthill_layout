@@ -128,7 +128,7 @@
     },
 
     baseUrl : "../app/assets/javascripts/scripts/core",
-    name: "config/main",
+    name: "../../public/init",
     out: "../app/assets/javascripts/target/main.js",
     optimize: 'uglify2',
     optimizeCss: "standard",
