@@ -7,9 +7,8 @@
  */
 
 define([
-	'jquery.ui',
     'modules/Interactions'
-], function defineWidgetDrag(ui, Interactions) {
+], function defineWidgetDrag(Interactions) {
 
     /**
      * Define Widget Drag
@@ -23,14 +22,14 @@ define([
 
         /**
          * Define scope
-         * @memberOf Draggable
+         * @property Draggable
          * @type {Widget}
          */
         this.scope = scope;
 
         /**
          * Define widget jquery element
-         * @memberOf Draggable
+         * @property Draggable
          * @type {jQuery}
          */
         this.$scope = scope.view.get$item().$;
@@ -54,6 +53,13 @@ define([
                 draggable = scope.model.getConfig('events').draggable;
 
             if (scope.permission.authorizedFunctionCall(this.init)) {
+
+                if (typeof this.$scope.draggable !== 'function') {
+
+                    scope.logger.warn('Unable to define draggable', this);
+                    return false;
+                }
+
                 this.$scope.draggable(
                     $.extend({
                         containment: draggable.containment,

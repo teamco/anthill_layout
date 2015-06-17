@@ -11,6 +11,8 @@ define(function defineInteractions() {
     /**
      * Define interactions
      * @class Interactions
+     * @extends Draggable
+     * @extends Resizable
      * @constructor
      */
     var Interactions = function Interactions() {

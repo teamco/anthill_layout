@@ -7,9 +7,8 @@
  */
 
 define([
-    'jquery.ui',
     'modules/Interactions'
-], function defineWidgetResize(ui, Interactions) {
+], function defineWidgetResize(Interactions) {
 
     /**
      * Define Resize
@@ -54,6 +53,12 @@ define([
                 resizable = scope.model.getConfig('events').resizable;
 
             if (scope.permission.authorizedFunctionCall(this.init)) {
+
+                if (typeof this.$scope.resizable !== 'function') {
+
+                    scope.logger.warn('Unable to define resizable', this);
+                    return false;
+                }
 
                 this.$scope.resizable(
                     $.extend({

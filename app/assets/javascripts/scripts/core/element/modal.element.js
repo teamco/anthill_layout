@@ -229,6 +229,13 @@ define([
             this.adoptPositionOnResize();
 
             if (this.draggable) {
+
+                if (typeof this.$.draggable !== 'function') {
+
+                    this.view.scope.logger.warn('Unable to define draggable', this);
+                    return false;
+                }
+
                 this.$.draggable({
                     handle: this._get$Header()
                 });

@@ -8,7 +8,6 @@
 
 define(
     [
-        'jquery.ui',
         'config/anthill',
         'modules/Controller',
         'controller/widget/widget.interactions',
@@ -21,7 +20,6 @@ define(
 
     /**
      * Define widget controller
-     * @param ui
      * @param {AntHill} AntHill
      * @param {BaseController} BaseController
      * @param {WidgetInteractions} WidgetInteractions
@@ -32,7 +30,7 @@ define(
      * @param {WidgetMaximize} WidgetMaximize
      * @returns {*}
      */
-    function defineWidgetController(ui, AntHill, BaseController, WidgetInteractions, WidgetMaximize, WidgetStretch, WidgetStick, WidgetLayer, WidgetContent) {
+    function defineWidgetController(AntHill, BaseController, WidgetInteractions, WidgetMaximize, WidgetStretch, WidgetStick, WidgetLayer, WidgetContent) {
 
         /**
          * Define widget controller
