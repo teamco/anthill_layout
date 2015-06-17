@@ -30,6 +30,13 @@ case RUBY_PLATFORM
       gem 'debase', '>= 0.1.3.beta1'
     end
 
+    group :console do
+      gem 'rails-console-tweaks'
+      gem 'awesome_print'
+      gem 'hirb'
+      gem 'interactive_editor'
+    end
+
     gem 'rack-attack'
 
     # Use jquery as the JavaScript library
@@ -71,7 +78,6 @@ gem 'sdoc', '>= 0.4.0', group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring', group: :development
-gem 'awesome_print', group: :development
 gem 'wirble', group: :development
 gem 'jsduck', group: :development
 

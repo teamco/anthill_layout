@@ -34,7 +34,7 @@ class Author::SiteStoragesController < Author::AuthorController
           key: @author_site_storage.key,
           mode: @author_site_storage.author_site_type.name,
           uuid: @author_site_storage.uuid,
-          published: @author_site_storage.publish
+          published: @author_site_storage.publish,
       }
 
       mode = SiteType.find_by_name(params[:mode])

@@ -7,7 +7,8 @@
             'data-version' => storage[:version],
             'data-mode' => storage[:mode],
             'data-uuid' => storage[:uuid],
-            'data-main' => javascript_path('public/init'),
+            'data-main' => @author_site_storage.author_site_type.is_consumption?(storage[:mode]) ?
+                    javascript_path('public/init') : javascript_path('public/init'),
             'id' => 'require-init'
     ) %>
 
