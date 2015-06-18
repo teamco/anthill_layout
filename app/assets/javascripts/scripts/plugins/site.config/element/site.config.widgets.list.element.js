@@ -14,6 +14,7 @@ define([
      * @param {SiteConfigView} view
      * @param opts
      * @extends BaseElement
+     * @extends Renderer
      * @extends GalleryProvidersElement
      * @returns {SiteConfigWidgetsListElement}
      */
@@ -157,7 +158,7 @@ define([
              * Get renderer
              * @param {function} renderer
              * @param {string} index
-             * @param {string} value
+             * @param {string|boolean} value
              * @param {{[mask]: RegExp}} [validation]
              * @returns {*}
              * @private
@@ -299,6 +300,23 @@ define([
                                 widgetData[index],
                                 {}
                             );
+                            break;
+
+                        case 'external':
+                            $field = [
+                                _getRenderer(
+                                    this.renderCheckbox.bind(this),
+                                    'external',
+                                    widgetData[index] ?
+                                        !!widgetData[index].length :
+                                        false
+                                ).addClass('checkbox'),
+                                _getRenderer(
+                                    this.renderTextField.bind(this),
+                                    'url',
+                                    widgetData[index]
+                                )
+                            ];
                             break;
 
                         case 'dimensions':

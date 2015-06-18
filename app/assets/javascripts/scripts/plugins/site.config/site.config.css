@@ -297,14 +297,25 @@ ul.site-config > .content:hover {
 }
 
 .modal-dialog.widget-generator-new div.html li.site-config-scratch-prefs {
-    height: 26px;
     width: 35%;
     float: left;
+    padding: 0 4px;
 }
 
 .modal-dialog.widget-generator-new div.html li.clone-template {
     width: 58%;
     float: right;
+}
+
+.modal-dialog.widget-generator-new div.html li.external {
+    width: 35%;
+    float: left;
+    padding: 0 4px;
+}
+
+.modal-dialog.widget-generator-new div.html li.url {
+    float: right;
+    width: 58%;
 }
 
 .modal-dialog.widget-generator-new div.html li.name {

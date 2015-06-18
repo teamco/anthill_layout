@@ -14,7 +14,7 @@ define(function defineGalleryWidgets() {
 
         /**
          * Define static gallery content
-         * @memberOf GalleryWidgets
+         * @property GalleryWidgets
          * @type {{
          *      name: string,
          *      description: string,
@@ -28,7 +28,7 @@ define(function defineGalleryWidgets() {
 
         /**
          * Define gallery model
-         * @memberOf GalleryWidgets
+         * @property GalleryWidgets
          * @type {GalleryModel}
          */
         this.galleryModel = galleryModel;
@@ -200,18 +200,23 @@ define(function defineGalleryWidgets() {
                     /**
                      * Define widget instance
                      * @type {{
-                     *      name: string,
-                     *      description: string,
-                     *      thumbnail: string,
-                     *      dimensions: {width: number, height: number},
-                     *      type: string,
-                     *      resource: string
+                     *      id: *,
+                     *      uuid: *,
+                     *      url: *,
+                     *      external: *,
+                     *      name: (*|string),
+                     *      description: (*|string),
+                     *      thumbnail: (*|string),
+                     *      dimensions: {width: *, height: *},
+                     *      type,
+                     *      resource: (*|string)
                      * }}
                      */
                     var widget = {
                         id: data[i].id,
                         uuid: data[i].uuid,
                         url: data[i].url,
+                        external: data[i].external,
                         name: json.widget.name,
                         description: json.widget.description,
                         thumbnail: json.widget.thumbnail,

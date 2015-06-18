@@ -26,7 +26,7 @@ define([
 
         /**
          * Define site preferences data
-         * @memberOf SiteConfigModel
+         * @property SiteConfigModel
          * @type {{
          *      preferences: {title: string, description: string, event: string},
          *      publish: {title: string, description: string},
@@ -76,7 +76,7 @@ define([
 
         /**
          * Define site width values
-         * @memberOf SiteConfigModel
+         * @property SiteConfigModel
          * @type {number[]}
          */
         this.map = [480, 640, 960, 1024, 1040, 1140, 1280, 1920, '100%'];

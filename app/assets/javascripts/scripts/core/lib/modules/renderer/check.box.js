@@ -8,6 +8,7 @@ define(function defineCheckBoxRenderer(){
      * Define CheckBoxRenderer
      * @class CheckBoxRenderer
      * @extends LabelRenderer
+     * @extends AntHill
      * @constructor
      */
     var CheckBoxRenderer = function CheckBoxRenderer(){

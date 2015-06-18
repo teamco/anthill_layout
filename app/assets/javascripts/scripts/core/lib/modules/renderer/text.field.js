@@ -10,6 +10,7 @@ define([
      * Define TextFieldRenderer
      * @class TextFieldRenderer
      * @extends LabelRenderer
+     * @extends AntHill
      * @constructor
      */
     var TextFieldRenderer = function TextFieldRenderer() {

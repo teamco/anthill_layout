@@ -7,10 +7,11 @@ define(function defineSiteConfigWidgetGenerator() {
     /**
      * Define SiteConfig Widget Generator
      * @class SiteConfigWidgetGenerator
+     * @extends AntHill
+     * @extends PluginController
      * @constructor
      */
     var SiteConfigWidgetGenerator = function SiteConfigWidgetGenerator() {
-
     };
 
     return SiteConfigWidgetGenerator.extend('SiteConfigWidgetGenerator', {

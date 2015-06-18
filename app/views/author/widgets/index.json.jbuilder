@@ -4,6 +4,6 @@ json.categories @json_data[:categories] do |category|
 end
 
 json.widgets @json_data[:widgets] do |widget|
-  json.extract! widget, :id, :uuid, :name, :description, :dimensions, :type, :resource
+  json.extract! widget, :id, :uuid, :external, :name, :description, :dimensions, :type, :resource
   json.url author_widget_url(widget[:id])
 end

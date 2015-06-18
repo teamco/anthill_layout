@@ -53,6 +53,7 @@ class Author::WidgetsController < Author::AuthorController
             uuid: w[:uuid],
             name: w[:name],
             description: w[:description],
+            external: w[:external],
             dimensions: {
                 width: w[:width],
                 height: w[:height]
@@ -238,7 +239,7 @@ class Author::WidgetsController < Author::AuthorController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_widget_params
-    params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :resource, :visible, :widget_category_id)
+    params.require(:author_widget).permit(:name, :external, :description, :thumbnail, :width, :height, :resource, :visible, :widget_category_id)
   end
 
   def error_handler_on_create(format)
