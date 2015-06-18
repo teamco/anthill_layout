@@ -34,7 +34,7 @@ test:
   database: anthill_test
 #  database: db/test.sqlite3
 
-production:
-  <<: *default
-  database: anthill_production
+#production:
+#  <<: *default
+#  database: anthill_production
 #  database: db/production.sqlite3

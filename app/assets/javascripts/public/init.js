@@ -27,25 +27,34 @@
         function _setup() {
 
             require([
-                'config/application'
-            ], function init(Application) {
 
-                /**
-                 * Define application
-                 * @type {Application}
-                 */
-                return new Application({
-                    config: {
-                        html: {
-                            container: 'body',
-                            header: true
-                        },
-                        user: user,
-                        uuid: uuid,
-                        version: version,
-                        appName: site,
-                        mode: mode
-                    }
+                'config/listeners',
+                'config/permissions',
+
+                'public/' + site + '/javascript/listeners',
+                'public/' + site + '/javascript/permissions'
+
+            ], function init() {
+
+                require(['config/application'], function loadApplication(Application) {
+
+                    /**
+                     * Define application
+                     * @type {Application}
+                     */
+                    return new Application({
+                        config: {
+                            html: {
+                                container: 'body',
+                                header: true
+                            },
+                            user: user,
+                            uuid: uuid,
+                            version: version,
+                            appName: site,
+                            mode: mode
+                        }
+                    });
                 });
             });
         }
@@ -73,18 +82,7 @@
                 'extends/event',
                 'extends/string',
                 'extends/array'
-            ], function loadInit() {
-
-                require([
-
-                    'config/listeners',
-                    'config/permissions',
-
-                    'public/' + site + '/javascript/listeners',
-                    'public/' + site + '/javascript/permissions'
-
-                ], _setup);
-            });
+            ], _setup);
         });
     }
 

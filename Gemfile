@@ -22,7 +22,9 @@ case RUBY_PLATFORM
       gem 'xilence'
       gem 'meta_request'
 
+      gem 'pry-rails'
       gem 'web-console', '~> 2.0'
+      gem 'prmd'
       gem 'ruby-debug-ide', '>= 0.4.25'
 
       # Use Capistrano for deployment
