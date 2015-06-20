@@ -288,18 +288,34 @@ define([
             function _toggleExternalUrl(e) {
 
                 var $scratch = $('.site-config-scratch-prefs input', '.widget-generator-new'),
-                    $combo = $('.clone-template', '.widget-generator-new'),
+                    $clone = $('.clone-template', '.widget-generator-new'),
+                    $type = $('.type', '.widget-generator-new'),
                     $url = $('li.url input', '.widget-generator-new'),
                     checked = $(e.target).prop('checked');
 
-                $scratch.prop('disabled', checked);
+                $('input', '.widget-generator-new').prop('disabled', checked);
+                $('textarea', '.widget-generator-new').prop('disabled', checked);
+
+                $(e.target).prop('disabled', false);
                 $url.prop('disabled', !checked);
 
-                checked ?
-                    $element.disableComboBox($combo) :
-                    ($scratch.prop('checked') ?
-                        $element.disableComboBox($combo) :
-                        $element.enableComboBox($combo));
+                if (checked) {
+
+                    $element.disableComboBox($clone);
+                    $element.disableComboBox($type);
+
+                } else {
+
+                    $scratch.prop('checked') ?
+                        $element.disableComboBox($clone) :
+                        $element.enableComboBox($clone);
+                    $element.enableComboBox($type)
+                }
+            }
+
+            function _readData() {
+
+
             }
 
             /**
@@ -335,7 +351,11 @@ define([
                             var $url = _getRenderer(
                                 $element.renderTextField.bind($element),
                                 'url',
-                                widgetData[index]
+                                widgetData[index],
+                                {}, {
+                                    events: ['blur.url'],
+                                    callback: _readData
+                                }
                             );
 
                             $url.find('input').prop('disabled', true);
