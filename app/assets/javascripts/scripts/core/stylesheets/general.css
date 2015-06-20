@@ -89,7 +89,7 @@ body.loading .fetcher:after {
     margin-right: 10px;
 }
 
-#export-url {
+.export-url {
     display: none;
 }
 

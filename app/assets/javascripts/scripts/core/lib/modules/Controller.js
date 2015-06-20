@@ -57,6 +57,34 @@ define([
             },
 
             /**
+             * Get cache
+             * @memberOf BaseController
+             * @param {string} [uuid]
+             * @returns {*}
+             */
+            getCache: function getCache(uuid) {
+
+                /**
+                 * Get root
+                 * @type {Application}
+                 */
+                var root = this.root();
+
+                return uuid ? root.cache[uuid] : root.cache;
+            },
+
+            /**
+             * Get cache
+             * @memberOf BaseController
+             * @param {string} uuid
+             * @param {*} value
+             * @returns {*}
+             */
+            updateCache: function updateCache(uuid, value) {
+                this.root().cache[uuid] = value;
+            },
+
+            /**
              * Define routes setter
              * @memberOf BaseController
              */

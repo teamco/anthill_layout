@@ -149,7 +149,8 @@ define([
 
             var index, $field,
                 widget = widgets[0] ? widgets[0] : widgets,
-                $ul = $('<ul />');
+                $ul = $('<ul />'),
+                $element = this;
 
             widgetData = widgetData || {};
             widgetData.dimensions = widgetData.dimensions || {};
@@ -160,10 +161,11 @@ define([
              * @param {string} index
              * @param {string|boolean} value
              * @param {{[mask]: RegExp}} [validation]
+             * @param [monitor]
              * @returns {*}
              * @private
              */
-            function _getRenderer(renderer, index, value, validation) {
+            function _getRenderer(renderer, index, value, validation, monitor) {
 
                 // Define opts
                 var opts = {
@@ -181,6 +183,10 @@ define([
                         mask: validation.mask,
                         blank: false
                     };
+                }
+
+                if (monitor) {
+                    opts.monitor = monitor;
                 }
 
                 if (widgetData.name && index === 'resource') {
@@ -275,14 +281,36 @@ define([
             }
 
             /**
+             * Toggle external url
+             * @param e
+             * @private
+             */
+            function _toggleExternalUrl(e) {
+
+                var $scratch = $('.site-config-scratch-prefs input', '.widget-generator-new'),
+                    $combo = $('.clone-template', '.widget-generator-new'),
+                    $url = $('li.url input', '.widget-generator-new'),
+                    checked = $(e.target).prop('checked');
+
+                $scratch.prop('disabled', checked);
+                $url.prop('disabled', !checked);
+
+                checked ?
+                    $element.disableComboBox($combo) :
+                    ($scratch.prop('checked') ?
+                        $element.disableComboBox($combo) :
+                        $element.enableComboBox($combo));
+            }
+
+            /**
              * Get scope
              * @type {SiteConfig}
              */
-            var scope = this.view.scope;
+            var scope = $element.view.scope;
 
             if (clone) {
                 $ul.append(
-                    this.cloneFromField(widgets)
+                    $element.cloneFromField(widgets)
                 );
             }
 
@@ -295,7 +323,7 @@ define([
                         case 'name':
                         case 'resource':
                             $field = _getRenderer(
-                                this.renderTextField.bind(this),
+                                $element.renderTextField.bind($element),
                                 index,
                                 widgetData[index],
                                 {}
@@ -303,32 +331,41 @@ define([
                             break;
 
                         case 'external':
+
+                            var $url = _getRenderer(
+                                $element.renderTextField.bind($element),
+                                'url',
+                                widgetData[index]
+                            );
+
+                            $url.find('input').prop('disabled', true);
+
                             $field = [
                                 _getRenderer(
-                                    this.renderCheckbox.bind(this),
+                                    $element.renderCheckbox.bind($element),
                                     'external',
                                     widgetData[index] ?
                                         !!widgetData[index].length :
-                                        false
+                                        false,
+                                    {}, {
+                                        events: ['click.external'],
+                                        callback: _toggleExternalUrl
+                                    }
                                 ).addClass('checkbox'),
-                                _getRenderer(
-                                    this.renderTextField.bind(this),
-                                    'url',
-                                    widgetData[index]
-                                )
+                                $url
                             ];
                             break;
 
                         case 'dimensions':
                             $field = [
                                 _getRenderer(
-                                    this.renderTextField.bind(this),
+                                    $element.renderTextField.bind($element),
                                     'width',
                                     widgetData[index].width,
                                     {mask: /^\d+$/}
                                 ),
                                 _getRenderer(
-                                    this.renderTextField.bind(this),
+                                    $element.renderTextField.bind($element),
                                     'height',
                                     widgetData[index].height,
                                     {mask: /^\d+$/}
@@ -338,7 +375,7 @@ define([
 
                         case 'description':
                             $field = _getRenderer(
-                                this.renderTextArea.bind(this),
+                                $element.renderTextArea.bind($element),
                                 index,
                                 widgetData[index],
                                 {}
@@ -349,7 +386,7 @@ define([
                             scope.base.isDataURL();
                             scope.base.isUrl();
                             $field = _getRenderer(
-                                this.renderTextArea.bind(this),
+                                $element.renderTextArea.bind($element),
                                 index,
                                 widgetData[index], {
                                     mask: [
@@ -379,10 +416,10 @@ define([
                              * Define sorted data
                              * @type {Array}
                              */
-                            var sorted = this.sortComboBoxData(data);
+                            var sorted = $element.sortComboBoxData(data);
 
                             $field = $('<li />').addClass(index).append(
-                                this.renderCombobox(
+                                $element.renderCombobox(
                                     sorted,
                                     (types[widgetData[index]] || sorted[0].value),
                                     index,

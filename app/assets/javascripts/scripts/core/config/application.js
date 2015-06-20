@@ -106,6 +106,13 @@ define([
         this.loadingDataCounter = undefined;
 
         /**
+         * Define cache
+         * @property Application
+         * @type {{}}
+         */
+        this.cache = {};
+
+        /**
          * Define panels
          * @property Application
          * @type {{}}

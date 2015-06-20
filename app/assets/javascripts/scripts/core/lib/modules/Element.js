@@ -7,10 +7,9 @@
  */
 
 define([
-    'jquery',
     'config/anthill',
     'modules/Renderer'
-], function defineBaseElement($, AntHill, Renderer) {
+], function defineBaseElement(AntHill, Renderer) {
 
     /**
      * Define Base element
@@ -101,7 +100,18 @@ define([
                 id: this.id
             }).addClass(this.style).css(this.css);
 
+            this.view.controller.updateCache(this.id, this);
+
             return this;
+        },
+
+        /**
+         * Locate $element by uuid
+         * @param {string} uuid
+         * @returns {*}
+         */
+        getElementByUuid: function getElementByUuid(uuid) {
+            return this.view.controller.getCache(uuid);
         },
 
         /**
@@ -982,7 +992,7 @@ define([
         /**
          * Check if content has iframe
          * @memberOf BaseElement
-         * @returns {jQuery.length}
+         * @returns {number}
          */
         hasIframe: function hasIframe() {
             return $('iframe', this.$).length;
@@ -991,11 +1001,11 @@ define([
         /**
          * Check if content has flash
          * @memberOf BaseElement
-         * @returns {jQuery.length}
+         * @returns {number}
          */
         hasFlash: function hasFlash() {
             return $('object', this.$).length ||
-                $('object', this.$).length;
+                $('embed', this.$).length;
         }
 
     }, AntHill.prototype, Renderer.prototype);

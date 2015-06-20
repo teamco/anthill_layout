@@ -77,7 +77,7 @@ define([
              */
             this.elements.$export = new ExportElement(this, {
                 $container: this.elements.$application.$,
-                id: 'export-url',
+                style: 'export-url',
                 data: data
             });
         },
