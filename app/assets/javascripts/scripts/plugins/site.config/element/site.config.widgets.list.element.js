@@ -315,7 +315,12 @@ define([
 
             function _readData() {
 
-                
+                require(['lib/jquery/jquery.xdomainrequest.min'], function loadCors(){
+
+                    $.getJSON('https://dl.dropboxusercontent.com/u/9268245/image/config.json').done(function(data) {
+                        console.log(data.name.first);
+                    });
+                });
             }
 
             /**
