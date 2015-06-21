@@ -26,26 +26,27 @@ define([
 
         /**
          * Define containment
-         * @memberOf SiteConfig
+         * @property SiteConfig
          */
         this.containment = containment;
 
         /**
          * Define referrer
+         * @property SiteConfig
          * @type {SiteConfig}
          */
         this.referrer = this;
 
         /**
          * Define active content
-         * @memberOf SiteConfig
+         * @property SiteConfig
          * @type {Page}
          */
         this.activeContent = undefined;
 
         /**
          * Allow to locate element
-         * @memberOf SiteConfig
+         * @property SiteConfig
          * @type {boolean}
          */
         this.allowToLocate = true;
@@ -86,7 +87,8 @@ define([
                 activateSiteStorage: ['/sites/activate/', 'put'],
                 createNewWidget: ['/author/widgets', 'post'],
                 updateExistingWidget: ['/author/widgets/{id}', 'put'],
-                publishSiteStorage: ['/author/site_storages/publish/{id}', 'put']
+                publishSiteStorage: ['/author/site_storages/publish/{id}', 'put'],
+                fetchExternalWidget: ['/fetch_external_widget', 'put']
             },
             widget: {
                 type: 'regular',

@@ -25,7 +25,7 @@ define([
 
         /**
          * Define local data
-         * @memberOf SiteConfigApproveImportElement
+         * @property SiteConfigApproveImportElement
          * @type {object}
          */
         this.data = opts.data;

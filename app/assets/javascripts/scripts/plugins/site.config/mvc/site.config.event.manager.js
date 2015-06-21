@@ -20,14 +20,14 @@ define([
 
         /**
          * Define events
-         * @memberOf SiteConfigEventManager
+         * @property SiteConfigEventManager
          * @type {{}}
          */
         this.events = {};
 
         /**
          * Set subscribed flag
-         * @memberOf SiteConfigEventManager
+         * @property SiteConfigEventManager
          * @type {boolean}
          */
         this.subscribed = false;
@@ -75,7 +75,7 @@ define([
          * @memberOf SiteConfigEventManager
          * @param {Application} root
          * @param {Function} [callback]
-         * @returns {{}}
+         * @returns {{}|boolean}
          */
         subscribePublishOn: function subscribePublishOn(root, callback) {
 
@@ -89,7 +89,7 @@ define([
 
             /**
              * Set subscribed flag
-             * @memberOf SiteConfigEventManager
+             * @property SiteConfigEventManager
              * @type {boolean}
              */
             this.subscribed = true;

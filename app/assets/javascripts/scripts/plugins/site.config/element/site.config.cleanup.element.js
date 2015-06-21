@@ -48,7 +48,7 @@ define([
 
             /**
              * Get scope
-             * @type {SiteConfig}
+             * @type {SiteConfig|AntHill}
              */
             var scope = this.view.scope,
                 data = scope.controller.root().model.setting.load();

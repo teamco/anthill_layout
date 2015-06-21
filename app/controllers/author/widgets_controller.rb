@@ -11,6 +11,7 @@ class Author::WidgetsController < Author::AuthorController
   require 'open-uri'
   require 'uri'
   require 'uuid'
+  require 'json'
 
   before_action :set_author_widget_category, only: [:create, :update, :destroy]
   before_action :set_author_widget, only: [:show, :edit, :update, :destroy]
@@ -117,6 +118,13 @@ class Author::WidgetsController < Author::AuthorController
         end
       end
     end
+  end
+
+  def external_fetch
+
+    config = JSON.parse(open(params[:external_url]+'/config.json').read)
+    logger.info ">>>>>>>>> #{config.inspect}"
+
   end
 
   # PATCH/PUT /author/widgets/1

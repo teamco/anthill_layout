@@ -13,6 +13,7 @@ define([
      * @constructor
      * @param {SiteConfigView} view
      * @param opts
+     * @extends AntHill
      * @extends BaseElement
      * @extends Renderer
      * @extends GalleryProvidersElement
@@ -313,14 +314,27 @@ define([
                 }
             }
 
-            function _readData() {
+            function _readData(e) {
 
-                require(['lib/jquery/jquery.xdomainrequest.min'], function loadCors(){
+                /**
+                 * Get create new widget route
+                 * @type {Routes.resources.fetchExternalWidget|*}
+                 */
+                var route = $element.view.controller.resources.fetchExternalWidget;
 
-                    $.getJSON('https://dl.dropboxusercontent.com/u/9268245/image/config.json').done(function(data) {
-                        console.log(data.name.first);
-                    });
-                });
+                $.ajax({
+
+                    url: route[0],
+                    method: route[1],
+                    data: $element.view.controller.prepareXhrData({
+                        external_url: e.target.value
+                    })
+
+                }).done(function(){
+                        debugger
+                    }
+
+                );
             }
 
             /**

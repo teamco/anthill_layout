@@ -7,6 +7,9 @@ define(function defineSiteConfigActivate() {
     /**
      * Define SiteConfig Activate
      * @class SiteConfigActivate
+     * @extends AntHill
+     * @extends BaseController
+     * @extends Routes
      * @constructor
      */
     var SiteConfigActivate = function SiteConfigActivate() {
@@ -78,7 +81,7 @@ define(function defineSiteConfigActivate() {
 
             /**
              * Get create update site route
-             * @type {{string[]}}
+             * @type {Array}
              */
             var route = scope.config.routes.activateSiteStorage,
                 key = config.appName,

@@ -54,7 +54,7 @@ define([
 
             /**
              * Define data
-             * @memberOf SiteConfigContentElement
+             * @property SiteConfigContentElement
              * @type {{name: string, description: string}}
              */
             this.data = {

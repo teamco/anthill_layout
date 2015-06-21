@@ -19,7 +19,7 @@ define(function defineRoutes() {
 
         /**
          * Define route resources
-         * @memberOf Routes
+         * @property Routes
          * @type {object}
          */
         resources: {},

@@ -355,7 +355,7 @@ define([
 
                     /**
                      * Define relation
-                     * @memberOf {BaseController|BaseModel|BaseView}
+                     * @property {BaseController|BaseModel|BaseView}
                      */
                     scope[from][to] = scope[to];
                 }
@@ -391,6 +391,7 @@ define([
                 /**
                  * Define scope
                  * @type {mvc.scope}
+                 * @property {BaseController|BaseModel|BaseView}
                  */
                 ref.scope = this.scope;
 
@@ -407,26 +408,29 @@ define([
          */
         applyMVCShims: function applyMVCShims(pattern) {
 
+            // Get scope
+            var scope = this.scope;
+
             if (pattern === 'view') {
 
                 /**
                  * Define elements
-                 * @memberOf BaseView
+                 * @property BaseView
                  * @type {Object}
                  */
-                this.scope.view.elements = {};
+                scope.view.elements = {};
             }
 
             if (pattern === 'model' &&
-                this.scope.controller.isWidgetContent()) {
+                scope.controller.isWidgetContent()) {
 
                 /**
                  * Define preferences
                  * @memberOf BaseModel
                  * @type {Object}
                  */
-                this.scope.model.preferences = this.base.define(
-                    this.scope.model.preferences,
+                scope.model.preferences = this.base.define(
+                    scope.model.preferences,
                     {}, true
                 );
             }

@@ -9,6 +9,7 @@ define(function defineSiteConfigWidgetGenerator() {
      * @class SiteConfigWidgetGenerator
      * @extends AntHill
      * @extends PluginController
+     * @extends Routes
      * @constructor
      */
     var SiteConfigWidgetGenerator = function SiteConfigWidgetGenerator() {
@@ -201,8 +202,8 @@ define(function defineSiteConfigWidgetGenerator() {
         _beforeSendWidgetData: function _beforeSendWidgetData(xhr, opts) {
 
             /**
-             * Get scope
-             * @type {SiteConfig}
+             * Get scope controller
+             * @type {SiteConfigController}
              */
             var controller = this.controller,
                 scope = controller.scope,

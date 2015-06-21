@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resources :widget_categories
   end
 
+  put '/fetch_external_widget', to: 'author/widgets#external_fetch'
+
   get 'author/site_storages/publish/:key', to: 'author/site_storages#publish'
   put 'author/site_storages/publish/:key', to: 'author/site_storages#publish', as: 'publish_site'
 
