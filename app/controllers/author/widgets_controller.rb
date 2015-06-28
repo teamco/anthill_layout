@@ -121,7 +121,26 @@ class Author::WidgetsController < Author::AuthorController
   end
 
   def external_fetch
-    @external = JSON.parse(open(params[:external_url]).read)
+
+    url = params[:external_url]
+
+    json = {
+        name: '',
+        description: '',
+        resource: '',
+        type: '',
+        width: '',
+        height: '',
+        thumbnail: ''
+    }.to_json
+
+    json = open(url).read if url =~ URI::regexp
+
+    logger.info json.inspect
+
+    @external = JSON.parse(json)
+    @external['thumbnail'] = url.gsub(/config\.json/, '') + @external['thumbnail']
+
     respond_to do |format|
       format.json {
         render :external, status: :ok,

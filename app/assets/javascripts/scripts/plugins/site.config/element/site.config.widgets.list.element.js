@@ -434,6 +434,43 @@ define([
              */
             this.disabled = true;
 
+            /**
+             * Update data
+             * @param {{widget: object}} data
+             * @param {string} status
+             * @param xhr
+             * @private
+             */
+            function _updateData(data, status, xhr) {
+
+                /**
+                 * Get $modal
+                 * @type {ModalElement}
+                 */
+                var $modal = $element.view.elements.$modal,
+                    widget = data.widget;
+
+                if (!widget.name.length) {
+
+                    $element.view.scope.logger.warn('Unable to parse url');
+                    return false;
+                }
+
+                $('input[name="name"]', $modal.$).val(widget.name);
+                $('p[name="description"]', $modal.$).text(widget.description);
+                $('input[name="width"]', $modal.$).val(widget.width);
+                $('input[name="height"]', $modal.$).val(widget.height);
+                $('input[name="resource"]', $modal.$).val(widget.resource);
+                $('input[name="type"]', $modal.$).val(widget.type);
+                $('p[name="thumbnail"]', $modal.$).text(widget.thumbnail);
+                $('li.thumbnail img', $modal.$).attr({src: widget.thumbnail});
+            }
+
+            /**
+             * Read data
+             * @param e
+             * @private
+             */
             function _readData(e) {
 
                 /**
@@ -450,10 +487,7 @@ define([
                         external_url: e.target.value
                     })
 
-                }).done(function () {
-                        debugger
-                    }
-                );
+                }).done(_updateData.bind(this));
             }
 
             /**
@@ -485,7 +519,7 @@ define([
                                 'url',
                                 widgetData[index],
                                 {}, {
-                                    events: ['blur.url'],
+                                    events: ['mouseleave.url'],
                                     callback: _readData
                                 }
                             );
