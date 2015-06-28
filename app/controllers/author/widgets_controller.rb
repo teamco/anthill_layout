@@ -121,10 +121,13 @@ class Author::WidgetsController < Author::AuthorController
   end
 
   def external_fetch
-
-    config = JSON.parse(open(params[:external_url]+'/config.json').read)
-    logger.info ">>>>>>>>> #{config.inspect}"
-
+    @external = JSON.parse(open(params[:external_url]).read)
+    respond_to do |format|
+      format.json {
+        render :external, status: :ok,
+               location: @external
+      }
+    end
   end
 
   # PATCH/PUT /author/widgets/1

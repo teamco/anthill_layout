@@ -42,7 +42,14 @@ define(function defineGalleryWidgets() {
          * @param {string} [key]
          * @param {string} [type]
          * @param {boolean} [reverse]
-         * @returns {{name: string, description: string, thumbnail: string, dimensions: {width: number, height: number}, type: string, resource: string}[]}
+         * @returns {{
+         *      name: string,
+         *      description: string,
+         *      thumbnail: string,
+         *      dimensions: {width: number, height: number},
+         *      type: string,
+         *      resource: string
+         * }[]}
          */
         loadDefaultData: function loadDefaultData(key, type, reverse) {
 
@@ -130,7 +137,7 @@ define(function defineGalleryWidgets() {
 
                 /**
                  * Define provider types
-                 * @memberOf GalleryModel
+                 * @property GalleryModel
                  * @type {object}
                  */
                 this.galleryModel.dataTypes = {};
@@ -292,13 +299,13 @@ define(function defineGalleryWidgets() {
             /**
              * Get gallery widgets
              * @type {{
-                 *      name: string,
-                 *      description: string,
-                 *      thumbnail: string,
-                 *      dimensions: {width: number, height: number},
-                 *      type: string,
-                 *      resource: string
-                 * }[]}
+             *      name: string,
+             *      description: string,
+             *      thumbnail: string,
+             *      dimensions: {width: number, height: number},
+             *      type: string,
+             *      resource: string
+             * }[]}
              */
             var widgets = this.getDefaultData(),
                 i = 0, l = widgets.length;

@@ -19,7 +19,6 @@ define([
      * @constructor
      */
     var GalleryModel = function GalleryModel() {
-
     };
 
     return GalleryModel.extend('GalleryModel', {
@@ -32,7 +31,7 @@ define([
 
             /**
              * Define static data
-             * @memberOf GalleryModel
+             * @property GalleryModel
              * @type {GalleryWidgets}
              */
             this.staticData = new GalleryWidgets(this);
@@ -49,7 +48,7 @@ define([
 
             /**
              * Define providers
-             * @memberOf GalleryModel
+             * @property GalleryModel
              * @type {{indoor: {name: string, data: *[]}}}
              */
             this.providers = {
@@ -62,14 +61,14 @@ define([
 
             /**
              * Define default provider
-             * @memberOf GalleryModel
+             * @property GalleryModel
              * @type {{name: string, data: *[]}[]}
              */
             this.defaultProvider = this.getProvidersList().all;
 
             /**
              * Define current provider
-             * @memberOf GalleryModel
+             * @property GalleryModel
              * @type {{name: string, data: *[]}[]}
              */
             this.currentProvider = this.defaultProvider;
@@ -114,7 +113,7 @@ define([
 
             /**
              * Define current provider
-             * @memberOf GalleryModel
+             * @property GalleryModel
              * @type {{name: string, data: *[]}[]}
              */
             this.currentProvider = provider;
@@ -125,7 +124,7 @@ define([
         /**
          * Set widget to provider
          * @memberOf GalleryModel
-         * @param {{}} meta
+         * @param {{type: string}} meta
          */
         setProvider: function setProvider(meta) {
 

@@ -75,9 +75,19 @@ define(function defineSiteConfigWidgetGenerator() {
          */
         nextWidgetExternal: function nextWidgetExternal() {
 
-            this.scope.view.showWidgetExternal(
-                this.model.getConfig('widget')
-            );
+            /**
+             * Get gallery
+             * @type {Gallery}
+             */
+            var gallery = this.getGalleryModule();
+
+            if (gallery) {
+                this.scope.view.showWidgetExternal(
+                    gallery.model.staticData.getDefaultData(),
+                    gallery.model.dataTypes,
+                    this.model.getConfig('widget')
+                );
+            }
         },
 
         /**
@@ -205,7 +215,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define on before send widget's data
-         * @memberOf SiteConfigWidgetGenerator
+         * @property SiteConfigWidgetGenerator
          * @param xhr
          * @param opts
          * @private
@@ -274,7 +284,7 @@ define(function defineSiteConfigWidgetGenerator() {
 
         /**
          * Define on error send widget's data
-         * @memberOf SiteConfigWidgetGenerator
+         * @property SiteConfigWidgetGenerator
          * @param xhr
          * @param status
          * @param description
@@ -303,6 +313,7 @@ define(function defineSiteConfigWidgetGenerator() {
              *      category: string,
              *      collector: {},
              *      $modal: ModalElement,
+             *      clone,
              *      validate: *,
              *      empty: number
              * }}
@@ -314,6 +325,59 @@ define(function defineSiteConfigWidgetGenerator() {
              * @type {Routes.resources.createNewWidget|*}
              */
             var route = this.resources.createNewWidget;
+
+            $.ajax({
+
+                url: route[0],
+                method: route[1],
+
+                data: this.prepareXhrData({
+                    author_widget: data.collector,
+                    author_widget_clone: data.clone,
+                    author_widget_category: {
+                        name_index: data.category
+                    }
+                }),
+
+                beforeSend: this._beforeSendWidgetData.bind({
+                    controller: this,
+                    data: data
+                }),
+
+                error: this._onErrorSendWidgetData.bind({
+                    controller: this,
+                    data: data
+                })
+
+            }).done(
+                this.generateNewWidgetCallback.bind(this)
+            );
+        },
+
+        /**
+         * Generate external widget
+         * @memberOf SiteConfigWidgetGenerator
+         */
+        generateExternalWidget: function generateExternalWidget() {
+
+            /**
+             * Get collector
+             * @type {{
+             *      category: string,
+             *      collector: {},
+             *      $modal: ModalElement,
+             *      clone,
+             *      validate: *,
+             *      empty: number
+             * }}
+             */
+            var data = this._collectFormWidgetData();
+
+            /**
+             * Get create new widget route
+             * @type {Routes.resources.createExternalWidget|*}
+             */
+            var route = this.resources.createExternalWidget;
 
             $.ajax({
 

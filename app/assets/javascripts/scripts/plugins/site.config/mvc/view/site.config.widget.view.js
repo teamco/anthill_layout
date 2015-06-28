@@ -127,9 +127,11 @@ define([
             /**
              * Define show widgets external
              * @memberOf SiteConfigWidgetView
+             * @param {Array} widgets
+             * @param {Array} types
              * @param {object} defaults
              */
-            showWidgetExternal: function showWidgetExternal(defaults) {
+            showWidgetExternal: function showWidgetExternal(widgets, types, defaults) {
 
                 if (this.elements.$modal) {
 
@@ -140,10 +142,11 @@ define([
                 this.modalDialog({
                     style: 'widget-generator-new',
                     type: 'info',
-                    title: this.i18n.t('widget.manager.generate.new'),
+                    title: this.i18n.t('widget.manager.generate.external'),
                     html: this.elements.$widgetgenerator.renderWidgetExternalForm(
-                        defaults,
-                        true
+                        widgets,
+                        types,
+                        defaults
                     ),
                     cover: true,
                     closeX: false,
@@ -152,7 +155,7 @@ define([
                         approve: {
                             text: this.i18n.t('site.data.save'),
                             events: {
-                                click: 'generateNewWidget'
+                                click: 'generateExternalWidget'
                             }
                         },
                         reject: {

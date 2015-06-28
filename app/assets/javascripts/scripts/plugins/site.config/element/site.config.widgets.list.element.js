@@ -290,6 +290,13 @@ define([
             widgetData.dimensions = widgetData.dimensions || {};
 
             /**
+             * Define disabled fields
+             * @property SiteConfigWidgetsListElement
+             * @type {boolean}
+             */
+            this.disabled = false;
+
+            /**
              * Get scope
              * @type {SiteConfig}
              */
@@ -404,52 +411,28 @@ define([
         },
 
         /**
-         * Render widget generator form
+         * Render widget external form
+         * @param {Array} widgets
          * @param {object} [widgetData]
+         * @param {Array} types
          * @returns {SiteConfigWidgetsListElement}
          */
-        showWidgetExternal: function showWidgetExternal(widgetData) {
+        renderWidgetExternalForm: function renderWidgetExternalForm(widgets, types, widgetData) {
 
             var index, $field,
+                widget = widgets[0] ? widgets[0] : widgets,
                 $ul = $('<ul />'),
                 $element = this;
 
             widgetData = widgetData || {};
             widgetData.dimensions = widgetData.dimensions || {};
 
-
             /**
-             * Toggle external url
-             * @param e
-             * @private
+             * Define disabled fields
+             * @property SiteConfigWidgetsListElement
+             * @type {boolean}
              */
-            function _toggleExternalUrl(e) {
-
-                var $scratch = $('.site-config-scratch-prefs input', '.widget-generator-new'),
-                    $clone = $('.clone-template', '.widget-generator-new'),
-                    $type = $('.type', '.widget-generator-new'),
-                    $url = $('li.url input', '.widget-generator-new'),
-                    checked = $(e.target).prop('checked');
-
-                $('input', '.widget-generator-new').prop('disabled', checked);
-                $('textarea', '.widget-generator-new').prop('disabled', checked);
-
-                $(e.target).prop('disabled', false);
-                $url.prop('disabled', !checked);
-
-                if (checked) {
-
-                    $element.disableComboBox($clone);
-                    $element.disableComboBox($type);
-
-                } else {
-
-                    $scratch.prop('checked') ?
-                        $element.disableComboBox($clone) :
-                        $element.enableComboBox($clone);
-                    $element.enableComboBox($type)
-                }
-            }
+            this.disabled = true;
 
             function _readData(e) {
 
@@ -479,12 +462,6 @@ define([
              */
             var scope = $element.view.scope;
 
-            if (clone) {
-                $ul.append(
-                    $element.cloneFromField(widgets)
-                );
-            }
-
             for (index in widget) {
 
                 if (widget.hasOwnProperty(index)) {
@@ -503,7 +480,7 @@ define([
 
                         case 'external':
 
-                            var $url = this._getRenderer(
+                            $field = this._getRenderer(
                                 $element.renderTextField.bind($element),
                                 'url',
                                 widgetData[index],
@@ -513,22 +490,7 @@ define([
                                 }
                             );
 
-                            $url.find('input').prop('disabled', true);
-
-                            $field = [
-                                this._getRenderer(
-                                    $element.renderCheckbox.bind($element),
-                                    'external',
-                                    widgetData[index] ?
-                                        !!widgetData[index].length :
-                                        false,
-                                    {}, {
-                                        events: ['click.external'],
-                                        callback: _toggleExternalUrl
-                                    }
-                                ).addClass('checkbox'),
-                                $url
-                            ];
+                            $field.find('input').prop('disabled', false);
                             break;
 
                         case 'dimensions':
@@ -575,34 +537,13 @@ define([
 
                         case 'type':
 
-                            // Define data
-                            var data = {}, type;
-
-                            for (type in types) {
-                                if (types.hasOwnProperty(type)) {
-                                    data[type] = {
-                                        key: type,
-                                        name: types[type]
-                                    }
-                                }
-                            }
-
-                            /**
-                             * Define sorted data
-                             * @type {Array}
-                             */
-                            var sorted = $element.sortComboBoxData(data);
-
-                            $field = $('<li />').addClass(index).append(
-                                $element.renderCombobox(
-                                    sorted,
-                                    (types[widgetData[index]] || sorted[0].value),
-                                    index,
-                                    'category',
-                                    undefined,
-                                    true
-                                )
+                            $field = this._getRenderer(
+                                $element.renderTextField.bind($element),
+                                index,
+                                types[widgetData[index]],
+                                {}
                             );
+
                             break;
 
                         default:

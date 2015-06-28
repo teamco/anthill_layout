@@ -287,7 +287,8 @@ ul.site-config > .content:hover {
     margin-left: 45px;
 }
 
-.modal-dialog.widget-generator-new div.html li.thumbnail textarea {
+.modal-dialog.widget-generator-new div.html li.thumbnail textarea,
+.modal-dialog.widget-generator-new div.html li.thumbnail p.textarea {
     width: 90%;
     float: right;
 }
@@ -311,11 +312,6 @@ ul.site-config > .content:hover {
     width: 35%;
     float: left;
     padding: 0 4px;
-}
-
-.modal-dialog.widget-generator-new div.html li.url {
-    float: right;
-    width: 58%;
 }
 
 .modal-dialog.widget-generator-new div.html li.name {
