@@ -26,6 +26,13 @@ define([
             destroy: false
         });
 
+        /**
+         * Define disabled fields
+         * @property SiteConfigWidgetsListElement
+         * @type {boolean}
+         */
+        this.disabled = false;
+
         return this;
     };
 
@@ -138,6 +145,132 @@ define([
         },
 
         /**
+         * Get renderer
+         * @memberOf SiteConfigWidgetsListElement
+         * @param {function} renderer
+         * @param {string} index
+         * @param {string|boolean} value
+         * @param {{[mask]: RegExp}} [validation]
+         * @param [monitor]
+         * @returns {*}
+         * @private
+         */
+        _getRenderer: function _getRenderer(renderer, index, value, validation, monitor) {
+
+            // Define opts
+            var opts = {
+                name: index,
+                text: index,
+                placeholder: 'Enter ' + index,
+                disabled: this.base.defineBoolean(this.disabled, false, true),
+                visible: true,
+                value: value,
+                validate: false
+            };
+
+            if (validation) {
+                opts.validate = {
+                    mask: validation.mask,
+                    blank: false
+                };
+            }
+
+            if (monitor) {
+                opts.monitor = monitor;
+            }
+
+            if (index === 'resource') {
+                opts.disabled = true;
+            }
+
+            var $li = $('<li />').addClass(index);
+
+            if (index === 'thumbnail') {
+
+                opts.text += ' data-uri';
+
+                $li.append(
+                    $('<img />').attr({
+                        src: value,
+                        alt: index
+                    })
+                );
+
+                opts.monitor = {
+                    events: ['change.' + index],
+                    callback: function onChange() {
+
+                        /**
+                         * Convert to Base64
+                         * @private
+                         */
+                        function _toBase64() {
+                            if (scope.base.isUrl(value)) {
+                                scope.base.lib.image.toDataURL(
+                                    value,
+                                    function (err, base64Img) {
+                                        //_resize(base64Img);
+                                        $input.val(
+                                            base64Img ?
+                                                base64Img :
+                                                value
+                                        )
+                                    }
+                                );
+                            }
+                        }
+
+                        /**
+                         * Resize Data-Uri
+                         * @param {string} data
+                         * @private
+                         */
+                        function _resize(data) {
+                            scope.base.lib.image.resizeDataURL(
+                                data,
+                                64, 64,
+                                function (err, base64Img) {
+                                    $input.val(
+                                        base64Img ?
+                                            base64Img :
+                                            value
+                                    );
+                                }
+                            );
+                        }
+
+                        /**
+                         * Define $input
+                         * @type {*|jQuery}
+                         */
+                        var $input = $(this),
+                            value = this.value;
+
+                        //scope.base.isUrl(value) ?
+                        //    _toBase64() :
+                        //    _resize(value);
+
+                        _toBase64();
+
+                        $('img', $input.parent()).attr({
+                            src: value
+                        });
+                    }
+                };
+            }
+
+            $li.append(renderer(opts));
+
+            if (index === 'thumbnail') {
+                $li.append(
+                    $('<div />').addClass('clear')
+                );
+            }
+
+            return $li;
+        },
+
+        /**
          * Render widget generator form
          * @memberOf SiteConfigWidgetsListElement
          * @param {Array} widgets
@@ -157,129 +290,133 @@ define([
             widgetData.dimensions = widgetData.dimensions || {};
 
             /**
-             * Get renderer
-             * @param {function} renderer
-             * @param {string} index
-             * @param {string|boolean} value
-             * @param {{[mask]: RegExp}} [validation]
-             * @param [monitor]
-             * @returns {*}
-             * @private
+             * Get scope
+             * @type {SiteConfig}
              */
-            function _getRenderer(renderer, index, value, validation, monitor) {
+            var scope = $element.view.scope;
 
-                // Define opts
-                var opts = {
-                    name: index,
-                    text: index,
-                    placeholder: 'Enter ' + index,
-                    disabled: false,
-                    visible: true,
-                    value: value,
-                    validate: false
-                };
+            if (clone) {
+                $ul.append(
+                    $element.cloneFromField(widgets)
+                );
+            }
 
-                if (validation) {
-                    opts.validate = {
-                        mask: validation.mask,
-                        blank: false
-                    };
-                }
+            for (index in widget) {
 
-                if (monitor) {
-                    opts.monitor = monitor;
-                }
+                if (widget.hasOwnProperty(index)) {
 
-                if (widgetData.name && index === 'resource') {
-                    opts.disabled = true;
-                }
+                    switch (index) {
 
-                var $li = $('<li />').addClass(index);
+                        case 'name':
+                        case 'resource':
+                            $field = this._getRenderer(
+                                $element.renderTextField.bind($element),
+                                index,
+                                widgetData[index],
+                                {}
+                            );
+                            break;
 
-                if (index === 'thumbnail') {
+                        case 'dimensions':
+                            $field = [
+                                this._getRenderer(
+                                    $element.renderTextField.bind($element),
+                                    'width',
+                                    widgetData[index].width,
+                                    {mask: /^\d+$/}
+                                ),
+                                this._getRenderer(
+                                    $element.renderTextField.bind($element),
+                                    'height',
+                                    widgetData[index].height,
+                                    {mask: /^\d+$/}
+                                )
+                            ];
+                            break;
 
-                    opts.text += ' data-uri';
+                        case 'description':
+                            $field = this._getRenderer(
+                                $element.renderTextArea.bind($element),
+                                index,
+                                widgetData[index],
+                                {}
+                            );
+                            break;
 
-                    $li.append(
-                        $('<img />').attr({
-                            src: value,
-                            alt: index
-                        })
-                    );
+                        case 'thumbnail':
+                            scope.base.isDataURL();
+                            scope.base.isUrl();
+                            $field = this._getRenderer(
+                                $element.renderTextArea.bind($element),
+                                index,
+                                widgetData[index], {
+                                    mask: [
+                                        scope.base.isDataURL.regex,
+                                        scope.base.isUrl.regex,
+                                        /^\/assets\/scripts\/plugins\/stylesheets\/images/
+                                    ]
+                                }
+                            );
+                            break;
 
-                    opts.monitor = {
-                        events: ['change.' + index],
-                        callback: function onChange() {
+                        case 'type':
 
-                            /**
-                             * Convert to Base64
-                             * @private
-                             */
-                            function _toBase64() {
-                                if (scope.base.isUrl(value)) {
-                                    scope.base.lib.image.toDataURL(
-                                        value,
-                                        function (err, base64Img) {
-                                            //_resize(base64Img);
-                                            $input.val(
-                                                base64Img ?
-                                                    base64Img :
-                                                    value
-                                            )
-                                        }
-                                    );
+                            // Define data
+                            var data = {}, type;
+
+                            for (type in types) {
+                                if (types.hasOwnProperty(type)) {
+                                    data[type] = {
+                                        key: type,
+                                        name: types[type]
+                                    }
                                 }
                             }
 
                             /**
-                             * Resize Data-Uri
-                             * @param {string} data
-                             * @private
+                             * Define sorted data
+                             * @type {Array}
                              */
-                            function _resize(data) {
-                                scope.base.lib.image.resizeDataURL(
-                                    data,
-                                    64, 64,
-                                    function (err, base64Img) {
-                                        $input.val(
-                                            base64Img ?
-                                                base64Img :
-                                                value
-                                        );
-                                    }
-                                );
-                            }
+                            var sorted = $element.sortComboBoxData(data);
 
-                            /**
-                             * Define $input
-                             * @type {*|jQuery}
-                             */
-                            var $input = $(this),
-                                value = this.value;
+                            $field = $('<li />').addClass(index).append(
+                                $element.renderCombobox(
+                                    sorted,
+                                    (types[widgetData[index]] || sorted[0].value),
+                                    index,
+                                    'category',
+                                    undefined,
+                                    true
+                                )
+                            );
+                            break;
 
-                            //scope.base.isUrl(value) ?
-                            //    _toBase64() :
-                            //    _resize(value);
+                        default:
+                            continue;
+                            break;
+                    }
 
-                            _toBase64();
-
-                            $('img', $input.parent()).attr({
-                                src: value
-                            });
-                        }
-                    };
+                    $ul.append($field);
                 }
-
-                $li.append(renderer(opts));
-
-                if (index === 'thumbnail') {
-                    $li.append(
-                        $('<div />').addClass('clear')
-                    );
-                }
-
-                return $li;
             }
+
+            return $ul;
+        },
+
+        /**
+         * Render widget generator form
+         * @param {object} [widgetData]
+         * @returns {SiteConfigWidgetsListElement}
+         */
+        showWidgetExternal: function showWidgetExternal(widgetData) {
+
+            var index, $field,
+                $ul = $('<ul />'),
+                $element = this;
+
+            widgetData = widgetData || {};
+            widgetData.dimensions = widgetData.dimensions || {};
+
 
             /**
              * Toggle external url
@@ -330,10 +467,9 @@ define([
                         external_url: e.target.value
                     })
 
-                }).done(function(){
+                }).done(function () {
                         debugger
                     }
-
                 );
             }
 
@@ -357,7 +493,7 @@ define([
 
                         case 'name':
                         case 'resource':
-                            $field = _getRenderer(
+                            $field = this._getRenderer(
                                 $element.renderTextField.bind($element),
                                 index,
                                 widgetData[index],
@@ -367,7 +503,7 @@ define([
 
                         case 'external':
 
-                            var $url = _getRenderer(
+                            var $url = this._getRenderer(
                                 $element.renderTextField.bind($element),
                                 'url',
                                 widgetData[index],
@@ -380,7 +516,7 @@ define([
                             $url.find('input').prop('disabled', true);
 
                             $field = [
-                                _getRenderer(
+                                this._getRenderer(
                                     $element.renderCheckbox.bind($element),
                                     'external',
                                     widgetData[index] ?
@@ -397,13 +533,13 @@ define([
 
                         case 'dimensions':
                             $field = [
-                                _getRenderer(
+                                this._getRenderer(
                                     $element.renderTextField.bind($element),
                                     'width',
                                     widgetData[index].width,
                                     {mask: /^\d+$/}
                                 ),
-                                _getRenderer(
+                                this._getRenderer(
                                     $element.renderTextField.bind($element),
                                     'height',
                                     widgetData[index].height,
@@ -413,7 +549,7 @@ define([
                             break;
 
                         case 'description':
-                            $field = _getRenderer(
+                            $field = this._getRenderer(
                                 $element.renderTextArea.bind($element),
                                 index,
                                 widgetData[index],
@@ -424,7 +560,7 @@ define([
                         case 'thumbnail':
                             scope.base.isDataURL();
                             scope.base.isUrl();
-                            $field = _getRenderer(
+                            $field = this._getRenderer(
                                 $element.renderTextArea.bind($element),
                                 index,
                                 widgetData[index], {

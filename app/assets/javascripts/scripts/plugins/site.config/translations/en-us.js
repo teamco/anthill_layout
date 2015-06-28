@@ -18,6 +18,7 @@ define([], function defineEnUs() {
         'import.site.data.confirm.reload': 'Reload',
         'site.data.cancel': 'Cancel',
         'widget.manager.generate': 'New',
+        'widget.manager.external': 'External',
         'widget.manager.unmodified': 'Widget\'s data was not modified',
         'widget.generated.ok': 'Widget {1} was generated successfully',
         'widget.generation.ajax.abort': 'Unable to send ajax request before completing the previous one',

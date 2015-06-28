@@ -57,6 +57,12 @@ define([
                     cover: true,
                     autoclose: false,
                     buttons: {
+                        external: {
+                            text: this.i18n.t('widget.manager.external'),
+                            events: {
+                                click: 'nextWidgetExternal'
+                            }
+                        },
                         approve: {
                             text: this.i18n.t('widget.manager.generate'),
                             events: {
@@ -95,6 +101,47 @@ define([
                     html: this.elements.$widgetgenerator.renderWidgetGeneratorForm(
                         widgets,
                         types,
+                        defaults,
+                        true
+                    ),
+                    cover: true,
+                    closeX: false,
+                    autoclose: false,
+                    buttons: {
+                        approve: {
+                            text: this.i18n.t('site.data.save'),
+                            events: {
+                                click: 'generateNewWidget'
+                            }
+                        },
+                        reject: {
+                            text: this.i18n.t('site.data.back'),
+                            events: {
+                                click: 'loadWidgetsList'
+                            }
+                        }
+                    }
+                });
+            },
+
+            /**
+             * Define show widgets external
+             * @memberOf SiteConfigWidgetView
+             * @param {object} defaults
+             */
+            showWidgetExternal: function showWidgetExternal(defaults) {
+
+                if (this.elements.$modal) {
+
+                    // Clear modal
+                    this.elements.$modal.selfDestroy();
+                }
+
+                this.modalDialog({
+                    style: 'widget-generator-new',
+                    type: 'info',
+                    title: this.i18n.t('widget.manager.generate.new'),
+                    html: this.elements.$widgetgenerator.renderWidgetExternalForm(
                         defaults,
                         true
                     ),

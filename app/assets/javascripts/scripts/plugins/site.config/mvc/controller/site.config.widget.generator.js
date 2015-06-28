@@ -70,6 +70,17 @@ define(function defineSiteConfigWidgetGenerator() {
         },
 
         /**
+         * Define import external widget step
+         * @memberOf SiteConfigWidgetGenerator
+         */
+        nextWidgetExternal: function nextWidgetExternal() {
+
+            this.scope.view.showWidgetExternal(
+                this.model.getConfig('widget')
+            );
+        },
+
+        /**
          * Collect form widget's data
          * @memberOf SiteConfigWidgetGenerator
          * @returns {boolean|{
@@ -168,10 +179,10 @@ define(function defineSiteConfigWidgetGenerator() {
                  * }}
                  */
                 clone = gallery.model.staticData.getWidgetData(
-                    'resource',
-                    collector.scratch === 'true' ?
-                        'empty' : resource
-                ) || {}
+                        'resource',
+                        collector.scratch === 'true' ?
+                            'empty' : resource
+                    ) || {}
             }
 
             // Define hash
