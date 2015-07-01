@@ -8,16 +8,12 @@
     function _loadPublic() {
 
         var script = document.getElementById('require-init'),
-            site = script.getAttribute('data-resource'),
-            uuid = script.getAttribute('data-uuid'),
-            version = parseInt(script.getAttribute('data-version'), 10) || 1,
-            user = script.getAttribute('data-user'),
-            mode = script.getAttribute('data-mode'),
+            site = script.dataset.resource,
+            uuid = script.dataset.uuid,
+            version = parseInt(script.dataset.version, 10) || 1,
+            user = script.dataset.user,
+            mode = script.dataset.mode,
             isConsumption = mode === 'consumption';
-
-        var main = isConsumption ?
-            '../target/main' :
-            '../scripts/core/config/main';
 
         /**
          * Define Setup
@@ -36,30 +32,29 @@
 
             ], function init() {
 
-                require(['config/application'], function loadApplication(Application) {
+                require([
+                    'config/application',
+                    'public/' + site + '/javascript/config'
+                ], function loadApplication(Application, config) {
+
+                    $.extend(true, config, {
+                        user: user,
+                        uuid: uuid,
+                        version: version,
+                        appName: site,
+                        mode: mode
+                    });
 
                     /**
                      * Define application
                      * @type {Application}
                      */
-                    return new Application({
-                        config: {
-                            html: {
-                                container: 'body',
-                                header: true
-                            },
-                            user: user,
-                            uuid: uuid,
-                            version: version,
-                            appName: site,
-                            mode: mode
-                        }
-                    });
+                    return new Application({config: config});
                 });
             });
         }
 
-        require([main], function defineDelegator() {
+        require(['../scripts/core/config/main'], function defineDelegator() {
 
             if (isConsumption) {
 
