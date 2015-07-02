@@ -30,19 +30,29 @@ div.combo-box.disabled > ul {
 div.combo-box-arrow {
     position: absolute;
     top: 1px;
-    right: 0px;
+    right: 0;
     width: 12px;
     height: 20px;
     cursor: pointer;
-    background: transparent url('../../core/stylesheets/ui-lightness/ui-icons_222222_256x240.png') no-repeat -69px 2px;
 }
 
-div.combo-box-arrow:hover {
-    background-image: url('../../core/stylesheets/ui-lightness/ui-icons_228ef1_256x240.png');
+div.combo-box-arrow:after {
+    content: "\25BC";
+    color: #333;
+    position: absolute;
+    height: 100%;
+    padding-top: 50%;
+    right: 5px;
+    font-size: 10px;
 }
 
-div.combo-box.open div.combo-box-arrow {
-    background-position: -4px 2px;
+div.combo-box:hover .combo-box-arrow:after {
+    color: #006dcc;
+}
+
+div.combo-box.open div.combo-box-arrow:after {
+    content: "\25B2";
+    z-index: 10;
 }
 
 div.combo-box li {
