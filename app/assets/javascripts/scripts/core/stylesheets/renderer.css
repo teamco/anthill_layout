@@ -11,15 +11,19 @@ div.combo-box {
 
 div.combo-box > ul {
     width: 100%;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 1px solid #ccc !important;
-    background-color: #fff !important;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    background-color: #fff;
     border-radius: 2px;
     height: 24px;
     line-height: 22px;
     float: right;
     overflow: hidden;
+    transition: width 0.5s;
+    -webkit-transition: width 0.5s;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
     box-shadow: inset 0 0 5px #ccc;
 }
 
