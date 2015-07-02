@@ -113,8 +113,8 @@ div.combo-box input.hidden {
     display: none;
 }
 
-.application input[type="number"],
-.application input[type="text"] {
+.anthill input[type="number"],
+.anthill input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 2px;
     background-color: #fff;
@@ -133,37 +133,37 @@ div.combo-box input.hidden {
     right: 0;
 }
 
-.application input[type="number"] {
+.anthill input[type="number"] {
     width: 150px;
     float: none;
     left: 100px;
     line-height: 18px;
 }
 
-.application input[type="text"] {
+.anthill input[type="text"] {
     width: 60%;
 }
 
-.application input[type="number"]:focus,
-.application input[type="text"]:focus {
+.anthill input[type="number"]:focus,
+.anthill input[type="text"]:focus {
     transition: width 0.5s;
 }
 
-.application input[type="number"]:focus {
+.anthill input[type="number"]:focus {
     width: 200px;
 }
 
-.application input[type="text"]:focus {
+.anthill input[type="text"]:focus {
     width: 80%;
 }
 
-.application textarea.validate,
-.application input[type="text"].validate {
+.anthill textarea.validate,
+.anthill input[type="text"].validate {
     border-color: #F08080;
 }
 
-.application textarea + span.validate,
-.application input[type="text"] + span.validate {
+.anthill textarea + span.validate,
+.anthill input[type="text"] + span.validate {
     float: right;
     font-size: 11px;
     padding: 5px;
@@ -172,12 +172,12 @@ div.combo-box input.hidden {
     text-shadow: 1px 1px 3px #fff;
 }
 
-.application textarea[disabled="disabled"],
-.application input[disabled="disabled"] {
+.anthill textarea[disabled="disabled"],
+.anthill input[disabled="disabled"] {
     background-color: #f1f1f1;
 }
 
-.application li.checkbox {
+.anthill li.checkbox {
     width: 32%;
     margin-left: 1%;
     float: left;
@@ -192,15 +192,15 @@ div.combo-box input.hidden {
     clear: none;
 }
 
-.application li.checkbox label {
+.anthill li.checkbox label {
     cursor: pointer;
 }
 
-.application input[type="checkbox"] {
+.anthill input[type="checkbox"] {
     margin-right: 10px;
 }
 
-.application label {
+.anthill label {
     font-size: 14px;
     font-weight: bold;
     font-variant: small-caps;
@@ -211,12 +211,12 @@ div.combo-box input.hidden {
     padding-left: 0;
 }
 
-.application label.textarea {
+.anthill label.textarea {
     width: 100%;
 }
 
-.application textarea,
-.application p.textarea {
+.anthill textarea,
+.anthill p.textarea {
     resize: none;
     transition: height 0.5s;
     -webkit-transition: height 0.5s;
@@ -232,14 +232,14 @@ div.combo-box input.hidden {
     padding: 3px;
 }
 
-.application p.textarea {
+.anthill p.textarea {
     background-color: #f1f1f1;;
     color: #777;
     padding: 2px 5px;
     overflow: hidden;
 }
 
-.application textarea:focus {
+.anthill textarea:focus {
     height: 50px;
 }
 
@@ -307,7 +307,7 @@ div.combo-box input.hidden {
     width: 65px;
 }
 
-.application input[type="range"] {
+.anthill input[type="range"] {
     -webkit-appearance: none;
     width: 50%;
     height: 7px;
@@ -316,7 +316,7 @@ div.combo-box input.hidden {
     background-color: #fff;
 }
 
-.application input[type="range"] + input[type="number"] {
+.anthill input[type="range"] + input[type="number"] {
     width: 50px;
     left: 0;
     position: relative;
