@@ -253,11 +253,15 @@ define([
             var preferences = widget.model.getConfig('preferences'),
 
                 maximizablePermission = !!widget.permission.getCapability('maximizable'),
+                zoomablePermission = !!widget.permission.getCapability('zoomable'),
                 draggablePermission = !!widget.permission.getCapability('draggable'),
                 resizablePermission = !!widget.permission.getCapability('resizable'),
 
                 maximizable = maximizablePermission ?
                     !!preferences.maximizable : false,
+
+                zoomable = zoomablePermission ?
+                    !!preferences.zoomable : false,
 
                 draggable = draggablePermission ?
                     !!preferences.draggable : false,
@@ -275,6 +279,7 @@ define([
              *      stretchWidth: {type: string, disabled: boolean, checked: boolean, visible: boolean},
              *      stretchHeight: {type: string, disabled: boolean, checked: boolean, visible: boolean},
              *      maximizable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
+             *      zoomable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
              *      draggable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
              *      resizable: {type: string, disabled: boolean, checked: boolean, visible: boolean},
              *      freeze: {type: string, disabled: boolean, checked: boolean, visible: boolean},
@@ -322,20 +327,10 @@ define([
                     checked: maximizable,
                     visible: true
                 },
-                setLayerUp: {
-                    type: 'event',
-                    disabled: false,
-                    group: 'layer',
-                    events: ['click'],
-                    checked: false,
-                    visible: true
-                },
-                setLayerDown: {
-                    type: 'event',
-                    disabled: false,
-                    group: 'layer',
-                    events: ['click'],
-                    checked: false,
+                zoomable: {
+                    type: 'checkbox',
+                    disabled: !zoomablePermission,
+                    checked: zoomable,
                     visible: true
                 },
                 draggable: {
@@ -378,8 +373,24 @@ define([
                     type: 'checkbox',
                     disabled: false,
                     checked: true,
+                    visible: true
+                },
+                setLayerUp: {
+                    type: 'event',
+                    disabled: false,
+                    group: 'layer',
+                    events: ['click'],
+                    checked: false,
                     visible: true,
                     separator: true
+                },
+                setLayerDown: {
+                    type: 'event',
+                    disabled: false,
+                    group: 'layer',
+                    events: ['click'],
+                    checked: false,
+                    visible: true
                 },
                 unsetStick: {
                     type: 'event',
@@ -387,7 +398,8 @@ define([
                     group: 'stick',
                     events: ['click'],
                     checked: true,
-                    visible: true
+                    visible: true,
+                    separator: true
                 },
                 setStickToCenterLeft: {
                     type: 'event',

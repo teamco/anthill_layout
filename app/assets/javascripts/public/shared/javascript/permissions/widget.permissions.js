@@ -10,30 +10,34 @@ define(['config/widget'], function defineWidgetPermissions(Widget) {
     /**
      * Define Widget global permission
      * @type {{
-     *      development: {maximizable: boolean, draggable: boolean, resizable: boolean},
-     *      authorize: {maximizable: boolean, draggable: boolean, resizable: boolean},
-     *      consumption: {maximizable: boolean, draggable: boolean, resizable: boolean},
-     *      test: {maximizable: boolean, draggable: boolean, resizable: boolean}
+     *      development: {maximizable: boolean, zoomable: boolean, draggable: boolean, resizable: boolean},
+     *      authorize: {maximizable: boolean, zoomable: boolean, draggable: boolean, resizable: boolean},
+     *      consumption: {maximizable: boolean, zoomable: boolean, draggable: boolean, resizable: boolean},
+     *      test: {maximizable: boolean, zoomable: boolean, draggable: boolean, resizable: boolean}
      * }}
      */
     Widget.prototype.globalPermissions = {
         development: {
             maximizable: true,
+            zoomable: true,
             draggable: true,
             resizable: true
         },
         authorize: {
             maximizable: true,
+            zoomable: true,
             draggable: true,
             resizable: true
         },
         consumption: {
             maximizable: true,
+            zoomable: true,
             draggable: false,
             resizable: false
         },
         test: {
             maximizable: true,
+            zoomable: true,
             draggable: true,
             resizable: true
         }

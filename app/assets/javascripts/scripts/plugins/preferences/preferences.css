@@ -271,7 +271,6 @@
     padding-bottom: 0;
 }
 
-.modal-dialog.preferences .checkbox.separator {
-    margin-right: 65%;
-    margin-bottom: 20px;
+.modal-dialog.preferences .separator {
+    clear: both !important;
 }

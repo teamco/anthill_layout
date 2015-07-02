@@ -99,8 +99,8 @@ div.combo-box input.hidden {
     display: none;
 }
 
-input[type="number"],
-input[type="text"] {
+.application input[type="number"],
+.application input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 2px;
     background-color: #fff;
@@ -119,37 +119,37 @@ input[type="text"] {
     right: 0;
 }
 
-input[type="number"] {
+.application input[type="number"] {
     width: 150px;
     float: none;
     left: 100px;
     line-height: 18px;
 }
 
-input[type="text"] {
+.application input[type="text"] {
     width: 60%;
 }
 
-input[type="number"]:focus,
-input[type="text"]:focus {
+.application input[type="number"]:focus,
+.application input[type="text"]:focus {
     transition: width 0.5s;
 }
 
-input[type="number"]:focus {
+.application input[type="number"]:focus {
     width: 200px;
 }
 
-input[type="text"]:focus {
+.application input[type="text"]:focus {
     width: 80%;
 }
 
-textarea.validate,
-input[type="text"].validate {
+.application textarea.validate,
+.application input[type="text"].validate {
     border-color: #F08080;
 }
 
-textarea + span.validate,
-input[type="text"] + span.validate {
+.application textarea + span.validate,
+.application input[type="text"] + span.validate {
     float: right;
     font-size: 11px;
     padding: 5px;
@@ -158,12 +158,12 @@ input[type="text"] + span.validate {
     text-shadow: 1px 1px 3px #fff;
 }
 
-textarea[disabled="disabled"],
-input[disabled="disabled"] {
+.application textarea[disabled="disabled"],
+.application input[disabled="disabled"] {
     background-color: #f1f1f1;
 }
 
-li.checkbox {
+.application li.checkbox {
     width: 32%;
     margin-left: 1%;
     float: left;
@@ -178,15 +178,15 @@ li.checkbox {
     clear: none;
 }
 
-li.checkbox label {
+.application li.checkbox label {
     cursor: pointer;
 }
 
-input[type="checkbox"] {
+.application input[type="checkbox"] {
     margin-right: 10px;
 }
 
-label {
+.application label {
     font-size: 14px;
     font-weight: bold;
     font-variant: small-caps;
@@ -197,12 +197,12 @@ label {
     padding-left: 0;
 }
 
-label.textarea {
+.application label.textarea {
     width: 100%;
 }
 
-textarea,
-p.textarea {
+.application textarea,
+.application p.textarea {
     resize: none;
     transition: height 0.5s;
     -webkit-transition: height 0.5s;
@@ -218,14 +218,14 @@ p.textarea {
     padding: 3px;
 }
 
-p.textarea {
+.application p.textarea {
     background-color: #f1f1f1;;
     color: #777;
     padding: 2px 5px;
     overflow: hidden;
 }
 
-textarea:focus {
+.application textarea:focus {
     height: 50px;
 }
 
@@ -293,7 +293,7 @@ textarea:focus {
     width: 65px;
 }
 
-input[type="range"] {
+.application input[type="range"] {
     -webkit-appearance: none;
     width: 50%;
     height: 7px;
@@ -302,7 +302,7 @@ input[type="range"] {
     background-color: #fff;
 }
 
-input[type="range"] + input[type="number"] {
+.application input[type="range"] + input[type="number"] {
     width: 50px;
     left: 0;
     position: relative;

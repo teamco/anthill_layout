@@ -66,6 +66,7 @@
             require([
                 'modernizr',
                 'lz-string',
+                'totally',
                 'jquery',
                 'jquery.ui',
                 'jquery.ujs',
