@@ -434,6 +434,27 @@ define([
         },
 
         /**
+         * Set zoomable
+         * @memberOf WidgetModel
+         * @param {boolean} zoomable
+         */
+        setZoomable: function setZoomable(zoomable) {
+            this._setItemInfoPreferences('zoomable', zoomable);
+
+            /**
+             * Get scope
+             * @type {Widget}
+             */
+            var scope = this.scope;
+
+            var eventName = (zoomable ? '' : 'un') + 'setZoomable';
+
+            scope.observer.publish(
+                scope.eventmanager.eventList[eventName]
+            );
+        },
+
+        /**
          * Set draggable
          * @memberOf WidgetModel
          * @param {boolean} draggable

@@ -12,6 +12,7 @@ define(
         'modules/Controller',
         'controller/widget/widget.interactions',
         'controller/widget/widget.maximize',
+        'controller/widget/widget.zoom',
         'controller/widget/widget.stretch',
         'controller/widget/widget.stick',
         'controller/widget/widget.layer',
@@ -28,9 +29,10 @@ define(
      * @param {WidgetStick} WidgetStick
      * @param {WidgetLayer} WidgetLayer
      * @param {WidgetMaximize} WidgetMaximize
+     * @param {WidgetZoom} WidgetZoom
      * @returns {*}
      */
-    function defineWidgetController(AntHill, BaseController, WidgetInteractions, WidgetMaximize, WidgetStretch, WidgetStick, WidgetLayer, WidgetContent) {
+    function defineWidgetController(AntHill, BaseController, WidgetInteractions, WidgetMaximize, WidgetZoom, WidgetStretch, WidgetStick, WidgetLayer, WidgetContent) {
 
         /**
          * Define widget controller
@@ -43,6 +45,7 @@ define(
          * @extends WidgetStick
          * @extends WidgetLayer
          * @extends WidgetMaximize
+         * @extends WidgetZoom
          * @constructor
          */
         var WidgetController = function WidgetController() {
@@ -318,6 +321,7 @@ define(
             BaseController.prototype,
             WidgetContent.prototype,
             WidgetMaximize.prototype,
+            WidgetZoom.prototype,
             WidgetStretch.prototype,
             WidgetStick.prototype,
             WidgetLayer.prototype,

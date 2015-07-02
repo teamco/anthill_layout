@@ -70,6 +70,8 @@ define([
          *      saveDom: string,
          *      afterMaximize: string,
          *      beforeMaximize: string,
+         *      setZoomable: string,
+         *      unsetZoomable: string,
          *      afterReduce: string,
          *      beforeReduce: string,
          *      enlargeWidget: string,
@@ -157,6 +159,9 @@ define([
 
             afterMaximize: 'after.maximize',
             beforeMaximize: 'before.maximize',
+
+            setZoomable: 'set.zoomable',
+            unsetZoomable: 'unset.zoomable',
 
             afterReduce: 'after.reduce',
             beforeReduce: 'before.reduce',

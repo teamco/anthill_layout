@@ -480,7 +480,7 @@ define([
 
         /**
          * Bind stats
-         * @memberOf ImageElement
+         * @memberOf WidgetElement
          */
         bindStatsCollector: function bindStatsCollector() {
 
@@ -502,6 +502,59 @@ define([
                 'click.statistics',
                 _clickPrefs.bind(this.view)
             );
+        },
+
+        /**
+         * Define set zoom widget
+         * @memberOf WidgetElement
+         * @param {boolean} zoomable
+         */
+        setZoom: function setZoom(zoomable) {
+
+            /**
+             * Get this
+             * @type {WidgetElement}
+             */
+            var $element = this;
+
+            if (zoomable) {
+
+                $element.$.on('dblclick', function initZoom(e) {
+
+                    e.stopPropagation();
+
+                    if ($element.$.hasClass('zoomTarget')) {
+
+                        $element.unsetZoom();
+                        return false;
+                    }
+
+                    $element.$.addClass('zoomTarget').zoomTo({
+                        targetsize: 0.75,
+                        closeclick: true,
+                        duration: 600
+                    });
+                });
+
+            } else {
+
+                $element.unsetZoom(true);
+            }
+        },
+
+        /**
+         * Define unset zoom widget
+         * @memberOf WidgetElement
+         * @param {boolean} [force]
+         */
+        unsetZoom: function unsetZoom(force) {
+
+            if (force) {
+                this.$.off('dblclick.zoom');
+            }
+
+            $('body').zoomTo({targetsize: 1.0});
+            this.$.removeClass('zoomTarget');
         }
 
     }, BaseElement.prototype);
