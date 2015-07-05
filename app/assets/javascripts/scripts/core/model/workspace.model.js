@@ -20,14 +20,14 @@ define([
 
         /**
          * Define Page item
-         * @memberOf WorkspaceModel
+         * @property WorkspaceModel
          * @type {Page}
          */
         this.item = Page;
 
         /**
          * Skip transfer preferences
-         * @memberOf WorkspaceModel
+         * @property WorkspaceModel
          * @type {string[]}
          */
         this.skipPreferencesOn = [
@@ -188,6 +188,29 @@ define([
                 scope.eventmanager.eventList.clonePage,
                 itemUUID
             );
+        },
+
+        /**
+         * Define load pages
+         * @memberOf WorkspaceModel
+         */
+        loadPages: function loadPages() {
+
+            // Define local scope
+            var scope = this.scope,
+                base = this.base;
+
+            scope.controller.setAsLoading(true);
+
+            /**
+             * Set data
+             * @type {object}
+             */
+            var data = this.getCollector(),
+                lname = this.item.name.toLowerCase(),
+                collector = base.define(data.collector, {}, true);
+
+            this.loadData(lname, collector[lname]);
         }
 
     }, BaseModel.prototype);

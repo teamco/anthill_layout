@@ -10,6 +10,7 @@ define(function defineWorkspacePage() {
     /**
      * Define WorkspacePage controller
      * @class WorkspacePage
+     * @extends AntHill
      * @constructor
      */
     var WorkspacePage = function WorkspacePage() {

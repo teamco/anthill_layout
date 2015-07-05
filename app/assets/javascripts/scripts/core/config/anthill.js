@@ -85,13 +85,14 @@ define([
 
         /**
          * Define base
-         * @memberOf AntHill
+         * @property AntHill
          * @type {Base}
          */
         base: new Base(),
 
         /**
          * Define translations
+         * @property AntHill
          * @type {i18n}
          */
         i18n: new i18n('en-us')

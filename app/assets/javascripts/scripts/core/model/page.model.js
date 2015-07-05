@@ -20,14 +20,14 @@ define([
 
         /**
          * Define item
-         * @memberOf PageModel
+         * @property PageModel
          * @type {Widget}
          */
         this.item = Widget;
 
         /**
          * Define on destroy dependencies
-         * @memberOf PageModel
+         * @property PageModel
          * @type {Array}
          */
         this.onDestroy = [
@@ -214,6 +214,29 @@ define([
                 scope.eventmanager.eventList.updateItemInteractions,
                 outline
             );
+        },
+
+        /**
+         * Define load widgets
+         * @memberOf PageModel
+         */
+        loadWidgets: function loadWidgets() {
+
+            // Define local scope
+            var scope = this.scope,
+                base = this.base;
+
+            scope.controller.setAsLoading(true);
+
+            /**
+             * Set data
+             * @type {object}
+             */
+            var data = this.getCollector(),
+                lname = this.item.name.toLowerCase(),
+                collector = base.define(data.collector, {}, true);
+
+            this.loadData(lname, collector[lname]);
         }
 
     }, BaseModel.prototype);

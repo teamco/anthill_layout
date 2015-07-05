@@ -40,6 +40,13 @@ define([
          * @type {undefined}
          */
         this.setting = undefined;
+
+        /**
+         * Define item
+         * @property BaseModel
+         * @type {undefined}
+         */
+        this.item = undefined;
     };
 
     return BaseModel.extend(
@@ -595,28 +602,44 @@ define([
             },
 
             /**
-             * Load data
+             * Get collector
              * @memberOf BaseModel
-             * @param [data]
              * @returns {*}
              */
-            loadData: function loadData(data) {
-
-                // Define local scope
-                var scope = this.scope,
-                    base = this.base;
-
-                scope.controller.setAsLoading(true);
+            getCollector: function getCollector() {
 
                 /**
-                 * Set data
-                 * @type {object}
+                 * Get root
+                 * @type Application
                  */
-                data = base.isDefined(data) ?
-                    data : this.setting.load();
+                var root = this.scope.controller.root();
 
-                if (!data.hasOwnProperty('collector')) {
+                return root.model.setting.load();
+            },
 
+            /**
+             * Load data
+             * @memberOf BaseModel
+             * @param {string} name
+             * @param items
+             * @param {boolean} [isRoot]
+             * @returns {*}
+             */
+            loadData: function loadData(name, items, isRoot) {
+
+                function inContainment(index) {
+                    return this.getUUID() === items[index].containment || isRoot;
+                }
+
+                var index, node,
+                    base = this.base,
+                    scope = this.scope;
+
+                isRoot = base.defineBoolean(isRoot, false, true);
+
+                if (!base.isDefined(items)) {
+
+                    scope.logger.debug('Initial load', name);
                     scope.observer.publish(
                         scope.eventmanager.eventList.afterLoadingItems
                     );
@@ -624,85 +647,88 @@ define([
                     return false;
                 }
 
-                if (base.isDefined(this.item)) {
+                var root = scope.controller.root(),
+                    key, counter = 0;
 
-                    var root = scope.controller.root(),
-                        isRoot = scope.controller.isRoot(scope),
-                        cname = this.item.name,
-                        lname = cname.toLowerCase(),
-                        collector = base.define(data.collector, {}, true);
+                for (key in items) {
 
-                    /**
-                     * Define counter
-                     * @memberOf Application
-                     * @type {number}
-                     */
-                    root.loadingDataCounter = base.isDefined(root.loadingDataCounter) ?
-                        root.loadingDataCounter : $.map(collector, function (k) {
-                        return $.map(k, function (i) {
-                            return i;
-                        });
-                    }).length;
+                    if (items.hasOwnProperty(key)) {
 
-                    if (collector.hasOwnProperty(lname)) {
-
-                        var items = collector[lname],
-                            index, node;
-
-                        for (index in items) {
-
-                            if (items.hasOwnProperty(index)) {
-
-                                if (this.getUUID() === items[index].containment || isRoot) {
-
-                                    node = base.define(items[index], {}, true);
-
-                                    // Create item
-                                    scope.api['create' + cname](
-                                        node, true, true
-                                    );
-
-                                    /**
-                                     * Define current item
-                                     * @type {*}
-                                     */
-                                    var item = scope[lname];
-
-                                    if (item.model) {
-
-                                        if (isRoot && node.containment) {
-
-                                            scope.controller.loadConfig(node.containment);
-                                        }
-
-                                        /**
-                                         * Reduce counter
-                                         * @memberOf Application
-                                         * @type {number}
-                                         */
-                                        root.loadingDataCounter -= 1;
-
-                                        // Continue loading data
-                                        this.loadData.bind(item.model)(data);
-                                    }
-                                }
-                            }
-
-                        }
-
-                        if (!root.loadingDataCounter) {
-                            scope.observer.publish(
-                                scope.eventmanager.eventList.afterLoadingItems
-                            );
+                        if (inContainment.bind(this)(key)) {
+                            counter++;
                         }
                     }
-
-                } else {
-
-                    scope.controller.setAsLoading(true);
                 }
 
-                return data.collector;
+                // Init counter
+                root.loadingDataCounter = base.define(scope.loadingDataCounter, 0, true);
+                root.loadingDataCounter += counter;
+
+                for (index in items) {
+
+                    if (items.hasOwnProperty(index)) {
+
+                        if (inContainment.bind(this)(index)) {
+
+                            node = base.define(items[index], {}, true);
+
+                            // Create item
+                            scope.api['create' + this.item.name](
+                                node, true, true
+                            );
+
+                            /**
+                             * Define current item
+                             * @type {*}
+                             */
+                            var item = scope[name];
+
+                            if (item.model) {
+
+                                if (isRoot && node.containment) {
+
+                                    scope.controller.loadConfig(node.containment);
+                                }
+
+                                /**
+                                 * Reduce counter
+                                 * @memberOf Application
+                                 * @type {number}
+                                 */
+                                root.loadingDataCounter -= 1;
+
+                                // Get child item
+                                var child = item.model.item;
+
+                                if (child) {
+
+                                    /**
+                                     * Get fn name
+                                     * @type {string}
+                                     */
+                                    var fName = 'load' + child.name + 's';
+
+                                    typeof item.model[fName] === 'function' ?
+                                        item.model[fName].apply(item.model) :
+                                        item.logger.warn('Unable execute model method', fName);
+
+                                } else {
+
+                                    item.logger.debug('Node with no items', item);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (!root.loadingDataCounter && scope === root) {
+
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.afterLoadingItems
+                    );
+                }
+
+                return items;
             },
 
             /**

@@ -22,7 +22,7 @@ define([
 
         /**
          * Define item
-         * @memberOf ApplicationModel
+         * @property ApplicationModel
          * @type {Workspace}
          */
         this.item = Workspace;
@@ -53,6 +53,30 @@ define([
             );
 
             scope.logger.debug('Define setting', this.setting);
+        },
+
+        /**
+         * Define load workspaces
+         * @memberOf ApplicationModel
+         */
+        loadWorkspaces: function loadWorkspaces() {
+
+            // Define local scope
+            var scope = this.scope,
+                base = this.base;
+
+            scope.controller.setAsLoading(true);
+
+            /**
+             * Set data
+             * @type {object}
+             */
+            var data = this.getCollector(),
+                lname = this.item.name.toLowerCase(),
+                collector = base.define(data.collector, {}, true);
+
+            return collector[lname] ?
+                this.loadData(lname, collector[lname], true) : -1;
         }
 
     }, BaseModel.prototype);

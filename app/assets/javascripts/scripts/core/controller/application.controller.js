@@ -47,7 +47,7 @@ define(
                     this.view.render();
 
                     // Load initial
-                    if (!this.model.loadData()) {
+                    if (this.model.loadWorkspaces() === -1) {
 
                         this.model.setConfig('loading', true);
 
