@@ -32,6 +32,13 @@ module Author::AuthorHelper
     render_field(:text_area, f, name, disabled)
   end
 
+  def render_text_area_tag(name, value, disabled=false)
+    content_tag(:div, class: 'field') do
+      concat label_tag name
+      concat text_area_tag(name, value, {disabled: disabled})
+    end
+  end
+
   def render_checkbox(f, name, disabled=false)
     content_tag(:div, class: 'field') do
       concat f.check_box(name, {disabled: disabled})

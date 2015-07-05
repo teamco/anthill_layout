@@ -11,9 +11,7 @@ class Author::SiteType < ActiveRecord::Base
   POSSIBLE_TYPES = self.select(:name)
 
   POSSIBLE_TYPES.each do |type|
-    define_method("is_#{type.name}?".to_sym) do |mode|
-      mode == type.name
-    end
+    define_method("is_#{type.name}?".to_sym) { |mode| mode == type.name }
   end
 
 end

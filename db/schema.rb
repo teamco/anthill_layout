@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150426193350) do
     t.datetime "updated_at",                                    null: false
     t.integer  "site_type_id", limit: 4
     t.integer  "user_id",      limit: 4
-    t.boolean  "publish",      limit: 1,        default: false
+    t.boolean  "publish",                       default: false
   end
 
   create_table "author_site_types", force: :cascade do |t|
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20150426193350) do
   create_table "author_site_versions", force: :cascade do |t|
     t.integer  "version",         limit: 4
     t.integer  "site_storage_id", limit: 4
-    t.boolean  "activated",       limit: 1,        default: false
+    t.boolean  "activated",                        default: false
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
     t.text     "content",         limit: 16777215
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20150426193350) do
     t.integer  "height",             limit: 4
     t.string   "resource",           limit: 255
     t.string   "external",           limit: 255
-    t.boolean  "visible",            limit: 1
+    t.boolean  "visible"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id",            limit: 4
