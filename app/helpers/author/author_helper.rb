@@ -104,4 +104,11 @@ module Author::AuthorHelper
     "#{email} (#{item.user.role.name.humanize})".html_safe
   end
 
+  def render_json(content)
+    content_tag(:div, class: 'json-view') do
+      concat javascript_include_tag 'scripts/core/lib/lz-string.js', 'scripts/core/lib/packages/pretty.print.js'
+      concat javascript_tag "$(prettyPrint(JSON.parse(LZString.decompressFromBase64('#{content}')))).appendTo('.json-view');".html_safe
+    end
+  end
+
 end

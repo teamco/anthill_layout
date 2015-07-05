@@ -1,10 +1,9 @@
-<%= javascript_include_tag 'scripts/core/lib/lz-string.js', 'scripts/core/lib/packages/pretty.print.js' %>
 <%= form_for(@author_site_storage) do |f| -%>
     <% content = @author_site_storage.author_site_versions.where(activated: true).first.content %>
     <%= render_notification(@author_site_storage) -%>
     <%= render_text_field(f, :key, !@author_site_storage.key.nil?) -%>
     <%= render_text_area_tag(:content, content, true) -%>
-    <div class="json-view"></div>
+    <%= render_json(content) %>
     <%= render_checkbox(f, :publish) -%>
     <%= render_collection(f, 'Type', {
                                    id: :site_type_id,
@@ -48,7 +47,6 @@
     <%= javascript_tag do %>
         function selectAll(e){var $c=$(e).attr('for')==="select_all_widgets"?"ul.widgets":$(e).next(),$w=$('input[type="checkbox"]',$c);$w.prop('checked',!$w.prop('checked'));updateCounter();}
         function updateCounter(){var $l=$('label[for="select_all_widgets"]');$l.text($l.text().replace(/\d+/,$('input[type="checkbox"]:checked').length));}
-        $(prettyPrint(JSON.parse(LZString.decompressFromBase64('<%= content %>')))).appendTo('.json-view');
     <% end %>
 
 <% end -%>
