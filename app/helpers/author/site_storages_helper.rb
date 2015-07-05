@@ -16,4 +16,48 @@ module Author::SiteStoragesHelper
     end if versions.length > 0
 
   end
+
+  def render_widgets
+    content_tag(:div, class: 'field') do
+      concat label_tag 'select_all_widgets',
+                       "(Un)Select All widgets: #{@author_site_storage.author_widgets.size}",
+                       {onclick: 'selectAll(this)'}
+      concat hidden_field_tag('author_site_storage[author_site_storage_widget_ids][]', nil)
+      concat get_categories
+      concat javascript_tag "function selectAll(e){var $c=$(e).attr('for')===\"select_all_widgets\"?\"ul.widgets\":$(e).next(),$w=$('input[type=\"checkbox\"]',$c);$w.prop('checked',!$w.prop('checked'));updateCounter();}function updateCounter(){var $l=$('label[for=\"select_all_widgets\"]');$l.text($l.text().replace(/\\d+/,$('input[type=\"checkbox\"]:checked').length));}"
+    end
+  end
+
+  private
+
+  def get_categories
+    content_tag(:ul, class: 'categories') do
+      Author::WidgetCategory.order(:name_value).each { |category| concat get_category(category) }
+    end
+  end
+
+  def get_category(category)
+    content_tag(:li) do
+      concat label_tag(dom_id(category), category.name_value, {onclick: 'selectAll(this)'})
+      concat get_widgets(category)
+    end
+  end
+
+  def get_widgets(category)
+    content_tag(:ul, class: 'widgets') do
+      category.author_widgets.order(:name).each { |widget| concat get_widget(widget, @author_site_storage.author_widget_ids) }
+    end
+  end
+
+  def get_widget(widget, widget_ids)
+    content_tag(:li) do
+      concat check_box_tag 'author_site_storage[author_site_storage_widget_ids][]',
+                           widget.id,
+                           widget_ids.include?(widget.id), {
+                               id: dom_id(widget),
+                               onclick: 'updateCounter()'
+                           }
+      concat label_tag dom_id(widget), widget.name, {title: "#{widget.name}\n#{widget.description}"}
+    end
+  end
 end
