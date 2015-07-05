@@ -24,7 +24,7 @@ module Author::SiteStoragesHelper
                        {onclick: 'selectAll(this)'}
       concat hidden_field_tag('author_site_storage[author_site_storage_widget_ids][]', nil)
       concat get_categories
-      concat javascript_tag "function selectAll(e){var $c=$(e).attr('for')===\"select_all_widgets\"?\"ul.widgets\":$(e).next(),$w=$('input[type=\"checkbox\"]',$c);$w.prop('checked',!$w.prop('checked'));updateCounter();}function updateCounter(){var $l=$('label[for=\"select_all_widgets\"]');$l.text($l.text().replace(/\\d+/,$('input[type=\"checkbox\"]:checked').length));}"
+      concat javascript_tag "function selectAll(e){var $c=$(e).attr('for')===\"select_all_widgets\"?\"ul.widgets\":$(e).next(),$w=$('input[type=\"checkbox\"]',$c);$w.prop('checked',!$w.prop('checked'));updateCounter();}function updateCounter(){var $l=$('label[for=\"select_all_widgets\"]');$l.text($l.text().replace(/\\d+/,$('input[type=\"checkbox\"]:checked').length));}".html_safe
     end
   end
 
