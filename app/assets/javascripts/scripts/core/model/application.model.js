@@ -61,22 +61,16 @@ define([
          */
         loadWorkspaces: function loadWorkspaces() {
 
-            // Define local scope
-            var scope = this.scope,
-                base = this.base;
-
-            scope.controller.setAsLoading(true);
+            this.scope.controller.setAsLoading(true);
 
             /**
-             * Set data
+             * Get collector
              * @type {object}
              */
-            var data = this.getCollector(),
-                lname = this.item.name.toLowerCase(),
-                collector = base.define(data.collector, {}, true);
+            var collector = this.getCollector(this.item);
 
-            return collector[lname] ?
-                this.loadData(lname, collector[lname], true) : -1;
+            return collector ?
+                this.loadData(this.item, collector, true) : -1;
         }
 
     }, BaseModel.prototype);

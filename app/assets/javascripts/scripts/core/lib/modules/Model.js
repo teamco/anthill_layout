@@ -604,9 +604,10 @@ define([
             /**
              * Get collector
              * @memberOf BaseModel
+             * @param {Workspace|Page|Widget} Item
              * @returns {*}
              */
-            getCollector: function getCollector() {
+            getCollector: function getCollector(Item) {
 
                 /**
                  * Get root
@@ -614,30 +615,39 @@ define([
                  */
                 var root = this.scope.controller.root();
 
-                return root.model.setting.load();
+                var data = root.model.setting.load(),
+                    collector = this.base.define(data.collector, {}, true);
+
+                return collector[Item.prototype.name.toLowerCase()];
             },
 
             /**
              * Load data
              * @memberOf BaseModel
-             * @param {string} name
-             * @param items
+             * @param {Workspace|Page|Widget} Item
+             * @param {object} collector
              * @param {boolean} [isRoot]
              * @returns {*}
              */
-            loadData: function loadData(name, items, isRoot) {
+            loadData: function loadData(Item, collector, isRoot) {
 
-                function inContainment(index) {
-                    return this.getUUID() === items[index].containment || isRoot;
+                /**
+                 * Check sync
+                 * @param index
+                 * @returns {boolean}
+                 */
+                function _inContainment(index) {
+                    return this.getUUID() === collector[index].containment || isRoot;
                 }
 
                 var index, node,
                     base = this.base,
-                    scope = this.scope;
+                    scope = this.scope,
+                    name = Item.prototype.name.toLowerCase();
 
                 isRoot = base.defineBoolean(isRoot, false, true);
 
-                if (!base.isDefined(items)) {
+                if (!base.isDefined(collector)) {
 
                     scope.logger.debug('Initial load', name);
                     scope.observer.publish(
@@ -650,13 +660,10 @@ define([
                 var root = scope.controller.root(),
                     key, counter = 0;
 
-                for (key in items) {
+                for (key in collector) {
 
-                    if (items.hasOwnProperty(key)) {
-
-                        if (inContainment.bind(this)(key)) {
-                            counter++;
-                        }
+                    if (collector.hasOwnProperty(key) && _inContainment.bind(this)(key)) {
+                        counter++;
                     }
                 }
 
@@ -664,58 +671,53 @@ define([
                 root.loadingDataCounter = base.define(scope.loadingDataCounter, 0, true);
                 root.loadingDataCounter += counter;
 
-                for (index in items) {
+                for (index in collector) {
 
-                    if (items.hasOwnProperty(index)) {
+                    if (collector.hasOwnProperty(index) && _inContainment.bind(this)(index)) {
 
-                        if (inContainment.bind(this)(index)) {
+                        node = base.define(collector[index], {}, true);
 
-                            node = base.define(items[index], {}, true);
+                        // Create item
+                        scope.api['create' + this.item.name](
+                            node, true, true
+                        );
 
-                            // Create item
-                            scope.api['create' + this.item.name](
-                                node, true, true
-                            );
+                        /**
+                         * Define current item
+                         * @type {*}
+                         */
+                        var item = scope[name];
+
+                        if (item.model) {
+
+                            if (isRoot && node.containment)
+                                scope.controller.loadConfig(node.containment);
 
                             /**
-                             * Define current item
-                             * @type {*}
+                             * Reduce counter
+                             * @memberOf Application
+                             * @type {number}
                              */
-                            var item = scope[name];
+                            root.loadingDataCounter -= 1;
 
-                            if (item.model) {
+                            // Get child item
+                            var child = item.model.item;
 
-                                if (isRoot && node.containment) {
-
-                                    scope.controller.loadConfig(node.containment);
-                                }
+                            if (child) {
 
                                 /**
-                                 * Reduce counter
-                                 * @memberOf Application
-                                 * @type {number}
+                                 * Get fn name
+                                 * @type {string}
                                  */
-                                root.loadingDataCounter -= 1;
+                                var fName = 'load' + child.name + 's';
 
-                                // Get child item
-                                var child = item.model.item;
+                                typeof item.model[fName] === 'function' ?
+                                    item.model[fName].apply(item.model) :
+                                    item.logger.warn('Unable execute model method', fName);
 
-                                if (child) {
+                            } else {
 
-                                    /**
-                                     * Get fn name
-                                     * @type {string}
-                                     */
-                                    var fName = 'load' + child.name + 's';
-
-                                    typeof item.model[fName] === 'function' ?
-                                        item.model[fName].apply(item.model) :
-                                        item.logger.warn('Unable execute model method', fName);
-
-                                } else {
-
-                                    item.logger.debug('Node with no items', item);
-                                }
+                                item.logger.debug('Node with no items', item);
                             }
                         }
                     }
@@ -728,7 +730,7 @@ define([
                     );
                 }
 
-                return items;
+                return collector;
             },
 
             /**

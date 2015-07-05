@@ -222,21 +222,15 @@ define([
          */
         loadWidgets: function loadWidgets() {
 
-            // Define local scope
-            var scope = this.scope,
-                base = this.base;
-
-            scope.controller.setAsLoading(true);
+            this.scope.controller.setAsLoading(true);
 
             /**
-             * Set data
+             * Get collector
              * @type {object}
              */
-            var data = this.getCollector(),
-                lname = this.item.name.toLowerCase(),
-                collector = base.define(data.collector, {}, true);
+            var collector = this.getCollector(this.item);
 
-            this.loadData(lname, collector[lname]);
+            this.loadData(this.item, collector);
         }
 
     }, BaseModel.prototype);
