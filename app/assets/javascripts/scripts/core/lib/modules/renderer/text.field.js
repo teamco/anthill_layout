@@ -14,7 +14,6 @@ define([
      * @constructor
      */
     var TextFieldRenderer = function TextFieldRenderer() {
-
     };
 
     return TextFieldRenderer.extend('TextFieldRenderer', {
@@ -51,6 +50,7 @@ define([
                 id: uuid,
                 placeholder: opts.placeholder,
                 title: opts.value,
+                readonly: this.base.defineBoolean(opts.readonly, false, true),
                 disabled: this.base.defineBoolean(opts.disabled, false, true)
             }).val(opts.value);
 

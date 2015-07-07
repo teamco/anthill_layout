@@ -175,7 +175,7 @@ define([
         /**
          * Get renderer
          * @memberOf SiteConfigWidgetsListElement
-         * @param {function} renderer
+         * @param {Renderer} renderer
          * @param {string} index
          * @param {string|boolean} value
          * @param {{[mask]: RegExp}} [validation]
@@ -191,10 +191,18 @@ define([
                 text: index,
                 placeholder: 'Enter ' + index,
                 disabled: this.base.defineBoolean(this.disabled, false, true),
+                readonly: false,
                 visible: true,
                 value: value,
-                validate: false
+                validate: false,
+                monitor: monitor
             };
+
+            /**
+             * Get element
+             * @type {SiteConfigWidgetsListElement}
+             */
+            var $element = this;
 
             if (validation) {
                 opts.validate = {
@@ -208,7 +216,7 @@ define([
             }
 
             if (index === 'resource') {
-                opts.disabled = true;
+                opts.readonly = opts.disabled;
             }
 
             var $li = $('<li />').addClass(index);
@@ -233,8 +241,8 @@ define([
                          * @private
                          */
                         function _toBase64() {
-                            if (scope.base.isUrl(value)) {
-                                scope.base.lib.image.toDataURL(
+                            if ($element.base.isUrl(value)) {
+                                $element.base.lib.image.toDataURL(
                                     value,
                                     function (err, base64Img) {
                                         //_resize(base64Img);
@@ -254,7 +262,7 @@ define([
                          * @private
                          */
                         function _resize(data) {
-                            scope.base.lib.image.resizeDataURL(
+                            $element.base.lib.image.resizeDataURL(
                                 data,
                                 64, 64,
                                 function (err, base64Img) {
@@ -343,6 +351,21 @@ define([
                     switch (index) {
 
                         case 'name':
+                            $field = this._getRenderer(
+                                $element.renderTextField.bind($element),
+                                index,
+                                widgetData[index],
+                                {}, {
+                                    events: ['blur.resource'],
+                                    callback: function updateResource(e) {
+                                        $('input[name="resource"]').val(
+                                            e.target.value.toRecource()
+                                        );
+                                    }
+                                }
+                            );
+                            break;
+
                         case 'resource':
                             $field = this._getRenderer(
                                 $element.renderTextField.bind($element),

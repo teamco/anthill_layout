@@ -11,7 +11,6 @@ define([], function defineTextAreaRenderer(){
      * @constructor
      */
     var TextAreaRenderer = function TextAreaRenderer() {
-
     };
 
     return TextAreaRenderer.extend('TextAreaRenderer', {
@@ -62,6 +61,7 @@ define([], function defineTextAreaRenderer(){
                     name: opts.name,
                     id: uuid,
                     placeholder: opts.placeholder,
+                    readonly: this.base.defineBoolean(opts.readonly, false, true),
                     title: opts.value
                 }).val(opts.value).addClass(opts.style);
             }

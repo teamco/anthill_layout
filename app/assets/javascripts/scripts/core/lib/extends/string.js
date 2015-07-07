@@ -35,6 +35,15 @@
     };
 
     /**
+     * String from CamelCase to resource
+     * @memberOf String
+     * @returns {String}
+     */
+    String.prototype.toRecource = function toRecource() {
+        return this.toLowerCase().replace(/[\W_]+/g, '.');
+    };
+
+    /**
      * String from CamelCase to underscore separator
      * @memberOf String
      * @returns {string}
