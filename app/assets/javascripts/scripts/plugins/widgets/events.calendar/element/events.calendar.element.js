@@ -47,7 +47,6 @@ define([
             require(['plugins/widgets/events.calendar/lib/fullcalendar.min'], function _loadLib() {
 
                 $element.$.fullCalendar({
-                    theme: true,
                     header: {
                         left: 'prev,next today',
                         center: 'title',
