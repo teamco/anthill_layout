@@ -192,6 +192,87 @@ define([
         },
 
         /**
+         * Set page padding top
+         * @memberOf PageModel
+         * @param {boolean} top
+         */
+        setPagePaddingTop: function setPagePaddingTop(top) {
+
+            this._setItemInfoPreferences('pagePaddingTop', +top);
+
+            /**
+             * Get scope
+             * @type {Page}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updatePadding, {top: +top}
+            );
+        },
+
+        /**
+         * Set page padding right
+         * @memberOf PageModel
+         * @param {boolean} right
+         */
+        setPagePaddingRight: function setPagePaddingRight(right) {
+
+            this._setItemInfoPreferences('pagePaddingRight', +right);
+
+
+            /**
+             * Get scope
+             * @type {Page}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updatePadding, {right: +right}
+            );
+        },
+
+        /**
+         * Set page padding bottom
+         * @memberOf PageModel
+         * @param {boolean} bottom
+         */
+        setPagePaddingBottom: function setPagePaddingBottom(bottom) {
+
+            this._setItemInfoPreferences('pagePaddingBottom', +bottom);
+
+            /**
+             * Get scope
+             * @type {Page}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updatePadding, {bottom: +bottom}
+            );
+        },
+
+        /**
+         * Set page padding left
+         * @memberOf PageModel
+         * @param {boolean} left
+         */
+        setPagePaddingLeft: function setPagePaddingLeft(left) {
+
+            this._setItemInfoPreferences('pagePaddingLeft', +left);
+
+            /**
+             * Get scope
+             * @type {Page}
+             */
+            var scope = this.scope;
+
+            scope.observer.publish(
+                scope.eventmanager.eventList.updatePadding, {left: +left}
+            );
+        },
+
+        /**
          * Set page outline containment
          * @memberOf PageModel
          * @param {boolean} outline

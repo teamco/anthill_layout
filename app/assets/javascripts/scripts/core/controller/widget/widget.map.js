@@ -327,10 +327,9 @@ define([
          * @returns {Boolean}
          */
         checkWidgetPositionColumn: function checkWidgetPositionColumn(dom) {
-
             return (
-            this.checkWidgetPositionColumnLeft(dom.column) &&
-            this.checkWidgetPositionColumnRight(dom)
+                this.checkWidgetPositionColumnLeft(dom.column) &&
+                this.checkWidgetPositionColumnRight(dom)
             );
         },
 
@@ -341,7 +340,6 @@ define([
          * @returns {Boolean}
          */
         checkWidgetPositionRowTop: function checkWidgetPositionRowTop(row) {
-
             return row >= 0;
         },
 
@@ -355,8 +353,8 @@ define([
             var dom = this.getDOM();
 
             return (
-            this.checkWidgetPositionColumn(dom) &&
-            this.checkWidgetPositionRowTop(dom.row)
+                this.checkWidgetPositionColumn(dom) &&
+                this.checkWidgetPositionRowTop(dom.row)
             );
         },
 

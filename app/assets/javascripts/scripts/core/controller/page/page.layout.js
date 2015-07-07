@@ -11,6 +11,7 @@ define(['config/layout'], function definePageLayout(Layout) {
      * Define PageLayout
      * @class PageLayout
      * @constructor
+     * @extends AntHill
      */
     var PageLayout = function PageLayout() {
     };
@@ -44,6 +45,26 @@ define(['config/layout'], function definePageLayout(Layout) {
                     layout.eventmanager.eventList.updateNumberOfColumns,
                     preferences.layoutColumns
                 );
+            },
+
+            /**
+             * Update page padding
+             * @memberOf PageLayout
+             * @param opts
+             */
+            updatePadding: function updatePadding(opts) {
+
+                // Get padding
+                var padding = this.model.getConfig('html/padding');
+
+                $.extend(padding, opts);
+
+                this.eventmanager.subscribe({
+                    event: this.eventmanager.eventList.successRendered,
+                    callback: function _setPadding() {
+                        this.view.get$item().setPadding(padding);
+                    }.bind(this)
+                }, true);
             },
 
             /**

@@ -44,6 +44,7 @@ define([
          *      updateSiteKeywords: string,
          *      updateLayoutConfig: string,
          *      expandLayout: string,
+         *      updatePadding: string,
          *      resizeWidgets: string,
          *      resizeWidget: string,
          *      loadItemsContent: string,
@@ -77,6 +78,8 @@ define([
             destroyLayout: 'destroy.layout',
             updateLayoutConfig: 'update.layout.config',
             expandLayout: 'expand.layout',
+
+            updatePadding: 'update.padding',
 
             resizeWidget: 'resize.widget',
 

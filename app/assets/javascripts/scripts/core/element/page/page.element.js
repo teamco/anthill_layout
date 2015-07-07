@@ -28,5 +28,20 @@ define([
 
     return PageElement.extend('PageElement', {
 
+        /**
+         * Set page padding
+         * @param padding
+         * @memberOf PageElement
+         */
+        setPadding: function setPadding(padding) {
+
+            this.view.elements.$widgets.$.css({
+                paddingTop: padding.top,
+                paddingRight: padding.right,
+                paddingBottom: padding.bottom,
+                paddingLeft: padding.left
+            });
+        }
+
     }, BaseElement.prototype);
 });

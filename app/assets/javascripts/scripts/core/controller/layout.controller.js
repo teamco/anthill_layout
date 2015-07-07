@@ -202,9 +202,6 @@ define([
              * @returns {{left: Number, top: Number}}
              */
             getNextPosition: function getNextPosition(dom) {
-                var $widgets = this.scope.controller.getContainment().controller.getWidgetsContainer(),
-                    top = $widgets.getTopDelta(),
-                    left = $widgets.getLeftDelta();
 
                 var layout = this.scope,
                     cell = layout.controller.minCellWidth(),
@@ -221,8 +218,8 @@ define([
                 }
 
                 return {
-                    left: _getNextPosition(dom.column) + left,
-                    top: _getNextPosition(dom.row) + top,
+                    left: _getNextPosition(dom.column),
+                    top: _getNextPosition(dom.row),
                     zIndex: dom.zIndex
                 };
 
