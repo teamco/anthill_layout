@@ -80,8 +80,8 @@ define(function defineBasePreferences() {
 
                             opts.scope.logger.debug('Undefined model setter', opts);
 
-                            // Toggle method widget <=> content
-                            var method = opts.scope.controller.isWidget() ?
+                            // Toggle method core component <=> widget content
+                            var method = opts.scope.controller.isCoreComponent() ?
                                 '_setItemInfoPreferences' : 'setPrefs';
 
                             /**

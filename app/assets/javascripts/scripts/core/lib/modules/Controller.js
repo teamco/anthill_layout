@@ -580,6 +580,15 @@ define([
             },
 
             /**
+             * Check if item is a core component
+             * @memberOf BaseController
+             * @returns {*|boolean}
+             */
+            isCoreComponent: function isCoreComponent() {
+                return this.isWidget() || this.isPage() || this.isWorkspace() || this.isRoot();
+            },
+
+            /**
              * Check is widget content
              * @memberOf BaseController
              * @returns {boolean}

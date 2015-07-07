@@ -277,3 +277,8 @@
 .modal-dialog.preferences .separator {
     clear: both !important;
 }
+
+.modal-dialog.preferences input[type="number"] {
+    left: auto;
+    right: 3px;
+}

@@ -233,6 +233,9 @@ define([
             var width = staticWidth ?
                 page.view.get$item().getWidth() : 'Flexible';
 
+            // Get padding
+            var padding = page.model.getConfig('html/padding');
+
             return $('<li />').append(
                 this.renderFieldSet(
                     cname,
@@ -292,7 +295,51 @@ define([
                                 disabled: false
                             })
                         ).attr('rel', 'layout-columns').
-                            addClass('page-layout-columns')
+                            addClass('page-layout-columns'),
+
+                        $('<li />').append(
+                            this.renderNumberField({
+                                name: 'pagePaddingTop',
+                                text: 'Padding top',
+                                value: padding.top,
+                                visible: true,
+                                disabled: false
+                            })
+                        ).attr('rel', 'page-padding-top').
+                            addClass('page-padding'),
+
+                        $('<li />').append(
+                            this.renderNumberField({
+                                name: 'pagePaddingLeft',
+                                text: 'Padding left',
+                                value: padding.left,
+                                visible: true,
+                                disabled: false
+                            })
+                        ).attr('rel', 'page-padding-left').
+                            addClass('page-padding'),
+
+                        $('<li />').append(
+                            this.renderNumberField({
+                                name: 'pagePaddingBottom',
+                                text: 'Padding bottom',
+                                value: padding.bottom,
+                                visible: true,
+                                disabled: false
+                            })
+                        ).attr('rel', 'page-padding-bottom').
+                            addClass('page-padding'),
+
+                        $('<li />').append(
+                            this.renderNumberField({
+                                name: 'pagePaddingRight',
+                                text: 'Padding right',
+                                value: padding.right,
+                                visible: true,
+                                disabled: false
+                            })
+                        ).attr('rel', 'page-padding-right').
+                            addClass('page-padding')
                     ])
                 )
             ).addClass('auto');
