@@ -116,7 +116,7 @@ define(
                 ajaxSetup: function ajaxSetup() {
 
                     $.ajaxSetup({
-                        timeout: 10000,
+                        timeout: this.isDevelopmentMode() ? undefined : 10000,
                         ifModified: true,
                         beforeSend: function _beforeSend(xhr, settings) {
                             if (typeof(settings.dataType) === 'undefined') {

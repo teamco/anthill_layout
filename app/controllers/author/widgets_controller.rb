@@ -211,7 +211,7 @@ class Author::WidgetsController < Author::AuthorController
     rescue
       logger.info '>>>>> Rescue: Remove widget'
       @widget_lib.remove_widget_dir
-      @author_widget.errors.add(:error, 'Thumbnail file size is too big')
+      @author_widget.errors.add(:error, @create_status || 'Undefined error')
       generate = false
     end
     generate
@@ -220,18 +220,20 @@ class Author::WidgetsController < Author::AuthorController
   def uri?
     uri = URI.parse(@author_widget.thumbnail)
     %w( http https ).include?(uri.scheme) && live?
-  rescue URI::BadURIError
-    false
-  rescue URI::InvalidURIError
-    false
   end
 
   def live?
     uri = URI(@author_widget.thumbnail)
     request = Net::HTTP.new uri.host
-    response = request.request_head uri.path
-    logger.info ">>>>> Live: #{response.inspect}"
-    response.code.to_i == 200
+    begin
+      response = request.request_head uri.path
+      logger.info ">>>>> Live: #{response.inspect}"
+      response.code.to_i == 200
+    rescue
+      @create_status = 'Connection error'
+      logger.info ">>>>> Rescue: #{@create_status}"
+      false
+    end
   end
 
   def to_base64
@@ -250,7 +252,8 @@ class Author::WidgetsController < Author::AuthorController
 
   def to_image
     logger.info 'Start to->image'
-    BaseLib.img.to_img(@author_widget.thumbnail)
+    @create_status = BaseLib.img.to_img(@author_widget.thumbnail)
+    @create_status
   end
 
   def set_author_widget_category

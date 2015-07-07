@@ -115,7 +115,7 @@ module WidgetLib
       seed = false
       begin
         path = "#{Rails.root}/lib/tasks/widgets_list.json"
-        hash = Author::Widget.all.map do |w|
+        hash = Author::Widget.includes(:author_widget_category).all.map do |w|
           {
               name: w[:name],
               description: w[:description],

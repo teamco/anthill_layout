@@ -10,14 +10,18 @@ class BaseImage
 
   def allowed?(url)
     puts '>>>>> Check allowed size'
+
     uri = URI(url)
 
-    Net::HTTP.start(uri.host, uri.port) do |http|
-      response = http.request_head(URI.escape(uri.path))
+    begin
+      request = Net::HTTP.new uri.host
+      response = request.request_head uri.path
       file_size = response['content-length'].to_i
       raise_on = file_size > 300000
       puts ">>>>> File size: #{file_size}, allowed: #{!raise_on}"
       raise '--- File too big' if raise_on
+    rescue
+      raise '--- Connection error'
     end
 
     tmp_file = open(url) { |io| io.read }
@@ -27,7 +31,7 @@ class BaseImage
 
   def resize(image, width=64, height=64)
 
-    puts ">>>>> Check if should be resized"
+    puts '>>>>> Check if should be resized'
     return image if image.columns <= width && image.rows <= height
 
     puts '--- Will maintain aspect ratio, so one of the resized dimensions may be less than the specified dimensions'
