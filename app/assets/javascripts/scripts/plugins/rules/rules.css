@@ -36,15 +36,13 @@
     width: 100%;
 }
 
-.modal-dialog.rules div.html input[type="text"],
-.modal-dialog.rules div.html div.combo-box > ul {
+.modal-dialog.rules div.html input[type="text"] {
     height: 22px;
     line-height: 22px;
 }
 
 .modal-dialog.rules div.html div.combo-box > ul {
     width: 70%;
-    margin: 0;
     float: left;
 }
 

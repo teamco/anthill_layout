@@ -60,7 +60,7 @@ define(function defineWidgetContentPreferencesController() {
                                 scope: this.model.constructor.prototype
                             });
 
-                            this.logger.warn('Define model setter', fn, index, setter);
+                            this.logger.debug('Define model setter', fn, index, setter);
                         }
 
                         this.model[setter](value);

@@ -63,7 +63,7 @@ class BaseImage
   def to_img(data_uri)
     uri = URI::Data.new(data_uri)
     image = ImageList.new
-    image.from_blob(uri.data.to_blob)
+    image.from_blob(uri.data)
     data_uri(image)
   end
 
