@@ -1,0 +1,8 @@
+@import url('lib/fullcalendar.min.css');
+@import url('lib/fullcalendar.print.css');
+
+.widget .content .events-calendar {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
