@@ -182,7 +182,7 @@ define([
                 $('<li />').append(
                     this.renderFieldSet(
                         'Meta Data',
-                        $('<ul />').append(nodes),
+                        $('<ul class="default" />').append(nodes),
                         true
                     )
                 ),
@@ -212,7 +212,7 @@ define([
              * Define layout container
              * @type {*|jQuery}
              */
-            var $ul = $('<ul />').addClass('layout-prefs');
+            var $ul = $('<ul class="default" />').addClass('layout-prefs');
 
             /**
              * Define dom prefs
@@ -390,7 +390,7 @@ define([
              * Define widgets container
              * @type {*|jQuery}
              */
-            var $ul = $('<ul />').addClass('widgets-prefs'),
+            var $ul = $('<ul class="default" />').addClass('widgets-prefs'),
                 cname = [
                     'Widgets: ',
                     '<span>',

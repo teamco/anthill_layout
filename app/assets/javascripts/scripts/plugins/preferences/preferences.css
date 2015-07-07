@@ -3,7 +3,9 @@
 }
 
 .modal-dialog.preferences div.html > ul,
-.modal-dialog.preferences div.html ul.content {
+.modal-dialog.preferences div.html ul.default,
+.modal-dialog.preferences div.html ul.content,
+.modal-dialog.preferences div.html ul.widget-interactions {
     list-style: none;
     padding: 5px;
     margin: 0;

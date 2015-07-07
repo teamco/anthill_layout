@@ -64,7 +64,7 @@ define([
             return $('<li />').append(
                 this.renderFieldSet(
                     'Meta Data',
-                    $('<ul />').append(
+                    $('<ul class="default" />').append(
                         this.setSiteTitle(),
                         this.setSiteMetaAuthor(),
                         this.setSiteMetaDescription(),
@@ -319,7 +319,7 @@ define([
              */
             var cname = 'Global Preferences',
                 uuid = this.base.lib.generator.UUID() + '-slider',
-                $ul = $('<ul />').addClass('site-width-slider'),
+                $ul = $('<ul class="default" />').addClass('site-width-slider'),
                 $slider = $('<div />');
 
             /**
@@ -409,7 +409,7 @@ define([
             return $('<li />').append(
                 this.renderFieldSet(
                     cname,
-                    $('<ul />').append(
+                    $('<ul class="default" />').append(
                         $('<li class="workspace-google-analytics-prefs" />').
                             append($textfield)
                     )
