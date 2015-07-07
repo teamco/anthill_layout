@@ -186,6 +186,12 @@ ul.site-config > .content:hover {
 
 .modal-dialog.widget-list div.html li.resource {
     width: 40%;
+    cursor: pointer;
+}
+
+.modal-dialog.widget-list div.html li.header:hover li.resource,
+.modal-dialog.widget-list div.html li.header:hover li.name {
+    text-decoration: underline;
 }
 
 .modal-dialog.widget-list div.html li.row img {

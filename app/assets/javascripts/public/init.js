@@ -67,6 +67,7 @@
                 'modernizr',
                 'lz-string',
                 'totally',
+                'pluralize',
                 'jquery',
                 'jquery.ui',
                 'jquery.ujs',

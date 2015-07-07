@@ -1006,6 +1006,49 @@ define([
         hasFlash: function hasFlash() {
             return $('object', this.$).length ||
                 $('embed', this.$).length;
+        },
+
+        /**
+         * Define sort asc/desc
+         * @param $element
+         * @returns {boolean}
+         */
+        defineSorted: function defineSorted($element) {
+            var sortBy = $element.attr('sorted') === 'asc' ? 'desc' : 'asc';
+            $element.attr('sorted', sortBy);
+            return $element.attr('sorted') === 'asc';
+        },
+
+        /**
+         * Define sort text @elemets
+         * @param event
+         */
+        sortTextElements: function sortTextElements(event) {
+
+            var $container = this.$container,
+                $element = this.$element,
+                on = this.which,
+                selector = this.selector;
+
+            /**
+             * Get sorted value
+             * @type {*|boolean}
+             */
+            var sorted = $element.defineSorted($(event.target));
+
+            $(on, $container).sort(function (a, b) {
+                var t1, t2;
+                if (selector) {
+                    t1 = $(selector, a).text();
+                    t2 = $(selector, b).text();
+                } else {
+                    t1 = $(a).text();
+                    t2 = $(b).text();
+                }
+                if (t1 < t2) return sorted ? -1 : 1;
+                if (t1 > t2) return sorted ? 1 : -1;
+                return 0;
+            }).appendTo($container);
         }
 
     }, AntHill.prototype, Renderer.prototype);

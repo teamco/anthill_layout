@@ -277,6 +277,7 @@ div.combo-box input.hidden {
 
 .filter input[type="text"]:focus {
     position: static;
+    width: 100%;
 }
 
 .filter.reset .reset-filter {

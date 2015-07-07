@@ -116,6 +116,8 @@ define([
                 );
             }
 
+            this.bindWidgetSort($ul);
+
             return this.bindWidgetEdit($ul);
         },
 
@@ -133,7 +135,7 @@ define([
              */
             var scope = this.view.scope;
 
-            $('li.name', $ul).on('click.edit', function clickEdit() {
+            $('li.row li.name', $ul).on('click.edit', function clickEdit() {
 
                 scope.observer.publish(
                     scope.eventmanager.eventList.widgetEditor,
@@ -142,6 +144,32 @@ define([
             });
 
             return $ul;
+        },
+
+        /**
+         * Bind widget sort
+         * @memberOf SiteConfigWidgetsListElement
+         * @param $ul
+         */
+        bindWidgetSort: function bindWidgetSort($ul) {
+
+            // Sort by name
+            $('li.header li.name', $ul).on('click.sort', this.sortTextElements.bind({
+                    $element: this,
+                    $container: $ul,
+                    which: 'li.row',
+                    selector: 'li.name > span'
+                })
+            );
+
+            // Sort by resource
+            $('li.header li.resource', $ul).on('click.sort', this.sortTextElements.bind({
+                    $element: this,
+                    $container: $ul,
+                    which: 'li.row',
+                    selector: 'li.resource'
+                })
+            );
         },
 
         /**
