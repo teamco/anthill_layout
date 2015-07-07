@@ -25,21 +25,21 @@ define([
          * @type {{}}
          */
         this.preferences = {
-            eventcalendarSelectable: {
+            eventscalendarSelectable: {
                 type: 'checkbox',
                 disabled: false,
                 checked: true,
                 visible: true,
                 value: true
             },
-            eventcalendarEditable: {
+            eventscalendarEditable: {
                 type: 'checkbox',
                 disabled: false,
                 checked: true,
                 visible: true,
                 value: true
             },
-            eventcalendarLimit: {
+            eventscalendarLimit: {
                 type: 'checkbox',
                 disabled: false,
                 checked: true,
