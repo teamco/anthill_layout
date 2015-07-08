@@ -204,7 +204,12 @@ define([
             getNextPosition: function getNextPosition(dom) {
 
                 var layout = this.scope,
-                    cell = layout.controller.minCellWidth(),
+                    page = layout.controller.getContainment(),
+                    $widgets = page.controller.getWidgetsContainer(),
+                    top = $widgets.getMarginTop(),
+                    left = $widgets.getMarginLeft();
+
+                var cell = layout.controller.minCellWidth(),
                     margin = layout.config.grid.margin;
 
                 /**
@@ -218,8 +223,8 @@ define([
                 }
 
                 return {
-                    left: _getNextPosition(dom.column),
-                    top: _getNextPosition(dom.row),
+                    left: _getNextPosition(dom.column) + left,
+                    top: _getNextPosition(dom.row) + top,
                     zIndex: dom.zIndex
                 };
 
