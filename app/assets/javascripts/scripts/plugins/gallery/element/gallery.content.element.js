@@ -28,8 +28,13 @@ define([
 
         /**
          * Define data
-         * @memberOf GalleryContentElement
-         * @type {*}
+         * @property GalleryContentElement
+         * @type {{
+         *      name: string,
+         *      resource: string,
+         *      description: string,
+         *      is_external: boolean
+         * }}
          */
         this.data = opts.data;
 
@@ -62,12 +67,16 @@ define([
                 title: this.data.name,
                 resource: this.data.resource
 
-            }).addClass(
+            });
 
-                this.view.controller.getResourceClassName(
-                    this.data.resource
-                )
-            );
+            if (!this.data.is_external) {
+
+                this.$.addClass(
+                    this.view.controller.getResourceClassName(
+                        this.data.resource
+                    )
+                );
+            }
         },
 
         /**
@@ -100,11 +109,12 @@ define([
              * Define content element
              * @type {GalleryContentElement}
              */
-            var $content = this;
+            var $content = this,
+                external = $content.data.is_external ? 'External' : 'Core';
 
             $content.renderTooltip({
                 title: $content.data.name,
-                description: $content.data.description,
+                description: $content.data.description + '\n' + '(' + external + ')',
                 $container: $content
             });
         }

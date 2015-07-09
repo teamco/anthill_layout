@@ -57,7 +57,7 @@ define([
             function _renderRow(row, style) {
 
                 var html = [],
-                    index;
+                    index, tr, key;
 
                 for (index in row) {
 
@@ -65,7 +65,13 @@ define([
 
                         if (show.indexOf(index) > -1) {
 
-                            html.push([
+                            key = 1;
+                            tr = [];
+
+                            if (index === 'name') key = 0;
+                            if (index === 'thumbnail') key = 2;
+
+                            tr[key] = [
                                 '<li class="', index.toDash(), '">',
                                 style === 'header' ?
                                     index === 'thumbnail' ? 'icon' : index :
@@ -75,7 +81,9 @@ define([
                                         '<span>' + row[index] + '</span>' :
                                             row[index],
                                 '</li>'
-                            ].join(''));
+                            ].join('');
+
+                            html.push(tr.join(''));
                         }
                     }
                 }
@@ -535,7 +543,7 @@ define([
                     url: route[0],
                     method: route[1],
                     data: $element.view.controller.prepareXhrData({
-                        external_url: e.target.value
+                        author_widget: {url: e.target.value}
                     })
 
                 }).done(_updateData.bind(this));
@@ -570,7 +578,7 @@ define([
                                 'url',
                                 widgetData[index],
                                 {}, {
-                                    events: ['mouseleave.url'],
+                                    events: ['blur.url'],
                                     callback: _readData
                                 }
                             );

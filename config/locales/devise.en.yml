@@ -58,3 +58,6 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+  widget_update_success: "Widget was successfully updated."
+  widget_destroy_success: "Widget was successfully destroyed."
+  widget_create_success: "Widget was successfully created."

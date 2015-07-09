@@ -20,6 +20,8 @@ define(function defineGalleryWidgets() {
          *      description: string,
          *      thumbnail: string,
          *      dimensions: {width: number, height: number},
+         *      is_external: boolean,
+         *      external_resource: string,
          *      type: string,
          *      resource: string
          * }[]}
@@ -46,6 +48,8 @@ define(function defineGalleryWidgets() {
          *      name: string,
          *      description: string,
          *      thumbnail: string,
+         *      is_external: boolean,
+         *      external_resource: string,
          *      dimensions: {width: number, height: number},
          *      type: string,
          *      resource: string
@@ -96,7 +100,7 @@ define(function defineGalleryWidgets() {
 
                 /**
                  * Get show widgets list route
-                 * @type {Routes.resources.showWidgetsList}
+                 * @type {Array}
                  */
                 var route = scope.controller.resources.showWidgetsList;
 
@@ -192,6 +196,8 @@ define(function defineGalleryWidgets() {
              *      name: string,
              *      description: string,
              *      thumbnail: string,
+             *      is_external: boolean,
+             *      external_resource: string,
              *      dimensions: {width: number, height: number},
              *      type: string,
              *      resource: string
@@ -214,6 +220,8 @@ define(function defineGalleryWidgets() {
                      *      name: (*|string),
                      *      description: (*|string),
                      *      thumbnail: (*|string),
+                     *      is_external: (*|boolean),
+                     *      external_resource: (*|string),
                      *      dimensions: {width: *, height: *},
                      *      type,
                      *      resource: (*|string)
@@ -223,7 +231,8 @@ define(function defineGalleryWidgets() {
                         id: data[i].id,
                         uuid: data[i].uuid,
                         url: data[i].url,
-                        external: data[i].external,
+                        is_external: data[i].is_external,
+                        external_resource: data[i].external_resource,
                         name: json.widget.name,
                         description: json.widget.description,
                         thumbnail: json.widget.thumbnail,
@@ -260,6 +269,8 @@ define(function defineGalleryWidgets() {
              *      thumbnail: string,
              *      dimensions: {width: number, height: number},
              *      type: string,
+             *      is_external: boolean,
+             *      external_resource: string,
              *      resource: string
              * }}
              */
@@ -270,6 +281,8 @@ define(function defineGalleryWidgets() {
                 name: data.widget.name,
                 description: data.widget.description,
                 thumbnail: data.widget.thumbnail,
+                is_external: data.widget.is_external,
+                external_resource: data.widget.external_resource,
                 dimensions: {
                     width: data.widget.width,
                     height: data.widget.height
@@ -303,6 +316,8 @@ define(function defineGalleryWidgets() {
              *      description: string,
              *      thumbnail: string,
              *      dimensions: {width: number, height: number},
+             *      is_external: boolean,
+             *      external_resource: string,
              *      type: string,
              *      resource: string
              * }[]}
@@ -327,6 +342,8 @@ define(function defineGalleryWidgets() {
          *      description: string,
          *      thumbnail: string,
          *      dimensions: {width: number, height: number},
+         *      is_external: boolean,
+         *      external_resource: string,
          *      type: string,
          *      resource: string
          * }}
@@ -340,6 +357,8 @@ define(function defineGalleryWidgets() {
              *      description: string,
              *      thumbnail: string,
              *      dimensions: {width: number, height: number},
+             *      is_external: boolean,
+             *      external_resource: string,
              *      type: string,
              *      resource: string
              * }[]}

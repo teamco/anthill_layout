@@ -190,6 +190,7 @@ define([
                 height: $element.data.dimensions.height,
                 resource: $element.$.attr('resource'),
                 thumbnail: $element.data.thumbnail,
+                external_resource: $element.data.external_resource,
                 title: $element.data.name,
                 description: $element.data.description
             }, true, false);

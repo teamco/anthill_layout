@@ -55,7 +55,8 @@ class Author::WidgetsController < Author::AuthorController
             uuid: w[:uuid],
             name: w[:name],
             description: w[:description],
-            external: w[:external],
+            is_external: w[:is_external],
+            external_resource: w[:external_resource],
             dimensions: {
                 width: w[:width],
                 height: w[:height]
@@ -88,7 +89,7 @@ class Author::WidgetsController < Author::AuthorController
   # POST /author/widgets.json
   def create
 
-    @author_widget = @category.author_widgets.build(author_widget_params) unless @category.nil?
+    @author_widget = current_user.author_widgets.build(author_widget_params) unless @category.nil?
 
     if @author_widget.nil?
       respond_to { |format| error_handler_on_create(format) }
@@ -96,6 +97,7 @@ class Author::WidgetsController < Author::AuthorController
 
       uuid = UUID.new
       @author_widget.uuid = uuid.generate
+      @author_widget.widget_category_id = @category.id
 
       respond_to do |format|
         if generate_widget and @author_widget.save
@@ -111,7 +113,7 @@ class Author::WidgetsController < Author::AuthorController
               render json: data, status: 200
             }
           else
-            format.html { redirect_to @author_widget, notice: 'Widget was successfully created.' }
+            format.html { redirect_to @author_widget, notice: t('widget_create_success') }
             format.json { render :show, status: :created, location: @author_widget }
           end
         else
@@ -123,26 +125,7 @@ class Author::WidgetsController < Author::AuthorController
 
   def external_fetch
 
-    url = params[:external_url]
-
-    json = {
-        name: '',
-        description: '',
-        resource: '',
-        type: '',
-        width: '',
-        height: '',
-        thumbnail: ''
-    }.to_json
-
-    proxy = Crawler::NetHttp.new
-
-    json = proxy.request_response(url) if url =~ URI::regexp
-
-    logger.info json.inspect
-
-    @external = JSON.parse(json) rescue json
-    @external['thumbnail'] = url.gsub(/config\.json/, '') + @external['thumbnail']
+    @external = fetch_external_widget_data
 
     respond_to do |format|
       format.json {
@@ -150,6 +133,59 @@ class Author::WidgetsController < Author::AuthorController
                location: @external
       }
     end
+  end
+
+  def external_widgets
+
+    external = fetch_external_widget_data
+    uuid = (UUID.new).generate
+
+    @widget_lib = WidgetLib::Generate.new
+    @category = WidgetCategory.find_by_name_value(external['type'])
+    @author_widget = current_user.author_widgets.build(
+        {
+            widget_category_id: @category.id,
+            name: external['name'],
+            description: external['description'],
+            resource: uuid,
+            width: external['width'],
+            height: external['height'],
+            thumbnail: external['thumbnail'],
+            visible: true,
+            is_external: true,
+            external_resource: external['url']
+        }
+    ) unless @category.nil?
+
+    if @author_widget.nil?
+      respond_to { |format| error_handler_on_create(format) }
+    else
+
+      @author_widget.uuid = uuid
+
+      respond_to do |format|
+        if @author_widget.save
+
+          @widget_lib.update_seed
+
+          if request.xhr?
+            data = {
+                widget: @author_widget,
+                category: @category
+            }
+            format.json {
+              render json: data, status: 200
+            }
+          else
+            format.html { redirect_to @author_widget, notice: t('widget_create_success') }
+            format.json { render :show, status: :created, location: @author_widget }
+          end
+        else
+          error_handler_on_create(format)
+        end
+      end
+    end
+
   end
 
   # PATCH/PUT /author/widgets/1
@@ -170,7 +206,7 @@ class Author::WidgetsController < Author::AuthorController
           widget.generate_css(@author_widget.thumbnail) unless generated_thumbnail
           format.json { render :show, status: :ok, location: @author_widget }
         else
-          format.html { redirect_to @author_widget, notice: 'Widget was successfully updated.' }
+          format.html { redirect_to @author_widget, notice: t('widget_update_success') }
           format.json { render :show, status: :ok, location: @author_widget }
         end
       else
@@ -185,12 +221,38 @@ class Author::WidgetsController < Author::AuthorController
   def destroy
     @author_widget.destroy
     respond_to do |format|
-      format.html { redirect_to author_widgets_url, notice: 'Widget was successfully destroyed.' }
+      format.html { redirect_to author_widgets_url, notice: t('widget_destroy_success') }
       format.json { head :no_content }
     end
   end
 
   private
+
+  def fetch_external_widget_data
+
+    return unless request.xhr?
+
+    url = nil || (params[:author_widget][:url] if request.post? || request.put?)
+
+    json = {
+        name: '',
+        description: '',
+        resource: '',
+        type: '',
+        width: '',
+        height: '',
+        thumbnail: ''
+    }.to_json
+
+    proxy = Crawler::NetHttp.new
+
+    json = proxy.request_response(url) if url =~ URI::regexp
+
+    external = JSON.parse(json) rescue json
+    external['url'] = url.gsub(/config\.json/, '') unless url.nil?
+    external['thumbnail'] = external['url'] + external['thumbnail']
+    external
+  end
 
   def site_widgets
     site_storage = SiteStorage.find_by_key(params[:site_storage_id])
@@ -275,7 +337,7 @@ class Author::WidgetsController < Author::AuthorController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_widget_params
-    params.require(:author_widget).permit(:name, :external, :description, :thumbnail, :width, :height, :resource, :visible, :widget_category_id)
+    params.require(:author_widget).permit(:name, :description, :thumbnail, :width, :height, :resource, :visible, :widget_category_id)
   end
 
   def error_handler_on_create(format)

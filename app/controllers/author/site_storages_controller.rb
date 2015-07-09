@@ -16,7 +16,11 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages
   # GET /author/site_storages.json
   def index
-    @author_site_storages = SiteStorage.all.order(:key)
+    @author_site_storages = SiteStorage.includes(
+        :author_site_type,
+        :author_widgets,
+        :author_site_versions
+    ).all.order(:key)
 
     @resource = {
         items: @author_site_storages.size,

@@ -11,8 +11,7 @@ class Author::Widget < ActiveRecord::Base
 
   accepts_nested_attributes_for :author_site_storage_widgets, allow_destroy: true
 
-  validates :resource, presence: true,
-            format: {with: /\A[a-zA-Z](.)+\z/, message: 'only allows letters'}
+  validates :resource, presence: true
 
   validates :width, presence: true, numericality: true
   validates :height, presence: true, numericality: true
