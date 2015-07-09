@@ -70,7 +70,8 @@ ActiveRecord::Schema.define(version: 20150426193350) do
     t.integer  "width",              limit: 4
     t.integer  "height",             limit: 4
     t.string   "resource",           limit: 255
-    t.string   "external",           limit: 255
+    t.boolean  "is_external",                         default: false
+    t.string   "external_resource",  limit: 255
     t.boolean  "visible"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -9,7 +9,8 @@ class CreateAuthorWidgets < ActiveRecord::Migration
       t.integer :width
       t.integer :height
       t.string :resource
-      t.string :external
+      t.boolean :is_external, default: false
+      t.string :external_resource
       t.boolean :visible
 
       t.timestamps

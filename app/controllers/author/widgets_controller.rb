@@ -8,6 +8,7 @@ class Author::WidgetsController < Author::AuthorController
 
   require "#{Rails.root}/lib/tasks/widget_generator.rb"
   require "#{Rails.root}/lib/base_lib.rb"
+  require "#{Rails.root}/lib/proxy_connection.rb"
   require 'open-uri'
   require 'uri'
   require 'uuid'
@@ -134,11 +135,13 @@ class Author::WidgetsController < Author::AuthorController
         thumbnail: ''
     }.to_json
 
-    json = open(url).read if url =~ URI::regexp
+    proxy = Crawler::NetHttp.new
+
+    json = proxy.request_response(url) if url =~ URI::regexp
 
     logger.info json.inspect
 
-    @external = JSON.parse(json)
+    @external = JSON.parse(json) rescue json
     @external['thumbnail'] = url.gsub(/config\.json/, '') + @external['thumbnail']
 
     respond_to do |format|
