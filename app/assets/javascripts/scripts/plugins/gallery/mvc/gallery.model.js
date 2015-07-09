@@ -19,6 +19,13 @@ define([
      * @constructor
      */
     var GalleryModel = function GalleryModel() {
+
+        /**
+         * Define data types
+         * @property GalleryModel
+         * @type {{strings}}
+         */
+        this.dataTypes = {};
     };
 
     return GalleryModel.extend('GalleryModel', {
@@ -71,7 +78,7 @@ define([
              * @property GalleryModel
              * @type {{name: string, data: *[]}[]}
              */
-            this.currentProvider = this.defaultProvider;
+            this.currentProvider = $.extend({}, this.defaultProvider);
         },
 
         /**
@@ -116,7 +123,7 @@ define([
              * @property GalleryModel
              * @type {{name: string, data: *[]}[]}
              */
-            this.currentProvider = provider;
+            this.currentProvider = $.extend({}, provider);
 
             this.scope.logger.debug('Current provider', provider);
         },
@@ -136,7 +143,7 @@ define([
 
             /**
              * Get data types
-             * @type {{regular: string, text: string, video: string, map: string, files: string, image: string, social: string}}
+             * @type {{strings}}
              */
             var dataTypes = this.dataTypes;
 
