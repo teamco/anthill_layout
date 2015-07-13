@@ -16,11 +16,13 @@ ActiveRecord::Schema.define(version: 20150426193350) do
   create_table "author_site_storage_widgets", force: :cascade do |t|
     t.integer  "site_storage_id", limit: 4
     t.integer  "widget_id",       limit: 4
+    t.integer  "user_id",         limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
 
   add_index "author_site_storage_widgets", ["site_storage_id"], name: "index_author_site_storage_widgets_on_site_storage_id", using: :btree
+  add_index "author_site_storage_widgets", ["user_id"], name: "index_author_site_storage_widgets_on_user_id", using: :btree
   add_index "author_site_storage_widgets", ["widget_id"], name: "index_author_site_storage_widgets_on_widget_id", using: :btree
 
   create_table "author_site_storages", force: :cascade do |t|

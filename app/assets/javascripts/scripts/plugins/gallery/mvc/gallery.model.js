@@ -25,7 +25,7 @@ define([
          * @property GalleryModel
          * @type {{strings}}
          */
-        this.dataTypes = {};
+        this.dataTypes = undefined;
     };
 
     return GalleryModel.extend('GalleryModel', {

@@ -14,6 +14,7 @@ class Author::WidgetsController < Author::AuthorController
   require 'uuid'
   require 'json'
 
+  before_action :authenticate_user!, except: [:show]
   before_action :set_author_widget_category, only: [:create, :update, :destroy]
   before_action :set_author_widget, only: [:show, :edit, :update, :destroy]
   before_action :set_clone_from, only: [:create]

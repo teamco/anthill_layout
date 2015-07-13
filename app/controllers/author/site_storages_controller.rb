@@ -106,11 +106,12 @@ class Author::SiteStoragesController < Author::AuthorController
   # PATCH/PUT /author/site_storages/1.json
   def update
 
-    versions = @author_site_storage.author_site_versions
+    versions = @author_site_storage.author_site_versions.includes(:user)
 
     if request.xhr?
       versions.build({
                          version: versions.length + 1,
+                         user_id: current_user.id,
                          content: params[:author_site_storage][:content],
                          activated: params[:activate] == 'true'
                      })
@@ -222,6 +223,8 @@ class Author::SiteStoragesController < Author::AuthorController
 
     update_widget_connections unless request.xhr?
 
+    author_site_storage_params[:user_id] = current_user.id
+
     if @author_site_storage.update(author_site_storage_params)
       updated = update_version_activation(
           @activated.nil? ?
@@ -238,7 +241,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
     @author_site_storage.author_site_storage_widgets.delete_all
     @author_site_storage.author_widgets << widgets unless widgets.blank?
-
+    @author_site_storage.author_site_storage_widgets.update_all({user_id: current_user.id})
     params[:author_site_storage].delete :author_site_storage_widget_ids
 
   end
@@ -266,7 +269,12 @@ class Author::SiteStoragesController < Author::AuthorController
             puts t('undefined_version')
             updated = false
           else
-            updated = @version.update({activated: true}) unless activated == @version
+            updated = @version.update(
+                {
+                    activated: true,
+                    user_id: current_user.id
+                }
+            ) unless activated == @version
           end
         else
           updated = false
@@ -288,7 +296,12 @@ class Author::SiteStoragesController < Author::AuthorController
       puts t('undefined_mode')
       updated = false
     else
-      updated = @author_site_storage.update({site_type_id: mode.id}) unless @author_site_storage.author_site_type == mode if updated
+      updated = @author_site_storage.update(
+          {
+              site_type_id: mode.id,
+              user_id: current_user.id
+          }
+      ) unless @author_site_storage.author_site_type == mode if updated
     end
 
     updated

@@ -2,6 +2,7 @@ class Author::SiteTypesController < Author::AuthorController
 
   include Author
 
+  before_action :authenticate_user!, except: [:show]
   before_action :set_author_site_type, only: [:show, :edit, :update, :destroy]
 
   layout 'author'
@@ -37,7 +38,7 @@ class Author::SiteTypesController < Author::AuthorController
   # POST /author/site_types
   # POST /author/site_types.json
   def create
-    @author_site_type = SiteType.new(author_site_type_params)
+    @author_site_type = current_user.author_site_types.build(author_site_type_params)
 
     respond_to do |format|
       if @author_site_type.save
@@ -53,6 +54,7 @@ class Author::SiteTypesController < Author::AuthorController
   # PATCH/PUT /author/site_types/1
   # PATCH/PUT /author/site_types/1.json
   def update
+    author_site_type_params[:user_id] = current_user.id
     respond_to do |format|
       if @author_site_type.update(author_site_type_params)
         format.html { redirect_to author_site_types_path, notice: 'Site type was successfully updated.' }

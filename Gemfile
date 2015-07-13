@@ -13,9 +13,11 @@ case RUBY_PLATFORM
     gem 'rails', '>= 4.2.0'
 
     gem 'puma'
+    gem 'embedly'
 
     # Use debugger
     gem 'byebug', group: [:development, :test]
+
     group :development do
 
       gem 'bullet'

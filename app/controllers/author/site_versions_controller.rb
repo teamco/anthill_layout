@@ -2,6 +2,7 @@ class Author::SiteVersionsController < Author::AuthorController
 
   include Author
 
+  before_action :authenticate_user!, except: [:show]
   before_action :set_author_site_version, only: [:show, :edit, :update, :destroy]
 
   layout 'author'
@@ -40,7 +41,7 @@ class Author::SiteVersionsController < Author::AuthorController
   # POST /author/site_versions
   # POST /author/site_versions.json
   def create
-    @author_site_version = SiteVersion.new(author_site_version_params)
+    @author_site_version = current_user.author_site_versions.build(author_site_version_params)
 
     respond_to do |format|
       if @author_site_version.save
@@ -56,6 +57,7 @@ class Author::SiteVersionsController < Author::AuthorController
   # PATCH/PUT /author/site_versions/1
   # PATCH/PUT /author/site_versions/1.json
   def update
+    author_site_version_params[:user_id] = current_user.id
     respond_to do |format|
       if @author_site_version.update(author_site_version_params)
         format.html { redirect_to author_site_versions_path, notice: 'Site version was successfully updated.' }

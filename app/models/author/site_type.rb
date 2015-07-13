@@ -6,6 +6,8 @@ class Author::SiteType < ActiveRecord::Base
            :class_name => 'Author::SiteStorage',
            dependent: :destroy
 
+  belongs_to :user, :foreign_key => :user_id
+
   validates :name, presence: true
 
   POSSIBLE_TYPES = self.select(:name)

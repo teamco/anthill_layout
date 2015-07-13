@@ -2,6 +2,7 @@ class Author::WidgetCategoriesController < Author::AuthorController
 
   include Author
 
+  before_action :authenticate_user!, except: [:show]
   before_action :set_author_widget_category, only: [:show, :edit, :update, :destroy]
 
   layout 'author'
@@ -37,7 +38,7 @@ class Author::WidgetCategoriesController < Author::AuthorController
   # POST /author/widget_categories
   # POST /author/widget_categories.json
   def create
-    @author_widget_category = WidgetCategory.new(author_widget_category_params)
+    @author_widget_category = current_user.author_widget_categories.build(author_widget_category_params)
 
     respond_to do |format|
       if @author_widget_category.save
@@ -53,6 +54,7 @@ class Author::WidgetCategoriesController < Author::AuthorController
   # PATCH/PUT /author/widget_categories/1
   # PATCH/PUT /author/widget_categories/1.json
   def update
+    author_widget_category_params[:user_id] = current_user.id
     respond_to do |format|
       if @author_widget_category.update(author_widget_category_params)
         format.html { redirect_to author_widget_categories_path, notice: 'Widget category was successfully updated.' }
