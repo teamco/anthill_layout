@@ -53,7 +53,8 @@ define([
          *              bottom: number,
          *              left: number
          *          }
-         *      }
+         *      },
+         *      routes: {getContent: array}
          * }}
          */
         var DEFAULTS = {
@@ -68,6 +69,9 @@ define([
                     bottom: 0,
                     left: 0
                 }
+            },
+            routes: {
+                getContent: ['/embedly.json', 'get']
             }
         };
 

@@ -35,9 +35,35 @@ define([
         /**
          * Render Embedded content
          * @memberOf EmbedlyElement
+         * @param {string} url
          */
-        renderEmbeddedContent: function renderEmbeddedContent() {
-            // TODO
+        renderEmbeddedContent: function renderEmbeddedContent(url) {
+
+            function _updateContent(json, status, xhr){
+
+                this.$.append(JSON.stringify(json));
+            }
+
+            /**
+             * Get scope
+             * @type {Embedly|AntHill}
+             */
+            var scope = this.view.scope,
+                route = scope.model.getConfig('routes/getContent');
+
+            if (typeof(url) === 'undefined') {
+
+                scope.logger.debug('Initial content');
+                return false;
+            }
+
+            $.ajax({
+                url: route[0],
+                method: route[1],
+                data: {
+                    url: url
+                }
+            }).done(_updateContent.bind(this));
         }
 
     }, BaseElement.prototype);

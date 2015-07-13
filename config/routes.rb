@@ -32,6 +32,8 @@ Rails.application.routes.draw do
 
   get '/author', to: 'author/author#index'
 
+  get '/embedly', to: 'public/embedly#show'
+
   root 'author/author#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

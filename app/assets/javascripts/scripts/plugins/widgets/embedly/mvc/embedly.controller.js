@@ -27,8 +27,9 @@ define([
          * @memberOf EmbedlyController
          */
         setEmbeddedContent: function setEmbeddedContent() {
-
-            this.view.elements.$embedly.renderEmbeddedContent();
+            this.view.elements.$embedly.renderEmbeddedContent(
+                this.model.getPrefs('embedlyUrl')
+            );
         },
 
         /**

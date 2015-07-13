@@ -22,10 +22,17 @@ define([
         /**
          * Define preferences
          * @memberOf EmbedlyModel
-         * @type {{}}
+         * @type {{
+         *      embedlyUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
+         * }}
          */
         this.preferences = {
-            // Preferences
+            embedlyUrl: {
+                type: 'text',
+                disabled: false,
+                value: undefined,
+                visible: true
+            }
         };
 
         /**
