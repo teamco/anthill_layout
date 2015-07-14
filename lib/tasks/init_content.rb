@@ -81,6 +81,7 @@ module WidgetLib
 
       uuid = UUID.new
       widget = WidgetLib::Generate.new
+      user_id = User.first.id rescue 1
 
       JSON.parse(@widgets.to_json).each_with_index do |w, index|
 
@@ -91,12 +92,15 @@ module WidgetLib
         hash = {
             name: w['name'],
             uuid: uuid.generate,
+            user_id: user_id,
             description: w['description'],
             thumbnail: w['thumbnail'],
             width: w['dimensions']['width'],
             height: w['dimensions']['height'],
             widget_category_id: category.id,
             resource: w['resource'],
+            is_external: w['is_external'],
+            external_resource: w['external_resource'],
             visible: w['visible'].nil? ? true : w['visible']
         }
 
@@ -104,27 +108,32 @@ module WidgetLib
         item.save!
 
         puts "Model item: #{Author::Widget.last.name} >>> #{Author::Widget.all.size}"
+        puts "External: #{hash[:is_external]}" if hash[:is_external]
+        puts "Resource: #{hash[:external_resource]}" if hash[:is_external]
 
-        widget.init_params(w['resource'])
-        widget.generate_css(w['thumbnail'])
-
-        if store
-          widget.update_json(
-              {
-                  name: w['name'],
-                  description: w['description'],
-                  thumbnail: w['thumbnail'],
-                  dimensions: {
-                      width: w['dimensions']['width'],
-                      height: w['dimensions']['height']
-                  },
-                  type: w['type'],
-                  resource: w['resource']
-              }
-          )
+        unless hash[:is_external]
+          widget.init_params(w['resource'])
+          widget.generate_css(w['thumbnail'])
         end
 
+        widget.update_json(
+            {
+                name: w['name'],
+                description: w['description'],
+                thumbnail: w['thumbnail'],
+                dimensions: {
+                    width: w['dimensions']['width'],
+                    height: w['dimensions']['height']
+                },
+                is_external: w['is_external'],
+                external_resource: w['external_resource'],
+                type: w['type'],
+                resource: w['resource']
+            }
+        ) if store
+
       end
+      
       puts ">>> Finish Add widgets: #{Author::Widget.all.size}"
 
       puts '--- Combine CSS'
@@ -153,6 +162,8 @@ module WidgetLib
                 width: w[:width],
                 height: w[:height]
             },
+            is_external: w[:is_external],
+            external_resource: w[:external_resource],
             type: w.author_widget_category[:name_index],
             resource: w[:resource]
         }

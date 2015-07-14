@@ -510,8 +510,7 @@ define([
                     widget = data.widget;
 
                 if (!widget.name.length) {
-
-                    $element.view.scope.logger.warn('Unable to parse url');
+                    $element.view.scope.logger.warn('Unable to parse url', data, status, xhr);
                     return false;
                 }
 
@@ -537,6 +536,11 @@ define([
                  * @type {Routes.resources.fetchExternalWidget|*}
                  */
                 var route = $element.view.controller.resources.fetchExternalWidget;
+
+                if (!e.target.value.length) {
+                    $element.view.scope.logger.debug('Initial content', e);
+                    return false;
+                }
 
                 $.ajax({
 
@@ -571,7 +575,7 @@ define([
                             );
                             break;
 
-                        case 'external':
+                        case 'external_resource':
 
                             $field = this._getRenderer(
                                 $element.renderTextField.bind($element),

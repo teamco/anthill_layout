@@ -124,6 +124,8 @@ module WidgetLib
                   width: w[:width],
                   height: w[:height]
               },
+              is_external: w[:is_external],
+              external_resource: w[:external_resource],
               type: w.author_widget_category[:name_index],
               resource: w[:resource]
           }

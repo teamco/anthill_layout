@@ -23,7 +23,8 @@ define([
          * Define preferences
          * @memberOf EmbedlyModel
          * @type {{
-         *      embedlyUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
+         *      embedlyUrl: {type: string, disabled: boolean, value: undefined, visible: boolean},
+         *      embedlyJson: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
          */
         this.preferences = {
