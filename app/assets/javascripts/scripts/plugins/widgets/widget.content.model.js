@@ -11,9 +11,23 @@ define([], function defineWidgetContentModel() {
      * Define Widget content model
      * @class WidgetContentModel
      * @constructor
+     * @extends AntHill
      */
     var WidgetContentModel = function WidgetContentModel() {
 
+        /**
+         * Define prefs
+         * @property WidgetContentModel
+         * @type {undefined}
+         */
+        this.preferences = undefined;
+
+        /**
+         * Define scope
+         * @property WidgetContentModel
+         * @type {undefined}
+         */
+        this.scope = undefined;
     };
 
     return WidgetContentModel.extend('WidgetContentModel', {
@@ -99,6 +113,20 @@ define([], function defineWidgetContentModel() {
              * @type {string}
              */
             this.preferences[prefs].value = value;
+        },
+
+        /**
+         * Set prefs
+         * @memberOf WidgetContentModel
+         * @param prefs
+         * @param value
+         */
+        setPrefsCache: function setPrefsCache(prefs, value) {
+
+            if (this.getPrefs(prefs) !== value) {
+
+                this.setPrefs(prefs, value);
+            }
         },
 
         /**

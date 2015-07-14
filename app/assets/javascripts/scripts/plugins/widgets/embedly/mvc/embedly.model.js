@@ -32,6 +32,12 @@ define([
                 disabled: false,
                 value: undefined,
                 visible: true
+            },
+            embedlyJson: {
+                type: 'textarea',
+                disabled: false,
+                value: undefined,
+                visible: false
             }
         };
 
@@ -45,7 +51,23 @@ define([
 
     return EmbedlyModel.extend('EmbedlyModel', {
 
-        // Setter
+        /**
+         * Define embedly url setter
+         * @memberOf EmbedlyModel
+         * @param url
+         */
+        setEmbedlyUrl: function setEmbedlyUrl(url) {
+            this.setPrefs('embedlyUrl', url);
+        },
+
+        /**
+         * Define embedly url setter
+         * @memberOf EmbedlyModel
+         * @param json
+         */
+        setEmbedlyJson: function setEmbedlyJson(json) {
+            this.setPrefs('embedlyJson', json);
+        }
 
     }, BaseModel.prototype, WidgetContentModel.prototype);
 });

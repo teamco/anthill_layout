@@ -39,8 +39,14 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent(url) {
 
+            /**
+             * Update content
+             * @param json
+             * @param {string} status
+             * @param xhr
+             * @private
+             */
             function _updateContent(json, status, xhr){
-
                 this.$.append(JSON.stringify(json));
             }
 
