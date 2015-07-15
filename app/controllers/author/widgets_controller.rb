@@ -15,8 +15,8 @@ class Author::WidgetsController < Author::AuthorController
   require 'json'
 
   before_action :authenticate_user!, except: [:show]
-  before_action :set_author_widget_category, only: [:create, :update, :destroy]
   before_action :set_author_widget, only: [:show, :edit, :update, :destroy]
+  before_action :set_author_widget_category, only: [:create, :update, :destroy]
   before_action :set_clone_from, only: [:create]
 
   layout 'author'
@@ -148,7 +148,7 @@ class Author::WidgetsController < Author::AuthorController
             widget_category_id: @category.id,
             name: external['name'],
             description: external['description'],
-            resource: uuid,
+            resource: external['resource'],
             width: external['width'],
             height: external['height'],
             thumbnail: external['thumbnail'],
@@ -323,7 +323,9 @@ class Author::WidgetsController < Author::AuthorController
   end
 
   def set_author_widget_category
-    @category = WidgetCategory.find_by_name_index(params[:author_widget_category][:name_index])
+    index = nil
+    index = params[:author_widget_category][:name_index] unless params[:author_widget_category].nil?
+    @category = index.nil? ? @author_widget.author_widget_category : WidgetCategory.find_by_name_index(index)
   end
 
   # Use callbacks to share common setup or constraints between actions.

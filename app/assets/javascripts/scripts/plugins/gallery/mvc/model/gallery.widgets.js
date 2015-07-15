@@ -382,7 +382,9 @@ define(function defineGalleryWidgets() {
                 }
             }
 
-            scope.logger.warn('Undefined widget data', source);
+            if (source !== 'external') {
+                scope.logger.warn('Undefined widget data', source);
+            }
         }
     });
 });
