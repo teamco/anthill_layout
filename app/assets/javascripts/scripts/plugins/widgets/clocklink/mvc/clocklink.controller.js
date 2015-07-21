@@ -27,8 +27,47 @@ define([
          * @memberOf ClocklinkController
          */
         setEmbeddedContent: function setEmbeddedContent() {
+            this.view.elements.$clocklink.renderEmbeddedContent(
+                this.controller.parseEmbedCode()
+            );
+        },
 
-            this.view.elements.$clocklink.renderEmbeddedContent();
+        /**
+         * Define embed code parser
+         * @memberOf ClocklinkController
+         * @returns {{type: string, code: string}}
+         */
+        parseEmbedCode: function parseEmbedCode() {
+
+            /**
+             * Get embed prefs
+             * @type {string}
+             */
+            var embedCode = this.model.getPrefs('clocklinkEmbedCode') || '',
+
+                /**
+                 * Define embed object
+                 * @type {{type: string, code: string}}
+                 */
+                embed = {code: embedCode};
+
+            if (embedCode.length > 0) {
+                this.clearParentThumbnail();
+            }
+
+            if (embedCode.match(/^<iframe/)) {
+                embed.type = 'iframe';
+            }
+
+            if (embedCode.match(/^<embed/)) {
+                embed.type = 'embed';
+            }
+
+            if (embedCode.match(/^<script/)) {
+                embed.type = 'script'
+            }
+
+            return embed;
         },
 
         /**

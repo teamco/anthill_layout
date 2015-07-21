@@ -11,7 +11,6 @@ define([], function defineEmbedRenderer() {
      * @constructor
      */
     var EmbedRenderer = function EmbedRenderer() {
-
     };
 
     return EmbedRenderer.extend('EmbedRenderer', {

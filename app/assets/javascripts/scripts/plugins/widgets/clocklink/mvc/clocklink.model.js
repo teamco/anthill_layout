@@ -21,16 +21,23 @@ define([
 
         /**
          * Define preferences
-         * @memberOf ClocklinkModel
-         * @type {{}}
+         * @property ClocklinkModel
+         * @type {{
+         *      clocklinkEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
+         * }}
          */
         this.preferences = {
-            // Preferences
+            clocklinkEmbedCode: {
+                type: 'textarea',
+                disabled: false,
+                value: undefined,
+                visible: true
+            }
         };
 
         /**
          * Define rules
-         * @memberOf ClocklinkModel
+         * @property ClocklinkModel
          * @type {{}}
          */
         this.rules = {};

@@ -17,6 +17,7 @@ define([
      * @extends PreferencesController
      * @extends WidgetContentPreferencesController
      * @extends WidgetContentControllerRules
+     * @extends BaseController
      * @constructor
      */
     var WidgetContentController = function WidgetContentController() {
@@ -182,6 +183,11 @@ define([
              * @param referrer
              */
             defineReferrer: function defineReferrer(referrer) {
+
+                /**
+                 * Define referrer
+                 * @property WidgetContent
+                 */
                 this.referrer = referrer;
             },
 
