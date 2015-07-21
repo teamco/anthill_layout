@@ -125,6 +125,7 @@ define(function defineWidgetGeneratorCore() {
 
             this._clearWidgetForm();
             this.loadWidgetsList();
+            this.scope.view.get$item().hideLoader();
         }
     });
 });

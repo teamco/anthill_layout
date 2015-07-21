@@ -18,6 +18,7 @@ define([
      * @returns {ButtonElement}
      * @constructor
      * @class ButtonElement
+     * @type {Function}
      */
     var ButtonElement = function ButtonElement(view, opts) {
 
@@ -45,6 +46,11 @@ define([
          * @param opts
          */
         setup: function setup(opts) {
+
+            /**
+             * Define text
+             * @property ButtonElement
+             */
             this.text = opts.text;
         },
 
@@ -61,7 +67,13 @@ define([
          * @memberOf ButtonElement
          */
         disable: function disable() {
+
             this.$.addClass('disabled');
+
+            /**
+             * Define disabled
+             * @property ButtonElement
+             */
             this.disabled = true;
         },
 
@@ -70,8 +82,23 @@ define([
          * @memberOf ButtonElement
          */
         enable: function enable() {
+
             this.$.removeClass('disabled');
+
+            /**
+             * Define disabled
+             * @property ButtonElement
+             */
             this.disabled = false;
+        },
+
+        /**
+         * Define after events callback
+         * @memberOf ButtonElement
+         * @param {n.Event} e
+         */
+        afterEventsCallback: function afterEventsCallback(e) {
+            this.view.scope.logger.debug('After events callback', e);
         }
 
     }, BaseElement.prototype);

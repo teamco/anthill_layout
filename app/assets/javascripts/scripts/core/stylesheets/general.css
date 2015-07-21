@@ -47,7 +47,7 @@ html, body, .application,
     user-select: none;
 }
 
-body.loading .fetcher:after {
+body.loading:after {
     content: " ";
     position: absolute;
     z-index: 1000;

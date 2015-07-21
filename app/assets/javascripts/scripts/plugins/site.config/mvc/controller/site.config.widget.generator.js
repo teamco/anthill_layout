@@ -80,6 +80,7 @@ define([
                         data = this.data,
                         validate = controller.i18n.t('widget.generation.inputs.validate');
 
+                    scope.view.get$item().showLoader();
 
                     if (!data) {
 

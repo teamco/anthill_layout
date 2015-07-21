@@ -374,7 +374,7 @@ define([
         /**
          * Generic button
          * @memberOf BaseView
-         * @param {ButtonElement} ButtonElement
+         * @param {Function|ButtonElement} ButtonElement
          * @param {*} opts
          * @param {*} store
          */
@@ -382,7 +382,7 @@ define([
 
             $.each(
                 this.base.define(opts, {}, true),
-                function each(i, button) {
+                function _eachButton(i, button) {
 
                     /**
                      * Define button
@@ -394,6 +394,13 @@ define([
                         text: button.text,
                         disabled: button.disabled,
                         events: button.events
+                    });
+
+                    $.each(button.events || {}, function _eachEvent(key, event){
+
+                        store[i].$.on(key + '.afterCallback', function _afterCallback(e) {
+                            store[i].afterEventsCallback(e);
+                        });
                     });
 
                 }.bind(this)

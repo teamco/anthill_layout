@@ -28,7 +28,7 @@ define([
 
         /**
          * Set button elements
-         * @memberOf ModalElement
+         * @property ModalElement
          * @type {$modal.$buttons}
          */
         this.$buttons = {};
@@ -323,6 +323,8 @@ define([
             var $container = this._get$Buttons();
 
             $.each(this.buttons, function each(i, button) {
+
+                // Define container
                 button.$container = $container;
             });
 
