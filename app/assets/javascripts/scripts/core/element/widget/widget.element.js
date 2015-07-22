@@ -28,21 +28,21 @@ define([
 
         /**
          * Define overlapped css class
-         * @memberOf WidgetElement
+         * @property WidgetElement
          * @type {string}
          */
         this.overlapped = 'overlapped';
 
         /**
          * Define show content class
-         * @memberOf WidgetElement
+         * @property WidgetElement
          * @type {string}
          */
         this.content = 'disable-interactions';
 
         /**
          * Define maximize class
-         * @memberOf WidgetElement
+         * @property WidgetElement
          * @type {string}
          */
         this.maximize = 'maximize';
@@ -63,7 +63,7 @@ define([
 
             /**
              * Define scope
-             * @type {BaseElement}
+             * @type {jQuery}
              */
             var $widget = this.$;
 
@@ -82,7 +82,7 @@ define([
          * @memberOf WidgetElement
          * @private
          * @param {Widget} scope
-         * @param {BaseElement} $widget
+         * @param {jQuery} $widget
          * @param {string} content
          */
         _bindDisableInteractions: function _bindDisableInteractions(scope, $widget, content) {
@@ -105,7 +105,7 @@ define([
          * @memberOf WidgetElement
          * @private
          * @param {Widget} scope
-         * @param {BaseElement} $widget
+         * @param {jQuery} $widget
          * @param {string} content
          */
         _bindEnableInteractions: function _bindEnableInteractions(scope, $widget, content) {
