@@ -1,5 +1,5 @@
 /**
- * Created by i061485 on 11/4/14.
+ * Created by teamco on 11/4/14.
  */
 
 define(function defineSiteConfigImport() {

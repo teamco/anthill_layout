@@ -282,7 +282,7 @@ define([
              * Define Base64 matcher
              * @type {RegExp}
              */
-            this.isBase64.regex = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/;
+            this.isBase64.regex = /^@(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
             return s ? !!this.isBase64.regex.test(s) : s;
         },
 
@@ -301,7 +301,7 @@ define([
              * Define regex
              * @type {RegExp}
              */
-            this.isDataURL.regex = /^\s*data:([a-z]+\/[a-z]+(;[a-z\-]+=[a-z\-]+)?)?(;base64)?,[a-z0-9!\$&',\(\)\*\+,;=\-\._~:@\/\?%\s]*\s*$/i;
+            this.isDataURL.regex = /^data:.+\/(.+);base64,(.*)$/;
             return s ? !!s.match(this.isDataURL.regex) : s;
         },
 

@@ -6,7 +6,7 @@
  */
 
 /**
- * Created by i061485 on 7/10/14.
+ * Created by teamco on 7/10/14.
  */
 
 define([], function defineFilterRenderer() {

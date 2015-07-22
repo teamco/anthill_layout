@@ -1,6 +1,6 @@
 /**
  * Created with RubyMine.
- * User: i061485
+ * User: teamco
  * Date: 1/19/14
  * Time: 11:11 AM
  * https://github.com/porada/resizeend

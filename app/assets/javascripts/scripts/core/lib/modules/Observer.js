@@ -1,6 +1,6 @@
 /**
  * Created by Vladimir Tkach.
- * User: i061485
+ * User: teamco
  * Date: 1/5/12
  * Time: 11:40 AM
  * Project: JetBrains RubyMine

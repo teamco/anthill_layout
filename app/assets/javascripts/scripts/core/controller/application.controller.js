@@ -119,6 +119,7 @@ define(
                         timeout: this.isDevelopmentMode() ? undefined : 10000,
                         ifModified: true,
                         beforeSend: function _beforeSend(xhr, settings) {
+                            this.scope.view.get$item().showLoader();
                             if (typeof(settings.dataType) === 'undefined') {
                                 xhr.setRequestHeader(
                                     'accept',

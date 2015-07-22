@@ -1,5 +1,5 @@
 /**
- * Created by i061485 on 7/9/14.
+ * Created by teamco on 7/9/14.
  */
 
 define(function definePageItemMaximize() {

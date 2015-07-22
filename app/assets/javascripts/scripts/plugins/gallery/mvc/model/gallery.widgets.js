@@ -1,5 +1,5 @@
 /**
- * Created by i061485 on 10/1/14.
+ * Created by teamco on 10/1/14.
  */
 
 define(function defineGalleryWidgets() {

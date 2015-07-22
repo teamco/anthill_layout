@@ -1,5 +1,5 @@
 /**
- * Created by i061485 on 11/4/14.
+ * Created by teamco on 11/4/14.
  */
 
 define([
@@ -72,6 +72,17 @@ define([
                 _beforeSendWidgetData: function _beforeSendWidgetData(xhr, opts) {
 
                     /**
+                     * Define abort xhr
+                     * @param xhr
+                     * @returns {boolean}
+                     * @private
+                     */
+                    function _abort(xhr) {
+                        xhr.abort();
+                        return false;
+                    }
+
+                    /**
                      * Get scope controller
                      * @type {SiteConfigController}
                      */
@@ -80,8 +91,6 @@ define([
                         data = this.data,
                         validate = controller.i18n.t('widget.generation.inputs.validate');
 
-                    scope.view.get$item().showLoader();
-
                     if (!data) {
 
                         scope.view.get$modal().handleNotification(validate, 'warning');
@@ -89,8 +98,8 @@ define([
 
                         // Allow to create another one
                         controller.stopSendingEventOnApprove(false);
-                        xhr.abort();
-                        return false;
+
+                        return _abort(xhr);
                     }
 
                     if (data.validate || data.empty) {
@@ -100,8 +109,8 @@ define([
 
                         // Allow to create another one
                         controller.stopSendingEventOnApprove(false);
-                        xhr.abort();
-                        return false;
+
+                        return _abort(xhr);
                     }
 
                     /**
@@ -119,16 +128,16 @@ define([
 
                         // Allow to create another one
                         controller.stopSendingEventOnApprove(false);
-                        xhr.abort();
-                        return false;
+
+                        return _abort(xhr);
                     }
 
                     if (controller.stopSendingEventOnApprove(true)) {
 
                         data.$modal.handleNotification(abort, 'warning');
                         scope.logger.warn(abort, xhr, opts);
-                        xhr.abort();
-                        return false;
+
+                        return _abort(xhr);
                     }
                 },
 

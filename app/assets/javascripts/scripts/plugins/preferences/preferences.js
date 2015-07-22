@@ -1,5 +1,5 @@
 /**
- * Created by i061485 on 3/19/14.
+ * Created by teamco on 3/19/14.
  */
 
 define(['jquery'], function defineBasePreferencesElement($) {

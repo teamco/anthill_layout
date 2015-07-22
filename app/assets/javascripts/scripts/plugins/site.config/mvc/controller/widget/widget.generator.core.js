@@ -1,5 +1,5 @@
 /**
- * Created by i061485 on 7/15/15.
+ * Created by teamco on 7/15/15.
  */
 
 define(function defineWidgetGeneratorCore() {
@@ -125,7 +125,6 @@ define(function defineWidgetGeneratorCore() {
 
             this._clearWidgetForm();
             this.loadWidgetsList();
-            this.scope.view.get$item().hideLoader();
         }
     });
 });

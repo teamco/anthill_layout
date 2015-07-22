@@ -1,0 +1,12 @@
+@import url('lib/styles/shCore.css');
+@import url('lib/styles/shCoreDefault.css');
+
+.widget .content .syntax-highlighter {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+.syntaxhighlighter {
+    margin: 0 !important;
+}
