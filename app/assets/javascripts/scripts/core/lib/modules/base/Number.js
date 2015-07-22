@@ -48,6 +48,26 @@ define([], function defineLibNumber() {
         },
 
         /**
+         * Check if number power of 2
+         * @memberOf LibNumber
+         * @param {number} n
+         * @returns {*|boolean}
+         */
+        isPowerOf2: function isPowerOf2(n) {
+            return n && !(n & (n - 1));
+        },
+
+        /**
+         * Check if number parity
+         * @memberOf LibNumber
+         * @param n
+         * @returns {boolean}
+         */
+        isParity: function isParity(n) {
+            return !(n & 1);
+        },
+
+        /**
          * Get random number
          * @memberOf LibNumber
          * @param {number} min
