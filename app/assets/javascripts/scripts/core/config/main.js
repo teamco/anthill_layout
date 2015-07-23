@@ -83,6 +83,14 @@ requirejs.config({
 
         'lib/jquery/jquery.nicescroll': {deps: ['jquery']},
 
+        'lib/modules/MVC': {
+            deps: [
+                'extends/function',
+                'extends/string',
+                'extends/array'
+            ]
+        },
+
         'config/listeners': {deps: ['extends/function']},
         'config/permissions': {deps: ['extends/function']},
         'config/anthill': {deps: ['extends/function']},

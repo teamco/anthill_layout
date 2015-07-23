@@ -2,14 +2,14 @@
 <%= stylesheet_link_tag("public/#{key}/css/general") %>
 <%= javascript_include_tag(
             'scripts/core/lib/require',
-            'data-resource' => key,
-            'data-user' => current_user.nil? ? 'guest' : current_user.email,
-            'data-version' => storage[:version],
-            'data-mode' => storage[:mode],
-            'data-uuid' => storage[:uuid],
-            'data-main' => @author_site_storage.author_site_type.is_consumption?(storage[:mode]) ?
+            'data-resource': key,
+            'data-user': current_user.nil? ? 'guest' : current_user.email,
+            'data-version': storage[:version],
+            'data-mode': storage[:mode],
+            'data-uuid': storage[:uuid],
+            'data-main': @author_site_storage.author_site_type.is_consumption?(storage[:mode]) ?
                     javascript_path('public/init') : javascript_path('public/init'),
-            'id' => 'require-init'
+            'id': 'require-init'
     ) %>
 
 <%= javascript_tag defer: 'defer', id: 'set-local-storage' do -%>

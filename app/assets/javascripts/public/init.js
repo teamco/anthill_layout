@@ -24,8 +24,20 @@
 
             require([
 
+                'lz-string',
+                'jquery.ujs',
+                'jquery.resizestop',
+                'jquery.pseudo',
+                'jquery.zoomooz',
+
                 'config/listeners',
                 'config/permissions',
+
+                'extends/function',
+                'extends/json',
+                'extends/event',
+                'extends/string',
+                'extends/array',
 
                 'public/' + site + '/javascript/listeners',
                 'public/' + site + '/javascript/permissions'
@@ -65,20 +77,9 @@
 
             require([
                 'modernizr',
-                'lz-string',
                 'totally',
                 'pluralize',
-                'jquery',
-                'jquery.ui',
-                'jquery.ujs',
-                'jquery.resizestop',
-                'jquery.pseudo',
-                'jquery.zoomooz',
-                'extends/function',
-                'extends/json',
-                'extends/event',
-                'extends/string',
-                'extends/array'
+                'jquery.ui'
             ], _setup);
         });
     }
