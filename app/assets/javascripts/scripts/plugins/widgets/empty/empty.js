@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf Empty
+         * @property Empty
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Empty
+         * @property Empty
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Empty
+         * @property Empty
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -98,7 +98,5 @@ define([
         );
     };
 
-    return Empty.extend('Empty', {
-
-    }, AntHill.prototype);
+    return Empty.extend('Empty', {}, AntHill.prototype);
 });

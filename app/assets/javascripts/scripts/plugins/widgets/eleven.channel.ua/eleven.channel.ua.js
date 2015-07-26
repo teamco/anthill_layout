@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf ElevenChannelUa
+         * @property ElevenChannelUa
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf ElevenChannelUa
+         * @property ElevenChannelUa
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf ElevenChannelUa
+         * @property ElevenChannelUa
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -99,7 +99,5 @@ define([
         );
     };
 
-    return ElevenChannelUa.extend('ElevenChannelUa', {
-
-    }, AntHill.prototype);
+    return ElevenChannelUa.extend('ElevenChannelUa', {}, AntHill.prototype);
 });

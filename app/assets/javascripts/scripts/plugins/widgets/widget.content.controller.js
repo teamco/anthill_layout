@@ -23,7 +23,8 @@ define([
     var WidgetContentController = function WidgetContentController() {
     };
 
-    return WidgetContentController.extend('WidgetContentController', {
+    return WidgetContentController.extend(
+        'WidgetContentController', {
 
             /**
              * Init widget
@@ -199,7 +200,7 @@ define([
 
                 /**
                  * Define widget
-                 * @type {*}
+                 * @type {Widget}
                  */
                 var widget = this.controller.getContainment();
 
@@ -238,7 +239,7 @@ define([
 
                 /**
                  * Define widget
-                 * @type {*}
+                 * @type {Widget}
                  */
                 var widget = this.scope.controller.getContainment();
 
@@ -260,7 +261,6 @@ define([
                 /**
                  * Define widget
                  * @type {Widget}
-                 * @type {*}
                  */
                 var widget = this.controller.getContainment();
 

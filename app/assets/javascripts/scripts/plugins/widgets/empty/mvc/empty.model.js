@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf EmptyModel
+         * @property EmptyModel
          * @type {{}}
          */
         this.preferences = {
@@ -30,7 +30,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf EmptyModel
+         * @property EmptyModel
          * @type {{}}
          */
         this.rules = {};

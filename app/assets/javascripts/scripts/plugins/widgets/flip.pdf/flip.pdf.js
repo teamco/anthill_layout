@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf FlipPdf
+         * @property FlipPdf
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf FlipPdf
+         * @property FlipPdf
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf FlipPdf
+         * @property FlipPdf
          * @type {MVC}
          */
         this.mvc = new MVC({

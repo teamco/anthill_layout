@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf FapaTvModel
+         * @property FapaTvModel
          * @type {{
          *      fapatvEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf FapaTvModel
+         * @property FapaTvModel
          * @type {{}}
          */
         this.rules = {};

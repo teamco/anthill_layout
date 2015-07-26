@@ -30,14 +30,14 @@
                 'jquery.pseudo',
                 'jquery.zoomooz',
 
-                'config/listeners',
-                'config/permissions',
-
                 'extends/function',
                 'extends/json',
                 'extends/event',
                 'extends/string',
                 'extends/array',
+
+                'config/listeners',
+                'config/permissions',
 
                 'public/' + site + '/javascript/listeners',
                 'public/' + site + '/javascript/permissions'

@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf EventsCalendar
+         * @property EventsCalendar
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf EventsCalendar
+         * @property EventsCalendar
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf EventsCalendar
+         * @property EventsCalendar
          * @type {MVC}
          */
         this.mvc = new MVC({

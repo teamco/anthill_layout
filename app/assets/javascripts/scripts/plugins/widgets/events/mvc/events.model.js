@@ -21,8 +21,8 @@ define([
 
         /**
          * Define preferences
-         * @memberOf EventsModel
-         * @type {{}}
+         * @property EventsModel
+         * @type {{eventsJson: {type: string, disabled: boolean, value: undefined, visible: boolean}}}
          */
         this.preferences = {
             eventsJson: {
@@ -35,7 +35,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf EventsModel
+         * @property EventsModel
          * @type {{}}
          */
         this.rules = {};

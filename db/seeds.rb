@@ -18,11 +18,11 @@ if Author::Widget.all.length > 0
     Role.find_or_create_by({name: role})
   end
   password = '1234567890'
-  admin = User.create({
-                          email: 'email@gmail.com',
-                          password: password,
-                          role_id: Role.find_by_name(:admin).id
-                      })
+  admin = User.create(
+      email: 'email@gmail.com',
+      password: password,
+      role_id: Role.find_by_name(:admin).id
+  )
   puts "--- Admin: #{admin.email}|#{password}"
   Author::SiteType.all.each { |x| x.update({user_id: admin.id}) }
   puts '--- Update user in SiteType'
@@ -35,15 +35,21 @@ if Author::Widget.all.length > 0
   Author::SiteStorage.destroy_all
   puts '-- Clean: Author::SiteStorage'
   template = 'N4IgxgTgpghgLlAJgQTiAXARgCwGYBsADAJwCsZxA7AEyEA0IArgA6LxKoY4En7W7YAHEIZwA9gGsoAOwwgYifIMHUVAWmxRiYDQOprBpGFDXVKAMzZhq+GJUKkQAXyA'
-  site = Author::SiteStorage.new({
-                                     uuid: (UUID.new).generate,
-                                     key: 'shared',
-                                     user_id: admin.id,
-                                     content: template,
-                                     site_type_id: Author::SiteType.where({name: 'development'}).first.id
-                                 })
 
-  site.author_site_versions.build({content: template, version: 1, activated: true, user_id: admin.id})
+  site = Author::SiteStorage.new(
+      uuid: (UUID.new).generate,
+      key: 'shared',
+      user_id: admin.id,
+      site_type_id: Author::SiteType.where({name: 'development'}).first.id
+  )
+
+  site.author_site_versions.build(
+      content: template,
+      version: 1,
+      activated: true,
+      user_id: admin.id
+  )
+
   site.save!
 
   puts "-- Storage: #{site.key} -> #{site.author_site_type.name}"

@@ -17,6 +17,7 @@ define([
      * @extends {WidgetExpand} WidgetExpand
      * @extends {WidgetScroll} WidgetScroll
      * @extends {WidgetComment} WidgetComment
+     * @extends {BaseController} BaseController
      * @constructor
      */
     var WidgetContent = function WidgetContent() {
@@ -67,19 +68,82 @@ define([
             loadContent: function loadContent() {
 
                 /**
-                 * Define widget instance
-                 * @type {Widget}
-                 */
-                var widget = this;
-
-                /**
                  * Get resource
                  * @type {string}
                  */
-                var resource = widget.model.getConfig('preferences').resource;
+                var resource = this.model.getConfig('preferences').resource;
 
                 if (!this.base.isString(resource)) {
-                    widget.logger.error('Unable to load resource');
+                    this.logger.error('Unable to load resource');
+                    return false;
+                }
+
+                this.controller.fetchExternalContent();
+                this.controller.fetchInternalContent();
+            },
+
+            /**
+             * Define fetch external content
+             * @memberOf WidgetContent
+             * @returns {boolean}
+             */
+            fetchExternalContent: function fetchExternalContent() {
+
+                /**
+                 * Define widget instance
+                 * @type {Widget}
+                 */
+                var widget = this.scope;
+
+                if (this.isInternalContent()) {
+
+                    widget.logger.debug('Fetch internal content');
+                    return false;
+                }
+
+                // Get prefs
+                var prefs = widget.model.getConfig('preferences');
+
+                /**
+                 * Define resource path
+                 * @type {string}
+                 */
+                var path = [
+                    prefs.external_resource,
+                    prefs.resource,
+                    '.js'
+                ].join('');
+
+                require([path], function getDependencies(Content) {
+
+                    widget.observer.publish(
+                        widget.eventmanager.eventList.setContent,
+                        [Content, {
+                            events: widget.contentEvents || {},
+                            rules: widget.contentRules || {}
+                        }]
+                    );
+
+                    widget.logger.debug('Content finish loading');
+                });
+            },
+
+            /**
+             * Define fetch internal content
+             * @memberOf WidgetContent
+             * @returns {boolean}
+             */
+            fetchInternalContent: function fetchInternalContent() {
+
+                /**
+                 * Define widget instance
+                 * @type {Widget}
+                 */
+                var widget = this.scope;
+
+                if (this.isExternalContent()) {
+
+                    widget.logger.debug('Fetch external content');
                     return false;
                 }
 
@@ -104,6 +168,24 @@ define([
 
                     widget.logger.debug('Content finish loading');
                 });
+            },
+
+            /**
+             * Define if widget content is internal
+             * @memberOf WidgetContent
+             * @returns {boolean}
+             */
+            isInternalContent: function isInternalContent() {
+                return !this.isExternalContent();
+            },
+
+            /**
+             * Define if widget content is external
+             * @memberOf WidgetContent
+             * @returns {boolean}
+             */
+            isExternalContent: function isExternalContent() {
+                return !!this.model.getConfig('preferences').is_external;
             },
 
             /**

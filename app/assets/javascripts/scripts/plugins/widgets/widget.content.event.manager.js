@@ -13,21 +13,20 @@ define([
      * @constructor
      */
     var WidgetContentEventManager = function WidgetContentEventManager() {
-
     };
 
     return WidgetContentEventManager.extend('WidgetContentEventManager', {
 
         /**
          * Define events
-         * @memberOf WidgetContentEventManager
+         * @property WidgetContentEventManager
          * @type {{}}
          */
         events: {},
 
         /**
          * Define on load events
-         * @memberOf WidgetContentEventManager
+         * @property WidgetContentEventManager
          * @type {Array}
          */
         onLoadEvents: [],

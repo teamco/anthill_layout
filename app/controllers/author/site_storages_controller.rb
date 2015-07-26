@@ -76,11 +76,10 @@ class Author::SiteStoragesController < Author::AuthorController
     @author_site_storage[:uuid] = uuid.generate
 
     versions = @author_site_storage.author_site_versions
-    versions.build({
-                       version: versions.length + 1,
-                       content: @author_site_storage[:content],
-                       activated: true
-                   })
+    versions.build(
+        version: versions.length + 1,
+        activated: true
+    )
 
     target = get_target_url(@author_site_storage.key)
     FileUtils.cp_r "#{Rails.root}/lib/tasks/site/default", target
@@ -129,7 +128,7 @@ class Author::SiteStoragesController < Author::AuthorController
           data = {
               storage: {
                   key: @author_site_storage.key,
-                  content: @author_site_storage.content
+                  content: version.content
               },
               version: version.version,
               activated: version.activated,
@@ -172,7 +171,7 @@ class Author::SiteStoragesController < Author::AuthorController
           data = {
               storage: {
                   key: @author_site_storage.key,
-                  content: @author_site_storage.content
+                  content: @version.content
               },
               version: @version.version,
               activated: @version.activated,
@@ -323,7 +322,6 @@ class Author::SiteStoragesController < Author::AuthorController
   def author_site_storage_params
     params.require(:author_site_storage).permit(
         :key,
-        :content,
         :site_type_id,
         :publish,
         :activated_version,

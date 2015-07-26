@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf BlipTv
+         * @property BlipTv
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf BlipTv
+         * @property BlipTv
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf BlipTv
+         * @property BlipTv
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -99,7 +99,5 @@ define([
         );
     };
 
-    return BlipTv.extend('BlipTv', {
-
-    }, AntHill.prototype);
+    return BlipTv.extend('BlipTv', {}, AntHill.prototype);
 });

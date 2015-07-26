@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf Clocklink
+         * @property Clocklink
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Clocklink
+         * @property Clocklink
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Clocklink
+         * @property Clocklink
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -98,7 +98,5 @@ define([
         );
     };
 
-    return Clocklink.extend('Clocklink', {
-
-    }, AntHill.prototype);
+    return Clocklink.extend('Clocklink', {}, AntHill.prototype);
 });

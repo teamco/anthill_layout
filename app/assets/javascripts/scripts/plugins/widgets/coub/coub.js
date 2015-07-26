@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf Coub
+         * @property Coub
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Coub
+         * @property Coub
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Coub
+         * @property Coub
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -98,7 +98,5 @@ define([
         );
     };
 
-    return Coub.extend('Coub', {
-
-    }, AntHill.prototype);
+    return Coub.extend('Coub', {}, AntHill.prototype);
 });

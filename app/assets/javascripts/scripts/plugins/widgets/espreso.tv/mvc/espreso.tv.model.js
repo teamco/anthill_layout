@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf EspresoTvModel
+         * @property EspresoTvModel
          * @type {{
          *      espresotvUrl: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf EspresoTvModel
+         * @property EspresoTvModel
          * @type {{}}
          */
         this.rules = {};

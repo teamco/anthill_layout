@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf ChannelTwoIl
+         * @property ChannelTwoIl
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf ChannelTwoIl
+         * @property ChannelTwoIl
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf ChannelTwoIl
+         * @property ChannelTwoIl
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -99,7 +99,5 @@ define([
         );
     };
 
-    return ChannelTwoIl.extend('ChannelTwoIl', {
-
-    }, AntHill.prototype);
+    return ChannelTwoIl.extend('ChannelTwoIl', {}, AntHill.prototype);
 });

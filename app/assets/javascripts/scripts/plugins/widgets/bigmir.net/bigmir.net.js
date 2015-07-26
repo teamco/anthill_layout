@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf BigmirNet
+         * @property BigmirNet
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf BigmirNet
+         * @property BigmirNet
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf BigmirNet
+         * @property BigmirNet
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -99,7 +99,5 @@ define([
         );
     };
 
-    return BigmirNet.extend('BigmirNet', {
-
-    }, AntHill.prototype);
+    return BigmirNet.extend('BigmirNet', {}, AntHill.prototype);
 });

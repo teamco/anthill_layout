@@ -28,12 +28,11 @@ ActiveRecord::Schema.define(version: 20150426193350) do
   create_table "author_site_storages", force: :cascade do |t|
     t.string   "uuid",         limit: 255
     t.string   "key",          limit: 255
-    t.text     "content",      limit: 16777215
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.integer  "site_type_id", limit: 4
     t.integer  "user_id",      limit: 4
-    t.boolean  "publish",                       default: false
+    t.boolean  "publish",                  default: false
   end
 
   create_table "author_site_types", force: :cascade do |t|

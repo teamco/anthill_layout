@@ -12,7 +12,8 @@ define([
     /**
      * Define PageWidget
      * @class PageWidget
-     * @extend PageWidgetCopy
+     * @extends PageWidgetCopy
+     * @extends AntHill
      * @constructor
      */
     var PageWidget = function PageWidget() {
@@ -29,9 +30,11 @@ define([
              *      thumbnail: string,
              *      title: string,
              *      description: string,
+             *      external_resource: string,
              *      width: number,
              *      height: number
              * }} opts
+             * @param {boolean} render
              * @param {boolean} silent
              */
             createWidgetFromResource: function createWidgetFromResource(opts, render, silent) {
@@ -46,6 +49,8 @@ define([
                 var prefs = $.extend(true, {},
                     this.model.getConfig('widget').preferences, {
                         resource: opts.resource,
+                        external_resource: opts.external_resource,
+                        is_external: !!opts.external_resource,
                         thumbnail: opts.thumbnail,
                         title: opts.title,
                         description: opts.description

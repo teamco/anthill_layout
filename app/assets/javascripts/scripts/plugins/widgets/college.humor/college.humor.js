@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf CollegeHumor
+         * @property CollegeHumor
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf CollegeHumor
+         * @property CollegeHumor
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf CollegeHumor
+         * @property CollegeHumor
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -99,7 +99,5 @@ define([
         );
     };
 
-    return CollegeHumor.extend('CollegeHumor', {
-
-    }, AntHill.prototype);
+    return CollegeHumor.extend('CollegeHumor', {}, AntHill.prototype);
 });

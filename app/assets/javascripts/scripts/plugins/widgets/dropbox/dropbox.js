@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf Dropbox
+         * @property Dropbox
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Dropbox
+         * @property Dropbox
          * @type {*}
          */
         this.referrer = undefined;
@@ -72,7 +72,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Dropbox
+         * @property Dropbox
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -97,7 +97,5 @@ define([
         );
     };
 
-    return Dropbox.extend('Dropbox', {
-
-    }, AntHill.prototype);
+    return Dropbox.extend('Dropbox', {}, AntHill.prototype);
 });

@@ -27,20 +27,20 @@ define([
 
         /**
          * Define containment
-         * @memberOf Events
+         * @property Events
          */
         this.containment = containment;
 
         /**
          * Define active event
-         * @memberOf Events
+         * @property Events
          * @type {undefined}
          */
         this.activeEvent = undefined;
 
         /**
          * Define referrer
-         * @memberOf Events
+         * @property Events
          * @type {*}
          */
         this.referrer = undefined;
@@ -80,7 +80,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Events
+         * @property Events
          * @type {MVC}
          */
         this.mvc = new MVC({

@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf AOneHipHop
+         * @property AOneHipHop
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf AOneHipHop
+         * @property AOneHipHop
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf AOneHipHop
+         * @property AOneHipHop
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -99,7 +99,5 @@ define([
         );
     };
 
-    return AOneHipHop.extend('AOneHipHop', {
-
-    }, AntHill.prototype);
+    return AOneHipHop.extend('AOneHipHop', {}, AntHill.prototype);
 });

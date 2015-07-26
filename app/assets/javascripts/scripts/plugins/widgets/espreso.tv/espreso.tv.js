@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf EspresoTv
+         * @property EspresoTv
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf EspresoTv
+         * @property EspresoTv
          * @type {*}
          */
         this.referrer = undefined;
@@ -76,7 +76,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf EspresoTv
+         * @property EspresoTv
          * @type {MVC}
          */
         this.mvc = new MVC({

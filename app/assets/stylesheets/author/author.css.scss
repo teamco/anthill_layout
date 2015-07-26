@@ -593,6 +593,10 @@ body.admin form ul.widgets > li {
   margin-right: 5px;
 }
 
+body.admin form ul.widgets > li.external {
+  background: #eb939a;
+}
+
 body.admin form ul.widgets > li:hover {
   background: #fff;
   box-shadow: 0 0 3px #999;

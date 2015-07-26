@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf Datepicker
+         * @property Datepicker
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Datepicker
+         * @property Datepicker
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Datepicker
+         * @property Datepicker
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -98,7 +98,5 @@ define([
         );
     };
 
-    return Datepicker.extend('Datepicker', {
-
-    }, AntHill.prototype);
+    return Datepicker.extend('Datepicker', {}, AntHill.prototype);
 });

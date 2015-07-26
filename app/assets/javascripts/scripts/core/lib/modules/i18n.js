@@ -24,7 +24,7 @@ define(function defineI18n() {
 
         /**
          * Define language
-         * @memberOf i18n
+         * @property i18n
          * @type {string}
          */
         this.language = lang || defaultLanguage;
@@ -36,21 +36,25 @@ define(function defineI18n() {
         var langTypes = {};
 
         var scope = this,
-            data = langTypes[defaultLanguage];
+            data = langTypes[defaultLanguage],
+            language = scope.getCurrentLanguage();
 
-        require(['modules/translations/' + scope.language], function loadTranslations(translation) {
+        require(
+            ['modules/translations/' + language],
+            function loadTranslations(translation) {
 
-            langTypes[scope.language] = translation;
+                langTypes[language] = translation;
 
-            if (langTypes.hasOwnProperty(scope.language)) {
+                if (langTypes.hasOwnProperty(language)) {
 
-                data = langTypes[scope.language];
+                    data = langTypes[language];
 
-            } else {
+                } else {
 
-                console.warn('Unable to define language', lang);
+                    console.warn('Unable to define language', language);
+                }
             }
-        });
+        );
 
         /**
          * Get data by key
@@ -89,6 +93,15 @@ define(function defineI18n() {
     };
 
     return i18n.extend('i18n', {
+
+        /**
+         * Get current language
+         * @memberOf i18n
+         * @returns {string}
+         */
+        getCurrentLanguage: function getCurrentLanguage() {
+            return this.language;
+        },
 
         /**
          * Translate function

@@ -21,8 +21,12 @@ define([
 
         /**
          * Define preferences
-         * @memberOf EventsCalendarModel
-         * @type {{}}
+         * @property EventsCalendarModel
+         * @type {{
+         *      eventscalendarSelectable: {type: string, disabled: boolean, checked: boolean, visible: boolean, value: boolean},
+         *      eventscalendarEditable: {type: string, disabled: boolean, checked: boolean, visible: boolean, value: boolean},
+         *      eventscalendarLimit: {type: string, disabled: boolean, checked: boolean, visible: boolean, value: boolean}
+         * }}
          */
         this.preferences = {
             eventscalendarSelectable: {
@@ -50,7 +54,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf EventsCalendarModel
+         * @property EventsCalendarModel
          * @type {{}}
          */
         this.rules = {};

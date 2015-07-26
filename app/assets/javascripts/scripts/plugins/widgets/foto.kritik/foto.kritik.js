@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf FotoKritik
+         * @property FotoKritik
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf FotoKritik
+         * @property FotoKritik
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf FotoKritik
+         * @property FotoKritik
          * @type {MVC}
          */
         this.mvc = new MVC({

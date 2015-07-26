@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf FlickrFeeds
+         * @property FlickrFeeds
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf FlickrFeeds
+         * @property FlickrFeeds
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf FlickrFeeds
+         * @property FlickrFeeds
          * @type {MVC}
          */
         this.mvc = new MVC({

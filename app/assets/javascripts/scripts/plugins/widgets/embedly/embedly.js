@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf Embedly
+         * @property Embedly
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Embedly
+         * @property Embedly
          * @type {*}
          */
         this.referrer = undefined;
@@ -77,7 +77,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Embedly
+         * @property Embedly
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -102,7 +102,5 @@ define([
         );
     };
 
-    return Embedly.extend('Embedly', {
-
-    }, AntHill.prototype);
+    return Embedly.extend('Embedly', {}, AntHill.prototype);
 });

@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf FlipPdfModel
+         * @property FlipPdfModel
          * @type {{
          *      flippdfEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf FlipPdfModel
+         * @property FlipPdfModel
          * @type {{}}
          */
         this.rules = {};

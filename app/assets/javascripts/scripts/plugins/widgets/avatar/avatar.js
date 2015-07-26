@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf Avatar
+         * @property Avatar
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Avatar
+         * @property Avatar
          * @type {*}
          */
         this.referrer = undefined;
@@ -73,7 +73,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Avatar
+         * @property Avatar
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -98,7 +98,5 @@ define([
         );
     };
 
-    return Avatar.extend('Avatar', {
-
-    }, AntHill.prototype);
+    return Avatar.extend('Avatar', {}, AntHill.prototype);
 });

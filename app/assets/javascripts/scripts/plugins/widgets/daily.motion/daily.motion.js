@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf DailyMotion
+         * @property DailyMotion
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf DailyMotion
+         * @property DailyMotion
          * @type {*}
          */
         this.referrer = undefined;
@@ -76,7 +76,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf DailyMotion
+         * @property DailyMotion
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -101,7 +101,5 @@ define([
         );
     };
 
-    return DailyMotion.extend('DailyMotion', {
-
-    }, AntHill.prototype);
+    return DailyMotion.extend('DailyMotion', {}, AntHill.prototype);
 });

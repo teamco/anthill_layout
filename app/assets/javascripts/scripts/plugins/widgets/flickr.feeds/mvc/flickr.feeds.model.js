@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf FlickrFeedsModel
+         * @property FlickrFeedsModel
          * @type {{
          *      flickrfeedsServices: {
          *          type: string,
@@ -124,7 +124,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf FlickrFeedsModel
+         * @property FlickrFeedsModel
          * @type {{}}
          */
         this.rules = {};

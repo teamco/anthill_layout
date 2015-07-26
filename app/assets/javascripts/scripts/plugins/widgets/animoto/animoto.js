@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf Animoto
+         * @property Animoto
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Animoto
+         * @property Animoto
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Animoto
+         * @property Animoto
          * @type {MVC}
          */
         this.mvc = new MVC({

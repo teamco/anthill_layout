@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf Empflix
+         * @property Empflix
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf Empflix
+         * @property Empflix
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf Empflix
+         * @property Empflix
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -99,7 +99,5 @@ define([
         );
     };
 
-    return Empflix.extend('Empflix', {
-
-    }, AntHill.prototype);
+    return Empflix.extend('Empflix', {}, AntHill.prototype);
 });

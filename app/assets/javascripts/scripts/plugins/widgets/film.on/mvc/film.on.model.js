@@ -21,8 +21,8 @@ define([
 
         /**
          * Define preferences
-         * @memberOf FilmOnModel
-         * @type {{}}
+         * @property FilmOnModel
+         * @type {{filmonChannelId: {type: string, disabled: boolean, value: undefined, visible: boolean}}}
          */
         this.preferences = {
             filmonChannelId: {
@@ -35,7 +35,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf FilmOnModel
+         * @property FilmOnModel
          * @type {{}}
          */
         this.rules = {};

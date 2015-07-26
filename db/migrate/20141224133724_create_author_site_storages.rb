@@ -3,7 +3,6 @@ class CreateAuthorSiteStorages < ActiveRecord::Migration
     create_table :author_site_storages do |t|
       t.string :uuid
       t.string :key
-      t.text :content, limit: 16777215
       t.timestamps null: false
     end
     create_table :author_site_versions do |t|

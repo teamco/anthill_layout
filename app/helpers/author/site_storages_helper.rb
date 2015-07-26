@@ -50,7 +50,7 @@ module Author::SiteStoragesHelper
   end
 
   def get_widget(widget, widget_ids)
-    content_tag(:li) do
+    content_tag(:li, class: widget.is_external? ? 'external' : '') do
       concat check_box_tag 'author_site_storage[author_site_storage_widget_ids][]',
                            widget.id,
                            widget_ids.include?(widget.id), {

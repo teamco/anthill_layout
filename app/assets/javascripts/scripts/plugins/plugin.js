@@ -110,7 +110,7 @@ define([
          * Update translations
          * @memberOf PluginController
          * @param {string} i18nPath
-         * @param {_successRenderedCallback} callback
+         * @param {Function|_successRenderedCallback} callback
          */
         updateTranslations: function updateTranslations(i18nPath, callback) {
 
@@ -243,29 +243,34 @@ define([
 
                 scope.logger.warn('Callback should be function type', callback);
             }
-
         }
 
         successRenderedSuper.bind(scope)();
 
         if (scope.controller.isWidgetContent()) {
 
+            /**
+             * Get widget
+             * @type {Widget}
+             */
+            var widget = scope.controller.getContainment();
+
+            var language = scope.i18n.getCurrentLanguage(),
+                translationPath = widget.controller.isExternalContent() ? [
+                    widget.model.getConfig('preferences').external_resource,
+                    '/translations/', language, '.js'
+                ] : [
+                    'plugins/widgets/',
+                    scope.name.toPoint().replace(/\./, ''),
+                    '/translations/', language
+                ];
+
             scope.observer.publish(
                 scope.eventmanager.eventList.updateTranslations, [
-                    [
-                        'plugins/widgets/',
-                        scope.name.toPoint().replace(/./, ''),
-                        '/translations/en-us'
-                    ].join(''),
+                    translationPath.join(''),
                     function _successRenderedExtendedCallback() {
 
                         _successRenderedCallback();
-
-                        /**
-                         * Get widget
-                         * @type {Widget}
-                         */
-                        var widget = scope.controller.getContainment();
 
                         widget.observer.publish(
                             widget.eventmanager.eventList.afterRenderContent

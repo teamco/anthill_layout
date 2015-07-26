@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf ExtremeTube
+         * @property ExtremeTube
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf ExtremeTube
+         * @property ExtremeTube
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf ExtremeTube
+         * @property ExtremeTube
          * @type {MVC}
          */
         this.mvc = new MVC({

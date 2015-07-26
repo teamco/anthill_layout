@@ -133,7 +133,7 @@ define([
 
             /**
              * Get item elements
-             * @type {{}}
+             * @type {object}
              */
             var items = this.getView().elements.items,
                 index, $item,
@@ -150,7 +150,7 @@ define([
                      */
                     $item = items[index];
 
-                    if (value.length === 0) {
+                    if (!value.length) {
 
                         $item.$.removeAttr('style');
 
@@ -183,16 +183,17 @@ define([
              * Get page
              * @type {Page}
              */
-            var page = this.getPage();
+            var page = this.getPage(),
+                data = $element.data;
 
             page.controller.createWidgetFromResource({
-                width: $element.data.dimensions.width,
-                height: $element.data.dimensions.height,
+                width: data.dimensions.width,
+                height: data.dimensions.height,
                 resource: $element.$.attr('resource'),
-                thumbnail: $element.data.thumbnail,
-                external_resource: $element.data.external_resource,
-                title: $element.data.name,
-                description: $element.data.description
+                thumbnail: data.thumbnail,
+                external_resource: data.external_resource,
+                title: data.name,
+                description: data.description
             }, true, false);
         }
 

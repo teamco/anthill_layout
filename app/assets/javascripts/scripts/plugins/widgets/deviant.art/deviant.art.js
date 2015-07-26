@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf DeviantArt
+         * @property DeviantArt
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf DeviantArt
+         * @property DeviantArt
          * @type {*}
          */
         this.referrer = undefined;
@@ -74,7 +74,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf DeviantArt
+         * @property DeviantArt
          * @type {MVC}
          */
         this.mvc = new MVC({
@@ -99,7 +99,5 @@ define([
         );
     };
 
-    return DeviantArt.extend('DeviantArt', {
-
-    }, AntHill.prototype);
+    return DeviantArt.extend('DeviantArt', {}, AntHill.prototype);
 });

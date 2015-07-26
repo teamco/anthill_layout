@@ -21,7 +21,7 @@ define([
 
         /**
          * Define preferences
-         * @memberOf FreshTvModel
+         * @property FreshTvModel
          * @type {{
          *      freshtvEmbedCode: {type: string, disabled: boolean, value: undefined, visible: boolean}
          * }}
@@ -37,7 +37,7 @@ define([
 
         /**
          * Define rules
-         * @memberOf FreshTvModel
+         * @property FreshTvModel
          * @type {{}}
          */
         this.rules = {};
