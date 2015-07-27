@@ -163,7 +163,7 @@ define(function defineBasePreferences() {
             }.bind(this));
 
             if (render) {
-                scope.view['render' + this.scope.constructor.prototype.name]();
+                scope.view['render' + this.scope.name]();
             }
 
             $modal.selfDestroy();

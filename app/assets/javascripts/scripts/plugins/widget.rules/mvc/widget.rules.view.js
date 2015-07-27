@@ -145,6 +145,12 @@ define([
                  */
                 var $html = this.controller.getRulesHtml(config.uuid, load);
 
+                if (!$html) {
+
+                    scope.logger.warn('Wait for loading rules');
+                    return false;
+                }
+
                 this.openRules({
                     config: config,
                     $html: $html.$,

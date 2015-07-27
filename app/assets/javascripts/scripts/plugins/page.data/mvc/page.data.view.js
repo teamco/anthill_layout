@@ -158,6 +158,12 @@ define([
                      */
                     var $html = content.view.renderPreferences();
 
+                    if (!$html) {
+
+                        scope.logger.warn('Wait for loading preferences');
+                        return false;
+                    }
+
                     this.openPreferences({
                         config: config,
                         $html: $html.$,

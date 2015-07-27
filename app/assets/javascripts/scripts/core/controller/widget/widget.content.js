@@ -83,6 +83,15 @@ define([
             },
 
             /**
+             * Define fetch external resource
+             * @memberOf WidgetContent
+             * @returns {*|string}
+             */
+            fetchExternalResource: function fetchExternalResource() {
+                return this.model.getConfig('preferences').external_resource;
+            },
+
+            /**
              * Define fetch external content
              * @memberOf WidgetContent
              * @returns {boolean}

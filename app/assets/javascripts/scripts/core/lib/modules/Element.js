@@ -350,10 +350,11 @@ define([
         addCSS: function addCSS(type, opts) {
 
             // Get link name
-            var linkName = type + 'LinkCSS';
+            var linkName = type + 'LinkCSS',
+                scope = this.view.scope;
 
             if (this[linkName]) {
-                this.view.scope.logger.debug('CSS already loaded');
+                scope.logger.debug('CSS already loaded');
                 return false;
             }
 
@@ -361,22 +362,32 @@ define([
             opts.resource = this.base.define(opts.resource, '', true);
 
             /**
+             * Get widget
+             * @type {Widget|*}
+             */
+            var item = scope.controller.getContainment();
+
+            /**
              * Create url
              * @type {string}
              */
-            var url = ('/' + type).repeat(2) + '.css';
+            var url = this.pluginPath + opts.resource + ('/' + type).repeat(2) + '.css';
+
+            if (item.controller.isWidget() && item.controller.isExternalContent()) {
+                url = item.controller.fetchExternalResource() + type + '.css';
+            }
 
             /**
              * Generate uuid
              * @type {string}
              */
-            var uuid = this.$.attr('id') + url.replace(/\//g, '.');
+            var uuid = this.$.attr('id') + type + '-css';
 
             // Prevent duplicates
             $('#' + uuid).remove();
 
             this.createLinkCss({
-                href: this.pluginPath + opts.resource + url,
+                href: url,
                 type: opts.type,
                 rel: opts.rel,
                 media: opts.media,
