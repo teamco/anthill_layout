@@ -26,7 +26,7 @@ define([
          * @memberOf Production
          */
         isProduction: function isProduction() {
-            return this.controller.getEnvironment() === 'production';
+            return this.getEnvironment() === 'production';
         },
 
         /**
