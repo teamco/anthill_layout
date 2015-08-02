@@ -45,7 +45,7 @@ group :doc do
 end
 
 group :production do
-  gem 'ps'
+  gem 'pg'
 end
 
 gem 'rack-attack'
