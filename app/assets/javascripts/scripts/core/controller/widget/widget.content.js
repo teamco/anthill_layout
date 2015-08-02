@@ -78,8 +78,8 @@ define([
                     return false;
                 }
 
-                this.controller.fetchExternalContent();
-                this.controller.fetchInternalContent();
+                this.controller.fetchExternalContent(resource);
+                this.controller.fetchInternalContent(resource);
             },
 
             /**
@@ -94,9 +94,10 @@ define([
             /**
              * Define fetch external content
              * @memberOf WidgetContent
+             * @param {string} resource
              * @returns {boolean}
              */
-            fetchExternalContent: function fetchExternalContent() {
+            fetchExternalContent: function fetchExternalContent(resource) {
 
                 /**
                  * Define widget instance
@@ -119,7 +120,7 @@ define([
                  */
                 var path = [
                     prefs.external_resource,
-                    prefs.resource,
+                    resource,
                     '.js'
                 ].join('');
 
@@ -140,9 +141,10 @@ define([
             /**
              * Define fetch internal content
              * @memberOf WidgetContent
+             * @param {string} resource
              * @returns {boolean}
              */
-            fetchInternalContent: function fetchInternalContent() {
+            fetchInternalContent: function fetchInternalContent(resource) {
 
                 /**
                  * Define widget instance
