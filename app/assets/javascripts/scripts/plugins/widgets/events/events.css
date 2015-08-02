@@ -95,7 +95,6 @@
 	background: -o-linear-gradient(top, #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%);
 	background: -ms-linear-gradient(top, #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%);
 	background: linear-gradient(to bottom, #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#f6f8f9', endColorstr='#f5f7f9', GradientType=0);
 }
 .widget .content .events .eventEditorContainer .save_button {
 	background: #7abcff;
@@ -105,7 +104,6 @@
 	background: -o-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
 	background: -ms-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
 	background: linear-gradient(to bottom, #7abcff 0%, #60abf8 44%, #4096ee 100%);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#7abcff', endColorstr='#4096ee', GradientType=0);
 }
 .widget .content .events .eventEditorContainer .save_button,
 .widget .content .events .eventEditorContainer .cancel_button {
@@ -256,7 +254,6 @@
 	background: -o-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
 	background: -ms-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
 	background: linear-gradient(to bottom, #7abcff 0%, #60abf8 44%, #4096ee 100%);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#7abcff', endColorstr='#4096ee', GradientType=0);
 }
 .widget .content .events .eventsCalendar-currentTitle .monthTitle {
 	font-size: 110%;
@@ -485,7 +482,6 @@ li.eventsCalendar-day.current a:hover {
 	background-image: -webkit-linear-gradient(top, #89B814, #698B10);
 	background-image: -o-linear-gradient(top, #89B814, #698B10);
 	background-image: linear-gradient(top, #89B814, #698B10);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#89B814', endColorstr='#698B10', GradientType=0);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	border: 1px solid #698B10;
 	border-color: #698B10 #698B10 #465F05;
