@@ -10,6 +10,7 @@ define(
         'config/anthill',
         'modules/Controller',
         'controller/behavior/behavior.error.handler',
+        'controller/production/production',
         'config/routes'
     ],
     /**
@@ -17,10 +18,11 @@ define(
      * @param {AntHill} AntHill
      * @param {BaseController} BaseController
      * @param {BehaviorErrorHandler} BehaviorErrorHandler
+     * @param {Production} Production
      * @param {Routes} Routes
      * @returns {ApplicationController}
      */
-    function defineApplicationController(AntHill, BaseController, BehaviorErrorHandler, Routes) {
+    function defineApplicationController(AntHill, BaseController, BehaviorErrorHandler, Production, Routes) {
 
         /**
          * Define application controller
@@ -28,6 +30,7 @@ define(
          * @extends AntHill
          * @extends BaseController
          * @extends BehaviorErrorHandler
+         * @extends Production
          * @extends Routes
          * @constructor
          */
@@ -67,6 +70,10 @@ define(
                             page.eventmanager.eventList.loadItemsContent
                         );
                     }
+
+                    this.observer.publish(
+                        this.eventmanager.eventList.loadProduction
+                    );
                 },
 
                 /**
@@ -234,6 +241,7 @@ define(
             },
             AntHill.prototype,
             BaseController.prototype,
+            Production.prototype,
             BehaviorErrorHandler.prototype,
             Routes.prototype
         );

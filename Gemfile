@@ -10,6 +10,7 @@ gem 'embedly'
 gem 'bullet'
 gem 'rake'
 gem 'rails_12factor'
+gem 'keen'
 
 group :development do
   gem 'mysql2'

@@ -33,6 +33,7 @@ define([
          * @memberOf ApplicationEventManager
          * @type {{
          *      loadApplication: string,
+         *      loadProduction: string,
          *      defineGlobalInstance: string,
          *      defineSetting: string,
          *      updateStorageVersion: string,
@@ -52,6 +53,7 @@ define([
          */
         eventList: {
             loadApplication: 'load.application',
+            loadProduction: 'load.production',
             defineGlobalInstance: 'define.global.instance',
             defineSetting: 'define.setting',
             updateStorageVersion: 'update.storage.version',

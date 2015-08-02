@@ -13,6 +13,7 @@
             version = parseInt(script.dataset.version, 10) || 1,
             user = script.dataset.user,
             mode = script.dataset.mode,
+            environment = script.dataset.environment,
             isConsumption = mode === 'consumption';
 
         /**
@@ -53,6 +54,7 @@
                         user: user,
                         uuid: uuid,
                         version: version,
+                        environment: environment,
                         appName: site,
                         mode: mode
                     });

@@ -74,6 +74,15 @@ define([
             },
 
             /**
+             * Define environment getter
+             * @memberOf BaseController
+             * @returns {string|environment|*}
+             */
+            getEnvironment: function getEnvironment() {
+                return this.root().config.environment;
+            },
+
+            /**
              * Get cache
              * @memberOf BaseController
              * @param {string} uuid
