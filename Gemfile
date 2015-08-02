@@ -12,6 +12,7 @@ gem 'puma'
 gem 'embedly'
 gem 'bullet'
 gem 'rake'
+gem 'rails_12factor'
 
 group :development do
 
