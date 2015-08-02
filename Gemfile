@@ -44,6 +44,9 @@ group :doc do
   gem 'sdoc', '>= 0.4.0'
 end
 
+group :production do
+  gem 'ps'
+end
 
 gem 'rack-attack'
 

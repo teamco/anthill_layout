@@ -17,7 +17,8 @@ test:
   database: anthill_test
 
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: ENV['DATABASE_URL']
   username: ENV['DATABASE_USERNAME']
   password: ENV['DATABASE_PASSWORDs']
