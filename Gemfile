@@ -11,6 +11,7 @@ gem 'rails', '>= 4.2.0'
 gem 'puma'
 gem 'embedly'
 gem 'bullet'
+gem 'rake'
 
 group :development do
 

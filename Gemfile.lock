@@ -317,6 +317,7 @@ DEPENDENCIES
   rack-attack
   rails (>= 4.2.0)
   rails-console-tweaks
+  rake
   rmagick (>= 2.13.4)
   ruby-debug-ide (>= 0.4.25)
   sass-rails (>= 4.0.3)
