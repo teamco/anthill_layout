@@ -35,14 +35,14 @@ define([
          */
         loadProduction: function loadProduction() {
 
-            //if (!this.controller.isProduction()) {
-            //
-            //    this.logger.debug(
-            //        'Environment are not production type',
-            //        this.controller.getEnvironment()
-            //    );
-            //    return false;
-            //}
+            if (!this.controller.isProduction()) {
+
+                this.logger.debug(
+                    'Environment are not production type',
+                    this.controller.getEnvironment()
+                );
+                return false;
+            }
 
             this.controller.keenio.init();
         }
