@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby 'ruby 2.2.2p95'
 
 # gem 'sqlite3'
 gem 'mysql2'
