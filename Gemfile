@@ -10,13 +10,11 @@ gem 'rails', '>= 4.2.0'
 
 gem 'puma'
 gem 'embedly'
-
-# Use debugger
-gem 'byebug', group: [:development, :test]
+gem 'bullet'
 
 group :development do
 
-  gem 'bullet'
+  gem 'byebug'
   gem 'xilence'
   gem 'meta_request'
 
