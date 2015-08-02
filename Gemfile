@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby 'ruby 2.2.2p95'
 
 # gem 'sqlite3'
 gem 'mysql2'
@@ -46,6 +45,7 @@ group :doc do
 end
 
 group :production do
+  ruby 'ruby 2.1'
   gem 'pg'
 end
 
