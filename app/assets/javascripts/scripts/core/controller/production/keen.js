@@ -1,4 +1,4 @@
-define(function defineKeenIO() {
+define(['xhook'], function defineKeenIO(xhook) {
 
     /**
      * Define KeenIO
@@ -48,14 +48,43 @@ define(function defineKeenIO() {
 
                 /**
                  * Define Keen instance
-                 * @type {Keen}
+                 * @type {Keen|{addEvent}}
                  */
-                var client = new Keen({
+                var keen = new Keen({
                     projectId: this.projectId, // String (required always)
                     writeKey: this.writeKey,   // String (required for sending data)
                     readKey: this.readKey,      // String (required for querying data)
                     protocol: 'auto',
                     requestType: 'xhr'
+                });
+
+                xhook.after(function (request, response) {
+
+                    keen.addEvent(
+                        "xhr.after", {
+                            request: {
+                                async: request.async,
+                                body: request.body,
+                                headers: request.headers,
+                                method: request.method,
+                                status: request.status,
+                                url: request.url,
+                                user: request.user,
+                                withCredentials: request.withCredentials
+                            },
+                            response: {
+                                status: response.status,
+                                text: response.text
+                            },
+                            referrer: document.referrer,
+                            keen: {
+                                timestamp: new Date().toISOString()
+                            }
+                        },
+                        function _send(err, res) {
+                            // TODO
+                        }
+                    );
                 });
 
             }.bind(this));

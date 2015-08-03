@@ -25,6 +25,8 @@ requirejs.config({
         plugins: '../plugins',
         target: '../../target',
 
+        'xhook': 'lib/packages/xhook.min',
+
         tinyMCE: 'lib/packages/tinymce/tinymce.min',
         pluralize: 'lib/packages/pluralize',
         totally: 'lib/packages/tota11y.min',
