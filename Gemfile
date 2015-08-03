@@ -9,8 +9,7 @@ gem 'puma'
 gem 'embedly'
 gem 'bullet'
 gem 'rake'
-gem 'rails_12factor'
-gem 'requirejs-rails'
+# gem 'requirejs-rails'
 gem 'keen'
 
 group :development do
@@ -49,6 +48,7 @@ end
 
 group :production do
   ruby '2.2.2'
+  gem 'rails_12factor'
   gem 'pg'
 end
 

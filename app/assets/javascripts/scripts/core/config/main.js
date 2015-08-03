@@ -23,6 +23,7 @@ requirejs.config({
 
         modules: 'lib/modules',
         plugins: '../plugins',
+        target: '../../target',
 
         tinyMCE: 'lib/packages/tinymce/tinymce.min',
         pluralize: 'lib/packages/pluralize',

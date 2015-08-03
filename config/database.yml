@@ -17,6 +17,9 @@ test:
   database: anthill_test
 
 production:
+#  <<: *default
+#  database: anthill_development
+#heroku:
   adapter: postgresql
   encoding: unicode
   database: ENV['DATABASE_URL']

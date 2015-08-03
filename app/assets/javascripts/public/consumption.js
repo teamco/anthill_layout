@@ -8,12 +8,13 @@
     function _loadPublic() {
 
         var script = document.getElementById('require-init'),
-            site = script.dataset.resource,
-            uuid = script.dataset.uuid,
-            version = parseInt(script.dataset.version, 10) || 1,
-            user = script.dataset.user,
-            mode = script.dataset.mode,
-            environment = script.dataset.environment,
+            dataset = script.dataset || {},
+            site = dataset.resource,
+            uuid = dataset.uuid,
+            version = parseInt(dataset.version || 0, 10) || 1,
+            user = dataset.user,
+            mode = dataset.mode,
+            environment = dataset.environment,
             isConsumption = mode === 'consumption';
 
         /**

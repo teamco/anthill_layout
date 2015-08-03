@@ -24,6 +24,7 @@
         tinyMCE: 'lib/packages/tinymce/tinymce.min',
 
         pluralize: 'lib/packages/pluralize',
+        totally: 'lib/packages/tota11y.min',
 
         modernizr: 'lib/modernizr',
 
@@ -128,8 +129,8 @@
     },
 
     baseUrl : "../app/assets/javascripts/scripts/core",
-    name: "../../public/init",
-    out: "../app/assets/javascripts/target/main.js",
+    name: "../../public/development",
+    out: "../app/assets/javascripts/target/production.js",
     optimize: 'uglify2',
     optimizeCss: "standard",
     preserveLicenseComments: false,
