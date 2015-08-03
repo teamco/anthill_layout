@@ -98,16 +98,6 @@ define([
         },
 
         addPetsToMap: function addPetsToMap() {
-<<<<<<< HEAD
-            //var interval = setInterval(function () {
-            //    createUserCircle();
-            //    circlesAmount++;
-            //    if (circlesAmount == 20) {
-            //        clearInterval(interval);
-            //    }
-            //    ;
-            //}, 100);
-=======
             var interval = window.setInterval(function () {
                 this.createUserCircle();
                 this.circlesAmount++;
@@ -116,7 +106,6 @@ define([
                 }
 
             }.bind(this), 100);
->>>>>>> ab0d75fe12a9afed856cf406e0fac2686d12e62d
         },
 
         createUserCircle: function createUserCircle() {
