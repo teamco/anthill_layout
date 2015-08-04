@@ -49,7 +49,7 @@ define([
         loadInProduction: function loadInProduction(callback) {
 
             if (this.isProduction()) {
-                callback.bind(this.controller)();
+                callback();
             }
 
             this.scope.logger.debug(
@@ -102,7 +102,7 @@ define([
          */
         loadKeenIO: function loadKeenIO() {
             this.loadInProduction(
-                this.keenio.init
+                this.keenio.init.bind(this.keenio)
             );
         },
 
@@ -112,7 +112,7 @@ define([
          */
         loadRaygunIO: function loadRaygunIO() {
             this.loadInProduction(
-                this.raygunio.init
+                this.raygunio.init.bind(this.raygunio)
             );
         }
 
