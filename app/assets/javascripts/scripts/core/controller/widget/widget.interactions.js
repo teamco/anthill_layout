@@ -374,6 +374,17 @@ define([
          */
         updateContainment: function updateContainment(types, containment) {
 
+            if (this.controller.isConsumptionMode()) {
+
+                this.logger.debug(
+                    'Skip update interaction containment in consumption mode',
+                    types,
+                    containment
+                );
+
+                return false;
+            }
+
             var i = 0, l = types.length;
 
             for (; i < l; i++) {
@@ -386,15 +397,12 @@ define([
 
                 if (interaction) {
 
-                    if (!this.controller.isConsumptionMode()) {
-
-                        // Update interaction
-                        interaction.$scope[type](
-                            'option',
-                            'containment',
-                            containment
-                        );
-                    }
+                    // Update interaction
+                    interaction.$scope[type](
+                        'option',
+                        'containment',
+                        containment
+                    );
 
                     // Update config
                     this.config.events[type].containment = !!containment;
