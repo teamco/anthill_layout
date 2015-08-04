@@ -49,7 +49,7 @@ define([
         loadInProduction: function loadInProduction(callback) {
 
             if (this.isProduction()) {
-                callback();
+                callback.bind(this.controller)();
             }
 
             this.scope.logger.debug(
