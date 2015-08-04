@@ -17,6 +17,7 @@ define([
      * @constructor
      * @class PikTvElement
      * @extends BaseElement
+     * @extends Renderer
      */
     var PikTvElement = function PikTvElement(view, opts) {
 

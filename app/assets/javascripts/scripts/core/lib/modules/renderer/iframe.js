@@ -8,10 +8,10 @@ define([], function defineIframeRenderer() {
      * Define IframeRenderer
      * @class IframeRenderer
      * @extends LabelRenderer
+     * @extends AntHill
      * @constructor
      */
     var IframeRenderer = function IframeRenderer() {
-
     };
 
     return IframeRenderer.extend('IframeRenderer', {
@@ -29,7 +29,7 @@ define([], function defineIframeRenderer() {
 
             var iframe = '<iframe webkitAllowFullScreen mozallowfullscreen allowfullscreen />',
                 attrs = {
-                    src: src,
+                    src: src.replace(/(http|https):/, ''),
                     frameborder: 0,
                     width: '100%',
                     height: '100%',
@@ -43,7 +43,7 @@ define([], function defineIframeRenderer() {
              * Define $iframe
              * @type {*|jQuery}
              */
-            var $iframe = $(iframe).attr(attrs)
+            var $iframe = $(iframe).attr(attrs);
 
             this.checkVisibility(
                 $iframe,
