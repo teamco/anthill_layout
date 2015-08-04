@@ -99,6 +99,8 @@ requirejs.config({
         'config/anthill': {deps: ['extends/function']},
         'config/routes': {deps: ['extends/function']},
 
+        'controller/behavior/behavior.error.handler': {deps: ['extends/function']},
+
         'controller/layout/layout.empty.rows': {deps: ['extends/function']},
         'controller/layout/layout.empty.columns': {deps: ['extends/function']},
         'controller/layout/layout.intersect': {deps: ['extends/function']},

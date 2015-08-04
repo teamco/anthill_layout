@@ -13,9 +13,24 @@ define([
     /**
      * Define Widget Interactions
      * @class WidgetInteractions
+     * @extends BaseController
      * @constructor
      */
     var WidgetInteractions = function WidgetInteractions() {
+
+        /**
+         * Define interactions
+         * @property Widget
+         * @type {*}
+         */
+        this.interactions = undefined;
+
+        /**
+         * Define map
+         * @property Widget
+         * @type {*}
+         */
+        this.map = undefined;
     };
 
     return WidgetInteractions.extend('WidgetInteractions', {
@@ -235,7 +250,7 @@ define([
          * Resize stop
          * @memberOf WidgetInteractions
          * @param {String} type
-         * @param {{}} [opts]
+         * @param {*} [opts]
          * @param [args]
          */
         stopResizable: function stopResizable(type, opts, args) {
@@ -371,12 +386,15 @@ define([
 
                 if (interaction) {
 
-                    // Update interaction
-                    interaction.$scope[type](
-                        'option',
-                        'containment',
-                        containment
-                    );
+                    if (!this.controller.isConsumptionMode()) {
+
+                        // Update interaction
+                        interaction.$scope[type](
+                            'option',
+                            'containment',
+                            containment
+                        );
+                    }
 
                     // Update config
                     this.config.events[type].containment = !!containment;

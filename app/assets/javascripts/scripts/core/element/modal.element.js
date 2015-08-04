@@ -232,6 +232,10 @@ define([
 
                 if (typeof this.$.draggable !== 'function') {
 
+                    if (this.view.controller.isConsumptionMode()) {
+                        return false;
+                    }
+
                     this.view.scope.logger.warn('Unable to define draggable', this);
                     return false;
                 }
