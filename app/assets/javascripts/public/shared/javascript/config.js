@@ -2,7 +2,7 @@ define(function defineConfig(){
     return {
         services: {
             KeenIO: true,
-            Raygun: true
+            RaygunIO: true
         },
         html: {
             container: 'body',

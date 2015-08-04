@@ -1,7 +1,7 @@
 define([
     'controller/production/keen',
     'controller/production/raygun'
-], function defineProduction(KeenIO, RaygunErrors) {
+], function defineProduction(KeenIO, RaygunIO) {
 
     /**
      * Define Production mode
@@ -22,9 +22,9 @@ define([
         /**
          * Define Raygun
          * @property Production
-         * @type {RaygunErrors}
+         * @type {RaygunIO}
          */
-        this.raygunerrors = undefined;
+        this.raygunio = undefined;
     };
 
     return Production.extend('Production', {
@@ -110,11 +110,11 @@ define([
          * Define Raygun
          * @memberOf Production
          */
-        loadRaygun: function loadRaygun() {
+        loadRaygunIO: function loadRaygunIO() {
             this.loadInProduction(
-                this.raygunerrors.init
+                this.raygunio.init
             );
         }
 
-    }, KeenIO, RaygunErrors);
+    }, KeenIO, RaygunIO);
 });

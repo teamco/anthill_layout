@@ -1,32 +1,32 @@
-define(function defineRaygun() {
+define(function defineRaygunIO() {
 
     /**
-     * Define RaygunErrors
-     * @class RaygunErrors
+     * Define RaygunIO
+     * @class RaygunIO
      * @constructor
      */
-    var RaygunErrors = function RaygunErrors() {
+    var RaygunIO = function RaygunIO() {
 
         /**
          * Define CDN library path
-         * @property RaygunErrors
+         * @property RaygunIO
          * @type {string}
          */
         this.path = '//cdn.raygun.io/raygun4js/raygun.min.js';
 
         /**
          * Define API Key
-         * @property RaygunErrors
+         * @property RaygunIO
          * @type {string}
          */
         this.apiKey = 'DbFEbP1IlRGv779/A2wo1Q==';
     };
 
-    return RaygunErrors.extend('RaygunErrors', {
+    return RaygunIO.extend('RaygunIO', {
 
         /**
          * Define init
-         * @memberOf RaygunErrors
+         * @memberOf RaygunIO
          */
         init: function init() {
 
