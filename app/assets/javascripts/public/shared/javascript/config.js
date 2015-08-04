@@ -1,7 +1,7 @@
 define(function defineConfig(){
     return {
         services: {
-            KeenIO: true,
+            KeenIO: false,
             RaygunIO: true
         },
         html: {
