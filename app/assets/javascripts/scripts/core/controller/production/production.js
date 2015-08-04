@@ -34,7 +34,10 @@ define([
          * @memberOf Production
          */
         isProduction: function isProduction() {
-            return this.getEnvironment() === 'production';
+
+            // TODO until production
+            return window.location.hostname !== 'localhost' ||
+                this.getEnvironment() === 'production';
         },
 
         /**
@@ -63,8 +66,34 @@ define([
          * @memberOf Production
          */
         loadProduction: function loadProduction() {
-            this.controller.loadKeenIO();
-            this.controller.loadRaygun();
+
+            var services = this.model.getConfig('services'),
+                index, service;
+
+            for (index in services) {
+
+                if (services.hasOwnProperty(index)) {
+
+                    if (services[index]) {
+
+                        this.logger.debug('Load service', index);
+
+                        /**
+                         * Fetch service
+                         * @memberOf Production
+                         */
+                        service = this.controller['load' + index];
+
+                        typeof (service) === 'function' ?
+                            service.bind(this.controller)() :
+                            this.logger.warn('Unable to load service', index);
+
+                    } else {
+
+                        this.logger.debug('Skip service', index);
+                    }
+                }
+            }
         },
 
         /**
