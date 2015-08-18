@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818120926) do
+ActiveRecord::Schema.define(version: 20150818141204) do
 
   create_table "author_site_storage_widgets", force: :cascade do |t|
     t.integer  "site_storage_id", limit: 4
@@ -83,6 +83,35 @@ ActiveRecord::Schema.define(version: 20150818120926) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "user_logs", force: :cascade do |t|
+    t.integer  "user_id",         limit: 4
+    t.string   "remote_addr",     limit: 255
+    t.string   "session_id",      limit: 255
+    t.integer  "status",          limit: 4
+    t.string   "method",          limit: 255
+    t.string   "controller",      limit: 255
+    t.string   "action",          limit: 255
+    t.string   "domain",          limit: 255
+    t.string   "request_uri",     limit: 255
+    t.string   "url",             limit: 255
+    t.string   "protocol",        limit: 255
+    t.string   "host",            limit: 255
+    t.string   "port",            limit: 255
+    t.text     "user_params",     limit: 16777215
+    t.text     "user_session",    limit: 65535
+    t.string   "query_string",    limit: 255
+    t.string   "http_accept",     limit: 255
+    t.string   "format",          limit: 255
+    t.boolean  "ssl"
+    t.boolean  "xhr"
+    t.string   "referer",         limit: 255
+    t.string   "http_user_agent", limit: 255
+    t.string   "server_software", limit: 255
+    t.string   "content_type",    limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "users", force: :cascade do |t|

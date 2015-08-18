@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :timeoutable, :omniauthable,
-         :omniauth_providers => [
+         omniauth_providers: [
              # :digitalocean,
              # :twitter,
              # :facebook,
@@ -17,27 +17,31 @@ class User < ActiveRecord::Base
          ]
 
   has_many :author_site_storages,
-           :class_name => 'Author::SiteStorage',
+           class_name: 'Author::SiteStorage',
            dependent: :destroy
 
   has_many :author_widgets,
-           :class_name => 'Author::Widget',
+           class_name: 'Author::Widget',
            dependent: :destroy
 
   has_many :author_site_versions,
-           :class_name => 'Author::SiteVersion',
+           class_name: 'Author::SiteVersion',
            dependent: :destroy
 
   has_many :author_site_storage_widgets,
-           :class_name => 'Author::SiteStorageWidget',
+           class_name: 'Author::SiteStorageWidget',
            dependent: :destroy
 
   has_many :author_site_types,
-           :class_name => 'Author::SiteType',
+           class_name: 'Author::SiteType',
            dependent: :destroy
 
   has_many :author_widget_categories,
-           :class_name => 'Author::WidgetCategory',
+           class_name: 'Author::WidgetCategory',
+           dependent: :destroy
+
+  has_many :user_logs,
+           class_name: 'UserLog',
            dependent: :destroy
 
   belongs_to :role
@@ -82,7 +86,7 @@ class User < ActiveRecord::Base
             name: auth.extra.raw_info.name,
             #username: auth.info.nickname || auth.uid,
             email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-            password: Devise.friendly_token[0,20]
+            password: Devise.friendly_token[0, 20]
         )
         user.skip_confirmation!
         user.save!
