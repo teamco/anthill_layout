@@ -366,7 +366,7 @@ define([
 
                     /**
                      * Get create update site route
-                     * @type {{string[]}}
+                     * @type {string[]}
                      */
                     var route = scope.config.routes.updateSiteContent,
                         opts = {

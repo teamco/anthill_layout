@@ -325,6 +325,10 @@ body.admin ul.admin-navigation > li.widget-categories a {
   background-image: image_url("widget-category.png");
 }
 
+body.admin ul.admin-navigation > li.vulnerability_storage a {
+  background-image: image_url("vulnerability_storage.png");
+}
+
 body.admin h1 {
   font-size: 24px;
   margin-bottom: 20px;

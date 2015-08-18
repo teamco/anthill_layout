@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426193350) do
+ActiveRecord::Schema.define(version: 20150818120926) do
 
   create_table "author_site_storage_widgets", force: :cascade do |t|
     t.integer  "site_storage_id", limit: 4
@@ -105,5 +105,13 @@ ActiveRecord::Schema.define(version: 20150426193350) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "vulnerability_storages", force: :cascade do |t|
+    t.integer  "site_storage_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "vulnerability_storages", ["site_storage_id"], name: "index_vulnerability_storages_on_site_storage_id", using: :btree
 
 end

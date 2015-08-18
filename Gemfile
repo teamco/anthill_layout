@@ -81,3 +81,5 @@ gem 'omniauth-facebook'
 gem 'omniauth-google'
 gem 'omniauth-github'
 gem 'cancan'
+
+gem 'omniauth-linkedin-oauth2'

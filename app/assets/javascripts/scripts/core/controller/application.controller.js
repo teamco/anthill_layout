@@ -10,6 +10,7 @@ define(
         'config/anthill',
         'modules/Controller',
         'controller/behavior/behavior.error.handler',
+        'controller/behavior/behavior.fix.vulnerabilities',
         'controller/production/production',
         'config/routes'
     ],
@@ -22,7 +23,7 @@ define(
      * @param {Routes} Routes
      * @returns {ApplicationController}
      */
-    function defineApplicationController(AntHill, BaseController, BehaviorErrorHandler, Production, Routes) {
+    function defineApplicationController(AntHill, BaseController, BehaviorErrorHandler, BehaviorFixVulnerabilities, Production, Routes) {
 
         /**
          * Define application controller
@@ -243,6 +244,7 @@ define(
             BaseController.prototype,
             Production.prototype,
             BehaviorErrorHandler.prototype,
+            BehaviorFixVulnerabilities.prototype,
             Routes.prototype
         );
     }

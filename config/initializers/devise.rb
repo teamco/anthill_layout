@@ -265,8 +265,8 @@ Devise.setup do |config|
   config.mailer_sender = 'teamco@gmail.com'
 
   require 'devise/orm/active_record'
-  config.case_insensitive_keys = [ :email ]
-  config.strip_whitespace_keys = [ :email ]
+  config.case_insensitive_keys = [:email]
+  config.strip_whitespace_keys = [:email]
   config.skip_session_storage = [:http_auth]
   config.stretches = Rails.env.test? ? 1 : 10
   config.reconfirmable = true
@@ -286,4 +286,9 @@ Devise.setup do |config|
   # config.omniauth :amazon, ENV['AMAZON_KEY'], ENV['AMAZON_SECRET']
   # config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
 
+  config.omniauth :linkedin,
+                  ENV['LINKEDIN_KEY'],
+                  ENV['LINKEDIN_SECRET'],
+                  secure_image_url: true,
+                  scope: 'r_fullprofile r_emailaddress r_network'
 end

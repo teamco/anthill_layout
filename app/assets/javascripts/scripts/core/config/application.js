@@ -160,10 +160,8 @@ define([
          * @type {{updateSiteContent: string[]}}
          */
         this.config.routes = {
-            updateSiteContent: [
-                '/sites/',
-                'put'
-            ]
+            updateSiteContent: ['/sites/', 'put'],
+            handleVulnerabilities: ['/vulnerability_storages', 'post']
         };
 
         this.observer.batchPublish(

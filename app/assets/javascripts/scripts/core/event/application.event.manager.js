@@ -34,6 +34,8 @@ define([
          * @type {{
          *      loadApplication: string,
          *      loadProduction: string,
+         *      handleVulnerabilities: string,
+         *      afterHandleVulnerabilities: string,
          *      defineGlobalInstance: string,
          *      defineSetting: string,
          *      updateStorageVersion: string,
@@ -54,6 +56,8 @@ define([
         eventList: {
             loadApplication: 'load.application',
             loadProduction: 'load.production',
+            handleVulnerabilities: 'handle.vulnerabilities',
+            afterHandleVulnerabilities: 'after.handle.vulnerabilities',
             defineGlobalInstance: 'define.global.instance',
             defineSetting: 'define.setting',
             updateStorageVersion: 'update.storage.version',

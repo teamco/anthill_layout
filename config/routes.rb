@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :vulnerability_storages
   devise_for :users,
              controllers: {
                  omniauth_callbacks: 'callbacks'
@@ -11,11 +12,13 @@ Rails.application.routes.draw do
     resources :site_storages do
       resources :site_versions
       resources :widgets
+      resources :vulnerability_storages
     end
     resources :site_versions do
       resources :site_storages
     end
     resources :widget_categories
+    resources :vulnerability_storages
   end
 
   put '/fetch_external_widget', to: 'author/widgets#external_fetch'

@@ -61,3 +61,5 @@ en:
   widget_update_success: "Widget was successfully updated."
   widget_destroy_success: "Widget was successfully destroyed."
   widget_create_success: "Widget was successfully created."
+  vulnerability_storage: "Vulnerability Storage"
+  delete_all: "Delete All"
