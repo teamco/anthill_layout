@@ -18,7 +18,6 @@ class CreateUserLogs < ActiveRecord::Migration
       t.text :user_session
       t.string :query_string
       t.string :http_accept
-      t.string :format
       t.boolean :ssl
       t.boolean :xhr
       t.string :referer

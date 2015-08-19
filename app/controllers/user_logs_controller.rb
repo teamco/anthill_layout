@@ -62,13 +62,13 @@ class UserLogsController < Author::AuthorController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user_log
-      @user_log = UserLog.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user_log
+    @user_log = UserLog.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_log_params
-      params[:user_log]
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_log_params
+    params[:user_log]
+  end
 end

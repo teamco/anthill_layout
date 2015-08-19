@@ -408,6 +408,28 @@ body.admin td > span:hover {
   color: #333;
 }
 
+body.admin td li {
+  border-bottom: 1px dotted #ccc;
+  padding: 5px 0;
+}
+
+body.admin tr:hover td li {
+  border-color: #333;
+}
+
+body.admin td li:last-child {
+  border: none;
+}
+
+body.admin td li > span {
+  font-variant: small-caps;
+  text-transform: lowercase;
+  font-weight: bold;
+  font-size: 14px;
+  display: inline-block;
+  min-width: 150px;
+}
+
 body.admin .field {
   clear: both;
   margin-bottom: 10px;
