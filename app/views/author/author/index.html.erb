@@ -16,6 +16,14 @@
     <%= link_to t('vulnerability_storage'), vulnerability_storages_path %>
     <div><%= @author[:vulnerability_storage] %></div>
   </li>
+  <li class="user_logs">
+    <%= link_to t('user_logs'), user_logs_path %>
+    <div><%= @author[:user_logs] %></div>
+  </li>
+  <li class="error_logs">
+    <%= link_to t('error_logs'), error_logs_path %>
+    <div><%= @author[:error_logs] %></div>
+  </li>
   <li class="category"><%= t('widget_management') %></li>
   <li class="widgets">
     <%= link_to t('widgets'), author_widgets_path %>

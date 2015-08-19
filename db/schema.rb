@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818141204) do
+ActiveRecord::Schema.define(version: 20150818202837) do
 
   create_table "author_site_storage_widgets", force: :cascade do |t|
     t.integer  "site_storage_id", limit: 4
@@ -77,6 +77,17 @@ ActiveRecord::Schema.define(version: 20150818141204) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id",            limit: 4
+  end
+
+  create_table "error_logs", force: :cascade do |t|
+    t.integer  "user_log_id",  limit: 4
+    t.string   "error_type",   limit: 255
+    t.integer  "error_status", limit: 4
+    t.string   "error_title",  limit: 255
+    t.text     "error_body",   limit: 16777215
+    t.boolean  "is_fixed",                      default: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
   end
 
   create_table "roles", force: :cascade do |t|

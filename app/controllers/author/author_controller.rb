@@ -18,7 +18,9 @@ class Author::AuthorController < ApplicationController
         site_versions: SiteVersion.count,
         widget_categories: WidgetCategory.count,
         widgets: Widget.count,
-        vulnerability_storage: VulnerabilityStorage.count
+        vulnerability_storage: VulnerabilityStorage.count,
+        user_logs: UserLog.count,
+        error_logs: ErrorLog.count
     }
   end
 

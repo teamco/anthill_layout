@@ -1,25 +1,28 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing User Logs</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @user_logs.each do |user_log| %>
+<table id="<%= controller_name %>">
+  <tr>
+    <th>ID</th>
+    <th>User</th>
+    <th>Method</th>
+    <th>Url</th>
+    <th>Date</th>
+  </tr>
+  <% @user_logs.each do |user_log| %>
       <tr>
-        <td><%= link_to 'Show', user_log %></td>
-        <td><%= link_to 'Edit', edit_user_log_path(user_log) %></td>
-        <td><%= link_to 'Destroy', user_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><span>+</span><%= user_log.id %></td>
+        <td class="name"><%= user_log.user.email unless user_log.user.nil? %></td>
+        <td><%= user_log.method %></td>
+        <td><%= user_log.request_uri %></td>
+        <td><%= user_log.created_at.strftime('%Y %b %d %I:%M:%S %p') %></td>
       </tr>
-    <% end %>
-  </tbody>
+      <tr class="hide">
+        <td colspan="5"><%= user_log.method %></td>
+      </tr>
+  <% end %>
 </table>
-
-<br>
-
-<%= link_to 'New User log', new_user_log_path %>
+<%= javascript_tag do %>
+    var $table=$('#<%= controller_name %>');
+    $table.find('span').on('click.toggleTr',function(){
+    var $span=$(this),$tr=$span.parents('tr:first').next();
+    if($tr.hasClass('hide')){$tr.removeClass('hide');$span.text('-');}else{$tr.addClass('hide');$span.text('+');}
+    });
+<% end %>

@@ -11,6 +11,7 @@ gem 'bullet'
 gem 'rake'
 # gem 'requirejs-rails'
 gem 'keen'
+gem 'will_paginate', '~> 3.0.6'
 
 group :development do
   gem 'mysql2'

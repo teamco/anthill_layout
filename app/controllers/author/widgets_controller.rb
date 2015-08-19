@@ -42,14 +42,9 @@ class Author::WidgetsController < Author::AuthorController
         where(visible: true).
         order(name: :asc) if @author_widgets.nil? unless request.xhr?
 
-    @resource = {
-        items: (@author_widgets||[]).length,
-        path: new_author_widget_path
-    }
-
     unless @author_widgets.nil?
       @json_data[:in] = @author_widgets.map { |x| x.id }
-      @json_data[:categories] = @author_widgets.map { |x| x.author_widget_category }.uniq.sort { |a, b| a.name_value<=>b.name_value }
+      @json_data[:categories] = WidgetCategory.all.includes(:author_widgets).order(:name_value)
       @json_data[:widgets] = @author_widgets.map do |w|
         {
             id: w[:id],

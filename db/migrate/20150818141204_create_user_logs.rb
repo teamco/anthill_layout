@@ -1,7 +1,7 @@
 class CreateUserLogs < ActiveRecord::Migration
   def change
     create_table :user_logs do |t|
-      t.integer :user_id
+      t.integer :user_id, index: true
       t.string :remote_addr
       t.string :session_id
       t.integer :status
@@ -14,7 +14,7 @@ class CreateUserLogs < ActiveRecord::Migration
       t.string :protocol
       t.string :host
       t.string :port
-      t.text :user_params, :limit => 1048576
+      t.text :user_params, limit: 1048576
       t.text :user_session
       t.string :query_string
       t.string :http_accept

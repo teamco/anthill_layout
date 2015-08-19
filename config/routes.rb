@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :error_logs
   resources :user_logs
   resources :vulnerability_storages
   devise_for :users,

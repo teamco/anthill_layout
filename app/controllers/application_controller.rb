@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_user
+    super
+  end
+
   def update_user_log
 
     opts = {

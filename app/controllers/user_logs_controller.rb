@@ -4,7 +4,7 @@ class UserLogsController < Author::AuthorController
   # GET /user_logs
   # GET /user_logs.json
   def index
-    @user_logs = UserLog.all
+    @user_logs = current_user.user_logs.all.order('id DESC')
   end
 
   # GET /user_logs/1

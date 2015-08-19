@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  def must_authenticate list=[]
+  def must_authenticate(list=[])
     %w[sessions passwords registrations].concat(list).include? controller_name
   end
 
@@ -12,6 +12,20 @@ module ApplicationHelper
     action_name.humanize
   end
 
+  def is_author?
+    mn = controller_name.classify
+    begin
+      return false if mn.constantize
+    rescue
+      return true if "Author::#{mn}".constantize
+    end
+  end
+
+  def mc
+    mn = controller_name.classify
+    (is_author? ? "Author::#{mn}" : mn).constantize
+  end
+
   def ih
     params[:id].nil? ? '' : "(#{params[:id]})"
   end
@@ -20,7 +34,7 @@ module ApplicationHelper
     action_name == 'index'
   end
 
-  def c_index id=nil
+  def c_index(id=nil)
     {controller: controller_name, action: id.nil? ? :index : action_name, id: id}
   end
 

@@ -63,3 +63,5 @@ en:
   widget_create_success: "Widget was successfully created."
   vulnerability_storage: "Vulnerability Storage"
   delete_all: "Delete All"
+  user_logs: "User Logs"
+  error_logs: "Error Logs"

@@ -20,7 +20,7 @@
               <% action_key = "#{ah}#{ih}" %>
               <%= link_to "#{ch}", c_index %>:
               <%= link_to action_key, c_index(params[:id]) %>
-              <%= "(#{@resource[:items]})" if ahi? %>
+              <%= "(#{mc.all.size})" if ahi? %>
           <% end %>
         </span>
       </li>

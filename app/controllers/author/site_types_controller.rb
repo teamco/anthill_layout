@@ -10,13 +10,7 @@ class Author::SiteTypesController < Author::AuthorController
   # GET /author/site_types
   # GET /author/site_types.json
   def index
-    @author_site_types = SiteType.all.order(:name)
-
-    @resource = {
-        items: @author_site_types.size,
-        path: new_author_site_type_path
-    }
-
+    @author_site_types = SiteType.all.order(:name).includes(:author_site_storages)
   end
 
   # GET /author/site_types/1

@@ -10,13 +10,7 @@ class Author::WidgetCategoriesController < Author::AuthorController
   # GET /author/widget_categories
   # GET /author/widget_categories.json
   def index
-    @author_widget_categories = WidgetCategory.all.order(:name_value)
-
-    @resource = {
-        items: @author_widget_categories.size,
-        path: new_author_widget_category_path
-    }
-
+    @author_widget_categories = WidgetCategory.all.order(:name_value).includes(:author_widgets)
   end
 
   # GET /author/widget_categories/1

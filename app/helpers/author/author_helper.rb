@@ -5,9 +5,10 @@ module Author::AuthorHelper
   end
 
   def render_add_new
+    cname = controller_name.singularize
     link_to(
         '+',
-        @resource[:path],
+        send("new_#{is_author? ? "author_#{cname}" : cname}_path"),
         {title: "Add #{controller_name.humanize.singularize}", class: 'add'}
     ) unless add_new_black_list.include? controller_name if action_name === 'index'
   end

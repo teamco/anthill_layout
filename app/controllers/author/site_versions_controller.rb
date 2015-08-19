@@ -10,16 +10,10 @@ class Author::SiteVersionsController < Author::AuthorController
   # GET /author/site_versions
   # GET /author/site_versions.json
   def index
-    site_storage = SiteStorage.where(key: params[:site_storage_id]).first
+    site_storage = current_user.author_site_storages.where(key: params[:site_storage_id]).first
     @author_site_versions = site_storage.nil? ?
-        SiteVersion.all.order(:updated_at).reverse_order.group(:site_storage_id) :
+        current_user.author_site_versions.all.order(:updated_at).reverse_order.group(:site_storage_id) :
         site_storage.author_site_versions.order(:updated_at).reverse_order
-
-    @resource = {
-        items: @author_site_versions.length,
-        path: new_author_site_version_path
-    }
-
   end
 
   # GET /author/site_versions/1

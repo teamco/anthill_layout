@@ -1,13 +1,14 @@
 class UserLog < ActiveRecord::Base
 
   belongs_to :user
+  has_one :error_log
 
   def self.list(opts)
-    log_map = []
     sort = "#{opts[:sort]} #{opts[:dir]}"
     sort = sort.strip.length > 0 ? sort : 'created_at DESC'
     logs = self.all.order(sort)
 
+    log_map = []
     log_map = logs.map do |x|
       {
           id: x.id,

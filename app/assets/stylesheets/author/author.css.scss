@@ -329,6 +329,14 @@ body.admin ul.admin-navigation > li.vulnerability_storage a {
   background-image: image_url("vulnerability_storage.png");
 }
 
+body.admin ul.admin-navigation > li.user_logs a {
+  background-image: image_url("user_logs.png");
+}
+
+body.admin ul.admin-navigation > li.error_logs a {
+  background-image: image_url("error_logs.png");
+}
+
 body.admin h1 {
   font-size: 24px;
   margin-bottom: 20px;
@@ -379,6 +387,25 @@ body.admin tr.activated td.strong a {
 
 body.admin tr.category td {
   background-color: #C9FFCA;
+}
+
+body.admin td > span {
+  border: 1px solid #999;
+  background-color: #dedede;
+  display: inline-block;
+  margin-right: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #777;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 17px;
+}
+
+body.admin td > span:hover {
+  color: #333;
 }
 
 body.admin .field {
