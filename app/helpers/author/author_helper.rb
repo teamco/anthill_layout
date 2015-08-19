@@ -105,15 +105,23 @@ module Author::AuthorHelper
     "#{email} (#{item.user.role.name.humanize})".html_safe
   end
 
-  def render_json(content, compressed=true, selector='.json-view')
-    js = javascript_include_tag 'scripts/core/lib/lz-string.js', 'scripts/core/lib/packages/pretty.print.js'
-    js = javascript_include_tag 'scripts/core/lib/packages/pretty.print.js' unless compressed
+  def render_json(content, selector, compressed=true, load=true)
     content_tag(:div, class: 'json-view') do
-      concat js
-      concat javascript_tag compressed ?
-                                "$(prettyPrint(JSON.parse(LZString.decompressFromBase64('#{content}')))).appendTo('#{selector}');".html_safe :
-                                "$(prettyPrint(JSON.parse('#{content}'))).appendTo('#{selector}');".html_safe
+      concat load_pretty_print(compressed)
+      concat pretty_print(content, selector, compressed) if load
     end
+  end
+
+  def load_pretty_print(compressed)
+    compressed ?
+        (javascript_include_tag 'scripts/core/lib/lz-string.js', 'scripts/core/lib/packages/pretty.print.js') :
+        (javascript_include_tag 'scripts/core/lib/packages/pretty.print.js')
+  end
+
+  def pretty_print(content, selector='.json-view', compressed)
+    javascript_tag compressed ?
+                       "$(prettyPrint(JSON.parse(LZString.decompressFromBase64('#{content}')))).appendTo('#{selector}');".html_safe :
+                       "$(prettyPrint(JSON.parse('#{content}'))).appendTo('#{selector}');".html_safe
   end
 
   def json_pre(json)

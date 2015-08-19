@@ -39,23 +39,18 @@
             <li><span>Server version</span><%= user_log.server_software %></li>
             <li><span>Content type</span><%= user_log.content_type %></li>
             <li><span>Updated at</span><%= user_log.updated_at.strftime('%Y %b %d %I:%M:%S %p') %></li>
-            <li id="<%= "user-params-#{user_log.id}" %>">
+            <li class="user-params">
               <span>Params</span>
-              <%= render_json(user_log.user_params, false, "#user-params-#{user_log.id}") %>
+              <div><%= user_log.user_params %></div>
             </li>
-            <li id="<%= "user-session-#{user_log.id}" %>">
+            <li class="user-session">
               <span>Session</span>
-              <%= render_json(user_log.user_session, false, "#user-session-#{user_log.id}") %>
+              <div><%= user_log.user_session %></div>
             </li>
           </ul>
         </td>
       </tr>
   <% end %>
 </table>
-<%= javascript_tag do %>
-    var $table=$('#<%= controller_name %>');
-    $table.find('td>span').on('click.toggleTr',function(){
-    var $span=$(this),$tr=$span.parents('tr:first').next();
-    if($tr.hasClass('hide')){$tr.removeClass('hide');$span.text('-');}else{$tr.addClass('hide');$span.text('+');}
-    });
-<% end %>
+<%= load_pretty_print(false) %>
+<%= bind_events %>
