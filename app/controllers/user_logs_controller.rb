@@ -4,7 +4,7 @@ class UserLogsController < Author::AuthorController
   # GET /user_logs
   # GET /user_logs.json
   def index
-    @user_logs = current_user.user_logs.all.order('id DESC').paginate(:page => params[:page], :per_page => 15)
+    @user_logs = current_user.user_logs.all.order('id DESC').paginate(page: params[:page], per_page: 15)
   end
 
   # GET /user_logs/1

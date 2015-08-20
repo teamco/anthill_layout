@@ -7,7 +7,31 @@ class ApplicationController < ActionController::Base
 
   layout :layout_by_resource
 
+  rescue_from ActiveRecord::RecordNotFound, with: :error
+  rescue_from Exception, with: :error
+  rescue_from ActionController::RoutingError, with: :not_found
+
+  def raise_not_found
+    raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
+  end
+
   protected
+
+  def not_found
+    respond_to do |format|
+      format.html { render file: "#{Rails.root}/public/404", layout: false, status: :not_found }
+      format.xml { head :not_found }
+      format.any { head :not_found }
+    end
+  end
+
+  def error
+    respond_to do |format|
+      format.html { render file: "#{Rails.root}/public/500", layout: false, status: :error }
+      format.xml { head :not_found }
+      format.any { head :not_found }
+    end
+  end
 
   def layout_by_resource
     if devise_controller?
