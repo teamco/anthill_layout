@@ -1,25 +1,32 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Error Logs</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @error_logs.each do |error_log| %>
+<table id="<%= controller_name %>">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Message</th>
+    <th>Exception</th>
+    <th>Date</th>
+  </tr>
+  <% @error_logs.each do |error_log| %>
       <tr>
-        <td><%= link_to 'Show', error_log %></td>
-        <td><%= link_to 'Edit', edit_error_log_path(error_log) %></td>
-        <td><%= link_to 'Destroy', error_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="nw"><span>+</span><%= error_log.id %></td>
+        <td><%= error_log.name %></td>
+        <td class="name"><%= error_log.message %></td>
+        <td><%= error_log.exception %></td>
+        <td class="nw c"><%= error_log.created_at.strftime('%Y %b %d %I:%M:%S %p') %></td>
       </tr>
-    <% end %>
-  </tbody>
+      <tr class="hide">
+        <td colspan="5">
+          <ul>
+            <li><span>User log</span><%= error_log.user_log.id %></li>
+            <li class="backtrace">
+              <span>Backtrace</span>
+              <div><%= json_pre(error_log.backtrace) %></div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+  <% end %>
 </table>
-
-<br>
-
-<%= link_to 'New Error log', new_error_log_path %>
+<%= load_pretty_print(false) %>
+<%= bind_events %>
+<%= will_paginate @error_logs %>

@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def not_found
+  def not_found(e)
+    handle_error(e)
     respond_to do |format|
       format.html { render file: "#{Rails.root}/public/404", layout: false, status: :not_found }
       format.xml { head :not_found }
@@ -25,12 +26,25 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def error
+  def error(e)
+    handle_error(e)
     respond_to do |format|
       format.html { render file: "#{Rails.root}/public/500", layout: false, status: :error }
       format.xml { head :not_found }
       format.any { head :not_found }
     end
+  end
+
+  def handle_error(e)
+    ErrorLog.create!(
+        {
+            user_log_id: current_user.user_logs.order('updated_at DESC').limit(1).first.id,
+            name: (e.name rescue ''),
+            message: e.message,
+            exception: e.exception,
+            backtrace: e.backtrace
+        }
+    )
   end
 
   def layout_by_resource

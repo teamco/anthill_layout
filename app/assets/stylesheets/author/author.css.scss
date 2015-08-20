@@ -389,6 +389,10 @@ body.admin tr.category td {
   background-color: #C9FFCA;
 }
 
+body.admin tr.error td {
+  background-color: #F08080;
+}
+
 body.admin td > span {
   border: 1px solid #999;
   background-color: #dedede;

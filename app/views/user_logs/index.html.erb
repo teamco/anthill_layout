@@ -7,17 +7,18 @@
     <th>Date</th>
   </tr>
   <% @user_logs.each do |user_log| %>
-      <tr>
-        <td><span>+</span><%= user_log.id %></td>
+      <tr<%= user_log.error_log.nil? ? '' : ' class=error' %>>
+        <td class="nw"><span>+</span><%= user_log.id %></td>
         <td class="name"><%= user_log.user.email unless user_log.user.nil? %></td>
         <td><%= user_log.method %></td>
         <td><%= user_log.request_uri %></td>
-        <td><%= user_log.created_at.strftime('%Y %b %d %I:%M:%S %p') %></td>
+        <td class="nw c"><%= user_log.created_at.strftime('%Y %b %d %I:%M:%S %p') %></td>
       </tr>
       <tr class="hide">
         <td colspan="5">
           <ul>
             <li><span>Id</span><%= user_log.id %></li>
+            <li><span>Error log</span><%= user_log.error_log.id if user_log.error_log %></li>
             <li><span>User</span><%= user_log.user.email unless user_log.user.nil? %></li>
             <li><span>Remote address</span><%= user_log.remote_addr %></li>
             <li><span>Status</span><%= user_log.status %></li>
@@ -49,5 +50,5 @@
   <% end %>
 </table>
 <%= load_pretty_print(false) %>
-<%= bind_events %>
+<%= bind_events(%w(.user-params .user-session)) %>
 <%= will_paginate @user_logs %>

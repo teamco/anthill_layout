@@ -5,7 +5,8 @@ class UserLog < ActiveRecord::Base
 
   def self.except(cname, aname)
     log_except = [
-        {controller: 'user_logs', action: 'index'}
+        {controller: 'user_logs', action: 'index'},
+        {controller: 'error_logs', action: 'index'}
     ]
     log_except.each { |x| return false if (x[:action] == aname || aname.nil?) if (x[:controller] == cname) }
     true

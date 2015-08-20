@@ -80,15 +80,17 @@ ActiveRecord::Schema.define(version: 20150818202837) do
   end
 
   create_table "error_logs", force: :cascade do |t|
-    t.integer  "user_log_id",  limit: 4
-    t.string   "error_type",   limit: 255
-    t.integer  "error_status", limit: 4
-    t.string   "error_title",  limit: 255
-    t.text     "error_body",   limit: 16777215
-    t.boolean  "is_fixed",                      default: false
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.integer  "user_log_id", limit: 4
+    t.string   "name",        limit: 255
+    t.text     "message",     limit: 65535
+    t.text     "exception",   limit: 65535
+    t.text     "backtrace",   limit: 16777215
+    t.boolean  "is_fixed",                     default: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
+
+  add_index "error_logs", ["user_log_id"], name: "index_error_logs_on_user_log_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",       limit: 255

@@ -1,10 +1,12 @@
-class ErrorLogsController < ApplicationController
+class ErrorLogsController < Author::AuthorController
   before_action :set_error_log, only: [:show, :edit, :update, :destroy]
 
   # GET /error_logs
   # GET /error_logs.json
   def index
-    @error_logs = ErrorLog.all
+    @error_logs = ErrorLog.all.order('id DESC').
+        includes(:user_log).
+        paginate(page: params[:page], per_page: 15)
   end
 
   # GET /error_logs/1
@@ -24,12 +26,6 @@ class ErrorLogsController < ApplicationController
   # POST /error_logs
   # POST /error_logs.json
   def create
-    log = current_user.user_logs.order('updated_at DESC')
-    data = {
-        log: log.error_log.nil?,
-        error: false
-    }
-
     @error_log = ErrorLog.new(error_log_params)
 
     respond_to do |format|
