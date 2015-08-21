@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
            class_name: 'UserLog',
            dependent: :destroy
 
+  has_many :error_logs,
+           dependent: :destroy,
+           through: :user_logs
+
   belongs_to :role
 
   before_create :set_default_role

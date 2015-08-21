@@ -1,7 +1,8 @@
 class UserLog < ActiveRecord::Base
 
   belongs_to :user
-  has_one :error_log
+  has_one :error_log,
+          dependent: :destroy
 
   def self.except(cname, aname)
     log_except = [
