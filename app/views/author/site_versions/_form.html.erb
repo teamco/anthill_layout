@@ -3,7 +3,7 @@
     <%= render_notification(@author_site_version) %>
     <%= render_text(:site_storage, @author_site_version.author_site_storage.try(:key)) %>
     <%= render_text_area(f, :content) %>
-    <%= render_json( @author_site_version.content) %>
+    <%= render_json( @author_site_version.content, '.json-view') %>
     <%= render_number_field(f, :version, true) %>
     <%= render_checkbox(f, :activated) %>
     <%= render_submit(f) %>

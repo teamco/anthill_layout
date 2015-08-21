@@ -113,9 +113,11 @@ module Author::AuthorHelper
   end
 
   def load_pretty_print(compressed)
-    compressed ?
-        (javascript_include_tag 'scripts/core/lib/lz-string.js', 'scripts/core/lib/packages/pretty.print.js') :
-        (javascript_include_tag 'scripts/core/lib/packages/pretty.print.js')
+    if compressed
+      javascript_include_tag 'scripts/core/lib/lz-string.js', 'scripts/core/lib/packages/pretty.print.js'
+    else
+      javascript_include_tag 'scripts/core/lib/packages/pretty.print.js'
+    end
   end
 
   def pretty_print(content, selector='.json-view', compressed)

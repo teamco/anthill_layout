@@ -3,7 +3,7 @@
     <%= render_notification(@author_site_storage) -%>
     <%= render_text_field(f, :key, !@author_site_storage.key.nil?) -%>
     <%= render_text_area_tag(:content, content, true) -%>
-    <%= render_json(content) unless content.nil? %>
+    <%= render_json(content, '.json-view') unless content.nil? %>
     <%= render_checkbox(f, :publish) -%>
     <%= render_collection(f, 'Type', {
                                    id: :site_type_id,
