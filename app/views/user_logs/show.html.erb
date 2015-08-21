@@ -1,4 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_user_log_path(@user_log) %> |
-<%= link_to 'Back', user_logs_path %>
+<table id="<%= controller_name %>">
+  <%= user_th %>
+  <%= user_td(@user_log, '<span>+</span>') %>
+  <%= user_trace(@user_log, ' class=hide') %>
+</table>
+<%= load_pretty_print(false) %>
+<%= bind_events(%w(.user-params .user-session), true) %>

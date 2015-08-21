@@ -128,7 +128,7 @@ module Author::AuthorHelper
     "<pre><code>#{JSON.pretty_generate(JSON.parse(json))}</code></pre>".html_safe
   end
 
-  def bind_events(selectors=[])
+  def bind_events(selectors=[], force=nil)
     pretty_print = selectors.map { |x| "$param=$tr.find('li#{x}>div');$(prettyPrint(JSON.parse($param.text()))).appendTo($param.empty());" }
     javascript_tag [
                        "var $table=$('##{controller_name}');",
@@ -138,12 +138,13 @@ module Author::AuthorHelper
                        "$tr.removeClass('hide');",
                        "$span.text('-');",
                        'var $param;',
-                       pretty_print.join(),
+                       pretty_print.join,
                        '}else{',
                        "$tr.addClass('hide');",
                        "$span.text('+');",
-                       '}});'
-                   ].join()
+                       '}});',
+                       "#{'$table.find(\'td>span\').trigger(\'click.toggleTr\')' unless force.nil? }"
+                   ].join
   end
 
 end

@@ -1,4 +1,5 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_error_log_path(@error_log) %> |
-<%= link_to 'Back', error_logs_path %>
+<table id="<%= controller_name %>">
+  <%= error_th %>
+  <%= error_td(@error_log) %>
+  <%= error_trace(@error_log) %>
+</table>
