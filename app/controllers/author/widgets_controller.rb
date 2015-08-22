@@ -37,13 +37,9 @@ class Author::WidgetsController < Author::AuthorController
         (site_widgets if method == 'GET') :
         site_widgets unless site.nil?
 
-    @author_widgets = Widget.all.
-        includes(:author_widget_category).
-        where(visible: true).
-        order(name: :asc) if @author_widgets.nil? unless request.xhr?
+    @author_widgets = Widget.fetch_data(current_user) if @author_widgets.nil? unless request.xhr?
 
     unless @author_widgets.nil?
-      @json_data[:in] = @author_widgets.map { |x| x.id }
       @json_data[:categories] = WidgetCategory.all.order(:name_value)
       @json_data[:widgets] = @author_widgets.map do |w|
         {

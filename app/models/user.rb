@@ -45,8 +45,14 @@ class User < ActiveRecord::Base
            dependent: :destroy
 
   has_many :error_logs,
+           class_name: 'ErrorLog',
            dependent: :destroy,
            through: :user_logs
+
+  has_many :vulnerability_storages,
+           class_name: 'VulnerabilityStorage',
+           dependent: :destroy,
+           through: :author_site_storages
 
   belongs_to :role
 

@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
 
-  resources :error_logs
-  resources :user_logs
+  resources :error_logs do
+    resources :user_logs
+  end
+  resources :user_logs do
+    resources :error_logs
+  end
+
   resources :vulnerability_storages
+
   devise_for :users,
              controllers: {
                  omniauth_callbacks: 'callbacks'
@@ -10,7 +16,9 @@ Rails.application.routes.draw do
 
   namespace :author do
     resources :site_types
-    resources :widgets
+    resources :widgets do
+      resources :widget_categories
+    end
     resources :site_storages do
       resources :site_versions
       resources :widgets
@@ -19,7 +27,9 @@ Rails.application.routes.draw do
     resources :site_versions do
       resources :site_storages
     end
-    resources :widget_categories
+    resources :widget_categories do
+      resource :widgets
+    end
     resources :vulnerability_storages
   end
 
