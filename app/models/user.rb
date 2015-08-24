@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :timeoutable, :omniauthable,
          omniauth_providers: [
              # :digitalocean,
-             # :twitter,
+             :twitter,
              :facebook,
              # :google,
              # :amazon,
@@ -75,14 +75,6 @@ class User < ActiveRecord::Base
       # assuming the user model has an image
       user.image = auth.info.image
       user.save!
-    end
-  end
-
-  def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
-        user.email = data['email'] if user.email.blank?
-      end
     end
   end
 

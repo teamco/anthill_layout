@@ -19,11 +19,24 @@ Devise.setup do |config|
   #Add your ID and secret here
   #ID first, secret second
   # config.omniauth :digitalocean, ENV['DIGITALOCEAN_KEY'], ENV['DIGITALOCEAN_SECRET']
-  # config.omniauth :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
-  # config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']
   # config.omniauth :google, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET']
   # config.omniauth :amazon, ENV['AMAZON_KEY'], ENV['AMAZON_SECRET']
   # config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
 
-  config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'], {scope: 'email', info_fields: 'email'}
+  config.omniauth :twitter,
+                  ENV['TWITTER_KEY'],
+                  ENV['TWITTER_SECRET'], {
+                      secure_image_url: 'true',
+                      image_size: 'original',
+                      authorize_params: {
+                          force_login: 'true',
+                          lang: 'pt'
+                      }
+                  }
+  config.omniauth :facebook,
+                  ENV['FACEBOOK_KEY'],
+                  ENV['FACEBOOK_SECRET'], {
+                      scope: 'email',
+                      info_fields: 'email'
+                  }
 end

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
                  omniauth_callbacks: 'users/omniauth_callbacks'
              }
 
+  get '/auth/failure', to: redirect('/')
+
   namespace :author do
     resources :site_types
     resources :widgets do
