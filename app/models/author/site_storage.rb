@@ -14,14 +14,16 @@ class Author::SiteStorage < ActiveRecord::Base
            through: :author_site_storage_widgets
 
   belongs_to :author_site_type,
-             class_name: 'Author::SiteType'
+             class_name: 'Author::SiteType',
+             foreign_key: :site_type_id
 
   has_many :vulnerability_storages,
            class_name: 'VulnerabilityStorage',
            foreign_key: :site_storage_id,
            dependent: :destroy
 
-  belongs_to :user
+  belongs_to :user,
+             foreign_key: :user_id
 
   accepts_nested_attributes_for :author_site_storage_widgets, allow_destroy: true
   accepts_nested_attributes_for :author_site_versions, allow_destroy: true

@@ -36,6 +36,9 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_error(e)
+
+    logger.info e.inspect
+
     user_log = UserLog.last if current_user.nil?
     user_log = (current_user.user_logs.empty? ?
         UserLog.last :

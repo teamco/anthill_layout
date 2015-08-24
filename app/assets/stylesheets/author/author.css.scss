@@ -106,8 +106,8 @@ body.admin section.content {
 
 body.admin ul.admin-navigation > li {
   position: relative;
-  width: 13em;
-  height: 13em;
+  width: 15em;
+  height: 15em;
   display: inline-block;
   float: left;
   margin-right: 1em;
@@ -136,7 +136,7 @@ body.admin ul.admin-navigation > li > a {
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
-  background: transparent no-repeat left 3.5em;
+  background: transparent no-repeat left 5em;
   background-size: 64px;
   position: relative;
   z-index: 1;

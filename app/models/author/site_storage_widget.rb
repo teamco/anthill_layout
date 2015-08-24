@@ -1,12 +1,15 @@
 class Author::SiteStorageWidget < ActiveRecord::Base
 
   belongs_to :author_site_storage,
-             class_name: 'Author::SiteStorage'
+             class_name: 'Author::SiteStorage',
+             foreign_key: :site_storage_id
 
   belongs_to :author_widget,
-             class_name: 'Author::Widget'
+             class_name: 'Author::Widget',
+             foreign_key: :widget_id
 
-  belongs_to :user
+  belongs_to :user,
+             foreign_key: :user_id
 
   after_save :remove_nulls
 

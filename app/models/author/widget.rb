@@ -3,9 +3,11 @@ class Author::Widget < ActiveRecord::Base
   devise :database_authenticatable, :trackable, :timeoutable, :lockable
 
   belongs_to :author_widget_category,
-             class_name: 'Author::WidgetCategory'
+             class_name: 'Author::WidgetCategory',
+             foreign_key: :widget_category_id
 
-  belongs_to :user
+  belongs_to :user,
+             foreign_key: :user_id
 
   has_many :author_site_storage_widgets,
            class_name: 'Author::SiteStorageWidget'
@@ -22,9 +24,7 @@ class Author::Widget < ActiveRecord::Base
   validates :height, presence: true, numericality: true
 
   def self.fetch_data(user)
-    self.all.
-        includes(:author_widget_category).
-        where('visible=? AND (public=? OR user_id=?)', true, true, user.id).
+    where('visible=? AND (public=? OR user_id=?)', true, true, user.id).
         order(name: :asc)
   end
 

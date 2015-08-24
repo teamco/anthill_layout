@@ -6,7 +6,8 @@ class Author::WidgetCategory < ActiveRecord::Base
            class_name: 'Author::Widget',
            dependent: :destroy
 
-  belongs_to :user
+  belongs_to :user,
+             foreign_key: :user_id
 
   validates :name_index, presence: true
   validates :name_value, presence: true
