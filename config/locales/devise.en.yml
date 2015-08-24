@@ -66,3 +66,6 @@ en:
   user_logs: "User Logs"
   error_logs: "Error Logs"
   users: "Users"
+  success_create_user: "Successfully created User"
+  success_update_user: "Successfully updated User"
+  success_delete_user: "Successfully deleted User"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150822095033) do
+ActiveRecord::Schema.define(version: 20150824111757) do
 
   create_table "author_site_storage_widgets", force: :cascade do |t|
     t.integer  "site_storage_id", limit: 4
@@ -108,14 +108,14 @@ ActiveRecord::Schema.define(version: 20150822095033) do
     t.string   "controller",      limit: 255
     t.string   "action",          limit: 255
     t.string   "domain",          limit: 255
-    t.string   "request_uri",     limit: 255
-    t.string   "url",             limit: 255
+    t.text     "request_uri",     limit: 65535
+    t.text     "url",             limit: 65535
     t.string   "protocol",        limit: 255
     t.string   "host",            limit: 255
     t.string   "port",            limit: 255
     t.text     "user_params",     limit: 16777215
     t.text     "user_session",    limit: 65535
-    t.string   "query_string",    limit: 255
+    t.text     "query_string",    limit: 65535
     t.string   "http_accept",     limit: 255
     t.string   "format",          limit: 255
     t.boolean  "ssl"
@@ -144,10 +144,23 @@ ActiveRecord::Schema.define(version: 20150822095033) do
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
     t.integer  "role_id",                limit: 4
+    t.string   "confirmation_token",     limit: 255
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email",      limit: 255
+    t.integer  "failed_attempts",        limit: 4,   default: 0,  null: false
+    t.string   "unlock_token",           limit: 255
+    t.datetime "locked_at"
+    t.string   "oauth_token",            limit: 255
+    t.datetime "oauth_expires_at"
+    t.string   "name",                   limit: 255
+    t.string   "image",                  limit: 255
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "vulnerability_storages", force: :cascade do |t|
     t.integer  "site_storage_id", limit: 4

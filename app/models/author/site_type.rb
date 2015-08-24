@@ -3,10 +3,10 @@ class Author::SiteType < ActiveRecord::Base
   devise :database_authenticatable, :trackable, :timeoutable, :lockable
 
   has_many :author_site_storages,
-           :class_name => 'Author::SiteStorage',
+           class_name: 'Author::SiteStorage',
            dependent: :destroy
 
-  belongs_to :user, :foreign_key => :user_id
+  belongs_to :user
 
   validates :name, presence: true
 

@@ -18,7 +18,7 @@ module UserLogsHelper
   def user_trace(user_log, hide='')
     [
         "<tr#{hide}><td colspan=\"5\"><ul>",
-        "<li><span>Id</span>#{user_log_path(user_log)}</li>",
+        "<li><span>Id</span>#{link_to user_log_path(user_log), user_log_path(user_log)}</li>",
         '<li><span>Error log</span>',
         "#{link_to user_log.error_log.message, "#{error_logs_path}/#{user_log.error_log.id}" if user_log.error_log}",
         "</li><li><span>User</span>#{user_log.user.email unless user_log.user.nil?}</li>",

@@ -36,9 +36,14 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_error(e)
+    user_log = UserLog.last if current_user.nil?
+    user_log = (current_user.user_logs.empty? ?
+        UserLog.last :
+        current_user.user_logs.order('updated_at DESC').limit(1).first) unless current_user.nil?
+
     ErrorLog.create!(
         {
-            user_log_id: current_user.user_logs.order('updated_at DESC').limit(1).first.id,
+            user_log_id: user_log.try(:id),
             name: (e.name rescue ''),
             message: e.message,
             exception: e.exception,
@@ -54,6 +59,8 @@ class ApplicationController < ActionController::Base
       'application'
     end
   end
+
+  private
 
   def current_user
     super
