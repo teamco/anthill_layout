@@ -50,7 +50,7 @@ module ApplicationHelper
     content_tag(:ul, class: 'social') do
       content_tag(:li) do
         concat link_to image_tag(image_url('fb.png')), user_omniauth_authorize_path(:facebook), {title: t('facebook_login')}
-        concat link_to image_tag(image_url('fb.png')), user_omniauth_authorize_path(:twitter), {title: t('facebook_login')}
+        concat link_to image_tag(image_url('tw.png')), user_omniauth_authorize_path(:twitter), {title: t('facebook_login')}
       end
     end
   end

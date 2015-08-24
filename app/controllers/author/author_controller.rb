@@ -13,17 +13,7 @@ class Author::AuthorController < ApplicationController
   end
 
   def index
-    @author = {
-        users: User.count,
-        site_storages: current_user.author_site_storages.length,
-        site_types: current_user.author_site_types.length,
-        site_versions: current_user.author_site_versions.length,
-        widget_categories: WidgetCategory.count,
-        widgets: Widget.fetch_data(current_user).length,
-        vulnerability_storage: current_user.vulnerability_storages.length,
-        user_logs: current_user.user_logs.length,
-        error_logs: current_user.error_logs.length
-    }
+    @author = Author.fetch_data(current_user)
   end
 
   protected

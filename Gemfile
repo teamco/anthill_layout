@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # case RUBY_PLATFORM
 #   when /darwin|linux/
 
-gem 'rails', '>= 4.2.0'
+gem 'rails', '>= 4.2.4'
 
 gem 'puma'
 gem 'embedly'
@@ -33,11 +33,13 @@ group :test, :development do
   gem 'spring'
   gem 'wirble'
   gem 'capistrano-rails'
+  gem 'rails_best_practices'
+  gem 'request-log-analyzer'
 end
 
 group :console do
   gem 'rails-console-tweaks'
-  gem 'awesome_print'
+  gem 'awesome_print', require: 'ap'
   gem 'hirb'
   gem 'interactive_editor'
 end
@@ -48,7 +50,7 @@ group :doc do
 end
 
 group :production do
-  ruby '2.2.2'
+  ruby '2.2.3'
   gem 'rails_12factor'
   gem 'pg'
 end
@@ -73,6 +75,7 @@ gem 'coffee-rails', '>= 4.0.0'
 
 gem 'jbuilder', '>= 2.0'
 gem 'therubyracer'
+
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-digitalocean'
@@ -80,7 +83,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-amazon'
 gem 'omniauth-facebook'
 gem 'omniauth-google'
+gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-github'
+
 gem 'cancan'
 
-gem 'omniauth-linkedin-oauth2'

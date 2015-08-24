@@ -28,17 +28,12 @@ class Author::SiteStoragesController < Author::AuthorController
   def show
     @storage = {}
     if File.exist?(@target_path)
-      @storage = {
-          key: @author_site_storage.key,
-          mode: @author_site_storage.author_site_type.name,
-          uuid: @author_site_storage.uuid,
-          published: @author_site_storage.publish,
-      }
+      @storage = @author_site_storage.fetch_data
 
       mode = SiteType.find_by_name(params[:mode])
       @storage[:mode] = mode.name unless mode.nil?
 
-      activated = @author_site_storage.author_site_versions.where(activated: true).first
+      activated = @author_site_storage.get_activated
 
       unless activated.nil?
         @storage[:version] = activated.version

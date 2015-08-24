@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824121422) do
+ActiveRecord::Schema.define(version: 20150824200703) do
 
   create_table "author_site_storage_widgets", force: :cascade do |t|
     t.integer  "site_storage_id", limit: 4
@@ -35,12 +35,16 @@ ActiveRecord::Schema.define(version: 20150824121422) do
     t.boolean  "publish",                  default: false
   end
 
+  add_index "author_site_storages", ["user_id"], name: "index_author_site_storages_on_user_id", unique: true, using: :btree
+
   create_table "author_site_types", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "user_id",    limit: 4
   end
+
+  add_index "author_site_types", ["user_id"], name: "index_author_site_types_on_user_id", using: :btree
 
   create_table "author_site_versions", force: :cascade do |t|
     t.integer  "version",         limit: 4
@@ -53,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150824121422) do
   end
 
   add_index "author_site_versions", ["site_storage_id"], name: "index_author_site_versions_on_site_storage_id", using: :btree
+  add_index "author_site_versions", ["user_id"], name: "index_author_site_versions_on_user_id", using: :btree
 
   create_table "author_widget_categories", force: :cascade do |t|
     t.string   "name_index", limit: 255
@@ -61,6 +66,8 @@ ActiveRecord::Schema.define(version: 20150824121422) do
     t.datetime "updated_at"
     t.integer  "user_id",    limit: 4
   end
+
+  add_index "author_widget_categories", ["user_id"], name: "index_author_widget_categories_on_user_id", using: :btree
 
   create_table "author_widgets", force: :cascade do |t|
     t.integer  "widget_category_id", limit: 4
@@ -79,6 +86,8 @@ ActiveRecord::Schema.define(version: 20150824121422) do
     t.integer  "user_id",            limit: 4
     t.boolean  "public",                              default: false
   end
+
+  add_index "author_widgets", ["user_id"], name: "index_author_widgets_on_user_id", using: :btree
 
   create_table "error_logs", force: :cascade do |t|
     t.integer  "user_log_id", limit: 4
@@ -128,6 +137,8 @@ ActiveRecord::Schema.define(version: 20150824121422) do
     t.datetime "updated_at",                       null: false
   end
 
+  add_index "user_logs", ["user_id"], name: "index_user_logs_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -160,6 +171,7 @@ ActiveRecord::Schema.define(version: 20150824121422) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "vulnerability_storages", force: :cascade do |t|

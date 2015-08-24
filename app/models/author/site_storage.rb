@@ -38,4 +38,17 @@ class Author::SiteStorage < ActiveRecord::Base
     key.parameterize
   end
 
+  def fetch_data
+    {
+        key: key,
+        mode: author_site_type.name,
+        uuid: uuid,
+        published: publish,
+    }
+  end
+
+  def get_activated
+    author_site_versions.where(activated: true).first
+  end
+
 end
