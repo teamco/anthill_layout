@@ -1,6 +1,7 @@
-<%= form_for(@author_site_type) do |f| %>
+<% type = @author_site_type %>
+<%= form_for(type) do |f| %>
 
-    <%= render_notification(@author_site_type) %>
+    <%= render_notification(type) %>
     <%= render_text_field(f, :name) %>
     <%= render_submit(f) %>
 

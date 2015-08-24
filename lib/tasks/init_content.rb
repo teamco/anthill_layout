@@ -133,7 +133,7 @@ module WidgetLib
         ) if store
 
       end
-      
+
       puts ">>> Finish Add widgets: #{Author::Widget.all.size}"
 
       puts '--- Combine CSS'

@@ -1,5 +1,6 @@
-<%= form_for(@author_widget) do |f| %>
-    <%= render_notification(@author_widget) %>
+<% widget = @author_widget %>
+<%= form_for(widget) do |f| %>
+    <%= render_notification(widget) %>
     <%= render_text_field(f, :resource) %>
     <%= render_text_field(f, :name) %>
     <%= render_text_area(f, :description) %>

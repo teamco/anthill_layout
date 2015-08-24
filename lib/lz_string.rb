@@ -26,10 +26,10 @@
 class Compressor
 
   def initialize
-    @reference_prefix = "`"
+    @reference_prefix = '`'
     @reference_prefix_code = @reference_prefix[0]
     @reference_int_base = 96
-    @reference_int_floor_code = " ".ord
+    @reference_int_floor_code = ' '.ord
     @reference_int_ceil_code = @reference_int_floor_code + @reference_int_base - 1
     @max_string_distance = @reference_int_base ** 2 - 1
     @min_string_length = 5
@@ -53,7 +53,7 @@ class Compressor
         m1 = data[search_start, match_length]
         m2 = data[pos, match_length]
         is_valid_match = (m1 == m2 and match_length < @max_string_length)
-        if is_valid_match 
+        if is_valid_match
           match_length += 1
           found_match = true
         else
@@ -74,7 +74,7 @@ class Compressor
         new_compressed = head << tail
         pos += best_match_length
       else
-        if data[pos, 1] != @reference_prefix 
+        if data[pos, 1] != @reference_prefix
           new_compressed = data[pos, 1]
         else
           new_compressed = @reference_prefix << @reference_prefix
@@ -83,20 +83,20 @@ class Compressor
       end
       compressed << new_compressed
     end
-    compressed + data[pos..-1].gsub(/`/, "``")
+    compressed + data[pos..-1].gsub(/`/, '``')
   end
 
   def decompress(data)
-    decompressed = ""
+    decompressed = ''
     pos = 0
     while pos < data.length do
       current_char = data[pos, 1]
-      if current_char != @reference_prefix 
+      if current_char != @reference_prefix
         decompressed << current_char
         pos += 1
       else
         next_char = data[pos + 1, 1]
-        if next_char != @reference_prefix 
+        if next_char != @reference_prefix
           distance = decode_reference_int(data[pos + 1, 2], 2)
           length = decode_reference_length(data[pos + 3, 1])
           start = decompressed.length - distance - length
@@ -127,7 +127,7 @@ class Compressor
       end
       encoded
     else
-      raise "Reference value out of range"
+      raise 'Reference value out of range'
     end
   end
 
@@ -145,7 +145,7 @@ class Compressor
       if char_code >= @reference_int_floor_code and char_code <= @reference_int_ceil_code
         value += (char_code - @reference_int_floor_code)
       else
-        raise "Invalid char code"
+        raise 'Invalid char code'
       end
     end
     value

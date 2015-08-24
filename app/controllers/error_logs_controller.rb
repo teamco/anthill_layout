@@ -1,5 +1,5 @@
 class ErrorLogsController < Author::AuthorController
-  before_action :set_error_log, only: [:show, :edit, :update, :destroy]
+  before_action :set_error_log, only: [:show]
 
   # GET /error_logs
   # GET /error_logs.json
@@ -12,55 +12,6 @@ class ErrorLogsController < Author::AuthorController
   # GET /error_logs/1
   # GET /error_logs/1.json
   def show
-  end
-
-  # GET /error_logs/new
-  def new
-    @error_log = ErrorLog.new
-  end
-
-  # GET /error_logs/1/edit
-  def edit
-  end
-
-  # POST /error_logs
-  # POST /error_logs.json
-  def create
-    @error_log = ErrorLog.new(error_log_params)
-
-    respond_to do |format|
-      if @error_log.save
-        format.html { redirect_to @error_log, notice: 'Error log was successfully created.' }
-        format.json { render :show, status: :created, location: @error_log }
-      else
-        format.html { render :new }
-        format.json { render json: @error_log.errors, status: :unprocessable_entity }
-      end
-    end unless data[:log]
-  end
-
-  # PATCH/PUT /error_logs/1
-  # PATCH/PUT /error_logs/1.json
-  def update
-    respond_to do |format|
-      if @error_log.update(error_log_params)
-        format.html { redirect_to @error_log, notice: 'Error log was successfully updated.' }
-        format.json { render :show, status: :ok, location: @error_log }
-      else
-        format.html { render :edit }
-        format.json { render json: @error_log.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /error_logs/1
-  # DELETE /error_logs/1.json
-  def destroy
-    @error_log.destroy
-    respond_to do |format|
-      format.html { redirect_to error_logs_url, notice: 'Error log was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   def fix

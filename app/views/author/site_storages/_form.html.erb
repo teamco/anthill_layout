@@ -1,13 +1,15 @@
-<%= form_for(@author_site_storage) do |f| -%>
-    <% content = @author_site_storage.author_site_versions.where(activated: true).first.content rescue nil %>
-    <%= render_notification(@author_site_storage) -%>
-    <%= render_text_field(f, :key, !@author_site_storage.key.nil?) -%>
+<% storage = @author_site_storage %>
+<% types = @author_site_types %>
+<%= form_for(storage) do |f| -%>
+    <% content = storage.get_activated.content rescue nil %>
+    <%= render_notification(storage) -%>
+    <%= render_text_field(f, :key, !storage.key.nil?) -%>
     <%= render_text_area_tag(:content, content, true) -%>
     <%= render_json(content, '.json-view') unless content.nil? %>
     <%= render_checkbox(f, :publish) -%>
     <%= render_collection(f, 'Type', {
                                    id: :site_type_id,
-                                   collection: @author_site_types,
+                                   collection: types,
                                    index: :id,
                                    value: :name
                            }) -%>

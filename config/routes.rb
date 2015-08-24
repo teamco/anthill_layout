@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :error_logs do
-    resources :user_logs
+  resources :error_logs, only: [:show, :index] do
+    resources :user_logs, only: [:show, :index]
   end
-  resources :user_logs do
-    resources :error_logs
+  resources :user_logs, only: [:show, :index] do
+    resources :error_logs, only: [:show, :index]
   end
 
-  resources :vulnerability_storages
+  resources :vulnerability_storages, only: [:show, :index]
 
   devise_for :users,
              controllers: {

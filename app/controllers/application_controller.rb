@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
 
   def handle_error(e)
     logger.info e.inspect
-    ErrorLog.handle_error(current_user)
+    ErrorLog.handle_error(current_user, e)
   end
 
   def layout_by_resource

@@ -1,8 +1,9 @@
 module Author
+
   def self.table_name_prefix
     'author_'
   end
-  
+
   def self.fetch_data(user)
     {
         users: User.count,

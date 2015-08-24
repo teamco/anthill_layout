@@ -3,7 +3,7 @@ class ErrorLog < ActiveRecord::Base
   belongs_to :user_log
   has_one :user, through: :user_log
 
-  def self.handle_error(user)
+  def self.handle_error(user, e)
 
     user_log = if user.nil?
                  UserLog.last

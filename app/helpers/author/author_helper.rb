@@ -82,7 +82,7 @@ module Author::AuthorHelper
     content_tag(:div) do
       concat link_to '&#10157;'.html_safe, {controller: controller_name}, class: 'back'
       concat content_tag(:h1, "#{action_name.humanize} #{controller_name.humanize}")
-      concat render 'form'
+      concat render partial: 'form'
     end
   end
 
