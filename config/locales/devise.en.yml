@@ -69,3 +69,4 @@ en:
   success_create_user: "Successfully created User"
   success_update_user: "Successfully updated User"
   success_delete_user: "Successfully deleted User"
+  facebook_login: "Sign in with Facebook"
