@@ -19,7 +19,7 @@ module Crawler
           else
             result.error!
         end
-      rescue Exception => e
+      rescue => e
         puts e.message
         return false
       end

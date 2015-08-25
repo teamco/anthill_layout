@@ -5,9 +5,9 @@
         <%= link_to author_site_storage.key, preview_path(author_site_storage), {target: '_blank'} %>
         <h4><%= author_site_storage.author_site_type.try(:name) %></h4>
         <h6><%= author_site_storage.uuid %></h6>
-        <%= render partial: 'published', locals: {publish: author_site_storage.publish} %>
-        <%= render partial: 'widgets', locals: {site: author_site_storage} %>
-        <%= render partial: 'footer', locals: {site: author_site_storage} %>
+        <%= render 'published', locals: {publish: author_site_storage.publish} %>
+        <%= render 'widgets', locals: {site: author_site_storage} %>
+        <%= render 'footer', locals: {site: author_site_storage} %>
       </li>
   <% end %>
 </ul>
