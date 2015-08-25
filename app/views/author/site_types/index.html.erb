@@ -2,7 +2,7 @@
   <% @author_site_types.each do |author_site_type| %>
       <li>
         <%= link_to author_site_type.name.humanize, edit_author_site_type_path(author_site_type) %>
-        <h3><%= author_site_type.author_site_storages.length %></h3>
+        <h3><%= author_site_type.get_sites(current_user).length %></h3>
 
         <div>
           <div>

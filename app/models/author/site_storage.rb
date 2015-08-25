@@ -55,6 +55,10 @@ class Author::SiteStorage < ActiveRecord::Base
         order(:key)
   end
 
+  def get_versions
+    author_site_versions.order(updated_at: :desc)
+  end
+
   def get_activated
     author_site_versions.where(activated: true).first
   end

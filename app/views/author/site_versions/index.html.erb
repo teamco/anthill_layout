@@ -3,8 +3,14 @@
       <% style = author_site_version.activated ? ' class=activated' : '' %>
       <li<%= style %>>
         <%= link_to author_site_version.author_site_storage.try(:key), edit_author_site_version_path(author_site_version) %>
-        <h4><%= localize(author_site_version.updated_at, format: :long) %></h4>
-        <h4><%= localize(author_site_version.created_at, format: :long) %></h4>
+        <h4>
+          <span>Updated</span>
+          <%= localize(author_site_version.updated_at, format: :long) %>
+        </h4>
+        <h4>
+          <span>Created</span>
+          <%= localize(author_site_version.created_at, format: :long) %>
+        </h4>
 
         <h3><%= author_site_version.version %></h3>
 

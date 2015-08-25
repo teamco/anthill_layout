@@ -11,9 +11,13 @@ class Author::SiteVersionsController < Author::AuthorController
   # GET /author/site_versions.json
   def index
     site_storage = current_user.author_site_storages.where(key: params[:site_storage_id]).first
-    @author_site_versions = site_storage.nil? ?
-        current_user.author_site_versions.all.order(:updated_at).reverse_order.group(:site_storage_id) :
-        site_storage.author_site_versions.order(:updated_at).reverse_order
+    if site_storage.nil?
+      versions = SiteVersion.fetch_data(current_user)
+      activated_version = versions.where(activated: true)
+      @author_site_versions = (activated_version.nil? ? versions : activated_version).group(:site_storage_id)
+    else
+      @author_site_versions = site_storage.get_versions.includes(:author_site_storage)
+    end
   end
 
   # GET /author/site_versions/1

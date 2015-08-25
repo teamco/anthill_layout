@@ -16,8 +16,10 @@ class Author::SiteType < ActiveRecord::Base
   end
 
   def self.fetch_data(user)
-    includes(:author_site_storages).
-        where('visible=? AND (public=? OR user_id=?)', true, true, user.id).
-        order(:name)
+    where('visible=? AND (public=? OR user_id=?)', true, true, user.id).order(:name)
+  end
+
+  def get_sites(user)
+    author_site_storages.where('visible=? AND (public=? OR user_id=?)', true, true, user.id)
   end
 end
