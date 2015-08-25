@@ -11,9 +11,7 @@ class Author::SiteType < ActiveRecord::Base
 
   validates :name, presence: true
 
-  POSSIBLE_TYPES = self.select(:name)
-
-  POSSIBLE_TYPES.each do |type|
+  self.select(:name).each do |type|
     define_method("is_#{type.name}?".to_sym) { |mode| mode == type.name }
   end
 

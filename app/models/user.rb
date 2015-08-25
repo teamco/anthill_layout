@@ -66,9 +66,9 @@ class User < ActiveRecord::Base
       user.provider = auth.provider
       user.uid = auth.uid
       user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at) unless auth.credentials.expires_at.nil?
 
-      user.email = auth.info.email
+      user.email = auth.info.email || "#{auth.info.name.parameterize}@#{auth.provider}.com"
       user.password = Devise.friendly_token[0, 20]
       # assuming the user model has a name
       user.name = auth.info.name
@@ -83,6 +83,21 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def create_from(auth, user)
+    user.provider = auth.provider
+    user.uid = auth.uid
+    user.oauth_token = auth.credentials.token
+    user.oauth_expires_at = Time.at(auth.credentials.expires_at) unless auth.credentials.expires_at.nil?
+
+    user.email = auth.info.email || set_dummy_mail(auth)
+    user.password = Devise.friendly_token[0, 20]
+    # assuming the user model has a name
+    user.name = auth.info.name
+    # assuming the user model has an image
+    user.image = auth.info.image
+    user.save!
+  end
 
   def set_default_role
     self.role ||= Role.find_by_name('registered')

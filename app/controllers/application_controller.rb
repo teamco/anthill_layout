@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, with: :error
   rescue_from Exception, with: :error
+  rescue_from OAuth::Unauthorized, with: :error
   rescue_from ActionController::RoutingError, with: :not_found
 
   def raise_not_found
