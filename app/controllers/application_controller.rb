@@ -16,6 +16,11 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
   end
 
+  def handle_error(e)
+    logger.info e.inspect
+    ErrorLog.handle_error(current_user, e)
+  end
+
   protected
 
   def not_found(e)
@@ -34,11 +39,6 @@ class ApplicationController < ActionController::Base
       format.xml { head :not_found }
       format.any { head :not_found }
     end
-  end
-
-  def handle_error(e)
-    logger.info e.inspect
-    ErrorLog.handle_error(current_user, e)
   end
 
   def layout_by_resource

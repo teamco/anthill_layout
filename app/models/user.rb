@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
 
-  TEMP_EMAIL_PREFIX = 'change@me'
-  TEMP_EMAIL_REGEX = /\Achange@me/
+  TEMP_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -58,23 +57,11 @@ class User < ActiveRecord::Base
 
   before_create :set_default_role
 
-  validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
+  validates_format_of :email, with: TEMP_EMAIL_REGEX, on: :update
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
-
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at) unless auth.credentials.expires_at.nil?
-
-      user.email = auth.info.email || "#{auth.info.name.parameterize}@#{auth.provider}.com"
-      user.password = Devise.friendly_token[0, 20]
-      # assuming the user model has a name
-      user.name = auth.info.name
-      # assuming the user model has an image
-      user.image = auth.info.image
-      user.save!
+      create_from(auth, user)
     end
   end
 
@@ -84,13 +71,13 @@ class User < ActiveRecord::Base
 
   private
 
-  def create_from(auth, user)
+  def self.create_from(auth, user)
     user.provider = auth.provider
     user.uid = auth.uid
     user.oauth_token = auth.credentials.token
     user.oauth_expires_at = Time.at(auth.credentials.expires_at) unless auth.credentials.expires_at.nil?
 
-    user.email = auth.info.email || set_dummy_mail(auth)
+    user.email = auth.info.email || "#{auth.info.name.parameterize.gsub(/-/, '.')}@#{auth.provider}.com"
     user.password = Devise.friendly_token[0, 20]
     # assuming the user model has a name
     user.name = auth.info.name
