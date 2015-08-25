@@ -56,7 +56,7 @@ class Author::SiteStorage < ActiveRecord::Base
   end
 
   def get_versions
-    author_site_versions.order(updated_at: :desc)
+    author_site_versions.order(created_at: :desc)
   end
 
   def get_activated
