@@ -29,7 +29,7 @@ module UserLogsHelper
         "<li><span>Action</span>#{user_log.action}</li>",
         "<li><span>Domain</span>#{user_log.domain}</li>",
         '<li><span>Request Uri</span>',
-        "#{user_log.protocol}#{user_log.host}:#{user_log.port}#{user_log.request_uri}/#{user_log.action}",
+        "#{user_log.protocol}#{user_log.host}:#{user_log.port}#{user_log.request_uri}",
         "</li><li><span>Query string</span>#{user_log.query_string}</li>",
         "<li><span>Http accept</span>#{user_log.http_accept}</li>",
         "<li><span>SSL</span>#{user_log.ssl}</li>",
