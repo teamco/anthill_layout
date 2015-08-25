@@ -1,10 +1,6 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-  skip_before_filter :authenticate_user!
-
-  User.omniauth_providers.each do |provider|
-    define_method(provider) { generic_callback(provider.to_s) }
-  end
+  User.omniauth_providers.each { |provider| define_method(provider) { generic_callback(provider.to_s) } }
 
   def generic_callback(provider)
     begin
