@@ -10,7 +10,7 @@ class Author::SiteTypesController < Author::AuthorController
   # GET /author/site_types
   # GET /author/site_types.json
   def index
-    @author_site_types = SiteType.all.order(:name).includes(:author_site_storages)
+    @author_site_types = SiteType.fetch_data(current_user)
   end
 
   # GET /author/site_types/1
