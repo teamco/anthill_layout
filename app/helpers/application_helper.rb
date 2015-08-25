@@ -46,13 +46,4 @@ module ApplicationHelper
     link_to current_user.email, edit_user_registration_path
   end
 
-  def social_login
-    content_tag(:ul, class: 'social') do
-      content_tag(:li) do
-        concat link_to image_tag(image_url('fb.png')), user_omniauth_authorize_path(:facebook), {title: t('facebook_login')}
-        concat link_to image_tag(image_url('tw.png')), user_omniauth_authorize_path(:twitter), {title: t('twitter_login')}
-        concat link_to image_tag(image_url('ln.png')), user_omniauth_authorize_path(:linkedin), {title: t('linkedin_login')}
-      end
-    end
-  end
 end

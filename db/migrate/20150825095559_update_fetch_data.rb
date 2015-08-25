@@ -13,5 +13,6 @@ class UpdateFetchData < ActiveRecord::Migration
     Author::SiteVersion.all.each { |w| w.update(public: true, visible: true) }
     Author::SiteStorage.all.each { |w| w.update(public: true, visible: true) }
     Author::SiteType.all.each { |w| w.update(public: true, visible: true) }
+
   end
 end

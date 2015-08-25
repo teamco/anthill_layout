@@ -743,3 +743,12 @@ body.admin .json-view {
 .pagination a:hover, .pagination a:focus {
   text-decoration: underline
 }
+
+body.admin ul.social {
+  list-style: none;
+  margin-top: 5px;
+}
+
+body.admin ul.social li {
+  float: left;
+}

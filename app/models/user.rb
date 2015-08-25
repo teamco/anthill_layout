@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
+         :recoverable, :rememberable, :trackable,
          :timeoutable, :omniauthable,
          omniauth_providers: [
              # :digitalocean,
@@ -79,10 +79,12 @@ class User < ActiveRecord::Base
 
     user.email = auth.info.email || "#{auth.info.name.parameterize.gsub(/-/, '.')}@#{auth.provider}.com"
     user.password = Devise.friendly_token[0, 20]
+
     # assuming the user model has a name
     user.name = auth.info.name
     # assuming the user model has an image
     user.image = auth.info.image
+
     user.save!
   end
 

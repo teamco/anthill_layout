@@ -1,5 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
+  skip_before_filter :authenticate_user!
+
   User.omniauth_providers.each do |provider|
     define_method(provider) { generic_callback(provider.to_s) }
   end
@@ -20,6 +22,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       handle_error(e)
       redirect_to root_url
     end
+  end
+
+  def failure
+    super
   end
 
 end
