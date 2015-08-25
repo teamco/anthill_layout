@@ -23,7 +23,11 @@ Devise.setup do |config|
   # config.omniauth :amazon, ENV['AMAZON_KEY'], ENV['AMAZON_SECRET']
   # config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
 
-  config.omniauth :linkedin,
+  config.omniauth :aliexpress,
+                  ENV['ALIEXPRESS_KEY'] || '38279',
+                  ENV['ALIEXPRESS_SECRET'] || 'SiNNPYVD3uv'
+
+                  config.omniauth :linkedin,
                   ENV['LINKEDIN_KEY'],
                   ENV['LINKEDIN_SECRET'],
                   scope: 'r_basicprofile r_emailaddress'

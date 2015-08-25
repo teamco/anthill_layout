@@ -85,6 +85,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google'
 gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-github'
+gem 'omniauth-aliexpress', git: 'https://github.com/pinglamb/omniauth-aliexpress'
 
 gem 'cancan'
 

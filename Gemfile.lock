@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/pinglamb/omniauth-aliexpress
+  revision: b0fb9e8e71f4c9998da6437730060285cf1c191f
+  specs:
+    omniauth-aliexpress (0.0.1)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -335,6 +343,7 @@ DEPENDENCIES
   meta_request
   mysql2
   omniauth
+  omniauth-aliexpress!
   omniauth-amazon
   omniauth-digitalocean
   omniauth-facebook
