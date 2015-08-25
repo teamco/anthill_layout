@@ -6,7 +6,7 @@ module ErrorLogsHelper
 
   def error_td(error_log, expand='')
     [
-        "<tr><td class=\"nw c\">",
+        "<tr><td class=\"nw\">",
         "#{expand}#{error_log.id}</td><td>#{error_log.name}</td>",
         "<td class=\"name\">#{error_log.message}</td>",
         "<td>#{error_log.exception}</td>",

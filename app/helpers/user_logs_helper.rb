@@ -6,7 +6,7 @@ module UserLogsHelper
 
   def user_td(user_log, expand='')
     [
-        "<tr#{user_log.error_log.nil? ? '' : ' class=error'}><td class=\"nw c\">",
+        "<tr#{user_log.error_log.nil? ? '' : ' class=error'}><td class=\"nw\">",
         "#{expand}#{user_log.id}</td>",
         "<td class=\"name\">#{link_to user_log.user_email, 'user_log.user.id' unless user_log.user.nil?}</td>",
         "<td>#{user_log.method}</td>",

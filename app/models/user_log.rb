@@ -48,4 +48,8 @@ class UserLog < ActiveRecord::Base
         create!(opts)) if except(cname, aname)
   end
 
+  def self.fetch_data(user)
+    user.user_logs.all.order('id DESC').includes(:error_log)
+  end
+
 end

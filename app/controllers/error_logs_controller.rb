@@ -4,8 +4,7 @@ class ErrorLogsController < Author::AuthorController
   # GET /error_logs
   # GET /error_logs.json
   def index
-    @error_logs = current_user.error_logs.order('id DESC').
-        includes(:user_log, :user).
+    @error_logs = ErrorLog.fetch_data(current_user).
         paginate(page: params[:page], per_page: 15)
   end
 

@@ -25,4 +25,8 @@ class ErrorLog < ActiveRecord::Base
 
   end
 
+  def self.fetch_data(user)
+    user.error_logs.order('id DESC').includes(:user_log)
+  end
+
 end
