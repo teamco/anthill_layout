@@ -47,12 +47,12 @@ class Author::SiteStoragesController < Author::AuthorController
   def new
     @author_site_types = SiteType.order(:name)
     @author_site_storage = SiteStorage.new
-    render action: :form
+    render :form
   end
 
   # GET /author/site_storages/1/edit
   def edit
-    render action: :form
+    render :form
   end
 
   # POST /author/site_storages

@@ -70,12 +70,12 @@ class Author::WidgetsController < Author::AuthorController
   # GET /author/widgets/new
   def new
     @author_widget = Widget.new
-    render action: :form
+    render :form
   end
 
   # GET /author/widgets/1/edit
   def edit
-    render action: :form
+    render :form
   end
 
   # POST /author/widgets
