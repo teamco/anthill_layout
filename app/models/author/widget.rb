@@ -24,6 +24,7 @@ class Author::Widget < ActiveRecord::Base
   validates :height, presence: true, numericality: true
 
   def self.fetch_data(user)
+    includes(:author_widget_category).
     where('visible=? AND (public=? OR user_id=?)', true, true, user.id).
         order(name: :asc)
   end
