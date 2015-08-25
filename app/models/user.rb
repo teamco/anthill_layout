@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
              # :google,
              # :amazon,
              # :github
-             # :linkedin
+             :linkedin
          ]
 
   has_many :author_site_storages,

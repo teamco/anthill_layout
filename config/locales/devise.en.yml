@@ -71,3 +71,5 @@ en:
   success_delete_user: "Successfully deleted User"
   facebook_login: "Sign in with Facebook"
   login: "Log in"
+  twitter_login: "Sign in with Twitter"
+  linkedin_login: "Sign in with Linkedin"
