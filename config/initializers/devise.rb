@@ -21,11 +21,13 @@ Devise.setup do |config|
   # config.omniauth :digitalocean, ENV['DIGITALOCEAN_KEY'], ENV['DIGITALOCEAN_SECRET']
   # config.omniauth :google, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET']
   # config.omniauth :amazon, ENV['AMAZON_KEY'], ENV['AMAZON_SECRET']
-  # config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
+  config.omniauth :github,
+                  ENV['GITHUB_KEY'],
+                  ENV['GITHUB_SECRET']
 
   config.omniauth :aliexpress,
-                  ENV['ALIEXPRESS_KEY'] || '38279',
-                  ENV['ALIEXPRESS_SECRET'] || 'SiNNPYVD3uv'
+                  ENV['ALIEXPRESS_KEY'],
+                  ENV['ALIEXPRESS_SECRET']
 
                   config.omniauth :linkedin,
                   ENV['LINKEDIN_KEY'],
