@@ -78,11 +78,14 @@ class User < ActiveRecord::Base
     user.oauth_token = auth.credentials.token
     user.oauth_expires_at = Time.at(auth.credentials.expires_at) unless auth.credentials.expires_at.nil?
 
-    user.email = auth.info.email || "#{auth.info.name.parameterize.gsub(/-/, '.')}@#{auth.provider}.com"
+    name = auth.info.name
+    name = auth.info.resource_owner if auth.provider == 'aliexpress'
+
+    user.email = auth.info.email || "#{name.parameterize.gsub(/-/, '.')}@#{auth.provider}.com"
     user.password = Devise.friendly_token[0, 20]
 
     # assuming the user model has a name
-    user.name = auth.info.name
+    user.name = name
     # assuming the user model has an image
     user.image = auth.info.image
 
