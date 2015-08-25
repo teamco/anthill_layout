@@ -1,13 +1,13 @@
 <ul class="admin-navigation inner">
   <li><%= render_add_new %></li>
-  <% @author_site_storages.each do |author_site_storage| %>
+  <% @author_site_storages.each do |storage| %>
       <li>
-        <%= link_to author_site_storage.key, preview_path(author_site_storage), {target: '_blank'} %>
-        <h4><%= author_site_storage.author_site_type.try(:name) %></h4>
-        <h6><%= author_site_storage.uuid %></h6>
-        <%= render 'published', locals: {publish: author_site_storage.publish} %>
-        <%= render 'widgets', locals: {site: author_site_storage} %>
-        <%= render 'footer', locals: {site: author_site_storage} %>
+        <%= link_to storage.key, preview_path(storage), {target: '_blank'} %>
+        <h4><%= storage.author_site_type.try(:name) %></h4>
+        <h6><%= storage.uuid %></h6>
+        <%= render 'published', publish: storage.publish %>
+        <%= render 'widgets', site: storage %>
+        <%= render 'footer', site: storage %>
       </li>
   <% end %>
 </ul>

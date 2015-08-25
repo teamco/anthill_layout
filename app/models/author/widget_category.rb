@@ -12,4 +12,10 @@ class Author::WidgetCategory < ActiveRecord::Base
   validates :name_index, presence: true
   validates :name_value, presence: true
 
+  def self.fetch_data(user)
+    includes(:author_widgets).
+        where('visible=? AND (public=? OR user_id=?)', true, true, user.id).
+        order(:name_value)
+  end
+
 end

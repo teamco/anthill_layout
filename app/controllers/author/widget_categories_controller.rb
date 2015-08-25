@@ -10,7 +10,7 @@ class Author::WidgetCategoriesController < Author::AuthorController
   # GET /author/widget_categories
   # GET /author/widget_categories.json
   def index
-    @author_widget_categories = WidgetCategory.all.order(:name_value).includes(:author_widgets)
+    @author_widget_categories = WidgetCategory.fetch_data(current_user)
   end
 
   # GET /author/widget_categories/1

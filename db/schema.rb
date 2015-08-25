@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824200703) do
+ActiveRecord::Schema.define(version: 20150825095559) do
 
   create_table "author_site_storage_widgets", force: :cascade do |t|
     t.integer  "site_storage_id", limit: 4
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20150824200703) do
     t.integer  "site_type_id", limit: 4
     t.integer  "user_id",      limit: 4
     t.boolean  "publish",                  default: false
+    t.boolean  "visible",                  default: true
+    t.boolean  "public",                   default: true
   end
 
   add_index "author_site_storages", ["user_id"], name: "index_author_site_storages_on_user_id", unique: true, using: :btree
@@ -54,6 +56,8 @@ ActiveRecord::Schema.define(version: 20150824200703) do
     t.datetime "updated_at",                                       null: false
     t.text     "content",         limit: 16777215
     t.integer  "user_id",         limit: 4
+    t.boolean  "visible",                          default: true
+    t.boolean  "public",                           default: true
   end
 
   add_index "author_site_versions", ["site_storage_id"], name: "index_author_site_versions_on_site_storage_id", using: :btree
@@ -65,6 +69,8 @@ ActiveRecord::Schema.define(version: 20150824200703) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id",    limit: 4
+    t.boolean  "visible",                default: true
+    t.boolean  "public",                 default: true
   end
 
   add_index "author_widget_categories", ["user_id"], name: "index_author_widget_categories_on_user_id", using: :btree

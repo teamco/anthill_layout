@@ -41,7 +41,7 @@ class Author::WidgetsController < Author::AuthorController
 
     unless @author_widgets.nil?
       @json_data[:user] = current_user
-      @json_data[:categories] = WidgetCategory.all.includes(:author_widgets).order(:name_value)
+      @json_data[:categories] = WidgetCategory.fetch_data(current_user)
       @json_data[:widgets] = @author_widgets.map do |w|
         {
             id: w[:id],

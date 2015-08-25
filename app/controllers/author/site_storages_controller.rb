@@ -16,11 +16,7 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages
   # GET /author/site_storages.json
   def index
-    @author_site_storages = current_user.author_site_storages.includes(
-        :author_site_type,
-        :author_widgets,
-        :author_site_versions
-    ).all.order(:key)
+    @author_site_storages = SiteStorage.fetch_data(current_user)
   end
 
   # GET /author/site_storages/1
@@ -28,7 +24,7 @@ class Author::SiteStoragesController < Author::AuthorController
   def show
     @storage = {}
     if File.exist?(@target_path)
-      @storage = @author_site_storage.fetch_data
+      @storage = @author_site_storage.get_storage_data
 
       mode = SiteType.find_by_name(params[:mode])
       @storage[:mode] = mode.name unless mode.nil?
