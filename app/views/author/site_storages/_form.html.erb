@@ -1,9 +1,7 @@
-<% storage = @author_site_storage %>
-<% types = @author_site_types %>
-<%= form_for(storage) do |f| -%>
-    <% content = storage.get_activated.content rescue nil %>
-    <%= render_notification(storage) -%>
-    <%= render_text_field(f, :key, !storage.key.nil?) -%>
+<%= form_for(item) do |f| -%>
+    <% content = item.get_activated.content rescue nil %>
+    <%= render_notification(item) -%>
+    <%= render_text_field(f, :key, !item.key.nil?) -%>
     <%= render_text_area_tag(:content, content, true) -%>
     <%= render_json(content, '.json-view') unless content.nil? %>
     <%= render_checkbox(f, :publish) -%>

@@ -82,7 +82,11 @@ module Author::AuthorHelper
     content_tag(:div) do
       concat link_to '&#10157;'.html_safe, {controller: controller_name}, class: 'back'
       concat content_tag(:h1, "#{action_name.humanize} #{controller_name.humanize}")
-      concat render partial: 'form'
+      concat render partial: "/author/#{controller_name}/form",
+                    locals: {
+                        item: instance_variable_get("@author_#{controller_name.singularize}"),
+                        types: @author_site_types
+                    }
     end
   end
 

@@ -1,7 +1,6 @@
-<% category = @author_widget_category %>
-<%= form_for(category) do |f| %>
+<%= form_for(item) do |f| %>
 
-    <%= render_notification(category) %>
+    <%= render_notification(item) %>
     <%= render_text_field(f, :name_index) %>
     <%= render_text_field(f, :name_value) %>
     <%= render_submit(f) %>

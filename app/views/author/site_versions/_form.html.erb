@@ -1,10 +1,9 @@
-<% version = @author_site_version %>
-<%= form_for(version) do |f| %>
+<%= form_for(item) do |f| %>
 
-    <%= render_notification(version) %>
-    <%= render_text(:site_storage, version.author_site_storage.try(:key)) %>
+    <%= render_notification(item) %>
+    <%= render_text(:site_storage, item.author_site_storage.try(:key)) %>
     <%= render_text_area(f, :content) %>
-    <%= render_json( version.content, '.json-view') %>
+    <%= render_json( item.content, '.json-view') %>
     <%= render_number_field(f, :version, true) %>
     <%= render_checkbox(f, :activated) %>
     <%= render_submit(f) %>
