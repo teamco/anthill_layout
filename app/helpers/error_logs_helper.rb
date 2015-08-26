@@ -1,7 +1,7 @@
 module ErrorLogsHelper
 
   def error_th
-    '<tr><th>ID</th><th>Name</th><th>Message</th><th>Exception</th><th>Date</th></tr>'.html_safe
+    th(%w(ID Name Cause Exception Date))
   end
 
   def error_td(error_log, expand='')

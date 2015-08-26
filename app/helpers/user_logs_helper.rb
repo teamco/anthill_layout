@@ -1,7 +1,7 @@
 module UserLogsHelper
 
   def user_th
-    '<tr><th>ID</th><th>User</th><th>Method</th><th>Url</th><th>Date</th></tr>'.html_safe
+    th(%w(ID User Method Url Date))
   end
 
   def user_td(user_log, expand='')

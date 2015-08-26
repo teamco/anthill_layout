@@ -17,7 +17,7 @@ class ErrorLog < ActiveRecord::Base
         {
             user_log_id: user_log.try(:id),
             name: (e.name rescue ''),
-            message: e.message,
+            message: e.cause,
             exception: e.exception,
             backtrace: e.backtrace
         }
