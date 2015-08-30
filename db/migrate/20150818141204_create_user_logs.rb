@@ -11,6 +11,7 @@ class CreateUserLogs < ActiveRecord::Migration
       t.string :domain
       t.string :request_uri
       t.string :url
+      t.string :format
       t.string :protocol
       t.string :host
       t.string :port

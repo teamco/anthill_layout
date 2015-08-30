@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825191231) do
+ActiveRecord::Schema.define(version: 20150825095559) do
 
   create_table "author_site_storage_widgets", force: :cascade do |t|
     t.integer  "site_storage_id", limit: 4
@@ -36,8 +36,6 @@ ActiveRecord::Schema.define(version: 20150825191231) do
     t.boolean  "visible",                  default: true
     t.boolean  "public",                   default: true
   end
-
-  add_index "author_site_storages", ["user_id"], name: "index_author_site_storages_on_user_id", unique: true, using: :btree
 
   create_table "author_site_types", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -88,11 +86,11 @@ ActiveRecord::Schema.define(version: 20150825191231) do
     t.string   "resource",           limit: 255
     t.boolean  "is_external",                         default: false
     t.string   "external_resource",  limit: 255
+    t.boolean  "visible"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id",            limit: 4
-    t.boolean  "visible",                             default: true
-    t.boolean  "public",                              default: true
+    t.boolean  "public",                              default: false
   end
 
   add_index "author_widgets", ["user_id"], name: "index_author_widgets_on_user_id", using: :btree
@@ -127,6 +125,7 @@ ActiveRecord::Schema.define(version: 20150825191231) do
     t.string   "domain",          limit: 255
     t.text     "request_uri",     limit: 65535
     t.text     "url",             limit: 65535
+    t.string   "format",          limit: 255
     t.string   "protocol",        limit: 255
     t.string   "host",            limit: 255
     t.string   "port",            limit: 255
@@ -134,7 +133,6 @@ ActiveRecord::Schema.define(version: 20150825191231) do
     t.text     "user_session",    limit: 65535
     t.text     "query_string",    limit: 65535
     t.string   "http_accept",     limit: 255
-    t.string   "format",          limit: 255
     t.boolean  "ssl"
     t.boolean  "xhr"
     t.string   "referer",         limit: 255
@@ -177,7 +175,7 @@ ActiveRecord::Schema.define(version: 20150825191231) do
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
