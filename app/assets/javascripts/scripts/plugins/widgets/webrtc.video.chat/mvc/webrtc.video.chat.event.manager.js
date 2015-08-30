@@ -23,6 +23,7 @@ define([
             chatLogin: 'chat.login',
             chatReady: 'chat.ready',
             chatReceive: 'chat.receive',
+            chatCall: 'chat.call',
             chatConnected: 'chat.connected',
             chatEnded: 'chat.ended'
         });

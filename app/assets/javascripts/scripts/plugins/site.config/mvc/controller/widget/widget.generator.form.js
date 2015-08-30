@@ -17,7 +17,7 @@ define(function defineWidgetGeneratorForm() {
         /**
          * Clear widget generate form
          * @memberOf WidgetGeneratorForm
-         * @private
+         * @protected
          */
         _clearWidgetForm: function _clearWidgetForm() {
 
@@ -48,7 +48,7 @@ define(function defineWidgetGeneratorForm() {
          *      validate: *,
          *      empty: number
          * }}
-         * @private
+         * @protected
          */
         _collectFormWidgetData: function _collectFormWidgetData(external) {
 

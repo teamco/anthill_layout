@@ -6,8 +6,9 @@
  */
 
 define([
-    'modules/Element'
-], function defineWebrtcVideoChatElement(BaseElement) {
+    'modules/Element',
+    'element/button.element'
+], function defineWebrtcVideoChatElement(BaseElement, ButttonElement) {
 
     /**
      * Define WebrtcVideoChat Element
@@ -17,6 +18,7 @@ define([
      * @constructor
      * @class WebrtcVideoChatElement
      * @extends BaseElement
+     * @extends Renderer
      */
     var WebrtcVideoChatElement = function WebrtcVideoChatElement(view, opts) {
 
@@ -25,6 +27,7 @@ define([
             destroy: true
         });
 
+        this.$buttons = {};
         this.addCSS('webrtc.video.chat', {resource: '/widgets'});
 
         return this;
@@ -35,37 +38,79 @@ define([
         /**
          * Render Embedded content
          * @memberOf WebrtcVideoChatElement
+         * @param {string} ppupnub
+         * @param {string} webrtc
          */
-        renderEmbeddedContent: function renderEmbeddedContent() {
-
-            this.$.append('<div />');
-            this.$.append([
-                '<form name="loginForm" id="login" action="#" onsubmit="return login(this);">',
-                '<input type="text" name="username" id="username" placeholder="Pick a username!" />',
-                '<input type="submit" name="login_submit" value="Log In">',
-                '</form>'
-            ].join(''));
-            this.$.append([
-                '<form name="callForm" id="call" action="#" onsubmit="return makeCall(this);">',
-                '<input type="text" name="number" placeholder="Enter user to dial!" />',
-                '<input type="submit" value="Call"/>',
-                '</form>'
-            ].join(''));
+        renderEmbeddedContent: function renderEmbeddedContent(ppupnub, webrtc) {
 
             /**
-             * Get $element
-             * @type {WebrtcVideoChatElement}
+             * Get login field
+             * @type {TextFieldRenderer}
              */
-            var $element = this;
-
-            require([
-                '//cdn.pubnub.com/pubnub-3.7.14.min.js',
-                '//cdn.pubnub.com/webrtc/webrtc.js'
-            ], function () {
-
-                var $video_out = $element.$.find('div:first');
-
+            this.$loginField = this.renderTextField({
+                name: 'login',
+                text: '',
+                placeholder: 'Pick a username',
+                disabled: false,
+                visible: true
             });
+
+            /**
+             * Get call field
+             * @type {TextFieldRenderer}
+             */
+            this.$callField = this.renderTextField({
+                name: 'call',
+                text: '',
+                placeholder: 'Enter user to dial',
+                disabled: false,
+                visible: true
+            });
+
+            var $liCall = $('<li />').append(this.$callField),
+                $liLogin = $('<li />').append(this.$loginField);
+
+            this.$.append('<ul />').
+                find('ul').
+                append([$liLogin, $liCall]);
+
+            this.view.button(
+                ButttonElement, {
+                    login: {
+                        $container: $liLogin,
+                        $htmlElement: $('<button />'),
+                        text: 'Login',
+                        events: {click: 'doLogin'}
+                    },
+                    call: {
+                        $container: $liCall,
+                        $htmlElement: $('<button />'),
+                        text: 'Call',
+                        events: {click: 'doCall'}
+                    }
+                }, this.$buttons
+            );
+
+            require([ppupnub, webrtc]);
+        },
+
+        /**
+         * Define append video
+         * @memberOf WebrtcVideoChatElement
+         * @param video
+         */
+        appendVideo: function appendVideo(video) {
+            this.$.append(video);
+        },
+
+        /**
+         * Define fetch value
+         * @memberOf WebrtcVideoChatElement
+         * @param {string} $element
+         * @returns {string}
+         */
+        fetchValue: function fetchValue($element) {
+            return this[$element][1].val();
         }
 
     }, BaseElement.prototype);

@@ -24,7 +24,7 @@ define([
 
         this.setup(opts);
 
-        this._config(view, opts, $('<li />')).build({
+        this._config(view, opts, this.base.define(opts.$htmlElement, $('<li />'), true)).build({
             $container: opts.$container,
             destroy: true
         });

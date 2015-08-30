@@ -27,7 +27,10 @@ define([
          * @memberOf WebrtcVideoChatController
          */
         setEmbeddedContent: function setEmbeddedContent() {
-            this.view.elements.$webrtcvideochat.renderEmbeddedContent();
+            this.view.elements.$webrtcvideochat.renderEmbeddedContent(
+                this.model.getPrefs('webrtcvideochatPubNub'),
+                this.model.getPrefs('webrtcvideochatWebRtc')
+            );
         },
 
         /**
@@ -39,21 +42,28 @@ define([
 
             var phone = window.phone = PHONE({
                 number: user || "Anonymous", // listen on username line else Anonymous
-                publish_key: 'your_pub_key',
-                subscribe_key: 'your_sub_key'
+                publish_key: this.model.getPrefs('webrtcvideochatPublish'),
+                subscribe_key: this.model.getPrefs('webrtcvideochatSubscribe')
             });
+
+            /**
+             * Get scope
+             * @type {WebrtcVideoChat}
+             */
+            var scope = this;
 
             phone.ready(function () {
-
-                this.observer.publish(
-                    this.eventmanager.eventList.chatReady
+                scope.observer.publish(
+                    scope.eventmanager.eventList.chatReady
                 );
-
-            }.bind(this));
+            });
 
             phone.receive(function (session) {
+                scope.observer.publish(
+                    scope.eventmanager.eventList.chatReceive,
+                    session
+                );
             });
-            return false; 	// So the form does not submit.
         },
 
         /**
@@ -63,22 +73,25 @@ define([
          */
         chatReceive: function chatReceive(session) {
 
-            session.connected(function (session) {
+            /**
+             * Get scope
+             * @type {WebrtcVideoChat}
+             */
+            var scope = this;
 
-                this.observer.publish(
-                    this.eventmanager.eventList.chatConnected,
+            session.connected(function (session) {
+                scope.observer.publish(
+                    scope.eventmanager.eventList.chatConnected,
                     session
                 );
             });
 
             session.ended(function (session) {
-
-                this.observer.publish(
-                    this.eventmanager.eventList.chatReady,
+                scope.observer.publish(
+                    scope.eventmanager.eventList.chatReady,
                     session
                 );
-
-            }.bind(this));
+            });
         },
 
         /**
@@ -87,7 +100,7 @@ define([
          * @param session
          */
         chatConnected: function chatConnected(session) {
-            video_out.appendChild(session.video);
+            this.view.get$item().appendVideo(session.video);
             this.logger.debug('Chat connected', session);
         },
 
@@ -97,8 +110,10 @@ define([
          * @param session
          */
         chatEnded: function chatEnded(session) {
-            video_out.innerHTML = '';
             this.logger.debug('Chat ended', session);
+            this.observer.publish(
+                this.eventmanager.eventList.setEmbeddedContent
+            );
         },
 
         /**
@@ -107,6 +122,69 @@ define([
          */
         chatReady: function chatReady() {
             this.logger.debug('Chat ready');
+        },
+
+        /**
+         * Define do login
+         * @memberOf WebrtcVideoChatController
+         * @param e
+         */
+        doLogin: function doLogin(e) {
+
+            /**
+             * Get scope
+             * @type {WebrtcVideoChat}
+             */
+            var scope = this.scope,
+                login = scope.view.get$item().fetchValue('$loginField');
+
+            scope.logger.debug('Login received', e, login);
+
+            if (login.length) {
+                scope.observer.publish(
+                    scope.eventmanager.eventList.chatLogin,
+                    login
+                );
+            }
+        },
+
+        /**
+         * Define do call
+         * @memberOf WebrtcVideoChatController
+         * @param e
+         */
+        doCall: function doCall(e) {
+
+            /**
+             * Get scope
+             * @type {WebrtcVideoChat}
+             */
+            var scope = this.scope,
+                call = scope.view.get$item().fetchValue('$callField');
+
+            scope.logger.debug('Call received', e, call);
+
+            if (call.length) {
+                scope.observer.publish(
+                    scope.eventmanager.eventList.chatCall,
+                    call
+                );
+            }
+        },
+
+        /**
+         * Define chat call
+         * @memberOf WebrtcVideoChatController
+         * @param {string} user
+         */
+        chatCall: function chatCall(user) {
+
+            if (!window.phone) {
+                this.logger.warn('Login first');
+                return false;
+            }
+
+            phone.dial(user);
         },
 
         /**

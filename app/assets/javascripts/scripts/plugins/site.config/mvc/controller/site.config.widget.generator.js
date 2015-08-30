@@ -67,7 +67,7 @@ define([
                  * @property SiteConfigWidgetGenerator
                  * @param xhr
                  * @param opts
-                 * @private
+                 * @protected
                  */
                 _beforeSendWidgetData: function _beforeSendWidgetData(xhr, opts) {
 
@@ -147,7 +147,7 @@ define([
                  * @param xhr
                  * @param status
                  * @param description
-                 * @private
+                 * @protected
                  */
                 _onErrorSendWidgetData: function (xhr, status, description) {
 
@@ -192,7 +192,7 @@ define([
                  * @param data
                  * @param status
                  * @param xhr
-                 * @private
+                 * @protected
                  */
                 _handleSuccessSendWidgetData: function _handleSuccessSendWidgetData(data, status, xhr) {
 

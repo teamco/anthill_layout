@@ -375,21 +375,28 @@ define([
          * Generic button
          * @memberOf BaseView
          * @param {Function|ButtonElement} ButtonElement
-         * @param {*} opts
+         * @param {$container, [$htmlElement], style, text, disabled, events} opts
          * @param {*} store
          */
         button: function button(ButtonElement, opts, store) {
 
+            /**
+             * Get BaseView
+             * @type {BaseView}
+             */
+            var view = this;
+
             $.each(
-                this.base.define(opts, {}, true),
+                view.base.define(opts, {}, true),
                 function _eachButton(i, button) {
 
                     /**
                      * Define button
                      * @type {ButtonElement}
                      */
-                    store[i] = new ButtonElement(this, {
+                    store[i] = new ButtonElement(view, {
                         $container: button.$container,
+                        $htmlElement: button.$htmlElement,
                         style: i.toDash(),
                         text: button.text,
                         disabled: button.disabled,
@@ -397,13 +404,16 @@ define([
                     });
 
                     $.each(button.events || {}, function _eachEvent(key, event){
-
-                        store[i].$.on(key + '.afterCallback', function _afterCallback(e) {
-                            store[i].afterEventsCallback(e);
-                        });
+                        store[i].$.on(
+                            key + '.afterCallback',
+                            store[i].afterEventsCallback.bind(store[i])
+                        );
                     });
 
-                }.bind(this)
+                    view.scope.logger.debug(
+                        'Button created', store[i]
+                    );
+                }
             );
         },
 
