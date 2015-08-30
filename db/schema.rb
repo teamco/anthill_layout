@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20150825095559) do
     t.boolean  "public",                   default: true
   end
 
+  add_index "author_site_storages", ["user_id"], name: "index_author_site_storages_on_user_id", using: :btree
+
   create_table "author_site_types", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",                            null: false
