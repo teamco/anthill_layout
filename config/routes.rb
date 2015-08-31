@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :site_storages do
       resources :site_versions
       resources :widgets
-      resources :vulnerability_storages
+      get 'get_users', to: '/users/management#index'
     end
     resources :site_versions do
       resources :site_storages
@@ -32,8 +32,13 @@ Rails.application.routes.draw do
     resources :widget_categories do
       resource :widgets
     end
+  end
+
+  resources :site_storages, path: 'author/site_storages' do
     resources :vulnerability_storages
   end
+
+  resources :vulnerability_storages, only: [:index]
 
   put '/fetch_external_widget', to: 'author/widgets#external_fetch'
   post '/external_widgets', to: 'author/widgets#external_widgets'

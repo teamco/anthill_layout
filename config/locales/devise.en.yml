@@ -73,3 +73,6 @@ en:
   login: "Log in"
   twitter_login: "Sign in with Twitter"
   linkedin_login: "Sign in with Linkedin"
+  show_users: "Show signed users"
+  remove_all_users: "Remove all signed users from site"
+  online: "Online"

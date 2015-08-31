@@ -1,0 +1,11 @@
+<ul class="admin-navigation inner">
+  <% @user.author_site_storages.each do |storage| %>
+      <li>
+        <%= link_to storage.key, author_site_storage_path(storage), {target: '_blank'} %>
+        <h4><%= storage.author_site_type.try(:name) %></h4>
+        <h6><%= storage.uuid %></h6>
+        <%= render 'users', site: storage %>
+        <%= render 'footer', site: storage %>
+      </li>
+  <% end %>
+</ul>

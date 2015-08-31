@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
-         :timeoutable, :omniauthable,
+         :timeoutable, :omniauthable, :lastseenable,
          omniauth_providers: [
              # :digitalocean,
              :twitter,
@@ -68,6 +68,14 @@ class User < ActiveRecord::Base
 
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
+  end
+
+  def self.fetch_data(user)
+    all
+  end
+
+  def online
+    where('last_seen > ?', 5.minutes.ago)
   end
 
   private

@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def ch
-    controller_name.humanize
+    controller_path.gsub(/\//, ' ').humanize
   end
 
   def ah
@@ -15,15 +15,24 @@ module ApplicationHelper
   def is_author?
     mn = controller_name.classify
     begin
-      return false if mn.constantize
+      false if mn.constantize
     rescue
-      return true if "Author::#{mn}".constantize
+      true if "Author::#{mn}".constantize
     end
   end
 
   def mc
     mn = controller_name.classify
-    (is_author? ? "Author::#{mn}" : mn).constantize
+    begin
+      (is_author? ? "Author::#{mn}" : mn).constantize
+    rescue => e
+      case controller_path
+        when 'users/management' then
+          User
+        else
+          raise Exception.new(e)
+      end
+    end
   end
 
   def ih

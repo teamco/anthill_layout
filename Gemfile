@@ -35,6 +35,10 @@ group :test, :development do
   gem 'capistrano-rails'
   gem 'rails_best_practices'
   gem 'request-log-analyzer'
+  gem 'traceroute'
+  gem 'brakeman', require: false
+  gem 'rubocop', require: false
+  gem 'rubycritic', require: false
 end
 
 group :console do
@@ -77,6 +81,7 @@ gem 'jbuilder', '>= 2.0'
 gem 'therubyracer'
 
 gem 'devise'
+gem 'devise_lastseenable'
 gem 'omniauth'
 gem 'omniauth-digitalocean'
 gem 'omniauth-twitter'

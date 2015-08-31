@@ -2,7 +2,7 @@
     <% content = item.get_activated.content rescue nil %>
     <%= render_notification(item) -%>
     <%= render_text_field(f, :key, !item.key.nil?) -%>
-    <%= render_text_area_tag(:content, content, true) -%>
+    <%= render_text_area_tag(:content, content, true)  unless action_name == 'new' -%>
     <%= render_json(content, '.json-view') unless content.nil? %>
     <%= render_checkbox(f, :publish) -%>
     <%= render_collection(f, 'Type', {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825095559) do
+ActiveRecord::Schema.define(version: 20150831114943) do
 
   create_table "author_site_storage_widgets", force: :cascade do |t|
     t.integer  "site_storage_id", limit: 4
@@ -174,6 +174,7 @@ ActiveRecord::Schema.define(version: 20150825095559) do
     t.datetime "oauth_expires_at"
     t.string   "name",                   limit: 255
     t.string   "image",                  limit: 255
+    t.datetime "last_seen"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

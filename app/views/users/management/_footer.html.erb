@@ -1,0 +1,4 @@
+<div>
+  <div><%= render 'menu', site: site %></div>
+  <%= "#{t('online')}: #{User.where('last_seen > ?', 5.minutes.ago).length }" %>
+</div>

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :update_user_log
+  before_action :update_user_log
 
   layout :layout_by_resource
 
@@ -16,29 +16,28 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
   end
 
-  def handle_error(e)
+  def handle_error(e, status, template)
     logger.info e.inspect
     ErrorLog.handle_error(current_user, e)
+    if self.methods.include? 'super'
+      super
+    else
+      respond_to do |format|
+        format.html { render file: "#{Rails.root}/public/#{template}", layout: false, status: status }
+        format.xml { head :not_found }
+        format.any { head :not_found }
+      end
+    end
   end
 
   protected
 
   def not_found(e)
-    handle_error(e)
-    respond_to do |format|
-      format.html { render file: "#{Rails.root}/public/404", layout: false, status: :not_found }
-      format.xml { head :not_found }
-      format.any { head :not_found }
-    end
+    handle_error(e, :not_found, 404)
   end
 
   def error(e)
-    handle_error(e)
-    respond_to do |format|
-      format.html { render file: "#{Rails.root}/public/500", layout: false, status: :error }
-      format.xml { head :not_found }
-      format.any { head :not_found }
-    end
+    handle_error(e, :internal_server_error, 500)
   end
 
   def layout_by_resource
