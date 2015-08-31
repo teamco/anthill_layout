@@ -50,6 +50,7 @@ class Author::SiteStorage < ActiveRecord::Base
   def self.fetch_data(user)
     includes(
         :author_site_type,
+        :author_site_versions,
         :author_widgets
     ).where('visible=? AND (public=? OR user_id=?)', true, true, user.id).
         order(:key)

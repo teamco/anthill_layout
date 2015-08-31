@@ -13,7 +13,7 @@
                            }) -%>
 
     <%= render_activated_version(f) -%>
-    <%= render_widgets %>
+    <%= render_widgets unless action_name == 'new' %>
     <%= render_submit(f) -%>
 
 <% end -%>
