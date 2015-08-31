@@ -25,6 +25,8 @@ class Author::SiteStorage < ActiveRecord::Base
   belongs_to :user,
              foreign_key: :user_id
 
+  has_and_belongs_to_many :users
+
   accepts_nested_attributes_for :author_site_storage_widgets, allow_destroy: true
   accepts_nested_attributes_for :author_site_versions, allow_destroy: true
   accepts_nested_attributes_for :author_site_type

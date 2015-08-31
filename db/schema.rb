@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831114943) do
+ActiveRecord::Schema.define(version: 20150831190346) do
 
   create_table "author_site_storage_widgets", force: :cascade do |t|
     t.integer  "site_storage_id", limit: 4
@@ -31,13 +31,18 @@ ActiveRecord::Schema.define(version: 20150831114943) do
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.integer  "site_type_id", limit: 4
-    t.integer  "user_id",      limit: 4
     t.boolean  "publish",                  default: false
     t.boolean  "visible",                  default: true
     t.boolean  "public",                   default: true
   end
 
-  add_index "author_site_storages", ["user_id"], name: "index_author_site_storages_on_user_id", using: :btree
+  create_table "author_site_storages_users", id: false, force: :cascade do |t|
+    t.integer "site_storage_id", limit: 4
+    t.integer "user_id",         limit: 4
+  end
+
+  add_index "author_site_storages_users", ["site_storage_id"], name: "index_author_site_storages_users_on_site_storage_id", using: :btree
+  add_index "author_site_storages_users", ["user_id"], name: "index_author_site_storages_users_on_user_id", using: :btree
 
   create_table "author_site_types", force: :cascade do |t|
     t.string   "name",       limit: 255

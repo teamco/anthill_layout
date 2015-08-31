@@ -16,9 +16,9 @@ class User < ActiveRecord::Base
              :aliexpress
          ]
 
-  has_many :author_site_storages,
-           class_name: 'Author::SiteStorage',
-           dependent: :destroy
+  has_and_belongs_to_many :author_site_storages,
+                          class_name: 'Author::SiteStorage',
+                          dependent: :destroy
 
   has_many :author_widgets,
            class_name: 'Author::Widget',
