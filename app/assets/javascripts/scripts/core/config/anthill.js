@@ -18,6 +18,13 @@ define([
     var AntHill = function AntHill() {
 
         /**
+         * Init a new deferred object
+         * @property AntHill
+         * @type {*}
+         */
+        this.deferred = $.Deferred();
+
+        /**
          * Init API
          * @property AntHill
          * @type {*}

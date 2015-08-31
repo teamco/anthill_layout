@@ -782,7 +782,6 @@ define([
 
                 return collector;
             }
-
         },
         AntHill.prototype,
         BehaviorCrud.prototype,

@@ -344,7 +344,7 @@ define([
          * @memberOf Base
          * @param {function} conditionFn
          * @param {function} callbackFn
-         * @param {function} fallbackFn
+         * @param {function} [fallbackFn]
          */
         waitFor: function waitFor(conditionFn, callbackFn, fallbackFn) {
 
@@ -373,7 +373,9 @@ define([
                     } else {
 
                         // External library failed to load
-                        fallbackFn();
+                        if (typeof(fallbackFn) === 'function') {
+                            fallbackFn();
+                        }
                     }
                 }, 100);
             };

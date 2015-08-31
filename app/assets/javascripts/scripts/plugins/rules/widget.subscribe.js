@@ -1,8 +1,7 @@
 /**
  * Created by teamco on 4/1/14.
  */
-
-define([], function defineWidgetSubscribe() {
+define(function defineWidgetSubscribe() {
 
     /**
      * Define widget subscribe events
@@ -10,7 +9,6 @@ define([], function defineWidgetSubscribe() {
      * @constructor
      */
     var WidgetSubscribe = function WidgetSubscribe() {
-
     };
 
     return WidgetSubscribe.extend('WidgetSubscribe', {
@@ -229,20 +227,35 @@ define([], function defineWidgetSubscribe() {
              * Define scope
              * @type {*}
              */
-            var scope = this.scope;
+            var content = this,
+                scope = content.scope;
 
-            scope.model.copyPrefs(this.referrer);
+            scope.base.waitFor(
+                function condition() {
+                    return typeof scope.view.get$item() !== 'undefined' &&
+                        typeof(scope.referrer) !== 'undefined';
+                },
 
-            scope.observer.publish(
-                scope.eventmanager.eventList.setEmbeddedContent
+                function callback() {
+
+                    scope.model.copyPrefs(content.referrer);
+
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.setEmbeddedContent
+                    );
+
+                    scope.referrer.observer.publish(
+                        scope.referrer.eventmanager.eventList.setActiveContent,
+                        scope.controller.getContainment().model.getUUID()
+                    );
+
+                    scope.referrer.controller.approveUpdatePreferences();
+                },
+
+                function fallback() {
+                    scope.logger.warn('Timeout. Unable to embed content');
+                }
             );
-
-            scope.referrer.observer.publish(
-                scope.referrer.eventmanager.eventList.setActiveContent,
-                scope.controller.getContainment().model.getUUID()
-            );
-
-            scope.referrer.controller.approveUpdatePreferences();
 
             return false;
         },
