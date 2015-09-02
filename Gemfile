@@ -26,7 +26,6 @@ group :test, :development do
   gem 'xilence'
   gem 'meta_request'
   gem 'pry-rails'
-  gem 'web-console', '~> 2.0'
   gem 'prmd'
   gem 'ruby-debug-ide', '>= 0.4.25'
   gem 'debase', '>= 0.1.3.beta1'
@@ -42,6 +41,7 @@ group :test, :development do
 end
 
 group :console do
+  gem 'web-console', '~> 2.0'
   gem 'rails-console-tweaks'
   gem 'awesome_print', require: 'ap'
   gem 'hirb'

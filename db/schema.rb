@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150831190346) do
     t.boolean  "publish",                  default: false
     t.boolean  "visible",                  default: true
     t.boolean  "public",                   default: true
+    t.integer  "creator_id",   limit: 4
   end
 
   create_table "author_site_storages_users", id: false, force: :cascade do |t|

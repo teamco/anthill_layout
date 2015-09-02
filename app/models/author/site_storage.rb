@@ -22,8 +22,10 @@ class Author::SiteStorage < ActiveRecord::Base
            foreign_key: :site_storage_id,
            dependent: :destroy
 
-  belongs_to :user,
-             foreign_key: :user_id
+
+  belongs_to :creator,
+             class_name: 'User',
+             foreign_key: :creator_id
 
   has_and_belongs_to_many :users
 
@@ -54,7 +56,7 @@ class Author::SiteStorage < ActiveRecord::Base
         :author_site_type,
         :author_site_versions,
         :author_widgets
-    ).where('visible=? AND (public=? OR user_id=?)', true, true, user.id).
+    ).where('visible=? AND (public=? OR creator_id=?)', true, true, user.id).
         order(:key)
   end
 

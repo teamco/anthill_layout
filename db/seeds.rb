@@ -3,7 +3,7 @@ require 'uuid'
 if Author::Widget.all.length > 0
   puts "\n>>> 1. Start types"
   Author::SiteType.destroy_all
-  puts '-- Clean: Author::SiteType'
+  puts '-- Clean: SiteType'
   types = %w(authorize consumption development test)
   types.each do |x|
     Author::SiteType.create({name: x})
@@ -33,20 +33,24 @@ if Author::Widget.all.length > 0
   puts '>>> End update user in models'
   puts "\n>>> 3. Start storage"
   Author::SiteStorage.destroy_all
-  puts '-- Clean: Author::SiteStorage'
+  puts '-- Clean: SiteStorage'
   template = 'N4IgxgTgpghgLlAJgQTiAXARgCwGYBsADAJwCsZxA7AEyEA0IArgA6LxKoY4En7W7YAHEIZwA9gGsoAOwwgYifIMHUVAWmxRiYDQOprBpGFDXVKAMzZhq+GJUKkQAXyA'
-
-  site = Author::SiteStorage.new(
+  
+  site = admin.author_site_storages.build(
       uuid: (UUID.new).generate,
       key: 'shared',
-      user_id: admin.id,
+      creator_id: admin.id,
+      public: false,
       site_type_id: Author::SiteType.where({name: 'development'}).first.id
   )
+
+  puts "\n--- Site: #{site.inspect}"
 
   site.author_site_versions.build(
       content: template,
       version: 1,
       activated: true,
+      public: false,
       user_id: admin.id
   )
 
