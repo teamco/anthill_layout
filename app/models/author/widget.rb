@@ -1,7 +1,5 @@
 class Author::Widget < ActiveRecord::Base
 
-  devise :database_authenticatable, :trackable, :timeoutable, :lockable
-
   belongs_to :author_widget_category,
              class_name: 'Author::WidgetCategory',
              foreign_key: :widget_category_id

@@ -1,6 +1,6 @@
-class Author::SiteStorage < ActiveRecord::Base
+require 'uuid'
 
-  devise :database_authenticatable, :trackable, :timeoutable, :lockable
+class Author::SiteStorage < ActiveRecord::Base
 
   has_many :author_site_versions,
            class_name: 'Author::SiteVersion',
@@ -22,6 +22,7 @@ class Author::SiteStorage < ActiveRecord::Base
            foreign_key: :site_storage_id,
            dependent: :destroy
 
+  has_many :items, as: :itemable
 
   belongs_to :creator,
              class_name: 'User',
@@ -66,6 +67,21 @@ class Author::SiteStorage < ActiveRecord::Base
 
   def get_activated
     author_site_versions.where(activated: true).first
+  end
+
+  def self.create_data(params)
+    uuid = UUID.new
+    site = User.current.author_site_storages.build(params)
+    site[:uuid] = uuid.generate
+    site[:creator_id] = User.current.id
+
+    versions = site.author_site_versions
+    versions.build(
+        version: versions.length + 1,
+        activated: true
+    )
+
+    site
   end
 
 end

@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :set_current_user
   before_action :update_user_log
 
   layout :layout_by_resource
@@ -31,6 +32,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def set_current_user
+    User.current = current_user
+  end
 
   def not_found(e)
     handle_error(e, :not_found, 404)

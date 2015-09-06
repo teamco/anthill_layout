@@ -10,8 +10,8 @@ class UpdateFetchData < ActiveRecord::Migration
     add_column :author_site_types, :public, :boolean, default: true
 
     Author::WidgetCategory.all.each { |w| w.update(public: true, visible: true) }
-    Author::SiteVersion.all.each { |w| w.update(public: true, visible: true) }
-    Author::SiteStorage.all.each { |w| w.update(public: true, visible: true) }
+    Author::SiteVersion.all.each { |w| w.update(public: false, visible: true) }
+    Author::SiteStorage.all.each { |w| w.update(public: false, visible: true) }
     Author::SiteType.all.each { |w| w.update(public: true, visible: true) }
 
   end

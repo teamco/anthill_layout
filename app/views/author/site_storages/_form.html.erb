@@ -5,6 +5,7 @@
     <%= render_text_area_tag(:content, content, true)  unless action_name == 'new' -%>
     <%= render_json(content, '.json-view') unless content.nil? %>
     <%= render_checkbox(f, :publish) -%>
+    <%= render_checkbox(f, :public) -%>
     <%= render_collection(f, 'Type', {
                                    id: :site_type_id,
                                    collection: types,

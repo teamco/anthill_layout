@@ -1,7 +1,5 @@
 class Author::SiteVersion < ActiveRecord::Base
 
-  devise :database_authenticatable, :trackable, :timeoutable, :lockable
-
   belongs_to :user,
              foreign_key: :user_id
 

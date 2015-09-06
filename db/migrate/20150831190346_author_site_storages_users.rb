@@ -4,7 +4,8 @@ class AuthorSiteStoragesUsers < ActiveRecord::Migration
       t.belongs_to :site_storage, index: true
       t.belongs_to :user, index: true
     end
-    add_column :author_site_storages, :creator_id, :integer unless column_exists?(:author_site_storages, :creator_id)
-    remove_column :author_site_storages, :user_id, :integer if column_exists?(:author_site_storages, :user_id)
+    remove_index :author_site_storages, :user_id
+    rename_column :author_site_storages, :user_id, :creator_id
+    add_index :author_site_storages, :creator_id
   end
 end

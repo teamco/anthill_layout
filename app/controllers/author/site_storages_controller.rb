@@ -1,5 +1,4 @@
 require 'fileutils'
-require 'uuid'
 
 class Author::SiteStoragesController < Author::AuthorController
 
@@ -55,16 +54,7 @@ class Author::SiteStoragesController < Author::AuthorController
   # POST /author/site_storages.json
   def create
 
-    uuid = UUID.new
-
-    @author_site_storage = current_user.author_site_storages.build(author_site_storage_params)
-    @author_site_storage[:uuid] = uuid.generate
-
-    versions = @author_site_storage.author_site_versions
-    versions.build(
-        version: versions.length + 1,
-        activated: true
-    )
+    @author_site_storage = SiteStorage.create_data(author_site_storage_params)
 
     target = get_target_url(@author_site_storage.key)
     FileUtils.cp_r "#{Rails.root}/lib/tasks/site/default", target
@@ -309,6 +299,7 @@ class Author::SiteStoragesController < Author::AuthorController
         :key,
         :site_type_id,
         :publish,
+        :public,
         :activated_version,
         author_site_storage_widget_ids: [],
         author_site_versions_attributes: [
