@@ -18,7 +18,13 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :author_site_storages,
                           class_name: 'Author::SiteStorage',
-                          dependent: :destroy
+                          dependent: :destroy,
+                          through: :author_items
+
+  belongs_to :author_item,
+             class_name: 'Author::Item',
+             foreign_key: :item_id,
+             dependent: :destroy
 
   has_many :author_widgets,
            class_name: 'Author::Widget',
@@ -26,19 +32,23 @@ class User < ActiveRecord::Base
 
   has_many :author_site_versions,
            class_name: 'Author::SiteVersion',
-           dependent: :destroy
+           dependent: :destroy,
+           through: :itemable
 
   has_many :author_site_storage_widgets,
            class_name: 'Author::SiteStorageWidget',
-           dependent: :destroy
+           dependent: :destroy,
+           through: :itemable
 
   has_many :author_site_types,
            class_name: 'Author::SiteType',
-           dependent: :destroy
+           dependent: :destroy,
+           through: :author_items
 
   has_many :author_widget_categories,
            class_name: 'Author::WidgetCategory',
-           dependent: :destroy
+           dependent: :destroy,
+           through: :itemable
 
   has_many :user_logs,
            class_name: 'UserLog',

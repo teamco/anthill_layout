@@ -1,17 +1,7 @@
 require 'uuid'
 
 if Author::Widget.all.length > 0
-  puts "\n>>> 1. Start types"
-  Author::SiteType.destroy_all
-  puts '-- Clean: SiteType'
-  types = %w(authorize consumption development test)
-  types.each do |x|
-    Author::SiteType.create({name: x})
-    puts "-- Create: #{Author::SiteType.all.last.name}"
-  end
-  puts ">>> End types: #{Author::SiteType.all.length}"
-
-  puts "\n>>> 2. Add user authentication"
+  puts "\n>>> 1. Add user authentication"
   User.destroy_all
   puts '-- Clean: User'
   %w(registered banned moderator admin guest).each do |role|
@@ -19,42 +9,58 @@ if Author::Widget.all.length > 0
   end
   password = '1234567890'
   admin = User.create(email: 'email@gmail.com', password: password, role_id: Role.find_by_name(:admin).id)
+  Author::Item.create(public: false, visible: true, user_id: admin.id)
   puts "--- Admin: #{admin.email}|#{password}"
-  Author::SiteType.all.each { |x| x.items.create(user_id: admin.id, public: false, visible: true) }
-  puts '--- Update user in SiteType'
-  Author::Widget.all.each { |x| x.items.create(user_id: admin.id, public: false, visible: true) }
-  puts '--- Update user in Widget'
-  Author::WidgetCategory.all.each { |x| x.items.create(user_id: admin.id, public: false, visible: true) }
-  puts '--- Update user in WidgetCategory'
+  puts "--- Admin item: #{admin.author_item.inspect}"
+
+  puts "\n>>> 2. Start types"
+  Author::SiteType.destroy_all
+  puts '-- Clean: SiteType'
+  types = %w(authorize consumption development test)
+  types.each do |x|
+    item = Author::Item.new(public: true, visible: true, user_id: admin.id)
+    item.author_site_types.build(name: x).save
+    puts "-- Create: #{item.author_site_types.first.name}"
+  end
+
+  puts "\n>>> 3. Update widget's user_id"
+  Author::Widget.all.each do |x|
+    x.author_item.update(user_id: admin.id)
+    puts "-- Update user: #{x.name}"
+  end
+
+  puts "\n>>> 4. Update widget's category item"
+  Author::WidgetCategory.all.each do |x|
+    item = Author::Item.create(public: true, visible: true, user_id: admin.id)
+    x.update(item_id: item.id)
+    puts "-- Update user: #{item.author_widget_categories.first.name_value}"
+  end
+
   puts '>>> End update user in models'
-  puts "\n>>> 3. Start storage"
+  puts "\n>>> 5. Start storage"
   Author::SiteStorage.destroy_all
   puts '-- Clean: SiteStorage'
   template = 'N4IgxgTgpghgLlAJgQTiAXARgCwGYBsADAJwCsZxA7AEyEA0IArgA6LxKoY4En7W7YAHEIZwA9gGsoAOwwgYifIMHUVAWmxRiYDQOprBpGFDXVKAMzZhq+GJUKkQAXyA'
 
-  site = admin.author_site_storages.build(
+  item = Author::Item.new(public: false, visible: true, user_id: admin.id)
+  site = item.author_site_storages.build(
       uuid: (UUID.new).generate,
       key: 'shared',
-      site_type_id: Author::SiteType.where({name: 'development'}).first.id
+      site_type_id: Author::SiteType.where(name: 'development').first.id
   )
+  item.save
 
-  site.items.build(public: false, visible: true, user_id: admin.id)
-
-  puts "\n--- Site: #{site.inspect}"
-  puts "\n--- Site item: #{site.items.inspect}"
+  puts "\n--- Site: #{item.author_site_storages.inspect}"
+  puts "\n--- Site item: #{item.inspect}"
 
   site.author_site_versions.build(
       content: template,
       version: 1,
-      activated: true,
-      public: false,
-      user_id: admin.id
-  )
+      activated: true
+  ).save
 
-  site.save!
-
-  puts "-- Storage: #{site.key} -> #{site.author_site_type.name}"
-  puts "-- Version: #{site.author_site_versions.first.version}"
+  puts "--- Storage: #{site.key} -> #{site.author_site_type.name}"
+  puts "--- Version: #{site.author_site_versions.inspect}"
   puts '>>> End storage'
 
 else

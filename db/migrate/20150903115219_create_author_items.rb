@@ -36,11 +36,20 @@ class CreateAuthorItems < ActiveRecord::Migration
     remove_column :author_widgets, :updated_at
 
     create_table :author_items do |t|
-      t.references :itemable, polymorphic: true, index: true
       t.integer :user_id, null: false, index: true
       t.boolean :visible, default: true
       t.boolean :public, default: false
       t.timestamps null: false
     end
+
+    add_column :author_site_storages, :item_id, :integer, index: true
+    add_column :author_site_types, :item_id, :integer, index: true
+    add_column :author_widget_categories, :item_id, :integer, index: true
+    add_column :author_widgets, :item_id, :integer, index: true
+    add_column :users, :item_id, :integer, index: true
+
+    remove_index :author_site_storage_widgets, :user_id
+    remove_column :author_site_storage_widgets, :user_id
+
   end
 end

@@ -1,8 +1,5 @@
 class Author::SiteVersion < ActiveRecord::Base
 
-  belongs_to :user,
-             foreign_key: :user_id
-
   belongs_to :author_site_storage,
              class_name: 'Author::SiteStorage',
              foreign_key: :site_storage_id

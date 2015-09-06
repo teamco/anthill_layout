@@ -8,9 +8,6 @@ class Author::SiteStorageWidget < ActiveRecord::Base
              class_name: 'Author::Widget',
              foreign_key: :widget_id
 
-  belongs_to :user,
-             foreign_key: :user_id
-
   after_save :remove_nulls
 
   def remove_nulls

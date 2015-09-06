@@ -14,28 +14,23 @@
 ActiveRecord::Schema.define(version: 20150903115219) do
 
   create_table "author_items", force: :cascade do |t|
-    t.integer  "itemable_id",   limit: 4
-    t.string   "itemable_type", limit: 255
-    t.integer  "user_id",       limit: 4,                   null: false
-    t.boolean  "visible",                   default: true
-    t.boolean  "public",                    default: false
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.integer  "user_id",    limit: 4,                 null: false
+    t.boolean  "visible",              default: true
+    t.boolean  "public",               default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
-  add_index "author_items", ["itemable_type", "itemable_id"], name: "index_author_items_on_itemable_type_and_itemable_id", using: :btree
   add_index "author_items", ["user_id"], name: "index_author_items_on_user_id", using: :btree
 
   create_table "author_site_storage_widgets", force: :cascade do |t|
     t.integer  "site_storage_id", limit: 4
     t.integer  "widget_id",       limit: 4
-    t.integer  "user_id",         limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
 
   add_index "author_site_storage_widgets", ["site_storage_id"], name: "index_author_site_storage_widgets_on_site_storage_id", using: :btree
-  add_index "author_site_storage_widgets", ["user_id"], name: "index_author_site_storage_widgets_on_user_id", using: :btree
   add_index "author_site_storage_widgets", ["widget_id"], name: "index_author_site_storage_widgets_on_widget_id", using: :btree
 
   create_table "author_site_storages", force: :cascade do |t|
@@ -43,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150903115219) do
     t.string  "key",          limit: 255
     t.integer "site_type_id", limit: 4
     t.boolean "publish",                  default: false
+    t.integer "item_id",      limit: 4
   end
 
   create_table "author_site_storages_users", id: false, force: :cascade do |t|
@@ -54,7 +50,8 @@ ActiveRecord::Schema.define(version: 20150903115219) do
   add_index "author_site_storages_users", ["user_id"], name: "index_author_site_storages_users_on_user_id", using: :btree
 
   create_table "author_site_types", force: :cascade do |t|
-    t.string "name", limit: 255
+    t.string  "name",    limit: 255
+    t.integer "item_id", limit: 4
   end
 
   create_table "author_site_versions", force: :cascade do |t|
@@ -62,13 +59,15 @@ ActiveRecord::Schema.define(version: 20150903115219) do
     t.integer "site_storage_id", limit: 4
     t.boolean "activated",                        default: false
     t.text    "content",         limit: 16777215
+    t.integer "item_id",         limit: 4
   end
 
   add_index "author_site_versions", ["site_storage_id"], name: "index_author_site_versions_on_site_storage_id", using: :btree
 
   create_table "author_widget_categories", force: :cascade do |t|
-    t.string "name_index", limit: 255
-    t.string "name_value", limit: 255
+    t.string  "name_index", limit: 255
+    t.string  "name_value", limit: 255
+    t.integer "item_id",    limit: 4
   end
 
   create_table "author_widgets", force: :cascade do |t|
@@ -82,6 +81,7 @@ ActiveRecord::Schema.define(version: 20150903115219) do
     t.string  "resource",           limit: 255
     t.boolean "is_external",                         default: false
     t.string  "external_resource",  limit: 255
+    t.integer "item_id",            limit: 4
   end
 
   create_table "error_logs", force: :cascade do |t|
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 20150903115219) do
     t.string   "name",                   limit: 255
     t.string   "image",                  limit: 255
     t.datetime "last_seen"
+    t.integer  "item_id",                limit: 4
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

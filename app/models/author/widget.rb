@@ -4,8 +4,11 @@ class Author::Widget < ActiveRecord::Base
              class_name: 'Author::WidgetCategory',
              foreign_key: :widget_category_id
 
-  belongs_to :user,
-             foreign_key: :user_id
+  belongs_to :author_item,
+             class_name: 'Author::Item',
+             foreign_key: :item_id
+
+  has_one :user, through: :author_item
 
   has_many :author_site_storage_widgets,
            class_name: 'Author::SiteStorageWidget'
@@ -23,7 +26,7 @@ class Author::Widget < ActiveRecord::Base
 
   def self.fetch_data(user)
     includes(:author_widget_category).
-    where('visible=? AND (public=? OR user_id=?)', true, true, user.id).
+        where('visible=? AND (public=? OR user_id=?)', true, true, user.id).
         order(name: :asc)
   end
 

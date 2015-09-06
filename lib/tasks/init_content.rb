@@ -81,7 +81,6 @@ module WidgetLib
 
       uuid = UUID.new
       widget = WidgetLib::Generate.new
-      user_id = User.first.id rescue 1
 
       JSON.parse(@widgets.to_json).each_with_index do |w, index|
 
@@ -92,7 +91,6 @@ module WidgetLib
         hash = {
             name: w['name'],
             uuid: uuid.generate,
-            user_id: user_id,
             description: w['description'],
             thumbnail: w['thumbnail'],
             width: w['dimensions']['width'],
@@ -100,14 +98,14 @@ module WidgetLib
             widget_category_id: category.id,
             resource: w['resource'],
             is_external: w['is_external'],
-            external_resource: w['external_resource'],
-            visible: w['visible'].nil? ? true : w['visible']
+            external_resource: w['external_resource']
         }
 
-        item = Author::Widget.new(hash)
+        item = Author::Item.new(public: true, visible: w['visible'].nil? ? true : w['visible'], user_id: 1)
+        item.author_widgets.build(hash)
         item.save!
 
-        puts "Model item: #{Author::Widget.last.name} >>> #{Author::Widget.all.size}"
+        puts "Model item: #{item.author_widgets.first.name}"
         puts "External: #{hash[:is_external]}" if hash[:is_external]
         puts "Resource: #{hash[:external_resource]}" if hash[:is_external]
 

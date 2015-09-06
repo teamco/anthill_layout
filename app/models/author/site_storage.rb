@@ -22,13 +22,17 @@ class Author::SiteStorage < ActiveRecord::Base
            foreign_key: :site_storage_id,
            dependent: :destroy
 
-  has_many :items, as: :itemable
+  belongs_to :author_item,
+             class_name: 'Author::Item',
+             foreign_key: :item_id
 
-  belongs_to :creator,
-             class_name: 'User',
-             foreign_key: :creator_id
+  has_one :creator,
+          source: :user,
+          through: :author_item
 
-  has_and_belongs_to_many :users
+  has_and_belongs_to_many :users,
+                          class_name: 'User',
+                          through: :author_items
 
   accepts_nested_attributes_for :author_site_storage_widgets, allow_destroy: true
   accepts_nested_attributes_for :author_site_versions, allow_destroy: true

@@ -4,8 +4,11 @@ class Author::WidgetCategory < ActiveRecord::Base
            class_name: 'Author::Widget',
            dependent: :destroy
 
-  belongs_to :user,
-             foreign_key: :user_id
+  belongs_to :author_item,
+             class_name: 'Author::Item',
+             foreign_key: :item_id
+
+  has_one :user, through: :author_item
 
   validates :name_index, presence: true
   validates :name_value, presence: true
