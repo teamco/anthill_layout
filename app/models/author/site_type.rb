@@ -17,7 +17,9 @@ class Author::SiteType < ActiveRecord::Base
   end
 
   def self.fetch_data(user)
-    where('visible=? AND (public=? OR user_id=?)', true, true, user.id).order(:name)
+    joins(:author_item).
+        where('visible=true AND (public=true OR user_id=?)', user.id).
+        order(:name)
   end
 
   def get_sites(user)

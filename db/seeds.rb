@@ -9,7 +9,8 @@ if Author::Widget.all.length > 0
   end
   password = '1234567890'
   admin = User.create(email: 'email@gmail.com', password: password, role_id: Role.find_by_name(:admin).id)
-  Author::Item.create(public: false, visible: true, user_id: admin.id)
+  item = Author::Item.create(public: false, visible: true, user_id: admin.id)
+  admin.update(item_id: item.id)
   puts "--- Admin: #{admin.email}|#{password}"
   puts "--- Admin item: #{admin.author_item.inspect}"
 
@@ -19,7 +20,8 @@ if Author::Widget.all.length > 0
   types = %w(authorize consumption development test)
   types.each do |x|
     item = Author::Item.new(public: true, visible: true, user_id: admin.id)
-    item.author_site_types.build(name: x).save
+    item.author_site_types.build(name: x)
+    item.save
     puts "-- Create: #{item.author_site_types.first.name}"
   end
 
