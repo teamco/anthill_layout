@@ -1,5 +1,9 @@
 module Author::AuthorHelper
 
+  def is_new?
+    action_name == 'new'
+  end
+
   def th(names=[])
     "<tr>#{names.map { |n| "<th>#{n}</th>" }.join}</tr>".html_safe
   end

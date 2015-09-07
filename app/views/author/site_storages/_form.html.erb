@@ -2,10 +2,15 @@
     <% content = item.get_activated.content rescue nil %>
     <%= render_notification(item) -%>
     <%= render_text_field(f, :key, !item.key.nil?) -%>
-    <%= render_text_area_tag(:content, content, true)  unless action_name == 'new' -%>
+    <%= render_text_area_tag(:content, content, true) unless is_new? -%>
     <%= render_json(content, '.json-view') unless content.nil? %>
     <%= render_checkbox(f, :publish) -%>
-    <%= render_checkbox(f, :public) -%>
+    <%= f.fields_for :author_item do |ff| -%>
+        <div class="group fl">
+          <%= render_checkbox(ff, :public) -%>
+          <%= render_checkbox(ff, :visible) -%>
+        </div>
+    <% end -%>
     <%= render_collection(f, 'Type', {
                                    id: :site_type_id,
                                    collection: types,
@@ -14,7 +19,7 @@
                            }) -%>
 
     <%= render_activated_version(f) -%>
-    <%= render_widgets unless action_name == 'new' %>
+    <%= render_widgets unless is_new? -%>
     <%= render_submit(f) -%>
 
 <% end -%>

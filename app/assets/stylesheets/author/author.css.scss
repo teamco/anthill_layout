@@ -529,6 +529,21 @@ body.admin form select {
   padding: 3px;
 }
 
+body.admin form .group > .field {
+  padding-right: 10px;
+  clear: none;
+}
+
+body.admin form .group.fl > .field {
+  float: left;
+  margin-right: 10px;
+}
+
+body.admin form .group.fr > .field {
+  float: right;
+  margin-left: 10px;
+}
+
 body.admin form .field input:focus {
   right: 20px;
 }
