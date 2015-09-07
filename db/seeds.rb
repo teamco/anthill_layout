@@ -20,9 +20,9 @@ if Author::Widget.all.length > 0
   types = %w(authorize consumption development test)
   types.each do |x|
     item = Author::Item.new(public: true, visible: true, user_id: admin.id)
-    item.author_site_types.build(name: x)
+    item.build_author_site_type(name: x)
     item.save
-    puts "-- Create: #{item.author_site_types.first.name}"
+    puts "-- Create: #{item.author_site_type.name}"
   end
 
   puts "\n>>> 3. Update widget's user_id"
@@ -35,7 +35,7 @@ if Author::Widget.all.length > 0
   Author::WidgetCategory.all.each do |x|
     item = Author::Item.create(public: true, visible: true, user_id: admin.id)
     x.update(item_id: item.id)
-    puts "-- Update user: #{item.author_widget_categories.first.name_value}"
+    puts "-- Update user: #{item.author_widget_category.name_value}"
   end
 
   puts '>>> End update user in models'
@@ -45,14 +45,14 @@ if Author::Widget.all.length > 0
   template = 'N4IgxgTgpghgLlAJgQTiAXARgCwGYBsADAJwCsZxA7AEyEA0IArgA6LxKoY4En7W7YAHEIZwA9gGsoAOwwgYifIMHUVAWmxRiYDQOprBpGFDXVKAMzZhq+GJUKkQAXyA'
 
   item = Author::Item.new(public: false, visible: true, user_id: admin.id)
-  site = item.author_site_storages.build(
+  site = item.build_author_site_storage(
       uuid: (UUID.new).generate,
       key: 'shared',
-      site_type_id: Author::SiteType.where(name: 'development').first.id
+      site_type_id: Author::SiteType.find_by_name('development').id
   )
   item.save
 
-  puts "\n--- Site: #{item.author_site_storages.inspect}"
+  puts "\n--- Site: #{item.author_site_storage.inspect}"
   puts "\n--- Site item: #{item.inspect}"
 
   site.author_site_versions.build(

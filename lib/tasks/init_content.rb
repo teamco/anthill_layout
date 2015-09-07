@@ -102,10 +102,10 @@ module WidgetLib
         }
 
         item = Author::Item.new(public: true, visible: w['visible'].nil? ? true : w['visible'], user_id: 1)
-        item.author_widgets.build(hash)
+        item.build_author_widget(hash)
         item.save!
 
-        puts "Model item: #{item.author_widgets.first.name}"
+        puts "Model item: #{item.author_widget.name}"
         puts "External: #{hash[:is_external]}" if hash[:is_external]
         puts "Resource: #{hash[:external_resource]}" if hash[:is_external]
 

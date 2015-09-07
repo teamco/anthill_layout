@@ -20,14 +20,18 @@ class Author::Widget < ActiveRecord::Base
   accepts_nested_attributes_for :author_site_storage_widgets, allow_destroy: true
 
   validates :resource, presence: true
-
   validates :width, presence: true, numericality: true
   validates :height, presence: true, numericality: true
 
   def self.fetch_data(user)
-    includes(:author_widget_category).
-        where('visible=? AND (public=? OR user_id=?)', true, true, user.id).
+    joins(:author_item).
+   # includes(:author_widget_category).
+        where('visible=true AND (public=true OR user_id=?)', user.id).
         order(name: :asc)
+  end
+
+  def fetch_categories(user)
+    WidgetCategory.fetch_data(user)
   end
 
 end
