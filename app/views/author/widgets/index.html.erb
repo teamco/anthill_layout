@@ -1,7 +1,8 @@
 <ul class="admin-navigation inner">
-  <% @json_data[:categories].each do |category| %>
-      <li class="category"><%= "#{category.name_value} (#{category.author_widgets.length})" %></li>
-      <% category.author_widgets.fetch_data(@json_data[:user]).each do |author_widget| %>
+  <li><%= render_add_new %></li>
+  <% @json_data[:site_widgets].each do |site| %>
+      <li class="category"><%= "#{site[:category].name_value} (#{site[:widgets].length})" %></li>
+      <% site[:widgets].each do |author_widget| %>
           <li>
             <%= link_to author_widget.name, edit_author_widget_path(author_widget) %>
             <h6><%= author_widget.resource %></h6>

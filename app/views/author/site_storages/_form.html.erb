@@ -5,7 +5,9 @@
     <%= render_text_area_tag(:content, content, true) unless is_new? -%>
     <%= render_json(content, '.json-view') unless content.nil? %>
     <%= render_checkbox(f, :publish) -%>
+
     <%= render 'author/author/item', f: f -%>
+
     <%= render_collection(f, 'Type', {
                                    id: :site_type_id,
                                    collection: types,
@@ -16,5 +18,4 @@
     <%= render_activated_version(f) -%>
     <%= render_widgets unless is_new? -%>
     <%= render_submit(f) -%>
-
 <% end -%>

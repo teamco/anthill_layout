@@ -35,12 +35,35 @@ class Author::Widget < ActiveRecord::Base
   end
 
   def self.fetch_site_widgets(key)
-    site_storage = Author::SiteStorage.fetch_data(User.current).where(key: key).first
-    site_storage.author_widgets.
-        joins(:author_item).
-        includes(:author_widget_category).
-        where('visible=true').
-        order(name: :asc) unless site_storage.nil?
+    user = User.current
+    if key.nil?
+      fetch_data(user)
+    else
+      site_storage = Author::SiteStorage.fetch_data(user).where(key: key).first
+      site_storage.author_widgets.
+          joins(:author_item).
+          includes(:author_widget_category).
+          where('visible=true AND (public=true OR user_id=?)', user.id).
+          order(name: :asc) unless site_storage.nil?
+    end
+  end
+
+  def self.fetch_category_site_widgets(category, key)
+    user = User.current
+    if key.nil?
+      category.author_widgets.
+          joins(:author_item).
+          includes(:author_widget_category).
+          where('visible=true AND (public=true OR user_id=?)', user.id).
+          order(name: :asc)
+    else
+      site_storage = Author::SiteStorage.fetch_data(user).where(key: key).first
+      site_storage.author_widgets.
+          joins(:author_item, :author_widget_category).
+          includes(:author_widget_category).
+          where('visible=true AND (public=true OR user_id=?) AND widget_category_id=?', user.id, category.id).
+          order(name: :asc) unless site_storage.nil?
+    end
   end
 
 end

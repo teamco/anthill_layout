@@ -30,18 +30,15 @@ class Author::WidgetsController < Author::AuthorController
         widgets: []
     }
 
-    method = request.env['REQUEST_METHOD']
-    site = params[:site_storage_id]
-
-    request.xhr? ?
-        (site_widgets if method == 'GET') :
-        site_widgets unless site.nil?
-
-    @author_widgets = Widget.fetch_data(current_user) if @author_widgets.nil? unless request.xhr?
+    @author_widgets = Widget.fetch_site_widgets(params[:site_storage_id])
 
     unless @author_widgets.blank?
+
+      categories = @author_widgets.first.fetch_categories(current_user)
+
       @json_data[:user] = current_user
-      @json_data[:categories] = Widget.first.fetch_categories(current_user)
+      @json_data[:categories] = categories
+
       @json_data[:widgets] = @author_widgets.map do |w|
         {
             id: w[:id],
@@ -57,6 +54,15 @@ class Author::WidgetsController < Author::AuthorController
             type: w.author_widget_category[:name_index],
             resource: w[:resource]
         }
+      end if request.xhr?
+
+      @json_data[:site_widgets] = []
+      categories.each do |c|
+        widgets = c.author_widgets.fetch_category_site_widgets(c, params[:site_storage_id])
+        @json_data[:site_widgets] << {
+            category: c,
+            widgets: widgets
+        } if widgets.length > 0
       end
     end
 
@@ -245,10 +251,6 @@ class Author::WidgetsController < Author::AuthorController
     external['url'] = url.gsub(/config\.json/, '') unless url.nil?
     external['thumbnail'] = external['url'] + external['thumbnail']
     external
-  end
-
-  def site_widgets
-    @author_widgets = Widget.fetch_site_widgets(params[:site_storage_id])
   end
 
   def generate_widget
