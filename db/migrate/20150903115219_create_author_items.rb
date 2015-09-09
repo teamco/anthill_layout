@@ -43,6 +43,7 @@ class CreateAuthorItems < ActiveRecord::Migration
     end
 
     add_column :author_site_storages, :item_id, :integer, index: true
+    add_column :author_site_versions, :item_id, :integer, index: true
     add_column :author_site_types, :item_id, :integer, index: true
     add_column :author_widget_categories, :item_id, :integer, index: true
     add_column :author_widgets, :item_id, :integer, index: true

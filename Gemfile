@@ -13,12 +13,12 @@ gem 'rake'
 gem 'keen'
 gem 'will_paginate', '~> 3.0.6'
 
-group :development do
-  gem 'mysql2'
-end
-
 group :test do
   gem 'sqlite3'
+end
+
+group :development do
+  gem 'mysql2', '~> 0.3.20'
 end
 
 group :test, :development do

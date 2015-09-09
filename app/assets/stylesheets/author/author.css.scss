@@ -175,6 +175,7 @@ body.admin ul.admin-navigation.inner > li h4 > span {
 body.admin ul.admin-navigation.inner > li h5 {
   margin-bottom: 0.5em;
   font-size: 1.1em;
+  text-transform: lowercase;
   font-variant: small-caps;
 }
 
@@ -188,6 +189,12 @@ body.admin ul.admin-navigation.inner > li h5.offline {
 
 body.admin ul.admin-navigation.inner > li h6 {
   margin-bottom: 0.5em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 70%;
+  display: block;
+  overflow: hidden;
+  font-size: 0.75em;
 }
 
 body.admin ul.admin-navigation.inner > li > a {

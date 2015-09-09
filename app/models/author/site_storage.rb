@@ -75,6 +75,10 @@ class Author::SiteStorage < ActiveRecord::Base
     author_site_versions.where(activated: true).first
   end
 
+  def get_version(version)
+    author_site_versions.where(version: version).first
+  end
+
   def self.create_data(params)
     uuid = UUID.new
     site = User.current.author_site_storages.build(params)
@@ -88,6 +92,21 @@ class Author::SiteStorage < ActiveRecord::Base
     )
 
     site
+  end
+
+  def build_new_version(content, activate)
+
+    versions = self.author_site_versions
+    site_version = {
+        version: versions.length + 1,
+        content: content,
+        activated: activate == 'true'
+    }
+
+    version = versions.build(site_version)
+    version.build_author_item(public: false, visible: true, user_id: User.current.id)
+
+    version
   end
 
 end

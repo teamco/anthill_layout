@@ -55,9 +55,11 @@ if Author::Widget.all.length > 0
   puts "\n--- Site: #{item.author_site_storage.inspect}"
   puts "\n--- Site item: #{item.inspect}"
 
+  item = Author::Item.create(public: false, visible: true, user_id: admin.id)
   site.author_site_versions.build(
       content: template,
       version: 1,
+      item_id: item.id,
       activated: true
   ).save
 

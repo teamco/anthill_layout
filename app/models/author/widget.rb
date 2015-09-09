@@ -25,13 +25,22 @@ class Author::Widget < ActiveRecord::Base
 
   def self.fetch_data(user)
     joins(:author_item).
-   # includes(:author_widget_category).
+        includes(:author_widget_category).
         where('visible=true AND (public=true OR user_id=?)', user.id).
         order(name: :asc)
   end
 
   def fetch_categories(user)
-    WidgetCategory.fetch_data(user)
+    Author::WidgetCategory.fetch_data(user)
+  end
+
+  def self.fetch_site_widgets(key)
+    site_storage = Author::SiteStorage.fetch_data(User.current).where(key: key).first
+    site_storage.author_widgets.
+        joins(:author_item).
+        includes(:author_widget_category).
+        where('visible=true').
+        order(name: :asc) unless site_storage.nil?
   end
 
 end

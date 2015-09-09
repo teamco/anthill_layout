@@ -39,9 +39,9 @@ class Author::WidgetsController < Author::AuthorController
 
     @author_widgets = Widget.fetch_data(current_user) if @author_widgets.nil? unless request.xhr?
 
-    unless @author_widgets.nil?
+    unless @author_widgets.blank?
       @json_data[:user] = current_user
-      @json_data[:categories] = []#@author_widgets.first.fetch_categories(current_user)
+      @json_data[:categories] = Widget.first.fetch_categories(current_user)
       @json_data[:widgets] = @author_widgets.map do |w|
         {
             id: w[:id],
@@ -248,11 +248,7 @@ class Author::WidgetsController < Author::AuthorController
   end
 
   def site_widgets
-    site_storage = SiteStorage.find_by_key(params[:site_storage_id])
-    @author_widgets = site_storage.author_widgets.
-        includes(:author_widget_category).
-        where(visible: true).
-        order(name: :asc) unless site_storage.nil?
+    @author_widgets = Widget.fetch_site_widgets(params[:site_storage_id])
   end
 
   def generate_widget

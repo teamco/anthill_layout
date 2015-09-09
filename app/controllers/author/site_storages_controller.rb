@@ -80,33 +80,34 @@ class Author::SiteStoragesController < Author::AuthorController
   # PATCH/PUT /author/site_storages/1.json
   def update
 
-    versions = @author_site_storage.author_site_versions
-
     if request.xhr?
-      versions.build({
-                         version: versions.length + 1,
-                         user_id: current_user.id,
-                         content: params[:author_site_storage][:content],
-                         activated: params[:activate] == 'true'
-                     })
-      params[:author_site_storage][:publish] = false
+      version = @author_site_storage.build_new_version(
+          params[:author_site_storage][:content],
+          params[:activate]
+      )
+      params[:author_site_storage][:publish] = 'false'
+      params[:author_site_storage].delete :content
     else
-      @activated = versions.where(id: params[:author_site_storage][:activated_version]).first
+      version = @author_site_storage.author_site_versions.find(params[:author_site_storage][:activated_version])
       params[:author_site_storage].delete :activated_version
     end
 
+    update_handler(version)
+
     respond_to do |format|
-      if update_handler(versions)
+      if @activated.nil?
+        format.html { render :form }
+        format.json { render json: @author_site_storage.errors, status: :unprocessable_entity }
+      else
         notice = t('success_update')
         if request.xhr?
-          version = versions.last
           data = {
               storage: {
                   key: @author_site_storage.key,
-                  content: version.content
+                  content: @activated.content
               },
-              version: version.version,
-              activated: version.activated,
+              version: @activated.version,
+              activated: @activated.activated,
               mode: @author_site_storage.author_site_type.name,
               notice: notice
           }
@@ -117,9 +118,6 @@ class Author::SiteStoragesController < Author::AuthorController
           format.html { redirect_to author_site_storages_path, notice: notice }
           format.json { render :index, status: :ok, location: @author_site_storage }
         end
-      else
-        format.html { render :form }
-        format.json { render json: @author_site_storage.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -192,20 +190,10 @@ class Author::SiteStoragesController < Author::AuthorController
     end
   end
 
-  def update_handler(versions)
-    updated = false
-
+  def update_handler(version)
+    current_version = version || @author_site_storage.author_site_versions.last
     update_widget_connections unless request.xhr?
-
-    author_site_storage_params[:user_id] = current_user.id
-
-    if @author_site_storage.update(author_site_storage_params)
-      updated = update_version_activation(
-          @activated.nil? ?
-              versions.where({activated: true}).last.version : @activated.version
-      )
-    end
-    updated
+    update_version_activation(current_version) if @author_site_storage.update(author_site_storage_params)
   end
 
   def update_widget_connections
@@ -215,47 +203,32 @@ class Author::SiteStoragesController < Author::AuthorController
 
     @author_site_storage.author_site_storage_widgets.delete_all
     @author_site_storage.author_widgets << widgets unless widgets.blank?
-    @author_site_storage.author_site_storage_widgets.update_all({user_id: current_user.id})
+    @author_site_storage.author_item.touch
     params[:author_site_storage].delete :author_site_storage_widget_ids
 
   end
 
   def update_version_activation(version)
 
-    activated = @author_site_storage.author_site_versions.where(
-        activated: true
-    ).first
+    activated = @author_site_storage.get_activated
 
-    @version = @author_site_storage.author_site_versions.where(
-        version: version
-    ).first
+    puts t('undefined_activation') if activated.nil?
 
-    if activated.nil?
-      puts t('undefined_activation')
-      updated = false
-    else
-      if activated == @version
-        updated = true
-      else
-        if activated.update({activated: false})
-          updated = true
-          if @version.nil?
-            puts t('undefined_version')
-            updated = false
-          else
-            updated = @version.update(
-                {
-                    activated: true,
-                    user_id: current_user.id
-                }
-            ) unless activated == @version
-          end
-        else
-          updated = false
-        end
-      end
+    if version.nil?
+      puts t('undefined_version')
+      version = @author_site_storage.author_site_versions.last
     end
-    updated
+
+    @activated = activated
+
+    unless version.is_current?(activated)
+      version.deactivate
+      version.update_attribute(:activated, true)
+      @activated = version
+    end
+
+    @activated.author_item.touch
+
   end
 
   def update_activation
@@ -301,6 +274,7 @@ class Author::SiteStoragesController < Author::AuthorController
         :publish,
         :public,
         :activated_version,
+        author_item_attributes: [],
         author_site_storage_widget_ids: [],
         author_site_versions_attributes: [
             :id,

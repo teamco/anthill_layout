@@ -33,22 +33,22 @@ class User < ActiveRecord::Base
   has_many :author_site_versions,
            class_name: 'Author::SiteVersion',
            dependent: :destroy,
-           through: :itemable
+           through: :author_item
 
   has_many :author_site_storage_widgets,
            class_name: 'Author::SiteStorageWidget',
            dependent: :destroy,
-           through: :itemable
+           through: :author_item
 
   has_many :author_site_types,
            class_name: 'Author::SiteType',
            dependent: :destroy,
-           through: :author_items
+           through: :author_item
 
   has_many :author_widget_categories,
            class_name: 'Author::WidgetCategory',
            dependent: :destroy,
-           through: :itemable
+           through: :author_item
 
   has_many :user_logs,
            class_name: 'UserLog',

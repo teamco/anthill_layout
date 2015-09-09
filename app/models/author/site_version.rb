@@ -4,10 +4,25 @@ class Author::SiteVersion < ActiveRecord::Base
              class_name: 'Author::SiteStorage',
              foreign_key: :site_storage_id
 
+  belongs_to :author_item,
+             class_name: 'Author::Item',
+             foreign_key: :item_id
+
+  has_one :user, through: :author_item
+
   def self.fetch_data(user)
-    includes(:author_site_storage).
-        where('visible=? AND (public=? OR user_id=?)', true, true, user.id).
+    joins(:author_item).
+        includes(:author_site_storage).
+        where('visible=true AND (public=true OR user_id=?)', user.id).
         order(updated_at: :desc)
+  end
+
+  def is_current?(activated)
+    activated.version == version unless activated.nil?
+  end
+
+  def deactivate
+    self.class.update_all(activated: false)
   end
 
 end
