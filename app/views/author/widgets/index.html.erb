@@ -1,27 +1,4 @@
 <ul class="admin-navigation inner">
-  <li><%= render_add_new %></li>
-  <% @json_data[:site_widgets].each do |site| %>
-      <li class="category"><%= "#{site[:category].name_value} (#{site[:widgets].length})" %></li>
-      <% site[:widgets].each do |author_widget| %>
-          <li>
-            <%= link_to author_widget.name, edit_author_widget_path(author_widget) %>
-            <h6><%= author_widget.resource %></h6>
-            <h4 title="<%= author_widget.description %>">
-              <%= truncate(author_widget.description, length: 50, separator: ' ') %>
-            </h4>
-
-            <h6><%= author_widget.width %> x <%= author_widget.height %></h6>
-
-            <div>
-              <div>
-                <ul class="menu arrow_box">
-                  <li><%= link_to t('edit'), edit_author_widget_path(author_widget) %></li>
-                  <li><%= link_to_destroy(author_widget, author_widget.name) %></li>
-                </ul>
-              </div>
-              <%= image_tag author_widget.thumbnail %>
-            </div>
-          </li>
-      <% end %>
-  <% end %>
+  <%= render 'author/site_storages/connected_widgets', data: @json_data %>
+  <% render_loop(@json_data[:site_widgets], 'site_widgets') %>
 </ul>

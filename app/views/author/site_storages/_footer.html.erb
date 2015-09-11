@@ -1,4 +1,4 @@
 <div>
-  <div><%= render 'menu', site: site %></div>
+  <%= render 'menu', site: site %>
   <%= link_to t('version'), author_site_storage_site_versions_path(site) %><%= ": #{site.get_activated.try(:version) || '?'} (#{site.author_site_versions.length})" %>
 </div>

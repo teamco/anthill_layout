@@ -1,12 +1,14 @@
-<ul class="menu arrow_box">
-  <li><%= link_to t('development'), mode_path(site, :development), {target: '_blank'} %></li>
-  <li><%= link_to t('consumption'), mode_path(site, :consumption), {target: '_blank'} %></li>
-  <li><%= link_to t('authoring'), mode_path(site, :authoring), {target: '_blank'} %></li>
-  <li><%= link_to t('test'), mode_path(site, :test), {target: '_blank'} %></li>
-  <li><%= link_to t('preview'), preview_path(site), {target: '_blank'} %></li>
-  <li class="separator action"><%= link_to t('edit'), edit_author_site_storage_path(site) %></li>
-  <li class="action"><%= link_to t('publish'), publish_site_path(site) %></li>
-  <li class="separator outer"><%= link_to t('widgets'), author_site_storage_widgets_path(site) %></li>
-  <li class="outer"><%= link_to t('users'), author_site_storage_get_users_path(site) %></li>
-  <li class="separator warning"><%= link_to_destroy(site, site.key) %></li>
-</ul>
+<div>
+  <ul class="menu arrow_box">
+    <li><%= link_to t('development'), mode_path(site, :development), {target: '_blank'} %></li>
+    <li><%= link_to t('consumption'), mode_path(site, :consumption), {target: '_blank'} %></li>
+    <li><%= link_to t('authoring'), mode_path(site, :authoring), {target: '_blank'} %></li>
+    <li><%= link_to t('test'), mode_path(site, :test), {target: '_blank'} %></li>
+    <li><%= link_to t('preview'), preview_path(site), {target: '_blank'} %></li>
+    <li class="separator action"><%= link_to t('edit'), edit_author_site_storage_path(site) %></li>
+    <li class="action"><%= link_to t('publish'), publish_site_path(site) %></li>
+    <li class="separator outer"><%= link_to t('widgets'), author_site_storage_widgets_path(site) %></li>
+    <li class="outer"><%= link_to t('users'), author_site_storage_get_users_path(site) %></li>
+    <li class="separator warning"><%= link_to_destroy(site, site.key) %></li>
+  </ul>
+</div>

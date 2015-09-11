@@ -26,18 +26,21 @@ class Author::WidgetsController < Author::AuthorController
   def index
 
     @json_data ||= {
+        user: current_user,
         categories: [],
-        widgets: []
+        widgets: [],
+        widgets_all: Widget.fetch_data(current_user),
+        site_widgets: [],
+        site_storage: SiteStorage.find_by_key(params[:site_storage_id])
     }
 
-    @author_widgets = Widget.fetch_site_widgets(params[:site_storage_id])
+    @author_widgets = @json_data[:site_storage].nil? ?
+        @json_data[:widgets_all] :
+        @json_data[:site_storage].author_widgets
 
     unless @author_widgets.blank?
 
-      categories = @author_widgets.first.fetch_categories(current_user)
-
-      @json_data[:user] = current_user
-      @json_data[:categories] = categories
+      @json_data[:categories] = @author_widgets.first.fetch_categories(current_user)
 
       @json_data[:widgets] = @author_widgets.map do |w|
         {
@@ -56,14 +59,9 @@ class Author::WidgetsController < Author::AuthorController
         }
       end if request.xhr?
 
-      @json_data[:site_widgets] = []
-      categories.each do |c|
-        widgets = c.author_widgets.fetch_category_site_widgets(c, params[:site_storage_id])
-        @json_data[:site_widgets] << {
-            category: c,
-            widgets: widgets
-        } if widgets.length > 0
-      end
+      collect_category_widgets
+
+
     end
 
   end
@@ -226,6 +224,16 @@ class Author::WidgetsController < Author::AuthorController
   end
 
   private
+
+  def collect_category_widgets
+    @json_data[:categories].each do |c|
+      widgets = c.author_widgets.fetch_category_site_widgets(c, @json_data[:site_storage])
+      @json_data[:site_widgets] << {
+          category: c,
+          widgets: widgets
+      } if widgets.length > 0
+    end unless request.xhr?
+  end
 
   def fetch_external_widget_data
 

@@ -1,0 +1,9 @@
+<li>
+  <%= link_to item.key, preview_path(item), {target: '_blank'} %>
+  <h4><%= localize(item.author_item.updated_at, format: :short) %></h4>
+  <h4><%= item.author_site_type.try(:name) %></h4>
+  <h6 title="<%= item.uuid %>"><%= item.uuid %></h6>
+  <%= render 'published', publish: item.publish %>
+  <%= render 'widgets', site: item %>
+  <%= render 'footer', site: item %>
+</li>

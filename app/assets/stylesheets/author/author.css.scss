@@ -33,6 +33,8 @@ body.admin header {
   z-index: 10;
   left: 0;
   top: 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 body.admin header ul {
@@ -74,6 +76,7 @@ body.admin header:hover li.menu:before {
 body.admin header li.title {
   margin-left: 20px;
   font-size: 20px;
+  float: none;
 }
 
 body.admin section.panel {
@@ -346,8 +349,16 @@ body.admin ul.admin-navigation > li.site-types a {
   background-image: image_url("site-type.png");
 }
 
+body.admin ul.admin-navigation.inner > li.widgets a,
 body.admin ul.admin-navigation > li.widgets a {
   background-image: image_url("widgets.png");
+  height: 100%;
+}
+
+body.admin ul.admin-navigation.inner > li.widgets a {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: left 2.5em;
 }
 
 body.admin ul.admin-navigation > li.widget-categories a {
@@ -792,4 +803,8 @@ body.admin ul.social {
 
 body.admin ul.social li {
   float: left;
+}
+
+body.admin .mt {
+  margin-top: 1em;
 }

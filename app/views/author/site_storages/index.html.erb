@@ -1,14 +1,4 @@
 <ul class="admin-navigation inner">
   <li><%= render_add_new %></li>
-  <% @author_site_storages.each do |storage| %>
-      <li>
-        <%= link_to storage.key, preview_path(storage), {target: '_blank'} %>
-        <h4><%= localize(storage.author_item.updated_at, format: :short) %></h4>
-        <h4><%= storage.author_site_type.try(:name) %></h4>
-        <h6 title="<%= storage.uuid %>"><%= storage.uuid %></h6>
-        <%= render 'published', publish: storage.publish %>
-        <%= render 'widgets', site: storage %>
-        <%= render 'footer', site: storage %>
-      </li>
-  <% end %>
+  <% render_loop(@author_site_storages, 'content') %>
 </ul>

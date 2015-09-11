@@ -21,6 +21,10 @@ module Author::AuthorHelper
     ) unless add_new_black_list.include? controller_name if action_name === 'index'
   end
 
+  def render_loop(collection, partial)
+    collection.each { |item| concat render partial, item: item }
+  end
+
   def render_title
     content_tag(:div, class: 'title') do
     end unless controller_name == 'author'

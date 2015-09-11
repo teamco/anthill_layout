@@ -1,0 +1,2 @@
+<li class="category"><%= "#{item[:category].name_value} (#{item[:widgets].length})" %></li>
+<% render_loop(item[:widgets], 'content') %>
