@@ -1,5 +1,5 @@
 <li class="mt widgets">
   <%= link_to t('manage_widget_connections'), author_widgets_path %>
   <div><%= data[:widgets_all].length %></div>
-  <%= render 'connected_widgets_menu', data: data %>
+  <%= render 'author/site_storages/connected_widgets_menu', item: data %>
 </li>

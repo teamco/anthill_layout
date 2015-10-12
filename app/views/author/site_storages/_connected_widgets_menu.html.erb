@@ -1,9 +1,12 @@
 <div>
   <div>
     <ul class="menu arrow_box">
-      <li><%= link_to t('edit'), edit_author_widget_path(item) %></li>
-      <li><%= link_to_destroy(item, item.name) %></li>
+      <li>
+        <% logger.info item.inspect%>
+      <%#= link_to t('edit'), edit_author_widget_path(item) %>
+      </li>
+      <li><%#= link_to_destroy(item, item.name) %></li>
     </ul>
   </div>
-  <%= image_tag item.thumbnail %>
+  <%#= image_tag item.thumbnail %>
 </div>
