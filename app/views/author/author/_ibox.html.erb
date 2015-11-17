@@ -1,0 +1,13 @@
+<div class="small-box <%= item_count > 0 ? item_box : 'bg-gray' %>">
+    <div class="inner">
+        <h3><%= item_count %></h3>
+
+        <p><%= item_title %></p>
+    </div>
+    <div class="icon">
+        <i class="glyphicon <%= item_icon %>"></i>
+    </div>
+    <%= link_to item_path, class: 'small-box-footer' do %>
+        <%= t('more_info') %> <i class="fa fa-arrow-circle-right"></i>
+    <% end %>
+</div>

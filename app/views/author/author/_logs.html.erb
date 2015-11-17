@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><%= t('logs_management') %></h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+                <%= render 'author/author/ibox',
+                           item_box: 'bg-green',
+                           item_title: t('user_logs'),
+                           item_path: user_logs_path,
+                           item_count: @author[:user_logs] || 0,
+                           item_icon: 'glyphicon-time' %>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <%= render 'author/author/ibox',
+                           item_box: 'bg-red',
+                           item_title: t('error_logs'),
+                           item_path: error_logs_path,
+                           item_count: @author[:error_logs] || 0,
+                           item_icon: 'glyphicon-exclamation-sign' %>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <%= render 'author/author/ibox',
+                           item_box: 'bg-yellow',
+                           item_title: t('vulnerability_storage'),
+                           item_path: vulnerability_storages_path,
+                           item_count: @author[:vulnerability_storage] || 0,
+                           item_icon: 'glyphicon-fire' %>
+            </div>
+        </div>
+    </div>
+</div>

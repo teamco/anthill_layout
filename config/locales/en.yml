@@ -48,3 +48,5 @@ en:
   success_delete: "Item was successfully destroyed"
   success_update: "Item was successfully updated"
   success_create: "Item was successfully created"
+  more_info: "More info"
+  logs_management: "Logs Management"

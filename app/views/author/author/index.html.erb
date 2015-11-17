@@ -1,36 +1,5 @@
-<ul class="admin-navigation">
-  <li class="category"><%= t('sites_management') %></li>
-  <li class="sites">
-    <%= link_to t('sites_storage'), author_site_storages_path %>
-    <div><%= @author[:site_storages] %></div>
-  </li>
-  <li class="site-versions">
-    <%= link_to t('sites_versions'), author_site_versions_path %>
-    <div><%= @author[:site_versions] %></div>
-  </li>
-  <li class="site-types">
-    <%= link_to t('site_types'), author_site_types_path %>
-    <div><%= @author[:site_types] %></div>
-  </li>
-  <li class="vulnerability_storage">
-    <%= link_to t('vulnerability_storage'), vulnerability_storages_path %>
-    <div><%= @author[:vulnerability_storage] %></div>
-  </li>
-  <li class="user_logs">
-    <%= link_to t('user_logs'), user_logs_path %>
-    <div><%= @author[:user_logs] %></div>
-  </li>
-  <li class="error_logs">
-    <%= link_to t('error_logs'), error_logs_path %>
-    <div><%= @author[:error_logs] %></div>
-  </li>
-  <li class="category"><%= t('widget_management') %></li>
-  <li class="widgets">
-    <%= link_to t('widgets'), author_widgets_path %>
-    <div><%= @author[:widgets] %></div>
-  </li>
-  <li class="widget-categories">
-    <%= link_to t('widget_categories'), author_widget_categories_path %>
-    <div><%= @author[:widget_categories] %></div>
-  </li>
-</ul>
+<section class="admin-dashboard content">
+    <%= render 'author/author/sites' %>
+    <%= render 'author/author/logs' %>
+    <%= render 'author/author/widgets' %>
+</section>
