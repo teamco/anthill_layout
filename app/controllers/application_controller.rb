@@ -8,18 +8,18 @@ class ApplicationController < ActionController::Base
 
   layout :layout_by_resource
 
-  # rescue_from ActiveRecord::RecordNotFound, with: :error
-  # rescue_from Exception, with: :error
-  # rescue_from OAuth::Unauthorized, with: :error
-  # rescue_from ActionController::RoutingError, with: :not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :error
+  rescue_from Exception, with: :error
+  rescue_from OAuth::Unauthorized, with: :error
+  rescue_from ActionController::RoutingError, with: :not_found
 
   def raise_not_found
     raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
   end
 
-  def handle_error(e, status, template)
+  def handle_error(e, status, template, is_render=true)
     logger.info e.inspect
-    ErrorLog.handle_error(current_user, e)
+    ErrorLog.handle_error(current_user, e, @user_log)
     if self.methods.include? 'super'
       super
     else
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
         format.xml { head :not_found }
         format.any { head :not_found }
       end
-    end
+    end if is_render
   end
 
   protected
@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
   end
 
   def update_user_log
-    UserLog.handle_log(request, response, controller_name, action_name, current_user)
+    @user_log = UserLog.handle_log(request, response, controller_name, action_name, current_user)
   end
 
 end

@@ -3,7 +3,7 @@ class ErrorLog < ActiveRecord::Base
   belongs_to :user_log
   has_one :user, through: :user_log
 
-  def self.handle_error(user, e)
+  def self.handle_error(user, e, user_log)
 
     user_log = if user.nil?
                  UserLog.last
@@ -11,7 +11,7 @@ class ErrorLog < ActiveRecord::Base
                  user.user_logs.empty? ?
                      UserLog.last :
                      user.user_logs.order('updated_at DESC').limit(1).first
-               end
+               end if user_log.nil?
 
     create!(
         {
