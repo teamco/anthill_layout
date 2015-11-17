@@ -158,10 +158,14 @@ label.input-group-addon.text-left {
 }
 
 .social-omniauth a {
-  height: 64px;
-  width: 64px;
-  margin: 1em 0;
+  height: 32px;
+  width: 32px;
+  margin: 0.5em 0;
   display: inline-block;
+}
+
+.social-omniauth img {
+  width: 32px;
 }
 
 .login .panel-footer {
@@ -175,6 +179,10 @@ label.input-group-addon.text-left {
   border-radius: 50%;
   margin-right: 10px;
   margin-top: -2px;
+}
+
+.user-menu > .dropdown-toggle {
+  background-color: transparent !important;
 }
 
 .user-menu > .dropdown-menu > li.user-header > img {
@@ -205,10 +213,15 @@ img {
   display: initial;
 }
 
+.navbar.navbar-static-top {
+  height: 60px;
+  margin-bottom: 0;
+}
+
 .navbar-default.navbar-static-side .nav-header {
-  height: 50px;
+  height: 60px;
   padding: 0;
-  line-height: 50px;
+  line-height: 60px;
 }
 
 .nav-header .logo-element {
@@ -216,7 +229,7 @@ img {
 }
 
 body.mini-navbar .logo-element {
-  line-height: 50px;
+  line-height: 60px;
 }
 
 .bg-yellow {
@@ -299,4 +312,21 @@ body.mini-navbar .logo-element {
 
 .admin-dashboard .panel-body {
   padding: 20px 20px 0;
+}
+
+.new_user input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.f-400 {
+  font-weight: 400;
+  margin: 0;
+}
+
+.m-0 #page-wrapper {
+  margin: 0;
 }

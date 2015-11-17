@@ -12,31 +12,31 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="anthill admin pace-done">
+<body class="anthill admin pace-done <%= 'm-0' unless user_signed_in? %>">
 <div id="wrapper">
+    <% if user_signed_in? %>
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="profile-element text-center"><h1 class="logo-element">AntHill</h1></div>
+                        <div class="logo-element">AH+</div>
+                    </li>
+                </ul>
 
-    <nav class="navbar-default navbar-static-side" role="navigation">
-        <div class="sidebar-collapse">
-            <ul class="nav metismenu" id="side-menu">
-                <li class="nav-header">
-                    <div class="profile-element text-center"><h1 class="logo-element">AntHill</h1></div>
-                    <div class="logo-element">AH+</div>
-                </li>
-            </ul>
-
-        </div>
-    </nav>
-
+            </div>
+        </nav>
+    <% end %>
     <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom">
-            <nav class="nav navbar navbar-static-top lazur-bg" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-info">
-                        <i class="fa fa-bars"></i>
-                    </a>
-                </div>
-                <ul class="nav navbar-top-links navbar-right">
-                    <% if user_signed_in? %>
+        <% if user_signed_in? %>
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top lazur-bg" role="navigation">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-info">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <%= image_tag user_image_url, class: 'user-image', alt: user_name %>
@@ -62,11 +62,10 @@
                                 </li>
                             </ul>
                         </li>
-                    <% end %>
-                </ul>
-
-            </nav>
-        </div>
+                    </ul>
+                </nav>
+            </div>
+        <% end %>
         <div class="wrapper wrapper-content">
             <div class="row">
                 <div class="col-lg-12">
@@ -77,9 +76,11 @@
             </div>
         </div>
         <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
+            <% if user_signed_in? %>
+                <div class="pull-right">
+                    Last sign in at <strong><%= current_user.last_sign_in_at.to_formatted_s(:long) %></strong>
+                </div>
+            <% end %>
             <div>
                 <strong>Copyright</strong> iTeam&copy; 2014-2015
             </div>
