@@ -1,25 +1,43 @@
-<h2>Log in</h2>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: 'off' %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="col-lg-3"></div>
+<div class="col-lg-6">
+    <div class="panel panel-default login">
+        <div class="panel-heading"><%= t('login') %></div>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="panel-body">
+                <%= devise_error_messages! %>
+                <div class="input-group">
+                    <%= f.label :email, class: 'input-group-addon text-left' %>
+                    <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+                </div>
+                <div class="input-group">
+                    <%= f.label :password, class: 'input-group-addon text-left' %>
+                    <%= f.password_field :password, autocomplete: 'off', class: 'form-control' %>
+                </div>
+                <% if devise_mapping.rememberable? -%>
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <%= f.check_box :remember_me, class: 'form-control' %>
+                            </span>
+                            <%= f.label :remember_me, class: 'input-group-addon text-left' %>
+                        </div>
+                    </div>
+                    <div class="col-lg-4"></div>
+                <% end -%>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <%= f.submit t('login'), class: 'btn btn-info' %>
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <%= render 'devise/shared/links' %>
+                    </div>
+                </div>
+                <%= render 'devise/shared/omniauth' %>
+            </div>
+        <% end %>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit t('login') %>
-  </div>
-<% end %>
-
-<%= render 'devise/shared/links' %>
+</div>
+<div class="col-lg-3"></div>

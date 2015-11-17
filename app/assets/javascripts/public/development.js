@@ -79,10 +79,12 @@
             }
 
             require([
-                'modernizr',
-                'totally',
                 'pluralize',
-                'jquery.ui'
+                'jquery.ui',
+                'jquery.metismenu',
+                'jquery.slimscroll',
+                'bootstrap',
+                '_'
             ], _setup);
         });
     }

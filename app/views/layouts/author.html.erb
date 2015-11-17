@@ -1,42 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Anthill</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag 'author' %>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-  <%= csrf_meta_tags %>
+    <title>Anthill</title>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'author' %>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body class="anthill admin">
-<div class="fetcher">
-  <header>
-    <ul>
-      <li class="menu">Menu</li>
-      <li class="title">
-        <span><%= link_to t('author_panel'), author_path %></span>
-        <span>
-          <% unless must_authenticate(%w[author]) %>
-              &raquo;
-              <% action_key = "#{ah}#{ih}" %>
-              <%= link_to "#{ch}", c_index %>:
-              <%= link_to action_key, c_index(params[:id]) %>
-              <%= "(#{mc.fetch_data(current_user).size})" if ahi? %>
-          <% end %>
-        </span>
-      </li>
-    </ul>
-  </header>
-  <section class="panel">
-    <ul>
-      <% if user_signed_in? %>
-          <li class="logout"><%= do_logout %></li>
-          <li>Logged in as <%= show_user %></li>
-      <% end %>
-    </ul>
-  </section>
-  <section class="content <%= controller_name %>">
-    <%= yield %>
-  </section>
+<body class="anthill admin pace-done">
+<div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="logo-element">
+                        IN+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+
+                    <form role="search" class="navbar-form-custom" method="post" action="#">
+                        <div class="form-group">
+                            <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <% if user_signed_in? %>
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <%= image_tag user_image_url, class: 'user-image', alt: user_name %>
+                                <span class="hidden-xs"><%= user_name %></span>
+                            </a>
+                            <ul class="dropdown-menu animated bounceIn">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <%= image_tag user_image_url, class: 'img-circle', alt: user_name %>
+                                    <p>
+                                        <%= user_name %><br/>
+                                        <small>Member since <%= current_user.created_at.to_formatted_s(:long) %></small>
+                                    </p>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <%= do_logout %>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    <% end %>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-left m-t-lg">
+                        <%= yield %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> iTeam&copy; 2014-2015
+            </div>
+        </div>
+
+    </div>
 </div>
+<!--<div class="fetcher">-->
+<!--<header>-->
+<!--<ul>-->
+<!--<li class="menu">Menu</li>-->
+<!--<li class="title">-->
+<!--<span><%= link_to t('author_panel'), author_path %></span>-->
+<!--<span>-->
+<!--
+<% unless must_authenticate(%w[author]) %>-->
+    <!--&raquo;-->
+    <!--
+    <% action_key = "#{ah}#{ih}" %>-->
+    <%= link_to "#{ch}", c_index %>:
+    <!--<%= link_to action_key, c_index(params[:id]) %>-->
+    <!--<%= "(#{mc.fetch_data(current_user).size})" if ahi? %>-->
+    <!--
+<% end %>-->
+<!--</span>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</header>-->
+<!--<section class="panel">-->
+<!--<ul>-->
+<!--
+<% if user_signed_in? %>-->
+    <!--<li class="logout"><%= do_logout %></li>-->
+    <!--<li>Logged in as <%#= show_user %></li>-->
+    <!--
+<% end %>-->
+<!--</ul>-->
+<!--</section>-->
+<!--<section class="content <%= controller_name %>">-->
+<!---->
+<!--</section>-->
+<!--</div>-->
 </body>
 </html>

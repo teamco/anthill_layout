@@ -18,7 +18,7 @@ group :test do
 end
 
 group :development do
-  gem 'mysql2', '~> 0.3.20'
+  gem 'mysql2'#, '~> 0.3.20'
 end
 
 group :test, :development do
@@ -80,6 +80,8 @@ gem 'coffee-rails', '>= 4.0.0'
 gem 'jbuilder', '>= 2.0'
 gem 'therubyracer'
 
+gem 'gravtastic'
+
 gem 'devise'
 gem 'devise_lastseenable'
 gem 'omniauth'
@@ -87,6 +89,7 @@ gem 'omniauth-digitalocean'
 gem 'omniauth-twitter'
 gem 'omniauth-amazon'
 gem 'omniauth-facebook'
+gem 'omniauth-instagram'
 gem 'omniauth-google'
 gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-github'

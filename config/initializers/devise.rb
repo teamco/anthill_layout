@@ -47,7 +47,7 @@ Devise.setup do |config|
   config.omniauth :facebook,
                   ENV['FACEBOOK_KEY'],
                   ENV['FACEBOOK_SECRET'], {
-                      scope: 'email',
-                      info_fields: 'email'
+                      scope: 'email,public_profile',
+                      info_fields: 'email,name'
                   }
 end

@@ -48,11 +48,50 @@ module ApplicationHelper
   end
 
   def do_logout
-    link_to(t('logout'), destroy_user_session_path, method: :delete)
+    link_to t('logout'), destroy_user_session_path, method: :delete, class: 'btn btn-default btn-flat'
   end
 
-  def show_user
-    link_to current_user.email, edit_user_registration_path
+  def is_sessions?
+    controller_name == 'sessions'
   end
 
+  def is_registration?
+    controller_name == 'registrations'
+  end
+
+  def is_passwords?
+    controller_name == 'passwords'
+  end
+
+  def is_confirmations?
+    controller_name == 'confirmations'
+  end
+
+  def is_unlocks?
+    controller_name == 'unlocks'
+  end
+
+  def is_sign_up_link?
+    devise_mapping.registerable? && !is_registration?
+  end
+
+  def is_forgot_password_link?
+    devise_mapping.recoverable? && !is_passwords? && !is_registration?
+  end
+
+  def is_new_confirmation_link?
+    devise_mapping.confirmable? && !is_confirmations?
+  end
+
+  def is_new_unlock_link?
+    devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && !is_unlocks?
+  end
+
+  def user_image_url
+    current_user.image || current_user.gravatar_url
+  end
+
+  def user_name
+    current_user.name || current_user.email
+  end
 end

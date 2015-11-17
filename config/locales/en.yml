@@ -22,7 +22,7 @@
 en:
   hello: "Hello world"
   author_panel: "Author Panel"
-  logout: "Logout"
+  logout: "Sign out"
   widgets: "Widgets"
   widget_categories: "Widget Categories"
   widget_management: "Widget Management"

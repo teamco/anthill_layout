@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+  include Gravtastic
+  gravtastic
+
   TEMP_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
   devise :database_authenticatable, :registerable,
@@ -115,7 +118,12 @@ class User < ActiveRecord::Base
     # assuming the user model has an image
     user.image = auth.info.image
 
-    user.save!
+    if user.save!
+      item = Author::Item.create(public: false, visible: true, user_id: user.id)
+      user.update(item_id: item.id)
+    end
+
+    user
   end
 
   def set_default_role
