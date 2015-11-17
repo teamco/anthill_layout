@@ -19,7 +19,7 @@
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
-                    <div class="profile-element"><h1 class="logo-element">AntHill</h1></div>
+                    <div class="profile-element text-center"><h1 class="logo-element">AntHill</h1></div>
                     <div class="logo-element">AH+</div>
                 </li>
             </ul>
@@ -29,23 +29,18 @@
 
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
-            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+            <nav class="nav navbar navbar-static-top lazur-bg" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-info">
+                        <i class="fa fa-bars"></i>
                     </a>
-
-                    <form role="search" class="navbar-form-custom" method="post" action="#">
-                        <div class="form-group">
-                            <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
-                        </div>
-                    </form>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <% if user_signed_in? %>
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <%= image_tag user_image_url, class: 'user-image', alt: user_name %>
-                                <span class="hidden-xs"><%= user_name %></span>
+                                <span class="text-white"><%= user_name %></span>
                             </a>
                             <ul class="dropdown-menu animated bounceIn">
                                 <!-- User image -->

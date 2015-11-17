@@ -205,6 +205,20 @@ img {
   display: initial;
 }
 
+.navbar-default.navbar-static-side .nav-header {
+  height: 50px;
+  padding: 0;
+  line-height: 50px;
+}
+
+.nav-header .logo-element {
+  padding: 0;
+}
+
+body.mini-navbar .logo-element {
+  line-height: 50px;
+}
+
 .bg-yellow {
   background-color: #f39c12;
 }
