@@ -7,6 +7,7 @@ module Author
   def self.fetch_data(user)
     {
         users: User.count,
+        users_online: User.where('last_seen > ?', 5.minutes.ago).length,
         site_storages: Author::SiteStorage.fetch_data(user).length,
         site_types: Author::SiteType.fetch_data(user).length,
         # site_versions: user.author_site_versions.length,

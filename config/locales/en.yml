@@ -50,3 +50,6 @@ en:
   success_create: "Item was successfully created"
   more_info: "More info"
   logs_management: "Logs Management"
+  users_management: "Users Management"
+  users: "Users"
+  users_online: "Users online"
