@@ -92,6 +92,6 @@ module ApplicationHelper
   end
 
   def user_name
-    current_user.name || current_user.email
+    current_user.name || current_user.original_email
   end
 end

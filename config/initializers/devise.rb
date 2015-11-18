@@ -13,6 +13,7 @@ Devise.setup do |config|
   config.password_length = 8..128
   config.reset_password_within = 6.hours
   config.sign_out_via = :delete
+  config.scoped_views = true
 
   config.secret_key = 'd75ea36b070d78663a9f82f9170f78c0901b942788b46e0976f9d49b7405723e78af190abc4bb14cc1edada13cb60deb0d11898cb18dc8a55ccb10f76e01ad75'
 
@@ -29,7 +30,7 @@ Devise.setup do |config|
                   ENV['ALIEXPRESS_KEY'],
                   ENV['ALIEXPRESS_SECRET']
 
-                  config.omniauth :linkedin,
+  config.omniauth :linkedin,
                   ENV['LINKEDIN_KEY'],
                   ENV['LINKEDIN_SECRET'],
                   scope: 'r_basicprofile r_emailaddress'

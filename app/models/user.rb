@@ -71,12 +71,29 @@ class User < ActiveRecord::Base
 
   before_create :set_default_role
 
-  validates_format_of :email, with: TEMP_EMAIL_REGEX, on: :update
+  validates_format_of :email,
+                      with: TEMP_EMAIL_REGEX,
+                      on: :update,
+                      uniqueness: {
+                          case_sensitive: false
+                      }
+
+  before_create :update_profile
+  before_update :update_profile
+  after_create :update_item
+
+  def update_profile
+    self.original_email = self.email.clone
+    self.email = "#{self.uid}@#{self.provider}.com" unless self.provider.nil?
+  end
+
+  def update_item
+    item = Author::Item.create(public: false, visible: true, user_id: self.id)
+    self.update(item_id: item.id)
+  end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
-      create_from(auth, user)
-    end
+    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap { |user| create_from(auth, user) }
   end
 
   def email_verified?
@@ -107,23 +124,13 @@ class User < ActiveRecord::Base
     user.oauth_token = auth.credentials.token
     user.oauth_expires_at = Time.at(auth.credentials.expires_at) unless auth.credentials.expires_at.nil?
 
-    name = auth.info.name
-    name = auth.info.resource_owner if auth.provider == 'aliexpress'
-
-    user.email = auth.info.email || "#{name.parameterize.gsub(/-/, '.')}@#{auth.provider}.com"
+    user.name = auth.info.name || user.uid
+    user.email = auth.info.email || "#{user.uid}@#{user.provider}.com"
     user.password = Devise.friendly_token[0, 20]
 
-    # assuming the user model has a name
-    user.name = name
     # assuming the user model has an image
     user.image = auth.info.image
-
-    if user.save!
-      item = Author::Item.create(public: false, visible: true, user_id: user.id)
-      user.update(item_id: item.id)
-    end
-
-    user
+    user.save
   end
 
   def set_default_role

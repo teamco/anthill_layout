@@ -42,7 +42,8 @@ class ApplicationController < ActionController::Base
   end
 
   def error(e)
-    handle_error(e, :internal_server_error, 500)
+    handle_error(e, :internal_server_error, 500, false)
+    redirect_to :back
   end
 
   def layout_by_resource
