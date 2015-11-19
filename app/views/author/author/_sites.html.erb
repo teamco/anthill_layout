@@ -5,27 +5,27 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-3 col-xs-6">
-                <%= render 'author/author/ibox',
+                <%= render 'author/author/ibox_index',
                            item_box: 'bg-yellow',
                            item_title: t('sites_storage'),
                            item_path: author_site_storages_path,
-                           item_count: @author[:site_storages] || 0,
+                           item_count: @author[:site_storages],
                            item_icon: 'glyphicon-globe' %>
             </div>
             <div class="col-lg-3 col-xs-6">
-                <%= render 'author/author/ibox',
+                <%= render 'author/author/ibox_index',
                            item_box: 'bg-yellow',
                            item_title: t('sites_versions'),
                            item_path: author_site_versions_path,
-                           item_count: @author[:site_versions] || 0,
+                           item_count: @author[:site_versions],
                            item_icon: 'glyphicon-th' %>
             </div>
             <div class="col-lg-3 col-xs-6">
-                <%= render 'author/author/ibox',
+                <%= render 'author/author/ibox_index',
                            item_box: 'bg-yellow',
                            item_title: t('site_types'),
                            item_path: author_site_types_path,
-                           item_count: @author[:site_types] || 0,
+                           item_count: @author[:site_types],
                            item_icon: 'glyphicon-tasks' %>
             </div>
         </div>

@@ -5,19 +5,19 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-3 col-xs-6">
-                <%= render 'author/author/ibox',
+                <%= render 'author/author/ibox_index',
                            item_box: 'bg-yellow',
                            item_title: t('widgets'),
                            item_path: author_widgets_path,
-                           item_count: @author[:widgets] || 0,
+                           item_count: @author[:widgets],
                            item_icon: 'glyphicon-dashboard' %>
             </div>
             <div class="col-lg-3 col-xs-6">
-                <%= render 'author/author/ibox',
+                <%= render 'author/author/ibox_index',
                            item_box: 'bg-yellow',
                            item_title: t('widget_categories'),
                            item_path: author_widget_categories_path,
-                           item_count: @author[:widget_categories] || 0,
+                           item_count: @author[:widget_categories],
                            item_icon: 'glyphicon-edit' %>
             </div>
         </div>

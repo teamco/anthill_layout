@@ -76,6 +76,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '>= 4.0.0'
 
 # gem 'turbolinks'
+gem 'data-confirm-modal', git: 'https://github.com/ifad/data-confirm-modal'
 
 gem 'jbuilder', '>= 2.0'
 gem 'therubyracer'

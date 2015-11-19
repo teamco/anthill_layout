@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_error(e, status, template, is_render=true)
-    logger.info e.inspect
+    logger.info ">>> Error: #{e.inspect}"
     ErrorLog.handle_error(current_user, e, @user_log)
     if self.methods.include? 'super'
       super
@@ -42,8 +42,7 @@ class ApplicationController < ActionController::Base
   end
 
   def error(e)
-    handle_error(e, :internal_server_error, 500, false)
-    redirect_to :back
+    handle_error(e, :internal_server_error, 500)
   end
 
   def layout_by_resource

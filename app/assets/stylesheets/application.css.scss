@@ -170,6 +170,7 @@ label.input-group-addon.text-left {
 
 .login .panel-footer {
   padding-bottom: 0;
+  margin-top: 20px;
 }
 
 .user-menu .user-image {
@@ -301,13 +302,18 @@ body.mini-navbar .logo-element {
 .small-box > .small-box-footer {
   position: relative;
   text-align: center;
-  padding: 3px 0;
   color: #fff;
   color: rgba(255, 255, 255, 0.8);
   display: block;
   z-index: 10;
   background: rgba(0, 0, 0, 0.1);
   text-decoration: none;
+  padding: 3px 0 3px 3px;
+  overflow: hidden;
+}
+
+.small-box-footer.btn-group > .btn:hover {
+  z-index: 0;
 }
 
 .admin-dashboard .panel-body {
@@ -347,4 +353,8 @@ body.mini-navbar .logo-element {
 #error_explanation ul {
   margin-bottom: 0;
   margin-top: 1em;
+}
+
+.admin-dashboard a > i {
+  margin-right: 5px;
 }

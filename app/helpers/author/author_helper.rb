@@ -8,8 +8,19 @@ module Author::AuthorHelper
     "<tr>#{names.map { |n| "<th>#{n}</th>" }.join}</tr>".html_safe
   end
 
-  def link_to_destroy(item, name)
-    link_to 'Destroy', item, method: :delete, data: {confirm: "Are you sure want to delete: #{name}?"}
+  def link_to_destroy(item, name, style='btn btn-danger')
+    link_to send("author_#{controller_name.singularize}_path", item),
+            class: style,
+            method: :delete,
+            data: {confirm: "Are you sure want to delete #{controller_name.humanize.singularize.downcase}: \"#{name}?\""} do
+      "<i class=\"glyphicon glyphicon-trash\"></i>#{t('delete')}".html_safe
+    end
+  end
+
+  def link_to_edit(item, style='btn btn-default')
+    link_to send("edit_author_#{controller_name.singularize}_path", item), class: style do
+      "<i class=\"glyphicon glyphicon-pencil\"></i>#{t('edit')}".html_safe
+    end
   end
 
   def render_add_new
@@ -86,7 +97,7 @@ module Author::AuthorHelper
   def render_notification(item)
     content_tag(:div, class: 'error_explanation') do
       concat content_tag(:h2, "#{pluralize(item.errors.count, 'error')}: prohibited this item from being saved:")
-      concat content_tag(:ul, item.errors.full_messages.collect { |message| "<li>#{message}</li>" }.join.html_safe)
+      concat content_tag(:ul, item.errors.full_messages.collect { |message| "<li>#{message}</ li>" }.join.html_safe)
     end if item.errors.any?
   end
 

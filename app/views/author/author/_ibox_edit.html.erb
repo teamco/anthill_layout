@@ -1,0 +1,15 @@
+<% item_count = (defined? item_count).nil? ? 0 : item_count %>
+<div class="small-box <%= item_count > 0 ? item_box : 'bg-gray' %>">
+    <div class="inner">
+        <h3><%= item_count %></h3>
+
+        <p><%= item_title %></p>
+    </div>
+    <div class="icon">
+        <i class="glyphicon <%= item_icon %>"></i>
+    </div>
+    <div class="btn-group btn-group-xs small-box-footer animated fadeIn" role="group" aria-label="Extra-small button group">
+        <%= link_to_edit(item) %>
+        <%= link_to_destroy(item, item_title) %>
+    </div>
+</div>
