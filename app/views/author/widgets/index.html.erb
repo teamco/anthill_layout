@@ -4,6 +4,14 @@
     </div>
     <div class="panel-body">
         <div class="row">
+            <div class="col-lg-3 col-xs-6">
+                <%= render 'author/author/ibox_index',
+                           item_box: 'bg-green',
+                           item_title: 'All widgets',
+                           item_path: author_widgets_path,
+                           item_count: @json_data[:widgets_all].length || 0,
+                           item_icon: 'glyphicon-th-large' %>
+            </div>
             <% render_loop(@json_data[:site_widgets], 'site_widgets') %>
         </div>
     </div>

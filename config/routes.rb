@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :error_logs, only: [:show, :index] do
     resources :user_logs, only: [:show, :index]
   end
+
   resources :user_logs, only: [:show, :index] do
     resources :error_logs, only: [:show, :index]
   end
@@ -18,21 +19,28 @@ Rails.application.routes.draw do
   get '/auth/failure', to: redirect('/')
 
   namespace :author do
+
     resources :site_types
+
     resources :widgets do
       resources :widget_categories
     end
+
     resources :site_storages do
       resources :site_versions
       resources :widgets
       get 'get_users', to: '/users/management#index'
     end
+
     resources :site_versions do
       resources :site_storages
     end
+
     resources :widget_categories do
+      get 'widgets', to: 'widgets#index'
       resource :widgets
     end
+
   end
 
   resources :site_storages, path: 'author/site_storages' do

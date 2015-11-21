@@ -29,7 +29,7 @@ class Author::WidgetsController < Author::AuthorController
         user: current_user,
         categories: [],
         widgets: [],
-        widgets_all: Widget.fetch_data(current_user),
+        widgets_all: Widget.fetch_data(current_user, params[:widget_category_id]),
         site_widgets: [],
         site_storage: SiteStorage.find_by_key(params[:site_storage_id])
     }
@@ -60,7 +60,6 @@ class Author::WidgetsController < Author::AuthorController
       end if request.xhr?
 
       collect_category_widgets
-
 
     end
 
@@ -328,7 +327,7 @@ class Author::WidgetsController < Author::AuthorController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_author_widget
-    @author_widget = Widget.find(params[:id])
+    @author_widget = Widget.where(id: params[:id]).first
   end
 
   def set_clone_from
