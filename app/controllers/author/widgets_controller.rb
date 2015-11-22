@@ -25,11 +25,13 @@ class Author::WidgetsController < Author::AuthorController
   # GET /author/widgets.json
   def index
 
+    @category = Widget.fetch_category(current_user, params[:widget_category_id]) unless params[:widget_category_id].nil?
+
     @json_data ||= {
         user: current_user,
         categories: [],
         widgets: [],
-        widgets_all: Widget.fetch_data(current_user, params[:widget_category_id]),
+        widgets_all: Widget.fetch_data(current_user),
         site_widgets: [],
         site_storage: SiteStorage.find_by_key(params[:site_storage_id])
     }

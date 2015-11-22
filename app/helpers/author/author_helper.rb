@@ -18,7 +18,7 @@ module Author::AuthorHelper
   end
 
   def link_to_edit(item, style='btn btn-default')
-    link_to send("edit_author_#{controller_name.singularize}_path", item), class: style do
+    link_to send("edit_author_#{controller_name.singularize}_path", item), title: t('edit'),class: style do
       "<i class=\"glyphicon glyphicon-pencil\"></i>#{t('edit')}".html_safe
     end
   end

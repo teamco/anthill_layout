@@ -23,20 +23,24 @@ class Author::Widget < ActiveRecord::Base
   validates :width, presence: true, numericality: true
   validates :height, presence: true, numericality: true
 
-  def self.fetch_data(user, widget_category_id=nil)
-    widget_category_id.nil? ?
+  def self.fetch_data(user, category=nil)
+    category.nil? ?
         joins(:author_item).
             includes(:author_widget_category, :author_site_storages).
             where('visible=true AND (public=true OR user_id=?)', user.id).
             order(name: :asc) :
         joins(:author_item, :author_widget_category).
             includes(:author_widget_category, :author_site_storages).
-            where('visible=true AND (public=true OR user_id=?) AND author_widget_categories.id=?', user.id, widget_category_id).
+            where('visible=true AND (public=true OR user_id=?) AND author_widget_categories.id=?', user.id, category.id).
             order(name: :asc)
   end
 
   def fetch_categories(user)
     Author::WidgetCategory.fetch_data(user)
+  end
+
+  def self.fetch_category(user, category_id)
+    Author::WidgetCategory.fetch_data(user).find(category_id)
   end
 
   def self.fetch_site_widgets(key)

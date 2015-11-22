@@ -14,6 +14,7 @@
  * = //require_tree .
  *= require_self
  *= require_directory '../javascripts/scripts/core/lib/packages/bootstrap/css'
+ *= require_directory '../javascripts/scripts/plugins/stylesheets'
  */
 
 body {
@@ -278,12 +279,27 @@ body.mini-navbar .logo-element {
   color: #fff;
 }
 
+.small-box h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0;
+  color: #fff;
+}
+
 .small-box p {
   color: #fff;
   font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.small-box .icon {
+.small-box .icon,
+.small-box .widget {
   -webkit-transition: all .3s linear;
   -o-transition: all .3s linear;
   transition: all .3s linear;
@@ -293,6 +309,20 @@ body.mini-navbar .logo-element {
   z-index: 0;
   font-size: 6em;
   color: rgba(0, 0, 0, 0.15);
+}
+
+.small-box .widget {
+  width: 64px;
+  height: 64px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-image: url("default.png");
+  opacity: 0.3;
+}
+
+.small-box:hover .widget {
+  opacity: 0.8;
 }
 
 .small-box:hover .icon {
@@ -318,6 +348,14 @@ body.mini-navbar .logo-element {
 
 .admin-dashboard .panel-body {
   padding: 20px 20px 0;
+}
+
+.admin-dashboard .category-title {
+  padding: 2px 10px 0;
+}
+
+.admin-dashboard button.collapsed:before {
+  content: "\2b";
 }
 
 .new_user input[type="checkbox"] {

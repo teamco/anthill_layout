@@ -18,7 +18,7 @@ group :test do
 end
 
 group :development do
-  gem 'mysql2'#, '~> 0.3.20'
+  gem 'mysql2' #, '~> 0.3.20'
 end
 
 group :test, :development do
@@ -38,6 +38,8 @@ group :test, :development do
   gem 'brakeman', require: false
   gem 'rubocop', require: false
   gem 'rubycritic', require: false
+  gem 'guard'
+  gem 'guard-livereload', '~> 2.4', require: false
 end
 
 group :console do
