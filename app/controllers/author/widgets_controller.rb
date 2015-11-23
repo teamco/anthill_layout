@@ -15,6 +15,7 @@ class Author::WidgetsController < Author::AuthorController
   require 'json'
 
   before_action :authenticate_user!, except: [:show]
+  before_action :fetch_widgets_data, only: [:index, :all]
   before_action :set_author_widget, only: [:show, :edit, :update, :destroy]
   before_action :set_author_widget_category, only: [:create, :update, :destroy]
   before_action :set_clone_from, only: [:create]
@@ -25,46 +26,28 @@ class Author::WidgetsController < Author::AuthorController
   # GET /author/widgets.json
   def index
 
-    @category = Widget.fetch_category(current_user, params[:widget_category_id]) unless params[:widget_category_id].nil?
-
-    @json_data ||= {
-        user: current_user,
-        categories: [],
-        widgets: [],
-        widgets_all: Widget.fetch_data(current_user),
-        site_widgets: [],
-        site_storage: SiteStorage.find_by_key(params[:site_storage_id])
+    @partial = @category.nil? ? {
+        name: 'categories',
+        collection: @json_data[:site_widgets]
+    } : {
+        name: 'all_widgets',
+        collection: [{
+                         category: @category,
+                         widgets: @json_data[:widgets_all]
+                     }]
     }
 
-    @author_widgets = @json_data[:site_storage].nil? ?
-        @json_data[:widgets_all] :
-        @json_data[:site_storage].author_widgets
+    render :index
+  end
 
-    unless @author_widgets.blank?
+  # GET /author/widgets/all
+  def all
+    @partial = {
+        name: 'all_widgets',
+        collection: @json_data[:site_widgets]
+    }
 
-      @json_data[:categories] = @author_widgets.first.fetch_categories(current_user)
-
-      @json_data[:widgets] = @author_widgets.map do |w|
-        {
-            id: w[:id],
-            uuid: w[:uuid],
-            name: w[:name],
-            description: w[:description],
-            is_external: w[:is_external],
-            external_resource: w[:external_resource],
-            dimensions: {
-                width: w[:width],
-                height: w[:height]
-            },
-            type: w.author_widget_category[:name_index],
-            resource: w[:resource]
-        }
-      end if request.xhr?
-
-      collect_category_widgets
-
-    end
-
+    render :index
   end
 
   # GET /author/widgets/1
@@ -225,6 +208,49 @@ class Author::WidgetsController < Author::AuthorController
   end
 
   private
+
+  def fetch_widgets_data
+
+    @category = Widget.fetch_category(current_user, params[:widget_category_id]) unless params[:widget_category_id].nil?
+
+    @json_data ||= {
+        user: current_user,
+        categories: [],
+        widgets: [],
+        widgets_all: Widget.fetch_data(current_user, @category),
+        site_widgets: [],
+        site_storage: SiteStorage.find_by_key(params[:site_storage_id])
+    }
+
+    @author_widgets = @json_data[:site_storage].nil? ?
+        @json_data[:widgets_all] :
+        @json_data[:site_storage].author_widgets
+
+    unless @author_widgets.blank?
+
+      @json_data[:categories] = @author_widgets.first.fetch_categories(current_user)
+
+      @json_data[:widgets] = @author_widgets.map do |w|
+        {
+            id: w[:id],
+            uuid: w[:uuid],
+            name: w[:name],
+            description: w[:description],
+            is_external: w[:is_external],
+            external_resource: w[:external_resource],
+            dimensions: {
+                width: w[:width],
+                height: w[:height]
+            },
+            type: w.author_widget_category[:name_index],
+            resource: w[:resource]
+        }
+      end if request.xhr?
+
+      collect_category_widgets
+
+    end
+  end
 
   def collect_category_widgets
     @json_data[:categories].each do |c|

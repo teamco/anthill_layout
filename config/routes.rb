@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
     resources :site_types
 
+    get 'widgets/all', to: 'widgets#all', as: 'widgets_all'
     resources :widgets do
       resources :widget_categories
     end
