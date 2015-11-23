@@ -1,0 +1,10 @@
+<div class="footer">
+    <% if user_signed_in? %>
+        <div class="pull-right">
+            Last sign in at <strong><%= current_user.last_sign_in_at.to_formatted_s(:long) %></strong>
+        </div>
+    <% end %>
+    <div>
+        <strong>Copyright</strong> iTeam&copy; 2014-2015
+    </div>
+</div>

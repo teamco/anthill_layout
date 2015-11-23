@@ -94,4 +94,9 @@ module ApplicationHelper
   def user_name
     current_user.name || current_user.original_email
   end
+
+  def is_active_url(*args)
+    args.each { |x| return true if controller_name == x }
+    false
+  end
 end
