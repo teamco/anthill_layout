@@ -22,8 +22,55 @@
                         <div class="profile-element text-center"><h1 class="logo-element">AntHill</h1></div>
                         <div class="logo-element">AH+</div>
                     </li>
+                    <li>
+                        <a href="/"><i class="glyphicon glyphicon-dashboard"></i><span class="nav-label"><%= t('dashboard') %></span></a>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="glyphicon glyphicon-globe"></i>
+                            <span class="nav-label"><%= t('sites_management') %></span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><%= link_to t('sites_storage'), author_site_storages_path %></li>
+                            <li><%= link_to t('site_types'), author_site_types_path %></li>
+                            <li><%= link_to t('sites_versions'), author_site_versions_path %></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="glyphicon glyphicon-time"></i>
+                            <span class="nav-label"><%= t('logs_management') %></span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><%= link_to t('error_logs'), error_logs_path %></li>
+                            <li><%= link_to t('user_logs'), user_logs_path %></li>
+                            <li><%= link_to t('vulnerability_storage'), vulnerability_storages_path %></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="glyphicon glyphicon-th-large"></i>
+                            <span class="nav-label"><%= t('widget_management') %></span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><%= link_to t('widgets'), author_widgets_path %></li>
+                            <li><%= link_to t('widget_categories'), author_widget_categories_path %></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="glyphicon glyphicon-user"></i>
+                            <span class="nav-label"><%= t('users_management') %></span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><%= link_to t('users'), author_widgets_path %></li>
+                        </ul>
+                    </li>
                 </ul>
-
             </div>
         </nav>
     <% end %>
