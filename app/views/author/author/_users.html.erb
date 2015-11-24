@@ -9,7 +9,7 @@
                            item_box: 'bg-green',
                            item_title: t('users'),
                            item_path: user_logs_path,
-                           item_count: @author[:users],
+                           item_info: @author[:users],
                            item_icon: 'glyphicon-user' %>
             </div>
             <div class="col-lg-3 col-xs-6">
@@ -17,7 +17,7 @@
                            item_box: 'bg-aqua',
                            item_title: t('users_online'),
                            item_path: error_logs_path,
-                           item_count: @author[:users_online],
+                           item_info: @author[:users_online],
                            item_icon: 'glyphicon-refresh' %>
             </div>
         </div>

@@ -1,0 +1,13 @@
+<div class="panel panel-default form">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span class="group-addon">
+                <%= "#{action_name.humanize} #{controller_name.singularize.humanize}" %>
+            </span>
+            <%= instance_variable_get("@author_#{controller_name.singularize}").send(@title) %>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <%= render_form %>
+    </div>
+</div>

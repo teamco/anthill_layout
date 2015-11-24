@@ -17,5 +17,7 @@
 
     <%= render_activated_version(f) -%>
     <%= render_widgets unless is_new? -%>
-    <%= render_submit(f) -%>
+    <div class="panel-footer m-20">
+        <%= render_submit(f) -%>
+    </div>
 <% end -%>

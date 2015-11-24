@@ -340,6 +340,7 @@ body.mini-navbar .logo-element {
   text-decoration: none;
   padding: 3px 0 3px 3px;
   overflow: hidden;
+  line-height: 22px;
 }
 
 .small-box-footer.btn-group > .btn:hover {
@@ -410,4 +411,22 @@ body.mini-navbar .logo-element {
 
 .admin-dashboard a > i {
   margin-right: 5px;
+}
+
+.admin-dashboard .panel.form .panel-footer.m-20 {
+  margin: 0 -20px;
+}
+
+.group-addon {
+  float: left;
+  background: #eee;
+  margin-left: -15px;
+  margin-right: 10px;
+  padding: 0 10px 0 15px;
+  line-height: 38px;
+  height: auto;
+  margin-top: -11px;
+  border: 1px none #e5e6e7;
+  border-right-style: solid;
+  border-top-left-radius: 3px;
 }

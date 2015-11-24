@@ -47,7 +47,8 @@ class Author::SiteStoragesController < Author::AuthorController
 
   # GET /author/site_storages/1/edit
   def edit
-    render :form
+    @title = 'key'
+    render '/partials/form'
   end
 
   # POST /author/site_storages

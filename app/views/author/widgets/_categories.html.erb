@@ -13,7 +13,7 @@
                            item_box: 'bg-green',
                            item_title: 'All widgets',
                            item_path: '/author/widgets/all',
-                           item_count: @json_data[:widgets_all].length || 0,
+                           item_info: @json_data[:widgets_all].length || 0,
                            item_icon: 'glyphicon-th-large' %>
             </div>
             <% render_loop(@json_data[:site_widgets], 'site_widgets') %>
