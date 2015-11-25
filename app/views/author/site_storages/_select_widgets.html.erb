@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default category-widgets">
     <div class="panel-heading">
         <h3 class="panel-title">
             <label class="pull-left" onclick="selectAll(this)" for="select_all_widgets">(Un)Select All widgets</label>
@@ -12,4 +12,6 @@
         </div>
     </div>
 </div>
-<%= javascript_tag "function selectAll(e){var $c=$(e).attr('for')===\"select_all_widgets\"?\"ul.widgets\":$(e).next(),$w=$('input[type=\"checkbox\"]',$c);$w.prop('checked',!$w.prop('checked'));updateCounter();}function updateCounter(){var $l=$('label[for=\"select_all_widgets\"]');$l.text($l.text().replace(/\\d+/,$('input[type=\"checkbox\"]:checked').length));}".html_safe %>
+<%= javascript_tag "function updateCounter(e){var $p=$(e).closest('.panel');$p.find('.badge.selected').text($('.site-widgets input[type=\"checkbox\"]:checked',$p).length);countAll();}".html_safe %>
+<%= javascript_tag "function countAll(){$('.category-widgets .badge:first').text($.map($('.badge.selected'),function(e){return parseInt(e.innerText,10)}).reduce(function(a,b){return a+b;},0));}".html_safe %>
+<%= javascript_tag "function selectAll(e){var $p=$(e).closest('.panel'),$w=$p.find('.site-widgets input[type=\"checkbox\"]');$w.prop('checked',!$w.prop('checked'));updateCounter(e);}".html_safe %>

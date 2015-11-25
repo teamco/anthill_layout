@@ -9,7 +9,7 @@
                           @author_site_storage.author_widget_ids.include?(item.id), {
                                   id: dom_id(item),
                                   class: 'form-control',
-                                  onclick: 'updateCounter()'
+                                  onclick: 'updateCounter(this)'
                           } -%>
         <span><%= item.name %></span>
     <% end %>

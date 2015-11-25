@@ -357,7 +357,8 @@ body.mini-navbar .logo-element {
 }
 
 .admin-dashboard .panel-title .badge {
-  margin-left: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .admin-dashboard .category-title {
@@ -465,4 +466,8 @@ body.mini-navbar .logo-element {
 
 .admin-dashboard .site-widgets-wrapper {
   margin: 0 0 10px;
+}
+
+.admin-dashboard .category-widgets .panel-title {
+  cursor: pointer;
 }
