@@ -6,9 +6,7 @@ class Author::SiteStoragesController < Author::AuthorController
 
   before_action :authenticate_user!, except: [:show]
   before_action :set_author_site_storage,
-                only: [
-                    :show, :edit, :update, :activate, :destroy, :publish
-                ]
+                only: [:show, :edit, :update, :activate, :destroy, :publish]
 
   layout :resolve_layout
 
@@ -48,6 +46,7 @@ class Author::SiteStoragesController < Author::AuthorController
   # GET /author/site_storages/1/edit
   def edit
     @title = 'key'
+    @widget_categories = WidgetCategory.order(:name_value)
     render '/partials/form'
   end
 
@@ -264,6 +263,12 @@ class Author::SiteStoragesController < Author::AuthorController
     @author_site_types = SiteType.order(:name)
     @author_site_storage = SiteStorage.where(key: params[:key]).first ||
         SiteStorage.where(key: params[:id]).first
+
+    versions = @author_site_storage.author_site_versions
+    @versions = {
+        all: versions,
+        activated: versions.where(activated: true).first
+    }
     @target_path = get_target_url(@author_site_storage.key) unless @author_site_storage.nil?
   end
 

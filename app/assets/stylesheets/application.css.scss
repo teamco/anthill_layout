@@ -430,3 +430,39 @@ body.mini-navbar .logo-element {
   border-right-style: solid;
   border-top-left-radius: 3px;
 }
+
+.admin-dashboard textarea {
+  resize: vertical;
+}
+
+.admin-dashboard .json-view {
+  margin: 10px 0;
+}
+
+.admin-dashboard .site-widgets {
+  float: left;
+  margin-right: 5px;
+}
+
+.admin-dashboard .site-widgets .input-group-addon {
+  width: auto;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-repeat: no-repeat;
+  background-position: 7px center;
+  background-size: 32px;
+}
+
+.admin-dashboard .site-widgets input[type="checkbox"] {
+  width: auto;
+  margin-right: 10px;
+  margin-left: 35px;
+}
+
+.admin-dashboard .site-widgets span {
+  line-height: 32px;
+}
+
+.admin-dashboard .site-widgets-wrapper {
+  margin: 0 0 10px;
+}

@@ -1,0 +1,14 @@
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <button type="button" class="pull-left glyphicon glyphicon-minus" data-toggle="collapse" data-target="#toggle-widgets-<%= item.id %>"></button>
+        <h3 class="panel-title">
+            <span class="pull-left category-title"><%= item.name_value %></span>
+            <span class="badge"><%= item.author_widgets.length %></span>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="site-widgets-wrapper collapse in row" id="toggle-widgets-<%= item.id %>" aria-expanded="true" onclick="selectAll(this)">
+            <% render_loop(item.author_widgets.order(:name), 'site_widget') %>
+        </div>
+    </div>
+</div>

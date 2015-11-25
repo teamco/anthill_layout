@@ -47,17 +47,22 @@ module Author::AuthorHelper
     render_field(:text_area, f, name, disabled)
   end
 
-  def render_text_area_tag(name, value, disabled=false)
-    content_tag(:div, class: 'field') do
-      concat label_tag name
-      concat text_area_tag(name, value, {disabled: disabled})
+  def render_field_tag(type, name, value, disabled=false, autofocus=false)
+    content_tag(:div, class: 'input-group') do
+      concat label_tag name, nil, class: 'input-group-addon text-left'
+      concat send(type, name, value,
+                  disabled: disabled,
+                  autofocus: autofocus,
+                  class: 'form-control',
+                  placeholder: "Enter #{name.to_s.humanize}"
+             )
     end
   end
 
   def render_checkbox(f, name, disabled=false)
-    content_tag(:div, class: 'field') do
-      concat f.check_box(name, {disabled: disabled})
-      concat f.label name
+    content_tag(:div, class: 'input-group') do
+      concat render_group_field(:check_box, f, name, disabled)
+      concat text_field_tag(name, name, disabled: true, class: 'form-control')
     end
   end
 
@@ -68,14 +73,20 @@ module Author::AuthorHelper
     end
   end
 
+  def render_group_field(type, f, name, disabled)
+    content_tag(:span, nil, class: 'input-group-addon') do
+      concat f.send(type, name, disabled: disabled)
+    end
+  end
+
   def render_number_field(f, name, disabled=false)
     render_field(:number_field, f, name, disabled)
   end
 
   def render_collection(f, name, opts)
-    content_tag(:div, class: 'field') do
-      concat f.label name
-      concat f.collection_select(opts[:id], opts[:collection], opts[:index], opts[:value])
+    content_tag(:div, class: 'input-group') do
+      concat f.label opts[:id], name, class: 'input-group-addon text-left'
+      concat f.collection_select(opts[:id], opts[:collection], opts[:index], opts[:value], opts[:html] || {}, {class: 'form-control'})
     end unless opts[:collection].nil?
   end
 
@@ -104,10 +115,15 @@ module Author::AuthorHelper
 
   private
 
-  def render_field(type, f, name, disabled)
-    content_tag(:div, class: 'field') do
-      concat f.label name
-      concat f.send(type, name, {disabled: disabled, placeholder: "Enter #{name.to_s.humanize}"})
+  def render_field(type, f, name, disabled, autofocus=false)
+    content_tag(:div, class: 'input-group') do
+      concat f.label name, class: 'input-group-addon text-left'
+      concat f.send(type, name, {
+                            disabled: disabled,
+                            autofocus: autofocus,
+                            class: 'form-control',
+                            placeholder: "Enter #{name.to_s.humanize}"
+                        })
     end
   end
 

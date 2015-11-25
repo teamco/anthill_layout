@@ -1,6 +1,4 @@
 <%= f.fields_for :author_item do |ff| -%>
-    <div class="group fl">
-      <%= render_checkbox(ff, :public) -%>
-      <%= render_checkbox(ff, :visible) -%>
-    </div>
+    <%= render_checkbox(ff, :public) -%>
+    <%= render_checkbox(ff, :visible) -%>
 <% end -%>
