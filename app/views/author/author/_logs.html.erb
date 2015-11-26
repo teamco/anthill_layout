@@ -4,7 +4,7 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-3 col-xs-6">
+            <div class="col-lg-3 col-sm-6 col-xs-12">
                 <%= render 'author/author/ibox_index',
                            item_box: 'bg-green',
                            item_title: t('user_logs'),
@@ -12,7 +12,7 @@
                            item_info: @author[:user_logs],
                            item_icon: 'glyphicon-time' %>
             </div>
-            <div class="col-lg-3 col-xs-6">
+            <div class="col-lg-3 col-sm-6 col-xs-12">
                 <%= render 'author/author/ibox_index',
                            item_box: 'bg-red',
                            item_title: t('error_logs'),
@@ -20,7 +20,7 @@
                            item_info: @author[:error_logs],
                            item_icon: 'glyphicon-exclamation-sign' %>
             </div>
-            <div class="col-lg-3 col-xs-6">
+            <div class="col-lg-3 col-sm-6 col-xs-12">
                 <%= render 'author/author/ibox_index',
                            item_box: 'bg-yellow',
                            item_title: t('vulnerability_storage'),

@@ -260,6 +260,7 @@ body.mini-navbar .logo-element {
   display: block;
   margin-bottom: 20px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  min-width: 160px;
 }
 
 .small-box:hover {
@@ -341,6 +342,10 @@ body.mini-navbar .logo-element {
 
 .small-box-footer.btn-group > .btn:hover {
   z-index: 0;
+}
+
+.admin-dashboard .panel {
+  min-width: 230px;
 }
 
 .admin-dashboard .panel-body {
