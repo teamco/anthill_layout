@@ -1,9 +1,9 @@
 module Author::SiteStoragesHelper
 
   def render_activated_version(f)
-    render_collection(
+    render_collection_field(
         f, 'Version', {
-             id: :id,
+             id: :activated_version,
              collection: @versions[:all],
              index: :id,
              value: :version,

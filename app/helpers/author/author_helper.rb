@@ -83,7 +83,7 @@ module Author::AuthorHelper
     render_field(:number_field, f, name, disabled)
   end
 
-  def render_collection(f, name, opts)
+  def render_collection_field(f, name, opts)
     content_tag(:div, class: 'input-group') do
       concat f.label opts[:id], name, class: 'input-group-addon text-left'
       concat f.collection_select(opts[:id], opts[:collection], opts[:index], opts[:value], opts[:html] || {}, {class: 'form-control'})
