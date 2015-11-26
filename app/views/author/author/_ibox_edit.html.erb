@@ -1,4 +1,5 @@
 <% item_info = (defined? item_info).nil? ? nil : item_info %>
+<% item_menu = (defined? item_menu).nil? ? nil : item_menu %>
 <div class="small-box <%= item_info.nil? ? 'bg-gray' : item_box %>">
     <div class="inner">
         <h3><%= item_info.to_s %></h3>
@@ -7,8 +8,11 @@
     <div class="icon">
         <i class="glyphicon <%= item_icon %>"></i>
     </div>
-    <div class="btn-group btn-group-xs small-box-footer animated fadeIn" role="group" aria-label="Extra-small button group">
-        <%= link_to_edit(item) %>
-        <%= link_to_destroy(item, item_title) %>
+    <div class="small-box-footer clearfix">
+        <div class="pull-left btn-group btn-group-xs animated fadeIn" role="group" aria-label="Extra-small button group">
+            <%= link_to_edit(item) %>
+            <%= link_to_destroy(item, item_title) %>
+        </div>
+        <%= (render "author/#{controller_name}/#{item_menu}", item: item) unless item_menu.nil? %>
     </div>
 </div>

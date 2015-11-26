@@ -8,6 +8,13 @@ module Author::AuthorHelper
     "<tr>#{names.map { |n| "<th>#{n}</th>" }.join}</tr>".html_safe
   end
 
+  def link_to_icon(url, title, icon, target=nil)
+    link_to url, title: title, target: target do
+      concat "<i class=\"glyphicon #{icon}\"></i>".html_safe
+      concat title
+    end
+  end
+
   def link_to_destroy(item, name, style='btn btn-danger')
     link_to send("author_#{controller_name.singularize}_path", item),
             class: style,

@@ -105,7 +105,7 @@ body.loading:after {
 }
 
 .pull-right {
-  float: right;
+  right: 3px;
 }
 
 .user-menu > .dropdown-menu > .user-footer .btn-default {
@@ -336,7 +336,6 @@ body.mini-navbar .logo-element {
   background: rgba(0, 0, 0, 0.1);
   text-decoration: none;
   padding: 3px 0 3px 3px;
-  overflow: hidden;
   line-height: 22px;
 }
 
@@ -346,7 +345,6 @@ body.mini-navbar .logo-element {
 
 .admin-dashboard .panel-body {
   padding: 20px 20px 0;
-  overflow: hidden;
 }
 
 .admin-dashboard .panel-title {
@@ -481,4 +479,9 @@ body.mini-navbar .logo-element {
 .admin-dashboard .category-widgets .panel-title,
 .admin-dashboard label[for="select_all_widgets"] {
   cursor: pointer;
+}
+
+.admin-dashboard .menu a {
+  color: #333;
+  padding: 3px 10px;
 }

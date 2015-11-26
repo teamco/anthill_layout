@@ -1,0 +1,19 @@
+<div class="menu btn-group pull-right">
+    <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="glyphicon glyphicon-cog"></span>
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><%= link_to_icon(mode_path(item, :development), t('development'), 'glyphicon-wrench', '_blank') %></li>
+        <li><%= link_to_icon(mode_path(item, :consumption), t('consumption'), 'glyphicon-globe', '_blank') %></li>
+        <li><%= link_to_icon(mode_path(item, :authoring), t('authoring'), 'glyphicon-thumbs-up', '_blank') %></li>
+        <li><%= link_to_icon(mode_path(item, :test), t('test'), 'glyphicon-screenshot', '_blank') %></li>
+        <li><%= link_to_icon(preview_path(item), t('preview'), 'glyphicon-eye-open', '_blank') %></li>
+        <li role="separator" class="divider"></li>
+        <li><%= link_to_icon(publish_site_path(item), t('export'), 'glyphicon-download-alt') %></li>
+        <li><%= link_to_icon(publish_site_path(item), t('publish'), 'glyphicon-ok-circle') %></li>
+        <li role="separator" class="divider"></li>
+        <li><%= link_to_icon(author_site_storage_widgets_path(item), t('widgets'), 'glyphicon-th-large') %></li>
+        <li><%= link_to_icon(author_site_storage_get_users_path(item), t('users'), 'glyphicon-user') %></li>
+    </ul>
+</div>
