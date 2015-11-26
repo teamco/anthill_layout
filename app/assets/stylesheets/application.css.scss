@@ -315,9 +315,6 @@ body.mini-navbar .logo-element {
   width: 64px;
   height: 64px;
   background-position: center;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  background-image: url("default.png");
   opacity: 0.3;
 }
 
@@ -454,6 +451,17 @@ body.mini-navbar .logo-element {
   background-repeat: no-repeat;
   background-position: 7px center;
   background-size: 32px;
+  opacity: 0.8;
+}
+
+.admin-dashboard .site-widgets .input-group-addon:hover {
+  opacity: 1.0;
+}
+
+.admin-dashboard .widget {
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-image: url("default.png");
 }
 
 .admin-dashboard .site-widgets input[type="checkbox"] {

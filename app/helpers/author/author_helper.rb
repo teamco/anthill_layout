@@ -91,9 +91,11 @@ module Author::AuthorHelper
   end
 
   def render_submit(f)
-    content_tag(:div, class: 'actions') do
-      f.submit
-    end
+    f.submit nil, {class: 'btn btn-warning'}
+  end
+
+  def cancel_button
+    link_to t('cancel'), send("author_#{controller_name}_path"), {title: t('cancel'), class: 'btn btn-default'}
   end
 
   def render_notification(item)

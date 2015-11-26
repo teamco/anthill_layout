@@ -17,6 +17,7 @@
     <%= render_activated_version(f) -%>
     <%= render 'author/site_storages/widgets/select_widgets' unless is_new? %>
     <div class="panel-footer m-20">
+        <%= cancel_button -%>
         <%= render_submit(f) -%>
     </div>
 <% end -%>
