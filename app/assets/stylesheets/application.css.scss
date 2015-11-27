@@ -490,3 +490,25 @@ body.mini-navbar .logo-element {
   color: #333;
   padding: 3px 10px;
 }
+
+.admin-dashboard .toggle-trace {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.admin-dashboard table ul {
+  list-style: none;
+  padding: 0 10px;
+}
+
+.admin-dashboard table ul .label {
+  margin-right: 10px;
+  font-weight: bold;
+  width: 10em;
+  display: inline-block;
+  text-align: left;
+}
+
+.admin-dashboard table .params {
+  margin-bottom: 10px;
+}

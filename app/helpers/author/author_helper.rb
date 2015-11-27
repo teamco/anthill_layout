@@ -179,12 +179,12 @@ module Author::AuthorHelper
                        "var $span=$(this),$tr=$span.parents('tr:first').next();",
                        "if($tr.hasClass('hide')){",
                        "$tr.removeClass('hide');",
-                       "$span.text('-');",
+                       "$span.removeClass('glyphicon-plus').addClass('glyphicon-minus');",
                        'var $param;',
                        pretty_print.join,
                        '}else{',
                        "$tr.addClass('hide');",
-                       "$span.text('+');",
+                       "$span.removeClass('glyphicon-minus').addClass('glyphicon-plus');",
                        '}});',
                        "#{'$table.find(\'td>span\').trigger(\'click.toggleTr\')' unless force.nil? }"
                    ].join
