@@ -17,18 +17,11 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
   end
 
-  def handle_error(e, status, template, is_render=true)
+  def handle_error(e, status, template)
     logger.info ">>> Error: #{e.inspect}"
-    ErrorLog.handle_error(current_user, e, @user_log)
-    if self.methods.include? 'super'
-      super
-    else
-      respond_to do |format|
-        format.html { render file: "#{Rails.root}/public/#{template}", layout: false, status: status }
-        format.xml { head :not_found }
-        format.any { head :not_found }
-      end
-    end if is_render
+    log = ErrorLog.handle_error(current_user, e, @user_log)
+    super if self.methods.include? 'super'
+    redirect_to error_log_path(log)
   end
 
   protected
