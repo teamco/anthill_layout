@@ -1,7 +1,10 @@
-<table id="<%= controller_name %>">
-  <%= user_th %>
-  <%= user_td(@user_log, '<span>+</span>') %>
-  <%= user_trace(@user_log, ' class=hide') %>
-</table>
-<%= load_pretty_print(false) %>
-<%= bind_events(%w(.user-params .user-session), true) %>
+<div class="panel panel-default">
+    <div class="panel-heading"><%= controller_name.singularize.humanize %></div>
+    <table id="<%= controller_name %>" class="table">
+        <%= user_th %>
+        <%= user_td(@user_log, '<span class="toggle-trace glyphicon glyphicon-plus"></span>') %>
+        <%= user_trace(@user_log, ' class=hide') %>
+    </table>
+    <%= load_pretty_print(false) %>
+    <%= bind_events(%w(.user-params .user-session), true) %>
+</div>

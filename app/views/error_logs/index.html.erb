@@ -1,10 +1,15 @@
-<table id="<%= controller_name %>">
-  <%= error_th %>
-  <% @error_logs.each do |error_log| %>
-      <%= error_td(error_log, '<span>+</span>') %>
-      <%= error_trace(error_log, ' class=hide') %>
-  <% end %>
-</table>
-<%= load_pretty_print(false) %>
-<%= bind_events %>
-<%= will_paginate @error_logs %>
+<div class="panel panel-default">
+    <div class="panel-heading"><%= controller_name.singularize.humanize %></div>
+    <table id="<%= controller_name %>" class="table">
+        <%= error_th %>
+        <% @error_logs.each do |error_log| %>
+            <%= error_td(error_log, '<span class="toggle-trace glyphicon glyphicon-plus"></span>') %>
+            <%= error_trace(error_log, ' class=hide') %>
+        <% end %>
+    </table>
+    <%= load_pretty_print(false) %>
+    <%= bind_events %>
+    <div class="panel-footer text-center">
+        <%= will_paginate @error_logs %>
+    </div>
+</div>

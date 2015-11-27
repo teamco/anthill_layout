@@ -1,5 +1,8 @@
-<table id="<%= controller_name %>">
-  <%= error_th %>
-  <%= error_td(@error_log) %>
-  <%= error_trace(@error_log) %>
-</table>
+<div class="panel panel-default">
+    <div class="panel-heading"><%= controller_name.singularize.humanize %></div>
+    <table id="<%= controller_name %>" class="table">
+        <%= error_th %>
+        <%= error_td(@error_log) %>
+        <%= error_trace(@error_log) %>
+    </table>
+</div>

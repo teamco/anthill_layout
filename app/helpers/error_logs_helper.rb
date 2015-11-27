@@ -17,10 +17,10 @@ module ErrorLogsHelper
   def error_trace(error_log, hide='')
     [
         "<tr#{hide}><td colspan=\"5\">",
-        '<ul><li><span>User log</span>',
+        '<ul><li><span class="label label-default">User log</span>',
         "#{link_to error_log.user_log.id, {controller: :user_logs, action: :show, id: error_log.user_log.id}}",
         "</li><li class=\"backtrace\">",
-        "<span>Backtrace</span><div>#{json_pre(error_log.backtrace)}</div></li>",
+        "<span class=\"label label-default\">Backtrace</span><div>#{json_pre(error_log.backtrace)}</div></li>",
         '</ul></td></tr>'
     ].join.html_safe
   end
