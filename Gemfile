@@ -66,6 +66,8 @@ gem 'rack-attack'
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '>= 4.0.0'
 gem 'rmagick'
+# gem 'font-awesome-less'
+gem 'font-awesome-sass'
 
 gem 'i18n', '>= 0.7.0.beta1'
 gem 'uuid'

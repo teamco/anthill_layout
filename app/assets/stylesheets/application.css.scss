@@ -17,6 +17,9 @@
  *= require_directory '../javascripts/scripts/plugins/stylesheets'
  */
 
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 body {
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
