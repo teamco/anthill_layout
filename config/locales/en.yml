@@ -63,3 +63,5 @@ en:
   total: "Total"
   cancel: "Cancel"
   export: "Export"
+  edit_site: "Edit site"
+  show_all_versions: "Show all \"%{site}\" versions"

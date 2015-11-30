@@ -1,7 +1,8 @@
 <%= form_for(item) do |f| -%>
     <% content = item.get_activated.content rescue nil %>
     <%= render_notification(item) -%>
-    <%= render_field_tag(:text_area_tag, :content, content, true) unless is_new? -%>
+    <%= render_text_field(f, :key) if is_action?('new') %>
+    <%= render_field_tag(:text_area_tag, :content, content, true) unless is_action?('new') -%>
     <%= render_json(content, '.json-view') unless content.nil? %>
     <%= render_checkbox(f, :publish) -%>
 
@@ -15,7 +16,7 @@
                                  }) -%>
 
     <%= render_activated_version(f) -%>
-    <%= render 'author/site_storages/widgets/select_widgets' unless is_new? %>
+    <%= render 'author/site_storages/widgets/select_widgets' unless is_action?('new') %>
     <div class="panel-footer m-20">
         <%= cancel_button -%>
         <%= render_submit(f) -%>

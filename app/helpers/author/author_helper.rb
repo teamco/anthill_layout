@@ -1,7 +1,7 @@
 module Author::AuthorHelper
 
-  def is_new?
-    action_name == 'new'
+  def is_action?(action)
+    action_name == action
   end
 
   def th(names=[])

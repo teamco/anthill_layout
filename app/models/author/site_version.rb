@@ -14,7 +14,7 @@ class Author::SiteVersion < ActiveRecord::Base
     joins(:author_item).
         includes(:author_site_storage).
         where('visible=true AND (public=true OR user_id=?)', user.id).
-        order(updated_at: :desc)
+        order('author_items.updated_at DESC')
   end
 
   def is_current?(activated)

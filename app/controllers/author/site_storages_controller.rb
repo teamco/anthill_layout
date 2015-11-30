@@ -40,14 +40,13 @@ class Author::SiteStoragesController < Author::AuthorController
   def new
     @author_site_types = SiteType.order(:name)
     @author_site_storage = SiteStorage.new
-    render :form
+    render '/partials/form', locals: {title: 'key'}
   end
 
   # GET /author/site_storages/1/edit
   def edit
-    @title = 'key'
     @widget_categories = WidgetCategory.order(:name_value)
-    render '/partials/form'
+    render '/partials/form', locals: {title: 'key'}
   end
 
   # POST /author/site_storages

@@ -13,6 +13,7 @@
         <li><%= link_to_icon(publish_site_path(item), t('export'), 'glyphicon-download-alt') %></li>
         <li><%= link_to_icon(publish_site_path(item), t('publish'), 'glyphicon-ok-circle') %></li>
         <li role="separator" class="divider"></li>
+        <li><%= link_to_icon(author_site_storage_site_versions_path(item), t('sites_versions'), 'fa fa-code-fork') %></li>
         <li><%= link_to_icon(author_site_storage_widgets_path(item), t('widgets'), 'glyphicon-th-large') %></li>
         <li><%= link_to_icon(author_site_storage_get_users_path(item), t('users'), 'glyphicon-user') %></li>
     </ul>

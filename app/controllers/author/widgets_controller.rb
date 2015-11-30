@@ -37,7 +37,6 @@ class Author::WidgetsController < Author::AuthorController
                      }]
     }
 
-    render :index
   end
 
   # GET /author/widgets/all

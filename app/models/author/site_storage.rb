@@ -28,6 +28,7 @@ class Author::SiteStorage < ActiveRecord::Base
 
   has_one :creator,
           source: :user,
+          class_name: 'User',
           through: :author_item
 
   has_and_belongs_to_many :users,
@@ -83,12 +84,13 @@ class Author::SiteStorage < ActiveRecord::Base
     uuid = UUID.new
     site = User.current.author_site_storages.build(params)
     site[:uuid] = uuid.generate
-    site[:creator_id] = User.current.id
+    site[:item_id] = Author::Item.create(user_id: User.current.id).id
 
     versions = site.author_site_versions
     versions.build(
         version: versions.length + 1,
-        activated: true
+        activated: true,
+        item_id: Author::Item.create(user_id: User.current.id)
     )
 
     site

@@ -12,6 +12,6 @@ module Author::SiteStoragesHelper
                      nil : @versions[:activated].id
              }
          }
-    ) if @versions[:all].length > 0
+    ) if @versions[:all].length > 0 if action_name == 'edit'
   end
 end

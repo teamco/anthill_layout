@@ -11,13 +11,19 @@ class Author::SiteVersionsController < Author::AuthorController
   # GET /author/site_versions.json
   def index
     site_storage = current_user.author_site_storages.where(key: params[:site_storage_id]).first
-    @author_site_versions = if site_storage.nil?
-                              versions = SiteVersion.fetch_data(current_user)
-                              activated_version = versions.where(activated: true)
-                              (activated_version.nil? ? versions : activated_version).group(:site_storage_id)
-                            else
-                              site_storage.get_versions.includes(:author_site_storage)
-                            end
+    @partial = {
+        name: 'versions',
+        collection: site_storage.get_versions
+    } unless site_storage.nil?
+
+    if site_storage.nil?
+      versions = SiteVersion.fetch_data(current_user)
+      activated_version = versions.where(activated: true)
+      @partial = {
+          name: 'sites',
+          collection: (activated_version.nil? ? versions : activated_version).group(:site_storage_id)
+      }
+    end
   end
 
   # GET /author/site_versions/1

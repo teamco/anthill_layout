@@ -1,0 +1,11 @@
+<div class="col-lg-3 col-sm-6 col-xs-12">
+    <%= render 'author/author/ibox_edit',
+               item_type: 'edit',
+               item_box: item.activated ? 'bg-aqua': 'bg-gray',
+               item: item,
+               item_title: "#{item.version} (#{item.author_site_storage.author_site_versions.length})",
+               item_path: edit_author_site_version_path(item),
+               item_info: item.author_site_storage.key,
+               item_icon: 'fa fa-code-fork',
+               item_menu: 'menu' %>
+</div>
