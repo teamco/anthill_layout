@@ -32,8 +32,7 @@ class Author::SiteStorage < ActiveRecord::Base
           through: :author_item
 
   has_and_belongs_to_many :users,
-                          class_name: 'User',
-                          through: :author_items
+                          class_name: 'User'
 
   accepts_nested_attributes_for :author_site_storage_widgets, allow_destroy: true
   accepts_nested_attributes_for :author_site_versions, allow_destroy: true
@@ -69,7 +68,7 @@ class Author::SiteStorage < ActiveRecord::Base
   end
 
   def get_versions
-    author_site_versions.order(created_at: :desc)
+    author_site_versions.joins(:author_item).order('author_items.created_at DESC')
   end
 
   def get_activated
@@ -93,6 +92,7 @@ class Author::SiteStorage < ActiveRecord::Base
         item_id: Author::Item.create(user_id: User.current.id)
     )
 
+    site.users << User.current
     site
   end
 

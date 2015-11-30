@@ -20,9 +20,7 @@ class User < ActiveRecord::Base
          ]
 
   has_and_belongs_to_many :author_site_storages,
-                          class_name: 'Author::SiteStorage',
-                          dependent: :destroy,
-                          through: :author_items
+                          class_name: 'Author::SiteStorage'
 
   belongs_to :author_item,
              class_name: 'Author::Item',
