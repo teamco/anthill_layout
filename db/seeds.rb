@@ -50,6 +50,7 @@ if Author::Widget.all.length > 0
       key: 'shared',
       site_type_id: Author::SiteType.find_by_name('development').id
   )
+  site.users << admin
   item.save
 
   puts "\n--- Site: #{item.author_site_storage.inspect}"
