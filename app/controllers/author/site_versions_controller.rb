@@ -13,7 +13,8 @@ class Author::SiteVersionsController < Author::AuthorController
     site_storage = current_user.author_site_storages.where(key: params[:site_storage_id]).first
     @partial = {
         name: 'site',
-        collection: site_storage.get_versions
+        collection: site_storage.get_versions.
+            paginate(page: params[:page], per_page: 15)
     } unless site_storage.nil?
 
     if site_storage.nil?
