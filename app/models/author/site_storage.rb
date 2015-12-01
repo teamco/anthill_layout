@@ -89,7 +89,7 @@ class Author::SiteStorage < ActiveRecord::Base
     versions.build(
         version: versions.length + 1,
         activated: true,
-        item_id: Author::Item.create(user_id: User.current.id)
+        item_id: Author::Item.create(user_id: User.current.id).id
     )
 
     site.users << User.current

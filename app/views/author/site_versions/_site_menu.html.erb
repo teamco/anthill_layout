@@ -1,0 +1,16 @@
+<div class="menu btn-group pull-right">
+    <%= link_to(edit_author_site_version_path(item), class: 'btn btn-success btn-xs') do %>
+        <i class="fa fa-code-fork"></i>
+        <%= t('edit_site_version') %>
+    <% end %>
+    <button class="btn btn-warning btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="glyphicon glyphicon-cog"></span>
+        <%= t('config') %>
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><%= link_to_icon(author_site_versions_path, t('sites_versions'), 'fa fa-code-fork') %></li>
+        <li><%= link_to_icon(edit_author_site_storage_path(item.author_site_storage), t('edit_site'), 'glyphicon-globe') %></li>
+        <li><%= link_to_destroy(item, item.version) %></li>
+    </ul>
+</div>

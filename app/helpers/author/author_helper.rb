@@ -16,11 +16,12 @@ module Author::AuthorHelper
   end
 
   def link_to_destroy(item, name, style='btn btn-danger')
+    title = controller_name.humanize.singularize.downcase
     link_to send("author_#{controller_name.singularize}_path", item),
             class: style,
             method: :delete,
-            data: {confirm: "Are you sure want to delete #{controller_name.humanize.singularize.downcase}: \"#{name}?\""} do
-      "<i class=\"glyphicon glyphicon-trash\"></i>#{t('delete')}".html_safe
+            data: {confirm: "#{t('delete_confirm', item: title, name: name)}"} do
+      "<i class=\"glyphicon glyphicon-trash\"></i>#{t('delete', item: nil)}".html_safe
     end
   end
 

@@ -22,16 +22,6 @@
                        ] %>
             <%= render '/partials/left_menu_item',
                        url: '#',
-                       active: is_active_url('error_logs', 'user_logs', 'vulnerability_storages'),
-                       icon: 'glyphicon-time',
-                       title: t('logs_management'),
-                       items: [
-                               {title: t('error_logs'), url: error_logs_path, active: is_active_url('error_logs')},
-                               {title: t('user_logs'), url: user_logs_path, active: is_active_url('user_logs')},
-                               {title: t('vulnerability_storage'), url: vulnerability_storages_path},
-                       ] %>
-            <%= render '/partials/left_menu_item',
-                       url: '#',
                        active: is_active_url('widgets', 'widget_categories'),
                        icon: 'glyphicon-th-large',
                        title: t('widget_management'),
@@ -46,6 +36,16 @@
                        title: t('users_management'),
                        items: [
                                {title: t('users'), url: author_widgets_path}
+                       ] %>
+            <%= render '/partials/left_menu_item',
+                       url: '#',
+                       active: is_active_url('error_logs', 'user_logs', 'vulnerability_storages'),
+                       icon: 'glyphicon-time',
+                       title: t('logs_management'),
+                       items: [
+                               {title: t('error_logs'), url: error_logs_path, active: is_active_url('error_logs')},
+                               {title: t('user_logs'), url: user_logs_path, active: is_active_url('user_logs')},
+                               {title: t('vulnerability_storage'), url: vulnerability_storages_path},
                        ] %>
         </ul>
     </div>

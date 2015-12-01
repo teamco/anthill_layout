@@ -12,7 +12,7 @@ class Author::SiteVersionsController < Author::AuthorController
   def index
     site_storage = current_user.author_site_storages.where(key: params[:site_storage_id]).first
     @partial = {
-        name: 'versions',
+        name: 'site',
         collection: site_storage.get_versions
     } unless site_storage.nil?
 
