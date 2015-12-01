@@ -1,17 +1,17 @@
-<ul class="admin-navigation inner">
-  <% @author_site_types.each do |author_site_type| %>
-      <li>
-        <%= link_to author_site_type.name.humanize, edit_author_site_type_path(author_site_type) %>
-        <h3><%= author_site_type.get_sites(current_user).length %></h3>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <%= t('widget_management') %>
+            <span class="badge"><%= @author_site_types.length %></span>
+        </h3>
 
-        <div>
-          <div>
-            <ul class="menu arrow_box">
-              <li><%= link_to t('edit'), edit_author_site_type_path(author_site_type) %></li>
-              <li><%= link_to_destroy(author_site_type, author_site_type.name) %></li>
-            </ul>
-          </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+                <%= render 'author/author/ibox_new' %>
+            </div>
+            <% render_loop(@author_site_types, 'site_type') %>
         </div>
-      </li>
-  <% end %>
-</ul>
+    </div>
+</div>

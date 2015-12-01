@@ -57,12 +57,12 @@ class Author::WidgetsController < Author::AuthorController
   # GET /author/widgets/new
   def new
     @author_widget = Widget.new
-    render :form
+    render '/partials/form', locals: {title: 'id'}
   end
 
   # GET /author/widgets/1/edit
   def edit
-    render :form
+    render '/partials/form', locals: {title: 'name'}
   end
 
   # POST /author/widgets

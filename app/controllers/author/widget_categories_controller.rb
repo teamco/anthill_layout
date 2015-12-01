@@ -21,12 +21,12 @@ class Author::WidgetCategoriesController < Author::AuthorController
   # GET /author/widget_categories/new
   def new
     @author_widget_category = WidgetCategory.new
-    render :form
+    render '/partials/form', locals: {title: 'id'}
   end
 
   # GET /author/widget_categories/1/edit
   def edit
-    render :form
+    render '/partials/form', locals: {title: 'name_value'}
   end
 
   # POST /author/widget_categories

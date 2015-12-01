@@ -2,6 +2,9 @@
 
     <%= render_notification(item) %>
     <%= render_text_field(f, :name) %>
-    <%= render_submit(f) %>
+    <div class="panel-footer m-20">
+        <%= cancel_button -%>
+        <%= render_submit(f) -%>
+    </div>
 
 <% end %>

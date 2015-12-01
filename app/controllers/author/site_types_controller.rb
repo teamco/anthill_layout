@@ -21,12 +21,12 @@ class Author::SiteTypesController < Author::AuthorController
   # GET /author/site_types/new
   def new
     @author_site_type = SiteType.new
-    render :form
+    render '/partials/form', locals: {title: 'id'}
   end
 
   # GET /author/site_types/1/edit
   def edit
-    render :form
+    render '/partials/form', locals: {title: 'name'}
   end
 
   # POST /author/site_types

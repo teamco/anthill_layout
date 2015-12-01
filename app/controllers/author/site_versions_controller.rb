@@ -32,12 +32,6 @@ class Author::SiteVersionsController < Author::AuthorController
   def show
   end
 
-  # GET /author/site_versions/new
-  def new
-    @author_site_version = SiteVersion.new
-    render '/partials/form', locals: {title: 'id'}
-  end
-
   # GET /author/site_versions/1/edit
   def edit
     render '/partials/form', locals: {title: 'version'}

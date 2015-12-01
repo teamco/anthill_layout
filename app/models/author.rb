@@ -10,7 +10,7 @@ module Author
         users_online: User.where('last_seen > ?', 5.minutes.ago).length,
         site_storages: Author::SiteStorage.fetch_data(user).length,
         site_types: Author::SiteType.fetch_data(user).length,
-        site_versions: user.author_site_versions.length,
+        site_versions: Author::SiteVersion.fetch_data(user).length,
         widget_categories: WidgetCategory.count,
         widgets: Widget.fetch_data(user).length,
         vulnerability_storage: user.vulnerability_storages.length,

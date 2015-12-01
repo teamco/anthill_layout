@@ -1,7 +1,7 @@
 <div class="col-lg-3 col-sm-6 col-xs-12">
     <%= render 'author/author/ibox_edit',
                item_type: 'edit',
-               item_box: 'bg-aqua',
+               item_box: item.author_widgets.length > 0 ? 'bg-green' : 'bg-grey',
                item: item,
                item_title: item.name_value,
                item_path: edit_author_widget_category_path(item),
