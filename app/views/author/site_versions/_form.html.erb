@@ -4,8 +4,10 @@
     <%= render_text(:site_storage, item.author_site_storage.try(:key)) %>
     <%= render_text_area(f, :content) %>
     <%= render_json( item.content, '.json-view') %>
-    <%= render_number_field(f, :version, true) %>
     <%= render_checkbox(f, :activated) %>
-    <%= render_submit(f) %>
+    <div class="panel-footer m-20">
+        <%= cancel_button -%>
+        <%= render_submit(f) -%>
+    </div>
 
 <% end %>

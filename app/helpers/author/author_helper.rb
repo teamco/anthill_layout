@@ -45,9 +45,9 @@ module Author::AuthorHelper
   end
 
   def render_text(name, value)
-    content_tag(:div, class: 'field') do
-      concat label_tag name
-      concat text_field_tag(name, value, {disabled: true})
+    content_tag(:div, class: 'input-group') do
+      concat label_tag name, nil, class: 'input-group-addon text-left'
+      concat text_field_tag(name, value, {disabled: true, class: 'form-control'})
     end
   end
 

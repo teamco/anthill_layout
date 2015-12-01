@@ -35,12 +35,12 @@ class Author::SiteVersionsController < Author::AuthorController
   # GET /author/site_versions/new
   def new
     @author_site_version = SiteVersion.new
-    render :form
+    render '/partials/form', locals: {title: 'id'}
   end
 
   # GET /author/site_versions/1/edit
   def edit
-    render :form
+    render '/partials/form', locals: {title: 'version'}
   end
 
   # POST /author/site_versions
