@@ -32,7 +32,9 @@ module Author::AuthorHelper
   end
 
   def render_loop(collection, partial)
-    collection.each { |item| concat render partial, item: item }
+    collection.blank? ?
+        (concat "<p class=\"no-data\">#{t('no_data_in_collection', items: controller_name.gsub(/_controller/, ''))}</p>".html_safe) :
+        collection.each { |item| concat render partial, item: item }
   end
 
   def render_title

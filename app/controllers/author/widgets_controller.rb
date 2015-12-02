@@ -27,15 +27,23 @@ class Author::WidgetsController < Author::AuthorController
   def index
 
     @partial = @category.nil? ? {
-        name: 'categories',
-        collection: @json_data[:site_widgets]
+        name: 'categories'
     } : {
         name: 'all_widgets',
+        title: t('widget_management'),
         collection: [{
                          category: @category,
                          widgets: @json_data[:widgets_all]
-                     }]
+                     }],
+        all: @json_data[:widgets_all].length
     }
+
+    @partial = {
+        name: 'all_widgets',
+        title: t('site_widgets_management', site: @json_data[:site_storage].key),
+        collection: @json_data[:site_widgets],
+        all: @json_data[:site_widgets].length
+    } unless @json_data[:site_storage].nil?
 
   end
 
