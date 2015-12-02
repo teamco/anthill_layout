@@ -7,7 +7,7 @@ module ErrorLogsHelper
   def error_td(error_log, expand='')
     [
         "<tr><td class=\"nw\">",
-        "#{expand}#{error_log.id}</td>",
+        "#{expand}#{error_log.try(:id)}</td>",
         "<td>#{error_log.exception}</td>",
         "<td class=\"nw c\">#{error_log.created_at.strftime('%Y %b %d %I:%M:%S %p')}</td></tr>"
     ].join.html_safe

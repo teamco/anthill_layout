@@ -26,6 +26,10 @@ Devise.setup do |config|
                   ENV['GITHUB_KEY'],
                   ENV['GITHUB_SECRET']
 
+  config.omniauth :bitbucket,
+                  ENV['BITBUCKET_KEY'],
+                  ENV['BITBUCKET_SECRET']
+
   config.omniauth :aliexpress,
                   ENV['ALIEXPRESS_KEY'],
                   ENV['ALIEXPRESS_SECRET']
@@ -52,3 +56,16 @@ Devise.setup do |config|
                       info_fields: 'email,name'
                   }
 end
+
+# LINKEDIN_KEY='77ai0hkh1kbxtf'
+# LINKEDIN_SECRET='dpFRQqaHXw3GamoT'
+# FACEBOOK_KEY='1615337032066573'
+# FACEBOOK_SECRET='c9d799104ab6cd8910e64b498e5c9ecf'
+# TWITTER_KEY='yBuzhtfeDLAUJGsbNTrpQ9zMB'
+# TWITTER_SECRET='RmhlL4T25WOA1NEnQ8nLWEaqXiiJoM3HgYanSYVwtuNCYcojRZ'
+# ALIEXPRESS_KEY='38279'
+# ALIEXPRESS_SECRET='SiNNPYVD3uv'
+# GITHUB_KEY='ab92f6fb8ea978433623'
+# GITHUB_SECRET='3ef3f5b9e9c8f62750dcaf212ef18ca373c09c4b'
+# BITBUCKET_KEY='yUaYntrve4qrUxEwaS'
+# BITBUCKET_SECRET='LQV2Cd24uJzK7wzmVn4x7cBZXgq2rDd2'

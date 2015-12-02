@@ -44,6 +44,10 @@ Rails.application.routes.draw do
 
   end
 
+  namespace :saas do
+    get 'ali_express/api_tool/:api', to: '/saas/ali_express#api_tool'
+  end
+
   resources :site_storages, path: 'author/site_storages' do
     resources :vulnerability_storages
   end

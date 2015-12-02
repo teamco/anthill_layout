@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
              # :google,
              # :amazon,
              :github,
+             :bitbucket,
              :linkedin,
              :aliexpress
          ]
