@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :site_storages do
       resources :site_versions
       resources :widgets
-      get 'users', to: '/users/management#site_users'
+      get 'users', to: 'users#site_users'
     end
 
     resources :site_versions do
@@ -42,10 +42,9 @@ Rails.application.routes.draw do
       resource :widgets
     end
 
-    get 'users', to: '/users/management#index'
-    get 'edit_user/:id', to: '/users/management#edit', as: 'edit_user'
-    delete 'destroy_user/:id', to: '/users/management#destroy', as: 'destroy_user'
+    resources :users do
 
+    end
   end
 
   namespace :saas do

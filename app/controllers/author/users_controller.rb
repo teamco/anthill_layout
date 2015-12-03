@@ -1,4 +1,4 @@
-class Users::ManagementController < Author::AuthorController
+class Author::UsersController < Author::AuthorController
 
   before_action :authenticate_user!
   before_action :set_user, only: [:edit, :update, :destroy]
@@ -14,8 +14,12 @@ class Users::ManagementController < Author::AuthorController
     @users = @users_all.paginate(page: params[:page], per_page: 15)
   end
 
+  def new
+    render '/partials/form', locals: {title: 'id'}
+  end
+
   def edit
-    render '/partials/form', locals: {title: 'name'}
+    render '/partials/form', locals: {title: 'original_email'}
   end
 
   def update
@@ -29,7 +33,7 @@ class Users::ManagementController < Author::AuthorController
   private
 
   def set_user
-    @user = User.first
+    @author_user = User.find(params[:id])
   end
 
 end
