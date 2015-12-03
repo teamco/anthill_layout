@@ -1,10 +1,10 @@
 module ErrorLogsHelper
 
-  def error_th
+  def error_log_th
     th(%w(ID Exception Date))
   end
 
-  def error_td(error_log, expand='')
+  def error_log_td(error_log, expand='')
     [
         "<tr><td class=\"nw\">",
         "#{expand}#{error_log.try(:id)}</td>",
@@ -13,7 +13,7 @@ module ErrorLogsHelper
     ].join.html_safe
   end
 
-  def error_trace(error_log, hide='')
+  def error_log_trace(error_log, hide='')
     [
         "<tr#{hide}><td colspan=\"5\">",
         "<ul><li><span class=\"label label-default\">Request Uri</span>#{link_to nil, error_log.user_log.request_uri}</li>",

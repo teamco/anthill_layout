@@ -1,10 +1,15 @@
 <div class="panel panel-danger">
-    <div class="panel-heading"><%= controller_name.singularize.humanize %></div>
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <%= controller_name.singularize.humanize %>
+            <span class="badge"><%= @error_logs_all.length %></span>
+        </h3>
+    </div>
     <table id="<%= controller_name %>" class="table">
-        <%= error_th %>
+        <%= error_log_th %>
         <% @error_logs.each do |error_log| %>
-            <%= error_td(error_log, '<span class="toggle-trace glyphicon glyphicon-plus"></span>') %>
-            <%= error_trace(error_log, ' class=hide') %>
+            <%= error_log_td(error_log, '<span class="toggle-trace glyphicon glyphicon-plus"></span>') %>
+            <%= error_log_trace(error_log, ' class=hide') %>
         <% end %>
     </table>
     <%= load_pretty_print(false) %>

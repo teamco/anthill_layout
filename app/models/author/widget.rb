@@ -26,11 +26,9 @@ class Author::Widget < ActiveRecord::Base
   def self.fetch_data(user, category=nil)
     category.nil? ?
         joins(:author_item).
-            includes(:author_widget_category, :author_site_storages).
             where('visible=true AND (public=true OR user_id=?)', user.id).
             order(name: :asc) :
         joins(:author_item, :author_widget_category).
-            includes(:author_widget_category, :author_site_storages).
             where('visible=true AND (public=true OR user_id=?) AND author_widget_categories.id=?', user.id, category.id).
             order(name: :asc)
   end
@@ -51,7 +49,6 @@ class Author::Widget < ActiveRecord::Base
       site_storage = Author::SiteStorage.fetch_data(user).where(key: key).first
       site_storage.author_widgets.
           joins(:author_item).
-          includes(:author_widget_category).
           where('visible=true AND (public=true OR user_id=?)', user.id).
           order(name: :asc) unless site_storage.nil?
     end
@@ -62,13 +59,11 @@ class Author::Widget < ActiveRecord::Base
     if site.nil?
       category.author_widgets.
           joins(:author_item).
-          includes(:author_widget_category).
           where('visible=true AND (public=true OR user_id=?)', user.id).
           order(name: :asc)
     else
       site.author_widgets.
           joins(:author_item, :author_widget_category).
-          includes(:author_widget_category).
           where('visible=true AND (public=true OR user_id=?) AND widget_category_id=?', user.id, category.id).
           order(name: :asc)
     end

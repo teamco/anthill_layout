@@ -2,16 +2,17 @@
     <div class="panel-heading">
         <h3 class="panel-title">
             <%= "Site \"#{@storage.key}\" Users #{controller_name.singularize.humanize}" %>
-            <span class="badge"><%= @storage.users.length %></span>
+            <span class="badge"><%= @users_all.length %></span>
         </h3>
     </div>
     <table id="<%= controller_name %>" class="table">
-        <%#= user_th %>
-        <% @storage.users.each do |user| %>
-<%= user.inspect %>
+        <%= user_th %>
+        <% creator = @storage.creator %>
+        <% @users.each do |user| %>
+            <%= user_td(user, creator) %>
         <% end %>
     </table>
     <div class="panel-footer text-center">
-        <%#= will_paginate @user_logs %>
+        <%= will_paginate @users %>
     </div>
 </div>

@@ -15,9 +15,11 @@ module Author::AuthorHelper
     end
   end
 
-  def link_to_destroy(item, name, style='btn btn-danger')
+  def link_to_destroy(item, name, destroy_path=nil, style='btn btn-danger')
     title = controller_name.humanize.singularize.downcase
-    link_to send("author_#{controller_name.singularize}_path", item),
+    link_to (destroy_path.nil? ?
+                send("author_#{controller_name.singularize}_path", item) :
+                destroy_path),
             class: style,
             method: :delete,
             data: {confirm: "#{t('delete_confirm', item: title, name: name)}"} do
@@ -25,10 +27,14 @@ module Author::AuthorHelper
     end
   end
 
-  def link_to_edit(item, style='btn btn-default')
-    link_to send("edit_author_#{controller_name.singularize}_path", item), title: t('edit'), class: style do
-      "<i class=\"glyphicon glyphicon-pencil\"></i>#{t('edit')}".html_safe
-    end
+  def link_to_edit(item, edit_path=nil, style='btn btn-default')
+    link_to (edit_path.nil? ?
+                send("edit_author_#{controller_name.singularize}_path", item) :
+                edit_path),
+            title: t('edit'),
+            class: style do
+              "<i class=\"glyphicon glyphicon-pencil\"></i>#{t('edit')}".html_safe
+            end
   end
 
   def render_loop(collection, partial)

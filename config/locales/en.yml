@@ -71,3 +71,4 @@ en:
   edit_site_version: "Edit site version"
   no_data_in_collection: "No %{items} in collection"
   site_widgets_management: "Site \"%{site}\" widgets management"
+  password: "password"

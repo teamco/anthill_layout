@@ -1,8 +1,13 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><%= controller_name.singularize.humanize %></div>
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <%= controller_name.singularize.humanize %>
+            <span class="badge"><%= @error_log.id %></span>
+        </h3>
+    </div>
     <table id="<%= controller_name %>" class="table">
-        <%= error_th %>
-        <%= error_td(@error_log) %>
-        <%= error_trace(@error_log) %>
+        <%= error_log_th %>
+        <%= error_log_td(@error_log) %>
+        <%= error_log_trace(@error_log) %>
     </table>
 </div>

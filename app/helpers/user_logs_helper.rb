@@ -1,10 +1,10 @@
 module UserLogsHelper
 
-  def user_th
+  def user_log_th
     th(%w(ID User Method Url Date))
   end
 
-  def user_td(user_log, expand='')
+  def user_log_td(user_log, expand='')
     [
         "<tr#{user_log.error_log.nil? ? '' : ' class=danger'}><td class=\"nw\">",
         "#{expand}#{user_log.id}</td>",
@@ -15,7 +15,7 @@ module UserLogsHelper
     ].join.html_safe
   end
 
-  def user_trace(user_log, hide='')
+  def user_log_trace(user_log, hide='')
     [
         "<tr#{hide}><td colspan=\"5\"><ul>",
         "<li><span class=\"label label-default\">Id</span>#{link_to nil, user_log_path(user_log)}</li>",
