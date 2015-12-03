@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <%= "Site \"#{@storage.key}\" Users #{controller_name.singularize.humanize}" %>
+            <span class="badge"><%= @storage.users.length %></span>
+        </h3>
+    </div>
+    <table id="<%= controller_name %>" class="table">
+        <%#= user_th %>
+        <% @storage.users.each do |user| %>
+<%= user.inspect %>
+        <% end %>
+    </table>
+    <div class="panel-footer text-center">
+        <%#= will_paginate @user_logs %>
+    </div>
+</div>

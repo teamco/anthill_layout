@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :site_storages do
       resources :site_versions
       resources :widgets
-      get 'get_users', to: '/users/management#index'
+      get 'site_users', to: '/users/management#site_users'
     end
 
     resources :site_versions do

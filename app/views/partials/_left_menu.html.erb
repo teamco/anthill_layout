@@ -47,9 +47,15 @@
                                {title: t('user_logs'), url: user_logs_path, active: is_active_url('user_logs')},
                                {title: t('vulnerability_storage'), url: vulnerability_storages_path},
                        ] %>
+            <%= render '/partials/left_menu_item',
+                       url: 'javascript:makeScreenshot($("body"))',
+                       active: false,
+                       icon: 'glyphicon-camera',
+                       title: t('screenshot') %>
         </ul>
     </div>
 </nav>
 <%= javascript_tag do %>
+    function makeScreenshot($target) {html2canvas($target, {onrendered: function(canvas) {window.open(canvas.toDataURL());}});}
     $('a[href="#"]').on('click',function(e){e.preventDefault();});
 <% end %>

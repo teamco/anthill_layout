@@ -58,6 +58,7 @@ en:
   delete_confirm: "Are you sure want to delete %{item}: \"%{name}?\""
   setting: "Setting"
   dashboard: "Dashboard"
+  screenshot: "Screenshot"
   add_new: "New"
   create: "Create"
   selected: "Selected"
