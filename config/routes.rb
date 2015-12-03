@@ -43,7 +43,8 @@ Rails.application.routes.draw do
     end
 
     resources :users do
-
+      resources :site_storages
+      resources :widgets
     end
   end
 
