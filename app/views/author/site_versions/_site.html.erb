@@ -1,10 +1,9 @@
 <div class="panel panel-default">
-    <div class="panel-heading"><%= controller_name.singularize.humanize %></div>
     <table id="<%= controller_name %>" class="table">
         <%= version_th %>
         <%= version_td %>
     </table>
     <div class="panel-footer text-center">
-        <%= will_paginate @partial[:collection] %>
+        <%= will_paginate @partial[:collection].first %>
     </div>
 </div>

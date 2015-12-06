@@ -22,7 +22,24 @@ class Author::SiteVersion < ActiveRecord::Base
   end
 
   def deactivate
-    self.class.update_all(activated: false)
+    handle_activation(false)
+    self
+  end
+
+  def activate
+    handle_activation(true)
+    self
+  end
+
+  def deactivate_other
+    self.class.where('id!=?', self.id).update_all(activated: false)
+    self
+  end
+
+  private
+
+  def handle_activation(activate)
+    self.update(activated: activate)
   end
 
 end

@@ -5,7 +5,7 @@ module Author::SiteVersionsHelper
   end
 
   def version_td
-    @partial[:collection].map { |site_version| [
+    @partial[:collection].first.map { |site_version| [
         "<tr#{site_version.activated ? ' class="success"' : ''}><td>#{site_version.version}</td>",
         "<td>#{link_to site_version.author_site_storage.key, edit_author_site_storage_path(site_version.author_site_storage)}</td>",
         "<td>#{site_version.author_item.user.original_email}</td>",

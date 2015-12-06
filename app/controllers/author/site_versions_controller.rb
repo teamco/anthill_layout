@@ -11,18 +11,24 @@ class Author::SiteVersionsController < Author::AuthorController
   # GET /author/site_versions.json
   def index
     site_storage = current_user.author_site_storages.where(key: params[:site_storage_id]).first
-    @partial = {
-        name: 'site',
-        collection: site_storage.get_versions.
-            paginate(page: params[:page], per_page: 15)
-    } unless site_storage.nil?
 
     if site_storage.nil?
       versions = SiteVersion.fetch_data(current_user)
-      activated_version = versions.where(activated: true)
       @partial = {
           name: 'sites',
-          collection: (activated_version.nil? ? versions : activated_version).group(:site_storage_id)
+          all_versions: versions.length,
+          collection: versions.group(:site_storage_id).map do |v|
+            version = v.author_site_storage.get_activated
+            version = v if version.nil?
+            version
+          end
+      }
+    else
+      all_versions = site_storage.get_versions
+      @partial = {
+          name: 'site',
+          all_versions: all_versions.length,
+          collection: [all_versions.paginate(page: params[:page], per_page: 15)]
       }
     end
   end

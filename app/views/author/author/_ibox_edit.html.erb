@@ -1,20 +1,24 @@
 <% item_info = (defined? item_info).nil? ? nil : item_info %>
 <% item_menu = (defined? item_menu).nil? ? nil : item_menu %>
+<% item_actions = (defined? item_actions).nil? ? true : item_actions %>
 <% item_edit_path = (defined? item_edit_path).nil? ? nil : item_edit_path %>
 <% item_destroy_path = (defined? item_destroy_path).nil? ? nil : item_destroy_path %>
 <div class="small-box <%= item_info.nil? ? 'bg-gray' : item_box %>">
     <div class="inner">
         <h3><%= item_info.to_s %></h3>
+
         <p><%= item_title %></p>
     </div>
     <div class="icon">
         <i class="glyphicon <%= item_icon %>"></i>
     </div>
     <div class="small-box-footer clearfix">
-        <div class="pull-left btn-group btn-group-xs animated fadeIn" role="group" aria-label="Extra-small button group">
-            <%= link_to_edit(item, item_edit_path) %>
-            <%= link_to_destroy(item, item_title, item_destroy_path) %>
-        </div>
+        <% if item_actions %>
+            <div class="pull-left btn-group btn-group-xs animated fadeIn" role="group" aria-label="Extra-small button group">
+                <%= link_to_edit(item, item_edit_path) %>
+                <%= link_to_destroy(item, item_title, item_destroy_path) %>
+            </div>
+        <% end %>
         <%= (render "author/#{controller_name}/#{item_menu}", item: item) unless item_menu.nil? %>
     </div>
 </div>

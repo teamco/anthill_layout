@@ -90,9 +90,9 @@ class Author::SiteStoragesController < Author::AuthorController
       version = @author_site_storage.author_site_versions.find(params[:author_site_storage][:activated_version])
       params[:author_site_storage].delete :activated_version
     end
-
+logger.info ">>>>>>> version: #{version.inspect}"
     update_handler(version)
-
+    logger.info ">>>>>>> version activated: #{@activated.inspect}"
     respond_to do |format|
       if @activated.nil?
         format.html { render :form }
@@ -178,6 +178,31 @@ class Author::SiteStoragesController < Author::AuthorController
     end
   end
 
+  def activate_site_version(version=nil)
+    activated = @author_site_storage.get_activated
+
+    puts t('undefined_activation') if activated.nil?
+
+    if version.nil?
+      puts t('undefined_version')
+      version = @author_site_storage.author_site_versions.last
+    end
+
+    @activated = version.is_current?(activated) ?
+        activated :
+        version.deactivate_other
+  end
+
+  def deactivate_site_version(version=nil)
+    activated = @author_site_storage.get_activated
+
+    puts t('undefined_activation') if activated.nil?
+    puts t('undefined_version') if version.nil?
+    puts t('deactivate_nonactive_version') if version != activated
+
+    version.deactivate
+  end
+
   private
 
   def resolve_layout
@@ -208,26 +233,8 @@ class Author::SiteStoragesController < Author::AuthorController
   end
 
   def update_version_activation(version)
-
-    activated = @author_site_storage.get_activated
-
-    puts t('undefined_activation') if activated.nil?
-
-    if version.nil?
-      puts t('undefined_version')
-      version = @author_site_storage.author_site_versions.last
-    end
-
-    @activated = activated
-
-    unless version.is_current?(activated)
-      version.deactivate
-      version.update_attribute(:activated, true)
-      @activated = version
-    end
-
+    activate_site_version(version)
     @activated.author_item.touch
-
   end
 
   def update_activation

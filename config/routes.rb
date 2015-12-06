@@ -28,7 +28,10 @@ Rails.application.routes.draw do
     end
 
     resources :site_storages do
-      resources :site_versions
+      resources :site_versions do
+        put 'activate', to: 'site_storages#activate_site_version'
+        put 'deactivate', to: 'site_storages#deactivate_site_version'
+      end
       resources :widgets
       get 'users', to: 'users#site_users'
     end
