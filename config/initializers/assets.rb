@@ -2,6 +2,7 @@ Rails.application.config.assets.precompile += %w( scripts/core/lib/require.js )
 Rails.application.config.assets.precompile += %w( scripts/core/lib/lz-string.js )
 Rails.application.config.assets.precompile += %w( scripts/core/lib/packages/pretty.print.js )
 Rails.application.config.assets.precompile += %w( author.js )
+Rails.application.config.assets.precompile += %w( general.css )
 Rails.application.config.assets.precompile += ['images/ajax-loader2.gif']
 Rails.application.config.assets.precompile += ['images/*']
 Rails.application.config.assets.precompile += ['target/*']
