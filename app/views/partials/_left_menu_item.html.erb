@@ -11,7 +11,10 @@
         <ul class="nav nav-second-level collapse<%= active ? 'in' : '' %>">
             <% items.each do |item| %>
                 <li class="<%= item[:active] ? 'active' : '' %>">
-                    <%= link_to item[:title], item[:url], title: item[:title] %>
+                    <%= link_to item[:url], title: item[:title] do %>
+                        <i class="<%= item[:icon] %>"></i>
+                        <%= item[:title] %>
+                    <% end %>
                 </li>
             <% end %>
         </ul>
