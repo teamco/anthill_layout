@@ -1,7 +1,7 @@
 class Author::UsersController < Author::AuthorController
 
   before_action :authenticate_user!
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users_all = User.all
@@ -12,6 +12,10 @@ class Author::UsersController < Author::AuthorController
     @storage = Author::SiteStorage.find_by_key(params[:site_storage_id])
     @users_all = @storage.users
     @users = @users_all.paginate(page: params[:page], per_page: 15)
+  end
+
+  def show
+
   end
 
   def new
