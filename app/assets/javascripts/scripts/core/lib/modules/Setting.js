@@ -384,26 +384,35 @@ define([
                             })
                         };
 
+                    require(['html2canvas'], function () {
 
+                        html2canvas(document.body).then(
 
-                    $.ajax(opts).done(
-                        function done(data, type, xhr) {
+                            function (canvas) {
 
-                            setting.cache.setItem(key, value);
-                            setting.activateOnSave(false);
+                                opts.data.screenshot = canvas.toDataURL();
 
-                            scope.logger.debug(data.notice, arguments);
+                                $.ajax(opts).done(
+                                    function done(data, type, xhr) {
 
-                            scope.observer.publish(
-                                scope.eventmanager.eventList.updateStorageVersion,
-                                data.version
-                            );
+                                        setting.cache.setItem(key, value);
+                                        setting.activateOnSave(false);
 
-                            scope.observer.publish(
-                                scope.eventmanager.eventList.afterUpdateStorage
-                            );
-                        }
-                    );
+                                        scope.logger.debug(data.notice, arguments);
+
+                                        scope.observer.publish(
+                                            scope.eventmanager.eventList.updateStorageVersion,
+                                            data.version
+                                        );
+
+                                        scope.observer.publish(
+                                            scope.eventmanager.eventList.afterUpdateStorage
+                                        );
+                                    }
+                                );
+                            }
+                        );
+                    });
                 },
 
                 /**

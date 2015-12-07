@@ -8,8 +8,8 @@ module Author::AuthorHelper
     "<tr>#{names.map { |n| "<th>#{n}</th>" }.join}</tr>".html_safe
   end
 
-  def link_to_icon(url, title, icon, target=nil)
-    link_to url, title: title, target: target do
+  def link_to_icon(url, title, icon, target=nil, method=:get)
+    link_to url, title: title, target: target, method: method do
       concat "<i class=\"glyphicon #{icon}\"></i>".html_safe
       concat title
     end

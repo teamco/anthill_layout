@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118113839) do
+ActiveRecord::Schema.define(version: 20151206235804) do
 
   create_table "author_items", force: :cascade do |t|
     t.integer  "user_id",    limit: 4,                 null: false
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20151118113839) do
     t.boolean "activated",                        default: false
     t.text    "content",         limit: 16777215
     t.integer "item_id",         limit: 4
+    t.text    "screenshot",      limit: 16777215
   end
 
   add_index "author_site_versions", ["site_storage_id"], name: "index_author_site_versions_on_site_storage_id", using: :btree

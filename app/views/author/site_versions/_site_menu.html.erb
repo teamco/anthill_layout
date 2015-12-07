@@ -14,7 +14,8 @@
         <li>
             <% activation_link = send("author_site_storage_site_version_#{item.activated? ? '' : 'de'}activate_path", item.author_site_storage, item) %>
             <%= link_to_icon(activation_link, t("site_version_#{item.activated? ? 'de' : ''}activate"),
-                             "glyphicon-thumbs-#{item.activated? ? 'down' : 'up'}") %>
+                             "glyphicon-thumbs-#{item.activated? ? 'down' : 'up'}",
+                             nil, :put) %>
         </li>
         <li><%= link_to_destroy(item, item.version) %></li>
     </ul>

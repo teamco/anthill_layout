@@ -37,6 +37,8 @@ requirejs.config({
         bootstrap: 'lib/packages/bootstrap/bootstrap.min',
         _: 'lib/underscore-min',
 
+        html2canvas: 'lib/packages/html2canvas',
+
         'lz-string': 'lib/lz-string',
         jquery: 'lib/jquery/jquery-2.1.4.min',
         'jquery.ujs': 'lib/jquery/jquery_ujs',
