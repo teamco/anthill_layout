@@ -6,7 +6,6 @@
 //= require scripts/core/lib/jquery/metisMenu.min
 //= require scripts/core/lib/jquery/jquery.slimscroll.min
 
-
 (function () {
 
     $(document).ready(function () {
@@ -14,11 +13,7 @@
         var $body = $('body');
 
         // Add body-small class if window less than 768px
-        if ($(this).width() < 769) {
-            $body.addClass('body-small')
-        } else {
-            $body.removeClass('body-small')
-        }
+        $body[($(this).width() < 769 ? 'add' : 'remove') + 'Class']('body-small');
 
         $('#side-menu').metisMenu();
 

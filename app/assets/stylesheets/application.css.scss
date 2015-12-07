@@ -527,6 +527,12 @@ body.mini-navbar .logo-element {
   padding: 0 10px 10px;
 }
 
+.admin-dashboard .backtrace > span,
+.admin-dashboard .user-session > span,
+.admin-dashboard .user-params > span {
+  margin-bottom: 2px;
+}
+
 .dropdown-submenu {
   position: relative
 }
