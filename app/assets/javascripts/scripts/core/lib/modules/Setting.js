@@ -384,31 +384,25 @@ define([
                             })
                         };
 
-                    require(['html2canvas'], function () {
+                    this.makeScreenshot(true, document.body, function (canvas) {
 
-                        html2canvas(document.body).then(
+                        opts.data.screenshot = canvas.toDataURL();
 
-                            function (canvas) {
+                        $.ajax(opts).done(
+                            function done(data, type, xhr) {
 
-                                opts.data.screenshot = canvas.toDataURL();
+                                setting.cache.setItem(key, value);
+                                setting.activateOnSave(false);
 
-                                $.ajax(opts).done(
-                                    function done(data, type, xhr) {
+                                scope.logger.debug(data.notice, arguments);
 
-                                        setting.cache.setItem(key, value);
-                                        setting.activateOnSave(false);
+                                scope.observer.publish(
+                                    scope.eventmanager.eventList.updateStorageVersion,
+                                    data.version
+                                );
 
-                                        scope.logger.debug(data.notice, arguments);
-
-                                        scope.observer.publish(
-                                            scope.eventmanager.eventList.updateStorageVersion,
-                                            data.version
-                                        );
-
-                                        scope.observer.publish(
-                                            scope.eventmanager.eventList.afterUpdateStorage
-                                        );
-                                    }
+                                scope.observer.publish(
+                                    scope.eventmanager.eventList.afterUpdateStorage
                                 );
                             }
                         );
@@ -437,6 +431,22 @@ define([
                     this.setting.save();
                 }
             }
+        },
+
+        /**
+         * Define screenshot maker
+         * @memberOf Setting
+         * @param {boolean} make
+         * @param [domElement]
+         * @param {function} callback
+         */
+        makeScreenshot: function makeScreenshot(make, domElement, callback) {
+
+            make ?
+                require(['html2canvas'], function () {
+                    html2canvas(domElement || document.body).then(callback);
+                }) :
+                callback();
         }
 
     }, AntHill.prototype, Router);
