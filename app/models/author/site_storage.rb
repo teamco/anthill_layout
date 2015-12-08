@@ -93,13 +93,14 @@ class Author::SiteStorage < ActiveRecord::Base
     site
   end
 
-  def build_new_version(content, activate)
+  def build_new_version(content, activate, screenshot=nil)
 
     versions = self.author_site_versions
     site_version = {
         version: versions.length + 1,
         content: content,
-        activated: activate == 'true'
+        activated: activate == 'true',
+        screenshot: screenshot
     }
 
     version = versions.build(site_version)

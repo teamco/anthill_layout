@@ -384,9 +384,9 @@ define([
                             })
                         };
 
-                    this.makeScreenshot(true, document.body, function (canvas) {
+                    setting.makeScreenshot(true, document.body, function (imgSrc) {
 
-                        opts.data.screenshot = canvas.toDataURL();
+                        opts.data.screenshot = imgSrc;
 
                         $.ajax(opts).done(
                             function done(data, type, xhr) {
@@ -443,9 +443,7 @@ define([
         makeScreenshot: function makeScreenshot(make, domElement, callback) {
 
             make ?
-                require(['html2canvas'], function () {
-                    html2canvas(domElement || document.body).then(callback);
-                }) :
+                this.base.lib.image.resizeThumbnail(domElement, callback) :
                 callback();
         }
 

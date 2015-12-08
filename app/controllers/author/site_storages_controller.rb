@@ -82,7 +82,8 @@ class Author::SiteStoragesController < Author::AuthorController
     if request.xhr?
       version = @author_site_storage.build_new_version(
           params[:author_site_storage][:content],
-          params[:activate]
+          params[:activate],
+          params[:screenshot]
       )
       params[:author_site_storage][:publish] = 'false'
       params[:author_site_storage].delete :content
@@ -90,9 +91,9 @@ class Author::SiteStoragesController < Author::AuthorController
       version = @author_site_storage.author_site_versions.find(params[:author_site_storage][:activated_version])
       params[:author_site_storage].delete :activated_version
     end
-logger.info ">>>>>>> version: #{version.inspect}"
+
     update_handler(version)
-    logger.info ">>>>>>> version activated: #{@activated.inspect}"
+
     respond_to do |format|
       if @activated.nil?
         format.html { render :form }
