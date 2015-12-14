@@ -20,15 +20,62 @@ define([
      */
     var PanelContainerElement = function PanelContainerElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
+        this._config(view, opts, $(this.getTemplate())).build({
             $container: opts.$container,
             destroy: true
         });
 
-        return this.bindResize();
+        return this;
     };
 
     return PanelContainerElement.extend('PanelContainerElement', {
+
+        /**
+         * Define template
+         * @memberOf PanelContainerElement
+         * @returns {string}
+         */
+        getTemplate: function getTemplate() {
+            return [
+                '<nav class="navbar-default navbar-static-side" role="navigation">',
+                '<div class="sidebar-collapse">',
+                '<ul class="nav">',
+                '<li class="nav-header">',
+                '<div class="profile-element text-center">',
+                '<h1 class="logo-element"></h1></div>',
+                '<div class="logo-element"></div>',
+                '</li></ul></div></nav>'
+            ].join('');
+        },
+
+        /**
+         * Define content container
+         * @memberOf PanelContainerElement
+         * @returns {*}
+         */
+        getContentContainer: function() {
+            return this.$.find('ul.nav');
+        },
+
+        /**
+         * Define long header wrapper
+         * @memberOf PanelContainerElement
+         * @param {string} text
+         * @returns {*}
+         */
+        setLongHeader: function getLongHeaderWrapper(text) {
+            this.$.find('h1.logo-element').text(text);
+        },
+
+        /**
+         * Define short header wrapper
+         * @memberOf PanelContainerElement
+         * @param {string} text
+         * @returns {*}
+         */
+        setShortHeader: function getShortHeaderWrapper(text) {
+            this.$.find('div.logo-element').text(text);
+        },
 
         /**
          * Toggle open class
@@ -39,57 +86,7 @@ define([
             open ?
                 this.$.addClass('close') :
                 this.$.removeClass('close');
-        },
-
-        /**
-         * Bind resize
-         * @memberOf PanelContainerElement
-         */
-        bindResize: function bindResize() {
-
-            var controller = this.view.controller,
-                resizeFrom = controller.isResizable();
-
-            if (!resizeFrom) {
-                return false;
-            }
-
-            /**
-             * Define handle
-             * @type {string}
-             */
-            var handle = resizeFrom === 'top' ?
-                's' : resizeFrom === 'right' ?
-                'w' : resizeFrom === 'bottom' ?
-                'n' : 'e';
-
-            /**
-             * Set max width
-             * @type {number}
-             */
-            var maxWidth = 290;
-
-            this.$.resizable({
-                handles: handle,
-                containment: 'parent',
-                maxWidth: maxWidth,
-                minWidth: 130,
-                start: function start(event, ui) {
-
-                    /**
-                     * Set width
-                     * @type {number}
-                     */
-                    var width = ui.element.hasClass('close') ?
-                        maxWidth : ui.size.width;
-
-                    ui.element.resizable('option', 'maxWidth', width);
-                }
-            });
-
-            return this;
         }
 
     }, BaseElement.prototype);
-
 });

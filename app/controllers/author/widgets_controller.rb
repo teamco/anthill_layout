@@ -249,7 +249,7 @@ class Author::WidgetsController < Author::AuthorController
                 width: w[:width],
                 height: w[:height]
             },
-            type: w.author_widget_category[:name_index],
+            type: w.author_widget_category.name_index,
             resource: w[:resource]
         }
       end if request.xhr?

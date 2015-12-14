@@ -48,22 +48,6 @@ define([
         },
 
         /**
-         * Render tab to open/close panel
-         * @memberOf PanelView
-         */
-        renderTab: function renderTab() {
-
-            /**
-             * Define container
-             * @type {PanelTabElement}
-             */
-            this.elements.$tab = new PanelTab(this, {
-                $container: this.elements.$container.$,
-                style: 'panel-tab'
-            });
-        },
-
-        /**
          * Render Panel
          * @memberOf PanelView
          */
@@ -74,33 +58,21 @@ define([
             }
 
             this.renderPanelContainer();
-            this.renderTab();
-
-            this.header(Header, this.elements.$container).setText(
-                'Configuration'
-            );
-
-            /**
-             * Define local width
-             */
-            var width = this.getConfigHTML().width;
+            this.elements.$container.setLongHeader('Setting');
 
             /**
              * Define Panel element
              * @type {PanelElement}
              */
             this.elements.$panel = new Panel(this, {
-                id: this.createUUID(),
-                $container: this.elements.$container.$,
-                maxWidth: width.max,
-                minWidth: width.min
+                id: this.createUUID()
             });
 
             this.renderContentContainer();
 
             this.footer(Footer, this.elements.$container);
 
-            this.controller.renderPackages();
+            //this.controller.renderPackages();
 
         },
 
@@ -115,7 +87,7 @@ define([
              * @type {PanelContentContainerElement}
              */
             this.elements.$content = new PanelContentContainer(this, {
-                $container: this.elements.$panel.$,
+                $container: this.elements.$container.getContentContainer(),
                 style: 'panel-content'
             });
         },

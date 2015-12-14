@@ -3,9 +3,7 @@
     <%= link_to url, title: title do %>
         <i class="glyphicon <%= icon %>"></i>
         <span class="nav-label"><%= title %></span>
-        <% unless items.nil? %>
-            <span class="fa arrow"></span>
-        <% end %>
+        <%= '<span class="fa arrow"></span>'.html_safe unless items.nil? %>
     <% end %>
     <% unless items.nil? %>
         <ul class="nav nav-second-level collapse<%= active ? 'in' : '' %>">

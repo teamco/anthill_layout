@@ -28,8 +28,6 @@ define([
         return this;
     };
 
-    return PanelContentContainerElement.extend('PanelContentContainerElement', {
-
-    }, BaseElement.prototype);
+    return PanelContentContainerElement.extend('PanelContentContainerElement', {}, BaseElement.prototype);
 
 });

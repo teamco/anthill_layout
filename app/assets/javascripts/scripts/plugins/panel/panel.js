@@ -82,10 +82,6 @@ define([
             plugin: true,
             renderAt: RENDER_AT.right,
             html: {
-                width: {
-                    min: 5,
-                    max: 215
-                },
                 resizable: false,
                 style: 'default',
                 header: true,
@@ -145,8 +141,5 @@ define([
         );
     };
 
-    return Panel.extend('Panel', {
-
-    }, AntHill.prototype);
-
+    return Panel.extend('Panel', {}, AntHill.prototype);
 });

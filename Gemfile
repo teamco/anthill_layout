@@ -43,7 +43,7 @@ group :test, :development do
 end
 
 group :console do
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'#, '~> 2.0'
   gem 'rails-console-tweaks'
   gem 'awesome_print', require: 'ap'
   gem 'hirb'

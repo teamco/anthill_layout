@@ -20,81 +20,13 @@ define([
      */
     var PanelElement = function PanelElement(view, opts) {
 
-        this._config(view, opts, $('<ul />')).build({
-            $container: opts.$container,
-            destroy: false
-        });
-
-        /**
-         * Define max width
-         * @memberOf PanelElement
-         * @type {*|number}
-         */
-        this.maxWidth = opts.maxWidth || 100;
-
-        /**
-         * Define min width
-         * @memberOf PanelElement
-         * @type {*|number}
-         */
-        this.minWidth = opts.minWidth || 0;
-
-        this.addCSS('panel');
+        this.view = view;
+        this.id = opts.id;
 
         return this;
     };
 
     return PanelElement.extend('PanelElement', {
-
-        /**
-         * Toggle open/close
-         * @param {string} resource
-         * @param {boolean} opened
-         * @memberOf PanelElement
-         * @returns {boolean}
-         */
-        toggle: function toggle(resource, opened) {
-
-            /**
-             * Toggle callback
-             * @private
-             */
-            function _callbackToggle() {
-                if (!opened) {
-                    $container.$.attr('style', '');
-                }
-            }
-
-            /**
-             * Define locals
-             */
-            var view = this.view,
-                scope = view.scope,
-                controller = view.controller;
-
-            if (controller.isOpened() === opened && scope.active === resource) {
-
-                scope.logger.debug('No change');
-                return false;
-            }
-
-            var $container = view.elements.$container;
-
-            $container.opened(opened);
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.showContent,
-                [opened, resource]
-            );
-
-            $container.$.stop().animate({
-                width: opened ?
-                    this.maxWidth :
-                    this.minWidth
-            }, 200, _callbackToggle);
-
-            controller.setBehavior(resource, opened);
-        },
 
         /**
          * Hide Active module
