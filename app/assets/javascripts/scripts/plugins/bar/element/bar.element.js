@@ -20,7 +20,7 @@ define([
      */
     var BarElement = function BarElement(view, opts) {
 
-        this._config(view, opts, $('<ul />')).build({
+        this._config(view, opts, $(this.getTemplate())).build({
             $container: opts.$container,
             destroy: true
         });
@@ -32,6 +32,28 @@ define([
 
     return BarElement.extend('BarElement', {
 
-    }, BaseElement.prototype);
+        /**
+         * Define template
+         * @memberOf BarElement
+         * @returns {string}
+         */
+        getTemplate: function getTemplate() {
+            return [
+                '<ul class="nav"><li><a href="#"><i class="glyphicon {icon}"></i>',
+                '<span class="nav-label">{titlebare}</span>',
+                '<span class="fa arrow"></span></a>',
+                '<ul class="nav nav-second-level collapse"></ul></li></ul>'
+            ].join('');
+        },
 
+        /**
+         * Define content container
+         * @memberOf BarElement
+         * @returns {*}
+         */
+        getContentContainer: function getContentContainer() {
+            return this.$.find('.nav-second-level');
+        }
+
+    }, BaseElement.prototype);
 });

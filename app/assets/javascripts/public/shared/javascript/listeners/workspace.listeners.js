@@ -70,7 +70,16 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
                      * @type {Panel}
                      */
                     app.panels.author = new Panel({
-                        config: {renderAt: 'right'},
+                        config: {
+                            renderAt: 'right',
+                            header: {
+                                visible: true,
+                                title: {
+                                    short: 'DT',
+                                    long: 'Designtime'
+                                }
+                            }
+                        },
                         modules: [Gallery, PageData, WidgetRules, WorkspaceData, SiteConfig],
                         packages: [Bar]
                     }, app);
@@ -101,7 +110,16 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
                      * @type {Panel}
                      */
                     app.panels.tool = new Panel({
-                        config: {renderAt: 'left'},
+                        config: {
+                            renderAt: 'left',
+                            header: {
+                                visible: true,
+                                title: {
+                                    short: 'RT',
+                                    long: 'Runtime'
+                                }
+                            }
+                        },
                         modules: [Maximize],
                         packages: [Bar]
                     }, app);

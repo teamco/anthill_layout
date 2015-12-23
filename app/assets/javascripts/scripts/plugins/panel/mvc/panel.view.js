@@ -10,12 +10,10 @@ define([
     'modules/View',
     'element/header.element',
     'element/footer.element',
-    'plugins/panel/element/panel.container.element',
     'plugins/panel/element/panel.content.element',
     'plugins/panel/element/panel.content.container.element',
-    'plugins/panel/element/panel.tab.element',
     'plugins/panel/element/panel.element'
-], function definePanelView(BaseView, Header, Footer, PanelContainer, PanelContentElement, PanelContentContainer, PanelTab, Panel) {
+], function definePanelView(BaseView, Header, Footer, PanelContentElement, PanelContentContainer, Panel) {
 
     /**
      * Define view
@@ -29,25 +27,6 @@ define([
     return PanelView.extend('PanelView', {
 
         /**
-         * Render container
-         * @memberOf PanelView
-         */
-        renderPanelContainer: function renderPanelContainer() {
-
-            /**
-             * Define container
-             * @type {PanelContainerElement}
-             */
-            this.elements.$container = new PanelContainer(this, {
-                $container: 'body',
-                style: [
-                    'panel-container',
-                    this.controller.getRenderAt()
-                ].join(' ')
-            });
-        },
-
-        /**
          * Render Panel
          * @memberOf PanelView
          */
@@ -57,22 +36,23 @@ define([
                 return false;
             }
 
-            this.renderPanelContainer();
-            this.elements.$container.setLongHeader('Setting');
-
             /**
              * Define Panel element
              * @type {PanelElement}
              */
             this.elements.$panel = new Panel(this, {
-                id: this.createUUID()
+                $container: 'body',
+                style: [
+                    'panel-container',
+                    this.controller.getRenderAt()
+                ].join(' ')
             });
 
             this.renderContentContainer();
 
-            this.footer(Footer, this.elements.$container);
+            this.footer(Footer, this.elements.$panel);
 
-            //this.controller.renderPackages();
+            this.controller.renderPackages();
 
         },
 
@@ -87,7 +67,7 @@ define([
              * @type {PanelContentContainerElement}
              */
             this.elements.$content = new PanelContentContainer(this, {
-                $container: this.elements.$container.getContentContainer(),
+                $container: this.elements.$panel.getContentContainer(),
                 style: 'panel-content'
             });
         },
@@ -148,5 +128,4 @@ define([
         }
 
     }, BaseView.prototype)
-
 });

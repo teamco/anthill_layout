@@ -109,16 +109,15 @@ define([
              * Define content element
              * @type {GalleryContentElement}
              */
-            var $content = this,
-                external = $content.data.is_external ? 'External' : 'Core';
+            var element = this,
+                external = element.data.is_external ? 'External' : 'Core';
 
-            $content.renderTooltip({
-                title: $content.data.name,
-                description: $content.data.description + '\n' + '(' + external + ')',
-                $container: $content
+            element.renderTooltip({
+                title: element.data.name,
+                description: element.data.description + '\n' + '(' + external + ')',
+                selector: element
             });
         }
 
     }, BaseElement.prototype);
-
 });

@@ -150,7 +150,7 @@ define([
 
             if (this.active === resource) {
 
-                this.view.elements.$panel.toggle(resource, false);
+                this.view.elements.$panel.toggleModule(resource, false);
                 this.view.elements.items['$bar-content'].unselectItems();
 
             } else {
@@ -213,7 +213,7 @@ define([
             $bar.unselectItems();
             $bar.selectItem(resource);
 
-            this.view.elements.$panel.toggle(resource, true);
+            this.view.elements.$panel.toggleModule(resource, true);
 
             if (this.base.isFunction(callback)) {
                 callback(event);

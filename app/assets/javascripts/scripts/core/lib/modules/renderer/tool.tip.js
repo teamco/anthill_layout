@@ -2,14 +2,14 @@
  * Created by teamco on 7/10/14.
  */
 
-define([], function defineToolTipRenderer(){
+define([], function defineToolTipRenderer() {
 
     /**
      * Define ToolTipRenderer
      * @class ToolTipRenderer
      * @constructor
      */
-    var ToolTipRenderer = function ToolTipRenderer(){
+    var ToolTipRenderer = function ToolTipRenderer() {
 
     };
 
@@ -27,80 +27,100 @@ define([], function defineToolTipRenderer(){
          * Render tooltip
          * @memberOf ToolTipRenderer
          * @param {{
-         *      $container: *|jQuery,
+         *      selector: *,
          *      title: string,
          *      [description]: string,
          *      [imageUrl]: string,
-         *      [imageFloat]: string
+         *      [imageFloat]: string,
+         *      [container]: string
          * }} opts
          * @returns {*|jQuery}
          */
         renderTooltip: function renderTooltip(opts) {
 
-            var $title = $('<h2 />').text(opts.title),
-                $description = $('<p />').html(opts.description),
-                $image;
+            var $selector = opts.selector.$;
 
-            if (opts.imageUrl) {
+            var config = {
+                html: true,
+                selector: $selector[0],
+                title: opts.title,
+                container: opts.container || 'body',
+                trigger: 'hover',
+                placement: 'auto'
+            };
 
-                $image = $('<img />').attr({
-                    src: opts.imageUrl,
-                    alt: opts.title
-                }).css({
-                    cssFloat: opts.imageFloat || 'none'
-                });
-            }
+            if (opts.description || opts.imageUrl) {
 
-            var $tooltip = $('<div />').append([
-                $title,
-                $image,
-                $description
-            ]).addClass('tooltip');
+                config.content = '';
 
-            if (!opts.$container) {
-                return $tooltip;
-            }
+                if (opts.description) {
+                    config.content += '<p>' + opts.description + '</p>';
+                }
 
-            opts.$container.$.off('mouseenter.hover').on('mouseenter.hover', function on() {
+                if (opts.imageUrl) {
 
-                opts.$container.$.append(
-                    $tooltip.stop().
-                        fadeTo('slow', 0.9)
-                ).attr({
-                        title: ''
+                    var $image = $('<img />').attr({
+                        src: opts.imageUrl,
+                        alt: opts.title
+                    }).css({
+                        cssFloat: opts.imageFloat || 'none'
                     });
 
-                opts.$container.$.on('mousemove.gallery', function (e) {
+                    config.content += $image[0];
+                }
 
-                    /**
-                     * Define top
-                     * @type {number}
-                     */
-                    var topL = e.pageY - $tooltip.height() - 20,
-                        topM = e.pageY + 20;
+                $selector.attr({
 
-                    /**
-                     * Define left
-                     * @type {number}
-                     */
-                    var leftL = e.pageX - 100,
-                        leftM = e.pageX;
+                    'data-toggle': 'popover',
+                    title: config.title
 
-                    $tooltip.offset({
-                        top: topL < 0 ? topM : topL,
-                        left: leftL < 0 ? leftM : leftL
-                    });
-                });
-            });
+                }).popover(config);
 
-            opts.$container.$.off('mouseleave.hover').on('mouseleave.hover', function on() {
+            } else {
 
-                $tooltip.remove();
+                $selector.tooltip(config);
+            }
 
-                opts.$container.$.off('mousemove.gallery').attr({
-                    title: opts.title
-                });
-            });
+            //opts.$container.$.off('mouseenter.hover').on('mouseenter.hover', function on() {
+            //
+            //    opts.$container.$.append(
+            //        $tooltip.stop().
+            //            fadeTo('slow', 0.9)
+            //    ).attr({
+            //            title: ''
+            //        });
+            //
+            //    opts.$container.$.on('mousemove.gallery', function (e) {
+            //
+            //        /**
+            //         * Define top
+            //         * @type {number}
+            //         */
+            //        var topL = e.pageY - $tooltip.height() - 20,
+            //            topM = e.pageY + 20;
+            //
+            //        /**
+            //         * Define left
+            //         * @type {number}
+            //         */
+            //        var leftL = e.pageX - 100,
+            //            leftM = e.pageX;
+            //
+            //        $tooltip.offset({
+            //            top: topL < 0 ? topM : topL,
+            //            left: leftL < 0 ? leftM : leftL
+            //        });
+            //    });
+            //});
+
+            //opts.$container.$.off('mouseleave.hover').on('mouseleave.hover', function on() {
+            //
+            //    $tooltip.remove();
+            //
+            //    opts.$container.$.off('mousemove.gallery').attr({
+            //        title: opts.title
+            //    });
+            //});
         }
     });
 });
