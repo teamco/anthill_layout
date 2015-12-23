@@ -10,18 +10,9 @@ define([], function defineToolTipRenderer() {
      * @constructor
      */
     var ToolTipRenderer = function ToolTipRenderer() {
-
     };
 
     return ToolTipRenderer.extend('ToolTipRenderer', {
-
-        /**
-         * Hide tooltip
-         * @memberOf ToolTipRenderer
-         */
-        hideTooltip: function hideTooltip() {
-            $('.tooltip').hide();
-        },
 
         /**
          * Render tooltip
@@ -80,47 +71,6 @@ define([], function defineToolTipRenderer() {
 
                 $selector.tooltip(config);
             }
-
-            //opts.$container.$.off('mouseenter.hover').on('mouseenter.hover', function on() {
-            //
-            //    opts.$container.$.append(
-            //        $tooltip.stop().
-            //            fadeTo('slow', 0.9)
-            //    ).attr({
-            //            title: ''
-            //        });
-            //
-            //    opts.$container.$.on('mousemove.gallery', function (e) {
-            //
-            //        /**
-            //         * Define top
-            //         * @type {number}
-            //         */
-            //        var topL = e.pageY - $tooltip.height() - 20,
-            //            topM = e.pageY + 20;
-            //
-            //        /**
-            //         * Define left
-            //         * @type {number}
-            //         */
-            //        var leftL = e.pageX - 100,
-            //            leftM = e.pageX;
-            //
-            //        $tooltip.offset({
-            //            top: topL < 0 ? topM : topL,
-            //            left: leftL < 0 ? leftM : leftL
-            //        });
-            //    });
-            //});
-
-            //opts.$container.$.off('mouseleave.hover').on('mouseleave.hover', function on() {
-            //
-            //    $tooltip.remove();
-            //
-            //    opts.$container.$.off('mousemove.gallery').attr({
-            //        title: opts.title
-            //    });
-            //});
         }
     });
 });
