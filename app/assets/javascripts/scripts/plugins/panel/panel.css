@@ -30,24 +30,6 @@
     list-style: none;
 }
 
-.panel-container.panel-left .panel {
-    padding-left: 40px;
-}
-
-.panel-container.panel-right .panel {
-    padding-right: 40px;
-}
-
-.panel-container.panel-left .content {
-    float: right;
-    margin-right: 10px;
-}
-
-.panel-container.panel-right .content {
-    float: left;
-    margin-left: 10px;
-}
-
 .panel-container .panel-footer {
     position: absolute;
     bottom: 0;

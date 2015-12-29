@@ -29,7 +29,7 @@ define([], function defineToolTipRenderer() {
          */
         renderTooltip: function renderTooltip(opts) {
 
-            var $selector = opts.selector.$;
+            var $selector = opts.selector;
 
             var config = {
                 html: true,

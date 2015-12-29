@@ -11,7 +11,6 @@ define([], function defineComboBoxRenderer() {
      * @constructor
      */
     var ComboBoxRenderer = function ComboBoxRenderer() {
-
     };
 
     return ComboBoxRenderer.extend('ComboBoxRenderer', {

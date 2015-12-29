@@ -92,3 +92,27 @@ html, body, .application,
     -ms-transition: none !important;
     transition: none !important;
 }
+
+.fa.maximize:before {
+    content: "\f0b2";
+}
+
+.fa.gallery:before {
+    content: "\f00b";
+}
+
+.fa.page-data:before {
+    content: "\f247";
+}
+
+.fa.widget-rules:before {
+    content: "\f0e8";
+}
+
+.fa.workspace-data:before {
+    content: "\f108";
+}
+
+.fa.site-config:before {
+    content: "\f085";
+}

@@ -21,16 +21,16 @@ define([
      */
     var BarContentElement = function BarContentElement(view, opts) {
 
-        this._config(view, opts, $(this.getTemplate())).build({
-            $container: opts.$container,
-            destroy: true
-        });
-
         /**
          * Define resource
          * @property BarContentElement
          */
         this.resource = opts.resource;
+
+        this._config(view, opts, $(this.getTemplate())).build({
+            $container: opts.$container,
+            destroy: true
+        });
 
         this.attachEvent(opts.cname);
 
@@ -39,9 +39,19 @@ define([
 
     return BarContentElement.extend('BarContentElement', {
 
+        /**
+         * Define template
+         * @memberOf BarContentElement
+         * @returns {string}
+         */
         getTemplate: function getTemplate() {
+
+            // Get module name
+            var name = this.resource.module.name;
+
             return [
-                '<li><a href="#"><i class="{icon}"></i>{titlebarc}</a></li>'
+                '<li><a href="#"><i class="fa ', name.toDash(), '"></i>',
+                name.humanize(), '</a></li>'
             ].join('');
         },
 
@@ -68,12 +78,6 @@ define([
                         publish(event.openPanel, resource);
                 }
             );
-
-            this.renderTooltip({
-                title: this.resource.module.name.humanize(),
-                selector: this,
-                container: '#' + this.$.parents('.panel-container').attr('id')
-            });
         }
 
     }, BaseElement.prototype);

@@ -3,6 +3,9 @@
     cursor: move;
     border: none;
     overflow: hidden;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
 }
 
 .development .widget,

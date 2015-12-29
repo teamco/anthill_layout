@@ -1,15 +1,9 @@
-.application-header {
-    width:100%;
-    height: 50px;
-    position: absolute;
-    background: #7abcff;
-    background: -moz-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7abcff), color-stop(44%, #60abf8), color-stop(100%, #4096ee));
-    background: -webkit-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
-    background: -o-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
-    background: -ms-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
-    background: linear-gradient(to bottom, #7abcff 0%, #60abf8 44%, #4096ee 100%);
-    -webkit-box-shadow: 1px 0 5px 0 rgba(50, 50, 50, 0.4);
-    -moz-box-shadow: 1px 0 5px 0 rgba(50, 50, 50, 0.4);
-    box-shadow: 1px 0 5px 0 rgba(50, 50, 50, 0.4);
+.application {
+    background-color: #fff;
+}
+
+.application .page-header {
+    padding: 0;
+    margin: 0;
+    border: none;
 }

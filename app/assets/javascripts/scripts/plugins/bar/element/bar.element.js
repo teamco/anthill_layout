@@ -38,12 +38,7 @@ define([
          * @returns {string}
          */
         getTemplate: function getTemplate() {
-            return [
-                '<ul class="nav"><li><a href="#"><i class="glyphicon {icon}"></i>',
-                '<span class="nav-label">{titlebare}</span>',
-                '<span class="fa arrow"></span></a>',
-                '<ul class="nav nav-second-level collapse"></ul></li></ul>'
-            ].join('');
+            return '<ul class="nav"></ul>';
         },
 
         /**
@@ -52,7 +47,7 @@ define([
          * @returns {*}
          */
         getContentContainer: function getContentContainer() {
-            return this.$.find('.nav-second-level');
+            return this.$.find('.nav');
         }
 
     }, BaseElement.prototype);
