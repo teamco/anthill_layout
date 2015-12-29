@@ -824,3 +824,11 @@ body.mini-navbar .logo-element {
   -moz-border-radius: 6px 0 6px 6px;
   border-radius: 6px 0 6px 6px
 }
+
+.input-group-addon.glyphicon {
+  top: 0;
+}
+
+.popover {
+  z-index: 2001 !important;
+}

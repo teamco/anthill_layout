@@ -116,3 +116,7 @@ html, body, .application,
 .fa.site-config:before {
     content: "\f085";
 }
+
+.fa.page-tabs:before {
+    content: "\f02c";
+}

@@ -32,7 +32,7 @@ define([
          * Element config before build
          * @memberOf BaseElement
          * @param {BaseView} view
-         * @param {{[style]: string, [id]: string, [css], [events], [opacity]}} opts
+         * @param {{[style]: string, [id]: string, [css], [events], [opacity], [id]: boolean}} opts
          * @param $html
          * @returns {*}
          * @protected
@@ -60,7 +60,7 @@ define([
              * @property BaseElement
              * @type {String}
              */
-            this.id = view.renderUUID(opts.id);
+            this.id = view.renderUUID(opts.id || this.view.createUUID());
 
             /**
              * Define disabled
@@ -96,9 +96,11 @@ define([
              * Define jQuery element
              * @property BaseElement
              */
-            this.$ = $html.attr({
-                id: this.id
-            }).addClass(this.style).css(this.css);
+            this.$ = $html.addClass(this.style).css(this.css);
+
+            if (opts.id) {
+                this.$.attr({id: this.id});
+            }
 
             this.view.controller.updateCache(this.id, this);
 

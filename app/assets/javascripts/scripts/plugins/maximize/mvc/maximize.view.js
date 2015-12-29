@@ -45,7 +45,6 @@ define([
                  * @type {MaximizeElement}
                  */
                 this.elements.$maximize = new MaximizeElement(this, {
-                    id: this.createUUID(),
                     $container: this.elements.$container.$
                 });
             },
@@ -65,8 +64,6 @@ define([
                 this.elements.items = {};
                 this.elements.$maximize.empty();
 
-                this.renderHeader(Header, 'Maximize Widgets');
-
                 this.renderFilter(
                     this.updateFooterContent.bind(this)
                 );
@@ -81,10 +78,6 @@ define([
                          */
                         var $item = new MaximizeContentElement(this, {
                             style: 'content',
-                            id: [
-                                data[index].model.getConfig('uuid'),
-                                this.scope.constructor.prototype.name.toDash()
-                            ].join('-'),
                             $container: this.elements.$maximize.$,
                             data: data[index]
                         });
@@ -131,7 +124,6 @@ define([
                     this.renderMaximize.bind(this)
                 );
             }
-
         },
         AntHill.prototype,
         BaseView.prototype,

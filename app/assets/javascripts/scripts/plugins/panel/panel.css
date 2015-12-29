@@ -10,10 +10,6 @@
     overflow: hidden;
 }
 
-.panel-container.close .panel-content {
-    overflow: visible;
-}
-
 .panel-container.panel-right {
     right: 0;
     border-left: 1px solid #999;
@@ -38,27 +34,11 @@
 .panel-container .scroll-cover {
     position: absolute;
     background: transparent;
-    top: 0;
-    bottom: 0;
+    top: 136px;
+    bottom: 50px;
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-}
-
-.panel-container.panel-left .scroll-cover {
-    direction: rtl;
-    margin-left: -40px;
-}
-
-.panel-container.panel-right .scroll-cover {
-    margin-right: 40px;
-}
-
-.panel-container.panel-left .scroll-cover + div {
-    margin-left: -40px;
-    padding-left: 40px;
-    padding-right: 0;
-    display: none;
 }
 
 .panel-container .clear {
@@ -66,27 +46,21 @@
     height: 10px;
 }
 
-.panel-container .tooltip > .tooltip-inner {
-    background-color: #fff;
-    color: #333;
+.panel-container .filter {
+    margin: 0 -2px;
 }
 
-.panel-container .tooltip.top > .tooltip-arrow {
-    border-top-color: #fff;
-    bottom: 1px;
+.panel-container .list-group-item.content {
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
 
-.panel-container .tooltip.right > .tooltip-arrow {
-    border-right-color: #fff;
-    left: 1px;
-}
-
-.panel-container .tooltip.bottom > .tooltip-arrow {
+.panel-container .list-group-item.content:hover {
+    background-color: #2e3f4f;
     border-bottom-color: #fff;
-    top: 1px;
 }
 
-.panel-container .tooltip.left > .tooltip-arrow {
-    border-left-color: #fff;
-    right: 1px;
+.panel-container .list-group-item.content .fa {
+    margin-right: 10px;
 }

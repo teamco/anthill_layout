@@ -21,12 +21,11 @@ define([
      */
     var MaximizeContentElement = function MaximizeContentElement(view, opts) {
 
-        this._config(view, opts, $('<li />')).build({
+        this._config(view, opts, $('<li class="list-group-item" />')).build({
             $container: opts.$container,
             destroy: false
         });
 
-        this.addInnerContent();
         this.setAttributes(opts.data);
         this.bindLocate(opts.data);
         this.bindMaximize(opts.data);
@@ -35,14 +34,6 @@ define([
     };
 
     return MaximizeContentElement.extend('MaximizeContentElement', {
-
-        /**
-         * Define inner content
-         * @memberOf MaximizeContentElement
-         */
-        addInnerContent: function addInnerContent() {
-            this.$.append('<div />');
-        },
 
         /**
          * Define attributes
@@ -63,15 +54,10 @@ define([
              * Get description
              * @type {string}
              */
-            var description = preferences.description || '';
-
-            this.$.attr({
-                title: title
-            }).addClass(
-                this.view.controller.getResourceClassName(
+            var description = preferences.description || '',
+                cname = this.view.controller.getResourceClassName(
                     preferences.resource
-                )
-            );
+                );
 
             /**
              * Define data
@@ -83,10 +69,14 @@ define([
                 description: description
             };
 
+            this.setText(title);
+
+            this.$.prepend('<i class="fa ' + cname + '"></i>');
+
             this.renderTooltip({
                 title: title,
                 description: description,
-                $container: this
+                selector: this.$
             });
         },
 

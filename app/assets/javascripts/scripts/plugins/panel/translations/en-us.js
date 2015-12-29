@@ -6,10 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([], function defineEnUs() {
+define(function defineEnUs() {
 
     return {
-        'panel.open': 'Open',
-        'panel.close': 'Close'
+        'panel.filter': 'Filter'
     };
 });

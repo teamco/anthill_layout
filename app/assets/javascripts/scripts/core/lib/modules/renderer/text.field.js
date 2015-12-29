@@ -26,6 +26,7 @@ define([
          *      name: string,
          *      [placeholder]: string,
          *      value,
+         *      [style]: string,
          *      [disabled]: boolean,
          *      [monitor],
          *      [validate]: {mask: RegExp, blank: boolean}
@@ -44,24 +45,30 @@ define([
              * Define $input
              * @type {jQuery}
              */
-            var $input = $('<input />').attr({
+            var $input = $('<input class="form-control" />').attr({
                 name: opts.name,
                 type: 'text',
-                id: uuid,
                 placeholder: opts.placeholder,
                 title: opts.value,
+                'aria-describedby': uuid,
                 readonly: this.base.defineBoolean(opts.readonly, false, true),
                 disabled: this.base.defineBoolean(opts.disabled, false, true)
             }).val(opts.value);
+
+            var labelClass = [opts.style, opts.visible ? '' : 'hide'].join(' '),
+                $template = $([
+                    '<div class="input-group input-group-sm">',
+                    '<span id="', uuid, '" class="input-group-addon ', labelClass, '">', opts.text, '</span>',
+                    '</div>'
+                ].join(''));
 
             this.initMonitor($input, opts.monitor);
             this.checkVisibility($input, opts.visible);
             this.validateByMask($input, opts);
 
-            return [
-                this.renderLabel(uuid, opts.text, 'text', opts.visible),
-                $input
-            ];
+            $template.append($input);
+
+            return $template;
         }
     });
 });

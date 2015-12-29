@@ -9,7 +9,7 @@
  * Created by teamco on 7/10/14.
  */
 
-define([], function defineFilterRenderer() {
+define(function defineFilterRenderer() {
 
     /**
      * Define FilterRenderer
@@ -18,7 +18,6 @@ define([], function defineFilterRenderer() {
      * @constructor
      */
     var FilterRenderer = function FilterRenderer() {
-
     };
 
     return FilterRenderer.extend('FilterRenderer', {
@@ -64,6 +63,7 @@ define([], function defineFilterRenderer() {
                         $element: this
                     })
                 },
+                style: 'glyphicon glyphicon-filter',
                 visible: opts.visible
             });
 
@@ -73,10 +73,14 @@ define([], function defineFilterRenderer() {
              * Define $reset
              * @type {*|jQuery}
              */
-            var $reset = $('<div />').addClass('reset-filter').
-                attr({
-                    title: 'Reset filter'
-                }).
+            var $reset = $([
+                '<div class="input-group-btn hide">',
+                '<button type="button" class="btn btn-default reset" aria-label="Reset" title="Reset">',
+                '<span class="glyphicon glyphicon-remove"></span>',
+                '</button></div>'
+            ].join(''));
+
+            $reset.find('button').
                 on('click.reset', function reset() {
 
                     /**
@@ -85,12 +89,12 @@ define([], function defineFilterRenderer() {
                      */
                     var $node = $(this);
 
-                    $node.prev().val('').trigger(filterEvent).focus();
-                    $node.parent().removeClass('reset');
+                    $node.parents('.filter').find('input').val('').trigger(filterEvent).focus();
+                    $node.parent().addClass('hide');
                 }
             );
 
-            $search.push($reset);
+            $search.append($reset);
 
             return $search;
         },
@@ -115,9 +119,9 @@ define([], function defineFilterRenderer() {
             e.preventDefault();
 
             var input = e.target,
-                $parent = $(input).parent();
+                $reset = $(input).parent().find('.input-group-btn');
 
-            $parent.addClass('reset');
+            $reset.removeClass('hide');
 
             /**
              * Define $filter
@@ -212,7 +216,7 @@ define([], function defineFilterRenderer() {
 
                 if (e.which === 27) {
                     input.value = '';
-                    $parent.removeClass('reset');
+                    $reset.addClass('hide');
                     logger.debug('Clear results on escape');
                 }
 
