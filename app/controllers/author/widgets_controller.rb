@@ -237,7 +237,7 @@ class Author::WidgetsController < Author::AuthorController
 
       @json_data[:categories] = @author_widgets.first.fetch_categories(current_user)
 
-      @json_data[:widgets] = @author_widgets.map do |w|
+      @json_data[:widgets] = @author_widgets.includes(:author_widget_category).map do |w|
         {
             id: w[:id],
             uuid: w[:uuid],

@@ -35,7 +35,7 @@ requirejs.config({
         modernizr: 'lib/modernizr',
 
         bootstrap: 'lib/packages/bootstrap/bootstrap.min',
-        _: 'lib/underscore-min',
+        _: 'lib/_/underscore-min',
 
         html2canvas: 'lib/packages/html2canvas',
 

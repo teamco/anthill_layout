@@ -28,6 +28,7 @@ class Author::Widget < ActiveRecord::Base
         joins(:author_item).
             where('visible=true AND (public=true OR user_id=?)', user.id).
             order(name: :asc) :
+        includes(:author_widget_category).
         joins(:author_item, :author_widget_category).
             where('visible=true AND (public=true OR user_id=?) AND author_widget_categories.id=?', user.id, category.id).
             order(name: :asc)

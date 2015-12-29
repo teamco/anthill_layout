@@ -15,7 +15,6 @@ class Author::WidgetCategory < ActiveRecord::Base
 
   def self.fetch_data(user)
     joins(:author_item).
-    includes(:author_widgets).
         where('visible=true AND (public=true OR user_id=?)', user.id).
         order(:name_value)
   end

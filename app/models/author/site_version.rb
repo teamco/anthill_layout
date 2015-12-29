@@ -12,7 +12,6 @@ class Author::SiteVersion < ActiveRecord::Base
 
   def self.fetch_data(user)
     joins(:author_item).
-        includes(:author_site_storage).
         where('visible=true AND (public=true OR user_id=?)', user.id).
         order('author_items.updated_at DESC')
   end
