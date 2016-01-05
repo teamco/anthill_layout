@@ -33,8 +33,6 @@ define([
          */
         renderGallery: function renderGallery() {
 
-            this.renderHeader(Header, 'Gallery Widgets');
-
             this.renderFilter(
                 this.updateFooterContent.bind(this)
             );

@@ -983,23 +983,16 @@ define([
          */
         getFooter: function getFooter() {
 
-            var counter = 0, index,
-                items = this.view.elements.items;
-
-            for (index in items) {
-
-                if (items.hasOwnProperty(index)) {
-
-                    if (!items[index].$.hasClass('hide')) {
-                        counter += 1;
+            var counter = $.map(
+                this.view.elements.items,
+                function (item) {
+                    if (!item.$.hasClass('hide')) {
+                        return item;
                     }
                 }
-            }
+            );
 
-            return $('<div />').text([
-                counter,
-                'items'
-            ].join(' '));
+            return '<p><span class="badge" title="{0}">{0}</span> items</p>'.replace(/\{0}/g, counter.length.toString());
         },
 
         /**

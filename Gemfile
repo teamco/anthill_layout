@@ -11,7 +11,7 @@ gem 'bullet'
 gem 'rake'
 # gem 'requirejs-rails'
 gem 'keen'
-gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate'
 
 group :test do
   gem 'sqlite3'

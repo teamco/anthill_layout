@@ -246,8 +246,8 @@ define([
              */
             this.elements.$footer = new FooterElement(this, {
                 style: [
-                    this.scope.constructor.prototype.name.toDash(),
-                    'footer'
+                    this.scope.name.toDash(),
+                    'footer panel-footer'
                 ].join('-'),
                 $container: $container.$
             });

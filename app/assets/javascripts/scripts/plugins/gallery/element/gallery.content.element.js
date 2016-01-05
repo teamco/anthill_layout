@@ -115,7 +115,7 @@ define([
             element.renderTooltip({
                 title: element.data.name,
                 description: element.data.description + '\n' + '(' + external + ')',
-                selector: element
+                selector: element.$
             });
         }
 

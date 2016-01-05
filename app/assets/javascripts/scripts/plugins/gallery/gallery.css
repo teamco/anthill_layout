@@ -40,31 +40,6 @@ ul.gallery .content > div:first-child {
     border-radius: 7px;
 }
 
-div.gallery-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    border-top: 1px solid #333;
-    padding-right: 40px;
-    height: 30px;
-    box-shadow: 1px 0 5px #333;
-}
-
-div.gallery-footer > div {
-    height: 100%;
-    border-top: 1px solid #fff;
-    line-height: 30px;
-    padding: 0 10px;
-    font-size: 12px;
-    text-transform: lowercase;
-    font-variant: small-caps;
-    text-shadow: 1px 1px #fff;
-}
-
-div.gallery-content div.combo-box {
-    width: 100%;
-}
-
 div.gallery-content .scroll-cover {
     top: 113px;
     bottom: 30px;
