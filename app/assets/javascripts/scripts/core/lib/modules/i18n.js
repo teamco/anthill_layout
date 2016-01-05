@@ -64,7 +64,7 @@ define(function defineI18n() {
          */
         this.getData = function getData(key) {
 
-            if (typeof data === 'undefined') {
+            if (_.isUndefined(data)) {
                 console.warn('Undefined language', key);
                 return '';
             }

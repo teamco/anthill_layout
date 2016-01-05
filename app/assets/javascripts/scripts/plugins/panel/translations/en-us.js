@@ -7,8 +7,7 @@
  */
 
 define(function defineEnUs() {
-
     return {
-        'panel.filter': 'Filter'
+        'panel.items': 'items'
     };
 });

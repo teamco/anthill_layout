@@ -6,8 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([], function defineEnUs() {
-
+define(function defineEnUs() {
     return {
         'site.data.confirm': 'Confirm',
         'site.data.back': 'Back',

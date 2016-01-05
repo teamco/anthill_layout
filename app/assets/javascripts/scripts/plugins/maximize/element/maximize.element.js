@@ -21,8 +21,7 @@ define([
     var MaximizeElement = function MaximizeElement(view, opts) {
 
         this._config(view, opts, $('<ul class="list-group" />')).build({
-            $container: opts.$container,
-            destroy: false
+            $container: opts.$container
         });
 
         this.addCSS('maximize');

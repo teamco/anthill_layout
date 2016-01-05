@@ -215,7 +215,7 @@ define([
 
             this.view.elements.$panel.toggleModule(resource, true);
 
-            if (this.base.isFunction(callback)) {
+            if (_.isFunction(callback)) {
                 callback(event);
             }
         },
@@ -281,7 +281,7 @@ define([
              */
             var data = this.model.getModule(index);
 
-            if (typeof(data) === 'undefined') {
+            if (_.isUndefined(data)) {
 
                 this.scope.logger.error('Undefined module');
                 return false;

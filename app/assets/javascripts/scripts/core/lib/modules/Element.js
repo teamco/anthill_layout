@@ -303,7 +303,7 @@ define([
         /**
          * Build element
          * @memberOf BaseElement
-         * @param {{$container, [append], destroy, [callback]}} opts
+         * @param {{$container, [append]: boolean, [destroy]: boolean, [callback]}} opts
          * @returns {*}
          */
         build: function build(opts) {
@@ -324,11 +324,11 @@ define([
                  */
                 this.$container = $(opts.$container);
 
-                this.destroyB4Create(opts.destroy);
+                this.destroyB4Create(!!opts.destroy);
 
                 this.$[append ? 'appendTo' : 'prependTo'](opts.$container);
 
-                if (this.base.isFunction(opts.callback)) {
+                if (_.isFunction(opts.callback)) {
                     opts.callback();
                 }
             }
@@ -992,7 +992,9 @@ define([
                 }
             );
 
-            return '<p><span class="badge" title="{0}">{0}</span> items</p>'.replace(/\{0}/g, counter.length.toString());
+            return '<p class="text-center"><span class="badge" title="{0}">{0}</span>{1}</p>'.
+                replace(/\{0}/g, counter.length.toString()).
+                replace(/\{1}/g, this.i18n.t('panel.items'));
         },
 
         /**

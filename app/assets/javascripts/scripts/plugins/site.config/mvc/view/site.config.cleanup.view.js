@@ -11,6 +11,8 @@ define([
     /**
      * Define SiteConfigCleanupView
      * @class SiteConfigCleanupView
+     * @extends AntHill
+     * @extends BaseView
      * @constructor
      */
     var SiteConfigCleanupView = function SiteConfigCleanupView() {

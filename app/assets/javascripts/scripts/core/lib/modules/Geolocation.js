@@ -31,7 +31,7 @@ define(function defineBaseGeolocation(){
              * @private
              */
             function _setLocation(position) {
-                if (typeof(callback) === 'function') {
+                if (_.isFunction(callback)) {
                     callback.bind(this)(position);
                 }
             }

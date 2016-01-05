@@ -29,7 +29,7 @@ define([], function defineComboBoxRenderer() {
         renderCombobox: function renderCombobox(data, selected, name, index, event, visible, placeholder) {
 
             // Init placeholder
-            placeholder = typeof (placeholder) === 'undefined' ? false : !!placeholder;
+            placeholder = _.isUndefined(placeholder) ? false : !!placeholder;
 
             /**
              * Get wrapper
@@ -215,7 +215,7 @@ define([], function defineComboBoxRenderer() {
                 $ul.on('mouseleave.comboBoxInternal', _hide.bind(this));
 
                 if (this.base.isDefined(event)) {
-                    if (this.base.isFunction(event.callback)) {
+                    if (_.isFunction(event.callback)) {
                         $li.on(event.type, function comboBoxEvent(e) {
                             event.callback(
                                 $(e.target).attr('rel')
@@ -248,7 +248,7 @@ define([], function defineComboBoxRenderer() {
                 }
             }
 
-            if (typeof(selected) === 'undefined') {
+            if (_.isUndefined(selected)) {
 
                 if (placeholder) {
 

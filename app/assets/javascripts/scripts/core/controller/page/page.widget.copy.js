@@ -10,6 +10,7 @@ define(function definePageWidgetCopy() {
     /**
      * Define PageWidgetCopy
      * @class PageWidgetCopy
+     * @mixes PageController
      * @constructor
      */
     var PageWidgetCopy = function PageWidgetCopy() {
@@ -65,7 +66,7 @@ define(function definePageWidgetCopy() {
                     true, {}, cloneWidget.model.getConfig('preferences')
                 );
 
-                if (typeof(cloneWidgetPrefs.resource) === 'undefined') {
+                if (_.isUndefined(cloneWidgetPrefs.resource)) {
 
                     cloneWidget.logger.warn(
                         'Undefined resource',
@@ -168,7 +169,7 @@ define(function definePageWidgetCopy() {
                     rs, currentKey, z = 0,
                     removeSubscribe = [];
 
-                if (typeof(subscribe) === 'undefined') {
+                if (_.isUndefined(subscribe)) {
 
                     this.scope.logger.debug('Undefined subscribe', rules);
                     return false;

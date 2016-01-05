@@ -46,7 +46,7 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent(api, url, opts) {
 
-            if (typeof(url) === 'undefined') {
+            if (_.isUndefined(url)) {
                 return false;
             }
 

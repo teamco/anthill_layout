@@ -218,7 +218,7 @@ define(
                      */
                     opts.type = type;
 
-                    if (mode && this.base.isFunction(this[mode + 'Mode'])) {
+                    if (mode && _.isFunction(this[mode + 'Mode'])) {
                         this[mode + 'Mode'](
                             opts,
                             mode,

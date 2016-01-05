@@ -22,8 +22,7 @@ define([
     var MaximizeContentElement = function MaximizeContentElement(view, opts) {
 
         this._config(view, opts, $('<li class="list-group-item" />')).build({
-            $container: opts.$container,
-            destroy: false
+            $container: opts.$container
         });
 
         this.setAttributes(opts.data);

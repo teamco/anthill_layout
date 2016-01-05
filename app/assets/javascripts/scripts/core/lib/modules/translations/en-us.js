@@ -26,6 +26,8 @@ define([], function defineEnUs() {
         'on.expand': 'On Expand',
         'after.expand': 'After Expand',
 
-        'cancel': 'Cancel'
+        'cancel': 'Cancel',
+
+        'filter': 'Filter'
     };
 });

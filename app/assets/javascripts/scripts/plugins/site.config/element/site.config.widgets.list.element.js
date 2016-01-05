@@ -22,8 +22,7 @@ define([
     var SiteConfigWidgetsListElement = function SiteConfigWidgetsListElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: false
+            $container: opts.$container
         });
 
         /**

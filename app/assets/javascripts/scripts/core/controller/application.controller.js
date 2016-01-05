@@ -128,7 +128,7 @@ define(
                         ifModified: true,
                         beforeSend: function _beforeSend(xhr, settings) {
                             this.scope.view.get$item().showLoader();
-                            if (typeof(settings.dataType) === 'undefined') {
+                            if (_.isUndefined(settings.dataType)) {
                                 xhr.setRequestHeader(
                                     'accept',
                                     '*/*;q=0.5, ' + settings.accepts.script

@@ -6,10 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([], function defineEnUs() {
-
-    return {
-        'gallery.providers.all': 'All',
-        'gallery.providers.favorites': 'Favorites'
-    };
+define(function defineEnUs() {
+    return {};
 });

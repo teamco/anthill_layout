@@ -39,13 +39,13 @@ define([
                 var mask = opts.validate.mask,
                     i = 0, match = [];
 
-                if (typeof (mask) === 'undefined') return true;
+                if (_.isUndefined(mask)) return true;
 
                 if (Object.prototype.toString.call(mask) !== '[object Array]') {
                     mask = [mask];
                 }
 
-                for (i = 0; i < mask.length; i++) {
+                for (i; i < mask.length; i++) {
                     match.push(!!value.match(mask[i]))
                 }
 
@@ -63,7 +63,7 @@ define([
              * @private
              */
             function _checkEmpty(value) {
-                if (typeof(opts.validate.blank) === 'undefined') return true;
+                if (_.isUndefined(opts.validate.blank)) return true;
                 return $.trim(value.length) > 0;
             }
 

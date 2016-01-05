@@ -46,7 +46,7 @@ define([
             this.$filter = this.renderFilter({
                 text: '',
                 name: 'filter',
-                placeholder: 'Filter',
+                placeholder: this.i18n.t('filter'),
                 visible: true,
                 callback: callback,
                 enter: enter

@@ -21,8 +21,7 @@ define([
     var PageDataElement = function PageDataElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
-            $container: opts.$container,
-            destroy: false
+            $container: opts.$container
         });
 
         this.addCSS('page.data');

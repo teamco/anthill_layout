@@ -18,8 +18,7 @@ define([
     var SiteConfigActivateElement = function SiteConfigActivateElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: false
+            $container: opts.$container
         });
 
         this.renderContent();

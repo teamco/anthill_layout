@@ -231,7 +231,7 @@ define([
                     event = 'Resize';
                 }
 
-                if (typeof(event) === 'undefined') {
+                if (_.isUndefined(event)) {
                     scope.logger.warn('Undefined caller', fname);
                     return false;
                 }
@@ -340,7 +340,7 @@ define([
                 // Get widget content
                 var content = this.getContent();
 
-                if (typeof(content) === 'undefined') {
+                if (_.isUndefined(content)) {
                     this.scope.logger.debug('Undefined content');
                     return false;
                 }

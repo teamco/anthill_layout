@@ -39,7 +39,7 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent(embed) {
 
-            if (typeof(embed) === 'undefined') {
+            if (_.isUndefined(embed)) {
                 return false;
             }
 
@@ -47,5 +47,4 @@ define([
         }
 
     }, BaseElement.prototype);
-
 });

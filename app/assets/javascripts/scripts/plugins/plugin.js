@@ -124,7 +124,7 @@ define([
 
                 plugin.i18n.updateData(EnUs);
 
-                if (typeof(callback) === 'function') {
+                if (_.isFunction(callback)) {
                     callback();
                 }
             });
@@ -227,11 +227,11 @@ define([
          */
         function _successRenderedCallback() {
 
-            if (typeof(callback) === 'function') {
+            if (_.isFunction(callback)) {
 
                 var html = scope.model.getConfig('html');
 
-                if (typeof(html.selector) === 'undefined') {
+                if (_.isUndefined(html.selector)) {
 
                     scope.logger.warn('Configuration of render: false', html);
                     return false;

@@ -28,7 +28,7 @@
              * Init reverse
              * @type {boolean}
              */
-            reverse = typeof(reverse) === 'undefined' ? false : !!reverse;
+            reverse = _.isUndefined(reverse) ? false : !!reverse;
 
             switch (type) {
 

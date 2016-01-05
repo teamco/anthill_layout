@@ -22,8 +22,7 @@ define([
     var GalleryContentElement = function GalleryContentElement(view, opts) {
 
         this._config(view, opts, $('<li />')).build({
-            $container: opts.$container,
-            destroy: false
+            $container: opts.$container
         });
 
         /**

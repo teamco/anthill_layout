@@ -122,7 +122,7 @@ define(function defineWidgetGeneratorForm() {
                     ) || {}).resource;
                 }
 
-                if (typeof(resource) === 'undefined' || resource.length === 0) {
+                if (_.isUndefined(resource) || resource.length === 0) {
 
                     scope.logger.warn('Undefined resource', collector);
                     return false;

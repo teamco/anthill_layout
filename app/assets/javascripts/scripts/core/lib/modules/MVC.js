@@ -641,7 +641,7 @@ define([
              */
             permission.capability = {};
 
-            this.base.isFunction(permission.config) ?
+            _.isFunction(permission.config) ?
                 permission.config() :
                 scope.logger.warn('Force created permissions', permission);
 

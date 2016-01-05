@@ -57,7 +57,7 @@ define([
             var scope = this.view.scope,
                 route = scope.model.getConfig('routes/getContent');
 
-            if (typeof(url) === 'undefined') {
+            if (_.isUndefined(url)) {
 
                 scope.logger.debug('Initial content');
                 return false;
@@ -73,5 +73,4 @@ define([
         }
 
     }, BaseElement.prototype);
-
 });

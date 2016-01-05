@@ -45,11 +45,11 @@ define([], function defineLibFile() {
          */
         readBinaryFile: function readBinaryFile(file, callback, base64) {
 
-            if (typeof(file) === 'undefined') {
+            if (_.isUndefined(file)) {
                 return false;
             }
 
-            base64 = typeof(base64) === 'undefined' ? true : base64;
+            base64 = _.isUndefined(base64) ? true : base64;
 
             /**
              * Define reader
@@ -148,9 +148,9 @@ define([], function defineLibFile() {
 
                 // TypeError old chrome and FF
                 window.BlobBuilder = window.BlobBuilder ||
-                window.WebKitBlobBuilder ||
-                window.MozBlobBuilder ||
-                window.MSBlobBuilder;
+                    window.WebKitBlobBuilder ||
+                    window.MozBlobBuilder ||
+                    window.MSBlobBuilder;
 
                 if (e.name == 'TypeError' && window.BlobBuilder) {
 

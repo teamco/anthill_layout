@@ -21,8 +21,7 @@ define([
      */
     var PageElement = function PageElement(view, opts) {
         return this._config(view, opts, $('<li />')).build({
-            $container: opts.$container,
-            destroy: false
+            $container: opts.$container
         });
     };
 

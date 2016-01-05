@@ -137,7 +137,7 @@ define(function defineGalleryWidgets() {
          */
         setDefaultData: function setDefaultData(json) {
 
-            if (typeof(this.galleryModel.dataTypes) === 'undefined') {
+            if (_.isUndefined(this.galleryModel.dataTypes)) {
 
                 /**
                  * Define provider types

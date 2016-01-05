@@ -242,7 +242,7 @@ define(function defineWorkspacePage() {
                  */
                 var clonePage = this.model.getItemByUUID(uuid);
 
-                if (typeof(clonePage) === 'undefined') {
+                if (_.isUndefined(clonePage)) {
 
                     this.logger.debug('Create empty page', uuid);
                     return false;

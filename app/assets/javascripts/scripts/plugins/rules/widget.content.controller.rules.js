@@ -525,7 +525,7 @@ define([
              */
             var callback = this[ename + 'Simulate'];
 
-            if (!this.base.isFunction(callback)) {
+            if (!_.isFunction(callback)) {
 
                 this.scope.logger.warn(
                     'Undefined callback',

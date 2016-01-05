@@ -38,7 +38,7 @@ define([
          */
         renderEmbeddedContent: function renderEmbeddedContent(text, size) {
 
-            if (typeof(text) === 'undefined' || typeof(size) === 'undefined') {
+            if (_.isUndefined(text) || _.isUndefined(size)) {
 
                 this.view.scope.logger.debug('Initial loading', arguments);
                 return false;
@@ -63,5 +63,4 @@ define([
         }
 
     }, BaseElement.prototype);
-
 });

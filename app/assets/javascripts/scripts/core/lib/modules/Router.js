@@ -100,7 +100,7 @@ define(function defineRouter() {
                 workspace.model.getItemByUUID(pageMatch[1])) :
                 currentPage;
 
-            if (typeof(page) === 'undefined') {
+            if (_.isUndefined(page)) {
 
                 workspace.observer.publish(
                     workspace.eventmanager.eventList.switchToPage,

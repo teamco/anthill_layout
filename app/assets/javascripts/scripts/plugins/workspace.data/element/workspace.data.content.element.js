@@ -22,8 +22,7 @@ define([
     var WorkspaceDataContentElement = function WorkspaceDataContentElement(view, opts) {
 
         this._config(view, opts, $('<li />')).build({
-            $container: opts.$container,
-            destroy: false
+            $container: opts.$container
         });
 
         /**

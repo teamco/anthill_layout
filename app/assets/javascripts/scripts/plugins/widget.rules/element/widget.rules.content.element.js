@@ -21,8 +21,7 @@ define([
     var WidgetRulesContentElement = function WidgetRulesContentElement(view, opts) {
 
         this._config(view, opts, $('<li />')).build({
-            $container: opts.$container,
-            destroy: false
+            $container: opts.$container
         });
 
         this.addInnerContent();

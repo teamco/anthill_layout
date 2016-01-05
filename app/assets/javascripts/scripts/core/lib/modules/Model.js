@@ -90,7 +90,7 @@ define([
                     config = scope.config,
                     reference = scope.config;
 
-                if (typeof(key) === 'undefined') {
+                if (_.isUndefined(key)) {
                     return config;
                 }
 
@@ -439,7 +439,7 @@ define([
              */
             getItemNameSpace: function getItemNameSpace() {
                 this.scope.logger.debug('Get item namespace', this.item);
-                if (this.hasOwnProperty('item') && this.base.isFunction(this.item)) {
+                if (this.hasOwnProperty('item') && _.isFunction(this.item)) {
                     return this.item.prototype.name.toLowerCase();
                 }
 

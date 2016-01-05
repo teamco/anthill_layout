@@ -21,8 +21,7 @@ define([
     var PageDataContentElement = function PageDataContentElement(view, opts) {
 
         this._config(view, opts, $('<li />')).build({
-            $container: opts.$container,
-            destroy: false
+            $container: opts.$container
         });
 
         this.addInnerContent();

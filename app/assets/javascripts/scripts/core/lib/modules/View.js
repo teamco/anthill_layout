@@ -33,7 +33,7 @@ define([
         /**
          * Define scope
          * @property BaseView
-         * @type {AntHill}
+         * @type {*}
          */
         this.scope = undefined;
     };
@@ -166,17 +166,21 @@ define([
          */
         isCached: function isCached($element, Constructor) {
 
-            if (this.elements[$element] instanceof Constructor) {
+            /**
+             * Define cached element
+             * @type {boolean}
+             */
+            var cached = this.elements[$element] instanceof Constructor;
+
+            if (cached) {
 
                 this.scope.logger.debug(
                     this.i18n.t('element.already.rendered').
-                        replace(/\{0\}/, Constructor.name)
+                        replace(/\{0}/, Constructor.name)
                 );
-
-                return true;
             }
 
-            return false;
+            return cached;
         },
 
         /**

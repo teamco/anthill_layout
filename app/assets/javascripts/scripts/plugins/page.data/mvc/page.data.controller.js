@@ -136,7 +136,7 @@ define([
                 }
             }
 
-            if (this.base.isFunction(callback)) {
+            if (_.isFunction(callback)) {
                 callback(event);
             }
         },

@@ -64,7 +64,6 @@ define([
              * @type {GalleryElement}
              */
             this.elements.$gallery = new GalleryElement(this, {
-                id: this.createUUID(),
                 $container: this.elements.$container.$
             });
         },
@@ -166,5 +165,4 @@ define([
         }
 
     }, BaseView.prototype)
-
 });

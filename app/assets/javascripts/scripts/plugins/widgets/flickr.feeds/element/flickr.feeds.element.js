@@ -47,7 +47,7 @@ define([
             var scope = this.view.scope,
                 $element = this.$;
 
-            if (typeof(item) === 'undefined') {
+            if (_.isUndefined(item)) {
 
                 scope.logger.debug('Initial content');
                 return false;
@@ -93,5 +93,4 @@ define([
         }
 
     }, BaseElement.prototype);
-
 });

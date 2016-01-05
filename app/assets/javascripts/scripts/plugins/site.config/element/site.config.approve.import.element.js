@@ -19,8 +19,7 @@ define([
     var SiteConfigApproveImportElement = function SiteConfigApproveImportElement(view, opts) {
 
         this._config(view, opts, $('<div />')).build({
-            $container: opts.$container,
-            destroy: false
+            $container: opts.$container
         });
 
         /**

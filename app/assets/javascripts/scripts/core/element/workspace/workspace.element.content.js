@@ -122,7 +122,7 @@ define([
             var order = page.model.getConfig('order') - 1,
                 css = {left: (-order * 100) + '%'};
 
-            if (typeof(animate) === 'undefined' ?
+            if (_.isUndefined(animate) ?
                     scope.model.getConfig('page').animateSwipe : !!animate) {
 
                 $pages.$.stop().animate(css, {

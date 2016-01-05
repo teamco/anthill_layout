@@ -115,7 +115,7 @@ define([
 
                 e.preventDefault();
 
-                if (typeof(callback) === 'function') {
+                if (_.isFunction(callback)) {
 
                     callback();
                 }

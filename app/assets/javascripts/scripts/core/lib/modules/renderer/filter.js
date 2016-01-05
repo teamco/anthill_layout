@@ -177,7 +177,7 @@ define(function defineFilterRenderer() {
                              */
                             regex = new RegExp(value, 'ig');
 
-                            if (typeof($item.data) === 'undefined') {
+                            if (_.isUndefined($item.data)) {
 
                                 logger.warn(
                                     'Item has no data',

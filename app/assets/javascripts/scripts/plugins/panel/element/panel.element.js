@@ -21,8 +21,7 @@ define([
     var PanelElement = function PanelElement(view, opts) {
 
         this._config(view, opts, $(this.getTemplate())).build({
-            $container: opts.$container,
-            destroy: false
+            $container: opts.$container
         });
 
         /**

@@ -10,6 +10,7 @@ define(function defineWidgetComment() {
     /**
      * Define WidgetComment
      * @class WidgetComment
+     * @extends AntHill
      * @constructor
      */
     var WidgetComment = function WidgetComment() {
@@ -24,7 +25,7 @@ define(function defineWidgetComment() {
          */
         commentableContent: function commentableContent(commentable) {
 
-            if (typeof(commentable) === 'undefined') {
+            if (_.isUndefined(commentable)) {
                 return false;
             }
 

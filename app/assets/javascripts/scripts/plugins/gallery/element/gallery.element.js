@@ -21,8 +21,7 @@ define([
     var GalleryElement = function GalleryElement(view, opts) {
 
         this._config(view, opts, $('<ul />')).build({
-            $container: opts.$container,
-            destroy: false
+            $container: opts.$container
         });
 
         this.addCSS('gallery');
@@ -31,7 +30,6 @@ define([
     };
 
     return GalleryElement.extend('GalleryElement', {
-
     }, BaseElement.prototype);
 
 });
