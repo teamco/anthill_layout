@@ -60,7 +60,7 @@ define([
              * @property BaseElement
              * @type {String}
              */
-            this.id = view.renderUUID(opts.id || this.view.createUUID());
+            this.id = view.renderUUID();
 
             /**
              * Define disabled

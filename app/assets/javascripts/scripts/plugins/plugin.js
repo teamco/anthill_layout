@@ -50,6 +50,24 @@ define([
         },
 
         /**
+         * Get package by name
+         * @memberOf PluginController
+         * @returns {*}
+         */
+        getPackageByName: function getPackageByName(name) {
+
+            /**
+             * Define panel
+             * @type {Panel}
+             */
+            var panel = this.getAuthorPanel();
+
+            return panel.model.getPackage(
+                panel.model.getPackageIndex(name)
+            );
+        },
+
+        /**
          * Get widget rules
          * @memberOf PluginController
          * @returns {WidgetRules}

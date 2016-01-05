@@ -118,7 +118,7 @@ define([
         renderUUID: function renderUUID(id) {
             return id || [
                     this.base.lib.generator.UUID(),
-                    this.constructor.prototype.name.toDash()
+                    this.name.toDash()
                 ].join('-');
         },
 

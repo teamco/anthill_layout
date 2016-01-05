@@ -258,7 +258,7 @@ define([
                 return this.base.isDefined(node) ?
                     node.model ?
                         node.model.getUUID() :
-                    'Undefined ' + node.constructor.prototype.name :
+                    'Undefined ' + node.name :
                     this.getConfig('uuid');
             },
 
@@ -268,8 +268,7 @@ define([
              */
             getContentUUID: function getContentUUID() {
                 return [
-                    this.getUUID(),
-                    'content'
+                    this.getUUID(), 'content'
                 ].join('-');
             },
 

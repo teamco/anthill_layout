@@ -86,7 +86,7 @@ define([
              * @type {string}
              */
             var style = [
-                    module.constructor.prototype.name.toDash(),
+                    module.name.toDash(),
                     'content'
                 ].join('-'),
                 sname = '$' + style;

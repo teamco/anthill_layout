@@ -68,6 +68,16 @@ define([
         },
 
         /**
+         * Get package by index
+         * @memberOf PanelModel
+         * @param {number} [index]
+         * @returns {*}
+         */
+        getPackage: function getPackage(index) {
+            return this.packages[index] || this.packages;
+        },
+
+        /**
          * Get module index
          * @memberOf PanelModel
          * @param resource
@@ -82,7 +92,7 @@ define([
             var modules = this.modules;
 
             for (var i = 0, l = modules.length; i < l; i++) {
-                if (resource === modules[i].module.constructor.prototype.name.toDash()) {
+                if (resource === modules[i].module.name.toDash()) {
                     return i;
                 }
             }
@@ -95,13 +105,30 @@ define([
         },
 
         /**
-         * Get package by index
+         * Get package index
          * @memberOf PanelModel
-         * @param {number} [index]
-         * @returns {*}
+         * @param resource
+         * @returns {number}
          */
-        getPackage: function getPackage(index) {
-            return this.packages[index] || this.packages;
+        getPackageIndex: function getPackageIndex(resource) {
+
+            /**
+             * Define local instance of modules
+             * @type {Array}
+             */
+            var packages = this.packages;
+
+            for (var i = 0, l = packages.length; i < l; i++) {
+                if (resource === packages[i].name.toDash()) {
+                    return i;
+                }
+            }
+
+            this.scope.logger.error(
+                'Undefined package index',
+                resource,
+                packages
+            );
         }
 
     }, BaseModel.prototype);
