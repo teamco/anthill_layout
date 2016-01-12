@@ -40,7 +40,6 @@ define([
              * @type {WidgetElement}
              */
             this.elements.$widget = new WidgetElement(this, {
-                id: this.createUUID(),
                 style: [
                     this.createStyle(),
                     this.scope.config.type

@@ -32,7 +32,7 @@ define([
          * Element config before build
          * @memberOf BaseElement
          * @param {BaseView} view
-         * @param {{[style]: string, [id]: string, [css], [events], [opacity], [id]: boolean}} opts
+         * @param {{[style]: string, [id]: boolean, [css], [events], [opacity], [id]: boolean}} opts
          * @param $html
          * @returns {*}
          * @protected
@@ -134,6 +134,16 @@ define([
                     })(event, index);
                 }
             );
+        },
+
+        /**
+         * Get element container
+         * @memberOf BaseElement
+         * @param {string} title
+         * @returns {*}
+         */
+        getElementContainer: function getElementContainer(title) {
+            return this.$.find('.' + title + 's');
         },
 
         /**

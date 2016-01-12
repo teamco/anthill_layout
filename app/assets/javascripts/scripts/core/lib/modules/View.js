@@ -151,13 +151,13 @@ define([
          * @returns {*|jQuery}
          */
         getContainerSelector: function getContainerSelector() {
-            var html = this.getConfigHTML();
-            return $(html.container).children([
-                '.', this.getContainerClassName(), 's'
-            ].join(''));
+            var containment = this.scope.controller.getContainment();
+            return containment.view.get$item().getElementContainer(
+                containment.model.getItemNameSpace()
+            );
         },
 
-        /**
+        /**§§§
          * Check if element cached
          * @memberOf BaseView
          * @param $element
@@ -407,7 +407,7 @@ define([
                         events: button.events
                     });
 
-                    $.each(button.events || {}, function _eachEvent(key, event){
+                    $.each(button.events || {}, function _eachEvent(key, event) {
                         store[i].$.on(
                             key + '.afterCallback',
                             store[i].afterEventsCallback.bind(store[i])

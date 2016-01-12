@@ -4,7 +4,6 @@
  * Date: 2/23/14
  * Time: 10:28 PM
  */
-
 define([
     'config/anthill',
     'modules/Controller'
@@ -231,27 +230,26 @@ define([
 
     /**
      * Overwrite success rendered
+     * @memberOf PluginController
      * @param {function} [callback]
      */
     PluginController.prototype.successRendered = function successRendered(callback) {
 
-        // Get scope
-        var scope = this;
-
         /**
          * Define callback
          * @returns {boolean}
+         * @param {PluginController} plugin
          * @private
          */
-        function _successRenderedCallback() {
+        function _successRenderedCallback(plugin) {
 
             if (_.isFunction(callback)) {
 
-                var html = scope.model.getConfig('html');
+                var html = plugin.model.getConfig('html');
 
                 if (_.isUndefined(html.selector)) {
 
-                    scope.logger.warn('Configuration of render: false', html);
+                    plugin.logger.warn('Configuration of render: false', html);
                     return false;
                 }
 
@@ -259,47 +257,31 @@ define([
 
             } else {
 
-                scope.logger.warn('Callback should be function type', callback);
+                plugin.logger.warn('Callback should be function type', callback);
             }
         }
 
-        successRenderedSuper.bind(scope)();
+        successRenderedSuper.bind(this)();
 
-        if (scope.controller.isWidgetContent()) {
+        /**
+         * Define isWidget
+         * @type {*|boolean}
+         */
+        var isWidget = this.controller.isWidgetContent();
+
+        if (isWidget) {
 
             /**
              * Get widget
              * @type {Widget}
              */
-            var widget = scope.controller.getContainment();
+            var widget = this.controller.getContainment();
 
-            var language = scope.i18n.getCurrentLanguage(),
-                translationPath = widget.controller.isExternalContent() ? [
-                    widget.model.getConfig('preferences').external_resource,
-                    '/translations/', language, '.js'
-                ] : [
-                    'plugins/widgets/',
-                    scope.name.toPoint().replace(/\./, ''),
-                    '/translations/', language
-                ];
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.updateTranslations, [
-                    translationPath.join(''),
-                    function _successRenderedExtendedCallback() {
-
-                        _successRenderedCallback();
-
-                        widget.observer.publish(
-                            widget.eventmanager.eventList.afterRenderContent
-                        );
-                    }
-                ]
-            );
+            widget.controller.prepareRenderingContent(this, _successRenderedCallback);
 
         } else {
 
-            _successRenderedCallback();
+            _successRenderedCallback(this);
         }
     };
 

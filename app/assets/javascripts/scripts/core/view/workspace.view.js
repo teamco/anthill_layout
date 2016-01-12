@@ -12,7 +12,7 @@ define([
     'element/header.element',
     'element/footer.element',
     'element/workspace/workspace.element.content'
-], function defineWorkspaceView(BaseView, Workspace, Header, Footer, WorkspaceContentElement) {
+], function defineWorkspaceView(BaseView, WorkspaceElement, Header, Footer, WorkspaceContentElement) {
 
     /**
      * Define WorkspaceView
@@ -35,8 +35,7 @@ define([
              * Define $workspace
              * @type {WorkspaceElement}
              */
-            this.elements.$workspace = new Workspace(this, {
-                id: this.createUUID(),
+            this.elements.$workspace = new WorkspaceElement(this, {
                 $container: this.getContainerSelector()
             });
 

@@ -38,14 +38,12 @@ define([
              */
             this.elements.$application = new ApplicationElement(this, {
                 $container: this.getConfigHTML().container,
-                id: this.createUUID(),
-                mode: this.controller.getMode()
+                mode: this.controller.getMode(),
+                id: true
             });
 
             this.header(Header, this.elements.$application);
-
             this.workspaces();
-
             this.footer(Footer, this.elements.$application);
         },
 

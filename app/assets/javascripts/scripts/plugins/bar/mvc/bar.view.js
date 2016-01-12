@@ -82,18 +82,18 @@ define([
                      * Define module resource
                      * @type {string}
                      */
-                    var moduleResource = item.module.constructor.prototype.name.toDash();
+                    var moduleResource = item.module.name.toDash();
 
                     /**
                      * Render item
                      * @type {BarContentElement}
                      */
                     var $item = new BarContentElement(this, {
-                        style: [
+                        style: _.compact([
                             'content',
-                            item.activated ? 'activated' : '',
+                            item.activated ? 'activated' : null,
                             moduleResource
-                        ].join(' '),
+                        ]).join(' '),
                         resource: item,
                         cname: moduleResource,
                         $container: this.elements.$bar.$

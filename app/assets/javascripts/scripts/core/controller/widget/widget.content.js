@@ -200,6 +200,40 @@ define([
             },
 
             /**
+             * Define prepare rendering content
+             * @memberOf WidgetContent
+             * @param {PluginController} plugin
+             * @param {Function} callback
+             */
+            prepareRenderingContent: function prepareRenderingContent(plugin, callback) {
+
+                var widget = this.scope,
+                    language = this.i18n.getCurrentLanguage(),
+                    translationPath = this.isExternalContent() ? [
+                        this.model.getConfig('preferences').external_resource,
+                        '/translations/', language, '.js'
+                    ] : [
+                        'plugins/widgets/',
+                        plugin.name.toPoint().replace(/\./, ''),
+                        '/translations/', language
+                    ];
+
+                plugin.observer.publish(
+                    plugin.eventmanager.eventList.updateTranslations, [
+                        translationPath.join(''),
+                        function _successRenderedExtendedCallback() {
+
+                            callback(plugin);
+
+                            widget.observer.publish(
+                                widget.eventmanager.eventList.afterRenderContent
+                            );
+                        }
+                    ]
+                );
+            },
+
+            /**
              * Show/Hide content
              * @memberOf WidgetContent
              * @param {boolean} show

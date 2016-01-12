@@ -38,7 +38,6 @@ define([
              * @type {PageElement}
              */
             this.elements.$page = new Page(this, {
-                id: this.createUUID(),
                 $container: this.getContainerSelector()
             });
 
