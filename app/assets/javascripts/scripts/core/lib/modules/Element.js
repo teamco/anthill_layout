@@ -395,6 +395,12 @@ define([
             if (cache.css && cache.css[url]) {
                 item.logger.debug('CSS already loaded', cache.css[url]);
                 cache.css[url].push(this);
+
+                this[type + 'LinkCSS'] = {
+                    path: url,
+                    link: ''
+                };
+
                 return false;
             }
 
@@ -495,28 +501,46 @@ define([
         destroy: function destroy() {
 
             // Get scope
-            var scope = this.view.scope;
+            var element = this,
+                scope = element.view.scope;
 
-            if (this.$) {
-                scope.logger.debug('Destroy element', this);
-                this.$.off().remove();
+            if (element.$) {
+                scope.logger.debug('Destroy element', element);
+                element.$.off().remove();
             }
 
             // Get cache
-            var cache = scope.controller.root().cache.css,
-                item;
+            var cache = scope.controller.root().cache,
+                css = cache.css || {},
+                item, link;
 
-            for (var index in this) {
-                if (this.hasOwnProperty(index) && index.match(/LinkCSS/)) {
-                    item = this[index];
-                    if (cache && cache[item.path] && cache[item.path].length > 1) {
+            // Remove css
+            for (var index in element) {
+                if (element.hasOwnProperty(index) && index.match(/LinkCSS/)) {
+                    item = element[index];
+                    link = css[item.path] || [];
+                    if (link.length === 1) {
                         scope.logger.debug('Destroy element CSS', item.link);
                         item.link.parentNode.removeChild(item.link);
+                        delete css[item.path];
+                    }
+                    if (link.length > 1) {
+                        link = _.reject(link, function (css) {
+                            return element.id === css.id;
+                        });
                     }
                 }
             }
 
-            return this;
+            // Remove cache
+            delete cache[element.id];
+
+            // Delete element
+            _.each(element.view.elements, function (val, key) {
+                if (val === element) {
+                    delete element.view.elements[key];
+                }
+            });
         },
 
         /**

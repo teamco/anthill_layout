@@ -111,7 +111,6 @@ define(function defineWidgetExpand() {
                 }
 
                 $expander.destroy();
-                delete this.view.elements.$expander;
             }
         },
 
