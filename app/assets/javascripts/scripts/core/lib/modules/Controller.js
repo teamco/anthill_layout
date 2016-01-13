@@ -87,10 +87,24 @@ define([
              * @memberOf BaseController
              * @param {string} uuid
              * @param {*} value
-             * @returns {*}
              */
             updateCache: function updateCache(uuid, value) {
                 this.root().cache[uuid] = value;
+            },
+
+            /**
+             * Get cache css
+             * @memberOf BaseController
+             * @param {string} path
+             * @param {*} element
+             */
+            updateCacheCss: function updateCacheCss(path, element) {
+
+                // Get cache
+                var cache = this.root().cache;
+
+                cache.css = cache.css || {};
+                cache.css[path] = element;
             },
 
             /**

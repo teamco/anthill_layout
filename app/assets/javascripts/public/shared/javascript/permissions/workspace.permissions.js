@@ -10,28 +10,28 @@ define(['config/workspace'], function defineWorkspacePermissions(Workspace) {
     /**
      * Define Workspace global permission
      * @type {{
-     *      development: {createAuthorPanel: boolean, createToolPanel: boolean},
-     *      authorize: {createAuthorPanel: boolean, createToolPanel: boolean},
-     *      consumption: {createAuthorPanel: boolean, createToolPanel: boolean},
-     *      test: {createAuthorPanel: boolean, createToolPanel: boolean}
+     *      development: {createDesignTimePanel: boolean, createRunTimePanel: boolean},
+     *      authorize: {createDesignTimePanel: boolean, createRunTimePanel: boolean},
+     *      consumption: {createDesignTimePanel: boolean, createRunTimePanel: boolean},
+     *      test: {createDesignTimePanel: boolean, createRunTimePanel: boolean}
      * }}
      */
     Workspace.prototype.globalPermissions = {
         development: {
-            createAuthorPanel: true,
-            createToolPanel: true
+            createDesignTimePanel: true,
+            createRunTimePanel: true
         },
         authorize: {
-            createAuthorPanel: true,
-            createToolPanel: true
+            createDesignTimePanel: true,
+            createRunTimePanel: true
         },
         consumption: {
-            createAuthorPanel: false,
-            createToolPanel: false
+            createDesignTimePanel: false,
+            createRunTimePanel: false
         },
         test: {
-            createAuthorPanel: true,
-            createToolPanel: true
+            createDesignTimePanel: true,
+            createRunTimePanel: true
         }
     };
 

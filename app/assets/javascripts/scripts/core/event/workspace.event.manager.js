@@ -62,8 +62,8 @@ define(
              *      transferPreferences: string,
              *      transferContentPreferences: string,
              *      afterUpdatePreferences: string,
-             *      createAuthorPanel: string,
-             *      createToolPanel: string,
+             *      createDesignTimePanel: string,
+             *      createRunTimePanel: string,
              *      clonePage: string
              * }}
              */
@@ -101,8 +101,8 @@ define(
                 transferContentPreferences: 'transfer.content.preferences',
                 afterUpdatePreferences: 'after.update.preferences',
 
-                createAuthorPanel: 'create.author.panel',
-                createToolPanel: 'create.tool.panel',
+                createDesignTimePanel: 'create.design.time.panel',
+                createRunTimePanel: 'create.run.time.panel',
 
                 clonePage: 'clone.page'
             }

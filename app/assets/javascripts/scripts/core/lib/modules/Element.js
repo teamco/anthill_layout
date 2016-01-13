@@ -389,28 +389,30 @@ define([
                 url = item.controller.fetchExternalResource() + type + '.css';
             }
 
-            /**
-             * Generate uuid
-             * @type {string}
-             */
-            var uuid = this.$.attr('id') + type + '-css';
+            // Get cache
+            var cache = item.controller.root().cache;
 
-            // Prevent duplicates
-            $('#' + uuid).remove();
-
-            this.createLinkCss({
-                href: url,
-                type: opts.type,
-                rel: opts.rel,
-                media: opts.media,
-                id: uuid
-            });
+            if (cache.css && cache.css[url]) {
+                item.logger.debug('CSS already loaded', cache.css[url]);
+                cache.css[url].push(this);
+                return false;
+            }
 
             /**
              * Define css link instance
              * @type {*|jQuery|HTMLElement}
              */
-            this[type + 'LinkCSS'] = $('#' + uuid);
+            this[type + 'LinkCSS'] = {
+                path: url,
+                link: this.createLinkCss({
+                    href: url,
+                    type: opts.type,
+                    rel: opts.rel,
+                    media: opts.media
+                })
+            };
+
+            item.controller.updateCacheCss(url, [this]);
         },
 
         /**
@@ -449,6 +451,7 @@ define([
          * Create link css
          * @memberOf BaseElement
          * @param opts
+         * @returns {HTMLElement} link
          */
         createLinkCss: function createLinkCss(opts) {
 
@@ -478,9 +481,10 @@ define([
             link.rel = opts.rel || defaults.rel;
             link.media = opts.media || defaults.media;
             link.href = opts.href;
-            link.id = opts.id;
 
             document.getElementsByTagName("head")[0].appendChild(link);
+
+            return link;
         },
 
         /**
@@ -490,14 +494,25 @@ define([
          */
         destroy: function destroy() {
 
+            // Get scope
+            var scope = this.view.scope;
+
             if (this.$) {
-                this.view.scope.logger.debug('Destroy element', this);
+                scope.logger.debug('Destroy element', this);
                 this.$.off().remove();
             }
 
+            // Get cache
+            var cache = scope.controller.root().cache.css,
+                item;
+
             for (var index in this) {
                 if (this.hasOwnProperty(index) && index.match(/LinkCSS/)) {
-                    this[index].remove();
+                    item = this[index];
+                    if (cache && cache[item.path] && cache[item.path].length > 1) {
+                        scope.logger.debug('Destroy element CSS', item.link);
+                        item.link.parentNode.removeChild(item.link);
+                    }
                 }
             }
 

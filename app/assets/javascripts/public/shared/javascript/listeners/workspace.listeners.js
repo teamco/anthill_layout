@@ -12,8 +12,8 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
      * @memberOf Workspace
      * @type {{
      *      successRendered: {name: string, callback: function},
-     *      createAuthorPanel: {name: string, callback: function},
-     *      createToolPanel: {name: string, callback: function}
+     *      createDesignTimePanel: {name: string, callback: function},
+     *      createRunTimePanel: {name: string, callback: function}
      * }}
      */
     Workspace.prototype.globalListeners = {
@@ -22,22 +22,22 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
             callback: function successRenderedCallback() {
 
                 this.permission.check({
-                    capability: 'createAuthorPanel',
+                    capability: 'createDesignTimePanel',
                     callback: function () {
 
                         this.observer.publish(
-                            this.eventmanager.eventList.createAuthorPanel
+                            this.eventmanager.eventList.createDesignTimePanel
                         );
 
                     }.bind(this)
                 });
 
                 this.permission.check({
-                    capability: 'createToolPanel',
+                    capability: 'createRunTimePanel',
                     callback: function () {
 
                         this.observer.publish(
-                            this.eventmanager.eventList.createToolPanel
+                            this.eventmanager.eventList.createRunTimePanel
                         );
 
                     }.bind(this)
@@ -45,9 +45,9 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
             }
         },
 
-        createAuthorPanel: {
-            name: 'create.author.panel',
-            callback: function createAuthorPanelCallback() {
+        createDesignTimePanel: {
+            name: 'create.design.time.panel',
+            callback: function createDesignTimePanelCallback() {
 
                 /**
                  * Define app
@@ -69,7 +69,7 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
                      * Init panel plugin
                      * @type {Panel}
                      */
-                    app.panels.author = new Panel({
+                    app.panels.designTime = new Panel({
                         config: {
                             renderAt: 'right',
                             header: {
@@ -84,14 +84,14 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
                         packages: [Bar]
                     }, app);
 
-                    app.panels.author.view.render();
+                    app.panels.designTime.view.render();
                 });
             }
         },
 
-        createToolPanel: {
-            name: 'create.tool.panel',
-            callback: function createToolPanelCallback() {
+        createRunTimePanel: {
+            name: 'create.run.time.panel',
+            callback: function createRunTimePanelCallback() {
 
                 /**
                  * Define app
@@ -109,7 +109,7 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
                      * Init panel plugin
                      * @type {Panel}
                      */
-                    app.panels.tool = new Panel({
+                    app.panels.runTime = new Panel({
                         config: {
                             renderAt: 'left',
                             header: {
@@ -124,7 +124,7 @@ define(['config/workspace'], function defineWorkspaceListeners(Workspace) {
                         packages: [Bar]
                     }, app);
 
-                    app.panels.tool.view.render();
+                    app.panels.runTime.view.render();
                 });
             }
         }
