@@ -104,21 +104,9 @@ define(function defineGalleryWidgets() {
                  */
                 var route = scope.controller.resources.showWidgetsList;
 
-                $.ajax({
-
-                    url: route[0].replace(/\{0}/, scope.controller.getAppName()),
-                    method: route[1],
-                    dataType: 'json'
-
-                }).done(
-                    /**
-                     * Define done
-                     * @private
-                     * @param {Array} json
-                     * @return {Array}
-                     */
-                    function _done(json) {
-
+                $.getJSON(
+                    route[0].replace(/\{0}/, scope.controller.getAppName()),
+                    function (json) {
                         galleryWidgets.setDefaultData(json);
                         _sortData();
                     }

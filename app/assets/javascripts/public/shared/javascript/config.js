@@ -1,9 +1,9 @@
-define(function defineConfig(){
+define(function defineConfig() {
     return {
-        services: {
-            KeenIO: false,
-            RaygunIO: true
-        },
+        services: [
+            {name: 'keen.io', load: false},
+            {name: 'raygun.io', load: true}
+        ],
         html: {
             container: 'body',
             header: true

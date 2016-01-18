@@ -1,30 +1,12 @@
-define([
-    'controller/production/keen',
-    'controller/production/raygun'
-], function defineProduction(KeenIO, RaygunIO) {
+define(function defineProduction() {
 
     /**
      * Define Production mode
      * @class Production
      * @constructor
      * @extends BaseController
-     * @extends KeenIO
      */
     var Production = function Production() {
-
-        /**
-         * Define KeenIO
-         * @property Production
-         * @type {KeenIO}
-         */
-        this.keenio = undefined;
-
-        /**
-         * Define Raygun
-         * @property Production
-         * @type {RaygunIO}
-         */
-        this.raygunio = undefined;
     };
 
     return Production.extend('Production', {
@@ -41,80 +23,64 @@ define([
         },
 
         /**
-         * Define load in production
-         * @memberOf Production
-         * @param {function} callback
-         * @returns {boolean}
-         */
-        loadInProduction: function loadInProduction(callback) {
-
-            if (this.isProduction()) {
-                callback();
-            }
-
-            this.scope.logger.debug(
-                'Environment are not production type',
-                this.getEnvironment(),
-                callback
-            );
-
-            return false;
-        },
-
-        /**
          * Define load production mode
          * @memberOf Production
          */
         loadProduction: function loadProduction() {
 
             var services = this.model.getConfig('services'),
-                index, service;
+                i = 0, l = services.length, service;
 
-            for (index in services) {
-
-                if (services.hasOwnProperty(index)) {
-
-                    if (services[index]) {
-
-                        this.logger.debug('Load service', index);
-
-                        /**
-                         * Fetch service
-                         * @memberOf Production
-                         */
-                        service = this.controller['load' + index];
-
-                        typeof (service) === 'function' ?
-                            service.bind(this.controller)() :
-                            this.logger.warn('Unable to load service', index);
-
-                    } else {
-
-                        this.logger.debug('Skip service', index);
-                    }
-                }
+            for (; i < l; i++) {
+                this.logger.debug('Load service', services[i]);
+                this.controller.loadService(services[i]);
             }
         },
 
         /**
-         * Define KeenIO loader
+         * Define service loader
          * @memberOf Production
+         * @param {{[directory]: string, name: string, load: boolean}} service
          */
-        loadKeenIO: function loadKeenIO() {
-            this.loadInProduction(
-                this.keenio.init.bind(this.keenio)
-            );
-        },
+        loadService: function loadService(service) {
 
-        /**
-         * Define Raygun
-         * @memberOf Production
-         */
-        loadRaygunIO: function loadRaygunIO() {
-            this.loadInProduction(
-                this.raygunio.init.bind(this.raygunio)
-            );
+            /**
+             * Define scope
+             * @type {Production}
+             */
+            var prod = this,
+                path = service.directory || 'controller/production/services/';
+
+            if (service.load) {
+
+                require(
+                    [path + service.name],
+                    function _loadService(Service) {
+
+                        /**
+                         * Define service
+                         * @property Production
+                         * @type {KeenIO}
+                         */
+                        prod[service.name] = new Service;
+
+                        if (prod.isProduction()) {
+                            prod[service].init();
+                            return false;
+                        }
+
+                        prod.scope.logger.debug(
+                            'Environment are not production type',
+                            prod.getEnvironment(),
+                            Service
+                        );
+                    }
+                );
+
+            } else {
+
+                prod.scope.logger.debug('Skip loading service', service);
+            }
         }
-
-    }, KeenIO, RaygunIO);
+    });
 });

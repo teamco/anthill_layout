@@ -1,4 +1,4 @@
-define(['xhook'], function defineKeenIO(xhook) {
+define(function defineKeenIO() {
 
     /**
      * Define KeenIO
@@ -44,50 +44,52 @@ define(['xhook'], function defineKeenIO(xhook) {
          */
         init: function init() {
 
-            require([this.path], function _loadKeenIO() {
+            /**
+             * Define keenIO
+             * @type {KeenIO}
+             */
+            var keenIO = this;
+
+            require(keenIO.path, function _loadKeenIO() {
 
                 /**
                  * Define Keen instance
                  * @type {Keen|{addEvent}}
                  */
                 var keen = new Keen({
-                    projectId: this.projectId, // String (required always)
-                    writeKey: this.writeKey,   // String (required for sending data)
-                    readKey: this.readKey,      // String (required for querying data)
+                    projectId: keenIO.projectId, // String (required always)
+                    writeKey: keenIO.writeKey,   // String (required for sending data)
+                    readKey: keenIO.readKey,      // String (required for querying data)
                     protocol: 'auto',
                     requestType: 'xhr'
                 });
 
-                xhook.after(function (request, response) {
-
-                    keen.addEvent(
-                        "xhr.after", {
-                            request: {
-                                async: request.async,
-                                body: request.body,
-                                headers: request.headers,
-                                method: request.method,
-                                status: request.status,
-                                url: request.url,
-                                user: request.user,
-                                withCredentials: request.withCredentials
-                            },
-                            response: {
-                                status: response.status,
-                                text: response.text
-                            },
-                            referrer: document.referrer,
-                            keen: {
-                                timestamp: new Date().toISOString()
-                            }
+                keen.addEvent(
+                    "xhr.after", {
+                        request: {
+                            async: request.async,
+                            body: request.body,
+                            headers: request.headers,
+                            method: request.method,
+                            status: request.status,
+                            url: request.url,
+                            user: request.user,
+                            withCredentials: request.withCredentials
                         },
-                        function _send(err, res) {
-                            // TODO
+                        response: {
+                            status: response.status,
+                            text: response.text
+                        },
+                        referrer: document.referrer,
+                        keen: {
+                            timestamp: new Date().toISOString()
                         }
-                    );
-                });
-
-            }.bind(this));
+                    },
+                    function _send(err, res) {
+                        // TODO
+                    }
+                );
+            });
         }
     });
 });

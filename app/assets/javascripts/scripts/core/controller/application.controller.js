@@ -19,6 +19,7 @@ define(
      * @param {AntHill} AntHill
      * @param {BaseController} BaseController
      * @param {BehaviorErrorHandler} BehaviorErrorHandler
+     * @param {BehaviorFixVulnerabilities} BehaviorFixVulnerabilities
      * @param {Production} Production
      * @param {Routes} Routes
      * @returns {ApplicationController}
@@ -31,6 +32,7 @@ define(
          * @extends AntHill
          * @extends BaseController
          * @extends BehaviorErrorHandler
+         * @extends BehaviorFixVulnerabilities
          * @extends Production
          * @extends Routes
          * @constructor

@@ -25,8 +25,6 @@ requirejs.config({
         plugins: '../plugins',
         target: '../../target',
 
-        'xhook': 'lib/packages/xhook.min',
-
         tinyMCE: 'lib/packages/tinymce/tinymce.min',
         pluralize: 'lib/packages/pluralize',
         //totally: 'lib/packages/tota11y.min',
@@ -40,7 +38,7 @@ requirejs.config({
         html2canvas: 'lib/packages/html2canvas',
 
         'lz-string': 'lib/lz-string',
-        jquery: 'lib/jquery/jquery-2.1.4.min',
+        jquery: 'lib/jquery/jquery-3.0.0-beta1.min',
         'jquery.ujs': 'lib/jquery/jquery_ujs',
         'jquery.timeago': 'lib/jquery/jquery.timeago',
         'jquery.ui': 'lib/jquery/jquery-ui.min',

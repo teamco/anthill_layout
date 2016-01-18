@@ -525,7 +525,7 @@ define([
                         delete css[item.path];
                     }
                     if (link.length > 1) {
-                        link = _.reject(link, function (css) {
+                        css[item.path] = _.reject(link, function (css) {
                             return element.id === css.id;
                         });
                     }
