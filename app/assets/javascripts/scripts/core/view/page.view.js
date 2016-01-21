@@ -96,7 +96,7 @@ define([
         destroyWidgetsModalDialog: function destroyWidgetsModalDialog(widgets) {
 
             this.modalDialog({
-                style: this.scope.constructor.prototype.name.toLowerCase() + '-modal',
+                style: this.scope.name.toLowerCase() + '-modal',
                 $container: this.elements.$page.$,
                 items: widgets,
                 type: 'warning',

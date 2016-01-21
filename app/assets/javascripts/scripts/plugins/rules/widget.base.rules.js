@@ -158,7 +158,7 @@ define([
 
             var $li = $('<li />'),
                 $ul = $('<ul />').addClass('button-add-rules'),
-                cname = this.view.scope.constructor.prototype.name;
+                cname = this.view.scope.name;
 
             $li.append(
                 this.renderCombobox(
@@ -184,7 +184,7 @@ define([
                         events: {
                             click: [
                                 'add',
-                                this.view.scope.constructor.prototype.name,
+                                this.view.scope.name,
                                 'Rule'
                             ].join('')
                         }

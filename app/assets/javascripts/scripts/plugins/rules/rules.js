@@ -1,8 +1,7 @@
 /**
  * Created by teamco on 3/19/14.
  */
-
-define([], function defineBaseRules() {
+define(function defineBaseRules() {
 
     /**
      * Define base prefs
@@ -10,7 +9,6 @@ define([], function defineBaseRules() {
      * @constructor
      */
     var BaseRules = function BaseRules() {
-
     };
 
     return BaseRules.extend('BaseRules', {
@@ -50,7 +48,7 @@ define([], function defineBaseRules() {
                 locate: {
                     text: 'Locate',
                     events: {
-                        click: 'locate' + this.scope.constructor.prototype.name
+                        click: 'locate' + this.scope.name
                     }
                 },
                 approve: {

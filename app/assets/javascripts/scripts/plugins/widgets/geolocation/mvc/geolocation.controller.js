@@ -91,7 +91,7 @@ define(
 
                     scope.observer.publish(
                         scope.eventmanager.eventList.publishRule,
-                        [$button.attr('value'), scope.constructor.prototype.name]
+                        [$button.attr('value'), scope.name]
                     );
                 },
 

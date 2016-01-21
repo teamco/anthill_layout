@@ -4,7 +4,6 @@
  * Date: 2/25/15
  * Time: 6:35 PM
  */
-
 define(['config/layout'], function definePageLayout(Layout) {
 
     /**
@@ -114,10 +113,7 @@ define(['config/layout'], function definePageLayout(Layout) {
              * @memberOf PageLayout
              */
             destroyLayout: function destroyLayout() {
-                this.logger.info(
-                    'Destroy Layout',
-                    this.layout
-                );
+                this.logger.info('Destroy Layout', this.layout);
                 delete this.layout;
             },
 

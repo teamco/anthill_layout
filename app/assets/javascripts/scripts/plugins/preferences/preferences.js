@@ -59,7 +59,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
                 locate: {
                     text: 'Locate',
                     events: {
-                        click: 'locate' + this.scope.constructor.prototype.name
+                        click: 'locate' + this.scope.name
                     }
                 },
                 approve: {

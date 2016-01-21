@@ -97,7 +97,7 @@ define([
          */
         _has: function _has(type) {
             var isInstance = this.hasOwnProperty(type) &&
-                this[type].constructor.prototype.name.toLowerCase() === type;
+                this[type].name.toLowerCase() === type;
 
             if (!isInstance) {
                 this.logger.warn('Instance has no controller');

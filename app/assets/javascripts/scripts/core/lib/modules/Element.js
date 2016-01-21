@@ -288,7 +288,7 @@ define([
                 if ($element.length > 0) {
                     this.view.scope.logger.debug(
                         this.i18n.t('element.overwritten').
-                            replace(/\{0\}/, this.constructor.prototype.name)
+                            replace(/\{0\}/, this.name)
                     );
                     $element.remove();
                 }
@@ -825,7 +825,7 @@ define([
              * Get item constructor name
              * @type {string}
              */
-            var cname = item.constructor.prototype.name.toLowerCase();
+            var cname = item.name.toLowerCase();
 
             return $('.' + cname, this.$);
         },

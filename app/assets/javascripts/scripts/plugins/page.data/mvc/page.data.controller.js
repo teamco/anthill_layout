@@ -190,7 +190,7 @@ define([
              */
             var uuid = [
                 widget.model.getUUID(),
-                scope.constructor.prototype.name.toDash()
+                scope.name.toDash()
             ].join('-');
 
             this.getView().elements.items[uuid].setAttributes(

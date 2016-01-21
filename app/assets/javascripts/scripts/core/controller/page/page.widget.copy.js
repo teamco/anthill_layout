@@ -4,7 +4,6 @@
  * Date: 4/6/15
  * Time: 7:43 PM
  */
-
 define(function definePageWidgetCopy() {
 
     /**

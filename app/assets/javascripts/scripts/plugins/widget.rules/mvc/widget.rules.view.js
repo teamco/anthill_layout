@@ -26,163 +26,168 @@ define([
     var WidgetRulesView = function WidgetRulesView() {
     };
 
-    return WidgetRulesView.extend('WidgetRulesView', {
-
-        /**
-         * Render WidgetRules
-         * @memberOf WidgetRulesView
-         * @returns {boolean}
-         */
-        renderWidgetRules: function renderWidgetRules() {
-
-            if (!this.isCached('$widgetrules', WidgetRulesElement)) {
-
-                /**
-                 * Define WidgetRules element
-                 * @type {WidgetRulesElement}
-                 */
-                this.elements.$widgetrules = new WidgetRulesElement(this, {
-                    id: this.createUUID(),
-                    $container: this.elements.$container.$
-                });
-            }
-        },
-
-        /**
-         * Render widget.rules content
-         * @memberOf WidgetRulesView
-         * @param data
-         * @returns {boolean}
-         */
-        renderContent: function renderContent(data) {
+    return WidgetRulesView.extend(
+        'WidgetRulesView', {
 
             /**
-             * Define content
-             * @type {{}}
+             * Render WidgetRules
+             * @memberOf WidgetRulesView
+             * @returns {boolean}
              */
-            this.elements.items = {};
-            this.elements.$widgetrules.empty();
+            renderWidgetRules: function renderWidgetRules() {
 
-            this.renderHeader(Header, 'Widget Rules');
-
-            this.renderFilter(
-                this.updateFooterContent.bind(this)
-            );
-
-            for (var index in data) {
-
-                if (data.hasOwnProperty(index)) {
+                if (!this.isCached('$widgetrules', WidgetRulesElement)) {
 
                     /**
-                     * Render item
-                     * @type {WidgetRulesContentElement}
+                     * Define WidgetRules element
+                     * @type {WidgetRulesElement}
                      */
-                    var $item = new WidgetRulesContentElement(this, {
-                        style: 'content',
-                        id: [
-                            data[index].model.getConfig('uuid'),
-                            this.scope.constructor.prototype.name.toDash()
-                        ].join('-'),
-                        $container: this.elements.$widgetrules.$,
-                        data: data[index]
+                    this.elements.$widgetrules = new WidgetRulesElement(this, {
+                        id: this.createUUID(),
+                        $container: this.elements.$container.$
                     });
-
-                    this.scope.observer.publish(
-                        this.scope.eventmanager.eventList.storeItem,
-                        data[index]
-                    );
-
-                    this.controller.defineContentReferrer(data[index]);
-
-                    this.elements.items[$item.id] = $item;
                 }
-            }
-
-            this.elements.$widgetrules.scrollCover(
-                this.elements.$container.$
-            );
-
-            this.elements.$filter.updateData({
-                items: this.elements.items,
-                focusOn: 'input'
-            });
-
-            this.updateFooterContent();
-        },
-
-        /**
-         * Update footer content
-         * @memberOf WidgetRulesView
-         */
-        updateFooterContent: function updateFooterContent() {
-            this.renderFooter(Footer, this.elements.$widgetrules);
-        },
-
-        /**
-         * Show rules
-         * @memberOf WidgetRulesView
-         * @param config
-         * @returns {boolean|*}
-         */
-        showRules: function showRules(config, load) {
+            },
 
             /**
-             * Define scope
-             * @type {PageData}
+             * Render widget.rules content
+             * @memberOf WidgetRulesView
+             * @param data
+             * @returns {boolean}
              */
-            var scope = this.scope;
-
-            scope.observer.publish(
-                scope.eventmanager.eventList.setActiveContent,
-                config.uuid
-            );
-
-            if (load) {
+            renderContent: function renderContent(data) {
 
                 /**
-                 * Define $html
-                 * @type {BaseElement}
+                 * Define content
+                 * @type {{}}
                  */
-                var $html = this.controller.getRulesHtml(config.uuid, load);
+                this.elements.items = {};
+                this.elements.$widgetrules.empty();
 
-                if (!$html) {
+                this.renderHeader(Header, 'Widget Rules');
 
-                    scope.logger.warn('Wait for loading rules');
-                    return false;
+                this.renderFilter(
+                    this.updateFooterContent.bind(this)
+                );
+
+                for (var index in data) {
+
+                    if (data.hasOwnProperty(index)) {
+
+                        /**
+                         * Render item
+                         * @type {WidgetRulesContentElement}
+                         */
+                        var $item = new WidgetRulesContentElement(this, {
+                            style: 'content',
+                            id: [
+                                data[index].model.getConfig('uuid'),
+                                this.scope.name.toDash()
+                            ].join('-'),
+                            $container: this.elements.$widgetrules.$,
+                            data: data[index]
+                        });
+
+                        this.scope.observer.publish(
+                            this.scope.eventmanager.eventList.storeItem,
+                            data[index]
+                        );
+
+                        this.controller.defineContentReferrer(data[index]);
+
+                        this.elements.items[$item.id] = $item;
+                    }
                 }
 
-                this.openRules({
-                    config: config,
-                    $html: $html.$,
-                    style: [
-                        config.preferences.resource,
-                        'widget-rules rules'
-                    ].join(' '),
-                    title: 'Widget rules',
-                    buttons: {
-                        preferences: {
-                            text: 'Preferences',
-                            events: {
-                                click: 'preferences' + this.scope.constructor.prototype.name
+                this.elements.$widgetrules.scrollCover(
+                    this.elements.$container.$
+                );
+
+                this.elements.$filter.updateData({
+                    items: this.elements.items,
+                    focusOn: 'input'
+                });
+
+                this.updateFooterContent();
+            },
+
+            /**
+             * Update footer content
+             * @memberOf WidgetRulesView
+             */
+            updateFooterContent: function updateFooterContent() {
+                this.renderFooter(Footer, this.elements.$widgetrules);
+            },
+
+            /**
+             * Show rules
+             * @memberOf WidgetRulesView
+             * @param config
+             * @param load
+             * @returns {boolean|*}
+             */
+            showRules: function showRules(config, load) {
+
+                /**
+                 * Define scope
+                 * @type {PageData}
+                 */
+                var scope = this.scope;
+
+                scope.observer.publish(
+                    scope.eventmanager.eventList.setActiveContent,
+                    config.uuid
+                );
+
+                if (load) {
+
+                    /**
+                     * Define $html
+                     * @type {BaseElement}
+                     */
+                    var $html = this.controller.getRulesHtml(config.uuid, load);
+
+                    if (!$html) {
+
+                        scope.logger.warn('Wait for loading rules');
+                        return false;
+                    }
+
+                    this.openRules({
+                        config: config,
+                        $html: $html.$,
+                        style: [
+                            config.preferences.resource,
+                            'widget-rules rules'
+                        ].join(' '),
+                        title: 'Widget rules',
+                        buttons: {
+                            preferences: {
+                                text: 'Preferences',
+                                events: {
+                                    click: 'preferences' + this.scope.name
+                                }
                             }
                         }
-                    }
-                });
+                    });
+                }
+            },
+
+            /**
+             * Render widget.rules
+             * @memberOf WidgetRulesView
+             */
+            render: function render() {
+
+                this.scope.observer.publish(
+                    this.scope.eventmanager.eventList.successRendered,
+                    this.renderWidgetRules.bind(this)
+                );
             }
+
         },
-
-        /**
-         * Render widget.rules
-         * @memberOf WidgetRulesView
-         */
-        render: function render() {
-
-            this.scope.observer.publish(
-                this.scope.eventmanager.eventList.successRendered,
-                this.renderWidgetRules.bind(this)
-            );
-        }
-
-    }, AntHill.prototype, BaseView.prototype, BaseRules.prototype)
-
+        AntHill.prototype,
+        BaseView.prototype,
+        BaseRules.prototype
+    )
 });

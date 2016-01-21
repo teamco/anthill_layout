@@ -211,7 +211,7 @@ define([
              */
             this.elements.$header = new HeaderElement(this, {
                 style: [
-                    this.scope.constructor.prototype.name.toDash(),
+                    this.scope.name.toDash(),
                     'header'
                 ].join('-'),
                 $container: $container.$,

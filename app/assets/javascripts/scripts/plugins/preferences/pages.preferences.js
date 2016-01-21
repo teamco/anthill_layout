@@ -521,7 +521,7 @@ define([
                     nodes.push(
                         $('<li />').
                             addClass([
-                                [page.constructor.prototype.name.toClassName(), index].join('-'),
+                                [page.name.toClassName(), index].join('-'),
                                 node.type,
                                 node.visible ? '' : 'hidden'
                             ].join(' ')).
