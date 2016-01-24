@@ -13,6 +13,8 @@ gem 'rake'
 gem 'keen'
 gem 'will_paginate'
 
+gem 'pg'
+
 group :test do
   gem 'sqlite3'
 end
@@ -58,7 +60,7 @@ end
 group :production do
   #ruby  '2.2.3'
   gem 'rails_12factor'
-  #gem 'pg'
+  # gem 'pg'
 end
 
 gem 'rack-attack'
