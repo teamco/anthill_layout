@@ -4,7 +4,6 @@
  * Date: 5/9/13
  * Time: 11:48 AM
  */
-
 define([
     'modules/Element'
 ], function defineBarContentElement(BaseElement) {
@@ -50,8 +49,9 @@ define([
             var name = this.resource.module.name;
 
             return [
-                '<li><a href="#"><i class="fa ', name.toDash(), '"></i>',
-                name.humanize(), '</a></li>'
+                '<li><a title="', name.humanize(), '" href="#">',
+                '<i class="fa ', name.toDash(), '"></i><span>',
+                name.humanize(), '</span></a></li>'
             ].join('');
         },
 
