@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206235804) do
+ActiveRecord::Schema.define(version: 20160124232018) do
 
   create_table "author_items", force: :cascade do |t|
     t.integer  "user_id",    limit: 4,                 null: false
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 20151206235804) do
     t.string   "domain",          limit: 255
     t.text     "request_uri",     limit: 65535
     t.text     "url",             limit: 65535
-    t.string   "format",          limit: 255
+    t.string   "request_format",  limit: 255
     t.string   "protocol",        limit: 255
     t.string   "host",            limit: 255
     t.string   "port",            limit: 255
