@@ -125,6 +125,7 @@ define([
 
             /**
              * Update opened instance
+             * @type {boolean}
              */
             this.scope.opened = !!opened;
 

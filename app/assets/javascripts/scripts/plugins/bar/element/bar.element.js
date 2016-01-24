@@ -38,7 +38,7 @@ define([
          * @returns {string}
          */
         getTemplate: function getTemplate() {
-            return '<ul class="nav"></ul>';
+            return '<ul class="nav" />';
         },
 
         /**

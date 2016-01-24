@@ -280,7 +280,7 @@ define([], function defineComboBoxRenderer() {
             }, 500);
 
             return [
-                this.renderLabel(undefined, name, undefined, visible),
+                //this.renderLabel(undefined, name, undefined, visible),
                 $div.append([
                     $ul,
                     $('<div />').addClass('combo-box-arrow')
