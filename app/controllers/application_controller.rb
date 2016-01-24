@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_error(e, status, template)
+    puts ">>> Error: #{e.inspect}"
     logger.info ">>> Error: #{e.inspect}"
     log = ErrorLog.handle_error(current_user, e, @user_log)
     super if self.methods.include? 'super'
