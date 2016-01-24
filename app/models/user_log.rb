@@ -34,7 +34,7 @@ class UserLog < ActiveRecord::Base
         user_session: request.session.to_json,
         query_string: request.query_string,
         http_accept: request.headers['HTTP_ACCEPT'],
-        format: request.format.to_json,
+        #format: request.format.to_json,
         ssl: request.ssl?,
         xhr: !request.xhr?.nil?,
         referer: request.env['HTTP_REFERER'],
