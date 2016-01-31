@@ -63,6 +63,7 @@
 
 .widget .ui-resizable-handle {
     background: #cd0a0a none;
+    transform-origin: 50% 50%;
     width: 10px;
     height: 10px;
     visibility: hidden;
@@ -81,13 +82,15 @@
 }
 
 .widget .ui-resizable-n {
-    box-shadow: -1px 1px 1px #333;
+    box-shadow: 0 1px 1px #333;
+    transform: translate(-50%, 0);
     left: 50%;
     top: 0;
 }
 
 .widget .ui-resizable-e {
-    box-shadow: -1px 1px 1px #333;
+    box-shadow: 0 1px 1px #333;
+    transform: translate(0, -50%);
     top: 50%;
     right: 0;
 }
@@ -95,35 +98,37 @@
 .widget .ui-resizable-s {
     left: 50%;
     bottom: 0;
-    box-shadow: -1px -1px 1px #333;
+    box-shadow: 0 -1px 1px #333;
+    transform: translate(-50%, 0%);
 }
 
 .widget .ui-resizable-w {
     top: 50%;
     left: 0;
-    box-shadow: 1px -1px 1px #333;
+    box-shadow: 0 -1px 1px #333;
+    transform: translate(0%, -50%);
 }
 
 .widget .ui-resizable-se {
     right: 0;
     bottom: 0;
-    box-shadow: -1px -1px 1px #333;
+    box-shadow: 0 -1px 1px #333;
 }
 
 .widget .ui-resizable-sw {
     left: 0;
     bottom: 0;
-    box-shadow: 1px -1px 1px #333;
+    box-shadow: 0 -1px 1px #333;
 }
 
 .widget .ui-resizable-ne {
-    box-shadow: -1px 1px 1px #333;
+    box-shadow: 0 1px 1px #333;
     right: 0;
     top: 0;
 }
 
 .widget .ui-resizable-nw {
-    box-shadow: 1px 1px 1px #333;
+    box-shadow: 0 1px 1px #333;
     left: 0;
     top: 0;
 }

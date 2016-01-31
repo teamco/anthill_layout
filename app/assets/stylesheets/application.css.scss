@@ -33,7 +33,7 @@ body.loading:after {
   bottom: 0;
   left: 0;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.1) /*image_url("ripple.svg")*/ center no-repeat;
+  background: rgba(255, 255, 255, 0.1) center no-repeat;
 }
 
 @-webkit-keyframes uil-ripple {
