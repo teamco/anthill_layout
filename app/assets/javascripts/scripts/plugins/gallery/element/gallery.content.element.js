@@ -37,7 +37,7 @@ define([
          */
         this.data = opts.data;
 
-        this.addInnerContent();
+        this.getTemplate();
         this.setAttributes();
         this.bindInstallWidget();
         this.bindShowInfo();
@@ -51,8 +51,9 @@ define([
          * Define inner content
          * @memberOf GalleryContentElement
          */
-        addInnerContent: function addInnerContent() {
-            this.$.append('<div />');
+        getTemplate: function getTemplate() {
+            $('<a class="widget ' + this.data.resource.toClassName() + '" href="#" />').
+                appendTo(this.$);
         },
 
         /**
@@ -62,10 +63,8 @@ define([
         setAttributes: function setAttributes() {
 
             this.$.attr({
-
                 title: this.data.name,
                 resource: this.data.resource
-
             });
 
             if (!this.data.is_external) {

@@ -20,7 +20,7 @@ define([
      */
     var GalleryElement = function GalleryElement(view, opts) {
 
-        this._config(view, opts, $('<ul />')).build({
+        this._config(view, opts, $('<ul class="nav" />')).build({
             $container: opts.$container
         });
 

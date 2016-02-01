@@ -2,45 +2,23 @@ div.gallery ul {
     list-style: none;
 }
 
-div.gallery-header {
-    height: 30px;
-    line-height: 30px;
-    padding: 0 10px;
-    box-shadow: 1px 1px 5px #333;
-    border-bottom: 1px solid #fff;
-    text-shadow: 1px 1px #fff;
-    text-transform: lowercase;
-    font-variant: small-caps;
-    font-size: 14px;
-}
-
 ul.gallery .content {
-    height: 70px;
-    width: 70px;
-    display: block;
-    cursor: pointer;
-    margin-top: 10px;
-    position: relative;
+    float: left;
+    width: 60px;
+    height: 60px;
 }
 
-ul.gallery > .content:hover {
-    box-shadow: 1px 15px 10px #999;
-    border-radius: 10px;
+ul.gallery .content > a {
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+    background-size: 48px;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
 }
 
 ul.gallery .content:active {
     cursor: move;
-}
-
-ul.gallery .content > div:first-child {
-    width: 64px;
-    height: 64px;
-    margin: 3px;
-    background: transparent no-repeat center;
-    border-radius: 7px;
-}
-
-div.gallery-content .scroll-cover {
-    top: 113px;
-    bottom: 30px;
 }

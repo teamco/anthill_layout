@@ -1,4 +1,4 @@
-.widget {
+.page .widget {
     position: absolute;
     cursor: move;
     border: none;
@@ -8,14 +8,14 @@
     margin: 0 !important;
 }
 
-.development .widget,
-.authoring .widget {
+.development .page .widget,
+.authoring .page .widget {
     -webkit-box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
     -moz-box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
     box-shadow: 0 0 0 1px rgba(50, 50, 50, 0.3);
 }
 
-.widget:hover {
+.page .widget:hover {
     z-index: 1000;
 }
 
@@ -23,11 +23,11 @@
     opacity: 1;
 }
 
-.widget.maximize:hover {
+.page .widget.maximize:hover {
     z-index: 0;
 }
 
-.widget.overlapped:after {
+.page .widget.overlapped:after {
     content: ' ';
     position: absolute;
     top: 0;
@@ -37,11 +37,11 @@
     border: 2px dashed lightcoral;
 }
 
-.widget.select:after,
-.development .widget:hover:after,
-.authorize .widget:hover:after,
-.widget.ui-draggable-dragging:after,
-.widget.ui-resizable-resizing:after {
+.page .widget.select:after,
+.development .page .widget:hover:after,
+.authorize .page .widget:hover:after,
+.page .widget.ui-draggable-dragging:after,
+.page .widget.ui-resizable-resizing:after {
     content: ' ';
     position: absolute;
     top: 0;
@@ -52,16 +52,16 @@
     z-index: 10;
 }
 
-.widget.ui-draggable:hover .content {
+.page .widget.ui-draggable:hover .content {
     cursor: move;
 }
 
-.widget.ui-resizable-resizing .ui-resizable-handle,
-.widget:hover .ui-resizable-handle {
+.page .widget.ui-resizable-resizing .ui-resizable-handle,
+.page .widget:hover .ui-resizable-handle {
     visibility: visible;
 }
 
-.widget .ui-resizable-handle {
+.page .widget .ui-resizable-handle {
     background: #cd0a0a none;
     transform-origin: 50% 50%;
     width: 10px;
@@ -69,71 +69,71 @@
     visibility: hidden;
 }
 
-.widget.ui-draggable.disable-interactions:hover .content,
-.widget.maximize,
-.widget.maximize:hover .content {
+.page .widget.ui-draggable.disable-interactions:hover .content,
+.page .widget.maximize,
+.page .widget.maximize:hover .content {
     cursor: default;
 }
 
-.widget.disable-interactions:after,
-.widget.disable-interactions .ui-resizable-handle,
-.widget.maximize .ui-resizable-handle {
+.page .widget.disable-interactions:after,
+.page .widget.disable-interactions .ui-resizable-handle,
+.page .widget.maximize .ui-resizable-handle {
     display: none;
 }
 
-.widget .ui-resizable-n {
+.page .widget .ui-resizable-n {
     box-shadow: 0 1px 1px #333;
     transform: translate(-50%, 0);
     left: 50%;
     top: 0;
 }
 
-.widget .ui-resizable-e {
+.page .widget .ui-resizable-e {
     box-shadow: 0 1px 1px #333;
     transform: translate(0, -50%);
     top: 50%;
     right: 0;
 }
 
-.widget .ui-resizable-s {
+.page .widget .ui-resizable-s {
     left: 50%;
     bottom: 0;
     box-shadow: 0 -1px 1px #333;
     transform: translate(-50%, 0%);
 }
 
-.widget .ui-resizable-w {
+.page .widget .ui-resizable-w {
     top: 50%;
     left: 0;
     box-shadow: 0 -1px 1px #333;
     transform: translate(0%, -50%);
 }
 
-.widget .ui-resizable-se {
+.page .widget .ui-resizable-se {
     right: 0;
     bottom: 0;
     box-shadow: 0 -1px 1px #333;
 }
 
-.widget .ui-resizable-sw {
+.page .widget .ui-resizable-sw {
     left: 0;
     bottom: 0;
     box-shadow: 0 -1px 1px #333;
 }
 
-.widget .ui-resizable-ne {
+.page .widget .ui-resizable-ne {
     box-shadow: 0 1px 1px #333;
     right: 0;
     top: 0;
 }
 
-.widget .ui-resizable-nw {
+.page .widget .ui-resizable-nw {
     box-shadow: 0 1px 1px #333;
     left: 0;
     top: 0;
 }
 
-.widget.ontop {
+.page .widget.ontop {
 }
 
 #next-widget-position {
@@ -143,7 +143,7 @@
     opacity: 0.05;
 }
 
-.widget .content {
+.page .widget .content {
     cursor: default;
     height: 100%;
     max-height: 100%;
@@ -151,22 +151,22 @@
     overflow: hidden;
 }
 
-.widget.no-bg .content {
+.page .widget.no-bg .content {
     background: transparent;
 }
 
-.widget.ui-resizable-resizing iframe,
-.widget.ui-draggable-dragging iframe,
-.widget.ui-draggable-dragging .ui-resizable-handle {
+.page .widget.ui-resizable-resizing iframe,
+.page .widget.ui-draggable-dragging iframe,
+.page .widget.ui-draggable-dragging .ui-resizable-handle {
     display: none;
 }
 
-.widget.ui-draggable-dragging,
-.widget.ui-resizable-resizing {
+.page .widget.ui-draggable-dragging,
+.page .widget.ui-resizable-resizing {
     opacity: 0.6;
 }
 
-.widget .expander {
+.page .widget .expander {
     position: absolute;
     padding: 3px 5px;
     bottom: 0;
@@ -181,11 +181,11 @@
     border-top-left-radius: 5px;
 }
 
-.widget.scroll .content {
+.page .widget.scroll .content {
     overflow: auto;
 }
 
-.widget .comments {
+.page .widget .comments {
     position: absolute;
     bottom: 0;
     background: rgba(255, 255, 255, 0.8);
@@ -194,11 +194,11 @@
     cursor: auto;
 }
 
-.widget .comments label {
+.page .widget .comments label {
     display: none;
 }
 
-.widget .comments textarea {
+.page .widget .comments textarea {
     width: 98%;
     margin: 1%;
     background: rgba(255, 255, 255, 0.8);

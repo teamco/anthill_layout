@@ -32,13 +32,17 @@
 }
 
 .panel-container .scroll-cover {
-    position: absolute;
-    background: transparent;
-    top: 136px;
-    bottom: 50px;
+    background-color: #f9f9f9;
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
+    padding: 10px 15px;
+}
+
+.panel-container.navbar-default .scroll-cover .nav > li.content > a:hover,
+.panel-container.navbar-default .scroll-cover .nav > li.content > a:focus {
+    background-color: #bbb;
+    border-radius: 5px;
 }
 
 .panel-container .clear {
