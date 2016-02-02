@@ -274,39 +274,14 @@ define([
          */
         destroyB4Create: function destroyB4Create(destroy) {
 
-            /**
-             * Define $container
-             * @type {$container|*}
-             */
-            var $container = this.$container;
-
-            /**
-             * Destroy element
-             * @param $element
-             */
-            function destroyElement($element) {
-                if ($element.length > 0) {
-                    this.view.scope.logger.debug(
-                        this.i18n.t('element.overwritten').
-                            replace(/\{0\}/, this.name)
-                    );
-                    $element.remove();
-                }
-            }
-
-            destroyElement.bind(this)(
-                $('#' + this.id, $container)
-            );
-
             if (this.base.defineBoolean(destroy, false, true)) {
 
-                if ($.trim(this.style) === 'default') {
-                    return false;
-                }
-
-                destroyElement.bind(this)(
-                    $('.' + this.style, $container)
+                this.view.scope.logger.debug(
+                    this.i18n.t('element.overwritten').
+                        replace(/\{0}/, this.name)
                 );
+
+                $('.' + this.$.attr('class').replace(/ /, '.'), this.$container).remove();
             }
         },
 

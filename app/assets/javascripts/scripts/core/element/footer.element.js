@@ -32,6 +32,5 @@ define([
     };
 
     return FooterElement.extend('FooterElement', {
-
     }, BaseElement.prototype);
 });

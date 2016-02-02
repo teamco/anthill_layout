@@ -8,6 +8,11 @@
 
 .panel-container .panel-content {
     overflow: hidden;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    top: 0;
+    padding-top: 60px;
 }
 
 .panel-container.panel-right {
@@ -33,10 +38,18 @@
 
 .panel-container .scroll-cover {
     background-color: #f9f9f9;
-    width: 100%;
+    position: absolute;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 10px 15px;
+    padding: 10px;
+    bottom: 32px;
+    top: 60px;
+    width: 100%;
+}
+
+.panel-container .sidebar-collapse,
+.panel-container .sidebar-collapse ul {
+    height: 100%;
 }
 
 .panel-container.navbar-default .scroll-cover .nav > li.content > a:hover,
@@ -47,7 +60,6 @@
 
 .panel-container .clear {
     clear: both;
-    height: 10px;
 }
 
 .panel-container .filter {
@@ -74,8 +86,7 @@
     bottom: 0;
     width: 100%;
     height: 32px;
-    box-shadow: 1px 0 5px #333;
-    background-color: transparent;
+    background-color: #a7b1c2;
     padding: 0;
 }
 

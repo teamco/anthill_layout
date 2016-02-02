@@ -109,7 +109,9 @@ class Author::SiteStoragesController < Author::AuthorController
               version: @activated.version,
               activated: @activated.activated,
               mode: @author_site_storage.author_site_type.name,
-              notice: notice
+              notice: notice,
+              updated_by: current_user.original_email,
+              updated_at: @activated.author_item.updated_at.strftime('%Y %b %d %I:%M:%S%p %Z')
           }
           format.json {
             render json: data, status: :ok

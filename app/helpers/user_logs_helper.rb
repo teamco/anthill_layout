@@ -40,7 +40,7 @@ module UserLogsHelper
         "<li><span class=\"label label-default\">Http user agent</span>#{user_log.http_user_agent}</li>",
         "<li><span class=\"label label-default\">Server version</span>#{user_log.server_software}</li>",
         "<li><span class=\"label label-default\">Content type</span>#{user_log.content_type}</li>",
-        "<li><span class=\"label label-default\">Created at</span>#{user_log.created_at.strftime('%Y %b %d %I:%M:%S %p')}</li>",
+        "<li><span class=\"label label-default\">Created at</span>#{user_log.created_at.strftime('%Y %b %d %I:%M:%S%p')}</li>",
         "<li class=\"user-params\">",
         "<span class=\"label label-default\">Params</span><div class=\"params\">#{user_log.user_params}</div></li>",
         "<li class=\"user-session\"><span class=\"label label-default\">Session</span>",
