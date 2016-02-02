@@ -20,7 +20,7 @@ define([
      */
     var MaximizeElement = function MaximizeElement(view, opts) {
 
-        this._config(view, opts, $('<ul class="list-group" />')).build({
+        this._config(view, opts, $('<ul class="nav" />')).build({
             $container: opts.$container
         });
 

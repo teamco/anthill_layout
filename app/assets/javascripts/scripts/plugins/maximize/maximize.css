@@ -1,0 +1,7 @@
+div.maximize-content {
+    margin-top: 105px;
+}
+
+div.maximize-content a {
+    cursor: zoom-in;
+}

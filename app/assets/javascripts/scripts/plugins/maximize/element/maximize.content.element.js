@@ -21,10 +21,11 @@ define([
      */
     var MaximizeContentElement = function MaximizeContentElement(view, opts) {
 
-        this._config(view, opts, $('<li class="list-group-item" />')).build({
+        this._config(view, opts, $('<li />')).build({
             $container: opts.$container
         });
 
+        this.getTemplate(opts.data);
         this.setAttributes(opts.data);
         this.bindLocate(opts.data);
         this.bindMaximize(opts.data);
@@ -34,6 +35,15 @@ define([
 
     return MaximizeContentElement.extend('MaximizeContentElement', {
 
+        /**
+         * Define inner content
+         * @memberOf MaximizeContentElement
+         * @param data
+         */
+        getTemplate: function getTemplate(data) {
+            $('<a class="widget ' + data.model.getConfig('preferences').resource.toClassName() + '" href="#" />').
+                appendTo(this.$);
+        },
         /**
          * Define attributes
          * @memberOf MaximizeContentElement
@@ -68,9 +78,9 @@ define([
                 description: description
             };
 
-            this.setText(title);
-
-            this.$.prepend('<i class="fa ' + cname + '"></i>');
+            //this.setText(title);
+            //
+            //this.$.prepend('<i class="fa ' + cname + '"></i>');
 
             this.renderTooltip({
                 title: title,

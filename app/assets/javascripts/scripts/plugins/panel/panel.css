@@ -43,7 +43,7 @@
     overflow-y: auto;
     padding: 10px;
     bottom: 32px;
-    top: 60px;
+    top: 30px;
     width: 100%;
 }
 
@@ -98,4 +98,27 @@
 
 .panel-container div.panel-footer .badge {
     margin-right: 5px;
+}
+
+.panel-container .content-container:nth-child(n+2) {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+}
+
+.panel-container .content-container:nth-child(n+2) .content {
+    float: left;
+    width: 60px;
+    height: 60px;
+}
+
+.panel-container .content-container:nth-child(n+2) .content > a {
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+    background-size: 48px;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
 }
