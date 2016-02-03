@@ -22,12 +22,21 @@ define([
     PluginController.extend('PluginController', {
 
         /**
-         * Get page data
+         * Get designtime panel
          * @memberOf PluginController
          * @returns {Panel}
          */
-        getAuthorPanel: function getAuthorPanel() {
-            return this.root().panels.author;
+        getDesignTimePanel: function getDesignTimePanel() {
+            return this.root().panels.designTime;
+        },
+
+        /**
+         * Get runtime panel
+         * @memberOf PluginController
+         * @returns {Panel}
+         */
+        getRunTimePanel: function getRunTimePanel() {
+            return this.root().panels.runTime;
         },
 
         /**
@@ -41,7 +50,7 @@ define([
              * Define panel
              * @type {Panel}
              */
-            var panel = this.getAuthorPanel();
+            var panel = this.getDesignTimePanel();
 
             return panel.model.getModule(
                 panel.model.getModuleIndex(name)
@@ -59,7 +68,7 @@ define([
              * Define panel
              * @type {Panel}
              */
-            var panel = this.getAuthorPanel();
+            var panel = this.getDesignTimePanel();
 
             return panel.model.getPackage(
                 panel.model.getPackageIndex(name)
@@ -77,7 +86,7 @@ define([
              * Define panel
              * @type {Panel}
              */
-            var panel = this.getAuthorPanel();
+            var panel = this.getDesignTimePanel();
 
             return panel.model.getModule(
                 panel.model.getModuleIndex('widget-rules')
@@ -95,7 +104,7 @@ define([
              * Get panel
              * @type {Panel}
              */
-            var panel = this.getAuthorPanel();
+            var panel = this.getDesignTimePanel();
 
             /**
              * Get gallery

@@ -24,7 +24,7 @@ define([
             $container: opts.$container
         });
 
-        this.addInnerContent();
+        this.getTemplate(opts.data);
         this.setAttributes(opts.data);
         this.bindShowPrefs(opts.data);
         this.bindLocate(opts.data);
@@ -38,8 +38,9 @@ define([
          * Define inner content
          * @memberOf PageDataContentElement
          */
-        addInnerContent: function addInnerContent() {
-            this.$.append('<div />');
+        getTemplate: function getTemplate(data) {
+            $('<a class="widget ' + data.model.getConfig('preferences').resource.toClassName() + '" href="#" />').
+                appendTo(this.$);
         },
 
         /**
@@ -82,7 +83,7 @@ define([
             this.renderTooltip({
                 title: title,
                 description: description,
-                $container: this
+                selector: this.$
             });
         },
 
@@ -166,5 +167,4 @@ define([
         }
 
     }, BaseElement.prototype);
-
 });

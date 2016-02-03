@@ -81,7 +81,7 @@ define([
                  * Get panel
                  * @type {Panel}
                  */
-                var panel = this.controller.getAuthorPanel();
+                var panel = this.controller.getDesignTimePanel();
 
                 panel.observer.publish(
                     panel.eventmanager.eventList.closePanel,
@@ -248,7 +248,7 @@ define([
              * Define panel
              * @type {Panel}
              */
-            var panel = this.getAuthorPanel();
+            var panel = this.getDesignTimePanel();
 
             /**
              * Define widget rules
@@ -342,7 +342,7 @@ define([
              * @type {Page}
              */
             var page = this.getPage(),
-                panel = this.getAuthorPanel();
+                panel = this.getDesignTimePanel();
 
             // Close author panel
             panel.controller.closePanels();

@@ -70,7 +70,7 @@ define([
                  * Get panel
                  * @type {Panel}
                  */
-                var panel = this.controller.getAuthorPanel();
+                var panel = this.controller.getDesignTimePanel();
 
                 panel.observer.publish(
                     panel.eventmanager.eventList.closePanel,

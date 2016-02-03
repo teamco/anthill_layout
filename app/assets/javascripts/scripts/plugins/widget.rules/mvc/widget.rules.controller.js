@@ -276,7 +276,7 @@ define([
              * Define panel
              * @type {Panel}
              */
-            var panel = this.getAuthorPanel();
+            var panel = this.getDesignTimePanel();
 
             /**
              * Define widget rules

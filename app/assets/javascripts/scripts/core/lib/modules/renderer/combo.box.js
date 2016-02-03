@@ -159,14 +159,10 @@ define([], function defineComboBoxRenderer() {
                 var tooltip = data[i].tooltip;
 
                 if (tooltip) {
-
-                    // Set reference
-                    $li.$ = $li;
-
                     this.renderTooltip({
                         title: field.value,
                         description: tooltip,
-                        $container: $li
+                        $container: $li.$
                     });
                 }
             }

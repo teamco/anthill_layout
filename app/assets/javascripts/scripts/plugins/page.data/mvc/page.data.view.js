@@ -65,8 +65,6 @@ define([
                 this.elements.items = {};
                 this.elements.$pagedata.empty();
 
-                this.renderHeader(Header, 'Page Widgets');
-
                 this.renderFilter(
                     this.updateFooterContent.bind(this)
                 );

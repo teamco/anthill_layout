@@ -584,7 +584,7 @@ define([
              * Define panel
              * @type {Panel}
              */
-            var panel = this.view.controller.getAuthorPanel();
+            var panel = this.view.controller.getDesignTimePanel();
 
             /**
              * Define page data

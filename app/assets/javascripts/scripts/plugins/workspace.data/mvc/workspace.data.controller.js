@@ -348,7 +348,7 @@ define(
                      * Get panel
                      * @type {Panel}
                      */
-                    var panel = this.getAuthorPanel();
+                    var panel = this.getDesignTimePanel();
 
                     panel.observer.publish(
                         panel.eventmanager.eventList.showContent,
