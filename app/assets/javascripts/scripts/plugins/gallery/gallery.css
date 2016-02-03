@@ -3,13 +3,39 @@ div.gallery-content {
 }
 
 div.gallery-content .scroll-cover {
-    top: 60px;
+    top: 77px;
 }
 
 div.gallery ul {
     list-style: none;
 }
 
-ul.gallery .content:active {
-    cursor: move;
+ul.gallery .content > a {
+    cursor: copy;
+}
+
+div.gallery-providers {
+    position: relative;
+    top: -7px;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+}
+
+.gallery-providers.nav > li > a {
+    color: #999;
+    background-color: #fff;
+}
+
+.navbar-default .gallery-providers.nav > li > a:hover,
+.navbar-default .gallery-providers.nav > li > a:focus {
+    background-color: rgba(47, 64, 80, 0.8);
+}
+
+.gallery-providers span.caret {
+    top: 7px;
+    position: relative;
+}
+
+.panel-container .sidebar-collapse ul.dropdown-menu {
+    height: auto;
 }

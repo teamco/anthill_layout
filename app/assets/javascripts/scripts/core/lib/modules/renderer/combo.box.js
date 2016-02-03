@@ -74,12 +74,16 @@ define([], function defineComboBoxRenderer() {
              * Define container
              * @type {*|jQuery}
              */
-            var $div = $('<div class="combo-box" />').
+            var $combo = $([
+                '<ul class="nav"><li role="presentation" class="dropdown">',
+                '<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">',
+                '<span class="caret pull-right"></span></a>',
+                '<ul class="dropdown-menu"></ul>',
+                '</li></ul>'
+            ].join('')).
                 addClass((activeContent ? [index, activeContent.name].join('') : index).toDash()).
-                attr({
-                    id: this.base.lib.generator.UUID() + '-combobox'
-                }).append(
-                $('<input class="hidden" />').attr({
+                attr({id: this.base.lib.generator.UUID() + '-combobox'}).
+                append($('<input class="hidden" />').attr({
                     name: index,
                     disabled: true,
                     type: 'text',
@@ -88,48 +92,17 @@ define([], function defineComboBoxRenderer() {
             );
 
             /**
-             * Open combo box
-             * @private
-             */
-            function _open() {
-
-                if (this.isDisabledComboBox($div.parent())) {
-                    return false;
-                }
-
-                // Get wrapper
-                var $wrapper = _getWrapper(this);
-
-                // close all como-boxes
-                $('.combo-box', $wrapper).removeClass('open');
-                $div.addClass('open');
-                $('div.html', $wrapper).addClass('visible');
-            }
-
-            /**
-             * Hide combo box
-             * @private
-             */
-            function _hide() {
-
-                // Get wrapper
-                var $wrapper = _getWrapper(this);
-
-                $div.removeClass('open');
-                $('div.html', $wrapper).removeClass('visible');
-            }
-
-            /**
              * Store prefs
              * @param $selected
-             * @param selected
+             * @param [force] {boolean}
              * @returns {boolean}
              * @private
              */
-            function _store($selected, selected) {
+            function _store($selected, force) {
 
-                // Remove tooltip text before store selected value
-                $('.tooltip', $selected).remove();
+                if ($selected instanceof $.Event) {
+                    $selected = $($selected.target).parent();
+                }
 
                 /**
                  * Define value
@@ -137,18 +110,23 @@ define([], function defineComboBoxRenderer() {
                  */
                 var value = $selected.text();
 
-                if (value === selected) {
+                if (!force && value === selected) {
                     return false;
                 }
 
-                $('input[name="' + index + '"]', $div).val(value);
+                selected = value;
+
+                $('li', $selected.parent()).removeClass('selected');
+                $selected.addClass('selected');
+                $('input[name="' + index + '"]', $combo).val(value);
+                $('.dropdown-toggle', $combo).html(value + '<span class="caret pull-right"></span>');
             }
 
             /**
              * Define $ul
              * @type {*|jQuery}
              */
-            var $ul = $('<ul />'),
+            var $ul = $('ul.dropdown-menu', $combo),
                 i = 0, l = data.length;
 
             for (; i < l; i++) {
@@ -157,7 +135,9 @@ define([], function defineComboBoxRenderer() {
                     $li = $('<li />');
 
                 if (field.type === 'text') {
-                    $li.text(field.value);
+                    $li.html(
+                        $('<a href="#" />').text(field.value)
+                    );
                 }
 
                 if (field.type === 'html') {
@@ -176,49 +156,16 @@ define([], function defineComboBoxRenderer() {
                 }
 
                 if (selected === field.value) {
-                    $li.addClass('selected');
+                    _store($li, true);
                 }
 
-                $li.on(
-                    'click.comboBoxInternal',
+                $li.on('click.comboBoxInternal', _store);
 
-                    /**
-                     * Select combo box item
-                     * @param e
-                     * @returns {boolean}
-                     */
-                    function comboBoxInternalEvent(e) {
-
-                        ($div.hasClass('open') ?
-                            _hide : _open).bind(this)();
-
-                        /**
-                         * Define selected $li
-                         * @type {*|jQuery|HTMLElement}
-                         */
-                        var $selected = $(e.target);
-
-                        if ($selected.hasClass('selected')) {
-                            _store($selected, selected);
-                            return false;
-                        }
-
-                        $('li', $selected.parent()).removeClass('selected');
-                        $selected.addClass('selected');
-
-                        _store($selected, selected);
-
-                    }.bind(this)
-                );
-
-                // hide on mouse leave
-                $ul.on('mouseleave.comboBoxInternal', _hide.bind(this));
-
-                if (this.base.isDefined(event)) {
+                if (!_.isUndefined(event)) {
                     if (_.isFunction(event.callback)) {
                         $li.on(event.type, function comboBoxEvent(e) {
                             event.callback(
-                                $(e.target).attr('rel')
+                                $(e.target).parent().attr('rel')
                             );
                         });
                     }
@@ -257,9 +204,9 @@ define([], function defineComboBoxRenderer() {
                             'Select ' + name
                         ).on(
                             'click.placeholder',
-                            function clickOn(e) {
+                            function _clickOn(e) {
 
-                                if (this.isDisabledComboBox($div.parent())) {
+                                if (this.isDisabledComboBox($combo.parent())) {
                                     return false;
                                 }
 
@@ -274,18 +221,7 @@ define([], function defineComboBoxRenderer() {
                 $('li:first', $ul).show();
             }
 
-            // fix to define modal dialog height
-            setTimeout(function () {
-                visible ? $div.show() : $div.hide();
-            }, 500);
-
-            return [
-                //this.renderLabel(undefined, name, undefined, visible),
-                $div.append([
-                    $ul,
-                    $('<div />').addClass('combo-box-arrow')
-                ])
-            ];
+            return $combo;
         },
 
         /**
