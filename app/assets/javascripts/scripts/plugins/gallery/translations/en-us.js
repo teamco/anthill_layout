@@ -9,6 +9,7 @@
 define([], function defineEnUs() {
 
     return {
+        'gallery.provider': 'Provider',
         'gallery.providers.all': 'All',
         'gallery.providers.favorites': 'Favorites'
     };

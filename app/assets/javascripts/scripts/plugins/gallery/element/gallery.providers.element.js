@@ -75,7 +75,7 @@ define([
                 this.renderCombobox(
                     this.sortComboBoxData(data),
                     currentProvider.name,
-                    '',
+                    this.i18n.t('gallery.provider'),
                     'galleryProviders', {
                         type: 'click.changeProvider',
                         callback: this.view.controller.changeProvider.bind(

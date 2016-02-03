@@ -28,6 +28,7 @@ define([], function defineEnUs() {
 
         'cancel': 'Cancel',
 
-        'filter': 'Filter'
+        'filter': 'Filter',
+        'combobox.placeholder': 'Select {0}'
     };
 });

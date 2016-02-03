@@ -32,39 +32,6 @@ define([], function defineComboBoxRenderer() {
             placeholder = _.isUndefined(placeholder) ? false : !!placeholder;
 
             /**
-             * Get wrapper
-             * @param {BaseElement} $element
-             * @returns {BaseElement.$}
-             * @private
-             */
-            function _getWrapper($element) {
-
-                /**
-                 * Get referrer
-                 * @type {*}
-                 */
-                var referrer = $element.view.scope.referrer,
-                    $modal, $wrapper = $element.$;
-
-                referrer = referrer ? referrer : $element;
-
-                if (referrer) {
-
-                    /**
-                     * Get $modal dialog
-                     * @type {ModalElement}
-                     */
-                    $modal = referrer.view.elements.$modal;
-
-                    if ($modal) {
-                        $wrapper = $modal.$;
-                    }
-                }
-
-                return $wrapper;
-            }
-
-            /**
              * Define active content
              * @type {*|Page|WidgetContent}
              */
@@ -90,6 +57,15 @@ define([], function defineComboBoxRenderer() {
                     value: selected
                 })
             );
+
+            /**
+             * Update placeholder
+             * @param value
+             * @private
+             */
+            function _updatePlaceholder(value) {
+                $('.dropdown-toggle', $combo).html(value + '<span class="caret pull-right"></span>');
+            }
 
             /**
              * Store prefs
@@ -119,7 +95,7 @@ define([], function defineComboBoxRenderer() {
                 $('li', $selected.parent()).removeClass('selected');
                 $selected.addClass('selected');
                 $('input[name="' + index + '"]', $combo).val(value);
-                $('.dropdown-toggle', $combo).html(value + '<span class="caret pull-right"></span>');
+                _updatePlaceholder(value);
             }
 
             /**
@@ -197,28 +173,11 @@ define([], function defineComboBoxRenderer() {
 
             if (_.isUndefined(selected)) {
 
-                if (placeholder) {
-
-                    $ul.prepend(
-                        $('<li class="placeholder" />').text(
-                            'Select ' + name
-                        ).on(
-                            'click.placeholder',
-                            function _clickOn(e) {
-
-                                if (this.isDisabledComboBox($combo.parent())) {
-                                    return false;
-                                }
-
-                                $(e.target).remove();
-                                $('li:first', $ul).trigger('click.comboBoxInternal');
-
-                            }.bind(this)
-                        )
-                    );
-                }
-
-                $('li:first', $ul).show();
+                _updatePlaceholder(
+                    placeholder ?
+                        this.i18n.t('combobox.placeholder', [name]) :
+                        $('li:first', $ul).text()
+                );
             }
 
             return $combo;
@@ -231,7 +190,7 @@ define([], function defineComboBoxRenderer() {
          * @returns {boolean}
          */
         isDisabledComboBox: function isDisabledComboBox($combo) {
-            return $combo.find('div.combo-box.disabled').length === 1;
+            return $combo.hasClass('disabled');
         },
 
         /**
@@ -240,7 +199,7 @@ define([], function defineComboBoxRenderer() {
          * @param $combo
          */
         enableComboBox: function enableComboBox($combo) {
-            $combo.find('div.combo-box').removeClass('disabled');
+            $combo.removeClass('disabled');
         },
 
         /**
@@ -249,18 +208,7 @@ define([], function defineComboBoxRenderer() {
          * @param $combo
          */
         disableComboBox: function disableComboBox($combo) {
-            $combo.find('div.combo-box').addClass('disabled');
-        },
-
-        /**
-         * Clear placeholder
-         * @memberOf ComboBoxRenderer
-         * @param $combo
-         */
-        clearPlaceholder: function clearPlaceholder($combo) {
-            $combo.find('div.combo-box > ul li.placeholder').
-                trigger('click.placeholder').
-                remove();
+            $combo.addClass('disabled');
         }
     });
 });
