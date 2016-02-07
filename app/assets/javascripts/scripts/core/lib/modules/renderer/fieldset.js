@@ -41,7 +41,7 @@ define([], function defineFieldSetRenderer() {
 
             this.renderTooltip({
                 title: $('<div />').html(text).text(),
-                $container: $legend
+                selector: $legend.$
             });
 
             return $fieldset;

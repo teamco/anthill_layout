@@ -7,12 +7,11 @@
  */
 
 define([
-    'jquery',
     'config/anthill',
     'modules/Element',
     'element/button.element',
-    'element/cover.element'
-], function defineModalElement($, AntHill, BaseElement, Button, Cover) {
+    'bootstrap-dialog'
+], function defineModalElement(AntHill, BaseElement, Button, BootstrapDialog) {
 
     /**
      * Define Modal Element
@@ -35,15 +34,10 @@ define([
 
         this.setup(opts);
 
-        this._config(view, opts, $('<div />')).build({
-            $container: opts.$container || $('body'),
-            destroy: true
-        }).$.addClass('modal-dialog');
-
-        this.renderInnerContent();
-        this.setCover();
-
-        return this;
+        return new BootstrapDialog({
+            title: 'Dialog instance 1',
+            message: 'Hi Apple!'
+        });
     };
 
     return ModalElement.extend('ModalElement', {
@@ -201,14 +195,23 @@ define([
         renderInnerContent: function renderInnerContent() {
             this.$.append(
                 [
-                    '<h2 class="header"></h2>',
-                    '<ul class="actions"></ul>',
-                    '<div class="content">',
-                    '<p class="notification"></p>',
-                    '<p class="text"></p>',
-                    '<div class="html"></div>',
-                    '</div>',
-                    '<ul class="buttons"></ul>'
+                    '<div class="modal-dialog">',
+                    '<div class="modal-header">',
+                    '<button type="button" class="close" data-dismiss="modal">&times;</button>',
+                    '<h4 class="modal-title">Modal Header</h4></div>',
+                    '<div class="modal-body">',
+                    '<p>Some text in the modal.</p></div>',
+                    '<div class="modal-footer">',
+                    '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>',
+                    '</div></div></div>'
+                    //'<h2 class="header"></h2>',,
+                    //'<ul class="actions"></ul>'
+                    //'<div class="content">',
+                    //'<p class="notification"></p>',
+                    //'<p class="text"></p>',
+                    //'<div class="html"></div>',
+                    //'</div>',
+                    //'<ul class="buttons"></ul>'
                 ].join('')
             ).
                 css(this.css);
@@ -435,37 +438,11 @@ define([
         },
 
         /**
-         * Set cover
-         * @memberOf ModalElement
-         */
-        setCover: function setCover() {
-            if (this.cover) {
-                this.$cover = this.view.cover(Cover, {
-                    $container: this.$container,
-                    opacity: this.coverOpacity,
-                    style: 'cover-' + this.style,
-                    events: this.autoclose ? {click: 'rejectModalEvent'} : {}
-                });
-            }
-        },
-
-        /**
-         * Unset cover
-         * @memberOf ModalElement
-         */
-        unsetCover: function unsetCover() {
-            if (this.$cover) {
-                this.$cover.destroy();
-            }
-        },
-
-        /**
          * Self destroy functionality
          * @memberOf ModalElement
          */
         selfDestroy: function selfDestroy() {
             this.unsetButtons();
-            this.unsetCover();
             this.destroy();
         },
 

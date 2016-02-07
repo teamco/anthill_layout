@@ -151,8 +151,12 @@ define([
 
             if (this.active === resource) {
 
-                this.view.elements.$panel.toggleModule(resource, false);
-                this.view.elements.items['$bar-content'].unselectItems();
+                var elements = this.view.elements,
+                    $bar = elements.items['$bar-content'];
+
+                elements.$panel.toggleModule(resource, false);
+                $bar.unselectItems();
+                $bar.selectItem(resource);
 
             } else {
 
@@ -204,16 +208,6 @@ define([
         openPanel: function openPanel(resource, event, callback) {
 
             this.controller.closePanels(this);
-
-            /**
-             * Define $bar
-             * @type {PanelContentElement}
-             */
-            var $bar = this.view.elements.items['$bar-content'];
-
-            $bar.unselectItems();
-            $bar.selectItem(resource);
-
             this.view.elements.$panel.toggleModule(resource, true);
 
             if (_.isFunction(callback)) {

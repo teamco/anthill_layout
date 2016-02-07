@@ -36,7 +36,7 @@ define([
          * @param {string} resource
          */
         selectItem: function selectItem(resource) {
-            $('.content.' + resource, this.$).addClass('activated');
+            $('.content.' + resource, this.$).addClass('activated').removeClass('collapsed');
         },
 
         /**
@@ -44,7 +44,7 @@ define([
          * @memberOf PanelContentElement
          */
         unselectItems: function unselectItems() {
-            $('ul.panel-bar li', this.$).removeClass('activated');
+            $('ul.panel-bar li', this.$).removeClass('activated').addClass('collapsed');
         }
 
     }, BaseElement.prototype);

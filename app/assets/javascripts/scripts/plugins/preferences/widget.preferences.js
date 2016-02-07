@@ -23,7 +23,7 @@ define([
 
         /**
          * Render form element
-         * @param {{}} hash
+         * @param hash
          * @param {string} title
          * @memberOf WidgetPreferences
          * @return {Array}
