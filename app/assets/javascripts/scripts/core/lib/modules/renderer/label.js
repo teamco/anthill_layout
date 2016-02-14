@@ -2,14 +2,14 @@
  * Created by teamco on 7/10/14.
  */
 
-define([], function defineLabelRenderer(){
+define([], function defineLabelRenderer() {
 
     /**
      * Define LabelRenderer
      * @class LabelRenderer
      * @constructor
      */
-    var LabelRenderer = function LabelRenderer(){
+    var LabelRenderer = function LabelRenderer() {
 
     };
 
@@ -30,8 +30,11 @@ define([], function defineLabelRenderer(){
              * Parse Html
              * @type {Array}
              */
-            var parse = $.parseHTML(text) || [''],
-                title = parse[parse.length - 1].data || '';
+            var html = $.parseHTML(text) || [''];
+
+            html = html.length ? html : [''];
+
+            var title = html[html.length - 1].data || '';
 
             var $label = $('<label />').attr({
                 'for': uuid,

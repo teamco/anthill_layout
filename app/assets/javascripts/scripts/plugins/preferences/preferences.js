@@ -7,6 +7,7 @@ define(['jquery'], function defineBasePreferencesElement($) {
     /**
      * Define BasePreferencesElement
      * @class BasePreferencesElement
+     * @extends BaseView
      * @extends TextAreaRenderer
      * @extends TextFieldRenderer
      * @extends TextEditorRenderer

@@ -80,8 +80,6 @@ define([
                 return false;
             }
 
-            this.opened(opened);
-
             scope.observer.publish(
                 scope.eventmanager.eventList.showContent,
                 [opened, resource]
@@ -138,17 +136,6 @@ define([
                 $tpl.find('.logo-element').text(title.short);
                 $tpl.appendTo(this.$.find('.nav-header'));
             }
-        },
-
-        /**
-         * Toggle open class
-         * @param {Boolean} open
-         * @memberOf PanelElement
-         */
-        opened: function opened(open) {
-            open ?
-                this.$.addClass('close') :
-                this.$.removeClass('close');
         },
 
         /**

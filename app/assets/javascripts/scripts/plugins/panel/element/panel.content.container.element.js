@@ -4,7 +4,6 @@
  * Date: 5/9/13
  * Time: 11:48 AM
  */
-
 define([
     'modules/Element'
 ], function definePanelContentContainerElement(BaseElement) {
@@ -29,5 +28,4 @@ define([
     };
 
     return PanelContentContainerElement.extend('PanelContentContainerElement', {}, BaseElement.prototype);
-
 });
