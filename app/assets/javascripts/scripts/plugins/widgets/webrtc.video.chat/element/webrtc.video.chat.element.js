@@ -78,13 +78,11 @@ define([
                 ButttonElement, {
                     login: {
                         $container: $liLogin,
-                        $htmlElement: $('<button />'),
                         text: 'Login',
                         events: {click: 'doLogin'}
                     },
                     call: {
                         $container: $liCall,
-                        $htmlElement: $('<button />'),
                         text: 'Call',
                         events: {click: 'doCall'}
                     }

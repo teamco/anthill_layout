@@ -53,7 +53,7 @@ define(function defineBehaviorErrorHandler() {
                             '</code></pre>'
                         ].join('')
                     }
-                }, 'error');
+                }, 'danger');
 
                 return false;
             }

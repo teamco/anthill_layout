@@ -219,26 +219,37 @@ define([
                 }
             };
 
+            //this.$.append(
+                //this.renderLayoutInteractions([
+                //    this.renderPrefsNode(
+                //        'default',
+                //        this.mergeWidgetPrefs(
+                //            defaultPrefs,
+                //            widget.model.getConfig('preferences')
+                //        ),
+                //        'Widget'
+                //    ),
+                    //this.renderPrefsNode(
+                    //    'content', data,
+                    //    scope.name.humanize(), true
+                    //),
+                    //this.renderPrefsNode(
+                    //    'widget-interactions',
+                    //    this.renderWidgetInteractions(widget),
+                    //    'Widget Interactions'
+                    //)
+                //])
+            //);
+
             this.$.append(
-                this.renderLayoutInteractions([
-                    this.renderPrefsNode(
-                        'default',
-                        this.mergeWidgetPrefs(
-                            defaultPrefs,
-                            widget.model.getConfig('preferences')
-                        ),
-                        'Widget'
+                this.renderPrefsNode(
+                    'default',
+                    this.mergeWidgetPrefs(
+                        defaultPrefs,
+                        widget.model.getConfig('preferences')
                     ),
-                    this.renderPrefsNode(
-                        'content', data,
-                        scope.name.humanize(), true
-                    ),
-                    this.renderPrefsNode(
-                        'widget-interactions',
-                        this.renderWidgetInteractions(widget),
-                        'Widget Interactions'
-                    )
-                ])
+                    'Widget'
+                )
             );
         },
 

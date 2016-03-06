@@ -2,7 +2,7 @@
  * Created by teamco on 7/10/14.
  */
 
-define([], function defineFieldSetRenderer() {
+define(function defineFieldSetRenderer() {
 
     /**
      * Define FieldSetRenderer
@@ -10,7 +10,6 @@ define([], function defineFieldSetRenderer() {
      * @constructor
      */
     var FieldSetRenderer = function FieldSetRenderer() {
-
     };
 
     return FieldSetRenderer.extend('FieldSetRenderer', {

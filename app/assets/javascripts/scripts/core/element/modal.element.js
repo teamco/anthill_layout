@@ -9,9 +9,8 @@
 define([
     'config/anthill',
     'modules/Element',
-    'element/button.element',
-    'bootstrap-dialog'
-], function defineModalElement(AntHill, BaseElement, Button, BootstrapDialog) {
+    'element/button.element'
+], function defineModalElement(AntHill, BaseElement, Button) {
 
     /**
      * Define Modal Element
@@ -34,10 +33,14 @@ define([
 
         this.setup(opts);
 
-        return new BootstrapDialog({
-            title: 'Dialog instance 1',
-            message: 'Hi Apple!'
+        this._config(view, opts, this.getTemplate()).build({
+            $container: opts.$container || $('body'),
+            destroy: true
         });
+
+        this.initBootstrapModal();
+
+        return this;
     };
 
     return ModalElement.extend('ModalElement', {
@@ -49,7 +52,7 @@ define([
          *      [style]: String,
          *      [cover]: Boolean,
          *      [title]: String,
-         *      [type]: String ('info', 'success', 'warning', 'error'),
+         *      [type]: String ('info', 'success', 'warning', 'danger'),
          *      [position]: String ('t(l-c-r), c(l-c-r), b(l-c-r)'),
          *      [adoptOnResize]: boolean,
          *      [html]: String,
@@ -74,7 +77,7 @@ define([
             this.title = opts.title;
 
             /**
-             * Set modal type ['error', 'warning', 'success', 'info']
+             * Set modal type ['danger', 'warning', 'success', 'info']
              * @property ModalElement
              * @type {String|*}
              */
@@ -188,44 +191,40 @@ define([
             this.buttons = opts.buttons || {};
         },
 
+        getTemplate: function getTemplate() {
+            return $(['<div class="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">',
+                '<div class="modal-dialog" role="document">',
+                '<div class="modal-content">',
+                '<div class="modal-header alert">',
+                '<h4 class="modal-title" id="modalLabel">New message</h4>',
+                '</div>',
+                '<div class="modal-body"></div>',
+                '<div class="modal-footer">',
+                '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>',
+                //'<button type="button" class="btn btn-primary">Send message</button>',
+                '</div>',
+                '</div>',
+                '</div>',
+                '</div>'].join(''));
+        },
+
         /**
          * Render inner content
          * @memberOf ModalElement
          */
-        renderInnerContent: function renderInnerContent() {
-            this.$.append(
-                [
-                    '<div class="modal-dialog">',
-                    '<div class="modal-header">',
-                    '<button type="button" class="close" data-dismiss="modal">&times;</button>',
-                    '<h4 class="modal-title">Modal Header</h4></div>',
-                    '<div class="modal-body">',
-                    '<p>Some text in the modal.</p></div>',
-                    '<div class="modal-footer">',
-                    '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>',
-                    '</div></div></div>'
-                    //'<h2 class="header"></h2>',,
-                    //'<ul class="actions"></ul>'
-                    //'<div class="content">',
-                    //'<p class="notification"></p>',
-                    //'<p class="text"></p>',
-                    //'<div class="html"></div>',
-                    //'</div>',
-                    //'<ul class="buttons"></ul>'
-                ].join('')
-            ).
-                css(this.css);
+        initBootstrapModal: function initBootstrapModal() {
+
+            this.$['modal']();
+            this.$.css(this.css);
 
             this.setModalType(this.type);
             this.setHeader();
-            this.setHtml(this.html, this._get$HTML());
-            this.setText(this.text, this._get$Text());
-
-            this.fixContent();
+            this.setText(this.text, this._get$Body());
+            this.setHtml(this.html, this._get$Body());
 
             this.setPosition({
                 $container: this.$container,
-                $item: this.$,
+                $item: this.$.find('.modal-content'),
                 position: this.position
             });
 
@@ -258,7 +257,6 @@ define([
          * @memberOf ModalElement
          */
         setFocus: function setFocus() {
-
             if (this.html) {
                 $('input:first', this.$).focus();
             }
@@ -301,20 +299,13 @@ define([
          */
         _setCloseX: function _setCloseX() {
 
-            /**
-             * Get actions
-             * @type {*}
-             */
-            var $actions = this._get$Actions();
-
             if (!this.closeX) {
-                $actions.hide();
                 return false;
             }
 
             this.buttons['closeX'] = {
-                $container: this._get$Actions(),
-                text: 'Close',
+                $container: this._get$Header(),
+                $htmlElement: $('<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'),
                 events: {
                     click: 'rejectModalEvent'
                 }
@@ -345,7 +336,6 @@ define([
          * @memberOf ModalElement
          */
         unsetButtons: function unsetButtons() {
-
             $.each(this.$buttons, function each(i, $button) {
                 $button.destroy();
             });
@@ -363,48 +353,13 @@ define([
         },
 
         /**
-         * Fix content
-         * @memberOf ModalElement
-         */
-        fixContent: function fixContent() {
-
-            if (!this.base.isDefined(this.html)) {
-                this._get$HTML().hide();
-            }
-
-            if (!this.base.isDefined(this.text)) {
-                this._get$Text().hide();
-            }
-        },
-
-        /**
-         * Get action buttons container
-         * @memberOf ModalElement
-         * @returns {*}
-         * @private
-         */
-        _get$Actions: function _get$Actions() {
-            return this.$.find('ul.actions');
-        },
-
-        /**
          * Get HTML container
          * @memberOf ModalElement
          * @returns {*}
          * @private
          */
-        _get$HTML: function _get$HTML() {
-            return this.$.find('div.html');
-        },
-
-        /**
-         * Get text container
-         * @memberOf ModalElement
-         * @returns {*}
-         * @public
-         */
-        _get$Text: function _get$Text() {
-            return this.$.find('p.text');
+        _get$Body: function _get$Body() {
+            return this.$.find('div.modal-body');
         },
 
         /**
@@ -434,7 +389,7 @@ define([
          * @private
          */
         _get$Header: function _get$Header() {
-            return this.$.find('h2');
+            return this.$.find('h4');
         },
 
         /**
@@ -444,6 +399,15 @@ define([
         selfDestroy: function selfDestroy() {
             this.unsetButtons();
             this.destroy();
+            this.removeBackdrop();
+        },
+
+        /**
+         * Remove Bootstrap backdrop
+         * @memberOf ModalElement
+         */
+        removeBackdrop: function removeBackdrop() {
+            $('.modal-backdrop').remove();
         },
 
         /**
@@ -452,7 +416,7 @@ define([
          * @param {string} type
          */
         setModalType: function setModalType(type) {
-            this.$.addClass([this.style, type].join(' '));
+            this.$.find('.modal-header').addClass([this.style, 'alert-' + type].join(' '));
         },
 
         /**

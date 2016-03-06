@@ -97,7 +97,6 @@ define([
 
             this.modalDialog({
                 style: this.scope.name.toLowerCase() + '-modal',
-                $container: this.elements.$page.$,
                 items: widgets,
                 type: 'warning',
                 title: 'Remove widgets',

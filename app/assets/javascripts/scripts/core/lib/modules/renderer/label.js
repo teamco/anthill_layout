@@ -2,7 +2,7 @@
  * Created by teamco on 7/10/14.
  */
 
-define([], function defineLabelRenderer() {
+define(function defineLabelRenderer() {
 
     /**
      * Define LabelRenderer
@@ -10,7 +10,6 @@ define([], function defineLabelRenderer() {
      * @constructor
      */
     var LabelRenderer = function LabelRenderer() {
-
     };
 
     return LabelRenderer.extend('LabelRenderer', {
@@ -36,10 +35,10 @@ define([], function defineLabelRenderer() {
 
             var title = html[html.length - 1].data || '';
 
-            var $label = $('<label />').attr({
-                'for': uuid,
+            var $label = $('<span />').attr({
+                id: uuid,
                 title: title.toUpperCase()
-            }).addClass(type).html(text);
+            }).addClass(type + ' input-group-addon').html(text);
 
             if (!visible) {
                 $label.hide();

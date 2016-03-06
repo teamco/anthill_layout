@@ -15,6 +15,7 @@ define([
     'modules/renderer/filter',
     'modules/renderer/comments',
     'modules/renderer/label',
+    'modules/renderer/tabs',
     'modules/renderer/fieldset',
     'modules/renderer/slider',
     'modules/renderer/text.editor',
@@ -26,7 +27,7 @@ define([
     'modules/renderer/text.download',
     'modules/renderer/validation',
     'modules/renderer/range'
-], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Filter, Comments, Label, FieldSet, Slider, TextEditor, TextArea, TextField, NumberField, ToolTip, UploadOnDrop, TextDownload, Validation, Range) {
+], function defineRenderer(AntHill, CheckBox, ComboBox, EventLink, Iframe, Embed, ObjectEmbed, Filter, Comments, Label, Tabs, FieldSet, Slider, TextEditor, TextArea, TextField, NumberField, ToolTip, UploadOnDrop, TextDownload, Validation, Range) {
 
     /**
      * Define renderer
@@ -42,7 +43,8 @@ define([
      * @extends {FilterRenderer} Filter
      * @extends {CommentsRenderer} Comments
      * @extends {LabelRenderer} Label
-     * @extends {FieldSetRenderer} Label
+     * @extends {FieldSetRenderer} FieldSet
+     * @extends {TabsRenderer} Tabs
      * @extends {SliderRenderer} Slider
      * @extends {TextEditorRenderer} TextEditor
      * @extends {TextAreaRenderer} TextArea
@@ -148,6 +150,7 @@ define([
         Filter.prototype,
         Comments.prototype,
         Label.prototype,
+        Tabs.prototype,
         FieldSet.prototype,
         Slider.prototype,
         TextEditor.prototype,

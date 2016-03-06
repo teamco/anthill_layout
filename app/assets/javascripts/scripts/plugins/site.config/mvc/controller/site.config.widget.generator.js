@@ -154,7 +154,7 @@ define([
                     // Call super
                     $.ajaxSettings.error.call(this.controller, arguments);
 
-                    this.data.$modal.handleNotification(description, 'error');
+                    this.data.$modal.handleNotification(description, 'danger');
 
                     // Allow to create another one
                     this.controller.stopSendingEventOnApprove(false);

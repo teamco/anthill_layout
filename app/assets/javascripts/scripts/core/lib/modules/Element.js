@@ -814,7 +814,7 @@ define([
          */
         setHtml: function setHtml(html, $container) {
 
-            if (!this.$) {
+            if (!(this.$ && html)) {
                 return false;
             }
 
@@ -830,7 +830,7 @@ define([
          */
         setText: function setText(text, $container) {
 
-            if (!this.$) {
+            if (!(this.$ && text)) {
                 return false;
             }
 

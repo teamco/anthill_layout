@@ -82,7 +82,6 @@ define([
 
                     $element.view.modalDialog({
                         style: 'social-login',
-                        $container: page.view.get$item().$,
                         type: 'info',
                         title: 'Login to your account',
                         html: $ul.append([

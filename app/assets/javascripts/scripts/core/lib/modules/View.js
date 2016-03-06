@@ -329,7 +329,7 @@ define([
          *      [opacityOff]: Number,
          *      [opacityOn]: Number,
          *      [title]: String,
-         *      [type]: String ('info', 'success', 'warning', 'error'),
+         *      [type]: String ('info', 'success', 'warning', 'danger'),
          *      [html]: *,
          *      [text]: String,
          *      [draggable]: Boolean,

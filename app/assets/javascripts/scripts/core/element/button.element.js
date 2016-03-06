@@ -24,12 +24,14 @@ define([
 
         this.setup(opts);
 
-        this._config(view, opts, this.base.define(opts.$htmlElement, $('<li />'), true)).build({
+        this._config(view, opts, this.getTemplate(opts.$htmlElement)).build({
             $container: opts.$container,
             destroy: true
         });
 
         this.setContent();
+
+        this.$.addClass('btn btn-' + this.type);
 
         this.disabled ?
             this.disable() :
@@ -39,6 +41,16 @@ define([
     };
 
     return ButtonElement.extend('ButtonElement', {
+
+        /**
+         * Get Button Template
+         * @memberOf ButtonElement
+         * @param $htmlElement
+         * @returns {*}
+         */
+        getTemplate: function getTemplate($htmlElement) {
+            return $htmlElement ? $htmlElement : $('<button />');
+        },
 
         /**
          * Define setup
@@ -52,6 +64,12 @@ define([
              * @property ButtonElement
              */
             this.text = opts.text;
+
+            /**
+             * Define type
+             * @type {string}
+             */
+            this.type = opts.type || 'default';
         },
 
         /**
@@ -59,7 +77,9 @@ define([
          * @memberOf ButtonElement
          */
         setContent: function setContent() {
-            this.setText(this.text);
+            if (this.text) {
+                this.setText(this.text);
+            }
         },
 
         /**

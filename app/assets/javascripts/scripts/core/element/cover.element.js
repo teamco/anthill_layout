@@ -30,8 +30,5 @@ define([
         return this;
     };
 
-    return CoverElement.extend('CoverElement', {
-
-    }, BaseElement.prototype);
-
+    return CoverElement.extend('CoverElement', {}, BaseElement.prototype);
 });

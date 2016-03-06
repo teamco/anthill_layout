@@ -94,7 +94,6 @@ define(['jquery'], function defineBasePreferencesElement($) {
 
             this.modalDialog({
                 style: opts.style,
-                $container: page.view.get$item().$,
                 type: opts.type || 'info',
                 title: opts.title,
                 text: opts.config.uuid,
