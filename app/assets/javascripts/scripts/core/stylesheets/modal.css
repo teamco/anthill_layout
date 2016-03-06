@@ -1,6 +1,11 @@
-.modal {
-    height: auto !important;
-    width: auto !important;
+.modal.preferences,
+.modal.handle-danger {
+    height: auto;
+    width: auto;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
 }
 
 .modal-dialog,

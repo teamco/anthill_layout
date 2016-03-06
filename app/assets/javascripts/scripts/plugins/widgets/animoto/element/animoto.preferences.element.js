@@ -22,7 +22,7 @@ define([
      */
     var AnimotoPreferencesElement = function AnimotoPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<ul />')).build({
+        this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
@@ -32,9 +32,9 @@ define([
         return this;
     };
 
-    return AnimotoPreferencesElement.extend('AnimotoPreferencesElement', {
-
-
-    }, BaseElement.prototype, WidgetPreferences.prototype);
-
+    return AnimotoPreferencesElement.extend(
+        'AnimotoPreferencesElement', {},
+        BaseElement.prototype,
+        WidgetPreferences.prototype
+    );
 });

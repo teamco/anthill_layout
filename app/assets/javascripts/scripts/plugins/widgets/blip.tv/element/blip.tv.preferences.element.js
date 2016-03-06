@@ -22,7 +22,7 @@ define([
      */
     var BlipTvPreferencesElement = function BlipTvPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<ul />')).build({
+        this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
@@ -32,9 +32,9 @@ define([
         return this;
     };
 
-    return BlipTvPreferencesElement.extend('BlipTvPreferencesElement', {
-
-
-    }, BaseElement.prototype, WidgetPreferences.prototype);
-
+    return BlipTvPreferencesElement.extend(
+        'BlipTvPreferencesElement', {},
+        BaseElement.prototype,
+        WidgetPreferences.prototype
+    );
 });

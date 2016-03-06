@@ -22,7 +22,7 @@ define([
      */
     var AvatarPreferencesElement = function AvatarPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<ul />')).build({
+        this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
@@ -32,9 +32,9 @@ define([
         return this;
     };
 
-    return AvatarPreferencesElement.extend('AvatarPreferencesElement', {
-
-
-    }, BaseElement.prototype, WidgetPreferences.prototype);
-
+    return AvatarPreferencesElement.extend(
+        'AvatarPreferencesElement', {},
+        BaseElement.prototype,
+        WidgetPreferences.prototype
+    );
 });

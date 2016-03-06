@@ -22,7 +22,7 @@ define([
      */
     var ChannelTwoIlPreferencesElement = function ChannelTwoIlPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<ul />')).build({
+        this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });

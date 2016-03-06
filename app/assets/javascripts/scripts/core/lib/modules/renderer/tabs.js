@@ -23,8 +23,37 @@ define(function defineTabsRenderer() {
             return $('<ul class="nav nav-tabs" role="tablist" />');
         },
 
-        renderTabItemContent: function renderTabItemContent() {
+        /**
+         * Render Tabs content
+         * @memberOf TabsRenderer
+         * @returns {*|jQuery}
+         */
+        renderTabItemsContent: function renderTabItemContent() {
+            return $('<div class="tab-content" />');
+        },
 
+        /**
+         * Add tab item content
+         * @memberOf TabsRenderer
+         * @param {string} uuid
+         * @param content
+         * @param {boolean} [active]
+         * @returns {*|jQuery}
+         */
+        addTabItemContent: function addTabItemContent(uuid, content, active) {
+
+            var $item = $('<div role="tabpanel" class="tab-pane" />');
+
+            $item.attr({
+                id: uuid,
+                'aria-labelledby': uuid + '-tab'
+            });
+
+            if (active) {
+                $item.addClass('active');
+            }
+
+            return $item.append(content);
         },
 
         /**
@@ -36,7 +65,7 @@ define(function defineTabsRenderer() {
          */
         addTabItem: function addTabItem(tabs, item, active) {
 
-            var $item = '<li role="presentation"><a href="#"></a></li>',
+            var $item = $('<li role="presentation"><a href="#"></a></li>'),
                 uuid = this.base.lib.generator.UUID(item.uuid);
 
             $item.find('a').
@@ -44,15 +73,18 @@ define(function defineTabsRenderer() {
                 attr({
                     href: '#' + uuid,
                     id: uuid + '-tab',
-                    'aria-expanded': true,
                     'data-toggle': item.dataToggle || 'tab'
                 });
+
+            tabs.append($item);
+
+            item.$container.append(
+                this.addTabItemContent(uuid, item.content, active)
+            );
 
             if (active) {
                 $item.addClass('active');
             }
-
-            tabs.append($item);
         }
     });
 });

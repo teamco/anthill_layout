@@ -22,7 +22,7 @@ define([
      */
     var AOneHipHopPreferencesElement = function AOneHipHopPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<ul />')).build({
+        this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
@@ -32,9 +32,9 @@ define([
         return this;
     };
 
-    return AOneHipHopPreferencesElement.extend('AOneHipHopPreferencesElement', {
-
-
-    }, BaseElement.prototype, WidgetPreferences.prototype);
-
+    return AOneHipHopPreferencesElement.extend(
+        'AOneHipHopPreferencesElement', {},
+        BaseElement.prototype,
+        WidgetPreferences.prototype
+    );
 });

@@ -22,7 +22,7 @@ define([
      */
     var HeaderPreferencesElement = function HeaderPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<ul />')).build({
+        this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });

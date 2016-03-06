@@ -52,7 +52,7 @@ define([
                     ).toPoint().humanize();
 
                     nodes.push(
-                        $('<li />').
+                        $('<div />').
                             addClass([
                                 title.humanize().toClassName() + '-prefs',
                                 node.type,
@@ -66,28 +66,6 @@ define([
             }
 
             return nodes;
-        },
-
-        /**
-         * Render node
-         * @memberOf WidgetPreferences
-         * @param type
-         * @param prefs
-         * @param {string} title
-         * @param {boolean} [isOpened]
-         * @returns {*|jQuery}
-         */
-        renderPrefsNode: function renderPrefsNode(type, prefs, title, isOpened) {
-
-            return $('<li />').append(
-                this.renderFieldSet(
-                    title,
-                    $('<ul />').addClass(type).append(
-                        this.renderPrefsForm(prefs, title)
-                    ),
-                    isOpened
-                )
-            ).addClass('auto');
         },
 
         /**
@@ -220,37 +198,93 @@ define([
             };
 
             //this.$.append(
-                //this.renderLayoutInteractions([
-                //    this.renderPrefsNode(
-                //        'default',
-                //        this.mergeWidgetPrefs(
-                //            defaultPrefs,
-                //            widget.model.getConfig('preferences')
-                //        ),
-                //        'Widget'
-                //    ),
-                    //this.renderPrefsNode(
-                    //    'content', data,
-                    //    scope.name.humanize(), true
-                    //),
-                    //this.renderPrefsNode(
-                    //    'widget-interactions',
-                    //    this.renderWidgetInteractions(widget),
-                    //    'Widget Interactions'
-                    //)
-                //])
+            //this.renderLayoutInteractions([
+            //    this.renderPrefsNode(
+            //        'default',
+            //        this.mergeWidgetPrefs(
+            //            defaultPrefs,
+            //            widget.model.getConfig('preferences')
+            //        ),
+            //        'Widget'
+            //    ),
+            //this.renderPrefsNode(
+            //    'widget-interactions',
+            //    this.renderWidgetInteractions(widget),
+            //    'Widget Interactions'
+            //)
+            //])
             //);
 
-            this.$.append(
-                this.renderPrefsNode(
-                    'default',
+            var $tabs = this.renderTabs(),
+                $container = this.renderTabItemsContent(),
+                text = 'Widget';
+
+            this.$.append($tabs, $container);
+
+            this.addTabItem($tabs, {
+                uuid: 'widget',
+                text: text,
+                $container: $container,
+                content: this.renderPrefsForm(
                     this.mergeWidgetPrefs(
                         defaultPrefs,
                         widget.model.getConfig('preferences')
                     ),
-                    'Widget'
+                    text
                 )
-            );
+            }, true);
+
+            text = scope.name.humanize();
+            this.addTabItem($tabs, {
+                uuid: 'content',
+                text: text,
+                $container: $container,
+                content: this.renderPrefsForm(
+                    data, text
+                )
+            });
+
+            text = 'Widget Interactions';
+            this.addTabItem($tabs, {
+                uuid: 'widget-interactions',
+                text: text,
+                $container: $container,
+                content: this.renderPrefsForm(
+                    this.renderWidgetInteractions(widget), text
+                )
+            });
+
+            text = 'Layout';
+            this.addTabItem($tabs, {
+                uuid: 'layout',
+                text: text,
+                $container: $container,
+                content: this.renderPrefsForm(
+                    this.renderLayoutInteractions(), text
+                )
+            });
+        },
+
+        /**
+         * Render node
+         * @memberOf WidgetPreferences
+         * @param type
+         * @param prefs
+         * @param {string} title
+         * @param {boolean} [isOpened]
+         * @returns {*|jQuery}
+         */
+        renderPrefsNode: function renderPrefsNode(type, prefs, title, isOpened) {
+
+            return $('<li />').append(
+                this.renderFieldSet(
+                    title,
+                    $('<ul />').addClass(type).append(
+                        this.renderPrefsForm(prefs, title)
+                    ),
+                    isOpened
+                )
+            ).addClass('auto');
         },
 
         /**
@@ -495,22 +529,15 @@ define([
         /**
          * Render Layout interactions
          * @memberOf WidgetPreferences
-         * @param {Array} nodes
          * @returns {*}
          */
-        renderLayoutInteractions: function renderLayoutInteractions(nodes) {
+        renderLayoutInteractions: function renderLayoutInteractions() {
 
             /**
              * Define controller
              * @type {*}
              */
             var controller = this.view.controller;
-
-            /**
-             * Define interactions container
-             * @type {*|jQuery}
-             */
-            var $ul = $('<ul />').addClass('interactions');
 
             /**
              * Define dom prefs
@@ -520,21 +547,12 @@ define([
                 width = controller.getDOMPreferences('relWidth'),
                 height = controller.getDOMPreferences('relHeight');
 
-            nodes.push(
-                $('<li />').append(
-                    this.renderFieldSet(
-                        'Layout Interactions',
-                        $ul.append([
-                            this.renderPrefs('Column', column),
-                            this.renderPrefs('Width', width),
-                            this.renderPrefs('Row', row),
-                            this.renderPrefs('Height', height)
-                        ])
-                    )
-                ).addClass('auto')
-            );
-
-            return nodes;
+            return {
+                column: this.renderPrefs('Column', column),
+                width: this.renderPrefs('Width', width),
+                row: this.renderPrefs('Row', row),
+                height: this.renderPrefs('Height', height)
+            };
         },
 
         /**
@@ -546,20 +564,15 @@ define([
          */
         renderPrefs: function renderPrefs(side, value) {
 
-            /**
-             * Define move
-             * @type {*[]}
-             */
-            var $move = this.renderTextField({
+            return {
+                type: 'text',
                 name: side.toLowerCase(),
                 text: side,
                 placeholder: side,
                 value: value,
                 disabled: true,
                 visible: true
-            });
-
-            return $('<li />').append($move);
+            };
         }
 
     }, BasePreferencesElement.prototype);

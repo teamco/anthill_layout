@@ -22,7 +22,7 @@ define([
      */
     var BigmirNetPreferencesElement = function BigmirNetPreferencesElement(view, opts) {
 
-        this._config(view, opts, $('<ul />')).build({
+        this._config(view, opts, $('<div />')).build({
             $container: opts.$container,
             destroy: true
         });
@@ -32,9 +32,9 @@ define([
         return this;
     };
 
-    return BigmirNetPreferencesElement.extend('BigmirNetPreferencesElement', {
-
-
-    }, BaseElement.prototype, WidgetPreferences.prototype);
-
+    return BigmirNetPreferencesElement.extend(
+        'BigmirNetPreferencesElement', {},
+        BaseElement.prototype,
+        WidgetPreferences.prototype
+    );
 });

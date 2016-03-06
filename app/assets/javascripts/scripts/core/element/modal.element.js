@@ -192,20 +192,19 @@ define([
         },
 
         getTemplate: function getTemplate() {
-            return $(['<div class="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">',
+            return $([
+                '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">',
                 '<div class="modal-dialog" role="document">',
                 '<div class="modal-content">',
                 '<div class="modal-header alert">',
-                '<h4 class="modal-title" id="modalLabel">New message</h4>',
+                '<h4 class="modal-title" id="modalLabel"></h4>',
                 '</div>',
                 '<div class="modal-body"></div>',
                 '<div class="modal-footer">',
-                '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>',
+                //'<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>',
                 //'<button type="button" class="btn btn-primary">Send message</button>',
-                '</div>',
-                '</div>',
-                '</div>',
-                '</div>'].join(''));
+                '</div></div></div></div>'
+            ].join(''));
         },
 
         /**
@@ -224,7 +223,7 @@ define([
 
             this.setPosition({
                 $container: this.$container,
-                $item: this.$.find('.modal-content'),
+                $item: this.$,
                 position: this.position
             });
 
