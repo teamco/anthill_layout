@@ -379,7 +379,7 @@ define([
          * Generic button
          * @memberOf BaseView
          * @param {Function|ButtonElement} ButtonElement
-         * @param {$container, [$htmlElement], style, text, disabled, events} opts
+         * @param {$container, [$htmlElement], style, text, type, disabled, events} opts
          * @param {*} store
          */
         button: function button(ButtonElement, opts, store) {
@@ -402,6 +402,7 @@ define([
                         $container: button.$container,
                         $htmlElement: button.$htmlElement,
                         style: i.toDash(),
+                        type: button.type,
                         text: button.text,
                         disabled: button.disabled,
                         events: button.events

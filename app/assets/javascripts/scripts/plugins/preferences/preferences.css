@@ -138,10 +138,11 @@
 
 .modal div.event {
     float: left;
-    height: 32px;
-    width: 32px;
-    margin-right: 10px;
+    height: 52px;
+    width: 52px;
     margin-bottom: 10px;
+    padding: 10px;
+    background-color: #eee;
 }
 
 .modal div.event div {

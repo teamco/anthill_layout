@@ -197,12 +197,9 @@ define([
                 '<div class="modal-dialog" role="document">',
                 '<div class="modal-content">',
                 '<div class="modal-header alert">',
-                '<h4 class="modal-title" id="modalLabel"></h4>',
-                '</div>',
+                '<h4 class="modal-title" id="modalLabel"></h4></div>',
                 '<div class="modal-body"></div>',
                 '<div class="modal-footer separator">',
-                //'<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>',
-                //'<button type="button" class="btn btn-primary">Send message</button>',
                 '</div></div></div></div>'
             ].join(''));
         },
@@ -378,7 +375,7 @@ define([
          * @private
          */
         _get$Buttons: function _get$Buttons() {
-            return this.$.find('ul.buttons');
+            return this.$.find('.modal-footer');
         },
 
         /**

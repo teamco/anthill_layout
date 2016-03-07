@@ -173,12 +173,14 @@ define([
                         buttons: {
                             remove: {
                                 text: 'Remove',
+                                type: 'danger',
                                 events: {
                                     click: 'removeWidget'
                                 }
                             },
                             rules: {
                                 text: 'Rules',
+                                type: 'info',
                                 events: {
                                     click: 'rules' + this.scope.name
                                 }

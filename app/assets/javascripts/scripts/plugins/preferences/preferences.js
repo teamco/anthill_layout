@@ -59,18 +59,21 @@ define(['jquery'], function defineBasePreferencesElement($) {
             var buttons = $.extend(true, {}, {
                 locate: {
                     text: 'Locate',
+                    type: 'default',
                     events: {
                         click: 'locate' + this.scope.name
                     }
                 },
                 approve: {
                     text: 'OK',
+                    type: 'success',
                     events: {
                         click: 'approveUpdatePreferences'
                     }
                 },
                 reject: {
                     text: 'Cancel',
+                    type: 'default',
                     events: {
                         click: ['rejectModalEvent']
                     }
