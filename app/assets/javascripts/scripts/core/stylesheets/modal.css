@@ -8,6 +8,10 @@
     bottom: auto;
 }
 
+.modal .ui-draggable-handle {
+    cursor: move;
+}
+
 .modal-dialog,
 .modal-dialog .modal-header {
     margin: 0 !important;
