@@ -235,11 +235,16 @@ define([
             function _triggerRules() {
 
                 /**
+                 * Fetch uuid
+                 * @type {string}
+                 */
+                var rulesUuid = widget.model.getUUID() + '-widget-rules';
+
+                /**
                  * Define $item
                  * @type {WidgetRulesContentElement}
                  */
-                var $item = this.view.elements.items[
-                widget.model.getUUID() + '-widget-rules'];
+                var $item = this.view.elements.items[rulesUuid];
 
                 $item.$.trigger('click.rules');
             }
