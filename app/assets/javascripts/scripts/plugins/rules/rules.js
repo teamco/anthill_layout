@@ -47,29 +47,26 @@ define(function defineBaseRules() {
             var buttons = $.extend(true, {}, {
                 locate: {
                     text: 'Locate',
+                    type: 'default',
                     events: {
                         click: 'locate' + this.scope.name
                     }
                 },
                 approve: {
                     text: 'OK',
+                    type: 'success',
                     events: {
                         click: 'approveUpdateRules'
                     }
                 },
                 reject: {
                     text: 'Cancel',
+                    type: 'default',
                     events: {
                         click: 'rejectModalEvent'
                     }
                 }
             }, opts.buttons || {});
-
-            /**
-             * Define page
-             * @type {Page}
-             */
-            var page = this.controller.getPage();
 
             this.modalDialog({
                 style: opts.style,

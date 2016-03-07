@@ -247,10 +247,6 @@ body.loading > .uil-ripple-css:after {
   animation-delay: 1s;
 }
 
-.open > .dropdown-menu {
-  display: block;
-}
-
 .user-menu > .dropdown-menu {
   margin: 0;
   border-radius: 0;
@@ -311,10 +307,6 @@ body.loading > .uil-ripple-css:after {
 .user-menu > .dropdown-menu > .user-footer:after {
   content: " ";
   display: table;
-}
-
-.pull-left {
-  float: left;
 }
 
 .pull-right {

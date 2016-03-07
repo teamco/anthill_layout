@@ -64,8 +64,6 @@ define([
                 this.elements.items = {};
                 this.elements.$widgetrules.empty();
 
-                this.renderHeader(Header, 'Widget Rules');
-
                 this.renderFilter(
                     this.updateFooterContent.bind(this)
                 );
@@ -80,7 +78,7 @@ define([
                          */
                         var $item = new WidgetRulesContentElement(this, {
                             style: 'content',
-                            id: [
+                            uuid: [
                                 data[index].model.getConfig('uuid'),
                                 this.scope.name.toDash()
                             ].join('-'),
@@ -164,6 +162,7 @@ define([
                         buttons: {
                             preferences: {
                                 text: 'Preferences',
+                                type: 'info',
                                 events: {
                                     click: 'preferences' + this.scope.name
                                 }

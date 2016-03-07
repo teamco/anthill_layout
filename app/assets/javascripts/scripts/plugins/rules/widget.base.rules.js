@@ -33,10 +33,22 @@ define([
         /**
          * Define default widget rules
          * @memberOf BaseWidgetRules
-         * @type {{
-         * }}
+         * @type {*}
          */
-        defaultRules: {
+        defaultRules: {},
+
+        /**
+         * Get rules template
+         * @memberOf BaseWidgetRules
+         * @param {string} text
+         * @private
+         */
+        getTemplate: function getTemplate(text) {
+            return $([
+                '<div class="input-group">',
+                '<span class="input-group-addon">', text, '</span>',
+                '</div>'
+            ].join(''));
         },
 
         /**
@@ -86,30 +98,32 @@ define([
                 }
             );
 
-            var $li = $('<li />'),
-                $ul = $('<ul />').addClass('button-add-rules');
+            var text = 'Widget rules';
 
-            $li.append(
-                this.renderCombobox(
-                    rulesList,
-                    rulesList[0].value,
-                    'Widget rules',
-                    'widgetRule', {
-                        type: 'click.transferValue',
-                        callback: this._transferValue.bind({
-                            scope: this,
-                            button: 'addWidgetRule'
-                        })
-                    },
-                    true
+            this.$.append(
+                this.getTemplate(text).append(
+                    this.renderCombobox(
+                        rulesList,
+                        rulesList[0].value,
+                        text,
+                        'widgetRule', {
+                            type: 'click.transferValue',
+                            callback: this._transferValue.bind({
+                                scope: this,
+                                button: 'addWidgetRule'
+                            })
+                        },
+                        true
+                    )
                 )
-            ).append($ul);
+            );
 
             this.view.button(
                 ButtonElement, {
                     addWidgetRule: {
                         text: 'Publish',
-                        $container: $ul,
+                        type: 'info',
+                        $container: this.$.find('.input-group:last'),
                         events: {
                             click: 'addWidgetRule'
                         }
@@ -117,8 +131,6 @@ define([
                 },
                 this.$buttons
             );
-
-            this.$.append($li);
         },
 
         /**
@@ -156,31 +168,33 @@ define([
                 }
             );
 
-            var $li = $('<li />'),
-                $ul = $('<ul />').addClass('button-add-rules'),
-                cname = this.view.scope.name;
+            var cname = this.view.scope.name,
+                text = [cname, 'rules'].join(' ');
 
-            $li.append(
-                this.renderCombobox(
-                    rulesList,
-                    rulesList[0].value,
-                    [cname, 'rules'].join(' '),
-                    [cname, 'Rule'].join(''), {
-                        type: 'click.transferValue',
-                        callback: this._transferValue.bind({
-                            scope: this,
-                            button: 'addContentRule'
-                        })
-                    },
-                    true
+            this.$.append(
+                this.getTemplate(text).append(
+                    this.renderCombobox(
+                        rulesList,
+                        rulesList[0].value,
+                        text,
+                        [cname, 'Rule'].join(''), {
+                            type: 'click.transferValue',
+                            callback: this._transferValue.bind({
+                                scope: this,
+                                button: 'addContentRule'
+                            })
+                        },
+                        true
+                    )
                 )
-            ).append($ul);
+            );
 
             this.view.button(
                 ButtonElement, {
                     addContentRule: {
                         text: 'Publish',
-                        $container: $ul,
+                        type: 'info',
+                        $container: this.$.find('.input-group:last'),
                         events: {
                             click: [
                                 'add',
@@ -192,8 +206,6 @@ define([
                 },
                 this.$buttons
             );
-
-            this.$.append($li);
         },
 
         /**
@@ -253,19 +265,18 @@ define([
 
                             for (var i = 0, l = rules.length; i < l; i++) {
 
+                                var $checkbox = this.renderCheckbox({
+                                    name: [type, rules[i]].join(':'),
+                                    text: rules[i],
+                                    checked: $.inArray(rules[i], checked) !== -1,
+                                    disabled: false,
+                                    visible: true
+                                });
+
+                                $checkbox.find('.input-group-addon').append(type);
+
                                 $inner.append(
-                                    $('<li />').append(
-                                        this.renderCheckbox({
-                                            name: [type, rules[i]].join(':'),
-                                            text: [
-                                                '<span>', type, '</span>: ',
-                                                rules[i]
-                                            ].join(''),
-                                            checked: $.inArray(rules[i], checked) !== -1,
-                                            disabled: false,
-                                            visible: true
-                                        })
-                                    )
+                                    $('<li />').append($checkbox)
                                 );
                             }
                         }
@@ -277,13 +288,14 @@ define([
 
                         $('<li />').append(
                             $('<fieldset />').append([
-                                $('<legend />').text(published[index].type).
-                                    on('click.toggle', this.toggleFieldset.bind(this)).attr({
-                                        title: index
-                                    }),
+                                $('<legend />').html([
+                                    '<span class="glyphicon glyphicon-chevron-up"></span>',
+                                    published[index].type, ': ',
+                                    index.replace(/-content/, '')
+                                ].join('')).on('click.toggle', this.toggleFieldset.bind(this)),
                                 $inner
                             ])
-                        ).addClass('auto').appendTo($ul);
+                        ).appendTo($ul);
                     }
                 }
             }
@@ -291,15 +303,13 @@ define([
             if (render) {
 
                 this.$.append(
-                    $('<li />').append(
-                        $('<fieldset />').append([
-                            $('<legend />').text(title).
-                                on('click.toggle', this.toggleFieldset.bind(this)).attr({
-                                    title: title
-                                }),
-                            $ul
-                        ])
-                    ).addClass('auto')
+                    $('<fieldset />').append([
+                        $('<legend />').text(title).
+                            on('click.toggle', this.toggleFieldset.bind(this)).attr({
+                                title: title
+                            }),
+                        $ul
+                    ])
                 );
             }
         },
@@ -340,9 +350,9 @@ define([
              * Get $ul
              * @type {*|jQuery|HTMLElement}
              */
-            var $ul = $('div.html ul.publish-rules', $container);
+            var $ul = $('ul.publish-rules', $container);
 
-            if ($ul.length === 0) {
+            if (!$ul.length) {
 
                 /**
                  * Set $ul
@@ -356,7 +366,7 @@ define([
                  */
                 var title = 'Published events';
 
-                $('div.html', $container).append(
+                $container.append(
                     $('<fieldset />').append([
                         $('<legend />').text(title).
                             on('click.toggle', this.toggleFieldset.bind(this)).attr({
@@ -386,10 +396,11 @@ define([
             $ul.append(
                 $('<li />').attr({
                     value: value
-                }).append([
-                    $('<span />').text(type + ': '),
-                    rule
-                ])
+                }).append(
+                    this.getTemplate(type).append(
+                        '<input value="' + rule + '" disabled="disabled" type="text" class="form-control" placeholder="Rule">'
+                    )
+                )
             );
         }
 

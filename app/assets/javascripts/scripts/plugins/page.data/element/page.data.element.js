@@ -31,7 +31,5 @@ define([
     };
 
     return PageDataElement.extend('PageDataElement', {
-
     }, BaseElement.prototype);
-
 });

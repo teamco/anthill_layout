@@ -617,7 +617,7 @@ define([
 
             $rules.addRule(
                 rule, type,
-                referrer.view.elements.$modal.$
+                referrer.view.elements.$modal.get$Body()
             );
         }
 

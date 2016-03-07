@@ -215,8 +215,8 @@ define([
 
             this.setModalType(this.type);
             this.setHeader();
-            this.setText(this.text, this._get$Body());
-            this.setHtml(this.html, this._get$Body());
+            this.setText(this.text, this.get$Body());
+            this.setHtml(this.html, this.get$Body());
 
             this.setPosition({
                 $container: this.$container,
@@ -354,7 +354,7 @@ define([
          * @returns {*}
          * @private
          */
-        _get$Body: function _get$Body() {
+        get$Body: function get$Body() {
             return this.$.find('div.modal-body');
         },
 

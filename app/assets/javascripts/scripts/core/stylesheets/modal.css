@@ -1,4 +1,5 @@
 .modal.preferences,
+.modal.rules,
 .modal.page-modal,
 .modal.handle-danger {
     height: auto;
@@ -33,4 +34,10 @@
 
 .modal button.locate {
     border: 2px solid lightcoral;
+}
+
+.modal-dialog .modal-header .close {
+    padding: 0 3px;
+    overflow: hidden;
+    color: #333;
 }

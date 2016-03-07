@@ -31,7 +31,5 @@ define([
     };
 
     return WidgetRulesElement.extend('WidgetRulesElement', {
-
     }, BaseElement.prototype);
-
 });
