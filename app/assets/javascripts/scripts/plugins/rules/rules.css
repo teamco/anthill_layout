@@ -2,7 +2,7 @@
     overflow: visible;
 }
 
-.modal .open > .dropdown-menu {
+.modal.rules .open > .dropdown-menu {
     max-height: 300px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -62,7 +62,7 @@
     list-style: none;
 }
 
-.modal .nav > li > a {
+.modal.rules .nav > li > a {
     padding: 8px 10px;
     border-radius: 0 5px 5px 0;
     min-width: 300px;
@@ -70,15 +70,15 @@
     border: 1px solid #dfdfdf;
 }
 
-.modal .nav > li > a .caret {
+.modal.rules .nav > li > a .caret {
     margin-top: 8px;
 }
 
-.modal ul[class*="-rule"] {
+.modal.rules ul[class*="-rule"] {
     float: left;
 }
 
-.modal ul[class*="-rule"] + button {
+.modal.rules ul[class*="-rule"] + button {
     margin-bottom: 10px;
     clear: both;
 }

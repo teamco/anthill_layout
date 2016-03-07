@@ -10,6 +10,12 @@
     bottom: auto;
 }
 
+.modal .modal-body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 550px;
+}
+
 .modal .ui-draggable-handle {
     cursor: move;
 }
