@@ -405,7 +405,7 @@ define([
             function _activateRange(activate) {
 
                 // Get range inputs
-                var $range = $('li.range input', $img.parents('ul:first')),
+                var $range = $('input[type="range"]'),
                     i = 0, l = $range.length;
 
                 $range.prop({disabled: !activate});
@@ -418,18 +418,10 @@ define([
                 }
             }
 
-            var $range = $('li.range', $img.parents('ul:first')),
-                $element = this;
+            var $element = this;
 
             $img.on('load', function _load() {
-
-                // Get border width
-                var border = parseInt($range.css('borderWidth'), 10) || 0;
-
-                $img.show().parent().css({
-                    marginTop: -($range.outerHeight() + border * 2) * $range.length
-                });
-
+                $img.show();
                 _activateRange(true);
             });
 

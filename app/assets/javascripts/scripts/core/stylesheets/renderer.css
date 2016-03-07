@@ -1,118 +1,3 @@
-.modal-dialog.preferences div.html > ul li.combobox {
-    overflow: visible;
-}
-
-div.combo-box {
-    display: none;
-    float: right;
-    width: 50%;
-    position: relative;
-}
-
-div.combo-box > ul {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    border-radius: 2px;
-    height: 24px;
-    line-height: 22px;
-    float: right;
-    overflow: hidden;
-    transition: width 0.5s;
-    -webkit-transition: width 0.5s;
-    -moz-box-shadow: inset 0 0 5px #ccc;
-    -webkit-box-shadow: inset 0 0 5px #ccc;
-    box-shadow: inset 0 0 5px #ccc;
-}
-
-div.combo-box.disabled > ul {
-    color: #ccc;
-}
-
-div.combo-box-arrow {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 12px;
-    height: 20px;
-    cursor: pointer;
-}
-
-div.combo-box-arrow:after {
-    content: "\25BC";
-    color: #333;
-    position: absolute;
-    height: 100%;
-    padding-top: 50%;
-    right: 5px;
-    font-size: 10px;
-}
-
-div.combo-box:hover .combo-box-arrow:after {
-    color: #006dcc;
-}
-
-div.combo-box.open div.combo-box-arrow:after {
-    content: "\25B2";
-    z-index: 10;
-}
-
-div.combo-box li {
-    background-color: transparent;
-    display: none;
-    width: 100%;
-    padding: 0 3px !important;
-    margin: 0 !important;
-    cursor: pointer;
-    border-bottom: 1px solid #ccc;
-    line-height: 23px;
-    font-size: 12px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    min-height: 20px !important;
-}
-
-div.combo-box li.selected {
-    display: block;
-    border-bottom: none;
-}
-
-div.combo-box.open ul {
-    overflow: auto;
-    max-height: 200px;
-    height: auto;
-    position: absolute;
-    border: 1px solid #999;
-    box-shadow: 3px 3px 5px #999;
-    z-index: 10;
-}
-
-div.combo-box.open li {
-    display: block;
-    margin-bottom: 0;
-}
-
-div.combo-box.open li:hover {
-    background-color: #ffff99;
-}
-
-div.combo-box.open li:last-child,
-div.combo-box.open li:last-child:hover {
-    border: none;
-}
-
-div.combo-box.open li.selected,
-div.combo-box.open li.selected:hover {
-    background-color: #fbcb09;
-}
-
-div.combo-box input.hidden {
-    display: none;
-}
-
 .anthill textarea.validate,
 .anthill input[type="text"].validate {
     border-color: #F08080;
@@ -137,34 +22,29 @@ div.combo-box input.hidden {
     clear: both;
     background-color: #fff;
     float: left;
-    margin: 3px 6px;
+    margin: 3px 0;
     white-space: nowrap;
-    padding: 3px;
-    -moz-box-shadow: inset 0 0 5px #ccc;
-    -webkit-box-shadow: inset 0 0 5px #ccc;
-    box-shadow: inset 0 0 5px #ccc;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    width: 325px;
+    width: 300px;
+    position: relative;
 }
 
-.range label {
-    margin-right: 10px;
-    width: 65px;
+.range > span {
+    text-align: left;
 }
 
-.anthill input[type="range"] {
-    -webkit-appearance: none;
-    width: 50%;
-    height: 7px;
-    border: 1px solid #bdc3c7;
-    border-radius: 8px;
+.range > div {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+}
+
+.range > div input[type="number"] {
+    width: 50px;
+    position: absolute;
+    right: 25px;
     background-color: #fff;
 }
 
-.anthill input[type="range"] + input[type="number"] {
-    width: 50px;
-    left: 0;
-    position: relative;
-    margin-right: 2px;
+.range input[type="range"] {
+    margin-top: -5px;
 }

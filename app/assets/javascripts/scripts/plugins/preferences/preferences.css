@@ -109,6 +109,7 @@
 
 .modal .input-group-addon:first-child {
     min-width: 150px;
+    text-transform: capitalize;
 }
 
 .modal .checkbox,

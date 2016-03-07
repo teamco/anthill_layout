@@ -38,6 +38,10 @@ define(function defineLibCss() {
          */
         defineCss: function defineCss(type, $element, value) {
 
+            if (!$element[0]) {
+                return false;
+            }
+
             /**
              * Define update css
              * @private

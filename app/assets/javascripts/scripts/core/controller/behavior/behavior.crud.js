@@ -101,8 +101,8 @@ define([
             }
 
             $.each(items, function each(uuid, item) {
-                this.approveItemDestroy(item, count);
-            }.bind(this));
+                scope.controller.approveItemDestroy(item, count);
+            });
 
             scope.observer.publish(
                 scope.eventmanager.eventList.afterDestroyItems
@@ -199,6 +199,7 @@ define([
          */
         afterDestroyItems: function afterDestroyItems() {
             this.logger.debug('After destroy items');
+            this.controller.store();
         }
 
     }, AntHill.prototype);

@@ -49,7 +49,7 @@ define([
             imageUrl: {
                 type: 'textarea',
                 disabled: false,
-                value: undefined,
+                value: 'http://www.femoticons.net/images/posts/cool_sunglasses_emoticon.jpg',
                 visible: true,
                 monitor: {
                     events: ['blur.preview'],

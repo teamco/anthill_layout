@@ -100,13 +100,16 @@ define([
                 items: widgets,
                 type: 'warning',
                 title: 'Remove widgets',
-                text: 'Are you sure want to destroy:',
-                html: this.elements.$page.getItemsList(widgets),
+                html: [
+                    '<p>Are you sure want to destroy:</p>',
+                    this.elements.$page.getItemsList(widgets)
+                ].join(''),
                 cover: true,
                 autoclose: true,
                 buttons: {
                     approve: {
                         text: 'OK',
+                        type: 'success',
                         events: {
                             click: 'approveItemsDestroy'
                         }

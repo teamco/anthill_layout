@@ -197,24 +197,6 @@ define([
                 }
             };
 
-            //this.$.append(
-            //this.renderLayoutInteractions([
-            //    this.renderPrefsNode(
-            //        'default',
-            //        this.mergeWidgetPrefs(
-            //            defaultPrefs,
-            //            widget.model.getConfig('preferences')
-            //        ),
-            //        'Widget'
-            //    ),
-            //this.renderPrefsNode(
-            //    'widget-interactions',
-            //    this.renderWidgetInteractions(widget),
-            //    'Widget Interactions'
-            //)
-            //])
-            //);
-
             var $tabs = this.renderTabs(),
                 $container = this.renderTabItemsContent(),
                 text = 'Widget';

@@ -9,18 +9,11 @@
     transform-origin: center;
 }
 
-.modal-dialog.widget-prefs div.html > ul li.image-preview {
-    width: 40%;
-    float: left;
-}
-
-.modal-dialog.widget-prefs .image-preview img {
-    max-width: 200px;
+.modal .image-preview {
+    width: 210px;
+    border: 5px solid #fff;
     margin-left: 10px;
+    margin-top: 5px;
     display: none;
     transform-origin: center;
-}
-
-.modal-dialog.image {
-    min-width: 660px;
 }

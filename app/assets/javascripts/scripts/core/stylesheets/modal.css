@@ -27,6 +27,10 @@
     list-style: none;
 }
 
+.modal-dialog ul.remove {
+    list-style: decimal inside;
+}
+
 .modal button.locate {
     border: 2px solid lightcoral;
 }

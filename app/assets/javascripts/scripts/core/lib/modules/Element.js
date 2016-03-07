@@ -32,7 +32,7 @@ define([
          * Element config before build
          * @memberOf BaseElement
          * @param {BaseView} view
-         * @param {{[style]: string, [id]: boolean, [css], [events], [opacity], [id]: boolean}} opts
+         * @param {{[style]: string, [uuid], [id]: boolean, [css], [events], [opacity], [id]: boolean}} opts
          * @param $html
          * @returns {*}
          * @protected
@@ -60,7 +60,7 @@ define([
              * @property BaseElement
              * @type {String}
              */
-            this.id = view.renderUUID();
+            this.id = view.renderUUID(opts.uuid);
 
             /**
              * Define disabled
@@ -476,8 +476,13 @@ define([
         destroy: function destroy() {
 
             // Get scope
-            var element = this,
-                scope = element.view.scope;
+            var element = this;
+
+            if (!element.view) {
+                return false;
+            }
+
+            var scope = element.view.scope;
 
             if (element.$) {
                 scope.logger.debug('Destroy element', element);

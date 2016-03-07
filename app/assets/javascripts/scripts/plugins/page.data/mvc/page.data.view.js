@@ -79,7 +79,7 @@ define([
                          */
                         var $item = new PageDataContentElement(this, {
                             style: 'content',
-                            id: [
+                            uuid: [
                                 data[index].model.getConfig('uuid'),
                                 this.scope.name.toDash()
                             ].join('-'),

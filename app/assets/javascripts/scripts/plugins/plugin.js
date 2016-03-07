@@ -180,6 +180,10 @@ define([
          */
         locateElement: function locateElement($element, e) {
 
+            if (!$element) {
+                return false;
+            }
+
             /**
              * Hide border on locate element
              * @private

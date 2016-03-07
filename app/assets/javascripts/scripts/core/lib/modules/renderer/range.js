@@ -133,11 +133,15 @@ define([
 
             $input.val(opts.value);
 
-            return [
-                this.renderLabel(uuid, opts.text, 'text', opts.visible),
-                $input,
+            var $unit = $('<div />').append([
                 numberField[1],
                 opts.unit || ''
+            ]);
+
+            return [
+                this.renderLabel(uuid, opts.text, 'text', opts.visible),
+                $unit,
+                $input
             ];
         }
     });

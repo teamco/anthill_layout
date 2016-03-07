@@ -43,13 +43,9 @@ define([
             renderImagePlaceholder: function renderImagePlaceholder() {
 
                 // Get image prefs container
-                var $container = $('legend:contains(Image)', this.$).next();
+                var $container = $('#content', this.$);
 
-                $container.append([
-                    '<li class="image-preview">',
-                    '<img />',
-                    '</li>'
-                ].join(''));
+                $container.append('<img class="image-preview" />');
 
                 // Update image
                 var $url = $('textarea[name="imageUrl"]', $container);
@@ -73,10 +69,15 @@ define([
                  * Get preview image
                  * @type {*|jQuery|HTMLElement}
                  */
-                var $img = $('li.image-preview img', $modal.$),
+                var $img = $('img.image-preview', $modal.$),
                     target = event.target,
                     view = this.view,
                     $item = view.get$item();
+
+                if (!target) {
+                    view.scope.logger.debug('Undefined target', event);
+                    return false;
+                }
 
                 // Get callback
                 var callback = 'update' + target.name.replace(/image/, '');
