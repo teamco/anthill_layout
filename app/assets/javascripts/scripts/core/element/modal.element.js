@@ -200,7 +200,7 @@ define([
                 '<h4 class="modal-title" id="modalLabel"></h4>',
                 '</div>',
                 '<div class="modal-body"></div>',
-                '<div class="modal-footer">',
+                '<div class="modal-footer separator">',
                 //'<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>',
                 //'<button type="button" class="btn btn-primary">Send message</button>',
                 '</div></div></div></div>'

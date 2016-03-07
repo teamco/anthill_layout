@@ -2,7 +2,7 @@
  * Created by teamco on 7/10/14.
  */
 
-define([], function defineTextAreaRenderer(){
+define(function defineTextAreaRenderer() {
 
     /**
      * Define TextAreaRenderer
@@ -28,6 +28,7 @@ define([], function defineTextAreaRenderer(){
          *      [disabled]: boolean,
          *      [validate]: {mask: RegExp, blank: boolean}
          * }} opts
+         * @extends AntHill
          * @returns {*[]}
          */
         renderTextArea: function renderTextArea(opts) {
@@ -39,32 +40,18 @@ define([], function defineTextAreaRenderer(){
             var uuid = this.base.lib.generator.UUID() + '-textarea',
                 $input;
 
-            if (this.base.defineBoolean(opts.disabled, false, true)) {
-
-                /**
-                 * Define $input
-                 * @type {*|jQuery}
-                 */
-                $input = $('<p />').attr({
-                    name: opts.name,
-                    id: uuid,
-                    title: opts.value
-                }).addClass('textarea').text(opts.value);
-
-            } else {
-
-                /**
-                 * Define $input
-                 * @type {*|jQuery}
-                 */
-                $input = $('<textarea />').attr({
-                    name: opts.name,
-                    id: uuid,
-                    placeholder: opts.placeholder,
-                    readonly: this.base.defineBoolean(opts.readonly, false, true),
-                    title: opts.value
-                }).val(opts.value).addClass(opts.style);
-            }
+            /**
+             * Define $input
+             * @type {*|jQuery}
+             */
+            $input = $('<textarea class="form-control" />').attr({
+                name: opts.name,
+                id: uuid,
+                placeholder: opts.placeholder,
+                disabled: this.base.defineBoolean(opts.disabled, false, true),
+                readonly: this.base.defineBoolean(opts.readonly, false, true),
+                title: opts.value
+            }).val(opts.value).addClass(opts.style);
 
             this.initMonitor($input, opts.monitor);
             this.checkVisibility($input, opts.visible);

@@ -54,11 +54,9 @@ define(function defineTextFieldRenderer() {
             }).val(opts.value);
 
             var labelClass = [opts.style, opts.visible ? '' : 'hide'].join(' '),
-                $template = $([
-                    '<div class="input-group input-group-sm">',
-                    '<span id="', uuid, '" class="input-group-addon ', labelClass, '">', opts.text, '</span>',
-                    '</div>'
-                ].join(''));
+                $template = $('<div class="input-group input-group-sm" />').append(
+                    this.renderLabel(uuid, opts.text, labelClass, opts.visible)
+                );
 
             this.initMonitor($input, opts.monitor);
             this.checkVisibility($input, opts.visible);

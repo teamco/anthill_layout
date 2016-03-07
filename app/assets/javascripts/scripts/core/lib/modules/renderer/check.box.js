@@ -2,7 +2,7 @@
  * Created by teamco on 7/10/14.
  */
 
-define(function defineCheckBoxRenderer(){
+define(function defineCheckBoxRenderer() {
 
     /**
      * Define CheckBoxRenderer
@@ -11,7 +11,7 @@ define(function defineCheckBoxRenderer(){
      * @extends AntHill
      * @constructor
      */
-    var CheckBoxRenderer = function CheckBoxRenderer(){
+    var CheckBoxRenderer = function CheckBoxRenderer() {
     };
 
     return CheckBoxRenderer.extend('CheckBoxRenderer', {
@@ -27,7 +27,7 @@ define(function defineCheckBoxRenderer(){
          *      [disabled]: boolean,
          *      [monitor]
          * }} opts
-         * @returns {*[]}
+         * @returns {*}
          */
         renderCheckbox: function renderCheckbox(opts) {
 
@@ -59,10 +59,16 @@ define(function defineCheckBoxRenderer(){
             this.initMonitor($input, opts.monitor);
             this.checkVisibility($input, opts.visible);
 
-            return [
-                $input,
-                this.renderLabel(uuid, opts.text, 'text', opts.visible)
-            ];
+            var $template = $([
+                '<div class="input-group">',
+                '<span class="input-group-addon"></span>',
+                '<input type="text" class="form-control" disabled="disabled" value="', opts.text, '">',
+                '</div>'
+            ].join(''));
+
+            $template.find('.input-group-addon').append($input);
+
+            return $template;
         }
     });
 });
