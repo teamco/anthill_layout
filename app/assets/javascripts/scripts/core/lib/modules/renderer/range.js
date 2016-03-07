@@ -139,7 +139,7 @@ define([
             ]);
 
             return [
-                this.renderLabel(uuid, opts.text, 'text', opts.visible),
+                this.renderLabel(undefined, opts.text, 'text', opts.visible),
                 $unit,
                 $input
             ];

@@ -158,7 +158,7 @@ define([
             },
             imageInvert: {
                 type: 'range',
-                disabled: false,
+                disabled: true,
                 visible: true,
                 value: 0.1,
                 min: 0.1,

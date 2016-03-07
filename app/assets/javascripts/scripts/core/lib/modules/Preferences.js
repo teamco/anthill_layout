@@ -117,7 +117,7 @@ define(function defineBasePreferences() {
                  * Check if prefs in content
                  * @type {boolean}
                  */
-                var isContentPrefs = input.parentNode.className.replace(/-/g, '').indexOf(cname) !== -1;
+                var isContentPrefs = $(input).closest('div[class*="-prefs"]')[0].className.indexOf(cname) !== -1;
 
                 var event = isContentPrefs ?
                     scope.eventmanager.eventList.transferContentPreferences :
