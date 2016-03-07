@@ -133,6 +133,10 @@
     margin-top: -5px;
 }
 
+.modal .checkbox input[type="text"] {
+    text-transform: capitalize;
+}
+
 .modal .separator {
     clear: both;
 }
