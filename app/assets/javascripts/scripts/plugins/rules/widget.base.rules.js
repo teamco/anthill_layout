@@ -291,7 +291,7 @@ define([
                                 $('<legend />').attr({'data-uuid': index}).html([
                                     '<span class="glyphicon glyphicon-chevron-up"></span>',
                                     published[index].type, ': ',
-                                    index
+                                    index.replace(/-content/, '')
                                 ].join('')).on('click.toggle', this.toggleFieldset.bind(this)),
                                 $inner
                             ])
