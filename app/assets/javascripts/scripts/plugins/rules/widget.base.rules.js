@@ -288,10 +288,10 @@ define([
 
                         $('<li />').append(
                             $('<fieldset />').append([
-                                $('<legend />').html([
+                                $('<legend />').attr({'data-uuid': index}).html([
                                     '<span class="glyphicon glyphicon-chevron-up"></span>',
                                     published[index].type, ': ',
-                                    index.replace(/-content/, '')
+                                    index
                                 ].join('')).on('click.toggle', this.toggleFieldset.bind(this)),
                                 $inner
                             ])

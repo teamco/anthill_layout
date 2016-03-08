@@ -1,4 +1,5 @@
-.modal-open .modal.rules {
+.modal-open .modal.rules,
+.modal.rules .modal-body {
     overflow: visible;
 }
 

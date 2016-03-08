@@ -63,7 +63,7 @@ define([
                      * Get uuid
                      * @type {string}
                      */
-                    var uuid = $('legend', subscribed[i1]).attr('title');
+                    var uuid = $('legend', subscribed[i1]).attr('data-uuid');
 
                     this.updateEventSubscribes(events, event, uuid);
                 }

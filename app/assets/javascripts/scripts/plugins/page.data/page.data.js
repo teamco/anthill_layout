@@ -104,9 +104,9 @@ define([
             this.eventmanager.eventList.updateTranslations,
             ['plugins/page.data/translations/en-us']
         );
+
+        this.controller.subscribeRefreshContent();
     };
 
-    return PageData.extend('PageData', {
-
-    }, AntHill.prototype);
+    return PageData.extend('PageData', {}, AntHill.prototype);
 });
