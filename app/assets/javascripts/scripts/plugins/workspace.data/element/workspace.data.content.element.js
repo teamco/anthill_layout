@@ -31,10 +31,21 @@ define([
          */
         this.index = opts.counter;
 
+        this.getTemplate(opts.data);
+
         return this.init(opts.data);
     };
 
     return WorkspaceDataContentElement.extend('WorkspaceDataContentElement', {
+
+        /**
+         * Define inner content
+         * @memberOf WorkspaceDataContentElement
+         */
+        getTemplate: function getTemplate(page) {
+            $('<a class="page" data-uuid="' + page.model.getUUID() + '" href="#" />').
+                appendTo(this.$);
+        },
 
         /**
          * Define init
@@ -107,14 +118,14 @@ define([
             this.renderTooltip({
                 title: page.model.getItemTitle(),
                 description: [
-                        preferences.description || '', '<br />',
+                    preferences.description || '', '<br />',
                     '<span>uuid: </span>', page.model.getUUID(), '<br /><br />',
                     '<span>items: </span>', items, '<br />',
                     '<span>index: </span>', (
-                        page.model.getConfig('preferences').order ||
-                        page.model.getConfig('order'))
+                    page.model.getConfig('preferences').order ||
+                    page.model.getConfig('order'))
                 ].join(''),
-                $container: this
+                selector: this.$
             });
         },
 

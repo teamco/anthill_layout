@@ -422,7 +422,7 @@ define([
                         this.renderTooltip({
                             title: title,
                             description: preferences.description || '',
-                            $container: {$: $li}
+                            selector: $li
                         });
 
                         list.push($li);

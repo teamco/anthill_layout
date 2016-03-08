@@ -56,8 +56,6 @@ define(
                         return false;
                     }
 
-                    this.renderHeader(Header, 'Workspace Pages');
-
                     /**
                      * Define WorkspaceData element
                      * @type {WorkspaceDataElement}
@@ -84,8 +82,6 @@ define(
 
                     this.elements.$workspacedata.empty();
                     this.renderCreatePage();
-
-                    this.renderHeader(Header, 'Workspace Pages');
 
                     this.renderFilter(
                         this.updateFooterContent.bind(this)
@@ -124,7 +120,7 @@ define(
                          * @type {WorkspaceDataContentElement}
                          */
                         var $item = new WorkspaceDataContentElement(this, {
-                            style: 'content' + current + show,
+                            style: 'page content' + current + show,
                             id: [
                                 data[i].model.getConfig('uuid'),
                                 'workspace-data-view'
@@ -180,26 +176,27 @@ define(
                  * Render create page wizard
                  * @memberOf WorkspaceDataView
                  * @param {{
-             *      workspace: Workspace,
-             *      style: string,
-             *      [type]: string,
-             *      title: string,
-             *      text: string,
-             *      $html
-             * }} opts
+                 *      workspace: Workspace,
+                 *      style: string,
+                 *      [type]: string,
+                 *      title: string,
+                 *      text: string,
+                 *      $html
+                 * }} opts
                  */
                 renderCreatePageWizard: function renderCreatePageWizard(opts) {
 
                     /**
                      * Define buttons
                      * @type {{
-                 *      approve: {text: string, events: {click: string}},
-                 *      reject: {text: string, events: {click: string[]}}
-                 * }}
+                     *      approve: {text: string, events: {click: string}},
+                     *      reject: {text: string, events: {click: string[]}}
+                     * }}
                      */
                     var buttons = {
                         approve: {
                             text: 'OK',
+                            type: 'success',
                             events: {
                                 click: 'approveCreatePage'
                             }
@@ -211,12 +208,6 @@ define(
                             }
                         }
                     };
-
-                    /**
-                     * Define current page
-                     * @type {Page}
-                     */
-                    var page = this.controller.getPage();
 
                     this.modalDialog({
                         style: opts.style,
@@ -246,6 +237,7 @@ define(
                         buttons: {
                             destroyPageWidgets: {
                                 text: 'Destroy widgets',
+                                type: 'danger',
                                 events: {
                                     click: 'destroyPageWidgets'
                                 }

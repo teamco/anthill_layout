@@ -43,35 +43,14 @@ define([
 
             this.$.sortable({
 
-                containment: this.$container.$,
+                containment: this.$container,
                 cursor: 'move',
                 distance: 5,
-                items: '> li.content',
+                items: '> li.page',
                 opacity: 0.8,
                 tolerance: 'pointer',
-
-                start: this._startSortable.bind(this),
                 stop: this._stopSortable.bind(this)
             });
-        },
-
-        /**
-         * Start sortable
-         * @memberOf WorkspaceDataElement
-         * @param event
-         * @param ui
-         * @private
-         */
-        _startSortable: function _startSortable(event, ui) {
-
-            /**
-             * Get $item
-             * @memberOf WorkspaceDataElement
-             * @type {WorkspaceDataContentElement}
-             */
-            var $item = this.view.elements.items[ui.item.attr('id')];
-
-            $item.hideTooltip();
         },
 
         /**
@@ -102,5 +81,4 @@ define([
         }
 
     }, BaseElement.prototype);
-
 });

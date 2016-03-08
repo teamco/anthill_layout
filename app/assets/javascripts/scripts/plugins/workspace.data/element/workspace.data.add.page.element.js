@@ -26,7 +26,7 @@ define(
          */
         var WorkspaceDataAddPageElement = function WorkspaceDataAddPageElement(view, opts) {
 
-            this._config(view, opts, $('<li />')).build({
+            this._config(view, opts, $('<li class="content" />')).build({
                 $container: opts.$container,
                 destroy: false
             });
@@ -52,6 +52,15 @@ define(
             'WorkspaceDataAddPageElement', {
 
                 /**
+                 * Define inner content
+                 * @memberOf WorkspaceDataContentElement
+                 */
+                getTemplate: function getTemplate() {
+                    $('<a class="page add" href="#" />').
+                        appendTo(this.$);
+                },
+
+                /**
                  * Define Init
                  * @memberOf WorkspaceDataAddPageElement
                  * @returns {WorkspaceDataAddPageElement}
@@ -62,8 +71,10 @@ define(
                     this.renderTooltip({
                         title: this.title,
                         description: this.description,
-                        $container: this
+                        selector: this.$
                     });
+
+                    this.getTemplate();
 
                     return this;
                 },
