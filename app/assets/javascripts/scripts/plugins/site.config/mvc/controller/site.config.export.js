@@ -10,7 +10,6 @@ define(function defineSiteConfigExport() {
      * @constructor
      */
     var SiteConfigExport = function SiteConfigExport() {
-
     };
 
     return SiteConfigExport.extend('SiteConfigExport', {
@@ -29,9 +28,13 @@ define(function defineSiteConfigExport() {
                 setting = root.model.setting,
                 ns = setting.getNameSpace();
 
+            var fName = [
+                ns, root.model.getUUID()
+            ].join('-');
+
             root.view.renderExportLink({
                 type: 'text/json',
-                fileName: 'data.json',
+                fileName: fName + '.json',
                 content: JSON.stringify(
                     setting.decompress(
                         setting.getStorage().getItem([ns])

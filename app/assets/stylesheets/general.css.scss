@@ -9,7 +9,6 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *= require_directory '../javascripts/scripts/plugins/stylesheets'
  *= require_directory '../javascripts/scripts/core/stylesheets'
  *= require_directory '../javascripts/scripts/core/lib/packages/bootstrap/css'
  //= require_tree .

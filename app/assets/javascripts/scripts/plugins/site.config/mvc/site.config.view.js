@@ -65,8 +65,6 @@ define(
                  */
                 renderSiteConfig: function renderSiteConfig() {
 
-                    this.renderHeader(Header, this.i18n.t('site.data.config'));
-
                     this.renderFilter(
                         this.updateFooterContent.bind(this)
                     );

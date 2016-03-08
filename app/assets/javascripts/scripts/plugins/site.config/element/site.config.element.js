@@ -31,8 +31,5 @@ define([
         return this;
     };
 
-    return SiteConfigElement.extend('SiteConfigElement', {
-
-    }, BaseElement.prototype);
-
+    return SiteConfigElement.extend('SiteConfigElement', {}, BaseElement.prototype);
 });

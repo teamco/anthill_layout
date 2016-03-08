@@ -37,6 +37,15 @@ define([
     return SiteConfigContentElement.extend('SiteConfigContentElement', {
 
         /**
+         * Define inner content
+         * @memberOf WorkspaceDataContentElement
+         */
+        getTemplate: function getTemplate() {
+            $('<a class="site-config" href="#" />').
+                appendTo(this.$);
+        },
+
+        /**
          * Define init
          * @memberOf SiteConfigContentElement
          * @param {{
@@ -48,6 +57,7 @@ define([
          */
         init: function init(data) {
 
+            this.getTemplate();
             this.setAttributes(data);
             this.bindShowPrefs(data);
 
@@ -83,7 +93,7 @@ define([
             this.renderTooltip({
                 title: data.title,
                 description: data.description,
-                $container: this
+                selector: this.$
             });
         },
 
@@ -127,7 +137,5 @@ define([
                 _clickPreferences.bind(this)
             );
         }
-
     }, BaseElement.prototype);
-
 });

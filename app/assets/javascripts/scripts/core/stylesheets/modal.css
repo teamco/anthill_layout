@@ -1,5 +1,9 @@
 .modal.preferences,
 .modal.rules,
+.modal.activate,
+.modal.publish,
+.modal.clean-up-data,
+.modal.import-site-data,
 .modal.page-modal,
 .modal.handle-danger {
     height: auto;
