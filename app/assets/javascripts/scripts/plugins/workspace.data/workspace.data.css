@@ -36,3 +36,9 @@ ul.workspace-data .content.current .counter {
     background-color: darkcyan;
     color: white;
 }
+
+.modal .page-padding {
+    float: left;
+    width: 48%;
+    margin-right: 2%;
+}

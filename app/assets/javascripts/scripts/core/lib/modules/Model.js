@@ -159,7 +159,7 @@ define([
                     constructor = base.isFunction(scope) ?
                         scope : scope.constructor;
 
-                return name.toLowerCase();
+                return constructor.name.toLowerCase();
             },
 
             /**

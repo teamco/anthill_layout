@@ -2,9 +2,7 @@
  * Created by teamco on 7/10/14.
  */
 
-define([
-    'jquery'
-], function defineNumberFieldRenderer($) {
+define(function defineNumberFieldRenderer() {
 
     /**
      * Define NumberFieldRenderer
@@ -43,7 +41,7 @@ define([
              * Define $input
              * @type {jQuery}
              */
-            var $input = $('<input />').attr({
+            var $input = $('<input class="form-control" />').attr({
                 name: opts.name,
                 type: 'number',
                 id: uuid,
@@ -52,14 +50,18 @@ define([
                 disabled: this.base.defineBoolean(opts.disabled, false, true)
             }).val(opts.value);
 
+            var labelClass = [opts.style, opts.visible ? '' : 'hide'].join(' '),
+                $template = $('<div class="input-group input-group-sm" />').append(
+                    this.renderLabel(uuid, opts.text, labelClass, opts.visible)
+                );
+
             this.initMonitor($input, opts.monitor);
             this.checkVisibility($input, opts.visible);
             this.validateByMask($input, opts);
 
-            return [
-                this.renderLabel(uuid, opts.text, 'text', opts.visible),
-                $input
-            ];
+            $template.append($input);
+
+            return $template;
         }
     });
 });

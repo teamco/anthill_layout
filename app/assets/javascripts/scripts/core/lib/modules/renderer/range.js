@@ -123,7 +123,7 @@ define([
                 'input.range change.range keyup.range blur.range',
                 function _updateNumberField() {
 
-                    numberField[1].val(
+                    numberField.find('input').val(
                         _validateValue($input, $input.val())
                     );
 

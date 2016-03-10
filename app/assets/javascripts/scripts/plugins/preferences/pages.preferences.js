@@ -178,17 +178,34 @@ define([
                 }
             }
 
-            this.$.append(
-                $('<li />').append(
-                    this.renderFieldSet(
-                        'Meta Data',
-                        $('<ul class="default" />').append(nodes),
-                        true
-                    )
-                ),
-                this.renderLayoutPrefs(opts.page),
-                this.renderWidgetsPrefs(opts.page)
-            );
+            var $tabs = this.renderTabs(),
+                $container = this.renderTabItemsContent(),
+                text = 'Meta Data';
+
+            this.$.append($tabs, $container);
+
+            this.addTabItem($tabs, {
+                uuid: 'meta_data',
+                text: text,
+                $container: $container,
+                content: $('<ul class="default" />').append(nodes)
+            }, true);
+
+            text = 'Layout';
+            this.addTabItem($tabs, {
+                uuid: 'layout',
+                text: text,
+                $container: $container,
+                content: this.renderLayoutPrefs(opts.page)
+            });
+
+            var node = this.renderWidgetsPrefs(opts.page);
+            this.addTabItem($tabs, {
+                uuid: 'widgets',
+                text: node[1],
+                $container: $container,
+                content: node[0]
+            });
         },
 
         /**
@@ -205,8 +222,7 @@ define([
              */
             var layout = page.controller.getLayout(),
                 workspace = page.controller.getContainment(),
-                modes = page.LAYOUT_MODES,
-                cname = layout.name;
+                modes = page.LAYOUT_MODES;
 
             /**
              * Define layout container
@@ -236,113 +252,108 @@ define([
             // Get padding
             var padding = page.model.getConfig('html/padding');
 
-            return $('<li />').append(
-                this.renderFieldSet(
-                    cname,
-                    $ul.append([
+            return $ul.append([
 
-                        $('<li />').append(
-                            this.renderTextField({
-                                name: 'layout-cell-width',
-                                text: 'Cell size',
-                                value: cellWidth.toFixed(3),
-                                visible: true,
-                                disabled: true
-                            })
-                        ).attr('rel', 'layout-cell-width'),
+                $('<li />').append(
+                    this.renderTextField({
+                        name: 'layout-cell-width',
+                        text: 'Cell size',
+                        value: cellWidth.toFixed(3),
+                        visible: true,
+                        disabled: true
+                    })
+                ).attr('rel', 'layout-cell-width'),
 
-                        $('<li />').append(
-                            this.renderCombobox(
-                                [
-                                    {
-                                        type: 'text',
-                                        value: modes.freeStyle
-                                    },
-                                    {
-                                        type: 'text',
-                                        value: modes.jqUIGrid
-                                    },
-                                    {
-                                        type: 'text',
-                                        value: modes.snap2grid
-                                    }
-                                ],
-                                layout.controller.getBehaviorMode(),
-                                'Mode',
-                                'layoutMode',
-                                undefined,
-                                true
-                            )
-                        ).attr('rel', 'layout-behavior'),
+                $('<li />').append(
+                    this.renderCombobox(
+                        [
+                            {
+                                type: 'text',
+                                value: modes.freeStyle
+                            },
+                            {
+                                type: 'text',
+                                value: modes.jqUIGrid
+                            },
+                            {
+                                type: 'text',
+                                value: modes.snap2grid
+                            }
+                        ],
+                        layout.controller.getBehaviorMode(),
+                        'Mode',
+                        'layoutMode',
+                        undefined,
+                        true
+                    )
+                ).attr('rel', 'layout-behavior'),
 
-                        $('<li />').append(
-                            this.renderTextField({
-                                name: 'page-width',
-                                text: 'Page width',
-                                value: width,
-                                visible: true,
-                                disabled: true
-                            })
-                        ).attr('rel', 'page-width').
-                            addClass('page-width'),
+                $('<li />').append(
+                    this.renderTextField({
+                        name: 'page-width',
+                        text: 'Page width',
+                        value: width,
+                        visible: true,
+                        disabled: true
+                    })
+                ).attr('rel', 'page-width').
+                    addClass('page-width'),
 
-                        $('<li />').append(
-                            this.renderTextField({
-                                name: 'layoutColumns',
-                                text: 'Columns',
-                                value: layout.config.grid.columns,
-                                visible: true,
-                                disabled: false
-                            })
-                        ).attr('rel', 'layout-columns').
-                            addClass('page-layout-columns'),
+                $('<li />').append(
+                    this.renderTextField({
+                        name: 'layoutColumns',
+                        text: 'Columns',
+                        value: layout.config.grid.columns,
+                        visible: true,
+                        disabled: false
+                    })
+                ).attr('rel', 'layout-columns').
+                    addClass('page-layout-columns'),
 
-                        $('<li />').append(
-                            this.renderNumberField({
-                                name: 'pagePaddingTop',
-                                text: 'Padding top',
-                                value: padding.top,
-                                visible: true,
-                                disabled: false
-                            })
-                        ).attr('rel', 'page-padding-top').
-                            addClass('page-padding'),
+                $('<li />').append(
+                    this.renderNumberField({
+                        name: 'pagePaddingTop',
+                        text: 'Padding top',
+                        value: padding.top,
+                        visible: true,
+                        disabled: false
+                    })
+                ).attr('rel', 'page-padding-top').
+                    addClass('page-padding'),
 
-                        $('<li />').append(
-                            this.renderNumberField({
-                                name: 'pagePaddingLeft',
-                                text: 'Padding left',
-                                value: padding.left,
-                                visible: true,
-                                disabled: false
-                            })
-                        ).attr('rel', 'page-padding-left').
-                            addClass('page-padding'),
+                $('<li />').append(
+                    this.renderNumberField({
+                        name: 'pagePaddingLeft',
+                        text: 'Padding left',
+                        value: padding.left,
+                        visible: true,
+                        disabled: false
+                    })
+                ).attr('rel', 'page-padding-left').
+                    addClass('page-padding'),
 
-                        $('<li />').append(
-                            this.renderNumberField({
-                                name: 'pagePaddingBottom',
-                                text: 'Padding bottom',
-                                value: padding.bottom,
-                                visible: true,
-                                disabled: false
-                            })
-                        ).attr('rel', 'page-padding-bottom').
-                            addClass('page-padding'),
+                $('<li />').append(
+                    this.renderNumberField({
+                        name: 'pagePaddingBottom',
+                        text: 'Padding bottom',
+                        value: padding.bottom,
+                        visible: true,
+                        disabled: false
+                    })
+                ).attr('rel', 'page-padding-bottom').
+                    addClass('page-padding'),
 
-                        $('<li />').append(
-                            this.renderNumberField({
-                                name: 'pagePaddingRight',
-                                text: 'Padding right',
-                                value: padding.right,
-                                visible: true,
-                                disabled: false
-                            })
-                        ).attr('rel', 'page-padding-right').
-                            addClass('page-padding')
-                    ])
-                )
-            ).addClass('auto');
+                $('<li />').append(
+                    this.renderNumberField({
+                        name: 'pagePaddingRight',
+                        text: 'Padding right',
+                        value: padding.right,
+                        visible: true,
+                        disabled: false
+                    })
+                ).attr('rel', 'page-padding-right').
+                    addClass('page-padding')
+            ]);
         },
 
         /**
@@ -405,8 +416,7 @@ define([
                          * Define widget element
                          * @type {*|jQuery}
                          */
-                        var $li = $('<li class="widget-prefs" />').
-                            addClass(
+                        var $li = $('<li class="widget widget-prefs" />').addClass(
                             this.view.controller.getResourceClassName(
                                 preferences.resource
                             )
@@ -438,23 +448,16 @@ define([
              * @type {*|jQuery}
              */
             var $ul = $('<ul class="default" />').addClass('widgets-prefs'),
-                cname = [
-                    'Widgets: ',
-                    '<span>',
-                    Object.keys(widgets).length,
-                    'items</span>'
-                ].join(' ');
+                cname = 'Widgets: ' + Object.keys(widgets).length + ' items';
 
-            return $('<li />').append(
-                this.renderFieldSet(
-                    cname,
-                    $ul.append(
-                        this.renderPageWidgetsGlobalPrefs(),
-                        $('<li class="clear" />'),
-                        _renderWidgets.bind(this)()
-                    )
-                )
-            );
+            return [
+                $ul.append(
+                    this.renderPageWidgetsGlobalPrefs(),
+                    '<li class="separator" />',
+                    _renderWidgets.bind(this)()
+                ),
+                cname
+            ];
         },
 
         /**

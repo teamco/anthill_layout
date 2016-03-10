@@ -274,6 +274,12 @@ define(
                              */
                             $item = this.view.elements.items[uuid + cname];
 
+                            // TODO Fix
+                            if (!$item) {
+                                this.logger.warn('Unable to fetch item', this.view.elements.items, uuid, cname);
+                                return false;
+                            }
+
                             $item.updateCounter(page);
                         }
                     }

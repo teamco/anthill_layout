@@ -157,3 +157,12 @@
     height: 100%;
     cursor: pointer;
 }
+
+.modal .widget {
+    float: left;
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 48px;
+}

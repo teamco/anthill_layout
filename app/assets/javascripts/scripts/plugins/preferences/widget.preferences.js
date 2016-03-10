@@ -248,28 +248,6 @@ define([
         },
 
         /**
-         * Render node
-         * @memberOf WidgetPreferences
-         * @param type
-         * @param prefs
-         * @param {string} title
-         * @param {boolean} [isOpened]
-         * @returns {*|jQuery}
-         */
-        renderPrefsNode: function renderPrefsNode(type, prefs, title, isOpened) {
-
-            return $('<li />').append(
-                this.renderFieldSet(
-                    title,
-                    $('<ul />').addClass(type).append(
-                        this.renderPrefsForm(prefs, title)
-                    ),
-                    isOpened
-                )
-            ).addClass('auto');
-        },
-
-        /**
          * Render widget interactions
          * @memberOf WidgetPreferences
          * @param {Widget} widget
