@@ -121,7 +121,7 @@ define(
                          */
                         var $item = new WorkspaceDataContentElement(this, {
                             style: 'page content' + current + show,
-                            id: [
+                            uuid: [
                                 data[i].model.getConfig('uuid'),
                                 'workspace-data-view'
                             ].join('-'),
