@@ -391,11 +391,15 @@ define([
         /**
          * Self destroy functionality
          * @memberOf ModalElement
+         * @param {boolean} [backdrop]
          */
-        selfDestroy: function selfDestroy() {
+        selfDestroy: function selfDestroy(backdrop) {
             this.unsetButtons();
             this.destroy();
-            this.removeBackdrop();
+
+            if (this.base.defineBoolean(backdrop, true, true)) {
+                this.removeBackdrop();
+            }
         },
 
         /**

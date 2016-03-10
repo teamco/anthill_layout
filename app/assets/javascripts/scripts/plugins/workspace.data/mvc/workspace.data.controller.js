@@ -234,7 +234,7 @@ define(
                         page.model.getItems()
                     );
 
-                    this.scope.view.elements.$modal.selfDestroy();
+                    this.scope.view.elements.$modal.selfDestroy(false);
                 },
 
                 /**
