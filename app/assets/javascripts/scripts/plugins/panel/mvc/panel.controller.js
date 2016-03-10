@@ -149,14 +149,12 @@ define([
                 return false;
             }
 
+            var elements = this.view.elements,
+                $bar = elements.items['$bar-content'];
+
             if (this.active === resource) {
 
-                var elements = this.view.elements,
-                    $bar = elements.items['$bar-content'];
-
                 elements.$panel.toggleModule(resource, false);
-                $bar.unselectItems();
-                $bar.selectItem(resource);
 
             } else {
 
@@ -165,6 +163,9 @@ define([
                     resource
                 );
             }
+
+            $bar.unselectItems();
+            $bar.selectItem(resource);
         },
 
         /**

@@ -17,6 +17,7 @@ define([
      * @constructor
      * @class PageDataContentElement
      * @extends BaseElement
+     * @extends Renderer
      */
     var PageDataContentElement = function PageDataContentElement(view, opts) {
 

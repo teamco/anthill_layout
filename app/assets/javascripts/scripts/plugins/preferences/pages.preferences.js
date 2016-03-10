@@ -544,6 +544,40 @@ define([
         showWidgetPrefs: function showWidgetPrefs(e) {
 
             /**
+             * Get view
+             * @type {BaseView}
+             */
+            var view = this.view;
+
+            // Get $widget item ui
+            var $widget =  $(e.target);
+
+            /**
+             * Get uuid
+             * @type {*|jQuery}
+             */
+            var uuid = $widget.attr('rel');
+
+            /**
+             * Define panel
+             * @type {Panel}
+             */
+            var panel = view.controller.getDesignTimePanel(),
+                module = 'page-data';
+
+            /**
+             * Define page data
+             * @type {*|PageData}
+             */
+            var pageData = view.controller.getModuleByName(module);
+
+            /**
+             * Get scope
+             * @type {WorkspaceData}
+             */
+            var scope = view.scope;
+
+            /**
              * Trigger click prefs
              * @private
              */
@@ -553,9 +587,10 @@ define([
                  * Define $item
                  * @type {PageDataContentElement}
                  */
-                var $item = this.view.elements.items[uuid + '-page-data'];
+                var $item = pageData.view.elements.items[uuid + '-' + module];
 
                 $item.$.trigger('click.prefs');
+                $('.popover').remove();
             }
 
             /**
@@ -565,66 +600,49 @@ define([
              */
             function _locateElement(event) {
 
-                this.observer.publish(
-                    this.eventmanager.eventList.loadPreferences, [
+                pageData.observer.publish(
+                    pageData.eventmanager.eventList.loadPreferences, [
                         {uuid: uuid},
                         false,
                         event,
-                        this.controller.locatePageData.bind(
-                            this.controller
+                        pageData.controller.locatePageData.bind(
+                            pageData.controller
                         )
                     ]
                 );
             }
 
             /**
-             * Get uuid
-             * @type {*|jQuery}
+             * Open panel
+             * @param callback
+             * @private
              */
-            var uuid = $(e.target).attr('rel');
+            function _openPanel(callback) {
 
-            /**
-             * Define panel
-             * @type {Panel}
-             */
-            var panel = this.view.controller.getDesignTimePanel();
-
-            /**
-             * Define page data
-             * @type {*|PageData}
-             */
-            var pageData = this.view.controller.getModuleByName('page-data');
-
-            /**
-             * Get scope
-             * @type {WorkspaceData}
-             */
-            var scope = this.view.scope;
-
-            if (e.type === 'click') {
+                $widget.popover('hide');
 
                 scope.observer.publish(
                     scope.eventmanager.eventList.switchToActivePage
                 );
 
-                this.view.elements.$modal.selfDestroy();
+                panel.observer.publish(
+                    panel.eventmanager.eventList.closePanel,
+                    module
+                );
 
                 panel.observer.publish(
                     panel.eventmanager.eventList.openPanel,
-                    ['page-data', e, _triggerPrefs.bind(pageData)]
+                    [module, e, callback]
                 );
             }
 
+            if (e.type === 'click') {
+                view.elements.$modal.selfDestroy();
+                _openPanel(_triggerPrefs);
+            }
+
             if (e.type === 'mouseenter' || e.type === 'mouseleave') {
-
-                scope.observer.publish(
-                    scope.eventmanager.eventList.switchToActivePage
-                );
-
-                panel.observer.publish(
-                    panel.eventmanager.eventList.openPanel,
-                    ['page-data', e, _locateElement.bind(pageData)]
-                );
+                _openPanel(_locateElement);
             }
         }
 
