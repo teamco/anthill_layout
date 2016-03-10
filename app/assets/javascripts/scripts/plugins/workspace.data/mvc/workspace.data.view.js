@@ -61,7 +61,7 @@ define(
                      * @type {WorkspaceDataElement}
                      */
                     this.elements.$workspacedata = new WorkspaceDataElement(this, {
-                        id: this.createUUID(),
+                        uuid: this.createUUID(),
                         $container: this.elements.$container.$
                     });
                 },

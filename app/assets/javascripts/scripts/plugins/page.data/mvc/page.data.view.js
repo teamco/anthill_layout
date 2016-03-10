@@ -45,7 +45,7 @@ define([
                  * @type {PageDataElement}
                  */
                 this.elements.$pagedata = new PageDataElement(this, {
-                    id: this.createUUID(),
+                    uuid: this.createUUID(),
                     $container: this.elements.$container.$
                 });
             },
