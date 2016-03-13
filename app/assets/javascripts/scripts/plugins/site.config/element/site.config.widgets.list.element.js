@@ -49,83 +49,88 @@ define([
             /**
              * Render row
              * @param row
-             * @param style
+             * @param cell
              * @returns {string}
              * @private
              */
-            function _renderRow(row, style) {
+            function _renderRow(row, cell) {
 
                 var html = [],
                     index, tr, key;
 
                 for (index in row) {
 
-                    if (row.hasOwnProperty(index)) {
+                    if (row.hasOwnProperty(index) && show.indexOf(index) > -1) {
 
-                        if (show.indexOf(index) > -1) {
+                        key = 1;
+                        tr = [];
 
-                            key = 1;
-                            tr = [];
+                        if (index === 'name') key = 0;
+                        if (index === 'thumbnail') key = 2;
 
-                            if (index === 'name') key = 0;
-                            if (index === 'thumbnail') key = 2;
+                        var style = index === 'thumbnail' ? 'icon' : index;
 
-                            tr[key] = [
-                                '<li class="', index.toDash(), '">',
-                                style === 'header' ?
-                                    index === 'thumbnail' ? 'icon' : index :
-                                    index === 'thumbnail' && style === 'row' ?
-                                    '<img alt="' + index + '" src="' + row[index] + '"/>' :
-                                        index === 'name' ?
-                                        '<span>' + row[index] + '</span>' :
-                                            row[index],
-                                '</li>'
-                            ].join('');
+                        tr[key] = [
+                            '<', cell, ' class="', style, '">',
+                            cell === 'th' ?
+                                style : index === 'thumbnail' && cell === 'td' ?
+                            '<img alt="' + index + '" src="' + row[index] + '"/>' :
+                                index === 'name' ?
+                                '<span>' + row[index] + '</span>' :
+                                    row[index],
+                            '</', cell, '>'
+                        ].join('');
 
-                            html.push(tr.join(''));
-                        }
+                        html.push(tr.join(''));
                     }
                 }
 
-                return [
-                    '<li class="', style, '"><ul>',
-                    html.join(''),
-                    '</ul></li>'
-                ].join('');
+                return html.join('');
             }
 
             var i = 0,
                 l = data.length;
 
-            var $ul = $('<ul />');
+            var $table = $('<table class="table" />');
 
             if (l > 0) {
                 data[0].thumbnail = '';
 
+                $table.append('<thead><tr></tr></thead>');
+
                 // Append header
-                $ul.append(
-                    _renderRow(data[0], 'header')
+                $table.find('thead tr').append(
+                    _renderRow(data[0], 'th')
                 );
+
+                $table.append('<tbody />');
+
+                // Get tbody
+                var $tbody = $table.find('tbody');
 
                 for (; i < l; i++) {
                     data[i].thumbnail = '/assets/scripts/plugins/stylesheets/images/' + data[i].resource + '.png';
 
                     // Append rows
-                    $ul.append(
-                        _renderRow(data[i], 'row')
+                    $tbody.append(
+                        $('<tr />').append(
+                            _renderRow(data[i], 'td')
+                        )
                     );
                 }
 
             } else {
 
-                $ul.append(
-                    $('<li class="no-data" />').text('No data')
+                $table.append(
+                    $('<tr class="no-data" />').append(
+                        $('<td />').text('No data')
+                    )
                 );
             }
 
-            this.bindWidgetSort($ul);
+            this.bindWidgetSort($table);
 
-            return this.bindWidgetEdit($ul);
+            return this.bindWidgetEdit($table);
         },
 
         /**
@@ -156,25 +161,25 @@ define([
         /**
          * Bind widget sort
          * @memberOf SiteConfigWidgetsListElement
-         * @param $ul
+         * @param $table
          */
-        bindWidgetSort: function bindWidgetSort($ul) {
+        bindWidgetSort: function bindWidgetSort($table) {
 
             // Sort by name
-            $('li.header li.name', $ul).on('click.sort', this.sortTextElements.bind({
+            $('thead .name', $table).on('click.sort', this.sortTextElements.bind({
                     $element: this,
-                    $container: $ul,
-                    which: 'li.row',
-                    selector: 'li.name > span'
+                    $container: $table,
+                    which: 'tr',
+                    selector: 'td.name > span'
                 })
             );
 
             // Sort by resource
-            $('li.header li.resource', $ul).on('click.sort', this.sortTextElements.bind({
+            $('thead.resource', $table).on('click.sort', this.sortTextElements.bind({
                     $element: this,
-                    $container: $ul,
-                    which: 'li.row',
-                    selector: 'li.resource'
+                    $container: $table,
+                    which: 'tr',
+                    selector: 'td.resource'
                 })
             );
         },

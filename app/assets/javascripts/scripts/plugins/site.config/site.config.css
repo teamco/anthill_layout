@@ -50,3 +50,12 @@ ul.site-config .content.widget-generator > a {
     color: #ff0000;
     border-color: #ff0000;
 }
+
+.modal.widget-list th {
+    text-transform: capitalize;
+}
+
+.modal.widget-list .icon > img {
+    width: 24px;
+    height: 24px;
+}

@@ -59,12 +59,14 @@ define([
                     buttons: {
                         external: {
                             text: this.i18n.t('widget.manager.external'),
+                            type: 'info',
                             events: {
                                 click: 'nextWidgetExternal'
                             }
                         },
                         approve: {
                             text: this.i18n.t('widget.manager.generate'),
+                            type: 'primary',
                             events: {
                                 click: 'nextWidgetGenerator'
                             }
