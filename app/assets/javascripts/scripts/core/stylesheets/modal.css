@@ -1,13 +1,4 @@
-.modal.preferences,
-.modal.rules,
-.modal.activate,
-.modal.publish,
-.modal.clean-up-data,
-.modal.import-site-data,
-.modal.page-modal,
-.modal.handle-error,
-.modal.handle-parsererror,
-.modal.handle-danger {
+.modal.modal-notification {
     height: auto;
     width: auto;
     top: auto;

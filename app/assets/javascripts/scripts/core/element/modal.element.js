@@ -193,7 +193,7 @@ define([
 
         getTemplate: function getTemplate() {
             return $([
-                '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">',
+                '<div class="modal modal-notification" tabindex="-1" role="dialog" aria-labelledby="modalLabel">',
                 '<div class="modal-dialog" role="document">',
                 '<div class="modal-content">',
                 '<div class="modal-header alert">',
