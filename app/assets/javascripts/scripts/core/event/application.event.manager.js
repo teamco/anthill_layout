@@ -32,6 +32,10 @@ define([
          * Define event list
          * @memberOf ApplicationEventManager
          * @type {{
+         *      startSendLog: string,
+         *      stopSendLog: string,
+         *      beforeSendLog: string,
+         *      afterSendLog: string,
          *      loadApplication: string,
          *      loadProduction: string,
          *      handleVulnerabilities: string,
@@ -54,6 +58,10 @@ define([
          * }}
          */
         eventList: {
+            startSendLog: 'start.send.log',
+            stopSendLog: 'stop.send.log',
+            beforeSendLog: 'before.send.log',
+            afterSendLog: 'after.send.log',
             loadApplication: 'load.application',
             loadProduction: 'load.production',
             handleVulnerabilities: 'handle.vulnerabilities',

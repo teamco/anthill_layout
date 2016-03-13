@@ -43,10 +43,12 @@ define(function defineRoutes() {
         /**
          * Prepare XHR data before send
          * @memberOf Routes
-         * @param {object} collector
+         * @param {object} [collector]
          * @returns {{authenticity_token: string}}
          */
         prepareXhrData: function prepareXhrData(collector) {
+
+            collector = collector || {};
 
             /**
              * Define token

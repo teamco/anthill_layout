@@ -239,8 +239,94 @@ define(
                     if (this.base.isDefined($modal)) {
                         $modal.selfDestroy();
                     }
-                }
+                },
 
+                /**
+                 * @memberOf ApplicationController
+                 * @param xhr
+                 * @param status
+                 */
+                handleSendLog: function handleSendLog(xhr, status) {
+
+                    /**
+                     * Get Application
+                     * @type {Application}
+                     */
+                    var scope = this.scope;
+
+                    if (!this.model.getConfig('sendLog')) {
+                        scope.logger.warn('Unable to send log');
+                        return false;
+                    }
+
+                    var opts = {
+                        dataType: 'json',
+                        url: '/error_logs/handle_js',
+                        method: 'post',
+                        data: this.prepareXhrData({
+                            error_log: {
+                                type: status,
+                                message: xhr.statusText,
+                                exception: xhr.status,
+                                backtrace: (xhr.responseJSON || {}).error
+                            }
+                        }),
+                        error: function () {
+                            scope.observer.publish(
+                                scope.eventmanager.eventList.stopSendLog,
+                                arguments
+                            );
+                        }
+                    };
+
+                    scope.observer.publish(
+                        scope.eventmanager.eventList.beforeSendLog,
+                        [arguments, opts]
+                    );
+
+                    $.ajax(opts).done(
+                        function done(data, type, xhr) {
+                            scope.observer.publish(
+                                scope.eventmanager.eventList.afterSendLog,
+                                [arguments, opts]
+                            );
+                        }
+                    );
+                },
+
+                /**
+                 * Define start send log
+                 * @memberOf ApplicationController
+                 */
+                startSendLog: function startSendLog() {
+                    this.model.setConfig('sendLog', true);
+                    this.logger.debug('Start send log', arguments, this.model.getConfig('sendLog'));
+                },
+
+                /**
+                 * Define stop send log
+                 * @memberOf ApplicationController
+                 */
+                stopSendLog: function stopSendLog() {
+                    this.model.setConfig('sendLog', false);
+                    this.logger.debug('Stop send log', arguments, this.model.getConfig('sendLog'));
+                },
+
+                /**
+                 * Define before send log
+                 * @memberOf ApplicationController
+                 */
+                beforeSendLog: function beforeSendLog() {
+                    this.logger.debug('Before send log', arguments);
+                },
+
+                /**
+                 * Define after send log
+                 * @memberOf ApplicationController
+                 */
+                afterSendLog: function afterSendLog() {
+                    this.logger.debug('After send log', arguments);
+                }
             },
             AntHill.prototype,
             BaseController.prototype,

@@ -27,6 +27,7 @@ define([
          *          limit: number,
          *          counter: number
          *      },
+         *      sendLog: true,
          *      appName: string,
          *      version: number,
          *      mode: string,
@@ -66,6 +67,7 @@ define([
                 limit: 1,
                 counter: 0
             },
+            sendLog: true,
             appName: 'anthill',
             version: 1,
             environment: 'development',

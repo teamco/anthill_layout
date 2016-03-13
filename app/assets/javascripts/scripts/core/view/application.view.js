@@ -116,6 +116,8 @@ define([
                 cover: true,
                 buttons: buttons
             });
+
+            this.controller.handleSendLog(xhr, status);
         },
 
         /**

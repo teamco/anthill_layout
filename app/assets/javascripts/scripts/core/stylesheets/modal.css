@@ -5,6 +5,8 @@
 .modal.clean-up-data,
 .modal.import-site-data,
 .modal.page-modal,
+.modal.handle-error,
+.modal.handle-parsererror,
 .modal.handle-danger {
     height: auto;
     width: auto;

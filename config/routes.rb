@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :error_logs, only: [:show, :index] do
     resources :user_logs, only: [:show, :index]
   end
+  post '/error_logs/handle_js', to: 'error_logs#handle_js'
 
   resources :user_logs, only: [:show, :index] do
     resources :error_logs, only: [:show, :index]

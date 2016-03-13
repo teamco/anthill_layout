@@ -25,6 +25,31 @@ class ErrorLog < ActiveRecord::Base
 
   end
 
+  def self.handle_js_error(user, log)
+
+    user_log = if user.nil?
+                 UserLog.last
+               else
+                 user.user_logs.empty? ?
+                     UserLog.last :
+                     user.user_logs.order('updated_at DESC').limit(1).first
+               end
+
+    create!(
+        {
+            user_log_id: user_log.try(:id),
+            name: log['type'],
+            message: log['message'],
+            exception: log['exception'],
+            backtrace: log['backtrace'].
+                gsub(/<pre><code>/, '').
+                gsub(/<\/code><\/pre>/, '').
+                gsub(/\n/, ',').split(',').
+                to_json
+        }
+    )
+  end
+
   def self.fetch_data(user)
     user.error_logs.order('id DESC').includes(:user_log)
   end

@@ -13,6 +13,10 @@ class ErrorLogsController < Author::AuthorController
   def show
   end
 
+  def handle_js
+    @log = [ErrorLog.handle_js_error(current_user, params[:error_log])]
+  end
+
   def fix
     JSON.parse(params[:data]).each do |x|
       log = ErrorLog.find_by_id(x['id'])
