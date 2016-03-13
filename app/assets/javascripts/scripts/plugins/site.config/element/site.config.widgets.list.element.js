@@ -103,6 +103,7 @@ define([
                     _renderRow(data[0], 'th')
                 );
 
+                // Append body
                 $table.append('<tbody />');
 
                 // Get tbody
@@ -136,10 +137,10 @@ define([
         /**
          * Bind widget edit
          * @memberOf SiteConfigWidgetsListElement
-         * @param $ul
+         * @param $table
          * @returns {*}
          */
-        bindWidgetEdit: function bindWidgetEdit($ul) {
+        bindWidgetEdit: function bindWidgetEdit($table) {
 
             /**
              * Get scope
@@ -147,15 +148,15 @@ define([
              */
             var scope = this.view.scope;
 
-            $('li.row li.name', $ul).on('click.edit', function clickEdit() {
+            $('tbody .name', $table).on('click.edit', function clickEdit() {
 
                 scope.observer.publish(
                     scope.eventmanager.eventList.widgetEditor,
-                    $('.resource', $(this).parent()).text()
+                    $('td.resource', $(this).parent()).text()
                 );
             });
 
-            return $ul;
+            return $table;
         },
 
         /**
@@ -169,16 +170,16 @@ define([
             $('thead .name', $table).on('click.sort', this.sortTextElements.bind({
                     $element: this,
                     $container: $table,
-                    which: 'tr',
+                    which: 'tbody > tr',
                     selector: 'td.name > span'
                 })
             );
 
             // Sort by resource
-            $('thead.resource', $table).on('click.sort', this.sortTextElements.bind({
+            $('thead .resource', $table).on('click.sort', this.sortTextElements.bind({
                     $element: this,
                     $container: $table,
-                    which: 'tr',
+                    which: 'tbody > tr',
                     selector: 'td.resource'
                 })
             );

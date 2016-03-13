@@ -55,6 +55,27 @@ ul.site-config .content.widget-generator > a {
     text-transform: capitalize;
 }
 
+.modal.widget-list td.name > span {
+    color: #006699;
+    cursor: pointer;
+}
+
+.modal.widget-list td.name > span:hover {
+    text-decoration: underline;
+}
+
+.modal.widget-list th.name,
+.modal.widget-list th.name[sorted="asc"],
+.modal.widget-list th.resource,
+.modal.widget-list th.resource[sorted="asc"] {
+    cursor: s-resize;
+}
+
+.modal.widget-list th.name[sorted="desc"],
+.modal.widget-list th.resource[sorted="desc"] {
+    cursor: n-resize;
+}
+
 .modal.widget-list .icon > img {
     width: 24px;
     height: 24px;
