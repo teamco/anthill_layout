@@ -605,10 +605,13 @@ define([
             var scope = this.scope,
                 page = scope.controller.getContainment();
 
+            var containment = outline ?
+                false : page.view.get$item().$;
+
             scope.observer.publish(
                 scope.eventmanager.eventList.updateContainment, [
                     ['draggable', 'resizable'],
-                    page.view.get$item().$
+                    containment
                 ]
             );
         }
