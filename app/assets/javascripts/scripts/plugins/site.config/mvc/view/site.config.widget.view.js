@@ -112,6 +112,7 @@ define([
                     buttons: {
                         approve: {
                             text: this.i18n.t('site.data.save'),
+                            type: 'success',
                             events: {
                                 click: 'generateNewWidget'
                             }
@@ -156,6 +157,7 @@ define([
                     buttons: {
                         approve: {
                             text: this.i18n.t('site.data.save'),
+                            type: 'success',
                             events: {
                                 click: 'generateExternalWidget'
                             }

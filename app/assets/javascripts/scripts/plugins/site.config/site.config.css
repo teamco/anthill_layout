@@ -80,3 +80,54 @@ ul.site-config .content.widget-generator > a {
     width: 24px;
     height: 24px;
 }
+
+.modal.widget-generator-new .thumbnail > img {
+    float: left;
+    margin-right: 2%;
+}
+
+.modal.widget-generator-new .thumbnail > span {
+    float: left;
+    text-transform: capitalize;
+}
+
+.modal.widget-generator-new .thumbnail > span,
+.modal.widget-generator-new .thumbnail > textarea {
+    width: 85%;
+    min-width: initial;
+}
+
+.modal.widget-generator-new .clone-from {
+    margin-left: 48%;
+}
+
+.modal.widget-generator-new .nav > li > a {
+    padding: 7px 10px;
+    border-radius: 0 5px 5px 0;
+    min-width: 280px;
+    border: 1px solid #dfdfdf;
+    border-left: none;
+}
+
+.modal.widget-generator-new .nav > li > a .caret {
+    margin-top: 8px;
+}
+
+.modal-open .modal.widget-generator-new,
+.modal.widget-generator-new .modal-body {
+    overflow: visible;
+}
+
+.modal.widget-generator-new .description {
+    position: relative;
+}
+
+.modal.widget-generator-new .width,
+.modal.widget-generator-new .height {
+    width: 48%;
+    float: left;
+}
+
+.modal.widget-generator-new .height {
+    float: right;
+}

@@ -188,7 +188,7 @@ define([
         /**
          * Get renderer
          * @memberOf SiteConfigWidgetsListElement
-         * @param {Renderer} renderer
+         * @param {Function|Renderer} renderer
          * @param {string} index
          * @param {string|boolean} value
          * @param {{[mask]: RegExp}} [validation]
@@ -232,13 +232,13 @@ define([
                 opts.readonly = opts.disabled;
             }
 
-            var $li = $('<li />').addClass(index);
+            var $div = $('<div />').addClass(index);
 
             if (index === 'thumbnail') {
 
                 opts.text += ' data-uri';
 
-                $li.append(
+                $div.append(
                     $('<img />').attr({
                         src: value,
                         alt: index
@@ -308,15 +308,9 @@ define([
                 };
             }
 
-            $li.append(renderer(opts));
+            $div.append(renderer(opts));
 
-            if (index === 'thumbnail') {
-                $li.append(
-                    $('<div />').addClass('clear')
-                );
-            }
-
-            return $li;
+            return $div;
         },
 
         /**
@@ -326,14 +320,14 @@ define([
          * @param {object} [widgetData]
          * @param {Array} types
          * @param {boolean} clone
-         * @returns {SiteConfigWidgetsListElement}
+         * @returns {*}
          */
         renderWidgetGeneratorForm: function renderWidgetGeneratorForm(widgets, types, widgetData, clone) {
 
             var index, $field,
                 widget = widgets[0] ? widgets[0] : widgets,
-                $ul = $('<ul />'),
-                $element = this;
+                $element = this,
+                $div = $('<div />');
 
             widgetData = widgetData || {};
             widgetData.dimensions = widgetData.dimensions || {};
@@ -352,7 +346,7 @@ define([
             var scope = $element.view.scope;
 
             if (clone) {
-                $ul.append(
+                $div.append(
                     $element.cloneFromField(widgets)
                 );
             }
@@ -391,13 +385,13 @@ define([
                         case 'dimensions':
                             $field = [
                                 this._getRenderer(
-                                    $element.renderTextField.bind($element),
+                                    $element.renderNumberField.bind($element),
                                     'width',
                                     widgetData[index].width,
                                     {mask: /^\d+$/}
                                 ),
                                 this._getRenderer(
-                                    $element.renderTextField.bind($element),
+                                    $element.renderNumberField.bind($element),
                                     'height',
                                     widgetData[index].height,
                                     {mask: /^\d+$/}
@@ -450,7 +444,8 @@ define([
                              */
                             var sorted = $element.sortComboBoxData(data);
 
-                            $field = $('<li />').addClass(index).append(
+                            $field = $('<div class="input-group input-group-sm" />').append(
+                                this.renderLabel(undefined, index, undefined, true),
                                 $element.renderCombobox(
                                     sorted,
                                     (types[widgetData[index]] || sorted[0].value),
@@ -467,11 +462,11 @@ define([
                             break;
                     }
 
-                    $ul.append($field);
+                    $div.append($field);
                 }
             }
 
-            return $ul;
+            return $div;
         },
 
         /**
@@ -668,17 +663,19 @@ define([
          */
         cloneFromField: function cloneFromField(widgets) {
 
+            var $element = this;
+
             /**
              * Define toggle
              * @private
              */
             function _toggleClone(e) {
-                if (this.isDisabledComboBox($combo)) {
-                    this.enableComboBox($combo);
+                if ($element.isDisabledComboBox($combo)) {
+                    $element.enableComboBox($combo);
                     e.target.value = false;
 
                 } else {
-                    this.disableComboBox($combo);
+                    $element.disableComboBox($combo);
                     e.target.value = true;
                 }
             }
@@ -703,12 +700,8 @@ define([
              * Define checkbox
              * @type {*|jQuery}
              */
-            var $checkbox = $('<li />').
-                addClass([
-                    ['site-config', name.humanize().toClassName(), 'prefs'].join('-'),
-                    'checkbox'
-                ].join(' ')).
-                append(this.renderCheckbox({
+            var $checkbox = $('<div class="checkbox" />').append(
+                this.renderCheckbox({
                     name: name,
                     text: 'Make from ' + name,
                     checked: true,
@@ -717,7 +710,7 @@ define([
                     visible: true,
                     monitor: {
                         events: ['click.combo'],
-                        callback: _toggleClone.bind(this)
+                        callback: _toggleClone
                     }
                 })
             );
@@ -726,14 +719,14 @@ define([
              * Define sorted data
              * @type {Array}
              */
-            var sorted = this.sortComboBoxData(data);
+            var sorted = $element.sortComboBoxData(data);
 
             /**
              * Define combo
              * @type {*|jQuery}
              */
-            var $combo = $('<li />').addClass('clone-template').append(
-                this.renderCombobox(
+            var $combo = $('<div class="clone-from" />').append(
+                $element.renderCombobox(
                     sorted,
                     undefined,
                     'clone',
@@ -763,7 +756,6 @@ define([
             var $modal = this.view.get$modal();
 
             if ($modal) {
-
                 return $('input[name="resource"]', $modal.$).val();
             }
         }

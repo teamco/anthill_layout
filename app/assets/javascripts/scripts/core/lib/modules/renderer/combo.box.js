@@ -186,7 +186,7 @@ define([], function defineComboBoxRenderer() {
          * @returns {boolean}
          */
         isDisabledComboBox: function isDisabledComboBox($combo) {
-            return $combo.hasClass('disabled');
+            return $('li.dropdown', $combo).hasClass('disabled');
         },
 
         /**
@@ -195,7 +195,8 @@ define([], function defineComboBoxRenderer() {
          * @param $combo
          */
         enableComboBox: function enableComboBox($combo) {
-            $combo.removeClass('disabled');
+            $('li.dropdown', $combo).removeClass('disabled');
+            $('li.dropdown > a.dropdown-toggle', $combo).removeClass('disabled');
         },
 
         /**
@@ -204,7 +205,8 @@ define([], function defineComboBoxRenderer() {
          * @param $combo
          */
         disableComboBox: function disableComboBox($combo) {
-            $combo.addClass('disabled');
+            $('li.dropdown', $combo).addClass('disabled');
+            $('li.dropdown > a.dropdown-toggle', $combo).addClass('disabled');
         }
     });
 });
