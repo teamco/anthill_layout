@@ -11,6 +11,7 @@ define(function defineWidgetMaximize() {
      * Define WidgetMaximize
      * @class WidgetMaximize
      * @constructor
+     * @extends BaseController
      * @extends Router
      */
     var WidgetMaximize = function WidgetMaximize() {

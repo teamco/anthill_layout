@@ -232,6 +232,8 @@ define([
              */
             var scope = this.view.scope;
 
+            scope.controller.root().view.get$item().hideScroll(true);
+
             this.$.stop().animate({
 
                 width: '100%',
@@ -260,6 +262,8 @@ define([
              */
             var scope = this.view.scope,
                 dom = scope.dom;
+
+            scope.controller.root().view.get$item().hideScroll(false);
 
             this.$.stop().animate({
 

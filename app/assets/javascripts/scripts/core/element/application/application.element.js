@@ -41,6 +41,15 @@ define([
             this.$.attr({
                 id: this.view.createUUID()
             })
+        },
+
+        /**
+         * Hide/Show scroll
+         * @memberOf ApplicationElement
+         * @param {boolean} hide
+         */
+        hideScroll: function hideScroll(hide) {
+            this.$[(hide ? 'add' : 'remove') + 'Class']('overflow-scroll');
         }
 
     }, BaseElement.prototype);
