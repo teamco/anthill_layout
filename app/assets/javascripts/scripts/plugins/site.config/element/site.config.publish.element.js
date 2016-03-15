@@ -13,11 +13,12 @@ define([
      * @param {SiteConfigView} view
      * @param opts
      * @extends BaseElement
+     * @extends Renderer
      * @returns {SiteConfigPublishElement}
      */
     var SiteConfigPublishElement = function SiteConfigPublishElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
+        this._config(view, opts, $('<div class="publish" />')).build({
             $container: opts.$container
         });
 

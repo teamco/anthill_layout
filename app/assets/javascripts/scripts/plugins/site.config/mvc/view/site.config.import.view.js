@@ -12,6 +12,7 @@ define([
     /**
      * Define SiteConfigImportView
      * @class SiteConfigImportView
+     * @extends BaseView
      * @constructor
      */
     var SiteConfigImportView = function SiteConfigImportView() {
@@ -84,12 +85,14 @@ define([
                     reload: {
                         text: this.i18n.t('import.site.data.confirm.reload'),
                         disabled: true,
+                        type: 'success',
                         events: {
                             click: 'reloadSiteData'
                         }
                     },
                     confirm: {
                         text: this.i18n.t('site.data.confirm'),
+                        type: 'warning',
                         events: {
                             click: 'approveImportSiteData'
                         }

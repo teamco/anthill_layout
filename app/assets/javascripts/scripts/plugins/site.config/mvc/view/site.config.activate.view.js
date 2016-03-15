@@ -11,6 +11,7 @@ define([
     /**
      * Define SiteConfigActivateView
      * @class SiteConfigActivateView
+     * @extends BaseView
      * @constructor
      */
     var SiteConfigActivateView = function SiteConfigActivateView() {

@@ -50,6 +50,7 @@ define(
          * @extends SiteConfigImportView,
          * @extends SiteConfigPreferencesView,
          * @extends SiteConfigPublishView,
+         * @extends SiteConfigWidgetView,
          * @constructor
          */
         var SiteConfigView = function SiteConfigView() {

@@ -11,6 +11,7 @@ define([
     /**
      * Define SiteConfigPreferencesView
      * @class SiteConfigPreferencesView
+     * @extends BaseView
      * @constructor
      */
     var SiteConfigPreferencesView = function SiteConfigPreferencesView() {
@@ -59,6 +60,7 @@ define([
                 var buttons = {
                     approve: {
                         text: this.i18n.t('site.data.save'),
+                        type: 'success',
                         events: {
                             click: 'approveUpdatePreferences'
                         }

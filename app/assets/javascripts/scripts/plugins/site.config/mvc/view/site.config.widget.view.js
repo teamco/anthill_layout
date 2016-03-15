@@ -11,7 +11,7 @@ define([
     /**
      * Define SiteConfigWidgetView
      * @class SiteConfigWidgetView
-     * @extends SiteConfigView
+     * @extends BaseView
      * @constructor
      */
     var SiteConfigWidgetView = function SiteConfigWidgetView() {

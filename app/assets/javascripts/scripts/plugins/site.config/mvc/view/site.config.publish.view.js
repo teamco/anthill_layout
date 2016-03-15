@@ -11,6 +11,7 @@ define([
     /**
      * Define SiteConfigPublishView
      * @class SiteConfigPublishView
+     * @extends BaseView
      * @constructor
      */
     var SiteConfigPublishView = function SiteConfigPublishView() {
@@ -61,6 +62,7 @@ define([
                     buttons: {
                         approve: {
                             text: this.i18n.t('site.data.confirm'),
+                            type: 'success',
                             events: {
                                 click: 'approvePublish'
                             }
