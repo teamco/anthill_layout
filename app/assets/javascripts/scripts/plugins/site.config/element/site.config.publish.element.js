@@ -34,7 +34,7 @@ define([
          * @memberOf SiteConfigPublishElement
          */
         renderContent: function renderContent() {
-
+            // TODO
         }
 
     }, BaseElement.prototype);
