@@ -7,6 +7,7 @@ define(function defineRouter() {
     /**
      * Define router
      * class Router
+     * @extends BaseController
      * @constructor
      */
     var Router = function Router() {
