@@ -41,7 +41,7 @@ define(function defineUploadOnDrop() {
 
             /**
              * Handle file select
-             * @param {{dataTransfer}} evt
+             * @param {Event} evt
              * @private
              */
             function _handleFileSelect(evt) {
@@ -92,7 +92,7 @@ define(function defineUploadOnDrop() {
                     var info = [
                         '<li><strong>', encodeURIComponent(file.name), '</strong> (',
                         file.type || 'n/a', ') - ',
-                        this.view.scope.base.lib.number.bytes2Size(file.size), '</li>',
+                        scope.base.lib.number.bytes2Size(file.size), '</li>',
                         '<li> Last modified: ',
                         file.lastModifiedDate ?
                             file.lastModifiedDate.toLocaleDateString() : 'n/a',
@@ -105,7 +105,7 @@ define(function defineUploadOnDrop() {
 
             /**
              * Define handle Drag/Over
-             * @param evt
+             * @param {Event} evt
              * @private
              */
             function _handleDragOver(evt) {
@@ -137,7 +137,7 @@ define(function defineUploadOnDrop() {
             $dropZone[0].addEventListener('dragover', _handleDragOver, false);
             $dropZone[0].addEventListener('dragenter', _handleDragEnter, false);
             $dropZone[0].addEventListener('dragleave', _handleDragLeave, false);
-            $dropZone[0].addEventListener('drop', _handleFileSelect.bind(this), false);
+            $dropZone[0].addEventListener('drop', _handleFileSelect, false);
         }
     });
 });
