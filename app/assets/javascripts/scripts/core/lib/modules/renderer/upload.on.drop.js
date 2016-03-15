@@ -2,11 +2,12 @@
  * Created by teamco on 8/18/14.
  */
 
-define(['jquery'], function defineUploadOnDrop($) {
+define(function defineUploadOnDrop() {
 
     /**
      * Define upload on drop
      * @class UploadOnDropRenderer
+     * @extends AntHill
      * @constructor
      */
     var UploadOnDropRenderer = function UploadOnDropRenderer() {
@@ -29,7 +30,7 @@ define(['jquery'], function defineUploadOnDrop($) {
             }
 
             var cname = scope.name.toDash(),
-                $dropZone = $('<div class="' + cname + '-drop-zone" />').
+                $dropZone = $('<div class="' + cname + '-drop-zone import-area" />').
                     text('Drop JSON here'),
                 $output = $('<ul class="' + cname + '-file-info"></ul>');
 
@@ -116,8 +117,26 @@ define(['jquery'], function defineUploadOnDrop($) {
                 evt.dataTransfer.dropEffect = 'copy';
             }
 
+            /**
+             * Enable hover effect
+             * @private
+             */
+            function _handleDragEnter() {
+                $dropZone.addClass('hover');
+            }
+
+            /**
+             * Disable hover effect
+             * @private
+             */
+            function _handleDragLeave() {
+                $dropZone.removeClass('hover');
+            }
+
             // Setup the dnd listeners.
             $dropZone[0].addEventListener('dragover', _handleDragOver, false);
+            $dropZone[0].addEventListener('dragenter', _handleDragEnter, false);
+            $dropZone[0].addEventListener('dragleave', _handleDragLeave, false);
             $dropZone[0].addEventListener('drop', _handleFileSelect.bind(this), false);
         }
     });

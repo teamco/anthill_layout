@@ -55,3 +55,24 @@ textarea {
     max-height: 160px;
     min-height: 80px;
 }
+
+.import-area {
+    border: 1px dashed #bbb;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 25px;
+    text-align: center;
+    font-size: 20px;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.import-area.error {
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+.import-area.hover {
+    background-color: honeydew;
+}
