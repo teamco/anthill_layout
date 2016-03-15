@@ -10,6 +10,10 @@ html, body, pre, code {
     font: normal normal 12px/14px Tahoma, Arial, sans-serif;
 }
 
+body {
+    overflow-y: auto;
+}
+
 pre, code {
     font-size: 11px;
     overflow: auto;
@@ -28,8 +32,13 @@ pre, code {
 
 html, body, .application,
 .workspaces, .workspace,
-.pages, .page {
+.pages, .page, .widgets {
     height: 100%;
+}
+
+html, body, .application,
+.workspaces, .pages {
+    margin: 0;
 }
 
 html, body, .application,
@@ -49,14 +58,6 @@ html, body, .application,
 
 .workspaces, .pages, .widgets {
     list-style: none;
-}
-
-.workspaces, .pages {
-    overflow: auto;
-}
-
-.workspace, .page {
-    display: block;
 }
 
 .shadow {

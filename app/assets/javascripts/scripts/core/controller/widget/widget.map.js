@@ -93,7 +93,6 @@ define([
          * @returns {Number}
          */
         relWidth: function relWidth(width, cell) {
-
             return this.relDims(Math.round(width / cell));
         },
 
@@ -105,7 +104,6 @@ define([
          * @returns {Number}
          */
         relHeight: function relHeight(height, cell) {
-
             return this.relDims(Math.round(height / cell));
         },
 
@@ -117,7 +115,6 @@ define([
          * @returns {Number}
          */
         relRight: function relRight(column, width) {
-
             return column + width;
         },
 
@@ -129,7 +126,6 @@ define([
          * @returns {Number}
          */
         relBottom: function relBottom(row, height) {
-
             return row + height;
         },
 
@@ -141,7 +137,6 @@ define([
          * @returns {Number}
          */
         row: function row(top, cell) {
-
             return Math.round(top / cell);
         },
 
@@ -153,7 +148,6 @@ define([
          * @returns {Number}
          */
         column: function column(left, cell) {
-
             return Math.round(left / cell);
         },
 
@@ -164,7 +158,6 @@ define([
          * @returns {Number}
          */
         widgetTop: function widgetTop(row) {
-
             return this.getWidgetPosition(row);
         },
 
@@ -176,7 +169,6 @@ define([
          * @returns {Number}
          */
         widgetBottom: function widgetBottom(top, height) {
-
             return top + height;
         },
 
@@ -187,7 +179,6 @@ define([
          * @returns {Number}
          */
         widgetLeft: function widgetLeft(column) {
-
             return this.getWidgetPosition(column);
         },
 
@@ -199,7 +190,6 @@ define([
          * @returns {Number}
          */
         widgetRight: function widgetRight(left, width) {
-
             return left + width;
         },
 
@@ -210,7 +200,6 @@ define([
          * @returns {Number}
          */
         widgetHeight: function widgetHeight(relHeight) {
-
             return this.getWidgetDims(relHeight);
         },
 
@@ -221,7 +210,6 @@ define([
          * @returns {Number}
          */
         widgetWidth: function widgetWidth(relWidth) {
-
             return this.getWidgetDims(relWidth);
         },
 
@@ -538,14 +526,15 @@ define([
             }
 
             // Fetch outline page
-            var outline = page.model.getConfig('preferences').outlineContainment;
+            var outline = page.model.getConfig('preferences').outlineContainment,
+                outOfContainment = widget.model.getConfig('preferences').pageContainment;
 
             if (css.top >= 0 && css.left >= 0) {
 
                 widget.logger.debug('Update position in page', css);
                 _updatePosition();
 
-            } else if (outline) {
+            } else if (outline || outOfContainment) {
 
                 widget.logger.debug('Update position out of the page', css);
                 _updatePosition();
@@ -745,7 +734,6 @@ define([
                 }),
                 width: widgetDims[0],
                 height: widgetDims[1]
-
             }
         },
 
@@ -766,15 +754,17 @@ define([
 
                     /**
                      * Define widget
+                     * @type {Widget}
                      */
-                    var widget = widgets[index];
+                    var widget = widgets[index],
+                        dom = widget.map.getDOM();
 
-                    if (widget.row + widget.relHeight > row) {
+                    if (dom.row + dom.relHeight > row) {
 
                         /**
                          * Row is current row + blocks it takes to the bottom
                          */
-                        row = widget.row + widget.relHeight;
+                        row = dom.row + dom.relHeight;
                     }
                 }
             }

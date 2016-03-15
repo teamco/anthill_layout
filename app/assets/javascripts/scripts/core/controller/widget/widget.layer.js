@@ -2,7 +2,7 @@
  * Created by teamco on 7/8/14.
  */
 
-define([], function defineWidgetLayer() {
+define(function defineWidgetLayer() {
 
     /**
      * Define WidgetLayer

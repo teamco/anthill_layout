@@ -71,7 +71,7 @@ define(['config/layout'], function definePageLayout(Layout) {
              * @memberOf PageLayout
              */
             updateHeight: function updateHeight() {
-                console.log('TODO: Update height');
+                this.view.get$item().updateDimensions();
             },
 
             /**

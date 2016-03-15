@@ -351,7 +351,7 @@ define([
 
         /**
          * Transfer click to content
-         * @memberOf WidgetController
+         * @memberOf WidgetInteractions
          * @param {string} url
          */
         setOnClickUrl: function setOnClickUrl(url) {
@@ -367,8 +367,25 @@ define([
         },
 
         /**
+         * Update page dims on stop|drag/resize
+         * @memberOf WidgetInteractions
+         */
+        updateContainmentDimensions: function updateContainmentDimensions() {
+
+            /**
+             * Get Page
+             * @type {Page}
+             */
+            var page = this.getContainment();
+
+            page.observer.publish(
+                page.eventmanager.eventList.updateHeight
+            );
+        },
+
+        /**
          * Define update containment
-         * @memberOf WidgetController
+         * @memberOf WidgetInteractions
          * @param {array} types
          * @param {boolean|string|*} containment
          */

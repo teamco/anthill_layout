@@ -1,6 +1,6 @@
 .page {
     top: 0;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
     position: relative;
     width: 100%;
     float: left;
@@ -37,8 +37,8 @@
     margin: 0;
     width: auto;
     height: auto;
-    overflow-x: hidden;
-    overflow-y: auto;
+    /*overflow-x: hidden;*/
+    /*overflow-y: auto;*/
 }
 
 .page .page-modal.modal-dialog div.html {

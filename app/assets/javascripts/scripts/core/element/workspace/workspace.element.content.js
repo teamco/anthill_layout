@@ -29,23 +29,6 @@ define([
     return WorkspaceContentElement.extend('WorkspaceContentElement', {
 
         /**
-         * Define height after add page
-         * @memberOf WorkspaceContentElement
-         */
-        defineHeight: function defineHeight() {
-
-            var header = this.view.elements.$header,
-                footer = this.view.elements.$footer,
-                $container = this.getRootContainer();
-
-            var headerHeight = header.$ ? header.$.height() : 0,
-                footerHeight = footer.$ ? footer.$.height() : 0,
-                containerHeight = $container.height();
-
-            this.setHeight(containerHeight - (headerHeight + footerHeight));
-        },
-
-        /**
          * Define width after add page
          * @memberOf WorkspaceContentElement
          * @param {number} to

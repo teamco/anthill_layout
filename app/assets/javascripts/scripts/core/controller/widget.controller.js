@@ -240,14 +240,14 @@ define(
                 },
 
                 /**
-                 * Define snap2grid mode
+                 * Define free style mode
                  * @memberOf WidgetController
                  * @param opts
                  * @param mode
                  * @param behavior
                  */
                 freeStyleMode: function freeStyleMode(opts, mode, behavior) {
-
+                    // TODO
                 },
 
                 /**

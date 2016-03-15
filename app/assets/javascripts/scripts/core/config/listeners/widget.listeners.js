@@ -87,6 +87,7 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
             name: 'stop.draggable',
             callback: function stopDraggableCallback() {
                 this.controller.showContent(true);
+                this.controller.updateContainmentDimensions();
             }
         },
 
@@ -105,6 +106,7 @@ define(['config/widget'], function defineWidgetListeners(Widget) {
                     this.controller.isExpandable()
                 );
                 this.controller.showContent(true);
+                this.controller.updateContainmentDimensions();
             }
         }
     };

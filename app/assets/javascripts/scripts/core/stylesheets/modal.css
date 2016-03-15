@@ -15,6 +15,7 @@
 
 .modal .ui-draggable-handle {
     cursor: move;
+    word-break: break-all;
 }
 
 .modal-dialog,

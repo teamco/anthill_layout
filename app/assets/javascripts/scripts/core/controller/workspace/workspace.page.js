@@ -11,6 +11,7 @@ define(function defineWorkspacePage() {
      * Define WorkspacePage controller
      * @class WorkspacePage
      * @extends AntHill
+     * @extends Router
      * @constructor
      */
     var WorkspacePage = function WorkspacePage() {
@@ -32,7 +33,6 @@ define(function defineWorkspacePage() {
                 var $pages = this.view.elements.$pages,
                     counter = this.model.getConfig('page/counter');
 
-                $pages.defineHeight();
                 $pages.defineWidth(counter);
             },
 
@@ -46,11 +46,12 @@ define(function defineWorkspacePage() {
                  * Define scope
                  * @type {Workspace}
                  */
-                var scope = this.scope;
+                var scope = this.scope,
+                    page = this.getPageByHashLocation(scope);
 
                 scope.observer.publish(
                     scope.eventmanager.eventList.switchToPage,
-                    this.getPageByHashLocation(scope)
+                    page
                 );
             },
 
@@ -159,6 +160,10 @@ define(function defineWorkspacePage() {
                 this.logger.debug('After switch to page', page);
 
                 this.switchPage = false;
+
+                page.observer.publish(
+                    page.eventmanager.eventList.updateHeight
+                );
 
                 //this.getWidgetByHashLocation()
                 //console.log('TODO add widget implementation');
