@@ -101,7 +101,8 @@ ul.site-config .content.widget-generator > a {
     margin-left: 48%;
 }
 
-.modal.widget-generator-new .nav > li > a {
+.modal.widget-generator-new .nav > li > a,
+.modal.activate .nav > li > a {
     padding: 7px 10px;
     border-radius: 0 5px 5px 0;
     min-width: 280px;
@@ -109,12 +110,15 @@ ul.site-config .content.widget-generator > a {
     border-left: none;
 }
 
-.modal.widget-generator-new .nav > li > a .caret {
+.modal.widget-generator-new .nav > li > a .caret,
+.modal.activate .nav > li > a .caret {
     margin-top: 8px;
 }
 
 .modal-open .modal.widget-generator-new,
-.modal.widget-generator-new .modal-body {
+.modal-open .modal.activate,
+.modal.widget-generator-new .modal-body,
+.modal.activate .modal-body {
     overflow: visible;
 }
 

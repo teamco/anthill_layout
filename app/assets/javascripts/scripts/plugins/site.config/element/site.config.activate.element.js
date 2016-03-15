@@ -13,11 +13,12 @@ define([
      * @param {SiteConfigView} view
      * @param opts
      * @extends BaseElement
+     * @extends Renderer
      * @returns {SiteConfigActivateElement}
      */
     var SiteConfigActivateElement = function SiteConfigActivateElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
+        this._config(view, opts, $('<div class="site-mode" />')).build({
             $container: opts.$container
         });
 
@@ -53,13 +54,12 @@ define([
                 }
             }
 
-            var $ul = $('<ul />');
-
             /**
              * Define combo
              * @type {*|jQuery}
              */
-            var $combo = $('<li />').addClass('site-mode').append(
+            var $combo = $('<div class="input-group input-group-sm" />').append(
+                this.renderLabel(undefined, 'Mode', '', true),
                 this.renderCombobox(
                     modes,
                     root.model.getConfig('mode'),
@@ -71,9 +71,7 @@ define([
                 )
             );
 
-            this.$.append(
-                $ul.append($combo)
-            );
+            this.$.append($combo);
         }
 
     }, BaseElement.prototype);

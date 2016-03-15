@@ -445,7 +445,7 @@ define([
                             var sorted = $element.sortComboBoxData(data);
 
                             $field = $('<div class="input-group input-group-sm" />').append(
-                                this.renderLabel(undefined, index, undefined, true),
+                                this.renderLabel(undefined, index, '', true),
                                 $element.renderCombobox(
                                     sorted,
                                     (types[widgetData[index]] || sorted[0].value),
