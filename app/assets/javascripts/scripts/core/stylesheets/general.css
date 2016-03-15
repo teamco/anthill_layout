@@ -10,10 +10,6 @@ html, body, pre, code {
     font: normal normal 12px/14px Tahoma, Arial, sans-serif;
 }
 
-body {
-    overflow-y: auto;
-}
-
 pre, code {
     font-size: 11px;
     overflow: auto;
@@ -54,6 +50,11 @@ html, body, .application,
     */
     -ms-user-select: none;
     user-select: none;
+}
+
+.application {
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .workspaces, .pages, .widgets {

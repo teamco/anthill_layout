@@ -398,6 +398,7 @@ define([
             this.destroy();
 
             if (this.base.defineBoolean(backdrop, true, true)) {
+                $('body').removeClass('modal-open');
                 this.removeBackdrop();
             }
         },

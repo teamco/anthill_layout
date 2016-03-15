@@ -59,25 +59,32 @@ define([
              * Get widget
              * @type {Widget}
              */
-            var widget = this.view.scope.model.getCurrentItem();
+            var widget = scope.model.getCurrentItem();
 
-            if (widget) {
-
-                /**
-                 * Calculate last occupied row
-                 * @type {*|number}
-                 */
-                var lastOccupiedRow = widget.map.getLastOccupiedRow();
-
-                /**
-                 * Get layout
-                 * @type {*|Layout}
-                 */
-                var layout = scope.controller.getLayout();
-
-                height = lastOccupiedRow * layout.controller.minCellWidth() +
-                    (lastOccupiedRow + 1) * layout.config.grid.margin;
+            if (!widget.view) {
+                scope.logger.debug('Unable to set page height: Page without items (default 100%)');
+                return false;
             }
+
+            if (!widget.view.get$item()) {
+                scope.logger.debug('Unable to set page height: Initial state (default 100%)');
+                return false;
+            }
+
+            /**
+             * Calculate last occupied row
+             * @type {*|number}
+             */
+            var lastOccupiedRow = widget.map.getLastOccupiedRow();
+
+            /**
+             * Get layout
+             * @type {*|Layout}
+             */
+            var layout = scope.controller.getLayout();
+
+            height = lastOccupiedRow * layout.controller.minCellWidth() +
+                (lastOccupiedRow + 1) * layout.config.grid.margin;
 
             var header = this.view.elements.$header,
                 footer = this.view.elements.$footer,
@@ -86,7 +93,7 @@ define([
             var headerHeight = header.$ ? header.$.height() : 0,
                 footerHeight = footer.$ ? footer.$.height() : 0,
                 outerHeight = headerHeight + footerHeight;
-            
+
             height = height ? height : $container.height();
 
             if (height < $container.height()) {
@@ -94,6 +101,7 @@ define([
             }
 
             this.setHeight(height + outerHeight);
+
         }
 
     }, BaseElement.prototype);
