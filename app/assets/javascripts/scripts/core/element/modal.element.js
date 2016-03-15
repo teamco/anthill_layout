@@ -69,6 +69,9 @@ define([
          */
         setup: function setup(opts) {
 
+            // Define default container
+            var $defaultContainer = $('body');
+
             /**
              * Set modal title
              * @property ModalElement
@@ -129,7 +132,7 @@ define([
              * @property ModalElement
              * @type {*|jQuery|HTMLElement}
              */
-            this.$container = opts.$container || $('body');
+            this.$container = opts.$container || $defaultContainer;
 
             /**
              * Set modal position:
@@ -244,7 +247,6 @@ define([
             }
 
             this.setButtons();
-
             this.setFocus();
         },
 
