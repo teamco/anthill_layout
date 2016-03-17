@@ -102,6 +102,9 @@ define([
              * @private
              */
             function _locatePrefs(event) {
+
+                event.preventDefault();
+
                 scope.observer.publish(
                     scope.eventmanager.eventList.loadPreferences, [
                         {uuid: config.uuid},
@@ -140,9 +143,13 @@ define([
 
             /**
              * Click maximize
+             * @param {Event} e
              * @private
              */
-            function _clickMaximize() {
+            function _clickMaximize(e) {
+
+                e.preventDefault();
+
                 scope.observer.publish(
                     scope.eventmanager.eventList.defineInteraction,
                     data

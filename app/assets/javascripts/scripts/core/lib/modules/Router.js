@@ -29,7 +29,18 @@ define(function defineRouter() {
          * @memberOf Router
          */
         setHashLocation: function setHashLocation(hash) {
-            window.location.hash = hash;
+
+            /**
+             * Get hash state
+             * @type {string}
+             */
+            var state = '#' + hash;
+
+            if (window.history.pushState) {
+                window.history.pushState(null, null, state);
+            } else {
+                window.location.hash = state;
+            }
         },
 
         /**

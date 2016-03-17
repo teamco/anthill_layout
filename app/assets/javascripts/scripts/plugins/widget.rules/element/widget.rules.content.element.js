@@ -39,7 +39,7 @@ define([
          * @memberOf WidgetRulesContentElement
          */
         getTemplate: function getTemplate(data) {
-            $('<a class="widget ' + data.model.getConfig('preferences').resource.toClassName() + '" href="#" />').
+            $('<a class="widget ' + data.model.getConfig('preferences').resource.toClassName() + '" />').
                 appendTo(this.$);
         },
 
@@ -96,10 +96,11 @@ define([
 
             /**
              * Locate widget
-             * @param event
+             * @param {Event} event
              * @private
              */
             function _locateRules(event) {
+                event.preventDefault();
                 scope.observer.publish(
                     scope.eventmanager.eventList.loadRules, [
                         {uuid: config.uuid},
@@ -138,19 +139,26 @@ define([
         bindShowRules: function bindShowRules(data) {
 
             /**
+             * Define scope
+             * @type {WidgetRules}
+             */
+            var scope = this.view.scope;
+
+            /**
              * Load stored rules
              * @private
              */
             function _loadStoredRules() {
-                this.view.controller.loadStoredRules(config.rules);
+                scope.controller.loadStoredRules(config.rules);
             }
 
             /**
              * Click prefs
              * @private
-             * @param e
+             * @param {Event} e
              */
             function _clickRules(e) {
+                e.preventDefault();
                 scope.observer.publish(
                     scope.eventmanager.eventList.loadRules,
                     [config, true, e, _loadStoredRules.bind(this)]
@@ -163,18 +171,11 @@ define([
              */
             var config = data.model.getConfig();
 
-            /**
-             * Define scope
-             * @type {WidgetRules}
-             */
-            var scope = this.view.scope;
-
             this.$.off('click.rules').on(
                 'click.rules',
-                _clickRules.bind(this)
+                _clickRules
             );
         }
 
     }, BaseElement.prototype);
-
 });

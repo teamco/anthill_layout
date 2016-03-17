@@ -6,10 +6,9 @@
  */
 
 define([
-    'jquery',
     'modules/Element',
     'plugins/preferences/site.preferences'
-], function defineSiteConfigPreferencesElement($, BaseElement, SitePreferences) {
+], function defineSiteConfigPreferencesElement(BaseElement, SitePreferences) {
 
     /**
      * Define SiteConfig Preferences Element
@@ -35,9 +34,9 @@ define([
         return this;
     };
 
-    return SiteConfigPreferencesElement.extend('SiteConfigPreferencesElement', {
-
-
-    }, BaseElement.prototype, SitePreferences.prototype);
-
+    return SiteConfigPreferencesElement.extend(
+        'SiteConfigPreferencesElement', {},
+        BaseElement.prototype,
+        SitePreferences.prototype
+    );
 });

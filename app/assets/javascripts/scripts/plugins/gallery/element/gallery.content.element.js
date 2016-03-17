@@ -52,7 +52,7 @@ define([
          * @memberOf GalleryContentElement
          */
         getTemplate: function getTemplate() {
-            $('<a class="widget ' + this.data.resource.toClassName() + '" href="#" />').
+            $('<a class="widget ' + this.data.resource.toClassName() + '" />').
                 appendTo(this.$);
         },
 
@@ -85,9 +85,11 @@ define([
 
             /**
              * Click to install
+             * @param {Event} event
              * @private
              */
-            function _clickInstall() {
+            function _clickInstall(event) {
+                event.preventDefault();
                 this.view.controller.addWidget(this);
             }
 

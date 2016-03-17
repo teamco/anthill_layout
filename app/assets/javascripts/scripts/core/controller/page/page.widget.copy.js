@@ -9,7 +9,7 @@ define(function definePageWidgetCopy() {
     /**
      * Define PageWidgetCopy
      * @class PageWidgetCopy
-     * @mixes PageController
+     * @extends BaseController
      * @constructor
      */
     var PageWidgetCopy = function PageWidgetCopy() {

@@ -14,6 +14,7 @@ define([
      * @constructor
      * @class GalleryProvidersElement
      * @extends BaseElement
+     * @extends Renderer
      */
     var GalleryProvidersElement = function GalleryProvidersElement(view, opts) {
 

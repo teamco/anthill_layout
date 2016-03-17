@@ -19,6 +19,7 @@ define(
          * Define WorkspaceData AddPage Element
          * @constructor
          * @class WorkspaceDataAddPageElement
+         * @extends Renderer
          * @extends BaseElement
          * @param {WorkspaceDataView} view
          * @param opts
@@ -56,7 +57,7 @@ define(
                  * @memberOf WorkspaceDataContentElement
                  */
                 getTemplate: function getTemplate() {
-                    $('<a class="page add" href="#" />').
+                    $('<a class="page add" />').
                         appendTo(this.$);
                 },
 
@@ -149,7 +150,6 @@ define(
                         $title
                     ]);
                 }
-
             },
             BaseElement.prototype
         );

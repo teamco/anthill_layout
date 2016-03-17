@@ -79,6 +79,5 @@ define([
                     replace(/position: relative;/, '')
             );
         }
-
     }, BaseElement.prototype);
 });

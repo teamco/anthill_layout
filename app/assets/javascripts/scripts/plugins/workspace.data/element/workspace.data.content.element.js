@@ -43,7 +43,7 @@ define([
          * @memberOf WorkspaceDataContentElement
          */
         getTemplate: function getTemplate(page) {
-            $('<a class="page" data-uuid="' + page.model.getUUID() + '" href="#" />').
+            $('<a class="page" data-uuid="' + page.model.getUUID() + '" />').
                 appendTo(this.$);
         },
 
@@ -183,13 +183,20 @@ define([
         bindShowPrefs: function bindShowPrefs(data) {
 
             /**
+             * Get scope
+             * @type {WorkspaceData}
+             */
+            var scope = this.view.scope;
+
+            /**
              * Click prefs
+             * @param {Event} event
              * @private
              */
-            function _clickPrefs() {
-
-                this.view.scope.observer.publish(
-                    this.view.scope.eventmanager.eventList.preparePreferences,
+            function _clickPrefs(event) {
+                event.preventDefault();
+                scope.observer.publish(
+                    scope.eventmanager.eventList.preparePreferences,
                     config
                 );
             }
@@ -202,10 +209,8 @@ define([
 
             this.$.off('click.prefs').on(
                 'click.prefs',
-                _clickPrefs.bind(this)
+                _clickPrefs
             );
         }
-
     }, BaseElement.prototype);
-
 });

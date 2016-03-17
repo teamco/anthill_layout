@@ -68,12 +68,14 @@ define([
             var scope = this.scope,
                 $modal = scope.view.elements.$modal;
 
-            scope.logger.debug(
-                'Reject modal event',
-                $modal.item
-            );
+            if ($modal) {
+                scope.logger.debug(
+                    'Reject modal event',
+                    $modal.item
+                );
 
-            $modal.selfDestroy();
+                $modal.selfDestroy();
+            }
         },
 
         /**

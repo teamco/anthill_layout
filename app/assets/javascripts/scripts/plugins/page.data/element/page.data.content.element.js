@@ -40,7 +40,7 @@ define([
          * @memberOf PageDataContentElement
          */
         getTemplate: function getTemplate(data) {
-            $('<a class="widget ' + data.model.getConfig('preferences').resource.toClassName() + '" href="#" />').
+            $('<a class="widget ' + data.model.getConfig('preferences').resource.toClassName() + '" />').
                 appendTo(this.$);
         },
 
@@ -97,10 +97,13 @@ define([
 
             /**
              * Locate widget
-             * @param event
+             * @param {Event} event
              * @private
              */
             function _locatePrefs(event) {
+
+                event.preventDefault();
+
                 scope.observer.publish(
                     scope.eventmanager.eventList.loadPreferences, [
                         {uuid: config.uuid},
@@ -140,9 +143,13 @@ define([
 
             /**
              * Click prefs
+             * @param {Event} event
              * @private
              */
-            function _clickPrefs() {
+            function _clickPrefs(event) {
+
+                event.preventDefault();
+
                 scope.observer.publish(
                     scope.eventmanager.eventList.loadPreferences,
                     [config, true]

@@ -49,7 +49,7 @@ define([
             var name = this.resource.module.name;
 
             return [
-                '<li><a title="', name.humanize(), '" href="#">',
+                '<li><a title="', name.humanize(), '">',
                 '<i class="fa ', name.toDash(), '"></i><span>',
                 name.humanize(), '</span></a></li>'
             ].join('');

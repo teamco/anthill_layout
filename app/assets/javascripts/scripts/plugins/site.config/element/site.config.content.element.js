@@ -41,7 +41,7 @@ define([
          * @memberOf WorkspaceDataContentElement
          */
         getTemplate: function getTemplate() {
-            $('<a class="site-config" href="#" />').
+            $('<a class="site-config" />').
                 appendTo(this.$);
         },
 
@@ -113,9 +113,11 @@ define([
             /**
              * Click prefs
              * @private
-             * @param e
+             * @param {Event} e
              */
             function _clickPreferences(e) {
+
+                e.preventDefault();
 
                 /**
                  * Get event name
