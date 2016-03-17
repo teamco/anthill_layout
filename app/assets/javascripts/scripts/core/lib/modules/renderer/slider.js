@@ -5,15 +5,15 @@
  * Time: 5:51 PM
  */
 
-define([], function defineSliderRenderer() {
+define(function defineSliderRenderer() {
 
     /**
      * Define Slider Renderer
      * @class SliderRenderer
+     * @extends BaseElement
      * @constructor
      */
     var SliderRenderer = function SliderRenderer() {
-
     };
 
     return SliderRenderer.extend('SliderRenderer', {
