@@ -82,6 +82,15 @@ define([
         },
 
         /**
+         * Check if panel not active
+         * @memberOf PanelController
+         * @returns {boolean}
+         */
+        isNotActive: function isNotActive() {
+            return !!this.scope.active;
+        },
+
+        /**
          * Refresh modules content
          * @memberOf PanelController
          */
@@ -171,13 +180,12 @@ define([
         /**
          * Close panels [except this]
          * @memberOf PanelController
-         * @param {Panel} [except]
          */
-        closePanels: function closePanels(except) {
+        closePanels: function closePanels() {
 
             /**
              * Get panels
-             * @type {Application.panels}
+             * @type {{runTime, designTime}|object}
              */
             var panels = this.root().panels,
                 index, panel;
@@ -188,13 +196,10 @@ define([
 
                     panel = panels[index];
 
-                    if (panel !== except) {
-
-                        panel.observer.publish(
-                            panel.eventmanager.eventList.closePanel,
-                            panel.active
-                        );
-                    }
+                    panel.observer.publish(
+                        panel.eventmanager.eventList.closePanel,
+                        panel.active
+                    );
                 }
             }
         },
@@ -208,8 +213,8 @@ define([
          */
         openPanel: function openPanel(resource, event, callback) {
 
-            this.controller.closePanels(this);
             this.view.elements.$panel.toggleModule(resource, true);
+            this.controller.closePanels();
 
             if (_.isFunction(callback)) {
                 callback(event);

@@ -81,5 +81,4 @@ define([
         }
 
     }, BaseElement.prototype);
-
 });
