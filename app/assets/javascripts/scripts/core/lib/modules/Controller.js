@@ -596,10 +596,11 @@ define([
             /**
              * Check is widget
              * @memberOf BaseController
+             * @param {Widget} [item]
              * @returns {boolean}
              */
-            isWidget: function isWidget() {
-                return this.scope.name === 'Widget';
+            isWidget: function isWidget(item) {
+                return (item || this.scope)['name'] === 'Widget';
             },
 
             /**

@@ -223,14 +223,16 @@ define([
         /**
          * Enlarge widget
          * @memberOf WidgetElement
+         * @param {boolean} force
          */
-        enlarge: function enlarge() {
+        enlarge: function enlarge(force) {
 
             /**
              * Define scope
              * @type {Widget}
              */
-            var scope = this.view.scope;
+            var scope = this.view.scope,
+                duration = force ? 0 : 500;
 
             scope.controller.root().view.get$item().hideScroll(true);
 
@@ -241,7 +243,7 @@ define([
                 left: 0,
                 top: 0
 
-            }, 500, function afterEnlarge() {
+            }, duration, function afterEnlarge() {
 
                 scope.observer.publish(
                     scope.eventmanager.eventList.afterMaximize
@@ -253,14 +255,16 @@ define([
         /**
          * Reduce widget
          * @memberOf WidgetElement
+         * @param {boolean} force
          */
-        reduce: function reduce() {
+        reduce: function reduce(force) {
 
             /**
              * Define scope
              * @type {Widget}
              */
             var scope = this.view.scope,
+                duration = force ? 0 : 500;
                 dom = scope.dom;
 
             scope.controller.root().view.get$item().hideScroll(false);
@@ -272,7 +276,7 @@ define([
                 left: dom.left,
                 top: dom.top
 
-            }, 500, function afterReduce() {
+            }, duration, function afterReduce() {
 
                 scope.observer.publish(
                     scope.eventmanager.eventList.afterReduce

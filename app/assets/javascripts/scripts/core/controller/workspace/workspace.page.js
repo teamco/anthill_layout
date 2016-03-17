@@ -101,14 +101,32 @@ define(function defineWorkspacePage() {
                  */
                 var widget = this.controller.getWidgetByHashLocation(page);
 
-                var purl = page ?
-                        this.controller.getItemIdentity(page) : '',
+                var wurl = '',
+                    purl = page ?
+                        this.controller.getItemIdentity(page) : '';
 
-                    wurl = widget ?
-                    '/' + page.controller.getItemIdentity(widget) : '';
+                if (widget) {
+
+                    wurl = '/' + page.controller.getItemIdentity(widget);
+
+                    widget.observer.publish(
+                        widget.eventmanager.eventList.enlargeWidget,
+                        true
+                    );
+                }
+
+                if (!widget && this.controller.isWidget(page.maximized)) {
+
+                    // Define widget
+                    widget = page.maximized;
+
+                    widget.observer.publish(
+                        widget.eventmanager.eventList.reduceWidget
+                    );
+                }
 
                 this.controller.setHashLocation(
-                    ''.concat('/', purl, wurl)
+                    ''.concat(purl, wurl)
                 );
             },
 

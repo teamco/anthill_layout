@@ -34,7 +34,7 @@ define(function defineRouter() {
              * Get hash state
              * @type {string}
              */
-            var state = '#' + hash;
+            var state = '#/' + hash;
 
             if (window.history.pushState) {
                 window.history.pushState(null, null, state);
@@ -172,7 +172,7 @@ define(function defineRouter() {
 
             this.controller.setHashLocation(
                 ''.concat(
-                    '/', hash, '/',
+                    hash, '/',
                     this.controller.getItemIdentity(widget)
                 )
             );

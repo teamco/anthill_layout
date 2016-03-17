@@ -55,45 +55,61 @@ define(function defineWidgetMaximize() {
         /**
          * Reduce widget
          * @memberOf WidgetMaximize
+         * @param {boolean} [force]
          */
-        reduceWidget: function reduceWidget() {
+        reduceWidget: function reduceWidget(force) {
 
-            if (!this.controller.isMaximized()) {
+            // Get scope
+            var scope = this;
 
-                this.logger.debug('Widget not maximized');
+            force = scope.base.defineBoolean(force, false, true);
+
+            if (!scope.controller.isMaximized()) {
+
+                scope.logger.debug('Widget not maximized');
                 return false;
             }
 
-            this.observer.publish(
-                this.eventmanager.eventList.beforeReduce
+            scope.observer.publish(
+                scope.eventmanager.eventList.beforeReduce
             );
 
-            this.view.get$item().reduce();
+            setTimeout(function () {
+                scope.view.get$item().reduce(force);
+            }, 0);
         },
 
         /**
          * Enlarge widget
          * @memberOf WidgetMaximize
+         * @param {boolean} [force]
          */
-        enlargeWidget: function enlargeWidget() {
+        enlargeWidget: function enlargeWidget(force) {
 
-            if (this.controller.isMaximized()) {
+            // Get scope
+            var scope = this;
 
-                this.logger.warn('Widget already maximized');
+            force = scope.base.defineBoolean(force, false, true);
+
+            if (scope.controller.isMaximized()) {
+
+                scope.logger.warn('Widget already maximized');
                 return false;
             }
 
-            if (!this.controller.isMaximizable()) {
+            if (!scope.controller.isMaximizable()) {
 
-                this.logger.warn('Widget can\'t be maximized');
+                scope.logger.warn('Widget can\'t be maximized');
                 return false;
             }
 
-            this.observer.publish(
-                this.eventmanager.eventList.beforeMaximize
+            scope.observer.publish(
+                scope.eventmanager.eventList.beforeMaximize
             );
 
-            this.view.get$item().enlarge();
+            setTimeout(function () {
+                scope.view.get$item().enlarge(force);
+            }, 0);
         },
 
         /**
