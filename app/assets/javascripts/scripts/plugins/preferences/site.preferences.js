@@ -319,7 +319,7 @@ define([
              */
             var cname = 'Global Preferences',
                 uuid = this.base.lib.generator.UUID() + '-slider',
-                $ul = $('<ul class="default" />').addClass('site-width-slider'),
+                $ul = $('<ul class="default site-width-slider" />'),
                 $slider = $('<div />');
 
             /**
