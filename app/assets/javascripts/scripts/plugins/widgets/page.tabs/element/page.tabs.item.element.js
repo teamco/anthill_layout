@@ -20,13 +20,13 @@ define([
      */
     var PageTabsItemElement = function PageTabsItemElement(view, opts) {
 
-        this._config(view, opts, $('<li />')).build({
+        this._config(view, opts, $('<li role="presentation" />')).build({
             $container: opts.$container
         });
 
         /**
          * Define page tab item
-         * @memberOf PageTabsItemElement
+         * @property PageTabsItemElement
          * @type {Page}
          */
         this.pageTab = opts.pageTab;
@@ -52,14 +52,14 @@ define([
 
             /**
              * Define title
-             * @memberOf PageTabsItemElement
+             * @property PageTabsItemElement
              * @type {*|string}
              */
             this.title = this.pageTab.model.getItemTitle();
 
             /**
              * Define description
-             * @memberOf PageTabsItemElement
+             * @property PageTabsItemElement
              * @type {*|string}
              */
             this.description = preferences.description;
@@ -72,7 +72,9 @@ define([
             this.pageUrl = preferences.pageUrl;
 
             this.$.append(
-                $('<div />').text(this.title)
+                $('<a />').attr({
+                    title: this.title
+                }).text(this.title)
             );
 
             this.setTitle(this.title);

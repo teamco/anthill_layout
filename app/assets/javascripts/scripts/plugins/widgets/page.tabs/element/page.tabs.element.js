@@ -20,7 +20,7 @@ define([
      */
     var PageTabsElement = function PageTabsElement(view, opts) {
 
-        this._config(view, opts, $('<div />')).build({
+        this._config(view, opts, $('<ul class="nav nav-tabs" />')).build({
             $container: opts.$container,
             destroy: true
         });
@@ -29,7 +29,7 @@ define([
          * Define current page class name
          * @type {string}
          */
-        this.current = 'current';
+        this.current = 'active';
 
         this.addCSS('page.tabs', {resource: '/widgets'});
 
