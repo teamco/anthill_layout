@@ -23,7 +23,6 @@ define([
      * @constructor
      */
     var PageTabsView = function PageTabsView() {
-
     };
 
     return PageTabsView.extend('PageTabsView', {
@@ -131,5 +130,4 @@ define([
         }
 
     }, BaseView.prototype)
-
 });
