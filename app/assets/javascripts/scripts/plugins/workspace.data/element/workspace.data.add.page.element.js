@@ -57,8 +57,7 @@ define(
                  * @memberOf WorkspaceDataContentElement
                  */
                 getTemplate: function getTemplate() {
-                    $('<a class="page add" />').
-                        appendTo(this.$);
+                    $('<a class="page add" />').appendTo(this.$);
                 },
 
                 /**
@@ -130,18 +129,27 @@ define(
                         })
                     ).addClass('page-title');
 
+                    var text = 'Clone from',
+                        $cloneTemplate = $([
+                            '<div class="input-group input-group-sm">',
+                            '<span class="input-group-addon">', text, '</span>',
+                            '</div>'
+                        ].join(''));
+
                     /**
                      * Define clone from
                      * @type {*|jQuery}
                      */
                     var $clone = $('<li />').append(
-                        this.renderCombobox(
-                            clonePages,
-                            clonePages[0].value,
-                            'Create as',
-                            'cloneItemContent',
-                            undefined,
-                            true
+                        $cloneTemplate.append(
+                            this.renderCombobox(
+                                clonePages,
+                                clonePages[0].value,
+                                text,
+                                'cloneItemContent',
+                                undefined,
+                                true
+                            )
                         )
                     );
 

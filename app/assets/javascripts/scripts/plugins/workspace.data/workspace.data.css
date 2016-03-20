@@ -42,3 +42,19 @@ ul.workspace-data .content.current .counter {
     width: 48%;
     margin-right: 2%;
 }
+
+.modal-open .modal.create-page,
+.modal.create-page .modal-body {
+    overflow: visible;
+}
+
+.modal.create-page .nav > li > a {
+    padding: 8px 10px;
+    border-radius: 0 5px 5px 0;
+    min-width: 300px;
+    border: 1px solid #dfdfdf;
+}
+
+.modal.create-page .nav > li > a .caret {
+    margin-top: 8px;
+}

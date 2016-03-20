@@ -7,6 +7,7 @@ define(function defineBaseRules() {
      * Define base prefs
      * @class BaseRules
      * @extends BaseView
+     * @extends BaseElement
      * @constructor
      */
     var BaseRules = function BaseRules() {

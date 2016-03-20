@@ -354,7 +354,6 @@ define([
          * Get HTML container
          * @memberOf ModalElement
          * @returns {*}
-         * @private
          */
         get$Body: function get$Body() {
             return this.$.find('div.modal-body');

@@ -22,7 +22,7 @@ define([
 
         /**
          * Buttons collector
-         * @memberOf BaseWidgetRules
+         * @property BaseWidgetRules
          * @type {{}}
          */
         this.$buttons = {};
@@ -45,7 +45,7 @@ define([
          */
         getTemplate: function getTemplate(text) {
             return $([
-                '<div class="input-group">',
+                '<div class="input-group input-group-sm">',
                 '<span class="input-group-addon">', text, '</span>',
                 '</div>'
             ].join(''));
@@ -221,8 +221,9 @@ define([
              * Get published rules
              * @type {{}}
              */
-            var published = this.view.controller.getPublishedRules(),
-                empty = false,
+            var published = this.view.controller.getPublishedRules();
+
+            var empty = false,
                 render = false;
 
             if (this.base.lib.hash.hashLength(published) === 0) {
@@ -254,7 +255,7 @@ define([
                             subscribe[index], {}, true
                         );
 
-                    empty = this.base.lib.hash.hashLength(rulesList) === 0;
+                    empty = !this.base.lib.hash.hashLength(rulesList);
 
                     for (var type in rulesList) {
 
@@ -304,10 +305,9 @@ define([
 
                 this.$.append(
                     $('<fieldset />').append([
-                        $('<legend />').text(title).
-                            on('click.toggle', this.toggleFieldset.bind(this)).attr({
-                                title: title
-                            }),
+                        $('<legend />').text(title).on('click.toggle', this.toggleFieldset.bind(this)).attr({
+                            title: title
+                        }),
                         $ul
                     ])
                 );
@@ -368,10 +368,9 @@ define([
 
                 $container.append(
                     $('<fieldset />').append([
-                        $('<legend />').text(title).
-                            on('click.toggle', this.toggleFieldset.bind(this)).attr({
-                                title: title
-                            }),
+                        $('<legend />').text(title).on('click.toggle', this.toggleFieldset.bind(this)).attr({
+                            title: title
+                        }),
                         $ul
                     ])
                 );

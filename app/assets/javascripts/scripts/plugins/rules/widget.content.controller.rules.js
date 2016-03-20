@@ -12,6 +12,7 @@ define([
     /**
      * Define Base Widget controller Rules
      * @class WidgetContentControllerRules
+     * @extends BaseController
      * @extends WidgetSubscribe
      * @constructor
      */
@@ -402,10 +403,10 @@ define([
                                     );
 
                                 }.bind({
-                                        scope: this,
-                                        interval: interval,
-                                        opts: opts
-                                    }),
+                                    scope: this,
+                                    interval: interval,
+                                    opts: opts
+                                }),
 
                                 interval
                             );
@@ -586,8 +587,9 @@ define([
              * Define $button
              * @type {*|jQuery|HTMLElement}
              */
-            var $button = $(e.target),
-                scope = this.scope;
+            var $button = $(e.target);
+
+            var scope = this.scope;
 
             scope.observer.publish(
                 scope.eventmanager.eventList.publishRule,
