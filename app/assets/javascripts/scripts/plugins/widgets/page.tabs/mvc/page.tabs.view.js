@@ -42,7 +42,6 @@ define([
              */
             this.elements.$pagetabs = new PageTabsElement(this, {
                 $container: this.elements.$container.$,
-                id: this.createUUID(),
                 style: 'page-tabs-container'
             });
 

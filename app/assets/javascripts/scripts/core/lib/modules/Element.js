@@ -32,7 +32,7 @@ define([
          * Element config before build
          * @memberOf BaseElement
          * @param {BaseView} view
-         * @param {{[style]: string, [uuid], [id]: boolean, [css], [events], [opacity], [id]: boolean}} opts
+         * @param {{[style]: string, [uuid], [id]: boolean, [css], [events], [opacity], [id]: boolean, [disabled]: boolean}} opts
          * @param $html
          * @returns {*}
          * @protected
@@ -281,7 +281,7 @@ define([
                         replace(/\{0}/, this.name)
                 );
 
-                $('.' + this.$.attr('class').replace(/ /, '.'), this.$container).remove();
+                $('.' + this.$.attr('class').replace(/ /g, '.'), this.$container).remove();
             }
         },
 
