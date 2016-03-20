@@ -62,7 +62,7 @@ define(
                      */
                     this.elements.$workspacedata = new WorkspaceDataElement(this, {
                         uuid: this.createUUID(),
-                        $container: this.get$container()
+                        $container: this.get$container().$
                     });
                 },
 
@@ -74,13 +74,9 @@ define(
                  */
                 renderContent: function renderContent(data) {
 
-                    /**
-                     * Define content
-                     * @type {{}}
-                     */
-                    this.elements.items = {};
+                    this.updateElementItems();
 
-                    this.elements.$workspacedata.empty();
+                    this.get$item().empty();
                     this.renderCreatePage();
 
                     this.renderFilter(
@@ -125,17 +121,15 @@ define(
                                 data[i].model.getConfig('uuid'),
                                 'workspace-data-view'
                             ].join('-'),
-                            $container: this.elements.$workspacedata.$,
+                            $container: this.get$item().$,
                             data: data[i],
                             counter: i + 1
                         });
 
-                        this.elements.items[$item.id] = $item;
+                        this.updateElementItems($item);
                     }
 
-                    this.elements.$workspacedata.scrollCover(
-                        this.get$container()
-                    );
+                    this.updateScrollCover();
 
                     this.elements.$filter.updateData({
                         items: this.elements.items,
@@ -150,7 +144,7 @@ define(
                  * @memberOf WorkspaceDataView
                  */
                 updateFooterContent: function updateFooterContent() {
-                    this.renderFooter(Footer, this.elements.$workspacedata);
+                    this.renderFooter(Footer, this.get$item());
                 },
 
                 /**
@@ -165,7 +159,7 @@ define(
                      */
                     this.elements.$addPage = new WorkspaceDataAddPageElement(this, {
                         style: 'add-page',
-                        $container: this.elements.$workspacedata.$,
+                        $container: this.get$item().$,
                         events: {
                             click: ['prepareCreatePage']
                         }

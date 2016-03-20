@@ -33,18 +33,18 @@ define([
          */
         renderPageTabs: function renderPageTabs() {
 
-            this.header(Header, this.getElementContainer());
+            this.header(Header, this.get$container());
 
             /**
              * Define $page.tabs
              * @type {PageTabsElement}
              */
             this.elements.$pagetabs = new PageTabsElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 style: 'page-tabs-container'
             });
 
-            this.footer(Footer, this.getElementContainer());
+            this.footer(Footer, this.get$container());
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.setEmbeddedContent
@@ -65,7 +65,7 @@ define([
              * @return {jQuery}
              */
             var $pageTab = new PageTabsItemElement(this, {
-                $container: this.elements.$pagetabs.$,
+                $container: this.get$item().$,
                 pageTab: pageTab,
                 style: 'page-tabs-item'
             });

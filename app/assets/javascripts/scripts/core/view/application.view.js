@@ -42,9 +42,9 @@ define([
                 id: true
             });
 
-            this.header(Header, this.elements.$application);
+            this.header(Header, this.get$item());
             this.workspaces();
-            this.footer(Footer, this.elements.$application);
+            this.footer(Footer, this.get$item());
         },
 
         /**
@@ -58,7 +58,7 @@ define([
              * @type {ApplicationContentElement}
              */
             this.elements.$workspaces = new ApplicationContentElement(this, {
-                $container: this.elements.$application.$,
+                $container: this.get$item().$,
                 style: 'workspaces'
             });
         },
@@ -74,7 +74,7 @@ define([
              * @type {ExportElement}
              */
             this.elements.$export = new ExportElement(this, {
-                $container: this.elements.$application.$,
+                $container: this.get$item().$,
                 style: 'export-url',
                 data: data
             });

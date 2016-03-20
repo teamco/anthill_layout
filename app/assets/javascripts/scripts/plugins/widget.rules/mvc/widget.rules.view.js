@@ -44,7 +44,7 @@ define([
                      */
                     this.elements.$widgetrules = new WidgetRulesElement(this, {
                         id: this.createUUID(),
-                        $container: this.get$container()
+                        $container: this.get$container().$
                     });
                 }
             },
@@ -57,12 +57,8 @@ define([
              */
             renderContent: function renderContent(data) {
 
-                /**
-                 * Define content
-                 * @type {{}}
-                 */
-                this.elements.items = {};
-                this.elements.$widgetrules.empty();
+                this.updateElementItems();
+                this.get$item().empty();
 
                 this.renderFilter(
                     this.updateFooterContent.bind(this)
@@ -82,7 +78,7 @@ define([
                                 data[index].model.getConfig('uuid'),
                                 this.scope.name.toDash()
                             ].join('-'),
-                            $container: this.elements.$widgetrules.$,
+                            $container: this.get$item().$,
                             data: data[index]
                         });
 
@@ -93,13 +89,11 @@ define([
 
                         this.controller.defineContentReferrer(data[index]);
 
-                        this.elements.items[$item.id] = $item;
+                        this.updateElementItems($item);
                     }
                 }
 
-                this.elements.$widgetrules.scrollCover(
-                    this.get$container()
-                );
+                this.updateScrollCover();
 
                 this.elements.$filter.updateData({
                     items: this.elements.items,
@@ -114,7 +108,7 @@ define([
              * @memberOf WidgetRulesView
              */
             updateFooterContent: function updateFooterContent() {
-                this.renderFooter(Footer, this.elements.$widgetrules);
+                this.renderFooter(Footer, this.get$item());
             },
 
             /**

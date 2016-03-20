@@ -78,7 +78,7 @@ define(
                          */
                         this.elements.$siteconfig = new SiteConfigElement(this, {
                             id: this.createUUID(),
-                            $container: this.get$container()
+                            $container: this.get$container().$
                         });
                     }
 
@@ -93,12 +93,8 @@ define(
                  */
                 renderContent: function renderContent(data) {
 
-                    /**
-                     * Define content
-                     * @type {{}}
-                     */
-                    this.elements.items = {};
-                    this.elements.$siteconfig.empty();
+                    this.updateElementItems();
+                    this.get$item().empty();
 
                     var index, counter = 1;
 
@@ -115,20 +111,18 @@ define(
                                     'content',
                                     data[index].title.toClassName()
                                 ].join(' '),
-                                $container: this.elements.$siteconfig.$,
+                                $container: this.get$item().$,
                                 counter: counter,
                                 data: data[index]
                             });
 
                             counter += 1;
 
-                            this.elements.items[$item.id] = $item;
+                            this.updateElementItems($item);
                         }
                     }
 
-                    this.elements.$siteconfig.scrollCover(
-                        this.get$container()
-                    );
+                    this.updateScrollCover();
 
                     this.elements.$filter.updateData({
                         items: this.elements.items,
@@ -143,7 +137,7 @@ define(
                  * @memberOf SiteConfigView
                  */
                 updateFooterContent: function updateFooterContent() {
-                    this.renderFooter(Footer, this.elements.$siteconfig);
+                    this.renderFooter(Footer, this.get$item());
                 },
 
                 /**

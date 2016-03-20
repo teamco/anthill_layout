@@ -41,6 +41,21 @@ define([
     return BaseView.extend('BaseView', {
 
         /**
+         * Define update elements items
+         * @memberOf BaseView
+         * @param {BaseElement} [$item]
+         */
+        updateElementItems: function updateElementItems($item) {
+
+            if (!$item) {
+                this.elements.items = {};
+                return false;
+            }
+
+            this.elements.items[$item.id] = $item
+        },
+
+        /**
          * Get config HTML
          * @memberOf BaseView
          * @param {string} [key]
@@ -175,8 +190,7 @@ define([
             if (cached) {
 
                 this.scope.logger.debug(
-                    this.i18n.t('element.already.rendered').
-                        replace(/\{0}/, Constructor.name)
+                    this.i18n.t('element.already.rendered').replace(/\{0}/, Constructor.name)
                 );
             }
 
@@ -279,7 +293,7 @@ define([
          * @param {string} title
          */
         renderHeader: function renderHeader(Header, title) {
-            this.header(Header, this.getElementContainer()).setText(title);
+            this.header(Header, this.get$container()).setText(title);
         },
 
         /**
@@ -289,7 +303,7 @@ define([
          * @param {object} $element
          */
         renderFooter: function renderFooter(Footer, $element) {
-            this.footer(Footer, this.getElementContainer()).setHtml(
+            this.footer(Footer, this.get$container()).setHtml(
                 $element.getFooter()
             );
         },
@@ -308,7 +322,7 @@ define([
              * @type {FilterElement}
              */
             this.elements.$filter = new Filter(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 style: [this.scope.name.toDash(), 'filter'].join(' '),
                 callback: callback,
                 enter: enter
@@ -316,12 +330,11 @@ define([
         },
 
         /**
-         * Get element container
+         * Define get $container
          * @memberOf BaseView
          * @returns {*}
          */
-        getElementContainer: function getElementContainer() {
-
+        get$container: function get$container() {
             var $container = this.elements.$container;
 
             if (!$container) {
@@ -331,20 +344,10 @@ define([
                     this.elements
                 );
 
-                return false;
+                return {};
             }
 
             return $container;
-        },
-
-        /**
-         * Define get $container
-         * @memberOf BaseView
-         * @returns {*}
-         */
-        get$container: function get$container() {
-            var $container = this.getElementContainer();
-            return $container ? $container.$ : {};
         },
 
         /**
@@ -484,6 +487,16 @@ define([
                 }
             }
             return {};
+        },
+
+        /**
+         * Update scroll cover
+         * @memberOf BaseView
+         */
+        updateScrollCover: function updateScrollCover() {
+            this.get$item().scrollCover(
+                this.get$container().$
+            );
         }
 
     }, AntHill.prototype);

@@ -32,7 +32,7 @@ define([
          */
         renderGeolocation: function renderGeolocation() {
 
-            this.header(Header, this.getElementContainer());
+            this.header(Header, this.get$container());
 
             /**
              * Define $geolocation
@@ -43,7 +43,7 @@ define([
                 id: this.createUUID()
             });
 
-            this.footer(Footer, this.getElementContainer());
+            this.footer(Footer, this.get$container());
 
             this.showPosition();
         },

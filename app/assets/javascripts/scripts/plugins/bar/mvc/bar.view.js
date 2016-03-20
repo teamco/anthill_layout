@@ -35,19 +35,19 @@ define([
                 return false;
             }
 
-            this.header(Header, this.getElementContainer());
+            this.header(Header, this.get$container());
 
             /**
              * Define container
              * @type {BarElement}
              */
             this.elements.$bar = new BarElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 style: 'panel-bar',
                 id: this.createUUID()
             });
 
-            this.footer(Footer, this.getElementContainer());
+            this.footer(Footer, this.get$container());
         },
 
         /**
@@ -63,11 +63,7 @@ define([
                 return false;
             }
 
-            /**
-             * Define content
-             * @type {{}}
-             */
-            this.elements.items = {};
+            this.updateElementItems();
 
             for (var index in data) {
 
@@ -96,10 +92,10 @@ define([
                         ]).join(' '),
                         resource: item,
                         cname: moduleResource,
-                        $container: this.elements.$bar.$
+                        $container: this.get$item().$
                     });
 
-                    this.elements.items[$item.id] = $item;
+                    this.updateElementItems($item);
                 }
             }
         },

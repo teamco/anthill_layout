@@ -32,7 +32,7 @@ define([
          */
         renderCollegeHumor: function renderCollegeHumor() {
 
-            this.header(Header, this.getElementContainer());
+            this.header(Header, this.get$container());
 
             /**
              * Define $collegehumor
@@ -43,7 +43,7 @@ define([
                 id: this.createUUID()
             });
 
-            this.footer(Footer, this.getElementContainer());
+            this.footer(Footer, this.get$container());
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.setEmbeddedContent

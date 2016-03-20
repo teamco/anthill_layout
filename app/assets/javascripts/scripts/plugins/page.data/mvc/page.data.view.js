@@ -46,7 +46,7 @@ define([
                  */
                 this.elements.$pagedata = new PageDataElement(this, {
                     uuid: this.createUUID(),
-                    $container: this.get$container()
+                    $container: this.get$container().$
                 });
             },
 
@@ -58,11 +58,7 @@ define([
              */
             renderContent: function renderContent(data) {
 
-                /**
-                 * Define content
-                 * @type {{}}
-                 */
-                this.elements.items = {};
+                this.updateElementItems();
                 this.elements.$pagedata.empty();
 
                 this.renderFilter(
@@ -83,7 +79,7 @@ define([
                                 data[index].model.getConfig('uuid'),
                                 this.scope.name.toDash()
                             ].join('-'),
-                            $container: this.elements.$pagedata.$,
+                            $container: this.get$item().$,
                             data: data[index]
                         });
 
@@ -94,13 +90,11 @@ define([
 
                         this.controller.defineContentReferrer(data[index]);
 
-                        this.elements.items[$item.id] = $item;
+                        this.updateElementItems($item);
                     }
                 }
 
-                this.elements.$pagedata.scrollCover(
-                    this.get$container()
-                );
+                this.updateScrollCover();
 
                 this.elements.$filter.updateData({
                     items: this.elements.items,
@@ -115,7 +109,7 @@ define([
              * @memberOf PageDataView
              */
             updateFooterContent: function updateFooterContent() {
-                this.renderFooter(Footer, this.elements.$pagedata);
+                this.renderFooter(Footer, this.get$item());
             },
 
             /**

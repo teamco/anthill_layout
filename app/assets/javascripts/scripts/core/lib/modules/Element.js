@@ -1086,7 +1086,9 @@ define([
                 if (t1 > t2) return sorted ? 1 : -1;
                 return 0;
             }).appendTo($container);
-        }
+        },
+        
+        
 
     }, AntHill.prototype, Renderer.prototype);
 });

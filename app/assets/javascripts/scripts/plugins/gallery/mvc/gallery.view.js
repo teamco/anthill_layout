@@ -64,7 +64,7 @@ define([
              * @type {GalleryElement}
              */
             this.elements.$gallery = new GalleryElement(this, {
-                $container: this.get$container()
+                $container: this.get$container().$
             });
         },
 
@@ -82,7 +82,7 @@ define([
              * @type {GalleryProvidersElement}
              */
             this.elements.$providers = new GalleryProvidersElement(this, {
-                $container: this.get$container(),
+                $container: this.get$container().$,
                 style: 'gallery-providers',
                 data: providers,
                 current: currentProvider
@@ -103,13 +103,9 @@ define([
             }
 
             // clean content
-            this.elements.$gallery.empty();
+            this.get$item().empty();
 
-            /**
-             * Define content
-             * @type {{}}
-             */
-            this.elements.items = {};
+            this.updateElementItems();
 
             /**
              * Define provider data
@@ -125,16 +121,14 @@ define([
                  */
                 var $item = new GalleryContentElement(this, {
                     style: 'content',
-                    $container: this.elements.$gallery.$,
+                    $container: this.get$item().$,
                     data: data[i]
                 });
 
-                this.elements.items[$item.id] = $item;
+                this.updateElementItems($item);
             }
 
-            this.elements.$gallery.scrollCover(
-                this.get$container()
-            );
+            this.updateScrollCover();
 
             this.elements.$filter.updateData({
                 items: this.elements.items,
@@ -149,7 +143,7 @@ define([
          * @memberOf GalleryView
          */
         updateFooterContent: function updateFooterContent() {
-            this.renderFooter(Footer, this.elements.$gallery);
+            this.renderFooter(Footer, this.get$item());
         },
 
         /**

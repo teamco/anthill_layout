@@ -45,7 +45,7 @@ define([
                  * @type {MaximizeElement}
                  */
                 this.elements.$maximize = new MaximizeElement(this, {
-                    $container: this.get$container()
+                    $container: this.get$container().$
                 });
             },
 
@@ -57,12 +57,8 @@ define([
              */
             renderContent: function renderContent(data) {
 
-                /**
-                 * Define content
-                 * @type {{}}
-                 */
-                this.elements.items = {};
-                this.elements.$maximize.empty();
+                this.updateElementItems();
+                this.get$item().empty();
 
                 this.renderFilter(
                     this.updateFooterContent.bind(this)
@@ -78,7 +74,7 @@ define([
                          */
                         var $item = new MaximizeContentElement(this, {
                             style: 'content',
-                            $container: this.elements.$maximize.$,
+                            $container: this.get$item().$,
                             data: data[index]
                         });
 
@@ -89,13 +85,11 @@ define([
 
                         this.controller.defineContentReferrer(data[index]);
 
-                        this.elements.items[$item.id] = $item;
+                        this.updateElementItems($item);
                     }
                 }
 
-                this.elements.$maximize.scrollCover(
-                    this.get$container()
-                );
+                this.updateScrollCover();
 
                 this.elements.$filter.updateData({
                     items: this.elements.items,
@@ -110,7 +104,7 @@ define([
              * @memberOf MaximizeView
              */
             updateFooterContent: function updateFooterContent() {
-                this.renderFooter(Footer, this.elements.$maximize);
+                this.renderFooter(Footer, this.get$item());
             },
 
             /**
