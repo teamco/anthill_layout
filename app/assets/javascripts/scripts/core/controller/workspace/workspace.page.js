@@ -177,10 +177,19 @@ define(function defineWorkspacePage() {
 
                 this.logger.debug('After switch to page', page);
 
+                /**
+                 * Update switch to page flag instance
+                 * @type {boolean}
+                 */
                 this.switchPage = false;
 
                 page.observer.publish(
                     page.eventmanager.eventList.updateHeight
+                );
+
+                this.view.get$item().defineActivePage(
+                    this.model.getItems(),
+                    page
                 );
 
                 //this.getWidgetByHashLocation()

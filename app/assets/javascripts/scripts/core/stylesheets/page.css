@@ -1,12 +1,20 @@
-.page {
+.pages > .page {
     top: 0;
     /*overflow-x: hidden;*/
     position: relative;
     width: 100%;
     float: left;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s linear;
 }
 
-.page.select:after {
+.pages > .page.current-page {
+    visibility: visible;
+    opacity: 1;
+}
+
+.pages > .page.select:after {
     content: ' ';
     position: absolute;
     top: 0;
@@ -17,18 +25,18 @@
     height: 100%;
 }
 
-.page .delta-scroll {
+.pages > .page .delta-scroll {
     display: none;
     width: 1px;
     height: 10000px;
 }
 
-.page-header {
+.pages > .page .page-header {
     width: 100%;
     position: absolute;
 }
 
-.page .widgets {
+.pages > .page .widgets {
     position: absolute;
     top: 0;
     right: 0;
@@ -39,12 +47,4 @@
     height: auto;
     /*overflow-x: hidden;*/
     /*overflow-y: auto;*/
-}
-
-.page .page-modal.modal-dialog div.html {
-    box-shadow: none;
-}
-
-.page .page-modal.modal-dialog div.html li {
-    list-style-type: decimal;
 }

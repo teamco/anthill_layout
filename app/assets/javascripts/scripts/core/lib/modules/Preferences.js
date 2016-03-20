@@ -10,6 +10,7 @@ define(function defineBasePreferences() {
     /**
      * Define BasePreferences
      * @class BasePreferences
+     * @extends BaseController
      * @constructor
      */
     var BasePreferences = function BasePreferences() {
@@ -117,7 +118,7 @@ define(function defineBasePreferences() {
                  * Check if prefs in content
                  * @type {boolean}
                  */
-                var isContentPrefs = $(input).closest('[class*="-prefs"]')[0].className.indexOf(cname) !== -1;
+                var isContentPrefs = ($(input).closest('[class*="-prefs"]').attr('class') || '').indexOf(cname) !== -1;
 
                 var event = isContentPrefs ?
                     scope.eventmanager.eventList.transferContentPreferences :

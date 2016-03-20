@@ -52,8 +52,7 @@ define([
              * Fetch page
              * @type {Page}
              */
-            var scope = this.view.scope,
-                height;
+            var scope = this.view.scope;
 
             /**
              * Get widget
@@ -83,7 +82,7 @@ define([
              */
             var layout = scope.controller.getLayout();
 
-            height = lastOccupiedRow * layout.controller.minCellWidth() +
+            var height = lastOccupiedRow * layout.controller.minCellWidth() +
                 (lastOccupiedRow + 1) * layout.config.grid.margin;
 
             var header = this.view.elements.$header,
@@ -101,7 +100,15 @@ define([
             }
 
             this.setHeight(height + outerHeight);
+        },
 
+        /**
+         * Define page visibility
+         * @memberOf PageElement
+         * @param {boolean} visible
+         */
+        setVisibility: function setVisibility(visible) {
+            this.$[(visible ? 'add' : 'remove') + 'Class']('current-page');
         }
 
     }, BaseElement.prototype);

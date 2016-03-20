@@ -96,6 +96,35 @@ define([
         },
 
         /**
+         * Define active page
+         * @memberOf WorkspaceElement
+         * @param {{Page}} items
+         * @param {Page} item
+         */
+        defineActivePage: function defineActivePage(items, item) {
+
+            var index, page;
+
+            for (index in items) {
+
+                if (items.hasOwnProperty(index)) {
+
+                    /**
+                     * Get page
+                     * @type {Page}
+                     */
+                    page = items[index];
+
+                    if (page !== item) {
+                        page.view.get$item().setVisibility(false);
+                    }
+                }
+            }
+
+            item.view.get$item().setVisibility(true);
+        },
+
+        /**
          * Render Google Analytics
          * @memberOf WorkspaceElement
          * @param {string} trackingId
