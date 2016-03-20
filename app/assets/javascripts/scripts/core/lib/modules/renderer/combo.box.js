@@ -7,7 +7,10 @@ define([], function defineComboBoxRenderer() {
     /**
      * Define ComboBoxRenderer
      * @class ComboBoxRenderer
+     * @extends AntHill
      * @extends LabelRenderer
+     * @extends TextFieldRenderer
+     * @extends ToolTipRenderer
      * @constructor
      */
     var ComboBoxRenderer = function ComboBoxRenderer() {
@@ -162,7 +165,7 @@ define([], function defineComboBoxRenderer() {
                     this.renderTooltip({
                         title: field.value,
                         description: tooltip,
-                        $container: $li.$
+                        selector: $li
                     });
                 }
             }
