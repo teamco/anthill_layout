@@ -32,18 +32,18 @@ define([
          */
         renderScreencast: function renderScreencast() {
 
-            this.header(Header, this.elements.$container);
+            this.header(Header, this.getElementContainer());
 
             /**
              * Define $screencast
              * @type {ScreencastElement}
              */
             this.elements.$screencast = new ScreencastElement(this, {
-                $container: this.elements.$container.$,
+                $container: this.get$container(),
                 id: this.createUUID()
             });
 
-            this.footer(Footer, this.elements.$container);
+            this.footer(Footer, this.getElementContainer());
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.setEmbeddedContent

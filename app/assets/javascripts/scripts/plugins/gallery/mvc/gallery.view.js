@@ -64,7 +64,7 @@ define([
              * @type {GalleryElement}
              */
             this.elements.$gallery = new GalleryElement(this, {
-                $container: this.elements.$container.$
+                $container: this.get$container()
             });
         },
 
@@ -82,7 +82,7 @@ define([
              * @type {GalleryProvidersElement}
              */
             this.elements.$providers = new GalleryProvidersElement(this, {
-                $container: this.elements.$container.$,
+                $container: this.get$container(),
                 style: 'gallery-providers',
                 data: providers,
                 current: currentProvider
@@ -133,7 +133,7 @@ define([
             }
 
             this.elements.$gallery.scrollCover(
-                this.elements.$container.$
+                this.get$container()
             );
 
             this.elements.$filter.updateData({

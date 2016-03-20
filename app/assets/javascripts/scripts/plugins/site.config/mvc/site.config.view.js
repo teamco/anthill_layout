@@ -78,7 +78,7 @@ define(
                          */
                         this.elements.$siteconfig = new SiteConfigElement(this, {
                             id: this.createUUID(),
-                            $container: this.elements.$container.$
+                            $container: this.get$container()
                         });
                     }
 
@@ -127,7 +127,7 @@ define(
                     }
 
                     this.elements.$siteconfig.scrollCover(
-                        this.elements.$container.$
+                        this.get$container()
                     );
 
                     this.elements.$filter.updateData({

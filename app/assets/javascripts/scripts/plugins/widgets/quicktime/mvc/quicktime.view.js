@@ -32,18 +32,18 @@ define([
          */
         renderQuicktime: function renderQuicktime() {
 
-            this.header(Header, this.elements.$container);
+            this.header(Header, this.getElementContainer());
 
             /**
              * Define $quicktime
              * @type {QuicktimeElement}
              */
             this.elements.$quicktime = new QuicktimeElement(this, {
-                $container: this.elements.$container.$,
+                $container: this.get$container(),
                 id: this.createUUID()
             });
 
-            this.footer(Footer, this.elements.$container);
+            this.footer(Footer, this.getElementContainer());
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.setEmbeddedContent

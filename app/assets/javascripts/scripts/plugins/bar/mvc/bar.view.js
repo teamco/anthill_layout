@@ -35,19 +35,19 @@ define([
                 return false;
             }
 
-            this.header(Header, this.elements.$container);
+            this.header(Header, this.getElementContainer());
 
             /**
              * Define container
              * @type {BarElement}
              */
             this.elements.$bar = new BarElement(this, {
-                $container: this.elements.$container.$,
+                $container: this.get$container(),
                 style: 'panel-bar',
                 id: this.createUUID()
             });
 
-            this.footer(Footer, this.elements.$container);
+            this.footer(Footer, this.getElementContainer());
         },
 
         /**

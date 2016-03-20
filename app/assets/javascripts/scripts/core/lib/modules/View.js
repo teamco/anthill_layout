@@ -279,7 +279,7 @@ define([
          * @param {string} title
          */
         renderHeader: function renderHeader(Header, title) {
-            this.header(Header, this.elements.$container).setText(title);
+            this.header(Header, this.getElementContainer()).setText(title);
         },
 
         /**
@@ -289,7 +289,7 @@ define([
          * @param {object} $element
          */
         renderFooter: function renderFooter(Footer, $element) {
-            this.footer(Footer, this.elements.$container).setHtml(
+            this.footer(Footer, this.getElementContainer()).setHtml(
                 $element.getFooter()
             );
         },
@@ -308,11 +308,43 @@ define([
              * @type {FilterElement}
              */
             this.elements.$filter = new Filter(this, {
-                $container: this.elements.$container.$,
+                $container: this.get$container(),
                 style: [this.scope.name.toDash(), 'filter'].join(' '),
                 callback: callback,
                 enter: enter
             });
+        },
+
+        /**
+         * Get element container
+         * @memberOf BaseView
+         * @returns {*}
+         */
+        getElementContainer: function getElementContainer() {
+
+            var $container = this.elements.$container;
+
+            if (!$container) {
+
+                this.scope.logger.error(
+                    'Unable to fetch $container',
+                    this.elements
+                );
+
+                return false;
+            }
+
+            return $container;
+        },
+
+        /**
+         * Define get $container
+         * @memberOf BaseView
+         * @returns {*}
+         */
+        get$container: function get$container() {
+            var $container = this.getElementContainer();
+            return $container ? $container.$ : {};
         },
 
         /**

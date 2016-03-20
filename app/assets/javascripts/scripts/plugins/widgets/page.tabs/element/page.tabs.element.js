@@ -19,7 +19,7 @@ define([
      * @extends BaseElement
      */
     var PageTabsElement = function PageTabsElement(view, opts) {
-
+console.log(view.scope.config.uuid);
         this._config(view, opts, $('<ul class="nav nav-tabs" />')).build({
             $container: opts.$container,
             destroy: true

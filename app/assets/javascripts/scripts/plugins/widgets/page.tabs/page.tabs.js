@@ -27,13 +27,13 @@ define([
 
         /**
          * Define containment
-         * @memberOf PageTabs
+         * @property PageTabs
          */
         this.containment = containment;
 
         /**
          * Define referrer
-         * @memberOf PageTabs
+         * @property PageTabs
          * @type {*}
          */
         this.referrer = undefined;
@@ -72,7 +72,7 @@ define([
 
         /**
          * Define MVC
-         * @memberOf PageTabs
+         * @property PageTabs
          * @type {MVC}
          */
         this.mvc = new MVC({

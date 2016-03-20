@@ -62,7 +62,7 @@ define(
                      */
                     this.elements.$workspacedata = new WorkspaceDataElement(this, {
                         uuid: this.createUUID(),
-                        $container: this.elements.$container.$
+                        $container: this.get$container()
                     });
                 },
 
@@ -134,7 +134,7 @@ define(
                     }
 
                     this.elements.$workspacedata.scrollCover(
-                        this.elements.$container.$
+                        this.get$container()
                     );
 
                     this.elements.$filter.updateData({

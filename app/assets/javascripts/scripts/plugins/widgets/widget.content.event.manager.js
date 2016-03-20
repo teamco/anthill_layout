@@ -33,7 +33,7 @@ define([
 
         /**
          * Define event list
-         * @memberOf WidgetContentEventManager
+         * @property WidgetContentEventManager
          * @type {{
          *      initWidget: string,
          *      updateTranslations: string,
@@ -100,8 +100,9 @@ define([
              * Get widget
              * @type {Widget}
              */
-            var widget = scope.controller.getContainment(),
-                rules = widget.model.getConfig('rules'),
+            var widget = scope.controller.getContainment();
+
+            var rules = widget.model.getConfig('rules'),
                 publish = rules.publish || {},
                 subscribe = rules.subscribe || {},
                 lname = scope.name.toLowerCase(),

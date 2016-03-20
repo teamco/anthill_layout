@@ -29,7 +29,7 @@ define([
          */
         renderExternalWidget: function renderExternalWidget() {
 
-            this.header(Header, this.elements.$container);
+            this.header(Header, this.getElementContainer());
 
             require(
                 [this.scope.externalResource + 'element/external.widget.element.js'],
@@ -40,11 +40,11 @@ define([
                      * @type {ExternalWidgetElement}
                      */
                     this.elements.$externalwidget = new ExternalWidgetElement(this, {
-                        $container: this.elements.$container.$,
+                        $container: this.get$container(),
                         id: this.createUUID()
                     });
 
-                    this.footer(Footer, this.elements.$container);
+                    this.footer(Footer, this.getElementContainer());
 
                     this.scope.observer.publish(
                         this.scope.eventmanager.eventList.setEmbeddedContent

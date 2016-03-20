@@ -46,7 +46,7 @@ define([
                  */
                 this.elements.$pagedata = new PageDataElement(this, {
                     uuid: this.createUUID(),
-                    $container: this.elements.$container.$
+                    $container: this.get$container()
                 });
             },
 
@@ -99,7 +99,7 @@ define([
                 }
 
                 this.elements.$pagedata.scrollCover(
-                    this.elements.$container.$
+                    this.get$container()
                 );
 
                 this.elements.$filter.updateData({

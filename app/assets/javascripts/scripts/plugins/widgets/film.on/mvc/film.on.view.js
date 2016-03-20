@@ -32,18 +32,18 @@ define([
          */
         renderFilmOn: function renderFilmOn() {
 
-            this.header(Header, this.elements.$container);
+            this.header(Header, this.getElementContainer());
 
             /**
              * Define $filmon
              * @type {FilmOnElement}
              */
             this.elements.$filmon = new FilmOnElement(this, {
-                $container: this.elements.$container.$,
+                $container: this.get$container(),
                 id: this.createUUID()
             });
 
-            this.footer(Footer, this.elements.$container);
+            this.footer(Footer, this.getElementContainer());
 
             this.scope.observer.publish(
                 this.scope.eventmanager.eventList.setEmbeddedContent

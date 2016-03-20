@@ -45,7 +45,7 @@ define([
                  * @type {MaximizeElement}
                  */
                 this.elements.$maximize = new MaximizeElement(this, {
-                    $container: this.elements.$container.$
+                    $container: this.get$container()
                 });
             },
 
@@ -94,7 +94,7 @@ define([
                 }
 
                 this.elements.$maximize.scrollCover(
-                    this.elements.$container.$
+                    this.get$container()
                 );
 
                 this.elements.$filter.updateData({
