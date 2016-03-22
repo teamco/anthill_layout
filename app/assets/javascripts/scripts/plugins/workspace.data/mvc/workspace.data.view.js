@@ -257,7 +257,7 @@ define(
                         page: page
                     });
 
-                    return this.elements.$preferences;
+                    return this.get$preferences();
                 },
 
                 /**

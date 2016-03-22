@@ -36,7 +36,7 @@ define([
                     map: map
                 });
 
-                return this.elements.$preferences;
+                return this.get$preferences();
             },
 
             /**

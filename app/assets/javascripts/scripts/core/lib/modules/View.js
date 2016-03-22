@@ -83,6 +83,24 @@ define([
         },
 
         /**
+         * Get items $rules
+         * @memberOf BaseView
+         * @returns {*}
+         */
+        get$rules: function get$rules() {
+            return this.elements.$rules;
+        },
+
+        /**
+         * Get items $preferences
+         * @memberOf BaseView
+         * @returns {*}
+         */
+        get$preferences: function get$preferences(){
+            return this.elements.$preferences;
+        },
+
+        /**
          * Get item DOM Element
          * @memberOf BaseView
          * @returns {BaseElement}

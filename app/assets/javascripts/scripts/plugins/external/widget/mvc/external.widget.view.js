@@ -62,7 +62,7 @@ define([
         renderPreferences: function renderPreferences() {
 
             if (this.elements.$preferences) {
-                return this.elements.$preferences;
+                return this.get$preferences();
             }
 
             require(
@@ -91,7 +91,7 @@ define([
         renderRules: function renderRules(widgetRules, contentRules) {
 
             if (this.elements.$rules) {
-                return this.elements.$rules;
+                return this.get$rules();
             }
 
             require(

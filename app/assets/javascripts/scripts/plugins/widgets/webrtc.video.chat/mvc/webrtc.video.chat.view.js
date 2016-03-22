@@ -65,7 +65,7 @@ define([
                 data: this.controller.getPreferences()
             });
 
-            return this.elements.$preferences;
+            return this.get$preferences();
         },
 
         /**
@@ -89,7 +89,7 @@ define([
                 }
             });
 
-            return this.elements.$rules;
+            return this.get$rules();
         },
 
         /**
