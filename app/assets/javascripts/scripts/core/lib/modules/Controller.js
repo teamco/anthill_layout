@@ -344,7 +344,7 @@ define([
                 );
 
                 this.observer.publish(
-                    this.eventmanager.eventList.defineGetter
+                    this.eventmanager.eventList.defineGenericGetter
                 );
             },
 
@@ -352,7 +352,7 @@ define([
              * Define instance getter
              * @memberOf BaseController
              */
-            defineGetter: function defineGetter() {
+            defineGenericGetter: function defineGenericGetter() {
 
                 var containment = this.controller.getContainment(),
                     scope = this;

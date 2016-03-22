@@ -89,7 +89,8 @@ define([
          *      afterResizeWindow: string,
          *      successRenderHeader: string,
          *      successRenderFooter: string,
-         *      bindModelObserver: string
+         *      bindModelObserver: string,
+         *      defineGenericGetter: string
          * }}
          */
         this.defaultListeners = {
@@ -104,7 +105,7 @@ define([
             successRenderHeader: 'success.render.header',
             successRenderFooter: 'success.render.footer',
             bindModelObserver: 'bind.model.observer',
-            defineGetter: 'define.getter'
+            defineGenericGetter: 'define.generic.getter'
         };
 
         /**
